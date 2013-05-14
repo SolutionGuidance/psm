@@ -269,3 +269,17 @@ h3.current_item { background-image:url(../images/section_nav/section_nav_h3_curr
 .banner_image p { font-size: 14px; color: #99ccff; padding: 0 0 4px 10px; width: 600px; }
 .banner_image a{ text-decoration:none; }
 .banner_image a:hover{ text-decoration:none; cursor:pointer; }
+
+
+/* site errors */
+.site_errors { padding:10px 0 0px 0; position:relative; width:952px; z-index:900; }
+.floatType_site_error { padding:10px 12px 8px 12px; background:#000; font-size:11px; overflow:hidden; text-align:left;
+				   		border:solid #c00202; border-width:0 1px 0 1px; }
+.floatType_site_error img { float:left; padding:0 8px 0 0; }
+.floatType_site_error h2 { font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; font-weight:bold; font-size:12px; }
+.floatType_site_error p { padding:4px 0 0 24px; float:none; clear:both; font-size:13px; line-height:16px; }
+.floatType_site_error p a { padding-top:16px; }
+.floatType_site_error table { padding:0; margin:0; width:98%; text-align:left; }
+
+.floatType_site_error_top { height:3px; overflow:hidden;background:url(../images/top_cap-site_error.png) no-repeat 0 0; }
+.floatType_site_error_bottom { height:3px; overflow:hidden;background:url(../images/bottom_cap-site_error.png) no-repeat 0 0; }

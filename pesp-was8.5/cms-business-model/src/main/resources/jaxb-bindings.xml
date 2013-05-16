@@ -1,0 +1,87 @@
+<jaxb:bindings version="2.1" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<jaxb:globalBindings generateElementProperty="false">
+		<jaxb:serializable />
+		<!-- use Calendar instead of XMLGregorianCalendar -->
+		<jaxb:javaType name="java.util.Calendar" xmlType="xs:dateTime" parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime" printMethod="javax.xml.bind.DatatypeConverter.printDateTime" />
+		<jaxb:javaType name="java.util.Calendar" xmlType="xs:date" parseMethod="javax.xml.bind.DatatypeConverter.parseDate" printMethod="javax.xml.bind.DatatypeConverter.printDate" />
+		<jaxb:javaType name="java.util.Calendar" xmlType="xs:time" parseMethod="javax.xml.bind.DatatypeConverter.parseTime" printMethod="javax.xml.bind.DatatypeConverter.printTime" />
+	</jaxb:globalBindings>
+	<jaxb:bindings schemaLocation="EnrollmentServiceAPI.xsd">
+	    <jaxb:bindings node="//xs:simpleType[@name='UISection']">
+	           <jaxb:typesafeEnumClass name="UISection" />
+	    </jaxb:bindings>
+    </jaxb:bindings>
+	<jaxb:bindings schemaLocation="Entities.xsd">
+	    <jaxb:bindings node="//xs:simpleType[@name='ApplicantType']">
+	           <jaxb:typesafeEnumClass name="ApplicantType" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='RequestType']">
+	           <jaxb:typesafeEnumClass name="RequestType" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='ProviderType']">
+	           <jaxb:typesafeEnumClass name="ProviderType" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='LicenseNames']">
+	           <jaxb:typesafeEnumClass name="LicenseNames" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='DocumentNames']">
+	           <jaxb:typesafeEnumClass name="DocumentNames" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='ServiceCategoryNames']">
+	           <jaxb:typesafeEnumClass name="ServiceCategoryNames" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='RiskLevelType']">
+	           <jaxb:typesafeEnumClass name="RiskLevelType" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='ReservationNames']">
+	           <jaxb:typesafeEnumClass name="ReservationNames" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='SpecialtyNames']">
+	           <jaxb:typesafeEnumClass name="SpecialtyNames" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='BoardNames']">
+	           <jaxb:typesafeEnumClass name="BoardNames" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='CorporateStructure']">
+	           <jaxb:typesafeEnumClass name="EntityType" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='SupervisionAndQualification']/xs:restriction/xs:enumeration[@id='SQ1']">
+            <jaxb:typesafeEnumMember name="SQ1" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='SupervisionAndQualification']/xs:restriction/xs:enumeration[@id='SQ2']">
+            <jaxb:typesafeEnumMember name="SQ2"/>
+	    </jaxb:bindings>
+	    
+	    <jaxb:bindings node="//xs:simpleType[@name='ClinicalServices']/xs:restriction/xs:enumeration[@id='CS1']">
+            <jaxb:typesafeEnumMember name="CS1" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='ClinicalServices']/xs:restriction/xs:enumeration[@id='CS2']">
+            <jaxb:typesafeEnumMember name="CS2" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='ClinicalServices']/xs:restriction/xs:enumeration[@id='CS3']">
+            <jaxb:typesafeEnumMember name="CS3" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='ClinicalServices']/xs:restriction/xs:enumeration[@id='CS4']">
+            <jaxb:typesafeEnumMember name="CS4" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='ClinicalServices']/xs:restriction/xs:enumeration[@id='CS5']">
+            <jaxb:typesafeEnumMember name="CS5" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='ClinicalServices']/xs:restriction/xs:enumeration[@id='CS6']">
+            <jaxb:typesafeEnumMember name="CS6" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='ClinicalServices']/xs:restriction/xs:enumeration[@id='CS7']">
+            <jaxb:typesafeEnumMember name="CS7" />
+	    </jaxb:bindings>
+	    
+	    <jaxb:bindings node="//xs:simpleType[@name='ServiceUnits']/xs:restriction/xs:enumeration[@id='SU1']">
+            <jaxb:typesafeEnumMember name="SU1" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='ServiceUnits']/xs:restriction/xs:enumeration[@id='SU2']">
+            <jaxb:typesafeEnumMember name="SU2" />
+	    </jaxb:bindings>
+	    <jaxb:bindings node="//xs:simpleType[@name='ServiceUnits']/xs:restriction/xs:enumeration[@id='SU3']">
+            <jaxb:typesafeEnumMember name="SU3" />
+	    </jaxb:bindings>
+    </jaxb:bindings>
+</jaxb:bindings> 

@@ -1,0 +1,8 @@
+- modify /build.properties to point to correct oracle server and credentials
+- modify /services/src/main/resources/ldap.properties to point to correct LDAP server and credentials
+- make sure LDAP is accessible
+- make sure email server is up (for test, it is assumed local)
+
+run ant test
+
+

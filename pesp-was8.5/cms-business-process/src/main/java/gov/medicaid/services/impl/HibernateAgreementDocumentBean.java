@@ -1,0 +1,292 @@
+/*
+ * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
+ */
+package gov.medicaid.services.impl;
+
+import gov.medicaid.entities.AgreementDocument;
+import gov.medicaid.entities.AgreementDocumentSearchCriteria;
+import gov.medicaid.entities.SearchResult;
+import gov.medicaid.services.AgreementDocumentService;
+import gov.medicaid.services.EntityNotFoundException;
+import gov.medicaid.services.PortalServiceException;
+import gov.medicaid.services.util.LogUtil;
+import gov.medicaid.services.util.Sequences;
+import gov.medicaid.services.util.Util;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceException;
+import javax.persistence.Query;
+
+/**
+ * <p>
+ * This class provides an implementation of the AgreementDocumentDAO.
+ * </p>
+ * <p>
+ * This bean is mutable and not thread-safe as it deals with non-thread-safe entities. However, in the context of being
+ * used in a container, it is thread-safe.
+ * </p>
+ *
+ * @author argolite, TCSASSEMBLER
+ * @version 1.0
+ */
+@Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
+@Local(AgreementDocumentService.class)
+public class HibernateAgreementDocumentBean extends BaseService implements AgreementDocumentService {
+    /**
+     * Empty constructor.
+     */
+    public HibernateAgreementDocumentBean() {
+    }
+
+    /**
+     * This method creates the agreement document and returns the new ID of the created entity.
+     *
+     * @param agreementDocument the agreement document to create
+     *
+     * @return the ID of the added agreement document
+     *
+     * @throws IllegalArgumentException If agreement document is null
+     * @throws PortalServiceException If there are any errors during the execution of this method
+     */
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public long create(AgreementDocument agreementDocument) throws PortalServiceException {
+        String signature = "HibernateAgreementDocumentDAO#create(AgreementDocument agreementDocument)";
+        LogUtil.traceEntry(getLog(), signature, new String[] {"agreementDocument"}, new Object[] {agreementDocument});
+
+        try {
+            if (agreementDocument == null) {
+                throw new IllegalArgumentException("Argument 'agreementDocument' cannot be null.");
+            }
+
+            agreementDocument.setId(getSequence().getNextValue(Sequences.AGREEMENT_DOC_SEQ));
+            getEm().persist(agreementDocument);
+
+            return LogUtil.traceExit(getLog(), signature, agreementDocument.getId());
+        } catch (IllegalArgumentException e) {
+            LogUtil.traceError(getLog(), signature, e);
+            throw e;
+        } catch (PersistenceException e) {
+            LogUtil.traceError(getLog(), signature, e);
+            throw new PortalServiceException("Could not database complete operation.", e);
+        }
+    }
+
+    /**
+     * This method updates the agreement document.
+     *
+     * @param agreementDocument the agreement document to update
+     *
+     * @throws IllegalArgumentException If agreement document is null
+     * @throws PortalServiceException If there are any errors during the execution of this method
+     */
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void update(AgreementDocument agreementDocument) throws PortalServiceException {
+        String signature = "HibernateAgreementDocumentDAO#update(AgreementDocument agreementDocument)";
+        LogUtil.traceEntry(getLog(), signature, new String[] {"agreementDocument"}, new Object[] {agreementDocument});
+
+        if (agreementDocument == null) {
+            throw new IllegalArgumentException("Argument 'agreementDocument' cannot be null.");
+        }
+
+        try {
+            AgreementDocument entity = getEm().find(AgreementDocument.class, agreementDocument.getId());
+
+            if (entity == null) {
+                throw new EntityNotFoundException("No such entity in the database.");
+            }
+
+            getEm().merge(agreementDocument);
+            LogUtil.traceExit(getLog(), signature, null);
+        } catch (PersistenceException e) {
+            throw new PortalServiceException("Could not database complete operation.", e);
+        }
+    }
+
+    /**
+     * This method gets a agreement document by its ID. If not found, returns null.
+     *
+     * @param agreementDocumentId the ID of the agreement document to retrieve
+     *
+     * @return the requested agreement document
+     * @throws PortalServiceException If there are any errors during the execution of this method
+     */
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public AgreementDocument get(long agreementDocumentId) throws PortalServiceException {
+        String signature = "HibernateAgreementDocumentDAO#get(long agreementDocumentId)";
+        LogUtil.traceEntry(getLog(), signature, new String[] {"agreementDocumentId"},
+            new Object[] {agreementDocumentId});
+
+        try {
+            return LogUtil.traceExit(getLog(), signature, getEm().find(AgreementDocument.class, agreementDocumentId));
+        } catch (PersistenceException e) {
+            throw new PortalServiceException("Could not database complete operation.", e);
+        }
+    }
+
+    /**
+     * This method deletes the agreement document with the given ID.
+     *
+     * @param agreementDocumentId the ID of the agreement document to delete
+     *
+     * @throws PortalServiceException If there are any errors during the execution of this method
+     */
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void delete(long agreementDocumentId) throws PortalServiceException {
+        String signature = "HibernateAgreementDocumentDAO#delete(long agreementDocumentId)";
+        LogUtil.traceEntry(getLog(), signature, new String[] {"agreementDocumentId"},
+            new Object[] {agreementDocumentId});
+
+        try {
+            AgreementDocument item = getEm().find(AgreementDocument.class, agreementDocumentId);
+
+            if (item == null) {
+                throw new EntityNotFoundException("No such entity in the database.");
+            }
+
+            getEm().remove(item);
+            LogUtil.traceExit(getLog(), signature, null);
+        } catch (PersistenceException e) {
+            throw new PortalServiceException("Could not database complete operation.", e);
+        }
+    }
+
+    /**
+     * This method gets all the agreement documents that meet the search criteria. If none available, the search result
+     * will be empty.
+     *
+     * @param criteria the search criteria
+     *
+     * @return the applicable agreement documents
+     *
+     * @throws IllegalArgumentException If criteria.pageNumber is less than 0 or if criteria.pageSize is less than 1
+     *             unless criteria.pageNumber is less than 0
+     * @throws PortalServiceException If an error occurs while performing the operation
+     */
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public SearchResult<AgreementDocument> search(AgreementDocumentSearchCriteria criteria)
+        throws PortalServiceException {
+        String signature = "HibernateAgreementDocumentDAO#search(AgreementDocumentSearchCriteria criteria)";
+        LogUtil.traceEntry(getLog(), signature, new String[] {"criteria"}, new Object[] {criteria});
+
+        try {
+            if (criteria == null) {
+                throw new IllegalArgumentException("criteria cannot be null.");
+            }
+            if (criteria.getPageNumber() <= 0 || (criteria.getPageNumber() > 1 && criteria.getPageSize() <= 0)) {
+                throw new IllegalArgumentException("invalid page combination");
+            }
+            // Create result object:
+            SearchResult<AgreementDocument> searchResults = new SearchResult<AgreementDocument>();
+            // Set page number:
+            searchResults.setPageNumber(criteria.getPageNumber());
+            // Set page size:
+            searchResults.setPageSize(criteria.getPageSize());
+
+            // Query for count of all entities for the provided filters
+            // (here there is no paging applied, and sorting is not relevant)
+            // Create query string:
+            StringBuilder entityCountQueryString = new StringBuilder("FROM AgreementDocument entity WHERE 1=1 ");
+            Map<String, Object> parameters = new HashMap<String, Object>();
+
+            if (Util.isNotBlank(criteria.getTitle())) {
+                entityCountQueryString.append("AND title LIKE :title ");
+                parameters.put("title", criteria.getTitle());
+            }
+
+            if (criteria.getType() != null) {
+                entityCountQueryString.append("AND type = :type ");
+                parameters.put("type", criteria.getType().name());
+            }
+
+            // Get count
+            List<Long> results = queryResultList(getEm(), "SELECT count(entity) " + entityCountQueryString.toString(),
+                parameters, 0, 0);
+            int totalRecordCount = results.get(0).intValue();
+
+            if (Util.isNotBlank(criteria.getSortColumn())) {
+                entityCountQueryString.append("ORDER BY entity." + criteria.getSortColumn()
+                    + (criteria.isAscending() ? " ASC" : " DESC"));
+            }
+            // Create query string to get the requested paged entries for the
+            // applicable filters
+            List<AgreementDocument> items = queryResultList(getEm(),
+                "SELECT entity " + entityCountQueryString.toString(), parameters, criteria.getPageNumber(),
+                criteria.getPageSize());
+            searchResults.setItems(items);
+            searchResults = assembleResult(searchResults, criteria.getPageNumber(), criteria.getPageSize(),
+                totalRecordCount);
+
+            return LogUtil.traceExit(getLog(), signature, searchResults);
+        } catch (IllegalArgumentException e) {
+            LogUtil.traceError(getLog(), signature, e);
+            throw e;
+        } catch (PersistenceException e) {
+            throw new PortalServiceException("Could not database complete operation.", e);
+        }
+    }
+
+    /**
+     * <p>
+     * Run the hql with the given manager which returns a list.
+     * </p>
+     *
+     * @param <T> the list type
+     * @param manager the entity manager.
+     * @param hql the hql to run
+     * @param parameters the parameters
+     * @param pageNo the page number
+     * @param pageSize the page size
+     *
+     * @return the query results list
+     */
+    @SuppressWarnings("unchecked")
+    private static <T> List<T> queryResultList(EntityManager manager, String hql, Map<String, Object> parameters,
+        int pageNo, int pageSize) {
+        Query query = manager.createQuery(hql);
+
+        for (Map.Entry<String, Object> entry : parameters.entrySet()) {
+            query.setParameter(entry.getKey(), entry.getValue());
+        }
+
+        // Set result page:
+        if (pageSize > 0) {
+            query.setFirstResult((pageNo - 1) * pageSize).setMaxResults(pageSize);
+        }
+
+        return query.getResultList();
+    }
+
+    /**
+     * <p>
+     * Assemble the searching results.
+     * </p>
+     *
+     * @param searchResults the SearchResult instance
+     * @param pageNo the page number
+     * @param pageSize the page size
+     * @param totalRecordCount total records
+     *
+     * @return the paged result.
+     */
+    private SearchResult<AgreementDocument> assembleResult(SearchResult<AgreementDocument> searchResults, int pageNo,
+        int pageSize, int totalRecordCount) {
+        // Set current page:
+        searchResults.setPageNumber(pageNo);
+        // Set total records:
+        searchResults.setTotal(totalRecordCount);
+        // Set page size:
+        searchResults.setPageSize(pageSize);
+        return searchResults;
+    }
+}

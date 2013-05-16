@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ======================================================================
+    Portal Services Build 
+     ====================================================================== -->
+<project name="CMS Portal Services" default="dist" basedir=".">
+	<property file="${basedir}/build.properties">
+	</property>
+	<property name="deploy.dir" value="${jboss.home}/server/${jboss.config}/deploy" />
+	<property name="build.dir" value="${basedir}/build" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="log.dir" value="${basedir}/tests/log" />
+	<property name="web.build.dir" value="${build.dir}/web" />
+	<property name="ejb.build.dir" value="${build.dir}/ejb" />
+	<property name="web.classes.dir" value="${web.build.dir}/classes" />
+	<property name="ejb.classes.dir" value="${ejb.build.dir}/classes" />
+
+	<property name="ear-file" value="cms-portal-services.ear" />
+    <property name="core-file" value="cms-core.jar" />
+    <property name="ejb-file" value="services.jar" />
+    <property name="war-file" value="cms-web.war" />
+
+	<path id="buildpath">
+		<fileset dir="${basedir}/cms-portal-services/lib">
+			<include name="*.jar" />
+			<exclude name="${core-file}"/>
+		</fileset>
+        <fileset dir="${was.home}/lib">
+            <include name="*.jar" />
+        </fileset>
+        <fileset dir="${was.home}/plugins">
+            <include name="*.jar" />
+        </fileset>
+	</path>
+	
+	<path id="web.buildpath">
+		<fileset dir="${build.dir}">
+			<include name="${core-file}" />
+		</fileset>
+		<path refid="buildpath"></path>
+		<fileset dir="${basedir}/cms-web/WebContent/WEB-INF/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="ejb.buildpath">
+		<fileset dir="${build.dir}">
+			<include name="${core-file}" />
+		</fileset>
+		<path refid="buildpath"></path>
+	</path>
+
+	<path id="testpath">
+		<path refid="buildpath">
+		</path>
+		<fileset dir="${basedir}/tests/lib">
+		</fileset>
+        <fileset dir="${jboss.home}/client">
+        </fileset>
+        <fileset dir="${basedir}/cms-web/WebContent/WEB-INF/lib">
+            <include name="*.jar" />
+        </fileset>
+	</path>
+
+	<target name="dist" depends="clean, build-core, build-ejb, build-war" description="Deploys the portal ear artifact">
+		<copy todir="cms-portal-services/lib">
+			<fileset dir="${build.dir}">
+				<include name="${core-file}" />
+			</fileset>
+		</copy>
+		
+		<ear destfile="${build.dir}/cms-portal-services.ear" appxml="cms-portal-services/EarContent/META-INF/application.xml">
+			<fileset dir="${build.dir}">
+				<include name="${ejb-file}" />
+				<include name="${war-file}" />
+			</fileset>
+			<fileset dir="cms-portal-services">
+				<include name="lib/**" />
+			</fileset>
+		</ear>
+
+		<!--
+		<copy todir="${deploy.dir}">
+			<fileset dir="${build.dir}">
+				<include name="${ear-file}" />
+			</fileset>
+		</copy>
+		-->
+	</target>
+	
+    <target name="undeploy">
+        <delete dir="${deploy.dir}">
+            <include name="${ear-file}" />
+        </delete>
+    </target>
+	
+	
+	<target name="regenerate-model" depends="clean" description="Regenerates the application model from the schemas">
+		<ant dir="cms-business-model" antfile="build.xml" target="dist"></ant>
+		<copy todir="${basedir}/cms-portal-services/lib" >
+			<fileset dir="${build.dir}/dist">
+			    <include name="cms-business-model.jar" />
+			</fileset>
+		</copy>
+		<ant dir="cms-business-model" antfile="build.xml" target="clean"></ant>
+	</target>
+	
+	<target name="build-core" depends="clean" description="Builds the core archive">
+        <delete dir="${classes.dir}" />
+        <mkdir dir="${classes.dir}" />
+        <javac srcdir="${basedir}/services/src/main/java" destdir="${classes.dir}" classpathref="buildpath" debug="on" includeantruntime="no"/>
+        <copy todir="${classes.dir}">
+            <fileset dir="services/src/main/resources">
+            </fileset>
+        </copy>
+		
+        <jar destfile="${build.dir}/${core-file}" basedir="${classes.dir}" />
+	</target>
+
+	<target name="build-war" depends="build-core" description="Builds the web archive">
+		<delete dir="${web.classes.dir}" />
+		<mkdir dir="${web.classes.dir}" />
+
+		<javac srcdir="${basedir}/cms-web/src/main/java" destdir="${web.classes.dir}" classpathref="web.buildpath" debug="on" includeantruntime="no"/>
+
+		<copy todir="${web.classes.dir}">
+			<fileset dir="${basedir}/cms-web/src/main/resources">
+			</fileset>
+		</copy>
+		<war destfile="${build.dir}/${war-file}">
+			<classes dir="${web.classes.dir}"></classes>
+			<fileset dir="${basedir}/cms-web/WebContent"></fileset>
+		</war> 
+	</target>
+
+	<target name="build-ejb" depends="build-core" description="Build the EJB archive">
+		<delete dir="${ejb.classes.dir}" />
+		<mkdir dir="${ejb.classes.dir}" />
+
+		<javac srcdir="${basedir}/cms-business-process/src/main/java" destdir="${ejb.classes.dir}" classpathref="ejb.buildpath" debug="on" includeantruntime="no"/>
+
+		<copy todir="${ejb.classes.dir}">
+			<fileset dir="cms-business-process/src/main/resources">
+			</fileset>
+		</copy>
+		
+		<jar destfile="${build.dir}/${ejb-file}" basedir="${ejb.classes.dir}">
+		</jar>
+	</target>
+
+	<target name="clean" description="Removes all generated files">
+		<delete dir="${build.dir}">
+		</delete>
+		<delete dir="${log.dir}">
+		</delete>
+	</target>
+	
+	<target name="deploy-ds" description="Deploys the datasource definition to the application server">
+        <copy todir="${deploy.dir}" filtering="on" overwrite="yes">
+        	<filterset filtersfile="build.properties"></filterset>
+            <fileset dir="db">
+                <include name="mita3-oracle-ds.xml" />
+                <include name="task-service-ds.xml" />
+            </fileset>
+        </copy>
+	</target>
+	
+	<target name="test" depends="clean" description="Runs the portal tests">
+        <delete dir="${classes.dir}" />
+        <mkdir dir="${classes.dir}" />
+		<delete dir="${log.dir}" />
+		<mkdir dir="${log.dir}" />
+
+		<javac srcdir="${basedir}/cms-business-model/src/main/java" destdir="${classes.dir}" classpathref="buildpath" debug="on" includeantruntime="no"/>
+		<javac srcdir="${basedir}/services/src/main/java" destdir="${classes.dir}" classpathref="buildpath" debug="on" includeantruntime="no"/>
+		<javac srcdir="${basedir}/cms-business-process/src/main/java" destdir="${classes.dir}" classpathref="buildpath" debug="on" includeantruntime="no"/>
+		<javac srcdir="${basedir}/tests/src/tests/java" destdir="${classes.dir}" classpathref="testpath" debug="on" includeantruntime="no" />
+
+		<copy todir="${classes.dir}" overwrite="yes">
+			<fileset dir="services/src/main/resources">
+			</fileset>
+		</copy>
+		
+		<copy todir="${classes.dir}" overwrite="yes">
+			<fileset dir="cms-business-process/src/main/resources">
+			</fileset>
+		</copy>
+		
+		<junit printsummary="yes" haltonfailure="no" failureProperty="test.failure" >
+			<formatter type="xml" />
+			<classpath refid="testpath" />
+			<classpath location="${classes.dir}"></classpath>
+			<batchtest fork="yes" todir="${log.dir}" >
+				<fileset dir="tests/src/tests/java">
+					<include name="gov/medicaid/services/**/*Test.java" />
+					<include name="gov/medicaid/process/enrollment/**/*Test.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+		
+        <fail message="Tests failed" if="test.failure" />
+	</target>
+	
+</project>

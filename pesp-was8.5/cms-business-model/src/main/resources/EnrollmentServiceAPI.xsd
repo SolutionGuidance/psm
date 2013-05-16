@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://gov.medicaid.services.enrollment/ValidationService" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://gov.medicaid.services.enrollment/ValidationService" xmlns:Q1="http://gov.medicaid.process/EnrollmentProcess" xmlns:Q2="http://gov.medicaid.shared/Entities">
+    <import schemaLocation="Entities.xsd" namespace="http://gov.medicaid.shared/Entities"></import>
+    <import schemaLocation="EnrollmentProcess.xsd" namespace="http://gov.medicaid.process/EnrollmentProcess"></import>
+    
+    <element name="ValidationRequest">
+	    <complexType>
+	    	<sequence>
+	    		<element name="Enrollment" type="Q1:EnrollmentType" maxOccurs="1" minOccurs="1"></element>
+	    		<element name="Partial" maxOccurs="1" minOccurs="1">
+	    			<simpleType>
+	    				<restriction base="string">
+	    					<enumeration value="Y"></enumeration>
+	    					<enumeration value="N"></enumeration>
+	    				</restriction>
+	    			</simpleType>
+	    		</element>
+	    		<element name="Sections" maxOccurs="unbounded" minOccurs="0" type="tns:UISection" />
+	    	</sequence>
+	    </complexType>
+    </element>
+
+    <element name="GetTicketDetailsRequest">
+        <complexType>
+            <sequence>
+                <element name="username" maxOccurs="1" minOccurs="1" type="string" />
+                <element name="systemId" maxOccurs="1" minOccurs="1" type="string" />
+                <element name="ticketNumber" maxOccurs="1" minOccurs="1" type="long" />
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="GetTicketDetailsResponse">
+        <complexType>
+            <sequence>
+                <element name="Enrollment" maxOccurs="1" minOccurs="1" type="Q1:EnrollmentType" />
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="GetProfileDetailsRequest">
+        <complexType>
+            <sequence>
+                <element name="username" maxOccurs="1" minOccurs="1" type="string" />
+                <element name="systemId" maxOccurs="1" minOccurs="1" type="string" />
+                <element name="profileId" maxOccurs="1" minOccurs="1" type="long" />
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="GetProfileDetailsResponse">
+        <complexType>
+            <sequence>
+                <element name="Enrollment" maxOccurs="1" minOccurs="1" type="Q1:EnrollmentType" />
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="SubmitTicketRequest">
+        <complexType>
+            <sequence>
+                <element name="username" maxOccurs="1" minOccurs="1" type="string" />
+                <element name="systemId" maxOccurs="1" minOccurs="1" type="string" />
+                <element name="Enrollment" type="Q1:EnrollmentType" maxOccurs="1" minOccurs="1"></element>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="SubmitTicketResponse">
+        <complexType>
+            <sequence>
+                <element name="ticketNumber" maxOccurs="1" minOccurs="1" type="long" />
+                <element name="status" maxOccurs="1" minOccurs="1" type="string" />
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="ResubmitTicketRequest">
+        <complexType>
+            <sequence>
+                <element name="username" maxOccurs="1" minOccurs="1" type="string" />
+                <element name="systemId" maxOccurs="1" minOccurs="1" type="string" />
+                <element name="ticketId" maxOccurs="1" minOccurs="1" type="string" />
+                <element name="Enrollment" type="Q1:EnrollmentType" maxOccurs="1" minOccurs="1"></element>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="ResubmitTicketResponse">
+        <complexType>
+            <sequence>
+                <element name="status" maxOccurs="1" minOccurs="1" type="string" />
+            </sequence>
+        </complexType>
+    </element>
+
+
+    <element name="SaveTicketRequest">
+        <complexType>
+            <sequence>
+                <element name="username" maxOccurs="1" minOccurs="1" type="string" />
+                <element name="systemId" maxOccurs="1" minOccurs="1" type="string" />
+                <element name="Enrollment" type="Q1:EnrollmentType" maxOccurs="1" minOccurs="1"></element>
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="SaveTicketResponse">
+        <complexType>
+            <sequence>
+                <element name="ticketNumber" maxOccurs="1" minOccurs="1" type="long" />
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="GetLookupGroupsRequest">
+        <complexType>
+            <sequence>
+                <element name="groupType" maxOccurs="unbounded" minOccurs="0" type="tns:LookupGroupNames" />
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="GetLookupGroupsResponse">
+        <complexType>
+            <sequence>
+                <element name="LookupGroup" maxOccurs="unbounded" minOccurs="0" type="tns:LookupGroup" />
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="LookupGroup">
+        <sequence>
+            <element name="groupType" minOccurs="1" maxOccurs="1" type="tns:LookupGroupNames" />
+            <element name="LookupTableEntry" maxOccurs="unbounded" minOccurs="0" type="tns:LookupTableEntry" />
+        </sequence>
+    </complexType>
+
+    <complexType name="LookupTableEntry">
+        <sequence>
+	        <element name="code" type="string" />
+	        <element name="description" type="string" />
+        </sequence>
+    </complexType>
+    
+    <simpleType name="LookupGroupNames">
+        <restriction base="string">
+            <enumeration value="All Provider Types"></enumeration>
+            <enumeration value="Individual Provider Types"></enumeration>
+            <enumeration value="Organization Provider Types"></enumeration>
+        </restriction>
+    </simpleType>
+    
+	<simpleType name="UISection">
+		<restriction base="string">
+			<enumeration value="Provider Type Page"></enumeration>
+			<enumeration value="Personal Information"></enumeration>
+			<enumeration value="License Information"></enumeration>
+			<enumeration value="Practice Information"></enumeration>
+			<enumeration value="Mailing Information"></enumeration>
+			<enumeration value="Provider Statement"></enumeration>
+			<enumeration value="Agency Information"></enumeration>
+			
+			<!-- ORG SECTIONS -->
+			<enumeration value="Organization Information"></enumeration>
+			<enumeration value="Individual Member Information"></enumeration>
+			<enumeration value="Provider Setup"></enumeration>
+			<enumeration value="Ownership Information"></enumeration>
+			<enumeration value="Organization Disclosure"></enumeration>
+			<enumeration value="Facility Credentials"></enumeration>
+			<enumeration value="Organization Provider Statement"></enumeration>
+			<enumeration value="Agency Eligibility"></enumeration>
+            <enumeration value="Qualified Professionals"></enumeration>
+		</restriction>
+	</simpleType>
+
+    <element name="ValidationResponse">
+    	<complexType>
+    		<sequence>
+    			<element name="ValidationResult" type="Q2:ValidationResultType"></element>
+    		</sequence>
+    	</complexType>
+    </element>
+    
+    <element name="LicenseVerificationRequest">
+        <complexType>
+            <sequence>
+            	<element name="ProviderInformation" type="Q2:ProviderInformationType" maxOccurs="1" minOccurs="1"></element>
+            	<element name="LicenseType" type="Q2:LicenseType" maxOccurs="1" minOccurs="1"></element>
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="LicenseVerificationResponse">
+        <complexType>
+            <sequence>
+            	<element name="Output" type="Q2:ExternalSourcesScreeningResultType"></element>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="OIGVerificationRequest">
+        <complexType>
+            <sequence>
+                <element name="ProviderInformation" type="Q2:ProviderInformationType" maxOccurs="1" minOccurs="1"></element>
+                <element name="EntityId" type="string" maxOccurs="1" minOccurs="1"></element>
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="OIGVerificationResponse">
+        <complexType>
+            <sequence>
+                <element name="Output" type="Q2:ExternalSourcesScreeningResultType"></element>
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="SAMVerificationRequest">
+        <complexType>
+            <sequence>
+                <element name="ProviderInformation" type="Q2:ProviderInformationType" maxOccurs="1" minOccurs="1"></element>
+                <element name="EntityId" type="string" maxOccurs="1" minOccurs="1"></element>
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="SAMVerificationResponse">
+        <complexType>
+            <sequence>
+                <element name="Output" type="Q2:ExternalSourcesScreeningResultType"></element>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="DMFVerificationRequest">
+        <complexType>
+            <sequence>
+                <element name="ProviderInformation" type="Q2:ProviderInformationType" maxOccurs="1" minOccurs="1"></element>
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="DMFVerificationResponse">
+        <complexType>
+            <sequence>
+                <element name="Output" type="Q2:ExternalSourcesScreeningResultType"></element>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="PECOSVerificationRequest">
+        <complexType>
+            <sequence>
+                <element name="ProviderInformation" type="Q2:ProviderInformationType" maxOccurs="1" minOccurs="1"></element>
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="PECOSVerificationResponse">
+        <complexType>
+            <sequence>
+                <element name="Output" type="Q2:ExternalSourcesScreeningResultType"></element>
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="NPIVerificationRequest">
+        <complexType>
+            <sequence>
+                <element name="ProviderInformation" type="Q2:ProviderInformationType" maxOccurs="1" minOccurs="1"></element>
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="NPIVerificationResponse">
+        <complexType>
+            <sequence>
+                <element name="Output" type="Q2:ExternalSourcesScreeningResultType"></element>
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="NETStudyVerificationRequest">
+        <complexType>
+            <sequence>
+                <element name="ProviderInformation" type="Q2:ProviderInformationType" maxOccurs="1" minOccurs="1"></element>
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="NETStudyVerificationResponse">
+        <complexType>
+            <sequence>
+                <element name="Output" type="Q2:ExternalSourcesScreeningResultType"></element>
+                <element name="RawResponse" type="string"></element>
+            </sequence>
+        </complexType>
+    </element>
+</schema>

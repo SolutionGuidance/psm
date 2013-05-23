@@ -7320,7 +7320,6 @@ salience 10
         insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.HEAD_START.value()));
         insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.HOME_HEALTH_AGENCY.value()));
         insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.INDIAN_HEALTH_SERVICE_FACILITY.value()));
-        // insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.OPTICAL_SUPPLIER.value()));
         
         insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.PHARMACY.value()));
         insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.PUBLIC_HEALTH_CLINIC.value()));
@@ -12273,6 +12272,7 @@ dialect 'mvel'
         IsOrganization( $provider : provider )
         QualifiedProfessionalsType($qpList : qualifiedProfessional) from $provider.qualifiedProfessionals
         $qp: QualifiedProfessionalType($licenseList: license) from $qpList
+        not LicenseType(licenseType  == LicenseNames.PCA_1_OR_3_DAY_STEPS_FOR_SUCCESS_TRAINING.value()) from $licenseList
         $license: LicenseType(renewalDate == null) from $licenseList
         $report: ErrorReporter() 
     then
@@ -12283,7 +12283,6 @@ dialect 'mvel'
             "00001",
             "QP license renewal date is required."
         );
-
 end
 
 rule 'QP License Type Is Required'
@@ -12714,7 +12713,7 @@ dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         IsIndividual($provider : provider)
-        $practice: PracticeInformationType() from $provider.practiceInformation
+        $practice: PracticeInformationType(reimbursementSameAsPrimary == 'N') from $provider.practiceInformation
         $address: AddressType() from $practice.reimbursementAddress
     then
         insertLogical(new AddressEntry(

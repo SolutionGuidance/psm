@@ -18,8 +18,8 @@
 <c:forEach begin="1" end="${requestScope[formName]}" varStatus="status">
 <div class="newEnrollmentPanel practicePanel memberInfoPanel">
     <div class="section">
-        <div class="">
-            <div class="row requireField">
+        <div class="leftCol">
+        	<div class="row requireField">
                 <label>QP Type<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 
@@ -32,8 +32,6 @@
                     </c:forEach>
                 </select>
             </div>
-        </div>
-        <div class="leftCol">
             <div class="row requireField">
                 <label>Name<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
@@ -65,6 +63,24 @@
             <div class="clearFixed"></div>
         </div>
         <div class="rightCol">
+        	<c:set var="qpType" value="_29_qpType_${status.index - 1}"></c:set>
+            <c:set var="qpTypeValue" value="${requestScope[qpType]}"></c:set>
+            <c:choose>
+            	<c:when test="${qpTypeValue == 'Mental Health Professional'}">
+					<div class="row mhpType">
+            	</c:when>
+            	<c:otherwise>
+					<div class="row mhpType hide">
+            	</c:otherwise>
+            </c:choose>
+                <label>MHP Type</label>
+                <span class="floatL"><b>:</b></span>
+                <span class="floatL">
+                	<c:set var="formName" value="_29_qpSubType_${status.index - 1}"></c:set>
+                	<c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                	<input type="text" class="normalInput" name="${formName}" value="${formValue}"/>
+                </span>
+            </div>
             <div class="row requireField">
                 <label>Date of Birth<span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
@@ -291,22 +307,20 @@
 <div class="hide">
 <div class="newEnrollmentPanel practicePanel memberInfoPanel" id="qpTemplate">
     <div class="section">
-        <div class="">
-            <div class="row requireField">
+        <div class="leftCol">
+        	<div class="row requireField">
                 <label>QP Type<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 
                 <c:set var="formName" value="_29_qpType"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select name="${formName}">
+                <select name="${formName}" class="qpTypeSelect">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_29_qpTypes']}">
                        <option ${formValue == opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
             </div>
-        </div>
-        <div class="leftCol">
             <div class="row requireField">
                 <label>Name<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
@@ -338,6 +352,15 @@
             <div class="clearFixed"></div>
         </div>
         <div class="rightCol">
+        	<div class="row mhpType hide">
+                <label>MHP Type</label>
+                <span class="floatL"><b>:</b></span>
+                <span class="floatL">
+                	<c:set var="formName" value="_29_qpSubType"></c:set>
+                	<c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                	<input type="text" class="normalInput" name="${formName}" value="${formValue}"/>
+                </span>
+            </div>
             <div class="row requireField">
                 <label>Date of Birth<span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
@@ -517,7 +540,7 @@
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <select name="${formName}">
                         <option value="">Please select</option>
-                        <c:forEach var="opt" items="${requestScope['_99_states']}">
+                        <c:forEach var="opt" items="${requestScope['_29_licenseStates']}">
                             <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                         </c:forEach>
                     </select>
@@ -568,7 +591,7 @@
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <select name="${formName}">
                         <option value="">Please select</option>
-                        <c:forEach var="opt" items="${requestScope['_99_states']}">
+                        <c:forEach var="opt" items="${requestScope['_29_licenseStates']}">
                             <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                         </c:forEach>
                     </select>
@@ -587,3 +610,11 @@
     <a href="javascript:" class="closeSection"></a>
 </div>
 </div>
+
+<script>
+$(document).ready(function() {
+ 	if ($('.memberInfoPanel').length == 1) {
+		createQPs();
+	}
+});
+</script>

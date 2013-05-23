@@ -201,6 +201,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         // we handle them separately so they are merged during approval
         promoteNotesToBase(profile.getProfileId(), profile.getTicketId());
 
+		promoteCOSToBase(user, profile.getProfileId(), profile.getTicketId());
+		
         ticket.setProfileReferenceId(profile.getProfileId());
         saveTicket(user, ticket, false);
     }
@@ -1883,6 +1885,27 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             query.setParameter("zip", criteria.getZip());
         }
     }
+    
+    /**
+     * This copies all cos attached to the ticket into the profile.
+     * 
+     * @param profileId
+     *            the profile associated to the cos
+     * @param ticketId
+     *            the ticket associated
+     * @throws PortalServiceException
+     *             if any error occurs
+     */
+    private void promoteCOSToBase(CMSUser user, long profileId, long ticketId) throws PortalServiceException {
+        List<ProviderCategoryOfService> services = new ArrayList<ProviderCategoryOfService>();
+        services.addAll(getPendingCategoryOfServices(user, ticketId));
+        services.addAll(getProviderCategoryOfServices(user, profileId));
+        for (ProviderCategoryOfService service : services) {
+            service.setProfileId(profileId);
+            service.setTicketId(0);
+            getEm().merge(service);
+        }
+    }
 
     /**
      * This copies all notes attached to the ticket into the profile.
@@ -2073,6 +2096,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         return results.toArray(new Long[0]);
     }
 
+    
     /**
      * Gets the COS associated with a profile.
      * 
@@ -2101,15 +2125,26 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *            the user performing the action
      * @param categoryOfService
      *            the entity to persist
+     * @param prevCatServiceId
+     *            if last COS needs an update in end date this will be provided
+     * @param prevCatEndDate
+     *            last COS end date
      * @throws PortalServiceException
      *             for any errors encountered
      */
     @Override
-    public void addCOSToProfile(CMSUser user, ProviderCategoryOfService categoryOfService)
-            throws PortalServiceException {
+    public void addCOSToProfile(CMSUser user, ProviderCategoryOfService categoryOfService, long prevCatServiceId,
+            Date prevCatEndDate) throws PortalServiceException {
         checkProfileEntitlement(user, categoryOfService.getProfileId());
         categoryOfService.setId(getSequence().getNextValue(Sequences.PROVIDER_COS_SEQ));
         getEm().persist(categoryOfService);
+        if (prevCatServiceId != 0) {
+            ProviderCategoryOfService service = getEm().find(ProviderCategoryOfService.class, prevCatServiceId);
+            if (service != null) {
+                service.setEndDate(prevCatEndDate);
+                getEm().merge(service);
+            }
+        }
     }
 
     /**
@@ -2126,8 +2161,80 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *             for any errors encountered
      */
     @Override
-    public void deleteCOS(CMSUser user, long profileId, long id) throws PortalServiceException {
+    public void deleteCOSByProfile(CMSUser user, long profileId, long id) throws PortalServiceException {
         checkProfileEntitlement(user, profileId);
+        ProviderCategoryOfService service = getEm().find(ProviderCategoryOfService.class, id);
+        if (service != null) {
+            getEm().remove(service);
+        }
+    }
+
+    /**
+     * Adds COS to the ticket.
+     * 
+     * @param user
+     *            the user performing the action
+     * @param categoryOfService
+     *            the entity to persist
+     * @param prevCatServiceId
+     *            if last COS needs an update in end date this will be provided
+     * @param prevCatEndDate
+     *            last COS end date
+     * @throws PortalServiceException
+     *             for any errors encountered
+     */
+    @Override
+    public void addCOSToTicket(CMSUser user, ProviderCategoryOfService categoryOfService, long prevCatServiceId,
+            Date prevCatEndDate) throws PortalServiceException {
+        checkTicketEntitlement(user, categoryOfService.getTicketId());
+        categoryOfService.setId(getSequence().getNextValue(Sequences.PROVIDER_COS_SEQ));
+        getEm().persist(categoryOfService);
+        if (prevCatServiceId != 0) {
+            ProviderCategoryOfService service = getEm().find(ProviderCategoryOfService.class, prevCatServiceId);
+            if (service != null) {
+                service.setEndDate(prevCatEndDate);
+                getEm().merge(service);
+            }
+        }
+    }
+
+    /**
+     * Gets the COS associated with a ticket.
+     * 
+     * @param user
+     *            CMS user
+     * @param ticketId
+     *            ticket id.
+     * @return the list of services
+     * 
+     * @throws PortalServiceException
+     *             for any errors encountered
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<ProviderCategoryOfService> getPendingCategoryOfServices(CMSUser user, long ticketId)
+            throws PortalServiceException {
+        checkTicketEntitlement(user, ticketId);
+        return getEm().createQuery("from ProviderCategoryOfService p where ticketId = :id order by p.startDate")
+                .setParameter("id", ticketId).getResultList();
+    }
+
+    /**
+     * Deletes the COS by ticket.
+     * 
+     * @param user
+     *            the user performing the action
+     * @param ticketId
+     *            the ticket id
+     * @param id
+     *            the cos id
+     * 
+     * @throws PortalServiceException
+     *             for any errors encountered
+     */
+    @Override
+    public void deleteCOSByTicket(CMSUser user, long ticketId, long id) throws PortalServiceException {
+        checkTicketEntitlement(user, ticketId);
         ProviderCategoryOfService service = getEm().find(ProviderCategoryOfService.class, id);
         if (service != null) {
             getEm().remove(service);

@@ -30,7 +30,7 @@ import com.lowagie.text.pdf.PdfPTable;
 
 /**
  * This binder handles the provider type selection form.
- *
+ * 
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -50,10 +50,13 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
 
     /**
      * Binds the request to the model.
-     *
-     * @param enrollment the model to bind to
-     * @param request the request containing the form fields
-     * @throws BinderException if the format of the fields could not be bound properly
+     * 
+     * @param enrollment
+     *            the model to bind to
+     * @param request
+     *            the request containing the form fields
+     * @throws BinderException
+     *             if the format of the fields could not be bound properly
      */
     public List<BinderException> bindFromPage(EnrollmentType enrollment, HttpServletRequest request) {
         List<BinderException> exceptions = super.bindFromPage(enrollment, request);
@@ -66,11 +69,17 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
                 AddressType reimbursementAddress = readPrimaryAddress(request);
                 practice.setReimbursementAddress(reimbursementAddress);
             } else {
-                practice.setReimbursementSameAsPrimary("N");
-                AddressType reimbursementAddress = readReimbursementAddress(request);
-                practice.setReimbursementAddress(reimbursementAddress);
+                if (!Util.isBlank(param(request, "objectId"))) {
+                    // means the reimbursementSameAsPrimary is disabled in the form and the practice lookup is copied
+                    practice.setReimbursementSameAsPrimary("Y");
+                    // no need to set reimbursement address
+                } else {
+                    practice.setReimbursementSameAsPrimary("N");
+                    AddressType reimbursementAddress = readReimbursementAddress(request);
+                    practice.setReimbursementAddress(reimbursementAddress);
+                }
             }
-            
+
             try {
                 practice.setEffectiveDate(BinderUtils.getAsCalendar(param(request, "effectiveDate")));
             } catch (BinderException e) {
@@ -80,16 +89,19 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
         } else {
             practice.setReimbursementAddress(null);
         }
-        
-        
+
         return exceptions;
     }
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment the model to bind from
-     * @param mv the model and view to bind to
-     * @param readOnly true if the binding is for a read only view
+     * 
+     * @param enrollment
+     *            the model to bind from
+     * @param mv
+     *            the model and view to bind to
+     * @param readOnly
+     *            true if the binding is for a read only view
      */
     public void bindToPage(EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         super.bindToPage(enrollment, mv, readOnly);
@@ -119,9 +131,12 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
 
     /**
      * Captures the error messages related to the form.
-     * @param enrollment the enrollment that was validated
-     * @param messages the messages to select from
-     *
+     * 
+     * @param enrollment
+     *            the enrollment that was validated
+     * @param messages
+     *            the messages to select from
+     * 
      * @return the list of errors related to the form
      */
     protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
@@ -142,18 +157,22 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
                 }
 
                 boolean switchAddressLines = false;
-                if (practice.getReimbursementAddress() == null || Util.isBlank(practice.getReimbursementAddress().getAddressLine1())) {
+                if (practice.getReimbursementAddress() == null
+                        || Util.isBlank(practice.getReimbursementAddress().getAddressLine1())) {
                     switchAddressLines = true;
                 }
 
                 if (path.equals(PRACTICE_INFO + "ReimbursementAddress")) {
-                    errors.add(createError(new String[]{"reimbursementAddressLine1", "reimbursementAddressLine2"}, ruleError.getMessage()));
+                    errors.add(createError(new String[] { "reimbursementAddressLine1", "reimbursementAddressLine2" },
+                            ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "EffectiveDate")) {
                     errors.add(createError("effectiveDate", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ReimbursementAddress/AddressLine1")) {
-                    errors.add(createError(switchAddressLines ? "reimbursementAddressLine2" : "reimbursementAddressLine1", ruleError.getMessage()));
+                    errors.add(createError(switchAddressLines ? "reimbursementAddressLine2"
+                            : "reimbursementAddressLine1", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ReimbursementAddress/AddressLine2")) {
-                    errors.add(createError(switchAddressLines ? "reimbursementAddressLine1" : "reimbursementAddressLine2", ruleError.getMessage()));
+                    errors.add(createError(switchAddressLines ? "reimbursementAddressLine1"
+                            : "reimbursementAddressLine2", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ReimbursementAddress/City")) {
                     errors.add(createError("reimbursementCity", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ReimbursementAddress/State")) {
@@ -178,9 +197,11 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
 
     /**
      * Binds the fields of the form to the persistence model.
-     *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * 
+     * @param enrollment
+     *            the front end model
+     * @param ticket
+     *            the persistent model
      */
     public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
         super.bindToHibernate(enrollment, ticket);
@@ -199,15 +220,17 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
                 employer.setReimbursementAddress(BinderUtils.bindAddress(practice.getReimbursementAddress()));
             }
         }
-        
+
         primary.setEffectiveDate(BinderUtils.toDate(practice.getEffectiveDate()));
     }
 
     /**
      * Binds the fields of the persistence model to the front end xml.
-     *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * 
+     * @param ticket
+     *            the persistent model
+     * @param enrollment
+     *            the front end model
      */
     public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
         super.bindFromHibernate(ticket, enrollment);
@@ -235,10 +258,10 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
 
         practice.setEffectiveDate(BinderUtils.toCalendar(primary.getEffectiveDate()));
     }
-    
+
     @Override
     public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
-        throws DocumentException {
+            throws DocumentException {
         super.renderPDF(enrollment, document, model);
         PdfPTable practiceInfo = new PdfPTable(2);
         PDFHelper.setTableAsFullPage(practiceInfo);
@@ -246,20 +269,23 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
         if ("Y".equals(PDFHelper.value(model, ns, "bound"))) {
             PDFHelper.addLabelValueCell(practiceInfo, "Primary Practice Name", PDFHelper.value(model, ns, "name"));
             PDFHelper.addLabelValueCell(practiceInfo, "Group NPI/UMPI", PDFHelper.value(model, ns, "npi"));
-            PDFHelper.addLabelValueCell(practiceInfo, "Requested Effective Date", PDFHelper.value(model, ns, "effectiveDate"));
+            PDFHelper.addLabelValueCell(practiceInfo, "Requested Effective Date",
+                    PDFHelper.value(model, ns, "effectiveDate"));
             PDFHelper.addLabelValueCell(practiceInfo, "Practice Address", PDFHelper.getAddress(model, ns, null));
             PDFHelper.addLabelValueCell(practiceInfo, "Practice Phone Number", PDFHelper.getPhone(model, ns, "phone"));
             PDFHelper.addLabelValueCell(practiceInfo, "Practice Fax Number", PDFHelper.getPhone(model, ns, "fax"));
-            PDFHelper.addLabelValueCell(practiceInfo, "Reimbursement Address", PDFHelper.getAddress(model, ns, "billing"));
+            PDFHelper.addLabelValueCell(practiceInfo, "Reimbursement Address",
+                    PDFHelper.getAddress(model, ns, "billing"));
         }
-        
+
         document.add(practiceInfo);
     }
-    
+
     /**
      * Reads the billing address from the request.
-     *
-     * @param request the request to read from
+     * 
+     * @param request
+     *            the request to read from
      * @return the bound address
      */
     private AddressType readReimbursementAddress(HttpServletRequest request) {

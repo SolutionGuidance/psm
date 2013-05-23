@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:searchResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Minneapolis</city>
+            <county>Hennepin County</county>
+            <location>245 Clifton Ave S</location>
+            <state>MN</state>
+            <zipcode>55403</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Nancy Page Program</name>
+          </business>
+          <contactPhoneNumber>(612) 870-3787</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>802662</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <pageNumber>0</pageNumber>
+        <pageSize>0</pageSize>
+        <total>1</total>
+        <totalPages>1</totalPages>
+      </return>
+    </ns2:searchResponse>
+  </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:getAccreditedBirthCentersResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2006-06-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 1601 Salmon Creek Lane</birthCenterAddress>
+          <city>Juneau</city>
+          <state>Alaska</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2006-06-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 2650 Broadview Avenue</birthCenterAddress>
+          <city>Wasilla</city>
+          <state>Alaska</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2002-06-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 3730 Rhone Circle</birthCenterAddress>
+          <city>Anchorage</city>
+          <state>Alaska</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2006-06-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 728 Gaffney Road</birthCenterAddress>
+          <city>Fairbanks</city>
+          <state>Alaska</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2011-08-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 215 East Lexington Avenue</birthCenterAddress>
+          <city>Phoenix</city>
+          <state>Arizona</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1991-12-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 5979 East Grant Raod</birthCenterAddress>
+          <city>Tucson</city>
+          <state>Arizona</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2009-01-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 4650 Barranca Parkway</birthCenterAddress>
+          <city>Irvine</city>
+          <state>California</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2009-11-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> Beach Cities Midwifery &amp;amp; Women’s Health Care</birthCenterAddress>
+          <city>Laguna Hills</city>
+          <state>California</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1997-04-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 583 Summerfield Road</birthCenterAddress>
+          <city>Santa Rosa</city>
+          <state>California</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1996-12-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 3343 4th Avenue</birthCenterAddress>
+          <city>San Diego</city>
+          <state>California</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2010-11-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 9209 South Colima Road, Suite 400</birthCenterAddress>
+          <city>Whittier</city>
+          <state>California</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2007-06-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 3555 S. Clarkson Street</birthCenterAddress>
+          <city>Englewood</city>
+          <state>Colorado</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1998-03-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 94 Locust Avenue</birthCenterAddress>
+          <city>Danbury</city>
+          <state>Connecticut</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2001-03-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 801 17th Street NE</birthCenterAddress>
+          <city>Washington</city>
+          <state>DC</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1999-01-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 1508 West 7th Street</birthCenterAddress>
+          <city>Wilmington</city>
+          <state>Delaware</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2012-06-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 1900 East Bay Drive</birthCenterAddress>
+          <city>Largo</city>
+          <state>Florida</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1996-09-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 1692 Chatham Parkway</birthCenterAddress>
+          <city>Savannah</city>
+          <state>Georgia</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2008-03-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 1155 Lighthouse Lane</birthCenterAddress>
+          <city>Goshen</city>
+          <state>Indiana</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2010-09-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 1424 St. John Street</birthCenterAddress>
+          <city>Lafayette</city>
+          <state>Louisiana</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1997-03-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 2003 Medical Parkway</birthCenterAddress>
+          <city>Annapolis</city>
+          <state>Maryland</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1997-09-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 1454 Baltimore-Annapolis Blvd.</birthCenterAddress>
+          <city>Arnold</city>
+          <state>Maryland</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2002-12-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 1493 Cambridge Street</birthCenterAddress>
+          <city>Cambridge</city>
+          <state>Massachusetts</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2011-12-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 2606 Chicago Avenue S.</birthCenterAddress>
+          <city>Minneapolis</city>
+          <state>Minnesota</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2010-05-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 6111 Excelsior Boulevard</birthCenterAddress>
+          <city>St. Louis Park</city>
+          <state>Minnesota</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2011-06-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 968 Grand Avenue</birthCenterAddress>
+          <city>St. Paul</city>
+          <state>Minnesota</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2010-02-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 2404 39th Street</birthCenterAddress>
+          <city>Missoula</city>
+          <state>Montana</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2011-12-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 3512 Samson Way, Suite 106</birthCenterAddress>
+          <city>Bellevue</city>
+          <state>Nebraska</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2011-08-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 7708 4th Street NW</birthCenterAddress>
+          <city>Los Ranchos</city>
+          <state>New Mexico</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2002-12-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 2183 Ocean Avenue</birthCenterAddress>
+          <city>Brooklyn</city>
+          <state>New York</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1996-07-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 930 Martin Luther King Jr. Blvd.</birthCenterAddress>
+          <city>Chapel Hill</city>
+          <state>North Carolina</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2004-01-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> One Wyoming Street</birthCenterAddress>
+          <city>Dayton</city>
+          <state>Ohio</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1998-03-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 353 Deadmond Ferry Road</birthCenterAddress>
+          <city>Springfield</city>
+          <state>Oregon</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1999-03-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 2355 Huntingdon Pike</birthCenterAddress>
+          <city>Huntingdon Valley</city>
+          <state>Pennsylvania</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2000-03-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 1138 Georgetown Road</birthCenterAddress>
+          <city>Bart</city>
+          <state>Pennsylvania</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2003-09-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 2825 Penn Avenue</birthCenterAddress>
+          <city>Pittsburgh</city>
+          <state>Pennsylvania</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1995-11-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 918 County Line Road</birthCenterAddress>
+          <city>Bryn Mawr</city>
+          <state>Pennsylvania</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1995-12-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 949 New Holland Road</birthCenterAddress>
+          <city>Reading</city>
+          <state>Pennsylvania</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2008-06-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 9133 Timber Street</birthCenterAddress>
+          <city>North Charleston</city>
+          <state>South Carolina</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1991-12-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 3459 New Highway 68</birthCenterAddress>
+          <city>Madisonville</city>
+          <state>Tennessee</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1994-12-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 1925-B Ailor Ave.</birthCenterAddress>
+          <city>Knoxville</city>
+          <state>Tennessee</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2002-01-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 720 Highway 99</birthCenterAddress>
+          <city>Waynesboro</city>
+          <state>Tennessee</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2009-03-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 1080 Neal Street</birthCenterAddress>
+          <city>Cookeville</city>
+          <state>Tennessee</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2010-11-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 4100 Duval Road, Building 2, Suite 101</birthCenterAddress>
+          <city>Austin</city>
+          <state>Texas</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1996-04-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 26614 Oak Ridge Drive</birthCenterAddress>
+          <city>The Woodlands</city>
+          <state>Texas</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1994-07-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 1501 King Street</birthCenterAddress>
+          <city>Alexandria</city>
+          <state>Virginia</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2011-10-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 107 Jahnke Road</birthCenterAddress>
+          <city>Richmond</city>
+          <state>Virginia</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2003-12-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 6720 Frank Lloyd Wright Avenue</birthCenterAddress>
+          <city>Middleton</city>
+          <state>Wisconsin</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2009-11-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 321 13th Street, SE</birthCenterAddress>
+          <city>Menomonie</city>
+          <state>Wisconsin</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2009-11-01T00:00:00Z</accreditedDate>
+          <birthCenterAddress> 1703 S. Oneida Street, Suite C</birthCenterAddress>
+          <city>Appleton</city>
+          <state>Wisconsin</state>
+        </items>
+        <pageNumber>1</pageNumber>
+        <pageSize>0</pageSize>
+        <total>0</total>
+        <totalPages>0</totalPages>
+      </return>
+    </ns2:getAccreditedBirthCentersResponse>
+  </soap:Body>
+</soap:Envelope>

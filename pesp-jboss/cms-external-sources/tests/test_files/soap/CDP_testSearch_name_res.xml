@@ -1,0 +1,1899 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:searchResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Moorhead</city>
+            <county>Clay County</county>
+            <location>919 8th Ave North</location>
+            <state>MN</state>
+            <zipcode>56561</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Adolescent Program @ West Central Regional Juvenile Detention Center</name>
+          </business>
+          <contactPhoneNumber>(218) 299-5150</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1044691</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Duluth</city>
+            <county>St Louis County</county>
+            <location>110 W Redwing Street</location>
+            <state>MN</state>
+            <zipcode>55803</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Adolescent Substance Abuse Program at Woodland Hills</name>
+          </business>
+          <contactPhoneNumber>(218) 728-1533</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1016960</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>New Brighton</city>
+            <county>Ramsey County</county>
+            <location>1403 Silver Lk Rd</location>
+            <state>MN</state>
+            <zipcode>55112</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Amethyst Outpatient CD Program</name>
+          </business>
+          <contactPhoneNumber>(651) 633-4532</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>804405</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Eagan</city>
+            <county>Dakota County</county>
+            <location>3470 Washington Dr Ste 165</location>
+            <state>MN</state>
+            <zipcode>55121</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Avalon Programs LLC Eagan Odyssey Programs LLC Eagan</name>
+          </business>
+          <contactPhoneNumber>(651) 454-2833</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>830916</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Maplewood</city>
+            <county>Ramsey County</county>
+            <location>297 S Century Ave</location>
+            <state>MN</state>
+            <zipcode>55119</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Avalon Programs LLC-Ramsey County Correctional Facility</name>
+          </business>
+          <contactPhoneNumber>(651) 266-1496</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>808857</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Stillwater</city>
+            <county>Washington County</county>
+            <location>1825 Curve Crest Blvd West Ste 103</location>
+            <state>MN</state>
+            <zipcode>55082</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Avalon Programs, LLC - Stillwater</name>
+          </business>
+          <contactPhoneNumber>(651) 351-9325</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>830778</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Bemidji</city>
+            <county>Beltrami County</county>
+            <location>403 4th St NW Suite 300</location>
+            <state>MN</state>
+            <zipcode>56601</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Bemidji Area Program for Recovery Inc</name>
+          </business>
+          <contactPhoneNumber>(218) 444-5155</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1051960</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Bemidji</city>
+            <county>Beltrami County</county>
+            <location>626 Minnesota Ave NW</location>
+            <state>MN</state>
+            <zipcode>56601</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Bemidji Area Program for Recovery Inc Steps to Freedom Program</name>
+          </business>
+          <contactPhoneNumber>(218) 444-5155</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1056317</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Grand Marais</city>
+            <county>Cook County</county>
+            <location>411 W 2nd St</location>
+            <state>MN</state>
+            <zipcode>55604</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Cook County Wilderness Outpatient Treatment Program</name>
+          </business>
+          <contactPhoneNumber>(218) 387-3620</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>810854</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Hastings</city>
+            <county>Dakota County</county>
+            <location>1580 Hwy 55 W</location>
+            <state>MN</state>
+            <zipcode>55033</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Dakota County Jail Treatment Program</name>
+          </business>
+          <contactPhoneNumber>(651) 554-6000</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1049367</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Owatonna</city>
+            <county>Steele County</county>
+            <location>610 Florence Ave</location>
+            <state>MN</state>
+            <zipcode>55060</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Dual Recovery Program, South Central Human Relations Center</name>
+          </business>
+          <contactPhoneNumber>(507) 444-2250</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1048703</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Minneapolis</city>
+            <county>Hennepin County</county>
+            <location>2450 Riverside Ave</location>
+            <state>MN</state>
+            <zipcode>55454</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Fairview Recovery Services-Minneapolis Inpatient Programs</name>
+          </business>
+          <contactPhoneNumber>(612) 672-2736</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>803978</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Chaska</city>
+            <county>Carver County</county>
+            <location>606 East 4th St</location>
+            <state>MN</state>
+            <zipcode>55318</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Five Stars Recovery Center Carver County Jail Program</name>
+          </business>
+          <contactPhoneNumber>(952) 448-6557</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1058065</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Wabasha</city>
+            <county>Wabasha County</county>
+            <location>611 Broadway Ave Suite 100</location>
+            <state>MN</state>
+            <zipcode>55981</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>H.V.M.H.C. Wabasha County Outpatient C.D. Program</name>
+          </business>
+          <contactPhoneNumber>(651) 565-2234</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>804907</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Minneapolis</city>
+            <county>Hennepin County</county>
+            <location>807 Park Ave</location>
+            <state>MN</state>
+            <zipcode>55404</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>HCMC Addiction Medicine Program Park</name>
+          </business>
+          <contactPhoneNumber>(612) 347-0950</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1062260</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Minneapolis</city>
+            <county>Hennepin County</county>
+            <location>914 S 8th St Ste S131</location>
+            <state>MN</state>
+            <zipcode>55404</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>HCMC Addiction Medicine Program Shapiro</name>
+          </business>
+          <contactPhoneNumber>(612) 347-7600</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1062258</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Minneapolis</city>
+            <county>Hennepin County</county>
+            <location>510 S 8th St</location>
+            <state>MN</state>
+            <zipcode>55404</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>House of Charity Day by Day Program</name>
+          </business>
+          <contactPhoneNumber>(612) 594-2000</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>809867</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Minneapolis</city>
+            <county>Hennepin County</county>
+            <location>714 Park Ave</location>
+            <state>MN</state>
+            <zipcode>55404</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>House of Charity Day by Day Program</name>
+          </business>
+          <contactPhoneNumber>(612) 333-8968</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1051705</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Wadena</city>
+            <county>Wadena County</county>
+            <location>11 2nd St SW Suite 1</location>
+            <state>MN</state>
+            <zipcode>56482</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Neighborhood Counseling Chemical Dependency Program</name>
+          </business>
+          <contactPhoneNumber>(218) 631-1714</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>810294</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Waverly</city>
+            <county>Martin County</county>
+            <location>109 North Shore Dr</location>
+            <state>MN</state>
+            <zipcode>55390</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>New Beginnings at Waverly LLC Mens &amp;amp; Womens Program</name>
+          </business>
+          <contactPhoneNumber>(763) 658-5800</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1003743</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Waverly</city>
+            <county>Wright County</county>
+            <location>7300 Estes Ave</location>
+            <state>MN</state>
+            <zipcode>55390</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>New Beginnings at Waverly, Women's Program</name>
+          </business>
+          <contactPhoneNumber>(763) 658-5800</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1051194</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Eden Prairie</city>
+            <county>Hennepin County</county>
+            <location>6754 Shady Oak Rd</location>
+            <state>MN</state>
+            <zipcode>55344</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>New Connection Program</name>
+          </business>
+          <contactPhoneNumber>(952) 941-5151</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>830749</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Hastings</city>
+            <county>Dakota County</county>
+            <location>1250 Hwy 55</location>
+            <state>MN</state>
+            <zipcode>55033</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>New Connection Programs Hastings</name>
+          </business>
+          <contactPhoneNumber>(651) 480-1180</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>831026</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Minneapolis</city>
+            <county>Hennepin County</county>
+            <location>2507 Bryant Ave N</location>
+            <state>MN</state>
+            <zipcode>55411</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>New Salem Metamorphosis Adolescent Program</name>
+          </business>
+          <contactPhoneNumber>(612) 522-2951</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1061325</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Saint Paul</city>
+            <county>Ramsey County</county>
+            <location>550 Vandalia St</location>
+            <state>MN</state>
+            <zipcode>55114</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Open Arms Minnesota Alcohol &amp;amp; Drug Program</name>
+          </business>
+          <contactPhoneNumber>(612) 414-4730</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1052029</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Grand Rapids</city>
+            <county>Itasca County</county>
+            <location>2086 Ridgeway Dr</location>
+            <state>MN</state>
+            <zipcode>55744</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Pear Lake Women's Program</name>
+          </business>
+          <contactPhoneNumber>(218) 327-9944</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1002621</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Maplewood</city>
+            <county>Ramsey County</county>
+            <location>2055 White Bear Ave</location>
+            <state>MN</state>
+            <zipcode>55109</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Phoenix Recovery Programs</name>
+          </business>
+          <contactPhoneNumber>(651) 209-0560</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1048347</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Mankato</city>
+            <county>Blue Earth County</county>
+            <location>227 E Main Ste 105</location>
+            <state>MN</state>
+            <zipcode>56001</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Phoenix Recovery Programs</name>
+          </business>
+          <contactPhoneNumber>(651) 230-1895</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1050058</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Saint Cloud</city>
+            <county>Stearns County</county>
+            <location>1564 County Road 134</location>
+            <state>MN</state>
+            <zipcode>56303</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Recovery Plus Adolescent Program-St.Cloud Hospital</name>
+          </business>
+          <contactPhoneNumber>(320) 229-4950</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1031225</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Saint Cloud</city>
+            <county>Stearns County</county>
+            <location>713 Anderson Ave</location>
+            <state>MN</state>
+            <zipcode>56303</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Recovery Plus Adult Program-St. Cloud Hospital</name>
+          </business>
+          <contactPhoneNumber>(320) 229-3761</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>803875</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Coon Rapids</city>
+            <county>Anoka County</county>
+            <location>199 Coon Rapids Blvd., Suite 110</location>
+            <state>MN</state>
+            <zipcode>55433</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Regions Hospital - New Connection Program</name>
+          </business>
+          <contactPhoneNumber>(763) 784-2454</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>801649</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Saint Paul</city>
+            <county>Ramsey County</county>
+            <location>445 Etna St Suite 55</location>
+            <state>MN</state>
+            <zipcode>55106</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Regions Hospital Alcohol and Drug Abuse Program</name>
+          </business>
+          <contactPhoneNumber>(651) 254-4804</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>802382</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Saint Paul</city>
+            <county>Ramsey County</county>
+            <location>445 Etna St Suite 43</location>
+            <state>MN</state>
+            <zipcode>55106</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Regions Hospital-New Connection Programs</name>
+          </business>
+          <contactPhoneNumber>(651) 254-5294</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>801648</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Eagan</city>
+            <county>Dakota County</county>
+            <location>880 Blue Gentian Rd Ste 165, 190</location>
+            <state>MN</state>
+            <zipcode>55121</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Rehabilitation Consultants CD Treatment Program</name>
+          </business>
+          <contactPhoneNumber>(651) 789-8022</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1062349</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Milaca</city>
+            <county>Mille Lacs County</county>
+            <location>640 3rd St SE</location>
+            <state>MN</state>
+            <zipcode>56353</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Rum River Health Services Mille Lacs County Jail Program</name>
+          </business>
+          <contactPhoneNumber>(763) 389-5080</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1060530</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Luverne</city>
+            <county>Rock County</county>
+            <location>1600 N Kniss Ave</location>
+            <state>MN</state>
+            <zipcode>56156</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Sanford Hospital Luverne Outpatient CD Program</name>
+          </business>
+          <contactPhoneNumber>(507) 283-2321</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>831015</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Shakopee</city>
+            <county>Scott County</county>
+            <location>301 Fuller St So</location>
+            <state>MN</state>
+            <zipcode>55379</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Scott County Jail Treatment Program</name>
+          </business>
+          <contactPhoneNumber>(952) 496-8926</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1062184</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Saint Paul</city>
+            <county>Ramsey County</county>
+            <location>200 E Plato Blvd</location>
+            <state>MN</state>
+            <zipcode>55107</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Senior Recovery Program</name>
+          </business>
+          <contactPhoneNumber>(651) 773-0473</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>808754</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Saint Paul</city>
+            <county>Ramsey County</county>
+            <location>45 W 10th St</location>
+            <state>MN</state>
+            <zipcode>55102</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>St Joseph's Hospital Inpatient Chemical dependency Program</name>
+          </business>
+          <contactPhoneNumber>(651) 232-3644</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>802344</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Saint Paul</city>
+            <county>Ramsey County</county>
+            <location>366 Prior Ave</location>
+            <state>MN</state>
+            <zipcode>55104</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Transition Homes Corp DBA Transitions Outpatient Program</name>
+          </business>
+          <contactPhoneNumber>(651) 366-7730</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1055581</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>St Louis Park</city>
+            <county>Hennepin County</county>
+            <location>1349 Jersey Ave S</location>
+            <state>MN</state>
+            <zipcode>55426</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Wayside Outpatient Program</name>
+          </business>
+          <contactPhoneNumber>(952) 542-9322</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1056564</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Winona</city>
+            <county>Winona County</county>
+            <location>201 W 3rd St</location>
+            <state>MN</state>
+            <zipcode>55987</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Wenden Winona County Detention Center Program</name>
+          </business>
+          <contactPhoneNumber>(651) 398-7017</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1028226</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Northfield</city>
+            <county>Rice County</county>
+            <location>1101 S Spring St</location>
+            <state>MN</state>
+            <zipcode>55057</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>West Hills Lodge Inc Women's Program</name>
+          </business>
+          <contactPhoneNumber>(507) 451-1172</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1058563</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Willmar</city>
+            <county>Kandiyohi County</county>
+            <location>1125 6th St SE PO Box 787</location>
+            <state>MN</state>
+            <zipcode>56201</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Woodland Centers Outpatient Chemical Dependency Treatment Program</name>
+          </business>
+          <contactPhoneNumber>(320) 235-4613</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>830946</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Rochester</city>
+            <county>Olmsted County</county>
+            <location>343 Wood Lake Dr SE</location>
+            <state>MN</state>
+            <zipcode>55904</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Zumbro Valley Mental Health Center Recovery Programs</name>
+          </business>
+          <contactPhoneNumber>(507) 289-2089</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>830308</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Rochester</city>
+            <county>Olmsted County</county>
+            <location>29 7th Street NE</location>
+            <state>MN</state>
+            <zipcode>55906</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Zumbro Valley Mental Health Center Recovery Programs II</name>
+          </business>
+          <contactPhoneNumber>(507) 535-5680</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1057903</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <pageNumber>0</pageNumber>
+        <pageSize>0</pageSize>
+        <total>46</total>
+        <totalPages>1</totalPages>
+      </return>
+    </ns2:searchResponse>
+  </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,10 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.services.screening.medicaid.gov/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:searchByCity>
+         <arg0>
+            <city>HILLSBORO</city>
+         </arg0>
+      </impl:searchByCity>
+   </soapenv:Body>
+</soapenv:Envelope>

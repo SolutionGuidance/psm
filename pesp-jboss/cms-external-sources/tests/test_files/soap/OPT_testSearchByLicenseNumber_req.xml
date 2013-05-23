@@ -1,0 +1,10 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.services.screening.medicaid.gov/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:searchByLicenseNumber>
+         <arg0>
+            <identifier>2090</identifier>
+         </arg0>
+      </impl:searchByLicenseNumber>
+   </soapenv:Body>
+</soapenv:Envelope>

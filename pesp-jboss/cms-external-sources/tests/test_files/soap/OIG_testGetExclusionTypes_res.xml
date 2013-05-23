@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:getExclusionTypeListResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(a)(1)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(a)(2)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(a)(3)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(a)(4)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(b)(1)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(b)(11)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(b)(12)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(b)(14)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(b)(15)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(b)(2)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(b)(3)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(b)(4)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(b)(5)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(b)(6)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(b)(7)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128(b)(8)</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION 1128Aa</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION BREACH OF CIA</name>
+      </return>
+      <return>
+        <id>0</id>
+        <name>SECTION BREACH OF SA</name>
+      </return>
+    </ns2:getExclusionTypeListResponse>
+  </soap:Body>
+</soap:Envelope>

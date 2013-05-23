@@ -1653,33 +1653,17 @@ $(document).ready(function() {
     });
     
     $('#addQP').live('click',function(){
-    	var html = $('#qpTemplate').clone();
-    	$(html).removeAttr('style');
-    	html.find('.dateWrapper').empty();
-    	html.find('.dateWrapper').append('<input class="date" type="text" />');
-    	
-    	$('#qpsTable').append(html);
-    	$(html).find('input.date').mask("99/99/9999");
-        $(html).find('input.npiMasked').mask("9999999999");
-        $(html).find("input.umpiMasked").mask("**********");
-        $(html).find('input.ssnMasked').mask("999-99-9999");
-//    	$(html).find('input.date').datepicker({
-//    		dateFormat:"mm/dd/yy",
-//    		showOn: "button",
-//    		buttonImage: "/cms/i/calendar.png",
-//    		buttonImageOnly: true,
-//    		beforeShow:function(input,inst){
-//    			inst.dpDiv.css('margin-left','-23px')
-//    		}
-//    	});
-//    	$(html).find('input.date').click(function() {
-//    		$(this).next('.ui-datepicker-trigger').click();
-//    	});
-//    	$(html).attr('alt','').attr('title','');
-    	
-    	reindexQPs();
+    	createQPs();
     });
 
+    $('.qpTypeSelect').live('change', function(){
+    	if ($(this).val() == "Mental Health Professional") {
+    		$(this).parents('.section').find('.mhpType').show();
+    	} else {
+    		$(this).parents('.section').find('.mhpType').hide();
+    	}
+    });
+    
     reindexQPs = function(){
 		// reindex form fields
 		$('#qpsTable .memberInfoPanel').each(function(index) {
@@ -1688,18 +1672,19 @@ $(document).ready(function() {
 			$i.find('input:eq(0)').attr("name", "_29_name_" + index);
 			$i.find('input:eq(1)').attr("name", "_29_npi_" + index);
 			$i.find('input:eq(2)').attr("name", "_29_startDate_" + index);
-			$i.find('input:eq(3)').attr("name", "_29_dob_" + index);
-			$i.find('input:eq(4)').attr("name", "_29_ssn_" + index);
-			$i.find('input:eq(5)').attr("name", "_29_ended_" + index);
-			$i.find('input:eq(6)').attr("name", "_29_endDate_" + index);
-			$i.find('input:eq(7)').attr("name", "_29_addressLine1_" + index);
-			$i.find('input:eq(8)').attr("name", "_29_addressLine2_" + index);
-			$i.find('input:eq(9)').attr("name", "_29_city_" + index);
+			$i.find('input:eq(3)').attr("name", "_29_qpSubType_" + index);
+			$i.find('input:eq(4)').attr("name", "_29_dob_" + index);
+			$i.find('input:eq(5)').attr("name", "_29_ssn_" + index);
+			$i.find('input:eq(6)').attr("name", "_29_ended_" + index);
+			$i.find('input:eq(7)').attr("name", "_29_endDate_" + index);
+			$i.find('input:eq(8)').attr("name", "_29_addressLine1_" + index);
+			$i.find('input:eq(9)').attr("name", "_29_addressLine2_" + index);
+			$i.find('input:eq(10)').attr("name", "_29_city_" + index);
 			$i.find('select:eq(1)').attr("name", "_29_state_" + index);
-			$i.find('input:eq(10)').attr("name", "_29_zip_" + index);
-			$i.find('input:eq(11)').attr("name", "_29_county_" + index);
-			$i.find('input:eq(12)').attr("name", "_29_bgsNumber_" + index);
-			$i.find('input:eq(13)').attr("name", "_29_bgsClearanceDate_" + index);
+			$i.find('input:eq(11)').attr("name", "_29_zip_" + index);
+			$i.find('input:eq(12)').attr("name", "_29_county_" + index);
+			$i.find('input:eq(13)').attr("name", "_29_bgsNumber_" + index);
+			$i.find('input:eq(14)').attr("name", "_29_bgsClearanceDate_" + index);
 			
 			$i.find('table tbody tr').each(function(rid, row) {
 				var $r = $(row);
@@ -2356,7 +2341,7 @@ function copyPrimaryPracticeFields(namespace, row) {
 	$('.practicePanel input[name="' + namespace + 'fax2"]').val(row.fax[1]);
 	$('.practicePanel input[name="' + namespace + 'fax3"]').val(row.fax[2]);
 	
-	$('.practicePanel input[name="' + namespace + 'billingSameAsPrimary"]').prop('checked', false);
+	$('.practicePanel input[name="' + namespace + 'billingSameAsPrimary"]').prop('checked', true);
 	$('.practicePanel input[name="' + namespace + 'billingCity"]').val('');
 	$('.practicePanel select[name="' + namespace + 'billingState"]').val('');
 	$('.practicePanel input[name="' + namespace + 'billingZip"]').val('');
@@ -2369,7 +2354,9 @@ function copyPrimaryPracticeFields(namespace, row) {
 	$('.practicePanel input[name="' + namespace + 'eftVendorNo"]').val('');
 	$('.practicePanel input[name="' + namespace + 'remittanceSequence"]').val('');
 	
-	$('.practicePanel input[name="' + namespace + 'reimbursementSameAsPrimary"]').prop('checked', false);
+	$('.practicePanel input[name="' + namespace + 'reimbursementSameAsPrimary"]').prop('checked', true);
+	$('.practicePanel input[name="' + namespace + 'reimbursementAddressLine1"]').val('');
+	$('.practicePanel input[name="' + namespace + 'reimbursementAddressLine2"]').val('');
 	$('.practicePanel input[name="' + namespace + 'reimbursementCity"]').val('');
 	$('.practicePanel select[name="' + namespace + 'reimbursementState"]').val('');
 	$('.practicePanel input[name="' + namespace + 'reimbursementZip"]').val('');
@@ -2423,6 +2410,8 @@ function togglePrimaryPracticeFields(namespace, disabled) {
 	$('.practicePanel input[name="' + namespace + 'remittanceSequence"]').prop('disabled', disabled);
 	
 	$('.practicePanel input[name="' + namespace + 'reimbursementSameAsPrimary"]').prop('disabled', disabled);
+	$('.practicePanel input[name="' + namespace + 'reimbursementAddressLine1"]').prop('disabled', disabled);
+	$('.practicePanel input[name="' + namespace + 'reimbursementAddressLine2"]').prop('disabled', disabled);
 	$('.practicePanel input[name="' + namespace + 'reimbursementCity"]').prop('disabled', disabled);
 	$('.practicePanel select[name="' + namespace + 'reimbursementState"]').prop('disabled', disabled);
 	$('.practicePanel input[name="' + namespace + 'reimbursementZip"]').prop('disabled', disabled);
@@ -2649,4 +2638,18 @@ function doInServiceSelect(el) {
 	$(el).closest('.assuredServicePanel').find('.ext-services').addClass('hide');
 	var targetRow = $(el).closest('.assuredServicePanel').find('.ext-services-'+ code);
 	$(targetRow).removeClass('hide');
+}
+
+function createQPs() {
+	var html = $('#qpTemplate').clone();
+	$(html).removeAttr('style');
+	html.find('.dateWrapper').empty();
+	html.find('.dateWrapper').append('<input class="date" type="text" />');
+	
+	$('#qpsTable').append(html);
+	$(html).find('input.date').mask("99/99/9999");
+    $(html).find('input.npiMasked').mask("9999999999");
+    $(html).find("input.umpiMasked").mask("**********");
+    $(html).find('input.ssnMasked').mask("999-99-9999");	
+	reindexQPs();
 }

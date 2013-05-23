@@ -159,6 +159,7 @@
                 <td class="alignCenter nopad">
                     <c:choose>
                         <c:when test="${fn:toLowerCase(item.status)=='pending'}">
+                        	<a href="${ctx}/agent/enrollment/pendingcos?id=${item.ticketId}">COS</a><span class="sep">|</span>
                             <a href="${ctx}/provider/enrollment/reopen?id=${item.ticketId}">Edit</a><span class="sep">|</span>
                             <c:forEach var="task" items="${tasks}">
                                 <c:if test="${task.processInstanceId == item.processInstanceId}">
@@ -167,6 +168,7 @@
                             </c:forEach>
                         </c:when>
                         <c:when test="${fn:toLowerCase(item.status)=='draft'}">
+                        	<a href="${ctx}/agent/enrollment/pendingcos?id=${item.ticketId}">COS</a><span class="sep">|</span>                        
                             <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">Edit</a><span class="sep">|</span>
                         </c:when>
                         <c:when test="${fn:toLowerCase(item.status)=='approved'}">

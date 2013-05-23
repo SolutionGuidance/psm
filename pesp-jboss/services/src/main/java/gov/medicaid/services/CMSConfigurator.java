@@ -30,7 +30,7 @@ import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
 /**
  * CMS configurator.
- *
+ * 
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -53,7 +53,7 @@ public class CMSConfigurator {
         InputStream stream = getClass().getResourceAsStream(DEFAULT_CMS_CONFIG_FILE);
         if (stream == null) {
             throw new PortalServiceConfigurationException(
-                "Could not find application configuration, make sure it is in the classpath.");
+                    "Could not find application configuration, make sure it is in the classpath.");
         }
 
         if (globalSettings == null) {
@@ -63,7 +63,7 @@ public class CMSConfigurator {
                     globalSettings.load(stream);
                 } catch (IOException e) {
                     throw new PortalServiceConfigurationException(
-                        "Could not read application configuration, make sure it is in the classpath.");
+                            "Could not read application configuration, make sure it is in the classpath.");
                 } finally {
                     if (stream != null) {
                         try {
@@ -87,8 +87,9 @@ public class CMSConfigurator {
 
     /**
      * Gets the subject to be used for the given email type.
-     *
-     * @param emailType the type of email to send
+     * 
+     * @param emailType
+     *            the type of email to send
      * @return the configured subject
      */
     public String getEmailSubject(EmailTemplate emailType) {
@@ -97,8 +98,9 @@ public class CMSConfigurator {
 
     /**
      * Gets the email template to be used for the given email type.
-     *
-     * @param emailType the type of email to send
+     * 
+     * @param emailType
+     *            the type of email to send
      * @return the configured template path
      */
     public String getEmailTemplateFile(EmailTemplate emailType) {
@@ -107,7 +109,7 @@ public class CMSConfigurator {
 
     /**
      * Retrieves the LDAP settings environment.
-     *
+     * 
      * @return the LDAP environment settings
      */
     public Properties getLdapSettings() {
@@ -123,7 +125,7 @@ public class CMSConfigurator {
 
     /**
      * Retrieves the lookup service from the default JNDI context.
-     *
+     * 
      * @return the lookup service
      */
     public LookupService getLookupService() {
@@ -132,7 +134,7 @@ public class CMSConfigurator {
 
     /**
      * Retrieves the presentation service from the default JNDI context.
-     *
+     * 
      * @return the presentation service
      */
     public PresentationService getPresentationService() {
@@ -141,7 +143,7 @@ public class CMSConfigurator {
 
     /**
      * Retrieves the binder registry.
-     *
+     * 
      * @return the configured binder registry
      */
     public Map<String, FormBinder> getBinderRegistry() {
@@ -170,7 +172,7 @@ public class CMSConfigurator {
 
     /**
      * Retrieves the binder registry.
-     *
+     * 
      * @return the configured binder registry
      */
     public Map<String, String> getNewEnrollmentViewRegistry() {
@@ -189,7 +191,7 @@ public class CMSConfigurator {
 
     /**
      * Retrieves the binder registry.
-     *
+     * 
      * @return the configured binder registry
      */
     public Map<String, String> getSummaryViewRegistry() {
@@ -208,7 +210,7 @@ public class CMSConfigurator {
 
     /**
      * Retrieves the persistence unit for JBPM.
-     *
+     * 
      * @return the entity manager factory bound to the JNDI tree.
      */
     public EntityManagerFactory getJBPMEntityManagerFactory() {
@@ -217,7 +219,7 @@ public class CMSConfigurator {
 
     /**
      * Retrieves the enrollment service.
-     *
+     * 
      * @return the enrollment service from the JNDI tree.
      */
     public ProviderEnrollmentService getEnrollmentService() {
@@ -226,9 +228,11 @@ public class CMSConfigurator {
 
     /**
      * Retrieves the object from the JNDI tree.
-     *
-     * @param jndiName the JNDI name configuration property
-     * @param direct if true the first argument is not a property name and should be used directly
+     * 
+     * @param jndiName
+     *            the JNDI name configuration property
+     * @param direct
+     *            if true the first argument is not a property name and should be used directly
      * @return the object from the configured property
      */
     private Object fromContext(String jndiName, boolean direct) {
@@ -246,7 +250,7 @@ public class CMSConfigurator {
 
     /**
      * Retrieves the hashing key for request validation.
-     *
+     * 
      * @return the configured key
      */
     public String getServerHashKey() {
@@ -255,7 +259,7 @@ public class CMSConfigurator {
 
     /**
      * Retrieves the dummy system user.
-     *
+     * 
      * @return the system user to be used for internal calls.
      */
     public CMSUser getSystemUser() {
@@ -271,7 +275,7 @@ public class CMSConfigurator {
 
     /**
      * Retrieves all known partner services.
-     *
+     * 
      * @return the map of partner services
      */
     public Map<SystemId, PartnerSystemService> getPartnerServices() {
@@ -283,7 +287,7 @@ public class CMSConfigurator {
 
     /**
      * Retrieves the sequence generator from the JNDI tree.
-     *
+     * 
      * @return the sequence generator
      */
     public SequenceGenerator getSequenceGenerator() {
@@ -292,7 +296,7 @@ public class CMSConfigurator {
 
     /**
      * Retrieves the portal entity manager from the JNDI tree.
-     *
+     * 
      * @return the portal entity manager
      */
     public EntityManager getPortalEntityManager() {
@@ -301,6 +305,7 @@ public class CMSConfigurator {
 
     /**
      * Creates the velocity engine for templating functions.
+     * 
      * @return the velocity engine
      */
     public VelocityEngine getVelocityEngine() {
@@ -314,6 +319,7 @@ public class CMSConfigurator {
 
     /**
      * For administrator and agent dashboards, this returns the maximum number of notifications shown.
+     * 
      * @return the configured display size
      */
     public int getMaxNotificationsDisplay() {
@@ -322,6 +328,7 @@ public class CMSConfigurator {
 
     /**
      * Retrieves the base URL for the external sources services.
+     * 
      * @return the configured base URL for the current environment
      */
     public String getExternalSourceBase() {
@@ -330,5 +337,32 @@ public class CMSConfigurator {
         } else {
             return globalSettings.getProperty("extsources.TEST.base");
         }
+    }
+
+    /**
+     * Gets the configured filenet folder
+     * 
+     * @return the configured filenet folder
+     */
+    public String getFileNetFolder() {
+        return globalSettings.getProperty("filenet.folder");
+    }
+
+    /**
+     * Gets the configured pdf files folder
+     * 
+     * @return the pdf files folder
+     */
+    public String getExportPDFFolder() {
+        return globalSettings.getProperty("export.pdf.folder");
+    }
+
+    /**
+     * Gets the filenet service
+     * 
+     * @return the configured FileNetService
+     */
+    public FileNetService getFileNetService() {
+        return (FileNetService) fromContext("jndi.FileNetService", false);
     }
 }

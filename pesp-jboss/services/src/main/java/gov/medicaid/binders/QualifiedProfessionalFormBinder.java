@@ -37,7 +37,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the provider type selection form.
- *
+ * 
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -62,26 +62,29 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     *
-     * @param enrollment the model to bind to
-     * @param request the request containing the form fields
-     * @throws BinderException if the format of the fields could not be bound properly
+     * 
+     * @param enrollment
+     *            the model to bind to
+     * @param request
+     *            the request containing the form fields
+     * @throws BinderException
+     *             if the format of the fields could not be bound properly
      */
     public List<BinderException> bindFromPage(EnrollmentType enrollment, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        
+
         QualifiedProfessionalsType qps = XMLUtility.nsGetQualifiedProfessionals(enrollment);
         List<QualifiedProfessionalType> qpList = qps.getQualifiedProfessional();
-        
+
         // track all attachments related to affiliation licenses
         List<LicenseType> licenseList = new ArrayList<LicenseType>();
         for (QualifiedProfessionalType qp : qpList) {
             licenseList.addAll(qp.getLicense());
         }
-        
+
         qpList.clear();
-        
+
         // bind licenses
         int qpIndex = 0;
         Set<String> linkedAttachments = new HashSet<String>();
@@ -113,7 +116,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
                     exceptions.add(e);
                 }
             }
-            
+
             AddressType address = readQPAddress(request, qpIndex);
             ContactInformationType contact = new ContactInformationType();
             qp.setContactInformation(contact);
@@ -126,7 +129,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
                 e.setAttribute(name("bgsClearanceDate", qpIndex), param(request, "bgsClearanceDate", qpIndex));
                 exceptions.add(e);
             }
-            
+
             int licenseIndex = 0;
             while (param(request, "licenseType_" + qpIndex, licenseIndex) != null) {
                 LicenseType licenseType = new LicenseType();
@@ -134,19 +137,23 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
                 licenseType.setLicenseType(param(request, "licenseType_" + qpIndex, licenseIndex));
                 licenseType.setLicenseNumber(param(request, "licenseNumber_" + qpIndex, licenseIndex));
                 try {
-                    licenseType.setOriginalIssueDate(BinderUtils.getAsCalendar(param(request, "originalIssueDate_" + qpIndex, licenseIndex)));
+                    licenseType.setOriginalIssueDate(BinderUtils.getAsCalendar(param(request, "originalIssueDate_"
+                            + qpIndex, licenseIndex)));
                 } catch (BinderException e) {
-                    e.setAttribute(name("originalIssueDate_" + qpIndex, licenseIndex), param(request, "originalIssueDate_" + qpIndex, licenseIndex));
+                    e.setAttribute(name("originalIssueDate_" + qpIndex, licenseIndex),
+                            param(request, "originalIssueDate_" + qpIndex, licenseIndex));
                     exceptions.add(e);
                 }
                 try {
-                    licenseType.setRenewalDate(BinderUtils.getAsCalendar(param(request, "renewalDate_" + qpIndex, licenseIndex)));
+                    licenseType.setRenewalDate(BinderUtils.getAsCalendar(param(request, "renewalDate_" + qpIndex,
+                            licenseIndex)));
                 } catch (BinderException e) {
-                    e.setAttribute(name("renewalDate_" + qpIndex, licenseIndex), param(request, "renewalDate_" + qpIndex, licenseIndex));
+                    e.setAttribute(name("renewalDate_" + qpIndex, licenseIndex),
+                            param(request, "renewalDate_" + qpIndex, licenseIndex));
                     exceptions.add(e);
                 }
                 licenseType.setIssuingState(param(request, "issuingState_" + qpIndex, licenseIndex));
-    
+
                 String attachmentId = (String) request.getAttribute(name("attachment_" + qpIndex, licenseIndex));
                 if (attachmentId == null) { // not uploaded check for old value
                     attachmentId = param(request, "attachmentId_" + qpIndex, licenseIndex);
@@ -156,13 +163,13 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
                 }
                 licenseType.setAttachmentObjectId(attachmentId);
                 licenseType.setObjectId(param(request, "objectId_" + qpIndex, licenseIndex));
-    
+
                 qp.getLicense().add(licenseType);
                 licenseIndex++;
             }
             qpList.add(qp);
             qpIndex++;
-            
+
         }
 
         // unbind old attachments if there are no longer affiliate license references
@@ -180,18 +187,21 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Binds the model to the request attributes.
-     *
-     * @param enrollment the model to bind from
-     * @param mv the model and view to bind to
-     * @param readOnly if the view is read only
+     * 
+     * @param enrollment
+     *            the model to bind from
+     * @param mv
+     *            the model and view to bind to
+     * @param readOnly
+     *            if the view is read only
      */
     public void bindToPage(EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        
+
         QualifiedProfessionalsType qps = XMLUtility.nsGetQualifiedProfessionals(enrollment);
         List<QualifiedProfessionalType> qpList = qps.getQualifiedProfessional();
-       
+
         int qpIndex = 0;
         for (QualifiedProfessionalType qp : qpList) {
             attr(mv, "qpType", qpIndex, qp.getType());
@@ -205,7 +215,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
             attr(mv, "endDate", qpIndex, qp.getEndDate());
             attr(mv, "bgsNumber", qpIndex, qp.getBGSNumber());
             attr(mv, "bgsClearanceDate", qpIndex, qp.getBGSClearanceDate());
-            
+
             if (qp.getContactInformation() != null) {
                 AddressType address = qp.getContactInformation().getAddress();
                 if (address != null) {
@@ -223,9 +233,9 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
                     attr(mv, "county", qpIndex, address.getCounty());
                 }
             }
-            
+
             List<LicenseType> xLicenses = qp.getLicense();
-            
+
             int licenseIndex = 0;
             for (LicenseType license : xLicenses) {
                 attr(mv, "licenseType_" + qpIndex, licenseIndex, license.getLicenseType());
@@ -234,10 +244,11 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
                 attr(mv, "renewalDate_" + qpIndex, licenseIndex, license.getRenewalDate());
                 attr(mv, "issuingState_" + qpIndex, licenseIndex, license.getIssuingState());
                 attr(mv, "attachmentId_" + qpIndex, licenseIndex, license.getAttachmentObjectId());
-                attr(mv, "filename_" + qpIndex, licenseIndex, getAttachmentName(enrollment, license.getAttachmentObjectId()));
+                attr(mv, "filename_" + qpIndex, licenseIndex,
+                        getAttachmentName(enrollment, license.getAttachmentObjectId()));
                 licenseIndex++;
             }
-            
+
             attr(mv, "licenseSize_" + qpIndex, licenseIndex);
             qpIndex++;
         }
@@ -247,21 +258,23 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
         if (!readOnly) {
             List<gov.medicaid.entities.LicenseType> type = getLookupService().findRelatedLookup(
-                gov.medicaid.entities.LicenseType.class, pt.getCode(), ViewStatics.REL_QP_LICENSE_OPTIONS);
+                    gov.medicaid.entities.LicenseType.class, pt.getCode(), ViewStatics.REL_QP_LICENSE_OPTIONS);
             attr(mv, "licenseTypes", type);
 
-            List<gov.medicaid.entities.StateType> state = getLookupService().findAllLookups(
-                gov.medicaid.entities.StateType.class);
+            List<gov.medicaid.entities.StateType> state = new ArrayList<gov.medicaid.entities.StateType>();
+            state.add(getLookupService().findLookupByCode(gov.medicaid.entities.StateType.class, "MN"));
+
             attr(mv, "licenseStates", state);
-            
+
             attr(mv, "qpTypes", getLookupService().findAllLookups(QPType.class));
         }
     }
 
     /**
      * Retrieves only QP affiliations.
-     *
-     * @param affiliations the affiliations to be filtered
+     * 
+     * @param affiliations
+     *            the affiliations to be filtered
      * @return the filtered affiliations
      */
     private List<Affiliation> filterQPs(List<Affiliation> affiliations) {
@@ -282,9 +295,11 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Retrieves the related attachment name.
-     *
-     * @param enrollment the enrollment to retrieve from
-     * @param attachmentObjectId the id
+     * 
+     * @param enrollment
+     *            the enrollment to retrieve from
+     * @param attachmentObjectId
+     *            the id
      * @return the name related
      */
     private String getAttachmentName(EnrollmentType enrollment, String attachmentObjectId) {
@@ -299,12 +314,15 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
         }
         return null;
     }
-    
+
     /**
      * Captures the error messages related to the form.
-     * @param enrollment the enrollment that was validated
-     * @param messages the messages to select from
-     *
+     * 
+     * @param enrollment
+     *            the enrollment that was validated
+     * @param messages
+     *            the messages to select from
+     * 
      * @return the list of errors related to the form
      */
     protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
@@ -342,9 +360,12 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
         }
         return errors;
     }
+
     /**
      * Resolves the specific license that is causing the error from the license list.
-     * @param ruleError the error to resolve
+     * 
+     * @param ruleError
+     *            the error to resolve
      * @return the resolved error
      */
     private FormError resolveFieldError(StatusMessageType ruleError) {
@@ -354,7 +375,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
         String message = ruleError.getMessage();
 
         if (index != null) {
-            if (path.startsWith(QP_PATH +  index + "]/License")) {
+            if (path.startsWith(QP_PATH + index + "]/License")) {
                 return resolveLicenseFieldError(index, ruleError);
             } else if (path.endsWith("FullName")) {
                 return createError("name", index, message);
@@ -381,11 +402,11 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     private FormError resolveLicenseFieldError(Integer qpIndex, StatusMessageType ruleError) {
         String path = ruleError.getRelatedElementPath();
-        Integer index = resolveIndex(path.substring((QP_PATH +  qpIndex + "]").length()));
+        Integer index = resolveIndex(path.substring((QP_PATH + qpIndex + "]").length()));
         String message = ruleError.getMessage();
 
         if (index != null) {
-            message = ruleError.getMessage() + "(QP# " + (qpIndex + 1) +", License #" + (index + 1) + ")";
+            message = ruleError.getMessage() + "(QP# " + (qpIndex + 1) + ", License #" + (index + 1) + ")";
             if (path.endsWith("LicenseType")) {
                 return createError("licenseType_" + qpIndex, index, message);
             } else if (path.endsWith("SpecialtyType")) {
@@ -409,7 +430,9 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Resolves the index of the field that caused the error.
-     * @param path the field path
+     * 
+     * @param path
+     *            the field path
      * @return the index of the field, null if cannot be resolved
      */
     private Integer resolveIndex(String path) {
@@ -422,26 +445,29 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Binds the fields of the form to the persistence model.
-     *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * 
+     * @param enrollment
+     *            the front end model
+     * @param ticket
+     *            the persistent model
      */
     public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
         QualifiedProfessionalsType xQPs = XMLUtility.nsGetQualifiedProfessionals(enrollment);
-        
+
         ProviderProfile profile = ticket.getDetails();
         if (profile.getAffiliations() == null) {
             profile.setAffiliations(new ArrayList<Affiliation>());
         }
-        
+
         List<Affiliation> oldQPList = filterQPs(profile.getAffiliations());
         profile.getAffiliations().removeAll(oldQPList);
-        
+
         List<QualifiedProfessionalType> qpList = xQPs.getQualifiedProfessional();
         for (QualifiedProfessionalType qp : qpList) {
             Affiliation a = new Affiliation();
             a.setObjectType(ViewStatics.DISCRIMINATOR_QP);
             a.setQpType(getLookupService().findLookupByDescription(QPType.class, qp.getType()));
+            a.setMhpType(qp.getSubType());
             a.setEffectiveDate(BinderUtils.toDate(qp.getStartDate()));
             a.setTerminatedInd(qp.getEndedInd());
             a.setTerminationDate(BinderUtils.toDate(qp.getEndDate()));
@@ -459,13 +485,13 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
                 person.getContactInformation().setAddress(BinderUtils.bindAddress(address));
             }
             person.setBackgroundClearanceDate(BinderUtils.toDate(qp.getBGSClearanceDate()));
-            
+
             List<License> affiliateLicenses = new ArrayList<License>();
             List<LicenseType> xList = qp.getLicense();
             for (LicenseType xLicense : xList) {
                 License hLicense = new License();
                 hLicense.setType(getLookupService().findLookupByDescription(gov.medicaid.entities.LicenseType.class,
-                    xLicense.getLicenseType()));
+                        xLicense.getLicenseType()));
                 hLicense.setLicenseNumber(xLicense.getLicenseNumber());
                 if (Util.isNotBlank(xLicense.getAttachmentObjectId())) {
                     hLicense.setAttachmentId(Long.parseLong(xLicense.getAttachmentObjectId()));
@@ -482,20 +508,23 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Binds the fields of the persistence model to the front end xml.
-     *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * 
+     * @param ticket
+     *            the persistent model
+     * @param enrollment
+     *            the front end model
      */
     public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
         ProviderProfile profile = ticket.getDetails();
         List<Affiliation> hQPs = filterQPs(profile.getAffiliations());
         QualifiedProfessionalsType xQPs = XMLUtility.nsGetQualifiedProfessionals(enrollment);
-        
+
         for (Affiliation hQP : hQPs) {
             QualifiedProfessionalType xQP = new QualifiedProfessionalType();
             if (hQP.getQpType() != null) {
                 xQP.setType(hQP.getQpType().getDescription());
             }
+            xQP.setSubType(hQP.getMhpType());
             xQP.setStartDate(BinderUtils.toCalendar(hQP.getEffectiveDate()));
             xQP.setEndedInd(hQP.getTerminatedInd());
             xQP.setEndDate(BinderUtils.toCalendar(hQP.getTerminationDate()));
@@ -514,7 +543,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
                     xQP.getContactInformation().setAddress(BinderUtils.bindAddress(address));
                 }
             }
-            
+
             List<License> hList = hQP.getAffiliateLicenses();
             for (License license : hList) {
                 LicenseType xLicense = new LicenseType();
@@ -532,15 +561,16 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
                 xLicense.setObjectId("" + license.getId());
                 xQP.getLicense().add(xLicense);
             }
-            
+
             xQPs.getQualifiedProfessional().add(xQP);
         }
     }
-    
+
     /**
      * Reads the primary practice address from the request.
-     *
-     * @param request the request to read from
+     * 
+     * @param request
+     *            the request to read from
      * @return the bound address
      */
     protected AddressType readQPAddress(HttpServletRequest request, int index) {

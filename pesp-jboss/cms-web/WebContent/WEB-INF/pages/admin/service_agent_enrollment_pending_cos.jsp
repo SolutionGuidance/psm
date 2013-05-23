@@ -26,12 +26,12 @@
                         <span>Enrollment Category of Service</span>
                     </div>
                     <div class="head">
-                        <h1>Category Of Service - ${profile.entity.providerType.description} - ${profile.entity.name}</h1>
+                        <h1>Category Of Service - ${enrollment.details.entity.providerType.description} - ${enrollment.details.entity.name}</h1>
                     </div>
                     <div class="tabSection">
-						<c:set var="actionPath" value="${ctx}/agent/enrollment/addCOS"/>
+						<c:set var="actionPath" value="${ctx}/agent/enrollment/addPendingCOS"/>
 						<form action="${actionPath}" method="post" id="cosForm">
-							<input type="hidden" name="id" value="${profile.profileId}" />
+							<input type="hidden" name="id" value="${enrollment.ticketId}" />
 							<div class="detailPanel">
 								<c:forEach var="cos" items="${existingServices}" varStatus="loop">
 								<div class="section">
@@ -60,7 +60,7 @@
 											<c:if test="${loop.last}">
 												<a href="javascript:;" onclick="copyCOS(${cos.id});" class="greyBtn"><span class="btR"><span class="btM"><span class="text">Clone</span></span></span></a>
 											</c:if>
-											<a href="javascript:;" onclick="deleteCOS(${cos.id}, ${profile.profileId});" class="greyBtn"><span class="btR"><span class="btM"><span class="text">Delete</span></span></span></a>
+											<a href="javascript:;" onclick="deleteCOSByTicketId(${cos.id}, ${enrollment.ticketId});" class="greyBtn"><span class="btR"><span class="btM"><span class="text">Delete</span></span></span></a>
 										</div>
 									</div>
 								</div>

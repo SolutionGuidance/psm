@@ -17,6 +17,9 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.PresentationService;
 import gov.medicaid.services.util.Util;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -40,12 +43,12 @@ import com.lowagie.text.pdf.PdfWriter;
 
 /**
  * This class provides an implementation of the ExportService via its Local and Remote interfaces.
- *
+ * 
  * <p>
  * <b>Thread Safety</b> This bean is mutable and not thread-safe as it deals with non-thread-safe entities. However, in
  * the context of being used in a container, it is thread-safe.
  * </p>
- *
+ * 
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -63,8 +66,9 @@ public class ExportServiceBean extends BaseService implements ExportService {
 
     /**
      * Sets the given table to take an entire page with.
-     *
-     * @param table the table to make full width
+     * 
+     * @param table
+     *            the table to make full width
      */
     private static void setTableAsFullPage(PdfPTable table) {
         table.getDefaultCell().setBorder(0);
@@ -74,13 +78,15 @@ public class ExportServiceBean extends BaseService implements ExportService {
 
     /**
      * Adds a centered cell to the given table.
-     *
-     * @param table the table to add the cell to
-     * @param value the value text
+     * 
+     * @param table
+     *            the table to add the cell to
+     * @param value
+     *            the value text
      */
     private static void addCenterCell(PdfPTable table, String value) {
         PdfPCell val = new PdfPCell(
-            new Phrase(Util.defaultString(value), FontFactory.getFont(FontFactory.HELVETICA, 7)));
+                new Phrase(Util.defaultString(value), FontFactory.getFont(FontFactory.HELVETICA, 7)));
         val.setBorder(Rectangle.NO_BORDER);
         val.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
         table.addCell(val);
@@ -88,9 +94,11 @@ public class ExportServiceBean extends BaseService implements ExportService {
 
     /**
      * Creates a header cell.
-     *
-     * @param text the header text
-     * @param colspan the span of the header
+     * 
+     * @param text
+     *            the header text
+     * @param colspan
+     *            the span of the header
      * @return the generated cell.
      */
     private static PdfPCell createHeaderCell(String text, int colspan) {
@@ -102,21 +110,25 @@ public class ExportServiceBean extends BaseService implements ExportService {
 
     /**
      * Exports the search results into PDF.
-     *
-     * @param requests the list to be exported
-     * @param status the status filter
-     * @param outputStream the stream to export to
-     * @throws PortalServiceException for any errors encountered
+     * 
+     * @param requests
+     *            the list to be exported
+     * @param status
+     *            the status filter
+     * @param outputStream
+     *            the stream to export to
+     * @throws PortalServiceException
+     *             for any errors encountered
      */
     public void export(List<UserRequest> requests, String status, OutputStream outputStream)
-        throws PortalServiceException {
+            throws PortalServiceException {
         PdfPTable resultTable;
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, outputStream);
             document.open();
 
-            resultTable = new PdfPTable(new float[] {3, 8, 8, 8, 10, 25, 8, 8, 8});
+            resultTable = new PdfPTable(new float[] { 3, 8, 8, 8, 10, 25, 8, 8, 8 });
             resultTable.getDefaultCell().setBorder(0);
             resultTable.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 
@@ -142,14 +154,14 @@ public class ExportServiceBean extends BaseService implements ExportService {
                 addCenterCell(resultTable, String.valueOf(++i));
                 addCenterCell(resultTable, userRequest.getNpi());
                 addCenterCell(resultTable,
-                    BinderUtils.formatCalendar(BinderUtils.toCalendar(userRequest.getCreateDate())));
+                        BinderUtils.formatCalendar(BinderUtils.toCalendar(userRequest.getCreateDate())));
                 addCenterCell(resultTable, userRequest.getRequestType());
                 addCenterCell(resultTable, userRequest.getProviderType());
                 addCenterCell(resultTable, userRequest.getProviderName());
                 addCenterCell(resultTable, userRequest.getRiskLevel());
                 addCenterCell(resultTable, userRequest.getStatus());
                 addCenterCell(resultTable,
-                    BinderUtils.formatCalendar(BinderUtils.toCalendar(userRequest.getStatusDate())));
+                        BinderUtils.formatCalendar(BinderUtils.toCalendar(userRequest.getStatusDate())));
             }
 
             resultTable.setSpacingAfter(20);
@@ -163,16 +175,22 @@ public class ExportServiceBean extends BaseService implements ExportService {
 
     /**
      * Exports the profile into PDF.
-     *
-     * @param currentUser the current user
-     * @param enrollment the enrollment model
-     * @param model the view model
-     * @param outputStream the stream to export to
-     * @throws IOException for read/write errors
-     * @throws PortalServiceException for any other errors encountered
+     * 
+     * @param currentUser
+     *            the current user
+     * @param enrollment
+     *            the enrollment model
+     * @param model
+     *            the view model
+     * @param outputStream
+     *            the stream to export to
+     * @throws IOException
+     *             for read/write errors
+     * @throws PortalServiceException
+     *             for any other errors encountered
      */
     public void export(CMSUser currentUser, EnrollmentType enrollment, Map<String, Object> model,
-        OutputStream outputStream) throws PortalServiceException, IOException {
+            OutputStream outputStream) throws PortalServiceException, IOException {
 
         try {
             Document document = new Document();
@@ -187,30 +205,36 @@ public class ExportServiceBean extends BaseService implements ExportService {
 
     /**
      * Renders the ticket.
-     *
-     * @param enrollment the enrollment
-     * @param document the document to render to
-     * @param model the view model
-     * @throws IOException for read/write errors
-     * @throws DocumentException for PDF related errors
-     * @throws PortalServiceException for any other errors encountered
+     * 
+     * @param enrollment
+     *            the enrollment
+     * @param document
+     *            the document to render to
+     * @param model
+     *            the view model
+     * @throws IOException
+     *             for read/write errors
+     * @throws DocumentException
+     *             for PDF related errors
+     * @throws PortalServiceException
+     *             for any other errors encountered
      */
     private void renderTicket(EnrollmentType enrollment, Document document, Map<String, Object> model)
-        throws PortalServiceException, DocumentException, IOException {
+            throws PortalServiceException, DocumentException, IOException {
 
         CMSConfigurator config = new CMSConfigurator();
         PresentationService presentationService = config.getPresentationService();
         Map<String, FormBinder> registry = config.getBinderRegistry();
         ViewModel viewModel = presentationService.getProviderViewModel(enrollment.getProviderInformation());
-        
+
         Map<String, UITabModel> pageModels = viewModel.getTabModels();
-        
+
         // render all forms from all pages
         for (String page : viewModel.getTabNames()) {
             if (page.equals(ViewStatics.SUMMARY_INFORMATION)) {
                 continue;
             }
-            
+
             PdfPTable pageTitle = new PdfPTable(2);
             setTableAsFullPage(pageTitle);
             pageTitle.addCell(createHeaderCell(page, 2));
@@ -222,6 +246,37 @@ public class ExportServiceBean extends BaseService implements ExportService {
                 if (binder != null) {
                     binder.renderPDF(enrollment, document, model);
                 }
+            }
+        }
+    }
+
+    /**
+     * Exports the pdf file for FileNet.
+     * 
+     * @param currentUser
+     *            the current user
+     * @param enrollment
+     *            the enrollment model
+     * @param model
+     *            the view model
+     * @param outputStream
+     *            the stream to export to
+     * @throws PortalServiceException
+     *             for any other errors encountered
+     */
+    @Override
+    public void exportPDFFileNet(CMSUser currentUser, EnrollmentType enrollment, String fileName,
+            Map<String, Object> model) throws PortalServiceException, IOException {
+        CMSConfigurator configurator = new CMSConfigurator();
+        String exportFolder = configurator.getExportPDFFolder();
+        BufferedOutputStream os = null;
+        try {
+            File pdfFile = new File(exportFolder, fileName);
+            os = new BufferedOutputStream(new FileOutputStream(pdfFile));
+            export(currentUser, enrollment, model, os);
+        } finally {
+            if (os != null) {
+                os.close();
             }
         }
     }

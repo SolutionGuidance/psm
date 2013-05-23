@@ -11,6 +11,7 @@ import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Event;
 import gov.medicaid.services.CMSConfigurator;
+import gov.medicaid.services.FileNetService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.SequenceGenerator;
@@ -25,7 +26,7 @@ import org.drools.runtime.process.WorkItemManager;
 
 /**
  * This initializes the application model.
- *
+ * 
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -47,20 +48,28 @@ public class AcceptedHandler extends GenericHandler {
     private final SequenceGenerator sequenceGenerator;
 
     /**
+     * Filenet service.
+     */
+    private final FileNetService fileNetService;
+
+    /**
      * Constructor using the fields.
      */
     public AcceptedHandler() {
         CMSConfigurator config = new CMSConfigurator();
         this.providerService = config.getEnrollmentService();
         this.entityManager = config.getPortalEntityManager();
-        sequenceGenerator = config.getSequenceGenerator();
+        this.sequenceGenerator = config.getSequenceGenerator();
+        this.fileNetService = config.getFileNetService();
     }
 
     /**
      * Initializes the process variable.
-     *
-     * @param item the work item to abort
-     * @param manager the work item manager
+     * 
+     * @param item
+     *            the work item to abort
+     * @param manager
+     *            the work item manager
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
         EnrollmentProcess model = (EnrollmentProcess) item.getParameter("model");
@@ -70,7 +79,6 @@ public class AcceptedHandler extends GenericHandler {
         Query query = entityManager.createQuery("FROM CMSUser where username = :username");
         query.setParameter("username", actorId);
         CMSUser user = (CMSUser) query.getSingleResult();
-
 
         long processId = Long.parseLong(processInstanceId);
         try {
@@ -90,6 +98,9 @@ public class AcceptedHandler extends GenericHandler {
 
             item.getResults().put("model", model);
             manager.completeWorkItem(item.getId(), item.getResults());
+
+            // Copy Files to FileNet
+            fileNetService.exportFiles(model, ticket.getTicketId());
         } catch (PortalServiceException e) {
             XMLUtility.moveToStatus(model, actorId, "ERROR", "Approval process failed to completed.");
             abortWorkItem(item, manager);

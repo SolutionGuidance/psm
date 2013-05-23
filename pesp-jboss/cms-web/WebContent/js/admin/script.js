@@ -1751,8 +1751,12 @@ function submitCosForm() {
 }
 
 function copyCOS(id) {
+	$('#prevCosId').val(id);
 	var endDate = $('#edt-' + id).text().trim();
 	if (endDate.length == 0) {
+		var prevDate = new Date();
+		prevDate.setDate(prevDate.getDate() - 1);
+		$('#prevCosEndDate').val(("0" + (prevDate.getMonth() + 1)).slice(-2) + "/" + ("0" + prevDate.getDate()).slice(-2) + "/" + prevDate.getFullYear());
 		var joindate = new Date();
 		$('#startDate').val(("0" + (joindate.getMonth() + 1)).slice(-2) + "/" + ("0" + joindate.getDate()).slice(-2) + "/" + joindate.getFullYear());
 	} else {
@@ -1778,4 +1782,8 @@ function copyCOS(id) {
 
 function deleteCOS(id, profileId) {
 	window.location = '/cms/agent/enrollment/deleteCOS?id=' + id + '&profileId=' + profileId;
+}
+
+function deleteCOSByTicketId(id, ticketId) {
+	window.location = '/cms/agent/enrollment/deletePendingCOS?id=' + id + '&ticketId=' + ticketId;
 }

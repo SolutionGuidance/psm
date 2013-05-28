@@ -16,6 +16,7 @@ import gov.medicaid.entities.EnrollmentStatus;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.process.enrollment.AcceptedHandler;
+import gov.medicaid.process.enrollment.DisqualificationHandler;
 import gov.medicaid.process.enrollment.EnrollmentHistoryHandler;
 import gov.medicaid.process.enrollment.EnrollmentMonitor;
 import gov.medicaid.process.enrollment.ExcludedProvidersScreeningHandler;
@@ -71,6 +72,8 @@ import org.jbpm.task.query.TaskSummary;
 import org.jbpm.task.service.ContentData;
 import org.jbpm.task.service.TaskService;
 import org.jbpm.task.service.local.LocalTaskService;
+
+import com.topcoder.util.log.Level;
 
 /**
  * A local implementation of the Enrollment service. For process testing purposes.
@@ -132,10 +135,11 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         handlers.put("Reject Application", new RejectedHandler());
         handlers.put("Get Enrollment History", new EnrollmentHistoryHandler());
         handlers.put("Verify SSN", new VerifySSNHandler());
-	handlers.put("NPI Lookup", new NPILookupHandler());
+        handlers.put("NPI Lookup", new NPILookupHandler());
         handlers.put("Verify License or Certification", new VerifyLicenseHandler());
         handlers.put("Check Excluded Provider List in OIG", new ExcludedProvidersScreeningHandler());
-	handlers.put("Check Excluded Provider List in SAM", new SAMExcludedProvidersScreeningHandler());
+        handlers.put("Check Excluded Provider List in SAM", new SAMExcludedProvidersScreeningHandler());
+        handlers.put("Auto Disqualification", new DisqualificationHandler()); 
         handlers.put("Auto Screening", new ScreeningHandler());
         handlers.put("Send Mailbox Account Request", new SystemOutWorkItemHandler());
         handlers.put("Background Check", new SystemOutWorkItemHandler());
@@ -185,7 +189,11 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     		return process.getId();
     	} finally {
     		if (ksession != null) {
-    			ksession.dispose();
+    			try {
+    				ksession.dispose();
+    			} catch (Throwable t) {
+    				getLog().log(Level.ERROR, t, "Could not close session.");
+    			}
     		}
     	}
     }
@@ -222,9 +230,11 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
 			getEm().merge(ticket);
     		utx.commit();
     	} finally {
-    		if (ksession != null) {
-    			ksession.dispose();
-    		}
+			try {
+				ksession.dispose();
+			} catch (Throwable t) {
+				getLog().log(Level.ERROR, t, "Could not close session.");
+			}
     	}
     }
     
@@ -344,9 +354,11 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             client.complete(taskId, username, marshalContent(processModel, "N"));
             utx.commit();
         } finally {
-            if (ksession != null) {
-                ksession.dispose();
-            }
+			try {
+				ksession.dispose();
+			} catch (Throwable t) {
+				getLog().log(Level.ERROR, t, "Could not close session.");
+			}
             client.dispose();
         }
     }

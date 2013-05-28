@@ -11,6 +11,7 @@ import gov.medicaid.domain.model.LicenseType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.License;
 import gov.medicaid.entities.ProviderProfile;
@@ -60,13 +61,13 @@ public class PHNFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     *
      * @param enrollment the model to bind to
      * @param request the request containing the form fields
+     *
      * @return 
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         LicenseInformationType licenseInfo = XMLUtility.nsGetLicenseInformation(provider);
@@ -137,12 +138,11 @@ public class PHNFormBinder extends BaseFormBinder {
 
     /**
      * Binds the model to the request attributes.
-     *
      * @param enrollment the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         LicenseInformationType licenseInfo = XMLUtility.nsGetLicenseInformation(provider);

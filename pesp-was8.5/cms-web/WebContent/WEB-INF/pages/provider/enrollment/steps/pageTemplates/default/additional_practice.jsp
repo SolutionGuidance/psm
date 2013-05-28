@@ -121,7 +121,9 @@
         </table>
         <div class="clearFixed"></div>
         <div class="tableBottom">
-            <a href="javascript:;" id="addPractice">+ Add Another Practice Location</a>
+        	<c:if test="${requestScope['_07_allowAdd'] eq 'Y'}">
+            	<a href="javascript:;" id="addPractice">+ Add Another Practice Location</a>
+            </c:if>
         </div>
     </div>
     <!-- /.section -->

@@ -5,6 +5,8 @@ package gov.medicaid.security;
 
 import gov.medicaid.controllers.dto.CMSUserDetailsWrapper;
 import gov.medicaid.entities.CMSUser;
+import gov.medicaid.entities.ExternalAccountLink;
+import gov.medicaid.entities.RoleView;
 import gov.medicaid.entities.SystemId;
 import gov.medicaid.services.PartnerSystemService;
 import gov.medicaid.services.PortalServiceConfigurationException;
@@ -89,20 +91,28 @@ public class DefaultExternalAuthenticationProvider implements AuthenticationProv
         if (domain == system) {
             String username = userToken.getName();
             String password = (String) authentication.getCredentials();
+            String profileNPI = userToken.getProfileNPI();
+            String referrer = userToken.getReferrer();
 
             if (Util.isBlank(username)) {
                 throw new BadCredentialsException("Username is required.");
+            } else if (Util.isBlank(password)) {
+            	throw new BadCredentialsException("Token is required.");
+            } else if (Util.isBlank(profileNPI)) {
+            	throw new BadCredentialsException("Provider NPI is required.");
+            } else if (Util.isBlank(referrer)) {
+            	throw new BadCredentialsException("Referrer is required.");
             }
 
             try {
-                if (!partnerService.authenticate(username, password)) {
+                if (!partnerService.authenticate(username, password, profileNPI, referrer)) {
                     throw new BadCredentialsException("Invalid credentials.");
                 }
             } catch (PortalServiceException e) {
                 throw new PortalServiceRuntimeException("Data lookup errors", e);
             }
 
-            return createSuccessfulAuthentication(userToken, loadUserByUsername(username));
+            return createSuccessfulAuthentication(userToken, loadProxyUser(username, profileNPI));
         }
         return null;
     }
@@ -110,19 +120,33 @@ public class DefaultExternalAuthenticationProvider implements AuthenticationProv
     /**
      * Loads the user information by the external user. Auto provisions a CMS user for this record.
      *
-     * @param username the username used to login
+     * @param userNPI the username used to login
+     * @param profileNPI 
      * @return the mapped details
      */
-    private UserDetails loadUserByUsername(String username) {
+    private UserDetails loadProxyUser(String userNPI, String profileNPI) {
         try {
-            CMSUser cmsUser = registrationService.findByExternalUsername(system, username);
-            if (cmsUser == null) {
-                cmsUser = partnerService.getUserInformation(username);
-                cmsUser.setUsername(null); // for external users only id should be present
-                registrationService.registerExternalUser(system, username, cmsUser);
-            }
-            User thirdPartyUser = new User(username, "", true, true, true, true, EMPTY_AUTH);
-            return new CMSUserDetailsWrapper(thirdPartyUser, cmsUser, system);
+        	CMSUser cmsUser = registrationService.findByExternalUsername(system, userNPI);
+        	if (cmsUser == null) {
+        		cmsUser = new CMSUser();
+        		// set defaults
+        		cmsUser.setLastName(userNPI);
+        		registrationService.registerExternalUser(system, userNPI, cmsUser);
+        	}
+
+        	// set session based fields
+        	if (userNPI.equals(profileNPI)) {
+        		cmsUser.setExternalRoleView(RoleView.SELF);
+        	} else {
+        		cmsUser.setExternalRoleView(RoleView.EMPLOYER);
+        	}
+        	cmsUser.setProxyForNPI(profileNPI);
+			ExternalAccountLink link = registrationService.findAccountLink(
+					cmsUser.getUserId(), system, userNPI);
+            cmsUser.setExternalAccountLink(link);
+            
+            User springUserObject = new User(userNPI, "", true, true, true, true, EMPTY_AUTH);
+            return new CMSUserDetailsWrapper(springUserObject, cmsUser, system);
         } catch (PortalServiceException e) {
             throw new DataRetrievalFailureException("Database error.", e);
         }

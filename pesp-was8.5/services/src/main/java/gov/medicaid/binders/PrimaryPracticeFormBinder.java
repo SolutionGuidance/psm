@@ -10,6 +10,7 @@ import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.Affiliation;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.ContactInformation;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Organization;
@@ -50,18 +51,22 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
 
     /**
      * Binds the request to the model.
-     * 
+     * @param user 
+     * 	          the requesting user, for user based data view control
      * @param enrollment
      *            the model to bind to
      * @param request
      *            the request containing the form fields
+     * 
      * @throws BinderException
      *             if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(EnrollmentType enrollment, HttpServletRequest request) {
-        List<BinderException> exceptions = super.bindFromPage(enrollment, request);
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    	if (!canModifyExistingPractice(user, enrollment)) {
+    		return new ArrayList<BinderException>();
+    	}
+        List<BinderException> exceptions = super.bindFromPage(user, enrollment, request);
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
-
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         if (!"Y".equals(provider.getMaintainsOwnPrivatePractice())) { // assumes practice type is bound first
             if (param(request, "reimbursementSameAsPrimary") != null) {
@@ -95,16 +100,20 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
 
     /**
      * Binds the model to the request attributes.
-     * 
-     * @param enrollment
+     * @param user 
+     * 	          the requesting user, for user based data update control
+	 * @param enrollment
      *            the model to bind from
-     * @param mv
+	 * @param mv
      *            the model and view to bind to
-     * @param readOnly
+	 * @param readOnly
      *            true if the binding is for a read only view
      */
-    public void bindToPage(EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
-        super.bindToPage(enrollment, mv, readOnly);
+    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    	if (!canModifyExistingPractice(user, enrollment)) {
+    		return;
+    	}
+        super.bindToPage(user, enrollment, mv, readOnly);
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
 
         attr(mv, "reimbursementSameAsPrimary", practice.getReimbursementSameAsPrimary());

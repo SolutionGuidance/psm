@@ -10,6 +10,7 @@ import gov.medicaid.domain.model.PracticeInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.Affiliation;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.ContactInformation;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Organization;
@@ -17,6 +18,7 @@ import gov.medicaid.entities.Person;
 import gov.medicaid.entities.PracticeLookup;
 import gov.medicaid.entities.PracticeSearchCriteria;
 import gov.medicaid.entities.ProviderProfile;
+import gov.medicaid.entities.RoleView;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.entities.dto.ViewStatics;
@@ -54,13 +56,13 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     *
      * @param enrollment the model to bind to
      * @param request the request containing the form fields
+     *
      * @throws BinderException if the format of the fields could not be bound properly
      */
     @SuppressWarnings("unchecked")
-    public List<BinderException> bindFromPage(EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
         practice.setObjectId(param(request, "objectId")); // if lookup is successful
         if (Util.isNotBlank(practice.getObjectId())) {
@@ -123,7 +125,7 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly true if the view is read only
      */
-    public void bindToPage(EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
         attr(mv, "bound", "Y");
 
@@ -337,4 +339,21 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
         }
         return null;
     }
+
+	/**
+	 * For external users with RoleView = EMPLOYER, they cannot touch any information with NPI is not their own
+	 * @param user the current request user
+	 * @param enrollment the
+	 * @return
+	 */
+	protected boolean canModifyExistingPractice(CMSUser user, EnrollmentType enrollment) {
+		if (user.getExternalRoleView() == RoleView.EMPLOYER) {
+			PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+			if (user.getExternalAccountLink().getExternalUserId().equals(practice.getGroupNPI())) {
+				return true;
+			}
+			return false;
+		}
+		return true;
+	}
 }

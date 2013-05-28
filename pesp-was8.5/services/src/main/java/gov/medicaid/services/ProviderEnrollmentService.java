@@ -456,4 +456,22 @@ public interface ProviderEnrollmentService {
      *             for any errors encountered
      */
     void deleteCOSByTicket(CMSUser user, long ticketId, long id) throws PortalServiceException;
+
+    /**
+     * Returns true if the first parameter can be considered an employer of the second.
+     *
+     * @param externalUserId the employer to be checked
+     * @param profileNPI the employee to be checked
+     * @return true if there is an affiliation between the two arguments that gives the first access to the latter
+     * @throws PortalServiceException for any errors encountered
+     */
+	boolean hasGroupAffiliation(String externalUserId, String profileNPI) throws PortalServiceException;
+
+	/**
+	 * Returns true if there is a profile found in the database with the given NPI
+	 * @param profileNPI the NPI to be checked
+	 * @return true if a record matches
+	 * @throws PortalServiceException for any errors encountered
+	 */
+	boolean existsProfile(String profileNPI) throws PortalServiceException;
 }

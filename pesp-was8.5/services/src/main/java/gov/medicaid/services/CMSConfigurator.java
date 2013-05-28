@@ -370,4 +370,20 @@ public class CMSConfigurator {
     public FileNetService getFileNetService() {
         return (FileNetService) fromContext("jndi.FileNetService", false);
     }
+
+    /**
+     * The allowed referrer domain for MN logins.
+     * @return the configured domain
+     */
+	public String getInternalSecurityDomain() {
+        return globalSettings.getProperty("internalSecurityDomain");
+	}
+	
+	/**
+	 * The allowed referrer domain for MN logins.
+	 * @return the configured domain
+	 */
+	public String getInternalSecurityToken() {
+		return globalSettings.getProperty("internalSecurityToken");
+	}
 }

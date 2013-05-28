@@ -1,0 +1,8 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.services.screening.medicaid.gov/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getDeathMasterRecord>
+         <arg0>001010001</arg0>
+      </impl:getDeathMasterRecord>
+   </soapenv:Body>
+</soapenv:Envelope>

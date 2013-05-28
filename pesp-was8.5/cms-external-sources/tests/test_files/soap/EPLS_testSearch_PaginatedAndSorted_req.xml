@@ -1,0 +1,16 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.services.screening.medicaid.gov/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:search>
+         <arg0>
+            <firstName>Alice</firstName>
+            <exclusionType>
+               <name>NonProcurement</name>
+            </exclusionType>
+            <pageSize>2</pageSize>
+            <pageNumber>3</pageNumber>
+            <sortColumn>lastName</sortColumn>
+         </arg0>
+      </impl:search>
+   </soapenv:Body>
+</soapenv:Envelope>

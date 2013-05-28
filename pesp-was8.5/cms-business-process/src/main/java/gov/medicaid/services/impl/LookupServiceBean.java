@@ -7,6 +7,7 @@ import gov.medicaid.domain.model.ApplicantType;
 import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.BeneficialOwnerType;
 import gov.medicaid.entities.EntityStructureType;
+import gov.medicaid.entities.LegacySystemMapping;
 import gov.medicaid.entities.LookupEntity;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ServiceAssuranceExtType;
@@ -244,5 +245,26 @@ public class LookupServiceBean implements LookupService {
     public List<ServiceAssuranceExtType> findAssuredServiceExtTypes(String code) {
         return em.createQuery("from ServiceAssuranceExtType t where t.serviceAssuranceCode = :code")
                 .setParameter("code", code).getResultList();
+    }
+
+
+    /**
+     * Retrieves the mapped code for the given internal lookup.
+     * @param name the system name
+     * @param codeType the code type name
+     * @param internalCodeValue the internal code value
+     * @return the mapped value, or null if not found
+     */
+    @SuppressWarnings("unchecked")
+    public String findLegacyMapping(String name, String codeType, String internalCodeValue) {
+        String query = "from LegacySystemMapping l where l.systemName = :systemName "
+            + "AND l.codeType = :codeType AND l.internalCode = :internalCode";
+        
+        List<LegacySystemMapping> resultList = em.createQuery(query).setParameter("systemName", name)
+            .setParameter("codeType", codeType).setParameter("internalCode", internalCodeValue).getResultList();
+        if (resultList.isEmpty()) {
+            return null;
+        }
+        return resultList.get(0).getExternalCode();
     }
 }

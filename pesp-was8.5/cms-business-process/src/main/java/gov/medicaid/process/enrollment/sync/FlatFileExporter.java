@@ -442,7 +442,8 @@ public class FlatFileExporter {
         sb.append(fw(address.getCity(), ColumnDef.WS_000_EXT_PRAC_ADDR_CITY));
         sb.append(fw(address.getState(), ColumnDef.WS_000_EXT_PRAC_ADDR_STATE));
         sb.append(fw(address.getZipcode(), ColumnDef.WS_000_EXT_PRAC_ADDR_ZIP));
-        sb.append(fw(address.getCounty(), ColumnDef.WS_000_EXT_PRAC_ADDR_COUNTY));
+        String county = doLegacyMapping(address.getCounty(), XREF_COUNTY);
+        sb.append(fw(county, ColumnDef.WS_000_EXT_PRAC_ADDR_COUNTY));
     }
 
     /**

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <ns2:getDeathMasterRecordResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/"/>
-  </soap:Body>
-</soap:Envelope>

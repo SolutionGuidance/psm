@@ -44,6 +44,11 @@ import org.apache.commons.lang.StringUtils;
 public class FlatFileExporter {
 
     /**
+     * Beneficial owner type mapping name.
+     */
+    private static final String XREF_OWNER_TYPE = "BEN_OWNER_TYPE";
+
+    /**
      * COS Mapping.
      */
     private static final String XREF_COS = "COS";
@@ -66,11 +71,6 @@ public class FlatFileExporter {
     /**
      * Code value external mapping.
      */
-    private static final String XREF_RELATIONSHIP_TYPE = "RELATIONSHIP_TYPE";
-
-    /**
-     * Code value external mapping.
-     */
     private static final String XREF_ISSUING_BOARD = "ISSUING_BOARD";
 
     /**
@@ -87,11 +87,6 @@ public class FlatFileExporter {
      * Code value external mapping.
      */
     private static final Address BLANK_ADDRESS = new Address();
-
-    /**
-     * Code value external mapping.
-     */
-    private static final String XREF_TRIBAL_CODE = "TRIBAL_CODE";
 
     /**
      * Code value external mapping.
@@ -232,18 +227,12 @@ public class FlatFileExporter {
             sb.append(fw(person.getLastName(), ColumnDef.WS_000_EXT2_OWN_B_L_NAME));
             sb.append(fw(person.getSsn(), ColumnDef.WS_000_EXT2_OWN_B_SSN));
 
-            String relCode = person.getRelationship() == null ? null : person.getRelationship().getCode();
-            String extCode = doLegacyMapping(relCode, XREF_RELATIONSHIP_TYPE);
-
-            sb.append(fw(ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_1.name().equals(extCode) ? "Y" : "N",
-                ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_1));
-            sb.append(fw(ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_2.name().equals(extCode) ? "Y" : "N",
-                ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_2));
-            sb.append(fw(ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_3.name().equals(extCode) ? "Y" : "N",
-                ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_3));
-            sb.append(fw(ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_4.name().equals(extCode) ? "Y" : "N",
-                ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_4));
-
+            String typeCode = owner.getType() == null ? null : owner.getType().getCode();
+            String extCode = doLegacyMapping(typeCode, XREF_OWNER_TYPE);
+            sb.append(fw(extCode, ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_1));
+            sb.append(fw("", ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_2));
+            sb.append(fw("", ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_3));
+            sb.append(fw("", ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_4));
             sb.append(fw("", ColumnDef.WS_000_EXT2_OWN_B_FEIN));
         } else {
             OrganizationBeneficialOwner org = (OrganizationBeneficialOwner) owner;
@@ -253,10 +242,13 @@ public class FlatFileExporter {
             sb.append(fw("", ColumnDef.WS_000_EXT2_OWN_B_F_NAME));
             sb.append(fw("", ColumnDef.WS_000_EXT2_OWN_B_L_NAME));
             sb.append(fw("", ColumnDef.WS_000_EXT2_OWN_B_SSN));
-            sb.append(fw("N", ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_1));
-            sb.append(fw("N", ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_2));
-            sb.append(fw("N", ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_3));
-            sb.append(fw("N", ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_4));
+            
+            String typeCode = owner.getType() == null ? null : owner.getType().getCode();
+            String extCode = doLegacyMapping(typeCode, XREF_OWNER_TYPE);
+            sb.append(fw(extCode, ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_1));
+            sb.append(fw("", ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_2));
+            sb.append(fw("", ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_3));
+            sb.append(fw("", ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_4));
             sb.append(fw(org.getFein(), ColumnDef.WS_000_EXT2_OWN_B_FEIN));
         }
     }
@@ -538,28 +530,9 @@ public class FlatFileExporter {
 
         ProviderProfile profile = enrollment.getDetails();
         sb.append(fw(profile.getWorksOnReservationInd(), ColumnDef.WS_000_EXT_PROV_P_RESV_IND));
-        sb.append(fw(findReservationCode(profile), ColumnDef.WS_000_EXT_PROV_P_CO_CODE));
+        sb.append(fw(findCountyCode(profile.getCounty()), ColumnDef.WS_000_EXT_PROV_P_CO_CODE));
         sb.append(fw(doLegacyMapping(profile.getRiskLevel().getCode(), XREF_RISK_LEVEL),
             ColumnDef.WS_000_EXT_PROV_P_RISK_LVL));
-    }
-
-    /**
-     * Finds the reservation code for the profile
-     * 
-     * @param profile the profile
-     * @return the reservation code if it exists
-     */
-    private String findReservationCode(ProviderProfile profile) {
-        List<License> certifications = profile.getCertifications();
-        for (License license : certifications) {
-            if (ViewStatics.DISCRIMINATOR_TRIBE.equals(license.getObjectType())) {
-                if (license.getSpecialty() != null) {
-                    return doLegacyMapping(license.getSpecialty().getCode(), XREF_TRIBAL_CODE);
-                }
-            }
-        }
-
-        return null;
     }
 
     /**

@@ -1215,7 +1215,7 @@
 			type="string">
 			<column name="OTH_ENTITY_TYP_DESC" />
 		</property>
-		<list name="beneficialOwners" table="BENEFICIALOWNER">
+		<list name="beneficialOwners" table="BENEFICIAL_OWNER">
 			<key>
 				<column name="OWNERSHIP_INFO_ID" />
 			</key>

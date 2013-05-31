@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:getAccreditedBirthCentersResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2006-06-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>1601 Salmon Creek Lane</birthCenterAddress>
+          <city>Juneau</city>
+          <name>Juneau Family Health &amp;amp; Birth Center</name>
+          <state>Alaska</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2006-06-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>2650 Broadview Avenue</birthCenterAddress>
+          <city>Wasilla</city>
+          <name>Mat-Su Midwifery</name>
+          <state>Alaska</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2002-06-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>3730 Rhone Circle</birthCenterAddress>
+          <city>Anchorage</city>
+          <name>Geneva Woods Birth Center</name>
+          <state>Alaska</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2006-06-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>728 Gaffney Road</birthCenterAddress>
+          <city>Fairbanks</city>
+          <name>Alaska Family Health &amp;amp; Birth Center</name>
+          <state>Alaska</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2011-08-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>215 East Lexington Avenue</birthCenterAddress>
+          <city>Phoenix</city>
+          <name>Babymoon Inn</name>
+          <state>Arizona</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1991-12-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>5979 East Grant Raod</birthCenterAddress>
+          <city>Tucson</city>
+          <name>Birth &amp;amp; Women’s Health Center</name>
+          <state>Arizona</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2009-01-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>6817 Quail Hill Parkway</birthCenterAddress>
+          <city>Irvine</city>
+          <name>South Coast Midwifery &amp;amp; Women’s Health Care</name>
+          <state>California</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2009-11-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>Beach Cities Midwifery &amp;amp; Women’s Health Care</birthCenterAddress>
+          <city>Laguna Hills</city>
+          <name>Beachside Birth Center</name>
+          <state>California</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2013-02-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>5440 Laurel Hills Drive</birthCenterAddress>
+          <city>Sacramento</city>
+          <name>The Birth Center, A Nursing Corporation</name>
+          <state>California</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1997-04-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>583 Summerfield Road</birthCenterAddress>
+          <city>Santa Rosa</city>
+          <name>Women's Health and Birth Center</name>
+          <state>California</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1994-12-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>3343 4th Avenue</birthCenterAddress>
+          <city>San Diego</city>
+          <name>Best Start Birth Center</name>
+          <state>California</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2010-11-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>9209 South Colima Road, Suite 400</birthCenterAddress>
+          <city>Whittier</city>
+          <name>Natural Birth Center &amp;amp; Women's Wellness</name>
+          <state>California</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2007-06-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>3555 S. Clarkson Street</birthCenterAddress>
+          <city>Englewood</city>
+          <name>Mountain Midwifery Center</name>
+          <state>Colorado</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1998-03-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>94 Locust Avenue</birthCenterAddress>
+          <city>Danbury</city>
+          <name>Connecticut Childbirth &amp;amp; Women’s Center</name>
+          <state>Connecticut</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2001-03-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>801 17th Street NE</birthCenterAddress>
+          <city>Washington</city>
+          <name>Family Health &amp;amp; Birth Center</name>
+          <state>DC</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1999-01-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>1508 West 7th Street</birthCenterAddress>
+          <city>Wilmington</city>
+          <name>The Birth Center: Holistic Women's Health Care</name>
+          <state>Delaware</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2012-06-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>1900 East Bay Drive</birthCenterAddress>
+          <city>Largo</city>
+          <name>Breath of Life Women's Health &amp;amp; Birth Center</name>
+          <state>Florida</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1996-09-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>1692 Chatham Parkway</birthCenterAddress>
+          <city>Savannah</city>
+          <name>The Midwife Group and Birth Center</name>
+          <state>Georgia</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2013-02-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>1915 Wesley Road</birthCenterAddress>
+          <city>Auburn</city>
+          <name>Auburn Birthing Center</name>
+          <state>Indiana</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2008-03-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>1155 Lighthouse Lane</birthCenterAddress>
+          <city>Goshen</city>
+          <name>Goshen Birth Center</name>
+          <state>Indiana</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2013-01-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>9209 West 110th Street,</birthCenterAddress>
+          <city>Overland Park</city>
+          <name>New Birth Company</name>
+          <state>Kansas</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2010-09-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>1424 St. John Street</birthCenterAddress>
+          <city>Lafayette</city>
+          <name>Gentle Choices</name>
+          <state>Louisiana</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1997-03-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>2003 Medical Parkway</birthCenterAddress>
+          <city>Annapolis</city>
+          <name>Bay Area Midwifery Center</name>
+          <state>Maryland</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1997-09-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>1454 Baltimore-Annapolis Blvd.</birthCenterAddress>
+          <city>Arnold</city>
+          <name>Special Beginnings Birth &amp;amp; Women’s Center</name>
+          <state>Maryland</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2002-12-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>1493 Cambridge Street</birthCenterAddress>
+          <city>Cambridge</city>
+          <name>The Cambridge Birth Center</name>
+          <state>Massachusetts</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2011-12-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>2606 Chicago Avenue S.</birthCenterAddress>
+          <city>Minneapolis</city>
+          <name>The Minnesota Birth Center</name>
+          <state>Minnesota</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2010-05-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>6111 Excelsior Boulevard</birthCenterAddress>
+          <city>St. Louis Park</city>
+          <name>Morning Star Women’s Health &amp;amp; Birth Center</name>
+          <state>Minnesota</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2011-06-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>968 Grand Avenue</birthCenterAddress>
+          <city>St. Paul</city>
+          <name>Health Foundations Family Health &amp;amp; Birth Center</name>
+          <state>Minnesota</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2010-02-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>2404 39th Street</birthCenterAddress>
+          <city>Missoula</city>
+          <name>Women's Health and Birth Options</name>
+          <state>Montana</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2011-12-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>3512 Samson Way, Suite 106</birthCenterAddress>
+          <city>Bellevue</city>
+          <name>The Midwife's Place</name>
+          <state>Nebraska</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2011-08-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>7708 4th Street NW</birthCenterAddress>
+          <city>Los Ranchos</city>
+          <name>Dar a Luz Birth and Health Center</name>
+          <state>New Mexico</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2002-12-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>2183 Ocean Avenue</birthCenterAddress>
+          <city>Brooklyn</city>
+          <name>Brooklyn Birthing Center</name>
+          <state>New York</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1996-07-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>930 Martin Luther King Jr. Blvd.</birthCenterAddress>
+          <city>Chapel Hill</city>
+          <name>Women's Birth and Wellness Center</name>
+          <state>North Carolina</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2012-10-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>1420 Fern Creek Drive</birthCenterAddress>
+          <city>Statesville</city>
+          <name>Natural Beginnings Birth Center</name>
+          <state>North Carolina</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2004-01-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>One Wyoming Street</birthCenterAddress>
+          <city>Dayton</city>
+          <name>Family Beginnings Birth Center at Miami Valley Hospital</name>
+          <state>Ohio</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1998-03-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>353 Deadmond Ferry Road</birthCenterAddress>
+          <city>Springfield</city>
+          <name>PeaceHealth Nurse-Midwifery Birth Center</name>
+          <state>Oregon</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1999-03-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>2355 Huntingdon Pike</birthCenterAddress>
+          <city>Huntingdon Valley</city>
+          <name>Valley Birthplace &amp;amp; Woman Care</name>
+          <state>Pennsylvania</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2000-03-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>1138 Georgetown Road</birthCenterAddress>
+          <city>Bart</city>
+          <name>Birth Care and Family Health Services</name>
+          <state>Pennsylvania</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2003-09-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>2825 Penn Avenue</birthCenterAddress>
+          <city>Pittsburgh</city>
+          <name>The Midwife Center for Birth and Women's Health</name>
+          <state>Pennsylvania</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1995-11-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>918 County Line Road</birthCenterAddress>
+          <city>Bryn Mawr</city>
+          <name>The Birth Center</name>
+          <state>Pennsylvania</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1995-12-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>949 New Holland Road</birthCenterAddress>
+          <city>Reading</city>
+          <name>Reading Birth &amp;amp; Women's Center</name>
+          <state>Pennsylvania</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2008-06-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>9133 Timber Street</birthCenterAddress>
+          <city>North Charleston</city>
+          <name>Charleston Birth Place</name>
+          <state>South Carolina</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1991-12-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>3459 New Highway 68</birthCenterAddress>
+          <city>Madisonville</city>
+          <name>Women's Wellness and Maternity Care</name>
+          <state>Tennessee</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1994-12-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>1925-B Ailor Ave.</birthCenterAddress>
+          <city>Knoxville</city>
+          <name>Lisa Ross Birth and Women's Center</name>
+          <state>Tennessee</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2009-03-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>1080 Neal Street</birthCenterAddress>
+          <city>Cookeville</city>
+          <name>Infinity Birthing Center</name>
+          <state>Tennessee</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2010-11-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>4100 Duval Road, Building 2, Suite 101</birthCenterAddress>
+          <city>Austin</city>
+          <name>Austin Area Birthing Center</name>
+          <state>Texas</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2012-11-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>3210 Strawberry Road</birthCenterAddress>
+          <city>Pasadena</city>
+          <name>Bay Area Birth Center</name>
+          <state>Texas</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2012-11-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>2552 East Broadway</birthCenterAddress>
+          <city>Pearland</city>
+          <name>Rite of Passage Women's Health &amp;amp; Birth Center</name>
+          <state>Texas</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1996-04-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>26614 Oak Ridge Drive</birthCenterAddress>
+          <city>The Woodlands</city>
+          <name>Nativiti Women's Health and Birth Center</name>
+          <state>Texas</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>1994-07-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>1501 King Street</birthCenterAddress>
+          <city>Alexandria</city>
+          <name>BirthCare &amp;amp; Women's Health</name>
+          <state>Virginia</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2012-09-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>610 South Main Street</birthCenterAddress>
+          <city>Rocky Mount</city>
+          <name>New Life Birth Center</name>
+          <state>Virginia</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2012-11-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>3911 Teays Valley Road</birthCenterAddress>
+          <city>Hurricane</city>
+          <name>WomenCare Women's Health and Birth Center</name>
+          <state>West Virginia</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2003-12-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>6720 Frank Lloyd Wright Avenue</birthCenterAddress>
+          <city>Middleton</city>
+          <name>Madison Birth Center</name>
+          <state>Wisconsin</state>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:accreditedBirthCenter">
+          <accreditedDate>2009-11-01T00:00:00+05:30</accreditedDate>
+          <birthCenterAddress>321 13th Street, SE</birthCenterAddress>
+          <city>Menomonie</city>
+          <name>Morning Star Women’s Health &amp;amp; Birth Center</name>
+          <state>Wisconsin</state>
+        </items>
+        <pageNumber>1</pageNumber>
+        <pageSize>0</pageSize>
+        <total>0</total>
+        <totalPages>0</totalPages>
+      </return>
+    </ns2:getAccreditedBirthCentersResponse>
+  </soap:Body>
+</soap:Envelope>

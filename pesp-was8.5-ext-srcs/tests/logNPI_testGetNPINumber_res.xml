@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <dlwmin:getNPINumberResponse xmlns:dlwmin="http://impl.services.screening.medicaid.gov/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <return xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+        <firstNames>Vera Rose</firstNames>
+        <lastName>'Anderson</lastName>
+        <npi>1295889665</npi>
+        <prefix>Mrs.</prefix>
+        <state>CA</state>
+        <zip>93240</zip>
+      </return>
+    </dlwmin:getNPINumberResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

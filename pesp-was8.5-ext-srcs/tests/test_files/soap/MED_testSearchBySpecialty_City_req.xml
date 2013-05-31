@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.services.screening.medicaid.gov/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:searchBySpecialty>
+         <arg0>
+            <city>ROCHESTER</city>
+            <specialty>
+               <code>355</code>
+            </specialty>
+         </arg0>
+      </impl:searchBySpecialty>
+   </soapenv:Body>
+</soapenv:Envelope>

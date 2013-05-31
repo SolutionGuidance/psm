@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:searchByLicenseNumberResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:license">
+          <id>0</id>
+          <ceDate>2012-12-31T00:00:00Z</ceDate>
+          <correctiveAction>false</correctiveAction>
+          <discipline>false</discipline>
+          <disciplineBdOrder>false</disciplineBdOrder>
+          <expireDate>2012-12-31T00:00:00Z</expireDate>
+          <licenseNumber>2254</licenseNumber>
+          <originalIssueDate>1981-06-08T00:00:00Z</originalIssueDate>
+          <permitNumber>0</permitNumber>
+          <profile>
+            <id>0</id>
+            <duns>0</duns>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <enrollmentFee>0.0</enrollmentFee>
+            <enrollmentFeePaid>false</enrollmentFeePaid>
+            <enrolmentFeeRequired>false</enrolmentFeeRequired>
+            <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+            <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <hasTerminated>false</hasTerminated>
+            <SSNVerified>false</SSNVerified>
+            <user>
+              <firstName> Debra S.</firstName>
+              <lastName>Kutz</lastName>
+              <middleName/>
+            </user>
+          </profile>
+          <renewalDate>2012-01-01T00:00:00Z</renewalDate>
+          <status>
+            <id>0</id>
+            <name>LICENSE ACTIVE</name>
+          </status>
+        </items>
+        <pageNumber>0</pageNumber>
+        <pageSize>0</pageSize>
+        <total>1</total>
+        <totalPages>1</totalPages>
+      </return>
+    </ns2:searchByLicenseNumberResponse>
+  </soap:Body>
+</soap:Envelope>

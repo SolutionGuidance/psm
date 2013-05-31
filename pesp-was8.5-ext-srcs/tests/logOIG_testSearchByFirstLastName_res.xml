@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:searchResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>215477</id>
+          <addresses>
+            <id>0</id>
+            <city>ELM CITY</city>
+            <location>117 TYSON LANE</location>
+            <state>NC</state>
+            <zipcode>278220000</zipcode>
+          </addresses>
+          <dob>1962-09-06T00:00:00+05:30</dob>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <exclusionType>
+            <id>0</id>
+            <name>1128(a)(2)</name>
+          </exclusionType>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <requestEffectiveDate>2011-07-20T00:00:00+05:30</requestEffectiveDate>
+          <SSNVerified>false</SSNVerified>
+          <specialties>
+            <id>0</id>
+            <name>NURSE/NURSES AIDE</name>
+            <code>0</code>
+          </specialties>
+          <user>
+            <firstName>JANELLE</firstName>
+            <lastName>SMITH</lastName>
+          </user>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>124747</id>
+          <addresses>
+            <id>0</id>
+            <city>POLO</city>
+            <location>5249 S IL RT 26</location>
+            <state>IL</state>
+            <zipcode>610649011</zipcode>
+          </addresses>
+          <dob>1958-05-04T00:00:00+05:30</dob>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <exclusionType>
+            <id>0</id>
+            <name>1128(b)(4)</name>
+          </exclusionType>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <requestEffectiveDate>2005-02-20T00:00:00+05:30</requestEffectiveDate>
+          <SSNVerified>false</SSNVerified>
+          <specialties>
+            <id>0</id>
+            <name>NURSE/NURSES AIDE</name>
+            <code>0</code>
+          </specialties>
+          <user>
+            <firstName>JANET</firstName>
+            <lastName>SMITH</lastName>
+          </user>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>172228</id>
+          <addresses>
+            <id>0</id>
+            <city>CORBIN</city>
+            <location>1105 OLD CORBIN ROAD</location>
+            <state>KY</state>
+            <zipcode>407019583</zipcode>
+          </addresses>
+          <dob>1947-05-12T00:00:00+05:30</dob>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <exclusionType>
+            <id>0</id>
+            <name>1128(b)(4)</name>
+          </exclusionType>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <requestEffectiveDate>2008-02-20T00:00:00+05:30</requestEffectiveDate>
+          <SSNVerified>false</SSNVerified>
+          <specialties>
+            <id>0</id>
+            <name>NURSE/NURSES AIDE</name>
+            <code>0</code>
+          </specialties>
+          <user>
+            <firstName>JANET</firstName>
+            <lastName>SMITH</lastName>
+          </user>
+        </items>
+        <pageNumber>0</pageNumber>
+        <pageSize>0</pageSize>
+        <total>3</total>
+        <totalPages>1</totalPages>
+      </return>
+    </ns2:searchResponse>
+  </soap:Body>
+</soap:Envelope>

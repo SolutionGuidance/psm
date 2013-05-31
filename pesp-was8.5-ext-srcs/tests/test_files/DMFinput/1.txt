@@ -1,0 +1,22 @@
+A001010001MUZZEY              Jr. GRACE                          1200197504161902                   
+C001010009SMITH                   ROGER                          0400196902041892                   
+D001010010HAMMOND                 KENNETH                        0300197604241904                   
+A001010011DREW                    LEON           R              V0830198706141908                   
+C001010012CATE                Sr. OLIVE                          0900198109211908                   
+D001010013WHORFE                  FRANK                          0900196204061888                   
+D001010015AMOS                    CHESTER                        0200198402161910                   
+D001010016KUNCHO                  DIMITRI                        0300198106041910                   
+D001010017MICHALS             II  WILLIAM                        1200197011071907                   
+C001010019BODWELL                 MINNIE                         0300198404051895                   
+C001010020ROWELL                  ALICE                          1200196902241882                   
+C001010021HOUCK               II  ROBERTA                        0300198502241915                   
+C001010022WOOD                    DOROTHY                        0200197611101913                   
+C001010025GOEWEY                  PAUL                           1200197202091895                   
+ 001010026SMITH               Jr. ERIC                           0700197706131901                   
+C001010027TEBEAU                  GLADYS                         0300198012261906                   
+C001010028MATOTT              Sr. ROBERT                         0300194812011899                   
+C001010029LUMLEY                  LUCINDA        B              V0122200104021918                   
+C001010030CORBETT                 ABIGAIL                        1100196811091885                   
+C001010032GUERTIN                 MADELEINE      C              V1125199903231917                   
+C001010033JOHNSON                 WINIFRED                       0800198104181905                   
+C001010034HEATH                   BERTHA         N               0400199004171905                   

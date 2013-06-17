@@ -60,7 +60,7 @@ public class DMFSearchClient extends BaseSOAPClient {
         throws JAXBException, IOException, TransformerException {
 
         CMSConfigurator config = new CMSConfigurator();
-        String endPoint = config.getExternalSourceBase() + "/services/DeathMasterServiceBean";
+        String endPoint = config.getExternalSourceBase() + "/cms-ext/ws/DeathMasterService";
 
         // Search step
         ObjectFactory factory = new ObjectFactory();

@@ -11,7 +11,7 @@
 	        <ejb-class>gov.medicaid.services.impl.RegistrationServiceBean</ejb-class>
 	        <ejb-local-ref>
 	        	<ejb-ref-name>gov.medicaid.services.impl.RegistrationServiceBean/identityProvider</ejb-ref-name>
-	        	<ejb-link>LDAPIdentityProviderDAOBean</ejb-link>
+	        	<ejb-link>DBIdentityProviderDAOBean</ejb-link>
 	        </ejb-local-ref>
 	        <resource-ref>
 	        	<res-ref-name>gov.medicaid.services.impl.RegistrationServiceBean/session</res-ref-name>
@@ -72,8 +72,8 @@
 	        <ejb-class>gov.medicaid.services.impl.EnrollmentWebServiceBean</ejb-class>
 	    </session>
 	    <session>
-	        <ejb-name>LDAPIdentityProviderDAOBean</ejb-name>
-	        <ejb-class>gov.medicaid.dao.impl.LDAPIdentityProviderDAOBean</ejb-class>
+	        <ejb-name>DBIdentityProviderDAOBean</ejb-name>
+	        <ejb-class>gov.medicaid.services.impl.DBIdentityProviderDAOBean</ejb-class>
 	    </session>
 	    <session>
 	        <ejb-name>FileNetServiceBean</ejb-name>

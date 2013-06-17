@@ -72,7 +72,7 @@ public class BackgroundStudyClient extends BaseSOAPClient {
         throws JAXBException, IOException, TransformerException {
 
         CMSConfigurator config = new CMSConfigurator();
-        String endPoint = config.getExternalSourceBase() + "/services/NETStudyServiceBean";
+        String endPoint = config.getExternalSourceBase() + "/cms-ext/ws/NETStudyService";
 
         // Search step
         ObjectFactory factory = new ObjectFactory();

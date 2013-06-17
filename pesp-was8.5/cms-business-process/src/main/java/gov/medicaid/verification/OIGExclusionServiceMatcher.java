@@ -77,7 +77,7 @@ public class OIGExclusionServiceMatcher extends BaseSOAPClient implements Result
             TransformerException {
 
         CMSConfigurator config = new CMSConfigurator();
-        String endPoint = config.getExternalSourceBase() + "/services/OIGServiceBean";
+        String endPoint = config.getExternalSourceBase() + "/cms-ext/ws/OIGService";
 
         // Search step
         ObjectFactory factory = new ObjectFactory();

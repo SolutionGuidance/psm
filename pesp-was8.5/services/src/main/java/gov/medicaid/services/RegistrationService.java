@@ -186,4 +186,14 @@ public interface RegistrationService {
      * @throws PortalServiceException for any errors encountered
      */
     String updateByAdmin(CMSUser actor, CMSUser user, String password) throws PortalServiceException;
+
+    /**
+     * Authenticates the user.
+     *
+     * @param username the username
+     * @param password the password
+     * @return if a matching record is found
+     * @throws PortalServiceException for any errors encountered 
+     */
+    boolean authenticate(String username, String password) throws PortalServiceException;
 }

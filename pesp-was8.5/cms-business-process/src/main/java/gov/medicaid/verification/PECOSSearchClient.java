@@ -60,7 +60,7 @@ public class PECOSSearchClient extends BaseSOAPClient {
         throws JAXBException, IOException, TransformerException {
 
         CMSConfigurator config = new CMSConfigurator();
-        String endPoint = config.getExternalSourceBase() + "/services/PECOSServiceBean";
+        String endPoint = config.getExternalSourceBase() + "/cms-ext/ws/PECOSService";
 
         // Search step
         ObjectFactory factory = new ObjectFactory();

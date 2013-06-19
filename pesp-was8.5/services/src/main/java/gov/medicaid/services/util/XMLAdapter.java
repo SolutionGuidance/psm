@@ -161,6 +161,7 @@ public final class XMLAdapter {
         VerificationStatusType verification = new VerificationStatusType();
         provider.setVerificationStatus(verification);
         if (profile.getEntity() != null) {
+            provider.setLegacyTransfer(profile.getEntity().getLegacyIndicator());
             if (profile.getEntity() instanceof Person) {
                 Person person = (Person) profile.getEntity();
                 verification.setSocialSecurityNumber(person.getSsnVerifiedInd());
@@ -233,7 +234,6 @@ public final class XMLAdapter {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         ProviderProfile profile = ticket.getDetails();
         profile.setProfileId(BinderUtils.getAsLong(provider.getObjectId()));
-        
         ticket.setTicketId(BinderUtils.getAsLong(enrollment.getObjectId()));
         
         if (enrollment.getRiskLevel() != null) {
@@ -254,6 +254,9 @@ public final class XMLAdapter {
         // verification fields
         VerificationStatusType verification = provider.getVerificationStatus();
         Entity entity = profile.getEntity();
+        if (entity != null) {
+            entity.setLegacyIndicator(provider.getLegacyTransfer());
+        }
         if (verification != null && entity != null) {
             if (entity instanceof Person) {
                 Person person = (Person) entity;

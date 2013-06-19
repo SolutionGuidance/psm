@@ -60,6 +60,7 @@
 			<element name="AdditionalLocations" type="tns:AdditionalLocationsType" maxOccurs="1" minOccurs="0"></element>
 			<element name="AgencyInformation" type="tns:AgencyInformationType" maxOccurs="1" minOccurs="0"></element>
 			<element name="ReviewedBy" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="LegacyTransfer" type="string" maxOccurs="1" minOccurs="0"></element>
 		</sequence>
 	</complexType>
 

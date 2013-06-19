@@ -1361,6 +1361,7 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     private void bindTicketDetailsToPage(ModelAndView mv, EnrollmentType enrollment) {
         mv.addObject("_99_states", lookupService.findAllLookups(StateType.class));
+        mv.addObject("_99_legacyInd", enrollment.getProviderInformation().getLegacyTransfer());
 
         if (enrollment.getRequestType() != null) {
             mv.addObject("_99_requestType", enrollment.getRequestType().value());

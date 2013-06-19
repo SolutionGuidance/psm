@@ -32,6 +32,10 @@
                         <a class="greyBtn" href="<c:url value="/provider/enrollment/export" />"><span class="btR"><span class="btM"><img alt="" src="<c:url value="/i/icon-pdf.png" />" />Export to PDF</span></span></a>
                         <a class="greyBtn printModalBtn" href="javascript:printThis();"><span class="btR"><span class="btM"><img alt="" src="<c:url value="/i/icon-print.png" />" />Print</span></span></a>
                     </div>
+                   	<c:if test="${requestScope['_99_legacyInd'] eq 'Y'}">
+                      	<div class="legacyInfo">If you enrolled with DHS prior to November 1st 2013, the data fields below may not be correct. 
+                     		Please review your information and make the necessary corrections before you submit it.</div>
+                   	</c:if>
                     
                     <div class="tabSection">
                         <div class="detailPanel" style="width: 940px;">

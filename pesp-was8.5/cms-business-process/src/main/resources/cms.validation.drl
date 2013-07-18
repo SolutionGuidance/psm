@@ -1537,25 +1537,6 @@ dialect 'mvel'
 
 end
 
-/*
-rule 'All Attachments Must Be Verified'
-dialect 'mvel'
-     when
-        $provider: ProviderInformationType( )
-        AttachedDocumentsType($attachments : attachment) from $provider.attachedDocuments
-        $document: DocumentType(verified != "Y") from $attachments
-        $report: ErrorReporter()
-    then
-        int index = $attachments.indexOf($document);
-        $report.addError(
-            "/ProviderInformation/AttachedDocuments/Attachment["+ index+ "]",
-            "00001",
-            "Attachment is not valid."
-        );
-
-end
- */
-
 rule 'All Phone Number Entries Must Be In A Valid Format'
 dialect 'mvel'
 /*
@@ -1765,14 +1746,6 @@ dialect 'mvel'
         insertLogical(new LookupEntry("FieldGroup", "Qualified Professionals", "Qualified Professionals"));        
 
 end
-
-#rule 'Debug Lookup Entries'
-#dialect 'mvel'
-#    when
-#        $section : LookupEntry( )
-#    then
-#        System.out.println($section);
-#end
 
 rule 'Assert Partial Validation For Only Requested UI sections'
 dialect 'mvel'
@@ -2202,24 +2175,6 @@ dialect 'mvel'
         );
 
 end
-
-/*
-rule 'Authorized Representative Signature Is Required'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
-        IsOrganization($provider : provider)
-        ProviderStatementType(signature == null) from $provider.providerStatement
-        $report: ErrorReporter() 
-    then
-        $report.addError(
-            "/ProviderInformation/ProviderStatement/Signature",
-            "00001",
-            "Authorized representative signature is required."
-        );
-
-end
- */
 
 rule 'Authorized Representative Title Is Required'
 dialect 'mvel'
@@ -5367,27 +5322,6 @@ dialect 'mvel'
         );
 
 end
-
-
-/*
-    disabled per PESP-250
-
-rule 'EFT Vendor Number Is Required'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
-        $provider: ProviderInformationType( maintainsOwnPrivatePractice == "Y" )
-        PracticeInformationType(EFTVendorNumber == null || EFTVendorNumber matches "^[\\s]*$") from $provider.practiceInformation
-        $report: ErrorReporter() 
-    then
-        $report.addError(
-            "/ProviderInformation/PracticeInformation/EFTVendorNumber",
-            "00001",
-            "EFT vendor number is required."
-        );
-
-end
- */
 
 rule 'EFT Vendor Number Maximum Length Check'
 dialect 'mvel'
@@ -9118,38 +9052,6 @@ dialect 'mvel'
         );
 end
 
-/**
-rule 'Previous Medicare Number Is Required For Nursing Facility'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
-        IsOrganization($provider: provider)
-        ProviderInformationType( previousMedicareNumber == null || previousMedicareNumber matches "^[\\s]*$", providerType == ProviderType.NURSING_FACILITY.value())
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/PreviousMedicareNumber",
-            "00001",
-            "Previous Medicare Number is required."
-        );
-end
-
-rule 'Previous Medicare Number Is Required For PWDD Intermediate Care Facility'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
-        IsOrganization($provider: provider)
-        ProviderInformationType( previousMedicareNumber == null || previousMedicareNumber matches "^[\\s]*$", providerType == ProviderType.INTERMEDIATE_CARE_FACILITIES_FOR_PERSONS_WITH_DEVELOPMENTAL_DISABILITIES.value())
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/PreviousMedicareNumber",
-            "00001",
-            "Previous Medicare Number is required."
-        );
-end
-**/
-
 rule 'Organization County Maximum Length Check'
 dialect 'mvel'
 /*
@@ -10343,31 +10245,6 @@ dialect 'mvel'
         );
 
 end
-
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
-rule 'Pay-To Signature Is Required'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_SETUP.value())
-        IsOrganization($provider : provider)
-        ProviderSetupInformationType($payToList : payToProvider, payToProvider != null ) from $provider.providerSetupInformation
-        $payTo: PayToProviderType(signature == null) from $payToList
-        $report: ErrorReporter() 
-    then
-        int index = $payToList.indexOf($payTo);
-        $report.addError(
-            "/ProviderInformation/ProviderSetupInformation/PayToProvider[" + index + "]/Signature",
-            "00001",
-            "Pay-To Provider signature is required."
-        );
-
-end
-*/
 
 rule 'Pay-To Type Is Required'
 dialect 'mvel'
@@ -11645,24 +11522,6 @@ dialect 'mvel'
 
 end
 
-/*
-rule 'Provider Statement Signature Is Required'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
-        IsIndividual($provider : provider)
-        ProviderStatementType(signature == null) from $provider.providerStatement
-        $report: ErrorReporter() 
-    then
-        $report.addError(
-            "/ProviderInformation/ProviderStatement/Signature",
-            "00001",
-            "Provider statement signature is required."
-        );
-
-end
- */
-
 rule 'Provider Statement Title Is Required'
 dialect 'mvel'
 /*
@@ -12890,24 +12749,6 @@ dialect 'mvel'
 
 end
 
-/*
-rule 'Requested Effective Date Is Required For The Specified Individuals'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value())
-        IsIndividual($provider: provider, provider.providerType == ProviderType.PHARMACIST.value())
-        EnrollmentType(effectiveDate == null) 
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/EffectiveDate",
-            "00001",
-            "Requested Effective Date is required."
-        );
-
-end
-*/
-
 rule 'Requested Enrollment Date Is Required For Education Plans'
 dialect 'mvel'
     when
@@ -13497,25 +13338,6 @@ dialect 'mvel'
         );
 
 end
-
-/*
-Disabled : PESP-266
-rule 'State Tax Id Is Required'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
-        $provider: ProviderInformationType( maintainsOwnPrivatePractice == "Y" )
-        PracticeInformationType(stateTaxId == null || stateTaxId matches "^[\\s]*$") from $provider.practiceInformation
-        $report: ErrorReporter() 
-    then
-        $report.addError(
-            "/ProviderInformation/PracticeInformation/StateTaxId",
-            "00001",
-            "State tax ID is required."
-        );
-
-end
-*/
 
 rule 'State Tax Id Maximum Length Check'
 dialect 'mvel'
@@ -14746,4 +14568,32 @@ activation-group "billing-entity-for-mh"
            "00001",
            "Member information must consist minimum of 2 licensed and enrolled providers of the following types: LICSW, LMFT, LP, LPCC, or CNS with mental health specialty."
         );
+end
+
+// generated rules from dslr
+rule "Require First Name For All Individual Providers"
+	when
+	    LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value()) $report: ErrorReporter()
+	    IndividualApplicantType(firstName == null || firstName matches "^[\\s]*$")
+	then
+
+        $report.addError("/ProviderInformation/ApplicantInformation/PersonalInformation/FirstName", "00001", "First Name is required for individual applicants.");
+end
+
+rule "Require Last Name For All Individual Providers"
+	when
+	    LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value()) $report: ErrorReporter()
+	    IndividualApplicantType(lastName == null || lastName matches "^[\\s]*$")
+	then
+
+        $report.addError("/ProviderInformation/ApplicantInformation/PersonalInformation/LastName", "00001", "Last Name is required for individual applicants.");
+end
+
+rule "Require SSN For All Individual Providers"
+    when
+        LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value()) $report: ErrorReporter()
+        IndividualApplicantType(socialSecurityNumber == null || socialSecurityNumber matches "^[\\s]*$")
+    then
+
+        $report.addError("/ProviderInformation/ApplicantInformation/PersonalInformation/SocialSecurityNumber", "00001", "Social Security Number is required for individual applicants.");
 end

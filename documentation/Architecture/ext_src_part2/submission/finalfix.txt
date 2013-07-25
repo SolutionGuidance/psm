@@ -1,0 +1,200 @@
+Question 1.1.1:
+
+albertwang:
+R1: fixed. updated ADS 1.3.10	Validation
+
+R2: >>I'm not sure how you assert internationalization is only in scope of frontend, at least please justify why the backend services won't be involved in supporting internationalization .
+
+Fixed. see ADS 1.3.11	Internationalization
+
+nikolay83:
+R1: >>y don't you have attributes for paging and sorting neither in abstract SearchCriteria nor in xxxSearchCriteria classes? How do you address requirement for paging and sorting without it?
+
+fixed. added pagesize, page nUmber 
+
+R2:>> don't see an API to calculate reliability
+
+API is not a requirement. calculation of  reliability will be done dynamically with in each service method.
+
+Please check IMPL notes
+
+
+
+Question 1.1.2 
+
+DanLazar:
+R1: >.The functionality shown in "Search NPI Users Sequence Diagram" is not in scope.
+
+Fixed. removed it 
+	
+##############################################################
+Question 1.1.4
+nikolay83:
+R1: >.Why do you store search criteria in persistence (relevant tables are designed in ERD). I don't see such a requirement.
+
+No. i missed to appeal. ResultLogEntry will be stored into persistence. 
+
+ResultLogEntry aggregates SearchCriteria so SearchCriteria must be persisted.
+
+R2: see 1.1.1
+
+R3: >.s per http://apps.topcoder.com/forums/?module=Thread&threadID=756471&start=0 validation should be done in every layer. This must be addressed.
+
+FIxed. see ADS 1.3.10	Validation
+
+DanLazar:
+R1:  According to this thread http://apps.topcoder.com/forums/?module=Thread&threadID=756471&start=0 you need to also perform validation. Section 1.3.9 from ADS is incorrect.
+
+FIxed. see ADS 1.3.10	Validation
+
+	
+##############################################################
+ Question 1.2.1 
+albertwang
+R1: >> JPA transaction management isn't quite clear, the implementation notes and the ADS "Transactions" section contradict each other.
+
+Fixed. updated impl notes. Only container managed transactions will be used.
+	
+##############################################################
+Question 1.2.4
+nikolay83:>. Data privacy req from SDS - "The access to the site itself will be done using HTTPS" is not discussed
+
+
+##############################################################
+Question 1.3.2 
+nikolay83
+R1: : How will you convert data to JSON?
+
+fixed. see ADS 1.3.8	 JSON Conversion and 1.3.7	Logging
+
+##############################################################
+Question 1.3.3 
+>>nikolay83
+
+R1:  Not clear which services throws the exceptions
+
+Fixed. seee ADS 1.3.8	Exception Handling Overview
+
+and 
+
+R2: Not clear where in which assembly the exceptions will be developed.
+
+##############################################################
+Question 1.3.4 
+>> Example code in ADS uses explicit transaction management in code, while in fact container managed transactions are expected.
+
+Fixed. removed explicity 
+
+
+##############################################################
+Question 1.3.5 
+>."ADS 1.3.10 Internationalization" : I'm not sure how you assert internationalization is only in scope of frontend, at least please justify why the backend services won't be involved in supporting internationalization .
+
+
+
+##############################################################
+Question 2.3.1:	
+nikolay83: >>why don't you have attributes for paging and sorting neither in abstract SearchCriteria nor in xxxSearchCriteria classes?
+
+fixed. updated SearchCriteria see "Tracking and Reliability Class Diagram"
+
+DanLazar:
+R1:  According to this link it should also be possible to search by city. DentistryLicenseSearchCriteria misses this field.
+
+Fixed. see Tracking and Reliability Class Diagram in TCUML
+	
+R2: >>LicenseSearchCriteria - according to this link https://www.hlb.state.mn.us/BBHTOnline/DesktopModules/ServiceForm.aspx?svid=37&mid=178 it does not look like city and zipCode are necessary.
+
+fixed. removed. city and zipcode see "Tracking and Reliability Class Diagram" 
+
+
+
+##############################################################
+
+Question 2.4.2 
+
+nikolay83:
+R1: ChiropracticLicenseService#+getDeniedList():SearchResult<License> - why does it have no arguments? Where search criteria?
+
+its GET request to URL http://www.chiroboard.state.mn.us/discipline_list.htm
+
+Please check           Method: getDeniedList () impl notes
+
+DanLazar:
+
+R1: According to this link https://www.hlb.state.mn.us/chi/publicaccess/search.asp ChiropracticLicenseService should also be able to search by similar sounding last name. This does not look to be handled (I believe you need to add a new method to ChiropracticLicenseService).
+
+Fixed. added +searchBySoundingLikeLastName(criteria:ChiropracticLicenseSearchCriteria):SearchResult<License>
+
+R2:  BBHTLicenseService.renewal() - you should rename the method to renew (so that a verb is used).
+
+Fixed. updated API method and updated impl notes too "     Method: renew(license:License)"
+##############################################################
+Question 2.5.1
+
+DanLazar
+R1>>n "1.3.12 Performance" section you say: "Hibernate will be used for managing data against data store." - you need to detail what impact has this on performance.
+
+
+fixed. check ADS 1.3.13	Performance
+##############################################################
+albertwang
+r1: fixed. 
+
+R2: fixed
+
+nikolay83;
+R1: >.ADS 1.2.4 Assemblies misses the Final assembly
+
+R2: see other fixes.
+
+R3: fixed. 
+##############################################################
+ Question 3.1.2
+albertwang:	
+
+
+
+
+##############################################################
+
+Question 3.1.3:
+
+albertwang:
+R1: >>"how jsoup can be used to attributes, text, and HTML from elements "
+
+Fixed. see section ADS 1.3.1	Jsoup 	and l ook for "The
+following example shows that how jsoup can be used to retrieve attributes, text, and HTML from elements"
+
+R2: fixed
+
+R3: fixed.
+
+
+##############################################################
+ Question 3.2.1 
+DanLazar: >> "Save ResultLog Sequence Diagram" - on the first arrow the message is: "delegate search operation to corresponding DAO method" - here you call the service. The first note from this sd is not correct as it points to incorrect services.
+
+Fixed. see Save ResultLog Sequence Diagram
+
+
+##############################################################
+
+Question 3.2.2:
+nikolay83:
+R1:  You miss Final Assembly at External Sources Module Architecture Part3  Component Diagram
+
+Fixed.
+
+R2:  >>services implementations lack constructors
+added constructors
+
+DanLazar:
+R1: >>External Sources Module Architecture Part 2  Component Diagram" - on this diagram you should show "Logging Wrapper" as an existing tc component (so you should separate it from the other libraries/frameworks).
+
+Fixed. see External Sources Module Architecture Part 2  Component Diagram 	
+
+##############################################################
+Question 3.3.2:
+nikolay83:
+R1: fixed. 

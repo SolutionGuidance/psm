@@ -1,0 +1,48 @@
+###############################################
+# 2.3 View Homepage
+
+wireframe: Dashboard__Service_Admin_.html
+COntroller: DashboardController.view and search methods
+
+###############################################
+# 2.4 Get Help
+
+wireframe: Help__Service_Agent_.html
+COntroller: DashboardController.getHelp and getHelpItem methods
+
+
+###############################################
+# 2.6 Manage My Profile
+
+wireframe: My_Profile__Service_Admin_.html
+COntroller: UserController
+
+###############################################
+# 2.18 Manage Provider Types
+
+wireframe: Functions__Service_Admin_.html
+COntroller: ProviderTypeController 
+
+###############################################
+# 2.19 Manage Screening Schedules
+
+wireframe: Functions__Service_Admin_.html
+COntroller: ScreeningScheduleController
+
+###############################################
+# 2.20 Manage Help Topics
+
+wireframe: Functions__Service_Admin_.html
+COntroller: HelpTopicController
+
+###############################################
+# 2.21 Manage Agreements and Addendums
+
+wireframe: Functions__Service_Admin_.html
+COntroller: AgreementDocumentController
+
+###############################################
+# 2.22 Manage Service Agents
+
+wireframe: Functions__Service_Admin_.html
+COntroller: ServiceAgentController

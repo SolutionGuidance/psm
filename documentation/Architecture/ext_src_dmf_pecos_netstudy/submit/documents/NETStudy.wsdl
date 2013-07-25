@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="DHS.NETStudyWebService" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="DHS.NETStudyWebService">
+   <wsdl:types>
+      <s:schema elementFormDefault="qualified" targetNamespace="DHS.NETStudyWebService">
+         <s:element name="GetNETStudyInfo">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="LISStudyID" type="s:int" />
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:element name="GetNETStudyInfoResponse">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="GetNETStudyInfoResult" type="s:string" />
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+      </s:schema>
+   </wsdl:types>
+   <wsdl:message name="GetNETStudyInfoSoapIn">
+      <wsdl:part name="parameters" element="tns:GetNETStudyInfo" />
+   </wsdl:message>
+   <wsdl:message name="GetNETStudyInfoSoapOut">
+      <wsdl:part name="parameters" element="tns:GetNETStudyInfoResponse" />
+   </wsdl:message>
+   <wsdl:portType name="Service1Soap">
+      <wsdl:operation name="GetNETStudyInfo">
+         <wsdl:input message="tns:GetNETStudyInfoSoapIn" />
+         <wsdl:output message="tns:GetNETStudyInfoSoapOut" />
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+      <wsdl:operation name="GetNETStudyInfo">
+         <soap:operation soapAction="DHS.NETStudyWebService/GetNETStudyInfo" style="document" />
+         <wsdl:input>
+            <soap:body use="literal" />
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" />
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+      <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+      <wsdl:operation name="GetNETStudyInfo">
+         <soap12:operation soapAction="DHS.NETStudyWebService/GetNETStudyInfo" style="document" />
+         <wsdl:input>
+            <soap12:body use="literal" />
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal" />
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="Service1">
+      <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+         <soap:address location="http://10.1.213.216/internalNETStudyWS/NETStudyWS.asmx" />
+      </wsdl:port>
+      <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+         <soap12:address location="http://10.1.213.216/internalNETStudyWS/NETStudyWS.asmx" />
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>

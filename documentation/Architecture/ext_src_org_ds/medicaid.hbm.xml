@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="gov.medicaid.entities">
+	<class name="SourceStats" table="source_stats">
+        <id column="source_stats_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+       <property column="name" name="name" type="string"/>
+	   <property name="successRequests" column="success_count" type="long"></property>
+	   <property name="pageNotFoundRequests" column="not_found_count" type="long"></property>
+	   <property name="pageChangedRequests" column="moved_count" type="long"></property>
+	   <property name="serverErrorRequests" column="error_count" type="long"></property>
+           <property name="reliability" column="reliability" type="java.lang.Double"></property>
+	</class>
+	
+	<class name="ResultLogEntry" table="result_log_entry">
+        <id column="result_log_entry_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        
+        <many-to-one name="criteria" class="SearchCriteria" cascade="all">
+            <column name="search_criteria_id"></column>
+        </many-to-one>
+	</class>
+	
+	<class name="SearchCriteria" abstract="true" table="search_criteria">
+        <id column="search_criteria_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="identifier" type="string"></property>
+        <property name="lastName" type="string" column="last_name"></property>
+        <property name="firstName" type="string" column="first_name"></property>
+        <property name="state" type="string" column="state"></property>
+        <property name="pageSize" type="int" column="page_size"></property>
+        <property name="pageNumber" type="int" column="page_number"></property>
+        <property name="sortOrder" column="sort_order">
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.SortOrder</param>
+            </type>
+        </property>
+        <property name="sortColumn" type="string" column="sort_column"></property>
+        
+	</class>
+
+    <joined-subclass name="MedicaidCertifiedProviderSearchCriteria" table="medicaid_cert_prov_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="type" type="string"></property>
+        <property name="criteria" type="string"></property>
+        <property name="value" type="string"></property>
+    </joined-subclass>
+
+    <joined-subclass name="PodiatricMedicineLicenseSearchByNameCriteria" table="pod_med_name_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+    </joined-subclass>
+
+    <joined-subclass name="PodiatricMedicineLicenseSearchByLicenseNumberCriteria" table="pod_med_lic_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="licenseNumber" type="long" column="license_number"></property>
+    </joined-subclass>
+    
+    <joined-subclass name="SocialWorkLicenseSearchByNameCriteria" table="social_work_name_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="city" type="string"></property>
+        <property name="county" type="string"></property>
+        <many-to-one name="level" class="LicenseLevel" cascade="all">
+            <column name="license_level_lu_id"></column>
+        </many-to-one>
+    </joined-subclass>
+
+    <joined-subclass name="SocialWorkLicenseSearchByLicenseNumberCriteria" table="social_work_lic_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="city" type="string"></property>
+        <property name="county" type="string"></property>
+        <property name="licenseNumber" type="long" column="license_number"></property>
+        <many-to-one name="level" class="LicenseLevel">
+            <column name="license_level_lu_id"></column>
+        </many-to-one>
+    </joined-subclass>
+    
+
+
+
+
+
+
+
+    <joined-subclass name="HospitalSearchCriteria" table="HospitalSearchCriteria" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="criteria" type="string"></property>
+        <property name="value" type="string"></property>
+    </joined-subclass>
+
+    <joined-subclass name="HospitalSearchCriteria" table="HospitalSearchCriteria" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="criteria" type="string"></property>
+        <property name="value" type="string"></property>
+    </joined-subclass>
+
+    <joined-subclass name="RenalDialysisFreeStandingSearchCriteria" table="RenalDialysisFreeStandingSearchCriteria" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="criteria" type="string"></property>
+        <property name="value" type="string"></property>
+    </joined-subclass>
+
+    <joined-subclass name="CommunityMentalHealthCenterSearchCriteria" table="CommunityMentalHealthCenterSearchCriteria" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="criteria" type="string"></property>
+        <property name="value" type="string"></property>
+    </joined-subclass>
+
+    <joined-subclass name="PublicHealthNursingOrganizationSearchCriteria" table="PublicHealthNursingOrganizationSearchCriteria" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="criteria" type="string"></property>
+        <property name="value" type="string"></property>
+    </joined-subclass>
+
+    <joined-subclass name="PrivateDutyNursingGroupSearchCriteria" table="PrivateDutyNursingGroupSearchCriteria" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="criteria" type="string"></property>
+        <property name="value" type="string"></property>
+    </joined-subclass>
+
+    <joined-subclass name="PharmacySearchCriteria" table="PharmacySearchCriteria" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="name" type="string"></property>
+        <property name="address" type="address"></property>
+        <property name="city" type="string"></property>
+        <property name="state" type="state"></property>
+        <property name="county" type="string"></property>
+        <property name="zip" type="string"></property>
+    </joined-subclass>
+
+    <joined-subclass name="ChemicalDependencyProgramSearchCriteria" table="ChemicalDependencyProgramSearchCriteria" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="name" type="string"></property>
+        <property name="city" type="string"></property>
+        <property name="county" type="string"></property>
+        <property name="zip" type="string"></property>
+        <property name="licenseNumber" type="long" column="license_number"></property>
+    </joined-subclass>
+
+    <joined-subclass name="ChildrensResidentialServiceSearchCriteria" table="ChildrensResidentialServiceSearchCriteria" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="name" type="string"></property>
+        <property name="city" type="string"></property>
+        <property name="county" type="string"></property>
+        <property name="zip" type="string"></property>
+        <property name="licenseNumber" type="long" column="license_number"></property>
+    </joined-subclass>
+
+    <joined-subclass name="DayTrainingAndHabilitationCenterSearchCriteria" table="DayTrainingAndHabilitationCenterSearchCriteria" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="name" type="string"></property>
+        <property name="city" type="string"></property>
+        <property name="county" type="string"></property>
+        <property name="zip" type="string"></property>
+        <property name="licenseNumber" type="long" column="license_number"></property>
+    </joined-subclass>
+
+    <joined-subclass name="IntensiveResidentialTreatmentServiceSearchCriteria" table="IntensiveResidentialTreatmentServiceSearchCriteria" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="name" type="string"></property>
+        <property name="city" type="string"></property>
+        <property name="county" type="string"></property>
+        <property name="zip" type="string"></property>
+        <property name="licenseNumber" type="long" column="license_number"></property>
+    </joined-subclass>
+
+    <joined-subclass name="PersonsWithDevelopmentalDisabilitiesIntermediateCareFacilitySearchCriteria" table="PersonsWithDevelopmentalDisabilitiesIntermediateCareFacilitySearchCriteria" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="name" type="string"></property>
+        <property name="city" type="string"></property>
+        <property name="county" type="string"></property>
+        <property name="zip" type="string"></property>
+        <property name="licenseNumber" type="long" column="license_number"></property>
+    </joined-subclass>
+
+
+
+
+
+
+    <class name="LicenseLevel" table="license_level_lu">
+        <id column="license_level_lu_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string"></property>
+    </class>
+    
+    <joined-subclass name="HealthOccupationsProgramCredentialSearchCriteria" table="hopc_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="city" type="string"></property>
+        <property name="county" type="string"></property>
+        <property name="credentialNumber" type="long" column="credential_number"></property>
+        
+        <many-to-one name="occupationType" class="OccupationType" cascade="all">
+            <column name="occupation_type_lu_id"></column>
+        </many-to-one>
+        <many-to-one name="status" class="CredentialStatus" cascade="all">
+            <column name="cred_status_type_lu_id"></column>
+        </many-to-one>
+        <many-to-one name="discipline" class="Discipline" cascade="all">
+            <column name="discipline_type_lu_id"></column>
+        </many-to-one>
+    </joined-subclass>
+    
+    <joined-subclass name="NurseAnesthetistsSearchCriteria" table="aana_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="ssn" type="string"></property>
+        <property name="aanaNumber" type="long" column="aana_number"></property>
+        <property name="recertification" type="boolean"></property>
+    </joined-subclass>
+    
+    <class name="OccupationType" table="occupation_type">
+        <id column="occupation_type_lu_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string"></property>
+    </class>
+    
+    <class name="CredentialStatus" table="cred_status_type">
+        <id column="cred_status_type_lu_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string"></property>
+    </class>
+    
+    <class name="Discipline" table="discipline_type">
+        <id column="discipline_type_lu_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string"></property>
+    </class>
+    
+    <joined-subclass name="BusinessLienSearchCriteria" table="bls_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="scope">
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.SearchScope</param>
+            </type>
+        </property>
+        <property name="filingStatus" column="filing_status">
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.FilingStatus</param>
+            </type>
+        </property>
+        <property name="businessName" type="string" column="business_name"></property>
+        <property name="fileNumber" type="string" column="file_number"></property>
+    </joined-subclass>
+
+    <joined-subclass name="OIGSearchCriteria" table="oig_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="businessName" type="string" column="business_name"></property>
+    </joined-subclass>
+
+    <joined-subclass name="EPLSSearchCriteria" table="epls_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="npiType">
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.NPIType</param>
+            </type>
+        </property>
+        <property name="name" type="string"></property>
+        <property name="actionDateFrom" type="date" column="act_from_dt"></property>
+        <property name="actionDateTo" type="date" column="act_to_dt"></property>
+        <property name="terminationDateFrom" type="date" column="term_from_dt"></property>
+        <property name="terminationDateTo" type="date" column="term_to_dt"></property>
+        <property name="createDateFrom" type="date" column="crte_from_dt"></property>
+        <property name="createDateTo" type="date" column="crte_to_dt"></property>
+        <property name="modifyDateFrom" type="date" column="updt_from_dt"></property>
+        <property name="modifyDateTo" type="date" column="updt_to_dt"></property>
+        <property name="reciprocalCode" type="string" column="reciprocal_cd"></property>
+        <property name="procurementCode" type="string" column="procurement_cd"></property>
+        <property name="nonProcurementCode" type="string" column="non_procurement_cd"></property>
+        <property name="agency" type="string" column="agency"></property>
+        <property name="usState" type="string" column="us_state"></property>
+        <property name="country" type="string" column="country"></property>
+        <property name="duns" type="string" column="duns"></property>
+        <property name="cageCode" type="string" column="cage_code"></property>
+
+        <many-to-one name="exclusionType" class="ExclusionType" cascade="all">
+            <column name="exclusion_type_lu_id"></column>
+        </many-to-one>
+    </joined-subclass>
+
+    <class name="ExclusionType" table="exclusion_type_lu">
+        <id column="exclusion_type_lu_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>
+        </id>
+
+        <property name="name" type="string"></property>
+    </class>
+    
+    <joined-subclass name="NursingLicenseSearchCriteria" table="nursing_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+    </joined-subclass>
+    
+    <joined-subclass name="BBHTLicenseSearchCriteria" table="bbht_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <many-to-one name="licenseType" class="LicenseType" cascade="all">
+            <column name="license_type_lu_id"></column>
+        </many-to-one>
+    </joined-subclass>
+
+    <class name="LicenseType" table="license_type_lu">
+        <id column="license_type_lu_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        
+        <property name="name" type="string"></property>
+    </class>
+
+    <joined-subclass name="DieteticsAndNutritionPracticeLicenseSearchCriteria" table="dietetics_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+    </joined-subclass>
+
+    <joined-subclass name="ChiropracticLicenseSearchCriteria" table="chiropractic_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="city" type="string"></property>
+        <property name="zipCode" type="string"></property>
+    </joined-subclass>
+
+    <joined-subclass name="DentistryLicenseSearchCriteria" table="dentistry_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="middleName" type="string"></property>
+        <property name="city" type="string"></property>
+        <many-to-one name="licenseType" class="LicenseType" cascade="all">
+            <column name="license_type_lu_id"></column>
+        </many-to-one>
+    </joined-subclass>
+    
+    <joined-subclass name="PharmacyLicenseSearchCriteria" table="pharmacy_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="businessName" column="business_name" type="string"></property>
+    </joined-subclass>
+    
+    <joined-subclass name="OptometryLicenseSearchCriteria" table="optometry_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+    </joined-subclass>
+    
+    <joined-subclass name="MedicalPracticeLicenseSearchCriteria" table="med_practice_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="city" type="string"></property>
+        <property name="zipcode" type="string"></property>
+        <many-to-one name="specialty" class="Specialty" cascade="all">
+            <column name="specialty_lu_id"></column>
+        </many-to-one>
+    </joined-subclass>
+
+    <class name="SpecialtyType" table="specialty_type_lu">
+        <id column="specialty_type_lu_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        
+        <property name="name" type="string"></property>
+    </class>
+    
+    <class name="Specialty" table="specialty_lu">
+        <id column="specialty_lu_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        
+        <property name="code" type="long"></property>
+        <property name="name" type="string"></property>
+        <many-to-one name="type" class="SpecialtyType" cascade="all">
+            <column name="specialty_type_lu_id"></column>
+        </many-to-one>
+    </class>
+
+    <joined-subclass name="MarriageAndFamilyTherapyLicenseCriteria" table="marriage_family_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="criteria" type="string"></property>
+    </joined-subclass>
+
+    <joined-subclass name="PhysicalTherapyLicenseSearchCriteria" table="physical_crit" extends="SearchCriteria">
+        <key column="search_criteria_id"></key>
+        <property name="criteria" type="string"></property>
+    </joined-subclass>
+
+</hibernate-mapping>

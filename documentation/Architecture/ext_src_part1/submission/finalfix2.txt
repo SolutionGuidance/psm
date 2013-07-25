@@ -1,0 +1,56 @@
+
+
+Question 1.1.2: 
+fixed. added SD. 
+Search  Provider Business Information Sequence Diagram
+
+
+
+DanLazar:
+fixed. updated other SDs as well.
+
+ Question 1.1.4 :
+DanLazar
+Fixed. see ADS 1.3.10	Validation	
+
+Question 1.3.1:
+fixed. see AD 1.3.14	Persistence
+
+ Question 1.3.2:
+
+>>Do not see anything about turning on/off for logging.
+fixed. see ADS 1.3.4	 Configuration
+
+Question 1.3.3:
+fixed. see TCUML and ADS 1.3.9	Exception Handling Overview
+
+>.You have a IllegalArgumentException just floating in your CD with no attached relationship
+fixed
+Question 2.6.1:
+fixed
+
+see ADS 1.3.10	Validation	
+
+
+Question 3.1.1 
+argolite:
+
+
+nikolay83:
+see http://apps.topcoder.com/forums/?module=Thread&threadID=757436&start=0&mc=1#1584368	
+
+ Question 3.2.1:
+argolite: >>"Calculate Track Reliability Sequence Diagram" does not make much sense since it seems to get teh stats from the service and then gets it on its own running an sql query
+
+see http://apps.topcoder.com/forums/?module=Thread&threadID=757382&start=0
+
+
+
+
+Question 3.2.2:
+argolite:
+R2: The class diagram in general is not very comprehensive with many entities and services not being referenced in any way in the diagrams but factually used in the diagram:ProviderProfile,ResultLogEntry 
+
+
+fixed. updated class diagrams Tracking and Reliability Class Diagram,NNPES API and MN Business and Lien System  Class Diagram and OIG , HHS  and Previously Denied Applicants Services Class Diagram
+

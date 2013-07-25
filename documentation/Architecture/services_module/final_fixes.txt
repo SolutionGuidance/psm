@@ -1,0 +1,190 @@
+Final Fixes
+
+-------------------------------------------------------------------
+
+Section: 1.1.1 Each functional requirement from the Application Requirements Specification and Competition Specification is addressed.
+
+DanLazar
+1. SOme have been resolved, but a few remain (see forum). I have spoken to the PM and you can rehect the fixes for this.
+2. This query is actually the provider profile query. This filter is there in its search criteria object
+3. Added in the screening service
+4. Provider type service added
+5. Search methods improved (see ADS 1.3.15)
+As for the specific exmaple you provide, the create method will save whatever is put in it. I dont believe the are any speciifc requirements one or the other way.
+
+
+
+faeton 
+1. Issues mostly handled
+2. All resolved. Also added additional entities to be managed here
+3. All points handled. You will find a simple section on validation in the ADS. Also added CDM , and pour existing Entity diagram is the LCM. Multiplicity badded to the entitiy diagrams
+4. Done. QUite simple. I have a specific method impl in the ADS, and the other 3 follow. See ADS 1.3.15
+5. Yes it is the current one (that has been made more clear). The previous enrollments do not play any part here.
+6. PDF is a system requirement, and so is this signature. Perhaps for future fpexibility but for now, only PDF is supported.
+7. We are not actually trying to recreate the visual elemnts of the wirframe. That is pointless. Just the data and its layout. Nothing more. No fancy rounded stuff. This is why what I provide is essentially all that is needed, because we are just hanlding text. If the client wants something fancier, they can specify it for a version 1.1..
+8. They come for Oracle OAM. That is stated there.
+9. Not sure why you state this. 
+10. This is not necessary. These are simple steps to create a JSON object from an entity. The JOSN Object component has lots of demoes that would say it better than I would.
+13. This is now stated in the ADS 1,3,1
+14. Here is one such reference: http://codeidol.com/java/netbeans/EJB-3/Using-JAX-WS/
+Now I show this because the user there basically quotes page 468 from The O'Reilly book (http://shop.oreilly.com/product/9780596009786.do)
+15. SOme have been resolved, but a few remain (see forum). I have spoken to the PM and you can rehect the fixes for this.
+
+
+nikolay83
+1. SOme have been resolved, but a few remain (see forum). I have spoken to the PM and you can rehect the fixes for this.
+
+
+-------------------------------------------------------------------
+
+Section: 1.1.2 Each functional requirement is represented in at least one Sequence Diagram. 
+
+Log of Logging Wrapper shown there
+
+
+-------------------------------------------------------------------
+
+Section: 1.1.3 Required business processes are clearly accounted for in the design.
+
+As per 1.1.1 resolved
+
+
+-------------------------------------------------------------------
+
+Section: 1.2.2 Concurrency is appropriately addressed with regard to the specific needs of this application.
+
+
+COrrected
+
+
+-------------------------------------------------------------------
+
+Section: 1.2.3 Configuration is appropriately addressed with regard to the specific needs of this application
+
+The question seems strange. SPring configuration is used to wire everything. Whay would anyone use it for anything else than everything being read from a file right away. I dont understand this issue.
+
+
+-------------------------------------------------------------------
+
+Section: 1.2.4 Security is appropriately addressed. 
+
+Passwords are not stored here. Oracle OAM acceopts them and provides a token, which is then provided to the Frontend
+Wording fixed there, inlcuding removed the LDAP part that is wrong.
+I did not see any https requirements.
+
+-------------------------------------------------------------------
+
+Section: 1.3.1 Persistence mechanisms are appropriate and clearly defined. 
+
+
+ mapping doc fixed. DB specified in tech sections
+
+
+
+-------------------------------------------------------------------
+
+Section: 1.3.2 Logging is appropriately addressed with regard to the specific needs of this application. 
+
+log4j specified
+
+
+-------------------------------------------------------------------
+
+Section: 1.4.1 Existing components used in the design are appropriate.
+
+
+loggig wrapper provides more abstraction
+base exception provides more granular exception data handling
+
+
+-------------------------------------------------------------------
+
+Section: 2.1.1 Existing systems affected by this application are clearly defined
+
+Concrete naming used
+
+-------------------------------------------------------------------
+
+Section: 2.1.3 Existing systems utilizing this application are clearly defined
+
+Concrete naming used
+
+
+-------------------------------------------------------------------
+
+Section: 2.1.4 Deployment issues are appropriately addressed. 
+
+
+SOlutions are alsoways zipped for OR upload
+
+-------------------------------------------------------------------
+
+Section: 2.3.1 The Data Model is appropriate and correctly normalized for the project requirements
+
+
+All issues handled
+
+-------------------------------------------------------------------
+
+Section: 2.5.1 Solution is designed with proper performance in mind
+
+I dont see any issue here,a s it is stored as a blob
+
+-------------------------------------------------------------------
+
+Section: 2.5.2 Solution meets all current load needs.
+
+-------------------------------------------------------------------
+
+Section: 2.8.1 Architecture maps to appropriate assembly competitions.
+
+Broken up into 2 assemblies.
+
+-------------------------------------------------------------------
+
+Section: 3.1.1 All required documents are provided and are of sufficient content
+
+I have fixed up the security code in the assembly doc.
+
+>> The architecture is designed to fit into the Enterprise Service Bus". How is this reflected in submission? --> by having each service/DAO be a webservice with loacl/remote interface
+
+Workflow expanded, validation as discussed in 1.1.1 above
+
+>>  When you state "Simply delegate to the namesake method in the DAO" in your impl notes you should at least specify the number of External Module, where this services can be found ---> These are to the DAOs in this module, not any external module
+
+
+-------------------------------------------------------------------
+
+Section: 3.1.2 All documents are formatted appropriately, including spelling and grammar
+
+Formatting fixed
+
+
+-------------------------------------------------------------------
+
+Section: 3.1.3 There are no frequent spelling or grammatical errors
+
+Spalling fixes
+
+
+-------------------------------------------------------------------
+
+Section: 3.2.1 Sequence diagrams are complete and include sufficient detail
+
+SDs improved
+
+
+-------------------------------------------------------------------
+
+Section: 3.2.2 Class diagrams are complete and include sufficient detail
+
+Mltiplicities for entities added
+Abstracted search into a common class
+
+
+
+-------------------------------------------------------------------
+
+Section: 3.2.3 All diagrams use the correct color coding
+
+Coloring issue fixed

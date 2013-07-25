@@ -1,0 +1,14 @@
+Final Fixes 3
+
+-------------------------------------------------------------------
+
+Section: 1.1.1 Each functional requirement from the Application Requirements Specification and Competition Specification is addressed.
+
+
+Issue: pluggability
+
+
+Response: Added a DAO layer as per http://apps.topcoder.com/forums/?module=Thread&threadID=758311
+
+Since we now have a complete set of services and DAOs for external providers and tracking, I have refactored a DAO base class and restructured the class diagrams.
+

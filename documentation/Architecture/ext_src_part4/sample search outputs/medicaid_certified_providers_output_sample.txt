@@ -1,0 +1,359 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<html>
+<BODY BGCOLOR="#FFFFFF">
+<!--Begin: Do not modify code-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/macros/css/main.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/macros/css/banner.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/macros/css/footer.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/macros/css/print.css" media="print" />
+
+<script language="JavaScript1.2" type="text/javascript" src="/macros/js/common.svn.js"></script>
+<script language="JavaScript1.2" type="text/javascript" src="/macros/js/dropdown.js"></script>
+
+</head>
+<body>
+<!-- Start Banner Include -->
+<div id="header">
+	<div id="headerBanner" class="clearfix">
+		<div id="logo" class="clearfix"> <a href="/index.html"><img src="/images/logo.gif" alt="MDH Logo" width="90" height="56" /></a>
+		  <h1>Minnesota Department of Health</h1>
+		</div>	
+		<div id="navigation">
+			<ul id="navbar" class="clearfix">
+				<li><a href="/index.html">HOME</a></li>
+				<li>
+					<a href="#">TOPICS</a>
+					<ul>
+						<li><a href="/macros/topics/certificates.html">Certificates &#38; Records</a></li>
+						<li><a href="/macros/topics/stats.html">Data &#38; Statistics</a></li>
+						<li><a href="/macros/topics/diseases.html">Diseases &#38; Conditions</a></li>
+						<li><a href="/macros/topics/emergency.html">Emergency Preparedness</a></li>
+						<li><a href="/macros/topics/environment.html">Environments &amp; Your Health</a></li>
+						<li><a href="/macros/topics/facilities.html">Facilities &#38; Professions</a></li>
+						<li><a href="/macros/topics/healthcare.html">Health Care &#38; Coverage</a></li>
+						<li><a href="/macros/topics/injury.html">Injury, Violence &#38; Safety</a></li>
+						<li><a href="/macros/topics/lifestages.html">Life Stages &#38; Populations</a></li>
+						<li><a href="/macros/topics/policy.html">Policy, Economics &#38; Legislation</a></li>
+						<li><a href="/macros/topics/prevention.html">Prevention &#38; Healthy Living</a></li>
+					</ul>
+				</li>
+				<li><a href="/macros/topics/orginfo.html">ABOUT US</a></li>
+			</ul>
+		<div id="searchform">
+ <form id="cse-search-box" 
+    name="seek"
+    action="/macros/search/index.html" 
+    onsubmit="return validateSearch(this);">
+    
+    <div id="searchbox">
+      <input type="text" name="q" id="q" size="30" class="searchtext" value="Search the site" 
+        onfocus="return clearSearchDefault(this);" 
+        onblur="return clearSearchDefault(this);" />
+      
+      <input type="hidden" name="cx" value="001025453661958716519:j2323tveixc" />
+      <input type="hidden" name="cof" value="FORID:10" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <input type="submit" name="submit" class="searchbutton" value="GO" />
+      
+      
+    </div>
+    
+  </form>
+		</div>
+		</div>	
+	</div>	
+</div>
+
+<!-- End Banner Include -->
+
+
+<!-- Begin Main Content -->
+
+<div id="container">
+
+            <div id="content" class="clearfix">
+
+                        <div id="sidebar_left">
+
+ 
+<h1>Minnesota Health Care Facilities Programs</h1>
+<ul>
+  <li><a href="/divs/fpc/fpc.html">Minnesota Health Care Facilities Home</a> </li></ul>
+<ul>
+  <li><a href="/divs/fpc/profinfo/cms/casemix.html">Minnesota Case Mix System</a></li>
+  <li><a href="/divs/fpc/MinnesotaMDS3_0.html">Minnesota MDS 3.0</a></li>
+  <li><a href="/divs/fpc/engineering.html">Engineering Services</a></li>
+  <li><a href="/divs/fpc/profinfo/licensure.html">Licensing and Certification</a></li>
+  <li><a href="/divs/fpc/cww/cwwindex.html">Clinical Web Window</a></li>
+  <li><a href="/divs/fpc/profinfo/narinfo/contactnar.html">Nursing Assistant Registry</a></li>
+  <li><a href="/divs/fpc/ohfcinfo/contohfc.htm">Office of Health Facility Complaints</a></li>
+</ul>
+<ul>
+  <li><a href="/divs/fpc/profinfo.html">Bulletins, Reports, Manuals, Forms</a></li>
+  <li><a href="/divs/fpc/legislativerpts.html">Legislative Reports</a></li>
+  <li><a href="http://www.health.state.mn.us/divs/fpc/videoindex.cfm">Nursing
+          Home Training Videos</a></li>
+  <li><a href="/divs/fpc/stats.html">Provider and Survey Statistics</a></li>
+  <li><a href="/divs/fpc/consinfo.html">Resident and Provider Information</a></li>
+  <li><a href="http://www.health.state.mn.us/divs/fpc/inspresults.html">Survey
+      and Inspection Results</a></li>
+ </ul>
+	
+
+          
+
+                        </div>
+
+                        <div id="body"> 
+
+ 
+  
+
+<!--end of graphic rule--> <!--Content begins here. Can be edited. -->
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+		
+	
+			
+
+	
+		
+		
+		<font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+		<p align="CENTER">| <a href="/divs/fpc/fpc.html">Compliance Monitoring Home</a> | <a href="providerselect.cfm">Re-select Providers</a> |<p>
+		
+		
+			
+			<center>Your selection of Hospitals found 2  providers in CROW WING county.</center>
+			
+				
+		
+		<br>
+		
+			
+		
+		
+		
+		<center>
+			<table border=1 cellpadding=5 bordercolor="#000000">
+				<tr>
+					<th align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+					ID
+					</th>
+					<th align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+					Provider Information
+					</th>
+					
+				</tr>
+				
+				<tr>
+					<td align=left valign="top"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+						00091
+					</td>
+					<td align=left valign="top"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+						<b>Name: </b>CUYUNA REGIONAL MEDICAL CENTER<br>
+						<b>Address: </b>320 EAST MAIN STREET&nbsp;&nbsp;CROSBY&nbsp;&nbsp;MN&nbsp;&nbsp;56441<br>
+						<b>Phone: </b>218-546-7000 &nbsp;&nbsp;<b>Fax: </b>218-546-7268<br>
+						<b>Administrator: </b>MS. KRISTIN NEFF
+						
+							<p><b><a href="showlicdates.cfm?l=00091">Minnesota Licensed Bed Capacity</a>: </b>
+							
+								(Hospital Beds = 42)&nbsp;&nbsp;
+							
+							
+								(Infant Bassinets = 7)&nbsp;&nbsp;
+							
+							
+							
+							
+								(Nursing Home Beds = 120)&nbsp;&nbsp;
+							
+							
+							
+						
+						
+						
+						
+						
+							<p><b>Federally Certified Beds: </b>
+							
+							
+							
+							
+							
+							
+								(Dual Medicare/Medicaid Skilled Nursing and Nursing Facility Beds = 120)&nbsp;&nbsp;
+							
+							
+							
+								(Medicare Certified Critical Access Hospital)&nbsp;&nbsp;
+							
+						
+						
+						
+						
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td align=left valign="top"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+						00093
+					</td>
+					<td align=left valign="top"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+						<b>Name: </b>ESSENTIA HEALTH ST JOSEPHS MED<br>
+						<b>Address: </b>523 NORTH THIRD STREET&nbsp;&nbsp;BRAINERD&nbsp;&nbsp;MN&nbsp;&nbsp;56401<br>
+						<b>Phone: </b>218-829-2861 &nbsp;&nbsp;<b>Fax: </b>218-828-3103<br>
+						<b>Administrator: </b>MS. JANI WIEBOLT
+						
+							<p><b><a href="showlicdates.cfm?l=00093">Minnesota Licensed Bed Capacity</a>: </b>
+							
+								(Hospital Beds = 162)&nbsp;&nbsp;
+							
+							
+								(Infant Bassinets = 15)&nbsp;&nbsp;
+							
+							
+							
+							
+							
+							
+						
+						
+						
+						
+						
+							<p><b>Federally Certified Beds: </b>
+							
+								(Medicare Hospital Beds = 140  - Provider Has Deemed Status)&nbsp;&nbsp;
+							
+							
+							
+							
+							
+							
+							
+							
+						
+						
+						
+						
+						
+							<p><b>Federal Classifications: </b>
+							
+							
+							
+							
+							
+							
+							
+							
+								(Prospective Payment System Psychiatric)&nbsp;&nbsp;
+							
+							
+							
+							
+							
+							</p>
+						
+					</td>
+				</tr>
+				
+				
+			</table>
+		</center>
+			
+		
+			
+		
+
+
+<p>
+<font face="Verdana, Arial, Helvetica, sans-serif" size="-1"><B><center>The information on this page is classified public and can be freely printed and distributed. </center></B></FONT>
+<br>
+
+
+  </div>
+  
+	</div>
+</div>
+  
+ <!-- Begin Footer Include -->
+
+<div id="footer">
+	<div id="footerContainer" class="clearfix">
+		<div id="footerTopics">
+			<ul class="clearfix">
+				<li><a href="/divs/chs/osr/">Certificates &#38; Records</a></li>
+				<li><a href="/macros/topics/stats.html">Data &#38; Statistics</a></li>
+				<li><a href="/macros/topics/diseases.html">Diseases &#38; Conditions</a></li>
+				<li><a href="/oep/">Emergency Preparedness</a></li>
+				<li><a href="/macros/topics/environment.html">Environments &amp; Your Health</a></li>
+				<li><a href="/macros/topics/facilities.html">Facilities &#38; Professions</a></li>
+				<li><a href="/macros/topics/healthcare.html">Health Care &#38; Coverage</a></li>
+				<li><a href="/macros/topics/injury.html">Injury, Violence &#38; Safety</a></li>
+				<li><a href="/macros/topics/lifestages.html">Life Stages &#38; Populations</a></li>
+				<li><a href="/macros/topics/policy.html">Policy, Economics &#38; Legislation</a></li>
+				<li><a href="/macros/topics/prevention.html">Prevention &#38; Healthy Living</a></li>
+				<li><a href="/privacy.html">Privacy Statement &#38; Disclaimer</a></li>
+			</ul>
+			<div id="northStar">
+			  <p><a href="http://mn.gov/portal/" onclick="return OuttaHere(); return false;">Minnesota North Star</a></p>
+			</div>
+		</div>
+		<div id="footerContact">
+			<ul>
+				<li><a href="/index.html">Home</a></li>
+				<li><a href="/macros/topics/orginfo.html">About MDH</a></li>
+				<li><a href="/about/direct.html">Locations &#38; Directions</a></li>
+				<li><a href="/webmaster/mail.html">Comments &#38; Questions</a></li>
+				<li><a href="/macros/search/index.html">Search the Site</a></li>
+			</ul>
+			<p>
+				651-201-5000 Phone<br />
+				888-345-0823 Toll-free<br />
+				651-201-5797 TTY			</p>
+			<p>Information on this website is available in alternative formats to individuals with disabilities upon request. <br />
+		      <br />
+			</p>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20272425-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- End Footer Include -->
+
+
+<!--End of story -->
+<!--footer section --> 
+
+</BODY>
+</HTML>

@@ -1,0 +1,101 @@
+Final Fixes
+
+-------------------------------------------------------------------
+
+Section: 1.1.1 Each functional requirement from the Application Requirements Specification and Competition Specification is addressed.
+
+Issue: Are notifications for user changes stated in ARS 2.2.6 applivable? Verify with PM.
+
+Response: The assumption is that as per ARS, they are not. COnfirmation should be here: http://apps.topcoder.com/forums/?module=Thread&threadID=765773
+
+
+-------------------------------------------------------------------
+
+Section: 1.1.3 Required business processes are clearly accounted for in the design.
+
+Issue: 
+1. Invalid role set in advanced search controlelr
+2. It is not clear where the UserValidator is used.
+3. After "delete", it should redirect to "view" page.
+4. There should be method to handle simple search,
+see the wireframe pages, in the header part, there are simple search boxes
+
+
+Response:
+1. The role insertion was removed
+2. Explained better in ADS 1.3.17
+3. Done
+4. The advanced search cotnroller (renamed) now handles this as well, and I have requested a change in the user service to accomodate this type of search. I explaon briefly about this in JSP assembly 1.2.1
+
+
+-------------------------------------------------------------------
+
+Section: 1.2.2 Concurrency is appropriately addressed with regard to the specific needs of this application.
+
+Issue: ADS 1.3.2 says about services and entities, which are all out of scope. However, it doesn't say about the controllers and JSPs, which are in scope. Also, since JSP will contian some JavaScript, JS concurrency is not discussed too.
+JavaScript is part of the module, so concurrency for that should also be mentioned. I agree that there is not much to add about JS, but some information is still needed.
+
+Response: ADS 1.3.2 changed to remove service reference and provides JavaScript reference.
+
+
+-------------------------------------------------------------------
+
+Section: 1.2.4 Security is appropriately addressed. 
+
+Issue: you need to document that authorization will be done in a different module. You only mention authentication.
+
+Response: ADS 1.3.10 now mentions authorization
+
+
+-------------------------------------------------------------------
+
+Section: 1.3.4 Transactionality is appropriately addressed.
+
+Issue: As per http://apps.topcoder.com/forums/?module=Thread&threadID=764570&start=0, POJOs should be used instead of EJBs.
+And controllers are not EJBs, so the ADS transaction discussion is not correct.
+
+Response: Reference in ADS 1.3.1 to EJBs has been removed
+
+-------------------------------------------------------------------
+
+Section: 1.4.7 Dependencies between all components are mapped appropriately.
+
+Issue: Base Exception is needed, because it contains ExceptionData, which will be passed to exceptions' ctors.
+need to add to component diagram too.
+
+Response: This being an assembly, we only have an assembly diagram, and it is there.
+I assume you mena in the class diagram. There I have added this and the exceptions.
+
+
+-------------------------------------------------------------------
+
+Section: 2.4.2 Are architecture defined interfaces appropriate and optimal?
+
+Issue:  It is unnecessary to define 4 controllers for 4 different roles.
+The 4 controllers are mostly the same except for the view/search methods.
+You may define a single controller for them,
+for the view/serach, you may add a role argument.
+The advanced search method may also be integrated into this united controller.
+
+Response: I have combined the 4 role controllers into one, but the search I have kept in the separate controller since logically I believe it makes more sense. Also, observe that the regular paged views are different than the search views here (the filters are different no tabs). So it still makes sense to have the search stuff separate.
+-------------------------------------------------------------------
+
+Section: 3.1.1 All required documents are provided and are of sufficient content
+
+Issue: 
+1. Documentation for the controllers and methods should state the corresponding wireframe pages.
+2. Wrong class doc for UserValidator:
+"This is the validator for ProviderType instances"
+
+Response:
+1. Done. See in the controller methods.
+2. Fixed
+
+
+-------------------------------------------------------------------
+
+Section: 3.2.2 Class diagrams are complete and include sufficient detail
+
+Issue: Member field should be documented as well.
+
+Response: Done

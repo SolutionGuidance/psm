@@ -1,0 +1,82 @@
+1. In ScreeningService and ScreeningServiceBean, change signature of scheduleScreening method to
+
++scheduleScreening(enrollmentId:long,date:Date):void
+
+With docs: 
+
+#### Purpose
+This method schedules a screening
+
+#### Parameters
+enrollmentId - the ID of the enrollment
+date - the date of the requested screening
+
+#### Exceptions
+PortalServiceException - If there are any errors during the execution of this method
+
+
+
+
+2. Add method to ExportService that exports tables of enrollments, and aggregate an isntance of 
+-providerProfileDAO:ProviderProfileDAO
+
+
++export(criteria:ProviderSearchCriteria,format:FileFormat):byte[]
+
+The general detals, of implementation are similar to the existing export method in terms of table structure and PDF construction.
+
+The table will look like the result sin Enrollment__Service_Agent_.html, and will have these columns
+
+NPI / UMPI
+Provider Type
+Provider Name
+Request Type
+Risk Level
+Status Date
+
+Searches for the providers are done as follows: providers:SearchResult<ProviderProfile> = providerProfileDAO.search(criteria:ProviderSearchCriteria)
+
+
+
+
+
+3. ProviderSearchCriteria and the DAO must be agmented with the npi:String to search for the npi in the providerProfile.
+
+
+4. HelpSearchCriteria and the DAO must be augmented with startsWith:String to search for titles that starts with the given term
+
+
+5. Add a CreditCardType lookup type and the method to get this list form LookupService
+
+Also change the ERD and Hibernate Mapping file to add this entity (DONE)
+
+6. Create entity PaymentInfo
+
+-creditCardType:CreditCardType
+-name:String
+-creditCardNumber:String
+-securityCode:String
+-validMonth:int
+-validYear:int
+
+Also add a reference to payment in enrollment class
+paymentInfo:PaymentInfo
+
+Also change the ERD and Hibernate Mapping file to add this entity and field (DONE)
+
+7. Add to ProviderProfile 
+- note:String (varchar(500)) field to ProviderProfile entity and table
+payment info
+
+Also change the ERD and Hibernate Mapping file for this entity (DONE)
+
+8. Add to ProviderType
+- agreements:List<AgreementDocument> 
+- addendums:List<AgreementDocument> 
+
+Also change the ERD and Hibernate Mapping file for this entity (DONE)
+
+9 Add/update to erd and mapping: agreement and event (DONE)
+
+
+

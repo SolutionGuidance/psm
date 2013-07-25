@@ -1,0 +1,63 @@
+###############################################
+# 2.5 Search Enrollments
+
+EnrollmentController.search
+
+###############################################
+# 2.7 Query Enrollment Status
+
+EnrollmentController.getByNumber
+
+###############################################
+# 2.8 View Enrollments
+
+EnrollmentController.view
+
+###############################################
+# 2.9 View Enrollment Details
+
+EnrollmentController.getDetails
+
+###############################################
+# 2.10 Create New Enrollment
+
+CreateEditEnrollmentController
+
+Starts with the view method to get to the first page, then uses the other methods for navigation
+
+###############################################
+# 2.11 Edit Enrollment
+
+CreateEditEnrollmentController
+
+Starts with the load method to get to the first page, then uses the other methods for navigation
+
+###############################################
+# 2.12 Export Enrollment Data
+
+EnrollmentController.export
+
+###############################################
+# 2.13 Print Enrollment Data
+
+DOne in the Frontend using browser abilities
+
+###############################################
+# 2.14 Initiate On-Demand Screening
+
+EnrollmentController.initiateOnDemandScreening
+
+###############################################
+# 2.15 Initiate Scheduled Screening
+
+EnrollmentController.initiateScheduledScreening
+
+###############################################
+# 2.16 Approve Enrollment
+
+EnrollmentController.approve
+
+###############################################
+# 2.17 Reject Enrollment
+
+EnrollmentController.reject

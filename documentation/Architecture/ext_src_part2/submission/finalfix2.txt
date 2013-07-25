@@ -1,0 +1,68 @@
+ Question 1.1.1 
+
+albertwang:
+Fixed. see ADS 1.3.10	Validation
+################################################################
+Question 1.1.4:
+nikolay83:
+
+fixed. see ADS 1.3.10	Validation
+
+DanLazar
+
+fixed. see ADS 1.3.10	Validation
+
+
+################################################################
+Question 1.2.2
+>>ADS 1.3.6 Threading doesn't specify how the services implementations will be thread-safe. 
+
+fixed. please check ADS 1.3.6	Threading
+
+################################################################
+Question 1.2.4:
+nikolay83:	
+Fixed. see http://apps.topcoder.com/forums/?module=Thread&threadID=757129&start=0&mc=1#1583137
+
+################################################################
+Question 1.3.3
+nikolay83:
+>>Not clear which services throws the exceptions 
+
+Fixed. See TCUML  and ADS 
+
+>> Not clear where in which assembly the exceptions will be developed. 
+
+fixed. External Sources Miscellaneous Practice Assembly.doc will implement this
+
+#################################################################
+Question 3.1.1
+
+nikolay83:
+>> 3) Assembly documents are not fixed. 
+fixed. 
+
+#################################################################
+Question 3.1.2
+
+
+
+
+#################################################################
+Question 3.2.1 
+DanLazar:>> The note is still not fully correct. 
+
+fixed.
+#################################################################
+
+Question 3.3.2:
+nikolay83:
+R1:>> Not clear in which assembly the exceptions will be developed. 
+fixed. External Sources Miscellaneous Practice Assembly.doc will implement exceptions
+
+R2: fixed. updated assembly specs
+
+
+
+
+

@@ -1,0 +1,93 @@
+apache licenses are allowed please check here http://apps.topcoder.com/forums/?module=Thread&threadID=752607&start=0
+
+
+Question 1.1.3:
+
+nikolay83:
+R1: Fixed. added ProviderProfileService, updated SDS process mapping section, added service description in SDS 5.Services.
+
+R2: Fixed. changed the method signature toscheduleRevalidation(time:int,userId:long):void 
+
+albertwang:
+R1:  added NotificationType entity, updated ERD, and Updated SDS section 5.6	Email Notifications
+updated SDS section 4. Data Model NotificationType information.
+R2: fixed. added FileFormat entity, updated ERD, SDS datamodel section,
+ updated the service method
+
+see "FileFormat is a lookup entity. It represents the file format to which the enrollment data can be export"
+
+Question 1.1.4:
+nikolay83:
+R1: added NotificationType entity, updated ERD, and Updated SDS section 5.6	Email Notifications
+updated SDS section 4. Data Model NotificationType information.
+
+R2: add UserPermission, Permission models, updatd ERD, updated SDS data model section.
+updated SDS 5.Services
+R3: fixed added separate providerProfileService see 1.1.3
+
+Question 1.1.5:
+r1: AuditSerice.audit will audit the data. no confusion
+r2: fixed. update perform logging section with "
+Note the application should not log sensitive data like user password, medical data etc... 
+"
+r3: TCBuilder is a plain component can be used as as TC 
+
+r5: see MITA ARCHITECTURE COMPLIENCE.doc it can support diverse data stores like SAP 
+
+Question 1.2.2:
+fixed. see 1.1.3 added UserPermission Service 
+
+Question 1.3.2:
+fixed. added sterio type "IdentifiableEntity" to AuditRecord entity
+
+
+Question 1.3.3:
+albertwang:
+R1: fixed upated entities in TCUML 
+R2, r3,r4: fixed.
+
+
+
+Question 1.5.1 
+
+R1: Fixed. updated "The application should support all latest versions of each OS type as the application can be used by other US states"
+R2: fixed. updated SDS section 7.4.5 Frameworks
+
+Question 1.5.2:
+R1: those are approved. see forum 
+R2: see MITA ARCHITECTURE COMPLIENCE.doc it can support diverse data stores like SAP 
+
+Question 2.1.1 & Question 2.1.3 :
+R1: fixed. see SDS 7.4.8 TC Components, updated SDS see Email NOtificaitons, perform auditing 
+
+look for 
+"The AuditService.audit is used to perform auditing. It will store audit data into database"
+
+r2&r3: removed redundant TCUML
+
+Question 2.1.4:
+fixed. see SDS
+
+albertwang:
+fixed.
+
+Question 2.2.2:
+fixed.
+
+Question 2.4.1 
+nikolay83:
+R1: fixed
+R2: fxied.
+
+
+
+albertwang:
+fixed.
+
+Question 2.4.2:
+nikolay83
+fixed.
+
+
+
+

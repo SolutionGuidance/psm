@@ -1,0 +1,135 @@
+Most of the issues are repeated so not listed them here.
+
+New Documents API_Requirements.doc and API_Price_Details.doc are addeed which provides 
+required APIs and price details
+ 
+Client is yet to provide sample logins and other information. I will fix those in next round
+
+Question 1.1.1:
+nikolay83:
+R1>>External 3rd party search engines to verify applicant submitted credentials (identity, licenses, etc.)
+
+Fixed. updated 
+
+6.1.4	NNPES 
+
+added "NNPESService.createAccountForIndividual is used to create account for individual user.
+
+NNPESService.createAccountForGroup is used to create account for group user."
+
+added corresponding API methods to TCUML
+
+6.1.3	Professional Licensing Board
+
+BBHTLicenseService -- added methods +loginAsStaff(username:String,password:String):void, +loginAsLicenseHolder():void etc..
+
+
+Board of Behavioral Health and Therapy (bbht):http://www.bbht.state.mn.us):
+defined login methods check BBHTLicenseService
+
+
+Minnesota Board of Nursing: http://www.nursingboard.state.mn.us:
+
+defined loginAsApplicant, loginLicense, loginAsPublicUser, loginAsSchool and loginAsBoardMember
+
+Dentistry:http://www.dentalboard.state.mn.us
+
+login url: http://www.dieteticsnutritionboard.state.mn.us/Default.aspx?tabid=343&ctl=Login
+
+updated SDS
+
+Marriage and Family Therapy:
+
+updated SDS https://www.hlb.state.mn.us/SBLMOnline/login.aspx for login 
+
+
+Medical Practice: 
+
+updated PhysicianService and PhysicianAssistantService services and are responsible for managing license verification and user login
+
+updated SDS tool
+
+
+
+Optometry:
+fixed added login method to OptometryLicenseService
+
+updated SDS as "Login of user can be done by logging at 
+http://www.optometryboard.state.mn.us/Default.aspx?tabid=309&ctl=Login
+"
+
+Pharmacy:
+fixed updated TCUML PharmacyLicenseService and updated SDS 
+look for "Verification of License Holders/Registrants can be done by searching at  
+https://www.hlb.state.mn.us/mnbop/glsuiteweb/homeframe.aspx
+"
+Physical Therapy
+
+http://www.physicaltherapy.state.mn.us/
+
+
+PharmacyLicenseService
+
+Login url is not found on http://www.physicaltherapy.state.mn.us
+
+search method is added check PhysicalTherapyLicenseService
+
+Podiatric Medicine:
+
+fixed added login method and updated SDS check for "Login of user can also be done by logging at 
+http://www.podiatry.state.mn.us/Default.aspx?tabid=290&ctl=Login
+"
+
+Psychology:
+No Login or search license information found at http://www.psychologyboard.state.mn.us/board.asp
+
+Social Work:
+No Login information found at www.socialwork.state.mn.us
+
+American Association of Nurse Anesthetists:
+
+updated AmericanMidwifeLicenseService
+and sds too check for login info can be found at https://portal.amcbmidwife.org/Login.aspx?ReturnUrl=%2fdefault.aspx
+
+
+Question 1.3.3:
+nikolay83:
+R1: fixed. changed to -specialties:List<Specialty>
+R2: fixed. changed to -NPI:String
+R3: fixed changed to boolean
+r4: fixed changed to +search(type:NPIType):SearchResult<ProviderProfile>
+r5: fixed.
+
+
+Question 1.4.1:
+fixed. 
+
+Question 2.1.1:
+R1: fixed. updated as "
+However, requests to external resources may result in concurrency.  It’s up to external resources to handle he concurrency"
+R2: won't fix. there are no create/update operations. All operations are retrieval operations.
+
+
+Question 2.1.3:
+fixed. added "•	Logging Wrapper 3.2"
+
+Question 2.1.4:
+nikolay83:
+R1: fixed. 
+R2: fixed. 
+R3: fixed
+r4: fixed updated as "No persistence operations are performed in this application."
+
+argolite:
+R1: fixed
+R2: fixed
+
+albertwang
+R1,R2, R3: fixed.
+
+Question 2.3.2 :
+R1: Won't Fix. frontend will be covered by BaseMita Architecture. So action mapping is still needed
+R2,R3,r4,r5,r6: fixed. added as "This application is part of entity MITA architecture. it makes sense to include complete technology related to MITA project though all of them are not used."
+
+Question 2.4.1:
+fixed.

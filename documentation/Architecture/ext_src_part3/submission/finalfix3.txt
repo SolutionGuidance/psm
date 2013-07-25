@@ -1,0 +1,74 @@
+ Question 1.1.4:
+R2: see http://apps.topcoder.com/forums/?module=Thread&threadID=756968&start=0&mc=1#1582486 
+
+Question 1.3.1:
+>>: Oracle DB shall also be discussed 
+Fixed. updated ADS 1.3.14	Persistence
+
+
+Question 1.3.2:
+>>2 - ok, but LoggerFlag is not desriptive. Better name is "LoggerOn" 
+
+fixed. see ADS 1.3.4	 Configuration
+
+Question 2.1.2:
+
+Fixed. provide clear mapping of responses html fields with API return entity fields 
+
+see ExternalResource-Field-Mapping.xls
+
+updated Optometry, MedicalPractice and Pharmacy Services Assembly.doc
+
+and Marriage And Family Therapy License and  Physical Therapy License Services Assembly.doc
+
+serviec methods
+
+Question 2.3.1:
+DanLazar:
+R2: already fixed	
+R5. SearchCriteria#identifier will be used for this purpose.
+
+see here http://apps.topcoder.com/forums/?module=Thread&threadID=756469&start=0
+
+Question 2.4.1:
+>> I believe you need a section in ADS to explain how it works, how to replace screen scraping easily etc.
+
+Nothing more required, just need to replace of DataAccess Impl with custom screening scaping implementatin via Spring IoC.  
+
+fixed. see ADS  1.3.20	Pluggable Screen Scrapping implementation
+
+Question 2.5.1:
+
+>>different fonts are used in the section
+you need to detail what impact has this on performance. 
+
+fixed.  IMO  this is suffice "However, it is expected that all license sites are not expected to display large HTML content. So performance will not be affected"
+
+Please check ADS 1.3.15	Performance
+
+ Question 3.1.2:
+
+>>still the same:      OptometryLicenseService,      MedicalPracticeLicenseService,      PharmacyLicenseService 
+
+fixed. now it will start from 1 to 3.
+
+Question 3.2.1:
+>>WHY DO STATE "FIXED" IN YOUR IMPL NOTES WHEN IN 50% CASES IT IS NOT FIXED?!
+
+Sorry, i remember i actually fixed it. i didn't know why it didn't save. fixed it now.
+
+
+Question 3.3.2:
+
+>>must be specific for each assembly (dependent on what functionality an assembly implements) 
+
+fixed. uuchhh missed in one aseembly spec. fixed it now.
+
+Question 3.3.3:
+fixed. sorry 
+
+it should be Optometry, MedicalPractice and Pharmacy Services Assembly.doc
+
+see 2.1. Main Requirement section
+
+

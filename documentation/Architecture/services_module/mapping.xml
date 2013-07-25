@@ -1,0 +1,962 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+    version="1.0">
+    <description>Screening Protal Entities</description>
+    <package>gov.medicare.entities</package>
+
+    <entity class="gov.medicare.entities.Role" name="Role">
+        <table name="Role"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="role_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.RiskLevel" name="RiskLevel">
+        <table name="RiskLevel"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="risk_level_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.RequestType" name="RequestType">
+        <table name="RequestType"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="request_type_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.RequiredFieldType" name="RequiredFieldType">
+        <table name="RequiredFieldType"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="required_field_type_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.RequiredField" name="RequiredField">
+        <table name="RequiredField"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="required_field_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+		<many-to-one name="type" target-entity="RequiredFieldType" >
+                 <join-column name="required_field_type_id" />
+            </many-to-one>
+        </attributes>
+    </entity>
+
+
+    <entity class="gov.medicare.entities.UserStatus" name="UserStatus">
+        <table name="UserStatus"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="user_status_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.EnrollmentStatus" name="EnrollmentStatus">
+        <table name="EnrollmentStatus"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="enrollment_status_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.NotificationType" name="NotificationType">
+        <table name="NotificationType"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="notification_type_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.TribalCode" name="TribalCode">
+        <table name="TribalCode"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="tribal_code_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.CategoryService" name="CategoryService">
+        <table name="CategoryService"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="category_service_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.MajorProgram" name="MajorProgram">
+        <table name="MajorProgram"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="major_program_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.FileFormat" name="FileFormat">
+        <table name="FileFormat"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="file_format_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.SpecialtyType" name="SpecialtyType">
+        <table name="SpecialtyType"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="specialty_type_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.LicenseType" name="LicenseType">
+        <table name="LicenseType"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="license_type_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.PermitType" name="PermitType">
+        <table name="PermitType"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="permit_type_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.LicenseLevel" name="LicenseLevel">
+        <table name="LicenseLevel"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="license_level_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.ExclusionType" name="ExclusionType">
+        <table name="ExclusionType"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="exclusion_type_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.ComplaintType" name="ComplaintType">
+        <table name="ComplaintType"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="complaint_type_id" />
+            </id>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <entity class="gov.medicare.entities.AuditRecord" name="AuditRecord">
+        <table name="AuditRecord"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="audit_record_id" />
+            </id>
+            <basic name="username">
+                 <column name="username" length="45" />
+            </basic>
+            <basic name="date">
+                 <column name="date" />
+            </basic>
+            <basic name="ipaddress">
+                 <column name="ipaddress" length="45" />
+            </basic>
+            <basic name="oldData">
+                 <column name="old_data" length="2048" />
+            </basic>
+            <basic name="newData">
+                 <column name="new_data" length="2048" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.HelpItem" name="HelpItem">
+        <table name="HelpItem"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="help_item_id" />
+            </id>
+            <basic name="title">
+                 <column name="Title" length="45" />
+            </basic>
+            <basic name="description">
+                 <column name="Description" length="2048" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.Appeal" name="Appeal">
+        <table name="Appeal"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="appeal_id" />
+            </id>
+            <basic name="createdBy.username">
+                 <column name="CreatedBy" length="45" />
+            </basic>
+            <basic name="createTime">
+                 <column name="CreateTime" />
+            </basic>
+            <basic name="modifiedBy.username">
+                 <column name="ModifiedBy" length="45" />
+            </basic>
+            <basic name="modifiedTime">
+                 <column name="ModifiedTime" />
+            </basic>
+            <basic name="description">
+                 <column name="description" length="2048" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.UserPermission" name="UserPermission">
+        <table name="UserPermission"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="user_permission_id" />
+            </id>
+            <basic name="action">
+                 <column name="action" length="45" />
+            </basic>
+            <basic name="permission">
+                 <column name="permission" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.Speciality" name="Speciality">
+        <table name="Speciality"/>
+        <attributes>
+            <id name="id">
+                	<generated-value strategy="AUTO" />
+		    	<column name="speciality_id" />
+            </id>
+            <basic name="name">
+                 	<column name="name" length="45" />
+            </basic>
+            <basic name="code">
+			<column name="code" />
+            </basic>
+            <many-to-one name="type" target-entity="SpecialtyType" >
+                 <join-column name="speciality_type_id" />
+            </many-to-one>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.Enrollment" name="Enrollment">
+        <table name="Enrollment"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="enrollment_id" />
+            </id>
+            <basic name="createdBy.username">
+                 <column name="CreatedBy" length="45" />
+            </basic>
+            <basic name="createTime">
+                 <column name="CreateTime" />
+            </basic>
+            <basic name="modifiedBy.username">
+                 <column name="ModifiedBy" length="45" />
+            </basic>
+            <basic name="modifiedTime">
+                 <column name="ModifiedTime" />
+            </basic>
+            <many-to-one name="status" target-entity="EnrollmentStatus" >
+                 <join-column name="enrollment_status_id" />
+            </many-to-one>
+            <basic name="startDate">
+                 <column name="start_date" />
+            </basic>
+            <basic name="expireDate">
+                 <column name="end_date" />
+            </basic>
+            <many-to-one name="requestType" target-entity="RequestType" >
+                 <join-column name="request_type_id" />
+            </many-to-one>
+            <many-to-one name="user" target-entity="User" >
+                 <join-column name="user_id" />
+            </many-to-one>
+            <one-to-one name="appeal" target-entity="Appeal" >
+                 <join-column name="appeal_id" />
+            </one-to-one>
+            <basic name="denialReason">
+                 <column name="denial_reason" length="1024" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.Address" name="Address">
+        <table name="Address"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="address_id" />
+            </id>
+            <basic name="createdBy.username">
+                 <column name="CreatedBy" length="45" />
+            </basic>
+            <basic name="createTime">
+                 <column name="CreateTime" />
+            </basic>
+            <basic name="modifiedBy.username">
+                 <column name="ModifiedBy" length="45" />
+            </basic>
+            <basic name="modifiedTime">
+                 <column name="ModifiedTime" />
+            </basic>
+            <basic name="location">
+                 <column name="location" length="45" />
+            </basic>
+            <basic name="city">
+                 <column name="city" length="45" />
+            </basic>
+            <basic name="state">
+                 <column name="state" length="45" />
+            </basic>
+            <basic name="zipcode">
+                 <column name="zipcode" length="45" />
+            </basic>
+            <basic name="county">
+                 <column name="county" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.ScreeningSchedule" name="ScreeningSchedule">
+        <table name="ScreeningSchedule"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="screening_schedule_id" />
+            </id>
+            <basic name="upcomingScreeningDate">
+                 <column name="upcoming_screening_date" />
+            </basic>
+            <basic name="interval">
+                 <column name="interval" />
+            </basic>
+            <basic name="intervalType">
+                 <column name="interval_type" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+
+    <entity class="gov.medicare.entities.ProviderStatement" name="ProviderStatement">
+        <table name="ProviderStatement"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="ProviderStatementId" />
+            </id>
+            <basic name="createdBy.username">
+                 <column name="CreatedBy" length="45" />
+            </basic>
+            <basic name="createTime">
+                 <column name="CreateTime" />
+            </basic>
+            <basic name="modifiedBy.username">
+                 <column name="ModifiedBy" length="45" />
+            </basic>
+            <basic name="modifiedTime">
+                 <column name="ModifiedTime" />
+            </basic>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+            <basic name="title">
+                 <column name="title" length="45" />
+            </basic>
+            <basic name="signature">
+                 <lob />
+            </basic>
+            <basic name="date">
+                 <column name="date" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.GroupAffiliation" name="GroupAffiliation">
+        <table name="GroupAffiliation"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="GroupAffiliationId" />
+            </id>
+            <basic name="createdBy.username">
+                 <column name="CreatedBy" length="45" />
+            </basic>
+            <basic name="createTime">
+                 <column name="CreateTime" />
+            </basic>
+            <basic name="modifiedBy.username">
+                 <column name="ModifiedBy" length="45" />
+            </basic>
+            <basic name="modifiedTime">
+                 <column name="ModifiedTime" />
+            </basic>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+            <basic name="groupNPI">
+                 <column name="groupNPI" length="45" />
+            </basic>
+		<many-to-one name="address" target-entity="Address" >
+                 <join-column name="address_id" />
+            </many-to-one>
+        </attributes>
+    </entity>
+
+
+    <entity class="gov.medicare.entities.License" name="License">
+        <table name="License"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="LicenseId" />
+            </id>
+            <basic name="description">
+                 <column name="description" length="45" />
+            </basic>
+            <basic name="licenseNumber">
+                 <column name="license_number" length="45" />
+            </basic>
+            <basic name="originalIssueDate">
+                 <column name="original_issue_date"  />
+            </basic>
+            <basic name="renewalEndDate">
+                 <column name="renewal_end_date"  />
+            </basic>
+            <basic name="issuingUSState">
+                 <column name="issuing_us_state" length="2" />
+            </basic>
+
+		<many-to-one name="type" target-entity="LicenseType" >
+                 <join-column name="license_type_id" />
+            </many-to-one>
+            <basic name="permitNumber">
+                 <column name="permit_number" />
+            </basic>
+            <basic name="password">
+                 <column name="password" length="45" />
+            </basic>
+            <basic name="statusDate">
+                 <column name="status_date"  />
+            </basic>
+            <basic name="discipline">
+                 <column name="discipline" />
+            </basic>
+            <basic name="correctiveAction">
+                 <column name="corrective_action" />
+            </basic>
+		<many-to-one name="level" target-entity="LicenseLevel" >
+                 <join-column name="license_level_id" />
+            </many-to-one>
+            <basic name="expireDate">
+                 <column name="IssuingUSState" />
+            </basic>
+		<many-to-one name="profile" target-entity="ProviderProfile" >
+                 <join-column name="provider_profile_id" />
+            </many-to-one>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.PrivatePractice" name="PrivatePractice">
+        <table name="PrivatePractice"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="ProviderStatementId" />
+            </id>
+            <basic name="createdBy.username">
+                 <column name="CreatedBy" length="45" />
+            </basic>
+            <basic name="createTime">
+                 <column name="CreateTime" />
+            </basic>
+            <basic name="modifiedBy.username">
+                 <column name="ModifiedBy" length="45" />
+            </basic>
+            <basic name="modifiedTime">
+                 <column name="ModifiedTime" />
+            </basic>
+            <basic name="name">
+                 <column name="name" length="45" />
+            </basic>
+            <basic name="groupNPI">
+                 <column name="groupNPI" length="45" />
+            </basic>
+		<many-to-one name="officeAddress" target-entity="Address" >
+                 <join-column name="officeAddressId" />
+            </many-to-one>
+            <basic name="officePhoneNumber">
+                 <column name="officePhoneNumber" length="45" />
+            </basic>
+            <basic name="officeFaxNumber">
+                 <column name="officeFaxNumber" length="45" />
+            </basic>
+            <basic name="federalTaxId">
+                 <column name="federalTaxId" length="45" />
+            </basic>
+            <basic name="legalName">
+                 <column name="legalName" length="45" />
+            </basic>
+            <basic name="minnesotaTaxId">
+                 <column name="minnesotaTaxId" length="45" />
+            </basic>
+            <basic name="fiscalYearEnd">
+                 <column name="fiscalYearEnd" length="45" />
+            </basic>
+            <basic name="fiscalYearEnd">
+                 <column name="fiscalYearEnd" length="45" />
+            </basic>
+            <basic name="practiceState">
+                 <column name="practiceState" length="45" />
+            </basic>
+            <basic name="practiceZip">
+                 <column name="name" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+
+    <entity class="gov.medicare.entities.User" name="User">
+        <table name="User"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="user_id" />
+            </id>
+            <basic name="username">
+                 <column name="username" length="45" />
+            </basic>
+            <basic name="email">
+                 <column name="email" length="45" />
+            </basic>
+            <basic name="firstName">
+                 <column name="first_name" length="45" />
+            </basic>
+            <basic name="lastName">
+                 <column name="last_name" length="45" />
+            </basic>
+            <basic name="middleName">
+                 <column name="middle_name" length="45" />
+            </basic>
+		<many-to-one name="profile" target-entity="ProviderProfile" >
+                 <join-column name="provider_profile_id" />
+            </many-to-one>
+		<many-to-one name="role" target-entity="Role" >
+                 <join-column name="role_id" />
+            </many-to-one>
+		<many-to-one name="status" target-entity="UserStatus" >
+                 <join-column name="status_id" />
+            </many-to-one>
+		<one-to-many name="permissions" target-entity="UserPermission" >
+                 <join-column name="user_id" />
+            </one-to-many>
+        </attributes>
+    </entity>
+
+
+
+
+
+
+
+
+    <entity class="gov.medicare.entities.ProviderType" name="ProviderType">
+        <table name="ProviderType"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="provider_type_id" />
+            </id>
+      	<basic name="hasPrivateOffice">
+                 <column name="hasPrivateOffice" />
+            </basic>
+      	<basic name="employedAndOrContracted">
+                 <column name="employedAndOrContracted" />
+            </basic>
+      	<basic name="hasAdditionalPractice">
+                 <column name="hasAdditionalPractice" />
+            </basic>
+      	<basic name="paymentRequired">
+                 <column name="paymentRequired" />
+            </basic>
+	    	<one-to-many name="requiredFields" target-entity="RequiredField" >
+                 	<join-table name="ProviderAffiliationsXref" >
+                 		<join-column name="provider_type_id" />
+				<inverse-join-column name="required_field_id" />
+                 	</join-table>
+            </one-to-many>
+        </attributes>
+    </entity>
+
+
+
+
+
+    <entity class="gov.medicare.entities.ProviderProfile" name="ProviderProfile">
+        <table name="ProviderProfile"/>
+        <attributes>
+            <inheritance strategy="JOINED" />
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="ProviderProfileId" />
+            </id>
+            <basic name="createdBy.username">
+                 <column name="CreatedBy" length="45" />
+            </basic>
+            <basic name="createTime">
+                 <column name="CreateTime" />
+            </basic>
+            <basic name="modifiedBy.username">
+                 <column name="ModifiedBy" length="45" />
+            </basic>
+            <basic name="modifiedTime">
+                 <column name="ModifiedTime" />
+            </basic>
+		<many-to-one name="type" target-entity="ProviderType" >
+                 <join-column name="provider_type_id" />
+            </many-to-one>
+      	<basic name="ssn">
+                 <column name="ssn" length="45" />
+            </basic>
+      	<basic name="dob">
+                 <column name="dob" />
+            </basic>
+      	<basic name="requestEffectiveDate">
+                 <column name="requestEffectiveDate" />
+            </basic>
+      	<basic name="degree">
+                 <column name="degree" length="45" />
+            </basic>
+	    	<one-to-many name="specialties" target-entity="Specialty" >
+                 <join-column name="specialty_id" />
+            </one-to-many>
+      	<basic name="hasPrivateOffice">
+                 <column name="hasPrivateOffice" />
+            </basic>
+      	<basic name="employedAndOrContracted">
+                 <column name="employedAndOrContracted" />
+            </basic>
+	    	<one-to-one name="privatePractice" target-entity="PrivatePractice" >
+                 <join-column name="private_practice_id" />
+            </one-to-one>
+		<many-to-one name="altAddress1" target-entity="Address" >
+                 <join-column name="altAddress1" />
+            </many-to-one>
+		<many-to-one name="altAddress2" target-entity="Address" >
+                 <join-column name="altAddress2" />
+            </many-to-one>
+      	<basic name="remittanceAdviceEmailPreference">
+                 <column name="remittanceAdviceEmailPreference" length="45" />
+            </basic>
+      	<basic name="reimbursementCheckEmailPreference">
+                 <column name="reimbursementCheckEmailPreference" length="45" />
+            </basic>
+      	<basic name="providerCorrespondenceEmailPreference">
+                 <column name="providerCorrespondenceEmailPreference" length="45" />
+            </basic>
+      	<basic name="authorizationRequestNoticeEmailPreference">
+                 <column name="authorizationRequestNoticeEmailPreference" length="45" />
+            </basic>
+      	<basic name="enrollmentStatusEmailPreference">
+                 <column name="enrollmentStatusEmailPreference" length="45" />
+            </basic>
+      	<basic name="remittanceSequenceOrder">
+                 <column name="remittanceSequenceOrder" length="45" />
+            </basic>
+	    	<one-to-many name="affiliations" target-entity="GroupAffiliation" >
+                 	<join-table name="ProviderAffiliationsXref" >
+                 		<join-column name="provider_id" />
+				<inverse-join-column name="affiliation_id" />
+                 	</join-table>
+            </one-to-many>
+      	<basic name="hasConvictedOfCriminalOffense">
+                 <column name="hasConvictedOfCriminalOffense" />
+            </basic>
+      	<basic name="hasCivilMoneyPenalty">
+                 <column name="hasCivilMoneyPenalty" />
+            </basic>
+      	<basic name="hasTerminated">
+                 <column name="hasTerminated" />
+            </basic>
+      	<basic name="contactName">
+                 <column name="contactName" length="45" />
+            </basic>
+      	<basic name="contactPhoneNumber">
+                 <column name="contactPhoneNumber" length="45" />
+            </basic>
+      	<basic name="contactFaxNumber">
+                 <column name="contactFaxNumber" length="45" />
+            </basic>
+      	<basic name="contactEmail">
+                 <column name="contactEmail" length="45" />
+            </basic>
+	    	<one-to-one name="providerStatement" target-entity="ProviderStatement" >
+                 <join-column name="providerStatementId" />
+            </one-to-one>
+	    	<one-to-one name="currentEnrollment" target-entity="Enrolment" >
+                 <join-column name="currentEnrollmentId" />
+            </one-to-one>
+		<many-to-one name="previousEnrollment" target-entity="Enrolment" >
+                 <join-column name="enrollment_id" />
+            </many-to-one>
+      	<basic name="fingerPrintsScannedFile">
+                 <column name="fingerPrintsScannedFile" length="45" />
+            </basic>
+      	<basic name="scannedEFTForm">
+                 <column name="scannedEFTForm" length="45" />
+            </basic>
+      	<basic name="enrolmentFeeRequired">
+                 <column name="enrolmentFeeRequired" />
+            </basic>
+      	<basic name="enrollmentFee">
+                 <column name="enrollmentFee" />
+            </basic>
+      	<basic name="enrollmentFeePaid">
+                 <column name="enrollmentFeePaid" />
+            </basic>
+      	<basic name="npi">
+                 <column name="npi" length="45" />
+            </basic>
+      	<basic name="providerAgreementFile">
+                 <column name="providerAgreementFile" length="45" />
+            </basic>
+		<many-to-one name="majorProgram" target-entity="MajorProgram" >
+                 <join-column name="majorProgramId" />
+            </many-to-one>
+		<many-to-one name="catetory" target-entity="CategoryService" >
+                 <join-column name="CategoryServiceId" />
+            </many-to-one>
+	    	<one-to-many name="licenses" target-entity="License" >
+                 <join-column name="provider_profile_id" />
+            </one-to-many>
+      	<basic name="primaryTaxonomy">
+                 <column name="primary_taxonomy" length="45" />
+            </basic>
+      	<basic name="prefix">
+                 <column name="prefix" length="45" />
+            </basic>
+      	<basic name="suffix">
+                 <column name="suffix" length="45" />
+            </basic>
+      	<basic name="credentials">
+                 <column name="credentials" length="45" />
+            </basic>
+      	<basic name="otherPrefix">
+                 <column name="other_prefix" length="45" />
+            </basic>
+      	<basic name="otherSuffix">
+                 <column name="other_suffix" length="45" />
+            </basic>
+      	<basic name="otherFirstName">
+                 <column name="other_first_name" length="45" />
+            </basic>
+      	<basic name="otherMiddleName">
+                 <column name="other_middle_name" length="45" />
+            </basic>
+      	<basic name="otherLastName">
+                 <column name="other_last_name" length="45" />
+            </basic>
+      	<basic name="hasPrivateOffice">
+                 <column name="has_private_office" />
+            </basic>
+      	<basic name="zipLumpSum">
+                 <column name="zip_lump_sum" length="45" />
+            </basic>
+      	<basic name="dateOfDeath">
+                 <column name="date_of_death" />
+            </basic>
+		<many-to-one name="complaintType" target-entity="ComplaintType" >
+                 <join-column name="complaint_type_id" />
+            </many-to-one>
+		<many-to-one name="catetory" target-entity="ExclusionType" >
+                 <join-column name="exclusion_type_id" />
+            </many-to-one>
+      	<basic name="ssnVerified">
+                 <column name="ssn_verified" />
+            </basic>
+      	<basic name="employerId">
+                 <column name="employer_id" length="45" />
+            </basic>
+      	<basic name="alias">
+                 <column name="alias" length="45" />
+            </basic>
+      	<basic name="actionDateTo">
+                 <column name="action_date_to" />
+            </basic>
+      	<basic name="terminationDateFrom">
+                 <column name="termination_date_from" />
+            </basic>
+      	<basic name="actionDateFrom">
+                 <column name="action_date_from" />
+            </basic>
+      	<basic name="terminationDateTo">
+                 <column name="termination_date_to" />
+            </basic>
+      	<basic name="createDateFrom">
+                 <column name="create_date_from" />
+            </basic>
+      	<basic name="createDateTo">
+                 <column name="create_date_to" />
+            </basic>
+      	<basic name="modifyDateFrom">
+                 <column name="modify_dateFrom" />
+            </basic>
+      	<basic name="modifyDateTo">
+                 <column name="modify_dateTo" />
+            </basic>
+      	<basic name="reciprocalCode">
+                 <column name="reciprocal_code" length="45" />
+            </basic>
+      	<basic name="procurementCode">
+                 <column name="procurement_code" length="45" />
+            </basic>
+      	<basic name="agency">
+                 <column name="agency" length="45" />
+            </basic>
+      	<basic name="duns">
+                 <column name="duns" />
+            </basic>
+     	 	<basic name="cageCode">
+                 <column name="cage_code" length="45" />
+            </basic>
+      	<basic name="dba">
+                 <column name="dba" length="45" />
+            </basic>
+      	<basic name="sex">
+                 <column name="sex" length="45" />
+            </basic>
+      	<basic name="name">
+                 <column name="sex" length="45" />
+            </basic>
+		<many-to-one name="risk" target-entity="RiskLevel" >
+                 <join-column name="risk_level_id" />
+            </many-to-one>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.ServiceAgent" name="ServiceAgent">
+        <table name="ServiceAgent"/>
+    </entity>
+
+
+</entity-mappings>

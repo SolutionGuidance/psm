@@ -1,0 +1,52 @@
+Question 1.1.1:
+nikolay83:
+R1>>External 3rd party search engines to verify applicant submitted credentials (identity, licenses, etc.)
+
+Fixed. updated 
+
+6.1.4	NNPES 
+
+added "NNPESService.createAccountForIndividual is used to create account for individual user.
+
+NNPESService.createAccountForGroup is used to create account for group user."
+
+added corresponding API methods to TCUML
+
+6.1.3	Professional Licensing Board
+
+BBHTLicenseService -- added methods +loginAsStaff(username:String,password:String):void, +loginAsLicenseHolder():void etc..
+
+
+Board of Behavioral Health and Therapy (bbht):http://www.bbht.state.mn.us):
+defined login methods check BBHTLicenseService
+
+
+Minnesota Board of Nursing: http://www.nursingboard.state.mn.us:
+
+defined loginAsApplicant, loginLicense, loginAsPublicUser, loginAsSchool and loginAsBoardMember
+
+Dentistry:http://www.dentalboard.state.mn.us
+
+login url: http://www.dieteticsnutritionboard.state.mn.us/Default.aspx?tabid=343&ctl=Login
+
+updated SDS
+
+Marriage and Family Therapy:
+
+updated SDS https://www.hlb.state.mn.us/SBLMOnline/login.aspx for login 
+
+
+Medical Practice: 
+
+updated PhysicianService and PhysicianAssistantService services and are responsible for managing license verification and user login
+
+updated SDS tool
+
+
+
+Optometry:
+fixed added login method to OptometryLicenseService
+
+updated SDS as "Login of user can be done by logging at 
+http://www.optometryboard.state.mn.us/Default.aspx?tabid=309&ctl=Login
+"

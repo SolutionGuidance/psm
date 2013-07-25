@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+    version="1.0">
+    <description>DMF PECOS and NETStudy</description>
+    <package>gov.medicare.entities</package>
+
+    <entity class="gov.medicare.entities.DeathMasterRecord" name="DeathMasterRecord">
+        <table name="DEATH_MASTER_RECORD"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="ID" />
+            </id>
+            <basic name="ssn">
+                 <column name="SSN" />
+            </basic>
+            <basic name="lastName">
+                 <column name="LAST_NAME" />
+            </basic>
+            <basic name="nameSuffix">
+                 <column name="NAME_SUFFIX" />
+            </basic>
+            <basic name="firstName">
+                 <column name="FIRST_NAME" />
+            </basic>
+            <basic name="middleName">
+                 <column name="MIDDLE_NAME" />
+            </basic>
+            <basic name="vpCode">
+                 <column name="VP_CODE" />
+            </basic>
+            <basic name="dateOfDeath">
+                 <column name="DATE_OF_DEATH" />
+            </basic>
+            <basic name="dateOfBirth">
+                 <column name="DATE_OF_BIRTH" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.PECOSRecord" name="PECOSRecord">
+        <table name="PECOS_RECORD"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="ID" />
+            </id>
+            <basic name="npi">
+                 <column name="NPI" />
+            </basic>
+            <basic name="lastName">
+                 <column name="LAST_NAME" />
+            </basic>
+            <basic name="firstName">
+                 <column name="FIRST_NAME" />
+            </basic>
+        </attributes>
+    </entity>
+
+</entity-mappings>

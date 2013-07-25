@@ -1,0 +1,469 @@
+
+<HTML>
+	<HEAD>
+		<LINK href="../portal.css" type="text/css" rel="stylesheet"></LINK>
+			
+		</HEAD>
+	<body bottomMargin="0" leftMargin="0" topMargin="0" rightMargin="0" marginwidth="0" marginheight="0">
+		<form name="Form1" method="post" action="ServiceForm.aspx?svid=21&amp;mid=164" id="Form1" AUTOCOMPLETE="Off">
+<input type="hidden" name="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" value="dDw4OTQ4MzA2NTI7dDw7bDxpPDM+Oz47bDx0PHA8bDxBVVRPQ09NUExFVEU7PjtsPE9mZjs+PjtsPGk8MT47aTw1Pjs+O2w8dDw7bDxpPDc+O2k8MTE+O2k8MTU+O2k8MTc+O2k8MTk+O2k8MjM+O2k8MzE+Oz47bDx0PHA8cDxsPFRleHQ7PjtsPFN1bmRheSwgQXVndXN0IDEyLCAyMDEyOz4+Oz47Oz47dDxwPHA8bDxJbWFnZVVybDtOYXZpZ2F0ZVVybDs+O2w8fi9pbWFnZXMvQk9TV19Mb2dvLmdpZjtodHRwOi8vd3d3LnNvY2lhbHdvcmsuc3RhdGUubW4udXM7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7TmF2aWdhdGVVcmw7PjtsPA0KCQkJCQkJCVw8c3BhbiBjbGFzcz0iT3RoZXJUYWJzIlw+SG9tZVw8L3NwYW5cPg0KCQkJCQkJO2h0dHA6Ly93d3cuc29jaWFsd29yay5zdGF0ZS5tbi51czs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDtOYXZpZ2F0ZVVybDs+O2w8DQoJCQkJCQkJXDxzcGFuIGNsYXNzPSJPdGhlclRhYnMiXD5WZXJpZnkgYSBMaWNlbnNlIG9yIFNlYXJjaCBmb3IgYSBMaWNlbnNpbmcgU3VwZXJ2aXNvclw8L3NwYW5cPg0KCQkJCQkJO34vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9zdmlkPTIxJm1pZD0xNjQ7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7TmF2aWdhdGVVcmw7PjtsPA0KCQkJCQkJCVw8c3BhbiBjbGFzcz0iT3RoZXJUYWJzIlw+Qm9hcmQgQWN0aW9uIFNlYXJjaFw8L3NwYW5cPg0KCQkJCQkJO34vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9zdmlkPTIzJm1pZD0xNjQ7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPFw8QlJcPiZuYnNwXDsmbmJzcFw7VmVyaWZ5IGEgTGljZW5zZSBvciBTZWFyY2ggZm9yIGEgTGljZW5zaW5nIFN1cGVydmlzb3I7Pj47Pjs7Pjt0PHA8cDxsPEltYWdlVXJsOz47bDxpbWFnZXMvYmFubmVyX2VudjIuanBnICAgICAgICAgICAgICAgICAgICAgICAgICAgIDs+Pjs+Ozs+Oz4+O3Q8O2w8aTwwPjtpPDM+Oz47bDx0PDtsPGk8MD47PjtsPHQ8O2w8aTwwPjs+O2w8dDxwPHA8bDxUZXh0Oz47bDwoMSkgVmVyaWZ5IGEgTGljZW5zZTs+Pjs+Ozs+Oz4+Oz4+O3Q8O2w8aTwwPjs+O2w8dDw7bDxpPDE+Oz47bDx0PDtsPGk8MD47PjtsPHQ8O2w8aTwzMj47aTwzOD47aTw0MD47PjtsPHQ8cDxwPGw8Q2hlY2tlZDs+O2w8bzxmPjs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8WW91ciBzZWFyY2ggaGFzIHJlc3VsdGVkIGluIDMzMyBtYXRjaGVzITs+Pjs+Ozs+O3Q8QDA8cDxwPGw8VmlzaWJsZTtQYWdlQ291bnQ7XyFEYXRhU291cmNlSXRlbUNvdW50O18hSXRlbUNvdW50O0N1cnJlbnRQYWdlSW5kZXg7RGF0YUtleXM7PjtsPG88dD47aTwxNz47aTwzMzM+O2k8MjA+O2k8MD47bDw+Oz4+Oz47Ozs7Ozs7Ozs7PjtsPGk8MD47PjtsPHQ8O2w8aTwyPjtpPDM+O2k8ND47aTw1PjtpPDY+O2k8Nz47aTw4PjtpPDk+O2k8MTA+O2k8MTE+O2k8MTI+O2k8MTM+O2k8MTQ+O2k8MTU+O2k8MTY+O2k8MTc+O2k8MTg+O2k8MTk+O2k8MjA+O2k8MjE+Oz47bDx0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0PjtpPDU+O2k8Nj47aTw3Pjs+O2w8dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTExNzM4JmxuPTExNzY4O1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47dDxwPHA8bDxUZXh0Oz47bDxKb2huc29uLCBBZG9scGh1cyA7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDExNzY4Oz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxMSUNTVzs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8QnJvb2tseW4gUGFyazs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8SGVubmVwaW47Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPEV4cGlyZWQ7Pj47Pjs7Pjt0PDtsPGk8MT47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7VG9vbFRpcDs+O2w8fi9EZXNrdG9wTW9kdWxlcy9TZXJ2aWNlRm9ybS5hc3B4P21pZD0xNjQmc3ZpZD0yMSZzdGVwPTImaWQ9MTE3MzgmbG49MTE3Njg7VmlldyBMaWNlbnNlIERldGFpbHM7Pj47Pjs7Pjs+Pjs+Pjt0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0PjtpPDU+O2k8Nj47aTw3Pjs+O2w8dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTI2MzIzJmxuPTIxMjE2O1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47dDxwPHA8bDxUZXh0Oz47bDxKb2huc29uLCBBZHJpZW5uZSBSZW5hZTs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8MjEyMTY7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPExHU1c7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPFNhaW50IFBhdWw7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPFJhbXNleTs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8Q3VycmVudDs+Pjs+Ozs+O3Q8O2w8aTwxPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDtUb29sVGlwOz47bDx+L0Rlc2t0b3BNb2R1bGVzL1NlcnZpY2VGb3JtLmFzcHg/bWlkPTE2NCZzdmlkPTIxJnN0ZXA9MiZpZD0yNjMyMyZsbj0yMTIxNjtWaWV3IExpY2Vuc2UgRGV0YWlsczs+Pjs+Ozs+Oz4+Oz4+O3Q8O2w8aTwwPjtpPDE+O2k8Mj47aTwzPjtpPDQ+O2k8NT47aTw2PjtpPDc+Oz47bDx0PDtsPGk8MT47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7VG9vbFRpcDs+O2w8fi9EZXNrdG9wTW9kdWxlcy9TZXJ2aWNlRm9ybS5hc3B4P21pZD0xNjQmc3ZpZD0yMSZzdGVwPTImaWQ9NTMzJmxuPTUzMDtWaWV3IExpY2Vuc2UgRGV0YWlsczs+Pjs+Ozs+Oz4+O3Q8cDxwPGw8VGV4dDs+O2w8Sm9obnNvbiwgQWxhbiBSYWxwaDs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8NTMwOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxMSUNTVzs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8V2lsbG1hcjs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8S2FuZGl5b2hpOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxDdXJyZW50Oz4+Oz47Oz47dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTUzMyZsbj01MzA7VmlldyBMaWNlbnNlIERldGFpbHM7Pj47Pjs7Pjs+Pjs+Pjt0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0PjtpPDU+O2k8Nj47aTw3Pjs+O2w8dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTE5MjQzJmxuPTE2NDI4O1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47dDxwPHA8bDxUZXh0Oz47bDxKb2huc29uLCBBbGljaWEgQW5uOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDwxNjQyODs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8TFNXOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxXZXN0IFNhaW50IFBhdWw7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPERha290YTs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8Q3VycmVudDs+Pjs+Ozs+O3Q8O2w8aTwxPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDtUb29sVGlwOz47bDx+L0Rlc2t0b3BNb2R1bGVzL1NlcnZpY2VGb3JtLmFzcHg/bWlkPTE2NCZzdmlkPTIxJnN0ZXA9MiZpZD0xOTI0MyZsbj0xNjQyODtWaWV3IExpY2Vuc2UgRGV0YWlsczs+Pjs+Ozs+Oz4+Oz4+O3Q8O2w8aTwwPjtpPDE+O2k8Mj47aTwzPjtpPDQ+O2k8NT47aTw2PjtpPDc+Oz47bDx0PDtsPGk8MT47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7VG9vbFRpcDs+O2w8fi9EZXNrdG9wTW9kdWxlcy9TZXJ2aWNlRm9ybS5hc3B4P21pZD0xNjQmc3ZpZD0yMSZzdGVwPTImaWQ9MjM3MDcmbG49MTk2Mzg7VmlldyBMaWNlbnNlIERldGFpbHM7Pj47Pjs7Pjs+Pjt0PHA8cDxsPFRleHQ7PjtsPEpvaG5zb24sIEFsbGlzb24gSmVuYTs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8MTk2Mzg7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPExTVzs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8Um9jaGVzdGVyOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxPbG1zdGVkOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxDdXJyZW50Oz4+Oz47Oz47dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTIzNzA3JmxuPTE5NjM4O1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47Pj47dDw7bDxpPDA+O2k8MT47aTwyPjtpPDM+O2k8ND47aTw1PjtpPDY+O2k8Nz47PjtsPHQ8O2w8aTwxPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDtUb29sVGlwOz47bDx+L0Rlc2t0b3BNb2R1bGVzL1NlcnZpY2VGb3JtLmFzcHg/bWlkPTE2NCZzdmlkPTIxJnN0ZXA9MiZpZD0yNDg1MSZsbj0xOTgyNTtWaWV3IExpY2Vuc2UgRGV0YWlsczs+Pjs+Ozs+Oz4+O3Q8cDxwPGw8VGV4dDs+O2w8Sm9obnNvbiwgQWxsaXNvbiBMb3Vpc2U7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDE5ODI1Oz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxMU1c7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPFNhaW50IExvdWlzIFBhcms7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPEhlbm5lcGluOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxDdXJyZW50Oz4+Oz47Oz47dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTI0ODUxJmxuPTE5ODI1O1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47Pj47dDw7bDxpPDA+O2k8MT47aTwyPjtpPDM+O2k8ND47aTw1PjtpPDY+O2k8Nz47PjtsPHQ8O2w8aTwxPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDtUb29sVGlwOz47bDx+L0Rlc2t0b3BNb2R1bGVzL1NlcnZpY2VGb3JtLmFzcHg/bWlkPTE2NCZzdmlkPTIxJnN0ZXA9MiZpZD01NjcxJmxuPTU2Nzg7VmlldyBMaWNlbnNlIERldGFpbHM7Pj47Pjs7Pjs+Pjt0PHA8cDxsPFRleHQ7PjtsPEpvaG5zb24sIEFsdmluIFM7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDU2Nzg7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPExTVzs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8RmFyZ287Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPE5vbi1NaW5uZXNvdGE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPERlY2Vhc2VkOz4+Oz47Oz47dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTU2NzEmbG49NTY3ODtWaWV3IExpY2Vuc2UgRGV0YWlsczs+Pjs+Ozs+Oz4+Oz4+O3Q8O2w8aTwwPjtpPDE+O2k8Mj47aTwzPjtpPDQ+O2k8NT47aTw2PjtpPDc+Oz47bDx0PDtsPGk8MT47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7VG9vbFRpcDs+O2w8fi9EZXNrdG9wTW9kdWxlcy9TZXJ2aWNlRm9ybS5hc3B4P21pZD0xNjQmc3ZpZD0yMSZzdGVwPTImaWQ9MjYxNTgmbG49MjExOTM7VmlldyBMaWNlbnNlIERldGFpbHM7Pj47Pjs7Pjs+Pjt0PHA8cDxsPFRleHQ7PjtsPEpvaG5zb24sIEFtYmVyIExlZTs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8MjExOTM7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPExTVzs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8T3dhdG9ubmE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPFN0ZWVsZTs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8Q3VycmVudDs+Pjs+Ozs+O3Q8O2w8aTwxPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDtUb29sVGlwOz47bDx+L0Rlc2t0b3BNb2R1bGVzL1NlcnZpY2VGb3JtLmFzcHg/bWlkPTE2NCZzdmlkPTIxJnN0ZXA9MiZpZD0yNjE1OCZsbj0yMTE5MztWaWV3IExpY2Vuc2UgRGV0YWlsczs+Pjs+Ozs+Oz4+Oz4+O3Q8O2w8aTwwPjtpPDE+O2k8Mj47aTwzPjtpPDQ+O2k8NT47aTw2PjtpPDc+Oz47bDx0PDtsPGk8MT47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7VG9vbFRpcDs+O2w8fi9EZXNrdG9wTW9kdWxlcy9TZXJ2aWNlRm9ybS5hc3B4P21pZD0xNjQmc3ZpZD0yMSZzdGVwPTImaWQ9MTE0MDgmbG49MTE0Mzg7VmlldyBMaWNlbnNlIERldGFpbHM7Pj47Pjs7Pjs+Pjt0PHA8cDxsPFRleHQ7PjtsPEpvaG5zb24sIEFteSBCZXRoOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDwxMTQzODs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8TFNXOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxIYW1tb25kOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxOb24tTWlubmVzb3RhOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxFeHBpcmVkOz4+Oz47Oz47dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTExNDA4JmxuPTExNDM4O1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47Pj47dDw7bDxpPDA+O2k8MT47aTwyPjtpPDM+O2k8ND47aTw1PjtpPDY+O2k8Nz47PjtsPHQ8O2w8aTwxPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDtUb29sVGlwOz47bDx+L0Rlc2t0b3BNb2R1bGVzL1NlcnZpY2VGb3JtLmFzcHg/bWlkPTE2NCZzdmlkPTIxJnN0ZXA9MiZpZD0xMTM4MyZsbj0xMTQxMztWaWV3IExpY2Vuc2UgRGV0YWlsczs+Pjs+Ozs+Oz4+O3Q8cDxwPGw8VGV4dDs+O2w8Sm9obnNvbiwgQW15IEplYW47Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDExNDEzOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxMSUNTVzs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8V2hpdGUgQmVhciBMYWtlOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxSYW1zZXk7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPEN1cnJlbnQ7Pj47Pjs7Pjt0PDtsPGk8MT47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7VG9vbFRpcDs+O2w8fi9EZXNrdG9wTW9kdWxlcy9TZXJ2aWNlRm9ybS5hc3B4P21pZD0xNjQmc3ZpZD0yMSZzdGVwPTImaWQ9MTEzODMmbG49MTE0MTM7VmlldyBMaWNlbnNlIERldGFpbHM7Pj47Pjs7Pjs+Pjs+Pjt0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0PjtpPDU+O2k8Nj47aTw3Pjs+O2w8dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTE2OTEwJmxuPTE0NzI5O1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47dDxwPHA8bDxUZXh0Oz47bDxKb2huc29uLCBBbXkgSm87Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDE0NzI5Oz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxMU1c7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPE1vbnRpY2VsbG87Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPFdyaWdodDs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8SW5hY3RpdmU7Pj47Pjs7Pjt0PDtsPGk8MT47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7VG9vbFRpcDs+O2w8fi9EZXNrdG9wTW9kdWxlcy9TZXJ2aWNlRm9ybS5hc3B4P21pZD0xNjQmc3ZpZD0yMSZzdGVwPTImaWQ9MTY5MTAmbG49MTQ3Mjk7VmlldyBMaWNlbnNlIERldGFpbHM7Pj47Pjs7Pjs+Pjs+Pjt0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0PjtpPDU+O2k8Nj47aTw3Pjs+O2w8dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTIxMjU5JmxuPTE3NTgxO1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47dDxwPHA8bDxUZXh0Oz47bDxKb2huc29uLCBBbXkgSm87Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDE3NTgxOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxMSUNTVzs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8U2FpbnQgUGV0ZXI7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPE5pY29sbGV0Oz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxDdXJyZW50Oz4+Oz47Oz47dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTIxMjU5JmxuPTE3NTgxO1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47Pj47dDw7bDxpPDA+O2k8MT47aTwyPjtpPDM+O2k8ND47aTw1PjtpPDY+O2k8Nz47PjtsPHQ8O2w8aTwxPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDtUb29sVGlwOz47bDx+L0Rlc2t0b3BNb2R1bGVzL1NlcnZpY2VGb3JtLmFzcHg/bWlkPTE2NCZzdmlkPTIxJnN0ZXA9MiZpZD0xMDkwNSZsbj0xMDkzNDtWaWV3IExpY2Vuc2UgRGV0YWlsczs+Pjs+Ozs+Oz4+O3Q8cDxwPGw8VGV4dDs+O2w8Sm9obnNvbiwgQW15IE1hcmllOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDwxMDkzNDs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8TFNXOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxSb2NoZXN0ZXI7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPE9sbXN0ZWQ7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPEV4cGlyZWQ7Pj47Pjs7Pjt0PDtsPGk8MT47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7VG9vbFRpcDs+O2w8fi9EZXNrdG9wTW9kdWxlcy9TZXJ2aWNlRm9ybS5hc3B4P21pZD0xNjQmc3ZpZD0yMSZzdGVwPTImaWQ9MTA5MDUmbG49MTA5MzQ7VmlldyBMaWNlbnNlIERldGFpbHM7Pj47Pjs7Pjs+Pjs+Pjt0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0PjtpPDU+O2k8Nj47aTw3Pjs+O2w8dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTEyMDUyJmxuPTEyMDgyO1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47dDxwPHA8bDxUZXh0Oz47bDxKb2huc29uLCBBbmdlbGEgSm95Oz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDwxMjA4Mjs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8TFNXOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxGYWlybW9udDs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8TWFydGluOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxFeHBpcmVkOz4+Oz47Oz47dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTEyMDUyJmxuPTEyMDgyO1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47Pj47dDw7bDxpPDA+O2k8MT47aTwyPjtpPDM+O2k8ND47aTw1PjtpPDY+O2k8Nz47PjtsPHQ8O2w8aTwxPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDtUb29sVGlwOz47bDx+L0Rlc2t0b3BNb2R1bGVzL1NlcnZpY2VGb3JtLmFzcHg/bWlkPTE2NCZzdmlkPTIxJnN0ZXA9MiZpZD04MzQxJmxuPTgzNTI7VmlldyBMaWNlbnNlIERldGFpbHM7Pj47Pjs7Pjs+Pjt0PHA8cDxsPFRleHQ7PjtsPEpvaG5zb24sIEFubiBFYmVydHo7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDgzNTI7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPExTVzs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8V29vZGJ1cnk7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPFdhc2hpbmd0b247Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPEN1cnJlbnQ7Pj47Pjs7Pjt0PDtsPGk8MT47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7VG9vbFRpcDs+O2w8fi9EZXNrdG9wTW9kdWxlcy9TZXJ2aWNlRm9ybS5hc3B4P21pZD0xNjQmc3ZpZD0yMSZzdGVwPTImaWQ9ODM0MSZsbj04MzUyO1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47Pj47dDw7bDxpPDA+O2k8MT47aTwyPjtpPDM+O2k8ND47aTw1PjtpPDY+O2k8Nz47PjtsPHQ8O2w8aTwxPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDtUb29sVGlwOz47bDx+L0Rlc2t0b3BNb2R1bGVzL1NlcnZpY2VGb3JtLmFzcHg/bWlkPTE2NCZzdmlkPTIxJnN0ZXA9MiZpZD0yNjM1OCZsbj0yMTEyMjtWaWV3IExpY2Vuc2UgRGV0YWlsczs+Pjs+Ozs+Oz4+O3Q8cDxwPGw8VGV4dDs+O2w8Sm9obnNvbiwgQW5uYSBTaGtvbG5pazs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8MjExMjI7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPExHU1c7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPFNhaW50IFBhdWw7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPFJhbXNleTs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8Q3VycmVudDs+Pjs+Ozs+O3Q8O2w8aTwxPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDtUb29sVGlwOz47bDx+L0Rlc2t0b3BNb2R1bGVzL1NlcnZpY2VGb3JtLmFzcHg/bWlkPTE2NCZzdmlkPTIxJnN0ZXA9MiZpZD0yNjM1OCZsbj0yMTEyMjtWaWV3IExpY2Vuc2UgRGV0YWlsczs+Pjs+Ozs+Oz4+Oz4+O3Q8O2w8aTwwPjtpPDE+O2k8Mj47aTwzPjtpPDQ+O2k8NT47aTw2PjtpPDc+Oz47bDx0PDtsPGk8MT47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7VG9vbFRpcDs+O2w8fi9EZXNrdG9wTW9kdWxlcy9TZXJ2aWNlRm9ybS5hc3B4P21pZD0xNjQmc3ZpZD0yMSZzdGVwPTImaWQ9MjYzNTgmbG49QVAxMS0xMDc4O1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47dDxwPHA8bDxUZXh0Oz47bDxKb2huc29uLCBBbm5hIFNoa29sbmlrOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxBUDExLTEwNzg7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCZuYnNwXDs7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPFNhaW50IFBhdWw7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPFJhbXNleTs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8VGVtcG9yYXJ5IExpY2Vuc2UgRXhwaXJlZDs+Pjs+Ozs+O3Q8O2w8aTwxPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDtUb29sVGlwOz47bDx+L0Rlc2t0b3BNb2R1bGVzL1NlcnZpY2VGb3JtLmFzcHg/bWlkPTE2NCZzdmlkPTIxJnN0ZXA9MiZpZD0yNjM1OCZsbj1BUDExLTEwNzg7VmlldyBMaWNlbnNlIERldGFpbHM7Pj47Pjs7Pjs+Pjs+Pjt0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0PjtpPDU+O2k8Nj47aTw3Pjs+O2w8dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTc1ODUmbG49NzU5NTtWaWV3IExpY2Vuc2UgRGV0YWlsczs+Pjs+Ozs+Oz4+O3Q8cDxwPGw8VGV4dDs+O2w8Sm9obnNvbiwgQW5uZSBNYXJpZTs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8NzU5NTs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8TEdTVzs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8UGV3YXVrZWU7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPE5vbi1NaW5uZXNvdGE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPEV4cGlyZWQ7Pj47Pjs7Pjt0PDtsPGk8MT47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7VG9vbFRpcDs+O2w8fi9EZXNrdG9wTW9kdWxlcy9TZXJ2aWNlRm9ybS5hc3B4P21pZD0xNjQmc3ZpZD0yMSZzdGVwPTImaWQ9NzU4NSZsbj03NTk1O1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47Pj47dDw7bDxpPDA+O2k8MT47aTwyPjtpPDM+O2k8ND47aTw1PjtpPDY+O2k8Nz47PjtsPHQ8O2w8aTwxPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDtUb29sVGlwOz47bDx+L0Rlc2t0b3BNb2R1bGVzL1NlcnZpY2VGb3JtLmFzcHg/bWlkPTE2NCZzdmlkPTIxJnN0ZXA9MiZpZD0zNzQwJmxuPTM3NDM7VmlldyBMaWNlbnNlIERldGFpbHM7Pj47Pjs7Pjs+Pjt0PHA8cDxsPFRleHQ7PjtsPEpvaG5zb24sIEFubmV0dGUgTWFlOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDwzNzQzOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxMU1c7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPEF1ZHVib247Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPEJlY2tlcjs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8Q3VycmVudDs+Pjs+Ozs+O3Q8O2w8aTwxPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDtUb29sVGlwOz47bDx+L0Rlc2t0b3BNb2R1bGVzL1NlcnZpY2VGb3JtLmFzcHg/bWlkPTE2NCZzdmlkPTIxJnN0ZXA9MiZpZD0zNzQwJmxuPTM3NDM7VmlldyBMaWNlbnNlIERldGFpbHM7Pj47Pjs7Pjs+Pjs+Pjt0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0PjtpPDU+O2k8Nj47aTw3Pjs+O2w8dDw7bDxpPDE+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsO1Rvb2xUaXA7PjtsPH4vRGVza3RvcE1vZHVsZXMvU2VydmljZUZvcm0uYXNweD9taWQ9MTY0JnN2aWQ9MjEmc3RlcD0yJmlkPTcyMjkmbG49NzIzOTtWaWV3IExpY2Vuc2UgRGV0YWlsczs+Pjs+Ozs+Oz4+O3Q8cDxwPGw8VGV4dDs+O2w8Sm9obnNvbiwgQXJsZW5lIE1hcmllOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDw3MjM5Oz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxMU1c7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPExpdHRsZSBGYWxsczs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8TW9ycmlzb247Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPEV4cGlyZWQ7Pj47Pjs7Pjt0PDtsPGk8MT47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7VG9vbFRpcDs+O2w8fi9EZXNrdG9wTW9kdWxlcy9TZXJ2aWNlRm9ybS5hc3B4P21pZD0xNjQmc3ZpZD0yMSZzdGVwPTImaWQ9NzIyOSZsbj03MjM5O1ZpZXcgTGljZW5zZSBEZXRhaWxzOz4+Oz47Oz47Pj47Pj47Pj47Pj47Pj47Pj47Pj47Pj47Pj47Pj47Pj47bDxfY3RsNzpjYnhTdXBlcnZpc29yOz4+V9v76cf+XhP/OtjAqvcjuIE0huc=" />
+
+<script language="javascript" type="text/javascript">
+<!--
+	function __doPostBack(eventTarget, eventArgument) {
+		var theform;
+		if (window.navigator.appName.toLowerCase().indexOf("microsoft") > -1) {
+			theform = document.Form1;
+		}
+		else {
+			theform = document.forms["Form1"];
+		}
+		theform.__EVENTTARGET.value = eventTarget.split("$").join(":");
+		theform.__EVENTARGUMENT.value = eventArgument;
+		theform.submit();
+	}
+// -->
+</script>
+
+			<table id="table1" cellSpacing="0" cellPadding="0" width="100%" border="0">
+				<tr vAlign="top">
+					<td colSpan="2">
+
+<table id="TableTop" cellSpacing="0" cellPadding="0" width="100%" border="0">
+	<tr bgColor="#64769e">
+		<TD align="left"><img border="0" src="images/portal_space.gif">
+			
+			<SPAN class="WhiteLink">
+				<span id="SiteHeader_WelcomeMessage"><font color="#EEEEEE"></font></span>
+			</SPAN>
+			
+		</TD>
+		<TD noWrap align="right">
+			<span class="WhiteLink">
+				<span id="SiteHeader_lblToday" class="NormalBold">Sunday, August 12, 2012</span>
+			</span>
+		</TD>
+	</tr>
+	<tr>
+		<TD align="left" height="30"><img border="0" src="images/portal_space.gif" width="1" height="3">
+			
+			<a id="SiteHeader_hlTitle" href="http://www.socialwork.state.mn.us"><img src="../images/BOSW_Logo.gif" alt="" border="0" /></a></SPAN>
+		</TD>
+		<TD vAlign="middle" align="right">
+			<img border="0" src="images/portal_space.gif" width="3" height="3"><br>
+			
+			<a href="http://www.state.mn.us"></a>
+		</TD>
+	</tr>
+	<tr bgColor="#cccccc">
+		<TD class="grayborder" colSpan="2"><IMG height="1" alt="" hspace="0" src="images/blank.gif" border="0"></TD>
+	</tr>
+	<tr bgColor="#cccccc">
+		<TD class="whiteborder" colSpan="2"><IMG height="1" alt="" hspace="0" src="images/blank.gif" border="0"></TD>
+	</tr>
+	<tr bgColor="#cccccc">
+		<TD align="left">
+			<table id="TableTab10" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td><img border="0" src="images/portal_space.gif" width="6" height="3"></td>
+					<td valign="middle">
+						<a id="SiteHeader_hlTab1" href="http://www.socialwork.state.mn.us">
+							<span class="OtherTabs">Home</span>
+						</a>
+					</td>
+					<td><img border="0" src="images/portal_space.gif" width="6" height="3"></td>
+					<TD class="grayborder"><IMG height="25" alt="" hspace="0" src="images/blank.gif" width="1" border="0"></TD>
+					<TD class="whiteborder"><IMG height="25" alt="" hspace="0" src="images/blank.gif" width="1" border="0"></TD>
+					<td><img border="0" src="images/portal_space.gif" width="6" height="3"></td>
+					<td valign="middle">
+						<a id="SiteHeader_hlTab2" href="ServiceForm.aspx?svid=21&amp;mid=164">
+							<span class="OtherTabs">Verify a License or Search for a Licensing Supervisor</span>
+						</a>
+					</td>
+					<td><img border="0" src="images/portal_space.gif" width="6" height="3"></td>
+					<TD class="grayborder"><IMG height="25" alt="" hspace="0" src="images/blank.gif" width="1" border="0"></TD>
+					<TD class="whiteborder"><IMG height="25" alt="" hspace="0" src="images/blank.gif" width="1" border="0"></TD>
+					<td><img border="0" src="images/portal_space.gif" width="6" height="3"></td>
+					<td valign="middle">
+						<a id="SiteHeader_hlTab4" href="ServiceForm.aspx?svid=23&amp;mid=164">
+							<span class="OtherTabs">Board Action Search</span>
+						</a>
+					</td>
+					<td><img border="0" src="images/portal_space.gif" width="6" height="3"></td>
+					<TD class="grayborder"><IMG height="25" alt="" hspace="0" src="images/blank.gif" width="1" border="0"></TD>
+					<TD class="whiteborder"><IMG height="25" alt="" hspace="0" src="images/blank.gif" width="1" border="0"></TD>
+					<td>
+						<table id="SiteHeader_tabs" cellspacing="0" border="0" height="12">
+	<tr>
+		<td height="12">
+								<table id="TableTab2" border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td><img border="0" src="images/portal_space.gif" width="3" height="3"></td>
+										<td nowrap><a href='/BOSW/Online/DesktopDefault.aspx?tabindex=0&tabid=20' class="OtherTabs">Licensee Services</a></td>
+										<td><img border="0" src="images/portal_space.gif" width="6" height="3"></td>
+										<TD class="grayborder"><IMG height="25" alt="" hspace="0" src="images/blank.gif" width="1" border="0"></TD>
+										<TD class="whiteborder"><IMG height="25" alt="" hspace="0" src="images/blank.gif" width="1" border="0"></TD>
+									</tr>
+								</table>
+							</td><td height="12">
+								<table id="TableTab2" border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td><img border="0" src="images/portal_space.gif" width="3" height="3"></td>
+										<td nowrap><a href='/BOSW/Online/DesktopDefault.aspx?tabindex=1&tabid=68' class="OtherTabs">Applicant Services</a></td>
+										<td><img border="0" src="images/portal_space.gif" width="6" height="3"></td>
+										<TD class="grayborder"><IMG height="25" alt="" hspace="0" src="images/blank.gif" width="1" border="0"></TD>
+										<TD class="whiteborder"><IMG height="25" alt="" hspace="0" src="images/blank.gif" width="1" border="0"></TD>
+									</tr>
+								</table>
+							</td>
+	</tr>
+</table>
+					</td>
+				</tr>
+			</table>
+		</TD>
+		<TD align="right"></TD>
+	</tr>
+	<tr bgColor="#cccccc">
+		<TD class="grayborder" colSpan="2"><IMG height="1" alt="" hspace="0" src="images/blank.gif" border="0"></TD>
+	</tr>
+	<tr bgColor="#cccccc">
+		<TD class="whiteborder" colSpan="2"><IMG height="1" alt="" hspace="0" src="images/blank.gif" border="0"></TD>
+	</tr>
+	<tr>
+		<td vAlign="middle" bgColor="#dddcee" height="20" width="550">
+			<table id="Table4" cellSpacing="0" cellPadding="0" width="100%" border="0">
+				<tr>
+					<td width="10">
+					</td>
+					<td>
+						<span id="SiteHeader_sectionName" class="Head"><BR>&nbsp;&nbsp;Verify a License or Search for a Licensing Supervisor</span>&nbsp;
+						&nbsp;
+						<BR>
+						
+					</td>
+				</tr>
+			</table>
+		</td>
+		<TD vAlign="top" align="right" bgColor="#dddcee">
+			<img id="SiteHeader_tabimage" class="bannerImage" src="../images/banner_env2.jpg" alt="" border="0" /></TD>
+	</tr>
+	<tr bgColor="#64769e">
+		<td valign="top" height="5" width="659">
+			<table id="TableTab11" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td height="5">
+		</td>
+	</tr>
+</table>
+</td>
+				</tr>
+				<tr>
+					<td>
+						<div align="center">
+							<table cellSpacing="0" cellPadding="0" width="98%" border="0">
+								<tr vAlign="top">
+									<br>
+									<td width="5" height="100%">&nbsp;</td>
+									<td id="tdStepList">
+										<P></P>
+										<P></P>
+									</td>
+
+									<td width="10" height="100%">&nbsp;</td>
+									<td width="*" height="100%">
+										<table cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td class="Head" align="left"><span id="lblFormTitle">(1) Verify a License</span></td>
+	</tr>
+	<tr>
+		<td id="tdStatus">
+													<hr noShade SIZE="1">
+												</td>
+	</tr>
+	<tr>
+		<td id="tdInstructionsHtml"></td>
+	</tr>
+	<tr>
+		<td>
+													
+<P align="center">
+	<TABLE id="Table1" border="0" cellSpacing="0" cellPadding="0" width="100%">
+		<TR>
+			<TD><SPAN class="Normal"><STRONG>
+						<UL>
+							<li>
+							Enter any or all of the criteria below, then click the "Search" button.
+							<li>
+							This “Verify a License” provides public data on licensees only.
+							<li>
+							Search by name to view a temporary license.
+							<li>
+								The<A href="https://www.hlb.state.mn.us/BOSW/Online/DesktopModules/ServiceForm.aspx?svid=23&amp;mid=164">&nbsp;Board 
+									Action Search&nbsp;</A>
+							provides public adverse action on licensees, applicants or unlicensed persons.
+							<li>
+								If you cannot find the person you are looking for, please contact the Board at 
+								612-617-2100.
+							</li>
+						</UL>
+					</STRONG>
+				</SPAN></TD>
+		</TR>
+	</TABLE>
+</P>
+<!-- the following table and paragraph are the new addtion -->
+<table id="_ctl7_Table5" cellspacing="0" cellpadding="0" width="100%">
+			<tr>
+				<td class="Head" height="16" align="left"><span id="_ctl7_lblFormTitle">(2) Search for a Licensing Supervisor</span></td>
+			</tr>
+			<tr>
+				<td id="_ctl7_tdStatus">
+			<hr SIZE="1" noShade>
+		</td>
+			</tr>
+			<tr>
+				<TD><SPAN class="Normal"><STRONG>
+					<UL>
+						<li>
+						Enter any or all of the criteria below, then check the "Licensing Supervisor" 
+						checkbox and click the "Search" button.
+						<li>
+							This “Search for a Licensing Supervisor” provides public data on licensees 
+							only.
+						</li>
+					</UL>
+				</STRONG>
+			</SPAN></TD>
+			</tr>
+		</table>
+
+<!-- end of the new addition -->
+<P align="center">
+	<TABLE id="Table6" border="0" cellSpacing="0" cellPadding="5" width="100%">
+		<TR>
+			<TD bgColor="#c0c0c0">
+				<TABLE id="Table3" border="0" cellSpacing="0" cellPadding="2" width="100%">
+					<TR>
+						<TD bgColor="#c0c0c0" width="150">		<span id="_ctl7_lblFirstName" class="Normal"><b>First Name: </b></span></TD>
+						<TD bgColor="silver" vAlign="middle" align="left"><FONT size="2"><input name="_ctl7:txtFirstName" type="text" maxlength="20" id="_ctl7_txtFirstName" /></FONT></TD>
+					</TR>
+					<TR>
+						<TD bgColor="#c0c0c0" width="150"><span id="_ctl7_lblLastName" class="Normal"><b>Last Name: </b></span></TD>
+						<TD bgColor="silver" vAlign="middle" align="left"><FONT size="2"><input name="_ctl7:txtLastName" type="text" value="Johnson" maxlength="30" id="_ctl7_txtLastName" /></FONT></TD>
+					</TR>
+					<TR>
+						<TD bgColor="#c0c0c0" width="150"><span id="_ctl7_lblLicenseNumber" class="Normal"><b>License Number: </b></span></TD>
+						<TD bgColor="silver" vAlign="middle" align="left"><FONT size="2"><input name="_ctl7:txtLicenseNumber" type="text" maxlength="6" id="_ctl7_txtLicenseNumber" /><span id="_ctl7_lblNumeric" class="Normal"><b><i>&nbsp;(Numeric)</i></b></span></FONT></TD>
+					</TR>
+					<TR>
+						<TD bgColor="#c0c0c0" width="150"><span id="_ctl7_lblLicenseLevel" class="Normal"><b>License Level: </b></span></TD>
+						<TD vAlign="middle" align="left"><FONT size="2"><select name="_ctl7:ddlbLicenseType" id="_ctl7_ddlbLicenseType">
+			<option selected="selected" value="none">- - - - -</option>
+			<option value="LSW">LSW</option>
+			<option value="LGSW">LGSW</option>
+			<option value="LISW">LISW</option>
+			<option value="LICSW">LICSW</option>
+
+		</select></FONT></TD>
+					</TR>
+					<TR>
+						<TD bgColor="#c0c0c0" height="28" width="150"><span id="_ctl7_lblCity" class="Normal"><b> City: </b></span></TD>
+						<TD bgColor="silver" height="28" vAlign="middle" align="left"><input name="_ctl7:txtCity" type="text" maxlength="20" id="_ctl7_txtCity" />&nbsp;&nbsp;&nbsp;
+							<input type="submit" name="_ctl7:cmdSearch" value="Search" id="_ctl7_cmdSearch" /></TD>
+					</TR>
+					<TR>
+						<TD bgColor="#c0c0c0" height="28" width="150"><span id="_ctl7_lblCounty" class="Normal"><b> County: </b></span></TD>
+						<TD bgColor="silver" height="28" vAlign="middle" align="left"><input name="_ctl7:txtCounty" type="text" maxlength="20" id="_ctl7_txtCounty" />&nbsp;&nbsp;&nbsp;</TD>
+					</TR>
+					<TR>
+						<TD bgColor="#c0c0c0" width="150"><span id="_ctl7_lblSupervisor" class="Normal"><b><font color="Green">Licensing Supervisor (only check this box to search for a licensing supervisor): </font></b></span></TD>
+						<TD bgColor="silver" vAlign="middle" align="left"><span class="Normal" autosize="False"><font color="Green"><input id="_ctl7_cbxSupervisor" type="checkbox" name="_ctl7:cbxSupervisor" onclick="__doPostBack('_ctl7$cbxSupervisor','')" language="javascript" /></font></span></TD>
+					</TR>
+				</TABLE>
+			</TD>
+			<TD bgColor="silver">&nbsp;&nbsp;</TD>
+			<TD bgColor="silver" vAlign="middle" width="50%" align="left"></TD>
+			<TD bgColor="silver">&nbsp;&nbsp;</TD>
+		</TR>
+		<tr vAlign="middle">
+			<td colSpan="4">
+				<HR SIZE="1" width="100%">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4"><span id="_ctl7_lblDisclamer" class="Normal"><b>
+								These licensees self-reported that they have met the licensing supervisor requirements.  This information is provided for the convenience of licensees and is not meant to convey Board approval.  This list is not an exhaustive list of potential licensing supervisors.  It is the supervisee’s responsibility to verify with a potential supervisor that they have met all licensing supervisor requirements and are not prohibited from providing licensing supervision.
+			</b></span></td>
+		</tr>
+	</TABLE>
+</P>
+<TABLE id="Table2" border="0" cellSpacing="0" cellPadding="0" width="80%" align="center">
+	<TR>
+		<TD align="center"><span id="_ctl7_lblMessage"><b><font color="DarkRed">Your search has resulted in 333 matches!</font></b></span></TD>
+	</TR>
+</TABLE>
+<table cellspacing="1" cellpadding="3" rules="rows" bordercolor="White" border="2" id="_ctl7_grdSearchResults" bgcolor="White" width="100%">
+			<tr class="TableHeader">
+				<td><font color="White"><b>&nbsp;</b></font></td><td><font color="White"><b><a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl2$_ctl0','')"><font color="White">Licensee Name</font></a></b></font></td><td><font color="White"><b><a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl2$_ctl1','')"><font color="White">License Number</font></a></b></font></td><td><font color="White"><b><a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl2$_ctl2','')"><font color="White">License Level</font></a></b></font></td><td><font color="White"><b><a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl2$_ctl3','')"><font color="White">City</font></a></b></font></td><td><font color="White"><b><a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl2$_ctl4','')"><font color="White">County</font></a></b></font></td><td><font color="White"><b><a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl2$_ctl5','')"><font color="White">License Status</font></a></b></font></td><td><font color="White"><b>&nbsp;</b></font></td>
+			</tr><tr class="TableItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl3_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=11738&amp;ln=11768"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Adolphus </td><td>11768</td><td>LICSW</td><td>Brooklyn Park</td><td>Hennepin</td><td>Expired</td><td>
+				<a id="_ctl7_grdSearchResults__ctl3_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=11738&amp;ln=11768">Get Details</a>
+			</td>
+			</tr><tr class="TableAlternatingItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl4_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=26323&amp;ln=21216"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Adrienne Renae</td><td>21216</td><td>LGSW</td><td>Saint Paul</td><td>Ramsey</td><td>Current</td><td>
+				<a id="_ctl7_grdSearchResults__ctl4_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=26323&amp;ln=21216">Get Details</a>
+			</td>
+			</tr><tr class="TableItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl5_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=533&amp;ln=530"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Alan Ralph</td><td>530</td><td>LICSW</td><td>Willmar</td><td>Kandiyohi</td><td>Current</td><td>
+				<a id="_ctl7_grdSearchResults__ctl5_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=533&amp;ln=530">Get Details</a>
+			</td>
+			</tr><tr class="TableAlternatingItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl6_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=19243&amp;ln=16428"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Alicia Ann</td><td>16428</td><td>LSW</td><td>West Saint Paul</td><td>Dakota</td><td>Current</td><td>
+				<a id="_ctl7_grdSearchResults__ctl6_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=19243&amp;ln=16428">Get Details</a>
+			</td>
+			</tr><tr class="TableItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl7_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=23707&amp;ln=19638"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Allison Jena</td><td>19638</td><td>LSW</td><td>Rochester</td><td>Olmsted</td><td>Current</td><td>
+				<a id="_ctl7_grdSearchResults__ctl7_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=23707&amp;ln=19638">Get Details</a>
+			</td>
+			</tr><tr class="TableAlternatingItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl8_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=24851&amp;ln=19825"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Allison Louise</td><td>19825</td><td>LSW</td><td>Saint Louis Park</td><td>Hennepin</td><td>Current</td><td>
+				<a id="_ctl7_grdSearchResults__ctl8_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=24851&amp;ln=19825">Get Details</a>
+			</td>
+			</tr><tr class="TableItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl9_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=5671&amp;ln=5678"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Alvin S</td><td>5678</td><td>LSW</td><td>Fargo</td><td>Non-Minnesota</td><td>Deceased</td><td>
+				<a id="_ctl7_grdSearchResults__ctl9_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=5671&amp;ln=5678">Get Details</a>
+			</td>
+			</tr><tr class="TableAlternatingItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl10_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=26158&amp;ln=21193"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Amber Lee</td><td>21193</td><td>LSW</td><td>Owatonna</td><td>Steele</td><td>Current</td><td>
+				<a id="_ctl7_grdSearchResults__ctl10_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=26158&amp;ln=21193">Get Details</a>
+			</td>
+			</tr><tr class="TableItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl11_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=11408&amp;ln=11438"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Amy Beth</td><td>11438</td><td>LSW</td><td>Hammond</td><td>Non-Minnesota</td><td>Expired</td><td>
+				<a id="_ctl7_grdSearchResults__ctl11_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=11408&amp;ln=11438">Get Details</a>
+			</td>
+			</tr><tr class="TableAlternatingItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl12_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=11383&amp;ln=11413"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Amy Jean</td><td>11413</td><td>LICSW</td><td>White Bear Lake</td><td>Ramsey</td><td>Current</td><td>
+				<a id="_ctl7_grdSearchResults__ctl12_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=11383&amp;ln=11413">Get Details</a>
+			</td>
+			</tr><tr class="TableItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl13_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=16910&amp;ln=14729"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Amy Jo</td><td>14729</td><td>LSW</td><td>Monticello</td><td>Wright</td><td>Inactive</td><td>
+				<a id="_ctl7_grdSearchResults__ctl13_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=16910&amp;ln=14729">Get Details</a>
+			</td>
+			</tr><tr class="TableAlternatingItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl14_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=21259&amp;ln=17581"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Amy Jo</td><td>17581</td><td>LICSW</td><td>Saint Peter</td><td>Nicollet</td><td>Current</td><td>
+				<a id="_ctl7_grdSearchResults__ctl14_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=21259&amp;ln=17581">Get Details</a>
+			</td>
+			</tr><tr class="TableItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl15_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=10905&amp;ln=10934"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Amy Marie</td><td>10934</td><td>LSW</td><td>Rochester</td><td>Olmsted</td><td>Expired</td><td>
+				<a id="_ctl7_grdSearchResults__ctl15_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=10905&amp;ln=10934">Get Details</a>
+			</td>
+			</tr><tr class="TableAlternatingItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl16_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=12052&amp;ln=12082"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Angela Joy</td><td>12082</td><td>LSW</td><td>Fairmont</td><td>Martin</td><td>Expired</td><td>
+				<a id="_ctl7_grdSearchResults__ctl16_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=12052&amp;ln=12082">Get Details</a>
+			</td>
+			</tr><tr class="TableItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl17_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=8341&amp;ln=8352"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Ann Ebertz</td><td>8352</td><td>LSW</td><td>Woodbury</td><td>Washington</td><td>Current</td><td>
+				<a id="_ctl7_grdSearchResults__ctl17_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=8341&amp;ln=8352">Get Details</a>
+			</td>
+			</tr><tr class="TableAlternatingItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl18_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=26358&amp;ln=21122"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Anna Shkolnik</td><td>21122</td><td>LGSW</td><td>Saint Paul</td><td>Ramsey</td><td>Current</td><td>
+				<a id="_ctl7_grdSearchResults__ctl18_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=26358&amp;ln=21122">Get Details</a>
+			</td>
+			</tr><tr class="TableItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl19_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=26358&amp;ln=AP11-1078"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Anna Shkolnik</td><td>AP11-1078</td><td>&nbsp;</td><td>Saint Paul</td><td>Ramsey</td><td>Temporary License Expired</td><td>
+				<a id="_ctl7_grdSearchResults__ctl19_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=26358&amp;ln=AP11-1078">Get Details</a>
+			</td>
+			</tr><tr class="TableAlternatingItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl20_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=7585&amp;ln=7595"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Anne Marie</td><td>7595</td><td>LGSW</td><td>Pewaukee</td><td>Non-Minnesota</td><td>Expired</td><td>
+				<a id="_ctl7_grdSearchResults__ctl20_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=7585&amp;ln=7595">Get Details</a>
+			</td>
+			</tr><tr class="TableItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl21_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=3740&amp;ln=3743"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Annette Mae</td><td>3743</td><td>LSW</td><td>Audubon</td><td>Becker</td><td>Current</td><td>
+				<a id="_ctl7_grdSearchResults__ctl21_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=3740&amp;ln=3743">Get Details</a>
+			</td>
+			</tr><tr class="TableAlternatingItem">
+				<td>
+				<a id="_ctl7_grdSearchResults__ctl22_Hyperlink1" title="View License Details" NAME="Hyperlink1" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=7229&amp;ln=7239"><img title="View License Details" src="../images/rt.gif" alt="" border="0" /></a>
+			</td><td>Johnson, Arlene Marie</td><td>7239</td><td>LSW</td><td>Little Falls</td><td>Morrison</td><td>Expired</td><td>
+				<a id="_ctl7_grdSearchResults__ctl22_Hyperlink2" title="View License Details" href="ServiceForm.aspx?mid=164&amp;svid=21&amp;step=2&amp;id=7229&amp;ln=7239">Get Details</a>
+			</td>
+			</tr><tr class="TablePager" align="Center">
+				<td colspan="8"><font color="Black"><b><span>1</span>&nbsp;<a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl24$_ctl1','')"><font color="Black">2</font></a>&nbsp;<a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl24$_ctl2','')"><font color="Black">3</font></a>&nbsp;<a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl24$_ctl3','')"><font color="Black">4</font></a>&nbsp;<a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl24$_ctl4','')"><font color="Black">5</font></a>&nbsp;<a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl24$_ctl5','')"><font color="Black">6</font></a>&nbsp;<a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl24$_ctl6','')"><font color="Black">7</font></a>&nbsp;<a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl24$_ctl7','')"><font color="Black">8</font></a>&nbsp;<a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl24$_ctl8','')"><font color="Black">9</font></a>&nbsp;<a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl24$_ctl9','')"><font color="Black">10</font></a>&nbsp;<a href="javascript:__doPostBack('_ctl7$grdSearchResults$_ctl24$_ctl10','')"><font color="Black">...</font></a></b></font></td>
+			</tr>
+		</table>
+<TABLE id="Table4" border="0" cellSpacing="0" cellPadding="0" width="95%" align="center">
+	<TR>
+		<TD vAlign="bottom" align="center"><span id="_ctl7_lblHelp" class="Normal">The information displayed reflects information in the Board of Social Work database and is updated daily. The data can be used for primary source verification. Click  "Search" or "Get Details" for information on a licensee.</span></TD>
+	</TR>
+	<TR>
+		<TD vAlign="top" align="center"><br>
+			<span id="_ctl7_lblStatue1" class="Normal"><b>Only information classified as public under Minnesota Statutes, Section 13.41, is available for display.</b></span></TD>
+	</TR>
+	<TR>
+		<TD align="center"><span id="_ctl7_lblStatue2" class="Normal"><b></b></span></TD>
+	</TR>
+</TABLE>
+
+												</td>
+	</tr>
+</table>
+
+										<P></P>
+									</td>
+								</tr>
+								<P></P>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</HTML>

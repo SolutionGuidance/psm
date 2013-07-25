@@ -1,0 +1,122 @@
+
+Q 1.1.1
+
+I don't think it addresses the requirement of NETStudy by simply returning what we got from NETStudy
+web service, as per http://apps.topcoder.com/forums/?module=Thread&threadID=768017&start=0 ,
+the application has to be able to parse the result XML and make judgement (e.g. some of the status codes mean denial).
+
+====================
+    The response is changed from string to NETStudyResponse entity.
+    DAO method is updated, see method doc in TCUML DAO class diagram.
+    Corresponding SD is updated.
+
+
+
+Q 1.1.3
+
+Mita compability issue: Entites should have both CLD/LDM representation.
+
+====================
+    Original entities diagram is renamed to Entities Class Diagram (LDM),
+    Entities Class Diagram (CDM) is added.
+
+
+
+Q 1.1.4
+
+Your services signature(and therefore implementation a bit) is not correct.
+If you look at all current services(you may check the code), they return
+SearchResult<License> or SearchResult<ProviderProfile>
+You should follow this notion(e.g. wrap your entities to License or ProviderProfile).
+
+Regarding SearchResult - ok.
+Regarding License I believe it's correct. We need to provide uniform source pf data for that,
+the new entities seem strage.
+
+====================
+    For "License", I totally don't understand why we need to return License,
+    this module data are irrelevant to license.
+    I think reviewer must have made a mistake.
+
+
+
+I do agree that the clarification came late and that specific piece of requirement should be left to final fixes,
+but the WSDL was available during submission, and according to the WSDL, at least this module should extract the
+response element content from the following XML element(from the NETStudy SOAP response):
+"
+<GetNETStudyInfoResponse>
+        <GetNETStudyInfoResult>THIS IS THE RESULT XML</GetNETStudyInfoResult>
+</GetNETStudyInfoResponse>
+"
+Yet your architecture currently directly returns the whole SOAP response from NETStudy which isn't appropriate
+even not considering the sample XML provided  - this is a technical issue with addressing the requirements.
+
+====================
+    The response is changed from string to NETStudyResponse entity.
+    DAO method is updated, see method doc in TCUML DAO class diagram.
+    Corresponding SD is updated.
+
+
+
+
+Q 1.2.3
+Configuration: In your ADS, you don't specify how quartz job should be scheduled. 
+
+====================
+    This was appealed successfully.
+
+
+
+
+Q 2.3.2
+
+As you define new entities, which are stored in db, uou should provide updated hibernate mapping file
+
+====================
+    mapping.xml is added.
+
+
+None of the fields for the data model are documented.
+
+====================
+    Doc is added.
+
+
+
+Q 3.1.1
+
+ADS 1.1 should outline the workflow of the module, e.g. what's the workflow of scheduler job
+picking up data feeds? what's the workflow of querying web service provided by this module?
+what's the workflow of access NETStudy service?
+
+====================
+    Fixed.
+
+
+Some of the implementation notes are not sufficiently detailed for assembly:
+e.g.
+PECOSSchedulerBean#run:
+"
+Use OpenCSV to parse the file;
+    for each line of the file {
+        Construct record:PECOSRecord from the line, note that the first column is NPI,
+        the second column is last name, and the third column is first name;
+        records.add(record);
+    }
+"
+You will need to elaborate the exact API calls to OpenCSV rather than simply saying do something with OpenCSV.
+
+====================
+    Fixed. The method doc is more detailed.
+
+
+
+Q 3.2.2
+
+"Service Class Diagram" should specify which methods are WebMethod, this is an important step of
+implementing web service using JWS.
+
+====================
+    Fixed. @WebMethod are added to bean methods.
+
+

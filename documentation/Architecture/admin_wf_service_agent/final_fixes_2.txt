@@ -1,0 +1,45 @@
+Final Fixes 2
+
+I have submitted the change request with this submission, and will followup with the ERD and hibernate: http://apps.topcoder.com/forums/?module=Thread&threadID=764914
+
+-------------------------------------------------------------------
+
+Issue:
+1. In ARS 2.5 there is a filtering functionality which would filter the fetched data from the search. It uses the "NPI/UMPI" but I do not see how this is handled in the submission. 
+2. The ARS talks about printing the enrollment data in a printer friendly fashion. I see no information about this requirement. 
+
+Response:
+1. I have aktered the sigranture of the profile service's search criteria object to also work with npi (see change document)
+2. Current approach confirmed: http://apps.topcoder.com/forums/?module=Thread&threadID=764927
+
+
+-------------------------------------------------------------------
+
+Section: 1.1.2 Each functional requirement is represented in at least one Sequence Diagram. 
+
+I still have no infoation given in the review or appeal reeponse as to what needs to be detailed and wheher that details is actualy useful, so I dont see any need to provide more detail in the SD.
+
+
+-------------------------------------------------------------------
+
+Section: 1.1.3 Required business processes are clearly accounted for in the design.
+
+saveSummaryAsDraft now saves as draft
+
+The payment aspects have been added to the CreateEditEnrollmentController utilizing the workflow with payment required flag in the selected provider type
+
+The payment info will be part of the change request
+
+
+-------------------------------------------------------------------
+
+Section: 2.3.1 The Data Model is appropriate and correctly normalized for the project requirements
+
+As per 1.1.3 above
+
+
+-------------------------------------------------------------------
+
+Section: 2.4.2 Are architecture defined interfaces appropriate and optimal?
+
+As per 1.1.3 above

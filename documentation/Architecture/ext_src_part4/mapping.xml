@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+    version="1.0">
+    <description>Eternal Sources Part 4 Entities</description>
+    <package>gov.medicare.entities</package>
+
+    <entity class="gov.medicare.entities.SourceStats" name="SourceStats">
+        <table name="SourceStats"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="source_stats_id" />
+            </id>
+            <basic name="successRequests">
+                 <column name="success_requests" />
+            </basic>
+            <basic name="pageNotFoundRequests">
+                 <column name="page_not_found_requests" />
+            </basic>
+            <basic name="pageChangedRequests">
+                 <column name="page_changed_requests" />
+            </basic>
+            <basic name="serverErrorRequests">
+                 <column name="server_error_requests" />
+            </basic>
+            <basic name="reliability">
+                 <column name="reliability" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.SearchCriteria" name="SearchCriteria">
+        <table name="SearchCriteria"/>
+        <attributes>
+            <inheritance strategy="JOINED" />
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="search_criteria_id" />
+            </id>
+            <basic name="identifier">
+                 <column name="identifier" length="45" />
+            </basic>
+            <basic name="lastName">
+                 <column name="last_name" length="45" />
+            </basic>
+            <basic name="firstName">
+                 <column name="first_name" length="45" />
+            </basic>
+            <basic name="state">
+                 <column name="state" length="45" />
+            </basic>
+            <basic name="pageSize">
+                 <column name="name" length="45" />
+            </basic>
+            <basic name="pageNumber">
+                 <column name="name" length="45" />
+            </basic>
+            <basic name="sortColumn">
+                 <column name="sort_column" length="45" />
+            </basic>
+            <basic name="sortOrder">
+                 <column name="sort_order" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.MedicaidCertifiedProviderSearchCriteria" name="MedicaidCertifiedProviderSearchCriteria">
+        <table name="MedicaidCertifiedProviderSearchCriteria"/>
+        <attributes>
+            <basic name="type">
+                 <column name="type" length="45" />
+            </basic>
+            <basic name="criteria">
+                 <column name="criteria" length="45" />
+            </basic>
+            <basic name="value">
+                 <column name="value" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.PodiatricMedicineLicenseSearchByNameCriteria" name="PodiatricMedicineLicenseSearchByNameCriteria">
+        <table name="PodiatricMedicineLicenseSearchByNameCriteria"/>
+    </entity>
+
+    <entity class="gov.medicare.entities.PodiatricMedicineLicenseSearchByLicenseNumberCriteria" name="PodiatricMedicineLicenseSearchByLicenseNumberCriteria">
+        <table name="PodiatricMedicineLicenseSearchByLicenseNumberCriteria"/>
+        <attributes>
+            <basic name="licenseNumber">
+                 <column name="license_number" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.SocialWorkLicenseSearchByNameCriteria" name="SocialWorkLicenseSearchByNameCriteria">
+        <table name="SocialWorkLicenseSearchByNameCriteria"/>
+        <attributes>
+            <basic name="level">
+                 <column name="level" length="45" />
+            </basic>
+            <basic name="city">
+                 <column name="city" length="45" />
+            </basic>
+            <basic name="county">
+                 <column name="county" length="45" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.SocialWorkLicenseSearchByLicenseNumberCriteria" name="SocialWorkLicenseSearchByLicenseNumberCriteria">
+        <table name="SocialWorkLicenseSearchByLicenseNumberCriteria"/>
+        <attributes>
+            <basic name="licenseNumber">
+                 <column name="license_number" />
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="gov.medicare.entities.ResultLogEntry" name="ResultLogEntry
+        <table name="ResultLogEntry"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="AUTO" />
+		    <column name="result_log_entry_id" />
+            </id>
+            <one-to-one name="criteria" target-entity="SearchCriteria" >
+                 <join-column name="search_criteria_id" />
+            </one-to-one>
+        </attributes>
+    </entity>
+
+</entity-mappings>

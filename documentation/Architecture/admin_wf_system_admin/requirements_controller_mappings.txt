@@ -1,0 +1,24 @@
+###############################################
+# 2.18-21
+
+Not in scope
+
+###############################################
+# 2.22 Manage Service Agents
+
+This is rolled into use cases 2.24 below
+
+###############################################
+# 2.23 Search Users
+
+wireframe: Advanced_Search__System_Admin_.html
+COntroller: SystemAdminUserSearchController: It handles both simple and advnaced searches
+- when doing simple, set the username, firstname, lastname to the search term and the "and" flag to false
+- when doing advanced, set to applicable fields, and the "and" flag to true
+
+###############################################
+# 2.24 Manage Users (each type)
+
+wireframe: User_Accounts__System_Admin_.html, User_Account_Edit__System_Admin_.html, User_Account_Create__System_Admin_.html, User_Account_Details__System_Admin_.html
+
+COntroller: SystemAdminUserController

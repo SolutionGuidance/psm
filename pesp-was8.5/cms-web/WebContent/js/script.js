@@ -1811,18 +1811,19 @@ $(document).ready(function() {
     		$i.find('input:eq(2)').attr("name", "_17_cboOtherType_" + index);
     		$i.find('input:eq(3)').attr("name", "_17_cboLegalName_" + index);
     		$i.find('input:eq(4)').attr("name", "_17_cboFEIN_" + index);
-    		$i.find('input:eq(5)').attr("name", "_17_cboAddressLine2_" + index);
-    		$i.find('input:eq(6)').attr("name", "_17_cboCity_" + index);
+    		$i.find('input:eq(5)').attr("name", "_17_cboAddressLine1_" + index);
+    		$i.find('input:eq(6)').attr("name", "_17_cboAddressLine2_" + index);
+    		$i.find('input:eq(7)').attr("name", "_17_cboCity_" + index);
     		$i.find('select:eq(1)').attr("name", "_17_cboState_" + index);
-    		$i.find('input:eq(7)').attr("name", "_17_cboZip_" + index);
-    		$i.find('input:eq(8)').attr("name", "_17_cboCounty_" + index);
-    		$i.find('input:eq(9)').attr("name", "_17_cboOtherInterestInd_" + index);
-    		$i.find('input:eq(10)').attr("name", "_17_cboOtherInterestName_" + index);
-    		$i.find('input:eq(11)').attr("name", "_17_cboOtherAddressLine1_" + index);
-    		$i.find('input:eq(12)').attr("name", "_17_cboOtherAddressLine2_" + index);
-    		$i.find('input:eq(13)').attr("name", "_17_cboOtherCity_" + index);
+    		$i.find('input:eq(8)').attr("name", "_17_cboZip_" + index);
+    		$i.find('input:eq(9)').attr("name", "_17_cboCounty_" + index);
+    		$i.find('input:eq(10)').attr("name", "_17_cboOtherInterestInd_" + index);
+    		$i.find('input:eq(11)').attr("name", "_17_cboOtherInterestName_" + index);
+    		$i.find('input:eq(12)').attr("name", "_17_cboOtherAddressLine1_" + index);
+    		$i.find('input:eq(13)').attr("name", "_17_cboOtherAddressLine2_" + index);
+    		$i.find('input:eq(14)').attr("name", "_17_cboOtherCity_" + index);
     		$i.find('select:eq(2)').attr("name", "_17_cboOtherState_" + index);
-    		$i.find('input:eq(14)').attr("name", "_17_cboOtherZip_" + index);
+    		$i.find('input:eq(15)').attr("name", "_17_cboOtherZip_" + index);
     	});
     }
 
@@ -1867,6 +1868,7 @@ $(document).ready(function() {
     	$(html).find('input.date').mask("99/99/9999");
         $(html).find('input.npiMasked').mask("9999999999");
         $(html).find('input.ssnMasked').mask("999-99-9999");
+        $(html).find("input.feinMasked").mask("99-9999999");
 //    	$(html).find('input.date').datepicker({
 //    		dateFormat:"mm/dd/yy",
 //    		showOn: "button",

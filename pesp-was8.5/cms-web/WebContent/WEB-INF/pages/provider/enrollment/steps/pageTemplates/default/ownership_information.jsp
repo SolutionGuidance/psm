@@ -598,7 +598,7 @@
                 <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_17_cboFEIN"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="wholeInput smallInput" name="${formName}" value="${formValue}" maxlength="7"/>
+                <input type="text" class="wholeInput smallInput feinMasked" name="${formName}" value="${formValue}" maxlength="7"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row requiredField addressline1">

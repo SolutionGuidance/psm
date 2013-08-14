@@ -7277,6 +7277,8 @@ salience 10
         insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.BILLING_ENTITY_FOR_PHYSICIAN_SERVICES.value()));
         // Fix for PESP-364
         insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.BIRTHING_CENTER.value()));
+	// Fix for issue #60
+	insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value()));
 end
 
 rule 'Infer individual'

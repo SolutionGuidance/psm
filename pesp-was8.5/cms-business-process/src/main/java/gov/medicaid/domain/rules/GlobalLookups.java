@@ -171,6 +171,9 @@ public class GlobalLookups {
         types.put("2", "Eligibility Verification Vendor");
         types.put("3", "Consolidated Billing Agent");
         types.put("4", "Health Care Data Trading Partner");
+        types.put("5", "Medicare Carrier");
+        types.put("6", "Mental Health Information System Grantee");
+        types.put("7", "MN Health Insurance Exchange Carrier");
         for (Entry<String, String> entry : types.entrySet()) {
             entries.add(new LookupEntry("EDITradingPartnerType", entry.getKey(), entry.getValue()));
         }

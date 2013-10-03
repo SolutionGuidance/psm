@@ -484,7 +484,14 @@ public class PresentationServiceBean extends BaseService implements Presentation
 
             } else {
                 page = new UITabModel();
-                page.addForm(ViewStatics.PERSONAL_INFO_FORM, new FormSettings());
+                // BUGR-9673 for CHW, do not mark NPI as required.
+                FormSettings personalInfoFormSettings = new FormSettings();
+                personalInfoFormSettings.addSetting("requireNPI", true);
+                if (ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value().equals(type)) {
+                    personalInfoFormSettings.addSetting("requireNPI", false);
+                }
+                page.addForm(ViewStatics.PERSONAL_INFO_FORM, personalInfoFormSettings);
+                // end BUGR-9673
                 viewModel.addTabModel(ViewStatics.PERSONAL_INFORMATION, page);
 
                 page = new UITabModel();

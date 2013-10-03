@@ -7,6 +7,8 @@
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%-- BUGR-9673 (optional NPI for some provider types) --%>
+<c:set var="requireNPI" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Personal Information Form'].settings['requireNPI']}"></c:set>
 
 <div class="newEnrollmentPanel">
 	<div class="section">
@@ -37,7 +39,8 @@
 	            <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
 	        </div>
 	        <div class="row requireField">
-	            <label>NPI<span class="required">*</span></label>
+	        	<%-- BUGR-9673 (optional NPI for some provider types) --%>
+	            <label>NPI<span class="required">${requireNPI ? '*' : ''}</span></label>
 	            <span class="floatL"><b>:</b></span>
 	            
 	            <c:set var="formName" value="_02_npi"></c:set>

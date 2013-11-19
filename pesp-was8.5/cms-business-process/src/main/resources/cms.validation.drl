@@ -13964,21 +13964,6 @@ rule "Dental Hygienist license is required for Allied Dental Professional"
         );
 end
 
-rule "A.S.H.A Certificate is required for Audiologist"
-	when
-        LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
-   		$provider: ProviderInformationType(providerType == ProviderType.AUDIOLOGIST.value())
-   		LicenseInformationType( $licenses: license ) from $provider.licenseInformation
-        not LicenseType( licenseType == LicenseNames.AUDIOLOGIST.value() ) from $licenses
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/LicenseInformation/License/Required",
-            "00001",
-            "Copy of A.S.H.A certificate is required."
-        );
-end
-
 rule "Valid national certification as a certified rehabilitation counselor or Certified psychosocial rehabilitation practitioner is required for CMHRP"
 	when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())

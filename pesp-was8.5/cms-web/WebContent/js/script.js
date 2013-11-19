@@ -1572,19 +1572,6 @@ $(document).ready(function() {
         $i.find('span.typeL').remove();
         $(this).parent().siblings('table').find('tbody').append($i);
         $(this).parent().siblings('table').find('input.date').mask("99/99/9999");
-//        $(this).parent().siblings('table').find('input.date').datepicker({
-//            dateFormat:"mm/dd/yy",
-//            showOn: "button",
-//            buttonImage: "/cms/i/calendar.png",
-//            buttonImageOnly: true,
-//            beforeShow:function(input,inst){
-//                inst.dpDiv.css('margin-left','-23px')
-//            }
-//        });
-//        $(this).parent().siblings('table').find('input.date').click(function() {
-//            $(this).next('.ui-datepicker-trigger').click();
-//        });
-//        $(this).parent().siblings('table').find('.ui-datepicker-trigger').attr('alt','').attr('title','');
         $(this).parent().siblings('table').find('.remove').show();
         stripTable();
     });
@@ -1599,6 +1586,7 @@ $(document).ready(function() {
     
     $('#addPayTo').live('click',function(){
         var html = $('#setupTemplate').clone();
+        html.find('[type=text]').val('');
         $(html).removeAttr('style');
         html.find('.dateWrapper').empty();
         html.find('.dateWrapper').append('<input class="date" type="text" />');
@@ -1607,48 +1595,20 @@ $(document).ready(function() {
         $(html).find('input.date').mask("99/99/9999");
         $(html).find('input.npiMasked').mask("9999999999");
         $(html).find("input.umpiMasked").mask("**********");
-//        $(html).find('input.date').datepicker({
-//            dateFormat:"mm/dd/yy",
-//            showOn: "button",
-//            buttonImage: "/cms/i/calendar.png",
-//            buttonImageOnly: true,
-//            beforeShow:function(input,inst){
-//                inst.dpDiv.css('margin-left','-23px')
-//            }
-//        });
-//        $(html).find('input.date').click(function() {
-//            $(this).next('.ui-datepicker-trigger').click();
-//        });
-//        $(html).attr('alt','').attr('title','');
-        
         reindexSetup();
     });
     
     $('#addMember').live('click',function(){
     	var html = $('#memberPanelTemplate').clone();
+    	html.find('[type=text]').val('');
     	$(html).removeAttr('style');
     	html.find('.dateWrapper').empty();
     	html.find('.dateWrapper').append('<input class="date" type="text" />');
-    	
     	$('#membersTable').append(html);
     	$(html).find('input.date').mask("99/99/9999");
         $(html).find('input.npiMasked').mask("9999999999");
         $(html).find("input.umpiMasked").mask("**********");
         $(html).find('input.ssnMasked').mask("999-99-9999");
-//    	$(html).find('input.date').datepicker({
-//    		dateFormat:"mm/dd/yy",
-//    		showOn: "button",
-//    		buttonImage: "/cms/i/calendar.png",
-//    		buttonImageOnly: true,
-//    		beforeShow:function(input,inst){
-//    			inst.dpDiv.css('margin-left','-23px')
-//    		}
-//    	});
-//    	$(html).find('input.date').click(function() {
-//    		$(this).next('.ui-datepicker-trigger').click();
-//    	});
-//    	$(html).attr('alt','').attr('title','');
-    	
     	reindexMembers();
     });
     
@@ -1830,6 +1790,7 @@ $(document).ready(function() {
     /*add ownership*/
     $('#addOwnership').live('click',function(){
         var html = $('#ownerTemplate').clone();
+        html.find('[type=text]').val('');
         html.find('.dateWrapper').empty();
         html.find('.dateWrapper').append('<input class="date" type="text" />');
         html.find('.subType').hide();
@@ -1839,25 +1800,12 @@ $(document).ready(function() {
         $(html).find('input.date').mask("99/99/9999");
         $(html).find('input.npiMasked').mask("9999999999");
         $(html).find('input.ssnMasked').mask("999-99-9999");
-
-//        $(html).find('input.date').datepicker({
-//            dateFormat:"mm/dd/yy",
-//            showOn: "button",
-//            buttonImage: "/cms/i/calendar.png",
-//            buttonImageOnly: true,
-//            beforeShow:function(input,inst){
-//                inst.dpDiv.css('margin-left','-23px')
-//            }
-//        });
-//        $(html).find('input.date').click(function() {
-//            $(this).next('.ui-datepicker-trigger').click();
-//        });
-//        $(html).attr('alt','').attr('title','');
         reindexPersonOwners();
     });
     
     $('#addBusinessOwnership').live('click',function(){
     	var html = $('#corpOwnerTemplate').clone();
+    	html.find('[type=text]').val('');
     	html.find('.dateWrapper').empty();
     	html.find('.dateWrapper').append('<input class="date" type="text" />');
     	html.find('input').val('').removeAttr('checked');
@@ -1869,19 +1817,6 @@ $(document).ready(function() {
         $(html).find('input.npiMasked').mask("9999999999");
         $(html).find('input.ssnMasked').mask("999-99-9999");
         $(html).find("input.feinMasked").mask("99-9999999");
-//    	$(html).find('input.date').datepicker({
-//    		dateFormat:"mm/dd/yy",
-//    		showOn: "button",
-//    		buttonImage: "/cms/i/calendar.png",
-//    		buttonImageOnly: true,
-//    		beforeShow:function(input,inst){
-//    			inst.dpDiv.css('margin-left','-23px')
-//    		}
-//    	});
-//    	$(html).find('input.date').click(function() {
-//    		$(this).next('.ui-datepicker-trigger').click();
-//    	});
-//    	$(html).attr('alt','').attr('title','');
     	reindexCorpOwners();
     });
     

@@ -987,6 +987,7 @@
 			<enumeration value="Wheelchair Transportation" />
 			
 			<enumeration value="Certified Professional Midwife"></enumeration>
+			<enumeration value="CRNA Certification"></enumeration>
 		</restriction>
 		
 	</simpleType>

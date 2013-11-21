@@ -14033,8 +14033,7 @@ rule "CRNA Certification from the American Association of Nurse Anesthetists is 
 	when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
    		$provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value())
-   		LicenseInformationType( $licenses: license ) from $provider.licenseInformation
-        not LicenseType( licenseType == LicenseNames.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value()) from $licenses
+   		not SpecialtiesType(specialtyName contains SpecialtyNames.CRNA_CERTIFICATION.value()) from $provider.specialties
         $report: ErrorReporter()
     then
         $report.addError(

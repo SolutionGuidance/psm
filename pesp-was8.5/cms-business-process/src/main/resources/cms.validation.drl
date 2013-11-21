@@ -6988,7 +6988,6 @@ dialect 'mvel'
         );
 end
 
-
 rule 'Highest Degree Earned Is Required For Certified Mental Health Rehab Professional'
 dialect 'mvel'
     when
@@ -7096,13 +7095,6 @@ end
 
 rule 'Highest Degree Earned Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         IsIndividual($provider : provider)
         IndividualApplicantType(highestDegreeEarned != null, highestDegreeEarned not matches "^.{0,50}$")
@@ -14024,6 +14016,20 @@ rule "Registered Nurse license is required for Certified Registered Nurse Anesth
         );
 end
 
+rule "Clinical Nurse Specialist Certification from the American Nurses Credentialing Center, or other accepted National Board is required for Clinical Nurse Specialist"
+	when
+        LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
+   		$provider: ProviderInformationType(providerType in (ProviderType.CLINICAL_NURSE_SPECIALIST.value()))
+   		not SpecialtiesType(specialtyName contains SpecialtyNames.PSYCHIATRIC_MENTAL_HEALTH.value()) from $provider.specialties
+        $report: ErrorReporter()
+    then
+        $report.addError(
+            "/ProviderInformation/LicenseInformation/License/Required",
+            "00001",
+            "Clinical Nurse Specialist Certification from the American Nurses Credentialing Center, or other accepted National Board is required."
+        );
+end
+
 rule "CRNA Certification from the American Association of Nurse Anesthetists is required for Certified Registered Nurse Anesthetist"
 	when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
@@ -14036,21 +14042,6 @@ rule "CRNA Certification from the American Association of Nurse Anesthetists is 
             "/ProviderInformation/LicenseInformation/License/Required",
             "00001",
             "CRNA Certification from the American Association of Nurse Anesthetists is required."
-        );
-end
-
-rule "Clinical Nurse Specialist Certification from the American Nurses Credentialing Center, or other accepted National Board is required for Clinical Nurse Specialist"
-	when
-        LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
-   		$provider: ProviderInformationType(providerType == ProviderType.CLINICAL_NURSE_SPECIALIST.value())
-   		LicenseInformationType( $licenses: license ) from $provider.licenseInformation
-        not LicenseType( licenseType == LicenseNames.CLINICAL_NURSE_SPECIALIST.value()) from $licenses
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/LicenseInformation/License/Required",
-            "00001",
-            "Clinical Nurse Specialist Certification from the American Nurses Credentialing Center, or other accepted National Board is required."
         );
 end
 

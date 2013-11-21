@@ -985,6 +985,8 @@
 			<enumeration value="Basic Life Support (Ambulance)" />
 			<enumeration value="Special Transportation Services (STS)" />
 			<enumeration value="Wheelchair Transportation" />
+			
+			<enumeration value="Certified Professional Midwife"></enumeration>
 		</restriction>
 		
 	</simpleType>

@@ -2567,7 +2567,7 @@ function doIndividualLicenseSelect(el) {
 		$(renewalEndDate).addClass('disabled').attr('disabled','disabled');
 	} else {
 		$(renewalEndDate).removeClass('disabled').removeAttr('disabled');
-	}
+	}	
 }
 
 function doInServiceSelect(el) {

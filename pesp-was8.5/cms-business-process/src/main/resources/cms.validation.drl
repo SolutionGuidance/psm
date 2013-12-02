@@ -7194,7 +7194,6 @@ salience 10
         insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.HOME_HEALTH_AGENCY.value()));
         insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.INDIAN_HEALTH_SERVICE_FACILITY.value()));
         
-        insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.PHARMACY.value()));
         insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.PUBLIC_HEALTH_CLINIC.value()));
         insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.REGIONAL_TREATMENT_CENTER.value()));
         insertLogical(new ProviderTypeException("AskIndividualMemberInfo", ProviderType.FEDERALLY_QUALIFIED_HEALTH_CENTER.value()));
@@ -8179,16 +8178,11 @@ end
 
 rule 'Member Info Should Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
-        IsOrganization($provider : provider)
+        IsOrganization($provider : provider, provider.providerType not in (
+                ProviderType.PHARMACY.value()
+            ))
         not ProviderTypeException(type == "AskIndividualMemberInfo", providerType == $provider.providerType)
         $memberInformation: MemberInformationType( ) from $provider.memberInformation
         GroupMemberType(  ) from $memberInformation.groupMember
@@ -14484,6 +14478,23 @@ activation-group "billing-entity-for-mh"
            "/ProviderInformation/MemberInformation",
            "00001",
            "Member information must consist minimum of 2 licensed and enrolled providers of the following types: LICSW, LMFT, LP, LPCC, or CNS with mental health specialty."
+        );
+end
+
+rule 'Pharmacy - Cannot accept any other providers except Pharmacist.'
+dialect 'mvel'
+    when
+        LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
+        $provider: ProviderInformationType(providerType == ProviderType.PHARMACY.value())
+        MemberInformationType($memberList : groupMember, groupMember != null ) from $provider.memberInformation
+        List (size  > 0) from collect (GroupMemberType () from $memberList)
+        not GroupMemberType(providerType == ProviderType.PHARMACIST.value()) from $memberList
+        $report: ErrorReporter()
+    then
+    	$report.addError(
+           "/ProviderInformation/MemberInformation",
+           "00001",
+           "Member information can accept only Pharmacist."
         );
 end
 

@@ -195,7 +195,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label>FEIN<span class="required">*</span></label>
+                    <label>FEIN</label>
                     <span class="floatL"><b>:</b></span>
                     <c:set var="formName" value="_05_fein"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>

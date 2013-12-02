@@ -14307,6 +14307,23 @@ dialect 'mvel'
         );
 end
 
+rule 'Minimum of 2 licensed Physicians working at the Physicians Clinic'
+activation-group "member-info-license-required"
+dialect 'mvel'
+    when
+        LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
+        $provider: ProviderInformationType(providerType == ProviderType.PHYSICIAN_CLINIC.value())
+        MemberInformationType($memberList : groupMember, groupMember != null ) from $provider.memberInformation
+        List (size  < 2) from collect (GroupMemberType(providerType == ProviderType.PHYSICIAN.value()) from $memberList)
+        $report: ErrorReporter()
+    then
+    	$report.addError(
+           "/ProviderInformation/MemberInformation",
+           "00001",
+           "Minimum of 2 licensed physician working at the clinic is required."
+        );
+end
+
 rule 'Duplicate NPI is not allowed for Member Info'
 dialect 'mvel'
 activation-group "duplicate-member-npi"

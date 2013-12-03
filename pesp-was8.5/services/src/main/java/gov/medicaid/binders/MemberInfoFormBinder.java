@@ -99,6 +99,13 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
                 e.setAttribute(name("startDate", i), param(request, "startDate", i));
                 exceptions.add(e);
             }
+            try {
+            	member.setBGSClearanceDate(BinderUtils.getAsCalendar(param(request, "bgsClearanceDate", i)));
+            } catch (BinderException e) {
+            	e.setAttribute(name("bgsClearanceDate", i), param(request, "bgsClearanceDate", i));
+                exceptions.add(e);
+            }
+            member.setBGSStudyId(param(request, "bgsStudyId", i));
             member.setFullName(param(request, "name", i));
             member.setSocialSecurityNumber(BinderUtils.unformatSSN(param(request, "ssn", i)));
             member.setEnrolled("Y"); // this may need lookup or hash verification
@@ -131,6 +138,8 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
             attr(mv, "startDate", i, member.getStartDate());
             attr(mv, "name", i, member.getFullName());
             attr(mv, "ssn", i, BinderUtils.formatSSN(member.getSocialSecurityNumber()));
+            attr(mv, "bgsStudyId", i, member.getBGSStudyId());
+            attr(mv, "bgsClearanceDate", i, member.getBGSClearanceDate());
             i++;
         }
         attr(mv, "memberSize", members.size());
@@ -205,6 +214,8 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
                 return createError("name", index, message);
             } else if (path.endsWith("SocialSecurityNumber")) {
                 return createError("ssn", index, message);
+            } else if (path.endsWith("BGSClearanceDate")) {
+            	return createError("bgsClearanceDate", index, message);
             }
         }
 
@@ -250,6 +261,8 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
             Affiliation member = new Affiliation();
             member.setObjectType(ViewStatics.DISCRIMINATOR_MEMBER);
             member.setEffectiveDate(BinderUtils.toDate(groupMemberType.getStartDate()));
+            member.setBgsStudyId(groupMemberType.getBGSStudyId());
+            member.setBgsClearanceDate(BinderUtils.toDate(groupMemberType.getBGSClearanceDate()));
             Person person = new Person();
             person.setName(groupMemberType.getFullName());
             person.setSsn(groupMemberType.getSocialSecurityNumber());
@@ -312,6 +325,8 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
                         member.setProviderType(entity.getProviderType().getDescription());
                     }
                     member.setSocialSecurityNumber(entity.getSsn());
+                    member.setBGSStudyId(affiliation.getBgsStudyId());
+                    member.setBGSClearanceDate(BinderUtils.toCalendar(affiliation.getBgsClearanceDate()));
                     membership.getGroupMember().add(member);
                 }
             }

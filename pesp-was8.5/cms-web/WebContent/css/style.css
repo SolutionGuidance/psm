@@ -684,7 +684,7 @@ input,select,textarea{
 		float: left;
 		width:45%;
 	}
-.topPanel .rightCol{
+.topPanel .rightCol,.bottomPanel .rightCol {
 	width:48%;
 	float:left;
 }

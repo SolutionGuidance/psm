@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <input type="hidden" name="formNames" value="<%= ViewStatics.MEMBER_INFO_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
+<c:set var="askBGSInfo" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Member Information Form'].settings['askBGSInfo']}"></c:set>
 
 <div id="membersTable">
 <c:set var="formName" value="_16_memberSize"></c:set>
@@ -89,6 +90,26 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
             </div>
+            <c:if test="${askBGSInfo == true}">
+            	<div class="row requireField">
+	                <label class="">BGS Study ID</label>
+	                <span class="floatL"><b>:</b></span>
+	                <c:set var="formName" value="_16_bgsStudyId_${status.index - 1}"></c:set>
+	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+	                <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="75"/>
+	            </div>
+            	<div class="row requireField">
+                <label>BGS Clearance Date
+                    <span class="label">(MM/DD/YYYY)</span>
+                </label>
+                <span class="floatL"><b>:</b></span>
+                            <span class="dateWrapper floatL">
+                    <c:set var="formName" value="_16_bgsClearanceDate_${status.index - 1}"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <input class="date" type="text" name="${formName}" value="${formValue}"/>
+                                    </span>
+            	</div>
+            </c:if>
             <div class="clearFixed"></div>
         </div>
         <div class="clear"></div>
@@ -179,6 +200,26 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
             </div>
+            <c:if test="${askBGSInfo == true}">
+            	<div class="row requireField">
+	                <label class="">BGS Study ID</label>
+	                <span class="floatL"><b>:</b></span>
+	                <c:set var="formName" value="_16_bgsStudyId"></c:set>
+	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+	                <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="75"/>
+	            </div>
+            	<div class="row requireField">
+                <label>BGS Clearance Date
+                    <span class="label">(MM/DD/YYYY)</span>
+                </label>
+                <span class="floatL"><b>:</b></span>
+                            <span class="dateWrapper floatL">
+                    <c:set var="formName" value="_16_bgsClearanceDate"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <input class="date" type="text" name="${formName}" value="${formValue}"/>
+                                    </span>
+            	</div>
+            </c:if>
             <div class="clearFixed"></div>
         </div>
         <div class="clear"></div>

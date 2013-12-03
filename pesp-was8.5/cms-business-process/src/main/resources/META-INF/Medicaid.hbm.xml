@@ -306,6 +306,12 @@
 		<property generated="never" lazy="false" name="mhpType" type="string">
 			<column name="MHP_TYPE" />
 		</property>
+		<property generated="never" lazy="false" name="bgsStudyId" type="string">
+			<column name="BGS_STUDY_ID" />
+		</property>
+		<property generated="never" lazy="false" name="bgsClearanceDate" type="date">
+			<column name="BGS_CLEARANCE_DT" />
+		</property>
 		<many-to-one class="gov.medicaid.entities.QPType" fetch="join"
 			name="qpType">
 			<column name="QP_TYP_CD" />

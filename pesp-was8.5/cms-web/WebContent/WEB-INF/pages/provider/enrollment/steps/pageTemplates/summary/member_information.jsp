@@ -41,10 +41,6 @@
                 </div>
                 <div class="rightCol">
                     <div class="row">
-                        <label>&nbsp;</label>
-                        <span>&nbsp;</span>
-                    </div>
-                    <div class="row">
                         <label>Name</label>
                         <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_16_name_${status.index - 1}"></c:set>
@@ -56,6 +52,21 @@
                         <c:set var="formName" value="_16_ssn_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>
                     </div>
+                    <c:set var="formName" value="_16_bgsStudyId_${status.index - 1}"></c:set>
+                    <c:if test="${not empty formName}">
+                    	<div class="row">
+	                        <label>BGS Study ID</label>
+	                        <span class="floatL"><b>:</b></span>
+	                        <c:set var="formName" value="_16_bgsStudyId_${status.index - 1}"></c:set>
+	                        <span>${requestScope[formName]}</span>
+                    	</div>
+                    	<div class="row">
+	                        <label>BGS Clearance Date</label>
+	                        <span class="floatL"><b>:</b></span>
+	                        <c:set var="formName" value="_16_bgsClearanceDate_${status.index - 1}"></c:set>
+	                        <span>${requestScope[formName]}</span>
+                    	</div>
+                    </c:if>
                 </div>
                 <div class="clearFixed"></div>
             </div>

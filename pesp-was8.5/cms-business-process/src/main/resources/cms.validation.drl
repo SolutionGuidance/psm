@@ -13771,6 +13771,23 @@ dialect 'mvel'
         );
 end
 
+rule 'Start Date cannot Precede BGS Clearance Date for Organization Members PCPO'
+dialect 'mvel'
+    when
+        LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
+        $provider: ProviderInformationType(providerType == ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value())
+        MemberInformationType($memberList : groupMember, groupMember != null ) from $provider.memberInformation
+        $member: GroupMemberType($startDate: startDate, startDate != null, $bGSClearanceDate : bGSClearanceDate, bGSClearanceDate != null) from $memberList
+        eval($startDate.before($bGSClearanceDate)) 
+        $report: ErrorReporter() 
+    then
+        int index = $memberList.indexOf($member);
+        $report.addError(
+            "/ProviderInformation/MemberInformation/GroupMember[" + index + "]/BGSClearanceDate",
+            "00001",
+            "Start Date cannot precede BGS Clearance Date."
+        );
+end
 
 /**
  * Added by cyberjag - Fix for PESP-282

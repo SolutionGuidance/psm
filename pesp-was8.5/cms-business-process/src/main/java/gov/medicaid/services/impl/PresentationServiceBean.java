@@ -665,7 +665,12 @@ public class PresentationServiceBean extends BaseService implements Presentation
 
             if (facts.get("askForMembers")) {
                 page = new UITabModel();
-                page.addForm(ViewStatics.MEMBER_INFO_FORM, new FormSettings());
+                FormSettings formSettings = new FormSettings();
+                formSettings.addSetting("askBGSInfo", false);
+                if (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value().equals(type)) {
+                	formSettings.addSetting("askBGSInfo", true);
+                }
+                page.addForm(ViewStatics.MEMBER_INFO_FORM, formSettings);
                 viewModel.addTabModel(ViewStatics.MEMBER_INFO, page);
             }
 

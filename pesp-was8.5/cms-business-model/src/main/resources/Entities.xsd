@@ -1035,6 +1035,8 @@
 				<sequence>
 					<element name="ProviderType" type="string"></element>
 					<element name="StartDate" type="date"></element>
+					<element name="BGSStudyId" type="string"></element>
+					<element name="BGSClearanceDate" type="date"></element>
 					<element name="Specialties" type="tns:SpecialtiesType" maxOccurs="1" minOccurs="0"></element>
 				</sequence>
 			</extension>

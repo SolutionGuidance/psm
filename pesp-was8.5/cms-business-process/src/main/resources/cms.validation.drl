@@ -3191,39 +3191,8 @@ dialect 'mvel'
 
 end
 
-rule 'Certificate Of Liability Insurance Is Required For Specified Provider Types'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
-        $provider: ProviderInformationType(providerType in (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value()))
-        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments; 
-        not DocumentType(objectId != null, name == DocumentNames.CERTIFICATE_OF_LIABILITY_INSURANCE.value()) from $attachedDocuments.attachment; 
-        $report: ErrorReporter() 
-    then
-        $report.addError(
-            "/ProviderInformation/AttachedDocuments/Document[name=\"Certificate Of Liability Insurance\"]",
-            "00002",
-            "Copy of Certificate Of Liability Insurance must be provided."
-        );
-
-end
-
 rule 'Class A License For Private Duty Nursing Services Is Required For PDN Agency'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.PRIVATE_DUTY_NURSING_AGENCY.value())
@@ -6286,29 +6255,6 @@ dialect 'mvel'
 
 end
 
-rule 'Fidelity Bond Is Required For Specified Provider Types'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
-        $provider: ProviderInformationType(providerType in (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value()))
-        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments; 
-        not DocumentType(objectId != null, name == DocumentNames.FIDELITY_BOND.value()) from $attachedDocuments.attachment; 
-        $report: ErrorReporter() 
-    then
-        $report.addError(
-            "/ProviderInformation/AttachedDocuments/Document[name=\"Fidelity Bond\"]",
-            "00002",
-            "Copy of Fidelity Bond must be provided."
-        );
-
-end
 
 rule 'First Name Maximum Length Check'
 dialect 'mvel'
@@ -13340,29 +13286,6 @@ dialect 'mvel'
 
 end
 
-rule 'Surety Bond Is Required For Specified Provider Types'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
-        $provider: ProviderInformationType(providerType in (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value()))
-        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments; 
-        not DocumentType(objectId != null, name == DocumentNames.SURETY_BOND.value()) from $attachedDocuments.attachment; 
-        $report: ErrorReporter() 
-    then
-        $report.addError(
-            "/ProviderInformation/AttachedDocuments/Document[name=\"Surety Bond\"]",
-            "00002",
-            "Copy of Surety Bond must be provided."
-        );
-
-end
 
 rule 'TaxPayer Name Is Required For PCPO'
 dialect 'mvel'
@@ -13667,32 +13590,6 @@ dialect 'mvel'
             "/ProviderInformation/FacilityCredentials",
             "00001",
             "Verification of IHS status is required for this provider."
-        );
-
-end
-
-rule 'Workers Compensation Insurance Is Required For PCPO If Class A License Is Not Provided'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
-        $provider: ProviderInformationType(providerType in (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value()))
-        $credentials: FacilityCredentialsType($licenseList : license) from $provider.facilityCredentials
-        not LicenseType( licenseType == LicenseNames.CLASS_A_LICENSE.value() )  from $licenseList
-        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments; 
-        not DocumentType(objectId != null, name == DocumentNames.WORKERS_COMPENSATION_INSURANCE.value()) from $attachedDocuments.attachment; 
-        $report: ErrorReporter() 
-    then
-        $report.addError(
-            "/ProviderInformation/AttachedDocuments/Document[name=\"Workers Compensation Insurance\"]",
-            "00002",
-            "Copy of Workers Compensation Insurance must be provided for non Class A licensed PCPO."
         );
 
 end

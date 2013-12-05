@@ -547,6 +547,9 @@
                 </td>
             </tr>
             <tr>
+  				<td colspan="7">Enter the Steps for Success Training information when you have completed the training.</td>
+			</tr>
+            <tr>
                 <td class="alignCenter">2</td>
                 <td class="licenseTypeInput">
                     <c:set var="formName" value="_29_licenseType"></c:set>

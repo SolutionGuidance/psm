@@ -1738,9 +1738,9 @@ $(document).ready(function() {
 			$i.find('input:eq(0)').attr("name", "_17_iboSubcontractorName_" + index);
 			$i.find('input:eq(1)').attr("name", "_17_iboPercentOwnership_" + index);
 			$i.find('input:eq(2)').attr("name", "_17_iboOtherType_" + index);
-			$i.find('input:eq(3)').attr("name", "_17_iboLastName_" + index);
-			$i.find('input:eq(4)').attr("name", "_17_iboFirstName_" + index);
-			$i.find('input:eq(5)').attr("name", "_17_iboMiddleName_" + index);
+			$i.find('input:eq(3)').attr("name", "_17_iboFirstName_" + index);
+			$i.find('input:eq(4)').attr("name", "_17_iboMiddleName_" + index);
+			$i.find('input:eq(5)').attr("name", "_17_iboLastName_" + index);
 			$i.find('input:eq(6)').attr("name", "_17_iboSSN_" + index);
 			$i.find('input:eq(7)').attr("name", "_17_iboDOB_" + index);
 			$i.find('input:eq(8)').attr("name", "_17_iboHireDate_" + index);

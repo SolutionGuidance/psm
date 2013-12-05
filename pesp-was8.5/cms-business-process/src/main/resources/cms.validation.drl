@@ -6104,7 +6104,7 @@ dialect 'mvel'
         IsOrganization()
         $provider: ProviderInformationType(facilityCredentials != null)
         $credentials: FacilityCredentialsType($licenseList : license) from $provider.facilityCredentials
-        $license: LicenseType( renewalDate == null) from $licenseList
+        $license: LicenseType( renewalDate == null, licenseType != LicenseNames.BACKGROUND_STUDY.value()) from $licenseList
         $report: ErrorReporter() 
     then
         int index = $licenseList.indexOf($license);

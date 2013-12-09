@@ -15,6 +15,18 @@ function Calendar getNow() {
 	return cal;
 }
 
+function Calendar get1YearFromNow() {
+	Calendar cal = Calendar.getInstance();
+	// reset time part
+	cal.set(Calendar.HOUR_OF_DAY, cal.getActualMinimum(Calendar.HOUR_OF_DAY));
+  	cal.set(Calendar.MINUTE, cal.getActualMinimum(Calendar.MINUTE));
+  	cal.set(Calendar.SECOND, cal.getActualMinimum(Calendar.SECOND));
+  	cal.set(Calendar.MILLISECOND, cal.getActualMinimum(Calendar.MILLISECOND));
+  	// subtract 1 year
+	cal.add(Calendar.YEAR, -1);
+	return cal;
+}
+
 function Calendar getEarliestAcceptableDate() {
     Calendar cal = Calendar.getInstance();
     cal.clear();
@@ -6095,6 +6107,25 @@ dialect 'mvel'
         );
 end
 
+rule 'Facility License Original Issue Date Cannot Be After Effective Date'
+dialect 'mvel'
+    when
+        LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
+        IsOrganization()
+        $provider: ProviderInformationType(facilityCredentials != null)
+        EnrollmentType($effectiveDate: effectiveDate, effectiveDate != null)
+        $credentials: FacilityCredentialsType($licenseList : license) from $provider.facilityCredentials
+        $license: LicenseType($originalIssueDate: originalIssueDate, originalIssueDate != null) from $licenseList
+        eval($originalIssueDate.after($effectiveDate))
+        $report: ErrorReporter() 
+    then
+        int index = $licenseList.indexOf($license);
+        $report.addError(
+            "/ProviderInformation/FacilityCredentials/License[" + index+ "]/OriginalIssueDate",
+            "00001",
+            "Facility license original issue date cannot be earlier than Effective Date."
+        );
+end
 
 
 rule 'Facility License Renewal Date Is Required'
@@ -12518,15 +12549,14 @@ dialect 'mvel'
         not ProviderTypeException(type == "AgencyApplication", providerType == $providerType)
         not ProviderTypeException(type == "EducationPlan", providerType == $providerType)
         EnrollmentType($effectiveDate: effectiveDate, effectiveDate != null)
-        eval($effectiveDate.before(getNow())) 
+        eval($effectiveDate.before(get1YearFromNow())) 
         $report: ErrorReporter()
     then
         $report.addError(
             "/EffectiveDate",
             "00001",
-            "Effective Date cannot be a past date."
+            "Effective Date can only be as far back as 12 month from now."
         );
-
 end
 
 rule 'Requested Enrollment Date Is Required For Education Plans'

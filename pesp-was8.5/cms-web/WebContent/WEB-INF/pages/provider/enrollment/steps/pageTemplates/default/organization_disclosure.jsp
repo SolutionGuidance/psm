@@ -18,6 +18,11 @@
             <div class="row">
                 <h3>Has any person having an ownership or control interest ever:</h3>
             </div>
+            
+            <c:set var="formName" value="_18_renewalBlankInit"></c:set>
+            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+            <input type="hidden" name="${formName}" value="${formValue}" />
+            
             <div class="row">
                 <label class="longLbl">Been convicted of a criminal offense related to that person's involvement in any program under Medicare, Medicaid, Title XX, or Title XXI in Minnesota or any other state or jurisdiction since the inception of these programs? <span class="required">*</span></label>
 

@@ -20,6 +20,7 @@ import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ProviderAgreementType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.ProviderStatementType;
+import gov.medicaid.domain.model.RequestType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.AcceptedAgreements;
@@ -81,7 +82,7 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-
+        provider.setRenewalShowBlankStatement(param(request, "renewalBlankInit"));
         ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
         statement.setName(param(request, "name"));
         statement.setTitle(param(request, "title"));
@@ -138,43 +139,58 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
         attr(mv, "bound", "Y");
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
 
-        ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
-        attr(mv, "name", statement.getName());
-        attr(mv, "title", statement.getTitle());
-        attr(mv, "date", statement.getSignDate());
-
-        AcceptedAgreementsType acceptedAgreements = provider.getAcceptedAgreements();
-
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-        List<AgreementDocument> docs = getLookupService().findRequiredDocuments(pt.getCode());
-        int i = 0;
-        for (AgreementDocument doc : docs) {
-            attr(mv, "documentId", i, "" + doc.getId());
-            attr(mv, "documentName", i, doc.getTitle());
-
-            boolean agreed = false;
-            boolean updatedVersion = false;
-
-            if (acceptedAgreements != null) {
-                List<ProviderAgreementType> agreements = acceptedAgreements.getProviderAgreement();
-                for (ProviderAgreementType agreement : agreements) {
-                    if (doc.getType().equals(agreement.getAgreementDocumentType())) {
-                        if (String.valueOf(doc.getVersion()).equals(agreement.getAgreementDocumentVersion())) {
-                            agreed = true;
-                        } else {
-                            updatedVersion = true;
-                        }
-                        break;
-                    }
-                }
-            }
-
-            attr(mv, "accepted", i, agreed ? "Y" : "N");
-            attr(mv, "updatedVersion", i, updatedVersion ? "Y" : "N");
-            i++;
+        if (enrollment.getRequestType() == RequestType.RENEWAL && "Y".equals(provider.getRenewalShowBlankStatement())) {
+        	attr(mv, "renewalBlankInit", "YY");
+        	ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+	        List<AgreementDocument> docs = getLookupService().findRequiredDocuments(pt.getCode());
+	        int i = 0;
+	        for (AgreementDocument doc : docs) {
+	            attr(mv, "documentId", i, "" + doc.getId());
+	            attr(mv, "documentName", i, doc.getTitle());
+	
+	            attr(mv, "accepted", i, "N");
+	            attr(mv, "updatedVersion", i, "N");
+	            i++;
+	        }
+        } else {
+        	ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
+	        attr(mv, "name", statement.getName());
+	        attr(mv, "title", statement.getTitle());
+	        attr(mv, "date", statement.getSignDate());
+	
+	        AcceptedAgreementsType acceptedAgreements = provider.getAcceptedAgreements();
+	
+	        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+	        List<AgreementDocument> docs = getLookupService().findRequiredDocuments(pt.getCode());
+	        int i = 0;
+	        for (AgreementDocument doc : docs) {
+	            attr(mv, "documentId", i, "" + doc.getId());
+	            attr(mv, "documentName", i, doc.getTitle());
+	
+	            boolean agreed = false;
+	            boolean updatedVersion = false;
+	
+	            if (acceptedAgreements != null) {
+	                List<ProviderAgreementType> agreements = acceptedAgreements.getProviderAgreement();
+	                for (ProviderAgreementType agreement : agreements) {
+	                    if (doc.getType().equals(agreement.getAgreementDocumentType())) {
+	                        if (String.valueOf(doc.getVersion()).equals(agreement.getAgreementDocumentVersion())) {
+	                            agreed = true;
+	                        } else {
+	                            updatedVersion = true;
+	                        }
+	                        break;
+	                    }
+	                }
+	            }
+	
+	            attr(mv, "accepted", i, agreed ? "Y" : "N");
+	            attr(mv, "updatedVersion", i, updatedVersion ? "Y" : "N");
+	            i++;
+	        }
+	
+	        attr(mv, "requiredAgreementsSize", docs.size());
         }
-
-        attr(mv, "requiredAgreementsSize", docs.size());
     }
 
     /**

@@ -547,7 +547,7 @@ public class FlatFileExporter {
         OwnershipInformation ownershipInformation = profile.getOwnershipInformation();
         for (int i = 0; i < 25; i++) {
             Asset asset = null;
-            if (ownershipInformation != null && ownershipInformation.getAssets().size() > i) {
+            if (ownershipInformation != null && ownershipInformation.getAssets() != null && ownershipInformation.getAssets().size() > i) {
                 asset = ownershipInformation.getAssets().get(i);
             } else {
                 asset = new Asset();

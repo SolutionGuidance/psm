@@ -45,6 +45,7 @@ import gov.medicaid.domain.model.SubmitTicketResponse;
 import gov.medicaid.domain.model.ValidationResponse;
 import gov.medicaid.entities.BeneficialOwnerType;
 import gov.medicaid.entities.CMSUser;
+import gov.medicaid.entities.CountyType;
 import gov.medicaid.entities.Document;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Note;
@@ -1361,6 +1362,7 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     private void bindTicketDetailsToPage(ModelAndView mv, EnrollmentType enrollment) {
         mv.addObject("_99_states", lookupService.findAllLookups(StateType.class));
+        mv.addObject("_99_counties", lookupService.findAllLookups(CountyType.class));
         mv.addObject("_99_legacyInd", enrollment.getProviderInformation().getLegacyTransfer());
 
         if (enrollment.getRequestType() != null) {

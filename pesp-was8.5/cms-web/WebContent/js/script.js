@@ -1586,6 +1586,7 @@ $(document).ready(function() {
     
     $('#addPayTo').live('click',function(){
         var html = $('#setupTemplate').clone();
+        html.attr('id', '');
         html.find('[type=text]').val('');
         $(html).removeAttr('style');
         html.find('.dateWrapper').empty();
@@ -1600,6 +1601,7 @@ $(document).ready(function() {
     
     $('#addMember').live('click',function(){
     	var html = $('#memberPanelTemplate').clone();
+    	html.attr('id', '');
     	html.find('[type=text]').val('');
     	$(html).removeAttr('style');
     	html.find('.dateWrapper').empty();
@@ -1792,6 +1794,7 @@ $(document).ready(function() {
     /*add ownership*/
     $('#addOwnership').live('click',function(){
         var html = $('#ownerTemplate').clone();
+        html.attr('id', '');
         html.find('[type=text]').val('');
         html.find('.dateWrapper').empty();
         html.find('.dateWrapper').append('<input class="date" type="text" />');
@@ -1807,6 +1810,7 @@ $(document).ready(function() {
     
     $('#addBusinessOwnership').live('click',function(){
     	var html = $('#corpOwnerTemplate').clone();
+    	html.attr('id', '');
     	html.find('[type=text]').val('');
     	html.find('.dateWrapper').empty();
     	html.find('.dateWrapper').append('<input class="date" type="text" />');

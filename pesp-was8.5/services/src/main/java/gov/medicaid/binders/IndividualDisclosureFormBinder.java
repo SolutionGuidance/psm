@@ -20,6 +20,7 @@ import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ProviderAgreementType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.ProviderStatementType;
+import gov.medicaid.domain.model.RequestType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.AcceptedAgreements;
@@ -104,7 +105,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         provider.setHasCriminalConviction(param(request, "criminalConvictionInd"));
         provider.setHasCivilPenalty(param(request, "civilPenaltyInd"));
         provider.setHasPreviousExclusion(param(request, "previousExclusionInd"));
-
+        provider.setRenewalShowBlankStatement(param(request, "renewalBlankInit"));
         ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
         statement.setName(param(request, "name"));
         statement.setTitle(param(request, "title"));
@@ -160,48 +161,64 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
     public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-
-        attr(mv, "criminalConvictionInd", provider.getHasCriminalConviction());
-        attr(mv, "civilPenaltyInd", provider.getHasCivilPenalty());
-        attr(mv, "previousExclusionInd", provider.getHasPreviousExclusion());
-
-        ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
-        attr(mv, "name", statement.getName());
-        attr(mv, "title", statement.getTitle());
-        attr(mv, "date", statement.getSignDate());
-
-        AcceptedAgreementsType acceptedAgreements = provider.getAcceptedAgreements();
-
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-        List<AgreementDocument> docs = getLookupService().findRequiredDocuments(pt.getCode());
-        int i = 0;
-        for (AgreementDocument doc : docs) {
-            attr(mv, "documentId", i, "" + doc.getId());
-            attr(mv, "documentName", i, doc.getTitle());
-
-            boolean agreed = false;
-            boolean updatedVersion = false;
-
-            if (acceptedAgreements != null) {
-                List<ProviderAgreementType> agreements = acceptedAgreements.getProviderAgreement();
-                for (ProviderAgreementType agreement : agreements) {
-                    if (doc.getType().equals(agreement.getAgreementDocumentType())) {
-                        if (String.valueOf(doc.getVersion()).equals(agreement.getAgreementDocumentVersion())) {
-                            agreed = true;
-                        } else {
-                            updatedVersion = true;
-                        }
-                        break;
-                    }
-                }
+        // for renewal the form should be blank
+        if (enrollment.getRequestType() == RequestType.RENEWAL && provider.getRenewalShowBlankStatement() == null) {
+        	attr(mv, "renewalBlankInit", "Y");
+        	ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+            List<AgreementDocument> docs = getLookupService().findRequiredDocuments(pt.getCode());
+            int i = 0;
+            for (AgreementDocument doc : docs) {
+                attr(mv, "documentId", i, "" + doc.getId());
+                attr(mv, "documentName", i, doc.getTitle());
+                attr(mv, "accepted", i, "N");
+                attr(mv, "updatedVersion", i, "N");
+                i++;
             }
 
-            attr(mv, "accepted", i, agreed ? "Y" : "N");
-            attr(mv, "updatedVersion", i, updatedVersion ? "Y" : "N");
-            i++;
+            attr(mv, "requiredAgreementsSize", docs.size());
+        } else {
+	        attr(mv, "criminalConvictionInd", provider.getHasCriminalConviction());
+	        attr(mv, "civilPenaltyInd", provider.getHasCivilPenalty());
+	        attr(mv, "previousExclusionInd", provider.getHasPreviousExclusion());
+	
+	        ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
+	        attr(mv, "name", statement.getName());
+	        attr(mv, "title", statement.getTitle());
+	        attr(mv, "date", statement.getSignDate());
+	
+	        AcceptedAgreementsType acceptedAgreements = provider.getAcceptedAgreements();
+	
+	        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+	        List<AgreementDocument> docs = getLookupService().findRequiredDocuments(pt.getCode());
+	        int i = 0;
+	        for (AgreementDocument doc : docs) {
+	            attr(mv, "documentId", i, "" + doc.getId());
+	            attr(mv, "documentName", i, doc.getTitle());
+	
+	            boolean agreed = false;
+	            boolean updatedVersion = false;
+	
+	            if (acceptedAgreements != null) {
+	                List<ProviderAgreementType> agreements = acceptedAgreements.getProviderAgreement();
+	                for (ProviderAgreementType agreement : agreements) {
+	                    if (doc.getType().equals(agreement.getAgreementDocumentType())) {
+	                        if (String.valueOf(doc.getVersion()).equals(agreement.getAgreementDocumentVersion())) {
+	                            agreed = true;
+	                        } else {
+	                            updatedVersion = true;
+	                        }
+	                        break;
+	                    }
+	                }
+	            }
+	
+	            attr(mv, "accepted", i, agreed ? "Y" : "N");
+	            attr(mv, "updatedVersion", i, updatedVersion ? "Y" : "N");
+	            i++;
+	        }
+	
+	        attr(mv, "requiredAgreementsSize", docs.size());
         }
-
-        attr(mv, "requiredAgreementsSize", docs.size());
     }
 
     /**

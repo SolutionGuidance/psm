@@ -179,15 +179,15 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
 
             attr(mv, "licenseTypes", type);
 
-            List<gov.medicaid.entities.StateType> state = getLookupService().findRelatedLookup(
-                gov.medicaid.entities.StateType.class, pt.getCode(), ViewStatics.REL_LICENSE_STATE_OPTIONS);
-
-            if (state.isEmpty()) {
-                state = getLookupService().findAllLookups(gov.medicaid.entities.StateType.class);
-                attr(mv, "licenseStates", state);
+            List<gov.medicaid.entities.StateType> state = new ArrayList<gov.medicaid.entities.StateType>();
+            if (enrollment.getProviderInformation().getProviderType().equals(gov.medicaid.domain.model.ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value())
+            		|| enrollment.getProviderInformation().getProviderType().equals(gov.medicaid.domain.model.ProviderType.PERSONAL_CARE_ASSISTANT.value())) {
+            	state = getLookupService().findRelatedLookup(
+                        gov.medicaid.entities.StateType.class, pt.getCode(), ViewStatics.REL_LICENSE_STATE_OPTIONS);
             } else {
-                attr(mv, "licenseStates", state);
+            	state = getLookupService().findAllLookups(gov.medicaid.entities.StateType.class);
             }
+            attr(mv, "licenseStates", state);
         }
     }
 

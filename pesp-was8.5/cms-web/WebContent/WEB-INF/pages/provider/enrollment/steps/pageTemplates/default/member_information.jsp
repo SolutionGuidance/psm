@@ -41,10 +41,17 @@
                 <c:set var="formName" value="_16_providerType_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <select name="${formName}">
-                    <option value="">Please select</option>
-                    <c:forEach var="opt" items="${individualMemberProviderTypes}">
-                       <option ${formValue eq opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
-                    </c:forEach>
+                	<c:choose>
+	                	<c:when test="${onlyPharmacist}">
+	                		<option value="Pharmacist">Pharmacist</option>
+	                	</c:when>
+	                	<c:otherwise>
+	                		<option value="">Please select</option>
+		                    <c:forEach var="opt" items="${individualMemberProviderTypes}">
+		                       <option ${formValue eq opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
+		                    </c:forEach>
+	                	</c:otherwise>
+                	</c:choose>
                 </select>
             </div>
             <div class="row requireField">
@@ -151,10 +158,17 @@
                 <c:set var="formName" value="_16_providerType"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <select name="${formName}">
-                    <option value="">Please select</option>
-                    <c:forEach var="opt" items="${individualProviderTypes}">
-                       <option ${formValue == opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
-                    </c:forEach>
+                	<c:choose>
+	                	<c:when test="${onlyPharmacist}">
+	                		<option value="Pharmacist">Pharmacist</option>
+	                	</c:when>
+	                	<c:otherwise>
+	                		<option value="">Please select</option>
+		                    <c:forEach var="opt" items="${individualMemberProviderTypes}">
+		                       <option ${formValue eq opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
+		                    </c:forEach>
+	                	</c:otherwise>
+                	</c:choose>
                 </select>
             </div>
             <div class="row requireField">

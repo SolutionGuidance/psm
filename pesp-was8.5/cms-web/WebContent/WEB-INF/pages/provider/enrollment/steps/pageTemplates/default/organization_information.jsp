@@ -12,6 +12,7 @@
 <c:set var="askFiscalYear" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['askFiscalYear']}"></c:set>
 <c:set var="askTaxPayerName" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['askTaxPayerName']}"></c:set>
 <c:set var="askDBAName" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['askDBAName']}"></c:set>
+<c:set var="requireNPI" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['requireNPI']}"></c:set>
 <c:set var="useEDILayout" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['useEDILayout']}"></c:set>
 <c:set var="useEducationPlanLayout" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['useEducationPlanLayout']}"></c:set>
 <c:set var="useNursingFacilityLayout" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['useNursingFacilityLayout']}"></c:set>
@@ -515,7 +516,7 @@
 			                <input type="text" class="umpiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
 	            		</c:when>
 	            		<c:otherwise>
-	            			<label>NPI<span class="required">*</span></label>
+	            			<label>NPI <c:if test="${requireNPI}"><span class="required">*</span></c:if></label>
 			                <span class="floatL"><b>:</b></span>
 			    
 			                <c:set var="formName" value="_15_npi"></c:set>

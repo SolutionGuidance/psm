@@ -189,4 +189,17 @@ public class AgreementDocument extends IdentifiableEntity {
     public void setCanDelete(boolean canDelete) {
         this.canDelete = canDelete;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+    	if (obj instanceof AgreementDocument) {
+    		return ((AgreementDocument)obj).getId() == this.getId();
+    	}
+    	return false;
+    }
+    
+    @Override
+    public int hashCode() {
+    	return (int) this.getId();
+    }
 }

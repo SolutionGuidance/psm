@@ -574,45 +574,6 @@
 			type="string">
 			<column name="DESCRIPTION" />
 		</property>
-		<property generated="never" lazy="false" name="hasPrivateOffice"
-			type="yes_no">
-			<column name="PRIVATE_OFFICE_FLG" not-null="true" />
-		</property>
-		<property generated="never" lazy="false" name="employedAndOrContracted"
-			type="yes_no">
-			<column name="EMPLOYED_CONTRACTED_FLG" not-null="true" />
-		</property>
-		<property generated="never" lazy="false" name="hasAdditionalPractice"
-			type="yes_no">
-			<column name="ADDITONAL_PRACTICE_FLG" not-null="true" />
-		</property>
-		<property generated="never" lazy="false" name="paymentRequired"
-			type="yes_no">
-			<column name="PAYMENT_REQUIRED_FLG" not-null="true" />
-		</property>
-		<property generated="never" lazy="false" name="hasAgreement"
-			type="yes_no">
-			<column name="AGREEMENT_FLG" not-null="true" />
-		</property>
-		<property generated="never" lazy="false" name="hasAddendum"
-			type="yes_no">
-			<column name="ADDENDUM_FLG" not-null="true" />
-		</property>
-		<bag cascade="save-update" name="requiredFields" table="PROVIDER_TYPE_REQ_FIELDS">
-			<key>
-				<column name="PROVIDER_TYPE_CD" not-null="true" />
-			</key>
-			<many-to-many class="gov.medicaid.entities.RequiredField"
-				column="REQUIRED_FIELD_CD" unique="false" />
-		</bag>
-		<many-to-one class="gov.medicaid.entities.AgreementDocument"
-			name="agreement">
-			<column name="AGREEMENT_ID" />
-		</many-to-one>
-		<many-to-one class="gov.medicaid.entities.AgreementDocument"
-			name="addendum">
-			<column name="ADDENDUM_ID" />
-		</many-to-one>
 	</class>
 	<class name="gov.medicaid.entities.LicenseType" table="LU_LICENSE_TYPE">
 		<id name="code" type="string">

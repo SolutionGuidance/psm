@@ -24,6 +24,8 @@ import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.util.LogUtil;
 
+import java.security.Principal;
+
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
@@ -184,7 +186,7 @@ public class AgreementDocumentController extends BaseServiceAdminController {
             ModelAndView model = new ModelAndView("admin/service_admin_edit_agreement_document");
             if (id == 0) {
                 AgreementDocument agreementDocument = new AgreementDocument();
-                agreementDocument.setType(agreementDocumentType.name());
+                agreementDocument.setType(agreementDocumentType == AgreementDocumentType.AGREEMENT ? "01" : "02");
                 model.addObject("agreementDocument", agreementDocument);
             } else {
                 AgreementDocument agreementDocument = agreementDocumentService.get(id);
@@ -210,13 +212,13 @@ public class AgreementDocumentController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/createAgreementDocument", method = RequestMethod.POST)
     public ModelAndView create(@ModelAttribute("agreementDocument") AgreementDocument agreementDocument,
-        HttpServletRequest request) throws PortalServiceException {
+        HttpServletRequest request, Principal principal) throws PortalServiceException {
         String signature = "AgreementDocumentController#create(AgreementDocument agreementDocument)";
         LogUtil.traceEntry(getLog(), signature, new String[] {"agreementDocument"}, new Object[] {agreementDocument});
 
         try {
+        	agreementDocument.setCreatedBy(principal.getName());
             agreementDocumentService.create(agreementDocument);
-
             ModelAndView model = new ModelAndView("admin/service_admin_view_agreement_document");
             model.addObject("agreementDocument", agreementDocument);
 
@@ -246,7 +248,7 @@ public class AgreementDocumentController extends BaseServiceAdminController {
 
         try {
             agreementDocumentService.update(agreementDocument);
-
+            
             ModelAndView model = new ModelAndView("admin/service_admin_view_agreement_document");
             model.addObject("agreementDocument", agreementDocument);
 

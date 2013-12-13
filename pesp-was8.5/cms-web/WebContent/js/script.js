@@ -1644,9 +1644,9 @@ $(document).ready(function() {
 			$i.find('input:eq(10)').attr("name", "_29_city_" + index);
 			$i.find('select:eq(1)').attr("name", "_29_state_" + index);
 			$i.find('input:eq(11)').attr("name", "_29_zip_" + index);
-			$i.find('input:eq(12)').attr("name", "_29_county_" + index);
-			$i.find('input:eq(13)').attr("name", "_29_bgsNumber_" + index);
-			$i.find('input:eq(14)').attr("name", "_29_bgsClearanceDate_" + index);
+			$i.find('select:eq(1)').attr("name", "_29_county_" + index);
+			$i.find('input:eq(12)').attr("name", "_29_bgsNumber_" + index);
+			$i.find('input:eq(13)').attr("name", "_29_bgsClearanceDate_" + index);
 			
 			$i.find('table tbody tr').each(function(rid, row) {
 				var $r = $(row);

@@ -58,8 +58,11 @@
                     <div class="row">
                         <label>Name</label>
                         <span class="floatL"><b>:</b></span>
-                        <c:set var="formName" value="_17_iboSSN_${status.index - 1}"></c:set>
-                        <span>${requestScope[formName]}</span>
+                        <span>
+                        	<c:set var="formName" value="_17_iboFirstName_${status.index - 1}"></c:set>
+                        	${requestScope[formName]}&nbsp;<c:set var="formName" value="_17_iboMiddleName_${status.index - 1}"></c:set><c:if test="${not empty requestScope[formName]}"><c:out value="${requestScope[formName]}"></c:out></c:if>
+                        	<c:set var="formName" value="_17_iboLastName_${status.index - 1}"></c:set>&nbsp;${requestScope[formName]}
+	                    </span>
                     </div>
                     <div class="row">
                         <label>Hire Date</label>

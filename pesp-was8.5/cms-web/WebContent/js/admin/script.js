@@ -1617,7 +1617,7 @@ $(document).ready(function() {
         rules : {
         	title : {
                 required : true ,
-                maxlength : 45
+                maxlength : 100
             },
             content : {
                 required : true ,

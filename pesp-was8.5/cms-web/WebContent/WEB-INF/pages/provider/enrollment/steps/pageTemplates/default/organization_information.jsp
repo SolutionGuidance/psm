@@ -17,6 +17,7 @@
 <c:set var="useEducationPlanLayout" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['useEducationPlanLayout']}"></c:set>
 <c:set var="useNursingFacilityLayout" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['useNursingFacilityLayout']}"></c:set>
 <c:set var="askUMPI" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['askUMPI']}"></c:set>
+<c:set var="askUMPIorNPI" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['askUMPIorNPI']}"></c:set>
 <c:set var="showInitialChoices" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['showInitialChoices']}"></c:set>
 <c:set var="clearingHouseLayout" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['clearingHouseLayout']}"></c:set>
 
@@ -509,6 +510,14 @@
 	            	<c:choose>
 	            		<c:when test="${askUMPI}">
 	            			<label>UMPI</label>
+			                <span class="floatL"><b>:</b></span>
+			    
+			                <c:set var="formName" value="_15_npi"></c:set>
+			                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+			                <input type="text" class="umpiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
+	            		</c:when>
+	            		<c:when test="${askUMPIorNPI}">
+	            			<label>NPI / UMPI</label>
 			                <span class="floatL"><b>:</b></span>
 			    
 			                <c:set var="formName" value="_15_npi"></c:set>

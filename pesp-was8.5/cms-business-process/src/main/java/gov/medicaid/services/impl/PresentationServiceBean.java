@@ -574,7 +574,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
                 settings.addSetting("askFiscalYear", true);
                 settings.addSetting("askTaxPayerName", true);
                 settings.addSetting("askDBAName", true);
-                settings.addSetting("askUMPI", true);
+                settings.addSetting("askUMPIorNPI", true);
                 page.addForm(ViewStatics.PCA_BILLING_CONTACT_FORM, new FormSettings());
             } else if (ProviderType.INDIVIDUAL_EDUCATION_PLAN.value().equals(type)) {
                 settings.addSetting("useEducationPlanLayout", true);
@@ -675,6 +675,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
                 formSettings.addSetting("askBGSInfo", false);
                 if (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value().equals(type)) {
                 	formSettings.addSetting("askBGSInfo", true);
+                	formSettings.addSetting("askUMPIorNPI", true);
                 }
                 page.addForm(ViewStatics.MEMBER_INFO_FORM, formSettings);
                 viewModel.addTabModel(ViewStatics.MEMBER_INFO, page);

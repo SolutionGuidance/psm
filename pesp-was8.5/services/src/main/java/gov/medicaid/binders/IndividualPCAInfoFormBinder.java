@@ -80,7 +80,7 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
         individual.setLastName(param(request, "lastName"));
         individual.setFirstName(param(request, "firstName"));
         individual.setMiddleName(param(request, "middleName"));
-        individual.setSocialSecurityNumber(param(request, "ssn"));
+        individual.setSocialSecurityNumber(BinderUtils.unformatSSN(param(request, "ssn")));
         try {
             individual.setDateOfBirth(BinderUtils.getAsCalendar(param(request, "dob")));
         } catch (BinderException e) {
@@ -119,13 +119,13 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
         attr(mv, "lastName", individual.getLastName());
         attr(mv, "firstName", individual.getFirstName());
         attr(mv, "middleName", individual.getMiddleName());
-        attr(mv, "ssn", individual.getSocialSecurityNumber());
+        attr(mv, "ssn", BinderUtils.formatSSN(individual.getSocialSecurityNumber()));
         attr(mv, "dob", individual.getDateOfBirth());
 
         ContactInformationType contact = XMLUtility.nsGetContactInformation(individual);
         if (contact.getAddress() != null) {
             AddressType address = contact.getAddress();
-            String line1 = address.getAddressLine2();
+            String line1 = address.getAddressLine1();
             String line2 = address.getAddressLine2();
             if (Util.isBlank(line1)) {
                 line1 = line2;

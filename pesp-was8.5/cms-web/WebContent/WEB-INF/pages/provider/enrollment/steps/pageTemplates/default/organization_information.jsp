@@ -80,8 +80,8 @@
                         <c:set var="formName" value="_15_zip"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                         <input type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
-	                    <label>County : </label>
-	                    <c:set var="formName" value="_15_county"></c:set>
+	                    <label>County<span class="required">*</span> : </label>
+	                    <c:set var="formName" value="_15_orgCountyName"></c:set>
 	                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
 	                    <select class="countySelectFor" name="${formName}">
                                 <option value="">Please select</option>
@@ -166,15 +166,6 @@
                         <c:set var="formName" value="_15_fax3"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                         <input type="text" class="autotab smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
-                    </div>
-                    
-                    <div class="row requireField">
-                        <label>Facility County<span class="required">*</span></label>
-                        <span class="floatL"><b>:</b></span>
-            
-                        <c:set var="formName" value="_15_orgCountyName"></c:set>
-                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="200"/>
                     </div>
 		      </c:when>
 		      <c:when test="${useEducationPlanLayout}">

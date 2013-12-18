@@ -1,0 +1,13 @@
+/**
+ * WYSIWYG – jQuery plugin @VERSION
+ *
+ * Copyright © 2008–2009 Juan M Martinez, 2010–@YEAR Akzhan Abdulin and all contributors
+ * https://github.com/jwysiwyg/jwysiwyg
+ *
+ * Dual licensed under the MIT and GPL licenses:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *   http://www.gnu.org/licenses/gpl.html
+ *
+ * Release: @DATE
+ *
+ */

@@ -1,0 +1,12 @@
+[submodule "build/jslint"]
+	path = build/jslint
+	url = https://github.com/douglascrockford/JSLint.git
+[submodule "build/uglify"]
+	path = build/uglify
+	url = https://github.com/mishoo/UglifyJS.git
+[submodule "test/lib/jasmine"]
+	path = test/lib/jasmine
+	url = https://github.com/pivotal/jasmine.git
+[submodule "test/lib/jquery"]
+	path = test/lib/jquery
+	url = https://github.com/jquery/jquery.git

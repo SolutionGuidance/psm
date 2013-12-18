@@ -485,10 +485,17 @@ public class PresentationServiceBean extends BaseService implements Presentation
                 // BUGR-9673 for CHW, do not mark NPI as required.
                 FormSettings personalInfoFormSettings = new FormSettings();
                 personalInfoFormSettings.addSetting("requireNPI", true);
+                personalInfoFormSettings.addSetting("hideRenewalDate", false);
+                personalInfoFormSettings.addSetting("hideLicenseNumber", false);
                 if (ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value().equals(type)) {
                     personalInfoFormSettings.addSetting("requireNPI", false);
                 }
+                if (ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value().equals(type)) {
+                	personalInfoFormSettings.addSetting("hideRenewalDate", true);
+                    personalInfoFormSettings.addSetting("hideLicenseNumber", true);
+                }
                 page.addForm(ViewStatics.PERSONAL_INFO_FORM, personalInfoFormSettings);
+                
                 // end BUGR-9673
                 viewModel.addTabModel(ViewStatics.PERSONAL_INFORMATION, page);
 

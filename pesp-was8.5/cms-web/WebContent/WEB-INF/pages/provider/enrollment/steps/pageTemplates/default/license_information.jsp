@@ -8,7 +8,10 @@
 <%@page import="gov.medicaid.binders.ProviderTypeFormBinder"%>
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<%@taglib prefix="cms" uri="CMSTags"  %> 
+<%@taglib prefix="cms" uri="CMSTags"  %>
+
+<c:set var="hideRenewalDate" value="${viewModel.tabModels['Personal Information'].formSettings['Personal Information Form'].settings['hideRenewalDate']}"></c:set>
+<c:set var="hideLicenseNumber" value="${viewModel.tabModels['Personal Information'].formSettings['Personal Information Form'].settings['hideLicenseNumber']}"></c:set>
 
 <div class="tableData" id="tableLicense">
     <input type="hidden" name="formNames" value="<%= ViewStatics.LICENSE_INFO_FORM %>">
@@ -19,9 +22,24 @@
                 <th class="alignCenter">#<span class="sep"></span></th>
                 <th>Type of License/Certification<span class="required">*</span><span class="sep"></span></th>
                 <th>Upload License/Certification <span class="required">*</span><span class="sep"></span></th>
-                <th>License/Certification #<span class="required">*</span><span class="sep"></span></th>
+                <c:choose>
+                	<c:when test="${hideLicenseNumber}">
+                		<th width="0"> </th>
+                	</c:when>
+                	<c:otherwise>
+                		<th>License/Certification #<span class="required">*</span><span class="sep"></span></th>
+                	</c:otherwise>
+                </c:choose>
+                
                 <th>Original Issue Date<span class="required">*</span><span class="sep"></span></th>
-                <th>Renewal End Date<span class="required">*</span><span class="sep"></span></th>
+                <c:choose>
+                	 <c:when test="${hideRenewalDate}">
+                		<th width="0"> </th>
+               		 </c:when>
+               		 <c:otherwise>
+               		 	<th>Renewal End Date<span class="required">*</span><span class="sep"></span></th>
+               		 </c:otherwise>
+                </c:choose>
                 <th>Issuing State<span class="required">*</span><span class="sep"></span></th>
                 <th></th>
             </tr>
@@ -61,9 +79,17 @@
     						<input type="hidden" name="${formName}" value="${formValue}"/>
 						</c:if>
 	                </td>
-	                <c:set var="formName" value="_03_licenseNumber_${status.index - 1}"></c:set>
-	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                <td><input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
+	                <c:choose>
+                		<c:when test="${hideLicenseNumber}">
+                			<td width="0"></td>
+                		</c:when>
+                		<c:otherwise>
+			                <c:set var="formName" value="_03_licenseNumber_${status.index - 1}"></c:set>
+			                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+			                <td><input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
+		                </c:otherwise>
+	                </c:choose>
+	                
 	                <td class="dateCell">
 	                    <span class="dateWrapper">
 	                        <c:set var="formName" value="_03_originalIssueDate_${status.index - 1}"></c:set>
@@ -71,13 +97,20 @@
 	                        <input class="date" type="text" name="${formName}" value="${formValue}"/>
 	                    </span>
 	                </td>
-	                <td class="dateCell">
-	                    <span class="dateWrapper">
-	                        <c:set var="formName" value="_03_renewalDate_${status.index - 1}"></c:set>
-	                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                        <input class="date ${disableRenewalDate ? 'disabled' : ''}" type="text" ${disableRenewalDate ? 'disabled="disabled"' : ''} name="${formName}" value="${formValue}"/>
-	                    </span>
-	                </td>
+	                <c:choose>
+                	 	<c:when test="${hideRenewalDate}">
+                	 		<td width="0"></td>
+                		</c:when>
+	                	<c:otherwise>
+			                <td class="dateCell">
+			                    <span class="dateWrapper">
+			                        <c:set var="formName" value="_03_renewalDate_${status.index - 1}"></c:set>
+			                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+			                        <input class="date ${disableRenewalDate ? 'disabled' : ''}" type="text" ${disableRenewalDate ? 'disabled="disabled"' : ''} name="${formName}" value="${formValue}"/>
+			                    </span>
+			                </td>
+			             </c:otherwise>
+		              </c:choose>  
 	                <td>
 	                    <c:set var="formName" value="_03_issuingState_${status.index - 1}"></c:set>
 	                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -121,9 +154,16 @@
                 <c:set var="formName" value="_03_attachment"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <td><input type="file" class="fileUpload" size="10" name="${formName}" /></td>
-                <c:set var="formName" value="_03_licenseNumber"></c:set>
-                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <td><input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
+	            <c:choose>
+                		<c:when test="${hideLicenseNumber}">
+                			<td width="0"></td>
+                		</c:when>
+                		<c:otherwise>    
+			                <c:set var="formName" value="_03_licenseNumber"></c:set>
+			                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+			                <td><input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
+		                </c:otherwise>
+                </c:choose>
                 <td class="dateCell">
                     <span class="dateWrapper">
 		                <c:set var="formName" value="_03_originalIssueDate"></c:set>
@@ -131,13 +171,20 @@
                         <input class="date" type="text" name="${formName}" value="${formValue}"/>
                     </span>
                 </td>
-                <td class="dateCell">
-                    <span class="dateWrapper">
-                        <c:set var="formName" value="_03_renewalDate"></c:set>
-                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input class="date" type="text"  name="${formName}" value="${formValue}"/>
-                    </span>
-                </td>
+	            <c:choose>
+                	 	<c:when test="${hideRenewalDate}">
+                	 		<td width="0"></td>
+                		</c:when>
+	                	<c:otherwise>    
+			                <td class="dateCell">
+			                    <span class="dateWrapper">
+			                        <c:set var="formName" value="_03_renewalDate"></c:set>
+			                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+			                        <input class="date" type="text"  name="${formName}" value="${formValue}"/>
+			                    </span>
+			                </td>
+		                </c:otherwise>
+                </c:choose>
                 <td>
                     <c:set var="formName" value="_03_issuingState"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>

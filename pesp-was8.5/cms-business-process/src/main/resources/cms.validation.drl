@@ -4576,17 +4576,11 @@ end
 
 rule 'Define Exceptions For Certification MnSCU Certification'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
 salience 10
     when
     then
         insertLogical(new CertificateException("RenewalEndDate", "MnSCU Certification", "*"));
+        insertLogical(new CertificateException("LicenseNumber", "MnSCU Certification", "*"));
 
 end
 
@@ -7537,13 +7531,6 @@ end
 
 rule 'License Number Is Required If There Is No Exeption Defined For License Type'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)
@@ -7563,13 +7550,6 @@ end
 
 rule 'License Number Is Required If There Is No Exeption Defined For Certificate Type'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)

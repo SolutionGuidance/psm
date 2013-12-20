@@ -87,7 +87,7 @@
                     <td>
                         <c:set var="formName" value="_21_licenseType_${status.index - 1}"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <select class="bigSelect" name="${formName}">
+                        <select class="bigSelect medicareCheck" name="${formName}">
                             <option value="">Please select</option>
                             <c:forEach var="opt" items="${requestScope['_21_licenseTypes']}">
                                 <option ${formValue eq opt.description ? 'selected' : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
@@ -114,11 +114,18 @@
                     <td>
                         <c:set var="formName" value="_21_issuingState_${status.index - 1}"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <select name="${formName}">
+                        <select name="${formName}" class="licenseStates">
                             <option value="">Please select</option>
-                            <c:forEach var="opt" items="${requestScope['_99_states']}">
-                                <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
-                            </c:forEach>
+                            <c:choose>
+                            	<c:when test="${formValue == 'MEDICARE'}">
+                            		<option value="MEDICARE" selected="selected">Medicare</option>
+                            	</c:when>
+                            	<c:otherwise>
+                            		<c:forEach var="opt" items="${requestScope['_99_states']}">
+		                                <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+		                            </c:forEach>
+                            	</c:otherwise>
+                            </c:choose>
                         </select>
                     </td>
                     <td>
@@ -165,7 +172,7 @@
                 <td>
                     <c:set var="formName" value="_21_licenseType"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <select class="bigSelect" name="${formName}">
+                    <select class="bigSelect medicareCheck" name="${formName}">
 	                    <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_21_licenseTypes']}">
                             <option value="${opt.description}"><c:out value="${opt.description}" /></option>
@@ -192,7 +199,7 @@
                 <td>
                     <c:set var="formName" value="_21_issuingState"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <select name="${formName}">
+                    <select name="${formName}" class="licenseStates">
 	                    <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_99_states']}">
                             <option value="${opt.code}"><c:out value="${opt.description}" /></option>

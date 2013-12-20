@@ -316,6 +316,22 @@ $(document).ready(function() {
 		$('.flyout').hide();
 	});
 	
+	$('.medicareCheck').live('change', function() {
+		var lval = $(this).val();
+		if (lval == 'HCFA Medicare Certification') {
+			// only MEDICARE should be in states
+			var option = $('<option></option>').attr("value", "MEDICARE").text("Medicare");
+			$(this).parents('tr').find('.licenseStates').empty().append(option);
+		} else {
+			var states = $(this).parents('tr').find('.licenseStates option').length;
+			if (states == 1) {
+				// relaod
+				var options = $('#tableLicenseTemplate .licenseStates option');
+				$(this).parents('tr').find('.licenseStates').empty().append(options);
+			}
+		}
+	});
+	
 	//Add License
 	//if($('#tableLicense tbody tr').length < 2){
 		//$('#tableLicense .remove').hide();

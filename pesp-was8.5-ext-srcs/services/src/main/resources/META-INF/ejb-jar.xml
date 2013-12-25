@@ -201,7 +201,7 @@
       <env-entry>
         <env-entry-name>mita/config/URL</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>http://exclusions.oig.hhs.gov/search.aspx</env-entry-value>
+        <env-entry-value>http://exclusions.oig.hhs.gov/Default.aspx</env-entry-value>
       </env-entry>
       <env-entry>
         <env-entry-name>mita/config/verificationURL</env-entry-name>

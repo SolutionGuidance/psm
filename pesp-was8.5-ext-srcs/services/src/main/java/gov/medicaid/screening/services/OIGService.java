@@ -36,7 +36,9 @@ public interface OIGService {
      * @return true if valid, false if not
      * @throws ParsingException if any parsing errors are encountered
      * @throws ServiceException for any other exceptions encountered
+     * @deprecated not updated in new site layout.
      */
+    @Deprecated
     boolean verifySSN(String entityId, String ssn) throws ParsingException, ServiceException;
 
     /**
@@ -45,6 +47,8 @@ public interface OIGService {
      * @return the exclusion types.
      * @throws ParsingException if any parsing errors are encountered
      * @throws ServiceException for any other exceptions encountered
+     * @deprecated not updated in new site layout.
      */
+    @Deprecated
     List<ExclusionType> getExclusionTypeList() throws ParsingException, ServiceException;
 }

@@ -103,7 +103,7 @@
       <dataInputAssociation>
         <targetRef>_3_GroupIdInput</targetRef>
         <assignment>
-          <from xsi:type="tFormalExpression">Service Administrator</from>
+          <from xsi:type="tFormalExpression">Service Administrator, Service Agent</from>
           <to xsi:type="tFormalExpression">_3_GroupIdInput</to>
         </assignment>
       </dataInputAssociation>

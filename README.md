@@ -26,7 +26,7 @@ SECTION 2: Features and Functionality
   * Capability to establish and employ a graded screening methodology that escalates the intensity of screening for providers that are flagged as higher risk (i.e., Report Card Methodology)
 2. Capability to Build Provider Profiles
   * Capability to retain screening and enrollment information and results and compare against past and future screening results.
-  * Capability to create a watch list to ensure that providers that are suspected or known to be fraudulent are flagged at the time of screening*
+  * Capability to create a watch list to ensure that providers that are suspected or known to be fraudulent are flagged at the time of screening (partial support in the final product)
   * Capability to track re-enrollment attempts to ensure that slight changes to provider information is not considered a new enrollment
   * Capability to re-screen periodically to ensure that changes in provider profiles are updated on a regular basis
   * Capability to leverage public websites to conduct link analysis through which provider associations could be explored and alerts posted on similar websites could be considered

@@ -31,16 +31,16 @@ SECTION 2: Features and Functionality
   * Capability to re-screen periodically to ensure that changes in provider profiles are updated on a regular basis
   * Capability to leverage public websites to conduct link analysis through which provider associations could be explored and alerts posted on similar websites could be considered
   * Captures critical attributes.
-    ** Collection of application fees status
-    ** Exception waiver approved status
-    ** Incorporates enhanced screening data including the results of site visits, criminal background checks and finger printing
-    ** Captures licensing information, financial data and any other data attributes which could impact a risk lever
-    ** Other critical attributes
+     * Collection of application fees status (partial support in the final product)
+     * Exception waiver approved status
+     * Incorporates enhanced screening data including the results of site visits, criminal background checks and finger printing
+     * Captures licensing information, financial data and any other data attributes which could impact a risk lever
+     * Other critical attributes
   * Capability to achieve real time screening, scoring and system outputs (queries/reports)
 3.  Capability to Evaluate and Maintain the Integrity of the Results
   * Capability to persist data sources scores to determine the most reliable source for each data element
   * Capability to evaluate data sources for reliability and accuracy
-  * Capability to create a learning system to ensure that observed negative trends factor back into screening rules so as to flag suspicious enrollments early in the screening process, ensuring the ability to detect and reduce/eliminate the incidence of false positives**
+  * Capability to create a learning system to ensure that observed negative trends factor back into screening rules so as to flag suspicious enrollments early in the screening process, ensuring the ability to detect and reduce/eliminate the incidence of false positives (structural support for this feature is provided, but an active learning system is not deployed with the final application)
   * Capability to create system outputs to assign reasons/explanations to each code or score used
   * Capability to build processes to allow for appropriate interpretation and action on screening and scoring results
   * Capability to ensure that each rule is tested and its impact is evaluated prior to implementing
@@ -60,10 +60,6 @@ SECTION 2: Features and Functionality
   * Potential extra costs (e.g. licenses, etc) are documented
   * Effectiveness of the risk-screening model in detecting fraud based issues
   * Technical soundness of risk-scoring in flagging potential fraudulent patterns and tendencies
-
-* Partial support in the final product.
-
-** Structural support for this feature is provided, but an active learning system is not deployed with the final application.
 
 ---------------------------------------------------------------------
 SECTION 3: Licensing

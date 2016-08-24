@@ -31,7 +31,7 @@ SECTION 2: Features and Functionality
   * Capability to re-screen periodically to ensure that changes in provider profiles are updated on a regular basis
   * Capability to leverage public websites to conduct link analysis through which provider associations could be explored and alerts posted on similar websites could be considered
   * Captures critical attributes.
-    ** Collection of application fees status *
+    ** Collection of application fees status
     ** Exception waiver approved status
     ** Incorporates enhanced screening data including the results of site visits, criminal background checks and finger printing
     ** Captures licensing information, financial data and any other data attributes which could impact a risk lever
@@ -50,7 +50,7 @@ SECTION 2: Features and Functionality
   * Capability to verify identity and prior history of problems with Medicaid/CHIP or Medicare programs
   * Identifies and schedules revalidation process
 5.  Meets Architectural Guidelines
-  * Adheres to the Architectural Guidance and meets the seven conditions and standards detailed in the Guidance for Exchange and Medicaid IT Systems, Version 2.0, located at: http://cciio.cms.gov/resources/files/exchange_medicaid_it_guidance_05312011.pdf
+  * Adheres to the Architectural Guidance and meets the seven conditions and standards detailed in the Guidance for Exchange and Medicaid IT Systems, Version 2.0, located at: https://www.medicaid.gov/medicaid-chip-program-information/by-topics/data-and-systems/downloads/exchangemedicaiditguidance.pdf
 6. Integrates Into the MITA Framework / Is MITA Compliant
   * Information regarding MITA can be found at: http://www.cms.gov/MedicaidInfoTechArch/
 7. Accurate, Cost Effective, and Timely
@@ -84,7 +84,4 @@ SECTION 3: Licensing
   
   See the License for the specific language governing permissions and
   limitations under the License.
-<<<<<<< HEAD
 
-=======
->>>>>>> Updating minor changes to README

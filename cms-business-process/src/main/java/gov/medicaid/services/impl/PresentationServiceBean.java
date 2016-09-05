@@ -632,8 +632,6 @@ public class PresentationServiceBean extends BaseService implements Presentation
                     page.addForm(ViewStatics.FACILITY_ELIGIBILITY_FORM, new FormSettings());
                 } else if (ProviderType.HOSPICE.value().equals(type)) {
                     page.addForm(ViewStatics.AMBULANCE_SERVICES_FORM, new FormSettings());
-                } else if (ProviderType.HOSPITAL.value().equals(type)) {
-                    page.addForm(ViewStatics.AMBULANCE_SERVICES_FORM, new FormSettings());
                 } else if (ProviderType.CHEMICAL_DEPENDENCY_PROGRAM.value().equals(type)) {
                     page.addForm(ViewStatics.CHEMICAL_DEPENDENCY_SERVICE_ASSURANCE_FORM, new FormSettings());
                 }

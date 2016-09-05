@@ -13984,7 +13984,7 @@ rule "Valid national certification as a certified rehabilitation counselor or Ce
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
    		$provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value())
    		LicenseInformationType( $licenses: license ) from $provider.licenseInformation
-        not LicenseType( licenseType == LicenseNames.PSYCHOSOCIAL_REHABILITATION_PRACTITIONER.value() || licenseType == LicenseNames.REHABILITATION_COUNSELOR.value() ) from $licenses
+        not LicenseType( licenseType == LicenseNames.PSYCHOSOCIAL_REHAB_PRACTITIONER_CERTIFICATION.value() || licenseType == LicenseNames.REHAB_COUNSELOR_CERTIFICATION.value() ) from $licenses
         $report: ErrorReporter()
     then
         $report.addError(

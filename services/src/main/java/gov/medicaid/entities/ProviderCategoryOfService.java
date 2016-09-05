@@ -14,6 +14,7 @@ public class ProviderCategoryOfService extends IdentifiableEntity {
     private List<CategoryOfService> categories;
 
     private long profileId;
+    private long ticketId;
     private Date startDate;
     private Date endDate;
 
@@ -94,5 +95,21 @@ public class ProviderCategoryOfService extends IdentifiableEntity {
      */
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    /**
+     * Gets the <code>ticketId</code>.
+     * @return the ticketId
+     */
+    public long getTicketId() {
+        return ticketId;
+    }
+
+    /**
+     * Sets the <code>ticketId</code>.
+     * @param ticketId the ticketId to set
+     */
+    public void setTicketId(long ticketId) {
+        this.ticketId = ticketId;
     }
 }

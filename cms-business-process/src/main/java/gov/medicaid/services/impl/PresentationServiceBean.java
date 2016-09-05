@@ -259,8 +259,6 @@ public class PresentationServiceBean extends BaseService implements Presentation
             return false;
         } else if (ProviderType.INTENSIVE_RESIDENTIAL_TREATMENT_FACILITY.value().equals(type)) {
             return false;
-        } else if (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value().equals(type)) {
-            return false;
         } else if (ProviderType.PUBLIC_HEALTH_NURSING_ORGANIZATION.value().equals(type)) {
             return false;
         } else if (ProviderType.REHABILITATION_AGENCY.value().equals(type)) {

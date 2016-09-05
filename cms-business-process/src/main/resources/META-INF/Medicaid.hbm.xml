@@ -290,6 +290,9 @@
 			name="acknowledgementAttachmentId" type="string">
 			<column name="ACK_ID" />
 		</property>
+		<property generated="never" lazy="false" name="mhpType" type="string">
+			<column name="MHP_TYPE" />
+		</property>
 		<many-to-one class="gov.medicaid.entities.QPType" fetch="join"
 			name="qpType">
 			<column name="QP_TYP_CD" />
@@ -1290,7 +1293,11 @@
 		</id>
 		<property generated="never" lazy="false" name="profileId"
 			type="long">
-			<column default="0" name="PROFILE_ID" not-null="true" />
+			<column default="0" name="PROFILE_ID" />
+		</property>
+		<property generated="never" lazy="false" name="ticketId"
+			type="long">
+			<column default="0" name="TICKET_ID" />
 		</property>
 		<property generated="never" name="startDate" type="timestamp">
 			<column name="START_DT" not-null="true" />

@@ -75,6 +75,11 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
+            
+            <c:set var="formName" value="_08_renewalBlankInit"></c:set>
+            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+            <input type="hidden" name="${formName}" value="${formValue}" />
+            
             <c:set var="formName" value="_08_requiredAgreementsSize"></c:set>
             <c:forEach begin="1" end="${requestScope[formName]}" varStatus="status">
 	            <div class="checkRow">

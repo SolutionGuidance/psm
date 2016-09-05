@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:searchByNameResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <pageNumber>2</pageNumber>
+        <pageSize>2</pageSize>
+        <total>0</total>
+        <totalPages>0</totalPages>
+      </return>
+    </ns2:searchByNameResponse>
+  </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.services.screening.medicaid.gov/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:searchBySpecialty>
+         <arg0>
+            <specialty>
+               <name>Psychiatry and Neurology (ABMS)/ Addiction Psychiatry (Sub-Cert.)</name>
+            </specialty>
+         </arg0>
+      </impl:searchBySpecialty>
+   </soapenv:Body>
+</soapenv:Envelope>

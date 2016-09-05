@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.services.screening.medicaid.gov/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:search>
+         <arg0>
+            <lastName>Lee</lastName>
+            <createDateFrom>2011-05-31T00:00:00Z</createDateFrom>
+            <createDateTo>2011-06-30T00:00:00Z</createDateTo>
+         </arg0>
+      </impl:search>
+   </soapenv:Body>
+</soapenv:Envelope>

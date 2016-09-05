@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:searchResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>ALBANY</city>
+            <location>161 4TH STREET SUITE B</location>
+            <state>MN</state>
+            <zipcode>563078356</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>ALBANY AREA HOSPICE</name>
+          </business>
+          <contactFaxNumber>320-845-2449</contactFaxNumber>
+          <contactName>MS. MARGARET NELSON</contactName>
+          <contactPhoneNumber>320-845-2440</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <employerId>28602</employerId>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>ST PAUL</city>
+            <location>1055 WESTGATE DRIVE SUITE 100</location>
+            <state>MN</state>
+            <zipcode>55114</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>ALLINA HM C HSPCE &amp; PALLITV CA</name>
+          </business>
+          <contactFaxNumber>651-628-2999</contactFaxNumber>
+          <contactName>MS. GLORIA CADE</contactName>
+          <contactPhoneNumber>651-635-9173</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <employerId>02441</employerId>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>NEW ULM</city>
+            <location>1324 FIFTH ST NO P O BOX 577</location>
+            <state>MN</state>
+            <zipcode>56073</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>ALLINA HM C HSPCE &amp; PALLITV CA</name>
+          </business>
+          <contactFaxNumber>N/A</contactFaxNumber>
+          <contactName>N/A</contactName>
+          <contactPhoneNumber/>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <employerId>02441</employerId>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <pageNumber>1</pageNumber>
+        <pageSize>3</pageSize>
+        <total>102</total>
+        <totalPages>34</totalPages>
+      </return>
+    </ns2:searchResponse>
+  </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:searchResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Winnebago</city>
+            <county>Faribault County</county>
+            <location>620 1st Ave SW PO Box 278</location>
+            <state>MN</state>
+            <zipcode>56098</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Adolescent Treatment Center of Winnebago</name>
+          </business>
+          <contactPhoneNumber>(507) 893-3885</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>804032</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Saint Paul</city>
+            <county>Ramsey County</county>
+            <location>1089 Portland Ave</location>
+            <state>MN</state>
+            <zipcode>55104</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Ain Dah Yung (our Home) Center</name>
+          </business>
+          <contactPhoneNumber>(651) 227-4184</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>800051</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Saint Paul</city>
+            <county>Ramsey County</county>
+            <location>2230 Como Ave</location>
+            <state>MN</state>
+            <zipcode>55108</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Anna Westin House Adolescent and Young Adult</name>
+          </business>
+          <contactPhoneNumber>(651) 645-5323</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1059868</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <pageNumber>2</pageNumber>
+        <pageSize>3</pageSize>
+        <total>112</total>
+        <totalPages>38</totalPages>
+      </return>
+    </ns2:searchResponse>
+  </soap:Body>
+</soap:Envelope>

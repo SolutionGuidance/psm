@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:getNETStudyResponseResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <denied>true</denied>
+        <response>&lt;?xml version="1.0" encoding="utf-8" ?&gt;&lt;string xmlns="DHS.NETStudyWebService"&gt;&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;RequestResult xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;FirstName&gt;John&lt;/FirstName&gt;&lt;MiddleName&gt;David&lt;/MiddleName&gt;&lt;LastName&gt;Doe&lt;/LastName&gt;&lt;DOB&gt;1/11/1971 12:00:00 AM&lt;/DOB&gt;&lt;SSNo&gt;000000000&lt;/SSNo&gt;&lt;AgencyID&gt;123456&lt;/AgencyID&gt;&lt;AgencyName&gt;Jags House&lt;/AgencyName&gt;&lt;SubmittedDate&gt;9/30/2010 1:21:00 PM&lt;/SubmittedDate&gt;&lt;ResultStatus&gt;Disqualified Not Set Aside&lt;/ResultStatus&gt;&lt;/RequestResult&gt;&lt;/string&gt;</response>
+      </return>
+    </ns2:getNETStudyResponseResponse>
+  </soap:Body>
+</soap:Envelope>

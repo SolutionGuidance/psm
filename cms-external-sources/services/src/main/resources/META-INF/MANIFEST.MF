@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Class-Path: lib/jackson-core-asl-1.7.5.jar 
+ lib/jackson-mapper-asl-1.7.5.jar
+ lib/commons-codec-1.6.jar
+ lib/commons-logging-1.1.1.jar
+ lib/fluent-hc-4.2.1.jar
+ lib/httpclient-4.2.1.jar
+ lib/httpclient-cache-4.2.1.jar
+ lib/httpmime-4.2.1.jar
+ lib/jsoup-1.6.3.jar
+ lib/httpcore-4.2.1.jar
+

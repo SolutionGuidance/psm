@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:searchResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <location>121 BAKEN STREET  THIEF RIVER FALLS  </location>
+            <state>MN</state>
+            <zipcode>56701</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>OAK PARK SENIOR LIVING</name>
+          </business>
+          <contactFaxNumber>218-681-1037</contactFaxNumber>
+          <contactName>MS. ANGELA MALONE</contactName>
+          <contactPhoneNumber>218-681-1675</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <employerId>22082</employerId>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <location>1006 GREENWOOD STREET EAST  THIEF RIVER FALLS  </location>
+            <state>MN</state>
+            <zipcode>56701</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>MINNESOTA GREENLEAF</name>
+          </business>
+          <contactFaxNumber>218-681-4014</contactFaxNumber>
+          <contactName>MS. RENAE ROHL</contactName>
+          <contactPhoneNumber>218-681-1685</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <employerId>23224</employerId>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <location>120 LABREE AVENUE SOUTH  THIEF RIVER FALLS  </location>
+            <state>MN</state>
+            <zipcode>56701</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>SANFORD MED CTR THIEF RVR FALL</name>
+          </business>
+          <contactFaxNumber>218-683-4511</contactFaxNumber>
+          <contactName>MS. CHRIS HARFF</contactName>
+          <contactPhoneNumber>218-681-4240</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <employerId>24712</employerId>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <location>120 LABREE AVENUE SOUTH  THIEF RIVER FALLS  </location>
+            <state>MN</state>
+            <zipcode>567012819</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>SANFORD DIALYSIS THIEF RVR FLS</name>
+          </business>
+          <contactFaxNumber>None</contactFaxNumber>
+          <contactName>MS. DEANNA PICOTTE</contactName>
+          <contactPhoneNumber>218-681-4240</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <employerId>26854</employerId>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <pageNumber>2</pageNumber>
+        <pageSize>5</pageSize>
+        <total>9</total>
+        <totalPages>2</totalPages>
+      </return>
+    </ns2:searchResponse>
+  </soap:Body>
+</soap:Envelope>

@@ -1,5 +1,17 @@
 /*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
+ * Copyright 2012-2013 TopCoder, Inc.
+ *
+ * This code was developed under U.S. government contract NNH10CD71C. 
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at:
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package gov.medicaid.services;
 
@@ -10,6 +22,7 @@ import gov.medicaid.entities.LookupEntity;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ServiceAssuranceExtType;
 import gov.medicaid.entities.ServiceAssuranceType;
+import gov.medicaid.entities.SystemId;
 
 import java.util.List;
 
@@ -123,7 +136,16 @@ public interface LookupService {
      * @param name the system name
      * @param codeType the code type name
      * @param internalCodeValue the internal code value
-     * @return the mapped value, or null if not found
+     * @return the mapped value, or the internal code if not found
      */
     public String findLegacyMapping(String name, String codeType, String internalCodeValue);
+    
+    /**
+     * Retrieves the mapped code for the given external lookup.
+     * @param name the system name
+     * @param codeType the code type name
+     * @param externalCodeValue the external code value
+     * @return the mapped value, or the external code if not found
+     */
+    public String findInternalMapping(String name, String codeType, String externalCodeValue);
 }

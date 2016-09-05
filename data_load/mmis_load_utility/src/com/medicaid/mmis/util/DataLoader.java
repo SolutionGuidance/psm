@@ -1,3 +1,30 @@
+/*
+ * Copyright 2012-2013 TopCoder, Inc.
+ *
+ * This code was developed under U.S. government contract NNH10CD71C. 
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at:
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * This code was developed under U.S. government contract NNH10CD71C. 
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at:
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.medicaid.mmis.util;
 
 import gov.medicaid.domain.model.ApplicantType;
@@ -39,7 +66,6 @@ import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.process.enrollment.sync.ColumnDef;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.impl.LookupServiceBean;
 import gov.medicaid.services.impl.ProviderEnrollmentServiceBean;
 import gov.medicaid.services.impl.SequenceGeneratorBean;
@@ -50,6 +76,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -63,13 +90,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+/**
+ * This is the data loader implementation.
+ * 
+ * @author TCSASSEMBLER
+ * @version 1.0
+ */
 public class DataLoader {
-    
+
+    /**
+     * Beneficial owner type mapping name.
+     */
     private static final String XREF_OWNER_TYPE = "BEN_OWNER_TYPE";
 
     /**
@@ -115,11 +150,6 @@ public class DataLoader {
     /**
      * Code value external mapping.
      */
-    private static final String XREF_TRIBAL_CODE = "TRIBAL_CODE";
-
-    /**
-     * Code value external mapping.
-     */
     private static final String XREF_RISK_LEVEL = "RISK_LEVEL";
 
     /**
@@ -138,15 +168,10 @@ public class DataLoader {
     private LookupService lookup;
 
     /**
-     * The owner map.
-     */
-    private Map<String, OwnershipInformation> ownerMap = new HashMap<String, OwnershipInformation>();
-
-    /**
      * The enrollment service.
      */
-    private ProviderEnrollmentService enrollmentService;
-    
+    private ProviderEnrollmentServiceBean enrollmentService;
+
     /**
      * Empty constructor.
      */
@@ -165,9 +190,9 @@ public class DataLoader {
         ProviderProfile profile = new ProviderProfile();
         profile.setAttachments(new ArrayList<Document>());
         profile.setAgreements(new ArrayList<AcceptedAgreements>());
-        
+
         enrollment.setDetails(profile);
-        readWS000EXTENTITY(stream, enrollment);
+        String legacyId = readWS000EXTENTITY(stream, enrollment);
 
         StringBuilder sb = new StringBuilder();
         readWS000EXTOWNINFO(stream, profile);
@@ -178,12 +203,16 @@ public class DataLoader {
         readWS000EXTBILLADDR(stream, enrollment);
         readWS000EXTLIC(stream, enrollment);
         readWS000EXTCOS(stream, enrollment);
-        
+
+        boolean purged = enrollmentService.purgeLegacyRecord(legacyId);
+        if (purged) {
+            logger.warn("The legacy record will be replaced overwritten (ticket/audit will remain).");
+        }
         enrollmentService.importProfile(getSystemUser(), SystemId.MN_ITS, profile);
         return sb.toString().getBytes();
     }
 
-    private CMSUser getSystemUser() {
+    private static CMSUser getSystemUser() {
         CMSUser cmsUser = new CMSUser();
         cmsUser.setUserId("SYSTEM");
         cmsUser.setUsername("system");
@@ -212,12 +241,16 @@ public class DataLoader {
      * 002400      10  WS-000-EXT2-OWN-B-ROLE-IND-4  PIC X(01) VALUE ' '.  
      * 002410      10  WS-000-EXT2-OWN-B-FEIN        PIC X(09) VALUE ' '.
      * </pre>
-     * @throws PortalServiceException for any errors encounterd 
+     * 
+     * @return
+     * @throws PortalServiceException for any errors encounterd
      */
-    private void readWS000EXT2OWNBEN(ByteArrayInputStream stream) throws PortalServiceException {
+    public Map<String, OwnershipInformation> readWS000EXT2OWNBEN(ByteArrayInputStream stream)
+        throws PortalServiceException {
         String strWS_000_EXT_ENTITY_PROV_ID = readField(stream, ColumnDef.WS_000_EXT_ENTITY_PROV_ID);
         String strWS_000_EXT_ENTITY_NPI = readField(stream, ColumnDef.WS_000_EXT_ENTITY_NPI);
-        
+        logger.trace("Adding ownership info for NPI " + strWS_000_EXT_ENTITY_NPI);
+
         String strWS_000_EXT2_OWN_B_INT_PCT = readField(stream, ColumnDef.WS_000_EXT2_OWN_B_INT_PCT);
         String strWS_000_EXT2_OWN_B_BIRTH_DATE = readField(stream, ColumnDef.WS_000_EXT2_OWN_B_BIRTH_DATE);
         String strWS_000_EXT2_OWN_B_HIRE_DATE = readField(stream, ColumnDef.WS_000_EXT2_OWN_B_HIRE_DATE);
@@ -238,26 +271,29 @@ public class DataLoader {
             owner.setOwnershipInterest(parseBigDecimal(strWS_000_EXT2_OWN_B_INT_PCT));
             person.setDob(parseDate(strWS_000_EXT2_OWN_B_BIRTH_DATE));
             person.setHireDate(parseDate(strWS_000_EXT2_OWN_B_HIRE_DATE));
-            person.setMiddleName(strWS_000_EXT2_OWN_B_M_NAME);
-            person.setFirstName(strWS_000_EXT2_OWN_B_F_NAME);
+            if (StringUtils.isNotBlank(strWS_000_EXT2_OWN_B_L_NAME)) {
+                person.setMiddleName(strWS_000_EXT2_OWN_B_M_NAME);
+                person.setFirstName(strWS_000_EXT2_OWN_B_F_NAME);
+            }
             person.setLastName(strWS_000_EXT2_OWN_B_L_NAME);
             person.setSsn(strWS_000_EXT2_OWN_B_SSN);
-            
         } else {
             owner = new OrganizationBeneficialOwner();
             OrganizationBeneficialOwner org = (OrganizationBeneficialOwner) owner;
             org.setFein(strWS_000_EXT2_OWN_B_FEIN);
             org.setLegalName(strWS_000_EXT2_OWN_B_L_NAME);
         }
-        
+
         String internalCode = doLegacyMapping(strWS_000_EXT2_OWN_B_ROLE_IND_1, XREF_OWNER_TYPE);
         owner.setType(lookup.findLookupByCode(BeneficialOwnerType.class, internalCode));
-        
-        String key = strWS_000_EXT_ENTITY_PROV_ID + strWS_000_EXT_ENTITY_NPI;
+
+        String key = strWS_000_EXT_ENTITY_PROV_ID;
         OwnershipInformation ownershipInformation = new OwnershipInformation();
         ownershipInformation.setBeneficialOwners(new ArrayList<BeneficialOwner>());
         ownershipInformation.getBeneficialOwners().add(owner);
+        Map<String, OwnershipInformation> ownerMap = new HashMap<String, OwnershipInformation>();
         ownerMap.put(key, ownershipInformation);
+        return ownerMap;
     }
 
     private BigDecimal parseBigDecimal(String value) {
@@ -358,6 +394,13 @@ public class DataLoader {
                 license.setObjectType(ViewStatics.DISCRIMINATOR_SPECIALTY);
                 String internalCode = doLegacyMapping(strWS_000_EXT_LIC_SPEC_TYPE, XREF_SPECIALTY_CODE);
                 license.setSpecialty(lookup.findLookupByCode(SpecialtyType.class, internalCode));
+                if (license.getSpecialty() != null) {
+                    // if there is a tribe certificate, then set resv flag to Y
+                    if ("TC".equals(license.getSpecialty().getSubCategory())) {
+                        license.setObjectType(ViewStatics.DISCRIMINATOR_TRIBE);
+                        profile.setWorksOnReservationInd("Y");
+                    }
+                }
             } else {
                 license.setObjectType(ViewStatics.DISCRIMINATOR_LICENSE);
                 String internalCode = doLegacyMapping(strWS_000_EXT_LIC_SPEC_TYPE, XREF_LICENSE_TYPE);
@@ -485,6 +528,7 @@ public class DataLoader {
             address.setState(strWS_000_EXT_PRAC_ADDR_STATE);
             address.setCounty(strWS_000_EXT_PRAC_ADDR_COUNTY);
             address.setZipcode(strWS_000_EXT_PRAC_ADDR_ZIP);
+            return address;
         }
         return null;
     }
@@ -618,39 +662,10 @@ public class DataLoader {
 
         ProviderProfile profile = enrollment.getDetails();
         profile.setWorksOnReservationInd(strWS_000_EXT_PROV_P_RESV_IND);
-        addReservationCode(profile, strWS_000_EXT_PROV_P_CO_CODE);
+        profile.setCounty(strWS_000_EXT_PROV_P_CO_CODE);
         String riskLevelCd = doLegacyMapping(strWS_000_EXT_PROV_P_RISK_LVL, XREF_RISK_LEVEL);
         RiskLevel riskLevel = lookup.findLookupByCode(RiskLevel.class, riskLevelCd);
         profile.setRiskLevel(riskLevel);
-    }
-
-    /**
-     * Finds the reservation code for the profile
-     * 
-     * @param profile the profile
-     * @return the reservation code if it exists
-     */
-    private void addReservationCode(ProviderProfile profile, String code) {
-        if (StringUtils.isBlank(code)) {
-            return;
-        }
-
-        List<License> certifications = profile.getCertifications();
-        if (certifications == null) {
-            certifications = new ArrayList<License>();
-            profile.setCertifications(certifications);
-        }
-
-        License license = new License();
-        license.setObjectType(ViewStatics.DISCRIMINATOR_TRIBE);
-        String internalCode = doLegacyMapping(code, XREF_TRIBAL_CODE);
-        SpecialtyType specialty = lookup.findLookupByCode(SpecialtyType.class, internalCode);
-        if (specialty == null) {
-            logger.warn("Unknown reservation code: " + code);
-        } else {
-            license.setSpecialty(specialty);
-            certifications.add(license);
-        }
     }
 
     /**
@@ -729,21 +744,16 @@ public class DataLoader {
      * 001770      10  WS-000-EXT-ENTITY-VEND-LOC    PIC X(03) VALUE ' '.
      * </pre>
      * 
+     * @return the legacy id
+     * 
      * @throws PortalServiceException for any errors encountered
      */
-    private void readWS000EXTENTITY(ByteArrayInputStream stream, Enrollment enrollment) throws PortalServiceException {
+    private String readWS000EXTENTITY(ByteArrayInputStream stream, Enrollment enrollment) throws PortalServiceException {
         logger.debug("Reading WS-000-EXT-ENTITY");
         ProviderProfile profile = enrollment.getDetails();
 
         String strWS_000_EXT_ENTITY_PROV_ID = readField(stream, ColumnDef.WS_000_EXT_ENTITY_PROV_ID);
         String strWS_000_EXT_ENTITY_NPI = readField(stream, ColumnDef.WS_000_EXT_ENTITY_NPI);
-        
-        String key = strWS_000_EXT_ENTITY_PROV_ID + strWS_000_EXT_ENTITY_NPI;
-        if (ownerMap.get(key) != null) {
-            logger.info("Matched owner record from file 2");
-            profile.setOwnershipInformation(ownerMap.get(key));
-        }
-        
         String strWS_000_EXT_ENTITY_NAME = readField(stream, ColumnDef.WS_000_EXT_ENTITY_NAME);
         String strWS_000_EXT_ENTITY_LEGAL_NAME = readField(stream, ColumnDef.WS_000_EXT_ENTITY_LEGAL_NAME);
         String strWS_000_EXT_ENTITY_PROV_TYPE = readField(stream, ColumnDef.WS_000_EXT_ENTITY_PROV_TYPE);
@@ -770,18 +780,19 @@ public class DataLoader {
             gov.medicaid.domain.model.ProviderType.PERSONAL_CARE_ASSISTANT.value());
         Person person = new Person();
         Organization org = new Organization();
-        Organization practice = new Organization();
+        Organization practice = null;
         boolean isPerson = type.getApplicantType() == ApplicantType.INDIVIDUAL.ordinal();
         if (isPerson) {
             profile.setEntity(person);
             profile.setAffiliations(new ArrayList<Affiliation>());
-            Affiliation affiliation = new Affiliation();
             if (!pcaInd) {
+                Affiliation affiliation = new Affiliation();
+                practice = new Organization();
                 affiliation.setEntity(practice);
+                affiliation.setObjectType(ViewStatics.DISCRIMINATOR_LOCATION);
+                affiliation.setPrimaryInd("Y");
+                profile.getAffiliations().add(affiliation);
             }
-            affiliation.setObjectType(ViewStatics.DISCRIMINATOR_LOCATION);
-            affiliation.setPrimaryInd("Y");
-            profile.getAffiliations().add(affiliation);
         } else {
             DesignatedContact contact = new DesignatedContact();
             contact.setPerson(new Person());
@@ -806,13 +817,15 @@ public class DataLoader {
                 practice.setFiscalYearEnd(parseFiscalYear(strWS_000_EXT_ENTITY_FSCL_YR_END));
                 practice.setEftVendorNumber(strWS_000_EXT_ENTITY_EFT_VEND_N);
             }
-            person.setMiddleName(strWS_000_EXT_ENTITY_MIDDLE_NAME);
             person.setSsn(strWS_000_EXT_ENTITY_SSN);
             person.setDob(parseDate(strWS_000_EXT_ENTITY_BIRTH_DATE));
             String degreeCode = doLegacyMapping(strWS_000_EXT_ENTITY_DEGREE, "DEGREE");
             person.setDegree(lookup.findLookupByCode(Degree.class, degreeCode));
             person.setDegreeAwardDate(parseDate(strWS_000_EXT_ENTITY_DEGREE_DATE));
-            person.setFirstName(strWS_000_EXT_ENTITY_FIRST_NAME);
+            if (StringUtils.isNotBlank(strWS_000_EXT_ENTITY_LAST_NAME)) {
+                person.setFirstName(strWS_000_EXT_ENTITY_FIRST_NAME);
+                person.setMiddleName(strWS_000_EXT_ENTITY_MIDDLE_NAME);
+            }
             person.setLastName(strWS_000_EXT_ENTITY_LAST_NAME);
         } else {
             org.setName(strWS_000_EXT_ENTITY_NAME);
@@ -829,6 +842,7 @@ public class DataLoader {
             profile.setCounty(county.getDescription());
         }
         logger.debug("End Reading WS-000-EXT-ENTITY");
+        return strWS_000_EXT_ENTITY_PROV_ID;
     }
 
     private String parseFiscalYear(String fiscalYear) throws PortalServiceException {
@@ -867,29 +881,45 @@ public class DataLoader {
             logger.debug("Read: " + def.name() + " : " + value);
             return value.trim();
         }
-        
+
         return "";
     }
 
     /**
      * Performs code value mapping for the given lookup.
      * 
-     * @param internalCodeValue the internal application value
+     * @param externalCodeValue the internal application value
      * @param codeType the code type
      * @return the mapped value
      */
-    private String doLegacyMapping(String internalCodeValue, String codeType) {
-        String externalCode = lookup.findLegacyMapping(SystemId.MN_ITS.name(), codeType, internalCodeValue);
-        if (externalCode != null && externalCode.trim().length() > 0) {
-            return externalCode;
+    private String doLegacyMapping(String externalCodeValue, String codeType) {
+        String internalCode = lookup.findInternalMapping(SystemId.MN_ITS.name(), codeType, externalCodeValue);
+        if (internalCode != null && internalCode.trim().length() > 0) {
+            logger.debug("Mapped code ["+codeType+"] [" +externalCodeValue+ "] to [" + internalCode+ "]");
+            return internalCode;
         }
-        return internalCodeValue;
+        
+        if (!Util.isBlank(externalCodeValue)) {
+            logger.warn("No internal mapping found for code [" + codeType + "] [" + externalCodeValue + "].");
+        }
+        return externalCodeValue;
     }
 
+    /**
+     * The main function, imports the files given as arguments.
+     * @param args the file names
+     * @throws IOException for read/write errors
+     * @throws PortalServiceException for any other errors
+     */
     public static void main(String[] args) throws IOException, PortalServiceException {
+        if (args.length != 2) {
+            System.out.println("2 file path arguments are required.");
+            return;
+        }
+
         PropertyConfigurator.configure("log4j.properties");
         logger = Logger.getLogger(DataLoader.class);
-        
+
         LookupServiceBean lookupBean = new LookupServiceBean();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("cms-data-load");
         EntityManager em = emf.createEntityManager();
@@ -899,75 +929,107 @@ public class DataLoader {
 
         SequenceGeneratorBean sequence = new SequenceGeneratorBean();
         sequence.setEm(em);
-        
+
         ProviderEnrollmentServiceBean enrollmentBean = new ProviderEnrollmentServiceBean();
         enrollmentBean.setEm(em);
         enrollmentBean.setSequence(sequence);
         enrollmentBean.setLookupService(lookupBean);
-        
+
         loader.setEnrollmentService(enrollmentBean);
-        
+
+        long processId = sequence.getNextValue("PROCESS_ID");
+        System.out.println("Started process id " + processId);
+
         BufferedReader br = null;
+        PrintWriter accepted = null;
+        PrintWriter rejected = null;
         try {
-            br = new BufferedReader(new FileReader("WRKHASH1.txt"));
+            System.out.println("Processing file 1...");
+            File success = new File("accepted_1_" + processId + ".txt");
+            File failure = new File("rejected_1_" + processId + ".txt");
+            success.createNewFile();
+            failure.createNewFile();
+            accepted = new PrintWriter(success);
+            rejected = new PrintWriter(failure);
+            br = new BufferedReader(new FileReader(args[0]));
             String line = null;
             int total = 0;
             int errors = 0;
             while ((line = br.readLine()) != null) {
                 total++;
                 try {
-                    List<String> owners = FileUtils.readLines(new File("WRKHASH2.txt"));
                     em.getTransaction().begin();
-                    loader.readOwners(owners);
                     loader.readProviderFile(new ByteArrayInputStream(line.getBytes()));
                     em.getTransaction().commit();
-                    logger.info("Successfully processed row " + total);
+                    accepted.println(line);
+                    logger.info("Commit row " + total);
                 } catch (PortalServiceException e) {
+                    rejected.println(line);
                     em.getTransaction().rollback();
                     errors++;
-                    logger.error("Skipped row " + total + " :" + e.getMessage());
+                    logger.error("Rollback row " + total + " :" + e.getMessage());
                 }
             }
+
+            accepted.flush();
+            accepted.close();
+            rejected.flush();
+            rejected.close();
+            br.close();
             System.out.println("Total records read: " + total);
-            System.out.println("Total records with error: " + errors);
+            System.out.println("Total rejected: " + errors);
+
+            System.out.println("Processing file 2...");
+            success = new File("accepted_2_" + processId + ".txt");
+            failure = new File("rejected_2_" + processId + ".txt");
+            success.createNewFile();
+            failure.createNewFile();
+            accepted = new PrintWriter(success);
+            rejected = new PrintWriter(failure);
+            br = new BufferedReader(new FileReader(args[1]));
+            line = null;
+            total = 0;
+            errors = 0;
+            while ((line = br.readLine()) != null) {
+                total++;
+                try {
+                    em.getTransaction().begin();
+                    Map<String, OwnershipInformation> owners = loader.readWS000EXT2OWNBEN(new ByteArrayInputStream(line
+                        .getBytes()));
+                    for (Map.Entry<String, OwnershipInformation> entry : owners.entrySet()) {
+                        enrollmentBean.addBeneficialOwners(entry.getKey(), entry.getValue());
+                    }
+                    em.getTransaction().commit();
+                    accepted.println(line);
+                    logger.info("Commit row " + total);
+                } catch (PortalServiceException e) {
+                    rejected.println(line);
+                    em.getTransaction().rollback();
+                    errors++;
+                    logger.error("Rollback row " + total + " :" + e.getMessage());
+                }
+            }
+            accepted.flush();
+            rejected.flush();
+            System.out.println("Total records read: " + total);
+            System.out.println("Total rejected: " + errors);
+
         } finally {
             if (br != null) {
                 br.close();
             }
-        }
-    }
-
-    private void readOwners(List<String> owners) {
-        logger.info("Reading owner information.");
-        int total = 0;
-        for (String owner : owners) {
-            total++;
-            try {
-                readWS000EXT2OWNBEN(new ByteArrayInputStream(owner.getBytes()));
-            } catch (PortalServiceException e) {
-                logger.error("Skipped row " + total + " :" + e.getMessage());
+            if (accepted != null) {
+                accepted.close();
+            }
+            if (rejected != null) {
+                rejected.close();
             }
         }
     }
 
     /**
-     * Gets the value of the field <code>enrollmentService</code>.
-     * @return the enrollmentService
-     */
-    public ProviderEnrollmentService getEnrollmentService() {
-        return enrollmentService;
-    }
-
-    /**
-     * Sets the value of the field <code>enrollmentService</code>.
-     * @param enrollmentService the enrollmentService to set
-     */
-    public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
-    }
-
-    /**
      * Gets the value of the field <code>lookup</code>.
+     * 
      * @return the lookup
      */
     public LookupService getLookup() {
@@ -976,9 +1038,28 @@ public class DataLoader {
 
     /**
      * Sets the value of the field <code>lookup</code>.
+     * 
      * @param lookup the lookup to set
      */
     public void setLookup(LookupService lookup) {
         this.lookup = lookup;
+    }
+
+    /**
+     * Gets the value of the field <code>enrollmentService</code>.
+     * 
+     * @return the enrollmentService
+     */
+    public ProviderEnrollmentServiceBean getEnrollmentService() {
+        return enrollmentService;
+    }
+
+    /**
+     * Sets the value of the field <code>enrollmentService</code>.
+     * 
+     * @param enrollmentService the enrollmentService to set
+     */
+    public void setEnrollmentService(ProviderEnrollmentServiceBean enrollmentService) {
+        this.enrollmentService = enrollmentService;
     }
 }

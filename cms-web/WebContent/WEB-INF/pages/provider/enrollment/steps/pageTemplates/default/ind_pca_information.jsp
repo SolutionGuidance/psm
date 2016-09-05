@@ -87,7 +87,12 @@
                 <label>County : </label>
                 <c:set var="formName" value="_10_county"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="countryInput conurtyInputFor countyMask" name="${formName}" value="${formValue}" maxlength="3"/>
+                <select class="countySelectFor" name="${formName}">
+           			<option value="">Please select</option>
+               		<c:forEach var="opt" items="${requestScope['_99_counties']}">
+                        <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+                    </c:forEach>
+           		</select>
             </div>
                 
             <div class="row">

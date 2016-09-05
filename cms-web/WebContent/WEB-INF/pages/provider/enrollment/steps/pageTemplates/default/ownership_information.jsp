@@ -231,7 +231,12 @@
                 <label>County : </label>
                 <c:set var="formName" value="_17_iboCounty_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="countryInput conurtyInputFor countyMask" name="${formName}" value="${formValue}" maxlength="3"/>
+                <select class="countySelectFor" name="${formName}">
+                    <option value="">Please select</option>
+                    <c:forEach var="opt" items="${requestScope['_99_counties']}">
+                        <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+                    </c:forEach>
+                </select>
             </div>
         </div>
         <div class="clearFixed"></div>
@@ -287,7 +292,12 @@
                 <label>County/Indian Reservation:</label>
                  <c:set var="formName" value="_17_iboOtherCounty_${status.index - 1}"></c:set>
                  <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="countryInput conurtyInputFor countyMask" name="${formName}" value="${formValue}" maxlength="3"/>
+                <select class="countySelectFor" name="${formName}">
+                    <option value="">Please select</option>
+                    <c:forEach var="opt" items="${requestScope['_99_counties']}">
+                        <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+                    </c:forEach>
+                </select>
                 <label>State : </label>
                 
                 <c:set var="formName" value="_17_iboOtherState_${status.index - 1}"></c:set>
@@ -441,7 +451,12 @@
                 <label>County : </label>
                 <c:set var="formName" value="_17_cboCounty_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="countryInput conurtyInputFor countyMask" name="${formName}" value="${formValue}" maxlength="3"/>
+                <select class="countySelectFor" name="${formName}">
+                    <option value="">Please select</option>
+                    <c:forEach var="opt" items="${requestScope['_99_counties']}">
+                        <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+                    </c:forEach>
+                </select>
             </div>
         </div>
         <div class="clearFixed"></div>
@@ -496,7 +511,12 @@
                 <label>County/Indian Reservation:</label>
                  <c:set var="formName" value="_17_cboOtherCounty_${status.index - 1}"></c:set>
                  <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="countryInput conurtyInputFor countyMask" name="${formName}" value="${formValue}" maxlength="3"/>
+                <select class="countySelectFor" name="${formName}">
+                    <option value="">Please select</option>
+                    <c:forEach var="opt" items="${requestScope['_99_counties']}">
+                        <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+                    </c:forEach>
+                </select>
                 <label>State : </label>
                 
                 <c:set var="formName" value="_17_cboOtherState_${status.index - 1}"></c:set>
@@ -642,7 +662,12 @@
                 <label>County : </label>
                 <c:set var="formName" value="_17_cboCounty"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="countryInput conurtyInputFor countyMask" name="${formName}" value="${formValue}" maxlength="3"/>
+                <select class="countySelectFor" name="${formName}">
+                    <option value="">Please select</option>
+                    <c:forEach var="opt" items="${requestScope['_99_counties']}">
+                        <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+                    </c:forEach>
+                </select>
             </div>
         </div>
         <div class="clearFixed"></div>
@@ -699,7 +724,12 @@
                 <label>County/Indian Reservation:</label>
                  <c:set var="formName" value="_17_cboOtherCounty"></c:set>
                  <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="countryInput conurtyInputFor countyMask" name="${formName}" value="${formValue}" maxlength="3"/>
+                <select class="countySelectFor" name="${formName}">
+                    <option value="">Please select</option>
+                    <c:forEach var="opt" items="${requestScope['_99_counties']}">
+                        <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+                    </c:forEach>
+                </select>
                 <label>State : </label>
                 
                 <c:set var="formName" value="_17_cboOtherState"></c:set>
@@ -881,7 +911,12 @@
                 <label>County : </label>
                 <c:set var="formName" value="_17_iboCounty"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="countryInput conurtyInputFor countyMask" name="${formName}" value="${formValue}" maxlength="3"/>
+                <select class="countySelectFor" name="${formName}">
+                    <option value="">Please select</option>
+                    <c:forEach var="opt" items="${requestScope['_99_counties']}">
+                        <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+                    </c:forEach>
+                </select>
             </div>
         </div>
         <div class="clearFixed"></div>
@@ -936,7 +971,12 @@
                 <label>County/Indian Reservation:</label>
                  <c:set var="formName" value="_17_iboOtherCounty"></c:set>
                  <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="countryInput conurtyInputFor countyMask" name="${formName}" value="${formValue}" maxlength="3"/>
+                <select class="countySelectFor" name="${formName}">
+                    <option value="">Please select</option>
+                    <c:forEach var="opt" items="${requestScope['_99_counties']}">
+                        <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+                    </c:forEach>
+                </select>
                 <label>State : </label>
                 
                 <c:set var="formName" value="_17_iboOtherState"></c:set>

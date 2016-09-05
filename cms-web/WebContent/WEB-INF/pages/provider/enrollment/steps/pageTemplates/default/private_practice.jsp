@@ -111,7 +111,12 @@
                     <label>County : </label>
                     <c:set var="formName" value="_05_county"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input ${disableLinkedFields} type="text" class="countryInput conurtyInputFor countyMask" name="${formName}" value="${formValue}" maxlength="3"/>
+                    <select ${disableLinkedFields} class="countySelectFor" name="${formName}">
+                        <option value="">Please select</option>
+                        <c:forEach var="opt" items="${requestScope['_99_counties']}">
+                            <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <div class="row">
                     <label>Practice Phone Number<span class="required">*</span></label>
@@ -190,7 +195,12 @@
                             <c:set var="formName" value="_05_billingCounty"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <label class="smallLabel">County : </label>
-                            <input ${billingAddressMarkup} type="text" class="${disableBillingAddress ? 'disabled' : '' } countryInput countyMask" name="${formName}" value="${formValue}" maxlength="3"/>
+                            <select ${billingAddressMarkup} class="${disableBillingAddress ? 'disabled' : '' } stateSelect" name="${formName}">
+                                        <option value="">Please select</option>
+                                        <c:forEach var="opt" items="${requestScope['_99_counties']}">
+                                            <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+                                        </c:forEach>
+                                    </select>
                         </div>
                     </div>
                 </div>

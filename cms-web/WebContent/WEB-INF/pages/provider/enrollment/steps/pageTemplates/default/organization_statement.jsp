@@ -25,6 +25,11 @@
                     of participation as a Medicaid provider.
                 </p>
             </div>
+            
+            <c:set var="formName" value="_19_renewalBlankInit"></c:set>
+            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+            <input type="hidden" name="${formName}" value="${formValue}" />
+            
             <div class="row">
                 <label>Provider Name<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>

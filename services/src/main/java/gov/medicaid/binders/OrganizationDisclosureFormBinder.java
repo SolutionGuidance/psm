@@ -17,6 +17,7 @@ package gov.medicaid.binders;
 
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ProviderInformationType;
+import gov.medicaid.domain.model.RequestType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.CMSUser;
@@ -97,7 +98,7 @@ public class OrganizationDisclosureFormBinder extends BaseFormBinder {
         provider.setEmployeeHasCriminalConviction(param(request, "empCriminalConvictionInd"));
         provider.setEmployeeHasCivilPenalty(param(request, "empCivilPenaltyInd"));
         provider.setEmployeeHasPreviousExclusion(param(request, "empPreviousExclusionInd"));
-        
+        provider.setRenewalShowBlankStatement(param(request, "renewalBlankInit"));
         return Collections.EMPTY_LIST;
     }
 
@@ -110,13 +111,17 @@ public class OrganizationDisclosureFormBinder extends BaseFormBinder {
     public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-
-        attr(mv, "criminalConvictionInd", provider.getHasCriminalConviction());
-        attr(mv, "civilPenaltyInd", provider.getHasCivilPenalty());
-        attr(mv, "previousExclusionInd", provider.getHasPreviousExclusion());
-        attr(mv, "empCriminalConvictionInd", provider.getEmployeeHasCriminalConviction());
-        attr(mv, "empCivilPenaltyInd", provider.getEmployeeHasCivilPenalty());
-        attr(mv, "empPreviousExclusionInd", provider.getEmployeeHasPreviousExclusion());
+        // for renewal the form should be blank
+        if (enrollment.getRequestType() == RequestType.RENEWAL && provider.getRenewalShowBlankStatement() == null) {
+        	attr(mv, "renewalBlankInit", "Y");
+        } else {
+        	attr(mv, "criminalConvictionInd", provider.getHasCriminalConviction());
+            attr(mv, "civilPenaltyInd", provider.getHasCivilPenalty());
+            attr(mv, "previousExclusionInd", provider.getHasPreviousExclusion());
+            attr(mv, "empCriminalConvictionInd", provider.getEmployeeHasCriminalConviction());
+            attr(mv, "empCivilPenaltyInd", provider.getEmployeeHasCivilPenalty());
+            attr(mv, "empPreviousExclusionInd", provider.getEmployeeHasPreviousExclusion());
+        }
     }
 
     /**

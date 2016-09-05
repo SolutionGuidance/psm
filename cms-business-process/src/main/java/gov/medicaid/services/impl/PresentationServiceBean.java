@@ -359,8 +359,6 @@ public class PresentationServiceBean extends BaseService implements Presentation
             return true;
         } else if (ProviderType.DENTIST.value().equals(providerType)) {
             return true;
-        } else if (ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value().equals(providerType)) {
-            return true;
         } else if (ProviderType.NURSE_MIDWIFE.value().equals(providerType)) {
             return true;
         } else if (ProviderType.MEDICAL_TRANSPORTATION.value().equals(providerType)) {
@@ -421,8 +419,6 @@ public class PresentationServiceBean extends BaseService implements Presentation
             return true;
         } else if (ProviderType.NURSE_PRACTITIONER.value().equals(providerType)) {
             return true;
-        } else if (ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value().equals(providerType)) {
-            return true;
         }
         return false;
     }
@@ -442,6 +438,8 @@ public class PresentationServiceBean extends BaseService implements Presentation
         } else if (ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value().equals(providerType)) {
             return true;
         } else if (ProviderType.LICENSED_PSYCHOLOGIST.value().equals(providerType)) {
+            return true;
+        } else if (ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value().equals(providerType)) {
             return true;
         }
         return false;

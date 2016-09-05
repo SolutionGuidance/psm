@@ -6989,16 +6989,8 @@ dialect 'mvel'
 end
 
 
-
 rule 'Highest Degree Earned Is Required For Certified Mental Health Rehab Professional'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value())
@@ -7012,15 +7004,24 @@ dialect 'mvel'
 
 end
 
+// added by cyberjag - https://github.com/nasa/coeci-cms-mpsp/issues/81
+rule 'Highest Degree Earned Is Required For Licensed Independent Clinical Social Worker'
+dialect 'mvel'
+    when
+        LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
+        $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
+        $report: ErrorReporter()
+    then
+        insertLogical(new LookupEntry(
+            "AskForHighestDegreeEarned", 
+            "Y", 
+            "Highest degree earned is required for licensed independent clinical social worker."
+        ));
+
+end
+
 rule 'Highest Degree Earned Is Required For Clinical Nurse Specialist With Specialty On Mental Health'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType(providerType == ProviderType.CLINICAL_NURSE_SPECIALIST.value())
@@ -7037,13 +7038,6 @@ end
 
 rule 'Highest Degree Earned Is Required For Licensed Marriage and Family Therapist'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         ProviderInformationType(providerType == ProviderType.LICENSED_MARRIAGE_AND_FAMILY_THERAPIST.value())
@@ -7058,13 +7052,6 @@ end
 
 rule 'Highest Degree Earned Is Required For Licensed Professional Clinical Counselor'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         ProviderInformationType(providerType == ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value())
@@ -7079,13 +7066,6 @@ end
 
 rule 'Highest Degree Earned Is Required For Licensed Psychologist'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
@@ -7100,13 +7080,6 @@ end
 
 rule 'Highest Degree Earned Is Required For Nurse Practitioner With Specialty On Mental Health'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType(providerType == ProviderType.NURSE_PRACTITIONER.value())
@@ -8006,13 +7979,6 @@ end
 
 rule 'Limit Issuing Boards To The Defined Options For the Provider'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType()

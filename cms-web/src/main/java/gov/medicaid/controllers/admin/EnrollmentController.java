@@ -320,6 +320,25 @@ public class EnrollmentController extends BaseController {
     }
 
     /**
+     * Rejects the ticket.
+     * 
+     * @param id
+     *            the ticket id
+     * @return the model and view for
+     * @throws PortalServiceException
+     */
+    @RequestMapping("/agent/enrollment/rejectTicket")
+    public ModelAndView rejectTicket(@RequestParam("id") long id) throws PortalServiceException {
+        String signature = "EnrollmentController#rejectTicket(long id)";
+        LogUtil.traceEntry(getLog(), signature, new String[] { "id" }, new Object[] { id });
+        CMSUser user = ControllerHelper.getCurrentUser();
+        enrollmentService.rejectTicket(user, id, "Manual Reject by the agent");
+        ModelAndView mv = new ModelAndView("redirect:/provider/search/rejected?statuses=Rejected&showFilterPanel=true");
+
+        return LogUtil.traceExit(getLog(), signature, mv);
+    }
+    
+    /**
      * This action will load the screening results for manual verification.
      * 
      * @param id

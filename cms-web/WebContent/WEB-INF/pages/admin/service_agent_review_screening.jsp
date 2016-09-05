@@ -128,6 +128,7 @@
                         <div class="buttonBox">
                             <a href="${ctx}/provider/search/pending?statuses=Pending&showFilterPanel=true" class="greyBtn"><span class="btR"><span class="btM"><span class="text">Cancel</span></span></span></a>
                             <a href="javascript:;" onclick="submitFormById('approvalForm');" class="greyBtn"><span class="btR"><span class="btM"><span class="text">Approve</span></span></span></a>
+                            <a href="${ctx}/agent/enrollment/rejectTicket?id=${id}" class="greyBtn"><span class="btR"><span class="btM"><span class="text">Reject</span></span></span></a>
                             <a href="${ctx}/provider/enrollment/reopen?id=${id}" class="greyBtn"><span class="btR"><span class="btM"><span class="text">Modify</span></span></span></a>
                         </div>
                         </form>

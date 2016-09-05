@@ -474,4 +474,19 @@ public interface ProviderEnrollmentService {
 	 * @throws PortalServiceException for any errors encountered
 	 */
 	boolean existsProfile(String profileNPI) throws PortalServiceException;
+
+    /**
+     * Sends the synchronization request.
+     * @param ticketId the ticket id
+     */
+    void sendSyncronizationRequest(long ticketId);
+
+    /**
+     * Callback from legacy system for setting the legacy ID.
+     * 
+     * @param profileId the profile id
+     * @param legacyId the legacy id
+     * @throws PortalServiceException for any errors encountered 
+     */
+    void updateLegacyId(long profileId, String legacyId) throws PortalServiceException;
 }

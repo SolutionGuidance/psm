@@ -99,8 +99,12 @@ public class AcceptedHandler extends GenericHandler {
             item.getResults().put("model", model);
             manager.completeWorkItem(item.getId(), item.getResults());
 
+            // send to MQ
+            providerService.sendSyncronizationRequest(ticket.getTicketId());
+            
             // Copy Files to FileNet
             fileNetService.exportFiles(model, ticket.getTicketId());
+            
         } catch (PortalServiceException e) {
             XMLUtility.moveToStatus(model, actorId, "ERROR", "Approval process failed to completed.");
             abortWorkItem(item, manager);

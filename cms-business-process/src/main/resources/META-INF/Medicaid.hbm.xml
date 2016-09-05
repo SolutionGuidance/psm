@@ -117,6 +117,10 @@
 			type="string">
 			<column length="1" name="LEGACY_IND" />
 		</property>
+		<property generated="never" lazy="false" name="legacyId"
+			type="string">
+			<column length="9" name="LEGACY_ID" />
+		</property>
 		<property generated="never" lazy="false" name="npi" type="string">
 			<column length="10" name="NPI" />
 		</property>
@@ -1377,5 +1381,26 @@
 			length="45" name="title" type="string" />
 		<property column="DESCRIPTION" generated="never" lazy="false"
 			length="2048" name="description" type="string" />
+	</class>
+	<class name="gov.medicaid.entities.LegacySystemMapping" table="LEGACY_MAPPING">
+		<id column="LEGACY_MAPPING_ID" name="id" type="long">
+			<generator class="assigned" />
+		</id>
+		<property generated="never" lazy="false" length="200" name="systemName"
+			type="string">
+			<column name="SYSTEM_NM" />
+		</property>
+		<property generated="never" lazy="false" length="200" name="codeType"
+			type="string">
+			<column name="CODE_TYPE" />
+		</property>
+		<property generated="never" lazy="false" length="200" name="internalCode"
+			type="string">
+			<column name="INTERNAL_CODE" />
+		</property>
+		<property generated="never" lazy="false" length="200" name="externalCode"
+			type="string">
+			<column name="EXTERNAL_CODE" />
+		</property>
 	</class>
 </hibernate-mapping>

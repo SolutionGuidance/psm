@@ -4,6 +4,7 @@
 package gov.medicaid.entities;
 
 import gov.medicaid.binders.BinderUtils;
+import gov.medicaid.domain.model.CategoriesOfServiceType;
 
 import java.util.Date;
 import java.util.List;
@@ -221,6 +222,11 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
      */
     private List<AssuredService> assuredStatements;
 
+    /**
+     * The categories of service.
+     */
+    private List<ProviderCategoryOfService> categoriesOfServiceTypes;
+    
     /**
      * Empty constructor.
      */
@@ -1071,5 +1077,21 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
      */
     public void setAssuredStatements(List<AssuredService> assuredStatements) {
         this.assuredStatements = assuredStatements;
+    }
+
+    /**
+     * Gets the value of the field <code>categoriesOfServiceTypes</code>.
+     * @return the categoriesOfServiceTypes
+     */
+    public List<ProviderCategoryOfService> getCategoriesOfServiceTypes() {
+        return categoriesOfServiceTypes;
+    }
+
+    /**
+     * Sets the value of the field <code>categoriesOfServiceTypes</code>.
+     * @param categoriesOfServiceTypes the categoriesOfServiceTypes to set
+     */
+    public void setCategoriesOfServiceTypes(List<ProviderCategoryOfService> categoriesOfServiceTypes) {
+        this.categoriesOfServiceTypes = categoriesOfServiceTypes;
     }
 }

@@ -45,6 +45,11 @@ public abstract class Entity extends IdentifiableEntity {
     private String legacyIndicator;
 
     /**
+     * The legacy ID.
+     */
+    private String legacyId;
+
+    /**
      * NPI.
      */
     private String npi;
@@ -354,5 +359,21 @@ public abstract class Entity extends IdentifiableEntity {
      */
     public void setNpiLookupVerifiedInd(String npiLookupVerifiedInd) {
         this.npiLookupVerifiedInd = npiLookupVerifiedInd;
+    }
+
+    /**
+     * Gets the value of the field <code>legacyId</code>.
+     * @return the legacyId
+     */
+    public String getLegacyId() {
+        return legacyId;
+    }
+
+    /**
+     * Sets the value of the field <code>legacyId</code>.
+     * @param legacyId the legacyId to set
+     */
+    public void setLegacyId(String legacyId) {
+        this.legacyId = legacyId;
     }
 }

@@ -762,6 +762,8 @@
             <enumeration value="Rehabilitation Counselor"></enumeration>
             <enumeration value="Psychosocial Rehabilitation Practitioner"></enumeration>
 			
+			<enumeration value="Licensed Practical Nurse"></enumeration>
+            <enumeration value="Class A License"></enumeration>
 			
 			<!-- org certificates -->
 			<enumeration value="Head Start Agency Certification"></enumeration>

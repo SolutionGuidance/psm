@@ -14165,6 +14165,22 @@ rule "Registered Nurse license in state of practice is required for certified nu
         );
 end
 
+rule "Class A license is required when LPN is selected for private duty nurse"
+	when
+        LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
+   		$provider: ProviderInformationType(providerType == ProviderType.PRIVATE_DUTY_NURSE.value())
+   		LicenseInformationType( $licenses: license ) from $provider.licenseInformation
+        LicenseType(licenseType == LicenseNames.LICENSED_PRACTICAL_NURSE.value()) from $licenses
+        not LicenseType(licenseType == LicenseNames.CLASS_A_LICENSE.value()) from $licenses
+        $report: ErrorReporter()
+    then
+        $report.addError(
+            "/ProviderInformation/LicenseInformation/License/Required",
+            "00001",
+            "LPNs who are independent must also have a Class A license from the MN Dept of Health."
+        );
+end
+
 rule "Nurse Midwife Certification from the American Midwifery Certification Board is required for certified nurse midwife"
 	when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())

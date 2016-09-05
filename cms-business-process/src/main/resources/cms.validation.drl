@@ -2458,32 +2458,6 @@ dialect 'mvel'
 
 end
 
-rule 'Beneficial Owner FEIN Maximum Length Check'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
-        IsOrganization($provider : provider)
-        OwnershipInformationType($ownerList: beneficialOwner) from $provider.ownershipInformation
-        $owner: BeneficialOwnerType() from $ownerList
-        OrganizationType(FEIN != null, FEIN not matches "^.{0,9}$") from $owner.entityInformation
-        $report: ErrorReporter() 
-    then
-        int index = $ownerList.indexOf($owner);
-        $report.addError(
-            "/ProviderInformation/OwnershipInformation/BeneficialOwner[" + index + "]/EntityInformation/FEIN",
-            "00001",
-            "Beneficial owner FEIN cannot exceed 9 characters."
-        );
-
-end
-
 rule 'Beneficial Owner First Name is Required for Person Owners'
 dialect 'mvel'
 /*

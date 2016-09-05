@@ -578,11 +578,6 @@
             <env-entry-type>java.lang.String</env-entry-type>
             <env-entry-value>/Users/jerrishvarghese/servers/cms/inputDirectory/DMFoutput</env-entry-value>
         </env-entry>
-        <env-entry>
-            <env-entry-name>mita/config/intervalDuration</env-entry-name>
-            <env-entry-type>java.lang.Long</env-entry-type>
-            <env-entry-value>3600000</env-entry-value>
-        </env-entry>
     </session>
     <session>
         <ejb-name>PECOSSchedulerBean</ejb-name>
@@ -596,11 +591,6 @@
             <env-entry-name>mita/config/archiveDirectory</env-entry-name>
             <env-entry-type>java.lang.String</env-entry-type>
             <env-entry-value>/Users/jerrishvarghese/servers/cms/inputDirectory/PECOSoutput</env-entry-value>
-        </env-entry>
-        <env-entry>
-            <env-entry-name>mita/config/intervalDuration</env-entry-name>
-            <env-entry-type>java.lang.Long</env-entry-type>
-            <env-entry-value>3600000</env-entry-value>
         </env-entry>
     </session>
     <session>

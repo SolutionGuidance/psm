@@ -21,19 +21,16 @@ import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.EJBException;
 import javax.ejb.Local;
+import javax.ejb.Schedule;
 import javax.ejb.Stateless;
-import javax.ejb.Timeout;
-import javax.ejb.Timer;
-import javax.ejb.TimerService;
 
 import org.apache.commons.io.FileUtils;
 
 /**
- * This is an EJB that is used to schedule to be run periodically (by default hourly) to load death master
- * files in configured input directory, successfully loaded files are moved to configured archive directory,
- * adding timestamp prefix file name.
+ * This is an EJB that is used to schedule to be run periodically (by default hourly) to load death master files in
+ * configured input directory, successfully loaded files are moved to configured archive directory, adding timestamp
+ * prefix file name.
  * 
  * @author zsudraco, hanshuai
  * @version 1.0
@@ -65,18 +62,6 @@ public class DeathMasterSchedulerBean extends BaseService implements SchedulerSe
     private String archiveDirectory;
 
     /**
-     * Represent the timer service in EJB.
-     */
-    @Resource
-    private TimerService timerService;
-
-    /**
-     * Represent the intervalDuration used to schedule the timer.
-     */
-    @Resource(name = "mita/config/intervalDuration")
-    private Long intervalDuration;
-
-    /**
      * Represent the date format.
      */
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss_");
@@ -98,9 +83,6 @@ public class DeathMasterSchedulerBean extends BaseService implements SchedulerSe
         super.init();
         if (deathMasterDAO == null) {
             throw new ConfigurationException("The deathMasterDAO must be not be null.");
-        }
-        if (intervalDuration <= 0) {
-            throw new ConfigurationException("The intervalDuration should be positive.");
         }
         checkFile(inputDirectory, "inputDirectory");
         checkFile(archiveDirectory, "archiveDirectory");
@@ -130,36 +112,8 @@ public class DeathMasterSchedulerBean extends BaseService implements SchedulerSe
     }
 
     /**
-     * Create a timer.
-     * 
-     * @throws ServiceException
-     *             if any error occurs.
-     */
-    @Override
-    public void scheduleTimer() throws ServiceException {
-        String signature = CLASS_NAME + "#scheduleTimer()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
-        try {
-            timerService.createTimer(0, intervalDuration, null);
-            LogUtil.traceExit(getLog(), signature, null);
-        } catch (IllegalArgumentException e) {
-            ServiceException ne = new ServiceException("failed to create the timer.", e);
-            LogUtil.traceError(getLog(), signature, ne);
-            throw ne;
-        } catch (IllegalStateException e) {
-            ServiceException ne = new ServiceException("failed to create the timer.", e);
-            LogUtil.traceError(getLog(), signature, ne);
-            throw ne;
-        } catch (EJBException e) {
-            ServiceException ne = new ServiceException("failed to create the timer.", e);
-            LogUtil.traceError(getLog(), signature, ne);
-            throw ne;
-        }
-    }
-
-    /**
-     * Runs the task to load death master files in configured input directory, successfully loaded files are
-     * moved to configured archive directory, adding timestamp prefix file name.
+     * Runs the task to load death master files in configured input directory, successfully loaded files are moved to
+     * configured archive directory, adding timestamp prefix file name.
      * 
      * @param timer
      *            the timerService timer.
@@ -168,10 +122,10 @@ public class DeathMasterSchedulerBean extends BaseService implements SchedulerSe
      * @throws ServiceException
      *             - If an error occurs while performing the operation
      */
-    @Timeout
-    public void run(Timer timer) throws ParsingException, ServiceException {
+    @Schedule(dayOfWeek = "Sun", hour = "0")
+    public void run() {
         String signature = CLASS_NAME + "#run(Timer timer)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "timer" }, new Object[] { timer.toString() });
+        LogUtil.traceEntry(getLog(), signature, new String[] {}, new Object[] {});
         try {
             Collection<File> files = FileUtils.listFiles(new File(inputDirectory), null, false);
             Calendar calendar = Calendar.getInstance();
@@ -195,10 +149,8 @@ public class DeathMasterSchedulerBean extends BaseService implements SchedulerSe
             LogUtil.traceExit(getLog(), signature, null);
         } catch (IllegalArgumentException e) {
             LogUtil.traceError(getLog(), signature, e);
-            throw e;
         } catch (ServiceException e) {
             LogUtil.traceError(getLog(), signature, e);
-            throw e;
         }
     }
 

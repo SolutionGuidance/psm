@@ -55,6 +55,11 @@ public class Affiliation extends IdentifiableEntity {
     private QPType qpType;
     
     /**
+     * Subtype for mental health professional.
+     */
+    private String mhpType;
+    
+    /**
      * Acknowledgement attachment (QP).
      */
     private String acknowledgementAttachmentId;
@@ -307,5 +312,21 @@ public class Affiliation extends IdentifiableEntity {
      */
     public void setAffiliateLicenses(List<License> affiliateLicenses) {
         this.affiliateLicenses = affiliateLicenses;
+    }
+
+    /**
+     * Gets the <code>mhpType</code>.
+     * @return the mhpType
+     */
+    public String getMhpType() {
+        return mhpType;
+    }
+
+    /**
+     * Sets the <code>mhpType</code>.
+     * @param mhpType the mhpType to set
+     */
+    public void setMhpType(String mhpType) {
+        this.mhpType = mhpType;
     }
 }

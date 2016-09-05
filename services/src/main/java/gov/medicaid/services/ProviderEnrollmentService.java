@@ -21,6 +21,7 @@ import gov.medicaid.entities.Validity;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -384,13 +385,35 @@ public interface ProviderEnrollmentService {
      *            the user performing the action
      * @param categoryOfService
      *            the entity to persist
+     * @param prevCatServiceId
+     *            if last COS needs an update in end date this will be provided
+     * @param prevCatEndDate
+     *            last COS end date
      * @throws PortalServiceException
      *             for any errors encountered
      */
-    void addCOSToProfile(CMSUser user, ProviderCategoryOfService categoryOfService) throws PortalServiceException;
+    void addCOSToProfile(CMSUser user, ProviderCategoryOfService categoryOfService, long prevCatServiceId,
+            Date prevCatEndDate) throws PortalServiceException;
 
     /**
-     * Deletes the COS.
+     * Adds COS to the ticket.
+     * 
+     * @param user
+     *            the user performing the action
+     * @param categoryOfService
+     *            the entity to persist
+     * @param prevCatServiceId
+     *            if last COS needs an update in end date this will be provided
+     * @param prevCatEndDate
+     *            last COS end date
+     * @throws PortalServiceException
+     *             for any errors encountered
+     */
+    void addCOSToTicket(CMSUser user, ProviderCategoryOfService categoryOfService, long prevCatServiceId,
+            Date prevCatEndDate) throws PortalServiceException;
+
+    /**
+     * Deletes the COS by profile.
      * 
      * @param user
      *            the user performing the action
@@ -402,5 +425,35 @@ public interface ProviderEnrollmentService {
      * @throws PortalServiceException
      *             for any errors encountered
      */
-    void deleteCOS(CMSUser user, long profileId, long id) throws PortalServiceException;
+    void deleteCOSByProfile(CMSUser user, long profileId, long id) throws PortalServiceException;
+
+    /**
+     * Gets the COS associated with a ticket.
+     * 
+     * @param user
+     *            CMS user
+     * @param ticketId
+     *            ticket id.
+     * @return the list of services
+     * 
+     * @throws PortalServiceException
+     *             for any errors encountered
+     */
+    List<ProviderCategoryOfService> getPendingCategoryOfServices(CMSUser user, long ticketId)
+            throws PortalServiceException;
+
+    /**
+     * Deletes the COS by ticket.
+     * 
+     * @param user
+     *            the user performing the action
+     * @param ticketId
+     *            the ticket id
+     * @param id
+     *            the cos id
+     * 
+     * @throws PortalServiceException
+     *             for any errors encountered
+     */
+    void deleteCOSByTicket(CMSUser user, long ticketId, long id) throws PortalServiceException;
 }

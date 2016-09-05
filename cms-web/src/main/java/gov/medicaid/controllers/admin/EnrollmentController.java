@@ -780,7 +780,7 @@ public class EnrollmentController extends BaseController {
             throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
         Enrollment ticketDetails = enrollmentService.getTicketDetails(user, ticketId);
-
+        
         long processInstanceId = ticketDetails.getProcessInstanceId();
         if (processInstanceId <= 0) {
             throw new PortalServiceException("Requested profile is not available for approval.");
@@ -954,6 +954,34 @@ public class EnrollmentController extends BaseController {
     }
 
     /**
+     * This action will load the COS associated with a ticket.
+     * 
+     * @param ticketId
+     *            the ticket id
+     * @return the model and view instance that contains the name of view to be rendered and data to be used for
+     *         rendering (not null)
+     * @throws PortalServiceException
+     *             - If there are any errors in the action
+     */
+    @RequestMapping("/agent/enrollment/pendingcos")
+    public ModelAndView viewPendingCategoryOfService(@RequestParam("id") long ticketId) throws PortalServiceException {
+        String signature = "EnrollmentController#viewCategoryOfService(long ticketId)";
+        LogUtil.traceEntry(getLog(), signature, new String[] { "id" }, new Object[] { ticketId });
+        CMSUser user = ControllerHelper.getCurrentUser();
+        Enrollment enrollment = enrollmentService.getTicketDetails(user, ticketId);
+        if (enrollment != null) {
+            ModelAndView mv = new ModelAndView("admin/service_agent_enrollment_pending_cos", "enrollment", enrollment);
+            List<ProviderCategoryOfService> existingServices = enrollmentService.getPendingCategoryOfServices(user,
+                    ticketId);
+            mv.addObject("existingServices", existingServices);
+            // get the COS codes using lookup
+            mv.addObject("codes", lookupService.findAllLookups(CategoryOfService.class));
+            return mv;
+        }
+        throw new PortalServiceException("Cannot find the ticket for the given id.");
+    }
+
+    /**
      * Saves the category of services.
      * 
      * @param profileId
@@ -964,6 +992,10 @@ public class EnrollmentController extends BaseController {
      *            end date
      * @param cos
      *            the list of codes
+     * @param prevCosId
+     *            previous cosId if copied
+     * @param prevCosEndDate
+     *            previous cos end date
      * @return the model and view instance that contains the name of view to be rendered and data to be used for
      *         rendering (not null)
      * @throws PortalServiceException
@@ -972,7 +1004,8 @@ public class EnrollmentController extends BaseController {
     @RequestMapping(value = "/agent/enrollment/addCOS", method = RequestMethod.POST)
     public ModelAndView addCategoryOfService(@RequestParam("id") long profileId,
             @RequestParam("startDate") Date startDate, @RequestParam("endDate") String endDate,
-            @RequestParam("cos") String[] cos) throws PortalServiceException {
+            @RequestParam("cos") String[] cos, @RequestParam("prevCosId") long prevCosId,
+            @RequestParam("prevCosEndDate") String prevCosEndDate) throws PortalServiceException {
         String signature = "EnrollmentController#addCategoryOfService(long profileId, String startDate, String endDate, String cos)";
         LogUtil.traceEntry(getLog(), signature, new String[] { "id", "startDate", "endDate", "cos" }, new Object[] {
                 profileId, startDate, endDate, cos });
@@ -983,10 +1016,10 @@ public class EnrollmentController extends BaseController {
             categories.add(lookupService.findLookupByCode(CategoryOfService.class, c));
         }
         if (cos.length > 0 && startDate != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
             categoryOfService.setCategories(categories);
             categoryOfService.setStartDate(startDate);
             if (endDate != null && endDate.trim().length() > 0) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
                 try {
                     categoryOfService.setEndDate(dateFormat.parse(endDate));
                 } catch (ParseException e) {
@@ -994,9 +1027,76 @@ public class EnrollmentController extends BaseController {
                 }
             }
             categoryOfService.setProfileId(profileId);
-            enrollmentService.addCOSToProfile(user, categoryOfService);
+            Date prevCatEndDate = null;
+            if (prevCosId != 0) {
+                try {
+                    prevCatEndDate = dateFormat.parse(prevCosEndDate);
+                } catch (ParseException e) {
+                    // ignore
+                }
+            }
+            enrollmentService.addCOSToProfile(user, categoryOfService, prevCosId, prevCatEndDate);
         }
         return new ModelAndView("redirect:/agent/enrollment/cos?id=" + profileId);
+    }
+
+    /**
+     * Saves the category of services.
+     * 
+     * @param ticketId
+     *            the ticket id
+     * @param startDate
+     *            start date
+     * @param endDate
+     *            end date
+     * @param cos
+     *            the list of codes
+     * @param prevCosId
+     *            previous cosId if copied
+     * @param prevCosEndDate
+     *            previous cos end date
+     * @return the model and view instance that contains the name of view to be rendered and data to be used for
+     *         rendering (not null)
+     * @throws PortalServiceException
+     *             - If there are any errors in the action
+     */
+    @RequestMapping(value = "/agent/enrollment/addPendingCOS", method = RequestMethod.POST)
+    public ModelAndView addPendingCategoryOfService(@RequestParam("id") long ticketId,
+            @RequestParam("startDate") Date startDate, @RequestParam("endDate") String endDate,
+            @RequestParam("cos") String[] cos, @RequestParam("prevCosId") long prevCosId,
+            @RequestParam("prevCosEndDate") String prevCosEndDate) throws PortalServiceException {
+        String signature = "EnrollmentController#addCategoryOfService(long profileId, String startDate, String endDate, String cos)";
+        LogUtil.traceEntry(getLog(), signature, new String[] { "id", "startDate", "endDate", "cos" }, new Object[] {
+                ticketId, startDate, endDate, cos });
+        CMSUser user = ControllerHelper.getCurrentUser();
+        ProviderCategoryOfService categoryOfService = new ProviderCategoryOfService();
+        List<CategoryOfService> categories = new ArrayList<CategoryOfService>();
+        for (String c : cos) {
+            categories.add(lookupService.findLookupByCode(CategoryOfService.class, c));
+        }
+        if (cos.length > 0 && startDate != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+            categoryOfService.setCategories(categories);
+            categoryOfService.setStartDate(startDate);
+            if (endDate != null && endDate.trim().length() > 0) {
+                try {
+                    categoryOfService.setEndDate(dateFormat.parse(endDate));
+                } catch (ParseException e) {
+                    // ignore
+                }
+            }
+            categoryOfService.setTicketId(ticketId);
+            Date prevCatEndDate = null;
+            if (prevCosId != 0) {
+                try {
+                    prevCatEndDate = dateFormat.parse(prevCosEndDate);
+                } catch (ParseException e) {
+                    // ignore
+                }
+            }
+            enrollmentService.addCOSToTicket(user, categoryOfService, prevCosId, prevCatEndDate);
+        }
+        return new ModelAndView("redirect:/agent/enrollment/pendingcos?id=" + ticketId);
     }
 
     /**
@@ -1017,8 +1117,30 @@ public class EnrollmentController extends BaseController {
         String signature = "EnrollmentController#deleteCategoryOfService(long profileId, long id)";
         LogUtil.traceEntry(getLog(), signature, new String[] { "profileId", "id" }, new Object[] { profileId, id });
         CMSUser user = ControllerHelper.getCurrentUser();
-        enrollmentService.deleteCOS(user, profileId, id);
+        enrollmentService.deleteCOSByProfile(user, profileId, id);
         return new ModelAndView("redirect:/agent/enrollment/cos?id=" + profileId);
+    }
+
+    /**
+     * Deletes the pending Category of Service.
+     * 
+     * @param ticketId
+     *            the ticket id
+     * @param id
+     *            cos id
+     * @return the model and view instance that contains the name of view to be rendered and data to be used for
+     *         rendering (not null)
+     * @throws PortalServiceException
+     *             - If there are any errors in the action
+     */
+    @RequestMapping("/agent/enrollment/deletePendingCOS")
+    public ModelAndView deletePendingCategoryOfService(@RequestParam("ticketId") long ticketId,
+            @RequestParam("id") long id) throws PortalServiceException {
+        String signature = "EnrollmentController#deleteCategoryOfService(long ticketId, long id)";
+        LogUtil.traceEntry(getLog(), signature, new String[] { "ticketId", "id" }, new Object[] { ticketId, id });
+        CMSUser user = ControllerHelper.getCurrentUser();
+        enrollmentService.deleteCOSByTicket(user, ticketId, id);
+        return new ModelAndView("redirect:/agent/enrollment/pendingcos?id=" + ticketId);
     }
 
     /**

@@ -235,28 +235,6 @@ activation-group "traditional-midwife-license-activation"
 
 end
 
-rule 'Professional Midwife Certification from the North American Registry of Midwives Is Required'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-    when
-        $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_PROFESSIONAL_MIDWIFE.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        not LicenseType(issuingState == "XX", attachmentObjectId != null, licenseType == LicenseNames.PROFESSIONAL_MIDWIFE_CERTIFICATION.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
-    then
-        $report.addError(
-            "/ProviderInformation/LicenseInformation",
-            "00002",
-            "Professional Midwife Certification from the North American Registry of Midwives Is Required."
-        );
-
-end
-
 rule 'Copy of MnSCU Certification Is Required'
 dialect 'mvel'
 /*

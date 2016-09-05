@@ -140,7 +140,7 @@
                     <select name="${formName}">
 	                    <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_09_specialtyBoards']}">
-                            <option value="${opt.code}"><c:out value="${opt.description}" /></option>
+                            <option value="${opt.description}"><c:out value="${opt.description}" /></option>
                         </c:forEach>
                     </select>
                 </td>

@@ -10906,29 +10906,6 @@ dialect 'mvel'
 
 end
 
-rule 'Practice FEIN Is Required'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
-        $provider: ProviderInformationType( maintainsOwnPrivatePractice == "Y" )
-        PracticeInformationType(FEIN == null || FEIN matches "^[\\s]*$") from $provider.practiceInformation
-        $report: ErrorReporter() 
-    then
-        $report.addError(
-            "/ProviderInformation/PracticeInformation/FEIN",
-            "00001",
-            "FEIN is required."
-        );
-
-end
-
 rule 'Practice FEIN Maximum Length Check'
 dialect 'mvel'
 /*

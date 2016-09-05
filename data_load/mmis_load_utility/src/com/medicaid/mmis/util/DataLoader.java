@@ -81,6 +81,7 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -101,6 +102,11 @@ import org.apache.log4j.PropertyConfigurator;
  * @version 1.0
  */
 public class DataLoader {
+
+    /**
+     * Words that are considered part of the last name if found as the 2nd to the last token.
+     */
+    private static final List<String> SURNAME_PREFIX = Arrays.asList("VAN", "VON", "LA", "LE","DE");
 
     /**
      * Beneficial owner type mapping name.
@@ -271,11 +277,13 @@ public class DataLoader {
             owner.setOwnershipInterest(parseBigDecimal(strWS_000_EXT2_OWN_B_INT_PCT));
             person.setDob(parseDate(strWS_000_EXT2_OWN_B_BIRTH_DATE));
             person.setHireDate(parseDate(strWS_000_EXT2_OWN_B_HIRE_DATE));
-            if (StringUtils.isNotBlank(strWS_000_EXT2_OWN_B_L_NAME)) {
-                person.setMiddleName(strWS_000_EXT2_OWN_B_M_NAME);
-                person.setFirstName(strWS_000_EXT2_OWN_B_F_NAME);
-            }
-            person.setLastName(strWS_000_EXT2_OWN_B_L_NAME);
+
+            parseFullnameToOwnerName(person, strWS_000_EXT2_OWN_B_L_NAME);
+            // if (StringUtils.isNotBlank(strWS_000_EXT2_OWN_B_L_NAME)) {
+            // person.setMiddleName(strWS_000_EXT2_OWN_B_M_NAME);
+            // person.setFirstName(strWS_000_EXT2_OWN_B_F_NAME);
+            // }
+            // person.setLastName(strWS_000_EXT2_OWN_B_L_NAME);
             person.setSsn(strWS_000_EXT2_OWN_B_SSN);
         } else {
             owner = new OrganizationBeneficialOwner();
@@ -294,6 +302,34 @@ public class DataLoader {
         Map<String, OwnershipInformation> ownerMap = new HashMap<String, OwnershipInformation>();
         ownerMap.put(key, ownershipInformation);
         return ownerMap;
+    }
+
+    /**
+     * Parses the names and sets it to the owner.
+     * @param person the person to set to
+     * @param fullname the full name
+     */
+    private void parseFullnameToOwnerName(PersonBeneficialOwner person, String fullname) {
+        if (StringUtils.isBlank(fullname)) {
+            return;
+        }
+        String[] tokens = fullname.split(" ");
+        if (tokens.length == 1) { // we can only set the last name
+            person.setLastName(tokens[0]);
+        } else if (tokens.length > 1) { // first name, last name
+            for (int index = tokens.length - 1; index > -1; index--) {
+                if (index == tokens.length - 1) {
+                    // last word always part of the last name
+                    person.setLastName(tokens[index]);
+                } else if (index == tokens.length - 2 && SURNAME_PREFIX.contains(tokens[index])) {
+                    person.setLastName(tokens[index] + " " + person.getLastName());
+                } else if (index == 0) {
+                    person.setFirstName(tokens[index]);
+                } else {
+                    person.setMiddleName((tokens[index] + " " + StringUtils.defaultString(person.getMiddleName())).trim());
+                }
+            }
+        }
     }
 
     private BigDecimal parseBigDecimal(String value) {
@@ -822,11 +858,12 @@ public class DataLoader {
             String degreeCode = doLegacyMapping(strWS_000_EXT_ENTITY_DEGREE, "DEGREE");
             person.setDegree(lookup.findLookupByCode(Degree.class, degreeCode));
             person.setDegreeAwardDate(parseDate(strWS_000_EXT_ENTITY_DEGREE_DATE));
-            if (StringUtils.isNotBlank(strWS_000_EXT_ENTITY_LAST_NAME)) {
-                person.setFirstName(strWS_000_EXT_ENTITY_FIRST_NAME);
-                person.setMiddleName(strWS_000_EXT_ENTITY_MIDDLE_NAME);
-            }
-            person.setLastName(strWS_000_EXT_ENTITY_LAST_NAME);
+            parseFullnameToPersonName(person, strWS_000_EXT_ENTITY_LAST_NAME);
+            // if (StringUtils.isNotBlank(strWS_000_EXT_ENTITY_LAST_NAME)) {
+            // person.setFirstName(strWS_000_EXT_ENTITY_FIRST_NAME);
+            // person.setMiddleName(strWS_000_EXT_ENTITY_MIDDLE_NAME);
+            // }
+            // person.setLastName(strWS_000_EXT_ENTITY_LAST_NAME);
         } else {
             org.setName(strWS_000_EXT_ENTITY_NAME);
             org.setLegalName(strWS_000_EXT_ENTITY_LEGAL_NAME);
@@ -843,6 +880,34 @@ public class DataLoader {
         }
         logger.debug("End Reading WS-000-EXT-ENTITY");
         return strWS_000_EXT_ENTITY_PROV_ID;
+    }
+
+    /**
+     * Parses the names and sets it to the owner.
+     * @param person the person to set to
+     * @param fullname the full name
+     */
+    static void parseFullnameToPersonName(Person person, String fullname) {
+        if (StringUtils.isBlank(fullname)) {
+            return;
+        }
+        String[] tokens = fullname.split(" ");
+        if (tokens.length == 1) { // we can only set the last name
+            person.setLastName(tokens[0]);
+        } else if (tokens.length > 1) { // first name, last name
+            for (int index = tokens.length - 1; index > -1; index--) {
+                if (index == tokens.length - 1) {
+                    // last word always part of the last name
+                    person.setLastName(tokens[index]);
+                } else if (index == tokens.length - 2 && SURNAME_PREFIX.contains(tokens[index])) {
+                    person.setLastName(tokens[index] + " " + person.getLastName());
+                } else if (index == 0) {
+                    person.setFirstName(tokens[index]);
+                } else {
+                    person.setMiddleName((tokens[index] + " " + StringUtils.defaultString(person.getMiddleName())).trim());
+                }
+            }
+        }
     }
 
     private String parseFiscalYear(String fiscalYear) throws PortalServiceException {
@@ -895,10 +960,10 @@ public class DataLoader {
     private String doLegacyMapping(String externalCodeValue, String codeType) {
         String internalCode = lookup.findInternalMapping(SystemId.MN_ITS.name(), codeType, externalCodeValue);
         if (internalCode != null && internalCode.trim().length() > 0) {
-            logger.debug("Mapped code ["+codeType+"] [" +externalCodeValue+ "] to [" + internalCode+ "]");
+            logger.debug("Mapped code [" + codeType + "] [" + externalCodeValue + "] to [" + internalCode + "]");
             return internalCode;
         }
-        
+
         if (!Util.isBlank(externalCodeValue)) {
             logger.warn("No internal mapping found for code [" + codeType + "] [" + externalCodeValue + "].");
         }
@@ -907,6 +972,7 @@ public class DataLoader {
 
     /**
      * The main function, imports the files given as arguments.
+     * 
      * @param args the file names
      * @throws IOException for read/write errors
      * @throws PortalServiceException for any other errors

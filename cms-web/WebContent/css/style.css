@@ -4968,3 +4968,7 @@ input.zipInput, input.zipInputFor {
 .bottom-border {
 	border-bottom: 1px solid #ddd;
 }
+
+.legacyInfo {
+	color: red;
+}

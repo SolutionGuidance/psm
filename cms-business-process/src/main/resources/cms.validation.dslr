@@ -1,0 +1,32 @@
+package cms.domainrules;
+
+import java.util.Calendar
+import gov.medicaid.domain.model.*
+import gov.medicaid.domain.rules.inference.*
+
+expander cms.dsl
+
+rule "Require First Name For All Individual Providers"
+	when
+	    This validation is performed on page "Personal Information"
+	    The individual does not have a first name
+	then
+        Raise error on "Provider First Name" with message "First Name is required for individual applicants."
+end
+
+rule "Require Last Name For All Individual Providers"
+	when
+	    This validation is performed on page "Personal Information"
+	    The individual does not have a last name
+	then
+        Raise error on "Provider Last Name" with message "Last Name is required for individual applicants."
+end
+
+rule "Require SSN For All Individual Providers"
+    when
+        This validation is performed on page "Personal Information"
+        The individual does not have a social security number
+    then
+        Raise error on "Provider SSN" with message "Social Security Number is required for individual applicants."
+end
+

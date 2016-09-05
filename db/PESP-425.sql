@@ -1,0 +1,1 @@
+update lu_license_type set description = 'CORF Certification' where description = 'Comprehensive Outpatient Rehabilitation Facility Certification';

@@ -1,0 +1,250 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:annotation-config />
+
+	<mvc:resources location="/js/**" mapping="/js/**" />
+	<mvc:resources location="/css/**" mapping="/css/**" />
+	<mvc:resources location="/i/**" mapping="/i/**" />
+	
+	<mvc:annotation-driven />
+	
+	<context:property-placeholder location="classpath:cms.properties"/>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <property name="maxUploadSize" value="${max.upload.size}"/> 
+	</bean>
+	
+	<mvc:interceptors>
+	   <mvc:interceptor>
+	       <mvc:mapping path="/**" />
+	       <bean class="gov.medicaid.controllers.FlashMessageInterceptor"></bean>
+	   </mvc:interceptor>
+	</mvc:interceptors>
+
+    <bean id="log4jLogFactory" class="com.topcoder.util.log.log4j.Log4jLogFactory" />
+    <bean id="Log" factory-bean="log4jLogFactory" factory-method="createLog">
+        <constructor-arg type="java.lang.String" value="cms-web" />
+    </bean>
+
+	<bean id="OracleDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>${jndi.DataSource}</value>
+		</property>
+	</bean>
+	<bean id="RegistrationService" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+            <value>${jndi.RegistrationService}</value>
+		</property>
+	</bean>
+	<bean id="ExportService" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+            <value>${jndi.ExportService}</value>
+		</property>
+	</bean>
+	
+	<bean id="LookupService" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>${jndi.LookupService}</value>
+		</property>
+	</bean>
+
+    <bean id="BusinessProcessService" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>${jndi.BusinessProcessService}</value>
+        </property>
+    </bean>
+	
+	<bean id="ProviderEnrollmentService" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>${jndi.ProviderEnrollmentService}</value>
+		</property>
+	</bean>
+	
+    <bean id="PresentationService" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>${jndi.PresentationService}</value>
+        </property>
+    </bean>
+	
+	<bean id="OnboardingService" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>${jndi.OnboardingService}</value>
+		</property>
+	</bean>
+
+    <bean id="EnrollmentWebService" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>${jndi.EnrollmentWebService}</value>
+        </property>
+    </bean>
+
+
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<value>
+				/login=JSPController
+				/system/advanced-search-system-admin=JSPController
+			</value>
+		</property>
+	</bean>
+
+	<bean id="BaseController" class="gov.medicaid.controllers.BaseController" abstract="true">
+		<property name="log" ref="Log"></property>
+	</bean>
+
+	<bean id="SelfRegistrationController" class="gov.medicaid.controllers.SelfRegistrationController" parent="BaseController">
+		<property name="registrationService" ref="RegistrationService"></property>
+		<property name="validator" ref="RegistrationFormValidator"></property>
+	</bean>
+
+    <bean id="ForgotPasswordController" class="gov.medicaid.controllers.ForgotPasswordController" parent="BaseController">
+        <property name="registrationService" ref="RegistrationService"></property>
+        <property name="validator" ref="ForgotPasswordFormValidator"></property>
+    </bean>
+	
+    <bean id="LandingController" class="gov.medicaid.controllers.LandingController">
+    </bean>
+    
+    <bean id="EnrollmentPageFlowController" class="gov.medicaid.controllers.EnrollmentPageFlowController" parent="BaseController">
+		<property name="enrollmentWebService" ref="EnrollmentWebService"></property>
+		<property name="presentationService" ref="PresentationService"></property>
+        <property name="enrollmentService" ref="ProviderEnrollmentService"></property>
+        <property name="exportService" ref="ExportService"></property>
+        <property name="lookupService" ref="LookupService"></property>
+    </bean>
+    
+	<bean id="ProviderDashboardController" class="gov.medicaid.controllers.ProviderDashboardController" parent="BaseController">
+		<property name="enrollmentService" ref="ProviderEnrollmentService"></property>
+        <property name="exportService" ref="ExportService"></property>
+	</bean>
+	
+    <bean id="OnboardingController" class="gov.medicaid.controllers.OnboardingController" parent="BaseController">
+        <property name="onboardingService" ref="OnboardingService"></property>
+        <property name="registrationService" ref="RegistrationService"></property>
+        <property name="validator" ref="AccountLinkFormValidator"></property>
+    </bean>
+
+	<bean id="MyProfileController" class="gov.medicaid.controllers.MyProfileController" parent="BaseController">
+		<property name="enrollmentService" ref="ProviderEnrollmentService"></property>
+		<property name="registrationService" ref="RegistrationService"></property>
+		<property name="validator" ref="UpdatePasswordFormValidator"></property>
+	</bean>
+	
+	<bean id="RegistrationFormValidator" class="gov.medicaid.controllers.validators.RegistrationFormValidator">
+		<property name="registrationService" ref="RegistrationService"></property>
+	</bean>
+
+	<bean id="AccountLinkFormValidator" class="gov.medicaid.controllers.validators.AccountLinkFormValidator">
+	</bean>
+	<bean id="ForgotPasswordFormValidator" class="gov.medicaid.controllers.validators.ForgotPasswordFormValidator">
+	</bean>
+	<bean id="UpdatePasswordFormValidator" class="gov.medicaid.controllers.validators.UpdatePasswordFormValidator">
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+	
+	<bean id="JSPController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController">
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/pages/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>messages</value>
+		</property>
+	</bean>	
+	
+	<!-- Merged Service Admin Assembly -->
+    <bean id="AgreementDocumentService" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>${jndi.AgreementDocumentService}</value>
+        </property>
+    </bean>
+    <bean id="HelpService" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>${jndi.HelpService}</value>
+        </property>
+    </bean>
+    <bean id="EventService" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>${jndi.EventService}</value>
+        </property>
+    </bean>
+    <bean id="ScreeningService" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>${jndi.ScreeningService}</value>
+        </property>
+    </bean>
+    <bean id="ProviderTypeService" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>${jndi.ProviderTypeService}</value>
+        </property>
+    </bean>
+	
+    <bean id="BaseServiceAdminController" class="gov.medicaid.controllers.admin.BaseServiceAdminController" abstract="true">
+        <property name="log" ref="Log" />
+    </bean>
+    <bean id="AgreementDocumentController" class="gov.medicaid.controllers.admin.AgreementDocumentController" parent="BaseServiceAdminController">
+        <property name="agreementDocumentService" ref="AgreementDocumentService" />
+    </bean>
+    <bean id="DashboardController" class="gov.medicaid.controllers.admin.DashboardController" parent="BaseServiceAdminController">
+        <property name="providerProfileService" ref="ProviderEnrollmentService" />
+        <property name="helpService" ref="HelpService" />
+        <property name="eventService" ref="EventService" />
+    </bean>
+    <bean id="HelpController" class="gov.medicaid.controllers.admin.HelpController" parent="BaseServiceAdminController">
+        <property name="helpService" ref="HelpService" />
+    </bean>
+    <bean id="ProviderTypeController" class="gov.medicaid.controllers.admin.ProviderTypeController" parent="BaseServiceAdminController">
+        <property name="agreementDocumentService" ref="AgreementDocumentService" />
+        <property name="providerTypeService" ref="ProviderTypeService" />
+        <property name="lookupService" ref="LookupService" />
+    </bean>
+    <bean id="ScreeningScheduleController" class="gov.medicaid.controllers.admin.ScreeningScheduleController" parent="BaseServiceAdminController">
+        <property name="screeningService" ref="ScreeningService" />
+    </bean>
+    <bean id="ServiceAgentController" class="gov.medicaid.controllers.admin.ServiceAgentController" parent="BaseServiceAdminController">
+        <property name="registrationService" ref="RegistrationService" />
+    </bean>
+    <bean id="UserController" class="gov.medicaid.controllers.admin.UserController" parent="BaseServiceAdminController">
+        <property name="registrationService" ref="RegistrationService" />
+    </bean>
+    
+    <bean id="EnrollmentController" class="gov.medicaid.controllers.admin.EnrollmentController" parent="BaseController">
+        <property name="businessProcessService" ref="BusinessProcessService" />
+        <property name="enrollmentService" ref="ProviderEnrollmentService" />
+        <property name="screeningService" ref="ScreeningService" />
+        <property name="helpService" ref="HelpService" />
+        <property name="eventService" ref="EventService" />
+        <property name="lookupService" ref="LookupService" />
+        <property name="providerTypeService" ref="ProviderTypeService" />
+        <property name="exportService" ref="ExportService" />
+    </bean>
+    
+    <bean id="BaseSystemAdminController" class="gov.medicaid.controllers.admin.BaseController" abstract="true">
+        <property name="log" ref="Log"></property>
+        <property name="registrationService" ref="RegistrationService"></property>
+        <property name="lookupService" ref="LookupService"></property>
+    </bean>
+
+    <bean id="SystemAdminUserSearchController" class="gov.medicaid.controllers.admin.SystemAdminUserSearchController" parent="BaseSystemAdminController" >
+    </bean>
+    
+    <bean id="UserValidator" class="gov.medicaid.controllers.admin.UserValidator">
+        <property name="registrationService" ref="RegistrationService"></property>
+    </bean>
+    
+    <bean id="SystemAdminUserController" class="gov.medicaid.controllers.admin.SystemAdminUserController" parent="BaseSystemAdminController" >
+        <property name="userValidator" ref="UserValidator"></property>
+    </bean>    
+</beans>

@@ -1,0 +1,19 @@
+Final Fixes 2
+
+-------------------------------------------------------------------
+
+Section: 1.1.1 Each functional requirement from the Application Requirements Specification and Competition Specification is addressed.
+
+Issue: 
+faeton 
+5. http://licensinglookup.dhs.state.mn.us/, if you select Children's Residential Facilities, there's additional fields, which can be selected as criteria.
+That's necessary to be incorporated to ChildrensResidentialServiceSearchDAO. 
+6.  For http://licensinglookup.dhs.state.mn.us
+Open the search page:
+http://licensinglookup.dhs.state.mn.us/Results.aspx?crfall=True&z=&crfcc=False&sn=All&s=All&t=All&crfcdc=False&l=&n=&crfsc=False&crfmhlock=False&crfrt=False&tn=All&e=0&ci=Afton&crfd=False&crfmhc=False&crfss=False&con=All&crfgrs=False&co=All&crfts=False
+You fetch only the data on this page.
+However, you may click on link "Afton Preschool"(http://licensinglookup.dhs.state.mn.us/Details.aspx?l=800047) and then get much more info about license, which also should be parsed. 
+
+Response:
+faeton 
+5,6: current approach has been approved: http://apps.topcoder.com/forums/?module=Thread&threadID=767560

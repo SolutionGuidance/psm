@@ -1,0 +1,130 @@
+Final Fixes
+
+-------------------------------------------------------------------
+
+Section: 1.1.1 Each functional requirement from the Application Requirements Specification and Competition Specification is addressed.
+
+Issue: 
+faeton 
+1. You should provide concrete field mapping of your result document to the ProviderProfile or License entities. Currently, it's unknown what should be mapped where.
+2. For some data, like PharmacyLicensingSearchDAOBean, you create a License list, but have SearchResult<ProviderProfile> as result. 
+3. I don't see where this site is covered:
+http://mhcpproviderdirectory.dhs.state.mn.us 
+4. Better somewhere provide mapping what service maps to which site, this way it's easier to navigate. No scoredown for this, but leave as required. 
+5. http://licensinglookup.dhs.state.mn.us/, if you select Children's Residential Facilities, there's additional fields, which can be selected as criteria.
+That's necessary to be incorporated to ChildrensResidentialServiceSearchDAO. 
+6.  For http://licensinglookup.dhs.state.mn.us
+Open the search page:
+http://licensinglookup.dhs.state.mn.us/Results.aspx?crfall=True&z=&crfcc=False&sn=All&s=All&t=All&crfcdc=False&l=&n=&crfsc=False&crfmhlock=False&crfrt=False&tn=All&e=0&ci=Afton&crfd=False&crfmhc=False&crfss=False&con=All&crfgrs=False&co=All&crfts=False
+You fetch only the data on this page.
+However, you may click on link "Afton Preschool"(http://licensinglookup.dhs.state.mn.us/Details.aspx?l=800047) and then get much more info about license, which also should be parsed. 
+
+
+AleaActaEst 
+1. Since this is direct to assembly the DAO methods should be documented clearly. 
+
+Response:
+faeton 
+1. DOne explicitly in ADS 1.3.3
+2. Fixed so now we all document returning SearchResult<ProviderProfile> 
+3. Used in PharmacyLicensingSearchDAOBean as per forum
+4. This is provided in introduction in ADS
+5. Asked in the forum (http://apps.topcoder.com/forums/?module=Thread&threadID=767560). Not sure it is necessary.
+6. Asked in the forum (http://apps.topcoder.com/forums/?module=Thread&threadID=767560). Very sure it is not necessary.
+
+AleaActaEst 
+1. Each DAO has complete info. Some of the info references additional info in ADS sections
+
+
+-------------------------------------------------------------------
+
+Section: 1.1.3 Required business processes are clearly accounted for in the design.
+
+Issue:  Nothing is stated about auditing.
+
+Response: No auditing required for searches. Stated in ADS 1.3.16
+
+
+-------------------------------------------------------------------
+
+Section: 1.1.4 Design provides a complete technical solution for the customer.
+
+Issue: Since this is direct to assembly the DAO methods should be documented clearly.
+
+Response: Done as per 1.1.1 fix doc above
+
+
+-------------------------------------------------------------------
+
+Section: 1.3.3 Exception handling is appropriately addressed with regard to the specific needs of this application
+
+Issue: Exception handling: PersistenceException can be thrown at dao layer.
+
+Response: You mean ParsingException. I have added it, as per current code, to the service and DAO impl class.
+
+-------------------------------------------------------------------
+
+Section: 2.3.1 The Data Model is appropriate and correctly normalized for the project requirements
+
+Issue: 
+1.  SearchCriteria should be as specific as possible, e.g. providing real field and value for it in each of the subclass.
+What you do is not flexible.
+a) Following your design in the implementation there will be bunch of "if-else" clauses for checking fields
+b) Following your design it's not clear what data is search based on at compile time, only at runtime, which hardens to understand the code.
+The criteria is well-known.
+You do this for LicensedProviderSearchCriteria, though.
+
+
+2. See in 1.1.1, you may need add some entity for
+
+http://licensinglookup.dhs.state.mn.us/, if you select Children's Residential Facilities, there's additional fields, which can be selected as criteria.
+That's necessary to be incorporated to ChildrensResidentialServiceSearchDAO.
+
+Response:
+1. In this case, I'm following current approach that you find with MedicaidCertifiedProviderSearchCriteria
+2. Issue pending as per 1.1.1 above
+
+-------------------------------------------------------------------
+
+Section: 2.4.2 Are architecture defined interfaces appropriate and optimal?
+
+Issue: For all the DAO beans, which operate on the same site, like "http://www.health.state.mn.us/divs/fpc/directory/providerselect.cfm" you could
+a) create a single implementation and then simply inject necessary provider type
+b) create base class for that.
+Currently, there's too many code dublicate, which is unnecessary.
+
+Response: I believe that is something the assembler may do to make code simple. No need to intervene here myself.
+
+
+-------------------------------------------------------------------
+
+Section: 3.1.1 All required documents are provided and are of sufficient content
+
+Issue: 
+1. I don't see that sorting here is relevant.
+2. Since this is direct to assembly the DAO methods should be documented clearly.
+
+Response:
+1. ADS section removed
+2. Done as per 1.1.1 fix doc above
+
+
+-------------------------------------------------------------------
+
+Section: 3.2.2 Class diagrams are complete and include sufficient detail
+
+Issue: 
+1. I don't see where are BaseService, BaseDao are defined. Were they implemented in previous archs?
+2. Main Use Case Diagram is irrelevant, that's not design :) Why did you add that? No scoredown. Is it MITA compatibility I'm missing?
+
+Response:
+1. The come from the service module, as per ADS 1.2.4
+2. Yes, this is a MITA thing. WHen I did previous such architectures, this was required.
+
+-------------------------------------------------------------------
+
+Section: 3.3.3 Are competition specifications scoped properly?
+
+Issue: You didn't specify which search criterias goes to which assembly, though this is somehow clear from the context
+
+Response: I dont explicitly list them, but each assembly states that the entities involved with those services are in scope.

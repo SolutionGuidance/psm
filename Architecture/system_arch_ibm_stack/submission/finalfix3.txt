@@ -1,0 +1,8 @@
+Approval Question 1.1.1
+R1: fixed. changed tiles 
+R2: fixed added section "General Workflow and MITA Architecture Compliance" in all module specs
+
+and added ilog to Technology section in SDS and module specs. added iLog TCUML archtiecture diagaram
+
+updated logical archtiecture diagaram workflow.
+

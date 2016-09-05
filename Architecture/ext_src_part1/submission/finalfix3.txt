@@ -1,0 +1,40 @@
+Question 1.1.4:
+DanLazar:>> I do not think that it is acceptable to have only validation in the front end. It makes the system vulnerable and it has to be always deployed in a manner where the services cannot be called from the outside. 
+
+fixed. see 1.3.11 Validation
+
+Question 1.3.2:>>Fixed the issue but you have a spelling mistake in your Configuration table in section 1.3.5 : "Optiional." 	
+
+fixed. see ADS 1.3.5	 Configuration
+
+Question 1.3.3: >> It is still not clear how the exceptions are thrown. IN some diagrams services are shown to throw nothing which does not seem right
+
+fixed. see "OIG , HHS  and Previously Denied Applicants Services Class Diagram"and "Tracking and Reliability Class Diagram"
+Question 1.4.4:
+Recommended:Won't fix
+
+ Question 2.2.1: >. I would further extract the parsing and create a pluggable layer for it. 
+
+Fixed .pluggable DataAccess APIs are defined. see
+
+"OIG , HHS  and Previously Denied Applicants Services Class Diagram"
+
+and NNPES API and MN Business and Lien System  Class Diagram 
+
+Question 2.2.3: >> Not as flexible as it could be. See my comment in 2.2.2 and 1.4.4 
+
+see 1.4.4 
+
+Question 2.4.3: 
+
+
+see 1.4.4 
+
+
+Question 3.1.1:
+argolite: >>Still not explanation why sanitation is necessary. 
+
+Fixed. see ADS 1.3.14 for 
+
+"Though the external sources are known sites and expected to be clean, it may be possible that if they will be caught by malware and eventually performs cross-site scripting (XSS) attacks on behalf of malware. The soup Whitelist configuration is used to clean HTML content.  This is will be used to avoid cross-site scripting (sXSS) attacks"
+

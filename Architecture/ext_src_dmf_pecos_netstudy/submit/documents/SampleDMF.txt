@@ -1,0 +1,50 @@
+A001010001MUZZEY              Jr. GRACE                          1200197504161902                   
+C001010009SMITH                   ROGER                          0400196902041892                   
+D001010010HAMMOND                 KENNETH                        0300197604241904                   
+A001010011DREW                    LEON           R              V0830198706141908                   
+C001010012CATE                Sr. OLIVE                          0900198109211908                   
+D001010013WHORFE                  FRANK                          0900196204061888                   
+D001010015AMOS                    CHESTER                        0200198402161910                   
+D001010016KUNCHO                  DIMITRI                        0300198106041910                   
+D001010017MICHALS             II  WILLIAM                        1200197011071907                   
+C001010019BODWELL                 MINNIE                         0300198404051895                   
+C001010020ROWELL                  ALICE                          1200196902241882                   
+C001010021HOUCK               II  ROBERTA                        0300198502241915                   
+C001010022WOOD                    DOROTHY                        0200197611101913                   
+C001010025GOEWEY                  PAUL                           1200197202091895                   
+ 001010026SMITH               Jr. ERIC                           0700197706131901                   
+C001010027TEBEAU                  GLADYS                         0300198012261906                   
+C001010028MATOTT              Sr. ROBERT                         0300194812011899                   
+C001010029LUMLEY                  LUCINDA        B              V0122200104021918                   
+C001010030CORBETT                 ABIGAIL                        1100196811091885                   
+C001010032GUERTIN                 MADELEINE      C              V1125199903231917                   
+C001010033JOHNSON                 WINIFRED                       0800198104181905                   
+C001010034HEATH                   BERTHA         N               0400199004171905                   
+C001010035RAYMOND                 VINIE          M               0200199309221902                   
+D001010036FITTS               II  GENEVIEVE      T               0901198909031917                   
+D001010037FOURNIER                GLADYS         C               0919199205031911                   
+D001010038FISHER                  SYLVIA         E              V0303199910141920                   
+D001010040DEARBORN            II  RITA                          V1124199004011918                   
+D001010043OSIER                   DORIS                          1200198308281911                   
+A001010044DUNN                Sr. JOSEPHINE                      1200197310121894                   
+A001010045MILLER                  DOROTHY                        0500197003211903                   
+ 001010046SUPRY                   ALBERTINE                      0200197009111898                   
+ 001010047CLOUETTE                CATHERINE      M               1121199312091913                   
+ 001010051NERBONNE                HAZEL                          1100198310061902                   
+A001010052LECAIN                  JANE                           1200198209051906                   
+A001010053SANDS                   MARION         A              V0108200412091908                   
+A001010054CARLSON                 LAURENCE                       0800197705231897                   
+C001010056DEARBORN            Jr. JOSEPH                         0800197405061914                   
+C001010057SMITH                   BERTHA                         0300198101031899                   
+D001010058FITZNER                 ROBERT         A               0229198806161901                   
+D001010059HARRINGTON              IRENE                          0600198212131900                   
+D001010060JENKINS                 GEORGE                         0800197003231905                   
+D001010062MACKEY                  DORIS          P              V0601199803291914                   
+D001010063PIKE                    LESLIE                         0700197809081913                   
+D001010064BOLAND              Sr. JOHN                           0300198112081892                   
+D001010067BEGIN                   LEO            A               0927197507151912                   
+D001010068MCLAREN                 HARVEY                         1200198012251891                   
+ 001010071RANCLOES            Jr. HENRY                          0100198510041904                   
+A001010073GOULETTE                JOSEPH                         0600196612181883                   
+C001010076RATHBORN                LEONARD        W               0213199409131898                   
+D001010077TAYLOR                  F              E              V0703199905141913                   

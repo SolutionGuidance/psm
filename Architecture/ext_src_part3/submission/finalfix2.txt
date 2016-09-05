@@ -1,0 +1,121 @@
+A sample of field mapping is provided.ExternalResource-Field-Mapping.xls
+
+
+#################################################################
+ Question 1.3.2 
+
+seee ADS 1.3.4	 Configuration 
+LoggingFlag is added
+
+in TCUML Optometry, MedicalPractice and Pharmacy Services Class Diagram
+
+see BaseLicenseServiceImpl#loggingFlag will be used to dertermine whether to log or not
+
+lookfor the TCUML documentation for BaseLicenseServiceImpl#checkConfiguration
+also added to ADS 1.3.4	 Configuration  for clarity
+
+
+#################################################################
+Question 2.1.2
+
+#################################################################
+Question 2.3.1
+
+DanLazar:
+R2: fixed. removed 
+
+R5: 
+>> PhysicalTherapyLicenseSearchCriteria - according to http://www.physicaltherapy.state.mn.us/search.asp the search is by last name or license number so I don't see the use of searchTerm
+
+Fixed. 
+
+
+>. Also you need a dedicated field for license number.
+SearchCriteria.identifier will be used as licenseNumber. copilot already confirmed.
+
+
+	
+#################################################################
+Question 2.4.1
+the_best:
+r1: 1.1.2 Screen Scraping
+Currently there are no APIs available for easy access to these sites. So you have to make use of HTML Parsers like Jsoup. You should make sure that your implementation can be plugged easily and can be replaced in future without any trouble.
+
+fIXED. ADDED PLUGGABLE dATAaCCESS IMPLEMENTATION
+
+see Marriage And Family Therapy License and  Physical Therapy License Services Class Diagram
+
+and
+
+Optometry, MedicalPractice and Pharmacy Services Class Diagram
+
+
+#################################################################
+
+Question 2.5.1
+DanLazar:
+r1:fIXED. SEE ads 1.3.14	Persistence AND 1.3.15	Performance
+#################################################################
+Question 3.1.1
+
+the_best:
+R1: 
+
+R2: FIXED. ADDED THE FOLLOWING CHECK
+
+Step2: // read response HTML to find <<Next>> hyper link in the html 
+             // Example Next for page number 2 like will appear like 
+<a href="/search.asp?qry=[Last%20Name]&amp;crit=Anderson&amp;p=s&amp;rsp=2">Next</a>
+
+
+       If <<Next>> exists  {
+              Repeat the step1 with target URL set to <<Next>> link
+       }
+    
+
+
+
+
+
+
+#################################################################
+
+Question 3.1.2 
+nikolay83
+R1: fixed. 	
+
+#################################################################
+Question 3.2.1 
+DanLazar:
+fixed.
+	
+
+#################################################################
+ Question 3.2.2 
+nikolay83:>> You miss Final Assembly at External Sources Module Architecture Part3  Component Diagram 
+
+>> 1 - must be orange 
+fixed.
+
+
+#################################################################
+
+Question 3.3.2:
+R1: fixed. External Sources Miscellaneous Practice Assembly.doc will implement this. see section 2.1.	Main Requirement
+R2: fixed. updated assembly specs
+
+
+
+
+
+
+
+#################################################################
+Question 3.3.3:
+the_best
+>> It's not good idea to implement services and search criteria in different assemblies. Something could change during development in criteria and it could be hard to track that.
+Much more better implement related things in one assembly. 
+
+Fixed. Chiropractic, Dentistry, Dietetics and Nutrition Practice Assembly.doc will implement this
+
+see 

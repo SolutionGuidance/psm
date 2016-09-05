@@ -1,0 +1,5 @@
+1. Even for single search term search SearchCriteria instance is used. This is intended. SearchCriteria will be used for logging needs
+
+2. API is refactored to have search criteria extending the given abstract search criteria.
+
+3. All login methods are removed except for nursing. 

@@ -1,0 +1,3 @@
+1. In UserService search method, the search criteria will also accept an additional parameter "and:boolean"
+
+When true, it works as currently done, but if false, then all not-null parameters are searched and are ORed.

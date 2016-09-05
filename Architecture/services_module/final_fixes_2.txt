@@ -1,0 +1,98 @@
+Final Fixes
+
+-------------------------------------------------------------------
+
+Section: 1.1.1 Each functional requirement from the Application Requirements Specification and Competition Specification is addressed.
+
+DanLazar
+1. As per http://apps.topcoder.com/forums/?module=Thread&threadID=757000
+- NPIRegistryService is not required anymore
+- The remaining screening service methods will wait for a bug race. I have left the coloring to indicate that these are not yet finished.
+
+2. You state " I believe that the agent may want to see the status of enrollments that belong to different providers profiles. I can't see how the current services can handle this easily."
+
+The current service still handles this. I do realize that the model is structured with a Provider and then an Enrollment entity, and you are asking for something that is enrollment centric, but in reality, there is no difference. When you search for an enrollment by its number you still get the enrollment and the provider (if you clieck the wireframe search button, it shodws you infromation about both enrollment and provider). So the current API still handles exactly this.
+
+faeton 
+2. You state "ServiceAgent, IdentifiableEntity,AuditableEntity, LookupEntity are not mapped."
+
+I have added ServiceAgent in mapping and ERD. FInd that I have added "<inheritance strategy="JOINED" />" to the ProviderProfile mapping that allws us to extend the ServiceAgent without mapping the whole fields, so in this instance we are using table-per-subclass mapping.
+
+We are not using a table-per-subclass strategy for mapping in the case of IdentifiableEntity,AuditableEntity, LookupEntity. Observe in the mapping that each entity that extends those fields is mapped with all those fields. So each mapping is complete.
+
+11. Successfully appealed
+
+12. Successfully appealed
+
+14. Here is one such reference: http://codeidol.com/java/netbeans/EJB-3/Using-JAX-WS/
+Now I show this because the user there basically quotes page 468 from The O'Reilly book (http://shop.oreilly.com/product/9780596009786.do)
+
+So my pooint is again that we dont need to show them because they are implictly there. I'm just following the specification properly.
+
+15. The only ones left are then ones stated as per DanLazar 1 above
+
+
+nikolay83
+1. The only ones left are then ones stated as per DanLazar 1 above
+
+
+-------------------------------------------------------------------
+
+Section: 1.1.2 Each functional requirement is represented in at least one Sequence Diagram. 
+
+As can be seen in the scorecard, the manager overruled the scoring due to the fact these SDs have been there from the start:
+- Screening Portal Authentication Sequence Diagram 
+- Screening Portal Authorization Sequence Diagram
+
+-------------------------------------------------------------------
+
+Section: 1.2.4 Security is appropriately addressed. 
+
+You state that nikolay83's points:
+- 2. "How authorization will be done by token?"
+- 4.  I guess data must be secure, and HTTPS will be used. This is not mentioned. 
+
+#2 was successfully appealed
+#4 I have added specific language in ADS 1.3.10
+
+-------------------------------------------------------------------
+
+Section: 2.1.3 Existing systems utilizing this application are clearly defined
+
+I have used the correct names, they are still called:
+
+CMS - Provider Enrollment Screening Resources - External Sources Module #1
+CMS - Provider Enrollment Screening Resources - External Sources Module #2
+CMS - Provider Enrollment Screening Resources - External Sources Module #3
+
+Observe that I have put the prefix "CMS - Provider Enrollment Screening Resources - External Sources Modules" in the package header, so then I just use the shorter "External Sources Module #" inside. This is an accepted approach.
+
+I'm not aware of these modules having been given any other names.
+
+-------------------------------------------------------------------
+
+Section: 2.3.1 The Data Model is appropriate and correctly normalized for the project requirements
+
+Based on SDS 5.10, such input validation is done at the JSF/xml level.
+
+-------------------------------------------------------------------
+
+Section: 3.1.1 All required documents are provided and are of sufficient content
+
+Issues:
+1. PermissionDAOBean: IAE should be also thrown if elements of array are null. 
+2. Assembly spec: is information in 1.2.1 really necessary? This seems to be copied from system arch, but imo this info seems useless for assemblers. 
+3. As per Part III Chapter 5 Page 32 of MITA SOAP requests must be validated. 
+
+Response
+1. Done
+2. Recommended, so not required
+3. Thse are indeed validated, but with the use of of IAE in the methods. All this requirement is asking for is that the input is validated, and we do this with this approach. This is the same as with the external #4 and external #5 we did a while back.
+
+
+-------------------------------------------------------------------
+
+Section: 3.2.1 Sequence diagrams are complete and include sufficient detail
+
+The SD "Export Enrollment Data Sequence Diagram" has been improved. I obviously dont want to show every element added, as that would make the SD useless to view, but I believe now it shows the essence of each element insertion in a more realistic manner. I also added an additional SD to show some of the other PDF Builder elements being constructued as they are not shown in the representative 1st page. There is anote in the diagram stating all this. Hope this is sufficient.
+

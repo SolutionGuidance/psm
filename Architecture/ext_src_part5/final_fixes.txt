@@ -1,0 +1,78 @@
+Final Fixes
+
+-------------------------------------------------------------------
+
+Section: 1.1.1 Each functional requirement from the Application Requirements Specification and Competition Specification is addressed.
+
+A CDM diagram has been provided
+
+
+-------------------------------------------------------------------
+
+Section: 1.2.3 Configuration is appropriately addressed with regard to the specific needs of this application
+
+
+Wording fixed
+
+
+-------------------------------------------------------------------
+
+Section: 1.3.2 Logging is appropriately addressed with regard to the specific needs of this application. 
+
+Logging info added th ADS 1.3.6
+
+
+-------------------------------------------------------------------
+
+Section: 1.3.4 Transactionality is appropriately addressed.
+
+
+Wording issue resolved
+
+
+-------------------------------------------------------------------
+
+Section: 1.4.1 Existing components used in the design are appropriate.
+
+Caching details, including the JBoss issue, are now discussed in ADS 1.3.17
+
+
+-------------------------------------------------------------------
+
+Section: 2.3.1 The Data Model is appropriate and correctly normalized for the project requirements
+
+Recertification field added and service/DAO adjusted to handle it
+
+
+-------------------------------------------------------------------
+
+Section: 3.1.1 All required documents are provided and are of sufficient content
+
+Validation fixed in the same way as the providers #4 ADS
+
+Mpping file provided
+
+ADS 1.2.2 now lists simple cache
+
+
+-------------------------------------------------------------------
+
+Section: 3.1.2 All documents are formatted appropriately, including spelling and grammar
+
+Formatting resolved
+
+
+-------------------------------------------------------------------
+
+Section: 3.2.1 Sequence diagrams are complete and include sufficient detail
+
+
+Notes fixed
+
+
+-------------------------------------------------------------------
+
+Section: 3.3.2 Are competition specifications clear and direct?
+
+Scope of each assembly clarified
+

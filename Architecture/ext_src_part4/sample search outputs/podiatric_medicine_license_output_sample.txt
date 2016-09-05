@@ -1,0 +1,119 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+	<HEAD>
+		<title>
+			
+		</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<LINK href='/SBLMOnline/global/sblm.css' type='text/css' rel='stylesheet'>
+		<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+		</script>
+	</HEAD>
+	<body text="#000000" bgColor="#ffffff" leftMargin="0" topMargin="0">
+		<table cellPadding="5" width="700">
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td>
+								<img id="_ctl0_imgHeader" src="../global/images/H7KOnline.gif" alt="" border="0" />
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td style="HEIGHT: 53px">
+					<table width="700">
+						<tr>
+							<td>
+								<span id="_ctl0_lblPageHeading" class="Head">License Verifications</span>
+							</td>
+							<td align="right" valign="top">
+										
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<span id="_ctl0_lblMessage" class="NormalHighlight"></span></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="Normal">
+				<!--- End of Page ---><form name="__aspnetForm" method="post" action="default.aspx" id="__aspnetForm">
+<input type="hidden" name="__VIEWSTATE" value="dDwtMTQzNDM3MTM3OTt0PDtsPGk8MD47aTwxPjtpPDM+Oz47bDx0PDtsPGk8MT47aTwzPjtpPDU+O2k8Nz47aTw5Pjs+O2w8dDxwPGw8VGV4dDs+O2w8Oz4+Ozs+O3Q8cDxsPFRleHQ7PjtsPFw8TElOSyBocmVmPScvU0JMTU9ubGluZS9nbG9iYWwvc2JsbS5jc3MnIHR5cGU9J3RleHQvY3NzJyByZWw9J3N0eWxlc2hlZXQnXD47Pj47Oz47dDxwPHA8bDxJbWFnZVVybDtBbHRlcm5hdGVUZXh0Oz47bDxpbWFnZXMvSDdLT25saW5lLmdpZjs7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPExpY2Vuc2UgVmVyaWZpY2F0aW9uczs+Pjs+Ozs+O3Q8cDxwPGw8VmlzaWJsZTs+O2w8bzxmPjs+Pjs+O2w8aTwxPjs+O2w8dDxwPHA8bDxUZXh0Oz47bDw7Pj47Pjs7Pjs+Pjs+Pjt0PDtsPGk8MD47PjtsPHQ8O2w8aTwwPjs+O2w8dDw7bDxpPDE+O2k8NT47aTwxMT47PjtsPHQ8cDxwPGw8VGV4dDs+O2w8VGhlIG5leHQgc2NyZWVucyB3aWxsIGFsbG93IHlvdSB0byByZXF1ZXN0IGEgbGljZW5zZSB2ZXJpZmljYXRpb24gZWxlY3Ryb25pY2FsbHkgYW5kIHBheSBmb3IgdGhpcyByZXF1ZXN0IGJ5IGNyZWRpdCBjYXJkLiAgVG8gYmVnaW4gdGhlIHByb2Nlc3MsIGVudGVyIHRoZSBsYXN0IG5hbWUgb3IgbGljZW5zZSAjIG9mIHRoZSBsaWNlbnNlZSBhbmQgY2xpY2sgXDxiXD5zZWFyY2hcPC9iXD4gCgpOb3RlOiBBdCBhbnkgcG9pbnQgaW4gdGhpcyB0cmFuc2E7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPEpvaG5zb247Pj47Pjs7Pjt0PEAwPHA8cDxsPFBhZ2VDb3VudDtfIUl0ZW1Db3VudDtfIURhdGFTb3VyY2VJdGVtQ291bnQ7RGF0YUtleXM7PjtsPGk8MT47aTwxMj47aTwxMj47bDw+Oz4+Oz47Ozs7Ozs7Ozs7PjtsPGk8MD47PjtsPHQ8O2w8aTwxPjtpPDI+O2k8Mz47aTw0PjtpPDU+O2k8Nj47aTw3PjtpPDg+O2k8OT47aTwxMD47aTwxMT47aTwxMj47PjtsPHQ8O2w8aTwwPjtpPDE+O2k8Mj47aTwzPjtpPDQ+Oz47bDx0PDtsPGk8MD47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7PjtsPH4vcHVibGljL2FkZHRvY2FydC5hc3B4P3Byb2R1Y3RpZD0yNTQ5Oz4+Oz47Oz47Pj47dDxwPHA8bDxUZXh0Oz47bDwyNTQ5Oz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxKb2huc29uLCBOZWxsaWUgTC47Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCQzMC4wMDs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8TGljZW5zZSBWZXJpZmljYXRpb247Pj47Pjs7Pjs+Pjt0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0Pjs+O2w8dDw7bDxpPDA+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsOz47bDx+L3B1YmxpYy9hZGR0b2NhcnQuYXNweD9wcm9kdWN0aWQ9MjU4NDs+Pjs+Ozs+Oz4+O3Q8cDxwPGw8VGV4dDs+O2w8MjU4NDs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8Sm9obnNvbiwgQ2F0aGVyaW5lIFIuOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDwkMzAuMDA7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPExpY2Vuc2UgVmVyaWZpY2F0aW9uOz4+Oz47Oz47Pj47dDw7bDxpPDA+O2k8MT47aTwyPjtpPDM+O2k8ND47PjtsPHQ8O2w8aTwwPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDs+O2w8fi9wdWJsaWMvYWRkdG9jYXJ0LmFzcHg/cHJvZHVjdGlkPTI4OTM7Pj47Pjs7Pjs+Pjt0PHA8cDxsPFRleHQ7PjtsPDI4OTM7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPEpvaG5zb24sIE1hcmlMZWlnaCA7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCQzMC4wMDs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8TGljZW5zZSBWZXJpZmljYXRpb247Pj47Pjs7Pjs+Pjt0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0Pjs+O2w8dDw7bDxpPDA+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsOz47bDx+L3B1YmxpYy9hZGR0b2NhcnQuYXNweD9wcm9kdWN0aWQ9MzI5Nzs+Pjs+Ozs+Oz4+O3Q8cDxwPGw8VGV4dDs+O2w8MzI5Nzs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8Sm9obnNvbiwgTWVyaWxlZSBSLjs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8JDMwLjAwOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxMaWNlbnNlIFZlcmlmaWNhdGlvbjs+Pjs+Ozs+Oz4+O3Q8O2w8aTwwPjtpPDE+O2k8Mj47aTwzPjtpPDQ+Oz47bDx0PDtsPGk8MD47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7PjtsPH4vcHVibGljL2FkZHRvY2FydC5hc3B4P3Byb2R1Y3RpZD0zMzA2Oz4+Oz47Oz47Pj47dDxwPHA8bDxUZXh0Oz47bDwzMzA2Oz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxKb2huc29uLCBTdXNhbiBKLjs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8JDMwLjAwOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxMaWNlbnNlIFZlcmlmaWNhdGlvbjs+Pjs+Ozs+Oz4+O3Q8O2w8aTwwPjtpPDE+O2k8Mj47aTwzPjtpPDQ+Oz47bDx0PDtsPGk8MD47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7PjtsPH4vcHVibGljL2FkZHRvY2FydC5hc3B4P3Byb2R1Y3RpZD0zMzI0Oz4+Oz47Oz47Pj47dDxwPHA8bDxUZXh0Oz47bDwzMzI0Oz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxKb2huc29uLCBLYXRoeSBMLjs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8JDMwLjAwOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxMaWNlbnNlIFZlcmlmaWNhdGlvbjs+Pjs+Ozs+Oz4+O3Q8O2w8aTwwPjtpPDE+O2k8Mj47aTwzPjtpPDQ+Oz47bDx0PDtsPGk8MD47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7PjtsPH4vcHVibGljL2FkZHRvY2FydC5hc3B4P3Byb2R1Y3RpZD0zNjE0Oz4+Oz47Oz47Pj47dDxwPHA8bDxUZXh0Oz47bDwzNjE0Oz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxKb2huc29uLCBOYXRoYW4gRC47Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCQzMC4wMDs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8TGljZW5zZSBWZXJpZmljYXRpb247Pj47Pjs7Pjs+Pjt0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0Pjs+O2w8dDw7bDxpPDA+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsOz47bDx+L3B1YmxpYy9hZGR0b2NhcnQuYXNweD9wcm9kdWN0aWQ9MzY2ODs+Pjs+Ozs+Oz4+O3Q8cDxwPGw8VGV4dDs+O2w8MzY2ODs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8Sm9obnNvbiwgVGltb3RoeSBBLjs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8JDMwLjAwOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxMaWNlbnNlIFZlcmlmaWNhdGlvbjs+Pjs+Ozs+Oz4+O3Q8O2w8aTwwPjtpPDE+O2k8Mj47aTwzPjtpPDQ+Oz47bDx0PDtsPGk8MD47PjtsPHQ8cDxwPGw8TmF2aWdhdGVVcmw7PjtsPH4vcHVibGljL2FkZHRvY2FydC5hc3B4P3Byb2R1Y3RpZD0zODU5Oz4+Oz47Oz47Pj47dDxwPHA8bDxUZXh0Oz47bDwzODU5Oz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxKb2huc29uLCBBbWFuZGEgSi47Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCQzMC4wMDs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8TGljZW5zZSBWZXJpZmljYXRpb247Pj47Pjs7Pjs+Pjt0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0Pjs+O2w8dDw7bDxpPDA+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsOz47bDx+L3B1YmxpYy9hZGR0b2NhcnQuYXNweD9wcm9kdWN0aWQ9Mzg3Njs+Pjs+Ozs+Oz4+O3Q8cDxwPGw8VGV4dDs+O2w8Mzg3Njs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8Sm9obnNvbiwgS2F0aHkgRS47Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPCQzMC4wMDs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8TGljZW5zZSBWZXJpZmljYXRpb247Pj47Pjs7Pjs+Pjt0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0Pjs+O2w8dDw7bDxpPDA+Oz47bDx0PHA8cDxsPE5hdmlnYXRlVXJsOz47bDx+L3B1YmxpYy9hZGR0b2NhcnQuYXNweD9wcm9kdWN0aWQ9NDAwOTs+Pjs+Ozs+Oz4+O3Q8cDxwPGw8VGV4dDs+O2w8NDAwOTs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8Sm9obnNvbiwgU2hhcm9uIEEuOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDwkMzAuMDA7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPExpY2Vuc2UgVmVyaWZpY2F0aW9uOz4+Oz47Oz47Pj47dDw7bDxpPDA+O2k8MT47aTwyPjtpPDM+O2k8ND47PjtsPHQ8O2w8aTwwPjs+O2w8dDxwPHA8bDxOYXZpZ2F0ZVVybDs+O2w8fi9wdWJsaWMvYWRkdG9jYXJ0LmFzcHg/cHJvZHVjdGlkPTQxMTI7Pj47Pjs7Pjs+Pjt0PHA8cDxsPFRleHQ7PjtsPDQxMTI7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPEpvaG5zb24sIE5hdGhhbiBKYW1lczs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w8JDMwLjAwOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDxMaWNlbnNlIFZlcmlmaWNhdGlvbjs+Pjs+Ozs+Oz4+Oz4+Oz4+Oz4+Oz4+Oz4+O3Q8O2w8aTwxPjtpPDM+Oz47bDx0PHA8cDxsPFRleHQ7PjtsPDIwMTI7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDI4MjkgVW5pdmVyc2l0eSBBdmUgU0UgU3VpdGUgNTYwIE1pbm5lYXBvbGlzLCBNTiA1NTQxNFw8YnJcPig2NTEpIDIwMS0yNzMwICBGQVggKDY1MSkgMjAxLTI3NjNcPGJyXD5Db21tZW50cz8gRW1haWwgXDxhIGhyZWY9J21haWx0bzpiZW5oYUBzdGF0ZS5tbi51cydcPmJlbmhhQHN0YXRlLm1uLnVzXDwvYVw+Oz4+Oz47Oz47Pj47Pj47PkYqqkosH/mnLBcTvM98Jc+h3RLv" />
+
+	<TABLE id="Table1" cellSpacing="1" cellPadding="1" width="100%">
+		<TR>
+			<TD colspan="2">
+				<span id="_ctl2_lblVerificationStep1" class="Normal">The next screens will allow you to request a license verification electronically and pay for this request by credit card.  To begin the process, enter the last name or license # of the licensee and click <b>search</b> 
+
+Note: At any point in this transa</span>
+			</TD>
+		</TR>
+		<TR>
+			<TD style="HEIGHT: 19px">
+				<span id="_ctl2_lblCritera" class="Normal">Enter the licensee's last name or license number</span>
+				<input name="_ctl2:txtCriteria" type="text" value="Johnson" id="_ctl2_txtCriteria" class="NormalTextBox" /></TD>
+			<TD style="HEIGHT: 19px">
+			</TD>
+		</TR>
+		<TR>
+			<TD colspan="2">
+				<input type="submit" name="_ctl2:btnSearch" value="Search" onclick="if (typeof(Page_ClientValidate) == 'function') Page_ClientValidate(); " language="javascript" id="_ctl2_btnSearch" class="NormalButton" />&nbsp;
+				<input type="submit" name="_ctl2:btnViewCart" value="View Cart" onclick="if (typeof(Page_ClientValidate) == 'function') Page_ClientValidate(); " language="javascript" id="_ctl2_btnViewCart" class="NormalButton" />&nbsp;</TD>
+		</TR>
+	</TABLE>
+	<P></P>
+	<P>
+		<table cellspacing="0" cellpadding="5" rules="rows" bordercolor="#0033FF" border="1" id="_ctl2_dgrdResults" width="600">
+	<tr class="HeaderStyle" bgcolor="#0033FF">
+		<td><font color="White"><b>&nbsp;</b></font></td><td><font color="White"><b>License Number</b></font></td><td><font color="White"><b>Name</b></font></td><td><font color="White"><b>Cost</b></font></td><td><font color="White"><b>Description</b></font></td>
+	</tr><tr class="DataGrid">
+		<td><a href="addtocart.aspx?productid=2549">Add to Cart</a></td><td>2549</td><td>Johnson, Nellie L.</td><td>$30.00</td><td>License Verification</td>
+	</tr><tr class="DataGrid">
+		<td><a href="addtocart.aspx?productid=2584">Add to Cart</a></td><td>2584</td><td>Johnson, Catherine R.</td><td>$30.00</td><td>License Verification</td>
+	</tr><tr class="DataGrid">
+		<td><a href="addtocart.aspx?productid=2893">Add to Cart</a></td><td>2893</td><td>Johnson, MariLeigh </td><td>$30.00</td><td>License Verification</td>
+	</tr><tr class="DataGrid">
+		<td><a href="addtocart.aspx?productid=3297">Add to Cart</a></td><td>3297</td><td>Johnson, Merilee R.</td><td>$30.00</td><td>License Verification</td>
+	</tr><tr class="DataGrid">
+		<td><a href="addtocart.aspx?productid=3306">Add to Cart</a></td><td>3306</td><td>Johnson, Susan J.</td><td>$30.00</td><td>License Verification</td>
+	</tr><tr class="DataGrid">
+		<td><a href="addtocart.aspx?productid=3324">Add to Cart</a></td><td>3324</td><td>Johnson, Kathy L.</td><td>$30.00</td><td>License Verification</td>
+	</tr><tr class="DataGrid">
+		<td><a href="addtocart.aspx?productid=3614">Add to Cart</a></td><td>3614</td><td>Johnson, Nathan D.</td><td>$30.00</td><td>License Verification</td>
+	</tr><tr class="DataGrid">
+		<td><a href="addtocart.aspx?productid=3668">Add to Cart</a></td><td>3668</td><td>Johnson, Timothy A.</td><td>$30.00</td><td>License Verification</td>
+	</tr><tr class="DataGrid">
+		<td><a href="addtocart.aspx?productid=3859">Add to Cart</a></td><td>3859</td><td>Johnson, Amanda J.</td><td>$30.00</td><td>License Verification</td>
+	</tr><tr class="DataGrid">
+		<td><a href="addtocart.aspx?productid=3876">Add to Cart</a></td><td>3876</td><td>Johnson, Kathy E.</td><td>$30.00</td><td>License Verification</td>
+	</tr><tr class="DataGrid">
+		<td><a href="addtocart.aspx?productid=4009">Add to Cart</a></td><td>4009</td><td>Johnson, Sharon A.</td><td>$30.00</td><td>License Verification</td>
+	</tr><tr class="DataGrid">
+		<td><a href="addtocart.aspx?productid=4112">Add to Cart</a></td><td>4112</td><td>Johnson, Nathan James</td><td>$30.00</td><td>License Verification</td>
+	</tr>
+</table></P>
+	<P>&nbsp;</P>
+	<P></P>
+</form>
+
+
+</td>
+</tr>
+<tr> <td class="small" align="center"> <hr> 
+Copyright 
+&copy; <span id="_ctl1_CopyrightDate">2012</span><br>
+<span id="_ctl1_lblSBLMOnlineFooter">2829 University Ave SE Suite 560 Minneapolis, MN 55414<br>(651) 201-2730  FAX (651) 201-2763<br>Comments? Email <a href='mailto:benha@state.mn.us'>benha@state.mn.us</a></span>
+</td></tr> </table> 
+</body>
+</html>

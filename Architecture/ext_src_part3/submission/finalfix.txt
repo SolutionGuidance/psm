@@ -1,0 +1,294 @@
+######################################################
+Question 1.1.1:
+nikolay83:
+R1:
+
+>>why don't you have attributes for paging and sorting neither in abstract SearchCriteria nor in xxxSearchCriteria classes? How do you address requirement for paging and sorting without it?
+
+Fixed. added pageSize, pageNumber, sortColumn, sortOrder to SearchCriteria
+
+check TCUML "Tracking and Reliability Class Diagram"
+
+
+updated ADS 1.3.3	API Methods
+
+look for "Step2: // read response HTML to find <<Next>> hyper link in the html"
+
+Now it will retrieve all entries until there are no more left.
+
+
+
+add SortableEntity in TCUML "Existing Medicaid Provider Screening Portal Entities Class Diagram (Updated)" 
+
+anded sterio type to  SortableEntity License Entity
+
+
+
+Added a section  1.3.10	Sorting to ADS.
+
+######################################################
+
+the_best:
+
+R1 : >> Your submission completely misses pagination requirement. There are several aspects of pagination here:
+
+
+
+Fixed. added pageSize, pageNumber, sortColumn, sortOrder to SearchCriteria
+
+check TCUML "Tracking and Reliability Class Diagram"
+
+
+updated ADS 1.3.3	API Methods
+
+look for "Step2: // read response HTML to find <<Next>> hyper link in the html"
+
+Now it will retrieve all entries until there are no more left.
+
+
+
+add SortableEntity in TCUML "Existing Medicaid Provider Screening Portal Entities Class Diagram (Updated)" 
+
+anded sterio type to  SortableEntity License Entity
+
+
+
+Added a section  1.3.10	Sorting to ADS.
+
+
+R2: >.2) You need to handle multiple pages result in external services and made appropriate number of http requests to grap all search result
+
+
+updated ADS 1.3.3	API Methods
+
+look for "Step2: // read response HTML to find <<Next>> hyper link in the html"
+
+Now it will retrieve all entries until there are no more left and added to list later
+the list will be used for creating paginated SearchResult<license> instance.
+
+######################################################
+
+Question 1.1.2:
+
+DanLazar: >> The functionality shown in "Search NPI Users Sequence Diagram" is not in scope.
+
+fixed. removed. it
+
+######################################################
+
+Question 1.1.3 
+the_best:
+R1: see here http://apps.topcoder.com/forums/?module=Thread&threadID=756966&start=0&mc=1#1582484
+
+
+Question 1.1.4:
+R2: see 1.1.1
+R1: the_best: >> MarriageAndFamilyTherapyLicenseCriteria looks like completely wrong.
+http://www.bmft.state.mn.us/search.asp?p=s defines only "SearchType" and "Criteria" but you defines "organization", "licenceType" and "city" in search criteria
+
+
+fixed. removed "organization", "licenceType" and "city" and added criteria to MarriageAndFamilyTherapyLicenseCriteria entity
+
+R2: see http://apps.topcoder.com/forums/?module=Thread&threadID=756968&start=0&mc=1#1582486
+
+
+R3: fixed. removed "city" and "zipcode" 
+######################################################
+
+Question 1.2.2:
+
+nikolay83: >> ADS 1.3.6 Threading doesn't specify how the services implementations will be thread-safe.
+Fixed. see ADs 1.3.6 Threading	
+
+######################################################
+Question 1.2.4:
+nikolay83:
+R1: This app is a small part of MITA applicaiton. is it really required to copy it?
+any way added ADS 1.3.16	Security
+
+
+######################################################
+
+Question 1.3.2:
+R1: >> How will you convert data to JSON?
+
+fixed. see ADS 1.3.8	JSON Conversion      updated 1.3.7	Logging
+
+R2:   fixed. 
+
+updated 1.3.4	 Configuration
+
+and updated BaseLicenseServiceImpl in "Optometry, MedicalPractice and Pharmacy Services Class Diagram" in TCUML
+
+
+
+######################################################
+Question 1.3.3
+nikolay83:
+R1: added exceptions see Exceptions Class Diagram in TCUML
+R2: see Exceptions Class Diagram in TCUML, 
+
+also updated ADS 1.3.9	Exception Handling Overview
+
+R3: Assembly External Sources Miscellaneous Practice Assembly is responsible for implementing exception
+
+updated External Sources Miscellaneous Practice Assembly.doc
+
+
+Please look for "This assembly will be responsible for providing implementation for StatsTrackerService. The service classes and entities in Tracking, Exceptions Class Diagram and Reliability Class Diagram are in scope"
+
+
+R4: >>Not clear which services throws the exceptions
+
+This is quite low level to ask. anyway updated TCUML 
+
+
+######################################################
+Question 2.3.1:
+
+nikolay83
+R1: fixed. added paging and sorting
+
+Question 2.3.1:
+DanLazar:
+
+R1: NO. SearchCriteria.identifier is used as licenseNumber see here http://apps.topcoder.com/forums/?module=Thread&threadID=756469&start=0
+
+R2: fixed. removed 
+
+R3: NO. SearchCriteria.identifier is used as licenseNumber see here http://apps.topcoder.com/forums/?module=Thread&threadID=756469&start=0
+R4: fixed. removed
+
+
+######################################################
+Question 2.4.1 
+the_best: see http://apps.topcoder.com/forums/?module=Thread&threadID=756978&start=0
+
+
+
+######################################################
+Question 2.5.1:
+
+DanLazar:
+
+R1: sorry it should be Persistence. There are no performance requirements.
+
+
+added a ADS 1.3.15 Performance too
+
+
+
+######################################################
+
+Question 3.1.1:
+
+R1: fixed. see ADS 1.2.4	Assemblies
+
+R2: fixed. please check other fixes
+
+R3: fixed. overview
+
+the_best
+
+
+######################################################
+
+Question 3.1.2:
+>>numbering in some impl notes in ADS is odd: like starting from 4
+
+
+
+
+######################################################
+
+Question 3.2.1
+DanLazar:
+R1: >>"Save ResultLog Sequence Diagram" - on the first arrow the message is: "delegate search operation to corresponding DAO method" - here you call the service. The first note from this sd is not correct as it points to incorrect services.
+
+fixed.
+
+######################################################
+Question 3.2.2
+nikolay83:
+R1: fixed. see component diagram
+
+
+R2: fixed see Exceptions Class Diagram in TCUML
+R3: isn't it too much to ask construtors
+any way i added but 
+
+
+R4: fixed. removed login method
+
+
+DanLazar:
+R1: fixed.
+
+	
+
+
+######################################################
+Question 3.3.2
+nikolay83:
+R1: >>Not clear where in which assembly the exceptions will be developed.
+
+updated. see External Sources Miscellaneous Practice Assembly.doc
+
+
+R2: fixed. see ADS and Spec overiews.
+
+
+
+
+
+
+
+######################################################
+ Question 3.3.3 
+ the_best
+R1: see http://apps.topcoder.com/forums/?module=Thread&threadID=756986&start=0
+
+######################################################
+
+Question 3.3.4 
+
+nikolay83:
+
+see fixes for 3.3.2
+	
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+

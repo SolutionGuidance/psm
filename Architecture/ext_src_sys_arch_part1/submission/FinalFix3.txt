@@ -1,0 +1,47 @@
+Question 1.1.1 & Question 1.1.4:
+nikolay83&argolite:
+as per bchops, MIT license allows to use it commercially. we don't need to send changes mades to MIT
+http://apps.topcoder.com/forums/?module=Thread&threadID=753023&start=0
+
+Question 1.1.5:
+Please note that it is always to good to have specific method for each search type. This way implementator won't miss the functionality required.
+
+Please check here the confirmation http://apps.topcoder.com/forums/?module=Thread&threadID=754682&start=0
+
+
+
+Question 2.1.2:
+R1: Update SDS 6.1	Process Mapping 
+
+Please check a separate API requirements doc with i/o data provided for each business process
+
+Please check for API_Requirements.doc, BusinessOwnershipCheckAPIRequirements.doc, NetStudyAPIRequirements.doc and API_Price_Details.doc
+
+
+more clear mapping of API requirements, Input/Output Snapshots are provided API_Requirements.doc, BusinessOwnershipCheckAPIRequirements.doc, NetStudyAPIRequirements.doc and API_Price_Details.doc
+
+Please consider those for process mapping. 
+
+R2:fixed formatted  6.1	Process Mapping 
+
+
+
+Question 2.1.3:
+fixed. please check 2.1.2
+
+Question 2.1.4 :
+albertwang
+
+R4:fixed.
+
+
+Question 2.3.2:
+R2: fixed. all the needed credentials 
+
+R3-5: Please check here http://apps.topcoder.com/forums/?module=Thread&threadID=754682&start=0
+
+
+
+
+
+

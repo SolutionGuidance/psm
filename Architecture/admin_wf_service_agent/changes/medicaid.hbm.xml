@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="gov.medicaid.entities" default-lazy="false">
+
+    <class name="CreditCardType" table="creditCardType">
+        <id column="credit_card_type_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="Role" table="role">
+        <id column="role_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+    
+    <class name="RiskLevel" table="risk_level">
+        <id column="risk_level_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="RequestType" table="request_type">
+        <id column="request_type_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="RequiredFieldType" table="required_fld_type">
+        <id column="required_fld_type_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+    
+    <class name="RequiredField" table="required_fld">
+        <id column="required_fld_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+        
+        <many-to-one name="type" class="RequiredFieldType" cascade="all">
+            <column name="required_fld_type_id"></column>
+        </many-to-one>
+    </class>
+
+    <class name="UserStatus" table="user_status">
+        <id column="user_status_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+    
+    <class name="EnrollmentStatus" table="enrollment_status">
+        <id column="enrollment_status_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="NotificationType" table="notification_type">
+        <id column="notification_type_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="TribalCode" table="tribal_cd">
+        <id column="tribal_cd_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="CategoryService" table="category_svc">
+        <id column="category_svc_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="MajorProgram" table="major_program">
+        <id column="major_program_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="FileFormat" table="file_fmt">
+        <id column="file_fmt_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="SpecialtyType" table="specialty_type">
+        <id column="specialty_type_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="Specialty" table="specialty">
+        <id column="specialty_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+        <property name="code" type="long" column="code"></property>
+        
+        <many-to-one name="type" class="SpecialtyType" cascade="all">
+            <column name="specialty_type_id"></column>
+        </many-to-one>
+    </class>
+
+    <class name="LicenseType" table="license_type">
+        <id column="license_type_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="PermitType" table="permit_type">
+        <id column="permit_type_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="LicenseLevel" table="license_level">
+        <id column="license_level_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="ExclusionType" table="exclusion_type">
+        <id column="exclusion_type_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="ComplaintType" table="complaint_type">
+        <id column="complaint_type_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+
+    <class name="AuditRecord" table="audit_record">
+        <id column="audit_record_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="username" type="string" column="username" length="45"></property>
+        <property name="date" type="date" column="audit_date" ></property>
+        <property name="ipAddress" type="string" column="ip_address" length="45"></property>
+        <property name="oldData" type="string" column="old_data" length="2048"></property>
+        <property name="newData" type="string" column="new_data" length="2048"></property>
+    </class>
+
+    <class name="HelpItem" table="help_item">
+        <id column="help_item_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="title" type="string" column="title" length="45"></property>
+        <property name="description" type="string" column="description" length="2048"></property>
+    </class>
+
+    <class name="Appeal" table="appeal">
+        <id column="appeal_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="description" type="string" column="description" length="2048"></property>
+        
+        <property name="createdBy" type="string" column="created_by" length="45"></property>
+        <property name="createTime" type="date" column="create_time"></property>
+        <property name="modifiedBy" type="string" column="modified_by" length="45"></property>
+        <property name="modifiedTime" type="date" column="modified_time" ></property>
+    </class>
+
+    <class name="UserPermission" table="user_permission">
+        <id column="user_permission_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="action" type="string" column="action" length="45"></property>
+        <property name="permission" column="permission" >
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.Permission</param>
+            </type>
+        </property>
+    </class>
+
+    <class name="PaymentInfo" table="Payment_Info">
+        <id column="payment_info_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="user_name"></property>        
+	  <property name="creditCardNumber" type="string" column="credit_card_number"></property>
+        <property name="securityCode" type="string" column="security_code"></property>        
+        <property name="validMonth" type="integer" column="valid_month" ></property>
+        <property name="validYear" type="integer" column="valid_year" ></property>       
+        <many-to-one name="creditCardType" class="CreditCardType">
+            <column name="credit_card_type_id"></column>
+        </many-to-one>
+    </class>
+
+    <class name="Enrollment" table="enrollment">
+        <id column="enrollment_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="startDate" type="date" column="start_dt"></property>
+        <property name="expireDate" type="date" column="end_dt"></property>
+        <property name="denialReason" type="string" column="denial_reason" length="1024"></property>
+        
+        <property name="createdBy" type="string" column="created_by" length="45"></property>
+        <property name="createTime" type="date" column="create_time"></property>
+        <property name="modifiedBy" type="string" column="modified_by" length="45"></property>
+        <property name="modifiedTime" type="date" column="modified_time" ></property>
+        
+        <many-to-one name="status" class="EnrollmentStatus">
+            <column name="enrollment_status_id"></column>
+        </many-to-one>
+        <many-to-one name="requestType" class="RequestType">
+            <column name="request_type_id"></column>
+        </many-to-one>
+        <many-to-one name="user" class="User">
+            <column name="user_id"></column>
+        </many-to-one>
+        <many-to-one name="appeal" class="Appeal" cascade="all">
+            <column name="appeal_id"></column>
+        </many-to-one>
+        <one-to-one name="user" class="User">
+            <column name="user_id"></column>
+        </one-to-one>
+        <one-to-one name="paymentInfo" class="PaymentInfo">
+            <column name="payment_info_id"></column>
+        </one-to-one>
+    </class>
+
+    <class name="Address" table="address">
+        <id column="address_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="line1" type="string" column="line_1" length="45"></property>
+        <property name="line2" type="string" column="line_2" length="45"></property>
+        <property name="city" type="string" column="city" length="45"></property>
+        <property name="state" type="string" column="state" length="45"></property>
+        <property name="zipcode" type="string" column="zipcode" length="45"></property>
+        <property name="county" type="string" column="county" length="45"></property>
+    </class>
+
+    <class name="Event" table="event">
+        <id column="event_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="npi" type="string" column="npi" length="45"></property>
+        <property name="status" type="string" column="status" length="45"></property>
+        <property name="createdBy" type="string" column="created_by" length="45"></property>
+        <property name="createTime" type="date" column="create_time"></property>
+    </class>
+
+    <class name="AgreementDocument" table="agreementDocument">
+        <id column="agreement_document_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="title" type="string" column="title" length="45"></property>
+	  <property name="version" type="string" column="version" length="45"></property>
+	  <property name="content" type="string" column="title" length="2000"></property>
+        <property name="type" column="agreement_document_type">
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.AgreementDocumentType</param>
+            </type>
+        </property>
+
+        <property name="createdBy" type="string" column="created_by" length="45"></property>
+        <property name="createTime" type="date" column="create_time"></property>
+    </class>
+
+    <class name="ScreeningSchedule" table="screening_schedule">
+        <id column="screening_schedule_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="upcomingScreeningDate" type="date" column="upcoming_screening_dt"></property>
+        <property name="interval" type="int" column="interval"></property>
+        <property name="intervalType" column="interval_type">
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.ScreeningIntervalType</param>
+            </type>
+        </property>
+    </class>
+
+    <class name="ProviderStatement" table="provider_statement">
+        <id column="provider_statement_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+        <property name="title" type="string" column="title" length="45"></property>
+        <property name="image" type="blob" column="signature"></property>
+        <property name="date" type="date" column="statement_date"></property>
+
+        <property name="createdBy" type="string" column="created_by" length="45"></property>
+        <property name="createTime" type="date" column="create_time"></property>
+        <property name="modifiedBy" type="string" column="modified_by" length="45"></property>
+        <property name="modifiedTime" type="date" column="modified_time" ></property>
+    </class>
+
+    <class name="GroupAffiliation" table="group_affiliation">
+        <id column="group_affiliation_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+        <property name="groupNPI" type="string" column="group_npi" length="45"></property>
+
+        <property name="createdBy" type="string" column="created_by" length="45"></property>
+        <property name="createTime" type="date" column="create_time"></property>
+        <property name="modifiedBy" type="string" column="modified_by" length="45"></property>
+        <property name="modifiedTime" type="date" column="modified_time" ></property>
+        
+        <many-to-one name="address" class="Address" cascade="all">
+            <column name="address_id"></column>
+        </many-to-one>
+    </class>
+
+    <class name="License" table="license">
+        <id column="license_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="description" type="string" column="description" length="45"></property>
+        <property name="licenseNumber" type="string" column="license_number" length="45"></property>
+        <property name="originalIssueDate" type="date" column="original_issue_dt"></property>
+        <property name="renewalEndDate" type="date" column="renewal_end_dt"></property>
+        <property name="issuingUSState" type="string" column="issuing_us_state" length="2"></property>
+        <property name="permitNumber" type="long" column="permit_number"></property>
+        <property name="password" type="string" column="password" length="45"></property>
+        <property name="statusDate" type="date" column="status_dt"></property>
+        <property name="discipline" type="boolean" column="discipline"></property>
+        <property name="correctiveAction" type="boolean" column="corrective_action"></property>
+        <property name="expireDate" type="date" column="expire_dt"></property>
+
+        <many-to-one name="type" class="LicenseType" cascade="all">
+            <column name="license_type_id"></column>
+        </many-to-one>
+        <many-to-one name="level" class="LicenseLevel" cascade="all">
+            <column name="license_level_id"></column>
+        </many-to-one>
+        <many-to-one name="profile" class="ProviderProfile" cascade="all" >
+            <column name="provider_profile_id"></column>
+        </many-to-one>
+    </class>
+
+    <class name="PrivatePractice" table="private_practice">
+        <id column="private_practice_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+        <property name="groupNPI" type="string" column="group_npi" length="45"></property>
+        <property name="officePhoneNumber" type="string" column="office_phone_number" length="45"></property>
+        <property name="officeFaxNumber" type="string" column="office_fax_number" length="45"></property>
+        <property name="legalName" type="string" column="legal_name" length="45"></property>
+        <property name="fein" type="string" column="federal_tax_id" length="45"></property>
+        <property name="stateTaxId" type="string" column="state_tax_id" length="45"></property>
+
+        <property name="createdBy" type="string" column="created_by" length="45"></property>
+        <property name="createTime" type="date" column="create_time"></property>
+        <property name="modifiedBy" type="string" column="modified_by" length="45"></property>
+        <property name="modifiedTime" type="date" column="modified_time" ></property>
+        
+        <many-to-one name="officeAddress" class="Address" cascade="all">
+            <column name="office_address_id"></column>
+        </many-to-one>
+        <many-to-one name="billingAddress" class="Address" cascade="all">
+            <column name="billing_address_id"></column>
+        </many-to-one>
+    </class>
+
+    <class name="User" table="cms_user">
+        <id column="user_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="username" type="string" column="username" length="45"></property>
+        <property name="email" type="string" column="email" length="45"></property>
+        <property name="firstName" type="string" column="first_name" length="45"></property>
+        <property name="lastName" type="string" column="last_name" length="45"></property>
+        <property name="middleName" type="string" column="middle_name" length="45"></property>
+
+        <many-to-one name="profile" class="ProviderProfile" cascade="save-update">
+            <column name="provider_profile_id"></column>
+        </many-to-one>
+        <many-to-one name="role" class="Role">
+            <column name="role_id"></column>
+        </many-to-one>
+        <many-to-one name="status" class="UserStatus">
+            <column name="status_id"></column>
+        </many-to-one>
+        <bag name="permissions" table="user_user_permission" cascade="save-update">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <many-to-many class="UserPermission" column="user_permission_id"/>
+        </bag>
+    </class>
+
+    <class name="ProviderType" table="provider_type">
+        <id column="provider_type_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+        <property name="hasPrivateOffice" type="boolean" column="private_office_ind"></property>
+        <property name="employedAndOrContracted" type="boolean" column="employed_contracted_ind"></property>
+        <property name="hasAdditionalPractice" type="boolean" column="additonal_practice_ind"></property>
+        <property name="paymentRequired" type="boolean" column="payment_required_ind"></property>
+
+        <bag name="requiredFields" table="provider_type_req_fields" cascade="save-update">
+            <key>
+                <column name="provider_type_id" not-null="true" />
+            </key>
+            <many-to-many class="RequiredField" column="required_field_id"/>
+        </bag>
+    </class>
+
+    <class name="ProviderProfile" table="provider_profile">
+        <id column="provider_profile_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+
+        <property name="ssn" type="string" column="ssn" length="45"></property>
+        <property name="dob" type="date" column="dob"></property>
+        <property name="requestEffectiveDate" type="date" column="request_effective_dt"></property>
+        <property name="degree" column="degree">
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.Degree</param>
+            </type>
+        </property>
+        <property name="degreeAwardDate" type="date" column="degree_award_dt"></property>
+        <property name="hasPrivateOffice" type="boolean" column="private_office_ind"></property>
+        <property name="remittanceAdviceEmailPreference" column="remittance_email_pref">
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.MailPreference</param>
+            </type>
+        </property>
+        <property name="reimbursementCheckEmailPreference" column="reimbursement_email_pref">
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.MailPreference</param>
+            </type>
+        </property>
+        <property name="providerCorrespondenceEmailPreference" column="correspondence_email_pref">
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.MailPreference</param>
+            </type>
+        </property>
+        <property name="authorizationRequestNoticeEmailPreference" column="authorization_email_pref">
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.MailPreference</param>
+            </type>
+        </property>
+        <property name="enrollmentStatusEmailPreference" column="enrollment_email_pref">
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.MailPreference</param>
+            </type>
+        </property>
+        <property name="remittanceSequenceOrder" column="remittance_seq_order">
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.RemittanceSequenceOrder</param>
+            </type>
+        </property>
+        <property name="hasConvictedOfCriminalOffense" type="boolean" column="criminal_conviction_ind"></property>
+        <property name="hasCivilMoneyPenalty" type="boolean" column="civil_penalty_ind"></property>
+        <property name="hasTerminated" type="boolean" column="terminated_ind"></property>
+        <property name="contactName" type="string" column="contact_name" length="45"></property>
+        <property name="contactPhoneNumber" type="string" column="contact_phone_number" length="45"></property>
+        <property name="contactFaxNumber" type="string" column="contact_fax_number" length="45"></property>
+        <property name="contactEmail" type="string" column="contact_email" length="45"></property>
+        <property name="fingerPrintsScannedFile" type="string" column="fingerprint_scanned_file" length="45"></property>
+        <property name="scannedEFTForm" type="string" column="scanned_eft_form" length="45"></property>
+        <property name="enrolmentFeeRequired" type="boolean" column="enrollment_fee_required_ind"></property>
+        <property name="enrollmentFee" type="double" column="enrollment_fee"></property>
+        <property name="enrollmentFeePaid" type="boolean" column="enrollment_fee_paid_ind"></property>
+        <property name="npi" type="long" column="npi"></property>
+        <property name="providerAgreementFile" type="string" column="provider_agreement_file" length="45"></property>
+        
+        <property name="primaryTaxonomy" type="string" column="primary_taxonomy" length="45"></property>
+        <property name="prefix" type="string" column="prefix" length="45"></property>
+        <property name="suffix" type="string" column="suffix" length="45"></property>
+        <property name="credentials" type="string" column="credentials" length="45"></property>
+        <property name="otherPrefix" type="string" column="other_prefix" length="45"></property>
+        <property name="otherSuffix" type="string" column="other_suffix" length="45"></property>
+        <property name="otherFirstName" type="string" column="other_first_name" length="45"></property>
+        <property name="otherMiddleName" type="string" column="other_middle_name" length="45"></property>
+        <property name="otherLastName" type="string" column="other_last_name" length="45"></property>
+        <property name="zipLumpSum" type="string" column="zip_lump_sum" length="45"></property>
+        <property name="dateOfDeath" type="date" column="date_of_death"></property>
+        <property name="ssnVerified" type="boolean" column="ssn_verified_ind"></property>
+        <property name="employerId" type="string" column="employer_id" length="45"></property>
+        <property name="alias" type="string" column="alias" length="45"></property>
+        <property name="actionDateFrom" type="date" column="action_from_dt"></property>
+        <property name="actionDateTo" type="date" column="action_to_dt"></property>
+        <property name="terminationDateFrom" type="date" column="termination_from_dt"></property>
+        <property name="terminationDateTo" type="date" column="termination_to_dt"></property>
+        <property name="createDateFrom" type="date" column="create_from_dt"></property>
+        <property name="createDateTo" type="date" column="create_to_dt"></property>
+        <property name="modifyDateFrom" type="date" column="modify_from_dt"></property>
+        <property name="modifyDateTo" type="date" column="modify_to_dt"></property>
+        <property name="reciprocalCode" type="string" column="reciprocal_cd" length="45"></property>
+        <property name="procurementCode" type="string" column="procurement_cd" length="45"></property>
+        <property name="agency" type="string" column="agency" length="45"></property>
+        <property name="duns" type="long" column="duns"></property>
+        <property name="cageCode" type="string" column="cage_code" length="45"></property>
+        <property name="dba" type="string" column="dba" length="45"></property>
+        <property name="sex" column="sex">
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">gov.medicaid.entities.Sex</param>
+            </type>
+        </property>
+        <property name="name" type="string" column="name" length="45"></property>
+
+        
+        <property name="createdBy" type="string" column="created_by" length="45"></property>
+        <property name="createTime" type="date" column="create_time"></property>
+        <property name="modifiedBy" type="string" column="modified_by" length="45"></property>
+        <property name="modifiedTime" type="date" column="modified_time" ></property>
+        
+        <many-to-one name="type" class="ProviderType" cascade="save-update">
+            <column name="provider_type_id"></column>
+        </many-to-one>
+        <many-to-one name="privatePractice" class="PrivatePractice" cascade="all">
+            <column name="private_practice_id"></column>
+        </many-to-one>
+        <many-to-one name="providerStatement" class="ProviderStatement" cascade="all">
+            <column name="provider_statement_id"></column>
+        </many-to-one>
+        <many-to-one name="currentEnrollment" class="Enrollment" cascade="all">
+            <column name="current_enrollment_id"></column>
+        </many-to-one>
+        <many-to-one name="previousEnrollment" class="Enrollment" cascade="all">
+            <column name="previous_enrollment_id"></column>
+        </many-to-one>
+        <many-to-one name="majorProgram" class="MajorProgram" cascade="save-update">
+            <column name="major_program_id"></column>
+        </many-to-one>
+        <many-to-one name="category" class="CategoryService" cascade="save-update">
+            <column name="category_svc_id"></column>
+        </many-to-one>
+        <many-to-one name="complaintType" class="ComplaintType" cascade="save-update">
+            <column name="complaint_type_id"></column>
+        </many-to-one>
+        <many-to-one name="exclusionType" class="ExclusionType" cascade="save-update">
+            <column name="exclusion_type_id"></column>
+        </many-to-one>
+        <many-to-one name="risk" class="RiskLevel" cascade="save-update">
+            <column name="risk_level_id"></column>
+        </many-to-one>
+        <many-to-one name="tribalCode" class="TribalCode" cascade="save-update">
+            <column name="tribal_code_id"></column>
+        </many-to-one>
+        <many-to-one name="business" class="Business" cascade="all">
+            <column name="business_id"></column>
+        </many-to-one>
+        <bag name="specialties" table="provider_profile_specialty" cascade="all">
+            <key>
+                <column name="provider_profile_id" not-null="true" />
+            </key>
+            <many-to-many class="Specialty" column="specialty_id"/>
+        </bag>
+        <bag name="affiliations" table="provider_profile_affiliations" cascade="all">
+            <key>
+                <column name="provider_profile_id" not-null="true" />
+            </key>
+            <many-to-many class="GroupAffiliation" column="group_affiliation_id"/>
+        </bag>
+        <bag name="licenses" table="provider_profile_license" cascade="all">
+            <key>
+                <column name="provider_profile_id" not-null="true" />
+            </key>
+            <many-to-many class="License" column="license_id"/>
+        </bag>
+        <bag name="addresses" table="provider_profile_address" cascade="all">
+            <key>
+                <column name="provider_profile_id" not-null="true" />
+            </key>
+            <many-to-many class="Address"  column="address_id"/>
+        </bag>        
+    </class>
+    
+    <class name="BusinessStatus" table="business_status">
+        <id column="business_status_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+    
+    <class name="BusinessType" table="business_type">
+        <id column="business_type_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+    </class>
+    
+    <class name="FilingHistory" table="filing_history">
+        <id column="filing_history_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="date" type="date" column="filing_dt"></property>
+        <property name="description" type="string" column="description" length="1024"></property>
+    </class>
+    
+    <class name="Business" table="business">
+        <id column="business_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="name" type="string" column="name" length="45"></property>
+        <property name="fileNumber" type="string" column="file_number" length="45"></property>
+        <property name="statute" type="string" column="statute" length="45"></property>
+        <property name="homeJurisdiction" type="string" column="home_jurisdiction" length="45"></property>
+        <property name="filingDate" type="date" column="filing_dt"></property>
+        <property name="renewalDueDate" type="date" column="renewal_due_dt"></property>
+        
+        <many-to-one name="status" class="BusinessStatus" cascade="all">
+            <column name="business_status_id"></column>
+        </many-to-one>
+        <many-to-one name="type" class="BusinessType" cascade="all">
+            <column name="business_type_id"></column>
+        </many-to-one>
+        <many-to-one name="registeredOfficeAddress" class="Address" cascade="all">
+            <column name="office_address_id"></column>
+        </many-to-one>
+        <bag name="registeredAgents" table="business_registered_agents" cascade="all">
+            <key>
+                <column name="business_id" not-null="true" />
+            </key>
+            <many-to-many class="ProviderProfile" column="provider_profile_id"/>
+        </bag>
+        <bag name="filingHistory" table="business_filing_history" cascade="all" >
+            <key>
+                <column name="business_id" not-null="true" />
+            </key>
+            <one-to-many class="FilingHistory" />
+        </bag>
+    </class>
+    
+    <class name="NotificationTemplate" table="notification_template">
+        <id column="notification_template_id" name="id" type="long">
+            <generator class="sequence-identity" >
+                <param name="sequence">MITA3_SEQ</param>
+            </generator>        
+        </id>
+        <property name="notificationTypeId" type="long" column="notification_type_id"></property>
+        <property name="templateFile" type="string" column="template_file" length="1024"></property>
+    </class>
+</hibernate-mapping>

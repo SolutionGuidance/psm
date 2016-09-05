@@ -1,0 +1,315 @@
+###############################################################################
+Question 1.1.1:
+
+nikolay83:
+R1: >>why don't you have attributes for sorting neither in abstract SearchCriteria nor in xxxSearchCriteria classes? How do you address requirement for sorting without it?
+
+fixed. added paging and sorting features and updated
+
+
+ 
+R2:>>a lot of flaws as per Q2.4.2
+
+please check Q2.4.2
+
+
+DanLazar:
+R1: fixed. removed
+
+updated TCUML, ADS and Assebly Spec..
+
+
+###############################################################################
+Question 1.1.2:
+argolite: 
+R1: Clear implementation notes NNPESService.search and parsing HTML and retrieving attributes described in ADS 1.3.3	Reading Table Rows using Jsoup ADS
+
+IMO this is more than enough.
+
+Also please check the "Search NPI Users Sequence Diagram" isn't it suffice?
+
+
+DanLazar
+R1: fixed. removed redundant Sds.
+
+
+###############################################################################
+Question 1.1.3:
+argolite:
+R1: Clear implementation notes NNPESService.search and parsing HTML and retrieving attributes described in ADS 1.3.3	Reading Table Rows using Jsoup ADS
+
+IMO this is more than enough. 
+
+
+###############################################################################
+Question 1.1.4
+argolite: R1: please see 1.1.3
+
+nikolay83
+R1: see 1.1.1
+
+DanLazar:
+R1: >.http://apps.topcoder.com/forums/?module=Thread&threadID=756471&start=0
+
+
+###############################################################################
+Question 1.2.2 
+
+nikolay83
+R1: fixed. see rewritten ADS 1.3.7 Threading	
+
+
+#############################################################################
+Question 1.2.3
+nikolay83:
+R1: 	URL parameter in 1.3.5	 Configuration, SSL Schema(HTTPS) and port 443 are fixed for HTTPS connection
+
+so those are used in service implemention internally using URL parameter in 1.3.5	 Configuration
+
+
+ADS Section 1.3.19	Security describes how to connect to SSL enabled sites.
+
+
+
+#############################################################################
+Question 1.2.4
+nikolay83:
+
+
+
+
+###############################################################################
+ Question 1.3.2:
+R1: >>- provide the JSON string structure for this as it should be standardized.
+No structuring/coding is required. we will use jackson json processor as used in other Assembly
+
+Please check updated see ADS 1.3.8	Logging and 1.3.8	 JSON Conversion
+
+
+
+
+###############################################################################
+Question 1.3.3
+nikolay83:
+R1: >. Not clear where in which assembly the exceptions will be developed.
+Fixed. updated External Sources Miscellaneous Practice Assembly.doc see section 2.1.	Main Requirement
+in External Sources Miscellaneous Practice Assembly.doc
+	
+
+###############################################################################
+Question 1.4.4
+
+
+
+
+>. If the HTML parsing software changes then everything will have to change. At least provide some kind of mapping between the result data fields and the data field from the web site that are being scraped.
+
+
+
+###############################################################################
+Question 1.4.7
+argolite: see  3.2.2
+
+
+###############################################################################
+
+Question 2.2.1:
+R1: fixed. added separate pluggable dataaccesslayers
+ 
+
+###############################################################################
+Question 2.2.3
+
+argolite: see  2.2.2 and 1.4.4
+
+
+###############################################################################
+Question 2.3.1
+
+nikolay83: 
+R1: won't fix.
+
+I didn't appealed but reviewer is wrong here. we need to persiste ResultLogEntry which aggregate SearchCriteria.
+
+Since   ResultLogEntry  need to be persisted its aggregates will be persisted
+
+        	
+R2: fixed. see searchCriteria in Tracking and Reliability Class Diagram
+
+R3: fixed. drawn relation with base criteria 
+
+DanLazar:
+R1: 
+
+###############################################################################
+Question 2.3.2
+
+argolite: see 3.2.2
+
+
+###############################################################################
+Question 2.4.2
+nikolay83:
+
+R1: fixed. see TCUML OIG , HHS  and Previously Denied Applicants Services Class Diagram
+R2: fixed. see TCUML OIG , HHS  and Previously Denied Applicants Services Class Diagram
+
+R3: fixed  see TCUML OIG , HHS  and Previously Denied Applicants Services Class Diagram
+
+R4: fixed. see OIG , HHS  and Previously Denied Applicants Services Class Diagram
+
+###############################################################################
+Question 2.4.3
+argolite:
+R1: see 2.2.2 and 1.4.4
+
+
+###############################################################################
+Question 2.5.1
+argolite & DanLazar:
+R1: Fixed. added 1.3.13	Persistence anbd 1.3.14	Performance
+
+
+
+	
+###############################################################################
+Question 2.6.1
+
+R1: fixed. 
+
+
+
+###############################################################################
+Question 3.1.1
+argolite:
+
+R1:fixed. 
+R2: fixed. removed 
+R3: This is special case, it comes from MITA Base Screening Portal application. 
+
+added a section 1.2.4	Existing or To BE Built Applications
+
+R4: it will be used while parsing the HTML content
+
+
+
+nikolay83
+R1: paging is required at least to keep in mind performance. so i insist to keep it as it updated 
+searchCriteria entity. see Tracking and Reliability Class Diagram.
+
+updated API methods impl notes
+
+R2: fixed added FinalAssebly
+R3: fixed. updated 
+
+
+
+R4: see : see 1.2.* and 1.3.*
+
+###############################################################################
+Question 3.1.2 
+
+nikolay83:
+R1: fixed. changed url to URL
+	
+################################################################################
+Question 3.1.3 
+argolite:
+
+R1 to R4: fixed. 
+
+
+
+
+
+
+################################################################################
+Question 3.2.1 
+
+argolite:	
+
+R1: fixed.
+R2: fixed changed to "refer to Representative Search NPI Users Sequence Diagram"
+R3: fixed. removed redundant SD
+R4: fixed.
+
+R5: >>"Calculate Track Reliability Sequence Diagram" does not make much sense since it seems to get teh stats from the service and then gets it on its own running an sql query.
+
+Calculate Track Reliability is internally calcualted in the service so the SD. There is no requirement to create API toCalculate Track Reliability.
+
+
+nikolay83
+R1: fixed. see SDs
+
+
+DanLazar
+R1: Fixed. see Save ResultLog Sequence Diagram		
+
+################################################################################
+
+Question 3.2.2 
+
+argolite: 
+R1: >. Remove Class_2 from gov.medicaid.entities.
+fixed.
+
+R2: The class diagram in general is not very comprehensive with many entities and services not being referenced in any way in the diagrams but factually used in the diagram:
+
+add existng Existing Medicaid Provider Screening Portal Entities Class Diagram (Updated) 
+
+
+
+added ResultLogEntry see Tracking and Reliability Class Diagram
+
+R3:fixed. removed NNPEUser and GroupNNPEUser others are required. please check TCUML OIG , HHS  and Previously Denied Applicants Services Class Diagram and
+NNPES API and MN Business and Lien System  Class Diagram 
+
+r4: fixed. 
+
+R5: Please check identfiable entity at Existing Medicaid Provider Screening Portal Entities Class Diagram (Updated) 
+
+r6: fixed. removed redunadant entities
+
+nikolay83
+R1: fixed. 
+
+R2 & R3:fixed.
+
+R4: fixed. added constructors
+
+R5: see 2.4.2
+
+DanLazar:
+R1: fixed. 
+
+R2: fixed. removed redundant entity
+
+R3: fixed. added missed methods in xxxImpl classes
+
+
+	
+
+
+
+
+
+
+################################################################################
+
+Question 3.3.2:
+
+argolite
+R1: fixed. updated overview of assembly specs
+
+nikolay83
+R1: 
+fixed. External Sources Miscellaneous Practice Assembly will implement this. updated 
+2.1.	Main Requirement in 
+External Sources Miscellaneous Practice Assembly.doc
+
+R2: fixed.  updated overview of assembly specs
+
+
+################################################################################
+Question 3.3.4:
+R1:  see 3.3.2 

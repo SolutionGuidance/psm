@@ -1,0 +1,13 @@
+Question 1.1.1 & Question 1.1.4:
+albertwang:
+sorry. submitted wrong version. its fixed now.
+	
+
+Question 1.5.1:
+fixed. 	Cent OS 6(Linux) will be used
+
+see http://apps.topcoder.com/forums/?module=Thread&threadID=752860&start=0
+
+Question 2.1.1 &Question 2.4.1:
+sorry. submitted wrong version. its fixed now.
+

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:searchResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>ST CLOUD</city>
+            <location>1321 NORTH 13TH STREET</location>
+            <state>MN</state>
+            <zipcode>56303</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>CENTRAL MN MENTAL HLTH CENTER</name>
+          </business>
+          <contactFaxNumber>None</contactFaxNumber>
+          <contactName>DR. CHARLES JOHNSTON, JR.</contactName>
+          <contactPhoneNumber>320-252-5010</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <employerId>02771</employerId>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>WINONA</city>
+            <location>111 RIVERFRONT PO BOX 619</location>
+            <state>MN</state>
+            <zipcode>55987</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>HIAWATHA VALLEY MNTL HLTH CTR</name>
+          </business>
+          <contactFaxNumber>None</contactFaxNumber>
+          <contactName>MR. MICHAEL EMAN</contactName>
+          <contactPhoneNumber>507-454-4341</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <employerId>02773</employerId>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>DULUTH</city>
+            <location>1401 EAST FIRST STREET</location>
+            <state>MN</state>
+            <zipcode>55805</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>HUMAN DEVELOPMENT CENTER</name>
+          </business>
+          <contactFaxNumber>None</contactFaxNumber>
+          <contactName>MR. ALLEN BROWN</contactName>
+          <contactPhoneNumber>218-728-4491</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <employerId>02766</employerId>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <pageNumber>1</pageNumber>
+        <pageSize>3</pageSize>
+        <total>14</total>
+        <totalPages>5</totalPages>
+      </return>
+    </ns2:searchResponse>
+  </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,11 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.services.screening.medicaid.gov/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:search>
+         <arg0>
+            <aanaNumber>047192</aanaNumber>
+            <ssn>2704</ssn>
+         </arg0>
+      </impl:search>
+   </soapenv:Body>
+</soapenv:Envelope>

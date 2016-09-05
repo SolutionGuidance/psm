@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="DHS.InternalWebService"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	targetNamespace="DHS.InternalWebService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<wsdl:types>
+		<s:schema elementFormDefault="qualified" targetNamespace="DHS.InternalWebService">
+			<s:import />
+			<s:element name="IsExistInAD">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="userid"
+							type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="IsExistInADResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="IsExistInADResult"
+							type="s:boolean" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ExtractUserName">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="path" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ExtractUserNameResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="ExtractUserNameResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="VerifyAddress">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="addressLine1"
+							type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="addressLine2"
+							type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="zipcode"
+							type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="VerifyAddressResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="VerifyAddressResult"
+							type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetEmail">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="userid"
+							type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetEmailResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="GetEmailResult"
+							type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetLicenseInfo">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="LicenseNbr"
+							type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetLicenseInfoResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="GetLicenseInfoResult" type="tns:ArrayOfArrayOfString" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="ArrayOfArrayOfString">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfString"
+						nillable="true" type="tns:ArrayOfString" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ArrayOfString">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded" name="string"
+						nillable="true" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="SendEmail">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="To" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="From" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="cc" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="Subject"
+							type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="Body" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="attachmentFile"
+							type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="SendEmailResponse">
+				<s:complexType />
+			</s:element>
+			<s:element name="GetHCDS">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="RecipientID"
+							type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetHCDSResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="GetHCDSResult"
+							type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="MPSE">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" ref="mpseRequest" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="MPSEResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="MPSEResult"
+							type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+		</s:schema>
+		<s:schema elementFormDefault="qualified">
+			<s:element name="mpseRequest">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" form="unqualified"
+							name="BGSID" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" form="unqualified"
+							name="Name" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" form="unqualified"
+							name="SSN" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" form="unqualified"
+							name="DOB" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" form="unqualified"
+							name="AgencyID" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+		</s:schema>
+	</wsdl:types>
+	<wsdl:message name="IsExistInADSoapIn">
+		<wsdl:part name="parameters" element="tns:IsExistInAD" />
+	</wsdl:message>
+	<wsdl:message name="IsExistInADSoapOut">
+		<wsdl:part name="parameters" element="tns:IsExistInADResponse" />
+	</wsdl:message>
+	<wsdl:message name="ExtractUserNameSoapIn">
+		<wsdl:part name="parameters" element="tns:ExtractUserName" />
+	</wsdl:message>
+	<wsdl:message name="ExtractUserNameSoapOut">
+		<wsdl:part name="parameters" element="tns:ExtractUserNameResponse" />
+	</wsdl:message>
+	<wsdl:message name="VerifyAddressSoapIn">
+		<wsdl:part name="parameters" element="tns:VerifyAddress" />
+	</wsdl:message>
+	<wsdl:message name="VerifyAddressSoapOut">
+		<wsdl:part name="parameters" element="tns:VerifyAddressResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetEmailSoapIn">
+		<wsdl:part name="parameters" element="tns:GetEmail" />
+	</wsdl:message>
+	<wsdl:message name="GetEmailSoapOut">
+		<wsdl:part name="parameters" element="tns:GetEmailResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetLicenseInfoSoapIn">
+		<wsdl:part name="parameters" element="tns:GetLicenseInfo" />
+	</wsdl:message>
+	<wsdl:message name="GetLicenseInfoSoapOut">
+		<wsdl:part name="parameters" element="tns:GetLicenseInfoResponse" />
+	</wsdl:message>
+	<wsdl:message name="SendEmailSoapIn">
+		<wsdl:part name="parameters" element="tns:SendEmail" />
+	</wsdl:message>
+	<wsdl:message name="SendEmailSoapOut">
+		<wsdl:part name="parameters" element="tns:SendEmailResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetHCDSSoapIn">
+		<wsdl:part name="parameters" element="tns:GetHCDS" />
+	</wsdl:message>
+	<wsdl:message name="GetHCDSSoapOut">
+		<wsdl:part name="parameters" element="tns:GetHCDSResponse" />
+	</wsdl:message>
+	<wsdl:message name="MPSESoapIn">
+		<wsdl:part name="parameters" element="tns:MPSE" />
+	</wsdl:message>
+	<wsdl:message name="MPSESoapOut">
+		<wsdl:part name="parameters" element="tns:MPSEResponse" />
+	</wsdl:message>
+	<wsdl:portType name="InternalWSSoap">
+		<wsdl:operation name="IsExistInAD">
+			<wsdl:input message="tns:IsExistInADSoapIn" />
+			<wsdl:output message="tns:IsExistInADSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="ExtractUserName">
+			<wsdl:input message="tns:ExtractUserNameSoapIn" />
+			<wsdl:output message="tns:ExtractUserNameSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="VerifyAddress">
+			<wsdl:input message="tns:VerifyAddressSoapIn" />
+			<wsdl:output message="tns:VerifyAddressSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetEmail">
+			<wsdl:input message="tns:GetEmailSoapIn" />
+			<wsdl:output message="tns:GetEmailSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetLicenseInfo">
+			<wsdl:input message="tns:GetLicenseInfoSoapIn" />
+			<wsdl:output message="tns:GetLicenseInfoSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="SendEmail">
+			<wsdl:input message="tns:SendEmailSoapIn" />
+			<wsdl:output message="tns:SendEmailSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetHCDS">
+			<wsdl:input message="tns:GetHCDSSoapIn" />
+			<wsdl:output message="tns:GetHCDSSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="MPSE">
+			<wsdl:input message="tns:MPSESoapIn" />
+			<wsdl:output message="tns:MPSESoapOut" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="InternalWSSoap" type="tns:InternalWSSoap">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="IsExistInAD">
+			<soap:operation soapAction="DHS.InternalWebService/IsExistInAD"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ExtractUserName">
+			<soap:operation soapAction="DHS.InternalWebService/ExtractUserName"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="VerifyAddress">
+			<soap:operation soapAction="DHS.InternalWebService/VerifyAddress"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEmail">
+			<soap:operation soapAction="DHS.InternalWebService/GetEmail"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetLicenseInfo">
+			<soap:operation soapAction="DHS.InternalWebService/GetLicenseInfo"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SendEmail">
+			<soap:operation soapAction="DHS.InternalWebService/SendEmail"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetHCDS">
+			<soap:operation soapAction="DHS.InternalWebService/GetHCDS"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="MPSE">
+			<soap:operation soapAction="DHS.InternalWebService/MPSE"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="InternalWSSoap12" type="tns:InternalWSSoap">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="IsExistInAD">
+			<soap12:operation soapAction="DHS.InternalWebService/IsExistInAD"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ExtractUserName">
+			<soap12:operation soapAction="DHS.InternalWebService/ExtractUserName"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="VerifyAddress">
+			<soap12:operation soapAction="DHS.InternalWebService/VerifyAddress"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEmail">
+			<soap12:operation soapAction="DHS.InternalWebService/GetEmail"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetLicenseInfo">
+			<soap12:operation soapAction="DHS.InternalWebService/GetLicenseInfo"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SendEmail">
+			<soap12:operation soapAction="DHS.InternalWebService/SendEmail"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetHCDS">
+			<soap12:operation soapAction="DHS.InternalWebService/GetHCDS"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="MPSE">
+			<soap12:operation soapAction="DHS.InternalWebService/MPSE"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="InternalWS">
+		<wsdl:port name="InternalWSSoap" binding="tns:InternalWSSoap">
+			<soap:address location="http://10.1.213.98/InternalWebService/InternalWS.asmx" />
+		</wsdl:port>
+		<wsdl:port name="InternalWSSoap12" binding="tns:InternalWSSoap12">
+			<soap12:address
+				location="http://10.1.213.98/InternalWebService/InternalWS.asmx" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

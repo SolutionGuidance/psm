@@ -222,6 +222,7 @@
             <c:set var="formName" value="_29_licenseSize_${status.index - 1}"></c:set>
             <c:forEach begin="1" end="${requestScope[formName]}" varStatus="licenseRow">
             <tr>
+            	<c:set var="totalLiceses" value="${licenseRow.count}" />
                 <td class="alignCenter">${licenseRow.count}</td>
                 <td class="licenseTypeInput">
 	                <c:set var="formName" value="_29_licenseType_${status.index - 1}_${licenseRow.index - 1}"></c:set>
@@ -284,6 +285,62 @@
                 </td>
             </tr>
             </c:forEach>
+            <tr>
+	  			<td colspan="7">Enter the Steps for Success Training information when you have completed the training.</td>
+			</tr>
+            <c:if test="${totalLiceses == 1}">
+            	<tr>
+	                <td class="alignCenter">2</td>
+	                <td class="licenseTypeInput">
+	                    <c:set var="formName" value="_29_licenseType_${status.index - 1}_1"></c:set>
+	                    <span>PCA 1 or 3 day Steps for Success Training</span>
+	                    <input type="hidden" name="${formName}" value="PCA 1 or 3 day Steps for Success Training"/>
+	                </td>
+	                <td class="licenseCopyInput">
+	                    <c:set var="formName" value="_29_attachment_${status.index - 1}_1"></c:set>
+	                    <input type="file" class="fileUpload" size="10" name="${formName}" />
+	                    
+	                    <c:set var="formName" value="_29_filename_${status.index - 1}_1"></c:set>
+	                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+	                    <c:if test="${not empty formValue}">
+	                        <c:set var="formName" value="_29_attachmentId_${status.index - 1}_1"></c:set>
+	                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
+	                             <c:param name="id" value="${requestScope[formName]}"></c:param>
+	                        </c:url>
+	                        <div><a href="${downloadLink}"><c:out value="${formValue}"></c:out></a></div>
+	                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+	                        <input type="hidden" name="${formName}" value="${formValue}"/>
+	                    </c:if>
+	                </td>
+	                <c:set var="formName" value="_29_licenseNumber_${status.index - 1}_1"></c:set>
+	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+	                <td class="licenseNoInput"><input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
+	                <td class="dateCell licenseDateInput">
+	                    <span class="dateWrapper">
+	                        <c:set var="formName" value="_29_originalIssueDate_${status.index - 1}_1"></c:set>
+	                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+	                        <input class="date" type="text" name="${formName}" value="${formValue}"/>
+	                    </span>
+	                </td>
+	                <td class="dateCell licenseRenewalInput">
+	                    <span class="dateWrapper">
+	                        <c:set var="formName" value="_29_renewalDate_${status.index - 1}_1"></c:set>
+	                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+	                        <input class="date" type="text"  name="${formName}" value="${formValue}"/>
+	                    </span>
+	                </td>
+	                <td class="licenseStateInput">
+	                    <c:set var="formName" value="_29_issuingState_${status.index - 1}_1"></c:set>
+	                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+	                    <select name="${formName}">
+	                        <option value="">Please select</option>
+	                        <c:forEach var="opt" items="${requestScope['_29_licenseStates']}">
+	                            <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+	                        </c:forEach>
+	                    </select>
+	                </td>
+	            </tr>
+            </c:if>
         </tbody>
         </table>
         </div>
@@ -547,9 +604,6 @@
                 </td>
             </tr>
             <tr>
-  				<td colspan="7">Enter the Steps for Success Training information when you have completed the training.</td>
-			</tr>
-            <tr>
                 <td class="alignCenter">2</td>
                 <td class="licenseTypeInput">
                     <c:set var="formName" value="_29_licenseType"></c:set>
@@ -600,6 +654,9 @@
                     </select>
                 </td>
             </tr>
+            <tr>
+  				<td colspan="7">Enter the Steps for Success Training information when you have completed the training.</td>
+			</tr>
 	    </tbody>
         </table>
         </div>

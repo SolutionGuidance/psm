@@ -216,6 +216,8 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
                 return createError("ssn", index, message);
             } else if (path.endsWith("BGSClearanceDate")) {
             	return createError("bgsClearanceDate", index, message);
+            } else if (path.endsWith("BGSStudyId")) {
+            	return createError("bgsStudyId", index, message);
             }
         }
 

@@ -10170,32 +10170,6 @@ dialect 'mvel'
 
 end
 
-rule 'PCA 1 or 3 day Steps for Success Training License Is Required For QP'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
-        IsOrganization( $provider : provider )
-        QualifiedProfessionalsType($qpList : qualifiedProfessional) from $provider.qualifiedProfessionals
-        $qp: QualifiedProfessionalType($licenseList: license) from $qpList
-        not LicenseType(licenseType  == LicenseNames.PCA_1_OR_3_DAY_STEPS_FOR_SUCCESS_TRAINING.value()) from $licenseList
-        $report: ErrorReporter() 
-    then
-        int index = $qpList.indexOf($qp);
-        $report.addError(
-            "/ProviderInformation/QualifiedProfessionals/QualifiedProfessional[" + index + "]/License",
-            "00001",
-            "PCA 1 or 3 day Steps for Success Training License is required for qualified professionals."
-        );
-
-end
-
 rule 'PCA Billing Person Date Of Birth cannot be in the future'
 dialect 'mvel'
     when
@@ -13723,6 +13697,40 @@ dialect 'mvel'
             "/ProviderInformation/MemberInformation/GroupMember[" + index + "]/DateOfBirth",
             "00001",
             "Member age should be 18 or above during enrollment."
+        );
+end
+
+rule 'BGS Study ID is required for Organization Members PCPO'
+dialect 'mvel'
+    when
+        LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
+        $provider: ProviderInformationType(providerType == ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value())
+        MemberInformationType($memberList : groupMember, groupMember != null ) from $provider.memberInformation
+        $member: GroupMemberType(bGSStudyId == null || bGSStudyId matches "^[\\s]*$") from $memberList
+        $report: ErrorReporter() 
+    then
+        int index = $memberList.indexOf($member);
+        $report.addError(
+            "/ProviderInformation/MemberInformation/GroupMember[" + index + "]/BGSStudyId",
+            "00001",
+            "BGS Study ID is required."
+        );
+end
+
+rule 'BGS Clearance Date is required for Organization Members PCPO'
+dialect 'mvel'
+    when
+        LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
+        $provider: ProviderInformationType(providerType == ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value())
+        MemberInformationType($memberList : groupMember, groupMember != null ) from $provider.memberInformation
+        $member: GroupMemberType(bGSClearanceDate == null) from $memberList
+        $report: ErrorReporter() 
+    then
+        int index = $memberList.indexOf($member);
+        $report.addError(
+            "/ProviderInformation/MemberInformation/GroupMember[" + index + "]/BGSClearanceDate",
+            "00001",
+            "BGS Clearance Date is required."
         );
 end
 

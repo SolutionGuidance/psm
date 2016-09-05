@@ -92,14 +92,14 @@
             </div>
             <c:if test="${askBGSInfo == true}">
             	<div class="row requireField">
-	                <label class="">BGS Study ID</label>
+	                <label class="">BGS Study ID<span class="required">*</span></label>
 	                <span class="floatL"><b>:</b></span>
 	                <c:set var="formName" value="_16_bgsStudyId_${status.index - 1}"></c:set>
 	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
 	                <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="75"/>
 	            </div>
             	<div class="row requireField">
-                <label>BGS Clearance Date
+                <label>BGS Clearance Date<span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
@@ -202,14 +202,14 @@
             </div>
             <c:if test="${askBGSInfo == true}">
             	<div class="row requireField">
-	                <label class="">BGS Study ID</label>
+	                <label class="">BGS Study ID<span class="required">*</span></label>
 	                <span class="floatL"><b>:</b></span>
 	                <c:set var="formName" value="_16_bgsStudyId"></c:set>
 	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
 	                <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="75"/>
 	            </div>
             	<div class="row requireField">
-                <label>BGS Clearance Date
+                <label>BGS Clearance Date<span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>

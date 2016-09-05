@@ -11709,13 +11709,6 @@ end
 
 rule 'QP License Copy Attachment Id Must Reference A Valid Attachment I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -11737,13 +11730,6 @@ end
 
 rule 'QP License Copy Attachment Id Must Reference A Valid Attachment II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -11765,19 +11751,13 @@ dialect 'mvel'
 end
 
 rule 'QP License Copy Is Required'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
         QualifiedProfessionalsType($qpList : qualifiedProfessional) from $provider.qualifiedProfessionals
         $qp: QualifiedProfessionalType($licenseList: license) from $qpList
+        not LicenseType(licenseType  == LicenseNames.PCA_1_OR_3_DAY_STEPS_FOR_SUCCESS_TRAINING.value()) from $licenseList
         $license: LicenseType(attachmentObjectId == null) from $licenseList
         $report: ErrorReporter() 
     then
@@ -11793,18 +11773,12 @@ end
 
 rule 'QP License Issuing State Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
         QualifiedProfessionalsType($qpList : qualifiedProfessional) from $provider.qualifiedProfessionals
         $qp: QualifiedProfessionalType($licenseList: license) from $qpList
+        not LicenseType(licenseType  == LicenseNames.PCA_1_OR_3_DAY_STEPS_FOR_SUCCESS_TRAINING.value()) from $licenseList
         $license: LicenseType(issuingState == null || issuingState matches "^[\\s]*$" ) from $licenseList
         $report: ErrorReporter() 
     then
@@ -11820,13 +11794,6 @@ end
 
 rule 'QP License Issuing State Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -11847,18 +11814,12 @@ end
 
 rule 'QP License Number Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
         QualifiedProfessionalsType($qpList : qualifiedProfessional) from $provider.qualifiedProfessionals
         $qp: QualifiedProfessionalType($licenseList: license) from $qpList
+        not LicenseType(licenseType  == LicenseNames.PCA_1_OR_3_DAY_STEPS_FOR_SUCCESS_TRAINING.value()) from $licenseList
         $license: LicenseType(licenseNumber == null || licenseNumber matches "^[\\s]*$" ) from $licenseList
         $report: ErrorReporter() 
     then
@@ -11874,13 +11835,6 @@ end
 
 rule 'QP License Number Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -11905,6 +11859,7 @@ rule 'QP License Original Issue Date Is Required'
         IsOrganization( $provider : provider )
         QualifiedProfessionalsType($qpList : qualifiedProfessional) from $provider.qualifiedProfessionals
         $qp: QualifiedProfessionalType($licenseList: license) from $qpList
+        not LicenseType(licenseType  == LicenseNames.PCA_1_OR_3_DAY_STEPS_FOR_SUCCESS_TRAINING.value()) from $licenseList
         $license: LicenseType(originalIssueDate == null) from $licenseList
         $report: ErrorReporter() 
     then

@@ -52,7 +52,7 @@ public class SAMExclusionSearchClient extends BaseSOAPClient {
             IOException, TransformerException {
 
         CMSConfigurator config = new CMSConfigurator();
-        String endPoint = config.getExternalSourceBase() + "/services/SAMSearchServiceBean";
+        String endPoint = config.getExternalSourceBase() + "/cms-ext/ws/SAMSearchService";
 
         // Search step
         ObjectFactory factory = new ObjectFactory();

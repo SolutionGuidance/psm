@@ -885,4 +885,16 @@ public class RegistrationServiceBean extends BaseService implements Registration
         }
         return registrant.getUserId();
     }
+    
+    /**
+     * Authenticates the user.
+     *
+     * @param username the username
+     * @param password the password
+     * @return if a matching record is found
+     * @throws PortalServiceException for any errors encountered 
+     */
+    public boolean authenticate(String username, String password) throws PortalServiceException {
+        return identityProvider.authenticate(username, password);
+    }
 }

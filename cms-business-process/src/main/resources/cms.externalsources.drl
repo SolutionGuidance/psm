@@ -19,7 +19,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher(true)); // discard non matches for this service type
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/AccreditedBirthCentersLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/AccreditedBirthCentersLicenseService");
         $config.setRequestTranslationFile("/xslt/accredited_birth_center_req.xsl");
         $config.setResponseTranslationFile("/xslt/accredited_birth_center_res.xsl");
 end
@@ -31,7 +31,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so match only the name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/BBHTLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/BBHTLicenseService");
         $config.setRequestTranslationFile("/xslt/bbht_req.xsl");
         $config.setResponseTranslationFile("/xslt/bbht_res.xsl");
 end
@@ -43,7 +43,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so match only the name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/BBHTLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/BBHTLicenseService");
         $config.setRequestTranslationFile("/xslt/bbht_req.xsl");
         $config.setResponseTranslationFile("/xslt/bbht_res.xsl");
 end
@@ -55,7 +55,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so match only the name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/BBHTLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/BBHTLicenseService");
         $config.setRequestTranslationFile("/xslt/bbht_req.xsl");
         $config.setResponseTranslationFile("/xslt/bbht_res.xsl");
 end
@@ -67,7 +67,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so match only the name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/ChemicalDependencyProgramServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/ChemicalDependencyProgramService");
         $config.setRequestTranslationFile("/xslt/org_dhs_licensing_req.xsl");
         $config.setResponseTranslationFile("/xslt/org_dhs_licensing_res.xsl");
 end
@@ -79,7 +79,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so match only the name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/ChildrensResidentialServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/ChildrensResidentialService");
         $config.setRequestTranslationFile("/xslt/org_dhs_licensing_req.xsl");
         $config.setResponseTranslationFile("/xslt/org_dhs_licensing_res.xsl");
 end
@@ -91,7 +91,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new NameAndNumberMatcher()); // search by last name only so do name and license number filtering
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/ChiropracticLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/ChiropracticLicenseService");
         $config.setRequestTranslationFile("/xslt/chiropractic_req.xsl");
         $config.setResponseTranslationFile("/xslt/chiropractic_res.xsl");
 end
@@ -102,7 +102,7 @@ dialect 'mvel'
         $config : LicenseLookupConfiguration(issuingState == "MN", licenseType == LicenseNames.MEDICARE_CERTIFICATION_COMMUNITY_MENTAL_HEALTH_CLINIC.value()) 
     then
         $config.setLookupSupported("Y");
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/CommunityMentalHealthCenterLicensingServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/CommunityMentalHealthCenterLicensingService");
         $config.setRequestTranslationFile("/xslt/org_healthcare_licensing_req.xsl");
         $config.setResponseTranslationFile("/xslt/org_healthcare_licensing_res.xsl");
 end
@@ -114,7 +114,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so match only the name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/DayTrainingAndHabilitationCenterServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/DayTrainingAndHabilitationCenterService");
         $config.setRequestTranslationFile("/xslt/org_dhs_licensing_req.xsl");
         $config.setResponseTranslationFile("/xslt/org_dhs_licensing_res.xsl");
 end
@@ -126,7 +126,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so match only the name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/DieteticsAndNutritionPracticeLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/DieteticsAndNutritionPracticeLicenseService");
         $config.setRequestTranslationFile("/xslt/dnp_req.xsl");
         $config.setResponseTranslationFile("/xslt/dnp_res.xsl");
 end
@@ -138,7 +138,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new NameAndTypeMatcher()); // search can return multiple license types for the number
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/HealthOccupationsProgramCredentialServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/HealthOccupationsProgramCredentialService");
         $config.setRequestTranslationFile("/xslt/hopc_req.xsl");
         $config.setResponseTranslationFile("/xslt/hopc_res.xsl");
 end
@@ -150,7 +150,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new NameAndTypeMatcher()); // search can return multiple license types for the number
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/HealthOccupationsProgramCredentialServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/HealthOccupationsProgramCredentialService");
         $config.setRequestTranslationFile("/xslt/hopc_req.xsl");
         $config.setResponseTranslationFile("/xslt/hopc_res.xsl");
 end
@@ -162,7 +162,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new NameAndTypeMatcher()); // search can return multiple license types for the number
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/HealthOccupationsProgramCredentialServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/HealthOccupationsProgramCredentialService");
         $config.setRequestTranslationFile("/xslt/hopc_req.xsl");
         $config.setResponseTranslationFile("/xslt/hopc_res.xsl");
 end
@@ -174,7 +174,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new NameAndTypeMatcher()); // search can return multiple license types for the number
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/HealthOccupationsProgramCredentialServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/HealthOccupationsProgramCredentialService");
         $config.setRequestTranslationFile("/xslt/hopc_req.xsl");
         $config.setResponseTranslationFile("/xslt/hopc_res.xsl");
 end
@@ -186,7 +186,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new NameAndTypeMatcher()); // search can return multiple license types for the number
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/HealthOccupationsProgramCredentialServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/HealthOccupationsProgramCredentialService");
         $config.setRequestTranslationFile("/xslt/hopc_req.xsl");
         $config.setResponseTranslationFile("/xslt/hopc_res.xsl");
 end
@@ -197,7 +197,7 @@ dialect 'mvel'
         $config : LicenseLookupConfiguration(issuingState == "MN", licenseType == LicenseNames.MEDICARE_CERTIFIED_HOSPICE.value()) 
     then
         $config.setLookupSupported("Y");
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/HospiceLicensingServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/HospiceLicensingService");
         $config.setRequestTranslationFile("/xslt/org_healthcare_licensing_req.xsl");
         $config.setResponseTranslationFile("/xslt/org_healthcare_licensing_res.xsl");
 end
@@ -208,7 +208,7 @@ dialect 'mvel'
         $config : LicenseLookupConfiguration(issuingState == "MN", licenseType == LicenseNames.CERTIFIED_HOSPITAL.value()) 
     then
         $config.setLookupSupported("Y");
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/HospitalLicensingServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/HospitalLicensingService");
         $config.setRequestTranslationFile("/xslt/org_healthcare_licensing_req.xsl");
         $config.setResponseTranslationFile("/xslt/org_healthcare_licensing_res.xsl");
 end
@@ -220,7 +220,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so match only the name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/IntensiveResidentialTreatmentServiceServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/IntensiveResidentialTreatmentServiceService");
         $config.setRequestTranslationFile("/xslt/org_dhs_licensing_req.xsl");
         $config.setResponseTranslationFile("/xslt/org_dhs_licensing_res.xsl");
 end
@@ -232,7 +232,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so match only the name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/MarriageAndFamilyTherapyLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/MarriageAndFamilyTherapyLicenseService");
         $config.setRequestTranslationFile("/xslt/mft_req.xsl");
         $config.setResponseTranslationFile("/xslt/mft_res.xsl");
 end
@@ -244,7 +244,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so filter by name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/MedicalPracticeLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/MedicalPracticeLicenseService");
         $config.setRequestTranslationFile("/xslt/physician_req.xsl");
         $config.setResponseTranslationFile("/xslt/physician_res.xsl");
 end
@@ -256,7 +256,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so filter by name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/NurseAnesthetistsLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/NurseAnesthetistsLicenseService");
         $config.setRequestTranslationFile("/xslt/crna_req.xsl");
         $config.setResponseTranslationFile("/xslt/crna_res.xsl");
 end
@@ -268,7 +268,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so filter by name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/NursingLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/NursingLicenseService");
         $config.setRequestTranslationFile("/xslt/registered_nurse_req.xsl");
         $config.setResponseTranslationFile("/xslt/registered_nurse_res.xsl");
 end
@@ -280,7 +280,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so filter by name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/OptometryLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/OptometryLicenseService");
         $config.setRequestTranslationFile("/xslt/mft_req.xsl");
         $config.setResponseTranslationFile("/xslt/mft_res.xsl");
 end
@@ -292,7 +292,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so match only the name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/PersonsWithDevelopmentalDisabilitiesIntermediateCareFacilityServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/PersonsWithDevelopmentalDisabilitiesIntermediateCareFacilityService");
         $config.setRequestTranslationFile("/xslt/org_dhs_licensing_req.xsl");
         $config.setResponseTranslationFile("/xslt/org_dhs_licensing_res.xsl");
 end
@@ -304,7 +304,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new NameAndTypeMatcher()); //  multiple license types returned so filter by type too
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/PharmacyLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/PharmacyLicenseService");
         $config.setRequestTranslationFile("/xslt/pharmacist_req.xsl");
         $config.setResponseTranslationFile("/xslt/pharmacist_res.xsl");
 end
@@ -316,7 +316,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so filter by name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/PhysicalTherapyLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/PhysicalTherapyLicenseService");
         $config.setRequestTranslationFile("/xslt/mft_req.xsl");
         $config.setResponseTranslationFile("/xslt/mft_res.xsl");
 end
@@ -328,7 +328,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so filter by name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/PodiatricMedicineLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/PodiatricMedicineLicenseService");
         $config.setRequestTranslationFile("/xslt/podiatrist_req.xsl");
         $config.setResponseTranslationFile("/xslt/podiatrist_res.xsl");
 end
@@ -340,7 +340,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); 
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/RenalDialysisFreeStandingLicensingServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/RenalDialysisFreeStandingLicensingService");
         $config.setRequestTranslationFile("/xslt/org_healthcare_licensing_req.xsl");
         $config.setResponseTranslationFile("/xslt/org_healthcare_licensing_res.xsl");
 end
@@ -352,7 +352,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ProviderNameMatcher()); // search by license number so match only the name
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/SocialWorkLicenseServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/SocialWorkLicenseService");
         $config.setRequestTranslationFile("/xslt/podiatrist_req.xsl");
         $config.setResponseTranslationFile("/xslt/sw_res.xsl");
 end
@@ -364,7 +364,7 @@ dialect 'mvel'
     then
         $config.setLookupSupported("Y");
         $config.setMatcher(new ClassificationMatcher()); // search by name, filter by classification
-        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/services/PublicHealthNursingOrganizationLicensingServiceBean");
+        $config.setServiceEndPoint(appConfig.getExternalSourceBase() +  "/cms-ext/ws/PublicHealthNursingOrganizationLicensingService");
         $config.setRequestTranslationFile("/xslt/org_healthcare_licensing_req.xsl");
         $config.setResponseTranslationFile("/xslt/org_healthcare_licensing_res.xsl");
 end

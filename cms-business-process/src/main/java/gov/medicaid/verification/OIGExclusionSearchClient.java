@@ -60,7 +60,7 @@ public class OIGExclusionSearchClient extends BaseSOAPClient {
         throws JAXBException, IOException, TransformerException {
 
         CMSConfigurator config = new CMSConfigurator();
-        String endPoint = config.getExternalSourceBase() + "/services/OIGServiceBean";
+        String endPoint = config.getExternalSourceBase() + "/cms-ext/ws/OIGService";
 
         // Search step
         ObjectFactory factory = new ObjectFactory();

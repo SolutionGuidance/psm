@@ -17,6 +17,7 @@ package gov.medicaid.security;
 
 import gov.medicaid.entities.SystemId;
 
+import org.apache.log4j.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.ldap.authentication.LdapAuthenticationProvider;
 import org.springframework.security.ldap.authentication.LdapAuthenticator;
@@ -29,6 +30,11 @@ import org.springframework.security.ldap.authentication.LdapAuthenticator;
  */
 public class DomainLdapAuthenticationProvider extends LdapAuthenticationProvider {
 
+    /**
+     * Logger.
+     */
+    private Logger log = Logger.getLogger(getClass());
+    
     /**
      * Wraps the given authenticator.
      *
@@ -47,7 +53,13 @@ public class DomainLdapAuthenticationProvider extends LdapAuthenticationProvider
     public Authentication authenticate(Authentication authentication) {
         final DomainAuthenticationToken userToken = (DomainAuthenticationToken) authentication;
         if (SystemId.valueOf(userToken.getDomain()) == SystemId.CMS_ONLINE) {
-            return super.authenticate(authentication);
+            log.info("Authenticating user via LDAP bind.");
+            Authentication authenticate = super.authenticate(authentication);
+
+            if (authenticate.isAuthenticated()) {
+                log.info("Successfully bound user..");
+                return authenticate;
+            }
         }
         return null;
     }
@@ -60,5 +72,4 @@ public class DomainLdapAuthenticationProvider extends LdapAuthenticationProvider
     public boolean supports(Class<? extends Object> authentication) {
         return authentication.isAssignableFrom(DomainAuthenticationToken.class);
     }
-
 }

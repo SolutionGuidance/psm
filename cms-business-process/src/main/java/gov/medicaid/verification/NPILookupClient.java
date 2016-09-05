@@ -52,7 +52,7 @@ public class NPILookupClient extends BaseSOAPClient {
             IOException, TransformerException {
 
         CMSConfigurator config = new CMSConfigurator();
-        String endPoint = config.getExternalSourceBase() + "/services/NPINumberLookupServiceBean";
+        String endPoint = config.getExternalSourceBase() + "/cms-ext/ws/NPINumberLookupService";
 
         // Search step
         ObjectFactory factory = new ObjectFactory();

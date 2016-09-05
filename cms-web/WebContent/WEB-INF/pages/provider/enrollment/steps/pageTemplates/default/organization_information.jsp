@@ -342,6 +342,13 @@
 	                    <span class="inline"><input type="radio" ${formValue eq 'Consolidated Billing Agent' ? 'checked' : ''} value="Consolidated Billing Agent" name="${formName}"/>Consolidated Billing Agent</span>
 	                    <span class="inline"><input type="radio" ${formValue eq 'Health Care Data Trading Partner' ? 'checked' : ''} value="Health Care Data Trading Partner" name="${formName}"/>Health Care Data Trading Partner</span>
 	                </div>
+	                <div class="row requireField">
+	                    <label>&nbsp;</label>
+	                    <span class="floatL"><b>&nbsp;</b></span>
+	                    <span class="inline"><input type="radio" ${formValue eq 'Medicare Carrier' ? 'checked' : ''} value="Medicare Carrier" name="${formName}"/>Medicare Carrier</span>
+	                    <span class="inline"><input type="radio" ${formValue eq 'Mental Health Information System Grantee' ? 'checked' : ''} value="Mental Health Information System Grantee" name="${formName}"/>Mental Health Information System Grantee</span>
+	                    <span class="inline"><input type="radio" ${formValue eq 'MN Health Insurance Exchange Carrier' ? 'checked' : ''} value="MN Health Insurance Exchange Carrier" name="${formName}"/>MN Health Insurance Exchange Carrier</span>
+	                </div>
 					</c:if>
 	                <div class="row requireField">
 	                    <label>Organization Name<span class="required">*</span></label>
@@ -351,7 +358,7 @@
 	                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
 	                    <input type="text" class="normalInput" id="legalName" name="${formName}" value="${formValue}" maxlength="100"/>
 	                </div>
-	                <div class="row requireField">
+					<div class="row requireField">
 	                    <label>Effective Date<span class="required">*</span></label>
 	                    <span class="floatL"><b>:</b></span>
 	                    <span class="dateWrapper floatL">

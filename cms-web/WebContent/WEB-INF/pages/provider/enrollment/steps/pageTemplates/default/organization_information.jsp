@@ -351,6 +351,16 @@
 	                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
 	                    <input type="text" class="normalInput" id="legalName" name="${formName}" value="${formValue}" maxlength="100"/>
 	                </div>
+	                <div class="row requireField">
+	                    <label>Effective Date<span class="required">*</span></label>
+	                    <span class="floatL"><b>:</b></span>
+	                    <span class="dateWrapper floatL">
+	        
+	                        <c:set var="formName" value="_15_effectiveDate"></c:set>
+	                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+	                        <input class="date" type="text" name="${formName}" value="${formValue}"/>
+	                    </span>
+	                </div>
 
 	                <div class="row requireField">
 	                    <label>Federal Employer ID<span class="required">*</span></label>

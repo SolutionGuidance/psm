@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.services.screening.medicaid.gov/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:verifySSN>
+         <arg0>124747</arg0>
+         <arg1>123456798</arg1>
+      </impl:verifySSN>
+   </soapenv:Body>
+</soapenv:Envelope>

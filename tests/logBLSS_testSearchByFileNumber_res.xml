@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:searchByFileNumberResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>446840800054</fileNumber>
+            <filingDate>2011-09-30T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>2011-09-30T00:00:00+05:30</date>
+              <description>Original Filing - Limited Liability Company (Foreign)</description>
+            </filingHistory>
+            <homeJurisdiction>Kentucky</homeJurisdiction>
+            <name>Pharmacy Alternatives, LLC</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>C T Corporation Systems Inc</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location>100 S 5th Str #1075 Mpls MN 55402 USA</location>
+            </registeredOfficeAddress>
+            <renewalDueDate>2013-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>322B</statute>
+            <type>
+              <id>0</id>
+              <name>Limited Liability Company (Foreign)</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>446840800054</fileNumber>
+            <filingDate>2011-09-30T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>2011-09-30T00:00:00+05:30</date>
+              <description>Original Filing - Limited Liability Company (Foreign)</description>
+            </filingHistory>
+            <homeJurisdiction>Kentucky</homeJurisdiction>
+            <name>Pharmacy Alternatives, LLC</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>C T Corporation Systems Inc</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location>100 S 5th Str #1075 Mpls MN 55402 USA</location>
+            </registeredOfficeAddress>
+            <renewalDueDate>2013-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>322B</statute>
+            <type>
+              <id>0</id>
+              <name>Limited Liability Company (Foreign)</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <pageNumber>0</pageNumber>
+        <pageSize>0</pageSize>
+        <total>2</total>
+        <totalPages>1</totalPages>
+      </return>
+    </ns2:searchByFileNumberResponse>
+  </soap:Body>
+</soap:Envelope>

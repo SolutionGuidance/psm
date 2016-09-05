@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<jaxws:endpoint id="BBHTLicenseService"
+		implementor="gov.medicaid.screening.services.impl.BBHTLicenseServiceImpl"
+		address="/BBHTLicenseService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="AccreditedBirthCentersLicenseService"
+		implementor="gov.medicaid.screening.services.impl.AccreditedBirthCentersLicenseServiceImpl"
+		address="/AccreditedBirthCentersLicenseService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="BusinessLienSystemService"
+		implementor="gov.medicaid.screening.services.impl.BusinessLienSystemServiceImpl"
+		address="/BusinessLienSystemService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="ChemicalDependencyProgramService"
+		implementor="gov.medicaid.screening.services.impl.ChemicalDependencyProgramServiceImpl"
+		address="/ChemicalDependencyProgramService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="ChildrensResidentialService"
+		implementor="gov.medicaid.screening.services.impl.ChildrensResidentialServiceImpl"
+		address="/ChildrensResidentialService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="ChiropracticLicenseService"
+		implementor="gov.medicaid.screening.services.impl.ChiropracticLicenseServiceImpl"
+		address="/ChiropracticLicenseService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="CommunityMentalHealthCenterLicensingService"
+		implementor="gov.medicaid.screening.services.impl.CommunityMentalHealthCenterLicensingServiceImpl"
+		address="/CommunityMentalHealthCenterLicensingService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="DayTrainingAndHabilitationCenterService"
+		implementor="gov.medicaid.screening.services.impl.DayTrainingAndHabilitationCenterServiceImpl"
+		address="/DayTrainingAndHabilitationCenterService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="DeathMasterService"
+		implementor="gov.medicaid.screening.services.impl.DeathMasterServiceImpl"
+		address="/DeathMasterService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="DentistryLicenseService"
+		implementor="gov.medicaid.screening.services.impl.DentistryLicenseServiceImpl"
+		address="/DentistryLicenseService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="DieteticsAndNutritionPracticeLicenseService"
+		implementor="gov.medicaid.screening.services.impl.DieteticsAndNutritionPracticeLicenseServiceImpl"
+		address="/DieteticsAndNutritionPracticeLicenseService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="HealthOccupationsProgramCredentialService"
+		implementor="gov.medicaid.screening.services.impl.HealthOccupationsProgramCredentialServiceImpl"
+		address="/HealthOccupationsProgramCredentialService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="HospiceLicensingService"
+		implementor="gov.medicaid.screening.services.impl.HospiceLicensingServiceImpl"
+		address="/HospiceLicensingService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="HospitalLicensingService"
+		implementor="gov.medicaid.screening.services.impl.HospitalLicensingServiceImpl"
+		address="/HospitalLicensingService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="IntensiveResidentialTreatmentServiceService"
+		implementor="gov.medicaid.screening.services.impl.IntensiveResidentialTreatmentServiceServiceImpl"
+		address="/IntensiveResidentialTreatmentServiceService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="MarriageAndFamilyTherapyLicenseService"
+		implementor="gov.medicaid.screening.services.impl.MarriageAndFamilyTherapyLicenseServiceImpl"
+		address="/MarriageAndFamilyTherapyLicenseService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="MedicaidCertifiedProvidersService"
+		implementor="gov.medicaid.screening.services.impl.MedicaidCertifiedProvidersServiceImpl"
+		address="/MedicaidCertifiedProvidersService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="MedicalPracticeLicenseService"
+		implementor="gov.medicaid.screening.services.impl.MedicalPracticeLicenseServiceImpl"
+		address="/MedicalPracticeLicenseService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="NETStudyService"
+		implementor="gov.medicaid.screening.services.impl.NETStudyServiceImpl"
+		address="/NETStudyService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="NPINumberLookupService"
+		implementor="gov.medicaid.screening.services.impl.NPINumberLookupServiceImpl"
+		address="/NPINumberLookupService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="NurseAnesthetistsLicenseService"
+		implementor="gov.medicaid.screening.services.impl.NurseAnesthetistsLicenseServiceImpl"
+		address="/NurseAnesthetistsLicenseService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="NursingLicenseService"
+		implementor="gov.medicaid.screening.services.impl.NursingLicenseServiceImpl"
+		address="/NursingLicenseService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="OIGService"
+		implementor="gov.medicaid.screening.services.impl.OIGServiceImpl"
+		address="/OIGService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="OptometryLicenseService"
+		implementor="gov.medicaid.screening.services.impl.OptometryLicenseServiceImpl"
+		address="/OptometryLicenseService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="PECOSService"
+		implementor="gov.medicaid.screening.services.impl.PECOSServiceImpl"
+		address="/PECOSService">
+	</jaxws:endpoint>
+	<jaxws:endpoint
+		id="PersonsWithDevelopmentalDisabilitiesIntermediateCareFacilityService"
+		implementor="gov.medicaid.screening.services.impl.PersonsWithDevelopmentalDisabilitiesIntermediateCareFacilityServiceImpl"
+		address="/PersonsWithDevelopmentalDisabilitiesIntermediateCareFacilityService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="PharmacyLicenseService"
+		implementor="gov.medicaid.screening.services.impl.PharmacyLicenseServiceImpl"
+		address="/PharmacyLicenseService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="PharmacyLicensingService"
+		implementor="gov.medicaid.screening.services.impl.PharmacyLicensingServiceImpl"
+		address="/PharmacyLicensingService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="PhysicalTherapyLicenseService"
+		implementor="gov.medicaid.screening.services.impl.PhysicalTherapyLicenseServiceImpl"
+		address="/PhysicalTherapyLicenseService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="PodiatricMedicineLicenseService"
+		implementor="gov.medicaid.screening.services.impl.PodiatricMedicineLicenseServiceImpl"
+		address="/PodiatricMedicineLicenseService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="PrivateDutyNursingGroupLicensingService"
+		implementor="gov.medicaid.screening.services.impl.PrivateDutyNursingGroupLicensingServiceImpl"
+		address="/PrivateDutyNursingGroupLicensingService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="PublicHealthNursingOrganizationLicensingService"
+		implementor="gov.medicaid.screening.services.impl.PublicHealthNursingOrganizationLicensingServiceImpl"
+		address="/PublicHealthNursingOrganizationLicensingService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="RenalDialysisFreeStandingLicensingService"
+		implementor="gov.medicaid.screening.services.impl.RenalDialysisFreeStandingLicensingServiceImpl"
+		address="/RenalDialysisFreeStandingLicensingService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="SAMSearchService"
+		implementor="gov.medicaid.screening.services.impl.SAMSearchServiceImpl"
+		address="/SAMSearchService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="SocialWorkLicenseService"
+		implementor="gov.medicaid.screening.services.impl.SocialWorkLicenseServiceImpl"
+		address="/SocialWorkLicenseService">
+	</jaxws:endpoint>
+</beans>

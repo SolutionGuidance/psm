@@ -1,0 +1,21 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:impl="http://impl.services.screening.medicaid.gov/">
+	<soapenv:Header />
+	<soapenv:Body>
+		<impl:doSearch>
+			<!--Optional: -->
+			<arg0>
+				<!--Optional: -->
+				<classification />
+				<!--Optional: -->
+				<firstName />
+				<!--Optional: -->
+				<lastName />
+				<!--Optional: -->
+				<middleName />
+				<!--Optional: -->
+				<partialName />
+			</arg0>
+		</impl:doSearch>
+	</soapenv:Body>
+</soapenv:Envelope>

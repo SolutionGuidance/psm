@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:searchByNameResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>446840800054</fileNumber>
+            <filingDate>2011-09-30T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>2011-09-30T00:00:00+05:30</date>
+              <description>Original Filing - Limited Liability Company (Foreign)</description>
+            </filingHistory>
+            <homeJurisdiction>Kentucky</homeJurisdiction>
+            <name>Pharmacy Alternatives, LLC</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>C T Corporation Systems Inc</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location>100 S 5th Str #1075 Mpls MN 55402 USA</location>
+            </registeredOfficeAddress>
+            <renewalDueDate>2013-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>322B</statute>
+            <type>
+              <id>0</id>
+              <name>Limited Liability Company (Foreign)</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>446840800054</fileNumber>
+            <filingDate>2011-09-30T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>2011-09-30T00:00:00+05:30</date>
+              <description>Original Filing - Limited Liability Company (Foreign)</description>
+            </filingHistory>
+            <homeJurisdiction>Kentucky</homeJurisdiction>
+            <name>Pharmacy Alternatives, LLC</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>C T Corporation Systems Inc</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location>100 S 5th Str #1075 Mpls MN 55402 USA</location>
+            </registeredOfficeAddress>
+            <renewalDueDate>2013-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>322B</statute>
+            <type>
+              <id>0</id>
+              <name>Limited Liability Company (Foreign)</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>22601</fileNumber>
+            <filingDate>1983-06-21T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>1983-06-21T00:00:00+05:30</date>
+              <description>Original Filing - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1983-06-21T00:00:00+05:30</date>
+              <description>Business Corporation (Foreign) Business Name</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1983-06-21T00:00:00+05:30</date>
+              <description>Business Corporation (Foreign) Home Name</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1986-10-31T00:00:00+05:30</date>
+              <description>Merger - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1987-01-12T00:00:00+05:30</date>
+              <description>Merger - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1987-01-26T00:00:00+05:30</date>
+              <description>Merger - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1987-06-23T00:00:00+05:30</date>
+              <description>Business Corporation (Foreign) Business Name</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1987-06-23T00:00:00+05:30</date>
+              <description>Merger - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1987-07-10T00:00:00+05:30</date>
+              <description>Merger - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1988-05-02T00:00:00+05:30</date>
+              <description>Merger - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1988-06-06T00:00:00+05:30</date>
+              <description>Merger - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1990-06-01T00:00:00+05:30</date>
+              <description>Merger - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1997-03-13T00:00:00+05:30</date>
+              <description>Registered Office and/or Agent - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1998-03-12T00:00:00+05:30</date>
+              <description>Registered Office and/or Agent - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1999-05-28T00:00:00+05:30</date>
+              <description>Registered Office and/or Agent - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1999-12-29T00:00:00+05:30</date>
+              <description>Revocation - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>2000-01-18T00:00:00+05:30</date>
+              <description>Reinstatement - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>2007-04-10T00:00:00+05:30</date>
+              <description>Registered Office and/or Agent (Global) - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>2008-09-29T00:00:00+05:30</date>
+              <description>Registered Office and/or Agent - Business Corporation (Foreign)</description>
+            </filingHistory>
+            <homeJurisdiction>California</homeJurisdiction>
+            <name>Pharmacy Corporation of America</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>Corporation Service Company</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location>380 Jackson Street, Suite 700, St. Paul Mpls MN 55101 USA</location>
+            </registeredOfficeAddress>
+            <renewalDueDate>2013-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>303</statute>
+            <type>
+              <id>0</id>
+              <name>Business Corporation (Foreign)</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>499370100021</fileNumber>
+            <filingDate>2012-07-24T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>2012-07-24T00:00:00+05:30</date>
+              <description>Original Filing - Limited Liability Company (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>2013-01-30T00:00:00+05:30</date>
+              <description>Amendment - Limited Liability Company (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>2013-03-19T00:00:00+05:30</date>
+              <description>Registered Office and/or Agent - Limited Liability Company (Foreign)</description>
+            </filingHistory>
+            <homeJurisdiction>Delaware</homeJurisdiction>
+            <name>Pharmacy Enrollment Services, LLC</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>National Registered Agents, Inc.</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location>100 South 5th Street, Suite 1075 Mpls MN 55402 USA</location>
+            </registeredOfficeAddress>
+            <renewalDueDate>2013-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>322B</statute>
+            <type>
+              <id>0</id>
+              <name>Limited Liability Company (Foreign)</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>499370100021</fileNumber>
+            <filingDate>2012-07-24T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>2012-07-24T00:00:00+05:30</date>
+              <description>Original Filing - Limited Liability Company (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>2013-01-30T00:00:00+05:30</date>
+              <description>Amendment - Limited Liability Company (Foreign)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>2013-03-19T00:00:00+05:30</date>
+              <description>Registered Office and/or Agent - Limited Liability Company (Foreign)</description>
+            </filingHistory>
+            <homeJurisdiction>Delaware</homeJurisdiction>
+            <name>Pharmacy Enrollment Services, LLC</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>National Registered Agents, Inc.</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location>100 South 5th Street, Suite 1075 Mpls MN 55402 USA</location>
+            </registeredOfficeAddress>
+            <renewalDueDate>2013-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>322B</statute>
+            <type>
+              <id>0</id>
+              <name>Limited Liability Company (Foreign)</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>148477</fileNumber>
+            <filingDate>1994-08-08T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>1994-08-08T00:00:00+05:30</date>
+              <description>Original Filing - Assumed Name</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1994-08-08T00:00:00+05:30</date>
+              <description>Assumed Name Business Name</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>2004-06-04T00:00:00+05:30</date>
+              <description>Assumed Name Renewal</description>
+            </filingHistory>
+            <homeJurisdiction>Minnesota</homeJurisdiction>
+            <name>Pharmacy Gold</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>(Optional) None provided</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location/>
+            </registeredOfficeAddress>
+            <renewalDueDate>2014-08-08T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>333</statute>
+            <type>
+              <id>0</id>
+              <name>Assumed Name</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>7W-879</fileNumber>
+            <filingDate>1993-07-23T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>1993-07-23T00:00:00+05:30</date>
+              <description>Original Filing - Business Corporation (Domestic)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1993-07-23T00:00:00+05:30</date>
+              <description>Business Corporation (Domestic) Business Name</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1997-10-30T00:00:00+05:30</date>
+              <description>Merger - Business Corporation (Domestic)</description>
+            </filingHistory>
+            <homeJurisdiction>Minnesota</homeJurisdiction>
+            <name>Pharmacy Gold, Inc.</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>(Optional) None provided</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location>3535 Blue Cross Rd Eagan MN 55122 USA</location>
+            </registeredOfficeAddress>
+            <renewalDueDate>2014-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>302A</statute>
+            <type>
+              <id>0</id>
+              <name>Business Corporation (Domestic)</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>5S-982</fileNumber>
+            <filingDate>1987-11-06T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>1987-11-06T00:00:00+05:30</date>
+              <description>Original Filing - Business Corporation (Domestic)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1987-11-06T00:00:00+05:30</date>
+              <description>Business Corporation (Domestic) Business Name</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1988-05-20T00:00:00+05:30</date>
+              <description>Business Corporation (Domestic) Business Name</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1992-05-06T00:00:00+05:30</date>
+              <description>Registered Office and/or Agent - Business Corporation (Domestic)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1999-12-15T00:00:00+05:30</date>
+              <description>Registered Office and/or Agent - Business Corporation (Domestic)</description>
+            </filingHistory>
+            <homeJurisdiction>Minnesota</homeJurisdiction>
+            <name>Pharmacy Network of Minnesota, Inc.</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>(Optional) None provided</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location>1935 W Co Rd B2 #450 Roseville MN 55113 USA</location>
+            </registeredOfficeAddress>
+            <renewalDueDate>2013-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>302A</statute>
+            <type>
+              <id>0</id>
+              <name>Business Corporation (Domestic)</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>4063771-2</fileNumber>
+            <filingDate>2010-11-18T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>2010-11-18T00:00:00+05:30</date>
+              <description>Original Filing - Assumed Name</description>
+            </filingHistory>
+            <homeJurisdiction>Minnesota</homeJurisdiction>
+            <name>PharmacyONE</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>(Optional) None provided</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location/>
+            </registeredOfficeAddress>
+            <renewalDueDate>2020-11-18T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>333</statute>
+            <type>
+              <id>0</id>
+              <name>Assumed Name</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>36716-LLC</fileNumber>
+            <filingDate>2002-12-18T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>2002-12-18T00:00:00+05:30</date>
+              <description>Original Filing - Limited Liability Company (Domestic)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>2002-12-18T00:00:00+05:30</date>
+              <description>Limited Liability Company (Domestic) Business Name</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>2010-11-18T00:00:00+05:30</date>
+              <description>Consent to Use of Name - Limited Liability Company (Domestic)</description>
+            </filingHistory>
+            <homeJurisdiction>Minnesota</homeJurisdiction>
+            <name>PharmacyONE, LLC</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>Larry Lindberg</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location>8400 Coral Sea Str NE Blaine MN 55449 USA</location>
+            </registeredOfficeAddress>
+            <renewalDueDate>2013-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>322B</statute>
+            <type>
+              <id>0</id>
+              <name>Limited Liability Company (Domestic)</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>437557200023</fileNumber>
+            <filingDate>2012-07-12T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>2012-07-12T00:00:00+05:30</date>
+              <description>Original Filing - Assumed Name</description>
+            </filingHistory>
+            <homeJurisdiction/>
+            <name>Pharmacy OneSource Capital</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>(Optional) None provided</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location/>
+            </registeredOfficeAddress>
+            <renewalDueDate>2013-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>333</statute>
+            <type>
+              <id>0</id>
+              <name>Assumed Name</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>4118741-2</fileNumber>
+            <filingDate>2011-08-19T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>2011-08-19T00:00:00+05:30</date>
+              <description>Original Filing - Assumed Name</description>
+            </filingHistory>
+            <homeJurisdiction>Minnesota</homeJurisdiction>
+            <name>Pharmacy OneSource Financial Services</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>(Optional) None provided</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location/>
+            </registeredOfficeAddress>
+            <renewalDueDate>2021-08-19T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>333</statute>
+            <type>
+              <id>0</id>
+              <name>Assumed Name</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>4Y-370</fileNumber>
+            <filingDate>1985-05-30T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>1985-05-30T00:00:00+05:30</date>
+              <description>Original Filing - Business Corporation (Domestic)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1985-05-30T00:00:00+05:30</date>
+              <description>Business Corporation (Domestic) Business Name</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1987-06-01T00:00:00+05:30</date>
+              <description>Registered Office and/or Agent - Business Corporation (Domestic)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>1997-12-24T00:00:00+05:30</date>
+              <description>Registered Office and/or Agent - Business Corporation (Domestic)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>2002-10-24T00:00:00+05:30</date>
+              <description>Business Corporation (Domestic) Business Name</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>2003-03-26T00:00:00+05:30</date>
+              <description>Registered Office and/or Agent - Business Corporation (Domestic)</description>
+            </filingHistory>
+            <homeJurisdiction>Minnesota</homeJurisdiction>
+            <name>Pharmacy Options Corporation</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>(Optional) None provided</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location>2515 Idaho Ave E Maplewood MN 55119 3122 USA</location>
+            </registeredOfficeAddress>
+            <renewalDueDate>2014-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>302A</statute>
+            <type>
+              <id>0</id>
+              <name>Business Corporation (Domestic)</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>2363422-2</fileNumber>
+            <filingDate>2007-05-18T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>2007-05-18T00:00:00+05:30</date>
+              <description>Original Filing - Business Corporation (Domestic)</description>
+            </filingHistory>
+            <homeJurisdiction>Minnesota</homeJurisdiction>
+            <name>Pharmacy Relief Network, Inc.</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>(Optional) None provided</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location>14706 262nd Ave NW Zimmerman MN 55398 USA</location>
+            </registeredOfficeAddress>
+            <renewalDueDate>2014-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>302A</statute>
+            <type>
+              <id>0</id>
+              <name>Business Corporation (Domestic)</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>1891945-2</fileNumber>
+            <filingDate>2006-06-13T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>2006-06-13T00:00:00+05:30</date>
+              <description>Original Filing - Limited Liability Company (Domestic)</description>
+            </filingHistory>
+            <filingHistory>
+              <id>0</id>
+              <date>2006-06-13T00:00:00+05:30</date>
+              <description>Limited Liability Company (Domestic) Business Name</description>
+            </filingHistory>
+            <homeJurisdiction>Minnesota</homeJurisdiction>
+            <name>Pharmacy Resources, LLC</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>(Optional) None provided</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location>6133 45th Str N Oakdale MN 55128 USA</location>
+            </registeredOfficeAddress>
+            <renewalDueDate>2014-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>322B</statute>
+            <type>
+              <id>0</id>
+              <name>Limited Liability Company (Domestic)</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <business>
+            <id>0</id>
+            <fileNumber>617721300020</fileNumber>
+            <filingDate>2012-09-11T00:00:00+05:30</filingDate>
+            <filingHistory>
+              <id>0</id>
+              <date>2012-09-11T00:00:00+05:30</date>
+              <description>Original Filing - Limited Liability Company (Domestic)</description>
+            </filingHistory>
+            <homeJurisdiction/>
+            <name>PharmacyTwo L. L. C.</name>
+            <registeredAgents>
+              <id>0</id>
+              <agency>(Optional) None provided</agency>
+              <duns>0</duns>
+              <employedAndOrContracted>false</employedAndOrContracted>
+              <enrollmentFee>0.0</enrollmentFee>
+              <enrollmentFeePaid>false</enrollmentFeePaid>
+              <enrolmentFeeRequired>false</enrolmentFeeRequired>
+              <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+              <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+              <hasPrivateOffice>false</hasPrivateOffice>
+              <hasTerminated>false</hasTerminated>
+              <SSNVerified>false</SSNVerified>
+            </registeredAgents>
+            <registeredOfficeAddress>
+              <id>0</id>
+              <location>8400 Coral Sea Street NE Mounds View MN 55112 USA</location>
+            </registeredOfficeAddress>
+            <renewalDueDate>2013-12-31T00:00:00+05:30</renewalDueDate>
+            <status>
+              <id>0</id>
+              <name>Active / In Good Standing</name>
+            </status>
+            <statute>322B</statute>
+            <type>
+              <id>0</id>
+              <name>Limited Liability Company (Domestic)</name>
+            </type>
+          </business>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <pageNumber>0</pageNumber>
+        <pageSize>0</pageSize>
+        <total>16</total>
+        <totalPages>1</totalPages>
+      </return>
+    </ns2:searchByNameResponse>
+  </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:searchResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
+      <return>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Saint Paul</city>
+            <county>Ramsey County</county>
+            <location>2230 Como Ave</location>
+            <state>MN</state>
+            <zipcode>55108</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Anna Westin House Adolescent and Young Adult</name>
+          </business>
+          <contactPhoneNumber>(651) 645-5323</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1059740</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Annandale</city>
+            <county>Wright County</county>
+            <location>380 Annandale Blvd</location>
+            <state>MN</state>
+            <zipcode>55302</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Annandale IRT</name>
+          </business>
+          <contactPhoneNumber>(320) 274-4060</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>1048842</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:providerProfile">
+          <id>0</id>
+          <addresses>
+            <id>0</id>
+            <city>Anoka</city>
+            <county>Anoka County</county>
+            <location>3301 7th Ave N</location>
+            <state>MN</state>
+            <zipcode>55303</zipcode>
+          </addresses>
+          <business>
+            <id>0</id>
+            <name>Anoka-Metro Regional Treatment Center</name>
+          </business>
+          <contactPhoneNumber>(651) 431-5000</contactPhoneNumber>
+          <duns>0</duns>
+          <employedAndOrContracted>false</employedAndOrContracted>
+          <enrollmentFee>0.0</enrollmentFee>
+          <enrollmentFeePaid>false</enrollmentFeePaid>
+          <enrolmentFeeRequired>false</enrolmentFeeRequired>
+          <hasCivilMoneyPenalty>false</hasCivilMoneyPenalty>
+          <hasConvictedOfCriminalOffense>false</hasConvictedOfCriminalOffense>
+          <hasPrivateOffice>false</hasPrivateOffice>
+          <hasTerminated>false</hasTerminated>
+          <licenses>
+            <id>0</id>
+            <correctiveAction>false</correctiveAction>
+            <discipline>false</discipline>
+            <disciplineBdOrder>false</disciplineBdOrder>
+            <licenseNumber>800086</licenseNumber>
+            <permitNumber>0</permitNumber>
+          </licenses>
+          <providerType>
+            <id>1</id>
+            <employedAndOrContracted>false</employedAndOrContracted>
+            <hasAdditionalPractice>false</hasAdditionalPractice>
+            <hasPrivateOffice>false</hasPrivateOffice>
+            <paymentRequired>false</paymentRequired>
+          </providerType>
+          <SSNVerified>false</SSNVerified>
+        </items>
+        <pageNumber>2</pageNumber>
+        <pageSize>3</pageSize>
+        <total>52</total>
+        <totalPages>18</totalPages>
+      </return>
+    </ns2:searchResponse>
+  </soap:Body>
+</soap:Envelope>

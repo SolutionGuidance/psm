@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.services.screening.medicaid.gov/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:searchBySpecialty>
+         <arg0>
+            <specialty>
+               <code>355</code>
+            </specialty>
+            <zipcode>55903</zipcode>
+         </arg0>
+      </impl:searchBySpecialty>
+   </soapenv:Body>
+</soapenv:Envelope>

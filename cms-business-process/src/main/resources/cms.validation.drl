@@ -3347,7 +3347,7 @@ salience 10
         insertLogical(new ProviderTypeException("AskCLIACertificationsInfo", ProviderType.INDEPENDENT_LABORATORY.value()));
         // insertLogical(new ProviderTypeException("AskCLIACertificationsInfo", ProviderType.INDIAN_HEALTH_SERVICE_FACILITY.value()));
         insertLogical(new ProviderTypeException("AskCLIACertificationsInfo", ProviderType.PUBLIC_HEALTH_NURSING_ORGANIZATION.value()));
-        insertLogical(new ProviderTypeException("AskCLIACertificationsInfo", ProviderType.NURSING_FACILITY.value()));
+        // insertLogical(new ProviderTypeException("AskCLIACertificationsInfo", ProviderType.NURSING_FACILITY.value()));
         insertLogical(new ProviderTypeException("AskCLIACertificationsInfo", ProviderType.RENAL_DIALYSIS_FACILITY.value()));
 		insertLogical(new ProviderTypeException("AskCLIACertificationsInfo", ProviderType.PHYSICIAN_CLINIC.value()));
 		insertLogical(new ProviderTypeException("AskCLIACertificationsInfo", ProviderType.RURAL_HEALTH_CLINIC.value()));

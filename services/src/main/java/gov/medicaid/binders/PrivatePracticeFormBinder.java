@@ -10,6 +10,7 @@ import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.Affiliation;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.ContactInformation;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Organization;
@@ -51,13 +52,16 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
 
     /**
      * Binds the request to the model.
-     *
      * @param enrollment the model to bind to
      * @param request the request containing the form fields
+     *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(EnrollmentType enrollment, HttpServletRequest request) {
-        List<BinderException> exceptions = new ArrayList<BinderException>(super.bindFromPage(enrollment, request));
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    	if (!canModifyExistingPractice(user, enrollment)) {
+    		return new ArrayList<BinderException>();
+    	}
+        List<BinderException> exceptions = new ArrayList<BinderException>(super.bindFromPage(user, enrollment, request));
 
         ProviderInformationType provider = enrollment.getProviderInformation();
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
@@ -105,8 +109,11 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
-        super.bindToPage(enrollment, mv, readOnly);
+    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    	if (!canModifyExistingPractice(user, enrollment)) {
+    		return;
+    	}
+        super.bindToPage(user, enrollment, mv, readOnly);
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
 

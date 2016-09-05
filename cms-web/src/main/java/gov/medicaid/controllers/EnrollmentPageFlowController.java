@@ -331,6 +331,7 @@ public class EnrollmentPageFlowController extends BaseController {
                         CMSPrincipal principal = ControllerHelper.getPrincipal();
                         serviceRequest.setSystemId(principal.getAuthenticatedBySystem().name());
                         serviceRequest.setUsername(principal.getUsername());
+                        serviceRequest.setNpi(principal.getUser().getProxyForNPI());
                         serviceRequest.setEnrollment(enrollment);
                         SubmitTicketResponse serviceResponse = enrollmentWebService.submitEnrollment(serviceRequest);
 
@@ -425,6 +426,7 @@ public class EnrollmentPageFlowController extends BaseController {
         CMSPrincipal principal = ControllerHelper.getPrincipal();
         request.setSystemId(principal.getAuthenticatedBySystem().name());
         request.setUsername(principal.getUsername());
+        request.setNpi(principal.getUser().getProxyForNPI());
         request.setProfileId(profileId);
         GetProfileDetailsResponse response = enrollmentWebService.getProfile(request);
 
@@ -826,6 +828,7 @@ public class EnrollmentPageFlowController extends BaseController {
         CMSPrincipal principal = ControllerHelper.getPrincipal();
         request.setSystemId(principal.getAuthenticatedBySystem().name());
         request.setUsername(principal.getUsername());
+        request.setNpi(principal.getUser().getProxyForNPI());
         request.setTicketNumber(ticketId);
         GetTicketDetailsResponse response = enrollmentWebService.getTicketDetails(request);
 
@@ -982,6 +985,7 @@ public class EnrollmentPageFlowController extends BaseController {
             CMSPrincipal principal = ControllerHelper.getPrincipal();
             serviceRequest.setSystemId(principal.getAuthenticatedBySystem().name());
             serviceRequest.setUsername(principal.getUsername());
+            serviceRequest.setNpi(principal.getUser().getProxyForNPI());
             serviceRequest.setEnrollment(enrollment);
             SaveTicketResponse serviceResponse = enrollmentWebService.saveTicket(serviceRequest);
 
@@ -1032,6 +1036,7 @@ public class EnrollmentPageFlowController extends BaseController {
             CMSPrincipal principal = ControllerHelper.getPrincipal();
             serviceRequest.setSystemId(principal.getAuthenticatedBySystem().name());
             serviceRequest.setUsername(principal.getUsername());
+            serviceRequest.setNpi(principal.getUser().getProxyForNPI());
             serviceRequest.setEnrollment(enrollment);
             SubmitTicketResponse serviceResponse = enrollmentWebService.submitEnrollment(serviceRequest);
 
@@ -1100,6 +1105,7 @@ public class EnrollmentPageFlowController extends BaseController {
             CMSPrincipal principal = ControllerHelper.getPrincipal();
             serviceRequest.setSystemId(principal.getAuthenticatedBySystem().name());
             serviceRequest.setUsername(principal.getUsername());
+            serviceRequest.setNpi(principal.getUser().getProxyForNPI());
             serviceRequest.setTicketId(enrollment.getObjectId());
             serviceRequest.setEnrollment(enrollment);
             ResubmitTicketResponse serviceResponse = enrollmentWebService.resubmitEnrollment(serviceRequest);
@@ -1249,22 +1255,24 @@ public class EnrollmentPageFlowController extends BaseController {
         RequestType requestType = enrollment.getRequestType();
         boolean reopened = "Y".equals(enrollment.getReopenedForEdit());
         mv.addObject("isReopened", reopened);
-        switch (requestType) {
-        case UPDATE:
-            mv.addObject("isEditEnrollment", true);
-            mv.addObject("isNewEnrollment", false);
-            mv.addObject("isRenewalEnrollment", false);
-            break;
-        case RENEWAL:
-            mv.addObject("isEditEnrollment", false);
-            mv.addObject("isNewEnrollment", false);
-            mv.addObject("isRenewalEnrollment", true);
-            break;
-        default:
-            mv.addObject("isNewEnrollment", true);
-            mv.addObject("isEditEnrollment", false);
-            mv.addObject("isRenewalEnrollment", false);
-            break;
+        if (requestType != null) { // imported data?x
+        	switch (requestType) {
+        	case UPDATE:
+        		mv.addObject("isEditEnrollment", true);
+        		mv.addObject("isNewEnrollment", false);
+        		mv.addObject("isRenewalEnrollment", false);
+        		break;
+        	case RENEWAL:
+        		mv.addObject("isEditEnrollment", false);
+        		mv.addObject("isNewEnrollment", false);
+        		mv.addObject("isRenewalEnrollment", true);
+        		break;
+        	default:
+        		mv.addObject("isNewEnrollment", true);
+        		mv.addObject("isEditEnrollment", false);
+        		mv.addObject("isRenewalEnrollment", false);
+        		break;
+        	}
         }
         bindTicketDetailsToPage(mv, enrollment);
 
@@ -1287,7 +1295,8 @@ public class EnrollmentPageFlowController extends BaseController {
             }
         }
 
-        getBinder(ViewStatics.PROVIDER_TYPE_FORM).bindToPage(enrollment, modelMap, readOnly);
+        CMSUser user = ControllerHelper.getCurrentUser();
+        getBinder(ViewStatics.PROVIDER_TYPE_FORM).bindToPage(user, enrollment, modelMap, readOnly);
 
         if (ViewStatics.SUMMARY_INFORMATION.equals(pageName)) {
 
@@ -1296,7 +1305,7 @@ public class EnrollmentPageFlowController extends BaseController {
                 UITabModel pageModel = pageModels.get(page);
                 List<String> formNames = pageModel.getFormNames();
                 for (String form : formNames) {
-                    getBinder(form).bindToPage(enrollment, modelMap, true);
+                    getBinder(form).bindToPage(user, enrollment, modelMap, true);
                 }
             }
 
@@ -1319,7 +1328,7 @@ public class EnrollmentPageFlowController extends BaseController {
                 List<String> formNames = pageModel.getFormNames();
                 if (formNames != null) {
                     for (String form : formNames) {
-                        getBinder(form).bindToPage(enrollment, modelMap, readOnly);
+                        getBinder(form).bindToPage(user, enrollment, modelMap, readOnly);
                     }
                 }
             }
@@ -1508,11 +1517,12 @@ public class EnrollmentPageFlowController extends BaseController {
         List<BinderException> exceptions = new ArrayList<BinderException>();
 
         bindFiles(enrollment, request);
-
+        
+        CMSUser user = ControllerHelper.getCurrentUser();
         if (formNames != null) { // submitted forms
-            for (String form : formNames) {
-                exceptions.addAll(getBinder(form).bindFromPage(enrollment, request));
-            }
+    		for (String form : formNames) {
+    			exceptions.addAll(getBinder(form).bindFromPage(user, enrollment, request));
+    		}
         }
 
         return exceptions;

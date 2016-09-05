@@ -9,6 +9,7 @@ import gov.medicaid.domain.model.FacilityCredentialsType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.AssuredService;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.ServiceAssuranceExtType;
@@ -48,16 +49,16 @@ public class AssuranceStatementFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     * 
      * @param enrollment
      *            the model to bind to
      * @param request
      *            the request containing the form fields
+     * 
      * @throws BinderException
      *             if the format of the fields could not be bound properly
      */
     @Override
-    public List<BinderException> bindFromPage(EnrollmentType enrollment, HttpServletRequest request)
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request)
             throws PortalServiceException {
         List<BinderException> exceptions = new ArrayList<BinderException>();
         FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
@@ -135,7 +136,6 @@ public class AssuranceStatementFormBinder extends BaseFormBinder {
 
     /**
      * Binds the model to the request attributes.
-     * 
      * @param enrollment
      *            the model to bind from
      * @param mv
@@ -144,7 +144,7 @@ public class AssuranceStatementFormBinder extends BaseFormBinder {
      *            if the view is read only
      */
     @Override
-    public void bindToPage(EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
         FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
         List<AssuredServiceType> assuredServices = credentials.getAssuredService();

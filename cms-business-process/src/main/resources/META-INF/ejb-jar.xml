@@ -75,5 +75,9 @@
 	        <ejb-name>LDAPIdentityProviderDAOBean</ejb-name>
 	        <ejb-class>gov.medicaid.dao.impl.LDAPIdentityProviderDAOBean</ejb-class>
 	    </session>
+	    <session>
+	        <ejb-name>FileNetServiceBean</ejb-name>
+	        <ejb-class>gov.medicaid.services.impl.FileNetServiceBean</ejb-class>
+	    </session>
 	</enterprise-beans>
 </ejb-jar>

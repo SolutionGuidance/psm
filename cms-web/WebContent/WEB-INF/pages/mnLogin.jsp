@@ -20,14 +20,18 @@
 					<div class="mainNav">
 						<a class="logo" href="#"><img src="i/logo.gif" alt="Medicaid Provider"/></a>
 					</div>
-					<!-- /.mainNav -->
+					
                     <form id="loginForm" action="<c:url value='j_spring_security_check'/>" method="post">
 						<div class="loginPanel">
+							<p>
+								This is a mockup for requests coming from an internal site. 
+								Fill up the expected data below and submit.
+							</p>
                             <%@include file="/WEB-INF/pages/includes/flash.jsp" %>
                             
                             <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
 								<div class="errorInfo" style="display: block;">
-									<h3>${SPRING_SECURITY_LAST_EXCEPTION.message}</h3>
+									<h3>Invalid username/password.</h3>
 									<div class="tl"></div>
 									<div class="tr"></div>
 									<div class="bl"></div>
@@ -37,31 +41,28 @@
                             </c:if>
 						
 							<div class="row">
-								<label class="label">Username:</label>
-								<input type="text" name="j_username" class="text" id="username" value="${SPRING_SECURITY_LAST_USERNAME}" maxlength="50"/>
+								<label class="label">NPI (user)</label>
+								<input type="text" name="userNPI" class="text" id="userNPI" />
 							</div>
 							<div class="row">
-								<label class="label">Password:</label>
-								<input type="password" name="j_password" id="password" />
+								<label class="label">NPI (profile)</label>
+								<input type="text" name="profileNPI" class="text" id="profileNPI" />
 							</div>
-                            <div class="row">
-                                <label class="label">Domain:</label>
-                                <select name="domain" onchange="disableElement('remember', this.value != 'CMS_ONLINE')">
-                                    <option value="CMS_ONLINE" selected="selected">Online Portal</option>
-                                    <option value="MN_ITS">MN-ITS</option>
-                                </select>
-                            </div>
+							
+							<p>
+								The next two tokens should match the configured values EXACTLY
+							</p>
 							<div class="row">
-	                            <label class="label">&nbsp;</label>
-	                            <input type="checkbox" id="remember" name="keepUserSignedIn" />
-	                            <label for="remember">Remember Me</label>
-								<a href="<c:url value="/forgotpassword" />">Forgot Password?</a>
+								<label class="label">Token</label>
+								<input type="text" name="token" class="text" id="token" value="providerenrollment" />
+							</div>
+							<div class="row">
+								<label class="label">Referrer</label>
+								<input type="text" name="referrer" class="text" id="referrer" value="localhost"/>
 							</div>
 							<div class="buttons">
 								<a href="javascript:;" id="btnLogin" class="purpleBtn"><span class="btR"><span class="btM">Login</span></span></a>
-                                <a href="<c:url value="/accounts/new" />" class="">Register New Account</a>
 							</div>
-							
 							<div class="tl"></div>
 							<div class="tr"></div>
 							<div class="bl"></div>

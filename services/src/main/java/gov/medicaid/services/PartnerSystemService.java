@@ -3,7 +3,6 @@
  */
 package gov.medicaid.services;
 
-import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.ProviderProfile;
 
 import java.util.List;
@@ -30,16 +29,10 @@ public interface PartnerSystemService {
      *
      * @param externalUserId the username
      * @param password the password
+     * @param referrer 
+     * @param profileNPI 
      * @return true if the credentials are valid
      * @throws PortalServiceException for any errors encountered
      */
-    boolean authenticate(String externalUserId, String password) throws PortalServiceException;
-
-    /**
-     * Retrieves the basic profile from the external service.
-     * @param username the user name
-     * @return the basic profile mapped to an internal user
-     */
-    CMSUser getUserInformation(String username);
-
+    boolean authenticate(String externalUserId, String password, String profileNPI, String referrer) throws PortalServiceException;
 }

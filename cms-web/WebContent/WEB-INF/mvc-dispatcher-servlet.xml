@@ -86,6 +86,7 @@
 		<property name="mappings">
 			<value>
 				/login=JSPController
+				/mnLogin=JSPController
 				/system/advanced-search-system-admin=JSPController
 			</value>
 		</property>

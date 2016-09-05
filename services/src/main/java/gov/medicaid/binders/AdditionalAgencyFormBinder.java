@@ -9,6 +9,7 @@ import gov.medicaid.domain.model.GroupAffiliationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.Affiliation;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Entity;
 import gov.medicaid.entities.Organization;
@@ -55,12 +56,12 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     *
      * @param enrollment the model to bind to
      * @param request the request containing the form fields
+     *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
         
         AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollment);
@@ -102,7 +103,7 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly true if the binding is for a read only view
      */
-    public void bindToPage(EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
         AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollment);
         List<GroupAffiliationType> xList = agency.getAffiliation();

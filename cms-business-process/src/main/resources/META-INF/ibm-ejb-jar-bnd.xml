@@ -20,5 +20,6 @@
     <session name="ProviderTypeServiceBean" simple-binding-name="cms-portal-services/ProviderTypeServiceBean/local"></session>    
     <session name="BusinessProcessServiceBean" simple-binding-name="cms-portal-services/BusinessProcessServiceBean/local"></session>    
     <session name="EnrollmentWebServiceBean" simple-binding-name="cms-portal-services/EnrollmentWebServiceBean/local"></session>    
+    <session name="FileNetServiceBean" simple-binding-name="cms-portal-services/FileNetServiceBean/local"></session>    
 
 </ejb-jar-bnd>

@@ -571,15 +571,27 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         if (user == null || user.getRole() == null) {
             throw new IllegalArgumentException("User and the corresponding role cannot be null.");
         }
-
-        String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
-            + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
-            + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and p.ownerId = :ownerId "
-            + "AND p.ticketId = 0 ORDER BY 5 DESC";
-
-        Query items = getEm().createQuery(fetchQuery.toString());
-        items.setParameter("ownerId", user.getUserId());
-        return items.getResultList();
+        
+        if (user.getProxyForNPI() == null) {
+	        String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
+	            + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
+	            + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and p.ownerId = :ownerId "
+	            + "AND p.ticketId = 0 ORDER BY 5 DESC";
+	
+	        Query items = getEm().createQuery(fetchQuery.toString());
+        	items.setParameter("ownerId", user.getUserId());
+        	return items.getResultList();
+        } else {
+        	// not the creator but given proxy access via the NPI ID  
+	        String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
+		            + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
+		            + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and e.npi = :npi "
+		            + "AND p.ticketId = 0 ORDER BY 5 DESC";
+		
+		        Query items = getEm().createQuery(fetchQuery.toString());
+	        	items.setParameter("npi", user.getProxyForNPI());
+	        	return items.getResultList();
+        }
     }
 
     /**
@@ -793,14 +805,23 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     @SuppressWarnings("rawtypes")
     private void checkTicketEntitlement(CMSUser user, long ticketId) throws PortalServiceException {
         if (!FULL_ACCESS.contains(user.getRole().getDescription())) {
-            Query q = getEm().createQuery(
-                "SELECT 1 FROM Enrollment t WHERE t.ticketId = :ticketId AND t.createdBy = :username");
-            q.setParameter("username", user.getUserId());
-            q.setParameter("ticketId", ticketId);
-            List rs = q.getResultList();
-            if (rs.isEmpty()) {
-                throw new PortalServiceException("Access Denied.");
-            }
+        	if (user.getProxyForNPI() == null) {
+        		Query q = getEm().createQuery(
+        				"SELECT 1 FROM Enrollment t WHERE t.ticketId = :ticketId AND t.createdBy = :username");
+        		q.setParameter("username", user.getUserId());
+        		q.setParameter("ticketId", ticketId);
+        		List rs = q.getResultList();
+        		if (rs.isEmpty()) {
+        			throw new PortalServiceException("Access Denied.");
+        		}
+        	} else {
+        		// not the creator but given proxy access via the NPI ID
+        		long profileId = getProviderDetailsByTicket(ticketId, false).getProfileId();
+        		Entity entity = findEntityByProviderKey(profileId, ticketId);
+        		if (!entity.getNpi().equals(user.getProxyForNPI())) {
+        			throw new PortalServiceException("You have no access to the requested ticket.");
+        		}
+        	}
         }
     }
 
@@ -814,15 +835,23 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     @SuppressWarnings("rawtypes")
     private void checkProfileEntitlement(CMSUser user, long profileId) throws PortalServiceException {
         if (!FULL_ACCESS.contains(user.getRole().getDescription())) {
-            Query q = getEm().createQuery(
-                "SELECT 1 FROM ProviderProfile p WHERE p.profileId = :profileId "
-                    + "AND p.ticketId = 0 AND p.ownerId = :username");
-            q.setParameter("username", user.getUserId());
-            q.setParameter("profileId", profileId);
-            List rs = q.getResultList();
-            if (rs.isEmpty()) {
-                throw new PortalServiceException("Access Denied.");
-            }
+        	if (user.getProxyForNPI() == null) {
+        		Query q = getEm().createQuery(
+        				"SELECT 1 FROM ProviderProfile p WHERE p.profileId = :profileId "
+        						+ "AND p.ticketId = 0 AND p.ownerId = :username");
+        		q.setParameter("username", user.getUserId());
+        		q.setParameter("profileId", profileId);
+        		List rs = q.getResultList();
+        		if (rs.isEmpty()) {
+        			throw new PortalServiceException("Access Denied.");
+        		}
+        	} else {
+        		// not the creator but given proxy access via the NPI ID
+        		Entity entity = findEntityByProviderKey(profileId, 0);
+        		if (!entity.getNpi().equals(user.getProxyForNPI())) {
+        			throw new PortalServiceException("You have no access to the requested profile.");
+        		}
+        	}
         }
     }
 
@@ -2240,4 +2269,62 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             getEm().remove(service);
         }
     }
+
+    /**
+     * Returns true if the first parameter can be considered an employer of the second.
+     *
+     * @param externalUserId the employer to be checked
+     * @param profileNPI the employee to be checked
+     * @return true if there is an affiliation between the two arguments that gives the first access to the latter
+     * @throws PortalServiceException for any errors encountered
+     */
+	@SuppressWarnings("unchecked")
+	public boolean hasGroupAffiliation(String externalUserId, String profileNPI) {
+        String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
+	            + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
+	            + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and e.npi = :npi "
+	            + "AND p.ticketId = 0 ORDER BY 5 DESC";
+
+        Query items = getEm().createQuery(fetchQuery.toString());
+    	items.setParameter("npi", profileNPI);
+    	List<ProfileHeader> profiles = items.getResultList();
+    	
+    	// for all profiles with NPI = requested profile (shouldn't be that many, likely 1 or 0
+    	for (ProfileHeader profileHeader : profiles) {
+    		
+    		// find all practice locations
+    		List<Affiliation> affiliations = findAffiliations(profileHeader.getProfileId(), 0);
+    		
+    		// for every practice location
+    		for (Affiliation affiliation : affiliations) {
+    			
+				if (ViewStatics.DISCRIMINATOR_LOCATION.equals(affiliation.getObjectType())) {
+					// check if the external user has the same NPI
+					if (affiliation.getEntity().getNpi().equals(externalUserId)) {
+						return true;
+					}
+				}
+			}
+		}
+    	
+    	// no employer relationship found
+		return false;
+	}
+
+	/**
+	 * Returns true if there is a profile found in the database with the given NPI
+	 * @param profileNPI the NPI to be checked
+	 * @return true if a record matches
+	 * @throws PortalServiceException for any errors encountered
+	 */
+	public boolean existsProfile(String profileNPI) {
+        String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
+	            + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
+	            + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and e.npi = :npi "
+	            + "AND p.ticketId = 0 ORDER BY 5 DESC";
+
+        Query items = getEm().createQuery(fetchQuery.toString());
+    	items.setParameter("npi", profileNPI);
+    	return !items.getResultList().isEmpty();
+	}
 }

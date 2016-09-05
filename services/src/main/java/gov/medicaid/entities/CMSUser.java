@@ -79,7 +79,23 @@ public class CMSUser implements Serializable {
      * The user role.
      */
     private Role role;
-
+    
+    /**
+     * Employer or Self.
+     * If employer, it should have a proxyForUserId
+     */
+    private RoleView externalRoleView;
+    
+    /**
+     * The NPI that is being proxied, will only have a value if
+     */
+    private String proxyForNPI;
+    
+    /**
+     * The external account information.
+     */
+    private ExternalAccountLink externalAccountLink;
+    
     /**
      * Empty constructor.
      */
@@ -332,4 +348,52 @@ public class CMSUser implements Serializable {
         this.phoneNumber = BinderUtils.concatPhone(businessPhonePart1, businessPhonePart2, businessPhonePart3,
             businessPhoneExt);
     }
+
+	/**
+	 * Gets the value of the field <code>externalRoleView</code>.
+	 * @return the externalRoleView
+	 */
+	public RoleView getExternalRoleView() {
+		return externalRoleView;
+	}
+
+	/**
+	 * Sets the value of the field <code>externalRoleView</code>.
+	 * @param externalRoleView the externalRoleView to set
+	 */
+	public void setExternalRoleView(RoleView externalRoleView) {
+		this.externalRoleView = externalRoleView;
+	}
+
+	/**
+	 * Gets the value of the field <code>proxyForNPI</code>.
+	 * @return the proxyForNPI
+	 */
+	public String getProxyForNPI() {
+		return proxyForNPI;
+	}
+
+	/**
+	 * Sets the value of the field <code>proxyForNPI</code>.
+	 * @param proxyForNPI the proxyForNPI to set
+	 */
+	public void setProxyForNPI(String proxyForNPI) {
+		this.proxyForNPI = proxyForNPI;
+	}
+
+	/**
+	 * Gets the value of the field <code>externalAccountLink</code>.
+	 * @return the externalAccountLink
+	 */
+	public ExternalAccountLink getExternalAccountLink() {
+		return externalAccountLink;
+	}
+
+	/**
+	 * Sets the value of the field <code>externalAccountLink</code>.
+	 * @param externalAccountLink the externalAccountLink to set
+	 */
+	public void setExternalAccountLink(ExternalAccountLink externalAccountLink) {
+		this.externalAccountLink = externalAccountLink;
+	}
 }

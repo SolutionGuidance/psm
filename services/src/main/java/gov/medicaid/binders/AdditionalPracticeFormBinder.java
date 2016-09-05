@@ -11,6 +11,7 @@ import gov.medicaid.domain.model.PracticeLocationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.Affiliation;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.ContactInformation;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Entity;
@@ -18,6 +19,7 @@ import gov.medicaid.entities.Organization;
 import gov.medicaid.entities.PracticeLookup;
 import gov.medicaid.entities.PracticeSearchCriteria;
 import gov.medicaid.entities.ProviderProfile;
+import gov.medicaid.entities.RoleView;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.entities.dto.ViewStatics;
@@ -59,12 +61,12 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     *
      * @param enrollment the model to bind to
      * @param request the request containing the form fields
+     *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
         AdditionalPracticeLocationsType locations = new AdditionalPracticeLocationsType();
 
@@ -105,29 +107,71 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
                 location.setAddress(address);
             }
 
-            locations.getPracticeLocation().add(location);
+            // for employer view, do not accept any other NPI
+        	if (user.getExternalRoleView() == RoleView.EMPLOYER) {
+        		if (user.getExternalAccountLink().getExternalUserId().equals(location.getGroupNPI())) {
+            		locations.getPracticeLocation().add(location);
+        		}
+        	} else {
+        		locations.getPracticeLocation().add(location);
+        	}
             i++;
         }
 
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+    	if (user.getExternalRoleView() == RoleView.EMPLOYER) {
+    		retainLocations(practice, locations, user.getExternalAccountLink().getExternalUserId());
+    	}
         practice.setAdditionalPracticeLocations(locations);
         return exceptions;
     }
 
     /**
-     * Binds the model to the request attributes.
+     * Copies the locations from practice to the locations object if the NPI is not the same
+     * as the external user NPI
      *
+     * @param practice the source
+     * @param locations the target
+     * @param externalUserId the NPI of the current user
+     */
+    private void retainLocations(PracticeInformationType practice,
+    	AdditionalPracticeLocationsType locations, String externalUserId) {
+    	AdditionalPracticeLocationsType orig = practice.getAdditionalPracticeLocations();
+    	List<PracticeLocationType> base = orig.getPracticeLocation();
+    	for (PracticeLocationType old : base) {
+			if (old.getGroupNPI().equals(externalUserId)) {
+				continue;
+			} else {
+				locations.getPracticeLocation().add(old);
+			}
+		}
+	}
+
+	/**
+     * Binds the model to the request attributes.
      * @param enrollment the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly true if the binding is for a read only view
      */
-    public void bindToPage(EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
+        if (user.getExternalRoleView() == RoleView.EMPLOYER) {
+        	attr(mv, "allowAdd", "N");
+        } else {
+        	attr(mv, "allowAdd", "Y");
+        }
+        
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
         AdditionalPracticeLocationsType locations = XMLUtility.nsGetOtherLocations(practice);
         List<PracticeLocationType> xList = locations.getPracticeLocation();
         int i = 0;
         for (PracticeLocationType location : xList) {
+        	if (user.getExternalRoleView() == RoleView.EMPLOYER) {
+        		// this view only has access to its own NPI
+        		if (!user.getExternalAccountLink().getExternalUserId().equals(location.getGroupNPI())) {
+        			continue;
+        		}
+        	}
             attr(mv, "objectId", i, location.getObjectId());
             if (Util.isNotBlank(location.getObjectId())) {
                 attr(mv, "objectIdHash", i, Util.hash(location.getObjectId(), getServerHashKey()));
@@ -155,7 +199,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
             i++;
         }
 
-        attr(mv, "additonalLocationSize", xList.size());
+        attr(mv, "additonalLocationSize", i);
     }
 
     /**

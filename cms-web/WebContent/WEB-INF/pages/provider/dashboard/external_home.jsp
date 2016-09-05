@@ -21,6 +21,7 @@
 					<div class="breadCrumb"></div>
 					<h1>Account Setup</h1>
                     <div class="tabSection">
+                    	<!-- 
                         <div class="detailPanel">
                             <div class="section" id="updateProfile">
                                 <div class="wholeCol">
@@ -43,12 +44,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.section -->
                             <div class="tl"></div>
                             <div class="tr"></div>
                             <div class="bl"></div>
                             <div class="br"></div>
                         </div>
+                    	-->
                         <div class="detailPanel">
                             <div class="section" id="updateProfile">
                                 <div class="wholeCol">

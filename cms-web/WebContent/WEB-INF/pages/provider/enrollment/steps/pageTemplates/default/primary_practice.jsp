@@ -9,6 +9,7 @@
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 
+<c:if test="${requestScope['_06_bound'] eq 'Y'}">
 <!-- /.radioPanel -->
 <div class="practicePanel">
     <input type="hidden" name="formNames" value="<%= ViewStatics.PRIMARY_PRACTICE_FORM %>">
@@ -208,3 +209,4 @@
     <div class="br"></div>
 </div>
 <!-- /.practicePanel -->
+</c:if>

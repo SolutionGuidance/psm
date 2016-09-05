@@ -150,6 +150,6 @@ public class OnboardingServiceBean extends BaseService implements OnboardingServ
      */
     public boolean verifyCredentials(ExternalAccountLink link, String password) throws PortalServiceException {
         PartnerSystemService partner = partnerSystemServices.get(link.getSystemId());
-        return  partner.authenticate(link.getExternalUserId(), password);
+        return  partner.authenticate(link.getExternalUserId(), password, null, null);
     }
 }

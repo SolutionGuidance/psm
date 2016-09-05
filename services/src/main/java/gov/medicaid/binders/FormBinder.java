@@ -5,6 +5,7 @@ package gov.medicaid.binders;
 
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ValidationResultType;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.PortalServiceException;
@@ -27,21 +28,23 @@ public interface FormBinder {
 
     /**
      * Binds the request to the model.
-     *
+     * @param user TODO
      * @param enrollment the model to bind to
      * @param request the request containing the form fields
+     *
      * @throws BinderException if the format of the fields could not be bound properly
      * @throws PortalServiceException for any errors encountered
      */
-    List<BinderException> bindFromPage(EnrollmentType enrollment, HttpServletRequest request) throws PortalServiceException;
+    List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) throws PortalServiceException;
 
     /**
      * Binds the model to the request attributes.
+     * @param user TODO
      * @param enrollment the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly true if the binding is for a read only view
      */
-    void bindToPage(EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly);
+    void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly);
 
     /**
      * Translates the validation results to form error messages where applicable.

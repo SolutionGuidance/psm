@@ -1671,6 +1671,8 @@ $(document).ready(function() {
 			$i.find('input:eq(3)').attr("name", "_16_startDate_" + index);
 			$i.find('input:eq(4)').attr("name", "_16_name_" + index);
 			$i.find('input:eq(5)').attr("name", "_16_ssn_" + index);
+			$i.find('input:eq(6)').attr("name", "_16_bgsStudyId_" + index);
+			$i.find('input:eq(7)').attr("name", "_16_bgsClearanceDate_" + index);
 		});
  	}
     

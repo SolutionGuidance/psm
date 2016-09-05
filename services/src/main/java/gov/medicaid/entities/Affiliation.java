@@ -97,6 +97,16 @@ public class Affiliation extends IdentifiableEntity {
     private Entity entity;
 
     /**
+     * The BGS Study ID for Personal Care Provider Org.
+     */
+    private String bgsStudyId;
+    
+    /**
+     * The BGS Clearance Date for Personal Care Provide Org.
+     */
+    private Date bgsClearanceDate;
+    
+    /**
      * Empty constructor.
      */
     public Affiliation() {
@@ -341,4 +351,36 @@ public class Affiliation extends IdentifiableEntity {
     public void setMhpType(String mhpType) {
         this.mhpType = mhpType;
     }
+
+    /**
+     * Gets the <code>bgsStudyId</code>.
+     * @return the bgsStudyId
+     */
+	public String getBgsStudyId() {
+		return bgsStudyId;
+	}
+
+	/**
+     * Sets the <code>bgsStudyId</code>.
+     * @param mhpType the bgsStudyId to set
+     */
+	public void setBgsStudyId(String bgsStudyId) {
+		this.bgsStudyId = bgsStudyId;
+	}
+
+	/**
+     * Gets the <code>bgsClearanceDate</code>.
+     * @return the bgsClearanceDate
+     */
+	public Date getBgsClearanceDate() {
+		return bgsClearanceDate;
+	}
+
+	/**
+     * Sets the <code>bgsClearanceDate</code>.
+     * @param mhpType the bgsClearanceDate to set
+     */
+	public void setBgsClearanceDate(Date bgsClearanceDate) {
+		this.bgsClearanceDate = bgsClearanceDate;
+	}
 }

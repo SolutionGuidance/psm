@@ -1,0 +1,4970 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	font-size:12px;
+}
+
+a{
+	text-decoration:underline;
+	color:#1AABFF;
+}
+a:hover{
+	text-decoration:none;
+}
+.hide{
+	display:none;
+}
+input,select,textarea{
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+.hint{
+	color:#999999;
+}
+.contentWidth {
+	margin: 0 auto;
+	min-width:760px;
+	max-width: 960px;
+	width: 99%;
+}
+.green{
+	color:#5bc217;
+}
+.functionTab select.timeSelect{
+    width:85px;
+}
+#header {
+	background: #0d4478;
+	border-bottom: 2px solid #d5e2e5;
+	height: 33px;
+	line-height: 33px;
+	font-size: 12px;
+	color:#fff;
+	float:left;
+	width:100%;
+}
+	#header .userSection{
+		width:49%;
+		float:left;
+	}
+	#header .mastHead{
+		width:50%;
+		text-align:right;
+		float:right;
+	}
+	#header .userSection a{
+		color:#1aabff;
+		font-weight:bold;
+		margin:0 4px;
+	}
+#mainContent{
+	float:left;
+	width:100%;
+	padding-bottom:50px;
+}
+.logo{
+ 	display: inline-block;
+ 	margin:20px 0;
+}
+
+.logo img {
+		height: 75px;
+	}
+	
+.mainNav{
+	float:left;
+	width:100%;
+}
+.nav{
+ 	background:url(../i/nav-bg.png) no-repeat left top;
+ 	height:39px;
+ 	padding-left:3px;
+ 	width:100%;
+ 	font-size:11px;
+ 	line-height:37px;
+ 	float:left;
+}
+ 	.nav .navR{
+ 		background:url(../i/nav-bg.png) no-repeat right bottom;
+ 		height:39px;
+ 		padding-right:3px;
+ 	}
+ 	.nav .navM{
+ 		background:url(../i/nav-bg.png) repeat-x left -39px;
+ 		height:39px;
+ 	}
+	.nav ul{
+		float:left;
+		width:50%;
+	} 	
+		.nav ul li{
+			display: inline;
+			background:url(../i/nav-sep.png) no-repeat right center;
+			position:relative;
+			height:39px;
+			float:left;
+		}
+		.nav ul li.last{
+			background:none;
+		}
+			.nav ul li a{
+				color:#064265;
+				text-decoration:none;
+				padding:0 12px;
+			}
+		
+		.nav ul li.active span.arrow{
+			background:url(../i/icon-arrow-down.png) no-repeat center bottom;
+			display:inline-block;
+			left:0;
+			right:0;
+			bottom:5px;
+			height:5px;
+			position: absolute;
+		}
+.mainNav .searchWidget{
+	float:right;
+	width:49%;
+}
+	.mainNav .searchWidget a{
+		float:right;
+		margin-right:5px;
+		font-size:12px;
+	}
+	.mainNav .searchWidget .inputContainer{
+		float:right;
+		width:219px;
+		height:25px;
+		background:url(../i/input-container-bg.png) no-repeat right center;
+		margin:8px;
+	}
+	.mainNav .searchWidget .inputContainer a{
+		background:url(../i/icon-search.png) no-repeat right center;
+		width:15px;
+		height:26px;
+	}
+	.mainNav .searchWidget .inputContainer input{
+		width:185px;
+		margin:2px 0px 2px 5px;
+		font-size:12px;
+		line-height:20px;
+		height:20px;
+		float:left;
+		border:none;
+		background:none;
+	}
+	.breadCrumb{
+		width:100%;
+		font-size:11px;
+		color:#000;
+		line-height:30px;
+		margin:8px 0;
+		float:left;
+	}
+		.breadCrumb a{
+			color:#1aabff;
+			background: url("../i/crumbs-arrow.gif") no-repeat scroll right center transparent;
+		    display: inline-block;
+		    float: left;
+		    padding: 0 20px 0 0;
+		}
+	#mainContent h1{
+		font-size:22px;
+		float:left;
+		width:100%;
+		line-height:30px;
+	}
+	#mainContent .tabSection{
+		width:100%;
+		margin-top:20px;
+		float:left;
+	}
+		 .tabSection .tabHead{
+			background:url(../i/tab-head-bg.png) no-repeat left top;
+			padding-left:4px;
+			height:39px;
+			font-size:12px;
+			line-height:26px;
+			float:left;
+			width:100%;
+		}
+			.tabSection .tabHead .tabR{
+				background:url(../i/tab-head-bg.png) no-repeat right bottom;
+				padding-right:4px;
+				height:39px;
+			}
+			.tabSection .tabHead .tabM{
+				background:url(../i/tab-head-bg.png) repeat-x left center;
+				height:39px;
+			}
+			.tabHead a.tab{
+				color:#064265;
+				text-decoration:none;
+				font-weight:bold;
+				padding-left:4px;
+				text-align:center;
+				height:31px;
+				display:inline-block;
+				margin-top:8px;
+				margin-left:5px;
+				cursor: pointer;
+			}
+				.tabHead a.tab .aR{
+					display:inline-block;
+					height:31px;
+					padding-right:4px;
+				}
+				.tabHead a.tab .aM{
+					display:inline-block;
+					height:31px;
+					padding:0 30px;
+				}
+			.tabHead a.tab:hover,.tabHead a.tab.active{
+				background:url(../i/tab-active.png) no-repeat left top;
+				color:#000;
+			}
+				.tabHead a.tab:hover .aR,.tabHead a.tab.active .aR{
+					background:url(../i/tab-active.png) no-repeat right bottom;
+					
+				}
+				.tabHead a.tab:hover .aM,.tabHead a.tab.active .aM{
+					background:url(../i/tab-active.png) repeat-x left -31px;
+					
+				}
+				.detailPage .tabHead a.tab .aM{
+					padding:0;
+					min-width:115px;
+				}
+		.tabHead .purpleBtn{
+			float:right;
+			margin-right:4px;
+			margin-top:7px;
+		}
+.tabHead a.tabLink{
+                color:#064265;
+                text-decoration:none;
+                font-weight:bold;
+                padding-left:4px;
+                text-align:center;
+                height:31px;
+                display:inline-block;
+                margin-top:8px;
+                margin-left:5px;
+                cursor: pointer;
+            }
+                .tabHead a.tabLink .aR{
+                    display:inline-block;
+                    height:31px;
+                    padding-right:4px;
+                }
+                .tabHead a.tabLink .aM{
+                    display:inline-block;
+                    height:31px;
+                    padding:0 30px;
+                }
+            .tabHead a.tabLink:hover,.tabHead a.tabLink.active{
+                background:url(../i/tab-active.png) no-repeat left top;
+                color:#000;
+            }
+                .tabHead a.tabLink:hover .aR,.tabHead a.tabLink.active .aR{
+                    background:url(../i/tab-active.png) no-repeat right bottom;
+                }
+                .tabHead a.tabLink:hover .aM,.tabHead a.tabLink.active .aM{
+                    background:url(../i/tab-active.png) repeat-x left -31px;
+                }
+                .detailPage .tabHead a.tabLink .aM{
+                    padding:0;
+                    min-width:115px;
+                }
+.tabContent{
+	float:left;
+	width:100%;
+}
+.contentT{
+	position:relative;
+	margin-top:30px;
+	}
+	.contentT .tl{
+		left:0;
+		top:0;
+		}
+	.contentT .tr{
+		right:-2px;
+		top:0;
+		}
+	.tabContent .pagination{
+		height:36px;
+		line-height: 36px;
+		float:left;
+		border-left:1px solid #d2d2d2;
+		border-right:1px solid #d2d2d2;
+		width:100%;
+	}
+	.tabContent .pagination select{
+		vertical-align:middle;
+	}
+	.tabContent .pagination .left{
+		float:left;
+		width:60%;
+		margin-left:10px;
+	}
+	.tabContent .pagination .right{
+		float:right;
+		width:35%;
+	}		
+		.tabContent .pagination .right a{
+			float:right;
+			margin-top:8px;
+			margin-right:8px;
+		}
+		.tabContent .pagination .pagiBox a.page, .tabContent .pagination .pagiBox a.prev, .tabContent .pagination .pagiBox a.next{
+            float:left;
+        }
+		.tabContent .pagination .filterBtn .btM{
+			width:68px;
+		}
+		.filterBtn.showFilter span.arrow{
+			float:right;
+			background:url(../i/icon-arrow-down.png) no-repeat right center;
+			width:7px;
+			height:25px;
+		}
+		.filterBtn.hideFilter span.arrow{
+			float:right;
+			background:url(../i/icon-arrow-up.png) no-repeat right center;
+			width:7px;
+			height:25px;
+		}
+	.tabContent .pagination .right .pagi{
+		width:auto; /* was 143px */
+		float:right;
+		display:inline;
+		margin-left:15px;
+	}
+		.tabContent .pagination .right .pagi a{
+			margin-top:0px;
+			text-decoration:none;
+		}
+			.pageNumber{
+				float:right;
+				margin-right: 8px;
+				font-weight:bold;
+				margin-top:0px;
+			}
+		.floatR{
+			float:right;
+		}
+		
+	.filterPanel{
+		border-top:1px solid #ddd;
+		border-left:1px solid #d2d2d2;
+		border-right:1px solid #d2d2d2;
+		float:left;
+		min-height: 125px;
+		width:100%;
+		line-height:30px;
+		padding-bottom:8px;
+		display:none;
+	}
+	.filterPanel .row{
+		margin-top:10px;
+		float:left;
+		width:100%;
+	}
+	.floatW{
+		float:left;
+		width:100%;
+	}
+		.filterPanel .floatW{
+			padding-bottom:15px;
+			margin:0 10px;
+			border-bottom:1px solid #d2d2d2;
+		}
+		.filterPanel .leftCol{
+			width:39%;
+			margin-left:10px;
+			float:left;
+		}
+		.floatL{
+			float:left;
+		}
+			.filterPanel label{
+				width:31%;
+				float:left;
+			}
+		.filterPanel .rightCol{
+			width:39%;
+			float:left;
+		}
+		.filterPanel input{
+			height:20px;
+			padding-left:5px;
+			line-height:20px;
+			float:left;
+			margin:4px 7px 0;	
+			border:1px solid #7ea5c8;
+			background:url(../i/input-bg.png) repeat-x left top;
+		}
+
+		.filterPanel select{
+			width:225px;
+			float:left;
+			margin:4px 7px 0;
+			height:20px;
+			line-height:20px;
+		}
+		.filterPanel .purpleBtn{
+			float:right;
+			margin-top:8px;
+			margin-right:8px;
+		}
+			.filterPanel .purpleBtn .btM{
+				padding:0 16px;
+			}
+	.normalInput{
+		width:60%;
+	}
+	input.date{
+		width:95px;
+	}
+	.tableContainer{
+		float:left;
+		padding-top:4px;
+		border-left:1px solid #d2d2d2;
+		border-right:1px solid #d2d2d2;
+		width:100%;
+	}
+		.generalTable{
+			float:left;
+			width:100%;
+		}
+		.generalTable th{
+			background:url(../i/talbe-head-bg.png) repeat-x left top;
+			height:31px;
+			line-height:31px;
+			padding-left:10px;
+			color:#fff;
+			vertical-align:middle;
+			text-align:left;
+		}
+		.alignCenter{
+			text-align:center;
+		}
+		.generalTable th.alignCenter{
+			padding:0;
+			text-align:center;
+		}
+			.generalTable th span.sep{
+				float:right;
+				background:url(../i/table-head-sep.png) no-repeat right top;
+				width:2px;
+				height:31px;
+				position: relative;
+				margin:0;
+			}
+			.generalTable th a{
+				color:#fff;
+				text-decoration:none;
+			}
+				.generalTable th span.sort{
+					display:inline-block;
+					width:7px;
+					height:5px;
+					margin-left:5px;
+					background:url(../i/icon-sort-down.png) no-repeat left center;
+				}
+					.generalTable th.tablesorter-headerSortDown .sort{
+						background:url(../i/icon-sort-up.png) no-repeat left center;
+						height:10px;
+					}
+					.generalTable th.tablesorter-headerSortUp .sort{
+						background:url(../i/icon-sort-down.png) no-repeat left center;
+					}
+				.generalTable tr td{
+					padding:5px 10px;
+					vertical-align:middle;
+				}
+					.generalTable tr.even td{
+						background:#ecf2f3;
+					}
+				.generalTable tr td.alignCenter{
+					text-align:center;
+				}
+				.generalTable tr td a{
+					color:#1aabff;
+				}
+				.generalTable .sep{
+					color:#999999;
+					margin:0 5px;
+				}
+	.red{
+		color:#ff1010;
+	}
+	.tabContent .tabFoot{
+			background:url(../i/tab-bottom.png) no-repeat left top;
+			padding-left:4px;
+			height:38px;
+			font-size:12px;
+			line-height:38px;
+			float:left;
+			width:100%;
+			margin-bottom:30px;
+		}
+			.tabContent .tabFoot .tabR{
+				background:url(../i/tab-bottom.png) no-repeat right bottom;
+				padding-right:4px;
+				height:38px;
+			}
+			.tabContent .tabFoot .tabM{
+				background:url(../i/tab-bottom.png) repeat-x left -38px;
+				height:38px;
+			}
+		.tabContent .tabFoot .pagination{
+			border:none;
+		}
+	.infoRow{
+		line-height:18px;
+	}
+		.infoRow .red{
+			padding-bottom:5px;
+		}
+		.infoRow p{
+			margin:0 10px;
+		}
+/* enrollment detail page */
+.detailPanel{
+	float:left;
+	width:100%;
+	border:1px solid #d2d2d2;
+	position:relative;
+	padding:10px;
+	margin-bottom:10px;
+}
+	.detailPanel .col1{
+		float:left;
+		width:35%;
+	}
+	.detailPanel .col2{
+		float:left;
+		width:41%;
+	}
+	.detailPanel .col3{
+		float:left;
+		width:20%;
+	}
+	.largeText{
+		font-size:14px;
+	}
+	.wideSection{
+		float:left;
+		width:100%;
+		border-top:1px solid #d2d2d2;
+		padding:10px 0;
+	}
+		.wideSection span.text{
+			display:inline-block;
+			line-height: 15px;
+			width: 83%;
+		}
+		.detailPanel .row{
+			padding:10px 0;
+			float:left;
+			width:100%;
+		}
+        .detailPanel label.error{
+            white-space: nowrap;
+            width: 250px;
+            }
+		.detailPanel label{
+			width:95px;
+			float:left;
+		}
+		.detailPanel span.floatL{
+			margin-right:5px;
+		}
+.tl,.tr,.bl,.br{
+	background-image:url(../i/corners.png);
+	background-repeat:no-repeat;
+	width:6px;
+	height:6px;
+	position:absolute;
+}
+.tl{
+	background-position:top left;
+	left:-1px;
+	top:-1px;
+}
+.tr{
+	background-position:top right;
+	right:-1px;
+	top:-1px;
+}
+.bl{
+	background-position:bottom left;
+	left:-1px;
+	bottom:-1px;
+}
+.br{
+	background-position:bottom right;
+	right:-1px;
+	bottom:-1px;
+}
+.topPanel,.bottomPanel{
+	float:left;
+	width:100%;
+	border-left:1px solid #d2d2d2;
+	border-right:1px solid #d2d2d2;
+	padding-top:10px;
+	position: relative;
+	padding-bottom:5px;
+	line-height:18px;
+}
+.bottomPanel{
+	border-bottom:1px solid #D2D2D2;
+	padding-bottom:10px;
+}
+	.topPanel .floatL,.bottomPanel .floatL{
+		margin-right:5px;
+	}
+.tableHeader{
+	background:url(../i/table-head.png) repeat-x left top;
+	height:34px;
+	width:100%;
+	float:left;
+	line-height:34px;
+	font-size:14px;
+	border-left:1px solid #d2d2d2;
+	border-right:1px solid #d2d2d2;
+}
+.tableHeader2{
+	background:url(../i/table-head2.png) repeat-x left top;
+	height:38px;
+	width:100%;
+	float:left;
+	line-height:38px;
+	font-size:16px;
+	border-left:1px solid #d2d2d2;
+	border-right:1px solid #d2d2d2;
+}
+.topPanel .tableHeader{
+	border:0;
+}
+	#mainContent .head {
+		float:left;
+		width:100%;
+	}
+	#mainContent.detailPage .tabSection{
+		margin-top:15px;
+	} 
+	#mainContent .head h1{
+		width:auto;
+	}
+		#mainContent .head a{
+			float:right;
+			margin-left:8px;
+		}
+	.tableHeader span{
+		float:left;
+		margin-left:10px;
+	}
+.row{
+	float:left;
+	width:100%;
+}
+	.topPanel .row,.bottomPanel .row{
+		padding:5px 0;
+	}
+.topPanel .leftCol,.bottomPanel .leftCol{
+	width:48%;
+	float:left;
+	margin-left:10px;
+}
+	.topPanel label,.bottomPanel label{
+		float: left;
+		width:45%;
+	}
+.topPanel .rightCol{
+	width:48%;
+	float:left;
+}
+	#tabLicense .tableContainer,#tabPractice .tableContainer{
+		padding-top:20px;
+		border-bottom:1px solid #d2d2d2;
+		position:relative;
+	}
+	#tabPractice .bottomPanel,#tabPractice .tableHeader{
+		border:0;
+	}
+	#tabPractice .bottomPanel label{
+		margin-left:10px;
+		line-height: 18px;
+	}
+	#tabPractice .bottomPanel .row{
+		padding:5px 0;
+	}
+		#tabPractice .bottomPanel span{
+			display:inline-block;
+			line-height: 18px;
+		}
+	.bottomPanel label.fontweightNormal{
+		font-weight:normal;
+	}
+	.topPanel .wideCol{
+		float:left;
+		width:96%;
+		margin-left:10px;
+	}
+		.topPanel .wideCol label{
+			width:85%;
+			margin-right:80px;
+		}
+	#tabStatement p{
+		float:left;
+		width: 98%;
+		margin:0 10px;
+	}
+	.bottomPanel .wideCol{
+		width:100%;
+		float:left;
+		margin:0 10px;
+		padding-top:10px;
+		border-top:1px solid #d2d2d2;
+	}
+		.bottomPanel .wideCol label{
+			width:18.4%;
+		}
+/* login Page */
+.loginPanel{
+	width:50%;
+	float:left;
+	margin-left:25%;
+	position:relative;
+	border:1px solid #d2d2d2;
+	line-height: 25px;
+	padding-top:20px;
+}
+	.loginPanel label{
+		line-height: 20px;
+		float:left;
+	}
+	.loginPanel label.label{
+		font-weight:bold;
+		width:27%;
+		float:left;
+		text-align:right;
+		line-height: 25px;
+	}
+	.loginPanel .row{
+		padding: 10px 0;
+	}
+	.loginPanel input[type=text],.loginPanel input[type=password]{
+		 background: url("../i/input-bg.png") repeat-x scroll left top transparent;
+   		 border: 1px solid #7EA5C8;
+   		 width:50%;
+   		 float:left;
+   		 margin-left:5%;
+   		 height:22px;
+	}
+	.loginPanel #remember{
+		float:left;
+		margin-left: 5%;
+	}
+		.loginPanel  a{
+			float:right;
+			margin-right:18%;
+		}
+	.loginPanel .buttons{
+		float:left;
+		width:100%;
+		border-top:1px solid #d2d2d2;
+		padding:20px 0;
+	}
+		.loginPanel .buttons .purpleBtn{
+			float:right;
+		}
+			.loginPanel .buttons .purpleBtn .btM{
+				padding:0 20px;
+			}
+#footer{
+	height:40px;
+	background:#faf9f9;
+	line-height:40px;
+	font-size:12px;
+	color:#000;
+	text-align:center;
+	border-top:1px solid #d2d2d2;
+	width:100%;
+	float:left;
+}
+/* buttons */
+a.purpleBtn{
+	float:left;
+	background:url(../i/purple-btn.png) no-repeat left top;
+	padding-left:4px;
+	height:25px;
+	line-height:25px;
+	cursor:pointer;
+	font-size:12px;
+	color:#fff;
+	text-shadow:0 1px 0 #000;
+	text-decoration:none;
+}
+	a.purpleBtn span.btR{
+		float:left;
+		background:url(../i/purple-btn.png) no-repeat right -100px;
+		height:25px;
+		padding-right:4px;
+	}
+	a.purpleBtn span.btM{
+		float:left;
+		background:url(../i/purple-btn.png) repeat-x left -50px;
+		height:25px;
+		padding:0 12px;
+	}
+	a.purpleBtn:hover{
+		background-position:left -25px;
+	}
+	a.purpleBtn:hover span.btR{
+		background-position:right -125px;
+	}
+	a.purpleBtn:hover span.btM{
+		background-position:left -75px;
+	}
+	
+a.greyBtn{
+	float:left;
+	background:url(../i/grey-btn.png) no-repeat left top;
+	padding-left:4px;
+	height:25px;
+	line-height:25px;
+	cursor:pointer;
+	font-size:12px;
+	color:#064265;
+	text-decoration:none;
+	text-shadow:0 1px 0 #fff;
+}
+	a.greyBtn span.btR{
+		float:left;
+		background:url(../i/grey-btn.png) no-repeat right -100px;
+		height:25px;
+		padding-right:4px;
+	}
+	a.greyBtn span.btM{
+		float:left;
+		background:url(../i/grey-btn.png) repeat-x left -50px;
+		height:25px;
+		padding:0 8px;
+	}
+	a.greyBtn:hover{
+		background-position:left -25px;
+	}
+	a.greyBtn:hover span.btR{
+		background-position:right -125px;
+	}
+	a.greyBtn:hover span.btM{
+		background-position:left -75px;
+	}
+	a.greyBtn img{
+		float:left;
+		margin:5px 5px 5px 0;
+	}
+a.blueBtn{
+	float:left;
+	background:url(../i/blue-btn.png) no-repeat left top;
+	padding-left:4px;
+	height:25px;
+	text-decoration:none;
+	line-height:25px;
+	cursor:pointer;
+	font-size:12px;
+	color:#064265;
+	text-shadow:0 1px 0 #fff;
+}
+	a.blueBtn span.btR{
+		float:left;
+		background:url(../i/blue-btn.png) no-repeat right -50px;
+		height:25px;
+		padding-right:4px;
+	}
+	a.blueBtn span.btM{
+		float:left;
+		background:url(../i/blue-btn.png) repeat-x left -25px;
+		height:25px;
+		padding:0 6px;
+	}
+
+.ui-datepicker-trigger{
+	background: none;
+	border: none;
+	float:left;
+	/*position:absolute;*/
+	margin-left: -31px;
+    margin-top: 7px;
+}
+
+/* new style */
+a.purpleSmallBtn{
+	float:left;
+	background:url(../i/purple-small-btn.png) no-repeat left top;
+	padding-left:4px;
+	height:21px;
+	line-height:21px;
+	cursor:pointer;
+	font-size:12px;
+	color:#fff;
+	text-shadow:0 1px 0 #000;
+	text-decoration:none;
+	}
+	
+	a.purpleSmallBtn span.btR{
+		float:left;
+		background:url(../i/purple-small-btn.png) no-repeat right -84px;
+		height:21px;
+		padding-right:4px;
+		}
+		
+	a.purpleSmallBtn span.btM{
+		float:left;
+		background:url(../i/purple-small-btn.png) repeat-x left -42px;
+		height:21px;
+		padding:0 4px;
+		}
+		
+a.purpleSmallBtn:hover{
+	background-position:left -21px;
+	}
+		
+	a.purpleSmallBtn:hover span.btR{
+		background-position:right -105px;
+		}
+		
+	a.purpleSmallBtn:hover span.btM{
+		background-position:left -63px;
+		}
+	
+/* firstRegistrant */
+.firstRegistrant{
+	line-height:30px;
+	}
+	
+	.firstRegistrant .wholeCol{
+		margin:0 10px;
+		}
+		
+		.firstRegistrant .wholeCol label{
+			width:10%;
+			}
+
+		.firstRegistrant .wholeCol select{
+			width:265px;
+			float:left;
+			margin:4px 7px 0;
+			height:20px;
+			line-height:20px;
+			}
+
+/* buttonBox */
+.buttonBox{
+	height:25px;
+	margin:0 0 60px 0;
+	}
+	
+.topButtonBox{
+	margin:20px 0 10px 0;
+	}
+	
+	.buttonBox .greyBtn{
+		width:auto;
+		float:right;
+		display:inline;
+		margin:0 0 0 7px;
+		}
+		
+	.buttonBox .purpleBtn{
+		width:auto;
+		float:right;
+		display:inline;
+		margin:0 0 0 7px;
+		}
+		
+	.buttonBox .prevBtn{
+		width:auto;
+		float:left;
+		display:inline;
+		margin:0 7px 0 0;
+		}
+		
+		.buttonBox .greyBtn .btM{
+			padding:0 10px;
+			}
+		
+		.buttonBox .greyBtn .icon{
+			width:auto;
+			float:left;
+			display:inline;
+			padding:0 12px 0 0;
+			background-image:url(../i/icon-next.png);
+			background-repeat:no-repeat;
+			background-position:right center;
+			}
+			
+		.buttonBox .prevBtn .icon{
+			width:auto;
+			float:left;
+			display:inline;
+			padding:0 0 0 12px;
+			background-image:url(../i/icon-prev.png);
+			background-repeat:no-repeat;
+			background-position:0 center;
+			}
+			
+/* stepWidget */
+.stepWidget{
+	width:100%;
+	margin:16px 0 12px 0;
+	}
+	
+	.stepWidget li{
+		width:16.5%;
+		float:left;
+		display:inline;
+		background-image:url(../i/step-normal.png);
+		background-repeat:repeat-x;
+		background-position:0 0;
+		}
+	.stepWidget5Item li{
+		width:20%;
+		}
+		
+		.stepWidget li span{
+			width:auto;
+			display:block;
+			}
+			
+		.stepWidget li.firstSetp span{
+			background-image:url(../i/step-normal-left.png);
+			background-repeat:no-repeat;
+			background-position:0 0;
+			}
+			
+		.stepWidget li.lastSetp span{
+			background-image:url(../i/step-normal-right.png);
+			background-repeat:no-repeat;
+			background-position:right 0;
+			}
+			
+			.stepWidget li span strong{
+				width:auto;
+				height:35px;
+				display:block;
+				font-size:14px;
+				font-weight:bold;
+				line-height:35px;
+				color:#939393;
+				text-indent:8px;
+				text-shadow:#f7f7f7 0 1px 0;
+				background-image:url(../i/step-normal-arrow.png);
+				background-repeat:no-repeat;
+				background-position:right 0;
+				white-space: nowrap;
+				}
+				
+			.stepWidget li.lastSetp span strong{
+				background-image:none;
+				}
+		
+		/* Active */		
+		.stepWidget li.active{
+			background-image:url(../i/step-active.png);
+			}
+			
+			.stepWidget li.firstSetp.active span{
+				background-image:url(../i/step-active-left.png);
+				}
+				
+			.stepWidget li.lastSetp.active span{
+				background-image:url(../i/step-active-right.png);
+				}
+				
+				.stepWidget li.active span strong{
+					color:#ffffff;
+					text-shadow:#698800 0 -1px 0;
+					background-image:url(../i/step-active-arrow.png);
+					}
+					
+				.stepWidget li.lastSetp.active span strong{
+					background-image:none;
+					}
+		
+		/* Prev Active */			
+		.stepWidget li.activePrev{
+			background-image:url(../i/step-prev-active.png);
+			}
+			
+			.stepWidget li.firstSetp.activePrev span{
+				background-image:url(../i/step-active-prev-left.png);
+				}
+			
+				.stepWidget li.activePrev span strong{
+					color:#acb785;
+					text-shadow:#51650b 0 -1px 0;
+					background-image:url(../i/step-normal-prev-arrow.png);
+					}
+					
+		/* Near Active */
+		.stepWidget li.activeNear{
+			background-image:url(../i/step-prev-active.png);
+			}
+			
+			.stepWidget li.firstSetp.activeNear span{
+				background-image:url(../i/step-active-prev-left.png);
+				}
+			
+				.stepWidget li.activeNear span strong{
+					color:#acb785;
+					text-shadow:#51650b 0 -1px 0;
+					background-image:url(../i/step-normal-near-arrow.png);
+					}
+					
+/* requiredInfo */
+.requiredInfo{
+	font-size:12px;
+	line-height:28px;
+	}
+	
+	.required{
+		color:#ff2f2f;
+		}
+
+/* newEnrollmentPanel */
+.newEnrollmentPanel{
+	width:100%;
+	border:1px solid #d2d2d2;
+	position:relative;
+	margin-bottom:10px;
+	padding:0;
+	line-height:30px;
+	}
+	
+	.newEnrollmentPanel .wholeCol{
+		padding:5px 10px;
+		}
+		
+	.newEnrollmentPanel .tableHeader{
+		border:0;
+		}
+	
+	.newEnrollmentPanel .row{
+		padding:2px 0;
+		}
+
+	.newEnrollmentPanel label{
+		width:20%;
+		float:left;
+		}
+    .newEnrollmentPanel label.error{
+            white-space: nowrap;
+    }
+		
+	.newEnrollmentPanel span.floatL{
+		margin:0;
+		}
+		
+	.newEnrollmentPanel span.sep{
+		width:auto;
+		float:left;
+		display:inline;
+		padding:0 2px;
+		}
+		
+	.newEnrollmentPanel input.normalInput{
+		width:204px;
+		height:20px;
+		padding-left:5px;
+		line-height:20px;
+		float:left;
+		margin:4px 7px 0;	
+		border:1px solid #7ea5c8;
+		background:url(../i/input-bg.png) repeat-x left top;
+		}
+		
+	.newEnrollmentPanel input.date{
+		width:95px;
+		height:20px;
+		padding-left:5px;
+		line-height:20px;
+		float:left;
+		margin:4px 7px 0;	
+		border:1px solid #7ea5c8;
+		background:url(../i/input-bg.png) repeat-x left top;
+		}
+		
+	.newEnrollmentPanel input.smallInput{
+		width:42px;
+		height:20px;
+		padding-left:5px;
+		line-height:20px;
+		float:left;
+		margin:4px 7px 0;	
+		border:1px solid #7ea5c8;
+		background:url(../i/input-bg.png) repeat-x left top;
+		}
+		
+	.newEnrollmentPanel input.smallInputP{
+		width:62px;
+		height:20px;
+		padding-left:5px;
+		line-height:20px;
+		float:left;
+		margin:4px 7px 0;	
+		border:1px solid #7ea5c8;
+		background:url(../i/input-bg.png) repeat-x left top;
+		}
+	
+	.newEnrollmentPanel select{
+		width:212px;
+		float:left;
+		margin:4px 7px 0;
+		height:20px;
+		line-height:20px;
+		}
+		
+	.newEnrollmentPanel .checkbox{
+		width:auto;
+		float:left;
+		display:inline;
+		margin:8px 6px auto 0;
+		padding:0;
+		}
+		
+/* tableData */
+.tableData{
+	width:100%;
+	margin:0 0 10px 0;
+	position:relative;
+	border:#d2d2d2 solid 1px;
+	}
+	
+	.tableData table select{
+		width:110px;
+		margin:2px 0 0 0;
+		}
+		
+	.tableData table select.bigSelect{
+		width:160px;
+		}
+		
+	.tableData table .remove{
+		width:16px;
+		height:16px;
+		display:block;
+		margin:0 auto;
+		text-indent:-9999px;
+		background-image:url(../i/icon-remove.png);
+		background-repeat:no-repeat;
+		background-position:0 0;
+		}
+		
+	.tableData table .remove:hover{
+		background-position:0 -16px;
+		}
+		
+	.tableData table input.normalInput{
+		width:110px;
+		height:20px;
+		padding-left:5px;
+		line-height:20px;
+		margin:4px 0 4px;	
+		border:1px solid #7ea5c8;
+		background:url(../i/input-bg.png) repeat-x left top #fffffe;
+		}
+		
+	.tableData table input.fileUpload{
+		width:160px;
+		}
+		
+	.tableData table input.date{
+		width:95px;
+		height:20px;
+		padding-left:5px;
+		line-height:20px;
+		float:left;
+		margin:4px 0 4px;	
+		border:1px solid #7ea5c8;
+		background:url(../i/input-bg.png) repeat-x left top #fffffe; 
+		}
+		
+	.tableData table .ui-datepicker-trigger{
+		margin-left:-19px;
+		}
+		
+	.tableData .tableBottom{
+		height:36px;
+		padding:0 10px;
+		border-top:#d2d2d2 solid 1px;
+		}
+		
+		.tableData .tableBottom a{
+			line-height:36px;
+			}
+			
+/* practicePanel */
+.practicePanel{
+	width:100%;
+/* 	display:none; */
+	margin:0 0 10px 0;
+	position:relative;
+	border:#d2d2d2 solid 1px;
+	line-height:30px;
+	}
+.editContent .practicePanel{
+	display:block;
+	}
+.renewPraticePanel .practicePanel,
+.editPractice .practicePanel{
+	display:block;
+	}
+	
+	.renewPraticePanel #primaryOffice,
+	.renewPraticePanel #additionalPractice{
+		display:none;
+		}
+	
+	#practicePage .buttonBox{
+		display:none;
+		}
+		
+	.renewPraticePanel #practicePage .buttonBox{
+		display:block;
+		}
+	
+	/* TableHeader */
+	.practicePanel .tableHeader{
+		height:34px;
+		line-height:34px;
+		border:0;
+		background-position:left center;
+		}
+		
+	.practicePanel .otherTableHeader{
+		height:32px;
+		line-height:32px;
+		border-bottom:#d2d2d2 solid 1px !important;
+		}
+		
+		.practicePanel .tableHeader .purpleSmallBtn{
+			width:auto;
+			float:right;
+			display:inline;
+			margin:6px 6px 0 0;
+			}
+			
+			.practicePanel .tableHeader .purpleSmallBtn span{
+				margin:0;
+				}
+				
+	/* WholeCol */
+	.practicePanel .wholeCol{
+		padding:5px 10px;
+		}
+	
+		.practicePanel .row{
+			padding:2px 0;
+			}
+			
+		.practicePanel .rowWrapper{
+			width:500px;
+			float:left;
+			display:inline;
+			}
+			
+			.practicePanel .inputContainer{
+				width:79%;
+				float:left;
+				display:inline;
+				}
+				
+			.practicePanel .addreddWrapper{
+				margin:0 0 0 7px;
+				}
+			
+			.practicePanel label{
+				width:20%;
+				float:left;
+				display:inline;
+				}
+				
+			.practicePanel .inlineBox label,
+			.practicePanel label.smallLabel{
+				width:auto;
+				}
+				
+			.practicePanel span.label{
+				width:20%;
+				float:left;
+				display:inline;
+				color:#999999;
+				line-height:14px;
+				}
+				
+			.practicePanel .cityLabel{
+				margin:0 0 0 7px;
+				}
+				
+			.practicePanel span.floatL{
+				width:1%;
+				margin:0;
+				}
+				
+			.practicePanel span.sep{
+				width:auto;
+				float:left;
+				display:inline;
+				padding:0 2px;
+				}
+				
+			.practicePanel input[type=text]{
+				width:42px;
+				height:20px;
+				padding-left:5px;
+				line-height:20px;
+				float:left;
+				margin:4px 7px 0;	
+				border:1px solid #7ea5c8;
+				background:url(../i/input-bg.png) repeat-x left top;
+				}
+				
+			.practicePanel .rowWrapper input{
+				width:auto;
+				height:auto;
+				margin:8px 5px 0 7px;
+				padding:0;
+				}
+				
+			.practicePanel .reimbursementAddressRow .checkbox{
+				width:auto;
+				float:left;
+				display:inline;
+				margin:8px 6px auto 7px;
+				padding:0;
+				}
+				
+			.practicePanel .inlineBox input,
+			.practicePanel .reimbursementAddressRow input{
+				width:106px;
+				margin:4px 27px 4px 7px;
+				}
+				
+			.practicePanel .inlineBox input.countryInput,
+			.practicePanel .reimbursementAddressRow input.countryInput{
+				margin:4px 0 4px 7px;
+				}
+				
+			.practicePanel .inlineBox select,
+			.practicePanel .reimbursementAddressRow select{
+				width:120px;
+				margin:6px 27px 0px 7px;
+				}
+				
+			.practicePanel .addPracticeLocations input.normalInput{
+				width:100px;
+				}
+				
+			.practicePanel input.normalInput{
+				width:204px;
+				}
+				
+			.practicePanel input.date{
+				width:95px;
+				}
+			
+			.practicePanel .generalTable .ui-datepicker-trigger{
+				margin-left:-19px;
+				}
+				
+			.practicePanel input.smallInput{
+				width:42px;
+				}
+				
+			.practicePanel input.smallInputP{
+				width:62px;
+				}
+				
+			.practicePanel input.wholeInput{
+				width:724px;
+				margin:4px 0 4px 7px;
+				}
+				
+			.practicePanel .addPracticeLocations input.smallInput{
+				width:62px;
+				}
+			
+			.practicePanel select{
+				width:212px;
+				float:left;
+				margin:4px 7px 0;
+				height:20px;
+				line-height:20px;
+				}
+				
+			.practicePanel .addPracticeLocations select{
+				width:110px;
+				margin:0 7px 0;
+				}
+				
+			.addPracticeLocations table .remove{
+				width:16px;
+				height:16px;
+				display:block;
+				margin:0 auto;
+				text-indent:-9999px;
+				background-image:url(../i/icon-remove.png);
+				background-repeat:no-repeat;
+				background-position:0 0;
+				}
+				
+			.addPracticeLocations table .remove:hover{
+				background-position:0 -16px;
+				}
+				
+/* addPracticeLocations */
+.addPracticeLocations .generalTable .firstTheader{
+	padding:0 0 0 8px;
+	}
+
+.addPracticeLocations .generalTable td{
+	padding:5px 0 5px 10px;
+	}
+	
+.addPracticeLocations .generalTable .alignCenter{
+	padding:5px 0;
+	text-align:center;
+	}
+
+	.addPracticeLocations .generalTable input{
+		margin:4px 0;
+		background-color:#fffffe;
+		}
+		
+	.addPracticeLocations .tableBottom{
+		height:36px;
+		padding:0 10px;
+		border-top:#d2d2d2 solid 1px;
+		}
+		
+		.addPracticeLocations .tableBottom a{
+			line-height:36px;
+			}
+			
+/* paymentPanel */
+.paymentPanel{
+	width:100%;
+	margin:0 0 10px 0;
+	position:relative;
+	border:#d2d2d2 solid 1px;
+	}
+	
+	.paymentPanel .section{
+		padding:5px 10px;
+		}
+		
+		.paymentPanel .section p{
+			line-height:24px;
+			}
+			
+		.paymentPanel .form{
+			padding:5px 0;
+			line-height:34px;
+			}
+			
+			.paymentPanel label{
+				width:20%;
+				float:left;
+				display:inline;
+				}
+				
+			.paymentPanel span.floatL{
+				margin:0;
+				}
+				
+			.paymentPanel span.sep{
+				width:auto;
+				float:left;
+				display:inline;
+				padding:0 2px;
+				}
+				
+			.paymentPanel input{
+				width:93px;
+				height:20px;
+				padding-left:5px;
+				line-height:20px;
+				float:left;
+				margin:4px 7px 0;	
+				border:1px solid #7ea5c8;
+				background:url(../i/input-bg.png) repeat-x left top;
+				}
+				
+			.paymentPanel select{
+				width:200px;
+				float:left;
+				margin:6px 7px auto 7px;
+				height:20px;
+				line-height:20px;
+				}
+				
+			.paymentPanel input.normalInput{
+				width:193px;
+				}
+				
+			.paymentPanel input.smallInput{
+				width:70px;
+				}
+				
+/* mailingPanel */
+.mailingPanel{
+	width:100%;
+	margin:0 0 10px 0;
+	position:relative;
+	border:#d2d2d2 solid 1px;
+	}
+	
+	.mailingPanel .tableHeader{
+		height:32px;
+		line-height:32px;
+		border:0;
+		border-bottom:#d2d2d2 solid 1px;
+		background-position:left center;
+		}
+		
+	.mailingPanel .section{
+		padding:10px;
+		line-height:30px;
+		}
+		
+		.mailingPanel .section p{
+			line-height:24px;
+			}
+			
+		.mailingPanel .section .leftCol{
+			width:30%;
+			float:left;
+			display:inline;
+			}
+			
+		.mailingPanel .section .rightCol{
+			width:70%;
+			float:left;
+			display:inline;
+			}
+			
+			.mailingPanel label{
+				width:50%;
+				float:left;
+				display:inline;
+				}
+				
+			.mailingPanel span.floatL{
+				margin:0;
+				}
+				
+			.mailingPanel span.prevText{
+				width:auto;
+				float:left;
+				display:inline;
+				margin:0 0 0 7px;
+				}
+				
+			.mailingPanel select{
+				width:150px;
+				float:left;
+				margin:6px 7px auto 7px;
+				height:20px;
+				line-height:20px;
+				}
+				
+/* affiliationPanel */
+.affiliationPanel{
+	width:100%;
+	margin:0 0 10px 0;
+	position:relative;
+	border:#d2d2d2 solid 1px;
+	}
+	
+	.affiliationPanel .tableBottom{
+		padding:10px 0 0 0;
+		}
+	
+	.affiliationPanel .tableHeader{
+		height:32px;
+		line-height:32px;
+		border:0;
+		border-bottom:#d2d2d2 solid 1px;
+		background-position:left center;
+		}
+		
+	.affiliationPanel .section{
+		padding:10px;
+		line-height:30px;
+		}
+		
+		.affiliationPanel .section p{
+			line-height:24px;
+			}
+			
+		.affiliationPanel table{
+			width:100%;
+			margin:10px 0 0 0;
+			border:#d2d2d2 solid 1px;
+			}
+			
+		.affiliationPanel table th{
+			background:url(../i/talbe-head-bg.png) repeat-x left top;
+			height:31px;
+			line-height:31px;
+			padding-left:10px;
+			color:#fff;
+			vertical-align:middle;
+			text-align:left;
+			}
+			
+			.affiliationPanel table th span.sep{
+				float:right;
+				background:url(../i/table-head-sep.png) no-repeat right top;
+				width:2px;
+				height:31px;
+				position: relative;
+				margin:0;
+				}
+				
+		.affiliationPanel table tr td{
+			padding:5px 10px;
+			vertical-align:middle;
+			}
+			
+			.affiliationPanel table tr td input{
+				width:100px;
+				height:20px;
+				padding-left:5px;
+				line-height:20px;
+				float:left;
+				margin:4px 7px 0;	
+				border:1px solid #7ea5c8;
+				background:url(../i/input-bg.png) repeat-x left top;
+				}
+				
+			.affiliationPanel table tr td select{
+				width:130px;
+				margin:8px 7px 0;
+				}
+			
+			.affiliationPanel table tr td .normalInput{
+				width:180px;
+				}
+				
+			.affiliationPanel table tr td .locationInput{
+				width:350px;
+				}
+				
+			.affiliationPanel table tr td .zipInput{
+				width:120px;
+				}
+			
+			.affiliationPanel table tr td .groupNameInput{
+				width:674px;
+				}
+				
+/* personalPanel */
+.personalPanel{
+	width:100%;
+	margin:0 0 10px 0;
+	position:relative;
+	border:#d2d2d2 solid 1px;
+	}
+	
+	.personalPanel .tableHeader{
+		height:32px;
+		line-height:32px;
+		border:0;
+		border-bottom:#d2d2d2 solid 1px;
+		background-position:left center;
+		}
+		
+	.personalPanel .otherTableHeader{
+		border-top:#d2d2d2 solid 1px;
+		}
+		
+		.personalPanel .tableHeader a.edit{
+			width:auto;
+			float:right;
+			display:inline;
+			margin:0 6px 0 0;
+			padding:0 0 0 17px;
+			font-size:12px;
+			background-image:url(../i/icon-edit.png);
+			background-repeat:no-repeat;
+			background-position:0 center;
+			}
+		
+	.personalPanel .section{
+		padding:10px 0;
+		margin:0 10px;
+		line-height:30px;
+		}
+		
+	.personalPanel .line{
+		border-top:#d2d2d2 solid 1px;
+		}
+		
+		.personalPanel .section .leftCol,
+		.personalPanel .section .rightCol{
+			width:48%;
+			float:left;
+			display:inline;
+			}
+			
+			.personalPanel .section label{
+				width:45%;
+				float:left;
+				display:inline;
+				font-weight:bold;
+				}
+				
+			.personalPanel .section .floatL{
+				margin:0 5px 0 0;
+				}
+				
+		.personalPanel .generalTable td{
+			height:21px;
+			line-height:21px;
+			}
+	
+	/* practiceSection */		
+	.personalPanel .practiceSection{
+		padding:10px 0;
+		margin:0 10px;
+		line-height:30px;
+		}
+		
+		.personalPanel .practiceSection label{
+			width:45%;
+			float:left;
+			display:inline;
+			font-weight:bold;
+			}
+			
+		.personalPanel .practiceSection .floatL{
+			margin:0 5px 0 0;
+			}
+			
+		/* Address */
+		.personalPanel .practiceSection .address{
+			padding:6px 0;
+			}
+			
+			.personalPanel .practiceSection .address label{
+				line-height:18px;
+				}
+				
+			.personalPanel .practiceSection .address span{
+				width:auto;
+				float:left;
+				display:inline;
+				line-height:18px;
+				}
+				
+	/* paymentSection */
+	.personalPanel .paymentSection{
+		padding:10px 0;
+		margin:0 10px;
+		line-height:30px;
+		}
+		
+		.personalPanel .paymentSection label{
+			width:15%;
+			float:left;
+			display:inline;
+			font-weight:bold;
+			}
+			
+		.personalPanel .paymentSection .floatL{
+			margin:0 5px 0 0;
+			}
+			
+/* personalPanel */
+.providerPanel{
+	width:100%;
+	margin:0 0 10px 0;
+	position:relative;
+	border:#d2d2d2 solid 1px;
+	}
+	
+	.providerPanel .tableHeader{
+		height:32px;
+		line-height:32px;
+		border:0;
+		border-bottom:#d2d2d2 solid 1px;
+		background-position:left center;
+		}
+		
+	.providerPanel .otherTableHeader{
+		border-top:#d2d2d2 solid 1px;
+		}
+	
+	/* disclosure */	
+	.providerPanel .disclosure{
+		padding:10px;
+		line-height:18px;
+		}
+		
+		.providerPanel .disclosure .row{
+			padding:5px 0;
+			}
+		
+		.providerPanel .disclosure label{
+			width:85%;
+			float:left;
+			display:inline;
+			margin:0 10px 0 0;
+			}
+			
+		.providerPanel .disclosure input{
+			width:auto;
+			float:left;
+			display:inline;
+			margin:2px 5px 0 2px;
+			padding:0;
+			}
+			
+		.providerPanel .disclosure label.span{
+			width:auto;
+			margin:0 24px 0 0;
+			font-weight:normal;
+			}
+	
+	/* disclosure */	
+	.providerPanel .statement{
+		line-height:30px;
+		}
+		
+		.providerPanel .statement .section{
+			margin:0 10px;
+			padding:10px 0;
+			}
+		
+		.providerPanel .statement .row{
+			padding:5px 0;
+			}
+			
+		.providerPanel .statement .titleRow{
+			padding:1px 0 15px 0;
+			}
+			
+		.providerPanel .statement .checkRow{
+			line-height:24px;
+			}
+			
+			.providerPanel .statement .row p{
+				line-height:15px;
+				}
+			
+			.providerPanel .statement label{
+				width:15%;
+				float:left;
+				display:inline;
+				font-weight:bold;
+				}
+				
+			.providerPanel .statement input{
+				width:auto;
+				float:left;
+				display:inline;
+				margin:2px 5px 0 2px;
+				}
+				
+			.providerPanel .statement .checkbox{
+				width:auto;
+				float:left;
+				display:inline;
+				margin:5px 5px 0 2px;
+				padding:0;
+				}
+
+			.providerPanel .statement input.normalInput{
+				width:210px;
+				height:20px;
+				padding-left:5px;
+				line-height:20px;
+				float:left;
+				margin:4px 7px 0;	
+				border:1px solid #7ea5c8;
+				background:url(../i/input-bg.png) repeat-x left top;
+				}
+				
+			.providerPanel .statement .checkRow span{
+				margin:0 4px 0 0;
+				}
+		
+		/* .bottomSection */		
+		.providerPanel .bottomSection{
+			min-height:10px;
+			margin:0 10px;
+			padding:10px 0 4px 0;
+			border-top:#d2d2d2 solid 1px;
+			}
+			
+			.providerPanel .bottomSection .providerPic{
+				width:auto;
+				height:76px;
+				float:left;
+				display:inline;
+				margin:0 7px;
+				}
+				
+			.providerPanel .bottomSection input.date{
+				width:95px;
+				height:20px;
+				padding-left:5px;
+				line-height:20px;
+				float:left;
+				margin:4px 7px 0;	
+				border:1px solid #7ea5c8;
+				background:url(../i/input-bg.png) repeat-x left top;
+				}
+				
+/* radioPanel */
+.radioPanel{
+	width:100%;
+	margin:0 0 10px 0;
+	position:relative;
+	border:#d2d2d2 solid 1px;
+	}
+	
+	.radioPanel .section{
+		padding:10px;
+		line-height:18px;
+		}
+	
+		.radioPanel .row{
+			padding:5px 0;
+			}
+		
+		.radioPanel label{
+			width:auto;
+			float:left;
+			display:inline;
+			margin:0 40px 0 0;
+			}
+			
+		.radioPanel input{
+			width:auto;
+			float:left;
+			display:inline;
+			margin:2px 5px 0 2px;
+			padding:0;
+			}
+			
+		.radioPanel label.span{
+			width:auto;
+			margin:0 24px 0 0;
+			font-weight:normal;
+			}
+			
+/* tabPersonal */
+#tabPersonal .requiredInfo{
+	width:100%;
+	padding:10px 0;
+	text-indent:10px;
+	border-left:#d2d2d2 solid 1px;
+	border-right:#d2d2d2 solid 1px;
+	}
+	
+		
+/* tabLicense */
+#tabLicense .requiredInfo{
+	width:100%;
+	padding:10px 0;
+	text-indent:10px;
+	border-left:#d2d2d2 solid 1px;
+	border-right:#d2d2d2 solid 1px;
+	}
+	
+/* tabPractice */
+#tabPractice .requiredInfo{
+	width:100%;
+	padding:10px 0;
+	text-indent:10px;
+	border-left:#d2d2d2 solid 1px;
+	border-right:#d2d2d2 solid 1px;
+	}
+	
+	#tabPractice .radioPanel{
+		margin:0;
+		border-bottom:0;
+		}
+	
+	#tabPractice #primaryOffice,
+	#tabPractice #additionalPractice{
+		display:none;
+		}
+		
+/* tabPayment */
+#tabPayment .requiredInfo{
+	width:100%;
+	padding:10px 0;
+	text-indent:10px;
+	border-left:#d2d2d2 solid 1px;
+	border-right:#d2d2d2 solid 1px;
+	}
+	
+/* tabStatement */
+#tabStatement .requiredInfo{
+	width:100%;
+	padding:10px 0;
+	text-indent:10px;
+	border-left:#d2d2d2 solid 1px;
+	border-right:#d2d2d2 solid 1px;
+	}
+				
+/* errorInfo */
+.errorInfo{
+	display:none;
+	margin:10px 0;
+	padding:10px 8px;
+	position:relative;
+	border:#f00 solid 1px;
+	background-color:#ffb0bb;
+	}
+	
+	.errorInfo .tl,
+	.errorInfo .tr,
+	.errorInfo .bl,
+	.errorInfo .br{
+		background-image:url(../i/error-corner.png);
+		}
+		
+	.errorInfo h3{
+		margin:0 0 6px 0;
+		padding:0 0 0 25px;
+		font-size:12px;
+		line-height:16px;
+		color:#f00;
+		background-image:url(../i/icon-error.png);
+		background-repeat:no-repeat;
+		background-position:0 0;
+		}
+		
+	.errorInfo p{
+		margin:0 0 0 25px;
+		font-size:12px;
+		line-height:18px;
+		color: #c00;
+		}
+		
+.errorInput{
+	border:#da1820 solid 1px !important;
+	}
+	
+/* flyout */
+.flyout{
+	display:none;
+	padding:4px 8px;
+	position:absolute;
+	margin-top:10px;
+	border:#666666 solid 1px;
+	background-color:#dddddd;
+	}
+	
+#licenseFlyout{
+	width:266px;
+	}
+	
+	.flyout li{
+		line-height:18px;
+		}
+
+/* START OF SERVICE AGENT STYLES ------------------------------------------------ */
+
+#fiveStep li{
+	width:20%;
+	}
+
+.dashboardPanel{
+	width:100%;
+	padding:14px 1px 0 1px;
+	}
+	
+	/* table */
+	.dashboardPanel .tableData{
+		width:66%;
+		float:left;
+		display:inline;
+		padding:0 0 8px 0;
+		}
+		
+		/* table title */
+		.dashboardPanel .tableData .tableTitle{
+			height:36px;
+			border-bottom:#bdbdbd solid 1px;
+			background:url(../i/panel-head.png) repeat-x left top;
+			}
+			
+			.dashboardPanel .tableData .tableTitle a{
+				width:auto;
+				float:right;
+				display:inline;
+				margin:0 24px 0 0;
+				font-size:12px;
+				line-height:36px;
+				/* text shadow */
+				text-shadow:#ececec 0 1px 0;
+				}
+			
+			.dashboardPanel .tableData .tableTitle h2{
+				font-size:16px;
+				font-weight:normal;
+				line-height:36px;
+				text-indent:10px;
+				/* text shadow */
+				text-shadow:#ffffff 0 2px 0;
+				}
+				
+			.dashboardPanel .tableData td{
+				padding:8px 10px;
+				}
+				
+	/* sidebar */
+	.dashboardPanel .sideBar{
+		width:32%;
+		float:right;
+		display:inline;
+		}
+		
+		.dashboardPanel .sideBar .panel{
+			width:100%;
+			border:#d2d2d2 solid 1px;
+			position:relative;
+			}
+			
+		.dashboardPanel .sideBar .queryEnrollmentStatusPanel{
+			margin:0 0 20px 0;
+			}
+			
+			/* Header */
+			.dashboardPanel .sideBar .panelHeader{
+				height:36px;
+				border-bottom:#bdbdbd solid 1px;
+				background:url(../i/panel-head.png) repeat-x left top;
+				}
+				
+				.dashboardPanel .sideBar .panelHeader h2{
+					font-size:16px;
+					font-weight:normal;
+					line-height:36px;
+					text-indent:20px;
+					/* text shadow */
+					text-shadow:#ffffff 0 2px 0;
+					}
+					
+			/* panelSetion */
+			.dashboardPanel .sideBar .queryEnrollmentStatusPanel .panelSetion{
+				height:82px;
+				padding:0 0 0 20px;
+				}
+				
+				.dashboardPanel .sideBar .queryEnrollmentStatusPanel label{
+					display:block;
+					padding:10px 0 0 0;
+					font-size:12px;
+					font-weight:bold;
+					line-height:29px;
+					}
+					
+				.dashboardPanel .sideBar .queryEnrollmentStatusPanel .text{
+					width:150px;
+					height:21px;
+					float:left;
+					display:inline;
+					margin:0 9px 0 0;
+					padding-left:5px;
+					line-height:20px;	
+					border:1px solid #7ea5c8;
+					background:url(../i/input-bg.png) repeat-x left top;
+					}
+					
+			/* notificationsPanel */
+			.dashboardPanel .sideBar .notificationsPanel li{
+				min-height:10px;
+				padding:0 50px 0 65px;
+				border-bottom:#d2d2d2 dashed 1px;
+				background:url(../i/icon-folder.png) no-repeat 14px 12px;
+				}
+				
+			.dashboardPanel .sideBar .notificationsPanel li.last{
+				border-bottom:0;
+				}
+				
+				.dashboardPanel .sideBar .notificationsPanel li p{
+					padding:8px 0 0 0;
+					font-size:13px;
+					line-height:18px;
+					}
+					
+				.dashboardPanel .sideBar .notificationsPanel li p a{
+					text-decoration:none;
+					}
+					
+				.dashboardPanel .sideBar .notificationsPanel li p a:hover{
+					text-decoration:underline;
+					}
+					
+				.dashboardPanel .sideBar .notificationsPanel li span.date{
+					font-size:12px;
+					line-height:28px;
+					color:#666666;
+					}
+
+/* Enrollment */
+#enrollmentSection .filterPanel{
+	display:block;
+	}
+	
+	#enrollmentSection .tabCorner{
+		padding:0 0 0 4px;
+		background:url(../i/tab-bottom.png);
+		background-repeat:no-repeat;
+		background-position:left -28px;
+		}
+		
+	#enrollmentSection .tabCornerR{
+		padding:0 4px 0 0;
+		background:url(../i/tab-bottom.png);
+		background-repeat:no-repeat;
+		background-position:right bottom;
+		}
+		
+	#enrollmentSection .tabCornerM{
+		height:10px;
+		background:url(../i/tab-bottom.png);
+		background-repeat:repeat-x;
+		background-position:right -66px;
+		}
+
+#enrollmentSection .tabContent .pagination .left{
+	width:35%;
+	}
+
+#enrollmentSection .tabContent .pagination .right{
+	width:60%;
+	}
+	
+	#enrollmentSection #tabNotes .generalTable tr td{
+		padding:5px;
+		}
+		
+	#enrollmentSection #tabNotes .generalTable tr th.towline{
+		vertical-align:top;
+		line-height:13px;
+		}
+		
+		#enrollmentSection #tabNotes .generalTable tr th.towline a{
+			width:auto;
+			display:inline-block;
+			padding:2px 0;
+			}
+			
+/* Edit Entrollment */
+.practicePanel .addPracticeLocations input.practiceAddressInput{
+	width:200px;
+	}
+	
+/* Update Profile */
+#updateProfile{
+	line-height:30px;
+	}
+	
+	#updateProfile .row{
+		padding:2px 0;
+		}
+
+#updateProfile label{
+	width:145px;
+	float:left;
+	font-weight:bold;
+	}
+#updateProfile label.error{
+    white-space: nowrap;
+    width: 250px;
+    }
+	
+	#updateProfile span.sep{
+		width:auto;
+		float:left;
+		display:inline;
+		padding:0 2px;
+		}
+		
+	#updateProfile input[type=text]{
+		width:42px;
+		height:20px;
+		padding-left:5px;
+		line-height:20px;
+		float:left;
+		margin:4px 7px 0;	
+		border:1px solid #7ea5c8;
+		background:url(../i/input-bg.png) repeat-x left top;
+		}
+
+	#updateProfile input.normalInput{
+		width:204px;
+		}
+		
+	#updateProfile input.smallInput{
+		width:42px;
+		}
+		
+	#updateProfile input.smallInputP{
+		width:62px;
+		}
+		
+	#updateProfile em{
+		color:#999999;
+		}
+		
+/* helpSection */
+.helpSection{
+	width:100%;
+	border:1px solid #d2d2d2;
+	position:relative;
+	}
+	
+	/* header */
+	.helpSection .sectionHeader{
+		height:36px;
+		border-bottom:#bdbdbd solid 1px;
+		background:url(../i/panel-head.png) repeat-x left top;
+		}
+		
+		.helpSection .sectionHeader span{
+			padding:0 0 0 20px;
+			font-size:16px;
+			line-height:36px;
+			/* text shadow */
+			text-shadow:#ffffff 0 2px 0;
+			}
+			
+		.helpSection .sectionHeader strong{
+			padding:0 0 0 52px;
+			font-size:14px;
+			line-height:36px;
+			/* text shadow */
+			text-shadow:#ffffff 0 1px 0;
+			}
+			
+		.helpSection .sectionHeader a{
+			padding:0 0 0 18px;
+			font-size:14px;
+			line-height:36px;
+			/* text shadow */
+			text-shadow:#ffffff 0 1px 0;
+			}
+			
+	/* section */
+	.helpSection .row{
+		margin:0 0 16px 0;
+		padding:0 0 22px 0;
+		border-bottom:#dedcdc solid 1px;
+		}
+		
+	.helpSection .last{
+		margin:0;
+		}
+		
+		.helpSection .row strong{
+			display:block;
+			margin:0 0 6px 0;
+			font-size:18px;
+			line-height:24px;
+			}
+			
+		.helpSection .row li{
+			width:33%;
+			float:left;
+			display:inline;
+			font-size:14px;
+			line-height:27px;
+			}
+			
+/* My Profile */
+#myProfile{
+	margin:0 0 100px 0;
+	}
+	
+	#tabStatement p.noIndent{
+		width:100%;
+		margin:0;
+		}
+	
+/* Search Results */
+#searchResultsSection .sectionHeader{
+	width:100%;
+	height:36px;
+	border:#d2d2d2 solid 1px;
+	position:relative;
+	background:url(../i/panel-head.png) repeat-x left top;
+	}
+	
+	#searchResultsSection .sectionHeader h2{
+		font-size:16px;
+		font-weight:normal;
+		line-height:36px;
+		text-indent:20px;
+		/* text shadow */
+		text-shadow:#ffffff 0 2px 0;
+		}
+		
+	#searchResultsSection .tableContainer #resultsTable th,
+	.table-enrollment-notes-sort th{
+		padding:0 0 0 5px;
+		}
+		
+	#searchResultsSection .tableContainer #resultsTable td{
+		padding:5px;
+		}
+		
+/* Advanced Search */
+#advancedSearch .detailPanel{
+	padding:15px 10px;
+	}
+
+#advancedSearch .leftCol{
+	width:45%;
+	float:left;
+	display:inline;
+	}
+	
+#advancedSearch .rightCol{
+	width:50%;
+	float:left;
+	display:inline;
+	}
+	
+	#advancedSearch .buttons{
+		height:25px;
+		padding:0 0 7px 0;
+		}
+		
+		#advancedSearch .buttons a{
+			width:auto;
+			float:right;
+			display:inline;
+			}
+			
+			#advancedSearch .buttons a span.btM{
+				padding:0 23px;
+				}
+			
+			#advancedSearch .buttons a .icon{
+				padding:0 0 0 20px;
+				background-image:url(../i/icon-search-small.png);
+				background-repeat:no-repeat;
+				background-position:left center;
+				}
+		
+	#advancedSearch .row{
+		padding:2px 0;
+		line-height:30px;
+		}
+		
+		#advancedSearch label{
+			width:102px;
+			}
+		
+		#advancedSearch input[type=text]{
+			width:auto;
+			height:20px;
+			padding-left:5px;
+			line-height:20px;
+			float:left;
+			margin:4px 7px 0;	
+			border:1px solid #7ea5c8;
+			background:url(../i/input-bg.png) repeat-x left top;
+			}
+			
+		#advancedSearch input.normalInput{
+			width:215px;
+			}
+			
+		#advancedSearch input.date{
+			width:95px;
+			}
+			
+		#advancedSearch span.floatL{
+			margin:0;
+			}
+			
+		#advancedSearch select{
+			width:225px;
+			float:left;
+			margin:4px 7px 0;
+			height:20px;
+			line-height:20px;
+			}
+
+		#advancedSearch input[type=checkbox]{
+			width:auto;
+			float:left;
+			display:inline;
+			margin:8px 6px auto 7px;
+			padding:0;
+			}
+
+					
+		#advancedSearch .checkRow .checkWrapper{
+			width:360px;
+			float:left;
+			display:inline;
+			}
+
+			
+		#advancedSearch .checkRow span.label{
+			width:94px;
+			float:left;
+			display:inline;
+			cursor:pointer;
+			}
+		span.label, span.label strong {
+			font-weight: normal !important;
+		}
+			
+/* Create Enrollment */
+#createEnrollment{
+	margin:0 0 100px 0;
+	}
+
+#createEnrollment .row{
+	padding:2px 0;
+	line-height:30px;
+	}
+	
+	#createEnrollment label{
+		width:20%;
+		}
+	
+	#createEnrollment .row select{
+		width:290px;
+		margin:6px 0 0 7px;
+		}
+		
+	#createEnrollment input[type=radio]{
+		width:auto;
+		float:left;
+		display:inline;
+		margin:8px 6px auto 7px;
+		padding:0;
+		}
+		
+	#createEnrollment input[type=text]{
+		width:262px;
+		height:20px;
+		padding-left:5px;
+		line-height:20px;
+		float:left;
+		margin:4px 7px 0;	
+		border:1px solid #7ea5c8;
+		background:url(../i/input-bg.png) repeat-x left top;
+		}
+		
+	#createEnrollment span.label{
+		width:auto;
+		float:left;
+		display:inline;
+		margin:0 30px 0 0;
+		cursor:pointer;
+		}
+		
+#mainContent.createEnrollmentPage{
+	margin:0 0 60px 0;
+	}
+		
+/* Help Content */
+#mainContent.helpPage{
+	padding:0 0 34px 0;
+	}
+
+.helpContent{
+	margin:13px 0 20px 0;
+	padding:17px 28px 32px 20px;
+	border:#d2d2d2 solid 1px;
+	}
+	
+	.helpContent p{
+		padding:10px 22px 10px 0;
+		line-height:21px;
+		}
+		
+	.helpContent .placeHolder{
+		margin:8px 0 15px 0;
+		}
+		
+
+/*new css*/		
+		
+.searchPanel{
+		float:left;
+		min-height: 125px;
+		width:100%;
+		line-height:30px;
+		display:block;
+	}
+	.detailPanel .searchPanel .row{
+		padding:3px;
+		float:left;
+		width:100%;
+	}
+	.searchPanel{
+		float:left;
+		width:100%;
+	}
+		.searchPanel .leftCol{
+			width:40%;
+			float:left;
+		}
+		.floatL{
+			float:left;
+		}
+			.detailPanel .searchPanel label{
+				width:30%;
+				float:left;
+			}
+			.detailPanel .searchPanel label.normalL{
+				font-weight:normal;
+				width: 16%;
+				}
+			.detailPanel .searchPanel span.floatL {
+				margin-right:0;
+				}
+		.searchPanel .rightCol{
+			width:55%;
+			float:left;
+		}
+		.searchPanel input{
+			height:20px;
+			padding-left:5px;
+			line-height:20px;
+			float:left;
+			margin:4px 7px 0;	
+			border:1px solid #7ea5c8;
+			background:url(../i/input-bg.png) repeat-x left top;
+		}
+		.searchPanel select{
+			width:60%;
+			float:left;
+			margin:4px 7px 0;
+			height:20px;
+			line-height:20px;
+		}
+		.searchPanel .purpleBtn{
+			float:right;
+			margin-top:8px;
+			margin-right:8px;
+		}
+			.searchPanel .purpleBtn .btM{
+				padding:0 16px;
+			}
+.advanceSearchPage{
+	min-height:600px;
+	float:none;
+	}
+	.searchDetailPanel{
+		margin-top:10px;
+		}
+a.searchBtn span.btM{
+	padding:0 20px;
+	}	
+	.searchBtn .icon{
+		background:url(../i/magnifier-icon.png) no-repeat 0 center;
+		padding-left:20px;
+		}
+
+.topA{
+	float:left;
+	width:100%;
+	border-left:1px solid #d2d2d2;
+	border-right:1px solid #d2d2d2;
+	padding-top:25px;
+	}
+	.topA .tableHeader{
+		border:none;
+		}
+.topPanelTop{
+	padding-top:25px;
+	}
+ .editInfo,
+ .editInfo:visited{
+	color:#1aabff;
+	font-size:12px;
+	float:right;
+	display:inline-block;
+	padding-right:15px;
+	padding-bottom:10px;
+	}
+.editContent {
+	border-top:none;
+	}	
+#tabPersonal .editContent .newEnrollmentPanel{
+	border-top:none;
+	}
+#tabPersonal .editContent .requiredInfo{
+	border:none;
+	}
+.editContent .newEnrollmentPanel .wholeCol{
+	border-top:1px solid #d2d2d2;
+	}
+	
+	
+/* modal */
+#modalBackground{
+	width:100%;
+	height:100%;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index:10000;
+	display:none;
+	background:#000001;
+	}
+
+	
+#modal{
+	top:0;
+	left:0;
+	position:fixed;
+	z-index:10001;
+	}
+	
+	.modal{
+		display:none;
+		}
+	
+	/* writeNotesModal */	
+	#writeNotesModal{
+		width:564px;
+		}
+		
+		#writeNotesModal .container{
+			padding:20px 0 10px 0;
+			}
+		
+		#writeNotesModal .textarea{
+			width:500px;
+			height:120px;
+			padding:4px;
+			border:#7ea5c8 solid 1px;
+			background:url(../i/input-bg.png) repeat-x left top;
+			}
+			
+		#writeNotesModal .buttons{
+			height:25px;
+			padding:20px 0 0 0;
+			text-align:center;
+			}
+			
+			#writeNotesModal .buttons .saveBtn{
+				margin:0 10px 0 144px;
+				}
+				
+	/* viewNotesModal */	
+	#viewNotesModal{
+		width:564px;
+		}
+		
+		#viewNotesModal .container{
+			padding:20px 0 10px 0;
+			}
+		
+		#viewNotesModal .textarea{
+			width:500px;
+			height:120px;
+			padding:4px;
+			border:#7ea5c8 solid 1px;
+			background:url(../i/input-bg.png) repeat-x left top;
+			}
+			
+		#viewNotesModal .buttons{
+			height:25px;
+			padding:20px 0 0 0;
+			text-align:center;
+			}
+			
+			#viewNotesModal .buttons .links a{
+				width:auto;
+				float:left;
+				display:inline;
+				display:block;
+				line-height:25px;
+				}
+				
+			#viewNotesModal .buttons .links a.nextLink{
+				margin:0 0 0 20px;
+				}
+				
+			#viewNotesModal .buttons .greyBtn{
+				width:auto;
+				float:right;
+				display:inline;
+				}
+				
+	/* writeNotesModal */	
+	#saveDraftModal{
+		width:564px;
+		}
+		
+		#saveDraftModal .container{
+			padding:20px 0 10px 0;
+			}
+		
+		#saveDraftModal p{
+			font-size:14px;
+			line-height:34px;
+			text-align:center;
+			}
+			
+		#saveDraftModal .buttons{
+			height:25px;
+			padding:24px 0 6px 0;
+			text-align:center;
+			}
+			
+			#saveDraftModal .buttons .purpleBtn{
+				margin:0 0 0 188px;
+				}
+				
+	/* submitModal */	
+	#submitModal{
+		width:564px;
+		}
+		
+		#submitModal .container{
+			padding:20px 0 10px 0;
+			}
+		
+		#submitModal p{
+			font-size:14px;
+			line-height:34px;
+			text-align:center;
+			}
+			
+		#submitModal .buttons{
+			height:25px;
+			padding:24px 0 6px 0;
+			text-align:center;
+			}
+			
+			#submitModal .buttons .purpleBtn{
+				margin:0 0 0 188px;
+				}
+				
+	/* practiceLookupModal */	
+	#practiceLookupModal{
+		width:678px;
+		}
+		
+		#practiceLookupModal .container{
+			padding:20px 0 10px 0;
+			}
+			
+			#practiceLookupModal .container .colL{
+				width:162px;
+				float:left;
+				display:inline;
+				}
+			
+			#practiceLookupModal .container .colS{
+				width:112px;
+				float:left;
+				display:inline;
+				}
+				
+			#practiceLookupModal .container .colLast{
+				width:76px;
+				float:left;
+				display:inline;
+				}
+				
+				#practiceLookupModal .container label{
+					display:block;
+					padding:10px 0 0 0;
+					font-size:12px;
+					font-weight:bold;
+					line-height:22px;
+					}
+				
+				#practiceLookupModal input[type=text]{
+					width:86px;
+					height:20px;
+					padding-left:5px;
+					line-height:20px;
+					float:left;
+					margin:4px 0 0;	
+					border:1px solid #7ea5c8;
+					background:url(../i/input-bg.png) repeat-x left top;
+					}
+					
+				#practiceLookupModal input.normalInput{
+					width:134px;
+					}
+					
+				#practiceLookupModal input.smallInput{
+					width:66px;
+					}
+			
+		#practiceLookupModal .buttons{
+			height:25px;
+			padding:30px 0 14px 0;
+			text-align:center;
+			}
+			
+			#practiceLookupModal .buttons .purpleBtn{
+				margin:0 0 0 250px;
+				}
+				
+			#practiceLookupModal .buttons a .icon{
+				padding:0 0 0 20px;
+				background-image:url(../i/icon-search-small.png);
+				background-repeat:no-repeat;
+				background-position:left center;
+				}
+				
+		#practiceLookupModal .searchResult{
+			display:none;
+			margin:10px 0 0 0;
+			border-top:#dbdbdb dashed 1px;
+			}
+				
+			#practiceLookupModal .searchResult p{
+				font-weight:bold;
+				line-height:28px;
+				}
+				
+			#practiceLookupModal .searchResult .bottomButtons{
+				height:25px;
+				padding:20px 0 20px 180px;
+				}
+				
+				#practiceLookupModal .searchResult .bottomButtons .purpleBtn{
+					margin:0 10px 0 0;
+					}
+		
+	/* modal header */
+	#modal .modalHeader{
+		height:50px;
+		}
+		
+		#modal .modalHeader .corner{
+			padding:0 0 0 13px;
+			background-image:url(../i/bg-modal-header.png);
+			background-repeat:no-repeat;
+			background-position:left top;
+			}
+			
+		#modal .modalHeader .cornerR{
+			padding:0 13px 0 0;
+			background-image:url(../i/bg-modal-header.png);
+			background-repeat:no-repeat;
+			background-position:right -100px;
+			}
+			
+		#modal .modalHeader .cornerM{
+			height:50px;
+			background-image:url(../i/bg-modal-header.png);
+			background-repeat:repeat-x;
+			background-position:0 -50px;
+			}
+			
+		#modal .modalHeader a.closeModal{
+			width:24px;
+			height:24px;
+			float:right;
+			display:inline;
+			margin:17px 5px 0 0;
+			text-indent:-99999px;
+			background-image:url(../i/icon-close-modal.png);
+			background-repeat:no-repeat;
+			background-position:0 0;
+			}
+			
+		#modal .modalHeader a.closeModal:hover{
+			background-position:0 -24px;
+			}
+			
+		#modal .modalHeader h2{
+			padding:8px 0 0 0;
+			font-size:16px;
+			color:#064265;
+			line-height:42px;
+			text-indent:14px;
+			text-shadow: 0 1px 0 #ffffff;
+			}
+			
+	/* modal body */
+	#modal .modalBody{
+		width:auto;
+		}
+	
+		#modal .modalBody .corner{
+			padding:0 0 0 13px;
+			background-image:url(../i/bg-modal-body-left.png);
+			background-repeat:repeat-y;
+			background-position:left top;
+			}
+			
+		#modal .modalBody .cornerR{
+			padding:0 13px 0 0;
+			background-image:url(../i/bg-modal-body-right.png);
+			background-repeat:repeat-y;
+			background-position:right top;
+			}
+			
+		#modal .modalBody .cornerM{
+			min-height:50px;
+			padding:0 14px;
+			background-color:#ffffff;
+			}
+			
+			#modal .modalBody .buttons a .btM{
+				width:78px;
+				text-align:center;
+				}
+			
+	/* modal footer */
+	#modal .modalFooter{
+		height:14px;
+		}
+	
+		#modal .modalFooter .corner{
+			padding:0 0 0 13px;
+			background-image:url(../i/bg-modal-footer.png);
+			background-repeat:no-repeat;
+			background-position:left top;
+			}
+			
+		#modal .modalFooter .cornerR{
+			padding:0 13px 0 0;
+			background-image:url(../i/bg-modal-footer.png);
+			background-repeat:no-repeat;
+			background-position:right -28px;
+			}
+			
+		#modal .modalFooter .cornerM{
+			height:14px;
+			background-image:url(../i/bg-modal-footer.png);
+			background-repeat:repeat-x;
+			background-position:0 -14px;
+			}
+			
+/* Tiny Scrollbar */
+#scrollbar{
+	margin:18px 0 50px 0;
+	}
+#scrollbar .viewport{
+	height:586px;
+	margin:0 30px 0 20px;
+	overflow:hidden; 
+	position:relative; 
+	}
+#scrollbar .overview{ 
+	list-style:none; 
+	position:absolute; 
+	left:0; 
+	top:0; 
+	padding:0; 
+	margin:0; 
+	}
+	
+#scrollbar .scrollbar{
+	width:7px;
+	position:relative; 
+	float:right;
+	}
+#scrollbar .track{ 
+	height:100%; 
+	width:13px; 
+	position:relative; 
+	padding:0 1px; 
+	}
+	
+#scrollbar .thumb{ 
+	background:transparent url(../i/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; 
+	height:161px; 
+	width:7px; 
+	cursor:pointer; 
+	overflow:hidden; 
+	position:absolute; 
+	top:0; 
+	left:-5px; 
+	}
+	
+#scrollbar .disable{ 
+	display:none; 
+	}
+
+#new-modal{
+	top:0;
+	left:0;
+	position:absolute;
+	z-index:10001;
+	/*display:none;*/
+	}
+
+	#new-modal .outLay{
+		position:relative;
+		display:none;
+		}
+		
+	#new-modal .inner{
+		}
+		
+		/* title */
+		#new-modal .modal-title{
+			height:48px;
+			line-height:48px;
+			overflow:hidden;
+			padding-left:15px;
+			width:auto;
+			background:url(../i/modal-title.png) no-repeat 0 0;
+			}
+			#new-modal .modal-title .right{
+				height:48px;
+				line-height:48px;
+				overflow:hidden;
+				padding-right:15px;
+				width:auto;
+				background:url(../i/modal-title.png) no-repeat 100% -96px;
+				}
+				#new-modal .modal-title .middle{
+					height:48px;
+					line-height:48px;
+					overflow:hidden;
+					background:url(../i/modal-title.png) repeat-x 0 -48px;
+					}
+			
+					#new-modal .inner .modal-title h2{
+						padding-left:10px;
+						display:inline;
+						font-size:16px;
+						font-weight:bold;
+						line-height:58px;
+						text-shadow:0 1px 1px #fffffd;
+						height:48px;
+						overflow:hidden;
+						color:#064265;
+						}
+				
+					#new-modal .inner .modal-title .closeModal{
+						width:24px;
+						height:24px;
+						float:right;
+						display:block;
+						overflow:hidden;
+						margin-top:15px;
+						background:url(../i/modal-close.png) no-repeat 0 0;
+						}
+				
+					#new-modal .inner .modal-title .closeModal:hover{
+						background-position:0 -24px;
+						}	
+			
+			
+		
+		#new-modal .modal-content{
+			height:auto;
+			padding-left:6px;
+			width:auto;
+			background:url(../i/modal-left.png) repeat-y 0 0;
+			}		
+			#new-modal .modal-content .right{
+				height:auto;
+				padding-right:6px;
+				width:auto;
+				background:url(../i/modal-right.png) repeat-y 100% 0;
+				}	
+				#new-modal .modal-content .middle{
+					height:auto;
+					overflow:hidden;
+					background:#fff;
+					}	
+		.modal-footer{
+			height:16px;
+			overflow:hidden;
+			padding-left:14px;
+			width:auto;
+			background:url(../i/modal-footer.png) no-repeat 0 0;
+			}
+			.modal-footer .right{
+				height:16px;
+				overflow:hidden;
+				padding-right:14px;
+				width:auto;
+				background:url(../i/modal-footer.png) no-repeat 100% -32px;
+				}
+				.modal-footer .middle{
+					height:16px;
+					overflow:hidden;
+					background:url(../i/modal-footer.png) repeat-x 0 -16px;
+					}
+			#new-modal .outLay .modal-title .middle{
+				width:530px;
+				}
+			#new-modal .outLay .modal-content .middle{
+				padding-top:30px;
+				width:548px;
+				}
+			#new-modal .outLay .modal-footer .middle{
+				width:532px;
+				}
+				#new-modal p{
+					text-align:center;
+					font-size:14px;
+					
+					}
+				#new-modal .inner .buttonArea{
+					padding-top:35px;
+					padding-bottom:15px;
+					text-align:center;
+					}
+				#new-modal .inner .buttonArea a{
+					float:none;
+					display:inline-block;
+					}
+				a.okBtn span.btM{
+					padding:0 43px;
+					}
+			#new-modal #practiceLookupModal .modal-title .middle{
+				width:650px;
+				}
+			#new-modal #practiceLookupModal .modal-content .middle{
+				width:666px; /* PESP-157 */
+				}
+			#new-modal #practiceLookupModal .modal-footer .middle{
+				width:652px;
+				}
+				#practiceLookupModal .searchRow{
+					padding-left:20px;
+					}
+					#practiceLookupModal .searchRow span{
+						float:left;
+						display:inline-block;
+						padding-right:15px;
+						}
+					#practiceLookupModal .searchRow span.last{
+						padding-right:0;
+						}
+						#practiceLookupModal .searchRow label{
+							display:block;
+							font-weight:bold;
+							font-size:12px;
+							}
+						#practiceLookupModal .searchRow input{
+							height:20px;
+							padding-left:5px;
+							line-height:20px;
+							float:left;
+							margin:7px 0 0;	
+							border:1px solid #7ea5c8;
+							background:url(../i/input-bg.png) repeat-x left top;
+							}
+						#practiceLookupModal .searchRow input.inputL{
+							width:140px;
+							}
+						#practiceLookupModal .searchRow input.inputM{
+							width:90px;
+							}
+						#practiceLookupModal .searchRow input.inputS{
+							width:70px;
+
+							}
+				#practiceLookupModal .tableContainer{
+					padding-top:10px;
+					border-top:1px #d2d2d2 dotted;
+					border-left:none;
+					}
+					#practiceLookupModal .tableContainer p{
+						text-align:left;
+						padding-bottom:10px;
+						font-size:12px;
+						padding-left:10px;
+						}
+					#practiceLookupModal .tableContainer .buttonArea{
+						padding-top:20px;
+						border-top:1px solid #d2d2d2;
+						}
+						#practiceLookupModal .tableContainer .buttonArea a.copySelectedPracticeDataBtn,
+						#practiceLookupModal .tableContainer .buttonArea a.copySelectedPracticeDataBtn:visited{
+							margin-right:10px;
+							}			
+				
+	#new-modal #printModal{
+		margin-left:-15px;
+		width:960px;
+		margin-bottom:100px;
+		}
+		#new-modal #printModal .modal-title{
+			background:url(../i/print-header.png) repeat-x 0 0 #fff;
+			padding-top:37px;
+			line-height:normal;
+			padding:37px 35px 0;
+			width:890px;
+			}
+				#new-modal #printModal .modal-title h3{
+					font-size:18px;
+					color:#0d4478;
+					background:url(../i/pirnt-icon-blue.png) no-repeat 0 center;
+					padding-left:30px;
+					}
+				#new-modal #printModal .modal-title a,
+				#new-modal #printModal .modal-title a:visited{
+					float:right;
+					margin-left:6px;
+					}
+				#new-modal #printModal .modal-title a .btM{
+					width:63px;
+					padding:0;
+					text-align:center;
+					}
+				#new-modal #printModal .modal-title a img{
+					float: left;
+					margin: 6px 0px 5px 9px;
+					}
+				#new-modal #printModal .modal-title a.greyBtn img{
+					margin-top: 7px;
+					}
+				#new-modal #printModal .modal-content{
+					background:#fff;
+					padding:5px 35px 17px;
+					}
+		#new-modal #printModal .tabSection{
+			margin-bottom:20px;
+			}
+		#new-modal #printModal .modal-content .tabContent{
+			width:890px;
+			}
+			#new-modal #printModal .modal-content .tabHead .tabM{
+				line-height:39px;
+				padding-left:15px;
+				}
+			#new-modal #printModal .modal-content .tabHead h5{
+				text-shadow:0 1px 1px #fffffe;
+				color:#064265;
+				font-size:14px;
+				}
+			#new-modal #printModal .tableContainer{
+				border-bottom:1px solid #d2d2d2;
+				padding-bottom:15px;
+				}
+			#new-modal #printModal .modal-content .right{
+				background:none;
+				}		
+				#new-modal #printModal .topPanel .leftCol,
+				#new-modal #printModal .bottomPanel .leftCol{
+					width:48%;
+					}
+					#new-modal #printModal .modal-content .topPanel,
+					#new-modal #printModal .modal-content .bottomPanel{
+						border:none;
+						}
+						#new-modal #printModal .topPanel label,
+						#new-modal #printModal .bottomPanel label{
+/*							width:220px;
+							padding-left:10px; 
+							}
+						#new-modal #printModal .tabContentP label{
+							width:570px;
+							padding-left:20px;
+							padding-right:50px;
+							float:left;
+*/
+							}
+						#new-modal #printModal .tabContentP span {
+							display: inline-block;
+							line-height: 24px;
+							}
+					#new-modal #printModal p.additionalInfo{
+						font-size:14px;
+						background:#fcfbea;
+						border:1px solid #bcb870;
+						padding:5px 5px 5px 12px;
+						text-align:left;
+						width:836px;
+						margin:5px auto 5px;
+						}
+						.additionalInfo strong{
+							color:#0d4478;
+							}
+							
+    #new-modal #definitionsModal{
+        margin-left:-15px;
+        width:960px;
+        margin-bottom:100px;
+        }
+        #new-modal #definitionsModal .modal-title{
+            background:url(../i/print-header.png) repeat-x 0 0 #fff;
+            padding-top:37px;
+            line-height:normal;
+            padding:37px 35px 0;
+            width:890px;
+            }
+                #new-modal #definitionsModal .modal-title h3{
+                    font-size:18px;
+                    color:#0d4478;
+                    background:url(../i/pirnt-icon-blue.png) no-repeat 0 center;
+                    padding-left:30px;
+                    }
+                #new-modal #definitionsModal .modal-title a,
+                #new-modal #definitionsModal .modal-title a:visited{
+                    float:right;
+                    margin-left:6px;
+                    }
+                #new-modal #definitionsModal .modal-title a .btM{
+                    width:63px;
+                    padding:0;
+                    text-align:center;
+                    }
+                #new-modal #definitionsModal .modal-title a img{
+                    float: left;
+                    margin: 6px 0px 5px 9px;
+                    }
+                #new-modal #definitionsModal .modal-title a.greyBtn img{
+                    margin-top: 7px;
+                    }
+                #new-modal #definitionsModal .modal-content{
+                    background:#fff;
+                    padding:5px 35px 17px;
+                    }
+        #new-modal #definitionsModal .tabSection{
+            margin-bottom:20px;
+            }
+        #new-modal #definitionsModal .modal-content .tabContent{
+            width:890px;
+            }
+            #new-modal #definitionsModal .modal-content .tabHead .tabM{
+                line-height:39px;
+                padding-left:15px;
+                }
+            #new-modal #definitionsModal .modal-content .tabHead h5{
+                text-shadow:0 1px 1px #fffffe;
+                color:#064265;
+                font-size:14px;
+                }
+            #new-modal #definitionsModal .tableContainer{
+                border-bottom:1px solid #d2d2d2;
+                padding-bottom:15px;
+                }
+            #new-modal #definitionsModal .modal-content .right{
+                background:none;
+                }       
+                #new-modal #definitionsModal .topPanel .leftCol,
+                #new-modal #definitionsModal .bottomPanel .leftCol{
+                    width:48%;
+                    }
+                    #new-modal #definitionsModal .modal-content .topPanel,
+                    #new-modal #definitionsModal .modal-content .bottomPanel{
+                        border:none;
+                        }
+                        #new-modal #definitionsModal .topPanel label,
+                        #new-modal #definitionsModal .bottomPanel label{
+                            width:220px;
+                            padding-left:10px;
+                            }
+                        #new-modal #definitionsModal .tabContentP label{
+                            width:570px;
+                            padding-left:20px;
+                            padding-right:50px;
+                            float:left;
+                            }
+                        #new-modal #definitionsModal .tabContentP span {
+                            display: inline-block;
+                            line-height: 24px;
+                            }
+                    #new-modal #definitionsModal p.additionalInfo{
+                        font-size:14px;
+                        background:#fcfbea;
+                        border:1px solid #bcb870;
+                        padding:5px 5px 5px 12px;
+                        text-align:left;
+                        width:836px;
+                        margin:5px auto 5px;
+                        }
+                        .additionalInfo strong{
+                            color:#0d4478;
+                            }
+
+			.plainTable{
+				border-collapse:collapse;
+				border:1px solid #bdbdbd;
+				width:846px;
+				margin:18px auto 5px;
+				}
+				.plainTable th, .summaryPageWrapper .generalTable th{
+					line-height:16px;
+					background:url(../i/table-H.png) repeat-x 0 0 #f6f6f6;
+					padding:9px 15px;
+					}
+				.plainTable td, .summaryPageWrapper .generalTable td,
+				.plainTable th, .summaryPageWrapper .generalTable th{
+					text-align:center;
+					vertical-align:middle;
+					font-size:12px;
+					border:1px solid #bdbdbd;
+					}
+				.plainTable td, .summaryPageWrapper .generalTable td{
+					padding:12px 15px;
+					}
+.uploadA{
+	padding-top:10px;
+	}					
+	.uploadA p{
+		padding-bottom:8px;
+		padding-left:2px;
+		}
+.contentT .purpleBtnR{
+	float:right;
+	margin:7px 8px 0 0;
+	}
+	.contentT .tableHeader .purpleBtnR span{
+		margin-left:0;
+		}
+
+.width940{
+	width:940px;
+	}
+.nonedisplay{
+	display:none;
+	}
+.tabContentPI .topPanel .row, .bottomPanel .row{
+	padding-bottom:0;
+	}
+
+/* END OF SERVICE AGENT STYLES -------------------------------------------------- */
+
+
+
+
+/* START OF SERVICE ADMIN STYLES ------------------------------------------------ */
+.serviceAdminTable{
+	font-size:11px;
+}
+	/* approveModal & rejectOKModal & screenModal & editModal & deleteProviderTypesModal & deleteHelpTopicModal & deleteAgreementModal & deleteAgentModal*/	
+	#noSelectedItemsModal,#approveModal,#rejectOKModal,#screenModal,#editModal,#deleteProviderTypesModal,#deleteHelpTopicModal,#deleteAgreementModal
+	,#deleteAgentModal{
+		width:564px;
+	}
+		
+		#noSelectedItemsModal .container,#approveModal .container,#rejectOKModal .container,#screenModal .container,#editModal .container
+		,#deleteProviderTypesModal .container,#deleteHelpTopicModal .container,#deleteAgreementModal .container
+		,#deleteAgentModal .container{
+			padding:20px 0 10px 0;
+			}
+		
+		#noSelectedItemsModal p,#approveModal p,#rejectOKModal p,#screenModal p,#editModal p,#deleteProviderTypesModal p,#deleteHelpTopicModal p
+		,#deleteAgreementModal p,#deleteAgentModal p{
+			width:100%;
+			height:50px;
+			line-height:18px;
+			padding:4px;
+			font-size:13px;
+			vertical-align: middle;
+			text-align:center;
+		}
+		#noSelectedItemsModal p,#approveModal p,#rejectOKModal p,#deleteProviderTypesModal p,#deleteHelpTopicModal p,#deleteAgreementModal p,#deleteAgentModal p{
+			line-height:50px;
+		}
+		#noSelectedItemsModal .buttons,#approveModal .buttons,#rejectOKModal .buttons,#screenModal .buttons,#editModal .buttons,#deleteProviderTypesModal .buttons
+		,#deleteHelpTopicModal .buttons,#deleteAgreementModal .buttons,#deleteAgentModal .buttons{
+			height:25px;
+			padding:20px 0 30px 0;
+			text-align:center;
+		}
+			.red{
+			color: red;
+			}
+			#approveModal .buttons .saveBtn,#rejectOKModal .buttons .saveBtn,#screenModal .buttons .saveBtn{
+				margin:0 10px 0 210px;
+				}
+	#editModal .buttons .saveBtn,#deleteProviderTypesModal .buttons .saveBtn,#deleteProviderTypesModal .buttons .deleteOKBtn,#deleteHelpTopicModal .buttons .deleteOKBtn
+	,#deleteAgreementModal .buttons .deleteOKBtn,#deleteAgentModal .buttons .deleteOKBtn{
+		margin:0 10px 0 170px;
+	}
+	#editModal .modalBody .buttons .saveBtn .btM{
+		width:auto;
+	}
+	/*rejectModal*/
+	#rejectModal{
+		width:564px;
+	}
+		#rejectModal .container{
+			padding:20px 0 10px 0;
+			}
+		
+		#rejectModal h3{
+			width:100%;
+			line-height:20px;
+			font-size:12px;
+			padding-bottom:10px;
+		}
+			
+		#rejectModal .buttons{
+			height:25px;
+			padding:20px 0 0px 0;
+			text-align:center;
+		}
+			
+			#rejectModal .buttons .rejectBtn{
+				margin:0 10px 0 0px;
+				}
+			#rejectModal .textarea {
+			    background: url("../i/input-bg.png") repeat-x scroll left top transparent;
+			    border: 1px solid #7EA5C8;
+			    height: 120px;
+			    padding: 4px;
+			    width: 500px;
+			}
+	/*scheduleModal*/
+	#scheduleModal{
+		width:615px;
+	}
+		#scheduleModal .container{
+			padding:10px 0 10px 0;
+			}
+		#scheduleModal .leftCol{
+			width:44%;
+			line-height:20px;
+			float:left;
+			margin-top:15px;
+		}
+		#scheduleModal .rightCol{
+			width:55%;
+			float:left;
+			line-height:20px;
+			margin-top:15px;
+		}
+		#scheduleModal .ui-datepicker-trigger{
+			margin-left:-28px;
+			margin-top:4px;
+			position:absolute;
+		}
+		#scheduleModal .shortInput{
+			width:35px;
+		}
+		#scheduleModal select{
+			height:24px;
+			line-height:24px;
+			width:70px;
+		}
+			#scheduleModal .buttons{
+				height:25px;
+				padding:40px 0 0px 0;
+				text-align:center;
+				display:inline-block;
+			}
+				#scheduleModal .buttons .saveBtn{
+					margin:0 10px 0 170px;
+				}
+	#scheduleModal label{
+		font-weight: bold;
+		width: 110px;
+		float:left;
+		
+	}
+	#scheduleModal .text{
+		background: url("../i/input-bg.png") repeat-x scroll left top transparent;
+   	 	border: 1px solid #7EA5C8;
+	    float: left;
+	    height: 20px;
+	    line-height: 20px;
+	    margin: 0 7px;
+	    padding-left: 5px;
+	}
+	
+	#searchResultsSection .tableContainer #resultsTable td{
+		padding: 10px 5px;
+	}
+	.fileWrapper{
+		width:100px;
+	}
+	
+	/* functions page */
+	input.text{
+		background: url("../i/input-bg.png") repeat-x scroll left top transparent;
+   	 	border: 1px solid #7EA5C8;
+	    float: left;
+	    height: 20px;
+	    line-height: 20px;
+	    margin: 0 7px;
+	    padding-left: 5px;
+	}
+	.functionTab .tabHead a.tab .aM{
+		padding: 0 17px;
+	}
+	.functionTab .shortInput{
+		width:35px;
+	}
+	.functionTab .newEnrollmentPanel .floatL.marginLeft10{
+		margin-left:10px;
+	}
+	.functionTab .newEnrollmentPanel .marginLeft20{
+		margin-left:27px;
+	}
+		.functionTab select{
+			height:24px;
+			line-height:24px;
+			width:70px;
+		}
+	.functionTab h3{
+		float:left;
+		font-size:15px;
+		padding:10px;
+	}
+	.sideBorder{
+		border-left: 1px solid #D2D2D2;
+		border-right: 1px solid #D2D2D2;
+		width:100%;
+		float:left;
+	}
+	.functionTab .newEnrollmentPanel{
+		margin-bottom:0;
+		float:left;
+	}
+	.functionTab .sideBorder a{
+		float:right;
+		margin-right:10px;
+		margin-top:5px;
+	}
+		.functionTab .sideBorder a .btM{
+			width:100px;
+			text-align:center;
+		}
+	.functionTab .filterPanel{
+		min-height:0;
+	}
+	.functionTab .wholeCol{
+		display:inline-block;
+		width:100%;
+	}
+	.functionTab #enrollmentSection .filterPanel{
+		display: none;
+	}
+	.marginLeft10{
+		margin-left:10px;
+	}
+		.functionTab input.text{
+		 	background: url("../i/input-bg.png") repeat-x scroll left top transparent;
+		    border: 1px solid #7EA5C8;
+		    height: 20px;
+		    line-height: 20px;
+		    margin: 4px 7px 0;
+		    padding-left: 5px;
+		}
+		.rightBoxes{
+			float:left;
+			width:75%;
+			margin-left:1%;
+		}
+		.rightBoxes h4{
+			margin-left:5px;
+		}
+		.rightBoxes .col{
+			width:25%;
+			float:left;
+		}
+		.rightBoxes .col2{
+			width:30%;
+			float:left;
+		}
+		.rightBoxes .col3{
+			width:60%;
+			float:left;
+		}
+			.rightBoxes select{
+				width: 250px;
+				height:22px;
+				float:none;
+			}
+		.rightBoxes .row{
+			padding:0;
+		}
+			.rightBoxes label{
+				float:none;
+				font-weight:normal;
+			}
+		.rightBoxes .borderTop{
+			border-top:1px solid #ddd;
+		}
+		.borderBottom{
+			border-bottom:1px solid #ddd;
+		}
+	.functionTab .buttons{
+		float:left;
+		margin-top:10px;
+		width:100%;
+	}
+		.functionTab .buttons a {
+			float:right;
+			margin-left:10px;
+		}
+		.functionTab .buttons a .btM{
+			width:100px;
+			text-align:center;	
+		}
+	.functionTab p{
+		width:98%;
+	}
+	.functionTab .helpSection{
+		float:left;
+	}
+	#changeScreenSchedulePanel .newEnrollmentPanel,
+	#addHelpTopicPanel .newEnrollmentPanel,
+	#editHelpTopicPanel .newEnrollmentPanel,
+	#addAgreementPanel .newEnrollmentPanel,
+	#editAgreementPanel .newEnrollmentPanel{
+		border-top:0;
+	}
+		#addHelpTopicPanel label,#editHelpTopicPanel label,#addAgreementPanel label,#editAgreementPanel label{
+			width:10%;
+		}
+		#addHelpTopicPanel .text,#editHelpTopicPanel .text,#addAgreementPanel .text,#editAgreementPanel .text{
+			background: url("../i/input-bg.png") repeat-x scroll left top transparent;
+    		border: 1px solid #7EA5C8;
+    		font-size:12px;
+    		width:85%;
+    		padding:2px 5px;
+    		margin-left:10px;
+		}
+		#addHelpTopicPanel textarea.text,#editHelpTopicPanel textarea.text,#addAgreementPanel textarea.text,#editAgreementPanel textarea.text{
+			margin-top:10px;
+		}
+	#viewHelpTopicPanel p,#viewAgreementPanel p{
+		line-height:18px;
+	}
+	#enrollmentSection #tabAgreement .pagination .left{
+		width: 50%;
+	}
+	#enrollmentSection #tabAgreement .pagination .right{
+		width: 45%;
+	}
+	#viewAgreementPanel .printBtn .btM{
+		width:auto;
+	}
+	
+#tabServiceAgents .detailPanel label{
+	width:145px;
+	float:left;
+	font-weight:bold;
+	}
+#tabServiceAgents .detailPanel label.error{
+    white-space: nowrap;
+    width: 250px;
+    }
+	#tabServiceAgents .detailPanel span.sep{
+		width:auto;
+		float:left;
+		display:inline;
+		padding:0 2px;
+		}
+		
+	#tabServiceAgents .detailPanel input[type=text]{
+		width:42px;
+		height:20px;
+		padding-left:5px;
+		line-height:20px;
+		float:left;
+		margin:4px 7px 0;	
+		border:1px solid #7ea5c8;
+		background:url(../i/input-bg.png) repeat-x left top;
+		}
+
+	#tabServiceAgents .detailPanel input.normalInput{
+		width:204px;
+		}
+		
+	#tabServiceAgents .detailPanel input.smallInput{
+		width:42px;
+		}
+		
+	#tabServiceAgents .detailPanel input.smallInputP{
+		width:62px;
+		}
+		
+	#tabServiceAgents .detailPanel em{
+		color:#999999;
+		}
+	#tabServiceAgents .detailPanel {
+	    line-height: 30px;
+	}
+	#tabServiceAgents .detailPanel .row {
+	    padding: 2px 0;
+	}
+	#serviceAdminresultsTable th{
+		padding:0 0 0 5px;
+	}
+	#serviceAdminresultsTable td{
+		padding:10px 5px;
+	}
+	.detailPanel .green{
+		font-size:14px;
+	}
+	.noData{
+	    padding: 3px;
+	}
+	.disabledBtn{
+	   color: gray;
+       cursor: default;
+       text-decoration: none;
+	}
+	.pagination-page-number-disabled{
+	   color: gray;
+	   cursor: default;
+	}
+    .generalTable th span.sort-down{
+        display:inline-block;
+        width:7px;
+        height:5px;
+        margin-left:2px;
+        background:url(../i/icon-sort-down.png) no-repeat left center;
+    }
+    .generalTable th span.sort-up{
+        display:inline-block;
+        width:7px;
+        height:5px;
+        margin-left:2px;
+        background:url(../i/icon-sort-up.png) no-repeat left center;
+    }
+    #agreementDocumentTypeFilterText{
+        width: 110px;
+    }
+form .error{
+    color: red;
+}
+	
+/* END OF SERVICE ADMIN STYLES -------------------------------------------------- */
+
+
+
+/* START OF SYSTEM ADMIN STYLES ------------------------------------------------- */
+/* img select inputtype password system admin */
+img.delIcon{
+	padding-top:3px;
+	}
+select.userRoleSelect{
+	margin:0 0 0 7px;
+	width:213px;
+	}
+input.passwordNormalInput{
+	width:204px;
+	height:20px;
+	padding-left:5px;
+	line-height:20px;
+	float:left;
+	margin:4px 7px 0;	
+	border:1px solid #7ea5c8;
+	background:url(../i/input-bg.png) repeat-x left top;
+	}
+.linkRight{
+	margin-right:6px;
+	}
+
+	/* advanced search system admin */
+	.systemAdminFrom #advancedSearch .rightCol{
+		width:45%;
+		}	
+	.systemAdminFrom #advancedSearch .rightCol{
+		width:55%;
+		}	
+	#advancedSearch .checkRow .checkMain .checkWrapper{
+		width:400px;
+		}
+	#advancedSearch .checkRow .checkMain .checkWrapper .label,
+	#advancedSearch .checkRow .checkMain .checkWrapper .minWidth{
+		float:left;
+		display:inline;
+		cursor:pointer;
+		}
+	#advancedSearch .checkRow .checkMain .checkWrapper .minWidth{
+		width:55px;
+		}
+	#advancedSearch .checkRow .checkMain .checkWrapper .label{
+		width:120px;
+		}
+		
+		/* search table system admin */
+		#searchResultsSection .tableContainer .tableMain #userAccountResultsTable th{
+			padding:0 0 0 10px;
+			}	
+		#searchResultsSection .tableContainer .tableMain #userAccountResultsTable th.alignCenter{
+			padding:0;
+			text-align:center;
+			}	
+		#searchResultsSection .tableContainer .tableMain #userAccountResultsTable td.alignCenter{
+			padding:5px;
+			text-align:center;
+			}
+		#searchResultsSection .tableContainer .tableMain #userAccountResultsTable td{
+			padding:5px 5px 5px 10px;
+			}
+	
+        /* delete UserAccount Modal */
+		#new-modal #deleteUserAccountModal .buttonArea .btM,
+		#new-modal #deleteUserAccountModal .buttonArea .btM{
+			padding-left:33px;
+			padding-right:34px;
+			}	
+		  /* delete UserAccount Modal buttonArea padding ie7 bug */
+		  #new-modal #deleteUserAccountModal .inner .buttonArea{
+			  padding-top:35px;
+			  }
+			  
+			/* pagiBox pagi bug */
+		  	*+html .tabContent .pagination .right .pagiBox .pagi{
+				width:143px;
+				}/* ie7 */
+		  	.tabContent .pagination .right .pagiBox .pagi{
+				width:auto;
+				}
+			  
+
+/* END OF SYSTEM ADMIN STYLES --------------------------------------------------- */
+
+
+
+
+/* START OF ORGANIZATION PROVIDER TYPE STYLES ---------------------------------- */
+
+/*step bar style*/
+.stepWidget6Item li{
+    width: 16%;
+}
+    /*.stepWidget6Item li span strong{*/
+        /*font-size: 12px !important;*/
+    /*}*/
+.stepWidget6Item li.practice {
+    width: 18%;
+}
+    /*.stepWidget.stepWidget6Item li span strong{*/
+        /*font-size: 14px;*/
+    /*}*/
+    .stepWidget.stepWidget6Item li.license {
+        width: 18%;
+    }
+    .stepWidget.stepWidget6Item li.practice{
+        width: 21%;
+    }
+    .stepWidget.stepWidget6Item li.summary{
+        width: 11%;
+    }
+
+/*practice panel style*/
+.homeHealthAgency .practicePanel{
+    display: block;
+}
+
+/*table input style*/
+.addPracticeLocations .generalTable input.longInput{
+    width: 150px;
+}
+
+/*.homeHealthAgency input:disabled, .homeHealthAgency select:disabled, .addPracticeLocations .generalTable input:disabled{*/
+    /*background-color: #d2d2d2 !important;*/
+    /*border: 1px solid #999 !important;*/
+    /*background-image: none;*/
+/*}*/
+.homeHealthAgency input.disabled, .homeHealthAgency select.disabled, .addPracticeLocations .generalTable input.disabled, .licenseInformationTable input.disabled,
+#enrollmentForm input.disabled, #enrollmentForm select.disabled {
+    background-color: #d2d2d2 !important;
+    border: 1px solid #999 !important;
+    background-image: none !important;
+}
+
+.alternateTable td{
+    line-height: 18px;
+}
+    .facility th.alignCenter{
+        padding: 0 !important;
+    }
+    .facility th span.sep{
+        background-repeat: repeat-y;
+        height: 45px;
+    }
+    .facility th span.multi{
+        line-height: 16px;
+        display: inline-block;
+        padding-top: 8px;
+    }
+    .alternateTable td strong{
+        padding: 0 0 0 10px;
+        float: left;
+    }
+    .alternateTable td input[type=checkbox]{
+        margin: 0 5px;
+        float: left;
+    }
+    .alternateTable td input[type=checkbox]{
+        margin: 0 5px 0 10px;
+        float: left;
+    }
+    .facility td input.longInput{
+        width: 125px !important;
+        background: #fff;
+    }
+    .facility td span.type{
+        line-height: 15px;
+        display: block;
+        width: 138px;
+        text-align: left;
+        padding-left: 5px;
+    }
+    .facility td span.type.inputCnt{
+        display: inline-block;
+        float: left;
+        width: 13px;
+    }
+        .facility td span.type input[type=checkbox]{
+            position: relative;
+            top: 3px;
+            margin: 0 ;
+            float: left;
+            width: 13px;
+            height: 13px;
+        }
+    .facility td input[type=file]{
+        width: 200px !important;
+    }
+    .alternateTable td:first-child span{
+        line-height: 13px;
+        float: left;
+    }
+
+    .practicePanel .tableHeader.topHeader{
+        height: 32px;
+        line-height: 32px;
+        background-position: 0 -2px;
+    }
+
+    /*member info section style*/
+    .memberInfoPanel .section{
+        line-height: 30px;
+        margin: 0 10px;
+        padding: 10px 0;
+    }
+    .memberInfoPanel .closeSection{
+        background: url("../i/icon-x-red.png") no-repeat 50% 50%;
+        width: 25px;
+        height: 25px;
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+    }
+        .memberInfoPanel .section .leftCol, .memberInfoPanel .section .rightCol{
+            display: inline;
+            float: left;
+            width: 49%;
+        }
+            .memberInfoPanel .section label{
+                width: 170px;
+                max-height: 35px;
+            }
+            .memberInfoPanel .section label.multiLine{
+                line-height: 15px;
+            }
+            .memberInfoPanel .section label.inline{
+                display: inline-block;
+                font-weight: normal;
+                line-height: 16px;
+                padding-top: 5px;
+                width: auto;
+            }
+                .memberInfoPanel .section label.inline input{
+                    margin: 0 5px 0 10px;
+                    height: 13px;
+                    width: 13px;
+                    position: relative;
+                    top: 2px;
+                }
+            .memberInfoPanel .section span.label{
+                width: 100%;
+                font-weight: normal;
+                display: block;
+                position: relative;
+                top: -8px;
+            }
+            .memberInfoPanel .section .inlineBox span.label{
+                display: inline;
+                width: 170px;
+                top: 0;
+            }.memberInfoPanel .section .inlineBox label{
+                display: inline;
+                width: auto;
+            }
+            .memberInfoPanel .section span.floatL{
+                width: 5px;
+            }
+            .memberInfoPanel .section span.floatL.inputCnt{
+                width: 552px;
+            }
+                .memberInfoPanel .section span.floatL.inputCnt span.label{
+                    top: 0;
+                    padding-left: 7px;
+                }
+            .memberInfoPanel .section span.errorMsg{
+                color: #FF2F2F;
+                margin-left: 10px;
+                display: none;
+            }
+            .memberInfoPanel .section input.smallInput{
+                width: 102px !important;
+            }
+            .memberInfoPanel .section input.tinyInput{
+                width: 32px !important;
+            }
+            .memberInfoPanel .section a.purpleBtn{
+                margin-top: 4px;
+            }
+            .memberInfoPanel .requiredInfo {
+                margin: 0 10px;
+                line-height: 30px;
+                height: 30px;
+            }
+            .memberInfoPanel .line {
+                border-top: 1px solid #D2D2D2;
+            }
+            .memberInfoPanel .row .subType {
+                padding-left: 60px;
+                float: left;
+                display: none;
+            }
+            .memberInfoPanel .row h3 {
+                font-size: 14px;
+            }
+            .memberInfoPanel .row label.longLbl {
+                width: 760px;
+                line-height: 15px;
+                padding-bottom: 10px;
+            }
+            .memberInfoPanel .row label.leftPadding {
+                padding-left: 30px;
+                padding-top: 0;
+            }
+    #addMember, #addOwnership, #addBusinessOwnership{
+        display: inline-block;
+        line-height: 20px;
+        padding-bottom: 5px;
+    }
+
+    .requiredInfo ul{
+        line-height: 15px;
+        list-style: disc outside none;
+        margin-left: 15px;
+        padding-bottom: 10px;
+    }
+
+    a.definition{
+        padding-left: 5px;
+        cursor: help;
+    }
+
+    /*definition modal style*/
+    #new-modal #definitionsModal.definitions .modal-title h3{
+        background: none;
+        padding-left: 0;
+    }
+        #new-modal #definitionsModal .modal-content .section{
+            font-size: 13px;
+            line-height: 18px;
+            padding-bottom: 15px;
+        }
+            #new-modal #definitionsModal .modal-content .section ul{
+                margin-left: 25px;
+                list-style: disc;
+            }
+                #new-modal #definitionsModal .modal-content .section ul li{
+                    padding-bottom: 5px;
+                }
+
+    /*full length input style*/
+    .practicePanel input.wholeInput.fullLengthName{
+        width: 538px !important;
+    }
+    .practicePanel label.inlineLabel{
+        padding-left: 15px;
+        width: 50px;
+    }
+    .practicePanel span.control{
+        line-height: 15px;
+        display: block;
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+        .practicePanel span.control input[type=checkbox]{
+            float: left;
+            margin-bottom: 15px;
+            position: relative;
+            top: 0;
+        }
+.personalPanel .section .address{
+    float: left;
+    line-height: 20px;
+    padding-top: 5px;
+}
+
+.memberInfo tr td{
+    border-bottom: 1px solid #d2d2d2;
+}
+.memberInfo tr.last td{
+    border-bottom: none;
+}
+.memberInfo tr td.firstCell{
+    border-right: 1px solid #d2d2d2;
+    vertical-align: middle;
+    text-align: center;
+}
+.memberInfo tr td.firstCell.colored{
+    background: #ECF2F3;
+}
+.personalPanel td .section .leftCol, .personalPanel td .section .rightCol{
+    width: 48%;
+}
+.practicePanel input.wholeInput.reason{
+    width: 600px;
+}
+.hideSection{
+    display: none;
+}
+.row.showHide {
+    background: #F9F9F9;
+}
+.row.showHide .hideSection{
+    display: block;
+}
+
+.providerPanel .statement label.multiLine, .personalPanel .section label.multiLine{
+    line-height: 17px;
+}.personalPanel .section label.multiLine{
+    line-height: 17px;
+    padding-top: 6px;
+}
+
+.tableHeader.noBorder{
+    border: none;
+}
+.practicePanel span.dateWrapper{
+    width: auto !important;
+}
+
+.topPanel .row span.address, .bottomPanel .row span.address{
+    float: left;
+}
+
+.generalTable.noInput tr td{
+    line-height: 20px;
+}
+
+.bottomPanel.borderTop{
+    border-top: 1px solid #d2d2d2 !important;
+}
+
+.tableHeader.margiTop{
+    border: none;
+}
+.ownership .bottomPanel .leftCol{
+    padding-top: 10px;
+}
+.ownership .bottomPanel label{
+    line-height: 20px;
+}
+.ownership .bottomPanel label.multiLine{
+    line-height: 15px;
+}
+.ownership .memberInfoPanel{
+    padding: 10px;
+}
+.ownership .memberInfoPanel label.inline{
+    float: left;
+    width: 50px;
+    font-weight: normal;
+    padding-left: 50px;
+}
+.providerStatement .topPanel{
+    border-bottom: 1px solid #d2d2d2;
+}
+.providerStatement .topPanel label{
+    margin-right: 0;
+}
+.bottomPanel .row.paddingBottom {
+    padding-bottom: 10px;
+}
+
+/*view copy modal*/
+#new-modal #viewCopyModal{
+    margin-left:-15px;
+    width:960px;
+    margin-bottom:100px;
+}
+#new-modal #viewCopyModal .modal-title{
+    background:url(../i/print-header.png) repeat-x 0 0 #fff;
+    padding-top:37px;
+    line-height:normal;
+    padding:37px 35px 0;
+    width:890px;
+}
+#new-modal #viewCopyModal .modal-title a, #new-modal #viewCopyModal .modal-title a:visited{
+    float: right;
+    margin-left: 6px;
+    width: auto;
+    height: auto;
+    margin-top: 0;
+}
+#new-modal #viewCopyModal .copyContentArea{
+    height: 400px;
+    line-height: 400px;
+    border: 1px solid #d2d2d2;
+    text-align: center;
+    color: #CCCCCC;
+    font-family: Arial,serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: bold;
+}
+#new-modal #viewCopyModal .modal-content{
+    background: #fff;
+    padding: 0 30px 50px 30px;
+}
+#new-modal #viewCopyModal .modal-title a img {
+    float: left;
+    margin: 6px 5px 5px -4px;
+}
+
+.detailPanel.pendingPanel .col1{
+    width: 33%;
+}
+.detailPanel.pendingPanel .col2{
+    width: 37%;
+}
+.detailPanel.pendingPanel .col3{
+    width: 30%;
+}
+/*.detailPanel.pendingPanel span.green{*/
+    /*font-size: 12px;*/
+/*}*/
+.detailPanel.pendingPanel .section.line{
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #d2d2d2;
+}
+    .detailPanel.pendingPanel .section.line span.text{
+        float: left;
+        line-height: 18px;
+        width: 780px;
+        position: relative;
+        top: -3px;
+    }
+
+.generalTable tr td a.viewCopy.link{
+    display: block;
+    line-height: 12px;
+}
+.tableData table.facility select.bigSelect{
+    width: 110px;
+    margin: 0 7px;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+}
+
+#tabPractice .radioPanel.borderBottom{
+    border-bottom: 1px solid #d2d2d2;
+    margin-bottom: 10px;
+}
+
+.practicePanel .wholeCol .leftCol,.practicePanel .wholeCol .rightCol{
+    width: 49%;
+    float: left;
+}
+
+.borderTop{
+    border-top: 1px solid #d2d2d2;
+}
+ul.styled {
+    line-height: 15px;
+    list-style: disc outside none;
+    margin-left: 15px;
+    padding-bottom: 10px;
+}
+
+#tabPayment.ownership span.floatL{
+    width: 5px;
+}
+#tabPayment.ownership label{
+    width: 170px !important;
+    max-height: 35px;
+}
+#tabPayment.ownership label.disabled{
+    color: #666;
+}
+#tabPayment.ownership .inlineBox label{
+    width: auto !important;
+    max-height: 35px;
+}
+#tabPayment.ownership label.multiLine{
+    line-height: 15px;
+}
+#tabPayment.ownership label.inline{
+    display: inline-block;
+    width: auto !important;
+    font-weight: normal;
+    padding-right: 8px;
+}
+#tabPayment.ownership label.inline.leftPadding{
+    padding: 0 0 0 30px;
+    line-height: 15px;
+}
+#tabPayment.ownership label.inlineLabel{
+    display: inline-block;
+    width: auto !important;
+    padding-right: 8px;
+}
+#tabPayment.ownership label.longLbl {
+      line-height: 15px;
+      padding-bottom: 10px;
+      width: 760px !important;
+  }
+#tabPayment.ownership span.label{
+    width: 170px;
+}
+#tabPayment.ownership .inputCnt span.label{
+    width: auto;
+}
+#tabPayment.ownership label span.label{
+    float: none;
+    display: inline-block;
+    width: 170px;
+    font-weight: normal;
+    position: relative;
+    top: -15px;
+}
+#tabPayment.ownership span.label.longLbl{
+    width: auto !important;
+    padding-left: 5px;
+}
+#tabPayment.ownership span.control{
+    padding-bottom: 10px;
+}
+#tabPayment.ownership .tableBottom{
+    line-height: 30px;
+    padding-left: 15px;
+}
+#tabPayment.ownership .desc{
+    margin: 0 10px;
+}
+#tabPayment.ownership .inputCnt.floatL{
+    width: 565px;
+}
+#tabPayment.ownership input.smallInput {
+    width: 102px !important;
+}
+#tabPayment.ownership .tableHeader.borderTop {
+    border-top: 1px solid #d2d2d2;
+}
+
+input[type=checkbox]{
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+.memberInfoPanel .section.hiddenSection {
+    display: none;
+}
+.memberInfoPanel .section.hiddenSection .inlineBox input{
+    width: 80px;
+}
+
+.memberInfoPanel .section.hiddenSection span.floatL.inputCnt{
+    width: 452px;
+}
+.memberInfoPanel .section.hiddenSection input.wholeInput.fullLengthName{
+    width: 430px !important;
+}
+.memberInfoPanel .section.hiddenSection label.inlineLabel{
+    width: 150px !important;
+}
+
+.providerPanel .statement label.longLbl{
+    width: 23%;
+}
+
+/*print modal*/
+#new-modal #printModal .topPanel .rightCol, #new-modal #printModal .bottomPanel .rightCol{
+    width: 48%;
+}
+
+#printModal .tableHeader{
+    border: none;
+}
+#printModal .line{
+    border-top: 1px solid #d2d2d2;
+    height: 1px;
+    margin: 10px 0;
+    clear: both;
+}
+#printModal .bottomPanel h3{
+    margin: 0;
+    padding-left: 20px;
+    font-size: 15px;
+}
+#printModal .bottomPanel.wideLbl label{
+    width: 700px;
+}
+#printModal span.text{
+    padding: 0 20px;
+    line-height: 18px;
+    display: block;
+}
+#printModal span.providerPic{
+    padding: 0 10px;
+    display: block;
+}
+.addPracticeLocations .generalTable td span{
+    line-height: 17px;
+    display: block;
+}
+
+/* END OF ORGANIZATION PROVIDER TYPE STYLES ------------------------------------- */
+
+/* assembly styles */
+.loginPanel select {
+	margin-left: 5%; 
+}
+.dashboardPanel .tableDataButtons {
+    display: inline;
+    float: left;
+    padding: 0 0 8px;
+    width: 66%;
+}
+
+.info {
+	color: green;
+    font-weight: bold;
+}
+.error {
+    color: #da1820;
+    font-weight: bold;
+}
+
+#updateProfile select {
+	margin-left: 8px;
+}
+
+.editTabWrapper {
+	border: 1px solid #D2D2D2;
+    margin: 0 0 10px;
+    position: relative;
+    width: 100%;
+}
+
+.editTabWrapper .otherTableHeader {
+	border-top: 1px solid #D2D2D2;
+}
+
+.editTabWrapper > form > div > .tl, .editTabWrapper  > form > div > .tr, .editTabWrapper  > form > div > .bl, .editTabWrapper  > form > div > .br {
+  background: none repeat scroll 0 0 transparent !important;
+}
+
+.editTabWrapper div {
+    border: 0 none;
+    margin: 0;
+}
+
+p.confirm {
+    padding: 20px;
+}
+
+.tabDefault .tableContainer {
+	padding-top: 0px !important;
+}
+
+.orgDisclosureRd label {
+    width: 90% !important;
+}
+
+.orgDisclosureRd .wideCol {
+    border-top: 0 none;
+}
+
+#tabPractice .orgDisclosureRd .tableHeader > span {
+    line-height: 34px;
+}
+
+.memberInfoPanel .row label.mediumLbl {
+    width: 450px;
+}
+
+
+.row li {
+    float: left;
+    line-height: 12px;
+    padding: 6px;
+    width: 23%;
+}
+
+.practicePanel span.fldInfo {
+    color: #999999;
+    display: inline;
+    float: left;
+    line-height: 14px;
+    width: 50%;
+}
+
+.practicePanel span.shrtFldInfo {
+    color: #999999;
+    display: inline;
+    float: left;
+}
+
+.eligibilityTable th, .eligibilityTable td {
+    border: 1px solid #D2D2D2;
+    padding: 3px;
+}
+
+.addPracticeLocations .generalTable input.long250Input {
+    width: 250px;
+}
+
+/* PESP-146 */
+.fixedWidthTable {  
+    table-layout: fixed;	
+}
+
+.fixedWidthTable tr td {
+	word-wrap: break-word;
+}
+
+/* PESP-160, PESP-162 */
+
+.providerReadOnly .row span, .summaryPageWrapper .row span, #printModal .row span, #printModal .summaryPrint label{
+	float: left;
+	width: 45%;
+    word-wrap: break-word;
+}
+
+.summaryPageWrapper .row , #printModal .row {
+	margin-top: 12px;
+	line-height: 18px;
+}
+
+.summaryPageWrapper .generalTable {
+    border: 1px solid #BDBDBD !important;
+    border-collapse: collapse !important;
+    margin: 18px auto 5px !important;
+    width: 95%;
+    float: none;
+}
+
+.summaryPageWrapper .generalTable th {
+	color: black;
+}
+
+.summaryPageWrapper .generalTable th span.sep{
+	display: none;
+}
+
+.providerReadOnly .row span.floatL, .summaryPageWrapper .row span.floatL, #printModal .row span.floatL, #printModal .eightytwenty .row span.floatL {
+	width: 5px;
+}
+
+#printModal .wholeCol, #printModal .eightytwenty, .orgDisclosureRd .eightytwenty{
+	padding-left: 10px;
+}
+
+#printModal .eightytwenty .row label, .orgDisclosureRd .eightytwenty .row label {
+    float: left;
+    width: 80%;
+    word-wrap: break-word;
+}
+
+#printModal .eightytwenty .row span {
+    float: left;
+    width: 20%;
+    word-wrap: break-word;
+}
+
+.orgDisclosureRd .eightytwenty .row span {
+    float: left;
+    width: auto;
+}
+
+td.nopad {
+	padding: 0px !important;
+}
+
+
+.row.addressline1 {
+	padding-bottom : 0px;
+}
+.row.addressline2 {
+	padding-top : 0px;
+}
+.row.addressline2 input {
+	margin-top: 0px;
+}
+
+.memberInfoPanel .section.hiddenSection .inlineBox.addressline2 input {
+	width: 204px;
+}
+
+input.zipInput, input.zipInputFor {
+	width: 50px !important;
+}
+
+.noteInputPanel, .noteInputPanel .noteText {
+    padding: 10px;
+}
+
+.editTabWrapper .notePanel {
+    border: 1px solid #D2D2D2;
+    line-height: 18px;
+    margin: 10px;
+    padding: 10px;
+    position: relative;
+}
+
+.providerReadOnly .wideCol .row span {
+	width: 5%;
+}
+
+/* START OF ERROR MESSAGE ------------------------------------------------------- */
+#errorbar {
+	background: #c00;
+	color: #fff;
+	margin-bottom: 10px;
+}
+	#errorbar .contentWidth {
+		padding: 10px 0;
+	}
+/* END OF ERROR MESSAGE --------------------------------------------------------- */
+
+.assuredServicePanel {
+	border: 1px solid #D2D2D2;
+}
+
+.ext-services {
+	padding-left : 176px;
+}
+
+.row li.no-width {
+	width: auto !important;
+}
+
+.bottom-border {
+	border-bottom: 1px solid #ddd;
+}

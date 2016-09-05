@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+  <no-tx-datasource>
+    <jndi-name>TaskServiceDS</jndi-name>
+    <connection-url>@jdbc.url@</connection-url>
+    <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+    <user-name>@jdbc.user@</user-name>
+    <password>@jdbc.pass@</password>
+    <min-pool-size>5</min-pool-size>
+    <max-pool-size>100</max-pool-size>
+  </no-tx-datasource>
+</datasources>

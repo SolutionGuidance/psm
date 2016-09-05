@@ -1,0 +1,1 @@
+delete from provider_setting where related_entity_cd = 'A7' and provider_typ_cd = '39';

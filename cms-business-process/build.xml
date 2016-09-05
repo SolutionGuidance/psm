@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     CMS Business Process And Screening   
+     ====================================================================== -->
+<project name="cms-business-process" default="test">
+	<property file="../build.properties"></property>
+	<property name="build.dir" value="build"></property>
+	<property name="report.dir" value="log"></property>
+	<property name="classes.dir" value="${build.dir}/classes"></property>
+	<property name="resources" value="src/main/resources"></property>
+	<property name="src.main" value="src/main/java"></property>
+	<property name="src.test" value="src/test/java"></property>
+
+	<target name="test" depends="compile-tests" description="Runs all tests">
+	    <mkdir dir="${report.dir}"/>
+	    <junit printsummary="yes" haltonfailure="yes" showoutput="yes" >
+	        <classpath>
+	            <path refid="build.lib"/>
+	            <path location="${classes.dir}"/>
+	        </classpath>
+	        <formatter type="xml"/>
+	        <batchtest fork="no" todir="${report.dir}" >
+	            <fileset dir="${src.test}" includes="**/*Tests.java" />
+	        </batchtest>
+	    </junit>
+    </target>
+
+	<path id="build.lib">
+		<fileset dir="${jbpm.runtime}">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="lib">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="${jbpm.runtime}/lib">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="../cms-business-model/build/dist">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="compile" depends="clean" description="Compiles all sources">
+		<mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.main}" destdir="${classes.dir}" 
+        	deprecation="false" failonerror="true" 
+        	debug="true" includeantruntime="no" 
+        	classpathref="build.lib">
+        </javac>
+		<copy todir="${classes.dir}" overwrite="yes">
+			<fileset dir="${resources}"></fileset>
+		</copy>
+	</target>
+
+	<target name="compile-tests" depends="compile" description="Compiles all test sources">
+        <javac srcdir="${src.test}" destdir="${classes.dir}" 
+        	deprecation="false" failonerror="true" 
+        	debug="true" includeantruntime="no" 
+        	classpathref="build.lib">
+        </javac>
+	</target>
+
+	<target name="clean" description="Removes all generated fiels">
+		<delete dir="${build.dir}"></delete>
+		<delete dir="${report.dir}"></delete>
+	</target>
+</project>

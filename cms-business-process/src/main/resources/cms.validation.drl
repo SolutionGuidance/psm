@@ -14180,21 +14180,6 @@ rule "Nurse Midwife Certification from the American Midwifery Certification Boar
         );
 end
 
-rule "Nurse Practitioner Certification  is required for Nurse Practitioner"
-	when
-        LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
-   		$provider: ProviderInformationType(providerType == ProviderType.NURSE_PRACTITIONER.value())
-   		LicenseInformationType( $licenses: license ) from $provider.licenseInformation
-        not LicenseType(licenseType == LicenseNames.NURSE_PRACTITIONER.value()) from $licenses
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/LicenseInformation/License/Required",
-            "00001",
-            "Nurse Practitioner Certification  is required."
-        );
-end
-
 rule "Copy of license as occupational therapist in state of practice is required for Occupational Therapist"
 	when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())

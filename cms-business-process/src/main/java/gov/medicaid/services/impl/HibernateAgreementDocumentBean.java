@@ -15,6 +15,7 @@
  */
 package gov.medicaid.services.impl;
 
+import gov.medicaid.domain.rules.GlobalLookups;
 import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.AgreementDocumentSearchCriteria;
 import gov.medicaid.entities.SearchResult;
@@ -25,6 +26,7 @@ import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Sequences;
 import gov.medicaid.services.util.Util;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,6 +84,7 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
             }
 
             agreementDocument.setId(getSequence().getNextValue(Sequences.AGREEMENT_DOC_SEQ));
+            agreementDocument.setCreatedOn(new Date());
             getEm().persist(agreementDocument);
 
             return LogUtil.traceExit(getLog(), signature, agreementDocument.getId());
@@ -113,12 +116,14 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
 
         try {
             AgreementDocument entity = getEm().find(AgreementDocument.class, agreementDocument.getId());
-
+            
             if (entity == null) {
                 throw new EntityNotFoundException("No such entity in the database.");
             }
-
+            agreementDocument.setVersion(agreementDocument.getVersion() + 1);
             getEm().merge(agreementDocument);
+            
+            GlobalLookups.refresh();
             LogUtil.traceExit(getLog(), signature, null);
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);

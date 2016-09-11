@@ -16,18 +16,23 @@
 package gov.medicaid.services.impl;
 
 import gov.medicaid.domain.model.ApplicantType;
+import gov.medicaid.domain.rules.GlobalLookups;
 import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.BeneficialOwnerType;
 import gov.medicaid.entities.EntityStructureType;
 import gov.medicaid.entities.LegacySystemMapping;
 import gov.medicaid.entities.LookupEntity;
 import gov.medicaid.entities.ProviderType;
+import gov.medicaid.entities.ProviderTypeSetting;
 import gov.medicaid.entities.ServiceAssuranceExtType;
 import gov.medicaid.entities.ServiceAssuranceType;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.util.Util;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -189,12 +194,30 @@ public class LookupServiceBean implements LookupService {
     @SuppressWarnings("unchecked")
     public List<AgreementDocument> findRequiredDocuments(String providerType) {
         Query query = em.createQuery("Select d FROM AgreementDocument d, ProviderTypeSetting s WHERE "
-                + "s.providerTypeCode = :providerType AND d.type = s.relatedEntityCode "
+                + "s.providerTypeCode = :providerType AND d.id = s.relatedEntityCode "
                 + "AND s.relatedEntityType = 'AgreementDocument'");
         query.setParameter("providerType", providerType);
         return query.getResultList();
     }
 
+    /**
+     * Finds the provider type setting based on the given parameters.
+     * 
+     * @param providerTypeCode provider type code
+     * @param relatedEntityType related entity type
+     * @param relatedEntityCode related entity code
+     * 
+     * @return the list of settings
+     */
+    @SuppressWarnings("unchecked")
+	public List<ProviderTypeSetting> findProviderTypeSetting(String providerTypeCode, String relatedEntityType) {
+    	return em.createQuery("SELECT s from ProviderTypeSetting s WHERE s.providerTypeCode = :providerTypeCode " +
+    			"AND s.relatedEntityType = :relatedEntityType")
+    			.setParameter("providerTypeCode", providerTypeCode)
+    			.setParameter("relatedEntityType", relatedEntityType)
+    			.getResultList();
+    }
+    
     /**
      * Retrieves all the lookups of the given class.
      * 
@@ -297,5 +320,44 @@ public class LookupServiceBean implements LookupService {
             return null;
         }
         return resultList.get(0).getInternalCode();
+    }
+    
+    @Override
+    public void updateProviderTypeAgreementSettings(String providerTypeCode,
+    		long[] agreementIds) {
+    	List<ProviderTypeSetting> selectedSettings = findProviderTypeSetting(providerTypeCode, "AgreementDocument");
+        DecimalFormat format = new DecimalFormat("00");
+        List<Long> persistedIds = new ArrayList<Long>();
+        for (ProviderTypeSetting setting: selectedSettings) {
+        	boolean keep = false;
+        	for (long id: agreementIds) {
+        		if (setting.getRelatedEntityCode().equals(format.format(id))) {
+        			keep = true;
+        			persistedIds.add(id);
+        			break;
+        		}
+        	}
+        	if (!keep) {
+        		// delete the setting from DB
+        		em.remove(setting);
+        	}
+        }
+        
+        for (long id: agreementIds) {
+        	if (!persistedIds.contains(id)) {
+        		// new addition
+        		ProviderTypeSetting setting = new ProviderTypeSetting();
+        		BigDecimal maxId = (BigDecimal) em.createNativeQuery("select max(provider_setting_id) from PROVIDER_SETTING").getSingleResult();
+        		setting.setId(maxId.longValue() + 1);
+        		setting.setProviderTypeCode(providerTypeCode);
+        		setting.setRelatedEntityCode(format.format(id));
+        		setting.setRelatedEntityType("AgreementDocument");
+        		setting.setRelationshipType("RA");
+        		
+        		em.persist(setting);
+        	}
+        }
+        
+        GlobalLookups.refresh();
     }
 }

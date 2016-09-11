@@ -33,7 +33,41 @@
                                 <form:hidden path="code"/>
                                 <div id="addProviderPanel">
                                     <div class="sideBorder"><h3>Edit Provider Type</h3></div>
-                                    <%@ include file="/WEB-INF/pages/admin/includes/service_admin_create_edit_provider_type_common.jsp" %>
+                                    <div class="newEnrollmentPanel jerrish">
+										    <div class="section">
+										        <div class="wholeCol">
+										            <label>Provider Type</label>
+										            <span class="floatL"><b>:</b></span>
+										            <form:input path="description" cssClass="text"/>
+										        </div>
+										        <div class="tableHeader"><span>Agreements and Addendums</span></div>
+										        <div class="wholeCol">
+										            <div class="row">
+										                	<div class="row">
+										                        <div class="col2">
+										                        <c:forEach var="doc" items="${selectedAgreements}">
+										                            <div class="row">
+										                            	<input type="checkbox" name="providerAgreements" checked="checked" value="${doc.id}"/>
+										                            	<label for="addTypeCheck56">${doc.title}</label>
+                                                            		</div>
+                                                        		</c:forEach>
+                                                        		<c:forEach var="doc" items="${remainingAgreements}">
+										                            <div class="row">
+										                            	<input type="checkbox" name="providerAgreements" value="${doc.id}"/>
+										                            	<label for="addTypeCheck56">${doc.title}</label>
+                                                            		</div>
+                                                        		</c:forEach>
+										                    </div>
+										                </div>
+										            </div>
+										    </div>
+										    <div class="bl"></div>
+										    <div class="br"></div>
+										</div>
+										<div class="buttons">
+										    <a href="${ctx}/admin/viewProviderTypes" class="greyBtn"><span class="btR"><span class="btM">Cancel</span></span></a>
+										    <a href="javascript:;" class="saveProviderTypeBtn greyBtn"><span class="btR"><span class="btM">Save</span></span></a>
+										</div>
                                 </div>
                             </form:form>
                             <!--/ #addProviderPanel -->

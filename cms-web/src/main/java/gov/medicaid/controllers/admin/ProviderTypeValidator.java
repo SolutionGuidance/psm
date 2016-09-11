@@ -15,11 +15,9 @@
  */
 package gov.medicaid.controllers.admin;
 
-import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.services.AgreementDocumentService;
 import gov.medicaid.services.PortalServiceConfigurationException;
-import gov.medicaid.services.PortalServiceException;
 
 import javax.annotation.PostConstruct;
 
@@ -86,27 +84,9 @@ public class ProviderTypeValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         if (target != null) {
-            ProviderType type = (ProviderType) target;
-            checkAgreementDocument(type.getAddendum(), errors);
-            checkAgreementDocument(type.getAgreement(), errors);
+        	// empty
         }
     }
 
-    /**
-     * Check if the agreement is correct.
-     *
-     * @param document the document to be checked.
-     * @param errors the errors
-     */
-    private void checkAgreementDocument(AgreementDocument document, Errors errors) {
-        if (document != null) {
-            try {
-                if (agreementDocumentService.get(document.getId()) == null) {
-                    errors.rejectValue("entity.notExist", "the agreementDocument is absent");
-                }
-            } catch (PortalServiceException e) {
-                errors.rejectValue("service.error", e.getMessage());
-            }
-        }
-    }
+
 }

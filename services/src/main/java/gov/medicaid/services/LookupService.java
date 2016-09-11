@@ -20,9 +20,9 @@ import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.BeneficialOwnerType;
 import gov.medicaid.entities.LookupEntity;
 import gov.medicaid.entities.ProviderType;
+import gov.medicaid.entities.ProviderTypeSetting;
 import gov.medicaid.entities.ServiceAssuranceExtType;
 import gov.medicaid.entities.ServiceAssuranceType;
-import gov.medicaid.entities.SystemId;
 
 import java.util.List;
 
@@ -148,4 +148,23 @@ public interface LookupService {
      * @return the mapped value, or the external code if not found
      */
     public String findInternalMapping(String name, String codeType, String externalCodeValue);
+    
+    /**
+     * Finds the provider type setting based on the given parameters.
+     * 
+     * @param providerTypeCode provider type code
+     * @param relatedEntityType related entity type
+     * @param relatedEntityCode related entity code
+     * 
+     * @return the list of settings
+     */
+	public List<ProviderTypeSetting> findProviderTypeSetting(String providerTypeCode, String relatedEntityType);
+
+	/**
+	 * Updates the ProviderTypeSettings for agreements.
+	 * 
+	 * @param providerTypeCode providerTypeCode
+	 * @param agreementIds agreement ids
+	 */
+	public void updateProviderTypeAgreementSettings(String providerTypeCode, long[] agreementIds);
 }

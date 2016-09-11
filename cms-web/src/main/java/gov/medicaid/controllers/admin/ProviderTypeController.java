@@ -21,7 +21,6 @@ import gov.medicaid.entities.AgreementDocumentSearchCriteria;
 import gov.medicaid.entities.AgreementDocumentType;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ProviderTypeSearchCriteria;
-import gov.medicaid.entities.RequiredField;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.services.AgreementDocumentService;
 import gov.medicaid.services.LookupService;
@@ -37,6 +36,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -160,24 +160,7 @@ public class ProviderTypeController extends BaseServiceAdminController {
         }
     }
 
-    /**
-     * This method is used to build the contained required fields string.
-     *
-     * @param providerType the provider type
-     * @return the string representation of the contained required fields.
-     */
-    private static final String buildContainedRequiredFieldsString(ProviderType providerType) {
-        StringBuilder containedRequiredFields = new StringBuilder();
-        if (providerType.getRequiredFields() != null) {
-            for (RequiredField requiredField : providerType.getRequiredFields()) {
-                containedRequiredFields.append("@").append(requiredField.getType().getDescription())
-                    .append(requiredField.getDescription()).append("@");
-            }
-        }
-        return containedRequiredFields.toString();
-    }
-
-    /**
+   /**
      * This action will get the entity with the given ID.
      *
      * @param providerTypeId the entity ID
@@ -192,10 +175,10 @@ public class ProviderTypeController extends BaseServiceAdminController {
 
         try {
             ProviderType providerType = providerTypeService.get(providerTypeId);
+            List<AgreementDocument> agreements = lookupService.findRequiredDocuments(providerType.getCode());
             ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
             model.addObject("providerType", providerType);
-
-            model.addObject("containedRequiredFields", buildContainedRequiredFieldsString(providerType));
+            model.addObject("agreements", agreements);
             return LogUtil.traceExit(getLog(), signature, model);
         } catch (PortalServiceException e) {
             LogUtil.traceError(getLog(), signature, e);
@@ -261,50 +244,27 @@ public class ProviderTypeController extends BaseServiceAdminController {
             AgreementDocumentSearchCriteria criteria = new AgreementDocumentSearchCriteria();
             criteria.setPageNumber(1);
             criteria.setPageSize(-1);
-            criteria.setType(AgreementDocumentType.AGREEMENT);
-
             List<AgreementDocument> agreements = agreementDocumentService.search(criteria).getItems();
-            // Retrieve addendums
-            criteria = new AgreementDocumentSearchCriteria();
-            criteria.setPageNumber(1);
-            criteria.setPageSize(-1);
-            criteria.setType(AgreementDocumentType.ADDENDUM);
-
-            List<AgreementDocument> addendums = agreementDocumentService.search(criteria).getItems();
+            List<AgreementDocument> remainingAgreements = new ArrayList<AgreementDocument>(agreements);
+            List<AgreementDocument> selectedAgreements = lookupService.findRequiredDocuments(providerType.getCode());
+            
+            for (AgreementDocument agreement: agreements) {
+            	for (AgreementDocument selectedAgreement: selectedAgreements) {
+            		if (selectedAgreement.getId() == agreement.getId()) {
+            			remainingAgreements.remove(agreement);
+            			break;
+            		}
+            	}
+            }
             ModelAndView model = new ModelAndView("admin/service_admin_edit_provider_type");
             model.addObject("providerType", providerType);
-            model.addObject("agreements", agreements);
-            model.addObject("addendums", addendums);
-            model.addObject("containedRequiredFields", buildContainedRequiredFieldsString(providerType));
+            model.addObject("selectedAgreements", selectedAgreements);
+            model.addObject("remainingAgreements", remainingAgreements);
             return LogUtil.traceExit(getLog(), signature, model);
         } catch (PortalServiceException e) {
             LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
-    }
-
-    /**
-     * This method is used to retrieve required fields.
-     *
-     * @param providerType the provider type
-     * @return a list of the RequiredField
-     * @throws PortalServiceException if error occurred when calling lookup service.
-     */
-    private List<RequiredField> retrieveRequiredFields(ProviderType providerType) throws PortalServiceException {
-        if (providerType.getRequiredFields() == null) {
-            return null;
-        }
-        List<RequiredField> requiredFields = lookupService.findAllLookups(RequiredField.class);
-        List<RequiredField> includedFields = new ArrayList<RequiredField>();
-        for (RequiredField reqField : providerType.getRequiredFields()) {
-            for (RequiredField requiredField : requiredFields) {
-                if (requiredField.getDescription().equals(reqField.getDescription())
-                    && requiredField.getType().getDescription().equals(reqField.getType().getDescription())) {
-                    includedFields.add(requiredField);
-                }
-            }
-        }
-        return includedFields;
     }
 
     /**
@@ -326,8 +286,6 @@ public class ProviderTypeController extends BaseServiceAdminController {
             boolean blank = Util.isBlank(providerType.getDescription());
             boolean exists = getLookupService().findLookupByDescription(ProviderType.class, providerType.getDescription()) != null;
             if (!blank && !exists) {
-                providerType.setRequiredFields(retrieveRequiredFields(providerType));
-                
                 providerTypeService.create(providerType);
                 
                 // Retrieve
@@ -335,7 +293,6 @@ public class ProviderTypeController extends BaseServiceAdminController {
                 
                 ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
                 model.addObject("providerType", providerType);
-                model.addObject("containedRequiredFields", buildContainedRequiredFieldsString(providerType));
                 return LogUtil.traceExit(getLog(), signature, model);
             } else {
                 
@@ -370,14 +327,16 @@ public class ProviderTypeController extends BaseServiceAdminController {
         LogUtil.traceEntry(getLog(), signature, new String[] {"providerType"}, new Object[] {providerType});
 
         try {
-            providerType.setRequiredFields(retrieveRequiredFields(providerType));
-            providerTypeService.update(providerType);
+            // providerTypeService.update(providerType);
             // Retrieve
             providerType = providerTypeService.get(providerType.getCode());
-
+            long[] agreementIds = ServletRequestUtils.getLongParameters(request, "providerAgreements");
+            
+            lookupService.updateProviderTypeAgreementSettings(providerType.getCode(), agreementIds);
+            
             ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
             model.addObject("providerType", providerType);
-            model.addObject("containedRequiredFields", buildContainedRequiredFieldsString(providerType));
+            model.addObject("agreements", lookupService.findRequiredDocuments(providerType.getCode()));
             return LogUtil.traceExit(getLog(), signature, model);
         } catch (PortalServiceException e) {
             LogUtil.traceError(getLog(), signature, e);

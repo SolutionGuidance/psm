@@ -15,10 +15,6 @@
  */
 package gov.medicaid.services.impl;
 
-import java.util.HashSet;
-import java.util.List;
-
-import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ProviderTypeSearchCriteria;
 import gov.medicaid.entities.SearchResult;
@@ -27,6 +23,9 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderTypeService;
 import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
+
+import java.util.HashSet;
+import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -79,12 +78,6 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
         try {
             if (providerType.getCode() == null) {
                 providerType.setCode(generateCode(getLookupService().findAllLookups(ProviderType.class)));
-            }
-            if (providerType.getAddendum() != null) {
-                providerType.setAddendum(getEm().find(AgreementDocument.class, providerType.getAddendum().getId()));
-            }
-            if (providerType.getAgreement() != null) {
-                providerType.setAgreement(getEm().find(AgreementDocument.class, providerType.getAgreement().getId()));
             }
             getEm().persist(providerType);
             return LogUtil.traceExit(getLog(), signature, providerType.getCode());
@@ -146,12 +139,6 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
             ProviderType obj = getEm().find(ProviderType.class, providerType.getCode());
             if (obj == null) {
                 throw new EntityNotFoundException("No such entity in the database.");
-            }
-            if (providerType.getAddendum() != null) {
-                providerType.setAddendum(getEm().find(AgreementDocument.class, providerType.getAddendum().getId()));
-            }
-            if (providerType.getAgreement() != null) {
-                providerType.setAgreement(getEm().find(AgreementDocument.class, providerType.getAgreement().getId()));
             }
             getEm().merge(providerType);
             LogUtil.traceExit(getLog(), signature, null);

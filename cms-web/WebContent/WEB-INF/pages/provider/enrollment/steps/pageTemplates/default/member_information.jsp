@@ -10,6 +10,7 @@
 <input type="hidden" name="formNames" value="<%= ViewStatics.MEMBER_INFO_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 <c:set var="askBGSInfo" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Member Information Form'].settings['askBGSInfo']}"></c:set>
+<c:set var="askUMPIorNPI" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Member Information Form'].settings['askUMPIorNPI']}"></c:set>
 
 <div id="membersTable">
 <c:set var="formName" value="_16_memberSize"></c:set>
@@ -29,7 +30,16 @@
                 <c:set var="formName" value="_16_npi_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="umpiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
-                <a href="javascript:;" class="purpleBtn NPILook"><span class="btR"><span class="btM"><span class="icon">NPI Lookup</span></span></span></a>
+                <a href="javascript:;" class="purpleBtn NPILook"><span class="btR"><span class="btM"><span class="icon">
+                <c:choose>
+                	<c:when test="${askUMPIorNPI}">
+                		NPI/UMPI Lookup
+                	</c:when>
+                	<c:otherwise>
+                		NPI Lookup
+                	</c:otherwise>
+                </c:choose>
+                </span></span></span></a>
                 <span class="errorMsg">No records found with NPI number <span></span></span>
             </div>
         </div>

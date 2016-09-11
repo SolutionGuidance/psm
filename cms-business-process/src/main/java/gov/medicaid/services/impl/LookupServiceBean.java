@@ -177,10 +177,11 @@ public class LookupServiceBean implements LookupService {
     public <T extends LookupEntity> List<T> findRelatedLookup(Class<T> cls, String providerType, String relType) {
         Query query = em.createQuery("Select l FROM " + cls.getName() + " l, ProviderTypeSetting s WHERE "
                 + "s.providerTypeCode = :providerType AND l.code = s.relatedEntityCode AND "
-                + "s.relationshipType = :relationshipType  AND s.relatedEntityType = :entityType");
+                + "s.relationshipType = :relationshipType  AND s.relatedEntityType = :entityType order by l.description");
         query.setParameter("providerType", providerType);
         query.setParameter("relationshipType", relType);
         query.setParameter("entityType", cls.getSimpleName());
+        
         return query.getResultList();
     }
 

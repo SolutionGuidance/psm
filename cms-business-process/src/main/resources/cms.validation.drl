@@ -512,15 +512,8 @@ end
 
 rule 'Address Line 1 Is Required If Address Line 2 Is A PO BOX'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
-        $entry: AddressEntry(errorOnLine2 != "Y")
+        $entry: AddressEntry(errorOnLine2 != "Y", type != "Billing Address")
         LookupEntry($value : value, type == "POBoxWordRegex")
         AddressType($addressLine2: addressLine2, addressLine2 != null, addressLine1 == null || addressLine1 matches "^[\\s]*$") from $entry.address
         eval($addressLine2.matches($value))
@@ -545,13 +538,6 @@ end
 
 rule 'Address Line 1 Should be left empty if Address Line 2 Is Not Provided'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $entry: AddressEntry(errorOnLine1 != "Y")
         AddressType(addressLine2 == null || addressLine2 matches "^[\\s]*$", addressLine1 != null, addressLine1 != "") from $entry.address
@@ -9450,13 +9436,6 @@ end
 
 rule 'Organization Practice Address Cannot Be A PO Box'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -9477,13 +9456,6 @@ end
 
 rule 'Organization Practice Address Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)

@@ -194,15 +194,6 @@
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <label class="smallLabel">ZIP Code<span class="required">*</span> : </label>
                             <input ${reimbursementAddressMarkup} type="text" class="${disableReimbursementAddress ? 'disabled' : '' } zipInput" name="${formName}" value="${formValue}" maxlength="10"/>
-                            <c:set var="formName" value="_06_reimbursementCounty"></c:set>
-                            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <label class="smallLabel">County : </label>
-                            <select ${reimbursementAddressMarkup} class="${disableReimbursementAddress ? 'disabled' : '' } stateSelect" name="${formName}">
-                                <option value="">Please select</option>
-                                        <c:forEach var="opt" items="${requestScope['_99_counties']}">
-                                            <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
-                                        </c:forEach>
-                            </select>
 	                    </div>
 	                </div>
 	            </div>

@@ -56,7 +56,6 @@
 	        <c:set var="city" value="${requestScope['_06_reimbursementCity']}" /><c:out value="${city}" /> 
 	        <c:set var="state" value="${requestScope['_06_reimbursementState']}" /><c:if test="${not empty state}">,</c:if>${state}
 	        <c:set var="zip" value="${requestScope['_06_reimbursementZip']}" /><c:if test="${not empty zip}">,</c:if>${zip} 
-	        <c:set var="county" value="${requestScope['_06_reimbursementCounty']}" /><c:if test="${not empty county}">,</c:if>${county} 
 	    </span>
     </c:if>
 </div>

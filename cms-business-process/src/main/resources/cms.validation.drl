@@ -14028,10 +14028,10 @@ rule "Current License from the state of practice is required for licensed psycho
         );
 end 
 
-rule "Registered Nurse license in state of practice is required for certified nurse midwife, nurse practitioner and private duty nurse"
+rule "Registered Nurse license in state of practice is required for certified nurse midwife, nurse practitioner"
 	when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
-   		$provider: ProviderInformationType(providerType in (ProviderType.NURSE_MIDWIFE.value(),  ProviderType.NURSE_PRACTITIONER.value(), ProviderType.PRIVATE_DUTY_NURSE.value()))
+   		$provider: ProviderInformationType(providerType in (ProviderType.NURSE_MIDWIFE.value(),  ProviderType.NURSE_PRACTITIONER.value()))
    		LicenseInformationType( $licenses: license ) from $provider.licenseInformation
         not LicenseType(licenseType == LicenseNames.REGISTERED_NURSE.value()) from $licenses
         $report: ErrorReporter()
@@ -14040,6 +14040,23 @@ rule "Registered Nurse license in state of practice is required for certified nu
             "/ProviderInformation/LicenseInformation/License/Required",
             "00001",
             "Registered Nurse license in state of practice is required."
+        );
+end
+
+rule "Registered Nurse license in state of practice is required for private duty nurse"
+	when
+        LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
+   		$provider: ProviderInformationType(providerType  == ProviderType.PRIVATE_DUTY_NURSE.value())
+   		LicenseInformationType( $licenses: license ) from $provider.licenseInformation
+   		not LicenseType(licenseType == LicenseNames.LICENSED_PRACTICAL_NURSE.value()) from $licenses
+   		not LicenseType(licenseType == LicenseNames.CLASS_A_LICENSE.value()) from $licenses
+        not LicenseType(licenseType == LicenseNames.REGISTERED_NURSE.value()) from $licenses
+        $report: ErrorReporter()
+    then
+        $report.addError(
+            "/ProviderInformation/LicenseInformation/License/Required",
+            "00001",
+            "Registered Nurse license in state of practice OR the LPN & Class A license is required."
         );
 end
 
@@ -14056,6 +14073,22 @@ rule "Class A license is required when LPN is selected for private duty nurse"
             "/ProviderInformation/LicenseInformation/License/Required",
             "00001",
             "LPNs who are independent must also have a Class A license from the MN Dept of Health."
+        );
+end
+
+rule "LPN is required when Class A is selected for private duty nurse"
+	when
+        LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
+   		$provider: ProviderInformationType(providerType == ProviderType.PRIVATE_DUTY_NURSE.value())
+   		LicenseInformationType( $licenses: license ) from $provider.licenseInformation
+        LicenseType(licenseType == LicenseNames.CLASS_A_LICENSE.value()) from $licenses
+        not LicenseType(licenseType == LicenseNames.LICENSED_PRACTICAL_NURSE.value()) from $licenses
+        $report: ErrorReporter()
+    then
+        $report.addError(
+            "/ProviderInformation/LicenseInformation/License/Required",
+            "00001",
+            "LPNs who are independent must also have a LPN license from the MN Dept of Health."
         );
 end
 

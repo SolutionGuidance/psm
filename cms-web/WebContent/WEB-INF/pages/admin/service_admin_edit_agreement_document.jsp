@@ -80,5 +80,12 @@
             <%@ include file="/WEB-INF/pages/includes/footer.jsp" %>
         </div>
         <!-- /#wrapper -->
+        <script type="text/javascript">
+			(function($) {
+				$(document).ready(function() {
+					$('#text').wysiwyg();
+				});
+			})(jQuery);
+		</script>
     </body>
 </html>

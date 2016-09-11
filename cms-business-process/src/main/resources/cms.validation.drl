@@ -4808,7 +4808,6 @@ salience 10
         insertLogical(new ProviderSpecialty($providerType, SpecialtyNames.THORACIC_SURGERY.value()));
         insertLogical(new ProviderSpecialty($providerType, SpecialtyNames.UROLOGY.value()));
         insertLogical(new ProviderSpecialty($providerType, SpecialtyNames.OTHER.value()));
-
 end
 
 rule 'Define Private Practice Indicator Exception For Allied Dental Professionals'
@@ -5602,15 +5601,25 @@ dialect 'mvel'
 
 end
 
+
+rule 'Atleast one specialty is required for Physician'
+dialect 'mvel'
+    when
+        LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
+        $provider: ProviderInformationType(providerType == ProviderType.PHYSICIAN.value())
+        SpecialtiesType($specialties: specialtyName) from $provider.specialties
+        List (size  == 0) from collect (String( ) from $specialties)
+        $report: ErrorReporter()
+    then
+        $report.addError(
+            "/ProviderInformation/LicenseInformation/License/Required",
+            "00001",
+            "At least one specialty is required for Physician."
+        );
+end
+
 rule 'Entered Specialty Must Be Valid for the provider type'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)
@@ -5630,13 +5639,6 @@ end
 
 rule 'Entity Description Is Required If Entity Type is Other'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)

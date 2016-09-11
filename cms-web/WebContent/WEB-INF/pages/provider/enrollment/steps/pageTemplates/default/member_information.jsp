@@ -156,7 +156,16 @@
                 <c:set var="formName" value="_16_npi"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="umpiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
-                <a href="javascript:;" class="purpleBtn NPILook"><span class="btR"><span class="btM"><span class="icon">NPI Lookup</span></span></span></a>
+                <a href="javascript:;" class="purpleBtn NPILook"><span class="btR"><span class="btM"><span class="icon"></span>
+                <c:choose>
+                	<c:when test="${askUMPIorNPI}">
+                		NPI/UMPI Lookup
+                	</c:when>
+                	<c:otherwise>
+                		NPI Lookup
+                	</c:otherwise>
+                </c:choose>
+                </span></span></a>
                 <span class="errorMsg">No records found with NPI number <span></span></span>
             </div>
         </div>

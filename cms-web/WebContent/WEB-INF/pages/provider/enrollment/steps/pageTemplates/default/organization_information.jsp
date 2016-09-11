@@ -309,7 +309,7 @@
                     </div>
                     
                     <div class="row">
-                        <label>Office Fax Number<span class="required">*</span></label>
+                        <label>Office Fax Number</label>
                         <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_15_fax1"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -637,7 +637,7 @@
 	            </div>
 	            
 	            <div class="row">
-	                <label>Office Fax Number<span class="required">*</span></label>
+	                <label>Office Fax Number</label>
 	                <span class="floatL"><b>:</b></span>
 	                <c:set var="formName" value="_15_fax1"></c:set>
 	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>

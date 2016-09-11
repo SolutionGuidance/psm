@@ -15,7 +15,7 @@
     <div class="section">
         <div class="wholeCol organizationInfo">
             <div class="row requireField">
-                <label class="mediumLbl">Copy of certificate of liability insurance<span class="required">*</span></label>
+                <label class="mediumLbl">Copy of certificate of liability insurance</label>
                 <span class="floatL"><b>:</b></span>
     
                 <c:set var="formName" value="_25_liabilityInsuranceId"></c:set>
@@ -48,7 +48,7 @@
             </div>
             
             <div class="row requireField">
-                <label class="mediumLbl">Copy of fidelity bond<span class="required">*</span></label>
+                <label class="mediumLbl">Copy of fidelity bond</label>
                 <span class="floatL"><b>:</b></span>
     
                 <c:set var="formName" value="_25_fidelityBondId"></c:set>
@@ -64,7 +64,7 @@
             </div>
             
             <div class="row requireField">
-                <label class="mediumLbl">Copy of surety bond<span class="required">*</span></label>
+                <label class="mediumLbl">Copy of surety bond</label>
                 <span class="floatL"><b>:</b></span>
     
                 <c:set var="formName" value="_25_suretyBondId"></c:set>

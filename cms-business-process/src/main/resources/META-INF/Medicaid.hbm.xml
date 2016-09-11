@@ -636,7 +636,7 @@
 	</class>
 	<class name="gov.medicaid.entities.CountyType" table="LU_COUNTY">
 		<id name="code" type="string">
-			<column length="2" name="CODE" />
+			<column length="3" name="CODE" />
 			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" length="200" name="description"

@@ -143,7 +143,12 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
             i++;
         }
         attr(mv, "memberSize", members.size());
-        mv.put("individualMemberProviderTypes", sortCollection(getLookupService().getProviderTypes(ApplicantType.INDIVIDUAL)));
+        if (enrollment.getProviderInformation().getProviderType().equals(gov.medicaid.domain.model.ProviderType.PHARMACY.value())) {
+        	mv.put("onlyPharmacist", true);
+        } else {
+        	mv.put("individualMemberProviderTypes", sortCollection(getLookupService().getProviderTypes(ApplicantType.INDIVIDUAL)));
+        }
+        
     }
 
     /**

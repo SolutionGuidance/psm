@@ -552,6 +552,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
             settings.addSetting("useNursingFacilityLayout", false);
             settings.addSetting("showInitialChoices", false);
             settings.addSetting("askUMPI", false);
+            settings.addSetting("requireNPI", true);
             settings.addSetting("clearingHouseLayout", false);
             
             page.addForm(ViewStatics.ORG_INFO_FORM, settings);
@@ -560,6 +561,10 @@ public class PresentationServiceBean extends BaseService implements Presentation
                 page.addForm(ViewStatics.REMITTANCE_SEQUENCE_FORM, settings);
             }
 
+            if (ProviderType.DAY_TRAINING_AND_HABILITATION_DAY_ACTIVITY_CENTER.value().equals(type)) {
+            	settings.addSetting("requireNPI", false);
+            }
+            
             if (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value().equals(type)) {
                 // custom form settings
                 settings.addSetting("askEffectiveDate", false);

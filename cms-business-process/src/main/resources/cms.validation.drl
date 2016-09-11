@@ -4610,14 +4610,6 @@ end
 
 rule 'Define NPI Requirement Exception for Community Health Worker'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.1
- * @since Provider Enrollment Drools Front End Validation Part 1
- * v1.1 - added Part 5 additional org exemptions 
- */
 salience 10
     when
     then
@@ -4632,17 +4624,19 @@ salience 10
         insertLogical(new ProviderTypeException("NPIExemption", ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value()));
         insertLogical(new ProviderTypeException("NPIExemption", ProviderType.DAY_TRAINING_AND_HABILITATION_DAY_ACTIVITY_CENTER.value()));
         insertLogical(new ProviderTypeException("NPIExemption", ProviderType.HEAD_START.value()));
+        insertLogical(new ProviderTypeException("NPIExemption", ProviderType.HOME_AND_COMMUNITY_BASED_SERVICES_WAIVERED_SERVICES.value()));
 end
 
+rule 'Define UMPI Flag for selected providers'
+dialect 'mvel'
+salience 10
+    when
+    then
+    	insertLogical(new ProviderTypeException("CanBeUMPI", ProviderType.HOME_AND_COMMUNITY_BASED_SERVICES_WAIVERED_SERVICES.value()));
+end
+    
 rule 'Define Possible Specialties For Clinical Nurse Specialist'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
 salience 10
     when
         ProviderInformationType($providerType: providerType, providerType == ProviderType.CLINICAL_NURSE_SPECIALIST.value())
@@ -4653,13 +4647,6 @@ end
 
 rule 'Define Possible Specialties For Clinical Social Worker'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
 salience 10
     when
         ProviderInformationType($providerType: providerType, providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
@@ -8636,13 +8623,6 @@ end
 
 rule 'NPI Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         ProviderInformationType(NPI != null, NPI not matches "^.{0,10}$")
         $report: ErrorReporter() 
@@ -8672,7 +8652,8 @@ end
 
 rule 'NPI Validity Check'
     when
-        ProviderInformationType($npi: NPI, NPI != null, NPI not matches "^[\\s]*$")
+        $provider: ProviderInformationType($npi: NPI, NPI != null, NPI not matches "^[\\s]*$")
+        not ProviderTypeException(type == "CanBeUMPI", providerType == $provider.providerType )
     then
         insertLogical(new NPIEntry(
             "NPI",

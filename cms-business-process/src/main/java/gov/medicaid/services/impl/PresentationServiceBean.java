@@ -565,6 +565,9 @@ public class PresentationServiceBean extends BaseService implements Presentation
             	settings.addSetting("requireNPI", false);
             }
             
+            if (ProviderType.HOME_AND_COMMUNITY_BASED_SERVICES_WAIVERED_SERVICES.value().equals(type)) {
+            	settings.addSetting("askUMPI", true);
+            }
             if (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value().equals(type)) {
                 // custom form settings
                 settings.addSetting("askEffectiveDate", false);

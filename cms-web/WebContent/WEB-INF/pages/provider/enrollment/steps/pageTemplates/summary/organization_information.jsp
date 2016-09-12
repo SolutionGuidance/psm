@@ -32,7 +32,7 @@
 			        <c:set var="city" value="${requestScope['_15_city']}" /><c:out value="${city}" /> 
 			        <c:set var="state" value="${requestScope['_15_state']}" /><c:if test="${not empty state}">,</c:if>${state}
 			        <c:set var="zip" value="${requestScope['_15_zip']}" /><c:if test="${not empty zip}">,</c:if>${zip} 
-			        <c:set var="county" value="${requestScope['_15_county']}" /><c:if test="${not empty county}">,</c:if>${county} 
+			        <c:set var="county" value="${requestScope['_15_orgCountyName']}" /><c:if test="${not empty county}">,</c:if>${county} 
 			    </span>
             </div>
             <div class="row">
@@ -68,11 +68,6 @@
                 <span>
                 ${requestScope['_15_fax1']}<c:if test="${requestScope['_15_fax2'] ne ''}"> - </c:if>${requestScope['_15_fax2']}<c:if test="${requestScope['_15_fax3'] ne ''}"> - </c:if>${requestScope['_15_fax3']}
                 </span>
-            </div>
-            <div class="row">
-                <label>Facility County</label>
-                <span class="floatL"><b>:</b></span>
-                <span>${requestScope['_15_orgCountyName']}</span>
             </div>
             </div>
             <div class="clearFixed"></div>

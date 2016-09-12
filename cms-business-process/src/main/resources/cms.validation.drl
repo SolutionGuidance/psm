@@ -5442,13 +5442,6 @@ end
 
 rule 'Employed Or Contracted By A Group Is Required With Exceptions'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType(employedOrContractedByGroup  == null || employedOrContractedByGroup matches "^[\\s]*$" )
@@ -5465,13 +5458,6 @@ end
 
 rule 'Employed Or Contracted By A Group should be answered in Y,N'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType(employedOrContractedByGroup != null, employedOrContractedByGroup not matches "^[YN]$" )
@@ -5483,6 +5469,21 @@ dialect 'mvel'
             "Employed Or Contracted By A Group indicator can only be answered by Y or N."
         );
 
+end
+
+
+rule 'Private Practice Indicator and Employed Or Contracted By A Group both cannot be No at the same time'
+dialect 'mvel'
+    when
+        LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
+        $provider: ProviderInformationType(maintainsOwnPrivatePractice == "N",  employedOrContractedByGroup == "N")
+        $report: ErrorReporter() 
+    then
+        $report.addError(
+            "/ProviderInformation/MaintainsOwnPrivatePractice",
+            "00001",
+            "Either Private practice indicator Or Employed/Contracted by a group indicator must be answered as Yes."
+        );
 end
 
 rule 'Enrollment Contact Email Address Format Check'
@@ -11052,13 +11053,6 @@ end
 
 rule 'Private Practice Indicator Is Required With Exceptions'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType(maintainsOwnPrivatePractice  == null || maintainsOwnPrivatePractice matches "^[\\s]*$" )
@@ -11075,13 +11069,6 @@ end
 
 rule 'Private Practice Indicator should be answered in Y,N'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType(maintainsOwnPrivatePractice != null, maintainsOwnPrivatePractice not matches "^[YN]$" )

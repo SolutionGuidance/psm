@@ -51,7 +51,7 @@
                                             <div class="section">
                                                 <div class="wholeCol">
                                                     <div class="row">
-                                                        <label>Last Name</label>
+                                                        <label>Username</label>
                                                         <span class="floatL"><b>:</b></span>
                                                         <c:choose>
                                                             <c:when test="${empty user.userId}">
@@ -72,12 +72,6 @@
                                                         <label>First Name</label>
                                                         <span class="floatL"><b>:</b></span>
                                                         <form:input path="firstName" cssClass="normalInput"/>
-                                                    </div>
-                                                    <div class="row">
-                                                        <label>Middle Name</label>
-                                                        <span class="floatL"><b>:</b></span>
-                                                        <form:input path="middleName" cssClass="normalInput"/>
-                                                        <em class="grey">(optional)</em>
                                                     </div>
                                                     <div class="row">
                                                         <label>Business Phone</label>

@@ -1,1 +1,0 @@
-ALTER TABLE CMS.ENTITY modify (FEIN varchar2(10));

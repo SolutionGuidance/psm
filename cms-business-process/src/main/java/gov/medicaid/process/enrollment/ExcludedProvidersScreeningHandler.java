@@ -76,7 +76,7 @@ public class ExcludedProvidersScreeningHandler extends GenericHandler {
             if (!results.getSearchResults().getSearchResultItem().isEmpty()) {
                 OIGExclusionServiceMatcher matcher = new OIGExclusionServiceMatcher();
                 MatchStatus status = matcher.match(provider, null, results);
-                if (status == MatchStatus.EXACT_MATCH) {
+                if (status == MatchStatus.PARTIAL_MATCH || status == MatchStatus.EXACT_MATCH) {
                     verificationStatus.setNonExclusion("N");
                 } else {
                     verificationStatus.setNonExclusion("Y");

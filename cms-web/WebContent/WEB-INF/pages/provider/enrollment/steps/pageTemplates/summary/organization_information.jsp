@@ -7,6 +7,7 @@
 <c:set var="useEDILayout" value="${viewModel.tabModels['Organization Information'].formSettings['Organization Information Form'].settings['useEDILayout']}"></c:set>
 <c:set var="useEducationPlanLayout" value="${viewModel.tabModels['Organization Information'].formSettings['Organization Information Form'].settings['useEducationPlanLayout']}"></c:set>
 <c:set var="useNursingFacilityLayout" value="${viewModel.tabModels['Organization Information'].formSettings['Organization Information Form'].settings['useNursingFacilityLayout']}"></c:set>
+<c:set var="askUMPI" value="${viewModel.tabModels['Organization Information'].formSettings['Organization Information Form'].settings['askUMPI']}"></c:set>
 
 <c:choose>
     <c:when test="${useNursingFacilityLayout}">
@@ -238,7 +239,14 @@
 		<div class="section">
 		    <div class="leftCol">
 		        <div class="row">
-		            <label>NPI</label>
+			        <c:choose>
+			        	<c:when test="${askUMPI}">
+			        		<label>UMPI</label>
+			        	</c:when>
+			        	<c:otherwise>
+			        		<label>NPI</label>
+			        	</c:otherwise>
+			        </c:choose>	
 		            <span class="floatL"><b>:</b></span>
 		            <span>${requestScope['_15_npi']}</span>
 		        </div>

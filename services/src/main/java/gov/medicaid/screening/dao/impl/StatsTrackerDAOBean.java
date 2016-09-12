@@ -177,7 +177,6 @@ public class StatsTrackerDAOBean implements StatsTrackerDAO {
             LogUtil.traceExit(log, signature, null);
         } catch (javax.persistence.PersistenceException e) {
             LogUtil.traceError(log, signature, e);
-            throw new PersistenceException(ErrorCode.MITA50000.getDesc(), e);
         }
     }
 
@@ -202,7 +201,6 @@ public class StatsTrackerDAOBean implements StatsTrackerDAO {
             LogUtil.traceExit(log, signature, null);
         } catch (javax.persistence.PersistenceException e) {
             LogUtil.traceError(log, signature, e);
-            throw new PersistenceException(ErrorCode.MITA50000.getDesc(), e);
         }
     }
 
@@ -228,7 +226,6 @@ public class StatsTrackerDAOBean implements StatsTrackerDAO {
             LogUtil.traceExit(log, signature, null);
         } catch (javax.persistence.PersistenceException e) {
             LogUtil.traceError(log, signature, e);
-            throw new PersistenceException(ErrorCode.MITA50000.getDesc(), e);
         }
     }
 

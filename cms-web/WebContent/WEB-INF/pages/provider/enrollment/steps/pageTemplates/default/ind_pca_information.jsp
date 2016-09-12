@@ -43,7 +43,7 @@
     
                 <c:set var="formName" value="_10_ssn"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="9"/>
+                <input type="text" class="normalInput ssnMasked" name="${formName}" value="${formValue}" maxlength="9"/>
             </div>
 
             <div class="row addressline1">

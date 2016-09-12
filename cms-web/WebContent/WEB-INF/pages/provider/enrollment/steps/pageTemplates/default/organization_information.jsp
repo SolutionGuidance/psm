@@ -716,7 +716,7 @@
                 <th>City<span class="required">*</span><span class="sep"></span></th>
                 <th>State<span class="required">*</span><span class="sep"></span></th>
                 <th>ZIP Code<span class="required">*</span><span class="sep"></span></th>
-                <th>Country<span class="sep"></span></th>
+                <th>County<span class="sep"></span></th>
             </tr>
             </thead>
             <tbody>
@@ -744,10 +744,6 @@
                         <c:set var="formName" value="_15_billingAddressLine1"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                         <input ${disableLinkedFields} type="text" class="addressLine1 longInput ${linkedFieldClass}" name="${formName}" value="${formValue}" maxlength="28"/>
-                        
-                        <c:set var="formName" value="_15_billingAddressLine2"></c:set>
-                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input ${disableLinkedFields} type="text" class="addressLine2 longInput ${linkedFieldClass}" name="${formName}" value="${formValue}" maxlength="28"/>
                     </td>
                     <td>
                         <c:set var="formName" value="_15_billingCity"></c:set>
@@ -804,9 +800,6 @@
                         <c:set var="formName" value="_15_ten99AddressLine1"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                         <input ${disableLinkedFields} type="text" class="addressline1 longInput ${linkedFieldClass}" name="${formName}" value="${formValue}" maxlength="28"/>
-                        <c:set var="formName" value="_15_ten99AddressLine2"></c:set>
-                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input ${disableLinkedFields} type="text" class="addressline2 longInput ${linkedFieldClass}" name="${formName}" value="${formValue}" maxlength="28"/>
                     </td>
                     <td>
                         <c:set var="formName" value="_15_ten99City"></c:set>

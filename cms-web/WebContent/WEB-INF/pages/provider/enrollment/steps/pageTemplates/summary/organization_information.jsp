@@ -329,11 +329,10 @@
                 <span>
                     <c:if test="${not empty requestScope['_15_billingAttention']}"><c:out value="${requestScope['_15_billingAttention']}" /><br /></c:if>
                     <c:if test="${not empty requestScope['_15_billingAddressLine1']}"><c:out value="${requestScope['_15_billingAddressLine1']}" /><br /></c:if>
-                    <c:out value="${requestScope['_15_billingAddressLine2']}" /><br />
-                    <c:set var="city" value="${requestScope['_15__billingCity']}" /><c:out value="${city}" /> 
-                    <c:set var="state" value="${requestScope['_15__billingState']}" /><c:if test="${not empty state}">,</c:if>${state}
-                    <c:set var="zip" value="${requestScope['_15__billingZip']}" /><c:if test="${not empty zip}">,</c:if>${zip} 
-                    <c:set var="county" value="${requestScope['_15__billingCounty']}" /><c:if test="${not empty county}">,</c:if>${county} 
+                    <c:set var="city" value="${requestScope['_15_billingCity']}" /><c:out value="${city}" /> 
+                    <c:set var="state" value="${requestScope['_15_billingState']}" /><c:if test="${not empty state}">,</c:if>${state}
+                    <c:set var="zip" value="${requestScope['_15_billingZip']}" /><c:if test="${not empty zip}">,</c:if>${zip} 
+                    <c:set var="county" value="${requestScope['_15_billingCounty']}" /><c:if test="${not empty county}">,</c:if>${county} 
                 </span>
             </c:if>
         </div>
@@ -345,11 +344,10 @@
                 <span>
                     <c:if test="${not empty requestScope['_15_ten99Attention']}"><c:out value="${requestScope['_15_ten99Attention']}" /><br /></c:if>
                     <c:if test="${not empty requestScope['_15_ten99AddressLine1']}"><c:out value="${requestScope['_15_ten99AddressLine1']}" /><br /></c:if>
-                    <c:out value="${requestScope['_15_ten99AddressLine2']}" /><br />
-                    <c:set var="city" value="${requestScope['_15__ten99City']}" /><c:out value="${city}" /> 
-                    <c:set var="state" value="${requestScope['_15__ten99State']}" /><c:if test="${not empty state}">,</c:if>${state}
-                    <c:set var="zip" value="${requestScope['_15__ten99Zip']}" /><c:if test="${not empty zip}">,</c:if>${zip} 
-                    <c:set var="county" value="${requestScope['_15__ten99County']}" /><c:if test="${not empty county}">,</c:if>${county} 
+                    <c:set var="city" value="${requestScope['_15_ten99City']}" /><c:out value="${city}" /> 
+                    <c:set var="state" value="${requestScope['_15_ten99State']}" /><c:if test="${not empty state}">,</c:if>${state}
+                    <c:set var="zip" value="${requestScope['_15_ten99Zip']}" /><c:if test="${not empty zip}">,</c:if>${zip} 
+                    <c:set var="county" value="${requestScope['_15_ten99County']}" /><c:if test="${not empty county}">,</c:if>${county} 
                 </span>
             </c:if>
         </div>

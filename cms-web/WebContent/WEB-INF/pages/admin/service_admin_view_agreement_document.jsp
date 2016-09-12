@@ -38,7 +38,7 @@
                                 <div class="newEnrollmentPanel">
                                     <div class="section">
                                         <div class="wholeCol">
-                                            <c:out value="${agreementDocument.text}"/>
+                                            ${agreementDocument.text}
                                         </div>
                                     </div>
                                     <div class="bl"></div>

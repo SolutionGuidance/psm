@@ -161,7 +161,34 @@ public class AgreementDocumentController extends BaseServiceAdminController {
             throw e;
         }
     }
+ 
+    /**
+     * This action will get the entity with the given ID.
+     *
+     * @param id the entity ID
+     *
+     * @return the model and view instance that contains the name of view to be rendered and data to be used for
+     *         rendering (not null)
+     *
+     * @throws PortalServiceException If there are any errors in the action
+     */
+    @RequestMapping(value = "/provider/enrollment/agreement", method = RequestMethod.GET)
+    public ModelAndView getAgreement(@RequestParam("id") long id) throws PortalServiceException {
+        String signature = "EnrollmentPageFlowController#getAgreement(long id)";
+        LogUtil.traceEntry(getLog(), signature, new String[] {"id"}, new Object[] {id});
 
+        try {
+            AgreementDocument agreementDocument = agreementDocumentService.get(id);
+            ModelAndView model = new ModelAndView("provider/enrollment/view_agreement");
+            model.addObject("agreementDocument", agreementDocument);
+
+            return LogUtil.traceExit(getLog(), signature, model);
+        } catch (PortalServiceException e) {
+            LogUtil.traceError(getLog(), signature, e);
+            throw e;
+        }
+    }
+    
     /**
      * This action will get the entity with the given ID.
      *

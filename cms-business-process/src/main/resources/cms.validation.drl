@@ -6105,7 +6105,7 @@ dialect 'mvel'
         IsOrganization()
         $provider: ProviderInformationType(facilityCredentials != null)
         $credentials: FacilityCredentialsType($licenseList : license) from $provider.facilityCredentials
-        $license: LicenseType( renewalDate == null, licenseType != LicenseNames.BACKGROUND_STUDY.value()) from $licenseList
+        $license: LicenseType( renewalDate == null, licenseType != LicenseNames.BACKGROUND_STUDY.value(), licenseType != LicenseNames.LICENSE_AND_TRANSMITTAL_CMS_1539_FORM_FROM_MN_DEPARTMENT_OF_HEALTH.value()) from $licenseList
         $report: ErrorReporter() 
     then
         int index = $licenseList.indexOf($license);
@@ -13506,23 +13506,6 @@ dialect 'mvel'
             "CMS 1539 Form is required for this provider."
         );
 end
-
-rule 'Approval For New Facility Is Required For Nursing Facilities'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
-        $provider: ProviderInformationType(providerType == ProviderType.NURSING_FACILITY.value())
-        $credentials: FacilityCredentialsType($licenseList : license) from $provider.facilityCredentials
-        not LicenseType( licenseType == LicenseNames.APPROVAL_BY_KENT_DUFRESNE_TO_ENROLL_NEW_FACILITY.value() ) from $licenseList
-        $report: ErrorReporter() 
-    then
-        $report.addError(
-            "/ProviderInformation/FacilityCredentials",
-            "00001",
-            "Approval to enroll new facility is required for this provider."
-        );
-end
-
 
 rule 'CMS Medicare Certification Is Required For Hospice'
 dialect 'mvel'

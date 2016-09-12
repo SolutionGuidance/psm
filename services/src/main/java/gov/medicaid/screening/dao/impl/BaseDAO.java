@@ -59,6 +59,7 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.BasicClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import com.topcoder.util.log.Log;
 
@@ -291,6 +292,11 @@ public abstract class BaseDAO {
         int status = response.getStatusLine().getStatusCode();
         if (status != HttpStatus.SC_OK && status != HttpStatus.SC_MOVED_TEMPORARILY
                 && status != HttpStatus.SC_MOVED_PERMANENTLY) {
+        	try {
+				EntityUtils.consume(response.getEntity());
+			} catch (IOException e) {
+				// ignore
+			}
             throw new ServiceException(ErrorCode.MITA50001.getDesc());
         }
     }

@@ -14006,8 +14006,7 @@ rule "Nurse Midwife Certification from the American Midwifery Certification Boar
 	when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
    		$provider: ProviderInformationType(providerType == ProviderType.NURSE_MIDWIFE.value())
-   		LicenseInformationType( $licenses: license ) from $provider.licenseInformation
-        not LicenseType(licenseType == LicenseNames.PROFESSIONAL_MIDWIFE_CERTIFICATION.value()) from $licenses
+   		not SpecialtiesType(specialtyName contains SpecialtyNames.CERTIFIED_NURSE_MIDWIFE.value()) from $provider.specialties
         $report: ErrorReporter()
     then
         $report.addError(

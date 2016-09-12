@@ -151,8 +151,11 @@ public class OIGDAOBean extends BaseDAO implements OIGDAO {
      * @return true if valid, false if not
      * @throws ParsingException if any parsing errors are encountered
      * @throws ServiceException for any other exceptions encountered
+     *
+     * @deprecated not updated in new site layout.
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    @Deprecated
     public boolean verifySSN(String entityId, String ssn) throws ParsingException, ServiceException {
         String signature = "OIGDataAccessImpl#verifySSN";
         LogUtil.traceEntry(getLog(), signature, new String[]{"entityId", "ssn"}, new Object[]{entityId, ssn});
@@ -178,8 +181,11 @@ public class OIGDAOBean extends BaseDAO implements OIGDAO {
      * @return the exclusion types.
      * @throws ParsingException if any parsing errors are encountered
      * @throws ServiceException for any other exceptions encountered
+     *
+     * @deprecated not updated in new site layout.
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    @Deprecated
     public List<ExclusionType> getExclusionTypeList() throws ParsingException, ServiceException {
         String signature = "OIGDataAccessImpl#verifySSN";
         LogUtil.traceEntry(getLog(), signature, new String[]{}, new Object[]{});
@@ -196,7 +202,6 @@ public class OIGDAOBean extends BaseDAO implements OIGDAO {
             LogUtil.traceError(getLog(), signature, e);
             throw new ServiceException(ErrorCode.MITA50001.getDesc(), e);
         }
-
     }
 
     /**
@@ -208,7 +213,10 @@ public class OIGDAOBean extends BaseDAO implements OIGDAO {
      * @throws ClientProtocolException if client does not support protocol used.
      * @throws IOException if an error occurs while parsing response.
      * @throws ServiceException for any other problems encountered
+     *
+     * @deprecated not updated in new site layout.
      */
+    @Deprecated
     private List<ExclusionType> getAllExclusions() throws URISyntaxException, ClientProtocolException, IOException,
         ServiceException {
         DefaultHttpClient client = new DefaultHttpClient();
@@ -256,42 +264,109 @@ public class OIGDAOBean extends BaseDAO implements OIGDAO {
         HttpPost search = new HttpPost(new URIBuilder(getSearchURL()).build());
         List<ProviderProfile> allProfiles = new ArrayList<ProviderProfile>();
 
-        HttpEntity entity = postForm(
-            getSearchURL(),
-            client,
-            search,
-            new String[][]{{"cmdSubmit", "Search"}, {"txtFirstName1", Util.defaultString(criteria.getFirstName())},
-                {"txtLastName1", Util.defaultString(criteria.getLastName())},
-                {"txtBusinessName1", Util.defaultString(criteria.getBusinessName())}, {"txtFirstName2", ""},
-                {"txtLastName2", ""}, {"txtBusinessName2", ""}, {"txtFirstName3", ""}, {"txtLastName3", ""},
-                {"txtBusinessName3", ""}, {"txtFirstName4", ""}, {"txtLastName4", ""}, {"txtBusinessName4", ""},
-                {"txtFirstName5", ""}, {"txtLastName5", ""}, {"txtBusinessName5", ""},
-                {"__VIEWSTATE", page.select("input[name=__VIEWSTATE]").first().val()}}, true);
+        boolean entitySearch = (Util.isBlank(criteria.getLastName()) && Util.isBlank(criteria.getFirstName()));
+
+        HttpEntity entity = null;
+        if (!entitySearch) {
+            entity = postForm(getSearchURL(), client, search, new String[][] { { "__EVENTARGUMENT", "" },
+                    { "__EVENTTARGET", "" },
+                    { "__EVENTVALIDATION", page.select("input[name=__EVENTVALIDATION]").first().val() },
+                    { "__VIEWSTATE", page.select("input[name=__VIEWSTATE]").first().val() },
+                    { "ctl00$cpExclusions$ibSearchSP.x", "0" }, { "ctl00$cpExclusions$ibSearchSP.y", "0" },
+                    { "ctl00$cpExclusions$txtSPLastName", Util.defaultString(criteria.getLastName()) },
+                    { "ctl00$cpExclusions$txtSPFirstName", Util.defaultString(criteria.getFirstName()) } }, false);
+        } else {
+            HttpEntity searchEntity = postForm(getSearchURL(), client, search, new String[][] {
+                    { "__EVENTARGUMENT", "" }, { "__EVENTTARGET", "ctl00$cpExclusions$Linkbutton1" },
+                    { "__EVENTVALIDATION", page.select("input[name=__EVENTVALIDATION]").first().val() },
+                    { "__VIEWSTATE", page.select("input[name=__VIEWSTATE]").first().val() },
+                    { "ctl00$cpExclusions$txtSPLastName", "" }, { "ctl00$cpExclusions$txtSPFirstName", "" } }, false);
+
+            page = Jsoup.parse(EntityUtils.toString(searchEntity));
+
+            entity = postForm(getSearchURL(), client, search, new String[][] { { "__EVENTARGUMENT", "" },
+                    { "__EVENTTARGET", "" },
+                    { "__EVENTVALIDATION", page.select("input[name=__EVENTVALIDATION]").first().val() },
+                    { "__VIEWSTATE", page.select("input[name=__VIEWSTATE]").first().val() },
+                    { "ctl00$cpExclusions$ibSearchSP.x", "0" }, { "ctl00$cpExclusions$ibSearchSP.y", "0" },
+                    { "ctl00$cpExclusions$txtSBName", Util.defaultString(criteria.getBusinessName()) } }, false);
+        }
 
         page = Jsoup.parse(EntityUtils.toString(entity));
 
-        Elements rows = page.select("table#dgResult tr.GridCell");
+        Elements rows;
+        int ssnColumnIndex;
+        if (!entitySearch) {
+            rows = page.select("table#ctl00_cpExclusions_gvEmployees tr:gt(0)");
+            ssnColumnIndex = 7;
+        } else {
+            rows = page.select("table#ctl00_cpExclusions_gvBusiness tr:gt(0)");
+            ssnColumnIndex = 5;
+        }
+
         for (Element row : rows) {
-            if (row.select("td:eq(8)").text().equals("N/A")) {
-                String entityId = row.select("td:eq(3) a").first().attr("href");
-                entityId = entityId.replaceFirst("javascript:VerifyID\\(", "");
-                entityId = entityId.replaceFirst("\\)", "");
-                ProviderProfile profile = parseProfile(getDetails(client, entityId));
-                profile.setId(Long.parseLong(entityId));
-                allProfiles.add(profile);
+            String href;
+            if (row.select("td:eq(" + ssnColumnIndex + ")").text().equals("N/A")) {
+                href = row.select("td:eq(0) a").first().attr("href");
             } else {
-                String entityId = row.select("td:eq(8) a").first().attr("href");
-                entityId = entityId.replaceFirst("javascript:VerifyID\\(", "");
-                entityId = entityId.replaceFirst("\\)", "");
-                ProviderProfile profile = parseProfile(getDetails(client, entityId));
-                profile.setId(Long.parseLong(entityId));
-                allProfiles.add(profile);
+                href = row.select("td:eq(" + ssnColumnIndex + ") a").first().attr("href");
             }
+
+            href = href.replaceFirst("javascript:__doPostBack\\('", "");
+            href = href.replaceFirst("',''\\)", "");
+
+            ProviderProfile profile = parseProfile(getDetails(client, href, page));
+            String entityId = href.substring(0, href.lastIndexOf('$'));
+            entityId = entityId.substring(entityId.lastIndexOf('$') + 4);
+            profile.setId(Long.parseLong(entityId) - 2);
+            allProfiles.add(profile);
         }
 
         SearchResult<ProviderProfile> searchResult = new SearchResult<ProviderProfile>();
         searchResult.setItems(allProfiles);
         return searchResult;
+    }
+
+
+    /**
+     * Get details page.
+     *
+     * @param client the default http client
+     * @param target the target PostBack
+     * @param searchPage the search page
+     * @return the details page
+     * @throws ClientProtocolException if client does not support protocol used.
+     * @throws IOException if an error occurs while parsing response.
+     * @throws ServiceException for any other problems encountered
+     */
+    private Document getDetails(DefaultHttpClient client, String target, Document searchPage) throws ClientProtocolException, IOException,
+        ServiceException {
+        String detailURL = Util.replaceLastURLPart(getSearchURL(), "SearchResults.aspx");
+        HttpPost getDetail = new HttpPost(detailURL);
+        HttpEntity entity = null;
+        try {
+        	entity = postForm(detailURL, client, getDetail, new String[][] { { "__EVENTARGUMENT", "" },
+                { "__EVENTTARGET", target },
+                { "__EVENTVALIDATION", searchPage.select("input[name=__EVENTVALIDATION]").first().val() },
+                { "__VIEWSTATE", searchPage.select("input[name=__VIEWSTATE]").first().val() } }, false);
+
+        } catch (ServiceException e) {
+        	try {
+				// try https redirection before throwing exception
+				detailURL = Util.replaceLastURLPart(getSearchURL(),
+						"Verify.aspx");
+				detailURL = detailURL.replaceFirst("http", "https");
+				HttpGet getDetails = new HttpGet(
+						new URIBuilder(detailURL).build());
+				HttpResponse response = client.execute(getDetails);
+				verifyAndAuditCall(detailURL, response);
+				entity = response.getEntity();
+
+			} catch (Exception e1) {
+				throw new ServiceException(ErrorCode.MITA50001.getDesc(), e1);
+        	}
+        }
+        return Jsoup.parse(EntityUtils.toString(entity));
     }
 
     /**
@@ -303,7 +378,10 @@ public class OIGDAOBean extends BaseDAO implements OIGDAO {
      * @throws ClientProtocolException if client does not support protocol used.
      * @throws IOException if an error occurs while parsing response.
      * @throws ServiceException for any other problems encountered
+     *
+     * @deprecated not updated in new site layout.
      */
+    @Deprecated
     private Document getDetails(DefaultHttpClient client, String entityId) throws ClientProtocolException, IOException,
         ServiceException {
         String detailURL = Util.replaceLastURLPart(getSearchURL(), "Verification.aspx");
@@ -324,7 +402,10 @@ public class OIGDAOBean extends BaseDAO implements OIGDAO {
      * @throws ClientProtocolException if client does not support protocol used.
      * @throws IOException if an error occurs while parsing response.
      * @throws ServiceException for any other problems encountered
+     *
+     * @deprecated not updated in new site layout.
      */
+    @Deprecated
     private boolean checkSSN(String entityId, String ssn) throws IOException, ServiceException {
         DefaultHttpClient client = new DefaultHttpClient(getLaxSSLConnectionManager());
         client.setRedirectStrategy(new LaxRedirectStrategy());
@@ -342,7 +423,10 @@ public class OIGDAOBean extends BaseDAO implements OIGDAO {
      * @throws ClientProtocolException if client does not support protocol used.
      * @throws IOException if an error occurs while parsing response.
      * @throws ServiceException for any other problems encountered
+     *
+     * @deprecated not updated in new site layout.
      */
+    @Deprecated
     private boolean executeVerification(DefaultHttpClient client, String entityId, String ssn, Document profileDetails)
         throws ClientProtocolException, IOException, ServiceException {
         HttpPost verifyDetails = new HttpPost(getVerificationURL());
@@ -373,11 +457,11 @@ public class OIGDAOBean extends BaseDAO implements OIGDAO {
         // name
         User user = new User();
         profile.setUser(user);
-        user.setLastName(page.select("#lblLastName").text());
-        user.setFirstName(page.select("#lblFirstName").text());
+        user.setLastName(page.select("th:containsOwn(Last Name) + td").text());
+        user.setFirstName(page.select("th:containsOwn(First Name) + td").text());
 
         // business
-        String businessName = page.select("#lblBuzName").text();
+        String businessName = page.select("th:containsOwn(Entity) + td").text();
         if (!"N/A".equals(businessName)) {
             Business business = new Business();
             profile.setBusiness(business);
@@ -385,7 +469,7 @@ public class OIGDAOBean extends BaseDAO implements OIGDAO {
         }
 
         // DOB
-        Date dob = parseDate(page.select("#lblDOB").text(), DATE_FORMAT);
+        Date dob = parseDate(page.select("th:has(acronym:containsOwn(DOB)) + td").text(), DATE_FORMAT);
         if (dob != null) {
             profile.setDob(dob);
         }
@@ -393,24 +477,27 @@ public class OIGDAOBean extends BaseDAO implements OIGDAO {
         // exclusion type
         ExclusionType exclusionType = new ExclusionType();
         profile.setExclusionType(exclusionType);
-        exclusionType.setName(page.select("#lblExclType").text());
+        exclusionType.setName(page.select("th:containsOwn(Excl. Type) + td").text());
 
         // specialty
         List<Specialty> specialties = new ArrayList<Specialty>();
         Specialty specialty = new Specialty();
         specialties.add(specialty);
-        specialty.setName(page.select("#lblSpecialty").text());
+        specialty.setName(page.select("th:containsOwn(Specialty) + td").text());
         profile.setSpecialties(specialties);
 
         // address
+        Elements addrElement = page.select("th:containsOwn(Address) + td");
+        String addr = addrElement.text();
+        Element addrNextRow = addrElement.parents().first().nextElementSibling();
+        if ("".equals(addrNextRow.select("th").text())) {
+            addr += " " + addrNextRow.select("td").text();
+        }
         Address address = new Address();
-        address.setLocation(page.select("#lblAddress").text());
-        address.setCity(page.select("#lblCity").text());
-        address.setState(page.select("#lblState").text());
-        address.setZipcode(page.select("#lblZip").text());
+        address.setLocation(addr);
         profile.setAddresses(Arrays.asList(new Address[]{address}));
 
-        Date date = parseDate(page.select("#lblDate").text(), DATE_FORMAT);
+        Date date = parseDate(page.select("th:containsOwn(Excl. Date) + td").text(), DATE_FORMAT);
         if (date != null) {
             profile.setRequestEffectiveDate(date);
         }

@@ -69,8 +69,10 @@ public class OIGServiceBean extends BaseService implements OIGService {
      * @return true if valid, false if not
      * @throws ParsingException if any parsing errors are encountered
      * @throws ServiceException for any other exceptions encountered
+     * @deprecated not updated in new site layout.
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    @Deprecated
     public boolean verifySSN(String entityId, String ssn) throws ParsingException, ServiceException {
         String signature = "OIGServiceImpl#verifySSN";
         LogUtil.traceEntry(getLog(), signature, new String[]{"entityId", "ssn"}, new Object[]{entityId, ssn});
@@ -91,8 +93,10 @@ public class OIGServiceBean extends BaseService implements OIGService {
      * @return the exclusion types.
      * @throws ParsingException if any parsing errors are encountered
      * @throws ServiceException for any other exceptions encountered
+     * @deprecated not updated in new site layout.
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    @Deprecated
     public List<ExclusionType> getExclusionTypeList() throws ParsingException, ServiceException {
         String signature = "OIGServiceImpl#getExclusionTypeList";
         LogUtil.traceEntry(getLog(), signature, new String[]{}, new Object[]{});

@@ -1,3 +1,7 @@
+## NOTE: This repository is an experimental clone of [NASA-Tournament-Lab/coeci-cms-mpsp](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp) -- please see the master branch [README](https://github.com/OpenTechStrategies/coeci-cms-mpsp/blob/master/README.md) for context before continuing.  Everything below here is from the original project.
+
+---------------------------------------------------------------------
+
 Welcome to the Medicaid Provider Enrollment Screening Portal Project
 ---------------------------------------------------------------------
 Contents:

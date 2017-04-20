@@ -130,7 +130,7 @@ or inaccurate.]_
   * Capability to verify identity and prior history of problems with Medicaid/CHIP or Medicare programs
   * Identifies and schedules revalidation process
 5.  Meets Architectural Guidelines
-  * Adheres to the Architectural Guidance and meets the seven conditions and standards detailed in the Guidance for Exchange and Medicaid IT Systems, Version 2.0, located at: http://cciio.cms.gov/resources/files/exchange\_medicaid\_it\_guidance\_05312011.pdf
+  * Adheres to the Architectural Guidance and meets the seven conditions and standards detailed in the Guidance for Exchange and Medicaid IT Systems, Version 2.0, located at: http://cciio.cms.gov/resources/files/exchange_medicaid_it_guidance_05312011.pdf
 6. Integrates Into the MITA Framework / Is MITA Compliant
   * Information regarding MITA can be found at: http://www.cms.gov/MedicaidInfoTechArch/
 7. Accurate, Cost Effective, and Timely

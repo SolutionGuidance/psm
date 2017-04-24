@@ -18,7 +18,8 @@ provider enrollment process.  It is released under the
 [Apache-2.0](LICENSE.md) open source license.
 
 This code is a **work-in-progress** and is **not yet ready for
-production deployment**.
+production deployment**.  Please see the [INSTALL.md](INSTALL.md) for
+details.
 
 Development activity now takes place on the `master` branch, with
 short-lived development branches used for specific tasks.  Please feel

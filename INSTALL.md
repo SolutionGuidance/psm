@@ -26,19 +26,23 @@ There is a third subdirectory that requires some explanation:
 `pesp-was8.5-ext-srcs/` is code for the semi-separate middleware
 application that provides the PSM with a consistent API to external
 services.  Nothing about this middleware application that is
-conceptually tied to WebSphere, it's just that it was (apparently)
-started after the WebSphere split, and therefore its
-WebSphere-specificity is built into its name, as with `pesp-was8.5/`.
+conceptually tied to WebSphere, it's just that for some reason in the
+WebSphere case it's a sibling to the main code directory, whereas in
+the JBoss case, for somem reason it's a subdirectory instead
+(`pesp-jboss/cms-external-sources/`).
 
 As of April 2017, our development plan is to retarget the PSM to the
 WildFly (formerly JBoss), do all development on the `master` branch,
-not have application-server-specific subdirectories, and migrate
-desired non-WebSphere-specific changes from the WebSphere-oriented
-code into the new mainline.
+not have application-server-specific subdirectories.  There are two
+paths for doing this: Make the WebSphere code work under WildFly, or
+get the older JBoss version up and running in WildFly and then port
+over desired non-WebSphere-specific changes from the WebSphere code.
+Since the WebSphere-oriented version is more recent and should be a
+superset of the JBoss version, we'll try the former first.
 
-This INSTALL.md file will be continuously improved as we do the above,
-and when it loses the warning at the top, that will mean we expect the
-PSM to be deployable in WildFly.
+This INSTALL.md file will be continuously improved as we work.  When
+it loses the warning at the top, that will mean we expect the PSM to
+be deployable in WildFly.
 
 # WIP: Preliminary installation instructions for pesp-jboss/
 

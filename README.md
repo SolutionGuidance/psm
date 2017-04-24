@@ -26,35 +26,27 @@ free to [file issue
 tickets](https://github.com/OpenTechStrategies/psm/issues/new) in this
 repository to ask questions.
 
-See the "Background" section for the provenance of this project.  We
-are using branches to organize legacy code for eventual landing or
-rearrangement on `master`:
+See the "Background" section for the provenance of this project.
 
-* Deployment experiments are on the
-  [local-deployment](https://github.com/OpenTechStrategies/psm/tree/local-deployment)
-  branch.  Once the necessary changes have been merged to `master`,
-  `local-deployment` will be removed, but for now it contains useful
-  information.
+We made some replay branches to clarify development history, and to
+help us organize legacy code for eventual landing or rearrangement on
+`master`.  These replay branches show the history of the JBoss side
+(soon to be WildFly), the WebSphere side (which is divided into two
+subtrees in the original repository), and the documentation changes:
 
-* We made some replay branches to clarify development history.  They
-  show the history of the JBoss side (soon to be WildFly), the
-  WebSphere side (which is divided into two subtrees in the original
-  repository), and the documentation changes:
+* [jboss-core](https://github.com/OpenTechStrategies/coeci-cms-mpsp/tree/jboss-core)
+* [was-core](https://github.com/OpenTechStrategies/coeci-cms-mpsp/tree/was-core)
+* [was-ext](https://github.com/OpenTechStrategies/coeci-cms-mpsp/tree/was-ext)
+* [documentation](https://github.com/OpenTechStrategies/coeci-cms-mpsp/tree/documentation)
 
-  * [jboss-core](https://github.com/OpenTechStrategies/coeci-cms-mpsp/tree/jboss-core)
-  * [was-core](https://github.com/OpenTechStrategies/coeci-cms-mpsp/tree/was-core)
-  * [was-ext](https://github.com/OpenTechStrategies/coeci-cms-mpsp/tree/was-ext)
-  * [documentation](https://github.com/OpenTechStrategies/coeci-cms-mpsp/tree/documentation)
-
-  The point of those replay branches is to give us a clean,
-  disentangled view of the changes that happened in each line of
-  development.  They all start off with a virtually empty commit (just
-  a .gitignore file), and then each has the appropriate selected
-  commits from upstream replayed in sequence.  The replay commits get
-  their own commit IDs, of course, and their author is always @slifty
-  (Dan Schultz) because he did the replaying, but in the commit
-  message for each replay commit he includes the corresponding
-  original commit ID from upstream.
+The point of the replay branches is to give us a clean, disentangled
+view of the changes that happened in each line of development.  They
+all start off with a virtually empty commit (just a .gitignore file),
+and then each has the appropriate selected commits from upstream
+replayed in sequence.  The replay commits get their own commit IDs, of
+course, and their author is always @slifty (Dan Schultz) because he
+did the replaying, but in the commit message for each replay commit he
+includes the corresponding original commit ID from upstream.
 
 ---------------------------------------------------------------------
 SECTION 2: Background

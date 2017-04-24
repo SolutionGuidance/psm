@@ -100,10 +100,16 @@ this set up, based on the info in the /docs subdir.
 Several people have done work to get this up and running so far.  This
 is a summary of their notes.
 
-### Websphere Version
+### WebSphere Version
+
+The WebSphere-based version of the app is documented in
+`documentation/Installation/MPSE Portal Deployment Guide for Websphere
+v8.5.docx`.  This document includes screenshots of the process, but is
+not entirely complete.  We recommend starting there and using these
+notes as supplements to those directions.
 
 1. Building the app.
-   The app requires WebSphere Application Server 8.5.  One person was
+   The app requires WebSphere Application Server 8.5 (WAS).  One person was
    able to get it built using that WAS version on Windows 7.  The
    process she followed was:
 
@@ -200,10 +206,29 @@ is a summary of their notes.
         the location you installed WAS to (second folder you named).
         `ant dist` should then succeed.
 
+2. Setting up a server with WAS:
 
+   1. In WebSphere Customization Toolbox (earlier/also called Profile
+      Management Tool), click Create button at top right.  
+   2. Click Application Server. (I had to allow access through Windows
+      Firewall after this.)
+   3. Set an admin username/password. The admin console is now available
+      on port 9060/https port 9043. Other ports: HTTP is 9080, HTTPS
+      9443. Bootstrap 2809, SOAP 8880.
+   4. Launch first steps console (NOTE: what is this?) when complete, if
+      you want (took me about 15 min).
+   5. Start the server: (from WAS home directory)
+
+       bin/startServer.bat server1
+
+   6. Go to https://localhost:9043/ibm/console/logon.jsp and log in.
+
+   7. Stop the server (from WAS home directory):
+   
+       bin/stopServer.bat server1
      
       
-2. Connecting to the database:
+3. Connecting to the database:
 
    - The Oracle JDBC connection jar in `<was install
      root>\profiles\AppSrv01\installedApps\sorayaNode01Cell\cms-portal.ear\lib`
@@ -215,7 +240,7 @@ is a summary of their notes.
      trying many different approaches.  We need to test to know for
      sure.
 
-3. Mail and message queues are missing documentation, and without these
+4. Mail and message queues are missing documentation, and without these
    queues the application won't start:
 
    - No information on configuration and setup of required message queue
@@ -225,8 +250,7 @@ is a summary of their notes.
      should enter the already-set-up queue names) 
    - Likewise no information on mail queue setup/configuration
 
-4. 
-
 
 ### JBoss Version
 
+ 

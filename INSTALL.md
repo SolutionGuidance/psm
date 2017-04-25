@@ -1,7 +1,9 @@
        Installation instructions for the Provider Screening Module
        ===========================================================
 
-***NOTE: 2017-04-24: These instructions are still very incomplete.***
+***NOTE: 2017-04-24: These instructions are still very incomplete and
+   are a work in progress.  We welcome suggestions on improving
+   them.***
 
 # Background and Current Deployment Status
 
@@ -42,7 +44,9 @@ superset of the JBoss version, we'll try the former first.
 
 This INSTALL.md file will be continuously improved as we work.  When
 it loses the warning at the top, that will mean we expect the PSM to
-be deployable in WildFly.
+be deployable in WildFly.  We are currently evaluating the additional
+resources it would take to continue development support for WebSphere
+deployment.
 
 # WIP: Preliminary installation instructions for pesp-jboss/
 
@@ -231,7 +235,7 @@ notes as supplements to those directions.
 3. Connecting to the database:
 
    - The Oracle JDBC connection jar in `<was install
-     root>\profiles\AppSrv01\installedApps\sorayaNode01Cell\cms-portal.ear\lib`
+     root>/profiles/AppSrv01/installedApps/sorayaNode01Cell/cms-portal.ear/lib`
      is `ojdbc14.jar`, but WebSphere expected `ojdbc6.jar`.  This was
      _maybe_ fixed by downloading `ojdbc6.jar` from
      [Oracle](http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-112010-090769.html),

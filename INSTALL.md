@@ -48,6 +48,10 @@ be deployable in WildFly.  We are currently evaluating the additional
 resources it would take to continue development support for WebSphere
 deployment.
 
+Note that the repository currently depends on access to a Oracle
+database.  We intend to shift towards Postgresql in order to eliminate
+a proprietary dependency.
+
 # WIP: Preliminary installation instructions for pesp-jboss/
 
 Very preliminary instructions for actually getting a test version of

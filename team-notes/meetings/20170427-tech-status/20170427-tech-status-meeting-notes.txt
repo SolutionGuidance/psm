@@ -9,7 +9,8 @@ Met on conf call at 11:30am ET.
 Attendees: James, Dan, Karl, Jason, Cecilia
 
 * GitHub repos restructuring, and reflecting structure in README.md   
-** TODO File a ticket about separating ext-srcs.                  :CECILIA:
+** DONE File a ticket about separating ext-srcs.                    :CECILIA:
+   https://github.com/OpenTechStrategies/psm/issues/11
 * Any need for an Oracle DB server?
     - Dan points out that the process of getting WebSphere up (in the
       previous phase) was not easy
@@ -19,10 +20,10 @@ Attendees: James, Dan, Karl, Jason, Cecilia
       - THEN set up an empty Oracle db
       - And finally move to PSQL
     DECISION: Yup; see TODO items below
-** TODO Turn on the old WebSphere/Oracle/Windows instance.    :CECILIA:DAN:
-** TODO Give Jason login creds, DB connection strings, etc, to above :CECILIA:DAN:
-** TODO Set up a fresh, empty Oracle DB for Jason to play with. :CECILIA:DAN:
-** TODO Give Jason a Linux-flavored dev box.                  :CECILIA:DAN:
+** DONE Turn on the old WebSphere/Oracle/Windows instance.      :CECILIA:DAN:
+** STARTED Give Jason login creds, DB connection strings, etc, to above :CECILIA:DAN:
+** STARTED Set up a fresh, empty Oracle DB for Jason to play with. :CECILIA:DAN:
+** STARTED Give Jason a Linux-flavored dev box.                 :CECILIA:DAN:
 * Want someone else working in parallel on Oracle->PGSQL conversion?
     - James is looking at this.  DAO and migration scripts are things to
       look at here.  Dan thinks the DAOs are abstracted away from SQL
@@ -55,9 +56,7 @@ Attendees: James, Dan, Karl, Jason, Cecilia
     DECISION: start using above
 ** DONE Check about email addresses
 ** TODO Send source format for tech report to group.                  :DAN:
-** TODO Set up meeting notes area, tech progress reports area, etc, in public repos. :CECILIA:KARL:
-     Initialize w/ Dan's report and today's meeting notes.
-     - Dan will set his up, ours are all in place
+** DONE Set up meeting notes area, tech progress reports area, etc, in public repos. :CECILIA:KARL:
 * Are any changes in JBoss side that are not in WAS side?
     - We don't think so.
 ** TODO Nope, so let's just delete the jboss tree.                    :DAN:
@@ -72,8 +71,9 @@ Attendees: James, Dan, Karl, Jason, Cecilia
 * Next steps for Jason from Dan
     - Oracle dependencies
     - Find WebSphere 
-** TODO Ticket this just for tracking                            :CECILIA:
-** TODO Karl to post on psm-dev about this                           :KARL:
+** DONE Ticket this just for tracking                               :CECILIA:
+   https://github.com/OpenTechStrategies/psm/issues/12
+** STARTED Karl to post on psm-dev about this                          :KARL:
 
 # Please leave this block here.  For people using Emacs Org Mode
 # (https://orgmode.org/), this block puts this file into Org Mode.

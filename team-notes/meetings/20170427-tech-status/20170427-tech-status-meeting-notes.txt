@@ -1,0 +1,83 @@
+         Agenda/Notes for 2017-04-27 PSM tech status meeting
+         ===================================================
+
+#+STARTUP: showeverything
+#+TAGS: JASON(n) SUMANA(s) DAN(d) QUESTION(q) CECILIA(c) KARL(k) JAMES(j) 
+# (Note: that's all for Org Mode; just ignore it if you don't use Org Mode.
+
+Met on conf call at 11:30am ET.
+Attendees: James, Dan, Karl, Jason, Cecilia
+
+* GitHub repos restructuring, and reflecting structure in README.md   
+** TODO File a ticket about separating ext-srcs.                  :CECILIA:
+* Any need for an Oracle DB server?
+    - Dan points out that the process of getting WebSphere up (in the
+      previous phase) was not easy
+    - But Oracle is separate from WebSphere
+    - Let's turn on and use existing AWS copy for Jason and everyone to
+      play with
+      - THEN set up an empty Oracle db
+      - And finally move to PSQL
+    DECISION: Yup; see TODO items below
+** TODO Turn on the old WebSphere/Oracle/Windows instance.    :CECILIA:DAN:
+** TODO Give Jason login creds, DB connection strings, etc, to above :CECILIA:DAN:
+** TODO Set up a fresh, empty Oracle DB for Jason to play with. :CECILIA:DAN:
+** TODO Give Jason a Linux-flavored dev box.                  :CECILIA:DAN:
+* Want someone else working in parallel on Oracle->PGSQL conversion?
+    - James is looking at this.  DAO and migration scripts are things to
+      look at here.  Dan thinks the DAOs are abstracted away from SQL
+      flavor.
+** TODO James is looking at SQL conversion process a bit this week. :JAMES:
+* Why separate repository for ext-srcs?
+    Dan says: if ext-srcs is really a separate app, then cleaner
+    to have it in an independent repository.
+    DECISION: Leave it in same repos for now; revisit possibly.
+    DECISION: We might do this, but not deciding to yet.
+    - Right now they're not really separate projects -- still very
+      coupled as far as implementation.  Shouldn't be separate at the
+      moment.
+    - If they're going to be separate projects (which would involve some
+      work), then they should be in separate repositories.  They should
+      be deployable separately.
+      - Repository: clone the repo and deploy the whole project.
+    - Karl: Let's table this for another week.  Seems reasonable to move
+      it to another repo once it actually works by itself.
+
+    - James reminds us that this is *not in scope* for this project!
+      It's not in our task list.  We don't really want to do it in our
+      spare time.
+
+    - Open a ticket in the "optional" milestone
+* Using psm-dev group, public repository for meeting notes, etc.
+    - Karl will send meeting notes out on psm-dev group
+    - TODO: Dan should check in markdown version of meeting notes doc to
+      the tree
+    DECISION: start using above
+** DONE Check about email addresses
+** TODO Send source format for tech report to group.                  :DAN:
+** TODO Set up meeting notes area, tech progress reports area, etc, in public repos. :CECILIA:KARL:
+     Initialize w/ Dan's report and today's meeting notes.
+     - Dan will set his up, ours are all in place
+* Are any changes in JBoss side that are not in WAS side?
+    - We don't think so.
+** TODO Nope, so let's just delete the jboss tree.                    :DAN:
+* What are our progress signs?
+    Find examples of Oracle dependencies and WebSphere dependencies.
+    E.g.,
+    - SQL can load into DB
+    - Fix one launch error, get to next one
+    - PSM (separate from ext-srcs) deployed
+* Timeline
+    - Remember that this is aggressive, don't worry if we don't make it
+* Next steps for Jason from Dan
+    - Oracle dependencies
+    - Find WebSphere 
+** TODO Ticket this just for tracking                            :CECILIA:
+** TODO Karl to post on psm-dev about this                           :KARL:
+
+# Please leave this block here.  For people using Emacs Org Mode
+# (https://orgmode.org/), this block puts this file into Org Mode.
+# 
+# Local Variables:
+# mode: org
+# End:

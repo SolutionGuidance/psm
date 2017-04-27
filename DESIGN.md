@@ -1,5 +1,7 @@
 # DESIGN.md
 
+***NOTE: 2017-04-27: This document is still very much a work in
+   progress.  We welcome suggestions on improving them.***
 
 ## User types
 

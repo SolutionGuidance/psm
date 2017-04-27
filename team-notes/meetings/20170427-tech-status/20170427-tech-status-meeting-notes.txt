@@ -3,7 +3,7 @@
 
 #+STARTUP: showeverything
 #+TAGS: JASON(n) SUMANA(s) DAN(d) QUESTION(q) CECILIA(c) KARL(k) JAMES(j) 
-# (Note: that's all for Org Mode; just ignore it if you don't use Org Mode.
+# (Note: that's all for Org Mode; just ignore it if you don't use Org Mode.)
 
 Met on conf call at 11:30am ET.
 Attendees: James, Dan, Karl, Jason, Cecilia

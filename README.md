@@ -149,6 +149,14 @@ Please see [INSTALL.md](INSTALL.md) for the latest installation instructions.
 See [DESIGN.md](DESIGN.md) for an overview of the PSM's architecture
 and design assumptions.
 
+The [psm-app](psm-app) subdirectory holds the source code to the PSM
+proper.
+
+The [ext-sources-app](ext-sources-app) subdirectory holds the source
+code to the semi-separate middleware application that provides a
+service wrapper around external data sources, thereby offering the PSM
+a consistent API to those services.
+
 The [team-notes](team-notes) directory has agendas and meeting notes
 from various team and sub-team meetings.
 

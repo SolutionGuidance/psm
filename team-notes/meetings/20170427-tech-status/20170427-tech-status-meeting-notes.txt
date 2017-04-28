@@ -55,11 +55,11 @@ Attendees: James, Dan, Karl, Jason, Cecilia
       the tree
     DECISION: start using above
 ** DONE Check about email addresses
-** TODO Send source format for tech report to group.                  :DAN:
+** DONE Send source format for tech report to group.                    :DAN:
 ** DONE Set up meeting notes area, tech progress reports area, etc, in public repos. :CECILIA:KARL:
 * Are any changes in JBoss side that are not in WAS side?
     - We don't think so.
-** TODO Nope, so let's just delete the jboss tree.                    :DAN:
+** DONE Nope, so let's just delete the jboss tree.                      :DAN:
 * What are our progress signs?
     Find examples of Oracle dependencies and WebSphere dependencies.
     E.g.,
@@ -73,7 +73,7 @@ Attendees: James, Dan, Karl, Jason, Cecilia
     - Find WebSphere 
 ** DONE Ticket this just for tracking                               :CECILIA:
    https://github.com/OpenTechStrategies/psm/issues/12
-** STARTED Karl to post on psm-dev about this                          :KARL:
+** DONE Karl to post on psm-dev about this                             :KARL:
 
 # Please leave this block here.  For people using Emacs Org Mode
 # (https://orgmode.org/), this block puts this file into Org Mode.

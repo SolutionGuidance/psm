@@ -1,9 +1,0 @@
-Dear $registrant.firstName,
-
-Your CMS account is now ready:
-
-Your username is: $registrant.username
-Please use this password to login: $password
-
-Regards,
-CMS Team

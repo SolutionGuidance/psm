@@ -1,46 +1,21 @@
        Installation instructions for the Provider Screening Module
        ===========================================================
 
-***NOTE: 2017-04-24: These instructions are still very incomplete and
+***NOTE: 2017-04-28: These instructions are still very incomplete and
    are a work in progress.  We welcome suggestions on improving
    them.***
 
 # Background and Current Deployment Status
 
-2017-04-24: The PSM is not yet ready for production or development deployment.
+2017-04-28: The PSM is not yet ready for production or development deployment.
 
 The PSM was originally developed to run in the open source web
 application server Apache JBoss (now called WildFly).  Somewhat late
 in the PSM's development, it was retargeted to the IBM WebSphere
 Application Server (WAS) 8.5, in order to better support a particular
-state's MMIS environment.
-
-This branching was done in file space rather than in version control
-space, hence these two subdirectories:
-
-* [pesp-jboss/](pesp-jboss) Original JBoss-oriented code
-* [pesp-was8.5/](pesp-was8.5) Newer WebSphere-oriented changes.
-
-There is a third subdirectory that requires some explanation:
-
-* [pesp-was8.5-ext-srcs/](pesp-was8.5-ext-srcs)
-
-`pesp-was8.5-ext-srcs/` is code for the semi-separate middleware
-application that provides the PSM with a consistent API to external
-services.  Nothing about this middleware application that is
-conceptually tied to WebSphere, it's just that for some reason in the
-WebSphere case it's a sibling to the main code directory, whereas in
-the JBoss case, for somem reason it's a subdirectory instead
-(`pesp-jboss/cms-external-sources/`).
-
-As of April 2017, our development plan is to retarget the PSM to the
-WildFly (formerly JBoss), do all development on the `master` branch,
-not have application-server-specific subdirectories.  There are two
-paths for doing this: Make the WebSphere code work under WildFly, or
-get the older JBoss version up and running in WildFly and then port
-over desired non-WebSphere-specific changes from the WebSphere code.
-Since the WebSphere-oriented version is more recent and should be a
-superset of the JBoss version, we'll try the former first.
+state's MMIS environment.  Our plan is to retarget the PSM to WildFly
+(formerly JBoss), though still keeping all of the functionality
+additions made while the PSM was in its WebSphere interregnum.
 
 This INSTALL.md file will be continuously improved as we work.  When
 it loses the warning at the top, that will mean we expect the PSM to
@@ -49,10 +24,10 @@ resources it would take to continue development support for WebSphere
 deployment.
 
 Note that the repository currently depends on access to a Oracle
-database.  We intend to shift towards Postgresql in order to eliminate
+database.  We intend to shift towards PostgreSQL in order to eliminate
 a proprietary dependency.
 
-# WIP: Preliminary installation instructions for pesp-jboss/
+# WIP: Installation instructions for the old pesp-jboss/ tree
 
 Very preliminary instructions for actually getting a test version of
 this set up, based on the info in the /docs subdir.
@@ -257,8 +232,3 @@ notes as supplements to those directions.
      up to work with the app, only about where in the WebSphere install you
      should enter the already-set-up queue names) 
    - Likewise no information on mail queue setup/configuration
-
-
-### JBoss Version
-
- 

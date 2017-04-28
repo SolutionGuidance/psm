@@ -152,9 +152,9 @@ public class FlatFileExporter {
      * -          Leave legacy ID blank for new providers
      * 
      * Add-Update ID:  1 byte.  A for add, U for update (existing)
-     * Oracle Row ID: 22 bytes – our row ID for this provider
-     * Legacy ID: 8 bytes – the legacy ID of the provider
-     * Sys err Code: 2 bytes – we record this to the log for every processed row, but ignore it
+     * Oracle Row ID: 22 bytes - our row ID for this provider
+     * Legacy ID: 8 bytes - the legacy ID of the provider
+     * Sys err Code: 2 bytes - we record this to the log for every processed row, but ignore it
      * Data Err Code: 30 bytes (which will be 3 byte segments)
      * </pre>
      * 

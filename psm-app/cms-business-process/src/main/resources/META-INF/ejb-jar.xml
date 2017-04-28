@@ -9,10 +9,6 @@
 	    <session>
 	        <ejb-name>RegistrationServiceBean</ejb-name>
 	        <ejb-class>gov.medicaid.services.impl.RegistrationServiceBean</ejb-class>
-	        <ejb-local-ref>
-	        	<ejb-ref-name>gov.medicaid.services.impl.RegistrationServiceBean/identityProvider</ejb-ref-name>
-	        	<ejb-link>DBIdentityProviderDAOBean</ejb-link>
-	        </ejb-local-ref>
 	        <resource-ref>
 	        	<res-ref-name>gov.medicaid.services.impl.RegistrationServiceBean/session</res-ref-name>
 	        	<res-type>javax.mail.Session</res-type>
@@ -83,6 +79,6 @@
 	        <ejb-name>DataSynchronizationMessageBean</ejb-name>
 	        <ejb-class>gov.medicaid.services.impl.DataSynchronizationMessageBean</ejb-class>
     	</message-driven>
-    	    
+
 	</enterprise-beans>
 </ejb-jar>

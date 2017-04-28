@@ -2,7 +2,7 @@
 <!-- ======================================================================
     Portal Services Build 
      ====================================================================== -->
-<project name="CMS Portal Services" default="dist" basedir=".">
+<project name="CMS Portal Services" default="deploy" basedir=".">
 	<property file="${basedir}/build.properties">
 	</property>
 	<property name="deploy.dir" value="${jboss.home}/server/${jboss.config}/deploy" />
@@ -24,12 +24,10 @@
 			<include name="*.jar" />
 			<exclude name="${core-file}"/>
 		</fileset>
-        <fileset dir="${was.home}/lib">
-            <include name="*.jar" />
-        </fileset>
-        <fileset dir="${was.home}/plugins">
-            <include name="*.jar" />
-        </fileset>
+    <fileset dir="${jboss.home}/modules/system/layers/base/">
+		</fileset>
+    <fileset dir="${basedir}/../deps">
+    </fileset>
 	</path>
 	
 	<path id="web.buildpath">
@@ -61,7 +59,7 @@
         </fileset>
 	</path>
 
-	<target name="dist" depends="clean, build-core, build-ejb, build-war" description="Deploys the portal ear artifact">
+	<target name="deploy" depends="clean, build-core, build-ejb, build-war" description="Deploys the portal ear artifact">
 		<copy todir="cms-portal-services/lib">
 			<fileset dir="${build.dir}">
 				<include name="${core-file}" />
@@ -78,13 +76,11 @@
 			</fileset>
 		</ear>
 
-		<!--
 		<copy todir="${deploy.dir}">
 			<fileset dir="${build.dir}">
 				<include name="${ear-file}" />
 			</fileset>
 		</copy>
-		-->
 	</target>
 	
     <target name="undeploy">

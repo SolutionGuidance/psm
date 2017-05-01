@@ -85,9 +85,6 @@ is a summary of their notes.
 
 ### Wildfly Version
 
-See the [WIP
-branch](https://github.com/OpenTechStrategies/psm/tree/jasonaowen/wip-wildfly).
-
 1. Get Wildfly: Visit
    [http://wildfly.org/downloads/](http://wildfly.org/downloads/). Download
    the [10.1.0.Final full
@@ -98,32 +95,67 @@ branch](https://github.com/OpenTechStrategies/psm/tree/jasonaowen/wip-wildfly).
        $ cd ..
        $ tar -xzf wildfly-10.1.0.Final.tar.gz
        $ cd wildfly-10.1.0.Final
-       
+
+1. Add a user
+       $ ./bin/add-user.sh
+        What type of user do you wish to add? 
+        a) Management User (mgmt-users.properties)
+        b) Application User (application-users.properties)
+        (a): a
+
+        What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]: 
+        
+        Is this new user going to be used for one AS process to connect to another AS process? 
+        e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
+        yes/no? no
+
+1. Start the server:
+
        # to start the server:
        $ ./bin/standalone.sh -c standalone-full.xml
 
-2. Check that the server is running by visiting
+1. Check that the server is running by visiting
 [http://localhost:9990/](http://localhost:9990/) for the management
 console and [https://localhost:8443/](https://localhost:8443/) for the
 app(s) it hosts - currently none.
 
-3. Build the application with `ant`.
+1. Make a placeholder subdir for jBPM (for now), next to the `psm` and
+`wildfly` dirs.
+
+        $ cd ..
+        $ mkdir jbpm-5.3.0.Final-bin
+
+1. Make a Postgres user and database.
+
+        $ su - postgres
+        $ createuser --pwprompt psm
+        $ createdb --owner=psm psm
+
+1. Fill in your local properties:
+
+        $ cd ../psm/psm-app
+        $ cp build.properties.template build.properties
+        $ favorite-editor build.properties
+
+1. Build the application with `ant`.
 
        $ cd ../psm/psm-app
        
        # create an EAR file:
        $ ant deploy
        
-       # This depends on libraries provided by the application server, which
-       # are pulled in as part of the [wip-wildfly
-       # branch](https://github.com/OpenTechStrategies/psm/tree/jasonaowen/wip-wildfly).
+       # This depends on libraries provided by the application server.
 
-4. Add the deploy target (?).  "The current deploy target is inside the
-   WildFly home (also something to change later), but you can add it
-   through the management interface: Deployments > Add > Upload a new
-   deployment > browse to file."
+1. Building the app creates
+   `wildfly-10.1.0.Final/server/default/deploy/cms-portal-services.ear`
+   (and also in `psm/psm-app/build/cms-portal-services.ear`).  Go to the
+   Wildfly Management Console at
+   [http://localhost:9990/](http://localhost:9990/), log in with your
+   username and password, and do the following: Deployments > Add >
+   Upload a new deployment > browse to file." (NOTE: this will fail, for
+   now.)
 
-5. Configure a development SMTP server.
+1. Configure a development SMTP server.
 
        $ cd ../../wildfly-10.1.0.Final
        $ gem install --user-install mailcatcher

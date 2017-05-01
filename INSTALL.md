@@ -83,6 +83,71 @@ this set up, based on the info in the /docs subdir.
 Several people have done work to get this up and running so far.  This
 is a summary of their notes.
 
+### Wildfly Version
+
+See the [WIP
+branch](https://github.com/OpenTechStrategies/psm/tree/jasonaowen/wip-wildfly).
+
+1. Get Wildfly: Visit
+   [http://wildfly.org/downloads/](http://wildfly.org/downloads/). Download
+   the [10.1.0.Final full
+   distribution](http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz).
+
+       $ cd /path/to/this_psm_repo
+       # this should be a peer directory, so:
+       $ cd ..
+       $ tar -xzf wildfly-10.1.0.Final.tar.gz
+       $ cd wildfly-10.1.0.Final
+       
+       # to start the server:
+       $ ./bin/standalone.sh -c standalone-full.xml
+
+2. Check that the server is running by visiting
+[http://localhost:9990/](http://localhost:9990/) for the management
+console and [https://localhost:8443/](https://localhost:8443/) for the
+app(s) it hosts - currently none.
+
+3. Build the application with `ant`.
+
+       $ cd ../psm/psm-app
+       
+       # create an EAR file:
+       $ ant deploy
+       
+       # This depends on libraries provided by the application server, which
+       # are pulled in as part of the [wip-wildfly
+       # branch](https://github.com/OpenTechStrategies/psm/tree/jasonaowen/wip-wildfly).
+
+4. Add the deploy target (?).  "The current deploy target is inside the
+   WildFly home (also something to change later), but you can add it
+   through the management interface: Deployments > Add > Upload a new
+   deployment > browse to file."
+
+5. Configure a development SMTP server.
+
+       $ cd ../../wildfly-10.1.0.Final
+       $ gem install --user-install mailcatcher
+       
+       # Since this is just for dev, it runs on port 1025 instead of 25 (to
+       # avoid needing root permissions), so make these changes to
+       # `standalone/configuration/standalone-full.xml`:
+
+        <subsystem xmlns="urn:jboss:domain:mail:2.0">
+          - <mail-session name="default" jndi-name="java:jboss/mail/Default">
+          + <mail-session name="java:/Mail" jndi-name="java:/Mail">
+                <smtp-server outbound-socket-binding-ref="mail-smtp"/>
+            </mail-session>
+            <mail-session name="default" jndi-name="java:jboss/mail/Default">
+                <smtp-server outbound-socket-binding-ref="mail-smtp"/>
+            </mail-session>
+        </subsystem>
+
+        <outbound-socket-binding name="mail-smtp">
+          - <remote-destination host="localhost" port="25"/>
+          + <remote-destination host="localhost" port="1025"/>
+        </outbound-socket-binding>
+
+
 ### WebSphere Version
 
 The WebSphere-based version of the app is documented in

@@ -1,0 +1,8 @@
+jboss.home=__PATH_TO__/wildfly-10.1.0.Final
+jBPM.home=__PATH_TO__/jbpm-5.3.0.Final-bin
+
+jboss.config=default
+
+jdbc.url=jdbc:postgresql:__DB_NAME__
+jdbc.user=__DB_USER__
+jdbc.pass=__DB_PASSWORD__

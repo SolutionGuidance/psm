@@ -200,3 +200,13 @@ We welcome questions and contributions.  You can:
 Note that submitting issues or pull requests requires a
 [GitHub](https://github.com/) account, which anyone can create (there
 is no charge).
+
+---------------------------------------------------------------------
+SECTION 6: Third-party Libraries
+---------------------------------------------------------------------
+
+At times we may use some code from outside open source libraries.  For
+example, `documentation/standalone-full.xml.example` is included from
+the [Wildfly](http://wildfly.org/) project.  In these cases, we include
+the license for that code in LICENSE.md, and describe which files the
+secondary license applies to.

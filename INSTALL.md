@@ -160,25 +160,13 @@ app(s) it hosts - currently none.
        $ cd ../../wildfly-10.1.0.Final
        $ gem install --user-install mailcatcher
        
-       # Since this is just for dev, it runs on port 1025 instead of 25 (to
-       # avoid needing root permissions), so make these changes to
-       # `standalone/configuration/standalone-full.xml`:
+       # Since this is just for dev, it runs on port 1025 instead of 25
+       # (to avoid needing root permissions), so use the example dev
+       # file packaged in this repo, instead of the default Wildfly
+       # file.  Note that this example file is distributed under the
+       # LGPL, and see LICENSE.md for details:
 
-        <subsystem xmlns="urn:jboss:domain:mail:2.0">
-          - <mail-session name="default" jndi-name="java:jboss/mail/Default">
-          + <mail-session name="java:/Mail" jndi-name="java:/Mail">
-                <smtp-server outbound-socket-binding-ref="mail-smtp"/>
-            </mail-session>
-            <mail-session name="default" jndi-name="java:jboss/mail/Default">
-                <smtp-server outbound-socket-binding-ref="mail-smtp"/>
-            </mail-session>
-        </subsystem>
-
-        <outbound-socket-binding name="mail-smtp">
-          - <remote-destination host="localhost" port="25"/>
-          + <remote-destination host="localhost" port="1025"/>
-        </outbound-socket-binding>
-
+       $ cp standalone-full.xml.example path/to/wildfly/standalone/configuration/standalone-full.xml
 
 ### WebSphere Version
 

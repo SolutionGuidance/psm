@@ -83,6 +83,103 @@ this set up, based on the info in the /docs subdir.
 Several people have done work to get this up and running so far.  This
 is a summary of their notes.
 
+### Wildfly Version
+
+1. Get Wildfly: Visit
+   [http://wildfly.org/downloads/](http://wildfly.org/downloads/). Download
+   the [10.1.0.Final full
+   distribution](http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz).
+
+       $ cd /path/to/this_psm_repo
+       # this should be a peer directory, so:
+       $ cd ..
+       $ tar -xzf wildfly-10.1.0.Final.tar.gz
+       $ cd wildfly-10.1.0.Final
+
+1. Add a user
+       $ ./bin/add-user.sh
+        What type of user do you wish to add? 
+        a) Management User (mgmt-users.properties)
+        b) Application User (application-users.properties)
+        (a): a
+
+        What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]: 
+        
+        Is this new user going to be used for one AS process to connect to another AS process? 
+        e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
+        yes/no? no
+
+1. Start the server:
+
+       # to start the server:
+       $ ./bin/standalone.sh -c standalone-full.xml
+
+1. Check that the server is running by visiting
+[http://localhost:9990/](http://localhost:9990/) for the management
+console and [https://localhost:8443/](https://localhost:8443/) for the
+app(s) it hosts - currently none.
+
+1. Make a placeholder subdir for jBPM (for now), next to the `psm` and
+`wildfly` dirs.
+
+        $ cd ..
+        $ mkdir jbpm-5.3.0.Final-bin
+
+1. Make a Postgres user and database.
+
+        $ su - postgres
+        $ createuser --pwprompt psm
+        $ createdb --owner=psm psm
+
+1. Fill in your local properties:
+
+        $ cd ../psm/psm-app
+        $ cp build.properties.template build.properties
+        $ favorite-editor build.properties
+
+1. Build the application with `ant`.
+
+       $ cd ../psm/psm-app
+       
+       # create an EAR file:
+       $ ant deploy
+       
+       # This depends on libraries provided by the application server.
+
+1. Building the app creates
+   `wildfly-10.1.0.Final/server/default/deploy/cms-portal-services.ear`
+   (and also in `psm/psm-app/build/cms-portal-services.ear`).  Go to the
+   Wildfly Management Console at
+   [http://localhost:9990/](http://localhost:9990/), log in with your
+   username and password, and do the following: Deployments > Add >
+   Upload a new deployment > browse to file." (NOTE: this will fail, for
+   now.)
+
+1. Configure a development SMTP server.
+
+       $ cd ../../wildfly-10.1.0.Final
+       $ gem install --user-install mailcatcher
+       
+       # Since this is just for dev, it runs on port 1025 instead of 25 (to
+       # avoid needing root permissions), so make these changes to
+       # `standalone/configuration/standalone-full.xml`:
+
+        <subsystem xmlns="urn:jboss:domain:mail:2.0">
+          - <mail-session name="default" jndi-name="java:jboss/mail/Default">
+          + <mail-session name="java:/Mail" jndi-name="java:/Mail">
+                <smtp-server outbound-socket-binding-ref="mail-smtp"/>
+            </mail-session>
+            <mail-session name="default" jndi-name="java:jboss/mail/Default">
+                <smtp-server outbound-socket-binding-ref="mail-smtp"/>
+            </mail-session>
+        </subsystem>
+
+        <outbound-socket-binding name="mail-smtp">
+          - <remote-destination host="localhost" port="25"/>
+          + <remote-destination host="localhost" port="1025"/>
+        </outbound-socket-binding>
+
+
 ### WebSphere Version
 
 The WebSphere-based version of the app is documented in

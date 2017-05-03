@@ -1,8 +1,9 @@
-# Developers.md
+# PSM Contribution Guidelines
 
 This document contains information of use to developers looking to
-improve the PSM's codebase.  You might also want to look at
-[DESIGN.md](DESIGN.md).
+improve the PSM's codebase.  See [README.md](README.md) for an
+introduction to this project, and if you're thinking of contributing
+you might also want to look at [DESIGN.md](DESIGN.md).
 
 ## Submitting Code
 

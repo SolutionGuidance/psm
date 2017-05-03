@@ -3,11 +3,11 @@
 ## Our Pledge
 
 In the interest of fostering an open and welcoming environment, we as
-contributors and maintainers pledge to making participation in our project and
-our community a harassment-free experience for everyone, regardless of age, body
-size, disability, ethnicity, gender identity and expression, level of experience,
-nationality, personal appearance, race, religion, or sexual identity and
-orientation.
+contributors and maintainers pledge to making participation in our
+project and our community a harassment-free experience for everyone,
+regardless of age, body size, disability, ethnicity, gender identity
+and expression, level of experience, employment, nationality, personal
+appearance, race, religion, or sexual identity and orientation.
 
 ## Our Standards
 
@@ -33,8 +33,10 @@ advances
 
 ## Our Responsibilities
 
-Project maintainers are responsible for clarifying the standards of acceptable
-behavior and are expected to take appropriate and fair corrective action in
+[Project
+maintainers](https://github.com/orgs/OpenTechStrategies/teams/psm?query=role%3Aowner)
+are responsible for clarifying the standards of acceptable behavior
+and are expected to take appropriate and fair corrective action in
 response to any instances of unacceptable behavior.
 
 Project maintainers have the right and responsibility to remove, edit, or
@@ -54,14 +56,21 @@ further defined and clarified by project maintainers.
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may
-be reported by contacting the project team at
-**`psm-coc{_AT_}opentechstrategies.com`**.  All
-complaints will be reviewed and investigated and will result in a
+Instances of abusive, harassing, or otherwise unacceptable behavior
+may be reported by contacting the Code of Conduct enforcement team at
+**`psm-coc{_AT_}opentechstrategies.com`**. The current CoC enforcement
+team is:
+
+* [Cecilia Donnelly](https://github.com/cecilia-donnelly)
+* [Karl Fogel](https://github.com/kfogel)
+* [Sumana Harihareswara](https://github.com/brainwane)
+* [James Vasile](https://github.com/jvasile)
+
+All complaints will be reviewed and investigated and will result in a
 response that is deemed necessary and appropriate to the
-circumstances. The project team is obligated to maintain confidentiality
-with regard to the reporter of an incident.  Further details of specific
-enforcement policies may be posted separately.
+circumstances. The CoC enforcement team is obligated to maintain
+confidentiality with regard to the reporter of an incident.  Further
+details of specific enforcement policies may be posted separately.
 
 Project maintainers who do not follow or enforce the Code of Conduct in good
 faith may face temporary or permanent repercussions as determined by other

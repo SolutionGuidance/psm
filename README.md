@@ -25,7 +25,7 @@ details.
 
 Development activity now takes place on the `master` branch, with
 short-lived development branches used for specific tasks.  Code
-contribution guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md).  
+contribution guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md).
 Please feel free to [file issue
 tickets](https://github.com/OpenTechStrategies/psm/issues/new) in this
 repository to ask questions.

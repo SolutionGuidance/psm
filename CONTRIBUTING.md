@@ -31,7 +31,10 @@ If you submit code that doesn't come from you or your employer, we
 call that "Third-Party Code" and have a few requirements.  If the code
 contains a license statement, that's great.  If not, please tell us
 the license that applies to the code and provide links to whatever
-resources you used to find that out.
+resources you used to find that out. For some examples, see the
+LICENSE and METADATA parts of [Google's guide to introducing
+third-party
+code](https://opensource.google.com/docs/thirdparty/documentation/#license).
 
 If your submission doesn't include Third Party Code, but instead
 depends on it in some other way, we might need a copy of that

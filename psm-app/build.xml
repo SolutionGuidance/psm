@@ -58,17 +58,12 @@
   <target name="dist"
           depends="clean, build-core, build-ejb, build-war"
           description="Deploys the portal ear artifact">
-    <copy todir="cms-portal-services/lib">
-      <fileset dir="${build.dir}">
-        <include name="${core-file}" />
-      </fileset>
-    </copy>
-
     <ear destfile="${build.dir}/cms-portal-services.ear"
          appxml="cms-portal-services/EarContent/META-INF/application.xml">
       <fileset dir="${build.dir}">
         <include name="${ejb-file}" />
         <include name="${war-file}" />
+        <include name="${core-file}" />
       </fileset>
       <fileset dir="cms-portal-services">
         <include name="lib/**" />

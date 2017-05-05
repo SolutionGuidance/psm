@@ -27,6 +27,58 @@ Note that the repository currently depends on access to a Oracle
 database.  We intend to shift towards PostgreSQL in order to eliminate
 a proprietary dependency.
 
+# Overview
+
+The Provider Screening Module is a Java EE Enterprise Application. It depends
+on a correctly-configured Java EE Application Server. While it was originally
+written for the Java EE 6 profile, it is currently being ported to run on Java
+EE 7 Application Servers, starting with WildFly 10.
+
+## System Requirements
+
+These requirements are based on our understanding of the application at this
+time, and will evolve as we understand it more.
+
+### Hardware
+
+- **Memory**: 8 GB should be enough for a test system
+- **CPU**: TBA; provisioning CPU proportional to memory (whatever that looks
+  like in your environment) should be reasonable.
+- **Storage**: 10 GB of storage for WildFly, the PSM repository, and its
+  dependencies should be plenty.
+
+### Software
+
+- **Operating System**: we recommend Debian 8 (jessie). If that's not feasible
+  for your environment, any of the supported WildFly 10.1 operating systems
+  should work, but our ability to help troubleshoot issues that come up may be
+  limited.
+- **Java**: We're using OpenJDK 8, which is currently 8u121, but you should
+  keep up with the latest releases and post if you have issues relating to
+  upgrading.
+- **Java EE Application Server**: currently WildFly 10.1. We may support other
+  application servers in the future.
+
+### Database
+
+We're testing with latest stable PostgreSQL, currently 9.6.2. PostgreSQL 10
+will be released shortly and we hope/intend to verify compatibility with that.
+
+- **Storage**: TBA. We haven't started integrating with any external data
+  sources yet, which will likely be the largest driver of storage requirements.
+  We suggest starting with 10 GB for the database, and have a plan to expand or
+  reprovision later.
+
+The application requires the application server to be configured with two data sources:
+
+- JNDI name `java:/jdbc/MitaDS`
+- JNDI name `java:/jdbc/TaskServiceDS`
+
+### Mail
+
+The application requires the application server to be configured with a mail service:
+- JNDI name `java:/Mail`
+
 # WIP: Installation instructions for the old pesp-jboss/ tree
 
 Very preliminary instructions for actually getting a test version of

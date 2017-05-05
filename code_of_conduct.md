@@ -66,7 +66,10 @@ media accounts, or acting as an appointed representative at an event.
 
 ## Meeting Our Responsibilities
 
-If issues can not be resolved directly among affected people, they may
+Contributors are welcome and encouraged to resolve conflicts directly
+with each other, when they feel comfortable doing so.
+
+If issues can not be resolved directly among affected people, they should
 report instances of abusive, harassing, or otherwise unacceptable
 behavior to the Code of Conduct team at
 **`psm-coc{_AT_}opentechstrategies.com`**. The current CoC team is:
@@ -75,6 +78,10 @@ behavior to the Code of Conduct team at
 * [Karl Fogel](https://github.com/kfogel)
 * [Sumana Harihareswara](https://github.com/brainwane)
 * [James Vasile](https://github.com/jvasile)
+
+Contributors are also welcome and encouraged to contact the CoC team
+to ask for advice on speaking with another contributor to resolve a
+conflict directly.
 
 The team will will review reports, make inquiries and respond as best
 it can.  The individuals on the CoC team will maintain reasonable

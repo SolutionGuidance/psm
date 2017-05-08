@@ -81,10 +81,35 @@ The application requires the application server to be configured with a mail ser
 
 # Building
 
+1. Get Wildfly: Visit
+   [http://wildfly.org/downloads/](http://wildfly.org/downloads/). Download
+   the [10.1.0.Final full
+   distribution](http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz).
+
+   ```ShellSession
+   $ cd /path/to/this_psm_repo
+   $ # this should be a peer directory, so:
+   $ cd ..
+   $ tar -xzf wildfly-10.1.0.Final.tar.gz
+   $ cd wildfly-10.1.0.Final
+   ```
+
 1. Fill in your local properties:
 
-```ShellSession
-$ cd ../psm/psm-app
-$ cp build.properties.template build.properties
-$ favorite-editor build.properties
-```
+   ```ShellSession
+   $ cd ../psm/psm-app
+   $ cp build.properties.template build.properties
+   $ favorite-editor build.properties
+   ```
+
+1. Build the application with `ant`. This depends on libraries provided by the
+   application server.
+
+   ```ShellSession
+   $ cd ../psm/psm-app
+   $ ant dist
+   Buildfile: /path/to/psm/psm-app/build.xml
+   ...[cut]...
+   dist:
+         [ear] Building ear: /path/to/psm/psm-app/build/cms-portal-services.ear
+   ```

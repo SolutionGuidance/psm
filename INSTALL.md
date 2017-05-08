@@ -79,7 +79,18 @@ The application requires the application server to be configured with two data s
 The application requires the application server to be configured with a mail service:
 - JNDI name `java:/Mail`
 
-# Building
+# Prerequisites
+
+1. A [Java 8](https://www.java.com) JRE and JDK. We are testing with OpenJDK 8,
+   which you can install on Debian-like systems with
+   `sudo apt install openjdk-8-jdk-headless`.
+1. [Ant](https://ant.apache.org/) for building: `sudo apt install ant`.
+
+# Configuring WildFly
+
+Building and deploying the PSM application requies WildFly to be installed and
+configured. See also the [WildFly 10 Getting Started
+Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
 
 1. Get Wildfly: Visit
    [http://wildfly.org/downloads/](http://wildfly.org/downloads/). Download
@@ -94,6 +105,57 @@ The application requires the application server to be configured with a mail ser
    $ cd wildfly-10.1.0.Final
    ```
 
+1. Add a WildFly management console user
+
+   ```ShellSession
+   $ ./bin/add-user.sh
+   What type of user do you wish to add?
+   a) Management User (mgmt-users.properties)
+   b) Application User (application-users.properties)
+   (a): a
+
+   What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]:
+
+   Is this new user going to be used for one AS process to connect to another AS process?
+   e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
+   yes/no? no
+   ```
+
+1. Stop the server if it is already running:
+
+   ```ShellSession
+   $ ./bin/jboss-cli.sh --connect --command=:shutdown
+   ```
+
+1. The `standalone-full` profile includes messaging, which PSM requires.
+   `standalone-full.xml` lives in the WildFly directory, at
+   `standalone/configuration/standalone-full.xml`. To start the server:
+
+   ```ShellSession
+   $ ./bin/standalone.sh -c standalone-full.xml
+   ```
+
+   WildFly, by default, is only accessible to localhost. If you are running
+   WildFly on a remote system, you may start the server in a way that allows
+   remote connections:
+
+   ```ShellSession
+   $ ./bin/standalone.sh \
+       -c standalone-full.xml \
+       -b 0.0.0.0 \
+       -bmanagement 0.0.0.0
+   ```
+
+   Be careful of the security implications of exposing the management interface
+   to the internet! These instructions are for a **development** environment,
+   not for a production environment.
+
+1. Check that the server is running by visiting
+   [http://localhost:9990/](http://localhost:9990/) for the management console
+   and [https://localhost:8443/](https://localhost:8443/) for the app(s) it
+   hosts - currently none.
+
+# Building
 1. Fill in your local properties:
 
    ```ShellSession

@@ -85,6 +85,9 @@ The application requires the application server to be configured with a mail ser
    which you can install on Debian-like systems with
    `sudo apt install openjdk-8-jdk-headless`.
 1. [Ant](https://ant.apache.org/) for building: `sudo apt install ant`.
+1. An SMTP server. For development, consider
+   [MailCatcher](https://mailcatcher.me/), which you can install with
+   `gem install --user-install mailcatcher`. See the website for more details.
 
 # Configuring WildFly
 
@@ -154,6 +157,25 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    [http://localhost:9990/](http://localhost:9990/) for the management console
    and [https://localhost:8443/](https://localhost:8443/) for the app(s) it
    hosts - currently none.
+
+## Configure services
+
+### Mail
+
+If you are using a debugging mail server such as MailCatcher, update the
+outgoing SMTP port and add a mail server without credentials:
+
+```ShellSession
+$ ./bin/jboss-cli.sh --connect << EOF
+/socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp:write-attribute(name=port,value=1025)
+/subsystem=mail/mail-session="java:/Mail":add(jndi-name="java:/Mail")
+/subsystem=mail/mail-session="java:/Mail"/server=smtp:add(outbound-socket-binding-ref=mail-smtp)
+EOF
+```
+
+If you are using a production mail server, add a mail session with a JNDI name
+of `java:/Mail` to your application server with the appropriate credentials
+using the command line or web interface.
 
 # Building
 1. Fill in your local properties:

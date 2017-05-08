@@ -79,6 +79,16 @@ The application requires the application server to be configured with two data s
 The application requires the application server to be configured with a mail service:
 - JNDI name `java:/Mail`
 
+# Building
+
+1. Fill in your local properties:
+
+```ShellSession
+$ cd ../psm/psm-app
+$ cp build.properties.template build.properties
+$ favorite-editor build.properties
+```
+
 # WIP: Installation instructions for the old pesp-jboss/ tree
 
 Very preliminary instructions for actually getting a test version of

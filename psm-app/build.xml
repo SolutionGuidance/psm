@@ -11,7 +11,6 @@
   <property name="web.classes.dir" value="${web.build.dir}/classes" />
   <property name="ejb.classes.dir" value="${ejb.build.dir}/classes" />
 
-  <property name="ear-file" value="cms-portal-services.ear" />
   <property name="core-file" value="cms-core.jar" />
   <property name="ejb-file" value="services.jar" />
   <property name="war-file" value="cms-web.war" />
@@ -69,20 +68,6 @@
         <include name="lib/**" />
       </fileset>
     </ear>
-
-  <!--
-    <copy todir="${deploy.dir}">
-      <fileset dir="${build.dir}">
-        <include name="${ear-file}" />
-      </fileset>
-    </copy>
-  -->
-  </target>
-
-  <target name="undeploy">
-    <delete dir="${deploy.dir}">
-      <include name="${ear-file}" />
-    </delete>
   </target>
 
   <target name="regenerate-model"

@@ -29,11 +29,6 @@
         <constructor-arg type="java.lang.String" value="cms-web" />
     </bean>
 
-	<bean id="OracleDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName">
-			<value>${jndi.DataSource}</value>
-		</property>
-	</bean>
 	<bean id="RegistrationService" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName">
             <value>${jndi.RegistrationService}</value>

@@ -74,6 +74,8 @@ The application requires the application server to be configured with two data s
 - JNDI name `java:/jdbc/MitaDS`
 - JNDI name `java:/jdbc/TaskServiceDS`
 
+These should be XA data sources that both point to the same database.
+
 ### Mail
 
 The application requires the application server to be configured with a mail service:
@@ -88,6 +90,8 @@ The application requires the application server to be configured with a mail ser
 1. An SMTP server. For development, consider
    [MailCatcher](https://mailcatcher.me/), which you can install with
    `gem install --user-install mailcatcher`. See the website for more details.
+1. [PostgreSQL 9.6](https://www.postgresql.org/). We are testing with
+   PostgreSQL 9.6.2.
 
 # Configuring WildFly
 
@@ -177,6 +181,58 @@ If you are using a production mail server, add a mail session with a JNDI name
 of `java:/Mail` to your application server with the appropriate credentials
 using the command line or web interface.
 
+### Database
+
+Download the [PostgreSQL JDBC driver](https://jdbc.postgresql.org/) and deploy
+it to your application server:
+
+```ShellSession
+$ ./bin/jboss-cli.sh --connect --command="deploy ../postgresql-{VERSION}.jar"
+```
+
+You will need a database user, and a database owned by that user:
+
+```ShellSession
+$ sudo -u postgres createuser --pwprompt psm
+$ sudo -u postgres createdb --owner=psm psm
+```
+
+After creating the databases, replace `{VERSION}` with the version of the
+PostgreSQL JDBC driver you downloaded and `{PostgreSQL psm user password}` with
+the password you assigned to your `psm` database user, and add the data sources
+to the application server:
+
+```ShellSession
+$ ./bin/jboss-cli.sh --connect <<EOF
+xa-data-source add \
+  --name=TaskServiceDS \
+  --jndi-name=java:/jdbc/TaskServiceDS \
+  --driver-name=postgresql-{VERSION}.jar \
+  --xa-datasource-class=org.postgresql.xa.PGXADataSource \
+  --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
+  --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter \
+  --enabled=true \
+  --use-ccm=true \
+  --background-validation=true \
+  --user-name=psm \
+  --password={PostgreSQL psm user password} \
+  --xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
+xa-data-source add \
+  --name=MitaDS \
+  --jndi-name=java:/jdbc/MitaDS \
+  --driver-name=postgresql-{VERSION}.jar \
+  --xa-datasource-class=org.postgresql.xa.PGXADataSource \
+  --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
+  --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter \
+  --enabled=true \
+  --use-ccm=true \
+  --background-validation=true \
+  --user-name=psm \
+  --password={PostgreSQL psm user password} \
+  --xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
+EOF
+```
+
 # Building
 1. Fill in your local properties:
 
@@ -197,3 +253,17 @@ using the command line or web interface.
    dist:
          [ear] Building ear: /path/to/psm/psm-app/build/cms-portal-services.ear
    ```
+
+1. Deploy the built app: you can use the Wildfly Management Console UI at
+   [http://localhost:9990/](http://localhost:9990/), log in with your username
+   and password, and do the following: Deployments > Add > Upload a new
+   deployment > browse to file." Alternatively, you can use the command line
+   interface:
+
+   ```ShellSession
+   $ /path/to/wildfly/bin/jboss-cli.sh --connect \
+       --command="deploy /path/to/psm/psm-app/build/cms-portal-services.ear"
+   ```
+
+   If you have a previous build deployed already, you can replace the
+   deployment in the UI or add the `--force` switch after `deploy`.

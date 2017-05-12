@@ -81,6 +81,12 @@ These should be XA data sources that both point to the same database.
 The application requires the application server to be configured with a mail service:
 - JNDI name `java:/Mail`
 
+### Messaging
+
+The application requires the application server to be configured with a
+messaging service:
+- JNDI name `java:/jms/queue/DataSync`
+
 # Prerequisites
 
 1. A [Java 8](https://www.java.com) JRE and JDK. We are testing with OpenJDK 8,
@@ -180,6 +186,15 @@ EOF
 If you are using a production mail server, add a mail session with a JNDI name
 of `java:/Mail` to your application server with the appropriate credentials
 using the command line or web interface.
+
+### Messaging
+
+Create a messaging queue:
+
+```ShellSession
+$ ./bin/jboss-cli.sh --connect \
+  --command='jms-queue add --queue-address=DataSync --entries=["java:/jms/queue/DataSync"]'
+```
 
 ### Database
 

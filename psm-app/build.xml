@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="CMS Portal Services" default="dist" basedir=".">
   <property file="${basedir}/build.properties" />
-  <property name="deploy.dir"
-            value="${jboss.home}/server/${jboss.config}/deploy" />
   <property name="build.dir" value="${basedir}/build" />
   <property name="classes.dir" value="${build.dir}/classes" />
   <property name="log.dir" value="${basedir}/tests/log" />
@@ -11,7 +9,6 @@
   <property name="web.classes.dir" value="${web.build.dir}/classes" />
   <property name="ejb.classes.dir" value="${ejb.build.dir}/classes" />
 
-  <property name="ear-file" value="cms-portal-services.ear" />
   <property name="core-file" value="cms-core.jar" />
   <property name="ejb-file" value="services.jar" />
   <property name="war-file" value="cms-web.war" />
@@ -69,20 +66,6 @@
         <include name="lib/**" />
       </fileset>
     </ear>
-
-  <!--
-    <copy todir="${deploy.dir}">
-      <fileset dir="${build.dir}">
-        <include name="${ear-file}" />
-      </fileset>
-    </copy>
-  -->
-  </target>
-
-  <target name="undeploy">
-    <delete dir="${deploy.dir}">
-      <include name="${ear-file}" />
-    </delete>
   </target>
 
   <target name="regenerate-model"
@@ -157,17 +140,6 @@
   <target name="clean" description="Removes all generated files">
     <delete dir="${build.dir}" />
     <delete dir="${log.dir}" />
-  </target>
-
-  <target name="deploy-ds"
-          description="Deploys the datasource definition to the application server">
-    <copy todir="${deploy.dir}" filtering="on" overwrite="yes">
-      <filterset filtersfile="build.properties"></filterset>
-        <fileset dir="db">
-          <include name="mita3-oracle-ds.xml" />
-          <include name="task-service-ds.xml" />
-        </fileset>
-    </copy>
   </target>
 
   <target name="test" depends="clean" description="Runs the portal tests">

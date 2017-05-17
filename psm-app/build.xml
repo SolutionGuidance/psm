@@ -55,7 +55,6 @@
       <fileset dir="${build.dir}">
         <include name="${ejb-file}" />
         <include name="${war-file}" />
-        <include name="${core-file}" />
       </fileset>
       <fileset dir="cms-portal-services">
         <include name="lib/**" />
@@ -90,6 +89,12 @@
     </copy>
 
     <jar destfile="${build.dir}/${core-file}" basedir="${classes.dir}" />
+
+    <copy todir="cms-portal-services/lib">
+      <fileset dir="${build.dir}">
+        <include name="${core-file}" />
+      </fileset>
+    </copy>
   </target>
 
   <target name="build-war"
@@ -135,6 +140,7 @@
   <target name="clean" description="Removes all generated files">
     <delete dir="${build.dir}" />
     <delete dir="${log.dir}" />
+    <delete file="cms-portal-services/lib/${core-file}" />
   </target>
 
   <target name="test" depends="clean" description="Runs the portal tests">

@@ -96,6 +96,16 @@ messaging service:
 1. An SMTP server. For development, consider
    [MailCatcher](https://mailcatcher.me/), which you can install with
    `gem install --user-install mailcatcher`. See the website for more details.
+
+   $ gem install --user-install mailcatcher
+   # run mailcatcher:
+   $ ~/.gem/ruby/2.3.0/bin/mailcatcher
+   Starting MailCatcher
+   ==> smtp://127.0.0.1:1025
+   ==> http://127.0.0.1:1080
+   *** MailCatcher runs as a daemon by default. Go to the web interface to quit.
+
+
 1. [PostgreSQL 9.6](https://www.postgresql.org/). We are testing with
    PostgreSQL 9.6.2.
 
@@ -282,3 +292,7 @@ EOF
 
    If you have a previous build deployed already, you can replace the
    deployment in the UI or add the `--force` switch after `deploy`.
+
+1. To check that the app is running, navigate to
+   http://localhost:8080/cms/login.  You should see a login screen.
+

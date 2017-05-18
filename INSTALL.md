@@ -76,223 +76,225 @@ The application requires the application server to be configured with two data s
 - JNDI name `java:/jdbc/MitaDS`
 - JNDI name `java:/jdbc/TaskServiceDS`
 
+These should be XA data sources that both point to the same database.
+
 ### Mail
 
 The application requires the application server to be configured with a mail service:
 - JNDI name `java:/Mail`
 
-# Building
+### Messaging
 
-1. Fill in your local properties:
+The application requires the application server to be configured with a
+messaging service:
+- JNDI name `java:/jms/queue/DataSync`
+
+# Prerequisites
+
+1. A [Java 8](https://www.java.com) JRE and JDK. We are testing with OpenJDK 8,
+   which you can install on Debian-like systems with
+   `sudo apt install openjdk-8-jdk-headless`.
+1. [Ant](https://ant.apache.org/) for building: `sudo apt install ant`.
+1. An SMTP server. For development, consider
+   [MailCatcher](https://mailcatcher.me/), which you can install with
+   `gem install --user-install mailcatcher`. See the website for more details.
+
+   $ gem install --user-install mailcatcher
+   # run mailcatcher:
+   $ ~/.gem/ruby/2.3.0/bin/mailcatcher
+   Starting MailCatcher
+   ==> smtp://127.0.0.1:1025
+   ==> http://127.0.0.1:1080
+   *** MailCatcher runs as a daemon by default. Go to the web interface to quit.
+
+
+1. [PostgreSQL 9.6](https://www.postgresql.org/). We are testing with
+   PostgreSQL 9.6.2.
+
+# Configuring WildFly
+
+Building and deploying the PSM application requies WildFly to be installed and
+configured. See also the [WildFly 10 Getting Started
+Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
+
+1. Get Wildfly: Visit
+   [http://wildfly.org/downloads/](http://wildfly.org/downloads/). Download
+   the [10.1.0.Final full
+   distribution](http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz).
+
+   ```ShellSession
+   $ cd /path/to/this_psm_repo
+   $ # this should be a peer directory, so:
+   $ cd ..
+   $ tar -xzf wildfly-10.1.0.Final.tar.gz
+   $ cd wildfly-10.1.0.Final
+   ```
+
+1. Add a WildFly management console user
+
+   ```ShellSession
+   $ ./bin/add-user.sh
+   What type of user do you wish to add?
+   a) Management User (mgmt-users.properties)
+   b) Application User (application-users.properties)
+   (a): a
+
+   What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]:
+
+   Is this new user going to be used for one AS process to connect to another AS process?
+   e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
+   yes/no? no
+   ```
+
+1. Stop the server if it is already running:
+
+   ```ShellSession
+   $ ./bin/jboss-cli.sh --connect --command=:shutdown
+   ```
+
+1. The `standalone-full` profile includes messaging, which PSM requires.
+   `standalone-full.xml` lives in the WildFly directory, at
+   `standalone/configuration/standalone-full.xml`. To start the server:
+
+   ```ShellSession
+   $ ./bin/standalone.sh -c standalone-full.xml
+   ```
+
+   WildFly, by default, is only accessible to localhost. If you are running
+   WildFly on a remote system, you may start the server in a way that allows
+   remote connections:
+
+   ```ShellSession
+   $ ./bin/standalone.sh \
+       -c standalone-full.xml \
+       -b 0.0.0.0 \
+       -bmanagement 0.0.0.0
+   ```
+
+   Be careful of the security implications of exposing the management interface
+   to the internet! These instructions are for a **development** environment,
+   not for a production environment.
+
+1. Check that the server is running by visiting
+   [http://localhost:9990/](http://localhost:9990/) for the management console
+   and [https://localhost:8443/](https://localhost:8443/) for the app(s) it
+   hosts - currently none.
+
+## Configure services
+
+### Mail
+
+If you are using a debugging mail server such as MailCatcher, update the
+outgoing SMTP port and add a mail server without credentials:
 
 ```ShellSession
-$ cd ../psm/psm-app
-$ cp build.properties.template build.properties
-$ favorite-editor build.properties
+$ ./bin/jboss-cli.sh --connect << EOF
+/socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp:write-attribute(name=port,value=1025)
+/subsystem=mail/mail-session="java:/Mail":add(jndi-name="java:/Mail")
+/subsystem=mail/mail-session="java:/Mail"/server=smtp:add(outbound-socket-binding-ref=mail-smtp)
+EOF
 ```
 
-# WIP: Installation instructions for the old pesp-jboss/ tree
+If you are using a production mail server, add a mail session with a JNDI name
+of `java:/Mail` to your application server with the appropriate credentials
+using the command line or web interface.
 
-Very preliminary instructions for actually getting a test version of
-this set up, based on the info in the /docs subdir.
+### Messaging
 
-1. Create the database
+Create a messaging queue:
+
+```ShellSession
+$ ./bin/jboss-cli.sh --connect \
+  --command='jms-queue add --queue-address=DataSync --entries=["java:/jms/queue/DataSync"]'
+```
+
+### Database
+
+Download the [PostgreSQL JDBC driver](https://jdbc.postgresql.org/) and deploy
+it to your application server:
+
+```ShellSession
+$ ./bin/jboss-cli.sh --connect --command="deploy ../postgresql-{VERSION}.jar"
+```
+
+You will need a database user, and a database owned by that user:
+
+```ShellSession
+$ sudo -u postgres createuser --pwprompt psm
+$ sudo -u postgres createdb --owner=psm psm
+```
+
+After creating the databases, replace `{VERSION}` with the version of the
+PostgreSQL JDBC driver you downloaded and `{PostgreSQL psm user password}` with
+the password you assigned to your `psm` database user, and add the data sources
+to the application server:
+
+```ShellSession
+$ ./bin/jboss-cli.sh --connect <<EOF
+xa-data-source add \
+  --name=TaskServiceDS \
+  --jndi-name=java:/jdbc/TaskServiceDS \
+  --driver-name=postgresql-{VERSION}.jar \
+  --xa-datasource-class=org.postgresql.xa.PGXADataSource \
+  --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
+  --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter \
+  --enabled=true \
+  --use-ccm=true \
+  --background-validation=true \
+  --user-name=psm \
+  --password={PostgreSQL psm user password} \
+  --xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
+xa-data-source add \
+  --name=MitaDS \
+  --jndi-name=java:/jdbc/MitaDS \
+  --driver-name=postgresql-{VERSION}.jar \
+  --xa-datasource-class=org.postgresql.xa.PGXADataSource \
+  --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
+  --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter \
+  --enabled=true \
+  --use-ccm=true \
+  --background-validation=true \
+  --user-name=psm \
+  --password={PostgreSQL psm user password} \
+  --xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
+EOF
+```
+
+# Building
+1. Fill in your local properties:
+
+   ```ShellSession
+   $ cd ../psm/psm-app
+   $ cp build.properties.template build.properties
+   $ favorite-editor build.properties
    ```
-   $ cd /path/to/coeci-cms-mpsp/pesp-jboss/
-   $ mysql -u root -p
-   mysql> CREATE USER CMS IDENTIFIED BY {__your_password__};
-   mysql> quit
-   $ mysql -u CMS -p
-   Password: {__your_password__}
-   mysql> CREATE DATABASE cms_test;
-   # not sure if I need to do GRANT ALL since this user that created the
-   # db
-   mysql> use cms_test;
-   mysql> source db/mita3.sql
+
+1. Build the application with `ant`. This depends on libraries provided by the
+   application server.
+
+   ```ShellSession
+   $ cd ../psm/psm-app
+   $ ant dist
+   Buildfile: /path/to/psm/psm-app/build.xml
+   ...[cut]...
+   dist:
+         [ear] Building ear: /path/to/psm/psm-app/build/cms-portal-services.ear
    ```
 
-   Or, in Oracle:
-   
-   Note: CMS is the user name and also the name of the schema.  That is
-   why each oracle object is named with the prefix, "CMS.___".
-    
+1. Deploy the built app: you can use the Wildfly Management Console UI at
+   [http://localhost:9990/](http://localhost:9990/), log in with your username
+   and password, and do the following: Deployments > Add > Upload a new
+   deployment > browse to file." Alternatively, you can use the command line
+   interface:
+
+   ```ShellSession
+   $ /path/to/wildfly/bin/jboss-cli.sh --connect \
+       --command="deploy /path/to/psm/psm-app/build/cms-portal-services.ear"
    ```
-   # the PORT here is usually 1521 
-   $ sqlplus __ORACLE_USER__/__ORACLE_PASSWORD__@//localhost:__PORT__/__SCHEMA__
-   SQL> CREATE USER CMS;
-   SQL> GRANT CREATE SEQUENCE TO CMS;
-   SQL> GRANT CREATE SESSION TO CMS;
-   SQL> GRANT CREATE TABLE TO CMS;
-   SQL> GRANT UNLIMITED TABLESPACE TO CMS; -- just a precaution
-   ```
-   
-2. Load the sample data
-   ```
-   mysql> source cms-web/src/main/resources/web-test-data.sql
-   ```
-3. Edit build.properties file
 
-    ```
-    # Note that this should properly be build.properties.example, with a
-    # cp step in the INSTALL doc.  I just edited the jdbc.url to read
-    # MySQL instead of Oracle...we'll see if that works.
-    ```
-   
-4. Install JBoss, probably?
+   If you have a previous build deployed already, you can replace the
+   deployment in the UI or add the `--force` switch after `deploy`.
 
+1. To check that the app is running, navigate to
+   http://localhost:8080/cms/login.  You should see a login screen.
 
-
-## Background and Troubleshooting
-
-Several people have done work to get this up and running so far.  This
-is a summary of their notes.
-
-### WebSphere Version
-
-The WebSphere-based version of the app is documented in
-`documentation/Installation/MPSE Portal Deployment Guide for Websphere
-v8.5.docx`.  This document includes screenshots of the process, but is
-not entirely complete.  We recommend starting there and using these
-notes as supplements to those directions.
-
-1. Building the app.
-   The app requires WebSphere Application Server 8.5 (WAS).  One person was
-   able to get it built using that WAS version on Windows 7.  The
-   process she followed was:
-
-     1. Step through the IBM website, create an IBM ID and [fill out
-        your
-        info](https://www-01.ibm.com/marketing/iwm/iwm/web/preLogin.do?source=swg-wase)
-
-     2. Once you submit that page it will take you to a download
-        page. Click the HTML file, it will have instructions on what you
-        should download.  Mine said, in part: `On-line Installation`
-
-     3. The easiest way to install IBM WebSphere Application Server is
-        to use IBM Installation Manager and an IBM-hosted
-        repository. Download a copy of Installation Manager version
-        1.8.5 or later from the IBM Installation Manager and Packaging
-        Utility download page.  Unzip the Installation Manager download
-        to a temporary location.  Navigate to the temporary location and
-        run the installer appropriate for your user account. If your
-        user account has administrative rights on the computer, run the
-        install executable file. If your user account is
-        non-administrative, run the userinst executable file.
-
-     4. After Installation Manager is installed, configure an IBM-hosted
-        repository.  In Installation Manager, go to File > Preferences.
-        In the Repositories panel, click the Add Repository
-        button. Enter the repository URL for the edition of WebSphere
-        Application Server V9.0 that you want to install.  The following
-        composite repositories contain the installation packages for
-        WebSphere Application Server, WebSphere Application Server
-        Liberty, WebSphere Application Server Supplements, and may
-        contain other supporting software. [WebSphere Application Server
-        V9.0](http://www.ibm.com/software/repositorymanager/V9WASBase)
-        and [WebSphere Application Server Network Deployment
-        V9.0](http://www.ibm.com/software/repositorymanager/V9WASND).
-
-        If you only want to install IBM HTTP Server, Web Server Plug-ins
-        for WebSphere Application Server, the WebSphere Customization
-        Toolbox which includes the Web Server Plug-ins Configuration
-        Tool, or the WebSphere Application Client then add the following
-        composite repository: [WebSphere Application Server Supplements
-        V9.0](http://www.ibm.com/software/repositorymanager/V9WASSupplements).
-
-        Repositories for previous releases of WebSphere Application
-        Server are provided at the end of this document.  If prompted, you
-        might have to authenticate with the IBM-hosted repository using your
-        My IBMid credentials. When Installation Manager connects to the
-        repository URL, the connection status icon turns green.  Click OK to
-        save the settings and close the Preferences window.
- 
-        After you configure the repository, use Installation Manager to
-        install WebSphere Application Server and other supplemental
-        software packages.
- 
-     5. These are the repositories for previous releases of WebSphere
-        Application Server, which can be used with IBM Installation
-        Manager or IBM Packaging Utility.  WebSphere Application Server
-        version 8.5.x.x:
-
-        [WebSphere Application Server Express Trial](http://www.ibm.com/software/repositorymanager/V85WASExpressTrial)  
-        [WebSphere Application Server Trial](http://www.ibm.com/software/repositorymanager/V85WASBASETrial)  
-        [WebSphere Application Server for Developers (ILAN)](http://www.ibm.com/software/repositorymanager/V85WASDeveloperILAN)  
-        [WebSphere Application Server Network Deployment Trial](http://www.ibm.com/software/repositorymanager/V85WASNDTrial)  
-        [IBM HTTP Server (ILAN)](http://www.ibm.com/software/repositorymanager/V85IHSILAN)  
-        [WebSphere Application Server Supplements (ILAN)](http://www.ibm.com/software/repositorymanager/V85WASSupplements)  
- 
-	
-     6. I then went to the Installation Manager page at IBM's site, as
-        linked in [the
-        documentation](https://www-01.ibm.com/support/docview.wss?uid=swg27025142)
-        I had to download Installation Manager from Fix Center, this was
-        a large download.  I extracted the file and ran it to install
-        Installation manager.
-
-     7. Then, I ran Installation Manager.Instead of clicking the large
-        'Install' button, I first had to go to File > Properties to add
-        the WAS repository.  In the box this opened, I clicked add and
-        pasted the link to
-        http://www.ibm.com/software/repositorymanager/V85WASBASETrial
-        (from above).  I then submitted that information, and clicked
-        Install.
-
-     8. There were a lot of options for that repository, the only one I
-        selected was WebSphere Application Server v8.5.5.10.  Accept
-        license agreements etc, follow the steps in Installation Manager
-        and set up two folders as directed to hold your WAS install.
-
-        It took about an hour for me to download 1GB+ of info, then
-        extract and install it.  After it finished, Installation Manager
-        gave me some options for whether I wanted to set up a server
-        with WAS.  I left the default option, which opened a new window
-        with the Profile Management Tool.
-
-     9. At this point, you can set was.home in your build.properties to
-        the location you installed WAS to (second folder you named).
-        `ant dist` should then succeed.
-
-2. Setting up a server with WAS:
-
-   1. In WebSphere Customization Toolbox (earlier/also called Profile
-      Management Tool), click Create button at top right.  
-   2. Click Application Server. (I had to allow access through Windows
-      Firewall after this.)
-   3. Set an admin username/password. The admin console is now available
-      on port 9060/https port 9043. Other ports: HTTP is 9080, HTTPS
-      9443. Bootstrap 2809, SOAP 8880.
-   4. Launch first steps console (NOTE: what is this?) when complete, if
-      you want (took me about 15 min).
-   5. Start the server: (from WAS home directory)
-
-       bin/startServer.bat server1
-
-   6. Go to https://localhost:9043/ibm/console/logon.jsp and log in.
-
-   7. Stop the server (from WAS home directory):
-   
-       bin/stopServer.bat server1
-     
-      
-3. Connecting to the database:
-
-   - The Oracle JDBC connection jar in `<was install
-     root>/profiles/AppSrv01/installedApps/sorayaNode01Cell/cms-portal.ear/lib`
-     is `ojdbc14.jar`, but WebSphere expected `ojdbc6.jar`.  This was
-     _maybe_ fixed by downloading `ojdbc6.jar` from
-     [Oracle](http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-112010-090769.html),
-     adding it to that directory, and restarting the local server.  The
-     uncertainty is just because the person who made this work was
-     trying many different approaches.  We need to test to know for
-     sure.
-
-4. Mail and message queues are missing documentation, and without these
-   queues the application won't start:
-
-   - No information on configuration and setup of required message queue
-     (there is information on how to set up WebSphere with a pre-existing
-     queue but it doesn't talk at all about how the queue needs to be set
-     up to work with the app, only about where in the WebSphere install you
-     should enter the already-set-up queue names) 
-   - Likewise no information on mail queue setup/configuration

@@ -34,10 +34,9 @@
 		<class>org.jbpm.task.OnAllSubTasksEndParentEndStrategy</class>
 		<class>org.jbpm.task.User</class>
 		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="none" />
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.transaction.jta.platform" value="gov.medicaid.adapters.WebSphereTransactionLookup" />
 		</properties>
 	</persistence-unit>
 </persistence>

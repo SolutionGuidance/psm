@@ -35,7 +35,6 @@ import javax.persistence.PersistenceContext;
 import org.hibernate.Session;
 import org.hibernate.cfg.EJB3NamingStrategy;
 import org.hibernate.cfg.NamingStrategy;
-import org.hibernate.cfg.ObjectNameNormalizer;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.id.MultipleHiLoPerTableGenerator;
@@ -103,26 +102,11 @@ public class SequenceGeneratorBean implements SequenceGenerator {
         params.put(MultipleHiLoPerTableGenerator.PK_VALUE_NAME, sequenceName);
         params.put(MultipleHiLoPerTableGenerator.VALUE_COLUMN_NAME, "NEXT_HI");
         params.put(MultipleHiLoPerTableGenerator.MAX_LO, MAXIMUM_LO);
-        params.put(MultipleHiLoPerTableGenerator.IDENTIFIER_NORMALIZER, new ObjectNameNormalizer() {
-        	/**
-        	 * Returns false.
-        	 */
-			protected boolean isUseQuotedIdentifiersGlobally() {
-				return false;
-			}
-			
-			/**
-			 * Returns the default naming strategy.
-			 */
-			protected NamingStrategy getNamingStrategy() {
-				return EJB3NamingStrategy.INSTANCE;
-			}
-		});
 
         Session sess = (Session) em.getDelegate();
         SessionFactoryImplementor impl = (SessionFactoryImplementor) sess.getSessionFactory();
         MultipleHiLoPerTableGenerator generator = new MultipleHiLoPerTableGenerator();
-        generator.configure(LongType.INSTANCE, params, impl.getDialect());
+        generator.configure(LongType.INSTANCE, params, null);
         generators.put(sequenceName, generator);
         return generator;
     }

@@ -329,7 +329,6 @@ public class RegistrationServiceBean extends BaseService implements Registration
      */
     private void auditUserChange(String actor, CMSUser updated, CMSUser original) {
         AuditRecord audit = new AuditRecord();
-        audit.setId(getSequence().getNextValue(Sequences.AUDIT_ID));
         audit.setSystemId(SystemId.CMS_ONLINE.value());
         audit.setAction("A");
 
@@ -359,7 +358,6 @@ public class RegistrationServiceBean extends BaseService implements Registration
         for (AuditDetail auditDetail : lst) {
             if (auditDetail != null) {
                 auditDetail.setAuditRecordId(audit.getId());
-                auditDetail.setId(getSequence().getNextValue(Sequences.AUDIT_DETAIL_ID));
                 getEm().persist(auditDetail);
             }
         }
@@ -433,7 +431,6 @@ public class RegistrationServiceBean extends BaseService implements Registration
     private void auditNewAccountLink(String userId, ExternalAccountLink link) {
         // audit account link
         AuditRecord audit = new AuditRecord();
-        audit.setId(getSequence().getNextValue(Sequences.AUDIT_ID));
         audit.setSystemId(SystemId.CMS_ONLINE.value());
         audit.setAction("A");
         audit.setDate(Calendar.getInstance().getTime());
@@ -450,7 +447,6 @@ public class RegistrationServiceBean extends BaseService implements Registration
         for (AuditDetail auditDetail : lst) {
             if (auditDetail != null) {
                 auditDetail.setAuditRecordId(audit.getId());
-                auditDetail.setId(getSequence().getNextValue(Sequences.AUDIT_DETAIL_ID));
                 getEm().persist(auditDetail);
             }
         }
@@ -542,7 +538,6 @@ public class RegistrationServiceBean extends BaseService implements Registration
 
         // audit status change
         AuditRecord audit = new AuditRecord();
-        audit.setId(getSequence().getNextValue(Sequences.AUDIT_ID));
         audit.setSystemId(SystemId.CMS_ONLINE.value());
         audit.setAction("U");
         audit.setDate(Calendar.getInstance().getTime());
@@ -555,7 +550,6 @@ public class RegistrationServiceBean extends BaseService implements Registration
 
         String tbl = TBL_CMS_USER;
         AuditDetail auditDetail = new AuditDetail();
-        auditDetail.setId(getSequence().getNextValue(Sequences.AUDIT_DETAIL_ID));
         auditDetail.setTableName(tbl);
         auditDetail.setColumnName("STATUS");
         auditDetail.setOldValue(oldValue.name());

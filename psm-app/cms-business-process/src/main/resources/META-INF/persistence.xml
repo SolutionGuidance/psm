@@ -41,6 +41,9 @@
     <class>org.jbpm.task.OnAllSubTasksEndParentEndStrategy</class>
     <class>org.jbpm.task.User</class>
 
+    <class>gov.medicaid.entities.AuditDetail</class>
+    <class>gov.medicaid.entities.AuditRecord</class>
+
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
       <property name="hibernate.hbm2ddl.auto" value="none" />

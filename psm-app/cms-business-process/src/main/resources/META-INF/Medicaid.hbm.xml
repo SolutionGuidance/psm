@@ -1050,38 +1050,6 @@
 			<column name="EXTERNAL_PROFILE_ID" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.AuditRecord" table="AUDIT_RECORD">
-		<id column="AUDIT_RECORD_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property column="USERNAME" generated="never" lazy="false"
-			length="45" name="username" type="string" />
-		<property column="AUDIT_TS" generated="never" lazy="false"
-			name="date" type="timestamp" />
-		<property column="SYSTEM_ID" generated="never" lazy="false"
-			length="8" name="systemId" type="string" />
-		<bag name="details" table="AUDIT_DETAIL">
-			<key>
-				<column name="AUDIT_RECORD_ID" not-null="true" />
-			</key>
-			<one-to-many class="gov.medicaid.entities.AuditDetail" />
-		</bag>
-	</class>
-	<class name="gov.medicaid.entities.AuditDetail" table="AUDIT_DETAIL">
-		<id column="AUDIT_DETAIL_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property column="AUDIT_RECORD_ID" generated="never" lazy="false"
-			name="auditRecordId" type="long" />
-		<property column="TABLE_NAME" generated="never" lazy="false"
-			length="200" name="tableName" type="string" />
-		<property column="COLUMN_NAME" generated="never" lazy="false"
-			length="200" name="columnName" type="string" />
-		<property column="OLD_DATA" generated="never" lazy="false"
-			length="500" name="oldValue" type="string" />
-		<property column="NEW_DATA" generated="never" lazy="false"
-			length="500" name="newValue" type="string" />
-	</class>
 	<class abstract="true" name="gov.medicaid.entities.BeneficialOwner"
 		table="BENEFICIAL_OWNER">
 		<id column="BENEFICIAL_OWNER_ID" name="id" type="long">

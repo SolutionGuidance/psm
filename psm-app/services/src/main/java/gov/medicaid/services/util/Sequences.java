@@ -94,16 +94,6 @@ public class Sequences {
     public static final String ACOUNT_LINK_SEQ = "ACOUNT_LINK_SEQ";
 
     /**
-     * Used for audits.
-     */
-    public static final String AUDIT_ID = "AUDIT_ID";
-
-    /**
-     * Used for audit details.
-     */
-    public static final String AUDIT_DETAIL_ID = "AUDIT_DETAIL_ID";
-
-    /**
      * The agreements accepted.
      */
     public static final String AGREEMENT_SEQ = "AGREEMENT_SEQ";

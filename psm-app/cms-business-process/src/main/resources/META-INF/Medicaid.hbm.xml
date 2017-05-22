@@ -2,15 +2,6 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-lazy="false">
-	<class name="gov.medicaid.entities.Authentication" table="CMS_AUTHENTICATION">
-		<id name="username" type="string">
-			<column name="USERNAME" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="password" type="string">
-			<column name="PASSWORD" not-null="true" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.Enrollment" table="TICKET">
 		<id name="ticketId" type="long">
 			<column name="TICKET_ID" />

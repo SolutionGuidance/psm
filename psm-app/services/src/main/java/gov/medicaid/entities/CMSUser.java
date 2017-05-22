@@ -44,6 +44,7 @@ public class CMSUser implements Serializable {
     @Column(name = "user_id")
     private String userId;
 
+    @Column(unique = true)
     private String username;
 
     @Column(name = "first_name")

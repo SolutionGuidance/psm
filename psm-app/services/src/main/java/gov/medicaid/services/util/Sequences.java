@@ -84,11 +84,6 @@ public class Sequences {
     public static final String PROVIDER_NUMBER_SEQ = "PROVIDER_NUMBER_SEQ";
 
     /**
-     * Used for each user.
-     */
-    public static final String USER_ID = "CMS_USER_SEQ";
-
-    /**
      * Used for each account link.
      */
     public static final String ACOUNT_LINK_SEQ = "ACOUNT_LINK_SEQ";

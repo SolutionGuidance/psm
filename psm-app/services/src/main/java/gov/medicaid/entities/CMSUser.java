@@ -16,7 +16,16 @@
 package gov.medicaid.entities;
 
 import gov.medicaid.binders.BinderUtils;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 
 /**
@@ -25,89 +34,69 @@ import java.io.Serializable;
  * @author TCSASSEMBLER
  * @version 1.0
  */
-public class CMSUser implements Serializable {
 
-    /**
-     * The user identifier (generated).
-     */
+@javax.persistence.Entity
+@Table(name = "cms_user")
+public class CMSUser implements Serializable {
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Column(name = "user_id")
     private String userId;
 
-    /**
-     * The user name.
-     */
     private String username;
 
-    /**
-     * The first name.
-     */
+    @Column(name = "first_name")
     private String firstName;
 
-    /**
-     * The last name.
-     */
+    @Column(name = "last_name")
     private String lastName;
 
-    /**
-     * The middle name.
-     */
+    @Column(name = "middle_name")
     private String middleName;
 
-    /**
-     * Phone number.
-     */
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    /**
-     * Transient fields for display.
-     */
+    @Transient
     private String businessPhonePart1;
 
-    /**
-     * Transient fields for display.
-     */
+    @Transient
     private String businessPhonePart2;
 
-    /**
-     * Transient fields for display.
-     */
+    @Transient
     private String businessPhonePart3;
 
-    /**
-     * Transient fields for display.
-     */
+    @Transient
     private String businessPhoneExt;
 
-    /**
-     * Email address.
-     */
     private String email;
 
-    /**
-     * User status.
-     */
+    @Enumerated(EnumType.STRING)
     private UserStatus status;
 
-    /**
-     * The user role.
-     */
+    @ManyToOne
     private Role role;
-    
+
     /**
      * Employer or Self.
      * If employer, it should have a proxyForUserId
      */
+    @Transient
     private RoleView externalRoleView;
-    
+
     /**
      * The NPI that is being proxied, will only have a value if
      */
+    @Transient
     private String proxyForNPI;
-    
+
     /**
      * The external account information.
      */
+    @Transient
     private ExternalAccountLink externalAccountLink;
-    
+
     /**
      * Empty constructor.
      */

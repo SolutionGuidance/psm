@@ -969,46 +969,6 @@
 			<column name="CREATE_TS" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.CMSUser" table="CMS_USER">
-		<id name="userId" type="string">
-			<column name="USER_ID" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="username"
-			type="string">
-			<column name="USER_NAME" />
-		</property>
-		<property generated="never" lazy="false" name="firstName"
-			type="string">
-			<column name="FIRST_NAME" />
-		</property>
-		<property generated="never" lazy="false" name="lastName"
-			type="string">
-			<column name="LAST_NAME" />
-		</property>
-		<property generated="never" lazy="false" name="middleName"
-			type="string">
-			<column name="MIDDLE_NAME" />
-		</property>
-		<property generated="never" lazy="false" name="phoneNumber"
-			type="string">
-			<column name="PHONE_NUMBER" />
-		</property>
-		<property generated="never" lazy="false" name="email" type="string">
-			<column name="EMAIL" />
-		</property>
-		<property generated="never" lazy="false" name="status">
-			<column name="STATUS" />
-			<type name="org.hibernate.type.EnumType">
-				<param name="type">12</param>
-				<param name="enumClass">gov.medicaid.entities.UserStatus</param>
-			</type>
-		</property>
-		<many-to-one class="gov.medicaid.entities.Role" fetch="join"
-			name="role">
-			<column name="ROLE_CD" />
-		</many-to-one>
-	</class>
 	<class name="gov.medicaid.entities.ExternalAccountLink" table="EXTERNAL_ACCOUNT_LINK">
 		<id name="id" type="long">
 			<column name="EXTERNAL_ACCOUNT_LINK_ID" />

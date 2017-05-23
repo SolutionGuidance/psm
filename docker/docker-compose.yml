@@ -1,0 +1,29 @@
+# This is the docker-compose file for the psm.  It's quite an early
+# draft and is meant to get a dev/test version up.  Don't use it in
+# production.  For one thing, the mail system is fake.  For another,
+# no thought has been given to security (e.g. the password is always
+# 'psm').  I haven't cleaned up versions either.
+
+version: '2'
+services:
+  db:
+    build: postgres
+    environment:
+      - POSTGRES_USER=psm
+      - POSTGRES_PASSWORD=psm
+      - POSTGRES_DB=psm
+    volumes:
+      - psm-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.1
+volumes:
+  psm-data:
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          ip_range: 172.28.5.0/24

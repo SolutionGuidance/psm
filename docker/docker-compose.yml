@@ -26,8 +26,24 @@ services:
     networks:
       static-network:
         ipv4_address: 172.20.128.2
+  wildfly:
+    build: wildfly
+    depends_on:
+      - "db"
+      - "mail"
+    #ports:
+      #- 8443:8443
+      #- 9990:9990
+      #- 8888:8080
+    volumes:
+      - ../psm-app:/mnt/psm-app
+      - psm-wildfly:/opt/jboss/wildfly
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.3
 volumes:
   psm-data:
+  psm-wildfly:
 networks:
   static-network:
     ipam:

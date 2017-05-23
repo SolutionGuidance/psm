@@ -7,7 +7,7 @@
 version: '2'
 services:
   db:
-    build: postgres
+    image: postgres:alpine
     environment:
       - POSTGRES_USER=psm
       - POSTGRES_PASSWORD=psm

@@ -19,6 +19,13 @@ services:
     networks:
       static-network:
         ipv4_address: 172.20.128.1
+  mail:
+    build: mailcatcher
+    #ports:
+    #  - 1080:80
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.2
 volumes:
   psm-data:
 networks:

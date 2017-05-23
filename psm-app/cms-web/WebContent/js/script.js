@@ -882,7 +882,14 @@ $(document).ready(function() {
 	});
 	
 	
-	// Login
+       // Login
+        $("input").keypress(function (event) {
+            if (event.which == 13) {
+                $("#loginForm").submit();
+                return false;
+            }
+        });
+
 	$("#btnLogin").click(function(){
 		$('#loginForm').submit();
 		return false;	

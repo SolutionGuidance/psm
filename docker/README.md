@@ -19,6 +19,8 @@ change to the docker directory and:
 
     $ docker-compose -p psm up --build
 
+Then point your browser at
+[172:20.128.3:8080/cms/login](http://172:20.128.3:8080/cms/login)
 		
 ## Installing Docker
 

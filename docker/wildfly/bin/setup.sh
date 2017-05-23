@@ -18,7 +18,7 @@ function wait_for_jboss() {
 # bin/product.conf, it indicates we've already done setup.
 [[ ${JBOSS_HOME}/standalone/configuration/standalone-full.xml -nt ${JBOSS_HOME}/bin/product.conf  ]] && exit
 
-${JBOSS_HOME}/bin/standalone.sh -c standalone-full.xml -bmanagement 0.0.0.0 -b 0.0.0.0 &
+${JBOSS_HOME}/bin/standalone.sh -c standalone-full.xml
 wait_for_jboss
 
 # Setup mail server

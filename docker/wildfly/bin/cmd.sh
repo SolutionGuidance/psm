@@ -30,4 +30,4 @@ wait_for_db
 wait_for_mail
 
 echo "Starting wildfly server!"
-${JBOSS_HOME}/bin/standalone.sh -c standalone-full.xml -bmanagement 0.0.0.0 -b 0.0.0.0
+${JBOSS_HOME}/bin/standalone.sh -c standalone-full.xml -bmanagement 0.0.0.0 -b 0.0.0.0 -Djboss.http.port=80

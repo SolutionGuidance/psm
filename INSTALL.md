@@ -27,6 +27,10 @@ Note that the repository currently depends on access to a Oracle
 database.  We intend to shift towards PostgreSQL in order to eliminate
 a proprietary dependency.
 
+You can use Docker to run the current development version of the PSM.
+That would obviate all the manual configuration steps listed in this
+file.  See docker/README.md for details.
+
 # Overview
 
 The Provider Screening Module is a Java EE Enterprise Application. It depends

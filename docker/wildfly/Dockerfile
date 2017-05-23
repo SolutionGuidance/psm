@@ -39,11 +39,13 @@ RUN touch /opt/jboss/wildfly/bin/product.conf
 # https://bugs.openjdk.java.net/browse/JDK-8165852
 RUN mv /opt/jboss/wildfly /opt/jboss/wildfly.static
 
-## Load and prep our entrypoint script
+## Load and prep our cmd script and subsidiary scripts.  That cmd
+## script builds the ear file, sets up the server, waits for db and
+## mail to come up, then starts the wildfly server.  On subsequent
+## runs, it should skip build and setup unless something changes.
 COPY bin/* /root/bin/
 RUN chmod a+x /root/bin/*
 
 EXPOSE 8443 8080 9990
 
-# Run WildFly in standalone mode and bind all interfaces
 CMD /root/bin/cmd.sh

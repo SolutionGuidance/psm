@@ -15,13 +15,29 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Represents a help item.
  *
  * @author argolite, TCSASSEMBLER
  * @version 1.0
  */
-public class HelpItem extends IdentifiableEntity {
+
+@javax.persistence.Entity
+@Table(name = "help_item")
+public class HelpItem {
+
+    @Id
+    @GeneratedValue(
+        strategy = GenerationType.AUTO
+    )
+    @Column(name = "help_item_id")
+    private long id;
 
     /**
      * The title.
@@ -39,6 +55,14 @@ public class HelpItem extends IdentifiableEntity {
     public HelpItem() {
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    
     /**
      * Gets the value of the field <code>title</code>.
      * @return the title
@@ -70,4 +94,6 @@ public class HelpItem extends IdentifiableEntity {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    
 }

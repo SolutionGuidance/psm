@@ -7,7 +7,8 @@ DROP TABLE IF EXISTS
   cms_authentication,
   cms_user,
   lu_role,
-  persistent_logins
+  persistent_logins,
+  help_item
 CASCADE;
 
 CREATE SEQUENCE hibernate_sequence;
@@ -66,4 +67,9 @@ CREATE TABLE audit_details(
   column_name TEXT,
   old_value TEXT,
   new_value TEXT
+);
+CREATE TABLE help_item(
+  help_item_id BIGINT PRIMARY KEY,
+  title TEXT,
+  description TEXT
 );

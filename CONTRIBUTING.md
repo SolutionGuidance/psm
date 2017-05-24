@@ -24,8 +24,9 @@ licensed under a more permissive license (BSD, MIT, ISC), you can tell
 us that and give it to us under that license instead.
 
 Please make the license of the code clear in your pull request.  Tell
-us who wrote it.  If the code was written for an employer, tell us
-that too.  Tell us what license applies to the code.
+us who wrote it, if that isn't just you.  If the code was written for
+an employer, tell us that too.  Tell us what license applies to the
+code, especially if it differs from the project's Apache 2.0 license.
 
 If you submit code that doesn't come from you or your employer, we
 call that "Third-Party Code" and have a few requirements.  If the code

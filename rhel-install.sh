@@ -1,10 +1,21 @@
 #!/bin/bash
+
+function download_and_sha1 {
+		base=$(basename $1)
+		[ -e $base ] || curl -OL $1
+		echo "$2 $base" | sha1sum --quiet -c - || printf "$base has an unexpected sha1sum: $(sha1sum $base | awk '{print $1}')\n" && exit
+}
+
 sudo yum -y update
 < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c30 | awk '{print $1"!"}' > pass.txt
-curl -O https://download.postgresql.org/pub/repos/yum/9.2/redhat/rhel-7-x86_64/pgdg-redhat92-9.2-3.noarch.rpm
+
+## Install posgresql repo, then postgres
+download_and_sha1 "https://download.postgresql.org/pub/repos/yum/9.2/redhat/rhel-7-x86_64/pgdg-redhat92-9.2-3.noarch.rpm" \
+									f1cd62458abcc78f696f00aa5777cb4fc6f5fc05
 sudo rpm -ivh pgdg-redhat92-9.2-3.noarch.rpm
 rm pgdg-redhat92-9.2-3.noarch.rpm
 sudo yum -y install postgresql92-server postgresql92-contrib postgresql92-devel
+
 sudo /usr/pgsql-9.2/bin/postgresql92-setup initdb
 sudo sed -i 's/ident/md5/g' /var/lib/pgsql/9.2/data/pg_hba.conf
 sudo systemctl enable postgresql-9.2.service
@@ -21,9 +32,13 @@ sudo yum -y groupinstall 'Development Tools'
 sudo yum -y install sqlite-devel
 gem install mailcatcher
 mailcatcher
-curl -O http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz
+
+## Download and install wildfly
+download_and_sha1 "http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz" \
+									9ee3c0255e2e6007d502223916cefad2a1a5e333
 tar -xzf wildfly-10.1.0.Final.tar.gz
 rm wildfly-10.1.0.Final.tar.gz
+
 cat pass.txt | awk '{print "psm "$1}'>> script.txt
 eval ./wildfly-10.1.0.Final/bin/add-user.sh "$(< script.txt)"
 rm script.txt
@@ -39,7 +54,8 @@ sleep 20
 EOF
 ./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect \
   --command='jms-queue add --queue-address=DataSync --entries=["java:/jms/queue/DataSync"]'
-curl -O https://jdbc.postgresql.org/download/postgresql-9.2-1004.jdbc4.jar
+download_and_sha1 "https://jdbc.postgresql.org/download/postgresql-9.2-1004.jdbc4.jar" \
+									c0b40281d2d6cc310e188730c488ac48138638cc
 ./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect --command="deploy postgresql-9.2-1004.jdbc4.jar"
 ./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect <<EOF
 xa-data-source add \

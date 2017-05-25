@@ -197,7 +197,7 @@ public class RegistrationServiceBean extends BaseService implements Registration
             throw new IllegalArgumentException("email is required by this implementation.");
         }
 
-        String userId = createUser(null, SystemId.CMS_ONLINE, registrant);
+        String userId = createUser(null, registrant);
 
         String password = passwordGenerator.nextString();
         identityProvider.provisionUser(registrant, password);
@@ -225,7 +225,7 @@ public class RegistrationServiceBean extends BaseService implements Registration
         throws PortalServiceException {
 
         // create only in database (no LDAP account)
-        String userId = createUser(null, systemId, registrant);
+        String userId = createUser(null, registrant);
 
         ExternalAccountLink link = new ExternalAccountLink();
         link.setSystemId(systemId);
@@ -329,7 +329,6 @@ public class RegistrationServiceBean extends BaseService implements Registration
      */
     private void auditUserChange(String actor, CMSUser updated, CMSUser original) {
         AuditRecord audit = new AuditRecord();
-        audit.setId(getSequence().getNextValue(Sequences.AUDIT_ID));
         audit.setSystemId(SystemId.CMS_ONLINE.value());
         audit.setAction("A");
 
@@ -359,7 +358,6 @@ public class RegistrationServiceBean extends BaseService implements Registration
         for (AuditDetail auditDetail : lst) {
             if (auditDetail != null) {
                 auditDetail.setAuditRecordId(audit.getId());
-                auditDetail.setId(getSequence().getNextValue(Sequences.AUDIT_DETAIL_ID));
                 getEm().persist(auditDetail);
             }
         }
@@ -433,7 +431,6 @@ public class RegistrationServiceBean extends BaseService implements Registration
     private void auditNewAccountLink(String userId, ExternalAccountLink link) {
         // audit account link
         AuditRecord audit = new AuditRecord();
-        audit.setId(getSequence().getNextValue(Sequences.AUDIT_ID));
         audit.setSystemId(SystemId.CMS_ONLINE.value());
         audit.setAction("A");
         audit.setDate(Calendar.getInstance().getTime());
@@ -450,7 +447,6 @@ public class RegistrationServiceBean extends BaseService implements Registration
         for (AuditDetail auditDetail : lst) {
             if (auditDetail != null) {
                 auditDetail.setAuditRecordId(audit.getId());
-                auditDetail.setId(getSequence().getNextValue(Sequences.AUDIT_DETAIL_ID));
                 getEm().persist(auditDetail);
             }
         }
@@ -460,15 +456,12 @@ public class RegistrationServiceBean extends BaseService implements Registration
      * Creates the user in the database.
      *
      * @param actor the user id performing the action (null for self registration)
-     * @param system the system id for the user
      * @param registrant the entity to be created
      * @return the generated user id string
      */
-    private String createUser(String actor, SystemId system, CMSUser registrant) {
-        // generate new ID
-        String userId = getSequence().getNextSystemValue(system, Sequences.USER_ID);
-
-        registrant.setUserId(userId);
+    private String createUser(String actor, CMSUser registrant) {
+        // ensure we get a generated ID
+        registrant.setUserId(null);
 
         // active by default
         registrant.setStatus(UserStatus.ACTIVE);
@@ -480,14 +473,15 @@ public class RegistrationServiceBean extends BaseService implements Registration
             registrant.setRole(findLookupByDescription(Role.class, registrant.getRole().getDescription()));
         }
 
+        getEm().persist(registrant);
+
         if (actor == null) {
-            actor = userId; // self registration
+            actor = registrant.getUserId(); // self registration
         }
 
-        getEm().persist(registrant);
         // audit because user is not a versioned object.
         auditNewUser(actor, registrant);
-        return userId;
+        return registrant.getUserId();
     }
 
     /**
@@ -542,7 +536,6 @@ public class RegistrationServiceBean extends BaseService implements Registration
 
         // audit status change
         AuditRecord audit = new AuditRecord();
-        audit.setId(getSequence().getNextValue(Sequences.AUDIT_ID));
         audit.setSystemId(SystemId.CMS_ONLINE.value());
         audit.setAction("U");
         audit.setDate(Calendar.getInstance().getTime());
@@ -555,7 +548,6 @@ public class RegistrationServiceBean extends BaseService implements Registration
 
         String tbl = TBL_CMS_USER;
         AuditDetail auditDetail = new AuditDetail();
-        auditDetail.setId(getSequence().getNextValue(Sequences.AUDIT_DETAIL_ID));
         auditDetail.setTableName(tbl);
         auditDetail.setColumnName("STATUS");
         auditDetail.setOldValue(oldValue.name());
@@ -852,7 +844,7 @@ public class RegistrationServiceBean extends BaseService implements Registration
             throw new IllegalArgumentException("email is required by this implementation.");
         }
 
-        String userId = createUser(actor.getUserId(), SystemId.CMS_ONLINE, registrant);
+        String userId = createUser(actor.getUserId(), registrant);
         if (password == null) {
             password = passwordGenerator.nextString();
         }

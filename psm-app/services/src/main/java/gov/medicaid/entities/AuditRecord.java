@@ -15,6 +15,12 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +30,15 @@ import java.util.List;
  * @author TCSASSEMBLER
  * @version 1.0
  */
-public class AuditRecord extends IdentifiableEntity {
+@javax.persistence.Entity
+@Table(name = "audit_records")
+public class AuditRecord {
+    @Id
+    @GeneratedValue(
+            strategy = GenerationType.AUTO
+    )
+    @Column(name = "audit_record_id")
+    private long id;
 
     /**
      * User name.
@@ -44,17 +58,27 @@ public class AuditRecord extends IdentifiableEntity {
     /**
      * The system that made the changes.
      */
+    @Column(name = "system_id")
     private String systemId;
 
     /**
      * Change details.
      */
+    @OneToMany(mappedBy = "auditRecordId")
     private List<AuditDetail> details;
 
     /**
      * Default empty constructor.
      */
     public AuditRecord() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     /**

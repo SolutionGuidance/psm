@@ -15,43 +15,74 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 /**
  * Audit record details.
  *
  * @author TCSASSEMBLER
  * @version 1.0
  */
-public class AuditDetail extends IdentifiableEntity {
+@javax.persistence.Entity
+@Table(name = "audit_details")
+public class AuditDetail {
+
+    @Id
+    @GeneratedValue(
+        strategy = GenerationType.AUTO
+    )
+    @Column(name = "audit_detail_id")
+    private long id;
 
     /**
      * The header record id.
      */
+    @NotNull
+    @Column(name = "audit_record_id")
     private long auditRecordId;
 
     /**
      * The table name.
      */
+    @Column(name = "table_name")
     private String tableName;
 
     /**
      * The column name.
      */
+    @Column(name = "column_name")
     private String columnName;
 
     /**
      * The old value.
      */
+    @Column(name = "old_value")
     private String oldValue;
 
     /**
      * The new value.
      */
+    @Column(name = "new_value")
     private String newValue;
 
     /**
      * Empty constructor.
      */
     public AuditDetail() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     /**

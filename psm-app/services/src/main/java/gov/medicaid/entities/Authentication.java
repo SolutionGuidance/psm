@@ -15,6 +15,9 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -23,16 +26,16 @@ import java.io.Serializable;
  * @author TCSASSEMBLER
  * @version 1.0
  */
+@javax.persistence.Entity
+@Table(name = "cms_authentication")
 public class Authentication implements Serializable {
-
-    /**
-     * The user name.
-     */
+    @Id
     private String username;
 
     /**
      * The hashed password.
      */
+    @NotNull
     private String password;
 
     /**

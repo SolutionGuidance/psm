@@ -299,6 +299,12 @@ EOF
    If you have a previous build deployed already, you can replace the
    deployment in the UI or add the `--force` switch after `deploy`.
 
+1. Create database schema and initial data. Use the seed data to create tables:
+
+  ```ShellSession
+  $ psql -h localhost -U psm psm < /path/to/psm/psm-app/db/seed.sql
+  ```
+
 1. To check that the app is running, navigate to
    http://localhost:8080/cms/login.  You should see a login screen.
 

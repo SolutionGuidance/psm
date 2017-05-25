@@ -84,24 +84,9 @@ public class Sequences {
     public static final String PROVIDER_NUMBER_SEQ = "PROVIDER_NUMBER_SEQ";
 
     /**
-     * Used for each user.
-     */
-    public static final String USER_ID = "CMS_USER_SEQ";
-
-    /**
      * Used for each account link.
      */
     public static final String ACOUNT_LINK_SEQ = "ACOUNT_LINK_SEQ";
-
-    /**
-     * Used for audits.
-     */
-    public static final String AUDIT_ID = "AUDIT_ID";
-
-    /**
-     * Used for audit details.
-     */
-    public static final String AUDIT_DETAIL_ID = "AUDIT_DETAIL_ID";
 
     /**
      * The agreements accepted.

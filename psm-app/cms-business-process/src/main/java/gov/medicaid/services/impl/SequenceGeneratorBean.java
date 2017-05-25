@@ -15,13 +15,12 @@
  */
 package gov.medicaid.services.impl;
 
-import gov.medicaid.entities.SystemId;
 import gov.medicaid.services.SequenceGenerator;
-import gov.medicaid.services.util.Util;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import org.hibernate.Session;
+import org.hibernate.engine.spi.SessionFactoryImplementor;
+import org.hibernate.engine.spi.SessionImplementor;
+import org.hibernate.id.MultipleHiLoPerTableGenerator;
+import org.hibernate.type.LongType;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -31,14 +30,9 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import org.hibernate.Session;
-import org.hibernate.cfg.EJB3NamingStrategy;
-import org.hibernate.cfg.NamingStrategy;
-import org.hibernate.engine.spi.SessionFactoryImplementor;
-import org.hibernate.engine.spi.SessionImplementor;
-import org.hibernate.id.MultipleHiLoPerTableGenerator;
-import org.hibernate.type.LongType;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 
 /**
@@ -128,17 +122,5 @@ public class SequenceGeneratorBean implements SequenceGenerator {
         }
         Session sess = (Session) em.getDelegate();
         return ((Number) generator.generate((SessionImplementor) sess, null)).longValue();
-    }
-
-    /**
-     * Creates a unique 28 character string by combining a sequence and the system name.
-     *
-     * @param system the system name to prepend to the unique value
-     * @param sequenceName the name of the sequence
-     * @return the next value for the named sequence
-     */
-    public String getNextSystemValue(SystemId system, String sequenceName) {
-        return Util.pad(system.value(), SYSTEM_ID_LENGTH, 'X')
-            + Util.pad("" + getNextValue(sequenceName), SEQ_LENGTH, '0');
     }
 }

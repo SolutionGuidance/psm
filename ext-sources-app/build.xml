@@ -20,9 +20,9 @@
 		<fileset dir="cms-external-sources/lib">
 			<include name="*.jar" />
 		</fileset>
-		<fileset dir="${was.home}/lib">
+		<fileset dir="${wildfly.home}/lib">
 		</fileset>
-		<fileset dir="${was.home}/plugins">
+		<fileset dir="${wildfly.home}/plugins">
 			<include name="*.jar" />
 		</fileset>
 	</path>

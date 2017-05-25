@@ -72,5 +72,5 @@ CREATE TABLE audit_details(
 CREATE TABLE provider_types(
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE,
-  applicant_type INTEGER NOT NULL DEFAULT 0
+  applicant_type TEXT NOT NULL DEFAULT 'INDIVIDUAL'
 );

@@ -15,7 +15,11 @@
  */
 package gov.medicaid.entities;
 
+import gov.medicaid.domain.model.ApplicantType;
+
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -36,7 +40,8 @@ public class ProviderType extends LookupEntity {
             name = "applicant_type",
             nullable = false
     )
-    private int applicantType = 0;
+    @Enumerated(EnumType.STRING)
+    private ApplicantType applicantType = ApplicantType.INDIVIDUAL;
 
     /**
      * Flag to delete or not.
@@ -54,7 +59,7 @@ public class ProviderType extends LookupEntity {
      * Gets the value of the field <code>applicantType</code>.
      * @return the applicantType
      */
-    public int getApplicantType() {
+    public ApplicantType getApplicantType() {
         return applicantType;
     }
 
@@ -62,7 +67,7 @@ public class ProviderType extends LookupEntity {
      * Sets the value of the field <code>applicantType</code>.
      * @param applicantType the applicantType to set
      */
-    public void setApplicantType(int applicantType) {
+    public void setApplicantType(ApplicantType applicantType) {
         this.applicantType = applicantType;
     }
 

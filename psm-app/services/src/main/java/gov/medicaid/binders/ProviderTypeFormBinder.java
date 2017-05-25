@@ -76,7 +76,7 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
         ProviderType pt = getLookupService()
             .findLookupByDescription(ProviderType.class, provider.getProviderType());
         if (pt != null) {
-            if (pt.getApplicantType() == ApplicantType.INDIVIDUAL.ordinal()) {
+            if (pt.getApplicantType() == ApplicantType.INDIVIDUAL) {
                 provider.setApplicantType(ApplicantType.INDIVIDUAL);
             } else {
                 provider.setApplicantType(ApplicantType.ORGANIZATION);
@@ -109,7 +109,7 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
             // already set as org or individual
             ProviderType pt = getLookupService()
                 .findLookupByDescription(ProviderType.class, provider.getProviderType());
-            if (pt.getApplicantType() == ApplicantType.INDIVIDUAL.ordinal()) {
+            if (pt.getApplicantType() == ApplicantType.INDIVIDUAL) {
                 mv.put("individualProviderTypes", sortCollection(getLookupService().getProviderTypes(ApplicantType.INDIVIDUAL)));
             } else {
                 mv.put("organizationProviderTypes", sortCollection(getLookupService().getProviderTypes(ApplicantType.ORGANIZATION)));
@@ -191,7 +191,7 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
             if (profile.getEntity() != null && profile.getEntity().getProviderType() != null) {
                 ProviderType pt = profile.getEntity().getProviderType();
                 pInfo.setProviderType(pt.getDescription());
-                if (pt.getApplicantType() == ApplicantType.INDIVIDUAL.ordinal()) {
+                if (pt.getApplicantType() == ApplicantType.INDIVIDUAL) {
                     pInfo.setApplicantType(ApplicantType.INDIVIDUAL);
                 } else {
                     pInfo.setApplicantType(ApplicantType.ORGANIZATION);

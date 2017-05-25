@@ -817,7 +817,7 @@ public class DataLoader {
         Person person = new Person();
         Organization org = new Organization();
         Organization practice = null;
-        boolean isPerson = type.getApplicantType() == ApplicantType.INDIVIDUAL.ordinal();
+        boolean isPerson = type.getApplicantType() == ApplicantType.INDIVIDUAL;
         if (isPerson) {
             profile.setEntity(person);
             profile.setAffiliations(new ArrayList<Affiliation>());

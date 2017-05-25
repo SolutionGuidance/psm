@@ -6,6 +6,13 @@ function download_and_sha1 {
 		echo "$2 $base" | sha1sum --quiet -c - || printf "$base has an unexpected sha1sum: $(sha1sum $base | awk '{print $1}')\n" && exit
 }
 
+function wait_for_jboss() {
+	until `$JBOSS_CLI -c "ls /deployment" &> /dev/null`; do
+		sleep 1
+		echo Waiting for wildfly to come up.
+	done
+}
+
 sudo yum -y update
 < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c30 | awk '{print $1"!"}' > pass.txt
 
@@ -46,7 +53,7 @@ rm script.txt
     -c standalone-full.xml \
     -b 0.0.0.0 \
     -bmanagement 0.0.0.0 &
-sleep 20
+wait_for_jboss
 ./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect << EOF
 /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp:write-attribute(name=port,value=1025)
 /subsystem=mail/mail-session="java:/Mail":add(jndi-name="java:/Mail")

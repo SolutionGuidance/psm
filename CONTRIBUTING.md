@@ -42,3 +42,14 @@ depends on it in some other way, we might need a copy of that
 software.  Your submission should tell us where and how to get it as
 well as the license that applies to that code.  We will archive a copy
 of that code if we accept your pull request.
+
+## Avoiding Generatable Elements In The Repo
+
+As a general rule, we try to keep generated elements out of the
+repository.  This includes files that result from build processes.  If
+we want to memorialize a compiled version of the program, the best way
+to do that is with tags or to record that information and put the
+saved version somewhere other than this repository.  If a file can be
+generated from the materials in the repository using
+commonly-available tools, please do not put it in the repository
+without raising it for discussion.

@@ -7,7 +7,8 @@ DROP TABLE IF EXISTS
   cms_authentication,
   cms_user,
   lu_role,
-  persistent_logins
+  persistent_logins,
+  provider_types
 CASCADE;
 
 CREATE SEQUENCE hibernate_sequence;
@@ -66,4 +67,10 @@ CREATE TABLE audit_details(
   column_name TEXT,
   old_value TEXT,
   new_value TEXT
+);
+
+CREATE TABLE provider_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE,
+  applicant_type INTEGER NOT NULL DEFAULT 0
 );

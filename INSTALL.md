@@ -278,7 +278,7 @@ EOF
 
    ```ShellSession
    $ cd ../psm/psm-app
-   $ ant dist
+   $ ant regenerate-model dist
    Buildfile: /path/to/psm/psm-app/build.xml
    ...[cut]...
    dist:

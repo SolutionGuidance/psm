@@ -6,9 +6,9 @@ DROP TABLE IF EXISTS
   audit_records,
   cms_authentication,
   cms_user,
-  lu_role,
   persistent_logins,
-  provider_types
+  provider_types,
+  roles
 CASCADE;
 
 CREATE SEQUENCE hibernate_sequence;
@@ -20,14 +20,15 @@ CREATE TABLE persistent_logins (
   last_used TIMESTAMP WITH TIME ZONE NOT NULL
 );
 
-CREATE TABLE lu_role (
+CREATE TABLE roles (
   code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT
+  description TEXT UNIQUE
 );
-INSERT INTO lu_role VALUES ('R1', 'Provider');
-INSERT INTO lu_role VALUES ('R2', 'Service Agent');
-INSERT INTO lu_role VALUES ('R3', 'Service Administrator');
-INSERT INTO lu_role VALUES ('R4', 'System Administrator');
+INSERT INTO roles (code, description) VALUES
+  ('R1', 'Provider'),
+  ('R2', 'Service Agent'),
+  ('R3', 'Service Administrator'),
+  ('R4', 'System Administrator');
 
 CREATE TABLE cms_user (
   user_id TEXT PRIMARY KEY,
@@ -38,7 +39,7 @@ CREATE TABLE cms_user (
   phone_number TEXT,
   email TEXT,
   status TEXT,
-  role_code CHARACTER VARYING(2) REFERENCES lu_role(code)
+  role_code CHARACTER VARYING(2) REFERENCES roles(code)
 );
 INSERT INTO cms_user (
   user_id,

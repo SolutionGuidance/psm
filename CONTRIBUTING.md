@@ -9,7 +9,35 @@ you might also want to look at [DESIGN.md](DESIGN.md).
 
 This repository has a home on
 [GitHub](https://github.com/OpenTechStrategies/psm).  Please submit
-[pull requests](https://help.github.com/articles/about-pull-requests/) there.
+[pull requests](https://help.github.com/articles/about-pull-requests/)
+(PRs) there.
+
+### Branching and Branch Names
+
+We do all development on lightweight branches, with each branch
+encapsulating one logical changeset (that is, one group of related
+commits).  Please try to keep changesets small and well-bounded: a
+branch should usually be short-lived, and should be turned into a PR,
+reviewed, and merged to `master` as soon as possible.
+
+When a branch is associated with an issue ticket, then the branch name
+should start with the issue number and then give a very brief summary,
+with hyphens as the separator, e.g.:
+
+    871-fix-provider-risk-score
+
+Everything after the issue number is just a reminder what the branch
+addresses.  Sometimes a branch may address only part of an issue, and
+that's fine: different branches can start with the same issue number,
+as long as the summary following the issue number indicates what part
+of the issue that particular branch addresses.
+
+If there is no issue number associated with a branch, then don't start
+the branch name with a number.
+
+While there are no strict rules on how to summarize a branch's purpose
+in its name, it may help to keep in mind some common starting words:
+"`fix`", "`feature`", "`refactor`", "`remove`", "`improve`", and "`test`".
 
 ### Commit Messages
 Please adhere

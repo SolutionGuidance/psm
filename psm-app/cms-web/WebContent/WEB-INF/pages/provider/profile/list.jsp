@@ -79,7 +79,7 @@
                                 <div class="panelHeader">
                                     <h2>Account Maintenance</h2>
                                 </div>
-                                <div class="panelSetion">
+                                <div class="panelSection">
                                     <ul>
                                         <li>
                                             <p>

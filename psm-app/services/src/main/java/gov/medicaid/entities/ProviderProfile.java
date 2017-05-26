@@ -17,167 +17,247 @@ package gov.medicaid.entities;
 
 import gov.medicaid.binders.BinderUtils;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class ProviderProfile extends IdentifiableEntity implements Cloneable {
-    private long profileId;
+@javax.persistence.Entity
+@Table(name = "provider_profiles")
+public class ProviderProfile implements Cloneable, Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "control_no")
+    private long id;
+
+    @Column(
+            name = "profile_id",
+            nullable = false
+    )
+    private long profileId = 0;
 
     /**
      * References the ticket for this request, if 0, this means it is already approved.
      */
-    private long ticketId;
+    @Column(
+            name = "ticket_id",
+            nullable = false
+    )
+    private long ticketId = 0;
 
+    @Column(name = "effective_date")
     private Date effectiveDate;
 
     /**
      * The profile status (active/suspended/expired).
      */
+    @ManyToOne
+    @JoinColumn(name = "profile_status_code")
     private ProfileStatus profileStatus;
 
     /**
      * Indicates if the provider is employed by a PHS Indian Hospital.
      */
+    @Column(name = "works_on_reservation")
     private String worksOnReservationInd;
 
     /**
      * Indicates if applicant has own private practice.
      */
+    @Column(name = "maintains_own_private_practice")
     private String maintainsOwnPrivatePractice;
 
     /**
      * Indicates if applicant has additional practice locations.
      */
+    @Column(name = "employed_or_contracted_by_group")
     private String employedOrContractedByGroup;
 
     /**
      * Answer to the applicant/owner criminal conviction disclosure question.
      */
+    @Column(name = "criminal_conviction")
     private String criminalConvictionInd;
 
     /**
      * Answer to the applicant/owner civil penalty disclosure question.
      */
+    @Column(name = "civil_penalty")
     private String civilPenaltyInd;
 
     /**
      * Answer to the applicant/owner previous exclusion disclosure question.
      */
+    @Column(name = "previous_exclusion")
     private String previousExclusionInd;
 
     /**
      * Answer to the applicant/owner criminal conviction disclosure question.
      */
+    @Column(name = "employee_criminal_conviction")
     private String employeeCriminalConvictionInd;
 
     /**
      * Answer to the applicant/owner civil penalty disclosure question.
      */
+    @Column(name = "employee_civil_penalty")
     private String employeeCivilPenaltyInd;
 
     /**
      * Answer to the applicant/owner previous exclusion disclosure question.
      */
+    @Column(name = "employee_previous_exclusion")
     private String employeePreviousExclusionInd;
 
     /**
      * Answer to the question 18 years old and above (PCA).
      */
+    @Column(name = "adult")
     private String adultInd;
 
+    @Column
     private String county;
 
     /**
      * If person has been employed in primary agency continuously since BGS completion (PCA).
      */
+    @Column(name = "employed_since_clearance")
     private String employedSinceClearance;
 
+    @ManyToOne
+    @JoinColumn(name = "risk_level_code")
     private RiskLevel riskLevel;
 
+    @Transient
     private List<License> certifications;
 
     /**
      * Licenses and certifications.
      */
+    @Transient
     private List<Document> attachments;
 
+    @Transient
     private List<Note> notes;
 
+    @Transient
     private Entity entity;
 
+    @Transient
     private ProviderStatement statement;
 
+    @Transient
     private List<DesignatedContact> designatedContacts;
 
     /**
      * Group/Member affiliations.
      */
+    @Transient
     private List<Affiliation> affiliations;
 
     /**
      * Documents the applicant agreed to.
      */
+    @Transient
     private List<AcceptedAgreements> agreements;
 
     /**
      * Provider setup.
      */
+    @Transient
     private List<PayToProvider> payToProviders;
 
+    @Transient
     private List<ProviderService> services;
 
+    @Transient
     private OwnershipInformation ownershipInformation;
 
     /**
      * Number of beds for facility.
      */
+    @Column(name = "bed_count")
     private Integer numberOfBeds;
 
+    @Column(name = "bed_count_title_18")
     private Integer title18NumberOfBeds;
 
+    @Column(name = "bed_count_title_19")
     private Integer title19NumberOfBeds;
 
+    @Column(name = "bed_count_dual_certified")
     private Integer dualCertifiedNumberOfBeds;
 
+    @Column(name = "bed_count_icf")
     private Integer icfNumberOfBeds;
 
+    @Column(name = "physical_and_occupational_therapy")
     private String physicalAndOccupationalTherapyInd;
 
+    @Column(name = "bed_count_effective_date")
     private Date numberOfBedsEffectiveDate;
 
     /**
      * Only for approved profiles, the ticket that was used for this approved request.
      */
-    private long referenceTicketId;
+    @Column(
+            name = "reference_ticket_id",
+            nullable = false
+    )
+    private long referenceTicketId = 0;
 
+    @Column(name = "owner_id")
     private String ownerId;
 
     /**
      * Person who filled up the form.
      */
+    @Column(name = "form_completed_by")
     private String accomplishedBy;
 
     /**
      * If the clinic is a health board.
      */
+    @Column(name = "health_board")
     private String healthBoardInd;
 
+    @Column(name = "created_by")
     private String createdBy;
 
+    @Column(name = "created_at")
     private Date createdOn;
 
+    @Column(name = "last_modified_by")
     private String modifiedBy;
 
+    @Column(name = "last_modified_at")
     private Date modifiedOn;
 
     /**
      * Represents the assured statements required for Chemical Dependency Program.
      */
+    @Transient
     private List<AssuredService> assuredStatements;
 
+    @Transient
     private List<ProviderCategoryOfService> categoriesOfServiceTypes;
 
     public ProviderProfile() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getProfileId() {

@@ -50,12 +50,6 @@ public class ProviderType extends LookupEntity {
     private boolean canDelete;
 
    /**
-     * Default empty constructor.
-     */
-    public ProviderType() {
-    }
-
-   /**
      * Gets the value of the field <code>applicantType</code>.
      * @return the applicantType
      */
@@ -78,5 +72,4 @@ public class ProviderType extends LookupEntity {
 	public void setCanDelete(boolean canDelete) {
 		this.canDelete = canDelete;
 	}
-
 }

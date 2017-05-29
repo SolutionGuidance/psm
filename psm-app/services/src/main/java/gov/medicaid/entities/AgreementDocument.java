@@ -15,9 +15,23 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.io.Serializable;
 import java.util.Date;
 
-public class AgreementDocument extends IdentifiableEntity {
+@javax.persistence.Entity
+@Table(name = "agreement_documents")
+public class AgreementDocument implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "agreement_document_id")
+    private long id;
+
     private String type;
 
     private String title;
@@ -30,19 +44,28 @@ public class AgreementDocument extends IdentifiableEntity {
     /**
      * Document data.
      */
+    @Column(name = "body")
     private String text;
 
+    @Column(name = "created_by")
     private String createdBy;
 
-    /**
-     * Timestamp.
-     */
+    @Column(name = "created_at")
     private Date createdOn;
 
     /**
      * If the agreement can be deleted.
      */
+    @Transient
     private boolean canDelete;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

@@ -694,23 +694,6 @@
 		<property column="CREATE_TS" generated="never" lazy="false"
 			name="createdOn" type="timestamp" />
 	</class>
-	<class name="gov.medicaid.entities.AgreementDocument" table="AGREEMENT_DOCUMENT">
-		<id column="AGREEMENT_DOCUMENT_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property column="DOC_TYPE" generated="never" lazy="false"
-			length="45" name="type" type="string" />
-		<property column="TITLE" generated="never" lazy="false"
-			length="100" name="title" type="string" />
-		<property column="VERSION" generated="never" lazy="false"
-			length="45" name="version" type="integer" />
-		<property column="DOC_TEXT" generated="never" lazy="false"
-			name="text" type="text" />
-		<property column="CREATED_BY" generated="never" lazy="false"
-			length="45" name="createdBy" type="string" />
-		<property column="CREATE_TS" generated="never" lazy="false"
-			name="createdOn" type="timestamp" />
-	</class>
 	<class name="gov.medicaid.entities.AcceptedAgreements" table="PROVIDER_AGREEMENT_XREF">
 		<id column="PROVIDER_AGREEMENT_XREF_ID" name="id" type="long">
 			<generator class="assigned" />

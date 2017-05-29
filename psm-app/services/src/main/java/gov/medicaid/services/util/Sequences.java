@@ -113,11 +113,6 @@ public class Sequences {
     public static final String HELP_ITEM_SEQ = "HELP_ITEM_SEQ";
 
     /**
-     * For agreements and addendums.
-     */
-    public static final String AGREEMENT_DOC_SEQ = "AGREEMENT_DOC_SEQ";
-
-    /**
      * Event sequence.
      */
     public static final String EVENT_SEQ = "CMS_EVENT_SEQ";

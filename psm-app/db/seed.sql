@@ -2,6 +2,7 @@ DROP SEQUENCE IF EXISTS
   hibernate_sequence
 CASCADE;
 DROP TABLE IF EXISTS
+  agreement_documents,
   audit_details,
   audit_records,
   cms_authentication,
@@ -291,4 +292,14 @@ CREATE TABLE provider_profiles(
   created_at TIMESTAMP WITH TIME ZONE,
   last_modified_by TEXT,
   last_modified_at TIMESTAMP WITH TIME ZONE
+);
+
+CREATE TABLE agreement_documents(
+  agreement_document_id BIGINT PRIMARY KEY,
+  type TEXT,
+  title TEXT,
+  version INTEGER,
+  body TEXT,
+  created_by TEXT,
+  created_at TIMESTAMP WITH TIME ZONE
 );

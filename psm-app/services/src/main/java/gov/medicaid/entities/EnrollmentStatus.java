@@ -15,17 +15,14 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Table;
+
 /**
  * Lookup entity for enrollment status (Draft/Pending/Approved/Rejected).
  *
  * @author TCSASSEMBLER
  * @version 1.0
  */
-public class EnrollmentStatus extends LookupEntity {
-
-    /**
-     * Empty constructor.
-     */
-    public EnrollmentStatus() {
-    }
-}
+@javax.persistence.Entity
+@Table(name = "enrollment_statuses")
+public class EnrollmentStatus extends LookupEntity {}

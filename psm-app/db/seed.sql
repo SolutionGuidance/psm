@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS
   audit_records,
   cms_authentication,
   cms_user,
+  enrollment_statuses,
   help_items,
   persistent_logins,
   profile_statuses,
@@ -197,6 +198,16 @@ INSERT INTO risk_levels (code, sort_index, description) VALUES
   ('01', 1, 'Limited'),
   ('02', 2, 'Moderate'),
   ('03', 3, 'High');
+
+CREATE TABLE enrollment_statuses(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO enrollment_statuses (code, description) VALUES
+  ('01', 'Draft'),
+  ('02', 'Pending'),
+  ('03', 'Rejected'),
+  ('04', 'Approved');
 
 CREATE TABLE states (
    code CHARACTER VARYING(2) PRIMARY KEY,

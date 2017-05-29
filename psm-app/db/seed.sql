@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS
   cms_authentication,
   cms_user,
   persistent_logins,
+  profile_statuses,
   provider_types,
   roles,
   states
@@ -162,6 +163,15 @@ INSERT INTO provider_types(code, description, applicant_type) VALUES
   ('76', 'Birthing Center', 'ORGANIZATION'),
   ('77', 'Medical Transportation', 'ORGANIZATION'),
   ('78', 'Billing Entity for Physician Services', 'ORGANIZATION');
+
+CREATE TABLE profile_statuses(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO profile_statuses (code, description) VALUES
+  ('01', 'Active'),
+  ('02', 'Suspended'),
+  ('03', 'Expired');
 
 CREATE TABLE states (
    code CHARACTER VARYING(2) PRIMARY KEY,

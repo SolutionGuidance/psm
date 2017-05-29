@@ -39,18 +39,25 @@ CREATE TABLE cms_user (
   status TEXT,
   role_code CHARACTER VARYING(2) REFERENCES lu_role(code)
 );
-
-
-INSERT INTO cms_user(user_id, username, first_name, last_name, email, status, role_code)
-VALUES('SYSTEM', 'system', 'system', 'system', 'system@example.com', 'ACTIVE', 'R4');
+INSERT INTO cms_user (
+  user_id,
+  username,
+  first_name,
+  last_name,
+  email,
+  status,
+  role_code
+) VALUES
+  ('ADMIN', 'admin', 'admin', 'admin', 'admin@example.com', 'ACTIVE', 'R3'),
+  ('SYSTEM', 'system', 'system', 'system', 'system@example.com', 'ACTIVE', 'R4');
 
 CREATE TABLE cms_authentication(
   username TEXT PRIMARY KEY,
   password TEXT NOT NULL
 );
-
-INSERT INTO cms_authentication (username, password)
-VALUES ('system', '{SHA}MX8edh8vqo2ngaR2K53MLFytIJo='); -- password: system
+INSERT INTO cms_authentication (username, password) VALUES
+  ('admin', '{SHA}0DPiKuNIrrVmD8IUCuw1hQxNqZc='), -- password: admin
+  ('system', '{SHA}MX8edh8vqo2ngaR2K53MLFytIJo='); -- password: system
 
 CREATE TABLE audit_records(
   audit_record_id BIGINT PRIMARY KEY,

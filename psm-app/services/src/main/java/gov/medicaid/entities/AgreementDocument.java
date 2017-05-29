@@ -44,12 +44,6 @@ public class AgreementDocument extends IdentifiableEntity {
      */
     private boolean canDelete;
 
-    /**
-     * Empty constructor.
-     */
-    public AgreementDocument() {
-    }
-
     public String getTitle() {
         return title;
     }

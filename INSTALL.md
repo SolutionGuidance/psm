@@ -301,10 +301,14 @@ EOF
 
 1. Create database schema and initial data. Use the seed data to create tables:
 
-  ```ShellSession
-  $ psql -h localhost -U psm psm < /path/to/psm/psm-app/db/seed.sql
-  ```
+      ```ShellSession
+      $ psql -h localhost -U psm psm < /path/to/psm/psm-app/db/seed.sql
+      ```
 
 1. To check that the app is running, navigate to
    http://localhost:8080/cms/login.  You should see a login screen.
 
+1.  Login with one of the test users: Username `system` with password
+    `system` is a "system administrator" account that can create new
+    accounts.  Username `admin` with password `admin` is a "service
+    admin" account that can create new provider enrollments.

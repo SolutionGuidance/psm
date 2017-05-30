@@ -24,10 +24,14 @@ function wait_for_db {
 }
 
 [ -z "$(ls -A /opt/jboss/wildfly)" ] && cp -r /opt/jboss/wildfly.static/* /opt/jboss/wildfly
-/root/bin/build.sh
-/root/bin/setup.sh
-wait_for_db
-wait_for_mail
+/usr/local/bin/build.sh
+/usr/local/bin/setup.sh
+
+# It is probably not useful to block on these.  Better for the app to
+# be able to handle missing services.  I leave the code here,
+# commented out, in case these are useful for debugging.
+#wait_for_db
+#wait_for_mail
 
 echo "Starting wildfly server!"
 ${JBOSS_HOME}/bin/standalone.sh -c standalone-full.xml -bmanagement 0.0.0.0 -b 0.0.0.0 -Djboss.http.port=80

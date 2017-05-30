@@ -25,7 +25,11 @@ RUN yum localinstall -y /pgdg-centos96-9.6-3.noarch.rpm \
 		&& yum install -y ant nc postgresql96-server \
 		&& rm /pgdg-centos96-9.6-3.noarch.rpm
 
-RUN mkdir -p /root/bin
+# Install Tini to use as subreaper in Docker container to adopt zombie
+# processes.  Basically, the JVM makes a poor PID 1
+ENV TINI_SHA 066ad710107dc7ee05d3aa6e4974f01dc98f3888
+RUN curl -fL https://github.com/krallin/tini/releases/download/v0.5.0/tini-static -o /bin/tini && chmod +x /bin/tini \
+                 && echo "$TINI_SHA /bin/tini" | sha1sum -c -
 
 # We touch the file here to use as a newness flag later.  If our
 # config is newer than the somewhat randomly-chosen bin/product.conf,
@@ -43,9 +47,9 @@ RUN mv /opt/jboss/wildfly /opt/jboss/wildfly.static
 ## script builds the ear file, sets up the server, waits for db and
 ## mail to come up, then starts the wildfly server.  On subsequent
 ## runs, it should skip build and setup unless something changes.
-COPY bin/* /root/bin/
-RUN chmod a+x /root/bin/*
+COPY bin/* /usr/local/bin/
+RUN chmod a+x /usr/local/bin/*
 
-EXPOSE 8443 8080 9990
+EXPOSE 8443 80 9990
 
-CMD /root/bin/cmd.sh
+ENTRYPOINT ["tini", "--", "/usr/local/bin/entrypoint.sh"]

@@ -15,6 +15,10 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import java.io.Serializable;
 
 /**
@@ -23,16 +27,20 @@ import java.io.Serializable;
  * @author TCSASSEMBLER
  * @version 1.0
  */
+@javax.persistence.Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class LookupEntity implements Serializable {
 
     /**
      * Lookup code.
      */
+    @Id
     private String code;
 
     /**
      * Lookup description.
      */
+    @Column(unique = true)
     private String description;
 
     /**

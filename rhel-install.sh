@@ -10,7 +10,7 @@ function download_and_sha1 {
 function wait_for_jboss {
 	until `$1 -c "ls /deployment" &> /dev/null`; do
 		sleep 5
-    echo "Waiting for wildfly to come up."
+		echo "Waiting for wildfly to come up."
 	done
 }
 
@@ -63,9 +63,9 @@ cat pass.txt | awk '{print "psm "$1}'>> script.txt
 eval ./wildfly-10.1.0.Final/bin/add-user.sh "$(< script.txt)"
 rm script.txt
 ./wildfly-10.1.0.Final/bin/standalone.sh \
-    -c standalone-full.xml \
-    -b 0.0.0.0 \
-    -bmanagement 0.0.0.0 &
+		-c standalone-full.xml \
+		-b 0.0.0.0 \
+		-bmanagement 0.0.0.0 &
 wait_for_jboss ./wildfly-10.1.0.Final/bin/jboss-cli.sh
 
 ## Configure wildfly service bindings
@@ -75,37 +75,37 @@ wait_for_jboss ./wildfly-10.1.0.Final/bin/jboss-cli.sh
 /subsystem=mail/mail-session="java:/Mail"/server=smtp:add(outbound-socket-binding-ref=mail-smtp)
 EOF
 ./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect \
-  --command='jms-queue add --queue-address=DataSync --entries=["java:/jms/queue/DataSync"]'
+	--command='jms-queue add --queue-address=DataSync --entries=["java:/jms/queue/DataSync"]'
 download_and_sha1 "https://jdbc.postgresql.org/download/postgresql-42.1.1.jar" \
 									8a0b76d763f5382d6357c412eeb14970ba4405f3
 ./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect --command="deploy postgresql-42.1.1.jar"
 ./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect <<EOF
 xa-data-source add \
-  --name=TaskServiceDS \
-  --jndi-name=java:/jdbc/TaskServiceDS \
-  --driver-name=postgresql-42.1.1.jar \
-  --xa-datasource-class=org.postgresql.xa.PGXADataSource \
-  --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
-  --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter \
-  --enabled=true \
-  --use-ccm=true \
-  --background-validation=true \
-  --user-name=psm \
-  --password=$(< pass.txt) \
-  --xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
+	--name=TaskServiceDS \
+	--jndi-name=java:/jdbc/TaskServiceDS \
+	--driver-name=postgresql-42.1.1.jar \
+	--xa-datasource-class=org.postgresql.xa.PGXADataSource \
+	--valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
+	--exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter \
+	--enabled=true \
+	--use-ccm=true \
+	--background-validation=true \
+	--user-name=psm \
+	--password=$(< pass.txt) \
+	--xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
 xa-data-source add \
-  --name=MitaDS \
-  --jndi-name=java:/jdbc/MitaDS \
-  --driver-name=postgresql-42.1.1.jar \
-  --xa-datasource-class=org.postgresql.xa.PGXADataSource \
-  --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
-  --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter \
-  --enabled=true \
-  --use-ccm=true \
-  --background-validation=true \
-  --user-name=psm \
-  --password=$(< pass.txt) \
-  --xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
+	--name=MitaDS \
+	--jndi-name=java:/jdbc/MitaDS \
+	--driver-name=postgresql-42.1.1.jar \
+	--xa-datasource-class=org.postgresql.xa.PGXADataSource \
+	--valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
+	--exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter \
+	--enabled=true \
+	--use-ccm=true \
+	--background-validation=true \
+	--user-name=psm \
+	--password=$(< pass.txt) \
+	--xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
 EOF
 
 ## Build and deploy the psm app
@@ -114,4 +114,4 @@ cd psm/psm-app
 ant dist
 cd ../../
 ./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect \
-    --command="deploy psm/psm-app/build/cms-portal-services.ear"
+		--command="deploy psm/psm-app/build/cms-portal-services.ear"

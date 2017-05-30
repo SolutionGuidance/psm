@@ -15,17 +15,8 @@
  */
 package gov.medicaid.entities;
 
-/**
- * Represents a role.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-public class Role extends LookupEntity {
+import javax.persistence.Table;
 
-    /**
-     * Empty constructor.
-     */
-    public Role() {
-    }
-}
+@javax.persistence.Entity
+@Table(name = "roles")
+public class Role extends LookupEntity {}

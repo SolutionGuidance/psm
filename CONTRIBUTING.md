@@ -33,6 +33,22 @@ The reason for the short initial summary line is to support commands,
 such as `git show-branch`, that list changes by showing just the first
 line of each one's commit message.
 
+### Indentation and Whitespace
+
+Please uses spaces, never tabs.  Indent Java code by 4 spaces per
+level, XML by 2 spaces per level, and avoid trailing whitespaces.  The
+file [.editorconfig](.editorconfig) encodes these formatting
+conventions in a way that most text editors can read.
+
+Some of the legacy code here may not already conform to these
+standards.  When you find yourself about to make changes to such code,
+please first make a whitespace-only commit to regularize the
+indentation, and then make a separate commit with your code changes.
+For example, see commit efbf5413e, which made whitespace adjustments to
+[persistence.xml](psm-app/cms-business-process/src/main/resources/META-INF/persistence.xml),
+and was followed immediately by a substantive change to the same file
+in commit 2fd2dd21e.
+
 ### Licensing Your Contribution
 The PSM is published under the terms of version 2 of the
 [Apache Software License](http://www.apache.org/licenses/).  It is

@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS
   cms_authentication,
   cms_user,
   enrollment_statuses,
+  enrollments,
   help_items,
   persistent_logins,
   profile_statuses,
@@ -325,4 +326,23 @@ CREATE TABLE agreement_documents(
   body TEXT,
   created_by TEXT,
   created_at TIMESTAMP WITH TIME ZONE
+);
+
+CREATE TABLE enrollments(
+  enrollment_id BIGINT PRIMARY KEY,
+  enrollment_status_code CHARACTER VARYING(2)
+    REFERENCES enrollment_statuses(code),
+  request_type_code CHARACTER VARYING(2)
+    REFERENCES request_types(code),
+  process_instance_id BIGINT NOT NULL DEFAULT 0,
+  profile_reference_id BIGINT NOT NULL DEFAULT 0,
+  reference_timestamp TIMESTAMP WITH TIME ZONE,
+  progress_page TEXT,
+  created_by TEXT,
+  created_at TIMESTAMP WITH TIME ZONE,
+  submitted_by TEXT,
+  submitted_at TIMESTAMP WITH TIME ZONE,
+  changed_by TEXT,
+  changed_at TIMESTAMP WITH TIME ZONE,
+  change_note TEXT
 );

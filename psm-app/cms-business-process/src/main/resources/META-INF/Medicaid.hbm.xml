@@ -2,62 +2,6 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-lazy="false">
-	<class name="gov.medicaid.entities.Enrollment" table="TICKET">
-		<id name="ticketId" type="long">
-			<column name="TICKET_ID" />
-			<generator class="assigned" />
-		</id>
-		<many-to-one class="gov.medicaid.entities.EnrollmentStatus"
-			fetch="join" name="status">
-			<column name="STATUS_CD" />
-		</many-to-one>
-		<many-to-one class="gov.medicaid.entities.RequestType"
-			fetch="join" name="requestType">
-			<column name="REQUEST_TYP_CD" />
-		</many-to-one>
-		<property generated="never" lazy="false" name="processInstanceId"
-			type="long">
-			<column default="0" name="PROCESS_INSTANCE_ID" not-null="true" />
-		</property>
-		<property generated="never" lazy="false" name="profileReferenceId"
-			type="long">
-			<column default="0" name="REF_PROFILE_ID" not-null="true" />
-		</property>
-		<property generated="never" lazy="false" name="submissionDate"
-			type="timestamp">
-			<column name="SUBMISSION_TS" />
-		</property>
-		<property generated="never" lazy="false" name="statusDate"
-			type="timestamp">
-			<column name="STATUS_TS" />
-		</property>
-		<property generated="never" lazy="false" name="statusNote"
-			type="string">
-			<column length="1000" name="STATUS_NOTE_TXT" />
-		</property>
-		<property generated="never" lazy="false" name="submittedBy"
-			type="string">
-			<column length="50" name="SUBMITTED_BY" />
-		</property>
-		<property generated="never" lazy="false" name="createdBy"
-			type="string">
-			<column length="50" name="CREATED_BY" />
-		</property>
-		<property column="CREATE_TS" generated="never" lazy="false"
-			name="createdOn" type="timestamp" />
-		<property generated="never" lazy="false" name="lastUpdatedBy"
-			type="string">
-			<column length="50" name="LAST_UPDATED_BY" />
-		</property>
-		<property generated="never" lazy="false" name="progressPage"
-			type="string">
-			<column length="100" name="PROGRESS_PAGE" />
-		</property>
-		<property generated="never" lazy="false" name="referenceTimestamp"
-			type="timestamp">
-			<column name="REF_PROFILE_TS" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.Address" table="ADDRESS">
 		<id name="id" type="long">
 			<column name="ADDRESS_ID" />

@@ -378,7 +378,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
 
         if (ticket.getTicketId() == 0) {
-            ticket.setTicketId(getSequence().getNextValue(Sequences.TICKET_SEQ));
             ticket.setCreatedBy(user.getUserId());
             ticket.setCreatedOn(Calendar.getInstance().getTime());
         } else {

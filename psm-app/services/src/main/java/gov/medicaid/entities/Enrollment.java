@@ -15,6 +15,13 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -24,70 +31,96 @@ import java.util.Date;
  * @author TCSASSEMBLER
  * @version 1.0
  */
+@javax.persistence.Entity
+@Table(name = "enrollments")
 public class Enrollment implements Serializable {
 
     /**
      * Ticket identifier.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "enrollment_id")
     private long ticketId;
 
     /**
      * Ticket status.
      */
+    @ManyToOne
+    @JoinColumn(name = "enrollment_status_code")
     private EnrollmentStatus status;
 
     /**
      * Ticket request type.
      */
+    @ManyToOne
+    @JoinColumn(name = "request_type_code")
     private RequestType requestType;
 
     /**
      * Business process instance.
      */
-    private long processInstanceId;
+    @Column(
+            name = "process_instance_id",
+            nullable = false
+    )
+    private long processInstanceId = 0;
 
     /**
      * The profile id that was created by this ticket.
      */
-    private long profileReferenceId;
+    @Column(
+            name = "profile_reference_id",
+            nullable = false
+    )
+    private long profileReferenceId = 0;
 
     /**
      * The current page.
      */
+    @Column(name = "progress_page")
     private String progressPage;
 
     /**
      * The timestamp of the referenced profile.
      */
+    @Column(name = "reference_timestamp")
     private Date referenceTimestamp;
 
+    @Column(name = "submitted_at")
     private Date submissionDate;
 
     /**
      * The last status change date.
      */
+    @Column(name = "changed_at")
     private Date statusDate;
 
     /**
      * Note included in the last status change.
      */
+    @Column(name = "change_note")
     private String statusNote;
 
     /**
      * Username that submitted the request.
      */
+    @Column(name = "submitted_by")
     private String submittedBy;
 
     /**
      * Username that created this request.
      */
+    @Column(name = "created_by")
     private String createdBy;
 
+    @Column(name = "created_at")
     private Date createdOn;
 
     /**
      * Username that last made changes to the ticket.
      */
+    @Column(name = "changed_by")
     private String lastUpdatedBy;
 
     /**

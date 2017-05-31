@@ -152,7 +152,7 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
             providerTypes = sortCollection(getLookupService().getProviderTypes(ApplicantType.ORGANIZATION));
             break;
         default:
-            providerTypes = getLookupService().getProviderTypes(null);
+            providerTypes = getLookupService().getAllProviderTypes();
             break;
         }
         group.getLookupTableEntry().addAll(mapLookupEntity(providerTypes));

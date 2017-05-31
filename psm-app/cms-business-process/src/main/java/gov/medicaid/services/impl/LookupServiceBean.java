@@ -70,6 +70,13 @@ public class LookupServiceBean implements LookupService {
     public LookupServiceBean() {
     }
 
+    public List<ProviderType> getAllProviderTypes() {
+        return em.createQuery(
+                "FROM ProviderType",
+                ProviderType.class
+        ).getResultList();
+    }
+
     /**
      * Retrieves the provider types filtered by applicant type.
      * 
@@ -77,21 +84,14 @@ public class LookupServiceBean implements LookupService {
      *            individual or organizations
      * @return the filtered provider types
      */
-    @SuppressWarnings("unchecked")
     public List<ProviderType> getProviderTypes(ApplicantType applicantType) {
-        Query q = null;
-        switch (applicantType) {
-        case INDIVIDUAL:
-            q = em.createQuery("FROM ProviderType p WHERE applicantType = 0");
-            break;
-        case ORGANIZATION:
-            q = em.createQuery("FROM ProviderType p WHERE applicantType = 1");
-            break;
-        default:
-            q = em.createQuery("FROM ProviderType p");
-            break;
-        }
-        return q.getResultList();
+        return em.createQuery(
+                "FROM ProviderType WHERE applicantType = :type",
+                ProviderType.class
+        ).setParameter(
+                "type",
+                applicantType
+        ).getResultList();
     }
 
     /**

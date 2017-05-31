@@ -8,7 +8,8 @@ DROP TABLE IF EXISTS
   cms_user,
   persistent_logins,
   provider_types,
-  roles
+  roles,
+  service_assurance_types
 CASCADE;
 
 CREATE SEQUENCE hibernate_sequence;
@@ -29,6 +30,12 @@ INSERT INTO roles (code, description) VALUES
   ('R2', 'Service Agent'),
   ('R3', 'Service Administrator'),
   ('R4', 'System Administrator');
+
+CREATE TABLE service_assurance_types (
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE,
+  patient_ind TEXT
+);
 
 CREATE TABLE cms_user (
   user_id TEXT PRIMARY KEY,

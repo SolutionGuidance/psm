@@ -70,6 +70,13 @@ public class LookupServiceBean implements LookupService {
     public LookupServiceBean() {
     }
 
+    public List<ProviderType> getAllProviderTypes() {
+        return em.createQuery(
+                "FROM ProviderType",
+                ProviderType.class
+        ).getResultList();
+    }
+
     /**
      * Retrieves the provider types filtered by applicant type.
      * 

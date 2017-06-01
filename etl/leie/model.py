@@ -12,6 +12,8 @@ warn, info, debug, fatal = log.reporters()
 
 class UnsupportedDBType(Exception):
     pass
+class DBNotFound(Exception):
+    pass
 
 class LEIE(object):
     """This is a DAO class but not an ORM class.  We're modeling the
@@ -197,9 +199,22 @@ DROP TABLE business_reinstatement;"""
         if not dirname:
             dirname = os.path.dirname(__file__)
         with cd(dirname):
-            cmd = "goose -dir db/{0} {0} {1} up".format(self.db_conf['driver'], os.path.basename(self.db_conf['open']))
-            subprocess.check_call(cmd, shell=True)
+            # Make sure the sqlite3 db exists before we try to migrate it
+            if not os.path.exists(os.path.basename(self.db_conf['open'])):
+                raise DBNotFound("DB %s doesn't exist, so we can't migrate it." % self.db_conf['open'])
             
+            # Goose apparently returns 0 even when it errors, so we
+            # have to check stderr and react accordingly.
+            cmd = "goose -dir db/{0} {0} {1} up".format(self.db_conf['driver'], os.path.basename(self.db_conf['open']))
+            debug("Executing `%s`" % cmd)
+            p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+            out, err = p.communicate()
+            out = out.decode("utf-8")
+            err = err.decode("utf-8")
+            if err != '':
+                raise subprocess.CalledProcessError(0, cmd, out+err)
+            return out
+        
     def sql(self, migration):
         """Returns schema sql for the db
 

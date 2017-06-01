@@ -51,6 +51,31 @@ def test_migrate():
     conn.migrate()
     assert subprocess.check_output("echo .schema | sqlite3 %s" % conn.db_conf['open'], shell=True).decode("utf-8") != ""
     conn.close()
+
+    # Check that migrate complains about non-existent directory
+    tmp = conn.db_conf['open']
+    conn.db_conf['open'] = "/nodir/does_not_exist"
+    with pytest.raises(FileNotFoundError) as exc_info:
+        conn.migrate()
+    exception = exc_info.value
+    assert str(exception) == "[Errno 2] No such file or directory: '/nodir'"
+    
+    # Check that migrate complains about non-existent sqlite3 db
+    conn.db_conf['open'] = "does_not_exist"
+    with pytest.raises(model.DBNotFound) as exc_info:
+        conn.migrate()
+    exception = exc_info.value
+    assert str(exception) == "DB does_not_exist doesn't exist, so we can't migrate it."
+    conn.db_conf['open'] = tmp
+
+    # Check that migrate complains if Goose pukes
+    tmp = conn.db_conf['driver']
+    conn.db_conf['driver'] = "does_not_exist"
+    with pytest.raises(subprocess.CalledProcessError) as exc_info:
+        conn.migrate()
+    exception = exc_info.value
+    assert str(exception) == "Command 'goose -dir db/does_not_exist does_not_exist test.sqlite3 up' returned non-zero exit status 0"
+    conn.db_conf['driver'] = tmp
     
 def test_sql():
     """Make sure sql function returns something.

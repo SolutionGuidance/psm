@@ -1,8 +1,0 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.services.screening.medicaid.gov/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <impl:getNETStudyResponse>
-         <arg0>1</arg0>
-      </impl:getNETStudyResponse>
-   </soapenv:Body>
-</soapenv:Envelope>

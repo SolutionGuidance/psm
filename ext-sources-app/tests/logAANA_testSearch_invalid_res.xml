@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <soap:Fault>
-      <faultcode>soap:Server</faultcode>
-      <faultstring>See nested exception; nested exception is: java.lang.IllegalArgumentException: AANA number must be provided.</faultstring>
-    </soap:Fault>
-  </soap:Body>
-</soap:Envelope>

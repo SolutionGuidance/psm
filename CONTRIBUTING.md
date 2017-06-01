@@ -18,7 +18,9 @@ We do all development on lightweight branches, with each branch
 encapsulating one logical changeset (that is, one group of related
 commits).  Please try to keep changesets small and well-bounded: a
 branch should usually be short-lived, and should be turned into a PR,
-reviewed, and merged to `master` as soon as possible.
+reviewed, and merged to `master` as soon as possible.  Keeping
+branches short-lived reduces the likelihood of conflicts when it comes
+time to merge them back into master.
 
 When a branch is associated with an issue ticket, then the branch name
 should start with the issue number and then give a very brief summary,

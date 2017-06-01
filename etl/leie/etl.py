@@ -15,17 +15,10 @@ import petl as etl
 import re
 import sys
 
-# Setup logging
-import logging
-import logging.config
-logger = logging.getLogger(__name__)
-warn = logger.warning
-info = logger.info
-debug = logger.debug
-def fatal(m): logger.error(m); sys.exit(-1)
-
 # Our modules
 import model
+import log
+warn, info, debug, fatal = log.reporters()
 
 date_re = re.compile(r'[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
 slash_date_re = re.compile(r'[0-9][0-9]/[0-9][0-9]/[0-9][0-9]$')
@@ -225,7 +218,7 @@ def main():
     
 if __name__ == '__main__':
     os.chdir(os.path.dirname(__file__))
-    logging.config.fileConfig('../logging.ini', disable_existing_loggers=False)
-    logger = logging.getLogger("leie")
+    logger = log.logger()
     info('Starting ETL of LEIE data.')
     main()
+    info('Finished ETL of LEIE data.')

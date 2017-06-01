@@ -7,14 +7,8 @@ import subprocess
 import sys
 import yaml
 
-# Setup logging
-import logging
-import logging.config
-logger = logging.getLogger(__name__)
-warn = logger.warning
-info = logger.info
-debug = logger.debug
-def fatal(m): logger.error(m); sys.exit(-1)
+import log
+warn, info, debug, fatal = log.reporters()
 
 class UnsupportedDBType(Exception):
     pass
@@ -254,7 +248,7 @@ def main(dirname=None):
     return conn.goose_write(dirname)
     
 if __name__ == '__main__':
-    logging.config.fileConfig('../logging.ini', disable_existing_loggers=False)
-    logger = logging.getLogger("leie")
-    logger.debug('Running model.py directly to produce schema/goose output.')
+    logger = log.logger()
+    logger.info('Running model.py directly to produce schema/goose output.')
     main()
+    logger.info('Finished running model.py directly to produce schema/goose output.')

@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS
   persistent_logins,
   profile_statuses,
   provider_types,
+  risk_levels,
   roles,
   states
 CASCADE;
@@ -172,6 +173,16 @@ INSERT INTO profile_statuses (code, description) VALUES
   ('01', 'Active'),
   ('02', 'Suspended'),
   ('03', 'Expired');
+
+CREATE TABLE risk_levels(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  sort_index INTEGER UNIQUE NOT NULL,
+  description TEXT UNIQUE
+);
+INSERT INTO risk_levels (code, sort_index, description) VALUES
+  ('01', 1, 'Limited'),
+  ('02', 2, 'Moderate'),
+  ('03', 3, 'High');
 
 CREATE TABLE states (
    code CHARACTER VARYING(2) PRIMARY KEY,

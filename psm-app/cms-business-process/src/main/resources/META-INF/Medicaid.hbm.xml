@@ -504,20 +504,6 @@
 			<column name="DESCRIPTION" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.RiskLevel" table="LU_RISK_LEVEL">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="sortIndex"
-			type="int">
-			<column name="SORT_IDX" />
-		</property>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.SpecialtyType" table="LU_SPECIALTY_TYPE">
 		<id name="code" type="string">
 			<column length="2" name="CODE" />

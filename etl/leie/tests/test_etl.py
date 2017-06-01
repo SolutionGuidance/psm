@@ -75,12 +75,14 @@ def test_exclusion(conn):
     print("We just do a complete exclusion ETL and then see if the results are as expected.")
     excl = etl.Exclusions(conn)
     excl.etl_from_dir("tests/data")
+    rows = conn.count_exclusions()
     
-    # And twice more to test the dedupe avoidance and remediation
-    excl.etl_from_filename("tests/data/UPDATED.csv", force_dupes=True)
-    excl.etl_from_dir(data_dir="tests/data")
+    # And again twice to exercise the force_reload stuff
+    excl.etl_from_filename("tests/data/UPDATED.csv", force_reload=True)
+    excl.etl_from_filename("tests/data/UPDATED.csv")
 
-    ## Make sure the right number of rows were written
+    ## Make the right number of rows were written and we didn't duplicate the data
+    assert conn.count_exclusions() == rows
     rows = int(subprocess.check_output("wc -l tests/data/UPDATED.csv", shell=True).decode("utf-8").split(' ')[0])
     assert conn.count_exclusions() == rows - 1
     
@@ -88,13 +90,10 @@ def test_reinstatement(conn):
     print("We just do a complete reinstatement ETL and then see if the results are as expected.")
     rein = etl.Reinstatements(conn)
     rein.etl_from_dir("tests/data")
-
-    # And twice more to test the dedupe avoidance and remediation
-    rein.etl_from_dir("tests/data", force_dupes=True)
+    first_rows_in_db = conn.count_table_tag("reinstatement")
+    
+    # And again to test dupe remediation
     rein.etl_from_dir("tests/data")
-
-    ## Make sure the right number of rows were written
     rows = subprocess.check_output("wc -l tests/data/*REIN*.csv", shell=True).decode("utf-8").strip().split("\n")
     rows = int(rows[-1].strip().split(' ')[0]) - (len(rows) - 1)
     assert conn.count_table_tag("reinstatement") == rows
-

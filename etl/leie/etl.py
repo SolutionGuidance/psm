@@ -101,15 +101,19 @@ class Exclusions():
         """CONN is a database connection."""
         self.conn = conn
         
-    def etl_from_table(self, table, force_dupes=False):
+    def etl_from_table(self, table, force_reload=False):
         """Extract, translate, load exclusions (and not reinstatements) from
         a petl TABLE.
 
-        Set FORCE_DUPES to True to turn off the protections against
-        inserting the same csv file twice.
+        Set FORCE_RELOAD to True to turn off the protections against
+        reading the same csv file twice.  There is no harm in redoing
+        a csv file, since the csv contents replaces the db table
+        entirely.  We avoid reloading because it is faster and because
+        it prevents the db from having an empty table for a moment
+        between blowing away and refilling it.
 
         """
-        if not force_dupes:
+        if not force_reload:
             # If UPDATED.csv has the same number of rows and the same most
             # recent date as our db, we've already snarfed this csv file and
             # can skip it.
@@ -130,29 +134,38 @@ class Exclusions():
         etl.todb(individual, self.conn.conn, 'individual_exclusion')
         etl.todb(business, self.conn.conn, 'business_exclusion')
     
-    def etl_from_filename(self, fname, force_dupes=False):
+    def etl_from_filename(self, fname, force_reload=False):
         """Extract, translate, load exclusions (and not reinstatements) from
         the file named FNAME.
 
-        Set FORCE_DUPES to True to turn off the protections against
-        inserting the same csv file twice.
+        Set FORCE_RELOAD to True to turn off the protections against
+        reading the same csv file twice.  There is no harm in redoing
+        a csv file, since the csv contents replaces the db table
+        entirely.  We avoid reloading because it is faster and because
+        it prevents the db from having an empty table for a moment
+        between blowing away and refilling it.
 
         """
-        self.etl_from_table(etl.fromcsv(fname), force_dupes)
+        self.etl_from_table(etl.fromcsv(fname), force_reload)
 
-    def etl_from_dir(self, data_dir="data", force_dupes=False):
+    def etl_from_dir(self, data_dir="data", force_reload=False):
         """Extract, translate, load exclusions (and not reinstatements) from
         the DATA_DIR directory.
 
         CONN is a db connection
 
-        Set FORCE_DUPES to True to turn off the protections against
-        inserting the same csv file twice.
+
+        Set FORCE_RELOAD to True to turn off the protections against
+        reading the same csv file twice.  There is no harm in redoing
+        a csv file, since the csv contents replaces the db table
+        entirely.  We avoid reloading because it is faster and because
+        it prevents the db from having an empty table for a moment
+        between blowing away and refilling it.
 
         """
     
         # Get the data from updated CSV file
-        self.etl_from_filename(os.path.join(data_dir,"UPDATED.csv"), force_dupes)
+        self.etl_from_filename(os.path.join(data_dir,"UPDATED.csv"), force_reload)
 
 class Reinstatements():
     """ETL helper class for handling reinstatements."""
@@ -161,13 +174,9 @@ class Reinstatements():
         """CONN is a database connection."""
         self.conn = conn
     
-    def etl_from_dir(self, data_dir="data", force_dupes=False):
+    def etl_from_dir(self, data_dir="data"):
         """Extract, translate, load reinstatements (and not exclusions) from
         directory DATA_DIR.
-
-        Set FORCE_DUPES to True to turn off the protections against
-        inserting the same csv file twice.
-
         """
     
         # Get YYYYMM date of most recent reinstatement action
@@ -178,8 +187,7 @@ class Reinstatements():
         total_indiv = []
         total_bus = []
         for fname in sorted(glob.glob(os.path.join(data_dir, "*REIN.csv"))):
-            if (not force_dupes and
-                int(os.path.basename(fname)[:4]) <= int(most_recent[2:])):
+            if int(os.path.basename(fname)[:4]) <= int(most_recent[2:]):
                 continue
             debug("Processing " + fname)
             reinstated = etl.fromcsv(fname)

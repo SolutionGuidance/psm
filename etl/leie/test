@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cov=$(find *.py -exec echo --cov={} \;| sed s/\.py//)
+echo $covmod
+py.test --cov-report term-missing:skip-covered $cov --ignore=lib --ignore=local $@

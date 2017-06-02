@@ -1196,15 +1196,6 @@
 			<column default="0" name="INTERVAL_VALUE" not-null="true" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.HelpItem" table="HELP_ITEM">
-		<id column="HELP_ITEM_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property column="TITLE" generated="never" lazy="false"
-			length="45" name="title" type="string" />
-		<property column="DESCRIPTION" generated="never" lazy="false"
-			length="2048" name="description" type="string" />
-	</class>
 	<class name="gov.medicaid.entities.LegacySystemMapping" table="LEGACY_MAPPING">
 		<id column="LEGACY_MAPPING_ID" name="id" type="long">
 			<generator class="assigned" />

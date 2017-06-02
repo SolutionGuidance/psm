@@ -45,6 +45,7 @@
     <class>gov.medicaid.entities.AuditRecord</class>
     <class>gov.medicaid.entities.Authentication</class>
     <class>gov.medicaid.entities.CMSUser</class>
+    <class>gov.medicaid.entities.HelpItem</class>
     <class>gov.medicaid.entities.ProfileStatus</class>
     <class>gov.medicaid.entities.ProviderType</class>
     <class>gov.medicaid.entities.RiskLevel</class>

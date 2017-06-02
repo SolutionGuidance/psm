@@ -10,8 +10,11 @@ DROP TABLE IF EXISTS
   persistent_logins,
   help_item,
   persistent_logins,
+  profile_statuses,
   provider_types,
-  roles
+  risk_levels,
+  roles,
+  states
 CASCADE;
 
 CREATE SEQUENCE hibernate_sequence;
@@ -169,3 +172,79 @@ INSERT INTO provider_types(code, description, applicant_type) VALUES
   ('76', 'Birthing Center', 'ORGANIZATION'),
   ('77', 'Medical Transportation', 'ORGANIZATION'),
   ('78', 'Billing Entity for Physician Services', 'ORGANIZATION');
+
+CREATE TABLE profile_statuses(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO profile_statuses (code, description) VALUES
+  ('01', 'Active'),
+  ('02', 'Suspended'),
+  ('03', 'Expired');
+
+CREATE TABLE risk_levels(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  sort_index INTEGER UNIQUE NOT NULL,
+  description TEXT UNIQUE
+);
+INSERT INTO risk_levels (code, sort_index, description) VALUES
+  ('01', 1, 'Limited'),
+  ('02', 2, 'Moderate'),
+  ('03', 3, 'High');
+
+CREATE TABLE states (
+   code CHARACTER VARYING(2) PRIMARY KEY,
+   description TEXT UNIQUE
+);
+INSERT INTO states (code, description) VALUES
+  ('AK', 'Alaska'),
+  ('AL', 'Alabama'),
+  ('AR', 'Arkansas'),
+  ('AZ', 'Arizona'),
+  ('CA', 'California'),
+  ('CO', 'Colorado'),
+  ('CT', 'Connecticut'),
+  ('DC', 'District of Columbia'),
+  ('DE', 'Delaware'),
+  ('FL', 'Florida'),
+  ('GA', 'Georgia'),
+  ('HI', 'Hawaii'),
+  ('IA', 'Iowa'),
+  ('ID', 'Idaho'),
+  ('IL', 'Illinois'),
+  ('IN', 'Indiana'),
+  ('KS', 'Kansas'),
+  ('KY', 'Kentucky'),
+  ('LA', 'Louisiana'),
+  ('MA', 'Massachusetts'),
+  ('MD', 'Maryland'),
+  ('ME', 'Maine'),
+  ('MI', 'Michigan'),
+  ('MN', 'Minnesota'),
+  ('MO', 'Missouri'),
+  ('MS', 'Mississippi'),
+  ('MT', 'Montana'),
+  ('NC', 'North Carolina'),
+  ('ND', 'North Dakota'),
+  ('NE', 'Nebraska'),
+  ('NH', 'New Hampshire'),
+  ('NJ', 'New Jersey'),
+  ('NM', 'New Mexico'),
+  ('NV', 'Nevada'),
+  ('NY', 'New York'),
+  ('OH', 'Ohio'),
+  ('OK', 'Oklahoma'),
+  ('OR', 'Oregon'),
+  ('PA', 'Pennsylvania'),
+  ('RI', 'Rhode Island'),
+  ('SC', 'South Carolina'),
+  ('SD', 'South Dakota'),
+  ('TN', 'Tennessee'),
+  ('TX', 'Texas'),
+  ('UT', 'Utah'),
+  ('VA', 'Virginia'),
+  ('VT', 'Vermont'),
+  ('WA', 'Washington'),
+  ('WI', 'Wisconsin'),
+  ('WV', 'West Virginia'),
+  ('WY', 'Wyoming');

@@ -15,24 +15,18 @@
  */
 package gov.medicaid.entities;
 
-/**
- * Represents a risk level.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
+import javax.persistence.Column;
+import javax.persistence.Table;
+
+@javax.persistence.Entity
+@Table(name = "risk_levels")
 public class RiskLevel extends LookupEntity {
-
-    /**
-     * Sorting index.
-     */
+    @Column(
+            name = "sort_index",
+            nullable = false,
+            unique = true
+    )
     private int sortIndex;
-
-    /**
-     * Empty constructor.
-     */
-    public RiskLevel() {
-    }
 
     /**
      * Gets the value of the field <code>sortIndex</code>.

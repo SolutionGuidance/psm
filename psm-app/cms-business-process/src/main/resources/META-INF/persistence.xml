@@ -45,10 +45,13 @@
     <class>gov.medicaid.entities.AuditRecord</class>
     <class>gov.medicaid.entities.Authentication</class>
     <class>gov.medicaid.entities.CMSUser</class>
+    <class>gov.medicaid.entities.ProfileStatus</class>
     <class>gov.medicaid.entities.ProviderType</class>
+    <class>gov.medicaid.entities.RiskLevel</class>
     <class>gov.medicaid.entities.Role</class>
     <class>gov.medicaid.entities.ServiceAssuranceType</class>
-    
+    <class>gov.medicaid.entities.StateType</class>
+
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
       <property name="hibernate.hbm2ddl.auto" value="none" />

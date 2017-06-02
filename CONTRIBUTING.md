@@ -9,7 +9,37 @@ you might also want to look at [DESIGN.md](DESIGN.md).
 
 This repository has a home on
 [GitHub](https://github.com/OpenTechStrategies/psm).  Please submit
-[pull requests](https://help.github.com/articles/about-pull-requests/) there.
+[pull requests](https://help.github.com/articles/about-pull-requests/)
+(PRs) there.
+
+### Branching and Branch Names
+
+We do all development on lightweight branches, with each branch
+encapsulating one logical changeset (that is, one group of related
+commits).  Please try to keep changesets small and well-bounded: a
+branch should usually be short-lived, and should be turned into a PR,
+reviewed, and merged to `master` as soon as possible.  Keeping
+branches short-lived reduces the likelihood of conflicts when it comes
+time to merge them back into master.
+
+When a branch is associated with an issue ticket, then the branch name
+should start with the issue number and then give a very brief summary,
+with hyphens as the separator, e.g.:
+
+    871-fix-provider-risk-score
+
+Everything after the issue number is just a reminder what the branch
+addresses.  Sometimes a branch may address only part of an issue, and
+that's fine: different branches can start with the same issue number,
+as long as the summary following the issue number indicates what part
+of the issue that particular branch addresses.
+
+If there is no issue number associated with a branch, then don't start
+the branch name with a number.
+
+While there are no strict rules on how to summarize a branch's purpose
+in its name, it may help to keep in mind some common starting words:
+"`fix`", "`feature`", "`refactor`", "`remove`", "`improve`", and "`test`".
 
 ### Commit Messages
 Please adhere
@@ -32,6 +62,22 @@ right frame of mind to understand the code change.
 The reason for the short initial summary line is to support commands,
 such as `git show-branch`, that list changes by showing just the first
 line of each one's commit message.
+
+### Indentation and Whitespace
+
+Please uses spaces, never tabs.  Indent Java code by 4 spaces per
+level, XML by 2 spaces per level, and avoid trailing whitespaces.  The
+file [.editorconfig](.editorconfig) encodes these formatting
+conventions in a way that most text editors can read.
+
+Some of the legacy code here may not already conform to these
+standards.  When you find yourself about to make changes to such code,
+please first make a whitespace-only commit to regularize the
+indentation, and then make a separate commit with your code changes.
+For example, see commit efbf5413e, which made whitespace adjustments to
+[persistence.xml](psm-app/cms-business-process/src/main/resources/META-INF/persistence.xml),
+and was followed immediately by a substantive change to the same file
+in commit 2fd2dd21e.
 
 ### Licensing Your Contribution
 The PSM is published under the terms of version 2 of the

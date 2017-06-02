@@ -33,6 +33,10 @@ import java.util.List;
  * @version 1.0
  */
 public interface LookupService {
+    /**
+     * @return all provider types
+     */
+    List<ProviderType> getAllProviderTypes();
 
     /**
      * Retrieves the provider types filtered by applicant type.

@@ -15,17 +15,8 @@
  */
 package gov.medicaid.entities;
 
-/**
- * Represents a state type.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-public class StateType extends LookupEntity {
+import javax.persistence.Table;
 
-    /**
-     * Default empty constructor.
-     */
-    public StateType() {
-    }
-}
+@javax.persistence.Entity
+@Table(name = "states")
+public class StateType extends LookupEntity {}

@@ -1,0 +1,34 @@
+# This file encodes project-wide conventions for code indentation, etc.
+# 
+# See EditorConfig.org for more about this format.  If you use any
+# popular text editor (vim, Emacs, etc), it can probably read this;
+# if not, just translate these settings to your editor's native config.
+
+# This is the top-most .editorconfig file in this project.
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[**.java]
+indent_style = space
+indent_size = 4
+
+[**.js]
+indent_style = space
+indent_size = 2
+
+[**.css]
+indent_style = space
+indent_size = 2
+
+[**.xml]
+indent_style = space
+indent_size = 2
+
+[**.html]
+indent_style = space
+indent_size = 2

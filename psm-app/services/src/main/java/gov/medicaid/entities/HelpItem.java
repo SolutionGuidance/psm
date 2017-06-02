@@ -29,7 +29,7 @@ import javax.persistence.Table;
  */
 
 @javax.persistence.Entity
-@Table(name = "help_item")
+@Table(name = "help_items")
 public class HelpItem {
 
     @Id

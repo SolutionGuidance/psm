@@ -6,9 +6,7 @@ DROP TABLE IF EXISTS
   audit_records,
   cms_authentication,
   cms_user,
-  lu_role,
-  persistent_logins,
-  help_item,
+  help_items,
   persistent_logins,
   profile_statuses,
   provider_types,
@@ -82,7 +80,7 @@ CREATE TABLE audit_details(
   old_value TEXT,
   new_value TEXT
 );
-CREATE TABLE help_item(
+CREATE TABLE help_items(
   help_item_id BIGINT PRIMARY KEY,
   title TEXT,
   description TEXT

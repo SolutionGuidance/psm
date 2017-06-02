@@ -10,10 +10,9 @@ DROP TABLE IF EXISTS
   persistent_logins,
   profile_statuses,
   provider_types,
-  roles,
-  service_assurance_types,
   risk_levels,
   roles,
+  service_assurance_types,
   states
 CASCADE;
 
@@ -39,7 +38,7 @@ INSERT INTO roles (code, description) VALUES
 CREATE TABLE service_assurance_types (
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE,
-  patient_ind TEXT
+  patient_indicator TEXT
 );
 
 CREATE TABLE cms_user (

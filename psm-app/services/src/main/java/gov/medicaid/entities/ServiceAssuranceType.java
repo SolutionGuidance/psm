@@ -15,7 +15,7 @@ public class ServiceAssuranceType extends LookupEntity {
     /**
      * Represents the IN/OUT patient indicator.
      */
-    @Column(name = "patient_ind")
+    @Column(name = "patient_indicator")
     private String patientInd;
 
     /**

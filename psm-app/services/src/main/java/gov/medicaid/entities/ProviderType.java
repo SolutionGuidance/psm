@@ -20,8 +20,14 @@ import gov.medicaid.domain.model.ApplicantType;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.util.List;
 
 /**
  * Represents a provider type.
@@ -31,6 +37,10 @@ import javax.persistence.Transient;
  */
 @javax.persistence.Entity
 @Table(name = "provider_types")
+@NamedEntityGraph(
+        name = "ProviderType with AgreementDocuments",
+        attributeNodes = {@NamedAttributeNode("agreementDocuments")}
+)
 public class ProviderType extends LookupEntity {
 
     /**
@@ -48,6 +58,20 @@ public class ProviderType extends LookupEntity {
      */
     @Transient
     private boolean canDelete;
+
+    @ManyToMany
+    @JoinTable(
+            name = "provider_type_agreement_documents",
+            joinColumns = @JoinColumn(
+                    name = "provider_type_code",
+                    referencedColumnName = "code"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "agreement_document_id",
+                    referencedColumnName = "agreement_document_id"
+            )
+    )
+    private List<AgreementDocument> agreementDocuments;
 
    /**
      * Gets the value of the field <code>applicantType</code>.
@@ -72,4 +96,12 @@ public class ProviderType extends LookupEntity {
 	public void setCanDelete(boolean canDelete) {
 		this.canDelete = canDelete;
 	}
+
+    public List<AgreementDocument> getAgreementDocuments() {
+        return agreementDocuments;
+    }
+
+    public void setAgreementDocuments(List<AgreementDocument> agreementDocuments) {
+        this.agreementDocuments = agreementDocuments;
+    }
 }

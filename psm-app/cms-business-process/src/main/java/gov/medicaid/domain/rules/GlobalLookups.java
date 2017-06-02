@@ -132,8 +132,7 @@ public class GlobalLookups {
             .findAllLookups(gov.medicaid.entities.ProviderType.class);
 
         for (gov.medicaid.entities.ProviderType providerType : all) {
-            List<AgreementDocument> agreement = lookupService.findRequiredDocuments(providerType.getCode());
-            for (AgreementDocument document : agreement) {
+            for (AgreementDocument document : providerType.getAgreementDocuments()) {
                 entries.add(new LookupEntry("RequiredAgreement", providerType.getDescription(), document.getTitle()));
             }
         }

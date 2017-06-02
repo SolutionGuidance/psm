@@ -24,17 +24,19 @@ import gov.medicaid.services.ProviderTypeService;
 import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
 
-import java.util.HashSet;
-import java.util.List;
-
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityGraph;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This class provides an implementation of the <code>ProviderTypeDAO</code> as a local EJB.
@@ -162,7 +164,12 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
         LogUtil.traceEntry(getLog(), signature, new String[] {"id"}, new Object[] {id});
 
         try {
-            return LogUtil.traceExit(getLog(), signature, getEm().find(ProviderType.class, id));
+            EntityGraph graph = getEm().getEntityGraph(
+                    "ProviderType with AgreementDocuments"
+            );
+            Map<String, Object> hints = new HashMap<>();
+            hints.put("javax.persistence.loadgraph", graph);
+            return LogUtil.traceExit(getLog(), signature, getEm().find(ProviderType.class, id, hints));
         } catch (PersistenceException e) {
             LogUtil.traceError(getLog(), signature, e);
             throw new PortalServiceException("Could not database complete operation.", e);

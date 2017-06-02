@@ -20,7 +20,7 @@ change to the docker directory and:
     $ docker-compose -p psm up --build
 
 Then point your browser at
-[172:20.128.3/cms/login](http://172:20.128.3/cms/login)
+[172.20.128.3/cms/login](http://172.20.128.3/cms/login)
 		
 ## Installing Docker
 
@@ -45,6 +45,11 @@ Alternatively, if you want to use the Docker apt-get repository, see
 [this page](https://docs.docker.com/engine/installation/linux/debian/).
 
 ### docker-compose
+
+You'll also need to install `docker-compose`.  On Debian-like systems,
+you can get it with:
+
+    $ sudo apt-get install docker-compose
 
 The `docker-compose.yml` file uses version 2 of the configuration
 format, which means the version in the Debian stable and testing repos

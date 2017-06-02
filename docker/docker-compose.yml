@@ -14,8 +14,8 @@ services:
       - POSTGRES_DB=psm
     volumes:
       - psm-data:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
+    #ports:
+     # - 5432:5432
     networks:
       static-network:
         ipv4_address: 172.20.128.1

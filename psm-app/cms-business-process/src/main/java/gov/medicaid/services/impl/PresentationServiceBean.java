@@ -724,7 +724,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
         }
         gov.medicaid.entities.ProviderType lookup = findLookupByDescription(gov.medicaid.entities.ProviderType.class,
                 type);
-        return lookup.getApplicantType() == ApplicantType.INDIVIDUAL.ordinal();
+        return lookup.getApplicantType() == ApplicantType.INDIVIDUAL;
     }
 
     /**

@@ -484,16 +484,6 @@
 			<column name="DESCRIPTION" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.Role" table="LU_ROLE">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.Degree" table="LU_DEGREE">
 		<id name="code" type="string">
 			<column length="2" name="CODE" />
@@ -550,20 +540,6 @@
 		<property generated="never" lazy="false" length="2" name="subCategory"
 			type="string">
 			<column name="SUB_CAT_CD" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.ProviderType" table="LU_PROVIDER_TYPE">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="applicantType"
-			type="int">
-			<column default="0" name="APPLICANT_TYP" not-null="true" />
-		</property>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
 		</property>
 	</class>
 	<class name="gov.medicaid.entities.LicenseType" table="LU_LICENSE_TYPE">

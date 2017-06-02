@@ -77,7 +77,7 @@
                             	<div class="panelHeader">
                                 	<h2>Query Enrollment Status</h2>
                                 </div>
-                                <div class="panelSetion">
+                                <div class="panelSection">
                                 	<label>Enrollment Number:</label>
                                     <input id="enrollmentNumber" type="text" class="text" value="${invalidEnrollmentNumberValue}" />
                                     <input type="hidden" id="invalidEnrollmentNumber" value="${invalidEnrollmentNumber}"/>
@@ -97,7 +97,7 @@
                             	<div class="panelHeader">
                                 	<h2>Notifications</h2>
                                 </div>
-                                <div class="panelSetion">
+                                <div class="panelSection">
                                     <c:choose>
                                         <c:when test="${empty notifications}"><div style="color: red" class="noData">No matched data found.</div></c:when>
                                         <c:otherwise>

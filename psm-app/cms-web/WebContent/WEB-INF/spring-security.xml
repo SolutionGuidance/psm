@@ -58,8 +58,11 @@
    
 	<s:authentication-manager alias="authenticationManagerAlias">
 		<s:authentication-provider ref="PrimaryDatabaseProvider" />
+<!-- todo: dive deep into user authentication; see issue #34
+     https://github.com/OpenTechStrategies/psm/issues/34
 		<s:authentication-provider ref="PrimaryLdapProvider" />
 		<s:authentication-provider ref="MNITSAuthenticationProvider" />
+-->
 	</s:authentication-manager>
 
 	<context:property-placeholder location="classpath:cms.properties" />

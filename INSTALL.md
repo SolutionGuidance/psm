@@ -27,6 +27,10 @@ Note that the repository currently depends on access to a Oracle
 database.  We intend to shift towards PostgreSQL in order to eliminate
 a proprietary dependency.
 
+You can use Docker to run the current development version of the PSM.
+That would obviate all the manual configuration steps listed in this
+file.  See docker/README.md for details.
+
 # Overview
 
 The Provider Screening Module is a Java EE Enterprise Application. It depends
@@ -274,7 +278,7 @@ EOF
 
    ```ShellSession
    $ cd ../psm/psm-app
-   $ ant dist
+   $ ant regenerate-model dist
    Buildfile: /path/to/psm/psm-app/build.xml
    ...[cut]...
    dist:
@@ -297,10 +301,14 @@ EOF
 
 1. Create database schema and initial data. Use the seed data to create tables:
 
-  ```ShellSession
-  $ psql -h localhost -U psm psm < /path/to/psm/psm-app/db/seed.sql
-  ```
+      ```ShellSession
+      $ psql -h localhost -U psm psm < /path/to/psm/psm-app/db/seed.sql
+      ```
 
 1. To check that the app is running, navigate to
    http://localhost:8080/cms/login.  You should see a login screen.
 
+1.  Login with one of the test users: Username `system` with password
+    `system` is a "system administrator" account that can create new
+    accounts.  Username `admin` with password `admin` is a "service
+    admin" account that can create new provider enrollments.

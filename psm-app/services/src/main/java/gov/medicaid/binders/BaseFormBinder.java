@@ -266,7 +266,7 @@ public abstract class BaseFormBinder implements FormBinder {
      */
     protected ProviderType ensurePersonOrOrg(ProviderProfile profile, String providerType) {
         ProviderType type = lookupService.findLookupByDescription(ProviderType.class, providerType);
-        if (type.getApplicantType() == ApplicantType.INDIVIDUAL.ordinal()) {
+        if (type.getApplicantType() == ApplicantType.INDIVIDUAL) {
             if (profile.getEntity() == null || profile.getEntity() instanceof Organization) {
                 profile.setEntity(new Person());
             }

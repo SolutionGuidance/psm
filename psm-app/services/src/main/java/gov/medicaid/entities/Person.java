@@ -44,12 +44,6 @@ public class Person extends Entity {
 
     private String middleName;
 
-    /**
-     * Empty constructor.
-     */
-    public Person() {
-    }
-
     public String getSsn() {
         return ssn;
     }

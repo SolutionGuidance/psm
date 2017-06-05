@@ -2,34 +2,6 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-lazy="false">
-	<class name="gov.medicaid.entities.Address" table="ADDRESS">
-		<id name="id" type="long">
-			<column name="ADDRESS_ID" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="attentionTo"
-			type="string">
-			<column length="30" name="ATTN_TO" />
-		</property>
-		<property generated="never" lazy="false" name="line1" type="string">
-			<column length="30" name="LINE1" />
-		</property>
-		<property generated="never" lazy="false" name="line2" type="string">
-			<column length="30" name="LINE2" />
-		</property>
-		<property generated="never" lazy="false" name="city" type="string">
-			<column length="20" name="CITY" />
-		</property>
-		<property generated="never" lazy="false" name="state" type="string">
-			<column length="2" name="STATE" />
-		</property>
-		<property generated="never" lazy="false" name="zipcode" type="string">
-			<column length="10" name="ZIPCODE" />
-		</property>
-		<property generated="never" lazy="false" name="county" type="string">
-			<column length="20" name="COUNTY" />
-		</property>
-	</class>
 	<class abstract="true" name="gov.medicaid.entities.Entity" table="ENTITY">
 		<id name="id" type="long">
 			<column name="ENTITY_ID" />

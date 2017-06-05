@@ -15,21 +15,24 @@
  */
 package gov.medicaid.entities;
 
-public class Address extends IdentifiableEntity {
+import javax.persistence.*;
+import java.io.Serializable;
 
-    /**
-     * Attention line.
-     */
+@javax.persistence.Entity
+@Table(name = "addresses")
+public class Address implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "address_id")
+    private long id;
+
+    @Column(name = "attention_line")
     private String attentionTo;
 
-    /**
-     * Address line 1.
-     */
+    @Column(name = "address_line_1")
     private String line1;
 
-    /**
-     * Address line 2.
-     */
+    @Column(name = "address_line_2")
     private String line2;
 
     private String city;
@@ -39,9 +42,18 @@ public class Address extends IdentifiableEntity {
      */
     private String state;
 
+    @Column(name = "zip_code")
     private String zipcode;
 
     private String county;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getCity() {
         return city;

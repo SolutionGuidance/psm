@@ -53,11 +53,6 @@ public class Sequences {
     public static final String CONTACT_INFO_SEQ = "CONTACT_INFO_SEQ";
 
     /**
-     * Used for address table.
-     */
-    public static final String ADDRESS_SEQ = "ADDRESS_SEQ";
-
-    /**
      * Used for provider statement table.
      */
     public static final String STATEMENT_ID = "STATEMENT_ID";

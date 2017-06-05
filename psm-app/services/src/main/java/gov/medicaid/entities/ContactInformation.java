@@ -24,12 +24,6 @@ public class ContactInformation extends IdentifiableEntity {
 
     private Address address;
 
-    /**
-     * Empty constructor.
-     */
-    public ContactInformation() {
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }

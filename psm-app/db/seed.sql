@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS
   cms_authentication,
   cms_user,
   contacts,
+  degrees,
   enrollment_statuses,
   enrollments,
   help_items,
@@ -211,6 +212,14 @@ INSERT INTO risk_levels (code, sort_index, description) VALUES
   ('01', 1, 'Limited'),
   ('02', 2, 'Moderate'),
   ('03', 3, 'High');
+
+CREATE TABLE degrees(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO degrees(CODE, DESCRIPTION) VALUES
+  ('D1', 'MASTERS'),
+  ('D2', 'DOCTORATE');
 
 CREATE TABLE enrollment_statuses(
   code CHARACTER VARYING(2) PRIMARY KEY,

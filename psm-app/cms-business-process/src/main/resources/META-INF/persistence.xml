@@ -48,6 +48,7 @@
     <class>gov.medicaid.entities.Authentication</class>
     <class>gov.medicaid.entities.CMSUser</class>
     <class>gov.medicaid.entities.ContactInformation</class>
+    <class>gov.medicaid.entities.Degree</class>
     <class>gov.medicaid.entities.Enrollment</class>
     <class>gov.medicaid.entities.EnrollmentStatus</class>
     <class>gov.medicaid.entities.HelpItem</class>

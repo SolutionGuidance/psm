@@ -43,12 +43,6 @@ public class Address extends IdentifiableEntity {
 
     private String county;
 
-    /**
-     * Default empty constructor.
-     */
-    public Address() {
-    }
-
     public String getCity() {
         return city;
     }

@@ -71,14 +71,33 @@
                             <!-- /.tabFoot -->
                         </div>
                         <!-- /#tabApproved -->
+
+                        <!-- Commenting this alert out for now, as per
+                             github.com/OpenTechStrategies/psm/issues/53.
+                             We can put it back when a) we know how to
+                             conditionalize it on the presence of some
+                             actual "high"-risk provider in the pagination
+                             group currently being displayed, and b) we
+                             know what our risk levels are and what we
+                             want to say about one(s) considered "high".
+
+                             TODO: Also, there's a code duplication
+                             between this block and the snippet in
+                             ../../admin/includes/high_risk_level_means.jsp.
+                             And why isn't the code here doing
+                             <%@ include file="/WEB-INF/pages/admin/includes/high_risk_level_means.jsp" %>
+                             the way various other places in the
+                             PSM tree do?
+
                         <div class="row infoRow">
                             <div class="row red">
                                 <b>* High risk level means:</b>
                             </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            </p>
+                            <p>TBD: Say something about what it means
+                               that some of the providers shown on
+                               this page are "high"-risk.</p>
                         </div>
+                        -->
                 </div>
             </div>
             <!-- /#mainContent -->

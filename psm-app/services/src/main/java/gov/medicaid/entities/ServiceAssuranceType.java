@@ -3,16 +3,19 @@
  */
 package gov.medicaid.entities;
 
-/**
+import javax.persistence.Table;
+import javax.persistence.Column;
+
+/*
  * Represents the Assurance Statements lookup for Chemical Dependency Program.
- * 
- * @author cyberjag
- * @version 1.0
  */
+@javax.persistence.Entity
+@Table(name = "service_assurance_types")
 public class ServiceAssuranceType extends LookupEntity {
     /**
-     * Represents the IN/OUT Patient indicator.
+     * Represents the IN/OUT patient indicator.
      */
+    @Column(name = "patient_indicator")
     private String patientInd;
 
     /**
@@ -22,7 +25,7 @@ public class ServiceAssuranceType extends LookupEntity {
     }
 
     /**
-     * Gets the patientInd.
+     * Gets the patient indicator.
      * 
      * @return the patientInd
      */
@@ -31,10 +34,9 @@ public class ServiceAssuranceType extends LookupEntity {
     }
 
     /**
-     * Sets the patiend indicator.
+     * Sets the patient indicator.
      * 
      * @param patientInd
-     *            the patientInd
      */
     public void setPatientInd(String patientInd) {
         this.patientInd = patientInd;

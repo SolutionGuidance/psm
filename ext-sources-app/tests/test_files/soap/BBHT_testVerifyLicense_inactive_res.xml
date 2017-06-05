@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <ns2:verifyLicenseResponse xmlns:ns2="http://impl.services.screening.medicaid.gov/">
-      <return>false</return>
-    </ns2:verifyLicenseResponse>
-  </soap:Body>
-</soap:Envelope>

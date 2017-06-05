@@ -1,8 +1,0 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.services.screening.medicaid.gov/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <impl:getPECOSRecord>
-         <arg0>123</arg0>
-      </impl:getPECOSRecord>
-   </soapenv:Body>
-</soapenv:Envelope>

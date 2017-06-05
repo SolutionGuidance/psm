@@ -41,7 +41,7 @@ monthly, so for now we'll just grab them manually from the
 
 First, generate the migrations:
     $ ./model.py
-    
+
 Second, run the etl process.
     $ ./etl.py
 
@@ -178,13 +178,14 @@ Postgresql.
 
 Versions reflect what we used in our python environment.  They are a
 known-good combination of versions but there is no reason to think
-newer versions will break anything.
+newer versions will break anything.  If you change versions, use the
+test suite.
 
-    $ pip install \ 
+    $ pip install \
         petl==1.1.1 \
-        pyyaml=3.12 \
         python-dateutil==2.6.0
-        
+        pyyaml=3.12 \
+
 If you want sqlite3, don't get it from pypi (you can't).  Use your
 distro's packaged version:
 
@@ -194,10 +195,11 @@ You'll want goose to migrate the db up and down:
 
     $ go get -u github.com/pressly/goose/cmd/goose
 
-If you want to run the tests, you'll need pytest:
+If you want to run the tests, you'll need pytest and you might want
+tox:
 
-    $ pip install pytest==3.1.1 pytest-cov==2.5.1
-    
+    $ pip install tox==2.7.0 pytest==3.1.1 pytest-cov==2.5.1
+
 ## Copyright and License
 
 This program is free software: you can redistribute it and/or

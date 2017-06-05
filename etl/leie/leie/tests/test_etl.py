@@ -39,7 +39,7 @@ def conn():
     yield conn
     conn.close()
     os.unlink(conn.db_conf['open'])
-    
+
 def test_munge_date():
     assert etl.munge_date("20120620") == "2012-06-20 00:00:00.000"
     assert etl.munge_date("03/09/62") == "1962-03-09 00:00:00.000"
@@ -64,7 +64,7 @@ def test_data_missing(conn):
     creating a blackhole sent from the future to destroy the LHC.
 
     """
-    
+
     excl = etl.Exclusions(conn)
     with pytest.raises(FileNotFoundError) as exc_info:
         excl.etl_from_dir(data_dir="tests/data/does/not/exist")
@@ -76,7 +76,7 @@ def test_exclusion(conn):
     excl = etl.Exclusions(conn)
     excl.etl_from_dir("tests/data")
     rows = conn.count_exclusions()
-    
+
     # And again twice to exercise the force_reload stuff
     excl.etl_from_filename("tests/data/UPDATED.csv", force_reload=True)
     excl.etl_from_filename("tests/data/UPDATED.csv")
@@ -85,13 +85,13 @@ def test_exclusion(conn):
     assert conn.count_exclusions() == rows
     rows = int(subprocess.check_output("wc -l tests/data/UPDATED.csv", shell=True).decode("utf-8").split(' ')[0])
     assert conn.count_exclusions() == rows - 1
-    
+
 def test_reinstatement(conn):
     print("We just do a complete reinstatement ETL and then see if the results are as expected.")
     rein = etl.Reinstatements(conn)
     rein.etl_from_dir("tests/data")
     first_rows_in_db = conn.count_table_tag("reinstatement")
-    
+
     # And again to test dupe remediation
     rein.etl_from_dir("tests/data")
     rows = subprocess.check_output("wc -l tests/data/*REIN*.csv", shell=True).decode("utf-8").strip().split("\n")

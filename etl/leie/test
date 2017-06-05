@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd leie
 cov=$(find *.py -exec echo --cov={} \;| sed s/\.py//)
-echo $covmod
+echo Cov: $cov
 py.test --cov-report term-missing:skip-covered $cov --ignore=lib --ignore=local $@

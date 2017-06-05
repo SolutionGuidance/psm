@@ -91,12 +91,6 @@ public abstract class Entity extends IdentifiableEntity {
      */
     private Date backgroundClearanceDate;
 
-    /**
-     * Empty constructor.
-     */
-    public Entity() {
-    }
-
     public String getName() {
         return name;
     }

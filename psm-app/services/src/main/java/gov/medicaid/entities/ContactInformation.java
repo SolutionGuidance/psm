@@ -15,14 +15,42 @@
  */
 package gov.medicaid.entities;
 
-public class ContactInformation extends IdentifiableEntity {
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import java.io.Serializable;
+
+@javax.persistence.Entity
+@Table(name = "contacts")
+public class ContactInformation implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "contact_id")
+    private long id;
+
+    @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(name = "fax_number")
     private String faxNumber;
 
     private String email;
 
+    @ManyToOne
+    @JoinColumn(name = "address_id")
     private Address address;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getPhoneNumber() {
         return phoneNumber;

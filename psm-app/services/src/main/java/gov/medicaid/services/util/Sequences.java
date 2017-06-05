@@ -22,12 +22,6 @@ package gov.medicaid.services.util;
  * @version 1.0
  */
 public class Sequences {
-
-    /**
-     * Used for provider profile table.
-     */
-    public static final String PROFILE_SEQ = "PROFILE_SEQ";
-
     /**
      * Used for attachments table.
      */

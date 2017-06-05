@@ -903,7 +903,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         // persist parent
         details.setTicketId(ticketId);
 
-        details.setId(getSequence().getNextValue(Sequences.PROFILE_SEQ));
+        details.setId(0);
         getEm().persist(details);
 
         // save profile owner

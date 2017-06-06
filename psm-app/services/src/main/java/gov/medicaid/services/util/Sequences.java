@@ -28,11 +28,6 @@ public class Sequences {
     public static final String ATTACHMENT_SEQ = "ATTACHMENT_SEQ";
 
     /**
-     * Used for tickets table.
-     */
-    public static final String TICKET_SEQ = "TICKET_SEQ";
-
-    /**
      * Used for provider group association table.
      */
     public static final String PROV_GRP_SEQ = "PROV_GRP_SEQ";

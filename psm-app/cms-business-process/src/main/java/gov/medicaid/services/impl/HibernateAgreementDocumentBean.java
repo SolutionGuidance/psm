@@ -83,7 +83,7 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
                 throw new IllegalArgumentException("Argument 'agreementDocument' cannot be null.");
             }
 
-            agreementDocument.setId(getSequence().getNextValue(Sequences.AGREEMENT_DOC_SEQ));
+            agreementDocument.setId(0);
             agreementDocument.setCreatedOn(new Date());
             getEm().persist(agreementDocument);
 

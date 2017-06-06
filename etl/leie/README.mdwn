@@ -176,6 +176,11 @@ Postgresql.
 
 ## Dependencies
 
+This code is tested under Python 3.4 and Python 3.5.  It will not run
+under Python 2, though it doesn't use any 3-only features that we know
+of.  Backporting it would not be terribly difficult if your
+environment demands it.
+
 Versions reflect what we used in our python environment.  They are a
 known-good combination of versions but there is no reason to think
 newer versions will break anything.  If you change versions, use the
@@ -199,6 +204,10 @@ If you want to run the tests, you'll need pytest and you might want
 tox:
 
     $ pip install tox==2.7.0 pytest==3.1.1 pytest-cov==2.5.1
+
+To run the tests, just do `./test` or `tox
+--skip-missing-interpreters`.  They run the same tests, but tox lets
+you set up different environments for testing.
 
 ## Copyright and License
 

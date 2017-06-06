@@ -111,6 +111,7 @@ EOF
 ## Build and deploy the psm app
 cp psm/psm-app/build.properties.template psm/psm-app/build.properties
 cd psm/psm-app
+ant regenerate-model
 ant dist
 cd ../../
 ./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect \

@@ -25,6 +25,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedEntityGraphs;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.util.List;
@@ -37,10 +38,16 @@ import java.util.List;
  */
 @javax.persistence.Entity
 @Table(name = "provider_types")
-@NamedEntityGraph(
-        name = "ProviderType with AgreementDocuments",
-        attributeNodes = {@NamedAttributeNode("agreementDocuments")}
-)
+@NamedEntityGraphs({
+        @NamedEntityGraph(
+                name = "ProviderType with AgreementDocuments",
+                attributeNodes = {@NamedAttributeNode("agreementDocuments")}
+        ),
+        @NamedEntityGraph(
+                name = "ProviderType with LicenseTypes",
+                attributeNodes = {@NamedAttributeNode("licenseTypes")}
+        )
+})
 public class ProviderType extends LookupEntity {
 
     /**
@@ -73,6 +80,20 @@ public class ProviderType extends LookupEntity {
     )
     private List<AgreementDocument> agreementDocuments;
 
+    @ManyToMany
+    @JoinTable(
+            name = "provider_type_license_types",
+            joinColumns = @JoinColumn(
+                    name = "provider_type_code",
+                    referencedColumnName = "code"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "license_type_code",
+                    referencedColumnName = "code"
+            )
+    )
+    private List<LicenseType> licenseTypes;
+
    /**
      * Gets the value of the field <code>applicantType</code>.
      * @return the applicantType
@@ -103,5 +124,13 @@ public class ProviderType extends LookupEntity {
 
     public void setAgreementDocuments(List<AgreementDocument> agreementDocuments) {
         this.agreementDocuments = agreementDocuments;
+    }
+
+    public List<LicenseType> getLicenseTypes() {
+        return licenseTypes;
+    }
+
+    public void setLicenseTypes(List<LicenseType> licenseTypes) {
+        this.licenseTypes = licenseTypes;
     }
 }

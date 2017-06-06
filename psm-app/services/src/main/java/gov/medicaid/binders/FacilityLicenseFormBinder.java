@@ -202,13 +202,10 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
 
         attr(mv, "categorySize", services.size());
 
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+        ProviderType pt = getLookupService().getProviderTypeWithLicenseTypesByDescription(provider.getProviderType());
 
         if (!readOnly) {
-            List<gov.medicaid.entities.LicenseType> type = getLookupService().findRelatedLookup(
-                gov.medicaid.entities.LicenseType.class, pt.getCode(), ViewStatics.REL_LICENSE_OPTIONS);
-
-            attr(mv, "licenseTypes", type);
+            attr(mv, "licenseTypes", pt.getLicenseTypes());
 
             List<gov.medicaid.entities.StateType> state = getLookupService().findRelatedLookup(
                 gov.medicaid.entities.StateType.class, pt.getCode(), ViewStatics.REL_LICENSE_STATE_OPTIONS);

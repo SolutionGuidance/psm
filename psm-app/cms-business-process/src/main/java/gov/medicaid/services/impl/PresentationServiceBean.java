@@ -821,11 +821,9 @@ public class PresentationServiceBean extends BaseService implements Presentation
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         gov.medicaid.entities.ProviderType pt = getLookupService().findLookupByDescription(
                 gov.medicaid.entities.ProviderType.class, provider.getProviderType());
-        List<gov.medicaid.entities.LicenseType> type = getLookupService().findRelatedLookup(
-                gov.medicaid.entities.LicenseType.class, pt.getCode(), ViewStatics.REL_LICENSE_OPTIONS);
 
         model.setAllLicenses(new ArrayList<String>());
-        for (gov.medicaid.entities.LicenseType licenseType : type) {
+        for (gov.medicaid.entities.LicenseType licenseType : pt.getLicenseTypes()) {
             model.getAllLicenses().add(licenseType.getDescription());
         }
         return model;

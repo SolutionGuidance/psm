@@ -45,6 +45,16 @@ public interface LookupService {
      */
     public List<ProviderType> getProviderTypes(ApplicantType applicantType);
 
+
+    /**
+     * Finds a ProviderType by its description, and eager-load
+     * its related LicenseTypes.
+     *
+     * @param providerTypeDescription The name of the provider type.
+     * @return The ProviderType, with its licenseTypes field fully initialized.
+     */
+    ProviderType getProviderTypeWithLicenseTypesByDescription(String providerTypeDescription);
+
     /**
      * Retrieves the lookup with the given description.
      *

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -80,18 +80,18 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
         List<BinderException> exceptions = new ArrayList<BinderException>();
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollment);
-        
+
         String[] selectedCategories = request.getParameterValues(id() + "serviceCategory");
         if (selectedCategories != null) {
             CategoriesOfServiceType categoriesOfService = provider.getCategoriesOfService();
             categoriesOfService = new CategoriesOfServiceType();
             provider.setCategoriesOfService(categoriesOfService);
-            
+
             for (String service : selectedCategories) {
                 categoriesOfService.getCategoryName().add(service);
             }
         }
-        
+
         List<LicenseType> licenseList = filter(licenseInfo.getLicense(), ViewStatics.DISCRIMINATOR_LICENSE);
         synchronized (licenseInfo.getLicense()) {
             licenseInfo.getLicense().removeAll(licenseList);
@@ -147,7 +147,7 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
                 }
             }
         }
-        
+
         return exceptions;
     }
 
@@ -179,15 +179,15 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
             }
             attr(mv, "attachmentSize", i);
         }
-        
+
         CategoriesOfServiceType categories = provider.getCategoriesOfService();
         if (categories == null) {
             categories = new CategoriesOfServiceType();
         }
-        
+
         List<String> selectedCategories = categories.getCategoryName();
         int i = 0;
-        
+
         List<ServiceCategory> services = getLookupService().findAllLookups(ServiceCategory.class);
         attr(mv, "serviceCategories", services);
         for (ServiceCategory cat : services) {
@@ -199,7 +199,7 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
             }
             i++;
         }
-        
+
         attr(mv, "categorySize", services.size());
 
         ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
@@ -367,7 +367,7 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
             hLicense.setIssuingUSState(xLicense.getIssuingState());
             profile.getCertifications().add(hLicense);
         }
-        
+
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         CategoriesOfServiceType categories = provider.getCategoriesOfService();
         ArrayList<ProviderService> services = new ArrayList<ProviderService>();
@@ -383,9 +383,6 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
                 }
             }
         }
-        
-        
-        
     }
 
     /**
@@ -421,7 +418,7 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
             xLicense.setObjectId("" + license.getId());
             licenseInfo.getLicense().add(xLicense);
         }
-        
+
         List<ProviderService> services = profile.getServices();
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         if (services != null) {
@@ -429,10 +426,10 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
             provider.setCategoriesOfService(categoriesOfService);
             for (ProviderService providerService : services) {
                 if (providerService.getCategory() != null) {
-                    categoriesOfService.getCategoryName().add(providerService.getCategory().getDescription());                
+                    categoriesOfService.getCategoryName().add(providerService.getCategory().getDescription());
                 }
             }
-        }        
+        }
     }
 
     /**

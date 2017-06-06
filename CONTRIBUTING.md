@@ -5,7 +5,7 @@ improve the PSM's codebase.  See [README.md](README.md) for an
 introduction to this project, and if you're thinking of contributing
 you might also want to look at [DESIGN.md](DESIGN.md).
 
-## Submitting Code
+## Submitting and Reviewing Code
 
 This repository has a home on
 [GitHub](https://github.com/OpenTechStrategies/psm).  Please submit
@@ -111,6 +111,26 @@ depends on it in some other way, we might need a copy of that
 software.  Your submission should tell us where and how to get it as
 well as the license that applies to that code.  We will archive a copy
 of that code if we accept your pull request.
+
+### Expunge Branches Once They Are Merged
+
+Once a branch has been merged to `master`, please delete the branch.
+You can do this via the GitHub PR management interface (it offers a
+button to delete the branch, once the PR has been merged), or if
+necessary you can do it from the command line:
+
+    # Make sure you're not on the branch you want to delete.
+    $ git branch | grep '^\* '
+    * master
+
+    # No output from this == up-to-date, nothing to fetch.
+    $ git fetch --dry-run
+
+    # Delete the branch locally, if necessary.
+    $ git branch -d some-now-fully-merged-branch
+
+    # Delete it upstream.
+    $ git push origin --delete some-now-fully-merged-branch
 
 ## Avoiding Generatable Elements In The Repo
 

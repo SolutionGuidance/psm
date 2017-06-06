@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.util.List;
 
 /**
  * Defines the lookup related services.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -38,7 +38,7 @@ public interface LookupService {
 
     /**
      * Retrieves the provider types filtered by applicant type.
-     * 
+     *
      * @param applicantType
      *            individual or organizations
      * @return the filtered provider types
@@ -47,7 +47,7 @@ public interface LookupService {
 
     /**
      * Retrieves the lookup with the given description.
-     * 
+     *
      * @param cls
      *            the class to lookup
      * @param description
@@ -60,7 +60,7 @@ public interface LookupService {
 
     /**
      * Retrieves the lookup with the given description.
-     * 
+     *
      * @param cls
      *            the class to lookup
      * @param description
@@ -73,7 +73,7 @@ public interface LookupService {
 
     /**
      * Find the related lookups to the given provider.
-     * 
+     *
      * @param cls
      *            the class to search for
      * @param providerType
@@ -88,7 +88,7 @@ public interface LookupService {
 
     /**
      * Retrieves all the lookups of the given class.
-     * 
+     *
      * @param cls
      *            the class to search for
      * @param <T>
@@ -99,7 +99,7 @@ public interface LookupService {
 
     /**
      * Retrieves all the owner types allowed for the given structure.
-     * 
+     *
      * @param entityType
      *            the corporate structure types
      * @return the matched lookups
@@ -108,7 +108,7 @@ public interface LookupService {
 
     /**
      * Retrieves all the service types based on indicator.
-     * 
+     *
      * @param indicator
      *            in/out patient indicator
      * @return the matched lookups
@@ -117,7 +117,7 @@ public interface LookupService {
 
     /**
      * Retrieves all the service types based on code.
-     * 
+     *
      * @param code
      *            the parent service code
      * @return the matched lookups
@@ -132,7 +132,7 @@ public interface LookupService {
      * @return the mapped value, or the internal code if not found
      */
     public String findLegacyMapping(String name, String codeType, String internalCodeValue);
-    
+
     /**
      * Retrieves the mapped code for the given external lookup.
      * @param name the system name

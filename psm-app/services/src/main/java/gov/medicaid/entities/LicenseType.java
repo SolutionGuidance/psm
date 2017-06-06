@@ -15,17 +15,8 @@
  */
 package gov.medicaid.entities;
 
-/**
- * Represents a license type.
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
- */
-public class LicenseType extends LookupEntity {
+import javax.persistence.Table;
 
-    /**
-     * Default empty constructor.
-     */
-    public LicenseType() {
-    }
-}
+@javax.persistence.Entity
+@Table(name = "license_types")
+public class LicenseType extends LookupEntity {}

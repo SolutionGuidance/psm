@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS
   profile_statuses,
   provider_profiles,
   provider_types,
+  request_types,
   risk_levels,
   roles,
   service_assurance_types,
@@ -209,6 +210,17 @@ INSERT INTO enrollment_statuses (code, description) VALUES
   ('02', 'Pending'),
   ('03', 'Rejected'),
   ('04', 'Approved');
+
+CREATE TABLE request_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO request_types (code, description) VALUES
+  ('01', 'Import Profile'),
+  ('02', 'Enrollment'),
+  ('03', 'Renewal'),
+  ('04', 'Suspend'),
+  ('05', 'Update');
 
 CREATE TABLE states (
    code CHARACTER VARYING(2) PRIMARY KEY,

@@ -16,6 +16,7 @@ DROP TABLE IF EXISTS
   enrollment_statuses,
   enrollments,
   entities,
+  entity_structure_types,
   help_items,
   license_types,
   organizations,
@@ -219,6 +220,21 @@ CREATE TABLE required_field_types(
 INSERT INTO required_field_types (code, description) VALUES
   ('01', 'Required'),
   ('02', 'Optional');
+
+CREATE TABLE entity_structure_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO entity_structure_types (code, description) VALUES
+  ('01', 'Sole Proprietorship'),
+  ('02', 'Partnership'),
+  ('03', 'Corporation'),
+  ('04', 'Non-Profit'),
+  ('05', 'Hospital Based'),
+  ('06', 'State'),
+  ('07', 'Public'),
+  ('08', 'Professional Association'),
+  ('99', 'Other');
 
 CREATE TABLE categories_of_service (
   code CHARACTER VARYING(2) PRIMARY KEY,

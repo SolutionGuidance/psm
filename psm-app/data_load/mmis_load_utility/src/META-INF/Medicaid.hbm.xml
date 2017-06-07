@@ -659,7 +659,7 @@
 			<column name="DESCRIPTION" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.ServiceAssuranceType" table="LU_SVC_ASSURANCE_TYP">
+	<class name="gov.medicaid.entities.ServiceAssuranceType" table="SVC_ASSURANCE_TYP">
 		<id name="code" type="string">
 			<column length="2" name="CODE" />
 			<generator class="assigned" />
@@ -673,7 +673,7 @@
 			<column name="PATIENT_IND" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.ServiceAssuranceExtType" table="LU_SVC_ASSURANCE_EXT_TYP">
+	<class name="gov.medicaid.entities.ServiceAssuranceExtType" table="SVC_ASSURANCE_EXT_TYP">
 		<id name="code" type="string">
 			<column length="2" name="CODE" />
 			<generator class="assigned" />

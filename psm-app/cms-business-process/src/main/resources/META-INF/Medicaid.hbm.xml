@@ -454,19 +454,6 @@
 			<column name="DESCRIPTION" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.ServiceAssuranceExtType" table="LU_SVC_ASSURANCE_EXT_TYP">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-		<property generated="never" lazy="false" length="2" name="serviceAssuranceCode" type="string">
-			<column name="SVC_ASSURANCE_CD" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.DesignatedContact" table="DESIGNATED_CONTACT">
 		<id name="id" type="long">
 			<column name="CONTROL_NO" />

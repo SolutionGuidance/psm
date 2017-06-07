@@ -20,6 +20,7 @@ DROP TABLE IF EXISTS
   risk_levels,
   roles,
   service_assurance_types,
+  service_assurance_ext_types,
   states
 CASCADE;
 
@@ -43,6 +44,12 @@ INSERT INTO roles (code, description) VALUES
   ('R4', 'System Administrator');
 
 CREATE TABLE service_assurance_types (
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE,
+  patient_indicator TEXT
+);
+
+CREATE TABLE service_assurance_ext_types (
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE,
   patient_indicator TEXT

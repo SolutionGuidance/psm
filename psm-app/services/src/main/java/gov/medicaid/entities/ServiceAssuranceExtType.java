@@ -3,40 +3,30 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Represents the Assurance Statements lookup for Chemical Dependency Program.
- * 
- * @author cyberjag
- * @version 1.0
+ *
+ * Note that the Chemical Dependency Program is MN-specific.
  */
+@javax.persistence.Entity
+@Table(name = "service_assurance_ext_types")
 public class ServiceAssuranceExtType extends LookupEntity {
 
-    /**
-     * Represents the service assurance code.
-     */
+    @Id
+    @Column(name = "code")
     private String serviceAssuranceCode;
 
-    /**
-     * Empty constructor.
-     */
     public ServiceAssuranceExtType() {
     }
 
-    /**
-     * Gets the service assurance code.
-     * 
-     * @return serviceAssuranceCode
-     */
     public String getServiceAssuranceCode() {
         return serviceAssuranceCode;
     }
 
-    /**
-     * Sets the service assurance code.
-     * 
-     * @param serviceAssuranceCode
-     *            serviceAssuranceCode
-     */
     public void setServiceAssuranceCode(String serviceAssuranceCode) {
         this.serviceAssuranceCode = serviceAssuranceCode;
     }

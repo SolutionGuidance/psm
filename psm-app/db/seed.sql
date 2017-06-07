@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS
   audit_records,
   cms_authentication,
   cms_user,
+  contacts,
   enrollment_statuses,
   enrollments,
   help_items,
@@ -423,6 +424,15 @@ CREATE TABLE agreement_documents(
   body TEXT,
   created_by TEXT,
   created_at TIMESTAMP WITH TIME ZONE
+);
+
+CREATE TABLE contacts(
+  contact_id BIGINT PRIMARY KEY,
+  phone_number TEXT,
+  fax_number TEXT,
+  email TEXT,
+  address_id BIGINT
+    REFERENCES addresses(address_id)
 );
 
 CREATE TABLE enrollments(

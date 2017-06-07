@@ -48,11 +48,6 @@ public class Sequences {
     public static final String DESIGNATED_CONTACT_SEQ = "DESIGNATED_CONTACT_SEQ";
 
     /**
-     * Used for contact information table.
-     */
-    public static final String CONTACT_INFO_SEQ = "CONTACT_INFO_SEQ";
-
-    /**
      * Used for provider statement table.
      */
     public static final String STATEMENT_ID = "STATEMENT_ID";

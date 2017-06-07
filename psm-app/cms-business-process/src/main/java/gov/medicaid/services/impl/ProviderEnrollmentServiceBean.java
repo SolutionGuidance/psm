@@ -1287,7 +1287,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
         insertAddress(contactInformation.getAddress());
 
-        contactInformation.setId(getSequence().getNextValue(Sequences.CONTACT_INFO_SEQ));
+        contactInformation.setId(0);
         getEm().persist(contactInformation);
     }
 

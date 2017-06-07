@@ -18,6 +18,7 @@ DROP TABLE IF EXISTS
   provider_profiles,
   provider_types,
   request_types,
+  required_field_type,
   risk_levels,
   roles,
   service_assurance_types,
@@ -201,6 +202,14 @@ INSERT INTO profile_statuses (code, description) VALUES
   ('01', 'Active'),
   ('02', 'Suspended'),
   ('03', 'Expired');
+
+CREATE TABLE required_field_type(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO required_field_type (code, description) VALUES
+  ('01', 'Required'),
+  ('02', 'Optional'),
 
 CREATE TABLE risk_levels(
   code CHARACTER VARYING(2) PRIMARY KEY,

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -75,7 +75,7 @@ public abstract class Entity extends IdentifiableEntity {
      * NPI - NPILookup.
      */
     private String npiLookupVerifiedInd;
-    
+
     /**
      * NPI.
      */
@@ -86,7 +86,7 @@ public abstract class Entity extends IdentifiableEntity {
      * The provider type (if enrolled).
      */
     private ProviderType providerType;
-    
+
     /**
      * Additional type information.
      */
@@ -106,12 +106,6 @@ public abstract class Entity extends IdentifiableEntity {
      * For agencies.
      */
     private Date backgroundClearanceDate;
-    
-    /**
-     * Empty constructor.
-     */
-    public Entity() {
-    }
 
     /**
      * Gets the value of the field <code>name</code>.
@@ -306,7 +300,7 @@ public abstract class Entity extends IdentifiableEntity {
     public void setNonExclusionVerifiedInd(String nonExclusionVerifiedInd) {
         this.nonExclusionVerifiedInd = nonExclusionVerifiedInd;
     }
-    
+
     /**
      * Gets the value of the field <code>backgroundStudyId</code>.
      *

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -49,12 +49,6 @@ public class HelpItem {
      */
     private String description;
 
-    /**
-     * Default empty constructor.
-     */
-    public HelpItem() {
-    }
-
     public long getId() {
         return id;
     }
@@ -62,7 +56,7 @@ public class HelpItem {
     public void setId(long id) {
         this.id = id;
     }
-    
+
     /**
      * Gets the value of the field <code>title</code>.
      * @return the title
@@ -95,5 +89,5 @@ public class HelpItem {
         this.description = description;
     }
 
-    
+
 }

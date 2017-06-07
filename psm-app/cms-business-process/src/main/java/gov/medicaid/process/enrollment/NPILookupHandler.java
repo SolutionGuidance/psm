@@ -27,7 +27,7 @@ import com.topcoder.util.log.Log;
 
 /**
  * This verifies that the NPI provided is avaliable on lookup site.
- * 
+ *
  * @author cyberjag
  * @version 1.0
  */
@@ -40,7 +40,7 @@ public class NPILookupHandler extends GenericHandler {
 
     /**
      * Checks the NPI Lookup Service.
-     * 
+     *
      * @param item
      *            the work item to abort
      * @param manager

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ import java.util.Properties;
 /**
  * This implementation of the sequence generator interface uses the HIBERNATE {@link SequenceGeneratorBean} to minimize
  * database calls on sequence generation.
- * 
+ *
  * v1.1 - WAS Porting - upgraded to JPA 2
  * @author TCSASSEMBLER
  * @version 1.1

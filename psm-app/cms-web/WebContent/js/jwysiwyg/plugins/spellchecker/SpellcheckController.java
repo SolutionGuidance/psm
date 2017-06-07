@@ -35,14 +35,14 @@ public class SpellcheckController {
 	@Autowired private List<SpellDictionary> dictionaries;
 
 	/**
-	 * Embedded implementation of {@link com.swabunga.spell.event.SpellCheckListener} 
+	 * Embedded implementation of {@link com.swabunga.spell.event.SpellCheckListener}
 	 * responsible for recording potential errors from a list of words.
 	 *
 	 */
     private static class Checker implements SpellCheckListener {
         private JSONObject result;
         private JSONArray words;
-        
+
         public void init(JSONObject result) {
             this.result = result;
             words = new JSONArray();
@@ -61,9 +61,9 @@ public class SpellcheckController {
 
         }
     }
-    
+
     /**
-	 * Embedded implementation of {@link com.swabunga.spell.event.SpellCheckListener} 
+	 * Embedded implementation of {@link com.swabunga.spell.event.SpellCheckListener}
 	 * responsible for recording potential replacements for a mis-spelled word.
      *
      */
@@ -78,14 +78,14 @@ public class SpellcheckController {
 		public void spellingError(SpellCheckEvent event) {
 
         	JSONArray suggs = new JSONArray();
-            
+
             List<Word> suggestions = event.getSuggestions();
             if (!suggestions.isEmpty()) {
             	for(Word word : suggestions){
             		suggs.put(word.getWord());
             	}
             }
-            
+
             try {
 				result.put("result", suggs);
 			} catch (JSONException e) {
@@ -97,7 +97,7 @@ public class SpellcheckController {
 			}
         }
     }
-    
+
     /**
      * Request mapping that accepts a list of space-separated words (as a single String)
      * and returns a JSON response with a list of potential errors (case insensitive) in the following format:
@@ -117,7 +117,7 @@ public class SpellcheckController {
 		SpellChecker spellChecker = new SpellChecker();
         Configuration cfg = spellChecker.getConfiguration();
         cfg.setBoolean(Configuration.SPELL_IGNOREUPPERCASE, false);
-        
+
         Checker chk = new Checker();
         spellChecker.addSpellCheckListener(chk);
         for (SpellDictionary dictionary : dictionaries) {
@@ -131,9 +131,9 @@ public class SpellcheckController {
         headers.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<String>(response.toString(), headers, HttpStatus.OK);
     }
-    
+
     /**
-     * Request mapping that accepts a single word and returns a JSON response with a list of 
+     * Request mapping that accepts a single word and returns a JSON response with a list of
      * potential replacements in the following format:
      * <pre>
      * {
@@ -142,7 +142,7 @@ public class SpellcheckController {
      * </pre>
      * @param word
      * @return A list of potential corrections for a mis-spelled word.
-     */    
+     */
     @RequestMapping(params="word", method = RequestMethod.POST)
     public ResponseEntity<String> suggestForWord(@RequestParam("word") String word){
 
@@ -151,7 +151,7 @@ public class SpellcheckController {
 		SpellChecker spellChecker = new SpellChecker();
         Configuration cfg = spellChecker.getConfiguration();
         cfg.setBoolean(Configuration.SPELL_IGNOREUPPERCASE, false);
-        
+
         Suggester sug = new Suggester();
         spellChecker.addSpellCheckListener(sug);
         for (SpellDictionary dictionary : dictionaries) {

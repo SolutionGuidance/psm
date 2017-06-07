@@ -1,5 +1,5 @@
 1) For JBPM to participate in WAS transactions, it needs access to JTA, unlike JBoss, it is not directly accessible
-	to hibernate so a TransactionLookup implementation is provided. 
+	to hibernate so a TransactionLookup implementation is provided.
 	see additional documentation on class gov.medicaid.adapters.WebSphereTransactionLookup
 	
 2) Changes for WAS 8.5

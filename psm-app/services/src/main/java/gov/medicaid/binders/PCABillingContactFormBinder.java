@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -70,7 +70,7 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
         if (billingContact != null) {
             provider.getDesignatedContactInformation().getDesignatedContact().remove(billingContact);
         }
-        
+
         billingContact = new gov.medicaid.domain.model.DesignatedContactType();
         billingContact.setFullName(param(request, "billingContactName"));
         billingContact.setPrefix(param(request, "billingContactTitle"));
@@ -88,7 +88,7 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
             e.setAttribute(name("billingContactDOB"), param(request, "billingContactDOB"));
             exceptions.add(e);
         }
-        
+
         if (provider.getDesignatedContactInformation() == null) {
             provider.setDesignatedContactInformation(new DesignatedContactInformationType());
         }
@@ -110,7 +110,7 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
         if (contacts == null) {
             return null;
         }
-        
+
         gov.medicaid.domain.model.DesignatedContactType billingContact = null;
         for (gov.medicaid.domain.model.DesignatedContactType designatedContactType : contacts) {
             String type = designatedContactType.getDesignationType();
@@ -229,7 +229,7 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
             }
 
             gov.medicaid.domain.model.DesignatedContactType billingContact = findPCABillingContact(providerInfo);
-            
+
             DesignatedContact hbContact = null;
             for (Iterator<DesignatedContact> iter = designatedContacts.iterator(); iter.hasNext();) {
                 DesignatedContact designatedContact = iter.next();
@@ -237,7 +237,7 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
                     hbContact = designatedContact;
                 }
             }
-            
+
             if (hbContact != null) {
                 designatedContacts.remove(hbContact);
             }
@@ -247,7 +247,7 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
                 designatedContact.setType(DesignatedContactType.PCA_BILLING);
                 Person person = new Person();
                 designatedContact.setPerson(person);
-                
+
                 designatedContact.setHireDate(BinderUtils.toDate(billingContact.getHireDate()));
                 person.setName(billingContact.getFullName());
                 person.setPrefix(billingContact.getPrefix());
@@ -267,7 +267,7 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
     public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
         ProviderProfile profile = ticket.getDetails();
         if (profile != null) {
-            
+
             DesignatedContact hbContact = null;
             List<DesignatedContact> designatedContacts = profile.getDesignatedContacts();
             if (designatedContacts != null) {
@@ -277,7 +277,7 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
                         hbContact = designatedContact;
                     }
                 }
-                
+
                 if (hbContact != null) {
                     ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
                     gov.medicaid.domain.model.DesignatedContactType billingContact = findPCABillingContact(provider);
@@ -288,7 +288,7 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
                     if (provider.getDesignatedContactInformation() == null) {
                         provider.setDesignatedContactInformation(new DesignatedContactInformationType());
                     }
-                    
+
                     billingContact = new gov.medicaid.domain.model.DesignatedContactType();
                     billingContact.setFullName(hbContact.getPerson().getName());
                     billingContact.setPrefix(hbContact.getPerson().getPrefix());

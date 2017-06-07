@@ -28,7 +28,7 @@ import com.topcoder.util.log.Log;
 
 /**
  * Uses a web service call to filter multiple search results into an exact match.
- * 
+ *
  * @author cyberjag
  * @version 1.0
  */
@@ -48,7 +48,7 @@ public class SAMExclusionServiceMatcher extends BaseSOAPClient implements Result
 
     /**
      * Performs SAM exclusion check, it is carried out in two steps, search and verification.
-     * 
+     *
      * @param provider
      *            the provider
      * @param name
@@ -82,7 +82,7 @@ public class SAMExclusionServiceMatcher extends BaseSOAPClient implements Result
 
     /**
      * This handles resolving specific matches from the external search results.
-     * 
+     *
      * @param provider
      *            the applicant
      * @param object

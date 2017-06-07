@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ import org.drools.runtime.process.WorkItemManager;
 
 /**
  * This initializes the application model.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -77,7 +77,7 @@ public class AcceptedHandler extends GenericHandler {
 
     /**
      * Initializes the process variable.
-     * 
+     *
      * @param item
      *            the work item to abort
      * @param manager
@@ -113,10 +113,10 @@ public class AcceptedHandler extends GenericHandler {
 
             // send to MQ
             providerService.sendSyncronizationRequest(ticket.getTicketId());
-            
+
             // Copy Files to FileNet
             fileNetService.exportFiles(model, ticket.getTicketId());
-            
+
         } catch (PortalServiceException e) {
             XMLUtility.moveToStatus(model, actorId, "ERROR", "Approval process failed to completed.");
             abortWorkItem(item, manager);

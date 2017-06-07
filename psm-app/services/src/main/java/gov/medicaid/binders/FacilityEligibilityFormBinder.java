@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ public class FacilityEligibilityFormBinder extends BaseFormBinder {
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
         creds.setPhysicalAndOccupationTherapyServices(param(request, "therapyIndicator"));
-        
+
         creds.setTitle18NumberOfBeds((int) BinderUtils.getAsLong(param(request, "title18BedCount")));
         creds.setTitle19NumberOfBeds((int) BinderUtils.getAsLong(param(request, "title19BedCount")));
         creds.setDualCertifiedNumberOfBeds((int) BinderUtils.getAsLong(param(request, "dualCertBedCount")));
@@ -72,7 +72,7 @@ public class FacilityEligibilityFormBinder extends BaseFormBinder {
 
         return Collections.EMPTY_LIST;
     }
-    
+
     /**
      * Binds the model to the request attributes.
      * @param enrollment the model to bind from
@@ -88,7 +88,7 @@ public class FacilityEligibilityFormBinder extends BaseFormBinder {
         attr(mv, "dualCertBedCount", creds.getDualCertifiedNumberOfBeds());
         attr(mv, "icfBedCount", creds.getICFNumberOfBeds());
     }
-    
+
     /**
      * Captures the error messages related to the form.
      * @param enrollment the enrollment that was validated
@@ -128,14 +128,14 @@ public class FacilityEligibilityFormBinder extends BaseFormBinder {
      *
      * @param enrollment the front end model
      * @param ticket the persistent model
-     * @throws PortalServiceException 
+     * @throws PortalServiceException
      */
     public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) throws PortalServiceException {
         ProviderProfile profile = ticket.getDetails();
         if (profile == null || !(profile.getEntity() instanceof Organization)) {
             throw new PortalServiceException("Provider type should be bound first.");
         }
-        
+
         FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
         profile.setPhysicalAndOccupationalTherapyInd(credentials.getPhysicalAndOccupationTherapyServices());
         profile.setTitle18NumberOfBeds(credentials.getTitle18NumberOfBeds());

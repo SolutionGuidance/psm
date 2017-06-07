@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -358,7 +358,7 @@ public class CMSConfigurator {
 	
 	/**
      * Gets the configured filenet folder
-     * 
+     *
      * @return the configured filenet folder
      */
     public String getFileNetFolder() {
@@ -367,7 +367,7 @@ public class CMSConfigurator {
 
     /**
      * Gets the configured pdf files folder
-     * 
+     *
      * @return the pdf files folder
      */
     public String getExportPDFFolder() {
@@ -376,7 +376,7 @@ public class CMSConfigurator {
 
     /**
      * Gets the filenet service
-     * 
+     *
      * @return the configured FileNetService
      */
     public FileNetService getFileNetService() {

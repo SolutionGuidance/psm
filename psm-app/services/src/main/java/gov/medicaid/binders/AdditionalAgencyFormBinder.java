@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -75,7 +75,7 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
      */
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        
+
         AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollment);
         agency.getAffiliation().clear();
 
@@ -105,7 +105,7 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
             agency.getAffiliation().add(location);
             i++;
         }
-        
+
         return exceptions;
     }
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Represents services allowed for the given provider.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -23,7 +23,7 @@ public class ProviderCategoryOfService extends IdentifiableEntity {
 
     /**
      * Gets the value of the field <code>profileId</code>.
-     * 
+     *
      * @return the profileId
      */
     public long getProfileId() {
@@ -32,7 +32,7 @@ public class ProviderCategoryOfService extends IdentifiableEntity {
 
     /**
      * Sets the value of the field <code>profileId</code>.
-     * 
+     *
      * @param profileId
      *            the profileId to set
      */
@@ -42,7 +42,7 @@ public class ProviderCategoryOfService extends IdentifiableEntity {
 
     /**
      * Gets the <code>categories</code>.
-     * 
+     *
      * @return the categories
      */
     public List<CategoryOfService> getCategories() {
@@ -51,7 +51,7 @@ public class ProviderCategoryOfService extends IdentifiableEntity {
 
     /**
      * Sets the <code>categories</code>.
-     * 
+     *
      * @param categories
      *            the categories to set
      */
@@ -61,7 +61,7 @@ public class ProviderCategoryOfService extends IdentifiableEntity {
 
     /**
      * Gets the <code>startDate</code>.
-     * 
+     *
      * @return the startDate
      */
     public Date getStartDate() {
@@ -70,7 +70,7 @@ public class ProviderCategoryOfService extends IdentifiableEntity {
 
     /**
      * Sets the <code>startDate</code>.
-     * 
+     *
      * @param startDate
      *            the startDate to set
      */
@@ -80,7 +80,7 @@ public class ProviderCategoryOfService extends IdentifiableEntity {
 
     /**
      * Gets the <code>endDate</code>.
-     * 
+     *
      * @return the endDate
      */
     public Date getEndDate() {
@@ -89,7 +89,7 @@ public class ProviderCategoryOfService extends IdentifiableEntity {
 
     /**
      * Sets the <code>endDate</code>.
-     * 
+     *
      * @param endDate
      *            the endDate to set
      */

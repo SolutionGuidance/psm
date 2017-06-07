@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -133,7 +133,7 @@ public class DefaultExternalAuthenticationProvider implements AuthenticationProv
      * Loads the user information by the external user. Auto provisions a CMS user for this record.
      *
      * @param userNPI the username used to login
-     * @param profileNPI 
+     * @param profileNPI
      * @return the mapped details
      */
     private UserDetails loadProxyUser(String userNPI, String profileNPI) {
@@ -156,7 +156,7 @@ public class DefaultExternalAuthenticationProvider implements AuthenticationProv
 			ExternalAccountLink link = registrationService.findAccountLink(
 					cmsUser.getUserId(), system, userNPI);
             cmsUser.setExternalAccountLink(link);
-            
+
             User springUserObject = new User(userNPI, "", true, true, true, true, EMPTY_AUTH);
             return new CMSUserDetailsWrapper(springUserObject, cmsUser, system);
         } catch (PortalServiceException e) {

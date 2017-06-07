@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * This binder handles the CCDTF Residential/Inpatient Assurance and CCDTF Outpatient Services Assurance for Chemical
  * Dependency Program.
- * 
+ *
  * @author cyberjag
  * @version 1.0
  */
@@ -53,7 +53,7 @@ public class AssuranceStatementFormBinder extends BaseFormBinder {
      *            the model to bind to
      * @param request
      *            the request containing the form fields
-     * 
+     *
      * @throws BinderException
      *             if the format of the fields could not be bound properly
      */
@@ -197,7 +197,7 @@ public class AssuranceStatementFormBinder extends BaseFormBinder {
 
     /**
      * Binds the fields of the form to the persistence model.
-     * 
+     *
      * @param enrollment
      *            the front end model
      * @param ticket
@@ -245,7 +245,7 @@ public class AssuranceStatementFormBinder extends BaseFormBinder {
 
     /**
      * Maps the given list by the id.
-     * 
+     *
      * @param hList
      *            the list to map
      * @return the mapped statements
@@ -262,7 +262,7 @@ public class AssuranceStatementFormBinder extends BaseFormBinder {
 
     /**
      * Binds the fields of the persistence model to the front end xml.
-     * 
+     *
      * @param ticket
      *            the persistent model
      * @param enrollment
@@ -295,12 +295,12 @@ public class AssuranceStatementFormBinder extends BaseFormBinder {
 
     /**
      * Captures the error messages related to the form.
-     * 
+     *
      * @param enrollment
      *            the enrollment that was validated
      * @param messages
      *            the messages to select from
-     * 
+     *
      * @return the list of errors related to the form
      */
     @Override
@@ -340,7 +340,7 @@ public class AssuranceStatementFormBinder extends BaseFormBinder {
 
     /**
      * Resolves the specific license that is causing the error from the license list.
-     * 
+     *
      * @param ruleError
      *            the error to resolve
      * @return the resolved error
@@ -374,7 +374,7 @@ public class AssuranceStatementFormBinder extends BaseFormBinder {
 
     /**
      * Resolves the index of the field that caused the error.
-     * 
+     *
      * @param path
      *            the field path
      * @return the index of the field, null if cannot be resolved

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -52,12 +52,12 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
      * The namespace for this form.
      */
     public static final String NAMESPACE = "_40_";
-    
+
     /**
      * Ambulance service selection.
      */
     private final List<ServiceCategory> categories = new ArrayList<ServiceCategory>();
-    
+
     /**
      * License path.
      */
@@ -68,7 +68,7 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
      */
     public PhysicianClinicFacilityQualificationFormBinder() {
         super(NAMESPACE);
-        
+
         ServiceCategory cat = new ServiceCategory();
         cat.setCode("designationApproval");
         cat.setDescription("Hospital Based Clinic Designation:  approval letter from CMS");
@@ -88,7 +88,7 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
         FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
         List<FacilityQualificationType> facilityQualification = creds.getFacilityQualification();
-        
+
         for (ServiceCategory category : categories) {
             String type1Indicator = param(request, category.getCode() + "Indicator");
             if ("Y".equals(type1Indicator)) {
@@ -104,7 +104,7 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
         }
         return Collections.EMPTY_LIST;
     }
-    
+
     /**
      * Finds the service with the given name
      * @param facilityQualification the service list
@@ -117,7 +117,7 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
                 return FacilityQualificationType;
             }
         }
-        
+
         FacilityQualificationType qualification = new FacilityQualificationType();
         qualification.setServiceType(serviceName);
         facilityQualification.add(qualification);
@@ -197,7 +197,7 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
 
         return errors.isEmpty() ? NO_ERRORS : errors;
     }
-    
+
     /**
      * Resolves the specific license that is causing the error from the license list.
      * @param services the services entered

@@ -5,7 +5,7 @@ public enum RoleView {
 	/**
 	 * External user view.
 	 */
-	SELF, 
+	SELF,
 	
 	/**
 	 * Employer view for external user.

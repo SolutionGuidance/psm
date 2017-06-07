@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ import org.drools.runtime.StatefulKnowledgeSession;
 
 /**
  * Defines the UI related services.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -70,7 +70,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
     /**
      * Retrieves the presentation model to be used for the given provider. This is shared between the screen and some
      * other views like exporting providers.
-     * 
+     *
      * @param provider
      *            the provider to determine how to display
      * @return the model having some instructions on how to present the given provider
@@ -337,7 +337,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
 
     /**
      * Checks if the provider type can have specialties.
-     * 
+     *
      * @param providerType
      *            the provider type.
      * @return true if the provider can enter specialty
@@ -370,7 +370,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
     /**
      * Retrieves the presentation model to be used for the given provider. This is shared between the screen and some
      * other views like exporting providers.
-     * 
+     *
      * @param provider
      *            the provider to determine how to display
      * @return the model having some instructions on how to present the given provider
@@ -409,7 +409,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
 
     /**
      * Checks if the provider type should be asked for degree earned on mental health specialty.
-     * 
+     *
      * @param providerType
      *            the provider type.
      * @return true if the provider can enter degree
@@ -425,7 +425,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
 
     /**
      * Checks if the provider type should be asked for degree earned.
-     * 
+     *
      * @param providerType
      *            the provider type.
      * @return true if the provider can enter degree
@@ -447,7 +447,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
 
     /**
      * Retrieves the view rules.
-     * 
+     *
      * @param type
      *            the provider type.
      * @param facts
@@ -495,7 +495,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
                     personalInfoFormSettings.addSetting("hideLicenseNumber", true);
                 }
                 page.addForm(ViewStatics.PERSONAL_INFO_FORM, personalInfoFormSettings);
-                
+
                 // end BUGR-9673
                 viewModel.addTabModel(ViewStatics.PERSONAL_INFORMATION, page);
 
@@ -561,7 +561,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
             settings.addSetting("askUMPI", false);
             settings.addSetting("requireNPI", true);
             settings.addSetting("clearingHouseLayout", false);
-            
+
             page.addForm(ViewStatics.ORG_INFO_FORM, settings);
 
             if (facts.get("askForRemmitanceSequence")) {
@@ -571,7 +571,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
             if (ProviderType.DAY_TRAINING_AND_HABILITATION_DAY_ACTIVITY_CENTER.value().equals(type)) {
             	settings.addSetting("requireNPI", false);
             }
-            
+
             if (ProviderType.HOME_AND_COMMUNITY_BASED_SERVICES_WAIVERED_SERVICES.value().equals(type)) {
             	settings.addSetting("askUMPI", true);
             }
@@ -713,7 +713,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
 
     /**
      * Checks if the given type is an individual provider.
-     * 
+     *
      * @param type
      *            the type to check
      * @return true if the type is an individual
@@ -730,7 +730,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
     /**
      * This calls the business rules to validation the given enrollment. It is used by the frontend whenever validation
      * is needed. It can be used to validate the entire request or a subset of views.
-     * 
+     *
      * @param ticket
      *            the ticket to be validated.
      * @param tabs
@@ -772,7 +772,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
 
     /**
      * Uses the front-end validation rules to check the provider profile.
-     * 
+     *
      * @param request
      *            the validation request
      * @return the validation messages.
@@ -811,7 +811,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
 
     /**
      * This returns the minimum license rules for the given enrollment.
-     * 
+     *
      * @param enrollment
      *            the enrollment to check
      * @return the minimum license rules

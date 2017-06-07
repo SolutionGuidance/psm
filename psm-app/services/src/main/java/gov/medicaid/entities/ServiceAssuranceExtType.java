@@ -5,7 +5,7 @@ package gov.medicaid.entities;
 
 /**
  * Represents the Assurance Statements lookup for Chemical Dependency Program.
- * 
+ *
  * @author cyberjag
  * @version 1.0
  */
@@ -24,7 +24,7 @@ public class ServiceAssuranceExtType extends LookupEntity {
 
     /**
      * Gets the service assurance code.
-     * 
+     *
      * @return serviceAssuranceCode
      */
     public String getServiceAssuranceCode() {
@@ -33,7 +33,7 @@ public class ServiceAssuranceExtType extends LookupEntity {
 
     /**
      * Sets the service assurance code.
-     * 
+     *
      * @param serviceAssuranceCode
      *            serviceAssuranceCode
      */

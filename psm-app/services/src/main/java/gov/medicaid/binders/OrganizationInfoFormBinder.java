@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -92,23 +92,23 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
             exceptions.add(e);
         }
         enrollment.setPersonWhoAccomplishedForm(param(request, "personCompletingForm"));
-        
+
         OrganizationApplicantType org = XMLUtility.nsGetOrganization(enrollment);
         org.setName(param(request, "name"));
         org.setLegalName(param(request, "legalName"));
         org.setFEIN(param(request, "fein"));
         org.setStateTaxID(param(request, "stateTaxId"));
-        
+
         // optional elements (can be set by other forms)
         if (param(request, "fye1") != null) {
             org.setFiscalYearEnd(BinderUtils.concatFiscalYearEnd(param(request, "fye1"), param(request, "fye2")));
             provider.setFiscalYearEnd(BinderUtils.concatFiscalYearEnd(param(request, "fye1"), param(request, "fye2")));
         }
-        
+
         if (param(request, "orgCountyName") != null) {
             provider.setCounty(param(request, "orgCountyName"));
         }
-        
+
         if (param(request, "subType") != null) {
             org.setSubType(param(request, "subType"));
         }
@@ -118,7 +118,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
             param(request, "phone3"), param(request, "phone4")));
         contact.setFaxNumber(BinderUtils.concatPhone(param(request, "fax1"), param(request, "fax2"),
             param(request, "fax3"), ""));
-        
+
 
         // practice address
         AddressType address = readPrimaryAddress(request);
@@ -127,7 +127,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
         // alternate addresses
         AlternateAddressesType alternateAddresses = new AlternateAddressesType();
         provider.setAlternateAddresses(alternateAddresses);
-        
+
         if (param(request, "billingSameAsPrimary") != null) {
             org.setBillingAddressIndex(0);
         } else {
@@ -135,7 +135,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
             AddressType billingAddress = readBillingAddress(request);
             alternateAddresses.getAddress().add(billingAddress);
         }
-        
+
         if (param(request, "ten99SameAsPrimary") != null) {
             org.setTen99AddressIndex(0);
         } else {
@@ -143,7 +143,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
             AddressType ten99Address = readTen99Address(request);
             alternateAddresses.getAddress().add(ten99Address);
         }
-        
+
         ContactInformationType enrollmentContact = XMLUtility.nsGetContactInformation(enrollment);
         enrollmentContact.setPhoneNumber(BinderUtils.concatPhone(param(request, "contactPhone1"), param(request, "contactPhone2"),
             param(request, "contactPhone3"), param(request, "contactPhone4")));
@@ -151,7 +151,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
             param(request, "contactFax3"), ""));
         enrollmentContact.setName(param(request, "contactName"));
         enrollmentContact.setEmailAddress(param(request, "contactEmail"));
-        
+
         return exceptions;
     }
 
@@ -169,7 +169,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
 
         attr(mv, "effectiveDate", enrollment.getEffectiveDate());
         attr(mv, "personCompletingForm", enrollment.getPersonWhoAccomplishedForm());
-        
+
         OrganizationApplicantType org = XMLUtility.nsGetOrganization(enrollment);
         attr(mv, "name", org.getName());
         attr(mv, "legalName", org.getLegalName());
@@ -201,12 +201,12 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
         attr(mv, "phone2", phone[1]);
         attr(mv, "phone3", phone[2]);
         attr(mv, "phone4", phone[3]);
-        
+
         String[] fax = BinderUtils.splitPhone(contact.getFaxNumber());
         attr(mv, "fax1", fax[0]);
         attr(mv, "fax2", fax[1]);
         attr(mv, "fax3", fax[2]);
-        
+
 
         AlternateAddressesType alternateAddresses = provider.getAlternateAddresses();
         attr(mv, "billingSameAsPrimary", "Y"); // default to true
@@ -234,7 +234,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                     }
                 }
             }
-            
+
             String ten99SameAsPrimary = (org.getTen99AddressIndex() == null || org.getTen99AddressIndex() == 0) ? "Y" : "N";
             attr(mv, "ten99SameAsPrimary", ten99SameAsPrimary);
             if ("N".equals(ten99SameAsPrimary)) {
@@ -267,13 +267,13 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
         attr(mv, "contactPhone2", contactPhone[1]);
         attr(mv, "contactPhone3", contactPhone[2]);
         attr(mv, "contactPhone4", contactPhone[3]);
-        
+
         String[] contactFax = BinderUtils.splitPhone(enrollmentContact.getFaxNumber());
         attr(mv, "contactFax1", contactFax[0]);
         attr(mv, "contactFax2", contactFax[1]);
         attr(mv, "contactFax3", contactFax[2]);
-        
-        
+
+
         if (!readOnly) {
             List<CountyType> counties = getLookupService().findAllLookups(CountyType.class);
             attr(mv, "counties", counties);
@@ -292,10 +292,10 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
-        
+
         OrganizationApplicantType org = XMLUtility.nsGetOrganization(enrollment);
         AlternateAddressesType alternateAddresses = enrollment.getProviderInformation().getAlternateAddresses();
-        
+
         boolean switchAddressLineFields = false;
         ContactInformationType contact = XMLUtility.nsGetContactInformation(org);
         AddressType addressType = contact.getAddress();
@@ -397,7 +397,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
         } else if (path.endsWith("/AttentionTo")) {
             return createError(prefix + "Attention", ruleError.getMessage());
         }
-        
+
         return createError(prefix + "Address", ruleError.getMessage());
     }
 
@@ -429,13 +429,13 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
 
         profile.setEffectiveDate(BinderUtils.toDate(enrollment.getEffectiveDate()));
         profile.setAccomplishedBy(enrollment.getPersonWhoAccomplishedForm());
-        
+
         ProviderInformationType providerInfo = enrollment.getProviderInformation();
         if (providerInfo != null) {
             Organization organization = (Organization) profile.getEntity();
             organization.setNpi(providerInfo.getNPI());
             profile.setCounty(providerInfo.getCounty());
-            
+
             ApplicantInformationType ai = providerInfo.getApplicantInformation();
             if (ai != null && ai.getOrganizationInformation() != null) {
                 OrganizationApplicantType oInfo = ai.getOrganizationInformation();
@@ -464,7 +464,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                     organization.setBillingSameAsPrimary("Y");
                     organization.setBillingAddress(BinderUtils.bindAddress(cInfo.getAddress()));
                 }
-                
+
                 if (oInfo.getTen99AddressIndex() != null && oInfo.getTen99AddressIndex() > 0) {
                     organization.setTen99SameAsPrimary("N");
                     AlternateAddressesType alternateAddresses = providerInfo.getAlternateAddresses();
@@ -474,10 +474,10 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                     organization.setTen99Address(BinderUtils.bindAddress(cInfo.getAddress()));
                 }
             }
-            
+
             bindEnrollmentContactToHibernate(enrollment, profile);
         }
-        
+
     }
 
     /**
@@ -491,7 +491,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
         if (profile != null) {
             enrollment.setEffectiveDate(BinderUtils.toCalendar(profile.getEffectiveDate()));
             enrollment.setPersonWhoAccomplishedForm(profile.getAccomplishedBy());
-            
+
             Entity entity = profile.getEntity();
             if (entity != null) {
                 Organization organization = (Organization) entity;
@@ -513,7 +513,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                     contact.setFaxNumber(hContact.getFaxNumber());
                     contact.setAddress(BinderUtils.bindAddress(hContact.getAddress()));
                 }
-                
+
                 AlternateAddressesType alternateAddresses = new AlternateAddressesType();
                 enrollment.getProviderInformation().setAlternateAddresses(alternateAddresses);
                 if ("N".equals(organization.getBillingSameAsPrimary())) {
@@ -522,7 +522,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                 } else {
                     org.setBillingAddressIndex(0);
                 }
-                
+
                 if ("N".equals(organization.getTen99SameAsPrimary())) {
                     alternateAddresses.getAddress().add(BinderUtils.bindAddress(organization.getTen99Address()));
                     org.setTen99AddressIndex(alternateAddresses.getAddress().size());
@@ -530,7 +530,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                     org.setTen99AddressIndex(0);
                 }
             }
-            
+
             List<DesignatedContact> designatedContacts = profile.getDesignatedContacts();
             if (designatedContacts != null) {
                 for (DesignatedContact designatedContact : designatedContacts) {
@@ -548,7 +548,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
             }
         }
     }
-    
+
     /**
      * Binds the designated enrollment contact to the hibernate model.
      * @param enrollment the frontend model
@@ -612,12 +612,12 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
     @Override
     public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
         throws DocumentException {
-        
+
         String ns = NAMESPACE;
         if (!"Y".equals(PDFHelper.value(model, ns, "bound"))) {
             return;
         }
-        
+
         ViewModel viewModel = (ViewModel) model.get("viewModel");
         UITabModel tabModel = viewModel.getTabModels().get(ViewStatics.ORGANIZATION_INFO);
         Map<String, Object> settings = tabModel.getFormSettings().get(ViewStatics.ORG_INFO_FORM).getSettings();
@@ -625,16 +625,16 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
         if (settings != null && settings.get("useEDILayout") instanceof Boolean) {
             useEDILayout = (Boolean) settings.get("useEDILayout");
         }
-        
+
         // Personal Info Section
         PdfPTable personalInfo = new PdfPTable(2);
         PDFHelper.setTableAsFullPage(personalInfo);
 
-        
+
         if (useEDILayout) {
             PDFHelper.addLabelValueCell(personalInfo, "EDI Type", PDFHelper.value(model, ns, "subType"));
         }
-        
+
         PDFHelper.addLabelValueCell(personalInfo, "NPI/UMPI", PDFHelper.value(model, ns, "npi"));
         PDFHelper.addLabelValueCell(personalInfo, "Effective Date", PDFHelper.value(model, ns, "effectiveDate"));
         PDFHelper.addLabelValueCell(personalInfo, "Organization Name", PDFHelper.value(model, ns, "name"));
@@ -642,7 +642,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
         PDFHelper.addLabelValueCell(personalInfo, "FEIN", PDFHelper.value(model, ns, "fein"));
         PDFHelper.addLabelValueCell(personalInfo, "State Tax ID", PDFHelper.value(model, ns, "stateTaxId"));
         PDFHelper.addLabelValueCell(personalInfo, "Fiscal Year End", PDFHelper.getFiscalYear(model, ns));
-        
+
         PDFHelper.addLabelValueCell(personalInfo, "Address", PDFHelper.getAddress(model, ns, null));
         PDFHelper.addLabelValueCell(personalInfo, "Phone Number", PDFHelper.getPhone(model, ns, "phone"));
         PDFHelper.addLabelValueCell(personalInfo, "Fax Number", PDFHelper.getPhone(model, ns, "fax"));
@@ -654,7 +654,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
             } else {
                 PDFHelper.addLabelValueCell(personalInfo, "Billing Address", PDFHelper.getAddress(model, ns, "billing"));
             }
-            
+
             if ("Y".equals(PDFHelper.value(model, ns, "ten99SameAsPrimary"))) {
                 PDFHelper.addLabelValueCell(personalInfo, "1099 Address", "Same As Above");
             } else {
@@ -675,7 +675,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
 
         document.add(contactInfo);
     }
-    
+
     /**
      * Reads the billing address from the request.
      *
@@ -699,7 +699,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
         address.setCounty(param(request, "billingCounty"));
         return address;
     }
-    
+
     /**
      * Reads the billing address from the request.
      *

@@ -26,7 +26,7 @@ public class XMLSerializingEnrollmentProcess extends EnrollmentProcess implement
 
     /**
      * Reads the enrollment process model from the given input.
-     * 
+     *
      * @param input the serialized model input
      * @throws IOException if the object could not be read
      * @throws ClassNotFoundException if the class being read is not recognized
@@ -36,7 +36,7 @@ public class XMLSerializingEnrollmentProcess extends EnrollmentProcess implement
             JAXBContext context = JAXBContext.newInstance("gov.medicaid.domain.model");
             Unmarshaller um = context.createUnmarshaller();
             EnrollmentProcess result = (EnrollmentProcess) um.unmarshal(new StringReader((String) input.readObject()));
-            
+
             setSessionId(result.getSessionId());
             setAssessedFees(result.getAssessedFees());
             setEnrollment(result.getEnrollment());
@@ -46,7 +46,7 @@ public class XMLSerializingEnrollmentProcess extends EnrollmentProcess implement
             setPreApprovalQuestions(result.getPreApprovalQuestions());
             setProcessAudit(result.getProcessAudit());
             setProcessResults(result.getProcessResults());
-            
+
         } catch (JAXBException e) {
             throw new IOException("Incompatible request version.");
         }
@@ -54,7 +54,7 @@ public class XMLSerializingEnrollmentProcess extends EnrollmentProcess implement
 
     /**
      * Serializes this model as an XML string.
-     * 
+     *
      * @param output the serialized model output
      * @throws IOException if the object could not be written
      */

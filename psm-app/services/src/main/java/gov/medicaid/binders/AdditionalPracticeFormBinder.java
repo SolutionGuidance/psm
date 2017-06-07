@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -172,7 +172,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
         } else {
         	attr(mv, "allowAdd", "Y");
         }
-        
+
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
         AdditionalPracticeLocationsType locations = XMLUtility.nsGetOtherLocations(practice);
         List<PracticeLocationType> xList = locations.getPracticeLocation();
@@ -270,7 +270,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
         if (index != null) {
             PracticeLocationType location = locations.getPracticeLocation().get(index);
             message = ruleError.getMessage() + "(Group #" + (index + 1) + ")";
-            
+
             boolean switchAddressLines = false;
             if (location.getAddress() != null || Util.isBlank(location.getAddress().getAddressLine1())) {
                 // since line 2 is populated instead of line 1 by default

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -148,7 +148,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
             providerAgreement.clear();
             providerAgreement.addAll(xList);
         }
-        
+
         return exceptions;
     }
 
@@ -424,11 +424,11 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
             xStatement.setSignDate(BinderUtils.toCalendar(hStatement.getDate()));
         }
     }
-    
+
     @Override
     public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
         throws DocumentException {
-        
+
         // Provider Statement Section
         PdfPTable disclosureInfo = new PdfPTable(new float[] {7, 1});
         PDFHelper.setTableAsFullPage(disclosureInfo);

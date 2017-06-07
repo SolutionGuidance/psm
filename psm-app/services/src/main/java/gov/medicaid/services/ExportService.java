@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -26,11 +26,11 @@ import java.util.Map;
 
 /**
  * This represents the service API to export enrollment data for the given user
- * 
+ *
  * <p>
  * <b>Thread Safety</b> Implementations should be effectively thread-safe.
  * </p>
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -38,7 +38,7 @@ public interface ExportService {
 
     /**
      * Exports the search results into PDF.
-     * 
+     *
      * @param requests
      *            the list to be exported
      * @param status
@@ -52,7 +52,7 @@ public interface ExportService {
 
     /**
      * Exports the profile into PDF.
-     * 
+     *
      * @param currentUser
      *            the current user
      * @param enrollment
@@ -71,7 +71,7 @@ public interface ExportService {
 
     /**
      * Exports the pdf file for FileNet.
-     * 
+     *
      * @param currentUser
      *            the current user
      * @param enrollment

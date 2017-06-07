@@ -8,11 +8,11 @@ package gov.medicaid.entities;
 public class ProviderService extends IdentifiableEntity {
 
     private ServiceCategory category;
-    
+
     private long profileId;
-    
+
     private long ticketId;
-    
+
     public ProviderService() {
     }
 

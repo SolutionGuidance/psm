@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -178,7 +178,7 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
         AddressType address = new AddressType();
         String line1 = param(request, prefix + "AddressLine1", i);
         String line2 = param(request, prefix +  "AddressLine2", i);
-        
+
         if (Util.isBlank(line2)) { // prioritize line 2 usage
             line2 = line1;
             line1 = null;
@@ -354,7 +354,7 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
-        
+
         OwnershipInformationType ownershipInformation = XMLUtility.nsGetOwnershipInformation(enrollment);
         synchronized (ruleErrors) {
             for (StatusMessageType ruleError : ruleErrors) {
@@ -396,7 +396,7 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
 
     /**
      * Resolves the specific license that is causing the error from the license list.
-     * @param ownershipInformation 
+     * @param ownershipInformation
      * @param ruleError the error to resolve
      * @param entityIndex
      * @return the resolved error
@@ -405,17 +405,17 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
         String path = ruleError.getRelatedElementPath();
         Integer index = resolveIndex(path);
         boolean entity = false;
-        
+
         boolean switch1 = false;
         boolean switch2 = false;
         if (index != null) {
             BeneficialOwnerType owner = ownershipInformation.getBeneficialOwner().get(index);
-            
+
             if (index >= entityIndex) {
                 index = index - entityIndex;
                 entity = true;
             }
-            
+
             if (entity) {
                 if (owner.getEntityInformation() != null) {
                     ContactInformationType contact = owner.getEntityInformation().getContactInformation();
@@ -667,7 +667,7 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
     @Override
     public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
         throws DocumentException {
-        
-        
+
+
     }
 }

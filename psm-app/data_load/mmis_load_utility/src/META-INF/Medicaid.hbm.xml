@@ -673,7 +673,7 @@
 			<column name="PATIENT_IND" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.ServiceAssuranceExtType" table="SVC_ASSURANCE_EXT_TYP">
+	<class name="gov.medicaid.entities.ServiceAssuranceExtType" table="service_assurance_ext_types">
 		<id name="code" type="string">
 			<column length="2" name="CODE" />
 			<generator class="assigned" />

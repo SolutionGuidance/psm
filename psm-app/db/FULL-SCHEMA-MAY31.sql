@@ -616,12 +616,12 @@
 	"DESCRIPTION" VARCHAR2(255 CHAR)
    ) ;
 --------------------------------------------------------
---  DDL for Table SVC_ASSURANCE_EXT_TYP
+--  DDL for Table service_assurance_ext_types
 --------------------------------------------------------
 
-  CREATE TABLE "CMS"."SVC_ASSURANCE_EXT_TYP" 
-   (	"CODE" VARCHAR2(2 CHAR), 
-	"DESCRIPTION" VARCHAR2(255 CHAR), 
+  CREATE TABLE "CMS"."service_assurance_ext_types"
+   (	"CODE" VARCHAR2(2 CHAR),
+	"DESCRIPTION" VARCHAR2(255 CHAR),
 	"SVC_ASSURANCE_CD" VARCHAR2(255 CHAR)
    ) ;
 --------------------------------------------------------

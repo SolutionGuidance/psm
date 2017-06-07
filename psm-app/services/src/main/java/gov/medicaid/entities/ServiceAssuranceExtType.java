@@ -4,7 +4,6 @@
 package gov.medicaid.entities;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -16,12 +15,8 @@ import javax.persistence.Table;
 @Table(name = "service_assurance_ext_types")
 public class ServiceAssuranceExtType extends LookupEntity {
 
-    @Id
-    @Column(name = "code")
+    @Column(name = "service_assurance_code")
     private String serviceAssuranceCode;
-
-    public ServiceAssuranceExtType() {
-    }
 
     public String getServiceAssuranceCode() {
         return serviceAssuranceCode;

@@ -52,7 +52,7 @@ CREATE TABLE service_assurance_types (
 CREATE TABLE service_assurance_ext_types (
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE,
-  patient_indicator TEXT
+  service_assurance_code TEXT
 );
 
 CREATE TABLE cms_user (

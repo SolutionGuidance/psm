@@ -117,7 +117,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         }
 
         ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-        List<AgreementDocument> docs = getLookupService().findRequiredDocuments(pt.getCode());
+        List<AgreementDocument> docs = pt.getAgreementDocuments();
 
         List<ProviderAgreementType> xList = new ArrayList<ProviderAgreementType>();
         HashSet<String> agreed = new HashSet<String>();
@@ -165,7 +165,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         if (enrollment.getRequestType() == RequestType.RENEWAL && provider.getRenewalShowBlankStatement() == null) {
         	attr(mv, "renewalBlankInit", "Y");
         	ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-            List<AgreementDocument> docs = getLookupService().findRequiredDocuments(pt.getCode());
+            List<AgreementDocument> docs = pt.getAgreementDocuments();
             int i = 0;
             for (AgreementDocument doc : docs) {
                 attr(mv, "documentId", i, "" + doc.getId());
@@ -189,7 +189,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
 	        AcceptedAgreementsType acceptedAgreements = provider.getAcceptedAgreements();
 	
 	        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-	        List<AgreementDocument> docs = getLookupService().findRequiredDocuments(pt.getCode());
+	        List<AgreementDocument> docs = pt.getAgreementDocuments();
 	        int i = 0;
 	        for (AgreementDocument doc : docs) {
 	            attr(mv, "documentId", i, "" + doc.getId());
@@ -288,7 +288,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         List<AcceptedAgreements> hList = profile.getAgreements();
 
         ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-        List<AgreementDocument> activeList = getLookupService().findRequiredDocuments(pt.getCode());
+        List<AgreementDocument> activeList = pt.getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
         // Retain any previously accepted agreements that is no longer shown in the page
@@ -391,7 +391,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         provider.setHasPreviousExclusion(profile.getPreviousExclusionInd());
 
         ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-        List<AgreementDocument> activeList = getLookupService().findRequiredDocuments(pt.getCode());
+        List<AgreementDocument> activeList = pt.getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
         AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(enrollment);

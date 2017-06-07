@@ -175,10 +175,9 @@ public class ProviderTypeController extends BaseServiceAdminController {
 
         try {
             ProviderType providerType = providerTypeService.get(providerTypeId);
-            List<AgreementDocument> agreements = lookupService.findRequiredDocuments(providerType.getCode());
             ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
             model.addObject("providerType", providerType);
-            model.addObject("agreements", agreements);
+            model.addObject("agreements", providerType.getAgreementDocuments());
             return LogUtil.traceExit(getLog(), signature, model);
         } catch (PortalServiceException e) {
             LogUtil.traceError(getLog(), signature, e);
@@ -246,8 +245,8 @@ public class ProviderTypeController extends BaseServiceAdminController {
             criteria.setPageSize(-1);
             List<AgreementDocument> agreements = agreementDocumentService.search(criteria).getItems();
             List<AgreementDocument> remainingAgreements = new ArrayList<AgreementDocument>(agreements);
-            List<AgreementDocument> selectedAgreements = lookupService.findRequiredDocuments(providerType.getCode());
-            
+            List<AgreementDocument> selectedAgreements = providerType.getAgreementDocuments();
+
             for (AgreementDocument agreement: agreements) {
             	for (AgreementDocument selectedAgreement: selectedAgreements) {
             		if (selectedAgreement.getId() == agreement.getId()) {
@@ -331,12 +330,12 @@ public class ProviderTypeController extends BaseServiceAdminController {
             // Retrieve
             providerType = providerTypeService.get(providerType.getCode());
             long[] agreementIds = ServletRequestUtils.getLongParameters(request, "providerAgreements");
-            
-            lookupService.updateProviderTypeAgreementSettings(providerType.getCode(), agreementIds);
-            
+
+            lookupService.updateProviderTypeAgreementSettings(providerType, agreementIds);
+
             ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
             model.addObject("providerType", providerType);
-            model.addObject("agreements", lookupService.findRequiredDocuments(providerType.getCode()));
+            model.addObject("agreements", providerType.getAgreementDocuments());
             return LogUtil.traceExit(getLog(), signature, model);
         } catch (PortalServiceException e) {
             LogUtil.traceError(getLog(), signature, e);

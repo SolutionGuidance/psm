@@ -16,6 +16,7 @@ DROP TABLE IF EXISTS
   persistent_logins,
   profile_statuses,
   provider_profiles,
+  provider_type_agreement_documents,
   provider_types,
   request_types,
   risk_levels,
@@ -425,6 +426,17 @@ CREATE TABLE agreement_documents(
   created_by TEXT,
   created_at TIMESTAMP WITH TIME ZONE
 );
+INSERT INTO agreement_documents (
+  agreement_document_id,
+  type,
+  title,
+  version,
+  body,
+  created_by,
+  created_at
+) VALUES
+  (1, '01', 'Agreement (1)', 0, 'This is the content of the agreement.', 'system', NOW()),
+  (2, '02', 'Addendum (2)', 0, 'This is the content of the addendum.', 'system', NOW());
 
 CREATE TABLE contacts(
   contact_id BIGINT PRIMARY KEY,
@@ -453,3 +465,16 @@ CREATE TABLE enrollments(
   changed_at TIMESTAMP WITH TIME ZONE,
   change_note TEXT
 );
+
+CREATE TABLE provider_type_agreement_documents(
+  provider_type_code CHARACTER VARYING(2)
+    REFERENCES provider_types(code),
+  agreement_document_id BIGINT
+    REFERENCES agreement_documents(agreement_document_id),
+  PRIMARY KEY (provider_type_code, agreement_document_id)
+);
+INSERT INTO provider_type_agreement_documents (
+  provider_type_code,
+  agreement_document_id
+) VALUES
+  ('18', 1);

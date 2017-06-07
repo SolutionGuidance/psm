@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -74,12 +74,16 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
-     * @param request the request containing the form fields
      *
+     * @param enrollment the model to bind to
+     * @param request    the request containing the form fields
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(
+            CMSUser user,
+            EnrollmentType enrollment,
+            HttpServletRequest request
+    ) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         provider.setRenewalShowBlankStatement(param(request, "renewalBlankInit"));
@@ -94,7 +98,7 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
         }
 
         ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-        List<AgreementDocument> docs = getLookupService().findRequiredDocuments(pt.getCode());
+        List<AgreementDocument> docs = pt.getAgreementDocuments();
 
         List<ProviderAgreementType> xList = new ArrayList<ProviderAgreementType>();
         HashSet<String> agreed = new HashSet<String>();
@@ -125,79 +129,85 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
             providerAgreement.clear();
             providerAgreement.addAll(xList);
         }
-        
+
         return exceptions;
     }
 
     /**
      * Binds the model to the request attributes.
+     *
      * @param enrollment the model to bind from
-     * @param mv the model and view to bind to
-     * @param readOnly true if the view is read only
+     * @param mv         the model and view to bind to
+     * @param readOnly   true if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(
+            CMSUser user,
+            EnrollmentType enrollment,
+            Map<String, Object> mv,
+            boolean readOnly
+    ) {
         attr(mv, "bound", "Y");
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
 
         if (enrollment.getRequestType() == RequestType.RENEWAL && "Y".equals(provider.getRenewalShowBlankStatement())) {
-        	attr(mv, "renewalBlankInit", "YY");
-        	ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-	        List<AgreementDocument> docs = getLookupService().findRequiredDocuments(pt.getCode());
-	        int i = 0;
-	        for (AgreementDocument doc : docs) {
-	            attr(mv, "documentId", i, "" + doc.getId());
-	            attr(mv, "documentName", i, doc.getTitle());
-	
-	            attr(mv, "accepted", i, "N");
-	            attr(mv, "updatedVersion", i, "N");
-	            i++;
-	        }
+            attr(mv, "renewalBlankInit", "YY");
+            ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+            List<AgreementDocument> docs = pt.getAgreementDocuments();
+            int i = 0;
+            for (AgreementDocument doc : docs) {
+                attr(mv, "documentId", i, "" + doc.getId());
+                attr(mv, "documentName", i, doc.getTitle());
+
+                attr(mv, "accepted", i, "N");
+                attr(mv, "updatedVersion", i, "N");
+                i++;
+            }
         } else {
-        	ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
-	        attr(mv, "name", statement.getName());
-	        attr(mv, "title", statement.getTitle());
-	        attr(mv, "date", statement.getSignDate());
-	
-	        AcceptedAgreementsType acceptedAgreements = provider.getAcceptedAgreements();
-	
-	        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-	        List<AgreementDocument> docs = getLookupService().findRequiredDocuments(pt.getCode());
-	        int i = 0;
-	        for (AgreementDocument doc : docs) {
-	            attr(mv, "documentId", i, "" + doc.getId());
-	            attr(mv, "documentName", i, doc.getTitle());
-	
-	            boolean agreed = false;
-	            boolean updatedVersion = false;
-	
-	            if (acceptedAgreements != null) {
-	                List<ProviderAgreementType> agreements = acceptedAgreements.getProviderAgreement();
-	                for (ProviderAgreementType agreement : agreements) {
-	                    if (doc.getType().equals(agreement.getAgreementDocumentType())) {
-	                        if (String.valueOf(doc.getVersion()).equals(agreement.getAgreementDocumentVersion())) {
-	                            agreed = true;
-	                        } else {
-	                            updatedVersion = true;
-	                        }
-	                        break;
-	                    }
-	                }
-	            }
-	
-	            attr(mv, "accepted", i, agreed ? "Y" : "N");
-	            attr(mv, "updatedVersion", i, updatedVersion ? "Y" : "N");
-	            i++;
-	        }
-	
-	        attr(mv, "requiredAgreementsSize", docs.size());
+            ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
+            attr(mv, "name", statement.getName());
+            attr(mv, "title", statement.getTitle());
+            attr(mv, "date", statement.getSignDate());
+
+            AcceptedAgreementsType acceptedAgreements = provider.getAcceptedAgreements();
+
+            ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+            List<AgreementDocument> docs = pt.getAgreementDocuments();
+            int i = 0;
+            for (AgreementDocument doc : docs) {
+                attr(mv, "documentId", i, "" + doc.getId());
+                attr(mv, "documentName", i, doc.getTitle());
+
+                boolean agreed = false;
+                boolean updatedVersion = false;
+
+                if (acceptedAgreements != null) {
+                    List<ProviderAgreementType> agreements = acceptedAgreements.getProviderAgreement();
+                    for (ProviderAgreementType agreement : agreements) {
+                        if (doc.getType().equals(agreement.getAgreementDocumentType())) {
+                            if (String.valueOf(doc.getVersion()).equals(agreement.getAgreementDocumentVersion())) {
+                                agreed = true;
+                            } else {
+                                updatedVersion = true;
+                            }
+                            break;
+                        }
+                    }
+                }
+
+                attr(mv, "accepted", i, agreed ? "Y" : "N");
+                attr(mv, "updatedVersion", i, updatedVersion ? "Y" : "N");
+                i++;
+            }
+
+            attr(mv, "requiredAgreementsSize", docs.size());
         }
     }
 
     /**
      * Captures the error messages related to the form.
-     * @param enrollment the enrollment that was validated
-     * @param messages the messages to select from
      *
+     * @param enrollment the enrollment that was validated
+     * @param messages   the messages to select from
      * @return the list of errors related to the form
      */
     protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
@@ -241,7 +251,7 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
      * Binds the fields of the form to the persistence model.
      *
      * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param ticket     the persistent model
      */
     public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
@@ -250,7 +260,7 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
         List<AcceptedAgreements> hList = profile.getAgreements();
 
         ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-        List<AgreementDocument> activeList = getLookupService().findRequiredDocuments(pt.getCode());
+        List<AgreementDocument> activeList = pt.getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
         // Retain any previously accepted agreements that is no longer shown in the page
@@ -291,6 +301,7 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
 
     /**
      * Maps the given list by id.
+     *
      * @param list the list to be mapped
      * @return the lookup map
      */
@@ -304,6 +315,7 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
 
     /**
      * Maps the given list by id.
+     *
      * @param list the list to be mapped
      * @return the lookup map
      */
@@ -319,12 +331,15 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
 
     /**
      * Filters the inactive agreements from the given list.
-     * @param accepted the current agreements
+     *
+     * @param accepted    the current agreements
      * @param documentMap the active agreements
      * @return the inactive agreements
      */
-    private List<AcceptedAgreements> filterOnlyInactive(List<AcceptedAgreements> accepted,
-        Map<String, AgreementDocument> documentMap) {
+    private List<AcceptedAgreements> filterOnlyInactive(
+            List<AcceptedAgreements> accepted,
+            Map<String, AgreementDocument> documentMap
+    ) {
         List<AcceptedAgreements> inactiveList = new ArrayList<AcceptedAgreements>();
         if (accepted != null) {
             for (AcceptedAgreements agreement : accepted) {
@@ -341,7 +356,7 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
+     * @param ticket     the persistent model
      * @param enrollment the front end model
      */
     public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
@@ -349,7 +364,7 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
         ProviderProfile profile = ticket.getDetails();
 
         ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-        List<AgreementDocument> activeList = getLookupService().findRequiredDocuments(pt.getCode());
+        List<AgreementDocument> activeList = pt.getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
         AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(enrollment);

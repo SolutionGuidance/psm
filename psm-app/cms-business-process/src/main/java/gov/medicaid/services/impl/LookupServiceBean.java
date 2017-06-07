@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -16,25 +16,17 @@
 package gov.medicaid.services.impl;
 
 import gov.medicaid.domain.model.ApplicantType;
-import gov.medicaid.domain.rules.GlobalLookups;
 import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.BeneficialOwnerType;
 import gov.medicaid.entities.EntityStructureType;
 import gov.medicaid.entities.LegacySystemMapping;
 import gov.medicaid.entities.LookupEntity;
 import gov.medicaid.entities.ProviderType;
-import gov.medicaid.entities.ProviderTypeSetting;
 import gov.medicaid.entities.ServiceAssuranceExtType;
 import gov.medicaid.entities.ServiceAssuranceType;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.util.Util;
-
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -45,10 +37,15 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Defines the UI related services.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -79,7 +76,7 @@ public class LookupServiceBean implements LookupService {
 
     /**
      * Retrieves the provider types filtered by applicant type.
-     * 
+     *
      * @param applicantType
      *            individual or organizations
      * @return the filtered provider types
@@ -96,7 +93,7 @@ public class LookupServiceBean implements LookupService {
 
     /**
      * Retrieves the lookup with the given description.
-     * 
+     *
      * @param cls
      *            the class to lookup
      * @param description
@@ -124,7 +121,7 @@ public class LookupServiceBean implements LookupService {
 
     /**
      * Retrieves the lookup with the given code.
-     * 
+     *
      * @param cls
      *            the class to lookup
      * @param description
@@ -152,7 +149,7 @@ public class LookupServiceBean implements LookupService {
 
     /**
      * Sets the value of the field <code>em</code>.
-     * 
+     *
      * @param em
      *            the em to set
      */
@@ -162,7 +159,7 @@ public class LookupServiceBean implements LookupService {
 
     /**
      * Find the related lookups to the given provider.
-     * 
+     *
      * @param cls
      *            the class to search for
      * @param providerType
@@ -181,47 +178,13 @@ public class LookupServiceBean implements LookupService {
         query.setParameter("providerType", providerType);
         query.setParameter("relationshipType", relType);
         query.setParameter("entityType", cls.getSimpleName());
-        
+
         return query.getResultList();
     }
 
-    /**
-     * Finds all the required agreements for the given provider type.
-     * 
-     * @param providerType
-     *            the provider type
-     * @return the required documents
-     */
-    @SuppressWarnings("unchecked")
-    public List<AgreementDocument> findRequiredDocuments(String providerType) {
-        Query query = em.createQuery("Select d FROM AgreementDocument d, ProviderTypeSetting s WHERE "
-                + "s.providerTypeCode = :providerType AND d.id = s.relatedEntityCode "
-                + "AND s.relatedEntityType = 'AgreementDocument'");
-        query.setParameter("providerType", providerType);
-        return query.getResultList();
-    }
-
-    /**
-     * Finds the provider type setting based on the given parameters.
-     * 
-     * @param providerTypeCode provider type code
-     * @param relatedEntityType related entity type
-     * @param relatedEntityCode related entity code
-     * 
-     * @return the list of settings
-     */
-    @SuppressWarnings("unchecked")
-	public List<ProviderTypeSetting> findProviderTypeSetting(String providerTypeCode, String relatedEntityType) {
-    	return em.createQuery("SELECT s from ProviderTypeSetting s WHERE s.providerTypeCode = :providerTypeCode " +
-    			"AND s.relatedEntityType = :relatedEntityType")
-    			.setParameter("providerTypeCode", providerTypeCode)
-    			.setParameter("relatedEntityType", relatedEntityType)
-    			.getResultList();
-    }
-    
     /**
      * Retrieves all the lookups of the given class.
-     * 
+     *
      * @param cls
      *            the class to search for
      * @param <T>
@@ -235,7 +198,7 @@ public class LookupServiceBean implements LookupService {
 
     /**
      * Retrieves all the owner types allowed for the given structure.
-     * 
+     *
      * @param entityType
      *            the corporate structure type
      * @return the matched lookups
@@ -257,7 +220,7 @@ public class LookupServiceBean implements LookupService {
 
     /**
      * Retrieves all the service types based on indicator.
-     * 
+     *
      * @param indicator
      *            in/out patient indicator
      * @return the matched lookups
@@ -271,7 +234,7 @@ public class LookupServiceBean implements LookupService {
 
     /**
      * Retrieves all the service types based on code.
-     * 
+     *
      * @param code
      *            the parent service code
      * @return the matched lookups
@@ -295,7 +258,7 @@ public class LookupServiceBean implements LookupService {
     public String findLegacyMapping(String name, String codeType, String internalCodeValue) {
         String query = "from LegacySystemMapping l where l.systemName = :systemName "
             + "AND l.codeType = :codeType AND l.internalCode = :internalCode";
-        
+
         List<LegacySystemMapping> resultList = em.createQuery(query).setParameter("systemName", name)
             .setParameter("codeType", codeType).setParameter("internalCode", internalCodeValue).getResultList();
         if (resultList.isEmpty()) {
@@ -303,7 +266,7 @@ public class LookupServiceBean implements LookupService {
         }
         return resultList.get(0).getExternalCode();
     }
-    
+
     /**
      * Retrieves the mapped code for the given external lookup.
      * @param name the system name
@@ -322,43 +285,31 @@ public class LookupServiceBean implements LookupService {
         }
         return resultList.get(0).getInternalCode();
     }
-    
+
     @Override
-    public void updateProviderTypeAgreementSettings(String providerTypeCode,
-    		long[] agreementIds) {
-    	List<ProviderTypeSetting> selectedSettings = findProviderTypeSetting(providerTypeCode, "AgreementDocument");
-        DecimalFormat format = new DecimalFormat("00");
-        List<Long> persistedIds = new ArrayList<Long>();
-        for (ProviderTypeSetting setting: selectedSettings) {
-        	boolean keep = false;
-        	for (long id: agreementIds) {
-        		if (setting.getRelatedEntityCode().equals(format.format(id))) {
-        			keep = true;
-        			persistedIds.add(id);
-        			break;
-        		}
-        	}
-        	if (!keep) {
-        		// delete the setting from DB
-        		em.remove(setting);
-        	}
+    public void updateProviderTypeAgreementSettings(
+            ProviderType providerType,
+            long[] agreementIds
+    ) {
+        providerType.setAgreementDocuments(
+                getAgreementDocuments(agreementIds)
+        );
+        em.merge(providerType);
+    }
+
+    private List<AgreementDocument> getAgreementDocuments(long[] agreementIds) {
+        if (agreementIds.length == 0) {
+            return new ArrayList<>();
+        } else {
+            return em.createQuery(
+                    "FROM AgreementDocument WHERE id IN :ids",
+                    AgreementDocument.class
+            ).setParameter(
+                    "ids",
+                    Arrays.stream(agreementIds)
+                            .boxed()
+                            .collect(Collectors.toList())
+            ).getResultList();
         }
-        
-        for (long id: agreementIds) {
-        	if (!persistedIds.contains(id)) {
-        		// new addition
-        		ProviderTypeSetting setting = new ProviderTypeSetting();
-        		BigDecimal maxId = (BigDecimal) em.createNativeQuery("select max(provider_setting_id) from PROVIDER_SETTING").getSingleResult();
-        		setting.setId(maxId.longValue() + 1);
-        		setting.setProviderTypeCode(providerTypeCode);
-        		setting.setRelatedEntityCode(format.format(id));
-        		setting.setRelatedEntityType("AgreementDocument");
-        		setting.setRelationshipType("RA");
-        		
-        		em.persist(setting);
-        	}
-        }
-        
-        GlobalLookups.refresh();
     }
 }

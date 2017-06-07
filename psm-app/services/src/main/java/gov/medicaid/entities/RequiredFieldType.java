@@ -17,5 +17,5 @@ package gov.medicaid.entities;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
-@Table(name = "required_field_type")
+@Table(name = "required_field_types")
 public class RequiredFieldType extends LookupEntity {}

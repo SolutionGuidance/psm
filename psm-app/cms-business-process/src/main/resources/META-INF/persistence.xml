@@ -55,6 +55,7 @@
     <class>gov.medicaid.entities.EnrollmentStatus</class>
     <class>gov.medicaid.entities.EntityStructureType</class>
     <class>gov.medicaid.entities.HelpItem</class>
+    <class>gov.medicaid.entities.IssuingBoard</class>
     <class>gov.medicaid.entities.LicenseType</class>
     <class>gov.medicaid.entities.ProfileStatus</class>
     <class>gov.medicaid.entities.ProviderProfile</class>

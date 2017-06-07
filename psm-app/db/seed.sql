@@ -231,6 +231,21 @@ INSERT INTO entity_structure_types (code, description) VALUES
  ('08', 'Professional Association'),
  ('99', 'Other');
 
+CREATE TABLE issuing_boards(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO issuing_boards (code, description) VALUES
+ ('B1', 'AANA'),
+ ('B2', 'NARM'),
+ ('B3', 'ANCC'),
+ ('B4', 'AOTA'),
+ ('B5', 'ADA'),
+ ('B6', 'ABMS'),
+ ('B7', 'ABPS');
+  
+
+  
 CREATE TABLE categories_of_service (
   code        CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE

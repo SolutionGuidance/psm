@@ -132,20 +132,6 @@
 			<column name="STATUS" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.BeneficialOwnerType" table="LU_BEN_OWNER_TYP">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="ownerType"
-			type="string">
-			<column length="1" name="OWNER_TYPE" />
-		</property>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.EntityStructureType" table="LU_CORP_STRUCTURE_TYP">
 		<id name="code" type="string">
 			<column length="2" name="CODE" />

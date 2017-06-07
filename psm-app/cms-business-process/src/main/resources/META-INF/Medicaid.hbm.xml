@@ -172,16 +172,6 @@
 			<column name="DESCRIPTION" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.CategoryOfService" table="LU_COS">
-		<id name="code" type="string">
-			<column length="3" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.OwnershipType" table="LU_OWNERSHIP_TYP">
 		<id name="code" type="string">
 			<column length="2" name="CODE" />

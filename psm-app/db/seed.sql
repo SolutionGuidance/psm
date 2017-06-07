@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS
   agreement_documents,
   audit_details,
   audit_records,
+  categories_of_service,
   cms_authentication,
   cms_user,
   contacts,
@@ -213,6 +214,39 @@ CREATE TABLE required_field_types(
 INSERT INTO required_field_types (code, description) VALUES
   ('01', 'Required'),
   ('02', 'Optional');
+
+CREATE TABLE categories_of_service (
+  code        CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO categories_of_service (code, description) VALUES
+  ('01', 'AC Transportation'),
+  ('02', 'Home Delivered Meals'),
+  ('03', 'Adult Day Services'),
+  ('04', 'Homemaker Services'),
+  ('05', 'Behavioral Program Services'),
+  ('06', 'In-home Family Support'),
+  ('07', 'Caregiver Training'),
+  ('08', 'Independent Living Skills'),
+  ('09', 'Case Management Waiver/Alternative Care'),
+  ('10', 'Modification and Adaptations'),
+  ('11', 'Chore'),
+  ('12', 'Nutritional Services'),
+  ('13', 'Cognitive Therapy'),
+  ('14', 'PERS and AC Supplies'),
+  ('15', 'Companion Services'),
+  ('16', 'Respite Care'),
+  ('17', 'Consumer Directed Community Support (CDCS)'),
+  ('18', 'Specialized Supplies &' || ' Equipment (Waiver)'),
+  ('19', 'Spenddown Collection'),
+  ('20', 'Customized Living, 24 CL, Residential Care Services, Assisted Living Services'),
+  ('21', 'Structured Day Program Services'),
+  ('22', 'Supported Employment Services'),
+  ('23', 'Family Counseling and Training'),
+  ('24', 'Supported Living Services'),
+  ('25', 'Foster Care Services'),
+  ('26', 'Waiver Transportation');
+
 
 CREATE TABLE beneficial_owner_types(
   code CHARACTER VARYING(2) PRIMARY KEY,

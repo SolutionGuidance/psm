@@ -95,16 +95,20 @@ messaging service:
 
 # Prerequisites
 
-1. A [Java 8](https://www.java.com) JRE and JDK. We are testing with OpenJDK 8,
-   which you can install on Debian-like systems with
+1. A [Java 8](https://www.java.com) JRE and JDK. Run `java -version`
+   to check your Java version; "1.8" refers to Java 8. We are testing
+   with OpenJDK 8, which you can install on Debian-like systems with
    `sudo apt install openjdk-8-jdk-headless`.
 1. [Ant](https://ant.apache.org/) for building: `sudo apt install ant`.
 
 1. An SMTP server. For development, consider
    [MailCatcher](https://mailcatcher.me/), which you can install with
-   `gem install --user-install mailcatcher`. See the website for more details.
+   `gem install --user-install mailcatcher`. If installation fails,
+   ensure you have a GCC compiler and the Ruby developer package
+   installed. See the website for more details.
 
    ```ShellSession
+   $ sudo apt install ruby-dev g++
    $ gem install --user-install mailcatcher
    # run mailcatcher:
    $ ~/.gem/ruby/2.3.0/bin/mailcatcher
@@ -116,6 +120,15 @@ messaging service:
 
 1. [PostgreSQL 9.6](https://www.postgresql.org/). We are testing with
    PostgreSQL 9.6.2.
+
+1. The PSM code repository. Currently we suggest you run the PSM from
+   the master branch of the development repository. Run the command
+   below and it will download the source code into a new subdirectory
+   called `psm`.
+
+   ```ShellSession
+   $ git clone https://github.com/OpenTechStrategies/psm.git
+   ```
 
 # Configuring WildFly
 
@@ -186,14 +199,17 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    and [https://localhost:8443/](https://localhost:8443/) for the app(s) it
    hosts - currently none.
 
+1. Leave WildFly running as you continue the install process.
+
 ## Configure services
 
 ### Mail
 
 If you are using a debugging mail server such as MailCatcher, update
-the outgoing SMTP port and add a mail server without
-credentials. Paste the entire command below, all the way through the
-second `EOF`, into your terminal:
+the outgoing SMTP port and add a mail server without credentials. Open
+a new terminal session so you can leave WildFly running in the
+existing terminal. Paste the entire command below, all the way through
+the second `EOF`, into your terminal:
 
 ```ShellSession
 $ ./bin/jboss-cli.sh --connect << EOF
@@ -218,14 +234,29 @@ $ ./bin/jboss-cli.sh --connect \
 
 ### Database
 
-Download the [PostgreSQL JDBC driver](https://jdbc.postgresql.org/) and deploy
-it to your application server:
+Download the [PostgreSQL JDBC driver](https://jdbc.postgresql.org/)
+(specifically, the JDBC 4.2 version of the driver). Place it in the
+parent directory, relative to the WildFly directory, and deploy it to
+your application server:
 
 ```ShellSession
 $ ./bin/jboss-cli.sh --connect --command="deploy ../postgresql-{VERSION}.jar"
 ```
 
-You will need a database user, and a database owned by that user:
+If you get an error saying that the `.jar` file "is not a valid node
+type name", double-check that it's in the correct directory. If it is,
+then place the `.jar` file in
+`wildfly-10.1.0.Final/standalone/deployments` and then restart the
+WildFly server. The terminal logging for WildFly should then include
+an `INFO` line like:
+
+```
+15:32:15, 773 INFO [org.jboss.as.server] )ServerService Thread Pool --37) WFLYSRV0010: Deployed "postgresql-42.1.1.jar" (runtime-name: "postgresql-42.1.1.jar")
+```
+
+You will need a database user, and a database owned by that
+user. Create them, and make a note of the password for the database
+user:
 
 ```ShellSession
 $ sudo -u postgres createuser --pwprompt psm

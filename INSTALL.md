@@ -119,7 +119,7 @@ messaging service:
    ```
 
 1. [PostgreSQL 9.6](https://www.postgresql.org/). We are testing with
-   PostgreSQL 9.6.2.
+   PostgreSQL 9.6.2. Check that you have PostgreSQL installed.
 
 1. The PSM code repository. Currently we suggest you run the PSM from
    the master branch of the development repository. Run the command
@@ -157,6 +157,8 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    a) Management User (mgmt-users.properties)
    b) Application User (application-users.properties)
    (a): a
+
+   {Choose username, create and confirm password.}
 
    What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]:
 

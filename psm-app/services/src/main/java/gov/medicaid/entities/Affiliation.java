@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -60,27 +60,27 @@ public class Affiliation extends IdentifiableEntity {
      * Target entity.
      */
     private long targetEntityId;
-    
+
     /**
      * For qualified professionals.
      */
     private QPType qpType;
-    
+
     /**
      * Subtype for mental health professional.
      */
     private String mhpType;
-    
+
     /**
      * Acknowledgement attachment (QP).
      */
     private String acknowledgementAttachmentId;
-    
+
     /**
      * Ended flag.
      */
     private String terminatedInd;
-    
+
     /**
      * End date.
      */
@@ -90,7 +90,7 @@ public class Affiliation extends IdentifiableEntity {
      * Affiliates licenses.
      */
     private List<License> affiliateLicenses;
-    
+
     /**
      * The entity.
      */
@@ -100,17 +100,11 @@ public class Affiliation extends IdentifiableEntity {
      * The BGS Study ID for Personal Care Provider Org.
      */
     private String bgsStudyId;
-    
+
     /**
      * The BGS Clearance Date for Personal Care Provide Org.
      */
     private Date bgsClearanceDate;
-    
-    /**
-     * Empty constructor.
-     */
-    public Affiliation() {
-    }
 
     /**
      * Gets the value of the field <code>targetProfileId</code>.

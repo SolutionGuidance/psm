@@ -128,12 +128,6 @@ public class Enrollment implements Serializable {
      */
     private ProviderProfile details;
 
-    /**
-     * Empty constructor.
-     */
-    public Enrollment() {
-    }
-
     public long getTicketId() {
         return ticketId;
     }

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -42,13 +42,6 @@ public class ProviderTypeSetting extends IdentifiableEntity {
      * The related entity code.
      */
     private String relatedEntityCode;
-
-    /**
-     * Empty constructor.
-     */
-    public ProviderTypeSetting() {
-
-    }
 
     /**
      * Gets the value of the field <code>providerTypeCode</code>.

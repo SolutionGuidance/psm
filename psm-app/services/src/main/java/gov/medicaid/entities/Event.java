@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -45,12 +45,6 @@ public class Event extends IdentifiableEntity {
      * Timestamp.
      */
     private Date createdOn;
-
-    /**
-     * Default empty constructor.
-     */
-    public Event() {
-    }
 
     /**
      * Get the Npi.

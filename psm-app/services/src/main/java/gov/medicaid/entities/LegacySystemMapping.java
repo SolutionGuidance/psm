@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -29,27 +29,21 @@ public class LegacySystemMapping extends IdentifiableEntity implements Serializa
      * The external system name.
      */
     private String systemName;
-    
+
     /**
      * The code type.
      */
     private String codeType;
-    
+
     /**
      * The external code.
      */
     private String externalCode;
-    
+
     /**
      * The internal code.
      */
     private String internalCode;
-    
-    /**
-     * Empty constructor.
-     */
-    public LegacySystemMapping() {
-    }
 
     /**
      * Gets the value of the field <code>systemName</code>.

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -73,12 +73,6 @@ public class UserSearchCriteria extends SearchCriteria {
      * @since v1.2 - Medicaid Provider Screening Portal - System Admin Front End Assembly
      */
     private boolean searchBox;
-
-    /**
-     * Default empty constructor.
-     */
-    public UserSearchCriteria() {
-    }
 
     /**
      * Gets the value of the field <code>username</code>.

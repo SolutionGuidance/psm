@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -84,14 +84,14 @@ public interface FormBinder {
      */
     public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment);
 
-    
+
     /**
      * Renders the PDF representation of the form.
      *
      * @param enrollment the enrollment to be rendered
      * @param document the PDF document to render on
      * @param model the view model
-     * @throws DocumentException if the document could not be written 
+     * @throws DocumentException if the document could not be written
      */
     void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model) throws DocumentException;
 }

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -55,12 +55,12 @@ import com.lowagie.text.pdf.PdfWriter;
 
 /**
  * This class provides an implementation of the ExportService via its Local and Remote interfaces.
- * 
+ *
  * <p>
  * <b>Thread Safety</b> This bean is mutable and not thread-safe as it deals with non-thread-safe entities. However, in
  * the context of being used in a container, it is thread-safe.
  * </p>
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -78,7 +78,7 @@ public class ExportServiceBean extends BaseService implements ExportService {
 
     /**
      * Sets the given table to take an entire page with.
-     * 
+     *
      * @param table
      *            the table to make full width
      */
@@ -90,7 +90,7 @@ public class ExportServiceBean extends BaseService implements ExportService {
 
     /**
      * Adds a centered cell to the given table.
-     * 
+     *
      * @param table
      *            the table to add the cell to
      * @param value
@@ -106,7 +106,7 @@ public class ExportServiceBean extends BaseService implements ExportService {
 
     /**
      * Creates a header cell.
-     * 
+     *
      * @param text
      *            the header text
      * @param colspan
@@ -122,7 +122,7 @@ public class ExportServiceBean extends BaseService implements ExportService {
 
     /**
      * Exports the search results into PDF.
-     * 
+     *
      * @param requests
      *            the list to be exported
      * @param status
@@ -187,7 +187,7 @@ public class ExportServiceBean extends BaseService implements ExportService {
 
     /**
      * Exports the profile into PDF.
-     * 
+     *
      * @param currentUser
      *            the current user
      * @param enrollment
@@ -217,7 +217,7 @@ public class ExportServiceBean extends BaseService implements ExportService {
 
     /**
      * Renders the ticket.
-     * 
+     *
      * @param enrollment
      *            the enrollment
      * @param document
@@ -264,7 +264,7 @@ public class ExportServiceBean extends BaseService implements ExportService {
 
     /**
      * Exports the pdf file for FileNet.
-     * 
+     *
      * @param currentUser
      *            the current user
      * @param enrollment

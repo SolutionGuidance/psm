@@ -26,7 +26,7 @@ public class ServiceAssuranceType extends LookupEntity {
 
     /**
      * Gets the patient indicator.
-     * 
+     *
      * @return the patientInd
      */
     public String getPatientInd() {
@@ -35,7 +35,7 @@ public class ServiceAssuranceType extends LookupEntity {
 
     /**
      * Sets the patient indicator.
-     * 
+     *
      * @param patientInd
      */
     public void setPatientInd(String patientInd) {

@@ -17,7 +17,7 @@ import com.topcoder.util.log.Log;
 
 /**
  * This reads the flat file and merges any changes.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -27,7 +27,7 @@ public class FlatFileImporter {
      * The class logger.
      */
     private Log log = LogUtil.getLog(getClass().getName());
-    
+
     /**
      * Lookup service for code values.
      */
@@ -39,7 +39,7 @@ public class FlatFileImporter {
     public FlatFileImporter() {
         enrollmentService = new CMSConfigurator().getEnrollmentService();
     }
-    
+
     /**
      * Performs the legacy id update.
      * @param bytes the bytes from the MQ message

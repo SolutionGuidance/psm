@@ -32,16 +32,16 @@
 	</bean>
 	
 
-	<!-- Defines which remember me implementation to use - in this case using a database table to log 'remembered' tokens --> 
-	<bean id="rememberMeServices" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices"> 
-	    <property name="tokenRepository" ref="tokenRepository" /> 
-	    <property name="userDetailsService" ref="CMSRememberMeUserDetailsService" /> 
+	<!-- Defines which remember me implementation to use - in this case using a database table to log 'remembered' tokens -->
+	<bean id="rememberMeServices" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+	    <property name="tokenRepository" ref="tokenRepository" />
+	    <property name="userDetailsService" ref="CMSRememberMeUserDetailsService" />
 	    <property name="key" value="${keys.remembermehash}" />
 	    <property name="parameter" value="keepUserSignedIn" />
-	    <property name="alwaysRemember" value="false" /> 
-	    <property name="tokenValiditySeconds" value="604800" /> 
-	</bean> 
-	 
+	    <property name="alwaysRemember" value="false" />
+	    <property name="tokenValiditySeconds" value="604800" />
+	</bean>
+	
 	
     <bean id="simpleUrlAuthenticationSuccessHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler">
 		<property name="defaultTargetUrl" value="/landing" />
@@ -55,7 +55,7 @@
 		<property name="loginFormUrl" value="/login" />
 		<property name="forceHttps" value="false" />
 	</bean>
-   
+
 	<s:authentication-manager alias="authenticationManagerAlias">
 		<s:authentication-provider ref="PrimaryDatabaseProvider" />
 <!-- todo: dive deep into user authentication; see issue #34
@@ -91,7 +91,7 @@
             </bean>
         </property>
     </bean>
-    
+
     <bean id="CMSRememberMeUserDetailsService" class="gov.medicaid.security.CMSRememberMeUserDetailsService">
         <property name="registrationService">
             <bean class="org.springframework.jndi.JndiObjectFactoryBean">
@@ -110,7 +110,7 @@
 		        </property>
 		    </bean>
       </property>
-    </bean>	   
+    </bean>	
 
 	<bean id="PrimaryDatabaseProvider" class="gov.medicaid.security.DomainDatabaseAuthenticationProvider">
         <property name="registrationService">

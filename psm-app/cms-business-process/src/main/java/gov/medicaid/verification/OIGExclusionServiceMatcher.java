@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ import com.topcoder.util.log.Log;
 
 /**
  * Uses a web service call to filter multiple search results into an exact match.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -60,7 +60,7 @@ public class OIGExclusionServiceMatcher extends BaseSOAPClient implements Result
 
     /**
      * Performs OIG exclusion check, it is carried out in two steps, search and verification.
-     * 
+     *
      * @param provider
      *            the provider
      * @param entityId
@@ -94,7 +94,7 @@ public class OIGExclusionServiceMatcher extends BaseSOAPClient implements Result
 
     /**
      * This handles resolving specific matches from the external search results.
-     * 
+     *
      * @param provider
      *            the applicant
      * @param object

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -44,32 +44,32 @@ public class ProviderLookup {
      * Practice name.
      */
     private String name;
-    
+
     /**
      * ProviderType.
      */
     private String providerType;
-    
+
     /**
      * Contact person name.
      */
     private String contactName;
-    
+
     /**
      * Contact person phone.
      */
     private String phone1;
-    
+
     /**
      * Contact person phone.
      */
     private String phone2;
-    
+
     /**
      * Contact person phone.
      */
     private String phone3;
-    
+
     /**
      * Contact person phone.
      */

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import com.topcoder.util.log.Level;
 
 /**
  * Implementation of a partner service.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -65,7 +65,7 @@ public class MockMNITSPartnerServiceBean extends BaseService implements
 
 	/**
 	 * Retrieves the profiles of users from the given link.
-	 * 
+	 *
 	 * @param externalUserId
 	 *            the external account link user id
 	 * @return the list of matched profiles
@@ -80,15 +80,15 @@ public class MockMNITSPartnerServiceBean extends BaseService implements
 
 	/**
 	 * Authenticates the given credentials.
-	 * 
+	 *
 	 * 1. Confirm the domain from #4 is allowable, else show access error
 	 * (domain is configurable)
-	 * 
+	 *
 	 * 2. Confirm #3, else show access error
-	 * 
+	 *
 	 * 3. Confirm that 1 and 2 are identical, or, that #2 works for #1, else
 	 * show access error
-	 * @throws PortalServiceException for any errors encountered 
+	 * @throws PortalServiceException for any errors encountered
 	 */
 	public boolean authenticate(String externalUserId, String password,
 			String profileNPI, String referrer) throws PortalServiceException {

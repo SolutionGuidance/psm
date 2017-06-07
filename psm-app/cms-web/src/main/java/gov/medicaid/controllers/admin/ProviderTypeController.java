@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -247,7 +247,7 @@ public class ProviderTypeController extends BaseServiceAdminController {
             List<AgreementDocument> agreements = agreementDocumentService.search(criteria).getItems();
             List<AgreementDocument> remainingAgreements = new ArrayList<AgreementDocument>(agreements);
             List<AgreementDocument> selectedAgreements = lookupService.findRequiredDocuments(providerType.getCode());
-            
+
             for (AgreementDocument agreement: agreements) {
             	for (AgreementDocument selectedAgreement: selectedAgreements) {
             		if (selectedAgreement.getId() == agreement.getId()) {
@@ -287,15 +287,15 @@ public class ProviderTypeController extends BaseServiceAdminController {
             boolean exists = getLookupService().findLookupByDescription(ProviderType.class, providerType.getDescription()) != null;
             if (!blank && !exists) {
                 providerTypeService.create(providerType);
-                
+
                 // Retrieve
                 providerType = providerTypeService.get(providerType.getCode());
-                
+
                 ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
                 model.addObject("providerType", providerType);
                 return LogUtil.traceExit(getLog(), signature, model);
             } else {
-                
+
                 ModelAndView mv = beginCreate();
                 if (blank) {
                     ControllerHelper.addError("Please specify a provider type.");
@@ -331,9 +331,9 @@ public class ProviderTypeController extends BaseServiceAdminController {
             // Retrieve
             providerType = providerTypeService.get(providerType.getCode());
             long[] agreementIds = ServletRequestUtils.getLongParameters(request, "providerAgreements");
-            
+
             lookupService.updateProviderTypeAgreementSettings(providerType.getCode(), agreementIds);
-            
+
             ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
             model.addObject("providerType", providerType);
             model.addObject("agreements", lookupService.findRequiredDocuments(providerType.getCode()));

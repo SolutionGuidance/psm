@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -71,14 +71,14 @@ public class CTCCFormBinder extends BaseFormBinder {
         if (attachmentId != null) {
             replaceDocument(attachments, attachmentId, DocumentNames.COMMUNITY_HEALTH_BOARD_DHS_CONTRACT.value());
         }
-        
+
         FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
         if (param(request, "chbIndicator") != null) {
             creds.setCommunityHealthBoard("Y");
         } else {
             creds.setCommunityHealthBoard("N");
         }
-        
+
         return Collections.EMPTY_LIST;
     }
 
@@ -92,7 +92,7 @@ public class CTCCFormBinder extends BaseFormBinder {
                 toRemove.add(doc);
             }
         }
-        
+
         attachments.getAttachment().removeAll(toRemove);
     }
 
@@ -112,11 +112,11 @@ public class CTCCFormBinder extends BaseFormBinder {
                 attr(mv, "dhsContract", doc.getObjectId());
             }
         }
-        
+
         FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
         attr(mv, "chbIndicator", creds.getCommunityHealthBoard());
     }
-    
+
     /**
      * Captures the error messages related to the form.
      * @param enrollment the enrollment that was validated

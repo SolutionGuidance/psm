@@ -22,7 +22,7 @@ import javax.xml.transform.TransformerException;
 
 /**
  * Used to search for exclusion records for a provider.
- * 
+ *
  * @author cyberjag
  * @version 1.0
  */
@@ -37,7 +37,7 @@ public class SAMExclusionSearchClient extends BaseSOAPClient {
 
     /**
      * Performs SAM exclusion check, it is carried out in two steps, search and verification.
-     * 
+     *
      * @param provider
      *            the provider
      * @return the screening results

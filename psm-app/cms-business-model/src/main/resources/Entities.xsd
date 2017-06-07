@@ -805,18 +805,18 @@
             <enumeration value="Intensive Residential Treatment Services"></enumeration>
             <enumeration value="Residential Services, ICF/DD"></enumeration>
             <enumeration value="End Stage Renal Dialysis"></enumeration>
-            
+
             <enumeration value="License and Transmittal (CMS 1539 Form) from MN Department of Health"></enumeration>
             <enumeration value="Hospice license from the MN Dept of Health"></enumeration>
             <enumeration value="CMS Medicare Certification Letter"></enumeration>
-            
+
             <enumeration value="State License to operate as a Hospital"></enumeration>
             <enumeration value="CLIA Certificate if billing Lab Services"></enumeration>
             <enumeration value="Renal Dialysis Facility Approval letter from regional CMS office"></enumeration>
-            
+
             <enumeration value="Birth Center license from the MN Department of Health"></enumeration>
             <enumeration value="Accreditation from the Commission for the Accreditation of Birth Centers"></enumeration>
-            
+
             <enumeration value="Special Transportation (STS) - Transportation Certificate from the MN Department of Transportation"></enumeration>
             <enumeration value="Ambulance - Licensure as Emergency Medical Transportation Provider from the state of practice"></enumeration>
             <enumeration value="Air - FAA Certificate of airworthiness plus Ambulance License"></enumeration>
@@ -935,7 +935,7 @@
 			<enumeration value="Gynecology" />
 			<enumeration value="Immunology" />
 			<enumeration value="Infectious Disease" />
-			<enumeration value="Internal Medicine" /> 
+			<enumeration value="Internal Medicine" />
 			<enumeration value="Nephrology" />
 			<enumeration value="Neurological Surgery" />
 			<enumeration value="Neurology" />

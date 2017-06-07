@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -109,7 +109,7 @@ import com.topcoder.util.log.Level;
 
 /**
  * Handles requests for enrollment pages.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -177,7 +177,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * This method checks that all required injection fields are in fact provided.
-     * 
+     *
      * @throws PortalServiceConfigurationException
      *             - If there are required injection fields that are not injected
      */
@@ -203,7 +203,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Downloads an attachment.
-     * 
+     *
      * @param enrollment
      *            the session model
      * @param attachmentId
@@ -235,7 +235,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Starts the enrollment process.
-     * 
+     *
      * @param model
      *            the request model
      * @return the enrollment start page.
@@ -252,7 +252,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Starts the renewal process.
-     * 
+     *
      * @param profileId
      *            the profile to renew
      * @param model
@@ -272,7 +272,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Starts the renewal process using an old ticket.
-     * 
+     *
      * @param ticketId
      *            the profile to renew
      * @param model
@@ -294,7 +294,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Starts the renewal process using an old ticket.
-     * 
+     *
      * @param ticketId
      *            the profile to renew
      * @param model
@@ -404,7 +404,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Starts the update process.
-     * 
+     *
      * @param profileId
      *            the profile to edit
      * @param model
@@ -423,7 +423,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Views the given profile.
-     * 
+     *
      * @param profileId
      *            the profile to view
      * @param model
@@ -450,7 +450,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Displays the initial provider type selection.
-     * 
+     *
      * @param enrollment
      *            the current model
      * @return the provider type selection page.
@@ -465,7 +465,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Handles requests to go back to the previous page.
-     * 
+     *
      * @param enrollment
      *            the current enrollment model
      * @param request
@@ -497,7 +497,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Handles requests to go to the next page.
-     * 
+     *
      * @param enrollment
      *            the current enrollment model
      * @param request
@@ -536,7 +536,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Sets the defaults for person applications.
-     * 
+     *
      * @param enrollment
      *            the enrollment request.
      */
@@ -568,7 +568,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Handles requests to go to the next page.
-     * 
+     *
      * @param enrollment
      *            the current enrollment model
      * @param request
@@ -601,7 +601,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Loads the given current page of the enrollment process.
-     * 
+     *
      * @param enrollment
      *            the enrollment model
      * @return the current page of the enrollment process
@@ -615,7 +615,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Loads the given current page of the enrollment process.
-     * 
+     *
      * @param enrollment
      *            the enrollment model
      * @return the current page of the enrollment process
@@ -632,7 +632,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Shows the print preview for the given ticket.
-     * 
+     *
      * @param ticketId
      *            the ticket to be exported
      * @return the print preview
@@ -647,7 +647,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Shows the print preview for the given ticket.
-     * 
+     *
      * @param ticketId
      *            the ticket to be exported
      * @return the print preview
@@ -664,7 +664,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Exports the ticket with the given id.
-     * 
+     *
      * @param ticketId
      *            the ticket to be exported
      * @param response
@@ -683,7 +683,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Exports the given.
-     * 
+     *
      * @param enrollment
      *            the enrollment model
      * @param response
@@ -706,7 +706,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Performs practice lookup.
-     * 
+     *
      * @param criteria
      *            the lookup criteria
      * @return the lookup JSON
@@ -730,7 +730,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Performs provider lookup.
-     * 
+     *
      * @param npi
      *            the provider NPI
      * @return the lookup JSON
@@ -752,7 +752,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Performs beneficial owner type lookup.
-     * 
+     *
      * @param entity
      *            type
      * @return the lookup JSON
@@ -768,7 +768,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Performs license type lookup.
-     * 
+     *
      * @param entity
      *            type
      * @return the lookup JSON
@@ -787,7 +787,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Loads the given enrollment by id.
-     * 
+     *
      * @param ticketId
      *            the enrollment ticket id
      * @param model
@@ -809,7 +809,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Loads the given enrollment by id.
-     * 
+     *
      * @param ticketId
      *            the enrollment ticket id
      * @param model
@@ -829,7 +829,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Retrieves the ticket.
-     * 
+     *
      * @param ticketId
      *            ticket identifier
      * @return the ticket
@@ -851,7 +851,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Loads the given page enrollment.
-     * 
+     *
      * @param enrollment
      *            the enrollment model
      * @param toPageName
@@ -868,7 +868,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Loads the given page enrollment.
-     * 
+     *
      * @param enrollment
      *            the enrollment model
      * @param toPageName
@@ -906,7 +906,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Saves the current enrollment ticket as draft.
-     * 
+     *
      * @param enrollment
      *            the current enrollment model
      * @param request
@@ -956,7 +956,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Saves the current enrollment ticket as draft.
-     * 
+     *
      * @param enrollment
      *            the current enrollment model
      * @param request
@@ -1014,7 +1014,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Submits the current enrollment.
-     * 
+     *
      * @param enrollment
      *            the current enrollment model
      * @param request
@@ -1083,7 +1083,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Submits the current enrollment.
-     * 
+     *
      * @param enrollment
      *            the current enrollment model
      * @param request
@@ -1155,7 +1155,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Shows the previous page.
-     * 
+     *
      * @param pageName
      *            the current page
      * @param enrollment
@@ -1184,7 +1184,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Shows the requested page.
-     * 
+     *
      * @param pageName
      *            the requested page name
      * @param enrollment
@@ -1199,7 +1199,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Shows the requested page.
-     * 
+     *
      * @param pageName
      *            the requested page name
      * @param enrollment
@@ -1236,7 +1236,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Shows the requested page.
-     * 
+     *
      * @param pageName
      *            the requested page name
      * @param enrollment
@@ -1354,7 +1354,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Adds the ticket details to the page (not modifiable directly by user).
-     * 
+     *
      * @param mv
      *            the model and view
      * @param enrollment
@@ -1385,7 +1385,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Retrieves the configured binder for the named form.
-     * 
+     *
      * @param form
      *            the name of the form
      * @return the configured binder
@@ -1403,7 +1403,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Determines the JSP name for the given page.
-     * 
+     *
      * @param pageName
      *            the page name
      * @param enrollment
@@ -1429,7 +1429,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Checks if the status is submitted.
-     * 
+     *
      * @param status
      *            the current status
      * @return true if the status is submitted
@@ -1441,7 +1441,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Shows the next page.
-     * 
+     *
      * @param pageName
      *            the current page
      * @param enrollment
@@ -1478,7 +1478,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Validates the given enrollment.
-     * 
+     *
      * @param enrollment
      *            the enrollment to be validated
      * @param pageName
@@ -1514,7 +1514,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Binds all the submitted forms.
-     * 
+     *
      * @param formNames
      *            the forms submitted
      * @param enrollment
@@ -1532,7 +1532,7 @@ public class EnrollmentPageFlowController extends BaseController {
         List<BinderException> exceptions = new ArrayList<BinderException>();
 
         bindFiles(enrollment, request);
-        
+
         CMSUser user = ControllerHelper.getCurrentUser();
         if (formNames != null) { // submitted forms
     		for (String form : formNames) {
@@ -1545,7 +1545,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Binds uploaded files.
-     * 
+     *
      * @param enrollment
      *            the enrollment
      * @param request
@@ -1587,7 +1587,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Sets the value of the field <code>enrollmentWebService</code>.
-     * 
+     *
      * @param enrollmentWebService
      *            the enrollmentWebService to set
      */
@@ -1597,7 +1597,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Sets the value of the field <code>presentationService</code>.
-     * 
+     *
      * @param presentationService
      *            the presentationService to set
      */
@@ -1607,7 +1607,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Sets the value of the field <code>binderRegistry</code>.
-     * 
+     *
      * @param binderRegistry
      *            the binderRegistry to set
      */
@@ -1617,7 +1617,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Gets the value of the field <code>enrollmentService</code>.
-     * 
+     *
      * @return the enrollmentService
      */
     public ProviderEnrollmentService getEnrollmentService() {
@@ -1626,7 +1626,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Sets the value of the field <code>enrollmentService</code>.
-     * 
+     *
      * @param enrollmentService
      *            the enrollmentService to set
      */
@@ -1636,7 +1636,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Sets the value of the field <code>exportService</code>.
-     * 
+     *
      * @param exportService
      *            the exportService to set
      */
@@ -1646,7 +1646,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Sets the value of the field <code>lookupService</code>.
-     * 
+     *
      * @param lookupService
      *            the lookupService to set
      */

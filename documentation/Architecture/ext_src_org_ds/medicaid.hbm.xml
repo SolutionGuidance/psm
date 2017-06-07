@@ -5,7 +5,7 @@
         <id column="source_stats_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
        <property column="name" name="name" type="string"/>
 	   <property name="successRequests" column="success_count" type="long"></property>
@@ -19,9 +19,9 @@
         <id column="result_log_entry_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
-        
+
         <many-to-one name="criteria" class="SearchCriteria" cascade="all">
             <column name="search_criteria_id"></column>
         </many-to-one>
@@ -31,7 +31,7 @@
         <id column="search_criteria_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="identifier" type="string"></property>
         <property name="lastName" type="string" column="last_name"></property>
@@ -45,7 +45,7 @@
             </type>
         </property>
         <property name="sortColumn" type="string" column="sort_column"></property>
-        
+
 	</class>
 
     <joined-subclass name="MedicaidCertifiedProviderSearchCriteria" table="medicaid_cert_prov_crit" extends="SearchCriteria">
@@ -63,7 +63,7 @@
         <key column="search_criteria_id"></key>
         <property name="licenseNumber" type="long" column="license_number"></property>
     </joined-subclass>
-    
+
     <joined-subclass name="SocialWorkLicenseSearchByNameCriteria" table="social_work_name_crit" extends="SearchCriteria">
         <key column="search_criteria_id"></key>
         <property name="city" type="string"></property>
@@ -82,7 +82,7 @@
             <column name="license_level_lu_id"></column>
         </many-to-one>
     </joined-subclass>
-    
+
 
 
 
@@ -190,17 +190,17 @@
         <id column="license_level_lu_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string"></property>
     </class>
-    
+
     <joined-subclass name="HealthOccupationsProgramCredentialSearchCriteria" table="hopc_crit" extends="SearchCriteria">
         <key column="search_criteria_id"></key>
         <property name="city" type="string"></property>
         <property name="county" type="string"></property>
         <property name="credentialNumber" type="long" column="credential_number"></property>
-        
+
         <many-to-one name="occupationType" class="OccupationType" cascade="all">
             <column name="occupation_type_lu_id"></column>
         </many-to-one>
@@ -211,41 +211,41 @@
             <column name="discipline_type_lu_id"></column>
         </many-to-one>
     </joined-subclass>
-    
+
     <joined-subclass name="NurseAnesthetistsSearchCriteria" table="aana_crit" extends="SearchCriteria">
         <key column="search_criteria_id"></key>
         <property name="ssn" type="string"></property>
         <property name="aanaNumber" type="long" column="aana_number"></property>
         <property name="recertification" type="boolean"></property>
     </joined-subclass>
-    
+
     <class name="OccupationType" table="occupation_type">
         <id column="occupation_type_lu_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string"></property>
     </class>
-    
+
     <class name="CredentialStatus" table="cred_status_type">
         <id column="cred_status_type_lu_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string"></property>
     </class>
-    
+
     <class name="Discipline" table="discipline_type">
         <id column="discipline_type_lu_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string"></property>
     </class>
-    
+
     <joined-subclass name="BusinessLienSearchCriteria" table="bls_crit" extends="SearchCriteria">
         <key column="search_criteria_id"></key>
         <property name="scope">
@@ -306,11 +306,11 @@
 
         <property name="name" type="string"></property>
     </class>
-    
+
     <joined-subclass name="NursingLicenseSearchCriteria" table="nursing_crit" extends="SearchCriteria">
         <key column="search_criteria_id"></key>
     </joined-subclass>
-    
+
     <joined-subclass name="BBHTLicenseSearchCriteria" table="bbht_crit" extends="SearchCriteria">
         <key column="search_criteria_id"></key>
         <many-to-one name="licenseType" class="LicenseType" cascade="all">
@@ -322,9 +322,9 @@
         <id column="license_type_lu_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
-        
+
         <property name="name" type="string"></property>
     </class>
 
@@ -346,16 +346,16 @@
             <column name="license_type_lu_id"></column>
         </many-to-one>
     </joined-subclass>
-    
+
     <joined-subclass name="PharmacyLicenseSearchCriteria" table="pharmacy_crit" extends="SearchCriteria">
         <key column="search_criteria_id"></key>
         <property name="businessName" column="business_name" type="string"></property>
     </joined-subclass>
-    
+
     <joined-subclass name="OptometryLicenseSearchCriteria" table="optometry_crit" extends="SearchCriteria">
         <key column="search_criteria_id"></key>
     </joined-subclass>
-    
+
     <joined-subclass name="MedicalPracticeLicenseSearchCriteria" table="med_practice_crit" extends="SearchCriteria">
         <key column="search_criteria_id"></key>
         <property name="city" type="string"></property>
@@ -369,19 +369,19 @@
         <id column="specialty_type_lu_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
-        
+
         <property name="name" type="string"></property>
     </class>
-    
+
     <class name="Specialty" table="specialty_lu">
         <id column="specialty_lu_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
-        
+
         <property name="code" type="long"></property>
         <property name="name" type="string"></property>
         <many-to-one name="type" class="SpecialtyType" cascade="all">

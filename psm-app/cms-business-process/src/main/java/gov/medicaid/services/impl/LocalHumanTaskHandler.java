@@ -45,9 +45,9 @@ import org.jbpm.task.service.responsehandlers.AbstractBaseResponseHandler;
 
 /**
  * This is a port of org.jbpm.process.workitem.wsht.CommandBasedWSHumanTaskHandler to use local connections.
- * 
+ *
  * See https://community.jboss.org/thread/201834
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -75,7 +75,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
 
     /**
      * Creates a new instance using the given session and service.
-     * 
+     *
      * @param session the knowledge session
      * @param service the task service
      */
@@ -100,7 +100,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
 
     /**
      * Executes the human task. Maps the work item to the Task table and persists it.
-     * 
+     *
      * @param workItem the task work item
      * @param manager the work item manager.
      */
@@ -112,7 +112,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
             names.add(new I18NText(LOCALE_DEFAULT, taskName));
             task.setNames(names);
         }
-        
+
         // set default values
         List<I18NText> empty = new ArrayList<I18NText>();
         empty.add(new I18NText(LOCALE_DEFAULT, ""));
@@ -159,7 +159,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
     /**
      * Saves the task content data.
      * @param workItem the current work item
-     * @return the content data 
+     * @return the content data
      */
     private ContentData saveContent(WorkItem workItem) {
         ContentData content = null;
@@ -205,7 +205,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
 
     /**
      * Callback for completed human task.
-     * 
+     *
      * @author TCSASSEMBLER
      * @version 1.0
      */
@@ -213,7 +213,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
 
         /**
          * Executes the callback logic.
-         * 
+         *
          * @param payload the work parameters
          */
         @SuppressWarnings("rawtypes")
@@ -245,7 +245,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
                                 }
                             }
                         }
-                        
+
                         if ("Y".equals(results.get("isAbort"))) {
                             session.getWorkItemManager().abortWorkItem(workItemId);
                         } else {
@@ -266,7 +266,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
 
         /**
          * Return false.
-         * 
+         *
          * @return false
          */
         public boolean isRemove() {

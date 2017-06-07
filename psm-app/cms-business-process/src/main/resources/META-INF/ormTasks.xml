@@ -20,8 +20,8 @@ select
      t.taskData.processId,
      t.taskData.processSessionId)
 from
-    Task t 
-    left join t.taskData.createdBy    
+    Task t
+    left join t.taskData.createdBy
     left join t.subjects as subject
     left join t.descriptions as description
     left join t.names as name,
@@ -69,8 +69,8 @@ select
      t.taskData.processId,
      t.taskData.processSessionId)
 from
-    Task t 
-    left join t.taskData.createdBy 
+    Task t
+    left join t.taskData.createdBy
     left join t.subjects as subject
     left join t.descriptions as description
     left join t.names as name,
@@ -170,7 +170,7 @@ select
      t.taskData.processId,
      t.taskData.processSessionId)
 from
-    Task t 
+    Task t
 	left join t.taskData.createdBy createdBy
     left join t.taskData.actualOwner actualOwner
     left join t.subjects as subject
@@ -223,7 +223,7 @@ select
      t.taskData.processId,
      t.taskData.processSessionId)
 from
-    Task t 
+    Task t
     left join t.taskData.createdBy createdBy
     left join t.taskData.actualOwner actualOwner
     left join t.subjects as subject
@@ -276,7 +276,7 @@ select
      t.taskData.processId,
      t.taskData.processSessionId)
 from
-    Task t 
+    Task t
     left join t.taskData.createdBy createdBy
     left join t.taskData.actualOwner actualOwner
     left join t.subjects as subject
@@ -336,7 +336,7 @@ from
     left join t.names as name
 where
     t.taskData.parentId = :parentId and
-    
+
     (
     name.language = :language
     or t.names.size = 0
@@ -380,7 +380,7 @@ select
      t.taskData.processId,
      t.taskData.processSessionId)
 from
-    Task t 
+    Task t
     left join t.taskData.createdBy
     left join t.subjects as subject
     left join t.descriptions as description
@@ -429,7 +429,7 @@ select
      t.taskData.processId,
      t.taskData.processSessionId)
 from
-    Task t 
+    Task t
     left join t.taskData.createdBy
     left join t.subjects as subject
     left join t.descriptions as description
@@ -478,7 +478,7 @@ select
      t.taskData.processId,
      t.taskData.processSessionId)
 from
-    Task t 
+    Task t
     left join t.taskData.createdBy
     left join t.subjects as subject
     left join t.descriptions as description
@@ -527,7 +527,7 @@ select
     t.taskData.processId,
     t.taskData.processSessionId)
 from
-    Task t 
+    Task t
     left join t.taskData.createdBy
     left join t.subjects as subject
     left join t.descriptions as description

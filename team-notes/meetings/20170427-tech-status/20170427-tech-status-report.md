@@ -23,7 +23,7 @@
 4. Dan: Once Jason has local deployment, deploy on a “production”
    server. (**Target&nbsp;Date:&nbsp;5/3**)
 
-5. Dan + Jason: Write initial deployment documentation 
+5. Dan + Jason: Write initial deployment documentation
    (**Target&nbsp;Date:&nbsp;5/4**)
 
 6. Cecilia et al: Format / review deployment documentation (**Target&nbsp;Date:&nbsp;5/5**)

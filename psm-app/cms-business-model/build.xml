@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ====================================================================== 
-     CMS Business Domain Model    
+<!-- ======================================================================
+     CMS Business Domain Model
      ====================================================================== -->
 <project name="cms-business-model" default="dist">
     <description>

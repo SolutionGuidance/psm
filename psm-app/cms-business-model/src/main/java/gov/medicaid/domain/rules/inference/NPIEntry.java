@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package gov.medicaid.domain.rules.inference;
 /**
  * This class is used by the rules to perform validation on an address within a context, since an address may appear in
  * different levels of a profile.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 2
@@ -52,7 +52,7 @@ public class NPIEntry {
 
     /**
      * Creates a new instance using the given entity.
-     * 
+     *
      * @param type
      *            the phone number type
      * @param path
@@ -69,7 +69,7 @@ public class NPIEntry {
 
     /**
      * NPI validation algorithm.
-     * 
+     *
      * @return Y/N based on the validation.
      */
     public String doValidation() {
@@ -105,7 +105,7 @@ public class NPIEntry {
 
     /**
      * Gets the value of the field <code>path</code>.
-     * 
+     *
      * @return the path
      */
     public String getPath() {
@@ -114,7 +114,7 @@ public class NPIEntry {
 
     /**
      * Sets the value of the field <code>path</code>.
-     * 
+     *
      * @param path
      *            the path to set
      */
@@ -124,7 +124,7 @@ public class NPIEntry {
 
     /**
      * Gets the value of the field <code>name</code>.
-     * 
+     *
      * @return the name
      */
     public String getName() {
@@ -133,7 +133,7 @@ public class NPIEntry {
 
     /**
      * Sets the value of the field <code>name</code>.
-     * 
+     *
      * @param name
      *            the name to set
      */
@@ -143,7 +143,7 @@ public class NPIEntry {
 
     /**
      * Gets the value of the field <code>npi</code>.
-     * 
+     *
      * @return the npi
      */
     public String getNpi() {
@@ -152,7 +152,7 @@ public class NPIEntry {
 
     /**
      * Gets the value of the field <code>validated</code>.
-     * 
+     *
      * @return the validated
      */
     public String getValidated() {
@@ -161,7 +161,7 @@ public class NPIEntry {
 
     /**
      * Sets the value of the field <code>validated</code>.
-     * 
+     *
      * @param validated
      *            the validated to set
      */
@@ -171,7 +171,7 @@ public class NPIEntry {
 
     /**
      * Gets the value of the field <code>valid</code>.
-     * 
+     *
      * @return the valid
      */
     public String getValid() {

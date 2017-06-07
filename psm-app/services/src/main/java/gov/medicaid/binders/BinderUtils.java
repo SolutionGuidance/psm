@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -83,7 +83,7 @@ public class BinderUtils {
         } catch (ParseException e) {
             throw new BinderException("Could not covert value to a valid date: " + parameter);
         }
-        
+
         if (!parameter.equals(df.format(cal.getTime()))) {
             throw new BinderException("Could not covert value to a valid date: " + parameter);
         }
@@ -143,7 +143,7 @@ public class BinderUtils {
             return 0;
         }
     }
-    
+
     /**
      * Retrieves the given object as double.
      *
@@ -154,7 +154,7 @@ public class BinderUtils {
         if (objectId == null) {
             return 0;
         }
-        
+
         try {
             return Double.parseDouble(objectId);
         } catch (NumberFormatException e) {
@@ -411,7 +411,7 @@ public class BinderUtils {
             }
         }
     }
-    
+
     /**
      * Unbinds uploaded files from this request.
      *
@@ -452,17 +452,17 @@ public class BinderUtils {
         if (ssn == null) {
             return null;
         }
-        
+
         StringBuilder sb = new StringBuilder(ssn);
         if (sb.length() > 3) {
             sb.insert(3, '-');
         }
-        
+
         if (sb.length() > 6) {
             sb.insert(6, '-');
         }
         return sb.toString();
     }
-    
-    
+
+
 }

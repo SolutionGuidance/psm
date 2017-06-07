@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ import java.util.Set;
 
 /**
  * Interface for enrollment related activities.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -47,7 +47,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * This method is used to delete a ticket draft. Note that only tickets in draft status can be removed.
-     * 
+     *
      * @param user
      *            the user performing the operation
      * @param ticketId
@@ -59,7 +59,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * This is the service method to be called after the process has completed and resulted in a rejected change.
-     * 
+     *
      * @param user
      *            the user who rejected the request
      * @param profileId
@@ -73,7 +73,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * This is the service method to be called after the process has completed and resulted in a rejected change.
-     * 
+     *
      * @param user
      *            the user who rejected the request
      * @param ticketId
@@ -88,7 +88,7 @@ public interface ProviderEnrollmentService {
     /**
      * This is the service method to be called after the process has completed and resulted in an approved change, the
      * ticket is approved AS-IS (e.g. renewal) and there are no changes from the approver.
-     * 
+     *
      * @param user
      *            the user who approved the request
      * @param ticketId
@@ -101,7 +101,7 @@ public interface ProviderEnrollmentService {
     /**
      * This is the service method to be called after the process has completed and resulted in an approved change, but
      * the approver made some manual changes to the data so it has to be saved first.
-     * 
+     *
      * @param user
      *            the user who approved the request
      * @param ticket
@@ -114,7 +114,7 @@ public interface ProviderEnrollmentService {
     /**
      * This is the method to be called to stream the attachment contents to the given output stream directly from the
      * database.
-     * 
+     *
      * @param user
      *            the current user
      * @param attachmentId
@@ -131,13 +131,13 @@ public interface ProviderEnrollmentService {
     /**
      * This method gets all the providers that meet the search criteria. If none available, the search result will be
      * empty.
-     * 
+     *
      * @param user
      *            the user performing the action
      * @param criteria
      *            - the search criteria
      * @return - the applicable providers
-     * 
+     *
      * @throws IllegalArgumentException
      *             if any argument is null, or the page size and page number settings are invalid
      * @throws PortalServiceException
@@ -148,7 +148,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * This method gets all the providers owned by the given user. If none available, the search result will be empty.
-     * 
+     *
      * @param user
      *            the user performing the action
      * @return - the applicable providers
@@ -159,7 +159,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Saves the given ticket as draft.
-     * 
+     *
      * @param user
      *            the user saving the ticket.
      * @param ticket
@@ -172,7 +172,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Retrieves the ticket details (full).
-     * 
+     *
      * @param user
      *            the user getting the ticket.
      * @param processInstanceId
@@ -185,7 +185,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Retrieves the ticket details (full).
-     * 
+     *
      * @param user
      *            the user getting the ticket.
      * @param ticketId
@@ -198,7 +198,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Retrieves the provider details (full).
-     * 
+     *
      * @param user
      *            the user getting the provider.
      * @param profileId
@@ -211,7 +211,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Search for practice.
-     * 
+     *
      * @param user
      *            the user performing the search
      * @param criteria
@@ -225,7 +225,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Creates a renewal ticket from the given profile id.
-     * 
+     *
      * @param user
      *            the user performing the action
      * @param profileId
@@ -238,7 +238,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Creates an update ticket from the given profile id.
-     * 
+     *
      * @param user
      *            the user performing the action
      * @param profileId
@@ -251,7 +251,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Uploads an attachment to the database.
-     * 
+     *
      * @param user
      *            the user performing the action
      * @param attachment
@@ -264,7 +264,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Creates a note on a request, the note will remain on the request until it is approved.
-     * 
+     *
      * @param user
      *            the user performing the action
      * @param ticketId
@@ -278,7 +278,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Creates a note on a profile, the note will also be visible on all active requests.
-     * 
+     *
      * @param user
      *            the user performing the action
      * @param profileId
@@ -292,7 +292,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Used by data onboarding service to fully import a mapped profile.
-     * 
+     *
      * @param user
      *            the user performing the operation
      * @param sourceSystem
@@ -308,7 +308,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Retrieves the attachments with the given id.
-     * 
+     *
      * @param user
      *            the current user
      * @param attachmentId
@@ -321,7 +321,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Checks the validity status of the ticket.
-     * 
+     *
      * @param ticketId
      *            the ticket id to check
      * @param profileId
@@ -334,7 +334,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Retrieves all the notes for the given ticket.
-     * 
+     *
      * @param ticketId
      *            the ticket id
      * @return the notes for the ticket of for the referenced profile
@@ -345,7 +345,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Retrieves public data for enrolled providers by NPI.
-     * 
+     *
      * @param npi
      *            the npi to search for
      * @return the public lookup data
@@ -356,7 +356,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Direct save (no logical checks) Used by business processes.
-     * 
+     *
      * @param enrollment
      *            the enrollment to be saved
      * @throws PortalServiceException
@@ -366,7 +366,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Renews the profiles directly, without making any data changes.
-     * 
+     *
      * @param currentUser
      *            the current user
      * @param profileIds
@@ -377,13 +377,13 @@ public interface ProviderEnrollmentService {
 
     /**
      * Gets the COS associated with a profile.
-     * 
+     *
      * @param user
      *            CMS user
      * @param profileId
      *            profile id.
      * @return the list of services
-     * 
+     *
      * @throws PortalServiceException
      *             for any errors encountered
      */
@@ -392,7 +392,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Adds COS to the profile.
-     * 
+     *
      * @param user
      *            the user performing the action
      * @param categoryOfService
@@ -409,7 +409,7 @@ public interface ProviderEnrollmentService {
 
     /**
      * Adds COS to the ticket.
-     * 
+     *
      * @param user
      *            the user performing the action
      * @param categoryOfService
@@ -426,14 +426,14 @@ public interface ProviderEnrollmentService {
 
     /**
      * Deletes the COS by profile.
-     * 
+     *
      * @param user
      *            the user performing the action
      * @param profileId
      *            the profile id
      * @param id
      *            the cos id
-     * 
+     *
      * @throws PortalServiceException
      *             for any errors encountered
      */
@@ -441,13 +441,13 @@ public interface ProviderEnrollmentService {
 
     /**
      * Gets the COS associated with a ticket.
-     * 
+     *
      * @param user
      *            CMS user
      * @param ticketId
      *            ticket id.
      * @return the list of services
-     * 
+     *
      * @throws PortalServiceException
      *             for any errors encountered
      */
@@ -456,14 +456,14 @@ public interface ProviderEnrollmentService {
 
     /**
      * Deletes the COS by ticket.
-     * 
+     *
      * @param user
      *            the user performing the action
      * @param ticketId
      *            the ticket id
      * @param id
      *            the cos id
-     * 
+     *
      * @throws PortalServiceException
      *             for any errors encountered
      */
@@ -495,10 +495,10 @@ public interface ProviderEnrollmentService {
 
     /**
      * Callback from legacy system for setting the legacy ID.
-     * 
+     *
      * @param profileId the profile id
      * @param legacyId the legacy id
-     * @throws PortalServiceException for any errors encountered 
+     * @throws PortalServiceException for any errors encountered
      */
     void updateLegacyId(long profileId, String legacyId) throws PortalServiceException;
 }

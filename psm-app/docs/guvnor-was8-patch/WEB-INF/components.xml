@@ -16,25 +16,25 @@
     <component name="repositoryConfiguration">
 
         <!-- JackRabbit  -->
-        
+
         <property name="properties">
             <key>org.drools.repository.configurator</key><value>org.drools.repository.jackrabbit.JackrabbitRepositoryConfigurator</value>
             <!--  the root directory for the repo storage the directory must exist. -->
             <key>repository.root.directory</key><value>C:/opt/repo</value>
         </property>
 
-        <!-- ModeShape 
+        <!-- ModeShape
             passwords for the background users (logInAdmin and mailman), these need to match the setting
-            you provided for JAAS (used by ModeShape only). 
+            you provided for JAAS (used by ModeShape only).
             <property name="properties">
                 <key>org.drools.repository.configurator</key>    <value>org.drools.repository.modeshape.ModeShapeRepositoryConfigurator</value>
                 <key>org.modeshape.jcr.URL</key>                 <value>jndi:jcr/local?repositoryName=brms</value>
                 <key>org.drools.repository.secure.passwords</key><value>false</value>
                 <key>org.drools.repository.logInAdmin.password</key>  <value>logInAdmin</value>
-                <key>org.drools.repository.mailman.password</key><value>mailman</value>   
-            </property> 
+                <key>org.drools.repository.mailman.password</key><value>mailman</value>
+            </property>
             -->
-        
+
     </component>
 
     <!-- SECURITY IDENTITY CONFIGURATION -->
@@ -42,7 +42,7 @@
     <!--
         default (will take any username, useful if you want to keep track of
         users but not authenticate
-    
+
     <security:identity authenticate-method="#{defaultAuthenticator.authenticate}" />
     -->
 
@@ -57,7 +57,7 @@
         FOR EXAMPLE: the following one will use the jaas configuration called
         "other" - which in jboss AS means you can use properties files for
         users:
-    
+
         <security:identity authenticate-method="#{authenticator.authenticate}"
         jaas-config-name="other"/>
     -->

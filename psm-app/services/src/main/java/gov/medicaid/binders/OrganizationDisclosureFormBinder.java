@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -59,17 +59,17 @@ public class OrganizationDisclosureFormBinder extends BaseFormBinder {
      * Disclosure Path.
      */
     private static final String QUESTION_3 = "/ProviderInformation/HasPreviousExclusion";
-    
+
     /**
      * Disclosure Path.
      */
     private static final String QUESTION_4 = "/ProviderInformation/EmployeeHasCriminalConviction";
-    
+
     /**
      * Disclosure Path.
      */
     private static final String QUESTION_5 = "/ProviderInformation/EmployeeHasCivilPenalty";
-    
+
     /**
      * Disclosure Path.
      */

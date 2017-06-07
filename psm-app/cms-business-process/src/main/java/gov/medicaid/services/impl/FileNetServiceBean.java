@@ -54,7 +54,7 @@ import org.w3c.dom.Element;
 
 /**
  * This service copies the license files uploaded during enrollment for FileNet.
- * 
+ *
  * @author cyberjag
  * @version 1.0
  */
@@ -94,7 +94,7 @@ public class FileNetServiceBean extends BaseService implements FileNetService {
 
     /**
      * Export the files after enrollment process is completed.
-     * 
+     *
      * @param model
      *            enrollment model
      * @param ticketId
@@ -210,7 +210,7 @@ public class FileNetServiceBean extends BaseService implements FileNetService {
 
     /**
      * Creates the XML.
-     * 
+     *
      * @param outFile
      *            the output file handler
      * @param attributes

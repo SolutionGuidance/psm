@@ -6,7 +6,7 @@
         <id column="credit_card_type_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -15,16 +15,16 @@
         <id column="role_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
-    
+
     <class name="RiskLevel" table="risk_level">
         <id column="risk_level_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -33,7 +33,7 @@
         <id column="request_type_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -42,19 +42,19 @@
         <id column="required_fld_type_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
-    
+
     <class name="RequiredField" table="required_fld">
         <id column="required_fld_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
-        
+
         <many-to-one name="type" class="RequiredFieldType" cascade="all">
             <column name="required_fld_type_id"></column>
         </many-to-one>
@@ -64,16 +64,16 @@
         <id column="user_status_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
-    
+
     <class name="EnrollmentStatus" table="enrollment_status">
         <id column="enrollment_status_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -82,7 +82,7 @@
         <id column="notification_type_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -91,7 +91,7 @@
         <id column="tribal_cd_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -100,7 +100,7 @@
         <id column="category_svc_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -109,7 +109,7 @@
         <id column="major_program_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -118,7 +118,7 @@
         <id column="file_fmt_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -127,7 +127,7 @@
         <id column="specialty_type_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -136,11 +136,11 @@
         <id column="specialty_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
         <property name="code" type="long" column="code"></property>
-        
+
         <many-to-one name="type" class="SpecialtyType" cascade="all">
             <column name="specialty_type_id"></column>
         </many-to-one>
@@ -150,7 +150,7 @@
         <id column="license_type_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -159,7 +159,7 @@
         <id column="permit_type_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -168,7 +168,7 @@
         <id column="license_level_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -177,7 +177,7 @@
         <id column="exclusion_type_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -186,7 +186,7 @@
         <id column="complaint_type_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
@@ -195,7 +195,7 @@
         <id column="audit_record_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="username" type="string" column="username" length="45"></property>
         <property name="date" type="date" column="audit_date" ></property>
@@ -208,7 +208,7 @@
         <id column="help_item_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="title" type="string" column="title" length="45"></property>
         <property name="description" type="string" column="description" length="2048"></property>
@@ -218,10 +218,10 @@
         <id column="appeal_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="description" type="string" column="description" length="2048"></property>
-        
+
         <property name="createdBy" type="string" column="created_by" length="45"></property>
         <property name="createTime" type="date" column="create_time"></property>
         <property name="modifiedBy" type="string" column="modified_by" length="45"></property>
@@ -232,7 +232,7 @@
         <id column="user_permission_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="action" type="string" column="action" length="45"></property>
         <property name="permission" column="permission" >
@@ -246,13 +246,13 @@
         <id column="payment_info_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
-        <property name="name" type="string" column="user_name"></property>        
+        <property name="name" type="string" column="user_name"></property>
 	  <property name="creditCardNumber" type="string" column="credit_card_number"></property>
-        <property name="securityCode" type="string" column="security_code"></property>        
+        <property name="securityCode" type="string" column="security_code"></property>
         <property name="validMonth" type="integer" column="valid_month" ></property>
-        <property name="validYear" type="integer" column="valid_year" ></property>       
+        <property name="validYear" type="integer" column="valid_year" ></property>
         <many-to-one name="creditCardType" class="CreditCardType">
             <column name="credit_card_type_id"></column>
         </many-to-one>
@@ -262,17 +262,17 @@
         <id column="enrollment_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="startDate" type="date" column="start_dt"></property>
         <property name="expireDate" type="date" column="end_dt"></property>
         <property name="denialReason" type="string" column="denial_reason" length="1024"></property>
-        
+
         <property name="createdBy" type="string" column="created_by" length="45"></property>
         <property name="createTime" type="date" column="create_time"></property>
         <property name="modifiedBy" type="string" column="modified_by" length="45"></property>
         <property name="modifiedTime" type="date" column="modified_time" ></property>
-        
+
         <many-to-one name="status" class="EnrollmentStatus">
             <column name="enrollment_status_id"></column>
         </many-to-one>
@@ -297,7 +297,7 @@
         <id column="address_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="line1" type="string" column="line_1" length="45"></property>
         <property name="line2" type="string" column="line_2" length="45"></property>
@@ -311,7 +311,7 @@
         <id column="event_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="npi" type="string" column="npi" length="45"></property>
         <property name="status" type="string" column="status" length="45"></property>
@@ -323,7 +323,7 @@
         <id column="agreement_document_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="title" type="string" column="title" length="45"></property>
 	  <property name="version" type="string" column="version" length="45"></property>
@@ -342,7 +342,7 @@
         <id column="screening_schedule_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="upcomingScreeningDate" type="date" column="upcoming_screening_dt"></property>
         <property name="interval" type="int" column="interval"></property>
@@ -357,7 +357,7 @@
         <id column="provider_statement_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
         <property name="title" type="string" column="title" length="45"></property>
@@ -374,7 +374,7 @@
         <id column="group_affiliation_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
         <property name="groupNPI" type="string" column="group_npi" length="45"></property>
@@ -383,7 +383,7 @@
         <property name="createTime" type="date" column="create_time"></property>
         <property name="modifiedBy" type="string" column="modified_by" length="45"></property>
         <property name="modifiedTime" type="date" column="modified_time" ></property>
-        
+
         <many-to-one name="address" class="Address" cascade="all">
             <column name="address_id"></column>
         </many-to-one>
@@ -393,7 +393,7 @@
         <id column="license_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="description" type="string" column="description" length="45"></property>
         <property name="licenseNumber" type="string" column="license_number" length="45"></property>
@@ -422,7 +422,7 @@
         <id column="private_practice_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
         <property name="groupNPI" type="string" column="group_npi" length="45"></property>
@@ -436,7 +436,7 @@
         <property name="createTime" type="date" column="create_time"></property>
         <property name="modifiedBy" type="string" column="modified_by" length="45"></property>
         <property name="modifiedTime" type="date" column="modified_time" ></property>
-        
+
         <many-to-one name="officeAddress" class="Address" cascade="all">
             <column name="office_address_id"></column>
         </many-to-one>
@@ -449,7 +449,7 @@
         <id column="user_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="username" type="string" column="username" length="45"></property>
         <property name="email" type="string" column="email" length="45"></property>
@@ -478,7 +478,7 @@
         <id column="provider_type_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
         <property name="hasPrivateOffice" type="boolean" column="private_office_ind"></property>
@@ -498,7 +498,7 @@
         <id column="provider_profile_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
 
         <property name="ssn" type="string" column="ssn" length="45"></property>
@@ -555,7 +555,7 @@
         <property name="enrollmentFeePaid" type="boolean" column="enrollment_fee_paid_ind"></property>
         <property name="npi" type="long" column="npi"></property>
         <property name="providerAgreementFile" type="string" column="provider_agreement_file" length="45"></property>
-        
+
         <property name="primaryTaxonomy" type="string" column="primary_taxonomy" length="45"></property>
         <property name="prefix" type="string" column="prefix" length="45"></property>
         <property name="suffix" type="string" column="suffix" length="45"></property>
@@ -591,12 +591,12 @@
         </property>
         <property name="name" type="string" column="name" length="45"></property>
 
-        
+
         <property name="createdBy" type="string" column="created_by" length="45"></property>
         <property name="createTime" type="date" column="create_time"></property>
         <property name="modifiedBy" type="string" column="modified_by" length="45"></property>
         <property name="modifiedTime" type="date" column="modified_time" ></property>
-        
+
         <many-to-one name="type" class="ProviderType" cascade="save-update">
             <column name="provider_type_id"></column>
         </many-to-one>
@@ -656,42 +656,42 @@
                 <column name="provider_profile_id" not-null="true" />
             </key>
             <many-to-many class="Address"  column="address_id"/>
-        </bag>        
+        </bag>
     </class>
-    
+
     <class name="BusinessStatus" table="business_status">
         <id column="business_status_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
-    
+
     <class name="BusinessType" table="business_type">
         <id column="business_type_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
     </class>
-    
+
     <class name="FilingHistory" table="filing_history">
         <id column="filing_history_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="date" type="date" column="filing_dt"></property>
         <property name="description" type="string" column="description" length="1024"></property>
     </class>
-    
+
     <class name="Business" table="business">
         <id column="business_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="name" type="string" column="name" length="45"></property>
         <property name="fileNumber" type="string" column="file_number" length="45"></property>
@@ -699,7 +699,7 @@
         <property name="homeJurisdiction" type="string" column="home_jurisdiction" length="45"></property>
         <property name="filingDate" type="date" column="filing_dt"></property>
         <property name="renewalDueDate" type="date" column="renewal_due_dt"></property>
-        
+
         <many-to-one name="status" class="BusinessStatus" cascade="all">
             <column name="business_status_id"></column>
         </many-to-one>
@@ -722,12 +722,12 @@
             <one-to-many class="FilingHistory" />
         </bag>
     </class>
-    
+
     <class name="NotificationTemplate" table="notification_template">
         <id column="notification_template_id" name="id" type="long">
             <generator class="sequence-identity" >
                 <param name="sequence">MITA3_SEQ</param>
-            </generator>        
+            </generator>
         </id>
         <property name="notificationTypeId" type="long" column="notification_type_id"></property>
         <property name="templateFile" type="string" column="template_file" length="1024"></property>

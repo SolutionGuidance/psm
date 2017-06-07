@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -102,7 +102,7 @@ public interface BusinessProcessService {
      * @throws Exception for any errors encountered
      */
     public long update(EnrollmentType ticket, EnrollmentType currentProfile) throws Exception;
-    
+
     /**
      * Updates a pending process.
      *
@@ -111,5 +111,5 @@ public interface BusinessProcessService {
      * @param userRole the role of the user
      * @throws Exception for any errors encountered
      */
-    public void updateRequest(EnrollmentType ticket, String user, String userRole) throws Exception; 
+    public void updateRequest(EnrollmentType ticket, String user, String userRole) throws Exception;
 }

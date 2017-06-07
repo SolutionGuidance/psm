@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -119,7 +119,7 @@ public class CMSLDAPUserDetailsMapper extends LdapUserDetailsMapper {
         if (registrationService == null) {
             throw new PortalServiceConfigurationException("registrationService is not configured properly.");
         }
-        
+
         CMSConfigurator config = new CMSConfigurator();
         env = config.getLdapSettings();
         groupsSearchBase = env.getProperty(GROUPS_SEARCH_BASE);
@@ -142,7 +142,7 @@ public class CMSLDAPUserDetailsMapper extends LdapUserDetailsMapper {
             log.info("Searching for LDAP groups...");
             List<String> roles = findRoles(username);
             log.info("Found: " + roles);
-            
+
             CMSUser user = registrationService.findByExternalUsername(SystemId.MN_ITS, username);
             if (user == null || user.getRole() == null) {
                 user = new CMSUser();

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -113,8 +113,8 @@ public abstract class BaseController {
      * @param response the response to add disable cache headers on
      */
     protected void nocache(HttpServletResponse response) {
-        response.addHeader("Cache-Control", "no-cache,no-store,private,must-revalidate,max-stale=0,post-check=0,pre-check=0"); 
-        response.addHeader("Pragma", "no-cache"); 
+        response.addHeader("Cache-Control", "no-cache,no-store,private,must-revalidate,max-stale=0,post-check=0,pre-check=0");
+        response.addHeader("Pragma", "no-cache");
         response.addDateHeader("Expires", 0);
     }
 }

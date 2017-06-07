@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ====================================================================== 
-     CMS Business Process And Screening   
+<!-- ======================================================================
+     CMS Business Process And Screening
      ====================================================================== -->
 <project name="cms-business-process" default="test">
 	<property file="../build.properties"></property>
@@ -42,9 +42,9 @@
 
 	<target name="compile" depends="clean" description="Compiles all sources">
 		<mkdir dir="${classes.dir}"/>
-        <javac srcdir="${src.main}" destdir="${classes.dir}" 
-        	deprecation="false" failonerror="true" 
-        	debug="true" includeantruntime="no" 
+        <javac srcdir="${src.main}" destdir="${classes.dir}"
+        	deprecation="false" failonerror="true"
+        	debug="true" includeantruntime="no"
         	classpathref="build.lib">
         </javac>
 		<copy todir="${classes.dir}" overwrite="yes">
@@ -53,9 +53,9 @@
 	</target>
 
 	<target name="compile-tests" depends="compile" description="Compiles all test sources">
-        <javac srcdir="${src.test}" destdir="${classes.dir}" 
-        	deprecation="false" failonerror="true" 
-        	debug="true" includeantruntime="no" 
+        <javac srcdir="${src.test}" destdir="${classes.dir}"
+        	deprecation="false" failonerror="true"
+        	debug="true" includeantruntime="no"
         	classpathref="build.lib">
         </javac>
 	</target>

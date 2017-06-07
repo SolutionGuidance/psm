@@ -7,7 +7,7 @@ import gov.medicaid.domain.model.EnrollmentProcess;
 
 /**
  * This service copies the license files uploaded during enrollment for FileNet.
- * 
+ *
  * @author cyberjag
  * @version 1.0
  */
@@ -15,7 +15,7 @@ public interface FileNetService {
 
     /**
      * Export the files after enrollment process is completed.
-     * 
+     *
      * @param model
      *            enrollment model
      * @param ticketId

@@ -20,7 +20,7 @@
   <listener>
     <listener-class>org.jboss.seam.servlet.SeamListener</listener-class>
   </listener>
-  
+
   <!-- servlets - mostly to do with file management -->
   <servlet>
     <servlet-name>CXFServlet</servlet-name>
@@ -29,7 +29,7 @@
     <param-name>jaxrs.serviceClasses</param-name>
       <param-value>
         org.drools.guvnor.server.jaxrs.PackageResource
-        org.drools.guvnor.server.jaxrs.CategoryResource		      
+        org.drools.guvnor.server.jaxrs.CategoryResource		
       </param-value>
     </init-param>
     <init-param>
@@ -39,12 +39,12 @@
           org.apache.cxf.jaxrs.provider.AtomFeedProvider	
           org.drools.guvnor.server.jaxrs.CXFAuthenticationHandler
         </param-value>
-    </init-param>  
+    </init-param>
     <!-- Use per-request life-cycle-->
     <init-param>
       <param-name>jaxrs.scope</param-name>
         <param-value>prototype</param-value>
-    </init-param>  
+    </init-param>
   </servlet>
   <servlet>
     <servlet-name>guvnorService</servlet-name>

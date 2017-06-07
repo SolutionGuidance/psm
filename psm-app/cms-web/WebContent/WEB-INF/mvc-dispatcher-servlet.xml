@@ -14,7 +14,7 @@
 	<context:property-placeholder location="classpath:cms.properties"/>
 	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	    <property name="maxUploadSize" value="${max.upload.size}"/> 
+	    <property name="maxUploadSize" value="${max.upload.size}"/>
 	</bean>
 	
 	<mvc:interceptors>
@@ -103,7 +103,7 @@
 	
     <bean id="LandingController" class="gov.medicaid.controllers.LandingController">
     </bean>
-    
+
     <bean id="EnrollmentPageFlowController" class="gov.medicaid.controllers.EnrollmentPageFlowController" parent="BaseController">
 		<property name="enrollmentWebService" ref="EnrollmentWebService"></property>
 		<property name="presentationService" ref="PresentationService"></property>
@@ -111,7 +111,7 @@
         <property name="exportService" ref="ExportService"></property>
         <property name="lookupService" ref="LookupService"></property>
     </bean>
-    
+
 	<bean id="ProviderDashboardController" class="gov.medicaid.controllers.ProviderDashboardController" parent="BaseController">
 		<property name="enrollmentService" ref="ProviderEnrollmentService"></property>
         <property name="exportService" ref="ExportService"></property>
@@ -215,7 +215,7 @@
     <bean id="UserController" class="gov.medicaid.controllers.admin.UserController" parent="BaseServiceAdminController">
         <property name="registrationService" ref="RegistrationService" />
     </bean>
-    
+
     <bean id="EnrollmentController" class="gov.medicaid.controllers.admin.EnrollmentController" parent="BaseController">
         <property name="businessProcessService" ref="BusinessProcessService" />
         <property name="enrollmentService" ref="ProviderEnrollmentService" />
@@ -226,7 +226,7 @@
         <property name="providerTypeService" ref="ProviderTypeService" />
         <property name="exportService" ref="ExportService" />
     </bean>
-    
+
     <bean id="BaseSystemAdminController" class="gov.medicaid.controllers.admin.BaseController" abstract="true">
         <property name="log" ref="Log"></property>
         <property name="registrationService" ref="RegistrationService"></property>
@@ -235,12 +235,12 @@
 
     <bean id="SystemAdminUserSearchController" class="gov.medicaid.controllers.admin.SystemAdminUserSearchController" parent="BaseSystemAdminController" >
     </bean>
-    
+
     <bean id="UserValidator" class="gov.medicaid.controllers.admin.UserValidator">
         <property name="registrationService" ref="RegistrationService"></property>
     </bean>
-    
+
     <bean id="SystemAdminUserController" class="gov.medicaid.controllers.admin.SystemAdminUserController" parent="BaseSystemAdminController" >
         <property name="userValidator" ref="UserValidator"></property>
-    </bean>    
+    </bean>
 </beans>

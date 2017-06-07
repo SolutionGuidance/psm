@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -231,12 +231,12 @@ public class ViewStatics {
      * License discriminator.
      */
     public static final String DISCRIMINATOR_CLIA = "C";
-    
+
     /**
      * Ambulance license service discriminator.
      */
     public static final String DISCRIMINATOR_AMBULANCE_SERVICE = "A";
-    
+
     /**
      * Ambulance license service discriminator.
      */
@@ -257,12 +257,12 @@ public class ViewStatics {
      * Location discriminator.
      */
     public static final String DISCRIMINATOR_LOCATION = "L";
-    
+
     /**
      * Qualified Professional discriminator.
      */
     public static final String DISCRIMINATOR_QP = "Q";
-    
+
     /**
      * Member discriminator.
      */
@@ -312,7 +312,7 @@ public class ViewStatics {
      * License option relationship.
      */
     public static final String REL_LICENSE_OPTIONS = "LO";
-    
+
     /**
      * License option relationship.
      */
@@ -342,64 +342,64 @@ public class ViewStatics {
      * Form to enter basic organization information.
      */
     public static final String ORG_INFO_FORM = "Organization Information Form";
-    
+
     /**
      * Organization member information.
      */
     public static final String MEMBER_INFO = "Member Information";
-    
+
     /**
      * Form to enter organization member information.
      */
     public static final String MEMBER_INFO_FORM = "Member Information Form";
-    
+
     /**
      * Organization ownership information.
      */
     public static final String OWNERSHIP_INFO = "Ownership Information";
-    
+
     /**
      * Form to enter organization member information.
      */
     public static final String OWNERSHIP_INFO_FORM = "Ownership Information Form";
-    
+
     /**
      * Form to enter organization member information.
      */
     public static final String ORGANIZATION_DISCLOSURE_FORM = "Organization Disclosure Form";
-    
+
     public static final String ORGANIZATION_STATEMENT_FORM = "Organization Statement Form";
-    
+
     public static final String PROVIDER_SETUP = "Provider Setup";
-    
+
     public static final String PROVIDER_SETUP_FORM = "Provider Setup Form";
-    
+
     public static final String FACILITY_CREDENTIALS = "Facility Credentials";
-    
+
     public static final String FACILITY_LICENSE_FORM = "Facility License Form";
-    
+
     public static final String CLIA_LICENSE_FORM = "CLIA License Form";
-    
+
     public static final String REMITTANCE_SEQUENCE_FORM = "Remittance Sequence Form";
-    
+
     public static final String PCA_BILLING_CONTACT_FORM = "PCA Billing Contact Form";
-    
+
     public static final String PCPO_INSURANCE_FORM = "PCPO Insurance Form";
-    
+
     public static final String PHN_AGENCY_FORM = "PHN Agency Form";
-    
+
     public static final String FACILITY_CAPACITY_FORM = "Facility Capacity Form";
-    
+
     public static final String TCM_CONTRACT_FORM = "TCM Contract Form";
-    
+
     public static final String QUALIFIED_PROFESSIONAL = "Qualified Professional";
-    
+
     public static final String CTCC_FORM = "CTCC Form";
-    
+
     public static final String CMHRT_FORM = "CMHRT Form";
-    
+
     public static final String QUALIFIED_PROFESSIONAL_FORM = "Qualified Professional Form";
-    
+
     /**
      * Beneficial owner type relationship filter
      */
@@ -409,12 +409,12 @@ public class ViewStatics {
      * Non profit arcticles of incorporation.
      */
     public static final String NONPROFIT_CORPORATION_FORM = "Non-Profit Corporation Form";
-    
+
     /**
      * Sliding fee schedule.
      */
     public static final String SLIDING_FEE_SCHEDULE_FORM = "Sliding Fee Schedule Form";
-    
+
     /**
      * Sliding fee schedule.
      */
@@ -429,7 +429,7 @@ public class ViewStatics {
      * Sliding fee schedule.
      */
     public static final String FACILITY_TYPE_FORM = "Facility Type Form";
-    
+
     /**
      * Sliding fee schedule.
      */
@@ -439,12 +439,12 @@ public class ViewStatics {
      * Form to ask for facility eligibility.
      */
     public static final String FACILITY_ELIGIBILITY_FORM = "Facility Eligibility Form";
-    
+
     /**
      * Form to ask for facility eligibility.
      */
     public static final String AMBULANCE_SERVICES_FORM = "Ambulance Services Form";
-    
+
     /**
      * Form to ask for facility eligibility.
      */
@@ -453,8 +453,8 @@ public class ViewStatics {
     /**
      * Form to ask for service assurance statement.
      */
-    public static final String CHEMICAL_DEPENDENCY_SERVICE_ASSURANCE_FORM = "Chemical Dependency Service Assurance Form"; 
-    
+    public static final String CHEMICAL_DEPENDENCY_SERVICE_ASSURANCE_FORM = "Chemical Dependency Service Assurance Form";
+
     /**
      * Private constructor.
      */

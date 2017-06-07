@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the provider type selection form.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -79,7 +79,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
      *            the model to bind to
      * @param request
      *            the request containing the form fields
-     * 
+     *
      * @throws BinderException
      *             if the format of the fields could not be bound properly
      */
@@ -284,7 +284,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Retrieves only QP affiliations.
-     * 
+     *
      * @param affiliations
      *            the affiliations to be filtered
      * @return the filtered affiliations
@@ -307,7 +307,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Retrieves the related attachment name.
-     * 
+     *
      * @param enrollment
      *            the enrollment to retrieve from
      * @param attachmentObjectId
@@ -329,12 +329,12 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Captures the error messages related to the form.
-     * 
+     *
      * @param enrollment
      *            the enrollment that was validated
      * @param messages
      *            the messages to select from
-     * 
+     *
      * @return the list of errors related to the form
      */
     protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
@@ -375,7 +375,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Resolves the specific license that is causing the error from the license list.
-     * 
+     *
      * @param ruleError
      *            the error to resolve
      * @return the resolved error
@@ -442,7 +442,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Resolves the index of the field that caused the error.
-     * 
+     *
      * @param path
      *            the field path
      * @return the index of the field, null if cannot be resolved
@@ -457,7 +457,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Binds the fields of the form to the persistence model.
-     * 
+     *
      * @param enrollment
      *            the front end model
      * @param ticket
@@ -520,7 +520,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Binds the fields of the persistence model to the front end xml.
-     * 
+     *
      * @param ticket
      *            the persistent model
      * @param enrollment
@@ -580,7 +580,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Reads the primary practice address from the request.
-     * 
+     *
      * @param request
      *            the request to read from
      * @return the bound address

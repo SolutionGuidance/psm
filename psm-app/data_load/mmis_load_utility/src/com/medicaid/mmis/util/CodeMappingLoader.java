@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 /**
  * This is the code mapping loader implementation.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -65,7 +65,7 @@ public class CodeMappingLoader {
 
     /**
      * Reads the code mapping xls and inserts any unmapped row to the legacy mapping table.
-     * @throws InvalidFormatException if the input file is not recognized 
+     * @throws InvalidFormatException if the input file is not recognized
      */
     @SuppressWarnings("unchecked")
     public static void main(String[] args) throws IOException, PortalServiceException, InvalidFormatException {
@@ -113,7 +113,7 @@ public class CodeMappingLoader {
             if (row.getRowNum() < 1) {
                 continue;
             }
-            
+
             Cell systemIdCell = row.getCell(0);
             Cell codeTypeCell = row.getCell(1);
             Cell internalCodeCell = row.getCell(2);
@@ -130,7 +130,7 @@ public class CodeMappingLoader {
             if (externalCodeCell == null || StringUtils.isBlank(externalCodeCell.getStringCellValue())) {
                 continue;
             }
-            
+
             LegacySystemMapping mapping = new LegacySystemMapping();
             mapping.setId(sequence.getNextValue("LEGACY_MAPPING"));
             mapping.setSystemName(systemIdCell.getStringCellValue());

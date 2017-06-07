@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -319,7 +319,7 @@ public class XMLUtility {
         }
         return person.getContactInformation();
     }
-    
+
     /**
      * Null safe get for the contact information.
      *
@@ -492,7 +492,7 @@ public class XMLUtility {
         }
         return provider.getSpecialties();
     }
-    
+
     /**
      * Null safe get for the organization applicant.
      *
@@ -507,7 +507,7 @@ public class XMLUtility {
 
         return applicant.getOrganizationInformation();
     }
-    
+
     /**
      * Null safe get for the contact information.
      *
@@ -534,7 +534,7 @@ public class XMLUtility {
         }
         return provider.getMemberInformation();
     }
-    
+
     /**
      * Null safe get for the ownership information.
      *

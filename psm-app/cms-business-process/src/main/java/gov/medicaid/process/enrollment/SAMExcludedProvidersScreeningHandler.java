@@ -28,7 +28,7 @@ import com.topcoder.util.log.Log;
 
 /**
  * This checks the excluded providers from the SAM website.
- * 
+ *
  * @author cyberjag
  * @version 1.0
  */
@@ -41,7 +41,7 @@ public class SAMExcludedProvidersScreeningHandler extends GenericHandler {
 
     /**
      * SAM exclusion screening.
-     * 
+     *
      * @param item
      *            the work item to abort
      * @param manager

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -41,8 +41,8 @@ public interface PartnerSystemService {
      *
      * @param externalUserId the username
      * @param password the password
-     * @param referrer 
-     * @param profileNPI 
+     * @param referrer
+     * @param profileNPI
      * @return true if the credentials are valid
      * @throws PortalServiceException for any errors encountered
      */

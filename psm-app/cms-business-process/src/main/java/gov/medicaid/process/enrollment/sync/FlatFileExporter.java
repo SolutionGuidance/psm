@@ -37,7 +37,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * This exports the provider model to a flat file.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -118,7 +118,7 @@ public class FlatFileExporter {
 
     /**
      * Exports the provider file.
-     * 
+     *
      * @param enrollment the enrollment to be exported
      * @return the exported file
      * @throws PortalServiceException for any errors encountered
@@ -142,22 +142,22 @@ public class FlatFileExporter {
 
     /**
      * Generates the header for the request.
-     * 
-     * 
+     *
+     *
      * <pre>
      * | Add-Update ID| Oracle Row ID| Legacy ID | Sys Err Code | Data Err Code | <provider file>
-     * 
+     *
      * -          Set add/update
      * -          Leave sys err and data err empty for all records
      * -          Leave legacy ID blank for new providers
-     * 
+     *
      * Add-Update ID:  1 byte.  A for add, U for update (existing)
      * Oracle Row ID: 22 bytes - our row ID for this provider
      * Legacy ID: 8 bytes - the legacy ID of the provider
      * Sys err Code: 2 bytes - we record this to the log for every processed row, but ignore it
      * Data Err Code: 30 bytes (which will be 3 byte segments)
      * </pre>
-     * 
+     *
      * @param sb the buffer
      * @param enrollment the enrollment
      * @throws PortalServiceException for any errors encountered
@@ -181,10 +181,10 @@ public class FlatFileExporter {
 
     /**
      * <pre>
-     * 002270    05  WS-000-EXT2-OWN-BEN.                               
-     * 002280      10  WS-000-EXT2-OWN-B-PROV-ID     PIC X(09) VALUE ' '. 
-     * 002290      10  WS-000-EXT2-OWN-B-NPI         PIC X(10) VALUE ' '.  
-     * 002300      10  WS-000-EXT2-OWN-B-INT-PCT     PIC S9(03)V VALUE 0.   
+     * 002270    05  WS-000-EXT2-OWN-BEN.
+     * 002280      10  WS-000-EXT2-OWN-B-PROV-ID     PIC X(09) VALUE ' '.
+     * 002290      10  WS-000-EXT2-OWN-B-NPI         PIC X(10) VALUE ' '.
+     * 002300      10  WS-000-EXT2-OWN-B-INT-PCT     PIC S9(03)V VALUE 0.
      * 002310      10  WS-000-EXT2-OWN-B-BIRTH-DATE  PIC X(10) VALUE ' '.
      * 002320      10  WS-000-EXT2-OWN-B-HIRE-DATE   PIC X(10) VALUE ' '.
      * 002330      10  WS-000-EXT2-OWN-B-M-NAME      PIC X(35) VALUE ' '.
@@ -192,9 +192,9 @@ public class FlatFileExporter {
      * 002350      10  WS-000-EXT2-OWN-B-L-NAME      PIC X(35) VALUE ' '.
      * 002360      10  WS-000-EXT2-OWN-B-SSN         PIC X(09) VALUE ' '.
      * 002370      10  WS-000-EXT2-OWN-B-ROLE-IND-1  PIC X(01) VALUE ' '.
-     * 002380      10  WS-000-EXT2-OWN-B-ROLE-IND-2  PIC X(01) VALUE ' '.  
-     * 002390      10  WS-000-EXT2-OWN-B-ROLE-IND-3  PIC X(01) VALUE ' '.  
-     * 002400      10  WS-000-EXT2-OWN-B-ROLE-IND-4  PIC X(01) VALUE ' '.  
+     * 002380      10  WS-000-EXT2-OWN-B-ROLE-IND-2  PIC X(01) VALUE ' '.
+     * 002390      10  WS-000-EXT2-OWN-B-ROLE-IND-3  PIC X(01) VALUE ' '.
+     * 002400      10  WS-000-EXT2-OWN-B-ROLE-IND-4  PIC X(01) VALUE ' '.
      * 002410      10  WS-000-EXT2-OWN-B-FEIN        PIC X(09) VALUE ' '.
      * </pre>
      */
@@ -242,7 +242,7 @@ public class FlatFileExporter {
             sb.append(fw("", ColumnDef.WS_000_EXT2_OWN_B_F_NAME));
             sb.append(fw("", ColumnDef.WS_000_EXT2_OWN_B_L_NAME));
             sb.append(fw("", ColumnDef.WS_000_EXT2_OWN_B_SSN));
-            
+
             String typeCode = owner.getType() == null ? null : owner.getType().getCode();
             String extCode = doLegacyMapping(typeCode, XREF_OWNER_TYPE);
             sb.append(fw(extCode, ColumnDef.WS_000_EXT2_OWN_B_ROLE_IND_1));
@@ -255,7 +255,7 @@ public class FlatFileExporter {
 
     /**
      * Limits the value to a range
-     * 
+     *
      * @param value the value
      * @param i the range
      * @return the mod of value and i
@@ -269,10 +269,10 @@ public class FlatFileExporter {
 
     /**
      * <pre>
-     * 002190    05  WS-000-EXT-COS.                                               
-     * 002200      10  WS-000-EXT-COS-ARRAY OCCURS 20 TIMES.                       
-     * 002210        15  WS-000-EXT-COS-START-DATE   PIC X(10) VALUE ' '.  
-     * 002220        15  WS-000-EXT-COS-END-DATE     PIC X(10) VALUE ' '.  
+     * 002190    05  WS-000-EXT-COS.
+     * 002200      10  WS-000-EXT-COS-ARRAY OCCURS 20 TIMES.
+     * 002210        15  WS-000-EXT-COS-START-DATE   PIC X(10) VALUE ' '.
+     * 002220        15  WS-000-EXT-COS-END-DATE     PIC X(10) VALUE ' '.
      * 002230        15  WS-000-EXT-COS-ARRAY OCCURS 60 TIMES.
      * 002240          20  WS-000-EXT-COS-CODE       PIC X(03) VALUE ' '.
      * </pre>
@@ -306,14 +306,14 @@ public class FlatFileExporter {
 
     /**
      * <pre>
-     * 002090    05  WS-000-EXT-LIC.                                                
-     * 002100      10  WS-000-EXT-LIC-ARRAY OCCURS 112 TIMES.                      
+     * 002090    05  WS-000-EXT-LIC.
+     * 002100      10  WS-000-EXT-LIC-ARRAY OCCURS 112 TIMES.
      * 002110        15  WS-000-EXT-LIC-SPEC-TYPE    PIC X(02) VALUE ' '.
      * 002120        15  WS-000-EXT-LIC-TYPE         PIC X(02) VALUE ' '.
-     * 002130        15  WS-000-EXT-LIC-NBR          PIC X(13) VALUE ' '. 
-     * 002140        15  WS-000-EXT-LIC-BEG-DATE     PIC X(10) VALUE ' '.  
-     * 002150        15  WS-000-EXT-LIC-END-DATE     PIC X(10) VALUE ' '.  
-     * 002160        15  WS-000-EXT-LIC-STATE        PIC X(02) VALUE ' '.  
+     * 002130        15  WS-000-EXT-LIC-NBR          PIC X(13) VALUE ' '.
+     * 002140        15  WS-000-EXT-LIC-BEG-DATE     PIC X(10) VALUE ' '.
+     * 002150        15  WS-000-EXT-LIC-END-DATE     PIC X(10) VALUE ' '.
+     * 002160        15  WS-000-EXT-LIC-STATE        PIC X(02) VALUE ' '.
      * 002170        15  WS-000-EXT-LIC-STAT         PIC X(01) VALUE ' '.
      * 002180        15  WS-000-EXT-LIC-ISSUE-BRD    PIC X(09) VALUE ' '.
      * </pre>
@@ -345,7 +345,7 @@ public class FlatFileExporter {
             String status = license.getStatus() == null ? null : doLegacyMapping(license.getStatus()
                 .getCode(), XREF_LICENSE_STATUS);
             sb.append(fw(status, ColumnDef.WS_000_EXT_LIC_STAT));
-            
+
             String board = license.getIssuingBoard() == null ? null : doLegacyMapping(license.getIssuingBoard()
                 .getCode(), XREF_ISSUING_BOARD);
             sb.append(fw(board, ColumnDef.WS_000_EXT_LIC_ISSUE_BRD));
@@ -354,12 +354,12 @@ public class FlatFileExporter {
 
     /**
      * <pre>
-     * 002020    05  WS-000-EXT-BILL-ADDR.                               
-     * 002030      10  WS-000-EXT-BILL-ADDR-1        PIC X(28) VALUE ' '. 
-     * 002040      10  WS-000-EXT-BILL-ADDR-2        PIC X(28) VALUE ' '. 
-     * 002050      10  WS-000-EXT-BILL-ADDR-CITY     PIC X(18) VALUE ' '. 
-     * 002060      10  WS-000-EXT-BILL-ADDR-STATE    PIC X(02) VALUE ' '.  
-     * 002070      10  WS-000-EXT-BILL-ADDR-ZIP      PIC X(05) VALUE ' '. 
+     * 002020    05  WS-000-EXT-BILL-ADDR.
+     * 002030      10  WS-000-EXT-BILL-ADDR-1        PIC X(28) VALUE ' '.
+     * 002040      10  WS-000-EXT-BILL-ADDR-2        PIC X(28) VALUE ' '.
+     * 002050      10  WS-000-EXT-BILL-ADDR-CITY     PIC X(18) VALUE ' '.
+     * 002060      10  WS-000-EXT-BILL-ADDR-STATE    PIC X(02) VALUE ' '.
+     * 002070      10  WS-000-EXT-BILL-ADDR-ZIP      PIC X(05) VALUE ' '.
      * 002080      10  WS-000-EXT-BILL-ADDR-COUNTY   PIC X(30) VALUE ' '.
      * </pre>
      */
@@ -378,11 +378,11 @@ public class FlatFileExporter {
     /**
      * <pre>
      * 001950    05  WS-000-EXT-PRACTICE-ADDR.
-     * 001960      10  WS-000-EXT-PRAC-ADDR-1        PIC X(28) VALUE ' '. 
-     * 001970      10  WS-000-EXT-PRAC-ADDR-2        PIC X(28) VALUE ' '. 
-     * 001980      10  WS-000-EXT-PRAC-ADDR-CITY     PIC X(18) VALUE ' '. 
-     * 001990      10  WS-000-EXT-PRAC-ADDR-STATE    PIC X(02) VALUE ' '.  
-     * 002000      10  WS-000-EXT-PRAC-ADDR-ZIP      PIC X(05) VALUE ' '. 
+     * 001960      10  WS-000-EXT-PRAC-ADDR-1        PIC X(28) VALUE ' '.
+     * 001970      10  WS-000-EXT-PRAC-ADDR-2        PIC X(28) VALUE ' '.
+     * 001980      10  WS-000-EXT-PRAC-ADDR-CITY     PIC X(18) VALUE ' '.
+     * 001990      10  WS-000-EXT-PRAC-ADDR-STATE    PIC X(02) VALUE ' '.
+     * 002000      10  WS-000-EXT-PRAC-ADDR-ZIP      PIC X(05) VALUE ' '.
      * 002010      10  WS-000-EXT-PRAC-ADDR-COUNTY   PIC X(30) VALUE ' '.
      * </pre>
      */
@@ -400,7 +400,7 @@ public class FlatFileExporter {
 
     /**
      * Finds the primary practice for the given profile.
-     * 
+     *
      * @param profile the profile
      * @param entity the profile entity
      * @return the primary practice if it exists
@@ -421,7 +421,7 @@ public class FlatFileExporter {
 
     /**
      * Exports the given address.
-     * 
+     *
      * @param sb the current buffer
      * @param address the address to be exported
      */
@@ -440,9 +440,9 @@ public class FlatFileExporter {
 
     /**
      * <pre>
-     * 001910    05  WS-000-EXT-CONT-INFO.                                
-     * 001920      10  WS-000-EXT-CONT-I-PHONE       PIC X(10) VALUE ' '. 
-     * 001930      10  WS-000-EXT-CONT-I-FAX         PIC X(10) VALUE ' '. 
+     * 001910    05  WS-000-EXT-CONT-INFO.
+     * 001920      10  WS-000-EXT-CONT-I-PHONE       PIC X(10) VALUE ' '.
+     * 001930      10  WS-000-EXT-CONT-I-FAX         PIC X(10) VALUE ' '.
      * 001940      10  WS-000-EXT-CONT-I-EMAIL       PIC X(70) VALUE ' '.
      * </pre>
      */
@@ -493,7 +493,7 @@ public class FlatFileExporter {
 
     /**
      * Finds the designated contact for the profile
-     * 
+     *
      * @param profile the profile
      * @return the designated contact person if it exists
      */
@@ -510,11 +510,11 @@ public class FlatFileExporter {
 
     /**
      * <pre>
-     * 001840    05  WS-000-EXT-PROV-PROFILE.                                      
+     * 001840    05  WS-000-EXT-PROV-PROFILE.
      * 001850      10  WS-000-EXT-PROV-P-ARRAY OCCURS 12 TIMES.
-     * 001860        15  WS-000-EXT-PROV-P-E-STAT-DT PIC X(10) VALUE ' '.  
+     * 001860        15  WS-000-EXT-PROV-P-E-STAT-DT PIC X(10) VALUE ' '.
      * 001870        15  WS-000-EXT-PROV-P-ENRL-STAT PIC X(01) VALUE ' '.
-     * 001880      10  WS-000-EXT-PROV-P-RESV-IND    PIC X(01) VALUE ' '.  
+     * 001880      10  WS-000-EXT-PROV-P-RESV-IND    PIC X(01) VALUE ' '.
      * 001890      10  WS-000-EXT-PROV-P-CO-CODE     PIC X(03) VALUE ' '.
      * 001900      10  WS-000-EXT-PROV-P-RISK-LVL    PIC X(01) VALUE ' '.
      * </pre>
@@ -537,9 +537,9 @@ public class FlatFileExporter {
 
     /**
      * <pre>
-     * 001800    05  WS-000-EXT-OWN-ASSET.                               
-     * 001810      10  WS-000-EXT-OWN-A-ARRAY OCCURS 25 TIMES.                     
-     * 001820        15  WS-000-EXT-OWN-A-BCKGRD-NAM PIC X(35) VALUE ' '.    
+     * 001800    05  WS-000-EXT-OWN-ASSET.
+     * 001810      10  WS-000-EXT-OWN-A-ARRAY OCCURS 25 TIMES.
+     * 001820        15  WS-000-EXT-OWN-A-BCKGRD-NAM PIC X(35) VALUE ' '.
      * 001830        15  WS-000-EXT-OWN-A-BCKGRD-OWN PIC X(01) VALUE ' '.
      * </pre>
      */
@@ -565,7 +565,7 @@ public class FlatFileExporter {
 
     /**
      * <pre>
-     * 001780    05  WS-000-EXT-OWN-INFO.                                          
+     * 001780    05  WS-000-EXT-OWN-INFO.
      * 001790      10  WS-000-EXT-OWN-I-OWNER        PIC X(01) VALUE ' '.
      * </pre>
      */
@@ -575,23 +575,23 @@ public class FlatFileExporter {
 
     /**
      * <pre>
-     * 001600    05  WS-000-EXT-ENTITY.                                             
+     * 001600    05  WS-000-EXT-ENTITY.
      * 001610      10  WS-000-EXT-ENTITY-PROV-ID     PIC X(09) VALUE ' '.
-     * 001620      10  WS-000-EXT-ENTITY-NPI         PIC X(10) VALUE ' '.  
+     * 001620      10  WS-000-EXT-ENTITY-NPI         PIC X(10) VALUE ' '.
      * 001630      10  WS-000-EXT-ENTITY-NAME        PIC X(35) VALUE ' '.
      * 001640      10  WS-000-EXT-ENTITY-LEGAL-NAME  PIC X(35) VALUE ' '.
-     * 001650      10  WS-000-EXT-ENTITY-PROV-TYPE   PIC X(02) VALUE ' '.  
+     * 001650      10  WS-000-EXT-ENTITY-PROV-TYPE   PIC X(02) VALUE ' '.
      * 001660      10  WS-000-EXT-ENTITY-MIDDLE-NAME PIC X(35) VALUE ' '.
-     * 001670      10  WS-000-EXT-ENTITY-SSN         PIC X(09) VALUE ' '.  
+     * 001670      10  WS-000-EXT-ENTITY-SSN         PIC X(09) VALUE ' '.
      * 001680      10  WS-000-EXT-ENTITY-BIRTH-DATE  PIC X(10) VALUE ' '.
      * 001690      10  WS-000-EXT-ENTITY-DEGREE      PIC X(01) VALUE ' '.
-     * 001700      10  WS-000-EXT-ENTITY-DEGREE-DATE PIC X(10) VALUE ' '.  
-     * 001710      10  WS-000-EXT-ENTITY-FIRST-NAME  PIC X(35) VALUE ' '. 
-     * 001720      10  WS-000-EXT-ENTITY-LAST-NAME   PIC X(35) VALUE ' '. 
-     * 001730      10  WS-000-EXT-ENTITY-ST-TAX-ID   PIC X(07) VALUE ' '. 
-     * 001740      10  WS-000-EXT-ENTITY-FEIN        PIC X(09) VALUE ' '. 
+     * 001700      10  WS-000-EXT-ENTITY-DEGREE-DATE PIC X(10) VALUE ' '.
+     * 001710      10  WS-000-EXT-ENTITY-FIRST-NAME  PIC X(35) VALUE ' '.
+     * 001720      10  WS-000-EXT-ENTITY-LAST-NAME   PIC X(35) VALUE ' '.
+     * 001730      10  WS-000-EXT-ENTITY-ST-TAX-ID   PIC X(07) VALUE ' '.
+     * 001740      10  WS-000-EXT-ENTITY-FEIN        PIC X(09) VALUE ' '.
      * 001750      10  WS-000-EXT-ENTITY-FSCL-YR-END PIC X(10) VALUE ' '.
-     * 001760      10  WS-000-EXT-ENTITY-EFT-VEND-N  PIC X(10) VALUE ' '. 
+     * 001760      10  WS-000-EXT-ENTITY-EFT-VEND-N  PIC X(10) VALUE ' '.
      * 001770      10  WS-000-EXT-ENTITY-VEND-LOC    PIC X(03) VALUE ' '.
      * </pre>
      */
@@ -646,7 +646,7 @@ public class FlatFileExporter {
 
     /**
      * Converts the fiscal year end to a data.
-     * 
+     *
      * @param fiscalYearEnd the current value
      * @return the formatted date, or null
      */
@@ -664,7 +664,7 @@ public class FlatFileExporter {
 
     /**
      * Retrieves the county code for the description
-     * 
+     *
      * @param county the county name
      * @return the county code, or the county name if not found
      */
@@ -678,7 +678,7 @@ public class FlatFileExporter {
 
     /**
      * Performs code value mapping for the given lookup.
-     * 
+     *
      * @param internalCodeValue the internal application value
      * @param codeType the code type
      * @return the mapped value
@@ -694,7 +694,7 @@ public class FlatFileExporter {
 
     /**
      * Fixes the width of the given object given the column definition.
-     * 
+     *
      * @param value the value to fix the width for
      * @param def the column definition
      * @return the fixed width string
@@ -703,7 +703,7 @@ public class FlatFileExporter {
         if (value == null) {
             fixWidth("", def.getWidth());
         }
-        
+
         if (value != null && value instanceof Date) {
             return fixWidthDate((Date) value, def.getWidth());
         }
@@ -713,7 +713,7 @@ public class FlatFileExporter {
 
     /**
      * Converts the given date to the export format.
-     * 
+     *
      * @param value the value to convert
      * @param width the width of the field
      * @return the formatted data
@@ -724,7 +724,7 @@ public class FlatFileExporter {
 
     /**
      * Converts the given object to the export format.
-     * 
+     *
      * @param value the value to convert
      * @param width the width of the field
      * @return the formatted data

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
      * Flag indicating if guvnor should be used.
      */
     private final boolean useGuvnor;
-    
+
     /**
      * Private constructor.
      */
@@ -96,7 +96,7 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
             new LocalHumanTaskHandler(ksession, client));
         return ksession;
     }
-    
+
     @Override
     public StatefulKnowledgeSession reloadWorkflowSession(int sessionId, EntityManagerFactory factory, UserTransaction utx) {
         StatefulKnowledgeSession ksession = JPAKnowledgeService.loadStatefulKnowledgeSession(sessionId, processKnowledgeBase, null,
@@ -119,7 +119,7 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
      * Creates a rule environment.
      *
      * @param emf the persistence factory
-     * @param utx 
+     * @param utx
      * @return a new environment
      */
     private Environment createEnvironment(EntityManagerFactory emf, UserTransaction utx) {
@@ -201,7 +201,7 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
         	kbuilder.add(ResourceFactory.newClassPathResource("cms.validation.dslr"), ResourceType.DSLR);
         	kbuilder.add(ResourceFactory.newClassPathResource("cms.validation.drl"), ResourceType.DRL);
         }
-        
+
         KnowledgeBuilderErrors errors = kbuilder.getErrors();
         if (errors.size() > 0) {
             for (KnowledgeBuilderError error : errors) {

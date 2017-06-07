@@ -2,29 +2,41 @@ DROP SEQUENCE IF EXISTS
   hibernate_sequence
 CASCADE;
 DROP TABLE IF EXISTS
+  beneficial_owner_types,
   addresses,
   agreement_documents,
   audit_details,
   audit_records,
   binary_contents,
+  categories_of_service,
   cms_authentication,
   cms_user,
   contacts,
   degrees,
+  counties,
   enrollment_statuses,
   enrollments,
   entities,
+  entity_structure_types,
   help_items,
+  issuing_boards,
   license_types,
   organizations,
   people,
+  license_statuses,
+  ownership_types,
+  payto_types,
+  ownership_types,
   persistent_logins,
   profile_statuses,
   provider_profiles,
   provider_type_agreement_documents,
   provider_type_license_types,
   provider_types,
+  qp_types,
+  relationship_types,
   request_types,
+  required_fields,
   required_field_types,
   risk_levels,
   roles,
@@ -115,6 +127,17 @@ CREATE TABLE help_items(
   title TEXT,
   description TEXT
 );
+
+CREATE TABLE qp_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO qp_types(code, description) VALUES
+('01', 'Registered Nurse'),
+('02', 'Licensed Social Worker'),
+('03', 'Mental Health Professional'),
+('04', 'Qualified Developmental Disability Specialist');
+
 
 CREATE TABLE provider_types(
   code CHARACTER VARYING(2) PRIMARY KEY,
@@ -210,6 +233,7 @@ INSERT INTO profile_statuses (code, description) VALUES
   ('02', 'Suspended'),
   ('03', 'Expired');
 
+
 CREATE TABLE required_field_types(
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE
@@ -217,6 +241,239 @@ CREATE TABLE required_field_types(
 INSERT INTO required_field_types (code, description) VALUES
   ('01', 'Required'),
   ('02', 'Optional');
+
+CREATE TABLE required_fields(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE,
+  required_field_type_code CHARACTER VARYING(2) REFERENCES  required_field_types(code)
+);
+
+CREATE TABLE entity_structure_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO entity_structure_types (code, description) VALUES
+ ('01', 'Sole Proprietorship'),
+ ('02', 'Partnership'),
+ ('03', 'Corporation'),
+ ('04', 'Non-Profit'),
+ ('05', 'Hospital Based'),
+ ('06', 'State'),
+ ('07', 'Public'),
+ ('08', 'Professional Association'),
+ ('99', 'Other');
+
+CREATE TABLE issuing_boards(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO issuing_boards (code, description) VALUES
+ ('B1', 'AANA'),
+ ('B2', 'NARM'),
+ ('B3', 'ANCC'),
+ ('B4', 'AOTA'),
+ ('B5', 'ADA'),
+ ('B6', 'ABMS'),
+ ('B7', 'ABPS');
+  
+CREATE TABLE license_statuses(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE,
+  date DATE NULL
+);
+INSERT INTO license_statuses (code, description) VALUES
+ ('01', 'Active'),
+ ('02', 'Suspended'),
+ ('03', 'Expired');
+
+
+-- This entity may be obsolete BenGalewsky 6-8-17
+CREATE TABLE ownership_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE);
+
+CREATE TABLE payto_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE);
+
+INSERT INTO payto_types(code, description) VALUES
+('01', 'Claim'),
+('02', 'ERA'),
+('03', 'Both');
+
+CREATE TABLE categories_of_service (
+  code        CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO categories_of_service (code, description) VALUES
+  ('01', 'AC Transportation'),
+  ('02', 'Home Delivered Meals'),
+  ('03', 'Adult Day Services'),
+  ('04', 'Homemaker Services'),
+  ('05', 'Behavioral Program Services'),
+  ('06', 'In-home Family Support'),
+  ('07', 'Caregiver Training'),
+  ('08', 'Independent Living Skills'),
+  ('09', 'Case Management Waiver/Alternative Care'),
+  ('10', 'Modification and Adaptations'),
+  ('11', 'Chore'),
+  ('12', 'Nutritional Services'),
+  ('13', 'Cognitive Therapy'),
+  ('14', 'PERS and AC Supplies'),
+  ('15', 'Companion Services'),
+  ('16', 'Respite Care'),
+  ('17', 'Consumer Directed Community Support (CDCS)'),
+  ('18', 'Specialized Supplies &' || ' Equipment (Waiver)'),
+  ('19', 'Spenddown Collection'),
+  ('20', 'Customized Living, 24 CL, Residential Care Services, Assisted Living Services'),
+  ('21', 'Structured Day Program Services'),
+  ('22', 'Supported Employment Services'),
+  ('23', 'Family Counseling and Training'),
+  ('24', 'Supported Living Services'),
+  ('25', 'Foster Care Services'),
+  ('26', 'Waiver Transportation');
+
+
+CREATE TABLE service_categories (
+  code        CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO service_categories (code, description) VALUES
+ ('01', 'AC Transportation'),
+ ('02', 'Home Delivered Meals'),
+ ('03', 'Adult Day Services'),
+ ('04', 'Homemaker Services'),
+ ('05', 'Behavioral Program Services'),
+ ('06', 'In-home Family Support'),
+ ('07', 'Caregiver Training'),
+ ('08', 'Independent Living Skills'),
+ ('09', 'Case Management Waiver/Alternative Care'),
+ ('10', 'Modification and Adaptations'),
+ ('11', 'Chore'),
+ ('12', 'Nutritional Services'),
+ ('13', 'Cognitive Therapy'),
+ ('14', 'PERS and AC Supplies'),
+ ('15', 'Companion Services'),
+ ('16', 'Respite Care'),
+ ('17', 'Consumer Directed Community Support (CDCS)'),
+ ('18', 'Specialized Supplies &'|| ' Equipment (Waiver)'),
+ ('19', 'Spenddown Collection'),
+ ('20', 'Customized Living, 24 CL, Residential Care Services, Assisted Living Services'),
+ ('21', 'Structured Day Program Services'),
+ ('22', 'Supported Employment Services'),
+ ('23', 'Family Counseling and Training'),
+ ('24', 'Supported Living Services'),
+ ('25', 'Foster Care Services'),
+ ('26', 'Waiver Transportation');
+
+
+CREATE TABLE counties (
+  code        CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO counties (code, description) VALUES
+   ('01', 'Aitkin'),
+ ('02', 'Anoka'),
+ ('03', 'Becker'),
+ ('04', 'Beltrami'),
+ ('05', 'Benton'),
+ ('06', 'Big Stone'),
+ ('07', 'Blue Earth'),
+ ('08', 'Brown'),
+ ('09', 'Carlton'),
+ ('10', 'Carver'),
+ ('11', 'Cass'),
+ ('12', 'Chippewa'),
+ ('13', 'Chisago'),
+ ('14', 'Clay'),
+ ('15', 'Clearwater'),
+ ('16', 'Cook'),
+ ('17', 'Cottonwood'),
+ ('18', 'Crow Wing'),
+ ('19', 'Dakota'),
+ ('20', 'Dodge'),
+ ('21', 'Douglas'),
+ ('22', 'Faribault'),
+ ('23', 'Fillmore'),
+ ('24', 'Freeborn'),
+ ('25', 'Goodhue'),
+ ('26', 'Grant'),
+ ('27', 'Hennepin'),
+ ('28', 'Houston'),
+ ('29', 'Hubbard'),
+ ('30', 'Isanti'),
+ ('31', 'Itasca'),
+ ('32', 'Jackson'),
+ ('33', 'Kanabec'),
+ ('34', 'Kandiyohi'),
+ ('35', 'Kittson'),
+ ('36', 'Koochiching'),
+ ('37', 'Lac qui Parle'),
+ ('38', 'Lake'),
+ ('39', 'Lake of the Woods'),
+ ('40', 'Le Sueur'),
+ ('41', 'Lincoln'),
+ ('42', 'Lyon'),
+ ('43', 'Mahnomen'),
+ ('44', 'Marshall'),
+ ('45', 'Martin'),
+ ('46', 'McLeod'),
+ ('47', 'Meeker'),
+ ('48', 'Mille Lacs'),
+ ('49', 'Morrison'),
+ ('50', 'Mower'),
+ ('51', 'Murray'),
+ ('52', 'Nicollet'),
+ ('53', 'Nobles'),
+ ('54', 'Norman'),
+ ('55', 'Olmsted'),
+ ('56', 'Otter Tail'),
+ ('57', 'Pennington'),
+ ('58', 'Pine'),
+ ('59', 'Pipestone'),
+ ('60', 'Polk'),
+ ('61', 'Pope'),
+ ('62', 'Ramsey'),
+ ('63', 'Red Lake'),
+ ('64', 'Redwood'),
+ ('65', 'Renville'),
+ ('66', 'Rice'),
+ ('67', 'Rock'),
+ ('68', 'Roseau'),
+ ('69', 'Scott'),
+ ('70', 'Sherburne'),
+ ('71', 'Sibley'),
+ ('72', 'St. Louis'),
+ ('73', 'Stearns'),
+ ('74', 'Steele'),
+ ('75', 'Stevens'),
+ ('76', 'Swift'),
+ ('77', 'Todd'),
+ ('78', 'Traverse'),
+ ('79', 'Wabasha'),
+ ('80', 'Wadena'),
+ ('81', 'Waseca'),
+ ('82', 'Washington'),
+ ('83', 'Watonwan'),
+ ('84', 'Wilkin'),
+ ('85', 'Winona'),
+ ('86', 'Wright'),
+ ('87', 'Yellow');
+
+CREATE TABLE beneficial_owner_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE,
+  owner_type CHARACTER VARYING(2)
+);
+INSERT INTO beneficial_owner_types (code, description, owner_type) VALUES
+  ('01', 'Non Profit', 'O'),
+  ('02', 'Sole Proprietership', 'O'),
+  ('03', 'Hospital', 'O'),
+  ('04', 'Corporation', 'O'),
+  ('05', 'Partnership', 'O'),
+  ('06', 'State', 'A'),
+  ('07', 'Public', 'P');
+
 
 CREATE TABLE risk_levels(
   code CHARACTER VARYING(2) PRIMARY KEY,
@@ -235,6 +492,16 @@ CREATE TABLE degrees(
 INSERT INTO degrees(CODE, DESCRIPTION) VALUES
   ('D1', 'MASTERS'),
   ('D2', 'DOCTORATE');
+
+CREATE TABLE relationship_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO relationship_types(CODE, DESCRIPTION) VALUES
+('01', 'Spouse'),
+('02', 'Child'),
+('03', 'Parent'),
+('04', 'Sibling');
 
 CREATE TABLE enrollment_statuses(
   code CHARACTER VARYING(2) PRIMARY KEY,

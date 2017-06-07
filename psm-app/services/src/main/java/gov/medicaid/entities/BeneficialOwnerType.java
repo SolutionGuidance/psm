@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -14,20 +14,21 @@
  * limitations under the License.
  */
 package gov.medicaid.entities;
+import javax.persistence.Table;
+import javax.persistence.Column;
 
-/**
- * Represents possible beneficial owner types.
- *
- * @author TCSASSEMBLER
- * @version 1.0
+/*
+ * Represents the Assurance Statements lookup for Chemical Dependency Program.
  */
+@javax.persistence.Entity
+@Table(name = "beneficial_owner_types")
 public class BeneficialOwnerType extends LookupEntity {
-
     /**
      * Type of owner (P- person/O-org/A-any);
      */
+    @Column(name = "owner_type")
     private String ownerType;
-    
+
     /**
      * Empty constructor.
      */
@@ -49,6 +50,5 @@ public class BeneficialOwnerType extends LookupEntity {
     public void setOwnerType(String ownerType) {
         this.ownerType = ownerType;
     }
-    
-    
+
 }

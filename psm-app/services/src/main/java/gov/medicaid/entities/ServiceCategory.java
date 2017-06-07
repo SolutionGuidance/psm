@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -14,18 +14,8 @@
  * limitations under the License.
  */
 package gov.medicaid.entities;
+import javax.persistence.Table;
 
-/**
- * Represents possible relationship types.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-public class ServiceCategory extends LookupEntity {
-
-    /**
-     * Empty constructor.
-     */
-    public ServiceCategory() {
-    }
-}
+@javax.persistence.Entity
+@Table(name = "service_categories")
+public class ServiceCategory extends LookupEntity {}

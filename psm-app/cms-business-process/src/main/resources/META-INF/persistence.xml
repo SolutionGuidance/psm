@@ -58,6 +58,7 @@
     <class>gov.medicaid.entities.HelpItem</class>
     <class>gov.medicaid.entities.IssuingBoard</class>
     <class>gov.medicaid.entities.LicenseType</class>
+    <class>gov.medicaid.entities.LicenseStatus</class>
     <class>gov.medicaid.entities.ProfileStatus</class>
     <class>gov.medicaid.entities.ProviderProfile</class>
     <class>gov.medicaid.entities.ProviderType</class>

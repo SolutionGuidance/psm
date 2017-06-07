@@ -306,7 +306,13 @@ EOF
    ```ShellSession
    $ cd ../{psm}/psm-app
    $ cp build.properties.template build.properties
-   $ favorite-editor build.properties
+   ```
+
+1. If you do not have WildFly deployed in a peer directory to the PSM
+repository, update its location in your local properties:
+
+   ```ShellSession
+   $ {favorite-editor} build.properties
    ```
 
 1. Build the application with `ant`. This depends on libraries provided by the

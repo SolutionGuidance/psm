@@ -119,7 +119,7 @@ public class ForgotPasswordController extends BaseController {
             }
 
             ControllerHelper.flashInfo("Your password has been reset, "
-                + "please check you email for the new login information.");
+                + "please check your email for the new login information.");
             return new ModelAndView("redirect:/login");
         }
     }

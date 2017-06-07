@@ -244,6 +244,15 @@ INSERT INTO issuing_boards (code, description) VALUES
  ('B6', 'ABMS'),
  ('B7', 'ABPS');
   
+CREATE TABLE license_statuses(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE,
+  date DATE NULL
+);
+INSERT INTO license_statuses (code, description) VALUES
+ ('01', 'Active'),
+ ('02', 'Suspended'),
+ ('03', 'Expired');
 
   
 CREATE TABLE categories_of_service (

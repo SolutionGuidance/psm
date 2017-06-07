@@ -41,11 +41,11 @@ referenced in these items are all rooted on ext-sources-app.
     case AccreditedBirthCentersLicenseDAOBean.java
     (services/src/main/java/gov/medicaid/screening/dao/impl/AccreditedBirthCentersLicenseDAOBean.java)
     -- this hits up the third party service to try to pull down data.
-    
+
 6.  ESS: The result is passed as a simple POJO (Plain Old Java Object),
     whose structure is defined in AccreditedBirthCenter.java
     (services/src/main/java/gov/medicaid/entities/AccreditedBirthCenter.java)
-    
+
 7.  ESS: The POJO is converted to XML by basic Java libraries
     (javax.jws), and then returned back to the client.
 
@@ -82,7 +82,7 @@ the service as
 The PSM has four types of users, each with their own permission level:
 
 1. __Service agent__
-    
+
     Service agents should be able to create, view, and edit enrollments
     for their provider clients.
 
@@ -90,16 +90,16 @@ The PSM has four types of users, each with their own permission level:
     - Can create an enrollment
     - Can edit draft enrollments
     - Can view submitted enrollments
-    
+
 2. __Service admin__
-    
+
     This user type can edit and view enrollments just as a service agent
     can, but it can also edit provider types and the screening schedule.
     This user type is most likely appropriate for someone working on the
     state side of the app.
-    
+
     - Can view: provider dashboard and enrollments
-    
+
     - Functions:
         - View and edit provider types
         - Edit screening schedule
@@ -108,10 +108,10 @@ The PSM has four types of users, each with their own permission level:
         - View, create, edit, and delete other service agents
 
 3. __System admin__
-    
+
     This user type is purely for managing users, which none of the other
     user types can do.
-    
+
     - Can only view "user account" screen
     - Functions
         - Create, edit, and delete users
@@ -119,10 +119,9 @@ The PSM has four types of users, each with their own permission level:
           to create new roles
 
 4. __Providers__
-    
+
     The user type with the lowest level of permissions, a provider
     should only be able to create, view, and edit their own enrollments.
 
     - View own enrollments
     - Create and edit enrollments
- 

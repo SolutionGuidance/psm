@@ -1,7 +1,7 @@
 # PSM in a Docker container
 
 Installing and standing up the PSM is a multi-step process.  We intend
-this docker directory to make this process less onerous.  
+this docker directory to make this process less onerous.
 
 The `docker-compose.yml` currently sets up Postgres, creates a db user
 named 'psm' with password 'psm' and creates a database named 'psm'.

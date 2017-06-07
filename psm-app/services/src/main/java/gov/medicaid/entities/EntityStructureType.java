@@ -19,17 +19,3 @@ import javax.persistence.Table;
 @javax.persistence.Entity
 @Table(name = "entity_structure_types")
 public class EntityStructureType extends LookupEntity {}
-/**
- * Represents possible entity structures.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-public class EntityStructureType extends LookupEntity {
-
-    /**
-     * Empty constructor.
-     */
-    public EntityStructureType() {
-    }
-}

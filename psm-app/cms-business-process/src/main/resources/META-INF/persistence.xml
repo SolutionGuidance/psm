@@ -54,6 +54,7 @@
     <class>gov.medicaid.entities.CountyType</class>
     <class>gov.medicaid.entities.Enrollment</class>
     <class>gov.medicaid.entities.EnrollmentStatus</class>
+    <class>gov.medicaid.entities.EntityStructureType</class>
     <class>gov.medicaid.entities.HelpItem</class>
     <class>gov.medicaid.entities.LicenseType</class>
     <class>gov.medicaid.entities.ProfileStatus</class>

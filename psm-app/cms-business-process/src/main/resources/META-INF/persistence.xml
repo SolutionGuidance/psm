@@ -56,6 +56,7 @@
     <class>gov.medicaid.entities.ProviderProfile</class>
     <class>gov.medicaid.entities.ProviderType</class>
     <class>gov.medicaid.entities.RequestType</class>
+    <class>gov.medicaid.entities.RequiredFieldType</class>
     <class>gov.medicaid.entities.RiskLevel</class>
     <class>gov.medicaid.entities.Role</class>
     <class>gov.medicaid.entities.ServiceAssuranceExtType</class>

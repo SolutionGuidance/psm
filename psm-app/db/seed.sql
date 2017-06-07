@@ -2,6 +2,7 @@ DROP SEQUENCE IF EXISTS
   hibernate_sequence
 CASCADE;
 DROP TABLE IF EXISTS
+  beneficial_owner_types,
   addresses,
   agreement_documents,
   audit_details,
@@ -211,7 +212,22 @@ CREATE TABLE required_field_types(
 );
 INSERT INTO required_field_types (code, description) VALUES
   ('01', 'Required'),
-  ('02', 'Optional'),
+  ('02', 'Optional');
+
+CREATE TABLE beneficial_owner_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE,
+  owner_type CHARACTER VARYING(2)
+);
+INSERT INTO beneficial_owner_types (code, description, owner_type) VALUES
+  ('01', 'Non Profit', 'O'),
+  ('02', 'Sole Proprietership', 'O'),
+  ('03', 'Hospital', 'O'),
+  ('04', 'Corporation', 'O'),
+  ('05', 'Partnership', 'O'),
+  ('06', 'State', 'A'),
+  ('07', 'Public', 'P');
+
 
 CREATE TABLE risk_levels(
   code CHARACTER VARYING(2) PRIMARY KEY,

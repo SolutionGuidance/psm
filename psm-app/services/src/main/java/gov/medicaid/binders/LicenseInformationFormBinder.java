@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -138,7 +138,7 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
                 }
             }
         }
-        
+
         return exceptions;
     }
 
@@ -171,13 +171,10 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
             attr(mv, "attachmentSize", i);
         }
 
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+        ProviderType pt = getLookupService().getProviderTypeWithLicenseTypesByDescription(provider.getProviderType());
 
         if (!readOnly) {
-            List<gov.medicaid.entities.LicenseType> type = getLookupService().findRelatedLookup(
-                gov.medicaid.entities.LicenseType.class, pt.getCode(), ViewStatics.REL_LICENSE_OPTIONS);
-
-            attr(mv, "licenseTypes", type);
+            attr(mv, "licenseTypes", pt.getLicenseTypes());
 
             List<gov.medicaid.entities.StateType> state = new ArrayList<gov.medicaid.entities.StateType>();
             if (enrollment.getProviderInformation().getProviderType().equals(gov.medicaid.domain.model.ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value())
@@ -285,7 +282,7 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
                 return createError("attachment", index, message);
             }
         }
-        
+
         if (path.endsWith("Required")) {
             return createError("application", ruleError.getMessage());
         }
@@ -382,7 +379,7 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
         }
     }
 
-    
+
     @Override
     public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
         throws DocumentException {
@@ -419,7 +416,7 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
             document.add(licenseInfo);
         }
     }
-    
+
     /**
      * Filters the given license objects and gets only those of the given type.
      *

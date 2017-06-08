@@ -34,6 +34,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -89,6 +90,21 @@ public class LookupServiceBean implements LookupService {
                 "type",
                 applicantType
         ).getResultList();
+    }
+
+    @Override
+    public ProviderType getProviderTypeWithLicenseTypesByDescription(String providerTypeDescription) {
+        EntityGraph graph = em.getEntityGraph(
+                "ProviderType with LicenseTypes"
+        );
+        return em.createQuery(
+                "FROM ProviderType WHERE description = :description",
+                ProviderType.class
+        ).setParameter(
+                "description", providerTypeDescription
+        ).setHint(
+                "javax.persistence.loadgraph", graph
+        ).getSingleResult();
     }
 
     /**

@@ -18,6 +18,7 @@ DROP TABLE IF EXISTS
   help_items,
   license_types,
   ownership_types,
+  payto_types,
   persistent_logins,
   profile_statuses,
   provider_profiles,
@@ -260,6 +261,16 @@ INSERT INTO license_statuses (code, description) VALUES
 CREATE TABLE ownership_types(
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE);
+
+CREATE TABLE payto_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE);
+
+INSERT INTO payto_types(code, description) VALUES
+('01', 'Claim'),
+('02', 'ERA'),
+('03', 'Both');
+
 
 CREATE TABLE categories_of_service (
   code        CHARACTER VARYING(2) PRIMARY KEY,

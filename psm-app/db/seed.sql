@@ -211,7 +211,7 @@ CREATE TABLE required_field_types(
 );
 INSERT INTO required_field_types (code, description) VALUES
   ('01', 'Required'),
-  ('02', 'Optional'),
+  ('02', 'Optional');
 
 CREATE TABLE risk_levels(
   code CHARACTER VARYING(2) PRIMARY KEY,

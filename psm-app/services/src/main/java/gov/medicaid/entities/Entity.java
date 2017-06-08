@@ -15,6 +15,16 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -24,21 +34,31 @@ import java.util.Date;
  * @author TCSASSEMBLER
  * @version 1.0
  */
-public abstract class Entity extends IdentifiableEntity {
+@javax.persistence.Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "entities")
+public abstract class Entity implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "entity_id")
+    private long id;
 
     /**
      * Enrolled flag.
      */
+    @Column(nullable = false)
     private String enrolled;
 
     /**
      * If enrolled, the profile identifier.
      */
+    @Column(name = "profile_id", nullable = false)
     private long profileId;
 
     /**
      * References the ticket for this request.
      */
+    @Column(name = "ticket_id")
     private long ticketId;
 
     /**
@@ -49,10 +69,13 @@ public abstract class Entity extends IdentifiableEntity {
     /**
      * The full legal name.
      */
+    @Column(name = "legal_name")
     private String legalName;
 
+    @Column(name = "legacy_indicator")
     private String legacyIndicator;
 
+    @Column(name = "legacy_id")
     private String legacyId;
 
     private String npi;
@@ -60,36 +83,54 @@ public abstract class Entity extends IdentifiableEntity {
     /**
      * NPI - PECOS.
      */
+    @Column(name = "npi_verified")
     private String npiVerifiedInd;
 
     /**
      * NPI - NPILookup.
      */
+    @Column(name = "npi_lookup_verified")
     private String npiLookupVerifiedInd;
 
+    @Column(name = "nonexclusion_verified")
     private String nonExclusionVerifiedInd;
 
     /**
      * The provider type (if enrolled).
      */
+    @ManyToOne
+    @JoinColumn(name = "provider_type_code")
     private ProviderType providerType;
 
     /**
      * Additional type information.
      */
+    @Column(name = "provider_sub_type")
     private String providerSubType;
 
+    @ManyToOne
+    @JoinColumn(name = "contact_id")
     private ContactInformation contactInformation;
 
     /**
      * For agencies.
      */
+    @Column(name = "background_study_id")
     private String backgroundStudyId;
 
     /**
      * For agencies.
      */
+    @Column(name = "background_clearance_date")
     private Date backgroundClearanceDate;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

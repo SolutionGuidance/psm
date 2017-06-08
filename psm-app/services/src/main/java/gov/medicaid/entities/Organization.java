@@ -15,60 +15,88 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@javax.persistence.Entity
+@Table(name = "organizations")
 public class Organization extends Entity {
 
     /**
-     * Employer number.
+     * The Federal Employer Identification Number (FEIN) is a unique nine-digit
+     * number written in the form 00-0000000.
+     *
+     * @see <a href="https://en.wikipedia.org/wiki/Employer_Identification_Number">
+     * Wikipedia: Employer Identification Number</a>
      */
     private String fein;
 
     /**
      * For agencies.
      */
+    @Column(name = "agency_id")
     private String agencyId;
 
     /**
      * Indicates that the billing address is the same as the primary address.
      */
+    @Column(name = "billing_same_as_primary")
     private String billingSameAsPrimary;
 
     /**
      * Indicates that the reimbursement address is the same as the primary address.
      */
+    @Column(name = "reimbursement_same_as_primary")
     private String reimbursementSameAsPrimary;
 
     /**
      * Indicates that the ten99 address is the same as the primary address.
      */
+    @Column(name = "ten99_same_as_primary")
     private String ten99SameAsPrimary;
 
     /**
      * Practice secondary address.
      */
+    @ManyToOne
+    @JoinColumn(name = "billing_address_id")
     private Address billingAddress;
 
     /**
      * Practice secondary address.
      */
+    @ManyToOne
+    @JoinColumn(name = "reimbursement_address_id")
     private Address reimbursementAddress;
 
     /**
      * Practice secondary address.
      */
+    @ManyToOne
+    @JoinColumn(name = "ten99_address_id")
     private Address ten99Address;
 
     /**
      * Practice minnesotaTaxId.
      */
+    @Column(name = "state_tax_id")
     private String stateTaxId;
 
     /**
      * Practice fiscal year end.
      */
+    @Column(name = "fiscal_year_end")
     private String fiscalYearEnd;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "remittance_sequence_order")
     private RemittanceSequenceOrder remittanceSequenceOrder;
 
+    @Column(name = "eft_vendor_number")
     private String eftVendorNumber;
 
     /**

@@ -12,8 +12,11 @@ DROP TABLE IF EXISTS
   degrees,
   enrollment_statuses,
   enrollments,
+  entities,
   help_items,
   license_types,
+  organizations,
+  people,
   persistent_logins,
   profile_statuses,
   provider_profiles,
@@ -603,3 +606,59 @@ INSERT INTO provider_type_license_types(
   ('68', 'AO'),
   ('68', 'AZ'),
   ('69', 'AO');
+
+CREATE TABLE entities(
+  entity_id BIGINT PRIMARY KEY,
+  enrolled CHARACTER VARYING(1) NOT NULL,
+  profile_id BIGINT NOT NULL,
+  ticket_id BIGINT,
+  name TEXT,
+  legal_name TEXT,
+  legacy_indicator CHARACTER VARYING(1),
+  legacy_id TEXT,
+  npi TEXT,
+  npi_verified CHARACTER VARYING(1),
+  npi_lookup_verified CHARACTER VARYING(1),
+  nonexclusion_verified CHARACTER VARYING(1),
+  provider_type_code CHARACTER VARYING(2)
+    REFERENCES provider_types(code),
+  provider_sub_type TEXT,
+  contact_id BIGINT
+    REFERENCES contacts(contact_id),
+  background_study_id TEXT,
+  background_clearance_date TIMESTAMP WITH TIME ZONE
+);
+CREATE TABLE organizations(
+  entity_id BIGINT PRIMARY KEY
+    REFERENCES entities(entity_id),
+  fein CHARACTER VARYING(10),
+  agency_id TEXT,
+  billing_same_as_primary CHARACTER VARYING(1),
+  reimbursement_same_as_primary CHARACTER VARYING(1),
+  ten99_same_as_primary CHARACTER VARYING(1),
+  billing_address_id BIGINT
+    REFERENCES addresses(address_id),
+  reimbursement_address_id BIGINT
+    REFERENCES addresses(address_id),
+  ten99_address_id BIGINT
+    REFERENCES addresses(address_id),
+  state_tax_id TEXT,
+  fiscal_year_end TEXT,
+  remittance_sequence_order TEXT,
+  eft_vendor_number TEXT
+);
+CREATE TABLE people(
+  entity_id BIGINT PRIMARY KEY
+    REFERENCES entities(entity_id),
+  prefix TEXT,
+  first_name TEXT,
+  middle_name TEXT,
+  last_name TEXT,
+  suffix TEXT,
+  ssn TEXT,
+  ssn_verified CHARACTER VARYING(1),
+  birth_date DATE,
+  degree_code CHARACTER VARYING(2)
+    REFERENCES degrees(code),
+  degree_award_date DATE
+);

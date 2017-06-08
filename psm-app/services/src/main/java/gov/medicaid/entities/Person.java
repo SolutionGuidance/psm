@@ -15,33 +15,44 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.Date;
 
+@javax.persistence.Entity
+@Table(name = "people")
 public class Person extends Entity {
     private String ssn;
 
     /**
      * SSN Verification status.
      */
+    @Column(name = "ssn_verified")
     private String ssnVerifiedInd;
 
-    /**
-     * Date of birth.
-     */
+    @Column(name = "birth_date")
     private Date dob;
 
+    @ManyToOne
+    @JoinColumn(name = "degree_code")
     private Degree degree;
 
+    @Column(name = "degree_award_date")
     private Date degreeAwardDate;
 
     private String prefix;
 
     private String suffix;
 
+    @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "middle_name")
     private String middleName;
 
     public String getSsn() {

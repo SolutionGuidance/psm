@@ -868,16 +868,6 @@
 		<property column="CREATE_TS" generated="never" lazy="false"
 			name="createdOn" type="timestamp" />
 	</class>
-	<class name="gov.medicaid.entities.RequiredFieldType" table="REQUIRED_FLD_TYPE">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.RequiredField" table="REQUIRED_FLD">
 		<id name="code" type="string">
 			<column length="2" name="CODE" />

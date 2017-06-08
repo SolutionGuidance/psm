@@ -28,7 +28,9 @@ DROP TABLE IF EXISTS
   provider_type_agreement_documents,
   provider_types,
   qp_types,
+  relationship_types,
   request_types,
+  required_fields,
   required_field_types,
   risk_levels,
   roles,
@@ -225,6 +227,7 @@ INSERT INTO profile_statuses (code, description) VALUES
   ('02', 'Suspended'),
   ('03', 'Expired');
 
+
 CREATE TABLE required_field_types(
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE
@@ -232,6 +235,12 @@ CREATE TABLE required_field_types(
 INSERT INTO required_field_types (code, description) VALUES
   ('01', 'Required'),
   ('02', 'Optional');
+
+CREATE TABLE required_fields(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE,
+  required_field_type_code CHARACTER VARYING(2) REFERENCES  required_field_types(code)
+);
 
 CREATE TABLE entity_structure_types(
   code CHARACTER VARYING(2) PRIMARY KEY,

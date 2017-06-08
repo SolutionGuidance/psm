@@ -67,6 +67,7 @@
     <class>gov.medicaid.entities.QPType</class>
     <class>gov.medicaid.entities.RelationshipType</class>
     <class>gov.medicaid.entities.RequestType</class>
+    <class>gov.medicaid.entities.RequiredField</class>
     <class>gov.medicaid.entities.RequiredFieldType</class>
     <class>gov.medicaid.entities.RiskLevel</class>
     <class>gov.medicaid.entities.Role</class>

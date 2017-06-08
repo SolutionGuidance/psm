@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -14,18 +14,27 @@
  * limitations under the License.
  */
 package gov.medicaid.entities;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
-/**
- * This represents a required field.
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
- */
-public class RequiredField extends LookupEntity {
+@javax.persistence.Entity
+@Table(name = "required_fields")
+public class RequiredField implements Cloneable, Serializable {
 
     /**
      * The required field type.
      */
+    @ManyToOne
+    @JoinColumn(name = "required_field_type_code")
     private RequiredFieldType type;
 
     /**

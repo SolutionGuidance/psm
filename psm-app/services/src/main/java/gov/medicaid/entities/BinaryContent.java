@@ -22,12 +22,6 @@ public class BinaryContent {
 
     private String contentId;
 
-    /**
-     * Empty constructor.
-     */
-    public BinaryContent() {
-    }
-
     public Blob getContent() {
         return content;
     }

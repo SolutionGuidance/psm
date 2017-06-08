@@ -445,6 +445,16 @@ INSERT INTO degrees(CODE, DESCRIPTION) VALUES
   ('D1', 'MASTERS'),
   ('D2', 'DOCTORATE');
 
+CREATE TABLE relationship_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO relationship_types(CODE, DESCRIPTION) VALUES
+('01', 'Spouse'),
+('02', 'Child'),
+('03', 'Parent'),
+('04', 'Sibling');
+
 CREATE TABLE enrollment_statuses(
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE

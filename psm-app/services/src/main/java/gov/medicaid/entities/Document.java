@@ -40,12 +40,6 @@ public class Document extends IdentifiableEntity implements Cloneable {
 
     private Date createdOn;
 
-    /**
-     * Empty constructor.
-     */
-    public Document() {
-    }
-
     public String getType() {
         return type;
     }

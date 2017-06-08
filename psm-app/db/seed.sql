@@ -427,7 +427,6 @@ INSERT INTO beneficial_owner_types (code, description, owner_type) VALUES
   ('06', 'State', 'A'),
   ('07', 'Public', 'P');
 
-
 CREATE TABLE risk_levels(
   code CHARACTER VARYING(2) PRIMARY KEY,
   sort_index INTEGER UNIQUE NOT NULL,

@@ -12,6 +12,24 @@ This repository has a home on
 [pull requests](https://help.github.com/articles/about-pull-requests/)
 (PRs) there.
 
+Please submit changes via pull request, even if you have direct commit
+access to the repository.  The PR process allows us to get additional
+eyes on change proposals.  We have caught issues at this stage in even
+simple patches.
+
+Generally, the more controversial, complex or large a change, the more
+opportunity people should have to comment on it.  That means it should
+garner more comments/approvals or it means it should sit longer before
+being merged.  We don't have hard rules about such things, and
+documentation changes usually don't need to sit as long as functional
+changes, but figure a day or two for an average patch.
+
+As to when to merge, that's a judgment call.  Usually Cecilia, James
+or Karl pulls the trigger, but that isn't to say others shouldn't feel
+free to push the merge button if the conversation around a change has
+concluded.  If you're unsure, ask!  "Is this ready to merge?" is often
+a useful next step in the conversation.
+
 ### Branching and Branch Names
 
 We do all development on lightweight branches, with each branch

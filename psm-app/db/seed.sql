@@ -17,7 +17,9 @@ DROP TABLE IF EXISTS
   enrollments,
   entity_structure_types,
   help_items,
+  issuing_boards,
   license_types,
+  license_statuses,
   ownership_types,
   payto_types,
   persistent_logins,
@@ -25,6 +27,7 @@ DROP TABLE IF EXISTS
   provider_profiles,
   provider_type_agreement_documents,
   provider_types,
+  qp_types,
   request_types,
   required_field_types,
   risk_levels,
@@ -116,6 +119,17 @@ CREATE TABLE help_items(
   title TEXT,
   description TEXT
 );
+
+CREATE TABLE qp_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO qp_types(code, description) VALUES
+('01', 'Registered Nurse'),
+('02', 'Licensed Social Worker'),
+('03', 'Mental Health Professional'),
+('04', 'Qualified Developmental Disability Specialist');
+
 
 CREATE TABLE provider_types(
   code CHARACTER VARYING(2) PRIMARY KEY,

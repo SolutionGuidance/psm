@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS
   agreement_documents,
   audit_details,
   audit_records,
+  binary_contents,
   cms_authentication,
   cms_user,
   contacts,
@@ -661,4 +662,9 @@ CREATE TABLE people(
   degree_code CHARACTER VARYING(2)
     REFERENCES degrees(code),
   degree_award_date DATE
+);
+
+CREATE TABLE binary_contents(
+  binary_content_id TEXT PRIMARY KEY,
+  content OID
 );

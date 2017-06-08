@@ -15,12 +15,26 @@
  */
 package gov.medicaid.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 import java.sql.Blob;
 
+@javax.persistence.Entity
+@Table(name = "binary_contents")
 public class BinaryContent {
-    private Blob content;
-
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Column(name = "binary_content_id")
     private String contentId;
+
+    @Lob
+    private Blob content;
 
     public Blob getContent() {
         return content;

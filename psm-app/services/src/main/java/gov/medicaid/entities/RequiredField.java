@@ -14,21 +14,14 @@
  * limitations under the License.
  */
 package gov.medicaid.entities;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 @javax.persistence.Entity
 @Table(name = "required_fields")
-public class RequiredField implements Cloneable, Serializable {
+public class RequiredField extends LookupEntity {
 
     /**
      * The required field type.

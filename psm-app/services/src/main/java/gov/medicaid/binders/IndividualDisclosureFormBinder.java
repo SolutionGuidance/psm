@@ -162,11 +162,13 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
     public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+        List<AgreementDocument> docs = pt.getAgreementDocuments();
+
         // for renewal the form should be blank
         if (enrollment.getRequestType() == RequestType.RENEWAL && provider.getRenewalShowBlankStatement() == null) {
             attr(mv, "renewalBlankInit", "Y");
-            ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-            List<AgreementDocument> docs = pt.getAgreementDocuments();
+
             int i = 0;
             for (AgreementDocument doc : docs) {
                 attr(mv, "documentId", i, "" + doc.getId());
@@ -189,8 +191,6 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
 
             AcceptedAgreementsType acceptedAgreements = provider.getAcceptedAgreements();
 
-            ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-            List<AgreementDocument> docs = pt.getAgreementDocuments();
             int i = 0;
             for (AgreementDocument doc : docs) {
                 attr(mv, "documentId", i, "" + doc.getId());

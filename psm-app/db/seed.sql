@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS
   entity_structure_types,
   help_items,
   license_types,
+  ownership_types,
   persistent_logins,
   profile_statuses,
   provider_profiles,
@@ -254,7 +255,12 @@ INSERT INTO license_statuses (code, description) VALUES
  ('02', 'Suspended'),
  ('03', 'Expired');
 
-  
+
+-- This entity may be obsolete BenGalewsky 6-8-17
+CREATE TABLE ownership_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE);
+
 CREATE TABLE categories_of_service (
   code        CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE

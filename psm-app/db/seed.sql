@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS
   required_field_types,
   risk_levels,
   roles,
-  service_assurance_types,
   service_assurance_ext_types,
+  service_assurance_types,
   states
 CASCADE;
 

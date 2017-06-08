@@ -31,6 +31,7 @@ DROP TABLE IF EXISTS
   provider_type_agreement_documents,
   provider_type_license_types,
   provider_types,
+  qualified_professional_types,
   request_types,
   required_field_types,
   risk_levels,
@@ -122,6 +123,16 @@ CREATE TABLE help_items(
   title TEXT,
   description TEXT
 );
+
+CREATE TABLE qualified_professional_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO qualified_professional_types (code, description) VALUES
+  ('01', 'Registered Nurse'),
+  ('02', 'Licensed Social Worker'),
+  ('03', 'Mental Health Professional'),
+  ('04', 'Qualified Developmental Disability Specialist');
 
 CREATE TABLE provider_types(
   code CHARACTER VARYING(2) PRIMARY KEY,

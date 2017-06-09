@@ -146,39 +146,6 @@
 			<column name="SUB_CAT_CD" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.DesignatedContact" table="DESIGNATED_CONTACT">
-		<id name="id" type="long">
-			<column name="CONTROL_NO" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="profileId"
-			type="long">
-			<column name="PROFILE_ID" />
-		</property>
-		<property generated="never" lazy="false" name="ticketId"
-			type="long">
-			<column name="TICKET_ID" />
-		</property>
-		<property generated="never" lazy="false" name="sameAsProvider"
-			type="string">
-			<column length="1" name="SAME_AS_PROVIDER_IND" />
-		</property>
-		<property generated="never" lazy="false" name="hireDate"
-			type="date">
-			<column name="HIRE_DT" />
-		</property>
-		<property generated="never" lazy="false" name="type">
-			<column name="TYPE" />
-			<type name="org.hibernate.type.EnumType">
-				<param name="type">12</param>
-				<param name="enumClass">gov.medicaid.entities.DesignatedContactType</param>
-			</type>
-		</property>
-		<many-to-one class="gov.medicaid.entities.Person" fetch="join"
-			name="person">
-			<column name="PERSON_ID" />
-		</many-to-one>
-	</class>
 	<class name="gov.medicaid.entities.License" table="LICENSE">
 		<id column="LICENSE_ID" name="id" type="long">
 			<generator class="assigned" />

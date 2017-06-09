@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS
   contacts,
   counties,
   degrees,
+  designated_contacts,
   documents,
   enrollment_statuses,
   enrollments,
@@ -933,4 +934,15 @@ CREATE TABLE documents(
   binary_content_id TEXT,
   created_by TEXT,
   created_at TIMESTAMP WITH TIME ZONE
+);
+
+CREATE TABLE designated_contacts(
+  designated_contact_id BIGINT PRIMARY KEY,
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  designated_contact_type TEXT,
+  same_as_provider CHARACTER VARYING(1),
+  hired_at DATE,
+  person_id BIGINT
+    REFERENCES people(entity_id)
 );

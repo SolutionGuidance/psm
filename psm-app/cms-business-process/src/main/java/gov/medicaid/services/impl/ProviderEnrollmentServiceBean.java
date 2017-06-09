@@ -1235,7 +1235,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             Person person = designatedContact.getPerson();
             insertNonProviderEntity(person);
 
-            designatedContact.setId(getSequence().getNextValue(Sequences.DESIGNATED_CONTACT_SEQ));
+            designatedContact.setId(0);
             getEm().persist(designatedContact);
         }
     }

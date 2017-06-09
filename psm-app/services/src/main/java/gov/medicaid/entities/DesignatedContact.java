@@ -15,36 +15,68 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
-public class DesignatedContact extends IdentifiableEntity {
+@javax.persistence.Entity
+@Table(name = "designated_contacts")
+public class DesignatedContact implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "designated_contact_id")
+    private long id;
 
     /**
      * The owner profile.
      */
+    @Column(name = "profile_id")
     private long profileId;
 
     /**
      * The owner ticket.
      */
+    @Column(name = "ticket_id")
     private long ticketId;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "designated_contact_type")
     private DesignatedContactType type;
 
     /**
      * Use the same contact details as the provider profile.
      */
+    @Column(name = "same_as_provider")
     private String sameAsProvider;
 
     /**
      * Designee hire date.
      */
+    @Column(name = "hired_at")
     private Date hireDate;
 
     /**
      * The designated person.
      */
+    @ManyToOne
+    @JoinColumn(name = "person_id")
     private Person person;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getProfileId() {
         return profileId;

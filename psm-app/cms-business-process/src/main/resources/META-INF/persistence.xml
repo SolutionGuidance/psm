@@ -51,8 +51,11 @@
     <class>gov.medicaid.entities.Degree</class>
     <class>gov.medicaid.entities.Enrollment</class>
     <class>gov.medicaid.entities.EnrollmentStatus</class>
+    <class>gov.medicaid.entities.Entity</class>
     <class>gov.medicaid.entities.HelpItem</class>
     <class>gov.medicaid.entities.LicenseType</class>
+    <class>gov.medicaid.entities.Organization</class>
+    <class>gov.medicaid.entities.Person</class>
     <class>gov.medicaid.entities.ProfileStatus</class>
     <class>gov.medicaid.entities.ProviderProfile</class>
     <class>gov.medicaid.entities.ProviderType</class>

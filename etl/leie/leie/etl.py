@@ -16,8 +16,9 @@ import re
 import sys
 
 # Our modules
-import model
 import log
+import model
+from path import get_existing_file
 
 warn, info, debug, fatal = log.reporters()
 
@@ -216,11 +217,20 @@ def main():
     # Make sure the db schema is up to date, create tables, etc.
     conn.migrate()
 
+    # Find data dir
+    datadir = get_existing_file(["/var/etl/leie/data",
+                                 "data",
+                                 "../data",
+                                 os.path.join(os.path.dirname(__file__), "data"),
+                                 os.path.join(os.path.dirname(__file__), "..", "data")],
+                                "data")
+    info("Using %s as data directory" % datadir)
+
     # Do our ETL
     excl = Exclusions(conn)
-    excl.etl_from_dir()
+    excl.etl_from_dir(datadir)
     rein = Reinstatements(conn)
-    rein.etl_from_dir()
+    rein.etl_from_dir(datadir)
 
     # Close the db connection
     conn.close()

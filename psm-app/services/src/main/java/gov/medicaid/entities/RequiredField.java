@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -15,17 +15,19 @@
  */
 package gov.medicaid.entities;
 
-/**
- * This represents a required field.
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
- */
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@javax.persistence.Entity
+@Table(name = "required_fields")
 public class RequiredField extends LookupEntity {
 
     /**
      * The required field type.
      */
+    @ManyToOne
+    @JoinColumn(name = "required_field_type_code")
     private RequiredFieldType type;
 
     /**

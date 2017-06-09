@@ -132,80 +132,6 @@
 			<column name="STATUS" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.BeneficialOwnerType" table="LU_BEN_OWNER_TYP">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="ownerType"
-			type="string">
-			<column length="1" name="OWNER_TYPE" />
-		</property>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.EntityStructureType" table="LU_CORP_STRUCTURE_TYP">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.RelationshipType" table="LU_RELATIONSHIP_TYP">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.QPType" table="LU_QP_TYP">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.ServiceCategory" table="LU_SVC_CAT">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.CategoryOfService" table="LU_COS">
-		<id name="code" type="string">
-			<column length="3" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.OwnershipType" table="LU_OWNERSHIP_TYP">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.SpecialtyType" table="LU_SPECIALTY_TYPE">
 		<id name="code" type="string">
 			<column length="2" name="CODE" />
@@ -218,46 +144,6 @@
 		<property generated="never" lazy="false" length="2" name="subCategory"
 			type="string">
 			<column name="SUB_CAT_CD" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.CountyType" table="LU_COUNTY">
-		<id name="code" type="string">
-			<column length="3" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.LicenseStatus" table="LU_LICENSE_STATUS">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.IssuingBoard" table="LU_ISSUING_BOARD">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.PayToProviderType" table="LU_PAYTO_TYPE">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
 		</property>
 	</class>
 	<class name="gov.medicaid.entities.DesignatedContact" table="DESIGNATED_CONTACT">
@@ -696,20 +582,6 @@
 			length="50" name="createdBy" type="string" />
 		<property column="CREATE_TS" generated="never" lazy="false"
 			name="createdOn" type="timestamp" />
-	</class>
-	<class name="gov.medicaid.entities.RequiredField" table="REQUIRED_FLD">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-		<many-to-one cascade="all" class="gov.medicaid.entities.RequiredField"
-			name="type">
-			<column name="REQUIRED_FLD_TYPE_ID" />
-		</many-to-one>
 	</class>
 	<class name="gov.medicaid.entities.ScreeningSchedule" table="SCREENING_SCHEDULE">
 		<id column="SCREENING_SCHEDULE_ID" name="id" type="long">

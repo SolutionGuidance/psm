@@ -23,7 +23,7 @@ class LEIE(object):
     """
 
     dbtype = None
-    
+
     def __init__(self, db_name="development", db_file=None, connect=True):
         """Open a database connection, creating db if needed, and generally
         get ready to store stuff.
@@ -41,12 +41,12 @@ class LEIE(object):
 
         # slurp dbconf.yml
         with open(db_file) as INF:
-            self.db_conf = yaml.load(INF)[db_name]            
+            self.db_conf = yaml.load(INF)[db_name]
 
         # If we're not opening a connection, we're done
         if not connect:
             return
-        
+
         # open and hang on to a db connection for later use
         if self.db_conf['driver'] == 'sqlite3':
             self.conn = sqlite3.connect(self.db_conf['open'])
@@ -62,14 +62,14 @@ class LEIE(object):
         """Return the number of total rows in the individual_exclusion and
         business_exclusion databases."""
         return self.count_table_tag("exclusion")
-    
+
     def count_table_tag(self, table_tag):
         """Return the total number of rows in the individual_TABLE_TAG and
         business_TABLE_TAG tables."""
         c = self.conn.cursor()
         return (c.execute("SELECT Count(*) FROM individual_%s" % table_tag).fetchone()[0] +
                 c.execute("SELECT Count(*) FROM business_%s" % table_tag).fetchone()[0])
-        
+
     def dedupe(self, table):
         """
         Remove any duplicate rows from TABLE
@@ -90,7 +90,7 @@ class LEIE(object):
         # We're done if there are no dupes
         if not dup:
             return
-        
+
         # Uh-oh, better fess up and clean up
         warn("Duplicate reinstatements found in %s!" % table)
         info("Cleaning duplicate reinstatements from %s" % table)
@@ -98,7 +98,7 @@ class LEIE(object):
             table,
             ", ".join(self.get_header(table))
             ))
-        
+
     def dedupe_reinstatements(self):
         """
         Make sure there are no duplicate rows in the individual_reinstatement or business_reinstatement tables.
@@ -111,7 +111,7 @@ class LEIE(object):
         """Returns a list of the column names in TABLE"""
         c = self.conn.cursor()
         return [f[1] for f in c.execute("PRAGMA table_info(%s)" % table).fetchall()]
-        
+
     def get_latest_date(self, table, field):
         """Find and return the latest month and year in the list of actions in
         TABLE by looking at dates in FIELD.  Return this value as a
@@ -120,7 +120,7 @@ class LEIE(object):
         If there are no rows, return "".
 
         """
-        
+
         crsr = self.conn.cursor()
         d = crsr.execute("SELECT {1} FROM {0} ORDER BY date({1}) DESC Limit 1".format(table, field)).fetchone()
         if not d:
@@ -135,9 +135,9 @@ class LEIE(object):
         If there are no rows, return "".
 
         """
-        
+
         return self.get_latest_date("individual_exclusion", "excldate")
-    
+
     def get_latest_reinstatement_date(self):
         """Find and return the latest month and year in the list of
         reinstatement actions.  Return this value as a string
@@ -152,7 +152,7 @@ class LEIE(object):
 
         """
         return self.get_latest_date("individual_reinstatement", "reindate")
-    
+
     def goose(self):
         """Returns a dict of goose migrations.  The keys are filenames and the
         values are the contents of the goose files.
@@ -165,7 +165,7 @@ DROP TABLE individual_exclusion;
 DROP TABLE individual_reinstatement;
 DROP TABLE business_exclusion;
 DROP TABLE business_reinstatement;"""
-        
+
         return {"20170515130501_initial_create.sql": migration}
 
     def goose_write(self, dirname=None):
@@ -190,7 +190,7 @@ DROP TABLE business_reinstatement;"""
             with open(fname, 'w') as OUTF:
                 OUTF.write(migration)
         return created
-    
+
     def migrate(self):
         """Bring the db schema up to date by running any needed model
         migrations."""
@@ -202,7 +202,7 @@ DROP TABLE business_reinstatement;"""
             # Make sure the sqlite3 db exists before we try to migrate it
             if not os.path.exists(os.path.basename(self.db_conf['open'])):
                 raise DBNotFound("DB %s doesn't exist, so we can't migrate it." % self.db_conf['open'])
-            
+
             # Goose apparently returns 0 even when it errors, so we
             # have to check stderr and react accordingly.
             cmd = "goose -dir db/{0} {0} {1} up".format(self.db_conf['driver'], os.path.basename(self.db_conf['open']))
@@ -214,7 +214,7 @@ DROP TABLE business_reinstatement;"""
             if err != '':
                 raise subprocess.CalledProcessError(0, cmd, out+err)
             return out
-        
+
     def sql(self, migration):
         """Returns schema sql for the db
 
@@ -257,11 +257,11 @@ DROP TABLE business_reinstatement;"""
         else:
             # We only have the one migration for now
             return None
-    
+
 def main(dirname=None):
     conn = LEIE(connect=False)
     return conn.goose_write(dirname)
-    
+
 if __name__ == '__main__':
     logger = log.logger()
     logger.info('Running model.py directly to produce schema/goose output.')

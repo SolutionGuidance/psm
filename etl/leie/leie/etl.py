@@ -18,6 +18,7 @@ import sys
 # Our modules
 import model
 import log
+
 warn, info, debug, fatal = log.reporters()
 
 date_re = re.compile(r'[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
@@ -57,15 +58,15 @@ def munge_date(date_entry):
     d = str(dateutil.parser.parse(f)) + ".000"
     warn("Unrecognized date format ({0}) parsed as {1}!".format(f, d))
     return d
-    
+
 def clean_and_separate(table):
     """Do some cleanup of TABLE and split into individual and business tables.
 
     TABLE is a petl table."""
-    
+
     # Rename column to expand name
     table = etl.rename(table, {'WVRSTATE': 'waiverstate'})
-    
+
     # More conversions
     table = etl.convert(table, {
         'EXCLTYPE': lambda f: f.strip(), # Trim extra spaces
@@ -73,7 +74,7 @@ def clean_and_separate(table):
         'REINDATE': munge_date, # Arrange date for sqlite
         'WAIVERDATE': munge_date # Arrange date for sqlite
     })
-    
+
     # Separate into two tables, as this is actually two different data sets
     individual = etl.select(table, "{LASTNAME} != '' and {FIRSTNAME} != ''")
     business = etl.select(table, "{LASTNAME} == '' and {FIRSTNAME} == ''")
@@ -83,11 +84,11 @@ def clean_and_separate(table):
     # that gets counted when we have two tables.
     if len(business) + len(individual) != len(table) + 1:
         fatal("Separating business and individual exclusions came up with the wrong number of rows!")
-    
+
     # Remove unused columns
     individual = etl.transform.basics.cutout(individual, "BUSNAME")
     business = etl.transform.basics.cutout(business, "LASTNAME", "FIRSTNAME", "MIDNAME", "DOB")
-    
+
     # Do some cleanup conversions on individual data
     individual = etl.convert(individual, {'DOB': munge_date,
                                           'MIDNAME': lambda f: f if f != " " else ""  # no spaces as middle names
@@ -100,7 +101,7 @@ class Exclusions():
     def __init__(self, conn):
         """CONN is a database connection."""
         self.conn = conn
-        
+
     def etl_from_table(self, table, force_reload=False):
         """Extract, translate, load exclusions (and not reinstatements) from
         a petl TABLE.
@@ -126,14 +127,14 @@ class Exclusions():
 
         # Massage data
         individual, business = clean_and_separate(table)
-    
+
         # Save to db, BLOWING AWAY data in the existing tables.  If
         # tables don't exist, will create them, but without any
         # constraints.
         info("Replacing individual_exclusion and business_exclusion tables.")
         etl.todb(individual, self.conn.conn, 'individual_exclusion')
         etl.todb(business, self.conn.conn, 'business_exclusion')
-    
+
     def etl_from_filename(self, fname, force_reload=False):
         """Extract, translate, load exclusions (and not reinstatements) from
         the file named FNAME.
@@ -163,7 +164,7 @@ class Exclusions():
         between blowing away and refilling it.
 
         """
-    
+
         # Get the data from updated CSV file
         self.etl_from_filename(os.path.join(data_dir,"UPDATED.csv"), force_reload)
 
@@ -173,15 +174,15 @@ class Reinstatements():
     def __init__(self, conn):
         """CONN is a database connection."""
         self.conn = conn
-    
+
     def etl_from_dir(self, data_dir="data"):
         """Extract, translate, load reinstatements (and not exclusions) from
         directory DATA_DIR.
         """
-    
+
         # Get YYYYMM date of most recent reinstatement action
         most_recent = self.conn.get_latest_reinstatement_date().replace('-','')[:6] or "000000000"
-    
+
         # Get the data from REIN CSV files.  Gather reinstatement actions
         # since most_recent
         total_indiv = []
@@ -194,7 +195,7 @@ class Reinstatements():
             individual, business = clean_and_separate(reinstated)
             total_indiv.append(individual)
             total_bus.append(business)
-        
+
         # Save to db, APPENDING TO existing data tables.  Assumes tables
         # exist.
         if total_indiv:
@@ -206,24 +207,24 @@ class Reinstatements():
         # process is interrupted midway through.  So we should find and
         # remove dupes.
         self.conn.dedupe_reinstatements()
-    
+
 def main():
-    
+
     # Get a database connection, create db if needed
     conn = model.LEIE("development")
 
     # Make sure the db schema is up to date, create tables, etc.
     conn.migrate()
-    
+
     # Do our ETL
     excl = Exclusions(conn)
     excl.etl_from_dir()
     rein = Reinstatements(conn)
-    rein.etl_from_dir()    
+    rein.etl_from_dir()
 
     # Close the db connection
     conn.close()
-    
+
 if __name__ == '__main__':
     os.chdir(os.path.dirname(__file__))
     logger = log.logger()

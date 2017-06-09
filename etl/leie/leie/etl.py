@@ -211,8 +211,17 @@ class Reinstatements():
 
 def main():
 
+    # Figure out where our db is
+    dbdir = get_existing_file(["/var/etl/leie/db",
+                               "db",
+                               "../db",
+                               os.path.join(os.path.dirname(__file__), "db"),
+                               os.path.join(os.path.dirname(__file__), "..", "db")],
+                              "db")
+    info("Using %s as db directory" % dbdir)
+
     # Get a database connection, create db if needed
-    conn = model.LEIE("development")
+    conn = model.LEIE("development", db_conf_file=os.path.join(dbdir, "dbconf.yml"))
 
     # Make sure the db schema is up to date, create tables, etc.
     conn.migrate()

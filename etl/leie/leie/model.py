@@ -24,11 +24,13 @@ class LEIE(object):
 
     dbtype = None
 
-    def __init__(self, db_name="development", db_file=None, connect=True):
+    def __init__(self, db_name="development", db_conf_file="", connect=True):
         """Open a database connection, creating db if needed, and generally
         get ready to store stuff.
 
         DB_NAME is the name of the database to target from dbconf.yml.
+
+        If DB_CONF_FILE isn't specified, we use a stock one of defaults.
 
         Goose migrations use dbconf.yml files, so for convenience, we
         just read any needed data from that file.
@@ -37,11 +39,14 @@ class LEIE(object):
 
         """
         self.db_name = db_name
-        db_file = db_file if db_file else os.path.join(os.path.dirname(__file__), "db/dbconf.yml")
-
-        # slurp dbconf.yml
-        with open(db_file) as INF:
-            self.db_conf = yaml.load(INF)[db_name]
+        if os.path.exists(db_conf_file):
+            # slurp dbconf.yml
+            with open(db_conf_file) as INF:
+                self.db_conf = yaml.load(INF)[db_name]
+        else:
+            info("dbconf.yml not found, using default config values (db will be leie.sqlite3)")
+            self.db_name = "development"
+            self.db_conf = yaml.load("development:\n  driver: sqlite3\n  open: leie.sqlite3\n")[self.db_name]
 
         # If we're not opening a connection, we're done
         if not connect:

@@ -116,7 +116,9 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
             exceptions.add(e);
         }
 
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
+                provider
+        );
         List<AgreementDocument> docs = pt.getAgreementDocuments();
 
         List<ProviderAgreementType> xList = new ArrayList<ProviderAgreementType>();
@@ -162,7 +164,9 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
     public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
+                provider
+        );
         List<AgreementDocument> docs = pt.getAgreementDocuments();
 
         // for renewal the form should be blank
@@ -288,7 +292,9 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
 
         List<AcceptedAgreements> hList = profile.getAgreements();
 
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
+                provider
+        );
         List<AgreementDocument> activeList = pt.getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
@@ -394,7 +400,9 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         provider.setHasCivilPenalty(profile.getCivilPenaltyInd());
         provider.setHasPreviousExclusion(profile.getPreviousExclusionInd());
 
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
+                provider
+        );
         List<AgreementDocument> activeList = pt.getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 

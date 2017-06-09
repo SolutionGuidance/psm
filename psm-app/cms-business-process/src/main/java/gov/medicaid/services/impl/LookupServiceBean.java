@@ -94,12 +94,30 @@ public class LookupServiceBean implements LookupService {
     }
 
     @Override
+    public ProviderType getProviderTypeWithAgreementDocuments(
+            ProviderInformationType providerInformationType
+    ) {
+        return getProviderTypeWithNamedEntityGraph(
+                providerInformationType,
+                "ProviderType with AgreementDocuments"
+        );
+    }
+
+    @Override
     public ProviderType getProviderTypeWithLicenseTypes(
             ProviderInformationType providerInformationType
     ) {
-        EntityGraph graph = em.getEntityGraph(
+        return getProviderTypeWithNamedEntityGraph(
+                providerInformationType,
                 "ProviderType with LicenseTypes"
         );
+    }
+
+    private ProviderType getProviderTypeWithNamedEntityGraph(
+            ProviderInformationType providerInformationType,
+            String entityGraphName
+    ) {
+        EntityGraph graph = em.getEntityGraph(entityGraphName);
         return em.createQuery(
                 "FROM ProviderType WHERE description = :description",
                 ProviderType.class

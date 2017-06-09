@@ -46,6 +46,16 @@ public interface LookupService {
      */
     public List<ProviderType> getProviderTypes(ApplicantType applicantType);
 
+    /**
+     * Finds a ProviderType by its description, and eager-load
+     * its related AgreementDocuments.
+     *
+     * @param providerInformationType The XML-backed provider type to look up in
+     *                                the database.
+     * @return The ProviderType, with its agreementDocuments field fully
+     * initialized.
+     */
+    ProviderType getProviderTypeWithAgreementDocuments(ProviderInformationType providerInformationType);
 
     /**
      * Finds a ProviderType by its description, and eager-load

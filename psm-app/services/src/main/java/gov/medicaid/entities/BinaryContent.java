@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -15,64 +15,39 @@
  */
 package gov.medicaid.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 import java.sql.Blob;
 
-/**
- * Stores BLOB contents.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
+@javax.persistence.Entity
+@Table(name = "binary_contents")
 public class BinaryContent {
-
-    /**
-     * The binary content.
-     */
-    private Blob content;
-
-    /**
-     * The content id.
-     */
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Column(name = "binary_content_id")
     private String contentId;
 
-    /**
-     * Empty constructor.
-     */
-    public BinaryContent() {
-    }
+    @Lob
+    private Blob content;
 
-    /**
-     * Gets the value of the field <code>content</code>.
-     *
-     * @return the content
-     */
     public Blob getContent() {
         return content;
     }
 
-    /**
-     * Sets the value of the field <code>content</code>.
-     *
-     * @param content the content to set
-     */
     public void setContent(Blob content) {
         this.content = content;
     }
 
-    /**
-     * Gets the value of the field <code>contentId</code>.
-     *
-     * @return the contentId
-     */
     public String getContentId() {
         return contentId;
     }
 
-    /**
-     * Sets the value of the field <code>contentId</code>.
-     *
-     * @param contentId the contentId to set
-     */
     public void setContentId(String contentId) {
         this.contentId = contentId;
     }

@@ -340,14 +340,6 @@
 			<column name="ISSUING_BOARD_CD" />
 		</many-to-one>
 	</class>
-	<class name="gov.medicaid.entities.BinaryContent" table="DOCUMENT_CONTENT">
-		<id column="CONTENT_ID" name="contentId" type="string">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="content" type="blob">
-			<column name="RAW_CONTENT" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.Document" table="CMS_ATTACHMENT">
 		<id column="ATTACHMENT_ID" name="id" type="long">
 			<generator class="assigned" />

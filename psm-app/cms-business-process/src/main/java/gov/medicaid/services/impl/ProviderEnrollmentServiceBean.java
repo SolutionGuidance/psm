@@ -73,7 +73,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.ejb.Local;
@@ -1760,12 +1759,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @throws SerialException if content cannot be transformed to a blob
      */
     private String saveAttachmentContent(InputStream content) throws IOException, SerialException, SQLException {
-        String contentId = UUID.randomUUID().toString();
         BinaryContent binaryContent = new BinaryContent();
-        binaryContent.setContentId(contentId);
         binaryContent.setContent(new SerialBlob(IOUtils.toByteArray(content)));
         getEm().persist(binaryContent);
-        return contentId;
+        return binaryContent.getContentId();
     }
 
     /**

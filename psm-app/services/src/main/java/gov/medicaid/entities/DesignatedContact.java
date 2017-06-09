@@ -46,12 +46,6 @@ public class DesignatedContact extends IdentifiableEntity {
      */
     private Person person;
 
-    /**
-     * Empty constructor.
-     */
-    public DesignatedContact() {
-    }
-
     public long getProfileId() {
         return profileId;
     }

@@ -23,11 +23,6 @@ package gov.medicaid.services.util;
  */
 public class Sequences {
     /**
-     * Used for attachments table.
-     */
-    public static final String ATTACHMENT_SEQ = "ATTACHMENT_SEQ";
-
-    /**
      * Used for provider group association table.
      */
     public static final String PROV_GRP_SEQ = "PROV_GRP_SEQ";

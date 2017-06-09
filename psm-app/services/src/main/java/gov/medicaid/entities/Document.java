@@ -15,15 +15,31 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Represents an attachment.
  */
-public class Document extends IdentifiableEntity implements Cloneable {
+@javax.persistence.Entity
+@Table(name = "documents")
+public class Document implements Cloneable, Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "document_id")
+    private long id;
+
+    @Column(name = "profile_id")
     private long profileId;
 
+    @Column(name = "ticket_id")
     private long ticketId;
 
     private String type;
@@ -32,13 +48,25 @@ public class Document extends IdentifiableEntity implements Cloneable {
 
     private String description;
 
+    @Column(name = "binary_content_id")
     private String contentId;
 
+    @Transient
     private InputStream stream;
 
+    @Column(name = "created_by")
     private String createdBy;
 
+    @Column(name = "created_at")
     private Date createdOn;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getType() {
         return type;

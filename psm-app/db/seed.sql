@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS
   agreement_documents,
   audit_details,
   audit_records,
+  categories_of_service,
   binary_contents,
   categories_of_service,
   cms_authentication,
@@ -16,11 +17,15 @@ DROP TABLE IF EXISTS
   counties,
   enrollment_statuses,
   enrollments,
+  entity_structure_types,
   entities,
   entity_structure_types,
   help_items,
   issuing_boards,
   license_types,
+  license_statuses,
+  ownership_types,
+  payto_types,
   organizations,
   people,
   license_statuses,
@@ -40,6 +45,7 @@ DROP TABLE IF EXISTS
   required_field_types,
   risk_levels,
   roles,
+  service_categories,
   service_assurance_ext_types,
   service_assurance_types,
   states
@@ -473,7 +479,6 @@ INSERT INTO beneficial_owner_types (code, description, owner_type) VALUES
   ('05', 'Partnership', 'O'),
   ('06', 'State', 'A'),
   ('07', 'Public', 'P');
-
 
 CREATE TABLE risk_levels(
   code CHARACTER VARYING(2) PRIMARY KEY,

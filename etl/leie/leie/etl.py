@@ -13,7 +13,9 @@ import glob
 import os
 import petl as etl
 import re
+import requests
 import sys
+import time
 
 # Our modules
 import log
@@ -209,7 +211,69 @@ class Reinstatements():
         # remove dupes.
         self.conn.dedupe_reinstatements()
 
+def fname_is_stale(fname, url):
+    """Return True if URL's Last-Modified is after FNAME's mod datetime.
+
+    Return False if FNAME's mod datetime is after URL's Last-Modified.
+
+    Return True if filesize on disk differs from filesize in the headers (Not implemented)
+
+    Return True if FNAME doesn't exist.
+
+    Return False if we can't quite download URL.
+
+    """
+
+    if not os.path.exists(fname):
+        return True
+
+    # Get head of url target
+    r = requests.head(url)
+    if r.status_code != 200:
+        warn("Can't get head information about %s" % url)
+        return False
+
+    # TODO: If size indicated in header differ from size on disk, then
+    # the file is stale.
+
+    # Get mod times of url and fname
+    mtime = datetime.fromtimestamp(os.path.getmtime(fname))  # file's mtime
+    tz = time.tzname[time.localtime().tm_isdst]              # file's timezone
+    mtime = dateutil.parser.parse("%s %s" % (str(mtime), tz) ) # add timezone to file's mtime info
+    dt = dateutil.parser.parse(r.headers['Last-Modified'])   # url's last mod time
+
+    # Send back True if the url is newer, else false
+    return dt > mtime
+
+def dload_if_stale(fname, url):
+    if fname_is_stale(fname, url):
+        debug("Downloading %s" % url)
+
+        # We stream and write this in chunks in case it is huge. It's
+        # not, now, but maybe it will grow.  Better safe than sorry.
+        r=requests.get(url, stream=True)
+        with open(fname, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=1024):
+                if chunk: # filter out keep-alive new chunks
+                    f.write(chunk)
+
+        # TODO: check file size in headers vs what we got.
+
+def extract(datadir):
+    dload_if_stale(os.path.join(datadir, "UPDATED.csv"), 'https://oig.hhs.gov/exclusions/downloadables/UPDATED.csv')
+
+    # TODO: download reinstatement csv (https://oig.hhs.gov/exclusions/downloadables/2017/1705REIN.csv)
+
 def main():
+    # Find data dir
+    datadir = get_existing_file(["/var/etl/leie/data",
+                                 "data",
+                                 "../data",
+                                 os.path.join(os.path.dirname(__file__), "data"),
+                                 os.path.join(os.path.dirname(__file__), "..", "data")],
+                                default="data",
+                                create=True)
+    info("Using '%s' as data directory" % datadir)
 
     # Figure out where our db is
     dbdir = get_existing_file(["/var/etl/leie/db",
@@ -218,7 +282,7 @@ def main():
                                os.path.join(os.path.dirname(__file__), "db"),
                                os.path.join(os.path.dirname(__file__), "..", "db")],
                               "db")
-    info("Using %s as db directory" % dbdir)
+    info("Using '%s' as db directory" % dbdir)
 
     # Get a database connection, create db if needed
     conn = model.LEIE("development", db_conf_file=os.path.join(dbdir, "dbconf.yml"))
@@ -226,16 +290,10 @@ def main():
     # Make sure the db schema is up to date, create tables, etc.
     conn.migrate()
 
-    # Find data dir
-    datadir = get_existing_file(["/var/etl/leie/data",
-                                 "data",
-                                 "../data",
-                                 os.path.join(os.path.dirname(__file__), "data"),
-                                 os.path.join(os.path.dirname(__file__), "..", "data")],
-                                "data")
-    info("Using %s as data directory" % datadir)
+    assert os.path.exists(datadir)
 
     # Do our ETL
+    extract(datadir)
     excl = Exclusions(conn)
     excl.etl_from_dir(datadir)
     rein = Reinstatements(conn)

@@ -16,6 +16,7 @@
 package gov.medicaid.services.impl;
 
 import gov.medicaid.domain.model.ApplicantType;
+import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.BeneficialOwnerType;
 import gov.medicaid.entities.EntityStructureType;
@@ -93,15 +94,35 @@ public class LookupServiceBean implements LookupService {
     }
 
     @Override
-    public ProviderType getProviderTypeWithLicenseTypesByDescription(String providerTypeDescription) {
-        EntityGraph graph = em.getEntityGraph(
+    public ProviderType getProviderTypeWithAgreementDocuments(
+            ProviderInformationType providerInformationType
+    ) {
+        return getProviderTypeWithNamedEntityGraph(
+                providerInformationType,
+                "ProviderType with AgreementDocuments"
+        );
+    }
+
+    @Override
+    public ProviderType getProviderTypeWithLicenseTypes(
+            ProviderInformationType providerInformationType
+    ) {
+        return getProviderTypeWithNamedEntityGraph(
+                providerInformationType,
                 "ProviderType with LicenseTypes"
         );
+    }
+
+    private ProviderType getProviderTypeWithNamedEntityGraph(
+            ProviderInformationType providerInformationType,
+            String entityGraphName
+    ) {
+        EntityGraph graph = em.getEntityGraph(entityGraphName);
         return em.createQuery(
                 "FROM ProviderType WHERE description = :description",
                 ProviderType.class
         ).setParameter(
-                "description", providerTypeDescription
+                "description", providerInformationType.getProviderType()
         ).setHint(
                 "javax.persistence.loadgraph", graph
         ).getSingleResult();

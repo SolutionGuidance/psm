@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -94,9 +94,9 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
-     * @param request the request containing the form fields
      *
+     * @param enrollment the model to bind to
+     * @param request    the request containing the form fields
      * @throws BinderException if the format of the fields could not be bound properly
      */
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
@@ -116,7 +116,9 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
             exceptions.add(e);
         }
 
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
+                provider
+        );
         List<AgreementDocument> docs = pt.getAgreementDocuments();
 
         List<ProviderAgreementType> xList = new ArrayList<ProviderAgreementType>();
@@ -148,24 +150,29 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
             providerAgreement.clear();
             providerAgreement.addAll(xList);
         }
-        
+
         return exceptions;
     }
 
     /**
      * Binds the model to the request attributes.
+     *
      * @param enrollment the model to bind from
-     * @param mv the model and view to bind to
-     * @param readOnly true if the view is read only
+     * @param mv         the model and view to bind to
+     * @param readOnly   true if the view is read only
      */
     public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
+                provider
+        );
+        List<AgreementDocument> docs = pt.getAgreementDocuments();
+
         // for renewal the form should be blank
         if (enrollment.getRequestType() == RequestType.RENEWAL && provider.getRenewalShowBlankStatement() == null) {
-        	attr(mv, "renewalBlankInit", "Y");
-        	ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-            List<AgreementDocument> docs = pt.getAgreementDocuments();
+            attr(mv, "renewalBlankInit", "Y");
+
             int i = 0;
             for (AgreementDocument doc : docs) {
                 attr(mv, "documentId", i, "" + doc.getId());
@@ -177,55 +184,53 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
 
             attr(mv, "requiredAgreementsSize", docs.size());
         } else {
-	        attr(mv, "criminalConvictionInd", provider.getHasCriminalConviction());
-	        attr(mv, "civilPenaltyInd", provider.getHasCivilPenalty());
-	        attr(mv, "previousExclusionInd", provider.getHasPreviousExclusion());
-	
-	        ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
-	        attr(mv, "name", statement.getName());
-	        attr(mv, "title", statement.getTitle());
-	        attr(mv, "date", statement.getSignDate());
-	
-	        AcceptedAgreementsType acceptedAgreements = provider.getAcceptedAgreements();
-	
-	        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-	        List<AgreementDocument> docs = pt.getAgreementDocuments();
-	        int i = 0;
-	        for (AgreementDocument doc : docs) {
-	            attr(mv, "documentId", i, "" + doc.getId());
-	            attr(mv, "documentName", i, doc.getTitle());
-	
-	            boolean agreed = false;
-	            boolean updatedVersion = false;
-	
-	            if (acceptedAgreements != null) {
-	                List<ProviderAgreementType> agreements = acceptedAgreements.getProviderAgreement();
-	                for (ProviderAgreementType agreement : agreements) {
-	                    if (doc.getType().equals(agreement.getAgreementDocumentType())) {
-	                        if (String.valueOf(doc.getVersion()).equals(agreement.getAgreementDocumentVersion())) {
-	                            agreed = true;
-	                        } else {
-	                            updatedVersion = true;
-	                        }
-	                        break;
-	                    }
-	                }
-	            }
-	
-	            attr(mv, "accepted", i, agreed ? "Y" : "N");
-	            attr(mv, "updatedVersion", i, updatedVersion ? "Y" : "N");
-	            i++;
-	        }
-	
-	        attr(mv, "requiredAgreementsSize", docs.size());
+            attr(mv, "criminalConvictionInd", provider.getHasCriminalConviction());
+            attr(mv, "civilPenaltyInd", provider.getHasCivilPenalty());
+            attr(mv, "previousExclusionInd", provider.getHasPreviousExclusion());
+
+            ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
+            attr(mv, "name", statement.getName());
+            attr(mv, "title", statement.getTitle());
+            attr(mv, "date", statement.getSignDate());
+
+            AcceptedAgreementsType acceptedAgreements = provider.getAcceptedAgreements();
+
+            int i = 0;
+            for (AgreementDocument doc : docs) {
+                attr(mv, "documentId", i, "" + doc.getId());
+                attr(mv, "documentName", i, doc.getTitle());
+
+                boolean agreed = false;
+                boolean updatedVersion = false;
+
+                if (acceptedAgreements != null) {
+                    List<ProviderAgreementType> agreements = acceptedAgreements.getProviderAgreement();
+                    for (ProviderAgreementType agreement : agreements) {
+                        if (doc.getType().equals(agreement.getAgreementDocumentType())) {
+                            if (String.valueOf(doc.getVersion()).equals(agreement.getAgreementDocumentVersion())) {
+                                agreed = true;
+                            } else {
+                                updatedVersion = true;
+                            }
+                            break;
+                        }
+                    }
+                }
+
+                attr(mv, "accepted", i, agreed ? "Y" : "N");
+                attr(mv, "updatedVersion", i, updatedVersion ? "Y" : "N");
+                i++;
+            }
+
+            attr(mv, "requiredAgreementsSize", docs.size());
         }
     }
 
     /**
      * Captures the error messages related to the form.
-     * @param enrollment the enrollment that was validated
-     * @param messages the messages to select from
      *
+     * @param enrollment the enrollment that was validated
+     * @param messages   the messages to select from
      * @return the list of errors related to the form
      */
     protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
@@ -275,7 +280,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
      * Binds the fields of the form to the persistence model.
      *
      * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param ticket     the persistent model
      */
     public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
@@ -287,7 +292,9 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
 
         List<AcceptedAgreements> hList = profile.getAgreements();
 
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
+                provider
+        );
         List<AgreementDocument> activeList = pt.getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
@@ -329,6 +336,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
 
     /**
      * Maps the given list by id.
+     *
      * @param list the list to be mapped
      * @return the lookup map
      */
@@ -342,6 +350,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
 
     /**
      * Maps the given list by id.
+     *
      * @param list the list to be mapped
      * @return the lookup map
      */
@@ -357,12 +366,13 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
 
     /**
      * Filters the inactive agreements from the given list.
-     * @param accepted the current agreements
+     *
+     * @param accepted    the current agreements
      * @param documentMap the active agreements
      * @return the inactive agreements
      */
     private List<AcceptedAgreements> filterOnlyInactive(List<AcceptedAgreements> accepted,
-        Map<String, AgreementDocument> documentMap) {
+                                                        Map<String, AgreementDocument> documentMap) {
         List<AcceptedAgreements> inactiveList = new ArrayList<AcceptedAgreements>();
         if (accepted != null) {
             for (AcceptedAgreements agreement : accepted) {
@@ -379,7 +389,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
+     * @param ticket     the persistent model
      * @param enrollment the front end model
      */
     public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
@@ -390,7 +400,9 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         provider.setHasCivilPenalty(profile.getCivilPenaltyInd());
         provider.setHasPreviousExclusion(profile.getPreviousExclusionInd());
 
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
+        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
+                provider
+        );
         List<AgreementDocument> activeList = pt.getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
@@ -424,31 +436,31 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
             xStatement.setSignDate(BinderUtils.toCalendar(hStatement.getDate()));
         }
     }
-    
+
     @Override
     public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
-        throws DocumentException {
-        
+            throws DocumentException {
+
         // Provider Statement Section
-        PdfPTable disclosureInfo = new PdfPTable(new float[] {7, 1});
+        PdfPTable disclosureInfo = new PdfPTable(new float[]{7, 1});
         PDFHelper.setTableAsFullPage(disclosureInfo);
 
         String ns = NAMESPACE;
 
         if ("Y".equals(PDFHelper.value(model, ns, "bound"))) {
             PDFHelper.addLabelValueCell(disclosureInfo, "Have you ever been convicted of a criminal offense related to "
-                + "involvement in any program underMedicare, Medicaid, Title XX, or Title XXI in "
-                + "Minnesota or any other state or jurisdiction since the inception of these programs?",
-                PDFHelper.formatBoolean(PDFHelper.value(model, ns, "criminalConvictionInd")));
+                            + "involvement in any program underMedicare, Medicaid, Title XX, or Title XXI in "
+                            + "Minnesota or any other state or jurisdiction since the inception of these programs?",
+                    PDFHelper.formatBoolean(PDFHelper.value(model, ns, "criminalConvictionInd")));
 
             PDFHelper.addLabelValueCell(disclosureInfo, "Have you had civil money penalties or assessments "
-                + "imposed under section 1128A of the Social Security Act?",
-                PDFHelper.formatBoolean(PDFHelper.value(model, ns, "civilPenaltyInd")));
+                            + "imposed under section 1128A of the Social Security Act?",
+                    PDFHelper.formatBoolean(PDFHelper.value(model, ns, "civilPenaltyInd")));
 
             PDFHelper.addLabelValueCell(disclosureInfo,
-                "Have you ever been excluded or terminated from participation in Medicare,  Medicaid, "
-                    + "Children's Health Insurance Program (CHIP), or the Title XXI services program in Minnesota "
-                    + "or any other state since the inception of these programs?",
+                    "Have you ever been excluded or terminated from participation in Medicare,  Medicaid, "
+                            + "Children's Health Insurance Program (CHIP), or the Title XXI services program in Minnesota "
+                            + "or any other state since the inception of these programs?",
                     PDFHelper.formatBoolean(PDFHelper.value(model, ns, "previousExclusionInd")));
 
             disclosureInfo.setSpacingAfter(20);
@@ -458,13 +470,13 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
             PDFHelper.setTableAsFullPage(statementInfo);
 
             PDFHelper.addCell(statementInfo,
-                "I certify that the information provided on this form is accurate, complete and truthful. I will "
-                    + "notify MHCP Provider Enrollment of any changes to this information. I acknowledge that any "
-                    + "misrepresentations in the information submitted to MHCP, including false claims,  statements, "
-                    + "documents, or concealment of a material fact, may be cause for denial or termination "
-                    + "of participation as a Medicaid provider.");
+                    "I certify that the information provided on this form is accurate, complete and truthful. I will "
+                            + "notify MHCP Provider Enrollment of any changes to this information. I acknowledge that any "
+                            + "misrepresentations in the information submitted to MHCP, including false claims,  statements, "
+                            + "documents, or concealment of a material fact, may be cause for denial or termination "
+                            + "of participation as a Medicaid provider.");
 
-            PdfPTable nameTable = new PdfPTable(new float[] {1, 1, 4});
+            PdfPTable nameTable = new PdfPTable(new float[]{1, 1, 4});
             PDFHelper.setTableAsFullPage(nameTable);
             PDFHelper.addLabelValueCell(nameTable, "Provider Name", PDFHelper.value(model, ns, "name"));
             PDFHelper.addLabelValueCell(nameTable, "Provider Title", PDFHelper.value(model, ns, "title"));

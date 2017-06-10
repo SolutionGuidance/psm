@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS
   license_statuses,
   license_types,
   organizations,
+  ownership_types,
   people,
   persistent_logins,
   profile_statuses,
@@ -259,6 +260,11 @@ INSERT INTO license_statuses (code, description) VALUES
   ('01', 'Active'),
   ('02', 'Suspended'),
   ('03', 'Expired');
+
+CREATE TABLE ownership_types(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
 
 CREATE TABLE categories_of_service (
   code CHARACTER VARYING(2) PRIMARY KEY,

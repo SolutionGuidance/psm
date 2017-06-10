@@ -19,6 +19,7 @@ DROP TABLE IF EXISTS
   entity_structure_types,
   help_items,
   issuing_boards,
+  license_statuses,
   license_types,
   organizations,
   people,
@@ -249,6 +250,15 @@ INSERT INTO issuing_boards (code, description) VALUES
   ('B5', 'ADA'),
   ('B6', 'ABMS'),
   ('B7', 'ABPS');
+
+CREATE TABLE license_statuses(
+  code CHARACTER VARYING(2) PRIMARY KEY,
+  description TEXT UNIQUE
+);
+INSERT INTO license_statuses (code, description) VALUES
+  ('01', 'Active'),
+  ('02', 'Suspended'),
+  ('03', 'Expired');
 
 CREATE TABLE categories_of_service (
   code CHARACTER VARYING(2) PRIMARY KEY,

@@ -38,11 +38,6 @@ public class Sequences {
     public static final String LICENSE_SEQ = "LICENSE_SEQ";
 
     /**
-     * Used for entities table.
-     */
-    public static final String ENTITY_SEQ = "ENTITY_SEQ";
-
-    /**
      * Used for designated contacts table.
      */
     public static final String DESIGNATED_CONTACT_SEQ = "DESIGNATED_CONTACT_SEQ";

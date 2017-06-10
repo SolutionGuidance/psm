@@ -62,6 +62,7 @@
     <class>gov.medicaid.entities.LicenseType</class>
     <class>gov.medicaid.entities.Organization</class>
     <class>gov.medicaid.entities.OwnershipType</class>
+    <class>gov.medicaid.entities.PayToProviderType</class>
     <class>gov.medicaid.entities.Person</class>
     <class>gov.medicaid.entities.ProfileStatus</class>
     <class>gov.medicaid.entities.ProviderProfile</class>

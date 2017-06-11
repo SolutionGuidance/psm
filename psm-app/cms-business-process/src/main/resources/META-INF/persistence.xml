@@ -62,6 +62,7 @@
     <class>gov.medicaid.entities.EntityStructureType</class>
     <class>gov.medicaid.entities.HelpItem</class>
     <class>gov.medicaid.entities.IssuingBoard</class>
+    <class>gov.medicaid.entities.License</class>
     <class>gov.medicaid.entities.LicenseStatus</class>
     <class>gov.medicaid.entities.LicenseType</class>
     <class>gov.medicaid.entities.Organization</class>

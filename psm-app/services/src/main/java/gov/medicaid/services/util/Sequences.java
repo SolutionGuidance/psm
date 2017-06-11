@@ -28,11 +28,6 @@ public class Sequences {
     public static final String PROV_GRP_SEQ = "PROV_GRP_SEQ";
 
     /**
-     * Used for provider license table.
-     */
-    public static final String LICENSE_SEQ = "LICENSE_SEQ";
-
-    /**
      * Used for provider statement table.
      */
     public static final String STATEMENT_ID = "STATEMENT_ID";

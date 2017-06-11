@@ -1124,7 +1124,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                             }
                             license.setAttachmentId(attachmentMapping.get(license.getAttachmentId()));
                         }
-                        license.setId(getSequence().getNextValue(Sequences.LICENSE_SEQ));
+                        license.setId(0);
                         getEm().persist(license);
                     }
                 }
@@ -1196,7 +1196,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 }
                 license.setAttachmentId(attachmentMapping.get(license.getAttachmentId()));
             }
-            license.setId(getSequence().getNextValue(Sequences.LICENSE_SEQ));
+            license.setId(0);
             getEm().persist(license);
         }
     }

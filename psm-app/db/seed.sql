@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS
   issuing_boards,
   license_statuses,
   license_types,
+  licenses,
   organizations,
   ownership_types,
   pay_to_provider_types,
@@ -1058,3 +1059,24 @@ INSERT INTO screening_schedules(
   interval_value
 ) VALUES
   (1, null, null, 0);
+
+CREATE TABLE licenses(
+  license_id BIGINT PRIMARY KEY,
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  affiliate_id BIGINT,
+  object_type TEXT,
+  license_number TEXT,
+  issued_at DATE,
+  expires_at DATE,
+  issuing_us_state TEXT,
+  issuing_board_code CHARACTER VARYING(2)
+    REFERENCES issuing_boards(code),
+  license_status_code CHARACTER VARYING(2)
+    REFERENCES license_statuses(code),
+  license_type_code CHARACTER VARYING(2)
+    REFERENCES license_types(code),
+  specialty_type_code CHARACTER VARYING(2)
+    REFERENCES specialty_types(code),
+  attachment_id BIGINT
+);

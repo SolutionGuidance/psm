@@ -16,50 +16,90 @@
 package gov.medicaid.entities;
 
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Represents a license or specialty certification.
  */
-public class License extends IdentifiableEntity {
+@javax.persistence.Entity
+@Table(name = "licenses")
+public class License implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "license_id")
+    private long id;
 
     /**
      * The owner profile.
      */
+    @Column(name = "profile_id")
     private long profileId;
 
     /**
      * The owner ticket.
      */
+    @Column(name = "ticket_id")
     private long ticketId;
 
     /**
      * The affiliate id if it belongs to a QP.
      */
+    @Column(name = "affiliate_id")
     private Long affiliateId;
 
     /**
      * Specialty, Tribal Cert or License.
      */
+    @Column(name = "object_type")
     private String objectType;
 
+    @Column(name = "license_number")
     private String licenseNumber;
 
+    @Column(name = "issued_at")
     private Date originalIssueDate;
 
+    @Column(name = "expires_at")
     private Date renewalEndDate;
 
+    @Column(name = "issuing_us_state")
     private String issuingUSState;
 
+    @ManyToOne
+    @JoinColumn(name = "issuing_board_code")
     private IssuingBoard issuingBoard;
 
+    @ManyToOne
+    @JoinColumn(name = "license_status_code")
     private LicenseStatus status;
 
+    @ManyToOne
+    @JoinColumn(name = "license_type_code")
     private LicenseType type;
 
+    @ManyToOne
+    @JoinColumn(name = "specialty_type_code")
     private SpecialtyType specialty;
 
+    @Column(name = "attachment_id")
     private long attachmentId;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getLicenseNumber() {
         return licenseNumber;

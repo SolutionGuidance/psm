@@ -132,53 +132,6 @@
 			<column name="STATUS" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.License" table="LICENSE">
-		<id column="LICENSE_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="profileId"
-			type="long">
-			<column name="PROFILE_ID" />
-		</property>
-		<property generated="never" lazy="false" name="ticketId"
-			type="long">
-			<column name="TICKET_ID" />
-		</property>
-		<property generated="never" lazy="false" name="affiliateId"
-			type="long">
-			<column name="AFFILIATE_ID" />
-		</property>
-		<property generated="never" lazy="false" name="objectType"
-			type="string">
-			<column length="1" name="OBJECT_TYP" />
-		</property>
-		<many-to-one class="gov.medicaid.entities.SpecialtyType"
-			name="specialty" outer-join="true">
-			<column name="SPECIALTY_TYP_CD" />
-		</many-to-one>
-		<many-to-one class="gov.medicaid.entities.LicenseType"
-			name="type" outer-join="true">
-			<column name="LICENSE_TYP_CD" />
-		</many-to-one>
-		<property column="LICENSE_NUMBER" generated="never" lazy="false"
-			length="45" name="licenseNumber" type="string" />
-		<property column="ORIGINAL_ISSUE_DT" generated="never" lazy="false"
-			name="originalIssueDate" type="date" />
-		<property column="RENEWAL_END_DT" generated="never" lazy="false"
-			name="renewalEndDate" type="date" />
-		<property column="ISSUING_US_STATE" generated="never" lazy="false"
-			length="2" name="issuingUSState" type="string" />
-		<property column="ATTACHMENT_ID" generated="never" lazy="false"
-			name="attachmentId" type="long" />
-		<many-to-one class="gov.medicaid.entities.LicenseStatus"
-			name="status">
-			<column name="LICENSE_STATUS_CD" />
-		</many-to-one>
-		<many-to-one class="gov.medicaid.entities.IssuingBoard"
-			name="issuingBoard">
-			<column name="ISSUING_BOARD_CD" />
-		</many-to-one>
-	</class>
 	<class name="gov.medicaid.entities.ProviderStatement" table="PROVIDER_STATEMENT">
 		<id column="PROVIDER_STATEMENT_ID" name="id" type="long">
 			<generator class="assigned" />

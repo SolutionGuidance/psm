@@ -15,7 +15,13 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+
+@javax.persistence.Entity
+@Table(name = "specialty_types")
 public class SpecialtyType extends LookupEntity {
+    @Column(name = "sub_category")
     private String subCategory;
 
     public String getSubCategory() {

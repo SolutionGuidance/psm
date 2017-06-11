@@ -30,11 +30,6 @@ public class ProviderStatement extends IdentifiableEntity {
 
     private String title;
 
-    /**
-     * Reference to an attachment with the signature.
-     */
-    private long signatureAttachmentId;
-
     private Date date;
 
     public String getName() {
@@ -75,13 +70,5 @@ public class ProviderStatement extends IdentifiableEntity {
 
     public void setTicketId(long ticketId) {
         this.ticketId = ticketId;
-    }
-
-    public long getSignatureAttachmentId() {
-        return signatureAttachmentId;
-    }
-
-    public void setSignatureAttachmentId(long signatureAttachmentId) {
-        this.signatureAttachmentId = signatureAttachmentId;
     }
 }

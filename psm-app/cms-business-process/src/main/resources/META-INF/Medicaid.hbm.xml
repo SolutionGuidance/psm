@@ -91,8 +91,6 @@
 			length="45" name="title" type="string" />
 		<property column="STATEMENT_DT" generated="never" lazy="false"
 			name="date" type="date" />
-		<property column="SIGN_ATTACHEMENT_ID" generated="never"
-			lazy="false" name="signatureAttachmentId" not-null="true" type="long" />
 	</class>
 	<class name="gov.medicaid.entities.Note" table="PROFILE_NOTES">
 		<id column="PROVIDER_NOTE_ID" name="id" type="long">

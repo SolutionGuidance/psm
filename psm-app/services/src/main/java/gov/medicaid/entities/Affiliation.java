@@ -88,12 +88,6 @@ public class Affiliation extends IdentifiableEntity {
      */
     private Date bgsClearanceDate;
 
-    /**
-     * Empty constructor.
-     */
-    public Affiliation() {
-    }
-
     public long getTargetProfileId() {
         return targetProfileId;
     }

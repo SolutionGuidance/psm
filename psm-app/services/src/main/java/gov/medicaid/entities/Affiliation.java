@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -48,46 +48,46 @@ public class Affiliation extends IdentifiableEntity {
     private long targetProfileId;
 
     private long targetEntityId;
-    
+
     /**
      * For qualified professionals.
      */
     private QPType qpType;
-    
+
     /**
      * Subtype for mental health professional.
      */
     private String mhpType;
-    
+
     /**
      * Acknowledgement attachment (QP).
      */
     private String acknowledgementAttachmentId;
-    
+
     /**
      * Ended flag.
      */
     private String terminatedInd;
-    
+
     /**
      * End date.
      */
     private Date terminationDate;
 
     private List<License> affiliateLicenses;
-    
+
     private Entity entity;
 
     /**
      * The BGS Study ID for Personal Care Provider Org.
      */
     private String bgsStudyId;
-    
+
     /**
      * The BGS Clearance Date for Personal Care Provide Org.
      */
     private Date bgsClearanceDate;
-    
+
     /**
      * Empty constructor.
      */
@@ -206,19 +206,19 @@ public class Affiliation extends IdentifiableEntity {
         this.mhpType = mhpType;
     }
 
-	public String getBgsStudyId() {
-		return bgsStudyId;
-	}
+    public String getBgsStudyId() {
+        return bgsStudyId;
+    }
 
-	public void setBgsStudyId(String bgsStudyId) {
-		this.bgsStudyId = bgsStudyId;
-	}
+    public void setBgsStudyId(String bgsStudyId) {
+        this.bgsStudyId = bgsStudyId;
+    }
 
-	public Date getBgsClearanceDate() {
-		return bgsClearanceDate;
-	}
+    public Date getBgsClearanceDate() {
+        return bgsClearanceDate;
+    }
 
-	public void setBgsClearanceDate(Date bgsClearanceDate) {
-		this.bgsClearanceDate = bgsClearanceDate;
-	}
+    public void setBgsClearanceDate(Date bgsClearanceDate) {
+        this.bgsClearanceDate = bgsClearanceDate;
+    }
 }

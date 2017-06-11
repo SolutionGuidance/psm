@@ -63,12 +63,6 @@ public class License extends IdentifiableEntity {
 
     private long attachmentId;
 
-    /**
-     * Default empty constructor.
-     */
-    public License() {
-    }
-
     public String getLicenseNumber() {
         return licenseNumber;
     }

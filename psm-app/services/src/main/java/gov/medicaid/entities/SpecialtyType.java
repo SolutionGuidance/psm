@@ -18,12 +18,6 @@ package gov.medicaid.entities;
 public class SpecialtyType extends LookupEntity {
     private String subCategory;
 
-    /**
-     * Default empty constructor.
-     */
-    public SpecialtyType() {
-    }
-
     public String getSubCategory() {
         return subCategory;
     }

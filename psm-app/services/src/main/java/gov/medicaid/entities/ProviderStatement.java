@@ -15,15 +15,29 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
-public class ProviderStatement extends IdentifiableEntity {
+@javax.persistence.Entity
+@Table(name = "provider_statements")
+public class ProviderStatement implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "provider_statement_id")
+    private long id;
 
     /**
      * If enrolled, the profile identifier.
      */
+    @Column(name = "profile_id")
     private long profileId;
 
+    @Column(name = "ticket_id")
     private long ticketId;
 
     private String name;
@@ -31,6 +45,14 @@ public class ProviderStatement extends IdentifiableEntity {
     private String title;
 
     private Date date;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

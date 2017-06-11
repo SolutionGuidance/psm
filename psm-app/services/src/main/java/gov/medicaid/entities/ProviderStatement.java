@@ -37,12 +37,6 @@ public class ProviderStatement extends IdentifiableEntity {
 
     private Date date;
 
-    /**
-     * Default empty constructor.
-     */
-    public ProviderStatement() {
-    }
-
     public String getName() {
         return name;
     }

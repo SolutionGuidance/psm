@@ -4,6 +4,7 @@ CASCADE;
 DROP TABLE IF EXISTS
   accepted_agreements,
   addresses,
+  affiliations,
   agreement_documents,
   audit_details,
   audit_records,
@@ -1079,4 +1080,23 @@ CREATE TABLE licenses(
   specialty_type_code CHARACTER VARYING(2)
     REFERENCES specialty_types(code),
   attachment_id BIGINT
+);
+
+CREATE TABLE affiliations(
+  affiliation_id BIGINT PRIMARY KEY,
+  is_primary CHARACTER VARYING(1),
+  profile_id BIGINT,
+  object_type TEXT,
+  ticket_id BIGINT,
+  effective_at DATE,
+  target_profile_id BIGINT,
+  target_entity_id BIGINT,
+  qualified_professional_type_code CHARACTER VARYING(2)
+    REFERENCES qualified_professional_types(code),
+  mental_health_professional_type TEXT,
+  acknowledgement_attachment_id TEXT,
+  is_terminated CHARACTER VARYING(1),
+  terminated_at DATE,
+  bgs_study_id TEXT,
+  bgs_clearance_date DATE
 );

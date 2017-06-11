@@ -15,78 +15,118 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Represents group/member affiliation.
  */
-public class Affiliation extends IdentifiableEntity {
+@javax.persistence.Entity
+@Table(name = "affiliations")
+public class Affiliation implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "affiliation_id")
+    private long id;
 
     /**
      * Primary indicator.
      */
+    @Column(name = "is_primary")
     private String primaryInd;
 
     /**
      * Owning profile id.
      */
+    @Column(name = "profile_id")
     private long profileId;
 
     /**
      * Additional location, member, etc.
      */
+    @Column(name = "object_type")
     private String objectType;
 
     /**
      * Owning ticket id.
      */
+    @Column(name = "ticket_id")
     private long ticketId;
 
+    @Column(name = "effective_at")
     private Date effectiveDate;
 
+    @Column(name = "target_profile_id")
     private long targetProfileId;
 
+    @Column(name = "target_entity_id")
     private long targetEntityId;
 
     /**
      * For qualified professionals.
      */
+    @ManyToOne
+    @JoinColumn(name = "qualified_professional_type_code")
     private QPType qpType;
 
     /**
      * Subtype for mental health professional.
      */
+    @Column(name = "mental_health_professional_type")
     private String mhpType;
 
     /**
      * Acknowledgement attachment (QP).
      */
+    @Column(name = "acknowledgement_attachment_id")
     private String acknowledgementAttachmentId;
 
     /**
      * Ended flag.
      */
+    @Column(name = "is_terminated")
     private String terminatedInd;
 
     /**
      * End date.
      */
+    @Column(name = "terminated_at")
     private Date terminationDate;
 
+    @Transient
     private List<License> affiliateLicenses;
 
+    @Transient
     private Entity entity;
 
     /**
      * The BGS Study ID for Personal Care Provider Org.
      */
+    @Column(name = "bgs_study_id")
     private String bgsStudyId;
 
     /**
      * The BGS Clearance Date for Personal Care Provide Org.
      */
+    @Column(name = "bgs_clearance_date")
     private Date bgsClearanceDate;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getTargetProfileId() {
         return targetProfileId;

@@ -23,11 +23,6 @@ package gov.medicaid.services.util;
  */
 public class Sequences {
     /**
-     * Used for provider group association table.
-     */
-    public static final String PROV_GRP_SEQ = "PROV_GRP_SEQ";
-
-    /**
      * Used for provider statement table.
      */
     public static final String STATEMENT_ID = "STATEMENT_ID";

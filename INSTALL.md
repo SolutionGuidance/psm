@@ -7,7 +7,7 @@
 
 # Background and Current Deployment Status
 
-2017-04-28: The PSM is not yet ready for production or development deployment.
+2017-06-12: The PSM is not yet ready for production or development deployment.
 
 The PSM was originally developed to run in the open source web
 application server Apache JBoss (now called WildFly).  Somewhat late

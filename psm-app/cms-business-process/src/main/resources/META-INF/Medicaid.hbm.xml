@@ -179,27 +179,6 @@
 			<column name="ISSUING_BOARD_CD" />
 		</many-to-one>
 	</class>
-	<class name="gov.medicaid.entities.AcceptedAgreements" table="PROVIDER_AGREEMENT_XREF">
-		<id column="PROVIDER_AGREEMENT_XREF_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="profileId"
-			type="long">
-			<column name="PROFILEID" />
-		</property>
-		<property generated="never" lazy="false" name="ticketId"
-			type="long">
-			<column name="TICKETID" />
-		</property>
-		<property generated="never" lazy="false" name="acceptedDate"
-			type="date">
-			<column name="ACCEPTED_DATE" />
-		</property>
-		<many-to-one class="gov.medicaid.entities.AgreementDocument"
-			fetch="join" name="agreementDocument">
-			<column name="AGREEMENT_DOCUMENT_ID" />
-		</many-to-one>
-	</class>
 	<class name="gov.medicaid.entities.ProviderStatement" table="PROVIDER_STATEMENT">
 		<id column="PROVIDER_STATEMENT_ID" name="id" type="long">
 			<generator class="assigned" />

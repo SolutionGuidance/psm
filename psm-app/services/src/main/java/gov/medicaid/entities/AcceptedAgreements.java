@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -15,110 +15,73 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Represents user accepted agreements.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-public class AcceptedAgreements extends IdentifiableEntity {
+@javax.persistence.Entity
+@Table(name = "accepted_agreements")
+public class AcceptedAgreements implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "accepted_agreement_id")
+    private long id;
 
-    /**
-     * Owning profile id.
-     */
+    @Column(name = "profile_id")
     private long profileId;
 
-    /**
-     * Owning ticket id.
-     */
+    @Column(name = "ticket_id")
     private long ticketId;
 
-    /**
-     * Date accepted.
-     */
+    @Column(name = "accepted_date")
     private Date acceptedDate;
 
-    /**
-     * Related document.
-     */
+    @ManyToOne
+    @JoinColumn(name = "agreement_document_id")
     private AgreementDocument agreementDocument;
 
-    /**
-     * Empty constructor.
-     */
-    public AcceptedAgreements() {
+    public long getId() {
+        return id;
     }
 
-    /**
-     * Gets the value of the field <code>profileId</code>.
-     *
-     * @return the profileId
-     */
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public long getProfileId() {
         return profileId;
     }
 
-    /**
-     * Sets the value of the field <code>profileId</code>.
-     *
-     * @param profileId the profileId to set
-     */
     public void setProfileId(long profileId) {
         this.profileId = profileId;
     }
 
-    /**
-     * Gets the value of the field <code>ticketId</code>.
-     *
-     * @return the ticketId
-     */
     public long getTicketId() {
         return ticketId;
     }
 
-    /**
-     * Sets the value of the field <code>ticketId</code>.
-     *
-     * @param ticketId the ticketId to set
-     */
     public void setTicketId(long ticketId) {
         this.ticketId = ticketId;
     }
 
-    /**
-     * Gets the value of the field <code>acceptedDate</code>.
-     *
-     * @return the acceptedDate
-     */
     public Date getAcceptedDate() {
         return acceptedDate;
     }
 
-    /**
-     * Sets the value of the field <code>acceptedDate</code>.
-     *
-     * @param acceptedDate the acceptedDate to set
-     */
     public void setAcceptedDate(Date acceptedDate) {
         this.acceptedDate = acceptedDate;
     }
 
-    /**
-     * Gets the value of the field <code>agreementDocument</code>.
-     *
-     * @return the agreementDocument
-     */
     public AgreementDocument getAgreementDocument() {
         return agreementDocument;
     }
 
-    /**
-     * Sets the value of the field <code>agreementDocument</code>.
-     *
-     * @param agreementDocument the agreementDocument to set
-     */
     public void setAgreementDocument(AgreementDocument agreementDocument) {
         this.agreementDocument = agreementDocument;
     }

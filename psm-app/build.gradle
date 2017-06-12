@@ -1,0 +1,74 @@
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+project(":services") {
+    apply plugin: 'java'
+
+    dependencies {
+        compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar', exclude: 'cms-core.jar')
+        compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
+        compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
+        compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/codehaus/jackson')
+    }
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['src/main/java']
+            }
+            resources {
+                srcDirs = ['src/main/resources']
+            }
+        }
+    }
+}
+
+project(":cms-business-process") {
+    apply plugin: 'java'
+    dependencies {
+        runtime project(path: ":services", configuration: 'archives')
+        compile project(path: ":services", configuration: 'archives')
+        compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar', exclude: 'cms-core.jar')
+        compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
+        compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
+        compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/codehaus/jackson')
+    }
+     
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['src/main/java']
+            }
+            resources {
+                srcDirs = ['src/main/resources']
+            }
+        }
+    }
+}
+
+project(":cms-web") {
+    apply plugin: 'war'
+    dependencies {
+        providedCompile project(":services")
+        providedCompile fileTree(dir: 'WebContent/WEB-INF/lib')
+    }
+    webAppDirName = 'WebContent'
+}
+
+project(":cms-portal-services") {
+    apply plugin: 'ear'
+    dependencies {
+        deploy project(path: ":cms-web", configuration: 'archives')
+	deploy project(":cms-business-process")
+        earlib fileTree(dir: 'lib')
+        earlib project(path: ":services", configuration: 'archives')
+    }
+
+    ear {
+        appDirName 'EarContent'
+    }
+}
+
+

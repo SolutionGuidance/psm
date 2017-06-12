@@ -864,7 +864,7 @@ INSERT INTO provider_type_license_types(
 
 CREATE TABLE entities(
   entity_id BIGINT PRIMARY KEY,
-  enrolled CHARACTER VARYING(1) NOT NULL,
+  enrolled CHARACTER VARYING(1),
   profile_id BIGINT NOT NULL,
   ticket_id BIGINT,
   name TEXT,

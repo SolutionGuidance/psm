@@ -46,7 +46,6 @@ public abstract class Entity implements Serializable {
     /**
      * Enrolled flag.
      */
-    @Column(nullable = false)
     private String enrolled;
 
     /**

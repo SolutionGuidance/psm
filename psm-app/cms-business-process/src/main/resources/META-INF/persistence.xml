@@ -46,26 +46,37 @@
     <class>gov.medicaid.entities.AuditDetail</class>
     <class>gov.medicaid.entities.AuditRecord</class>
     <class>gov.medicaid.entities.Authentication</class>
+    <class>gov.medicaid.entities.BeneficialOwnerType</class>
     <class>gov.medicaid.entities.BinaryContent</class>
     <class>gov.medicaid.entities.CMSUser</class>
+    <class>gov.medicaid.entities.CategoryOfService</class>
     <class>gov.medicaid.entities.ContactInformation</class>
+    <class>gov.medicaid.entities.CountyType</class>
     <class>gov.medicaid.entities.Degree</class>
     <class>gov.medicaid.entities.Enrollment</class>
     <class>gov.medicaid.entities.EnrollmentStatus</class>
     <class>gov.medicaid.entities.Entity</class>
+    <class>gov.medicaid.entities.EntityStructureType</class>
     <class>gov.medicaid.entities.HelpItem</class>
+    <class>gov.medicaid.entities.IssuingBoard</class>
+    <class>gov.medicaid.entities.LicenseStatus</class>
     <class>gov.medicaid.entities.LicenseType</class>
     <class>gov.medicaid.entities.Organization</class>
+    <class>gov.medicaid.entities.OwnershipType</class>
+    <class>gov.medicaid.entities.PayToProviderType</class>
     <class>gov.medicaid.entities.Person</class>
     <class>gov.medicaid.entities.ProfileStatus</class>
     <class>gov.medicaid.entities.ProviderProfile</class>
     <class>gov.medicaid.entities.ProviderType</class>
+    <class>gov.medicaid.entities.QPType</class>
+    <class>gov.medicaid.entities.RelationshipType</class>
     <class>gov.medicaid.entities.RequestType</class>
     <class>gov.medicaid.entities.RequiredFieldType</class>
     <class>gov.medicaid.entities.RiskLevel</class>
     <class>gov.medicaid.entities.Role</class>
     <class>gov.medicaid.entities.ServiceAssuranceExtType</class>
     <class>gov.medicaid.entities.ServiceAssuranceType</class>
+    <class>gov.medicaid.entities.ServiceCategory</class>
     <class>gov.medicaid.entities.StateType</class>
 
     <properties>

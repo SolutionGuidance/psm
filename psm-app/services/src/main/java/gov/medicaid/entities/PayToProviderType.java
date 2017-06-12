@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -14,18 +14,8 @@
  * limitations under the License.
  */
 package gov.medicaid.entities;
+import javax.persistence.Table;
 
-/**
- * Lookup entity for pay to provider type.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-public class PayToProviderType extends LookupEntity {
-
-    /**
-     * Empty constructor.
-     */
-    public PayToProviderType() {
-    }
-}
+@javax.persistence.Entity
+@Table(name = "pay_to_provider_types")
+public class PayToProviderType extends LookupEntity {}

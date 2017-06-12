@@ -22,6 +22,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -126,6 +127,7 @@ public class Enrollment implements Serializable {
     /**
      * Ticket details.
      */
+    @Transient
     private ProviderProfile details;
 
     /**

@@ -2038,10 +2038,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     private long saveTicket(CMSUser user, Enrollment ticket, boolean insertDetails) throws PortalServiceException {
         ticket.setLastUpdatedBy(user.getUserId());
-        getEm().merge(ticket);
+        ProviderProfile details = ticket.getDetails();
+        ticket = getEm().merge(ticket);
 
         if (insertDetails) {
-            insertProfile(ticket.getTicketId(), ticket.getDetails());
+            insertProfile(ticket.getTicketId(), details);
         }
 
         return ticket.getTicketId();

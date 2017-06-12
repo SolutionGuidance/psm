@@ -132,20 +132,6 @@
 			<column name="STATUS" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.SpecialtyType" table="LU_SPECIALTY_TYPE">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-		<property generated="never" lazy="false" length="2" name="subCategory"
-			type="string">
-			<column name="SUB_CAT_CD" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.License" table="LICENSE">
 		<id column="LICENSE_ID" name="id" type="long">
 			<generator class="assigned" />

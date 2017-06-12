@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -15,37 +15,19 @@
  */
 package gov.medicaid.entities;
 
-/**
- * This represents a specialty type.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-public class SpecialtyType extends LookupEntity {
+import javax.persistence.Column;
+import javax.persistence.Table;
 
-    /**
-     * Specialty subcategory.
-     */
+@javax.persistence.Entity
+@Table(name = "specialty_types")
+public class SpecialtyType extends LookupEntity {
+    @Column(name = "sub_category")
     private String subCategory;
 
-    /**
-     * Default empty constructor.
-     */
-    public SpecialtyType() {
-    }
-
-    /**
-     * Gets the value of the field <code>subCategory</code>.
-     * @return the subCategory
-     */
     public String getSubCategory() {
         return subCategory;
     }
 
-    /**
-     * Sets the value of the field <code>subCategory</code>.
-     * @param subCategory the subCategory to set
-     */
     public void setSubCategory(String subCategory) {
         this.subCategory = subCategory;
     }

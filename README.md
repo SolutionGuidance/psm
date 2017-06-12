@@ -89,57 +89,30 @@ http://www.topcoder.com/cms/medicaid-enrollment-portal/
 SECTION 3: Features and Functionality
 ---------------------------------------------------------------------
 
-_[Note: This feature list is carried over unchanged from the [original
-repository](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/blob/master/README.md),
-and as of 20 April 2017 has not yet been verified.  It may be out of date
-or inaccurate.]_
+As of 7 June 2017, the PSM offers the following functionality:
 
-1. Capability to Conduct Identity Verification
-  * Capability to link individuals to their organizations and vice versa
-  * Capability to match on multiple variations of an individual's or organization's name to ensure that the correct entity is verified
-  * Applies a range of screening rules to cross check data elements within the enrollment application
-  * Applies a range of screening rules to cross check data elements against authoritative external sources for consistency
-  * Capability to establish and employ a graded screening methodology that escalates the intensity of screening for providers that are flagged as higher risk (i.e., Report Card Methodology)
-2. Capability to Build Provider Profiles
-  * Capability to retain screening and enrollment information and results and compare against past and future screening results.
-  * Capability to create a watch list to ensure that providers that are suspected or known to be fraudulent are flagged at the time of screening\*
-  * Capability to track re-enrollment attempts to ensure that slight changes to provider information is not considered a new enrollment
-  * Capability to re-screen periodically to ensure that changes in provider profiles are updated on a regular basis
-  * Capability to leverage public websites to conduct link analysis through which provider associations could be explored and alerts posted on similar websites could be considered
-  * Captures critical attributes.
-     * Collection of application fees status\*
-     * Exception waiver approved status
-     * Incorporates enhanced screening data including the results of site visits, criminal background checks and finger printing
-     * Captures licensing information, financial data and any other data attributes which could impact a risk lever
-     * Other critical attributes
-  * Capability to achieve real time screening, scoring and system outputs (queries/reports)
-3.  Capability to Evaluate and Maintain the Integrity of the Results
-  * Capability to persist data sources scores to determine the most reliable source for each data element
-  * Capability to evaluate data sources for reliability and accuracy
-  * Capability to create a learning system to ensure that observed negative trends factor back into screening rules so as to flag suspicious enrollments early in the screening process, ensuring the ability to detect and reduce/eliminate the incidence of false positives\*\*
-  * Capability to create system outputs to assign reasons/explanations to each code or score used
-  * Capability to build processes to allow for appropriate interpretation and action on screening and scoring results
-  * Capability to ensure that each rule is tested and its impact is evaluated prior to implementing
-4.  Improves Efficiency
-  * Allows search capability to find specific provider information with minimal search attempts
-  * Capability to identify applicants including individual providers and owners of institutional providers
-  * Capability to verify identity and prior history of problems with Medicaid/CHIP or Medicare programs
-  * Identifies and schedules revalidation process
-5.  Meets Architectural Guidelines
-  * Adheres to the Architectural Guidance and meets the seven conditions and standards detailed in the Guidance for Exchange and Medicaid IT Systems, Version 2.0, located at: http://cciio.cms.gov/resources/files/exchange_medicaid_it_guidance_05312011.pdf
-6. Integrates Into the MITA Framework / Is MITA Compliant
-  * Information regarding MITA can be found at: http://www.cms.gov/MedicaidInfoTechArch/
-7. Accurate, Cost Effective, and Timely
-  * Turnaround time for performing automated checks typical for a web based system
-  * Comprehensive verification of all data fields for all providers enrolled
-  * Efficiency of the Screening Solution in terms of cost and schedule to actually implement
-  * Potential extra costs (e.g. licenses, etc) are documented
-  * Effectiveness of the risk-screening model in detecting fraud based issues
-  * Technical soundness of risk-scoring in flagging potential fraudulent patterns and tendencies
+1. Any user
+* Self-register and create a new account
+* Receive new password via email
+* Log in
+* Log out
+* Receive password reminder via email
 
-\* Partial support in the final product.
+2. User at "System administrator" privilege level
+* View other user accounts
+* Edit other user accounts
+* Create other user accounts and send email notifications to new users
+* Delete other user accounts
 
-** Structural support for this feature is provided, but an active learning system is not deployed with the final application.
+3. User at "service admin" privilege level
+* View list of provider types
+* View list of help topics
+* View agreements & addendums
+* Create agreements and addendums
+* View, create, edit, and delete service agents
+
+_[Note: As the developer team conducts initial improvement work on the PSM in June 2017, we anticipate recovering many of the features listed in the [original
+repository](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/blob/master/README.md), such as identity verification, building provider profiles, and MITA integration.]_
 
 ---------------------------------------------------------------------
 SECTION 4: Project Resources and Repository Organization

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -15,154 +15,113 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Represents a designated contact.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-public class DesignatedContact extends IdentifiableEntity {
+@javax.persistence.Entity
+@Table(name = "designated_contacts")
+public class DesignatedContact implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "designated_contact_id")
+    private long id;
 
     /**
      * The owner profile.
      */
+    @Column(name = "profile_id")
     private long profileId;
 
     /**
      * The owner ticket.
      */
+    @Column(name = "ticket_id")
     private long ticketId;
 
-    /**
-     * The contact type.
-     */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "designated_contact_type")
     private DesignatedContactType type;
 
     /**
      * Use the same contact details as the provider profile.
      */
+    @Column(name = "same_as_provider")
     private String sameAsProvider;
 
     /**
      * Designee hire date.
      */
+    @Column(name = "hired_at")
     private Date hireDate;
 
     /**
      * The designated person.
      */
+    @ManyToOne
+    @JoinColumn(name = "person_id")
     private Person person;
 
-    /**
-     * Empty constructor.
-     */
-    public DesignatedContact() {
+    public long getId() {
+        return id;
     }
 
-    /**
-     * Gets the value of the field <code>profileId</code>.
-     *
-     * @return the profileId
-     */
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public long getProfileId() {
         return profileId;
     }
 
-    /**
-     * Sets the value of the field <code>profileId</code>.
-     *
-     * @param profileId the profileId to set
-     */
     public void setProfileId(long profileId) {
         this.profileId = profileId;
     }
 
-    /**
-     * Gets the value of the field <code>ticketId</code>.
-     *
-     * @return the ticketId
-     */
     public long getTicketId() {
         return ticketId;
     }
 
-    /**
-     * Sets the value of the field <code>ticketId</code>.
-     *
-     * @param ticketId the ticketId to set
-     */
     public void setTicketId(long ticketId) {
         this.ticketId = ticketId;
     }
 
-    /**
-     * Gets the value of the field <code>type</code>.
-     *
-     * @return the type
-     */
     public DesignatedContactType getType() {
         return type;
     }
 
-    /**
-     * Sets the value of the field <code>type</code>.
-     *
-     * @param type the type to set
-     */
     public void setType(DesignatedContactType type) {
         this.type = type;
     }
 
-    /**
-     * Gets the value of the field <code>person</code>.
-     *
-     * @return the person
-     */
     public Person getPerson() {
         return person;
     }
 
-    /**
-     * Sets the value of the field <code>person</code>.
-     *
-     * @param person the person to set
-     */
     public void setPerson(Person person) {
         this.person = person;
     }
 
-    /**
-     * Gets the value of the field <code>sameAsProvider</code>.
-     *
-     * @return the sameAsProvider
-     */
     public String getSameAsProvider() {
         return sameAsProvider;
     }
 
-    /**
-     * Sets the value of the field <code>sameAsProvider</code>.
-     *
-     * @param sameAsProvider the sameAsProvider to set
-     */
     public void setSameAsProvider(String sameAsProvider) {
         this.sameAsProvider = sameAsProvider;
     }
 
-    /**
-     * Gets the value of the field <code>hireDate</code>.
-     * @return the hireDate
-     */
     public Date getHireDate() {
         return hireDate;
     }
 
-    /**
-     * Sets the value of the field <code>hireDate</code>.
-     * @param hireDate the hireDate to set
-     */
     public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
     }

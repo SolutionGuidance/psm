@@ -23,9 +23,9 @@ be deployable in WildFly.  We are currently evaluating the additional
 resources it would take to continue development support for WebSphere
 deployment.
 
-Note that the repository currently depends on access to a Oracle
-database.  We intend to shift towards PostgreSQL in order to eliminate
-a proprietary dependency.
+If you are using Red Hat Enterprise Linux, it will be easiest for you
+to run the automated installation script: `rhel-install.sh` in the
+root of this repository.
 
 You can use Docker to run the current development version of the PSM.
 That would obviate all the manual configuration steps listed in this

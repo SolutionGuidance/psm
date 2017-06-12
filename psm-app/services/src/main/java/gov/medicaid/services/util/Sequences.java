@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -53,11 +53,6 @@ public class Sequences {
     public static final String ACOUNT_LINK_SEQ = "ACOUNT_LINK_SEQ";
 
     /**
-     * The agreements accepted.
-     */
-    public static final String AGREEMENT_SEQ = "AGREEMENT_SEQ";
-
-    /**
      * Ownership information.
      */
     public static final String OWNERSHIP_SEQ = "OWNERSHIP_SEQ";
@@ -90,14 +85,14 @@ public class Sequences {
     public static final String PAY_TO_SEQ = "PAY_TO_SEQ";
 
     public static final String SERVICE_SEQ = "SERVICE_SEQ";
-    
+
     /**
      * For Assured Services.
      */
     public static final String ASSURED_SERVICE_SEQ = "ASSURED_SERVICE_SEQ";
 
     public static final String PROVIDER_COS_SEQ = "PROVIDER_COS_SEQ";
-    
+
     /**
      * Private constructor.
      */

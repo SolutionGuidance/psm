@@ -1054,7 +1054,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             acceptedAgreements.setProfileId(details.getProfileId());
             acceptedAgreements.setTicketId(details.getTicketId());
 
-            acceptedAgreements.setId(getSequence().getNextValue(Sequences.AGREEMENT_SEQ));
+            acceptedAgreements.setId(0);
             getEm().persist(acceptedAgreements);
         }
     }

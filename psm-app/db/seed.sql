@@ -2,6 +2,7 @@ DROP SEQUENCE IF EXISTS
   hibernate_sequence
 CASCADE;
 DROP TABLE IF EXISTS
+  accepted_agreements,
   addresses,
   agreement_documents,
   audit_details,
@@ -1009,6 +1010,7 @@ CREATE TABLE binary_contents(
   binary_content_id TEXT PRIMARY KEY,
   content OID
 );
+
 CREATE TABLE documents(
   document_id BIGINT PRIMARY KEY,
   profile_id BIGINT,
@@ -1031,3 +1033,13 @@ CREATE TABLE designated_contacts(
   person_id BIGINT
     REFERENCES people(entity_id)
 );
+
+CREATE TABLE accepted_agreements(
+  accepted_agreement_id BIGINT PRIMARY KEY,
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  accepted_date DATE,
+  agreement_document_id BIGINT
+    REFERENCES  agreement_documents(agreement_document_id)
+ ) ;
+

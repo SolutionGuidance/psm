@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS
   contacts,
   counties,
   degrees,
+  documents,
   enrollment_statuses,
   enrollments,
   entities,
@@ -921,4 +922,15 @@ CREATE TABLE people(
 CREATE TABLE binary_contents(
   binary_content_id TEXT PRIMARY KEY,
   content OID
+);
+CREATE TABLE documents(
+  document_id BIGINT PRIMARY KEY,
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  "type" TEXT,
+  filename TEXT,
+  description TEXT,
+  binary_content_id TEXT,
+  created_by TEXT,
+  created_at TIMESTAMP WITH TIME ZONE
 );

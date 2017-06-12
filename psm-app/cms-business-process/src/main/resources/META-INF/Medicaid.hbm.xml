@@ -226,31 +226,6 @@
 			<column name="ISSUING_BOARD_CD" />
 		</many-to-one>
 	</class>
-	<class name="gov.medicaid.entities.Document" table="CMS_ATTACHMENT">
-		<id column="ATTACHMENT_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="profileId"
-			type="long">
-			<column name="PROFILE_ID" />
-		</property>
-		<property generated="never" lazy="false" name="ticketId"
-			type="long">
-			<column name="TICKET_ID" />
-		</property>
-		<property column="TYPE" generated="never" lazy="false"
-			length="45" name="type" type="string" />
-		<property column="FILE_NAME" generated="never" lazy="false"
-			length="45" name="filename" type="string" />
-		<property column="DESCRIPTION" generated="never" lazy="false"
-			length="45" name="description" type="string" />
-		<property column="CONTENT_ID" generated="never" lazy="false"
-			name="contentId" type="string" />
-		<property column="CREATED_BY" generated="never" lazy="false"
-			length="45" name="createdBy" type="string" />
-		<property column="CREATE_TS" generated="never" lazy="false"
-			name="createdOn" type="timestamp" />
-	</class>
 	<class name="gov.medicaid.entities.AcceptedAgreements" table="PROVIDER_AGREEMENT_XREF">
 		<id column="PROVIDER_AGREEMENT_XREF_ID" name="id" type="long">
 			<generator class="assigned" />

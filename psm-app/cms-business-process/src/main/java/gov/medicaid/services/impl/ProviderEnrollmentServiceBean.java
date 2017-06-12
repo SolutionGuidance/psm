@@ -675,7 +675,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     public long uploadAttachment(CMSUser user, Document attachment) throws PortalServiceException {
         if (attachment.getId() <= 0) {
-            attachment.setId(getSequence().getNextValue(Sequences.ATTACHMENT_SEQ));
             attachment.setCreatedOn(Calendar.getInstance().getTime());
             attachment.setCreatedBy(user.getUserId());
         }
@@ -1160,11 +1159,14 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             if (attachment.getId() > 0) {
                 // regenerate attachment id when cloning, but keep reference so we can
                 // fix non-mapped references
-                long generated = getSequence().getNextValue(Sequences.ATTACHMENT_SEQ);
-                mapping.put(attachment.getId(), generated);
-                attachment.setId(generated);
+                long oldAttachmentId = attachment.getId();
+                getEm().detach(attachment);
+                attachment.setId(0);
+                long newAttachmentId = uploadAttachment(attachment);
+                mapping.put(oldAttachmentId, newAttachmentId);
+            } else {
+                uploadAttachment(attachment);
             }
-            uploadAttachment(attachment);
         }
 
         return mapping;

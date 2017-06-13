@@ -25,12 +25,6 @@ public class ScreeningSchedule extends IdentifiableEntity {
 
     private ScreeningIntervalType intervalType;
 
-    /**
-     * Default empty constructor.
-     */
-    public ScreeningSchedule() {
-    }
-
     public Date getUpcomingScreeningDate() {
         return upcomingScreeningDate;
     }

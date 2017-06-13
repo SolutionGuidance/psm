@@ -943,7 +943,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         for (AssuredService service : services) {
             service.setTicketId(details.getTicketId());
             service.setProfileId(details.getProfileId());
-            service.setId(getSequence().getNextValue(Sequences.ASSURED_SERVICE_SEQ));
+            service.setId(0);
             getEm().persist(service);
         }
     }

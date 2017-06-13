@@ -86,11 +86,6 @@ public class Sequences {
 
     public static final String SERVICE_SEQ = "SERVICE_SEQ";
 
-    /**
-     * For Assured Services.
-     */
-    public static final String ASSURED_SERVICE_SEQ = "ASSURED_SERVICE_SEQ";
-
     public static final String PROVIDER_COS_SEQ = "PROVIDER_COS_SEQ";
 
     /**

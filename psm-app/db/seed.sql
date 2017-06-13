@@ -41,6 +41,7 @@ DROP TABLE IF EXISTS
   required_field_types,
   risk_levels,
   roles,
+  screening_schedules,
   service_assurance_ext_types,
   service_assurance_types,
   service_categories,
@@ -1043,3 +1044,17 @@ CREATE TABLE accepted_agreements(
     REFERENCES  agreement_documents(agreement_document_id)
  ) ;
 
+CREATE TABLE screening_schedules(
+  screening_schedule_id BIGINT PRIMARY KEY,
+  upcoming_screening_date DATE,
+  interval_type TEXT,
+  interval_value BIGINT NOT NULL
+);
+
+INSERT INTO screening_schedules(
+  screening_schedule_id,
+  upcoming_screening_date,
+  interval_type,
+  interval_value
+) VALUES
+  (1, null, null, 0);

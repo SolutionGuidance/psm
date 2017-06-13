@@ -15,15 +15,44 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
-public class ScreeningSchedule extends IdentifiableEntity {
-
+@javax.persistence.Entity 
+@Table(name = "screening_schedules")
+public class ScreeningSchedule implements Serializable {
+ @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "screening_schedule_id")
+    private long id;
+    
+    /* 
+     * Next screening date.
+     */
+    @Column(name = "upcoming_screening_date")
     private Date upcomingScreeningDate;
 
+    /*
+     * Interval between screenings.
+     */
+    @Column(name = "interval_value")
     private int interval;
 
+    /*
+     * The `interval` is expressed in days, weeks, or months.  See
+     * ScreeningIntervalType.java.
+     */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "interval_type")
     private ScreeningIntervalType intervalType;
+
 
     public Date getUpcomingScreeningDate() {
         return upcomingScreeningDate;
@@ -48,4 +77,13 @@ public class ScreeningSchedule extends IdentifiableEntity {
     public void setIntervalType(ScreeningIntervalType intervalType) {
         this.intervalType = intervalType;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
 }

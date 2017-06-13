@@ -504,24 +504,6 @@
 			<column name="REQUIRED_FLD_TYPE_ID" />
 		</many-to-one>
 	</class>
-	<class name="gov.medicaid.entities.ScreeningSchedule" table="SCREENING_SCHEDULE">
-		<id column="SCREENING_SCHEDULE_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property column="UPCOMING_SCREENING_DT" generated="never"
-			lazy="false" name="upcomingScreeningDate" type="timestamp" />
-		<property column="INTERVAL_TYPE" generated="never" lazy="false"
-			name="intervalType">
-			<type name="org.hibernate.type.EnumType">
-				<param name="type">12</param>
-				<param name="enumClass">gov.medicaid.entities.ScreeningIntervalType</param>
-			</type>
-		</property>
-		<property generated="never" lazy="false" name="interval"
-			type="int">
-			<column default="0" name="INTERVAL_VALUE" not-null="true" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.LegacySystemMapping" table="LEGACY_MAPPING">
 		<id column="LEGACY_MAPPING_ID" name="id" type="long">
 			<generator class="assigned" />

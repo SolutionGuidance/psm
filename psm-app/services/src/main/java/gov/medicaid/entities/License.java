@@ -59,8 +59,6 @@ public class License extends IdentifiableEntity {
 
     private SpecialtyType specialty;
 
-    private String verified;
-
     private long attachmentId;
 
     public String getLicenseNumber() {
@@ -117,14 +115,6 @@ public class License extends IdentifiableEntity {
 
     public void setSpecialty(SpecialtyType specialty) {
         this.specialty = specialty;
-    }
-
-    public String getVerified() {
-        return verified;
-    }
-
-    public void setVerified(String verified) {
-        this.verified = verified;
     }
 
     public IssuingBoard getIssuingBoard() {

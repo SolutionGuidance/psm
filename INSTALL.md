@@ -7,7 +7,7 @@
 
 # Background and Current Deployment Status
 
-2017-04-28: The PSM is not yet ready for production or development deployment.
+2017-06-12: The PSM is not yet ready for production or development deployment.
 
 The PSM was originally developed to run in the open source web
 application server Apache JBoss (now called WildFly).  Somewhat late
@@ -23,9 +23,9 @@ be deployable in WildFly.  We are currently evaluating the additional
 resources it would take to continue development support for WebSphere
 deployment.
 
-Note that the repository currently depends on access to a Oracle
-database.  We intend to shift towards PostgreSQL in order to eliminate
-a proprietary dependency.
+If you are using Red Hat Enterprise Linux, it will be easiest for you
+to run the automated installation script: `rhel-install.sh` in the
+root of this repository.
 
 You can use Docker to run the current development version of the PSM.
 That would obviate all the manual configuration steps listed in this
@@ -95,14 +95,20 @@ messaging service:
 
 # Prerequisites
 
-1. A [Java 8](https://www.java.com) JRE and JDK. We are testing with OpenJDK 8,
-   which you can install on Debian-like systems with
+1. A [Java 8](https://www.java.com) JRE and JDK. Run `java -version`
+   to check your Java version; "1.8" refers to Java 8. We are testing
+   with OpenJDK 8, which you can install on Debian-like systems with
    `sudo apt install openjdk-8-jdk-headless`.
 1. [Ant](https://ant.apache.org/) for building: `sudo apt install ant`.
+
 1. An SMTP server. For development, consider
    [MailCatcher](https://mailcatcher.me/), which you can install with
-   `gem install --user-install mailcatcher`. See the website for more details.
+   `gem install --user-install mailcatcher`. If installation fails,
+   ensure you have a GCC compiler and the Ruby developer package
+   installed. See the website for more details.
 
+   ```ShellSession
+   $ sudo apt install ruby-dev g++
    $ gem install --user-install mailcatcher
    # run mailcatcher:
    $ ~/.gem/ruby/2.3.0/bin/mailcatcher
@@ -110,10 +116,19 @@ messaging service:
    ==> smtp://127.0.0.1:1025
    ==> http://127.0.0.1:1080
    *** MailCatcher runs as a daemon by default. Go to the web interface to quit.
-
+   ```
 
 1. [PostgreSQL 9.6](https://www.postgresql.org/). We are testing with
-   PostgreSQL 9.6.2.
+   PostgreSQL 9.6.2. Check that you have PostgreSQL installed.
+
+1. The PSM code repository. Currently we suggest you run the PSM from
+   the master branch of the development repository. Run the command
+   below and it will download the source code into a new subdirectory
+   called `psm`.
+
+   ```ShellSession
+   $ git clone https://github.com/OpenTechStrategies/psm.git
+   ```
 
 # Configuring WildFly
 
@@ -127,14 +142,14 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    distribution](http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz).
 
    ```ShellSession
-   $ cd /path/to/this_psm_repo
+   $ cd {/path/to/this_psm_repo}
    $ # this should be a peer directory, so:
    $ cd ..
    $ tar -xzf wildfly-10.1.0.Final.tar.gz
    $ cd wildfly-10.1.0.Final
    ```
 
-1. Add a WildFly management console user
+1. Add a WildFly management console user:
 
    ```ShellSession
    $ ./bin/add-user.sh
@@ -142,6 +157,8 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    a) Management User (mgmt-users.properties)
    b) Application User (application-users.properties)
    (a): a
+
+   {Choose username, create and confirm password.}
 
    What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]:
 
@@ -184,12 +201,17 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    and [https://localhost:8443/](https://localhost:8443/) for the app(s) it
    hosts - currently none.
 
+1. Leave WildFly running as you continue the install process.
+
 ## Configure services
 
 ### Mail
 
-If you are using a debugging mail server such as MailCatcher, update the
-outgoing SMTP port and add a mail server without credentials:
+If you are using a debugging mail server such as MailCatcher, update
+the outgoing SMTP port and add a mail server without credentials. Open
+a new terminal session so you can leave WildFly running in the
+existing terminal. Paste the entire command below, all the way through
+the second `EOF`, into your terminal:
 
 ```ShellSession
 $ ./bin/jboss-cli.sh --connect << EOF
@@ -214,24 +236,40 @@ $ ./bin/jboss-cli.sh --connect \
 
 ### Database
 
-Download the [PostgreSQL JDBC driver](https://jdbc.postgresql.org/) and deploy
-it to your application server:
+Download the [PostgreSQL JDBC driver](https://jdbc.postgresql.org/)
+(specifically, the JDBC 4.2 version of the driver). Place it in the
+parent directory, relative to the WildFly directory, and deploy it to
+your application server:
 
 ```ShellSession
 $ ./bin/jboss-cli.sh --connect --command="deploy ../postgresql-{VERSION}.jar"
 ```
 
-You will need a database user, and a database owned by that user:
+If you get an error saying that the `.jar` file "is not a valid node
+type name", double-check that it's in the correct directory. If it is,
+then place the `.jar` file in
+`wildfly-10.1.0.Final/standalone/deployments` and then restart the
+WildFly server. The terminal logging for WildFly should then include
+an `INFO` line like:
+
+```
+15:32:15, 773 INFO [org.jboss.as.server] )ServerService Thread Pool --37) WFLYSRV0010: Deployed "postgresql-42.1.1.jar" (runtime-name: "postgresql-42.1.1.jar")
+```
+
+You will need a database user, and a database owned by that
+user. Create them, and make a note of the password for the database
+user:
 
 ```ShellSession
 $ sudo -u postgres createuser --pwprompt psm
 $ sudo -u postgres createdb --owner=psm psm
 ```
 
-After creating the databases, replace `{VERSION}` with the version of the
-PostgreSQL JDBC driver you downloaded and `{PostgreSQL psm user password}` with
-the password you assigned to your `psm` database user, and add the data sources
-to the application server:
+After creating the databases, add the data sources to the application
+server. In the command below, replace `{VERSION}` with the version of
+the PostgreSQL JDBC driver you downloaded and `{PostgreSQL psm user
+password}` with the password you assigned to your `psm` database user,
+and paste it into your terminal:
 
 ```ShellSession
 $ ./bin/jboss-cli.sh --connect <<EOF
@@ -268,32 +306,39 @@ EOF
 1. Fill in your local properties:
 
    ```ShellSession
-   $ cd ../psm/psm-app
+   $ cd ../{psm}/psm-app
    $ cp build.properties.template build.properties
-   $ favorite-editor build.properties
+   ```
+
+1. If you do not have WildFly deployed in a peer directory to the PSM
+repository, update its location in your local properties:
+
+   ```ShellSession
+   $ {favorite-editor} build.properties
    ```
 
 1. Build the application with `ant`. This depends on libraries provided by the
    application server.
 
    ```ShellSession
-   $ cd ../psm/psm-app
+   $ cd ../{psm}/psm-app
    $ ant regenerate-model dist
-   Buildfile: /path/to/psm/psm-app/build.xml
+   Buildfile: {/path/to/psm}/psm-app/build.xml
    ...[cut]...
    dist:
-         [ear] Building ear: /path/to/psm/psm-app/build/cms-portal-services.ear
+         [ear] Building ear: {/path/to/psm}/psm-app/build/cms-portal-services.ear
    ```
 
-1. Deploy the built app: you can use the Wildfly Management Console UI at
-   [http://localhost:9990/](http://localhost:9990/), log in with your username
-   and password, and do the following: Deployments > Add > Upload a new
-   deployment > browse to file." Alternatively, you can use the command line
-   interface:
+1. Deploy the built app: you can use the Wildfly Management Console UI
+   at [http://localhost:9990/](http://localhost:9990/), log in with
+   your management console username and password, and do the
+   following: "Deployments > Add > Upload a new deployment > browse to
+   file." Alternatively, you can use the command line interface,
+   replacing the relevant paths below:
 
    ```ShellSession
-   $ /path/to/wildfly/bin/jboss-cli.sh --connect \
-       --command="deploy /path/to/psm/psm-app/build/cms-portal-services.ear"
+   $ {/path/to/wildfly}/bin/jboss-cli.sh --connect \
+       --command="deploy {/path/to/psm}/psm-app/build/cms-portal-services.ear"
    ```
 
    If you have a previous build deployed already, you can replace the
@@ -302,7 +347,7 @@ EOF
 1. Create database schema and initial data. Use the seed data to create tables:
 
       ```ShellSession
-      $ psql -h localhost -U psm psm < /path/to/psm/psm-app/db/seed.sql
+      $ psql -h localhost -U psm psm < {/path/to/psm}/psm-app/db/seed.sql
       ```
 
 1. To check that the app is running, navigate to

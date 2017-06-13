@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -15,88 +15,71 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Represents a screening schedule.
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
- */
-public class ScreeningSchedule extends IdentifiableEntity {
-
-    /**
-     * Upcoming screening date.
+@javax.persistence.Entity 
+@Table(name = "screening_schedules")
+public class ScreeningSchedule implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "screening_schedule_id")
+    private long id;
+    
+    /* 
+     * Next screening date.
      */
+    @Column(name = "upcoming_screening_date")
     private Date upcomingScreeningDate;
 
-    /**
-     * Interval.
+    /*
+     * Interval between screenings.
      */
+    @Column(name = "interval_value")
     private int interval;
 
-    /**
-     * Interval type.
-     */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "interval_type")
     private ScreeningIntervalType intervalType;
 
-    /**
-     * Default empty constructor.
-     */
-    public ScreeningSchedule() {
-    }
 
-    /**
-     * Gets the value of the field <code>upcomingScreeningDate</code>.
-     *
-     * @return the upcomingScreeningDate
-     */
     public Date getUpcomingScreeningDate() {
         return upcomingScreeningDate;
     }
 
-    /**
-     * Sets the value of the field <code>upcomingScreeningDate</code>.
-     *
-     * @param upcomingScreeningDate the upcomingScreeningDate to set
-     */
     public void setUpcomingScreeningDate(Date upcomingScreeningDate) {
         this.upcomingScreeningDate = upcomingScreeningDate;
     }
 
-    /**
-     * Gets the value of the field <code>interval</code>.
-     *
-     * @return the interval
-     */
     public int getInterval() {
         return interval;
     }
 
-    /**
-     * Sets the value of the field <code>interval</code>.
-     *
-     * @param interval the interval to set
-     */
     public void setInterval(int interval) {
         this.interval = interval;
     }
 
-    /**
-     * Gets the value of the field <code>intervalType</code>.
-     *
-     * @return the intervalType
-     */
     public ScreeningIntervalType getIntervalType() {
         return intervalType;
     }
 
-    /**
-     * Sets the value of the field <code>intervalType</code>.
-     *
-     * @param intervalType the intervalType to set
-     */
     public void setIntervalType(ScreeningIntervalType intervalType) {
         this.intervalType = intervalType;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
 }

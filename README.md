@@ -126,10 +126,11 @@ and design assumptions.
 The [psm-app](psm-app) subdirectory holds the source code to the PSM
 proper.
 
-The [ext-sources-app](ext-sources-app) subdirectory holds the source
-code to the semi-separate middleware application that provides a
-service wrapper around external data sources, thereby offering the PSM
-a consistent API to those services.
+The ext-sources-app subdirectory has been removed.  It held the source
+code to the semi-separate middleware application that provided a service
+wrapper around external data sources.  This will be replaced as
+discussed on [the mailing
+list](https://groups.google.com/forum/#!topic/psm-dev/bOVQeUjoaB0).
 
 The [team-notes](team-notes) directory has agendas and meeting notes
 from various team and sub-team meetings.

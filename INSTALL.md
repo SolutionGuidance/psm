@@ -100,23 +100,16 @@ messaging service:
    with OpenJDK 8, which you can install on Debian-like systems with
    `sudo apt install openjdk-8-jdk-headless`.
 1. [Ant](https://ant.apache.org/) for building: `sudo apt install ant`.
-
-1. An SMTP server. For development, consider
-   [MailCatcher](https://mailcatcher.me/), which you can install with
-   `gem install --user-install mailcatcher`. If installation fails,
-   ensure you have a GCC compiler and the Ruby developer package
-   installed. See the website for more details.
+1. An SMTP server. For development, consider the built-in Python SMTP
+   debugging server (works on Python 2 or Python 3). In your terminal,
+   run:
 
    ```ShellSession
-   $ sudo apt install ruby-dev g++
-   $ gem install --user-install mailcatcher
-   # run mailcatcher:
-   $ ~/.gem/ruby/2.3.0/bin/mailcatcher
-   Starting MailCatcher
-   ==> smtp://127.0.0.1:1025
-   ==> http://127.0.0.1:1080
-   *** MailCatcher runs as a daemon by default. Go to the web interface to quit.
+   $ python -m smtpd -n -c DebuggingServer localhost:1025
    ```
+
+   Leave the terminal session open; leave the SMTP server running as
+   you continue the install process.
 
 1. [PostgreSQL 9.6](https://www.postgresql.org/). We are testing with
    PostgreSQL 9.6.2. Check that you have PostgreSQL installed.
@@ -207,11 +200,11 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
 
 ### Mail
 
-If you are using a debugging mail server such as MailCatcher, update
-the outgoing SMTP port and add a mail server without credentials. Open
-a new terminal session so you can leave WildFly running in the
-existing terminal. Paste the entire command below, all the way through
-the second `EOF`, into your terminal:
+If you are using a debugging mail server such as the Python
+`DebuggingServer` recommended above: open a new terminal session so
+you can leave WildFly running in its existing terminal and Python
+running in its existing terminal. Paste the entire command below, all
+the way through the second `EOF`, into your terminal:
 
 ```ShellSession
 $ ./bin/jboss-cli.sh --connect << EOF

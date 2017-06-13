@@ -28,7 +28,7 @@ import java.util.Date;
 @javax.persistence.Entity 
 @Table(name = "screening_schedules")
 public class ScreeningSchedule implements Serializable {
- @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "screening_schedule_id")
     private long id;
@@ -45,10 +45,6 @@ public class ScreeningSchedule implements Serializable {
     @Column(name = "interval_value")
     private int interval;
 
-    /*
-     * The `interval` is expressed in days, weeks, or months.  See
-     * ScreeningIntervalType.java.
-     */
     @Enumerated(EnumType.STRING)
     @Column(name = "interval_type")
     private ScreeningIntervalType intervalType;

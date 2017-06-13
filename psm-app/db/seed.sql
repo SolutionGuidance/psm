@@ -660,7 +660,7 @@ INSERT INTO specialty_types (code, description, sub_category) VALUES
   ('LL', 'Leech Lake Indian Reservation', 'TC'),
   ('LS', 'Lower Sioux Indian Reservation', 'TC'),
   ('ML', 'Mille Lacs Indian Reservation', 'TC'),
-  ('NL', 'Net Lake Indian Reservation"', 'TC'),
+  ('NL', 'Net Lake Indian Reservation', 'TC'),
   ('PI', 'Prairie Island Indian Reservation', 'TC'),
   ('RL', 'Red Lake Reservation', 'TC'),
   ('US', 'Upper Sioux Indian Reservation', 'TC'),

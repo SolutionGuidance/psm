@@ -1015,7 +1015,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         for (Asset asset : assets) {
             insertAddress(asset.getLocation());
 
-            asset.setId(getSequence().getNextValue(Sequences.ASSET_SEQ));
+            asset.setId(0);
             getEm().persist(asset);
         }
     }

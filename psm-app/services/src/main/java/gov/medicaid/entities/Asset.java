@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -15,108 +15,72 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
 /**
  * Represents owned assets.
  *
  * @author TCSASSEMBLER
  * @version 1.0
  */
-public class Asset extends IdentifiableEntity {
 
-    /**
-     * The asset type.
-     */
-    private AssetType type;
+@javax.persistence.Entity
+@Table(name = "owner_assets")
+public class Asset implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "owner_asset_id")
+    private long id;
 
     /**
      * Asset name.
      */
+    @Column(name = "name")
     private String name;
 
     /**
      * Asset location.
      */
+    @ManyToOne
+    @JoinColumn(name = "address_id")
     private Address location;
 
     /**
      * Ownership type.
      */
+    @ManyToOne
+    @JoinColumn(name = "ownership_type_code")
     private OwnershipType ownershipType;
 
-    /**
-     * Empty constructor.
-     */
-    public Asset() {
+    public long getId() {
+        return id;
     }
 
-    /**
-     * Gets the value of the field <code>type</code>.
-     *
-     * @return the type
-     */
-    public AssetType getType() {
-        return type;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    /**
-     * Sets the value of the field <code>type</code>.
-     *
-     * @param type the type to set
-     */
-    public void setType(AssetType type) {
-        this.type = type;
-    }
-
-    /**
-     * Gets the value of the field <code>name</code>.
-     *
-     * @return the name
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * Sets the value of the field <code>name</code>.
-     *
-     * @param name the name to set
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * Gets the value of the field <code>location</code>.
-     *
-     * @return the location
-     */
     public Address getLocation() {
         return location;
     }
 
-    /**
-     * Sets the value of the field <code>location</code>.
-     *
-     * @param location the location to set
-     */
     public void setLocation(Address location) {
         this.location = location;
     }
 
-    /**
-     * Gets the value of the field <code>ownershipType</code>.
-     *
-     * @return the ownershipType
-     */
     public OwnershipType getOwnershipType() {
         return ownershipType;
     }
 
-    /**
-     * Sets the value of the field <code>ownershipType</code>.
-     *
-     * @param ownershipType the ownershipType to set
-     */
     public void setOwnershipType(OwnershipType ownershipType) {
         this.ownershipType = ownershipType;
     }

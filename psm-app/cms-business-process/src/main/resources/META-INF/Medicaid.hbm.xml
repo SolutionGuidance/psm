@@ -342,29 +342,6 @@
 			<one-to-many class="gov.medicaid.entities.Asset" />
 		</list>
 	</class>
-	<class name="gov.medicaid.entities.Asset" table="OWNER_ASSET">
-		<id column="OWNER_ASSET_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="type">
-			<column name="TYPE" />
-			<type name="org.hibernate.type.EnumType">
-				<param name="type">12</param>
-				<param name="enumClass">gov.medicaid.entities.AssetType</param>
-			</type>
-		</property>
-		<property generated="never" lazy="false" name="name" type="string">
-			<column name="NAME" />
-		</property>
-		<many-to-one class="gov.medicaid.entities.Address" fetch="join"
-			name="location">
-			<column name="ADDRESS_ID" />
-		</many-to-one>
-		<many-to-one class="gov.medicaid.entities.OwnershipType"
-			fetch="join" name="ownershipType">
-			<column name="OWNERSHIP_TYP_CD" />
-		</many-to-one>
-	</class>
 	<class name="gov.medicaid.entities.ProviderTypeSetting" table="PROVIDER_SETTING">
 		<id column="PROVIDER_SETTING_ID" name="id" type="long">
 			<generator class="assigned" />

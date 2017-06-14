@@ -27,6 +27,7 @@ DROP TABLE IF EXISTS
   license_types,
   licenses,
   organizations,
+  owner_assets,
   ownership_types,
   pay_to_provider_types,
   people,
@@ -459,14 +460,14 @@ CREATE TABLE beneficial_owner_types(
   description TEXT UNIQUE,
   owner_type CHARACTER VARYING(1)
 );
-INSERT INTO beneficial_owner_types (code, description, owner_type) VALUES
-  ('01', 'Non Profit', 'O'),
-  ('02', 'Sole Proprietership', 'O'),
-  ('03', 'Hospital', 'O'),
-  ('04', 'Corporation', 'O'),
-  ('05', 'Partnership', 'O'),
-  ('06', 'State', 'A'),
-  ('07', 'Public', 'P');
+INSERT INTO beneficial_owner_types (code, owner_type, description) VALUES
+  ('01', 'A', 'Subcontractor'),
+  ('02', 'P', 'Managing Employee'),
+  ('03', 'A', 'Owner - 5% or more of Ownership Interest'),
+  ('04', 'P', 'Board Member or Officer'),
+  ('05', 'P', 'Program Manager'),
+  ('06', 'P', 'Managing Director'),
+  ('99', 'A', 'Other');
 
 CREATE TABLE risk_levels(
   code CHARACTER VARYING(2) PRIMARY KEY,
@@ -1080,3 +1081,15 @@ CREATE TABLE licenses(
     REFERENCES specialty_types(code),
   attachment_id BIGINT
 );
+
+CREATE TABLE owner_assets(
+  owner_asset_id BIGINT PRIMARY KEY ,
+  type CHARACTER VARYING(255),
+  name CHARACTER VARYING(255),
+  address_id BIGINT
+    REFERENCES addresses(address_id),
+  ownership_typ_cd CHARACTER VARYING(2)
+    REFERENCES ownership_types(code),
+  ownership_info_id BIGINT,
+  idx INTEGER
+   ) ;

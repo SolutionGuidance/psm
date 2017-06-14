@@ -94,7 +94,6 @@ public abstract class BeneficialOwner implements Serializable {
     @JoinColumn(name = "oth_provider_address_id")
     private Address otherProviderAddress;
 
-
     public long getId() {
         return id;
     }

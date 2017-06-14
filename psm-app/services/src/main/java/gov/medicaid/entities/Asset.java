@@ -34,12 +34,6 @@ public class Asset implements Serializable {
     private long id;
 
     /**
-     * The asset type.
-     */
-    @Column(name ="type")
-    private AssetType type;
-
-    /**
      * Asset name.
      */
     @Column(name = "name")
@@ -56,7 +50,7 @@ public class Asset implements Serializable {
      * Ownership type.
      */
     @ManyToOne
-    @JoinColumn(name = "ownership_typ_cd")
+    @JoinColumn(name = "ownership_type_code")
     private OwnershipType ownershipType;
 
     public long getId() {
@@ -65,14 +59,6 @@ public class Asset implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public AssetType getType() {
-        return type;
-    }
-
-    public void setType(AssetType type) {
-        this.type = type;
     }
 
     public String getName() {

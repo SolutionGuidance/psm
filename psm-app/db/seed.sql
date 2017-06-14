@@ -1134,8 +1134,9 @@ CREATE TABLE beneficial_owner (
 
 CREATE TABLE owner_assets(
   owner_asset_id BIGINT PRIMARY KEY ,
-  type TEXT,
   name TEXT,
+  ownership_type_code CHARACTER VARYING(2)
+    REFERENCES  ownership_types(code),
   address_id BIGINT
     REFERENCES addresses(address_id),
   ownership_info_id BIGINT

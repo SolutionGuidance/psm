@@ -1132,7 +1132,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 affiliation.setTargetEntityId(0);
             }
 
-            affiliation.setId(getSequence().getNextValue(Sequences.PROV_GRP_SEQ));
+            affiliation.setId(0);
             getEm().persist(affiliation);
         }
     }

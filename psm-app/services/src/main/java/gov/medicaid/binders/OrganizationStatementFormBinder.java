@@ -29,7 +29,6 @@ import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.ProviderStatement;
-import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.dto.FormError;
 
 import java.util.ArrayList;
@@ -97,8 +96,9 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
             exceptions.add(e);
         }
 
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-        List<AgreementDocument> docs = pt.getAgreementDocuments();
+        List<AgreementDocument> docs = getLookupService().getProviderTypeWithAgreementDocuments(
+                provider
+        ).getAgreementDocuments();
 
         List<ProviderAgreementType> xList = new ArrayList<ProviderAgreementType>();
         HashSet<String> agreed = new HashSet<String>();
@@ -149,8 +149,9 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
         attr(mv, "bound", "Y");
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
 
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-        List<AgreementDocument> docs = pt.getAgreementDocuments();
+        List<AgreementDocument> docs = getLookupService().getProviderTypeWithAgreementDocuments(
+                provider
+        ).getAgreementDocuments();
 
         if (enrollment.getRequestType() == RequestType.RENEWAL && "Y".equals(provider.getRenewalShowBlankStatement())) {
             attr(mv, "renewalBlankInit", "YY");
@@ -259,8 +260,9 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
 
         List<AcceptedAgreements> hList = profile.getAgreements();
 
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-        List<AgreementDocument> activeList = pt.getAgreementDocuments();
+        List<AgreementDocument> activeList = getLookupService().getProviderTypeWithAgreementDocuments(
+                provider
+        ).getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
         // Retain any previously accepted agreements that is no longer shown in the page
@@ -363,8 +365,9 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         ProviderProfile profile = ticket.getDetails();
 
-        ProviderType pt = getLookupService().findLookupByDescription(ProviderType.class, provider.getProviderType());
-        List<AgreementDocument> activeList = pt.getAgreementDocuments();
+        List<AgreementDocument> activeList = getLookupService().getProviderTypeWithAgreementDocuments(
+                provider
+        ).getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
         AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(enrollment);

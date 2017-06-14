@@ -53,11 +53,6 @@ public class Sequences {
     public static final String ASSET_SEQ = "ASSET_SEQ";
 
     /**
-     * Beneficial owners.
-     */
-    public static final String BEN_OWNER_SEQ = "BEN_OWNER_SEQ";
-
-    /**
      * External profile link.
      */
     public static final String EXT_PROF_LINK_SEQ = "EXT_PROF_LINK_SEQ";

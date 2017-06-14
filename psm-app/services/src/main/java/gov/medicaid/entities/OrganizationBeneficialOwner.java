@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -21,56 +21,39 @@ package gov.medicaid.entities;
  * @author TCSASSEMBLER
  * @version 1.0
  */
+import javax.persistence.*;
+
+@javax.persistence.Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("N")
 public class OrganizationBeneficialOwner extends BeneficialOwner {
 
     /**
      * Entity legal name.
      */
+    @Column(name = "legal_name")
     private String legalName;
 
     /**
      * Entity employer number.
      */
+    @Column()
     private String fein;
 
-    /**
-     * Empty constructor.
-     */
-    public OrganizationBeneficialOwner() {
-    }
 
-    /**
-     * Gets the value of the field <code>legalName</code>.
-     *
-     * @return the legalName
-     */
     public String getLegalName() {
         return legalName;
     }
 
-    /**
-     * Sets the value of the field <code>legalName</code>.
-     *
-     * @param legalName the legalName to set
-     */
     public void setLegalName(String legalName) {
         this.legalName = legalName;
     }
 
-    /**
-     * Gets the value of the field <code>fein</code>.
-     *
-     * @return the fein
-     */
     public String getFein() {
         return fein;
     }
 
-    /**
-     * Sets the value of the field <code>fein</code>.
-     *
-     * @param fein the fein to set
-     */
     public void setFein(String fein) {
         this.fein = fein;
     }

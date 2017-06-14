@@ -27,6 +27,7 @@ DROP TABLE IF EXISTS
   license_types,
   licenses,
   organizations,
+  owner_assets,
   ownership_types,
   pay_to_provider_types,
   people,
@@ -1080,3 +1081,15 @@ CREATE TABLE licenses(
     REFERENCES specialty_types(code),
   attachment_id BIGINT
 );
+
+CREATE TABLE owner_assets(
+  owner_asset_id BIGINT PRIMARY KEY ,
+  type CHARACTER VARYING(255),
+  name CHARACTER VARYING(255),
+  address_id BIGINT
+    REFERENCES addresses(address_id),
+  ownership_typ_cd CHARACTER VARYING(2)
+    REFERENCES ownership_types(code),
+  ownership_info_id BIGINT,
+  idx INTEGER
+   ) ;

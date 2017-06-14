@@ -44,6 +44,7 @@
     <class>gov.medicaid.entities.AcceptedAgreements</class>
     <class>gov.medicaid.entities.Address</class>
     <class>gov.medicaid.entities.AgreementDocument</class>
+    <class>gov.medicaid.entities.Asset</class>
     <class>gov.medicaid.entities.AuditDetail</class>
     <class>gov.medicaid.entities.AuditRecord</class>
     <class>gov.medicaid.entities.Authentication</class>

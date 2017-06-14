@@ -1,1 +1,1 @@
-include 'services', 'cms-business-process', 'cms-web', 'cms-portal-services'
+include 'services', 'cms-business-process', 'cms-web', 'cms-business-model', 'cms-portal-services'

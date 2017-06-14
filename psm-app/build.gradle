@@ -1,3 +1,16 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url  "http://dl.bintray.com/djmijares/gradle-plugins"
+        }
+    }
+    dependencies {
+        classpath "com.github.jacobono:gradle-jaxb-plugin:1.3.6"
+    }
+}
+
 allprojects {
     repositories {
         mavenCentral()
@@ -9,6 +22,7 @@ project(":services") {
 
     dependencies {
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar', exclude: 'cms-core.jar')
+	compile project(path: ":cms-business-model", configuration: 'archives')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/codehaus/jackson')
@@ -30,6 +44,7 @@ project(":cms-business-process") {
     dependencies {
         runtime project(path: ":services", configuration: 'archives')
         compile project(path: ":services", configuration: 'archives')
+        compile project(path: ":cms-business-model", configuration: 'archives')
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar', exclude: 'cms-core.jar')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
@@ -57,14 +72,52 @@ project(":cms-web") {
     webAppDirName = 'WebContent'
 }
 
+project(":cms-business-model") {
+    apply plugin: 'com.github.jacobono.jaxb'
+    apply plugin: 'java'
+    compileJava.dependsOn xjc
+    System.setProperty('javax.xml.accessExternalSchema', 'file')
+
+    dependencies {
+         jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7'
+         jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7'
+         jaxb 'javax.xml.bind:jaxb-api:2.2.7'
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDirs = [
+                    'src/main/java',
+                    'src/main/generated'
+                ]
+            }
+            resources {
+                srcDirs = ['src/main/resources']
+            }
+        }
+    }
+    jaxb {
+        xsdDir = "cms-business-model/src/main/resources"
+        bindingsDir = "cms-business-model/src/main/resources"
+        bindings = ["jaxb-bindings.xjb"]
+        xjc {
+            producesDir = 'src/main/generated'
+            destinationDir = 'src/main/generated'
+            generatePackage = 'gov.medicaid.domain.model'
+        }
+    }
+}
+
 project(":cms-portal-services") {
     apply plugin: 'ear'
     dependencies {
         deploy project(path: ":cms-web", configuration: 'archives')
 	deploy project(":cms-business-process")
         earlib fileTree(dir: 'lib')
-        earlib project(path: ":services", configuration: 'archives')
-    }
+        earlib project(path: ":cms-business-model", configuration: 'archives')
+        earlib project(path: ":services", configuration: 'archives') 
+   }
 
     ear {
         appDirName 'EarContent'

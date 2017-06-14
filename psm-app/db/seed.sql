@@ -102,6 +102,7 @@ INSERT INTO cms_user (
   status,
   role_code
 ) VALUES
+  ('p1', 'p1', 'p1', 'p1', 'p1@example.com', 'ACTIVE', 'R1'),
   ('ADMIN', 'admin', 'admin', 'admin', 'admin@example.com', 'ACTIVE', 'R3'),
   ('SYSTEM', 'system', 'system', 'system', 'system@example.com', 'ACTIVE', 'R4');
 
@@ -111,6 +112,7 @@ CREATE TABLE cms_authentication(
 );
 INSERT INTO cms_authentication (username, password) VALUES
   ('admin', '{SHA}0DPiKuNIrrVmD8IUCuw1hQxNqZc='), -- password: admin
+  ('p1', '{SHA}t49XZhHsBvlq88plTCIXKl10bEA='), -- password: p1
   ('system', '{SHA}MX8edh8vqo2ngaR2K53MLFytIJo='); -- password: system
 
 CREATE TABLE audit_records(

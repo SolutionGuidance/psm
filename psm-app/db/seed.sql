@@ -29,6 +29,7 @@ DROP TABLE IF EXISTS
   license_types,
   licenses,
   organizations,
+  owner_assets,
   ownership_types,
   pay_to_provider_types,
   people,
@@ -1102,6 +1103,7 @@ CREATE TABLE affiliations(
   bgs_clearance_date DATE
 );
 
+<<<<<<< HEAD
 CREATE TABLE beneficial_owner (
   beneficial_owner_id       BIGINT PRIMARY KEY,
   person_ind                CHARACTER VARYING(1),
@@ -1130,3 +1132,11 @@ CREATE TABLE beneficial_owner (
   legal_name                TEXT
 );
 
+CREATE TABLE owner_assets(
+  owner_asset_id BIGINT PRIMARY KEY ,
+  type TEXT,
+  name TEXT,
+  address_id BIGINT
+    REFERENCES addresses(address_id),
+  ownership_info_id BIGINT
+) ;

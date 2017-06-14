@@ -46,12 +46,7 @@ public class Sequences {
      * Ownership information.
      */
     public static final String OWNERSHIP_SEQ = "OWNERSHIP_SEQ";
-
-    /**
-     * Asset sequence.
-     */
-    public static final String ASSET_SEQ = "ASSET_SEQ";
-
+    
     /**
      * External profile link.
      */

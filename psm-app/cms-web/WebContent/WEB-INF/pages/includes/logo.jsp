@@ -2,7 +2,7 @@
 
 <a class="logo" href="#">
   <img
-    src="<c:url value="/i/logo.gif" />"
+    src="<c:url value="/i/psm-logo.png" />"
     alt="Medicaid Provider"
   />
 </a>

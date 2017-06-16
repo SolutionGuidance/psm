@@ -563,7 +563,7 @@ INSERT INTO license_types (code, description) VALUES
   ('L0', 'Marriage And Family Therapist'),
   ('L1', 'Audiologist License'),
   ('L2', 'Registration with the Department Of Health'),
-  ('L3', 'Optometrist License'),
+  ('L3', 'Optometrist'),
   ('L4', 'Registered Nurse'),
   ('L5', 'PCA Training Certificate'),
   ('L6', 'Traditional Midwife'),

@@ -1103,7 +1103,6 @@ CREATE TABLE affiliations(
   bgs_clearance_date DATE
 );
 
-<<<<<<< HEAD
 CREATE TABLE beneficial_owner (
   beneficial_owner_id       BIGINT PRIMARY KEY,
   person_ind                CHARACTER VARYING(1),

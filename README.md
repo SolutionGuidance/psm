@@ -99,6 +99,7 @@ As of 7 June 2017, the PSM offers the following functionality:
 * Log in
 * Log out
 * Receive password reminder via email
+* Change password in profile
 
 2. User at "System administrator" privilege level
 * View other user accounts
@@ -112,6 +113,15 @@ As of 7 June 2017, the PSM offers the following functionality:
 * View agreements & addendums
 * Create agreements and addendums
 * View, create, edit, and delete service agents
+
+4. User at "provider" privilege level
+* Make a new enrollment
+* View existing enrollments, export as PDF
+
+5. User at "service agent" privilege level
+* View existing (pending) enrollments
+* Create a new provider enrollment
+* While creating an enrollment, save an enrollment as a draft and then come back to it later
 
 _[Note: As the developer team conducts initial improvement work on the PSM in June 2017, we anticipate recovering many of the features listed in the [original
 repository](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/blob/master/README.md), such as identity verification, building provider profiles, and MITA integration.]_

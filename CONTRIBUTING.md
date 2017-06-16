@@ -59,6 +59,15 @@ While there are no strict rules on how to summarize a branch's purpose
 in its name, it may help to keep in mind some common starting words:
 "`fix`", "`feature`", "`refactor`", "`remove`", "`improve`", and "`test`".
 
+### Rebases and force-pushes
+
+Force pushes (after a rebase or a `commit --amend`) are currently
+allowed everywhere except the master branch.  This repository has master
+as a "protected" branch, meaning force-pushes are disabled
+automatically.  If you're working with someone else on a shared branch
+you should talk with them before changing shared history.  We expect
+force-pushing to mostly occur in active PR branches.
+
 ### Commit Messages
 Please adhere
 to [these guidelines](https://chris.beams.io/posts/git-commit/) for

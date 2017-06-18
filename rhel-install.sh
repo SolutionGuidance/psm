@@ -111,8 +111,7 @@ EOF
 ## Build and deploy the psm app
 cp psm/psm-app/build.properties.template psm/psm-app/build.properties
 cd psm/psm-app
-ant regenerate-model
-ant dist
+./gradlew build
 cd ../../
 ./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect \
-		--command="deploy psm/psm-app/build/cms-portal-services.ear"
+		--command="deploy psm/psm-app/cms-portal-services/build/libs/cms-portal-services.ear"

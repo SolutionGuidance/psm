@@ -42,7 +42,6 @@ project(':services') {
 project(':cms-business-process') {
     apply plugin: 'java'
     dependencies {
-        runtime project(path: ':services', configuration: 'archives')
         compile project(path: ':services', configuration: 'archives')
         compile project(path: ':cms-business-model', configuration: 'archives')
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar', exclude: 'cms-core.jar')

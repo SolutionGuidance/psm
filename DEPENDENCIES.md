@@ -1,0 +1,124 @@
+# Dependencies
+
+List of this project's dependencies, subdependencies, and their
+licenses.  The subdependencies listed may be for a more recent version
+of the library.  Dependencies are listed in the `ext.libs` array in
+build.gradle.  Sources for license and subdependency information given
+inline.
+
+- commons\_codec: 'commons-codec:commons-codec:1.6' _(Apache License, Version 2.0)_
+  - junit:junit:jar:4.11 (test) Information _(Common Public License Version 1.0)_
+  - org.hamcrest:hamcrest-core:jar:1.3 (test) Information _(New BSD License)_
+  - `Source: https://commons.apache.org/proper/commons-codec/dependencies.html`
+- commons\_io: 'commons-io:commons-io:2.0.1' _(Apache License, Version 2.0)_
+  - junit:junit:jar:4.12 (test)  _(Eclipse Public License 1.0)_
+    `Note: JUnit was relicensed from CPL to EPL: https://github.com/junit-team/junit4/pull/678/files`
+  - org.hamcrest:hamcrest-core:jar:1.3 (test)  _(New BSD License)_
+  - `Source: https://commons.apache.org/proper/commons-io/dependencies.html`
+- commons\_lang: 'commons-lang:commons-lang:2.4' _(Apache License, Version 2.0)_
+  - junit:junit:jar:4.12 (test) _(Eclipse Public License 1.0)_
+    - org.hamcrest:hamcrest-core:jar:1.3 (test) _(New BSD License)_
+  - org.hamcrest:hamcrest-all:jar:1.3 (test) _(New BSD License)_
+  - org.apache.bcel:bcel:jar:6.0 (test) _(Apache License, Version 2.0)_
+  - org.easymock:easymock:jar:3.4 (test) _(Apache 2)_
+    - org.objenesis:objenesis:jar:2.2 (test) _(Apache 2)_
+  - org.openjdk.jmh:jmh-core:jar:1.17.4 (test) _(GNU General Public License (GPL), version 2, with the Classpath exception)_
+    - net.sf.jopt-simple:jopt-simple:jar:4.6 (test) _(The MIT License)_
+    - org.apache.commons:commons-math3:jar:3.2 (test) _(The Apache Software License, Version 2.0)_
+  - org.openjdk.jmh:jmh-generator-annprocess:jar:1.17.4 (test) _(GNU General Public License (GPL), version 2, with the Classpath exception)_
+  - `Source: https://commons.apache.org/proper/commons-lang/dependencies.html`
+- drools\_core: 'org.drools:drools-core:5.4.0.Final' _(Apache 2.0)_
+  - Compile Dependencies
+    - com.google.protobuf » protobuf-java (optional) 2.4.1 _(Apache 2.0/BSD 3-clause)_
+    - com.thoughtworks.xstream » xstream (optional) 1.4.1 _(BSD)_
+    - org.drools » knowledge-api 5.4.0.Final _(Apache 2.0/CC0 1.0/Public)_
+    - org.drools » knowledge-internal-api 5.4.0.Final _(Apache 2.0)_
+    - org.mvel » mvel2 2.1.0.drools16 _(Apache 2.0)_
+  - Provided Dependencies
+    - com.sun.xml.bind » jaxb-xjc 2.2.5 _(CDDL/GPL 1.1)_
+    - com.sun.xml.bind » jaxb-impl 2.2.5 _(CDDL/GPL 1.1)_
+    - javax.activation » activation 1.1 _(CDDL 1.0)_
+    - javax.xml.bind » jaxb-api 2.2.5 _(CDDL 1.1/GPL 2.0)_
+    - javax.xml.stream » stax-api 1.0-2 _(CDDL 1.0/GPL)_
+    - org.apache.felix » org.osgi.core 1.4.0 _(Apache 2.0)_
+    - org.apache.felix » org.osgi.compendium 1.4.0 _(Apache 2.0)_
+  - Test Dependencies
+    - org.antlr » antlr-runtime 3.3 _(BSD)_
+    - org.antlr » antlr 3.3 _(BSD)_
+  - `Source: https://mvnrepository.com/artifact/org.drools/drools-core/5.4.0.Final`
+- itext: 'com.lowagie:itext:2.1.7' _(Mozilla Public License)_
+  - Compile Dependencies (3)
+  - bouncycastle » bcmail-jdk14 138 _(BOUNCYCASTLE)_
+  - bouncycastle » bcprov-jdk14 138 _(BOUNCYCASTLE)_ 
+  - bouncycastle » bctsp-jdk14 138 _(BOUNCYCASTLE)_
+  - `Source: https://mvnrepository.com/artifact/com.lowagie/itext/2.1.7`
+- jasypt: 'org.jasypt:jasypt:1.9.0' _(Apache 2.0)_
+  - Provided Dependencies
+    - com.ibm.icu » icu4j (optional) 3.4.4 _(UNLICENSED)_
+    - javax.servlet » servlet-api (optional) 2.4 _(CDDL 2/GPL)
+  - Test Dependencies
+    - commons-lang » commons-lang 2.1 _(Apache 2.0)_
+    - junit » junit 3.8.1 _(EPL 1.0)_
+    - org.bouncycastle » bcprov-jdk12 130 _(UNLICENSED)_
+  - `Source: https://mvnrepository.com/artifact/org.jasypt/jasypt/1.9.0`
+- jbpm\_flow: 'org.jbpm:jbpm-flow:5.3.0.Final' _(Apache 2.0)_
+  - Compile Dependencies
+    - com.google.protobuf » protobuf-java 2.4.1 _(Apache 2.0/BSD 3-clause)_
+    - com.thoughtworks.xstream » xstream (optional) 1.4.1 _(BSD)_
+    - org.drools » knowledge-api 5.4.0.Final _(Apache 2.0/CC0 1.0/Public)_
+    - org.drools » drools-core 5.4.0.Final _(Apache 2.0/CC0 1.0/Public)_
+  - Provided Dependencies
+    - org.apache.felix » org.osgi.core 1.4.0 _(Apache 2.0)_
+    - org.apache.felix » org.osgi.compendium 1.4.0 _(Apache 2.0)_
+  - `Source: https://mvnrepository.com/artifact/org.jbpm/jbpm-flow/5.3.0.Final`
+- jbpm\_human\_task\_core: 'org.jbpm:jbpm-human-task-core:5.3.0.Final' _(Apache 2.0)_
+  - Compile Dependencies
+    - commons-collections » commons-collections 3.2.1 _(Apache 2.0)_
+    - javax.transaction » jta 1.1 _(UNLICENSED)_
+    - org.drools » drools-persistence-jpa 5.4.0.Final _(Apache 2.0/CC0 1.0/Public)_
+    - org.hibernate.javax.persistence » hibernate-jpa-2.0-api 1.0.1.Final _(EDL 1.0/EPL 1.0)_
+    - org.jbpm » jbpm-workitems 5.3.0.Final _(Apache 2.0CC0 1.0Public)_
+    - org.mvel » mvel2 2.1.0.drools16 _(Apache 2.0)_
+    - org.slf4j » slf4j-api 1.6.4 _(MIT)_
+  - Test Dependencies
+    - com.h2database » h2 1.3.161 _(EPL 1.0/MPL 2.0)_
+    - junit » junit 4.10 _(EPL 1.0)_
+    - org.hibernate » hibernate-entitymanager 3.4.0.GA _(LGPL 2.1)_
+    - org.hibernate » hibernate-core 3.3.2.GA _(LGPL 2.1)_
+  - `Source: https://mvnrepository.com/artifact/org.jbpm/jbpm-human-task-core/5.3.0.Final`
+- jbpm\_persistence\_jpa: 'org.jbpm:jbpm-persistence-jpa:5.3.0.Final'
+  - Compile Dependencies
+    - net.sf.trove4j » trove4j 3.0.2 _(LGPL 2.1)_
+    - org.drools » drools-persistence-jpa	5.4.0.Final _(Apache 2.0/CC0 1.0)_
+    - org.hibernate » hibernate-core 3.3.2.GA _(LGPL 2.1)_
+    - org.hibernate.javax.persistence » hibernate-jpa-2.0-api 1.0.1.Final _(EDL 1.0/EPL 1.0)_
+    - org.jbpm » jbpm-flow-builder 5.3.0.Final _(Apache 2.0/CC0 1.0)_
+  - Provided Dependencies
+    - com.sun.xml.bind » jaxb-impl 2.2.5 _(CDDL/GPL 1.1)_
+    - com.sun.xml.bind » jaxb-xjc 2.2.5 _(CDDL/GPL 1.1)_
+    - org.apache.felix » org.osgi.core 1.4.0 _(Apache 2.0)_
+    - org.apache.felix » org.osgi.compendium 1.4.0 _(Apache 2.0)_
+  - Test Dependencies
+    - com.h2database » h2	1.3.161	 _(EPL 1.0/MPL 2.0)_
+    - org.codehaus.btm » btm 2.1.2 _(LGPL 3.0)_
+    - org.drools » drools-persistence-jpa 5.4.0.Final _(Apache 2.0/CC0 1.0)_
+    - org.hibernate » hibernate-entitymanager 3.4.0.GA _(LGPL 2.1)_
+    - org.slf4j » slf4j-log4j12 1.6.4 _(MIT)_
+  - `Source: https://mvnrepository.com/artifact/org.jbpm/jbpm-persistence-jpa/5.3.0.Final`
+- velocity: 'org.apache.velocity:velocity:1.7' _(Apache 2.0)_
+  - Compile Dependencies
+    - commons-collections » commons-collections 3.2.1 _(Apache 2.0)_
+    - commons-lang » commons-lang	2.4 _(Apache 2.0)_
+    - oro » oro (optional) 2.0.8 _(Apache)_
+  - Provided Dependencies
+    - ant » ant 1.6 _(Apache)_
+    - commons-logging » commons-logging 1.1 _(Apache 2.0)_
+    - javax.servlet » servlet-api 2.3 _(CDDL 2 / GPL )_
+    - jdom » jdom 1.0 _(Apache)_
+    - log4j » log4j 1.2.12 _(Apache 2.0)_
+    - logkit » logkit 2.0 _(Apache 2.0)_
+    - werken-xpath » werken-xpath	0.9.4 _(UNLICENSED)_
+  - Test Dependencies
+    - hsqldb » hsqldb 1.7.1 _(BSD)_
+    - junit » junit 3.8.1 _(EPL 1.0)_
+  - `Source: https://mvnrepository.com/artifact/org.apache.velocity/velocity/1.7`

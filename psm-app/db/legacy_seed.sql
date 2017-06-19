@@ -707,3 +707,8 @@ create table workiteminfo
 )
 ;
 
+
+insert into OrganizationalEntity (DTYPE, id) values ('Group', 'Service Agent'),
+('Group', 'Service Administrator'),
+('Group', 'System Administrator'),
+('User', 'Administrator');

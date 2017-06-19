@@ -11,6 +11,19 @@ buildscript {
     }
 }
 
+ext.libs = [
+    commons_codec: 'commons-codec:commons-codec:1.6',
+    commons_io: 'commons-io:commons-io:2.0.1',
+    commons_lang: 'commons-lang:commons-lang:2.4',
+    drools_core: 'org.drools:drools-core:5.4.0.Final',
+    itext: 'com.lowagie:itext:2.1.7',
+    jasypt: 'org.jasypt:jasypt:1.9.0',
+    jbpm_flow: 'org.jbpm:jbpm-flow:5.3.0.Final',
+    jbpm_human_task_core: 'org.jbpm:jbpm-human-task-core:5.3.0.Final',
+    jbpm_persistence_jpa: 'org.jbpm:jbpm-persistence-jpa:5.3.0.Final',
+    velocity: 'org.apache.velocity:velocity:1.7'
+]
+
 allprojects {
     repositories {
         mavenCentral()
@@ -21,6 +34,12 @@ project(':services') {
     apply plugin: 'java'
 
     dependencies {
+        compile libs.commons_codec
+        compile libs.commons_lang
+        compile libs.itext
+        compile libs.jasypt
+        compile libs.jbpm_human_task_core
+        compile libs.velocity
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar', exclude: 'cms-core.jar')
         compile project(path: ':cms-business-model', configuration: 'archives')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
@@ -44,6 +63,14 @@ project(':cms-business-process') {
     dependencies {
         compile project(path: ':services', configuration: 'archives')
         compile project(path: ':cms-business-model', configuration: 'archives')
+        compile libs.commons_codec
+        compile libs.commons_io
+        compile libs.commons_lang
+        compile libs.drools_core
+        compile libs.itext
+        compile libs.jbpm_flow
+        compile libs.jbpm_human_task_core
+        compile libs.velocity
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar', exclude: 'cms-core.jar')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
@@ -114,6 +141,16 @@ project(':cms-portal-services') {
         deploy project(path: ':cms-web', configuration: 'archives')
         deploy project(':cms-business-process')
         earlib fileTree(dir: 'lib')
+        earlib libs.commons_codec
+        earlib libs.commons_io
+        earlib libs.commons_lang
+        earlib libs.drools_core
+        earlib libs.itext
+        earlib libs.jasypt
+        earlib libs.jbpm_flow
+        earlib libs.jbpm_human_task_core
+        earlib libs.jbpm_persistence_jpa
+        earlib libs.velocity
         earlib project(path: ':cms-business-model', configuration: 'archives')
         earlib project(path: ':services', configuration: 'archives')
    }

@@ -919,7 +919,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         insertAffiliations(details, attachmentMapping);
 
         // save statement
-        insertStatement(details, attachmentMapping);
+        insertStatement(details);
 
         // save agreement documents
         insertAgreements(details);
@@ -1063,10 +1063,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * Inserts the provider profile statement.
      *
      * @param details the provider profile
-     * @param attachmentMapping the attachment id mapping
      * @throws PortalServiceException for any errors encountered
      */
-    private void insertStatement(ProviderProfile details, Map<Long, Long> attachmentMapping)
+    private void insertStatement(ProviderProfile details)
         throws PortalServiceException {
         ProviderStatement statement = details.getStatement();
         if (statement == null) {
@@ -1076,14 +1075,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         statement.setTicketId(details.getTicketId());
         statement.setProfileId(details.getProfileId());
 
-        if (statement.getSignatureAttachmentId() > 0) {
-            if (!attachmentMapping.containsKey(statement.getSignatureAttachmentId())) {
-                throw new PortalServiceException("Signature references an invalid attachment");
-            }
-            statement.setSignatureAttachmentId(attachmentMapping.get(statement.getSignatureAttachmentId()));
-        }
-
-        statement.setId(getSequence().getNextValue(Sequences.STATEMENT_ID));
+        statement.setId(0);
         getEm().persist(statement);
     }
 

@@ -73,27 +73,6 @@
 			<column name="STATUS" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.ProviderStatement" table="PROVIDER_STATEMENT">
-		<id column="PROVIDER_STATEMENT_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="profileId"
-			type="long">
-			<column name="PROFILEID" />
-		</property>
-		<property generated="never" lazy="false" name="ticketId"
-			type="long">
-			<column name="TICKETID" />
-		</property>
-		<property column="NAME" generated="never" lazy="false"
-			length="45" name="name" type="string" />
-		<property column="TITLE" generated="never" lazy="false"
-			length="45" name="title" type="string" />
-		<property column="STATEMENT_DT" generated="never" lazy="false"
-			name="date" type="date" />
-		<property column="SIGN_ATTACHEMENT_ID" generated="never"
-			lazy="false" name="signatureAttachmentId" not-null="true" type="long" />
-	</class>
 	<class name="gov.medicaid.entities.Note" table="PROFILE_NOTES">
 		<id column="PROVIDER_NOTE_ID" name="id" type="long">
 			<generator class="assigned" />

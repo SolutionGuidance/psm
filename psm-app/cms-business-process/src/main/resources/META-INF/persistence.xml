@@ -76,6 +76,7 @@
     <class>gov.medicaid.entities.PersonBeneficialOwner</class>
     <class>gov.medicaid.entities.ProfileStatus</class>
     <class>gov.medicaid.entities.ProviderProfile</class>
+    <class>gov.medicaid.entities.ProviderStatement</class>
     <class>gov.medicaid.entities.ProviderType</class>
     <class>gov.medicaid.entities.QPType</class>
     <class>gov.medicaid.entities.RelationshipType</class>

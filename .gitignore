@@ -43,3 +43,7 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+
+# Do not store gradle generated files
+psm-app/cms-business-model/src/main/generated/
+psm-app/schema/

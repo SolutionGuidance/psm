@@ -1,0 +1,17 @@
+language: java
+jdk:
+  - oraclejdk8
+
+# We depend on a wildfly deploment for some of the production
+# jar files. Download it and install just above our repo
+before_script:
+  - wget http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz -O /tmp/wildfly-10.1.0.Final.tar.gz
+  - pushd ..
+  - tar -xvf /tmp/wildfly-10.1.0.Final.tar.gz
+  - popd
+
+install: true
+
+script:
+  - cd psm-app
+  - gradle build ear

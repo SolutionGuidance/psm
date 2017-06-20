@@ -7,26 +7,18 @@ build.gradle.  Sources for license and subdependency information given
 inline.
 
 - commons\_codec: 'commons-codec:commons-codec:1.6' _(Apache License, Version 2.0)_
-  - junit:junit:jar:4.11 (test) Information _(Common Public License Version 1.0)_
+  - junit:junit:jar:4.11 (test) Information _(Eclipse Public License 1.0)_
   - org.hamcrest:hamcrest-core:jar:1.3 (test) Information _(New BSD License)_
-  - `Source: https://commons.apache.org/proper/commons-codec/dependencies.html`
+  - `Source: https://mvnrepository.com/artifact/commons-codec/commons-codec/1.6`
 - commons\_io: 'commons-io:commons-io:2.0.1' _(Apache License, Version 2.0)_
   - junit:junit:jar:4.12 (test)  _(Eclipse Public License 1.0)_
     `Note: JUnit was relicensed from CPL to EPL: https://github.com/junit-team/junit4/pull/678/files`
   - org.hamcrest:hamcrest-core:jar:1.3 (test)  _(New BSD License)_
-  - `Source: https://commons.apache.org/proper/commons-io/dependencies.html`
+  - `Source: https://mvnrepository.com/artifact/commons-io/commons-io/2.0.1`
 - commons\_lang: 'commons-lang:commons-lang:2.4' _(Apache License, Version 2.0)_
   - junit:junit:jar:4.12 (test) _(Eclipse Public License 1.0)_
     - org.hamcrest:hamcrest-core:jar:1.3 (test) _(New BSD License)_
-  - org.hamcrest:hamcrest-all:jar:1.3 (test) _(New BSD License)_
-  - org.apache.bcel:bcel:jar:6.0 (test) _(Apache License, Version 2.0)_
-  - org.easymock:easymock:jar:3.4 (test) _(Apache 2)_
-    - org.objenesis:objenesis:jar:2.2 (test) _(Apache 2)_
-  - org.openjdk.jmh:jmh-core:jar:1.17.4 (test) _(GNU General Public License (GPL), version 2, with the Classpath exception)_
-    - net.sf.jopt-simple:jopt-simple:jar:4.6 (test) _(The MIT License)_
-    - org.apache.commons:commons-math3:jar:3.2 (test) _(The Apache Software License, Version 2.0)_
-  - org.openjdk.jmh:jmh-generator-annprocess:jar:1.17.4 (test) _(GNU General Public License (GPL), version 2, with the Classpath exception)_
-  - `Source: https://commons.apache.org/proper/commons-lang/dependencies.html`
+  - `Source: https://mvnrepository.com/artifact/commons-lang/commons-lang/2.4`
 - drools\_core: 'org.drools:drools-core:5.4.0.Final' _(Apache 2.0)_
   - Compile Dependencies
     - com.google.protobuf » protobuf-java (optional) 2.4.1 _(Apache 2.0/BSD 3-clause)_

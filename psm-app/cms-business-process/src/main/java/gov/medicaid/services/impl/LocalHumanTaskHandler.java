@@ -21,11 +21,11 @@ import org.jbpm.task.Status;
 import org.jbpm.task.Task;
 import org.jbpm.task.TaskData;
 import org.jbpm.task.User;
-import org.jbpm.task.event.TaskCompletedEvent;
-import org.jbpm.task.event.TaskEvent;
 import org.jbpm.task.event.TaskEventKey;
-import org.jbpm.task.event.TaskFailedEvent;
-import org.jbpm.task.event.TaskSkippedEvent;
+import org.jbpm.task.event.entity.TaskCompletedEvent;
+import org.jbpm.task.event.entity.TaskEvent;
+import org.jbpm.task.event.entity.TaskFailedEvent;
+import org.jbpm.task.event.entity.TaskSkippedEvent;
 import org.jbpm.task.service.ContentData;
 import org.jbpm.task.service.local.LocalTaskService;
 import org.jbpm.task.service.responsehandlers.AbstractBaseResponseHandler;
@@ -151,7 +151,8 @@ public class LocalHumanTaskHandler extends GenericHandler {
         task.setTaskData(taskData);
 
         ContentData content = saveContent(workItem);
-        task.setDeadlines(HumanTaskHandlerHelper.setDeadlines(workItem, businessAdministrators));
+        task.setDeadlines(HumanTaskHandlerHelper.setDeadlines(
+                workItem, businessAdministrators, null));
         service.addTask(task, content);
     }
 

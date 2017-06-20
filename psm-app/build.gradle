@@ -11,7 +11,7 @@ buildscript {
     }
 }
 
-def jbpm_version = '5.3.0.Final'
+def jbpm_version = '5.4.0.Final'
 
 ext.libs = [
     jbpm_human_task_core: "org.jbpm:jbpm-human-task-core:${jbpm_version}",

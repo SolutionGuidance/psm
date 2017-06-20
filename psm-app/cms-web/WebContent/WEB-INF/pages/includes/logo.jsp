@@ -3,6 +3,6 @@
 <a class="logo" href="#">
   <img
     src="<c:url value="/i/psm-logo.png" />"
-    alt="Medicaid Provider"
+    alt="Provider Screening Module"
   />
 </a>

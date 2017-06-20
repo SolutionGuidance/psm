@@ -23,6 +23,7 @@ DROP TABLE IF EXISTS
   enrollments,
   entities,
   entity_structure_types,
+  events,
   help_items,
   issuing_boards,
   license_statuses,
@@ -1174,6 +1175,15 @@ CREATE TABLE notes(
   profile_id BIGINT,
   ticket_id BIGINT,
   note_text TEXT,
+  created_by TEXT,
+  created_at TIMESTAMP WITH TIME ZONE
+);
+
+CREATE TABLE events(
+  event_id BIGINT PRIMARY KEY,
+  ticket_id BIGINT,
+  npi TEXT,
+  status TEXT,
   created_by TEXT,
   created_at TIMESTAMP WITH TIME ZONE
 );

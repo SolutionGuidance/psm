@@ -42,11 +42,6 @@ public class Sequences {
      */
     public static final String HELP_ITEM_SEQ = "HELP_ITEM_SEQ";
 
-    /**
-     * Event sequence.
-     */
-    public static final String EVENT_SEQ = "CMS_EVENT_SEQ";
-
     public static final String SERVICE_SEQ = "SERVICE_SEQ";
 
     /**

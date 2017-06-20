@@ -15,19 +15,42 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Event extends IdentifiableEntity {
+@javax.persistence.Entity
+@Table(name = "events")
+public class Event implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "event_id")
+    private long id;
 
+    @Column(name = "ticket_id")
     private long ticketId;
 
     private String npi;
 
     private String status;
 
+    @Column(name = "created_by")
     private String createdBy;
 
+    @Column(name = "created_at")
     private Date createdOn;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getNpi() {
         return npi;

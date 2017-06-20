@@ -26,8 +26,6 @@ import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.FileNetService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
-import gov.medicaid.services.SequenceGenerator;
-import gov.medicaid.services.util.Sequences;
 import gov.medicaid.services.util.XMLAdapter;
 
 import javax.persistence.EntityManager;
@@ -55,11 +53,6 @@ public class AcceptedHandler extends GenericHandler {
     private final EntityManager entityManager;
 
     /**
-     * Sequence generator.
-     */
-    private final SequenceGenerator sequenceGenerator;
-
-    /**
      * Filenet service.
      */
     private final FileNetService fileNetService;
@@ -71,7 +64,6 @@ public class AcceptedHandler extends GenericHandler {
         CMSConfigurator config = new CMSConfigurator();
         this.providerService = config.getEnrollmentService();
         this.entityManager = config.getPortalEntityManager();
-        this.sequenceGenerator = config.getSequenceGenerator();
         this.fileNetService = config.getFileNetService();
     }
 
@@ -102,7 +94,7 @@ public class AcceptedHandler extends GenericHandler {
             Event e = new Event();
             e.setCreatedBy(actorId);
             e.setCreatedOn(new Date());
-            e.setId(sequenceGenerator.getNextValue(Sequences.EVENT_SEQ));
+            e.setId(0);
             e.setNpi(model.getEnrollment().getProviderInformation().getNPI());
             e.setStatus("04");
             e.setTicketId(ticket.getTicketId());

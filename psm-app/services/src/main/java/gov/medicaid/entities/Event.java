@@ -29,12 +29,6 @@ public class Event extends IdentifiableEntity {
 
     private Date createdOn;
 
-    /**
-     * Default empty constructor.
-     */
-    public Event() {
-    }
-
     public String getNpi() {
         return npi;
     }

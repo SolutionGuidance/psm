@@ -19,7 +19,7 @@
             <div id="mainContent" class="detailPage">
                 <div class="contentWidth">
                     <div class="mainNav">
-                        <a class="logo" href="javascript:;"><img src="<c:url value="/i/logo.gif" />" alt="Medicaid Provider"/></a>
+                        <%@include file="/WEB-INF/pages/includes/logo.jsp" %>
                     </div>
                     <!-- /.mainNav -->
                     <div class="head">

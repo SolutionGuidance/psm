@@ -18,7 +18,7 @@
 			<div id="mainContent">
 				<div class="contentWidth">
 					<div class="mainNav">
-						<a class="logo" href="#"><img src="i/logo.gif" alt="Medicaid Provider"/></a>
+						<%@include file="/WEB-INF/pages/includes/logo.jsp" %>
 					</div>
 					<!-- /.mainNav -->
                     <form id="loginForm" action="<c:url value='j_spring_security_check'/>" method="post">

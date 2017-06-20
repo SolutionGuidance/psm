@@ -4,19 +4,6 @@
 package gov.medicaid.services.impl;
 
 import gov.medicaid.process.enrollment.GenericHandler;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.drools.runtime.KnowledgeRuntime;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.process.WorkItem;
@@ -42,6 +29,18 @@ import org.jbpm.task.event.TaskSkippedEvent;
 import org.jbpm.task.service.ContentData;
 import org.jbpm.task.service.local.LocalTaskService;
 import org.jbpm.task.service.responsehandlers.AbstractBaseResponseHandler;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This is a port of org.jbpm.process.workitem.wsht.CommandBasedWSHumanTaskHandler to use local connections.

@@ -1,6 +1,7 @@
 language: java
 jdk:
-  - oraclejdk8
+  - openjdk8
+dist: trusty
 
 # We depend on a wildfly deploment for some of the production
 # jar files. Download it and install just above our repo

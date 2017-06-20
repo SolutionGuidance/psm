@@ -14,4 +14,4 @@ install: true
 
 script:
   - cd psm-app
-  - gradle build ear
+  - ./gradlew build

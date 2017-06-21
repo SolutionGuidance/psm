@@ -7,7 +7,7 @@
 
 # Background and Current Deployment Status
 
-2017-06-12: The PSM is not yet ready for production or development deployment.
+2017-06-12: The PSM is not yet ready for production deployment, but is ready for development deployment.
 
 The PSM was originally developed to run in the open source web
 application server Apache JBoss (now called WildFly).  Somewhat late
@@ -19,9 +19,9 @@ additions made while the PSM was in its WebSphere interregnum.
 
 This INSTALL.md file will be continuously improved as we work.  When
 it loses the warning at the top, that will mean we expect the PSM to
-be deployable in WildFly.  We are currently evaluating the additional
-resources it would take to continue development support for WebSphere
-deployment.
+be deployable in WildFly for production users.  We are currently
+evaluating the additional resources it would take to continue
+development support for WebSphere deployment.
 
 If you are using Red Hat Enterprise Linux, it will be easiest for you
 to run the automated installation script: `rhel-install.sh` in the

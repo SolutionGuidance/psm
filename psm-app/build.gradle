@@ -13,6 +13,7 @@ buildscript {
             exclude group: 'com.google.inject', module:'guice'
         }
         classpath 'gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.2'
+        classpath 'gradle.plugin.com.github.jk1:gradle-license-report:1.2'
     }
 }
 
@@ -96,6 +97,7 @@ allprojects {
     project(":$name") {
         apply plugin: 'groovy'
         apply plugin: 'com.github.spotbugs'
+        apply plugin: 'com.github.jk1.dependency-license-report'
 
         configurations {
             testCompile.extendsFrom compileOnly
@@ -284,6 +286,7 @@ project(':cms-business-model') {
 
 project(':cms-portal-services') {
     apply plugin: 'ear'
+    apply plugin: 'com.github.jk1.dependency-license-report'
     dependencies {
         deploy project(path: ':cms-web', configuration: 'archives')
         deploy project(':cms-business-process')

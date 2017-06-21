@@ -335,9 +335,10 @@ repository, update its location in your local properties:
    If you have a previous build deployed already, you can replace the
    deployment in the UI or add the `--force` switch after `deploy`.
 
-1. Create database schema and initial data. Use the `seed.sql` data to create tables
-and `legacy_seed.sql` to create tables for entities that have not yet
-been migrated to Hibernate5:
+1. Create database schema and initial data. Use the `seed.sql` data to
+   create most of the necessary tables, and `legacy_seed.sql` to
+   create tables for entities that have not yet been migrated to
+   Hibernate 5:
 
       ```ShellSession
       $ psql -h localhost -U psm psm < {/path/to/psm}/psm-app/db/seed.sql

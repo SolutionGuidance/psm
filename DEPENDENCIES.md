@@ -48,9 +48,9 @@ inline.
   - `Source: https://mvnrepository.com/artifact/org.drools/drools-core/5.4.0.Final`
 - itext: 'com.lowagie:itext:2.1.7' _(Mozilla Public License)_
   - Compile Dependencies (3)
-  - bouncycastle » bcmail-jdk14 138 _(BOUNCYCASTLE)_
-  - bouncycastle » bcprov-jdk14 138 _(BOUNCYCASTLE)_ 
-  - bouncycastle » bctsp-jdk14 138 _(BOUNCYCASTLE)_
+    - bouncycastle » bcmail-jdk14 138 _(BOUNCYCASTLE)_
+    - bouncycastle » bcprov-jdk14 138 _(BOUNCYCASTLE)_ 
+    - bouncycastle » bctsp-jdk14 138 _(BOUNCYCASTLE)_
   - `Source: https://mvnrepository.com/artifact/com.lowagie/itext/2.1.7`
 - jasypt: 'org.jasypt:jasypt:1.9.0' _(Apache 2.0)_
   - Provided Dependencies
@@ -86,7 +86,7 @@ inline.
     - org.hibernate » hibernate-entitymanager 3.4.0.GA _(LGPL 2.1)_
     - org.hibernate » hibernate-core 3.3.2.GA _(LGPL 2.1)_
   - `Source: https://mvnrepository.com/artifact/org.jbpm/jbpm-human-task-core/5.3.0.Final`
-- jbpm\_persistence\_jpa: 'org.jbpm:jbpm-persistence-jpa:5.3.0.Final'
+- jbpm\_persistence\_jpa: 'org.jbpm:jbpm-persistence-jpa:5.3.0.Final' _(Apache 2.0)_
   - Compile Dependencies
     - net.sf.trove4j » trove4j 3.0.2 _(LGPL 2.1)_
     - org.drools » drools-persistence-jpa	5.4.0.Final _(Apache 2.0/CC0 1.0)_
@@ -681,13 +681,13 @@ I believe the source of these libraries is
 [here](https://github.com/topcoder-platform/topcoder-UML-Tool).  The
 license is TopCoder-specific.
 
-base_exception.jar
-logging_wrapper.jar
-typesafe_enum.jar
+- base_exception.jar
+- logging_wrapper.jar
+- typesafe_enum.jar
 
 
 These may come from a different repository, but are likely to have the
 same Topcoder-specific license:
 
-object_formatter.jar
-random_string_generator.jar
+- object_formatter.jar
+- random_string_generator.jar

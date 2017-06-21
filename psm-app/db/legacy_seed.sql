@@ -33,7 +33,6 @@ DROP TABLE  IF EXISTS
   notification_email_header,
   notification_recipients,
   organizationalentity,
-  ownership_info,
   peopleassignments_bas,
   peopleassignments_exclowners,
   peopleassignments_potowners,
@@ -55,7 +54,8 @@ DROP TABLE  IF EXISTS
   subtasksstrategy,
   task,
   task_comment,
-  workiteminfo;
+  workiteminfo
+CASCADE ;
 
 
 create sequence attachment_id_seq;
@@ -325,19 +325,6 @@ alter table notification_bas
 alter table notification_recipients
 	add constraint fkot769nimyq1jvw0m61pgsq5g3
 		foreign key (entity_id) references organizationalentity
-;
-
-create table ownership_info
-(
-	ownership_info_id bigint not null
-		constraint ownership_info_pkey
-			primary key,
-	profile_id bigint,
-	ticket_id bigint,
-	entity_typ_cd varchar(255),
-	entity_subtyp_cd varchar(255),
-	oth_entity_typ_desc varchar(255)
-)
 ;
 
 create table peopleassignments_bas

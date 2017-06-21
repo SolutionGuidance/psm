@@ -93,9 +93,8 @@
             </div>
             <!-- /#mainContent -->
 
-            <div id="footer">
-                <strong>Copyright 2012.</strong> Companyname Lorem Ipsum
-            </div>
+            <%@include file="/WEB-INF/pages/includes/footer.jsp" %>
+
             <!-- #footer -->
         </div>
         <!-- /#wrapper -->

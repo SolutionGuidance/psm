@@ -8,15 +8,13 @@
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 
-<jsp:useBean id="date" class="java.util.Date" />
                     <!-- /.tabSection -->
                 </div>
             </div>
             <!-- /#mainContent -->
 
-            <div id="footer">
-                <strong>Copyright <fmt:formatDate value="${date}" pattern="yyyy" />.</strong> Companyname Lorem Ipsum
-            </div>
+            <%@include file="/WEB-INF/pages/includes/footer.jsp" %>
+            
             <!-- #footer -->
             <div class="clear"></div>
         </div>

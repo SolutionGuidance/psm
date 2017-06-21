@@ -1,23 +1,31 @@
 # Dependencies
 
 List of this project's dependencies, subdependencies, and their
-licenses.  The subdependencies listed may be for a more recent version
-of the library.  Dependencies are listed in the `ext.libs` array in
+licenses.  Dependencies are listed in the `ext.libs` array in
 build.gradle.  Sources for license and subdependency information given
 inline.
 
 - commons\_codec: 'commons-codec:commons-codec:1.6' _(Apache License, Version 2.0)_
-  - junit:junit:jar:4.11 (test) Information _(Eclipse Public License 1.0)_
-  - org.hamcrest:hamcrest-core:jar:1.3 (test) Information _(New BSD License)_
+  - Test Dependencies
+    - junit >>junit 4.10 _(Eclipse Public License 1.0)_
   - `Source: https://mvnrepository.com/artifact/commons-codec/commons-codec/1.6`
+- commons_fileupload: 'commons-fileupload:commons-fileupload:1.2.2' _(Apache License, Version 2.0)_
+  - Compile Dependencies
+    - commons-io » commons-io (optional) 1.3.2 _(Apache 2.0)_
+  - Provided Dependencies
+    - javax.servlet » servlet-api 2.4 _(CDDL 2 / GPL)_
+    - portlet-api » portlet-api	1.0 _(UNLICENSED)_
+  - Test Dependencies
+    - junit » junit 3.8.2 _(EPL 1.0)_
+  - `Source: https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload/1.2.2`
 - commons\_io: 'commons-io:commons-io:2.0.1' _(Apache License, Version 2.0)_
-  - junit:junit:jar:4.12 (test)  _(Eclipse Public License 1.0)_
+  - Test Dependencies
+    - junit >>junit 4.8.2  _(Eclipse Public License 1.0)_
     `Note: JUnit was relicensed from CPL to EPL: https://github.com/junit-team/junit4/pull/678/files`
-  - org.hamcrest:hamcrest-core:jar:1.3 (test)  _(New BSD License)_
   - `Source: https://mvnrepository.com/artifact/commons-io/commons-io/2.0.1`
 - commons\_lang: 'commons-lang:commons-lang:2.4' _(Apache License, Version 2.0)_
-  - junit:junit:jar:4.12 (test) _(Eclipse Public License 1.0)_
-    - org.hamcrest:hamcrest-core:jar:1.3 (test) _(New BSD License)_
+  - Test Dependencies
+    - junit >> junit 3.8.1 _(Eclipse Public License 1.0)_
   - `Source: https://mvnrepository.com/artifact/commons-lang/commons-lang/2.4`
 - drools\_core: 'org.drools:drools-core:5.4.0.Final' _(Apache 2.0)_
   - Compile Dependencies
@@ -97,6 +105,556 @@ inline.
     - org.hibernate » hibernate-entitymanager 3.4.0.GA _(LGPL 2.1)_
     - org.slf4j » slf4j-log4j12 1.6.4 _(MIT)_
   - `Source: https://mvnrepository.com/artifact/org.jbpm/jbpm-persistence-jpa/5.3.0.Final`
+- log4j: 'log4j:log4j:1.2.16' _(Apache 2.0)_
+  - Compile Dependencies
+    - javax.mail » mail (optional) 1.4.1 _(CDDL/GPL 2.0)_
+    - org.apache.geronimo.specs » geronimo-jms_1.1_spec (optional) 1.0 _(Apache 2.0)_
+  - Test Dependencies
+    - junit » junit 3.8.2 _(EPL 1.0)_
+    - oro » oro 2.0.8 _(Apache)_
+  - `Source: https://mvnrepository.com/artifact/log4j/log4j/1.2.16`
+- spring\_beans: 'org.springframework:spring-beans:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - cglib » cglib-nodep (optional) 2.2 _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.5.RELEASE _(Apache 2.0)_
+  - Provided Dependencies
+    - javax.el » el-api 1.0 _(CDDL 2 / GPL)_
+    - javax.inject » javax.inject 1 _(Apache 2.0)_
+  - Test Dependencies
+    - junit » junit 4.7 _(EPL 1.0)_
+    - log4j » log4j 1.2.15 _(Apache 2.0)_
+    - org.easymock » easymock 2.5.1 _(Apache 2.0)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework/spring-beans/3.0.5.RELEASE`
+- spring\_context: 'org.springframework:spring-context:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - aopalliance » aopalliance (optional) 1.0 _(Public)_
+    - asm » asm (optional) 3.0 _(Apache 2.0 / BSD )_
+    - backport-util-concurrent » backport-util-concurrent (optional) 3.0 _(CC0 1.0 / Public)_
+    - cglib » cglib-nodep (optional) 2.2 _(Apache 2.0)_
+    - javax.annotation » jsr250-api (optional) 1.0 _(CDDL 1.0)_
+    - javax.ejb » ejb-api (optional) 3.0 _(CDDL 1.1)_
+    - javax.inject » javax.inject (optional) 1 _(Apache 2.0)_
+    - javax.persistence » persistence-api (optional) 1.0 _(CDDL/GPL 2.0)_
+    - javax.validation » validation-api (optional) 1.0.0.GA _(Apache 2.0)_
+    - javax.xml.ws » jaxws-api (optional) 2.1-1 _(CDDL 1.1/GPL 2.0)_
+    - joda-time » joda-time (optional) 1.6 _(Apache 2.0)_
+    - org.apache.geronimo.specs » geronimo-jms_1.1_spec (optional) 1.1 _(Apache 2.0)_
+    - org.apache.geronimo.specs » geronimo-jta_1.1_spec (optional) 1.1 _(Apache 2.0)_
+    - org.aspectj » aspectjweaver (optional) 1.6.8 _(EPL 1.0)_
+    - org.beanshell » bsh (optional) 2.0b4 _(LGPL)_
+    - org.codehaus.groovy » groovy-all (optional) 1.6.3 _(Apache 2.0)_
+    - org.hibernate » com.springsource.org.hibernate.validator (optional) 4.1.0.GA _(LGPL)_
+    - org.jruby » jruby (optional) 1.4.0 _(EPL 1.0/GPL 2.0/LGPL 2.1)_
+    - org.springframework » spring-aop 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-beans 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-expression 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-instrument (optional) 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-asm 3.0.5.RELEASE _(Apache 2.0)_
+  - Test Dependencies
+    - commons-dbcp » commons-dbcp 1.2.2 _(Apache 2.0)_
+    - commons-pool » commons-pool 1.5.3 _(Apache 2.0)_
+    - javax.xml » jaxrpc-api 1.1 _(UNLICENSED)_
+    - junit » junit 4.7 _(EPL 1.0)_
+    - log4j » log4j 1.2.15 _(Apache 2.0)_
+    - org.atinject » inject-tck 1.0.0-PFD-3-jboss-1 _(UNLICENSED)_
+    - org.easymock » easymock 2.5.1 _(Apache 2.0)_
+    - org.slf4j » slf4j-log4j12 1.5.10 _(MIT)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework/spring-context/3.0.5.RELEASE`
+- spring\_jdbc: 'org.springframework:spring-jdbc:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - c3p0 » c3p0 (optional) 0.9.1.2 _(EPL 1.0/LGPL 2.1)_
+    - com.h2database » h2 (optional) 1.0.71 _(EPL 1.0/MPL 2.0)_
+    - hsqldb » hsqldb (optional) 1.8.0.7 _(BSD)_
+    - org.apache.derby » com.springsource.org.apache.derby (optional) 10.5.1000001.... _(Apache)_
+    - org.apache.derby » com.springsource.org.apache.derby.client (optional) 10.5.1000001.... _(Apache)_
+    - org.springframework » spring-beans 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-context (optional) 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-tx 3.0.5.RELEASE _(Apache 2.0)_
+  - Provided Dependencies
+    - org.apache.geronimo.specs » geronimo-jta_1.1_spec 1.1 _(Apache 2.0)_
+  - Test Dependencies
+    - junit » junit 4.7 _(EPL 1.0)_
+    - org.easymock » easymock 2.5.1 _(Apache 2.0)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework/spring-jdbc/3.0.5.RELEASE`
+- spring\_ldap: 'org.springframework.ldap:spring-ldap-core:1.3.1.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - commons-lang » commons-lang 2.5 _(Apache 2.0)_
+    - commons-logging » commons-logging 1.0.4 _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-beans 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-tx 3.0.5.RELEASE _(Apache 2.0)_
+  - Provided Dependencies
+    - com.sun » ldapbp 1.0 _(UNLICENSED)_
+    - commons-pool » commons-pool 1.5.4 _(Apache 2.0)_
+    - org.springframework » spring-context 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-jdbc 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-orm 3.0.5.RELEASE _(Apache 2.0)_
+  - Test Dependencies
+    - easymock » easymock 1.2_Java1.3 _(Apache)_
+    - gsbase » gsbase 2.0.1 _(UNLICENSED)_
+    - junit » junit 4.8.2 _(EPL 1.0)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework.ldap/spring-ldap-core/1.3.1.RELEASE`
+- spring\_security\_config: 'org.springframework.security:spring-security-config:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - org.apache.directory.server » apacheds-core (optional) 1.5.5 _(Apache 2.0)_
+    - org.apache.directory.server » apacheds-server-jndi (optional) 1.5.5 _(Apache 2.0)_
+    - org.springframework » spring-web (optional) 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-core 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-web (optional) 3.0.5.RELEASE _(Apache 2.0)_
+  - Provided Dependencies
+    - javax.servlet » servlet-api 2.5 _(CDDL 2 / GPL)_
+  - Test Dependencies
+    - cglib » cglib-nodep 2.2 _(Apache 2.0)_
+    - hsqldb » hsqldb 1.8.0.10 _(BSD)_
+    - javax.annotation » jsr250-api 1.0 _(CDDL 1.0)_
+    - org.slf4j » slf4j-log4j12 1.6.0 _(MIT)_
+    - org.springframework » spring-jdbc 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-test 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-core 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-web 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-openid 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-ldap 3.0.5.RELEASE _(Apache 2.0)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework.security/spring-security-config/3.0.5.RELEASE`
+- spring\_security\_core: 'org.springframework.security:spring-security-core:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - javax.annotation » jsr250-api (optional) 1.0 _(CDDL 1.0)_
+    - net.sf.ehcache » ehcache (optional) 1.6.2 _(Apache 2.0)_
+    - org.aspectj » aspectjrt 1.6.8 _(EPL 1.0)_
+    - org.aspectj » aspectjweaver 1.6.8 _(EPL 1.0)_
+    - org.springframework » spring-expression 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-context 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-tx 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-aop 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-jdbc (optional) 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-web (optional) 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-test (optional) 3.0.3.RELEASE _(Apache 2.0)_
+  - Runtime Dependencies
+    - cglib » cglib-nodep (optional) 2.2 _(Apache 2.0)_
+    - log4j » log4j (optional) 1.2.14 _(Apache 2.0)_
+  - Test Dependencies
+    - commons-collections » commons-collections 3.2 _(Apache 2.0)_
+    - hsqldb » hsqldb 1.8.0.10 _(BSD)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework.security/spring-security-core/3.0.5.RELEASE`
+- spring\_security\_ldap: 'org.springframework.security:spring-security-ldap:3.0.5.RELEASE' _(Apache 2.0)
+  - Compile Dependencies
+    - ldapsdk » ldapsdk (optional) 4.1 _(UNLICENSED)_
+    - org.apache.directory.server » apacheds-core (optional) 1.5.5 _(Apache 2.0)_
+    - org.apache.directory.server » apacheds-server-jndi (optional) 1.5.5 _(Apache 2.0)_
+    - org.springframework.ldap » spring-ldap-core 1.3.0.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-core 3.0.5.RELEASE _(Apache 2.0)_
+  - Runtime Dependencies
+    - log4j » log4j (optional) 1.2.14 _(Apache 2.0)_
+    - org.slf4j » slf4j-log4j12 (optional) 1.5.10 _(MIT)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework.security/spring-security-ldap/3.0.5.RELEASE`
+- spring\_security\_web: 'org.springframework.security:spring-security-web:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - org.springframework » spring-web 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-jdbc (optional) 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-core 3.0.5.RELEASE _(Apache 2.0)_
+  - Provided Dependencies
+    - javax.servlet » servlet-api 2.5 _(CDDL 2 / GPL)_
+  - Test Dependencies
+    - commons-codec » commons-codec 1.3 _(Apache 2.0)_
+    - hsqldb » hsqldb 1.8.0.10 _(BSD)_
+    - org.springframework » spring-test 3.0.3.RELEASE _(Apache 2.0)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework.security/spring-security-web/3.0.5.RELEASE`
+- spring\_tx: 'org.springframework:spring-tx:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - aopalliance » aopalliance 1.0 _(Public)_
+    - javax.ejb » ejb-api (optional) 3.0 _(CDDL 1.1)_
+    - GPL		javax.resource » connector-api (optional) 1.5 _(CDDL 2)_
+    - org.springframework » spring-aop 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-beans 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-context 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.5.RELEASE _(Apache 2.0)_
+  - Provided Dependencies
+    - com.ibm.websphere » com.springsource.com.ibm.websphere.uow (optional) 6.0.2.17 _(UNLICENSED)_
+    - org.apache.geronimo.specs » geronimo-jta_1.1_spec 1.1 _(Apache 2.0)_
+  - Test Dependencies
+    - cglib » cglib-nodep 2.2 _(Apache 2.0)_
+    - javax.persistence » persistence-api 1.0 _(CDDL/GPL 2.0)_
+    - junit » junit 4.7 _(EPL 1.0)_
+    - org.aspectj » aspectjweaver 1.6.8 _(EPL 1.0)_
+    - org.easymock » easymock 2.5.1 _(Apache 2.0)_
+    - org.easymock » easymockclassextension 2.3 _(Apache 2.0)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework/spring-tx/3.0.5.RELEASE`
+- spring\_web: 'org.springframework:spring-web:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - aopalliance » aopalliance 1.0 _(Public)_
+    - axis » axis (optional) 1.4 _(Apache)_
+    - com.caucho » com.springsource.com.caucho (optional) 3.2.1 _(UNLICENSED)_
+    - commons-fileupload » commons-fileupload (optional) 1.2 _(Apache 2.0)_
+    - commons-httpclient » commons-httpclient (optional) 3.1 _(Apache 2.0)_
+    - javax.el » el-api (optional) 1.0 _(CDDL 2 / GPL)_
+    - javax.faces » jsf-api (optional) 1.2_08 _(CDDL/GPL)_
+    - javax.xml » jaxrpc-api (optional) 1.1 _(UNLICENSED)_
+    - javax.xml.ws » jaxws-api (optional) 2.1-1 _(CDDL 1.1GPL 2.0)_
+    - log4j » log4j (optional) 1.2.15 _(Apache 2.0)_
+    - org.codehaus.jackson » jackson-mapper-asl (optional) 1.4.2 _(Apache 2.0)_
+    - org.springframework » spring-aop (optional) 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-beans 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-context 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-oxm (optional) 3.0.5.RELEASE _(Apache 2.0)_
+  - Provided Dependencies
+    - javax.portlet » portlet-api 2.0 _(Apache 2.0)_
+    - javax.servlet » servlet-api 2.5 _(CDDL 2 / - commons\_codec: 'commons-codec:commons-codec:1.6' _(Apache License, Version 2.0)_
+  - Test Dependencies
+    - junit >>junit 4.10 _(Eclipse Public License 1.0)_
+  - `Source: https://mvnrepository.com/artifact/commons-codec/commons-codec/1.6`
+- commons_fileupload: 'commons-fileupload:commons-fileupload:1.2.2' _(Apache License, Version 2.0)_
+  - Compile Dependencies
+    - commons-io » commons-io (optional) 1.3.2 _(Apache 2.0)_
+  - Provided Dependencies
+    - javax.servlet » servlet-api 2.4 _(CDDL 2 / GPL)_
+    - portlet-api » portlet-api	1.0 _(UNLICENSED)_
+  - Test Dependencies
+    - junit » junit 3.8.2 _(EPL 1.0)_
+  - `Source: https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload/1.2.2`
+- commons\_io: 'commons-io:commons-io:2.0.1' _(Apache License, Version 2.0)_
+  - Test Dependencies
+    - junit >>junit 4.8.2  _(Eclipse Public License 1.0)_
+    `Note: JUnit was relicensed from CPL to EPL: https://github.com/junit-team/junit4/pull/678/files`
+  - `Source: https://mvnrepository.com/artifact/commons-io/commons-io/2.0.1`
+- commons\_lang: 'commons-lang:commons-lang:2.4' _(Apache License, Version 2.0)_
+  - Test Dependencies
+    - junit >> junit 3.8.1 _(Eclipse Public License 1.0)_
+  - `Source: https://mvnrepository.com/artifact/commons-lang/commons-lang/2.4`
+- drools\_core: 'org.drools:drools-core:5.4.0.Final' _(Apache 2.0)_
+  - Compile Dependencies
+    - com.google.protobuf » protobuf-java (optional) 2.4.1 _(Apache 2.0/BSD 3-clause)_
+    - com.thoughtworks.xstream » xstream (optional) 1.4.1 _(BSD)_
+    - org.drools » knowledge-api 5.4.0.Final _(Apache 2.0/CC0 1.0/Public)_
+    - org.drools » knowledge-internal-api 5.4.0.Final _(Apache 2.0)_
+    - org.mvel » mvel2 2.1.0.drools16 _(Apache 2.0)_
+  - Provided Dependencies
+    - com.sun.xml.bind » jaxb-xjc 2.2.5 _(CDDL/GPL 1.1)_
+    - com.sun.xml.bind » jaxb-impl 2.2.5 _(CDDL/GPL 1.1)_
+    - javax.activation » activation 1.1 _(CDDL 1.0)_
+    - javax.xml.bind » jaxb-api 2.2.5 _(CDDL 1.1/GPL 2.0)_
+    - javax.xml.stream » stax-api 1.0-2 _(CDDL 1.0/GPL)_
+    - org.apache.felix » org.osgi.core 1.4.0 _(Apache 2.0)_
+    - org.apache.felix » org.osgi.compendium 1.4.0 _(Apache 2.0)_
+  - Test Dependencies
+    - org.antlr » antlr-runtime 3.3 _(BSD)_
+    - org.antlr » antlr 3.3 _(BSD)_
+  - `Source: https://mvnrepository.com/artifact/org.drools/drools-core/5.4.0.Final`
+- itext: 'com.lowagie:itext:2.1.7' _(Mozilla Public License)_
+  - Compile Dependencies (3)
+  - bouncycastle » bcmail-jdk14 138 _(BOUNCYCASTLE)_
+  - bouncycastle » bcprov-jdk14 138 _(BOUNCYCASTLE)_ 
+  - bouncycastle » bctsp-jdk14 138 _(BOUNCYCASTLE)_
+  - `Source: https://mvnrepository.com/artifact/com.lowagie/itext/2.1.7`
+- jasypt: 'org.jasypt:jasypt:1.9.0' _(Apache 2.0)_
+  - Provided Dependencies
+    - com.ibm.icu » icu4j (optional) 3.4.4 _(UNLICENSED)_
+    - javax.servlet » servlet-api (optional) 2.4 _(CDDL 2/GPL)
+  - Test Dependencies
+    - commons-lang » commons-lang 2.1 _(Apache 2.0)_
+    - junit » junit 3.8.1 _(EPL 1.0)_
+    - org.bouncycastle » bcprov-jdk12 130 _(UNLICENSED)_
+  - `Source: https://mvnrepository.com/artifact/org.jasypt/jasypt/1.9.0`
+- jbpm\_flow: 'org.jbpm:jbpm-flow:5.3.0.Final' _(Apache 2.0)_
+  - Compile Dependencies
+    - com.google.protobuf » protobuf-java 2.4.1 _(Apache 2.0/BSD 3-clause)_
+    - com.thoughtworks.xstream » xstream (optional) 1.4.1 _(BSD)_
+    - org.drools » knowledge-api 5.4.0.Final _(Apache 2.0/CC0 1.0/Public)_
+    - org.drools » drools-core 5.4.0.Final _(Apache 2.0/CC0 1.0/Public)_
+  - Provided Dependencies
+    - org.apache.felix » org.osgi.core 1.4.0 _(Apache 2.0)_
+    - org.apache.felix » org.osgi.compendium 1.4.0 _(Apache 2.0)_
+  - `Source: https://mvnrepository.com/artifact/org.jbpm/jbpm-flow/5.3.0.Final`
+- jbpm\_human\_task\_core: 'org.jbpm:jbpm-human-task-core:5.3.0.Final' _(Apache 2.0)_
+  - Compile Dependencies
+    - commons-collections » commons-collections 3.2.1 _(Apache 2.0)_
+    - javax.transaction » jta 1.1 _(UNLICENSED)_
+    - org.drools » drools-persistence-jpa 5.4.0.Final _(Apache 2.0/CC0 1.0/Public)_
+    - org.hibernate.javax.persistence » hibernate-jpa-2.0-api 1.0.1.Final _(EDL 1.0/EPL 1.0)_
+    - org.jbpm » jbpm-workitems 5.3.0.Final _(Apache 2.0CC0 1.0Public)_
+    - org.mvel » mvel2 2.1.0.drools16 _(Apache 2.0)_
+    - org.slf4j » slf4j-api 1.6.4 _(MIT)_
+  - Test Dependencies
+    - com.h2database » h2 1.3.161 _(EPL 1.0/MPL 2.0)_
+    - junit » junit 4.10 _(EPL 1.0)_
+    - org.hibernate » hibernate-entitymanager 3.4.0.GA _(LGPL 2.1)_
+    - org.hibernate » hibernate-core 3.3.2.GA _(LGPL 2.1)_
+  - `Source: https://mvnrepository.com/artifact/org.jbpm/jbpm-human-task-core/5.3.0.Final`
+- jbpm\_persistence\_jpa: 'org.jbpm:jbpm-persistence-jpa:5.3.0.Final'
+  - Compile Dependencies
+    - net.sf.trove4j » trove4j 3.0.2 _(LGPL 2.1)_
+    - org.drools » drools-persistence-jpa	5.4.0.Final _(Apache 2.0/CC0 1.0)_
+    - org.hibernate » hibernate-core 3.3.2.GA _(LGPL 2.1)_
+    - org.hibernate.javax.persistence » hibernate-jpa-2.0-api 1.0.1.Final _(EDL 1.0/EPL 1.0)_
+    - org.jbpm » jbpm-flow-builder 5.3.0.Final _(Apache 2.0/CC0 1.0)_
+  - Provided Dependencies
+    - com.sun.xml.bind » jaxb-impl 2.2.5 _(CDDL/GPL 1.1)_
+    - com.sun.xml.bind » jaxb-xjc 2.2.5 _(CDDL/GPL 1.1)_
+    - org.apache.felix » org.osgi.core 1.4.0 _(Apache 2.0)_
+    - org.apache.felix » org.osgi.compendium 1.4.0 _(Apache 2.0)_
+  - Test Dependencies
+    - com.h2database » h2	1.3.161	 _(EPL 1.0/MPL 2.0)_
+    - org.codehaus.btm » btm 2.1.2 _(LGPL 3.0)_
+    - org.drools » drools-persistence-jpa 5.4.0.Final _(Apache 2.0/CC0 1.0)_
+    - org.hibernate » hibernate-entitymanager 3.4.0.GA _(LGPL 2.1)_
+    - org.slf4j » slf4j-log4j12 1.6.4 _(MIT)_
+  - `Source: https://mvnrepository.com/artifact/org.jbpm/jbpm-persistence-jpa/5.3.0.Final`
+- log4j: 'log4j:log4j:1.2.16' _(Apache 2.0)_
+  - Compile Dependencies
+    - javax.mail » mail (optional) 1.4.1 _(CDDL/GPL 2.0)_
+    - org.apache.geronimo.specs » geronimo-jms_1.1_spec (optional) 1.0 _(Apache 2.0)_
+  - Test Dependencies
+    - junit » junit 3.8.2 _(EPL 1.0)_
+    - oro » oro 2.0.8 _(Apache)_
+  - `Source: https://mvnrepository.com/artifact/log4j/log4j/1.2.16`
+- spring\_beans: 'org.springframework:spring-beans:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - cglib » cglib-nodep (optional) 2.2 _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.5.RELEASE _(Apache 2.0)_
+  - Provided Dependencies
+    - javax.el » el-api 1.0 _(CDDL 2 / GPL)_
+    - javax.inject » javax.inject 1 _(Apache 2.0)_
+  - Test Dependencies
+    - junit » junit 4.7 _(EPL 1.0)_
+    - log4j » log4j 1.2.15 _(Apache 2.0)_
+    - org.easymock » easymock 2.5.1 _(Apache 2.0)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework/spring-beans/3.0.5.RELEASE`
+- spring\_context: 'org.springframework:spring-context:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - aopalliance » aopalliance (optional) 1.0 _(Public)_
+    - asm » asm (optional) 3.0 _(Apache 2.0 / BSD )_
+    - backport-util-concurrent » backport-util-concurrent (optional) 3.0 _(CC0 1.0 / Public)_
+    - cglib » cglib-nodep (optional) 2.2 _(Apache 2.0)_
+    - javax.annotation » jsr250-api (optional) 1.0 _(CDDL 1.0)_
+    - javax.ejb » ejb-api (optional) 3.0 _(CDDL 1.1)_
+    - javax.inject » javax.inject (optional) 1 _(Apache 2.0)_
+    - javax.persistence » persistence-api (optional) 1.0 _(CDDL/GPL 2.0)_
+    - javax.validation » validation-api (optional) 1.0.0.GA _(Apache 2.0)_
+    - javax.xml.ws » jaxws-api (optional) 2.1-1 _(CDDL 1.1/GPL 2.0)_
+    - joda-time » joda-time (optional) 1.6 _(Apache 2.0)_
+    - org.apache.geronimo.specs » geronimo-jms_1.1_spec (optional) 1.1 _(Apache 2.0)_
+    - org.apache.geronimo.specs » geronimo-jta_1.1_spec (optional) 1.1 _(Apache 2.0)_
+    - org.aspectj » aspectjweaver (optional) 1.6.8 _(EPL 1.0)_
+    - org.beanshell » bsh (optional) 2.0b4 _(LGPL)_
+    - org.codehaus.groovy » groovy-all (optional) 1.6.3 _(Apache 2.0)_
+    - org.hibernate » com.springsource.org.hibernate.validator (optional) 4.1.0.GA _(LGPL)_
+    - org.jruby » jruby (optional) 1.4.0 _(EPL 1.0/GPL 2.0/LGPL 2.1)_
+    - org.springframework » spring-aop 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-beans 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-expression 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-instrument (optional) 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-asm 3.0.5.RELEASE _(Apache 2.0)_
+  - Test Dependencies
+    - commons-dbcp » commons-dbcp 1.2.2 _(Apache 2.0)_
+    - commons-pool » commons-pool 1.5.3 _(Apache 2.0)_
+    - javax.xml » jaxrpc-api 1.1 _(UNLICENSED)_
+    - junit » junit 4.7 _(EPL 1.0)_
+    - log4j » log4j 1.2.15 _(Apache 2.0)_
+    - org.atinject » inject-tck 1.0.0-PFD-3-jboss-1 _(UNLICENSED)_
+    - org.easymock » easymock 2.5.1 _(Apache 2.0)_
+    - org.slf4j » slf4j-log4j12 1.5.10 _(MIT)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework/spring-context/3.0.5.RELEASE`
+- spring\_jdbc: 'org.springframework:spring-jdbc:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - c3p0 » c3p0 (optional) 0.9.1.2 _(EPL 1.0/LGPL 2.1)_
+    - com.h2database » h2 (optional) 1.0.71 _(EPL 1.0/MPL 2.0)_
+    - hsqldb » hsqldb (optional) 1.8.0.7 _(BSD)_
+    - org.apache.derby » com.springsource.org.apache.derby (optional) 10.5.1000001.... _(Apache)_
+    - org.apache.derby » com.springsource.org.apache.derby.client (optional) 10.5.1000001.... _(Apache)_
+    - org.springframework » spring-beans 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-context (optional) 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-tx 3.0.5.RELEASE _(Apache 2.0)_
+  - Provided Dependencies
+    - org.apache.geronimo.specs » geronimo-jta_1.1_spec 1.1 _(Apache 2.0)_
+  - Test Dependencies
+    - junit » junit 4.7 _(EPL 1.0)_
+    - org.easymock » easymock 2.5.1 _(Apache 2.0)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework/spring-jdbc/3.0.5.RELEASE`
+- spring\_ldap: 'org.springframework.ldap:spring-ldap-core:1.3.1.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - commons-lang » commons-lang 2.5 _(Apache 2.0)_
+    - commons-logging » commons-logging 1.0.4 _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-beans 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-tx 3.0.5.RELEASE _(Apache 2.0)_
+  - Provided Dependencies
+    - com.sun » ldapbp 1.0 _(UNLICENSED)_
+    - commons-pool » commons-pool 1.5.4 _(Apache 2.0)_
+    - org.springframework » spring-context 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-jdbc 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-orm 3.0.5.RELEASE _(Apache 2.0)_
+  - Test Dependencies
+    - easymock » easymock 1.2_Java1.3 _(Apache)_
+    - gsbase » gsbase 2.0.1 _(UNLICENSED)_
+    - junit » junit 4.8.2 _(EPL 1.0)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework.ldap/spring-ldap-core/1.3.1.RELEASE`
+- spring\_security\_config: 'org.springframework.security:spring-security-config:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - org.apache.directory.server » apacheds-core (optional) 1.5.5 _(Apache 2.0)_
+    - org.apache.directory.server » apacheds-server-jndi (optional) 1.5.5 _(Apache 2.0)_
+    - org.springframework » spring-web (optional) 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-core 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-web (optional) 3.0.5.RELEASE _(Apache 2.0)_
+  - Provided Dependencies
+    - javax.servlet » servlet-api 2.5 _(CDDL 2 / GPL)_
+  - Test Dependencies
+    - cglib » cglib-nodep 2.2 _(Apache 2.0)_
+    - hsqldb » hsqldb 1.8.0.10 _(BSD)_
+    - javax.annotation » jsr250-api 1.0 _(CDDL 1.0)_
+    - org.slf4j » slf4j-log4j12 1.6.0 _(MIT)_
+    - org.springframework » spring-jdbc 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-test 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-core 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-web 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-openid 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-ldap 3.0.5.RELEASE _(Apache 2.0)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework.security/spring-security-config/3.0.5.RELEASE`
+- spring\_security\_core: 'org.springframework.security:spring-security-core:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - javax.annotation » jsr250-api (optional) 1.0 _(CDDL 1.0)_
+    - net.sf.ehcache » ehcache (optional) 1.6.2 _(Apache 2.0)_
+    - org.aspectj » aspectjrt 1.6.8 _(EPL 1.0)_
+    - org.aspectj » aspectjweaver 1.6.8 _(EPL 1.0)_
+    - org.springframework » spring-expression 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-context 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-tx 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-aop 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-jdbc (optional) 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-web (optional) 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-test (optional) 3.0.3.RELEASE _(Apache 2.0)_
+  - Runtime Dependencies
+    - cglib » cglib-nodep (optional) 2.2 _(Apache 2.0)_
+    - log4j » log4j (optional) 1.2.14 _(Apache 2.0)_
+  - Test Dependencies
+    - commons-collections » commons-collections 3.2 _(Apache 2.0)_
+    - hsqldb » hsqldb 1.8.0.10 _(BSD)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework.security/spring-security-core/3.0.5.RELEASE`
+- spring\_security\_ldap: 'org.springframework.security:spring-security-ldap:3.0.5.RELEASE' _(Apache 2.0)
+  - Compile Dependencies
+    - ldapsdk » ldapsdk (optional) 4.1 _(UNLICENSED)_
+    - org.apache.directory.server » apacheds-core (optional) 1.5.5 _(Apache 2.0)_
+    - org.apache.directory.server » apacheds-server-jndi (optional) 1.5.5 _(Apache 2.0)_
+    - org.springframework.ldap » spring-ldap-core 1.3.0.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-core 3.0.5.RELEASE _(Apache 2.0)_
+  - Runtime Dependencies
+    - log4j » log4j (optional) 1.2.14 _(Apache 2.0)_
+    - org.slf4j » slf4j-log4j12 (optional) 1.5.10 _(MIT)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework.security/spring-security-ldap/3.0.5.RELEASE`
+- spring\_security\_web: 'org.springframework.security:spring-security-web:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - org.springframework » spring-web 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-jdbc (optional) 3.0.3.RELEASE _(Apache 2.0)_
+    - org.springframework.security » spring-security-core 3.0.5.RELEASE _(Apache 2.0)_
+  - Provided Dependencies
+    - javax.servlet » servlet-api 2.5 _(CDDL 2 / GPL)_
+  - Test Dependencies
+    - commons-codec » commons-codec 1.3 _(Apache 2.0)_
+    - hsqldb » hsqldb 1.8.0.10 _(BSD)_
+    - org.springframework » spring-test 3.0.3.RELEASE _(Apache 2.0)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework.security/spring-security-web/3.0.5.RELEASE`
+- spring\_tx: 'org.springframework:spring-tx:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - aopalliance » aopalliance 1.0 _(Public)_
+    - javax.ejb » ejb-api (optional) 3.0 _(CDDL 1.1)_
+    - GPL		javax.resource » connector-api (optional) 1.5 _(CDDL 2)_
+    - org.springframework » spring-aop 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-beans 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-context 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.5.RELEASE _(Apache 2.0)_
+  - Provided Dependencies
+    - com.ibm.websphere » com.springsource.com.ibm.websphere.uow (optional) 6.0.2.17 _(UNLICENSED)_
+    - org.apache.geronimo.specs » geronimo-jta_1.1_spec 1.1 _(Apache 2.0)_
+  - Test Dependencies
+    - cglib » cglib-nodep 2.2 _(Apache 2.0)_
+    - javax.persistence » persistence-api 1.0 _(CDDL/GPL 2.0)_
+    - junit » junit 4.7 _(EPL 1.0)_
+    - org.aspectj » aspectjweaver 1.6.8 _(EPL 1.0)_
+    - org.easymock » easymock 2.5.1 _(Apache 2.0)_
+    - org.easymock » easymockclassextension 2.3 _(Apache 2.0)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework/spring-tx/3.0.5.RELEASE`
+- spring\_web: 'org.springframework:spring-web:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - aopalliance » aopalliance 1.0 _(Public)_
+    - axis » axis (optional) 1.4 _(Apache)_
+    - com.caucho » com.springsource.com.caucho (optional) 3.2.1 _(UNLICENSED)_
+    - commons-fileupload » commons-fileupload (optional) 1.2 _(Apache 2.0)_
+    - commons-httpclient » commons-httpclient (optional) 3.1 _(Apache 2.0)_
+    - javax.el » el-api (optional) 1.0 _(CDDL 2 / GPL)_
+    - javax.faces » jsf-api (optional) 1.2_08 _(CDDL/GPL)_
+    - javax.xml » jaxrpc-api (optional) 1.1 _(UNLICENSED)_
+    - javax.xml.ws » jaxws-api (optional) 2.1-1 _(CDDL 1.1GPL 2.0)_
+    - log4j » log4j (optional) 1.2.15 _(Apache 2.0)_
+    - org.codehaus.jackson » jackson-mapper-asl (optional) 1.4.2 _(Apache 2.0)_
+    - org.springframework » spring-aop (optional) 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-beans 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-context 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-oxm (optional) 3.0.5.RELEASE _(Apache 2.0)_
+  - Provided Dependencies
+    - javax.portlet » portlet-api 2.0 _(Apache 2.0)_
+    - javax.servlet » servlet-api 2.5 _(CDDL 2 / GPL)_
+    - javax.servlet.jsp » jsp-api 2.1 _(CDDL 2 / GPL )_
+    - javax.xml.soap » saaj-api 1.3 _(CDDL 1.1GPL 2.0)_
+  - Test Dependencies
+    - cglib » cglib-nodep 2.2 _(Apache 2.0)_
+    - junit » junit 4.7 _(EPL 1.0)_
+    - org.easymock » easymock 2.5.1 _(Apache 2.0)_
+    - org.mortbay.jetty » jetty 6.1.9 _(Apache 2.0EPL 1.0)_
+    - taglibs » standard 1.1.2 _(Apache 2.0)_
+    - xmlunit » xmlunit 1.2 _(BSD)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework/spring-web/3.0.5.RELEASE`
+- spring\_webmvc: 'org.springframework:spring-webmvc:3.0.5.RELEASE' _(Apache 2.0)_
+  - Compile Dependencies
+    - apache-taglibs » standard (optional) 1.1.2 _(UNLICENSED)_
+    - com.lowagie » itext (optional) 2.0.8 _(AGPL 3.0)_
+    - jasperreports » jasperreports (optional) 2.0.5 _(LGPL)_
+    - net.sourceforge.jexcelapi » jxl (optional) 2.6.3 _(LGPL)_
+    - org.apache.poi » poi (optional) 3.0.2-FINAL _(Apache 2.0)_
+    - org.apache.tiles » tiles-api (optional) 2.1.2 _(Apache 2.0)_
+    - org.apache.tiles » tiles-core (optional) 2.1.2 _(Apache 2.0)_
+    - org.apache.tiles » tiles-jsp (optional) 2.1.2 _(Apache 2.0)_
+    - org.apache.tiles » tiles-servlet (optional) 2.1.2 _(Apache 2.0)_
+    - org.codehaus.jackson » jackson-mapper-asl (optional) 1.4.2 _(Apache 2.0)_
+    - org.freemarker » freemarker (optional) 2.3.15 _(Apache 2.0)_
+    - org.springframework » spring-asm 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-beans 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-context 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-context-support 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-core 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-expression 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-oxm (optional) 3.0.5.RELEASE _(Apache 2.0)_
+    - org.springframework » spring-web 3.0.5.RELEASE _(Apache 2.0)_
+    - rome » rome (optional) 1.0 _(Apache 2.0)_
+    - velocity » velocity (optional) 1.5 _(Apache 2.0)_
+    - velocity-tools » velocity-tools-view (optional) 1.4 _(UNLICENSED)_
+  - Provided Dependencies
+    - javax.el » el-api 1.0 _(CDDL 2 / GPL)_
+    - javax.servlet » servlet-api 2.5 _(CDDL 2 / GPL)_
+    - javax.servlet » jstl 1.1.2 _(CDDL / GPL 2.0)_
+    - javax.servlet.jsp » jsp-api 2.1 _(CDDL 2 / GPL)_
+    - javax.validation » validation-api 1.0.0.GA _(Apache 2.0)_
+    - org.apache.geronimo.specs » geronimo-jta_1.1_spec (optional) 1.1 _(Apache 2.0)_
+  - Test Dependencies
+    - cglib » cglib-nodep 2.2 _(Apache 2.0)_
+    - commons-fileupload » commons-fileupload 1.2 _(Apache 2.0)_
+    - dom4j » dom4j 1.6.1 _(BSD)_
+    - jaxen » jaxen 1.1.1 _(Apache)_
+    - joda-time » joda-time 1.6 _(Apache 2.0)_
+    - junit » junit 4.7 _(EPL 1.0)_
+    - log4j » log4j (optional) 1.2.15 _(Apache 2.0)_
+    - org.easymock » easymock 2.5.1 _(Apache 2.0)_
+    - org.hibernate » hibernate-core (optional) 3.3.1.GA _(LGPL 2.1)_
+    - org.hibernate » hibernate-validator 4.0.0.GA _(Apache 2.0)_
+    - org.slf4j » slf4j-log4j12 (optional) 1.5.10 _(MIT)_
+    - org.springframework » spring-orm 3.0.5.RELEASE _(Apache 2.0)_
+    - rhino » js 1.7R1 _(MPL 2.0)_
+    - xmlunit » xmlunit 1.2 _(BSD)_
+  - `Source: https://mvnrepository.com/artifact/org.springframework/spring-webmvc/3.0.5.RELEASE`
 - velocity: 'org.apache.velocity:velocity:1.7' _(Apache 2.0)_
   - Compile Dependencies
     - commons-collections » commons-collections 3.2.1 _(Apache 2.0)_
@@ -114,3 +672,22 @@ inline.
     - hsqldb » hsqldb 1.7.1 _(BSD)_
     - junit » junit 3.8.1 _(EPL 1.0)_
   - `Source: https://mvnrepository.com/artifact/org.apache.velocity/velocity/1.7`
+
+## TopCoder jars
+
+Five jars from topCoder are included in [our
+repository](https://github.com/OpenTechStrategies/psm/tree/16-improve-dependency-management/psm-app/cms-portal-services/lib).
+I believe the source of these libraries is
+[here](https://github.com/topcoder-platform/topcoder-UML-Tool).  The
+license is TopCoder-specific.
+
+base_exception.jar
+logging_wrapper.jar
+typesafe_enum.jar
+
+
+These may come from a different repository, but are likely to have the
+same Topcoder-specific license:
+
+object_formatter.jar
+random_string_generator.jar

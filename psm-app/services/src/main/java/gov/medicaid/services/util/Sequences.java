@@ -38,11 +38,6 @@ public class Sequences {
     public static final String ACOUNT_LINK_SEQ = "ACOUNT_LINK_SEQ";
 
     /**
-     * Ownership information.
-     */
-    public static final String OWNERSHIP_SEQ = "OWNERSHIP_SEQ";
-    
-    /**
      * External profile link.
      */
     public static final String EXT_PROF_LINK_SEQ = "EXT_PROF_LINK_SEQ";

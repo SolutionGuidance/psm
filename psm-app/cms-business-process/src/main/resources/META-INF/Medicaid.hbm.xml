@@ -138,45 +138,6 @@
 			<column name="EXTERNAL_PROFILE_ID" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.OwnershipInformation" table="OWNERSHIP_INFO">
-		<id column="OWNERSHIP_INFO_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="profileId"
-			type="long">
-			<column name="PROFILE_ID" />
-		</property>
-		<property generated="never" lazy="false" name="ticketId"
-			type="long">
-			<column name="TICKET_ID" />
-		</property>
-		<many-to-one class="gov.medicaid.entities.EntityStructureType"
-			fetch="join" name="entityType">
-			<column name="ENTITY_TYP_CD" />
-		</many-to-one>
-		<many-to-one class="gov.medicaid.entities.EntityStructureType"
-			fetch="join" name="entitySubType">
-			<column name="ENTITY_SUBTYP_CD" />
-		</many-to-one>
-		<property generated="never" lazy="false" name="otherEntityTypeDesc"
-			type="string">
-			<column name="OTH_ENTITY_TYP_DESC" />
-		</property>
-		<list name="beneficialOwners" table="BENEFICIAL_OWNER">
-			<key>
-				<column name="OWNERSHIP_INFO_ID" />
-			</key>
-			<list-index base="0" />
-			<one-to-many class="gov.medicaid.entities.BeneficialOwner" />
-		</list>
-		<list name="assets" table="ASSET">
-			<key>
-				<column name="OWNERSHIP_INFO_ID" />
-			</key>
-			<list-index base="0" />
-			<one-to-many class="gov.medicaid.entities.Asset" />
-		</list>
-	</class>
 	<class name="gov.medicaid.entities.ProviderTypeSetting" table="PROVIDER_SETTING">
 		<id column="PROVIDER_SETTING_ID" name="id" type="long">
 			<generator class="assigned" />

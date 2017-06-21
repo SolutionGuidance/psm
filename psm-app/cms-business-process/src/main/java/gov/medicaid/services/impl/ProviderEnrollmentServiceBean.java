@@ -991,7 +991,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         ownership.setProfileId(details.getProfileId());
         ownership.setTicketId(details.getTicketId());
 
-        ownership.setId(getSequence().getNextValue(Sequences.OWNERSHIP_SEQ));
+        ownership.setId(0);
         // save owners
         insertBeneficialOwners(ownership);
 
@@ -2466,7 +2466,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             } else {
                 ownership.setProfileId(profileId);
                 ownership.setTicketId(ticketId);
-                ownership.setId(getSequence().getNextValue(Sequences.OWNERSHIP_SEQ));
+                ownership.setId(0);
                 insertBeneficialOwners(ownership);
                 getEm().persist(ownership);
             }

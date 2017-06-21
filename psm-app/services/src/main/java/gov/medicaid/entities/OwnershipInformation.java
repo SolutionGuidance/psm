@@ -69,7 +69,7 @@ public class OwnershipInformation implements Serializable {
     /**
      * Owned Assets
      */
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
     @JoinColumn(name = "ownership_info_id", referencedColumnName = "ownership_info_id")
     private List<Asset> assets;
 

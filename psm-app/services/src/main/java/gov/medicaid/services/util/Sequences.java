@@ -23,11 +23,6 @@ package gov.medicaid.services.util;
  */
 public class Sequences {
     /**
-     * Used for notes.
-     */
-    public static final String NOTES_SEQ = "NOTES_SEQ";
-
-    /**
      * Used for each new provider enrollment.
      */
     public static final String PROVIDER_NUMBER_SEQ = "PROVIDER_NUMBER_SEQ";

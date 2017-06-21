@@ -2015,7 +2015,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         n.setText(text);
         n.setCreatedBy(user.getUserId());
         n.setCreatedOn(Calendar.getInstance().getTime());
-        n.setId(getSequence().getNextValue(Sequences.NOTES_SEQ));
+        n.setId(0);
         getEm().persist(n);
     }
 

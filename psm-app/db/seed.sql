@@ -28,6 +28,7 @@ DROP TABLE IF EXISTS
   license_statuses,
   license_types,
   licenses,
+  notes,
   organizations,
   owner_assets,
   ownership_info,
@@ -1167,5 +1168,12 @@ CREATE TABLE provider_statements(
   "date" DATE
 );
 
-
+CREATE TABLE notes(
+  note_id BIGINT PRIMARY KEY,
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  note_text TEXT,
+  created_by TEXT,
+  created_at TIMESTAMP WITH TIME ZONE
+);
 

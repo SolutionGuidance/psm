@@ -41,7 +41,6 @@ DROP TABLE  IF EXISTS
   processinstanceinfo,
   profile_assured_ext_svcs,
   profile_assured_svc_xref,
-  profile_notes,
   profile_payto_xref,
   provider_cos,
   provider_cos_xref,
@@ -416,19 +415,6 @@ create table profile_assured_svc_xref
 alter table profile_assured_ext_svcs
 	add constraint fknpq45dvbn0v9qxjrp3ccs81uy
 		foreign key (profile_assured_svc_id) references profile_assured_svc_xref
-;
-
-create table profile_notes
-(
-	provider_note_id bigint not null
-		constraint profile_notes_pkey
-			primary key,
-	profile_id bigint,
-	ticket_id bigint,
-	note_txt varchar(255),
-	created_by varchar(255),
-	create_ts date
-)
 ;
 
 create table profile_payto_xref

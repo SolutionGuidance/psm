@@ -5,7 +5,6 @@ DROP TABLE IF EXISTS
   legacy_mapping,
   profile_assured_ext_svcs,
   profile_assured_svc_xref,
-  profile_payto_xref,
   provider_cos,
   provider_cos_xref,
   provider_setting,
@@ -83,23 +82,6 @@ create table profile_assured_svc_xref
 alter table profile_assured_ext_svcs
 	add constraint fknpq45dvbn0v9qxjrp3ccs81uy
 		foreign key (profile_assured_svc_id) references profile_assured_svc_xref
-;
-
-create table profile_payto_xref
-(
-	profile_payto_xref_id bigint not null
-		constraint profile_payto_xref_pkey
-			primary key,
-	eff_dt date,
-	payto_typ_cd varchar(255),
-	profile_id bigint,
-	ticket_id bigint,
-	target_profile_id bigint,
-	name varchar(255),
-	contact_name varchar(255),
-	npi varchar(255),
-	phone_number varchar(255)
-)
 ;
 
 create table provider_cos

@@ -33,6 +33,7 @@ DROP TABLE IF EXISTS
   owner_assets,
   ownership_info,
   ownership_types,
+  pay_to_providers,
   pay_to_provider_types,
   people,
   persistent_logins,
@@ -1177,3 +1178,16 @@ CREATE TABLE notes(
   created_at TIMESTAMP WITH TIME ZONE
 );
 
+CREATE TABLE pay_to_providers(
+  pay_to_providers_id  BIGINT PRIMARY KEY,
+  effective_date DATE,
+  pay_to_type_code CHARACTER VARYING(2)
+    REFERENCES pay_to_provider_types(code),
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  target_profile_id BIGINT,
+  name TEXT,
+  contact_name TEXT,
+  npi TEXT,
+  phone TEXT
+);

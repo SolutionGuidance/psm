@@ -73,30 +73,6 @@
 			<column name="STATUS" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.Note" table="PROFILE_NOTES">
-		<id column="PROVIDER_NOTE_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="profileId"
-			type="long">
-			<column name="PROFILE_ID" />
-		</property>
-		<property generated="never" lazy="false" name="ticketId"
-			type="long">
-			<column name="TICKET_ID" />
-		</property>
-		<property generated="never" lazy="false" name="text" type="string">
-			<column name="NOTE_TXT" />
-		</property>
-		<property generated="never" lazy="false" name="createdBy"
-			type="string">
-			<column name="CREATED_BY" />
-		</property>
-		<property generated="never" lazy="false" name="createdOn"
-			type="date">
-			<column name="CREATE_TS" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.ExternalAccountLink" table="EXTERNAL_ACCOUNT_LINK">
 		<id name="id" type="long">
 			<column name="EXTERNAL_ACCOUNT_LINK_ID" />

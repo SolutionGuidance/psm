@@ -14,8 +14,16 @@ buildscript {
 def jbpm_version = '5.4.0.Final'
 
 ext.libs = [
-    jbpm_human_task_core: "org.jbpm:jbpm-human-task-core:${jbpm_version}",
-    jbpm_persistence_jpa: "org.jbpm:jbpm-persistence-jpa:${jbpm_version}",
+    jbpm_human_task_core: dependencies.create("org.jbpm:jbpm-human-task-core:${jbpm_version}") {
+        exclude group: 'javax.transaction'
+        exclude group: 'org.apache.cxf'
+        exclude group: 'org.hibernate.javax.persistence'
+    },
+    jbpm_persistence_jpa: dependencies.create("org.jbpm:jbpm-persistence-jpa:${jbpm_version}") {
+       exclude group: 'javax.transaction'
+       exclude group: 'org.hibernate'
+       exclude group: 'org.hibernate.javax.persistence'
+    },
 ]
 
 allprojects {

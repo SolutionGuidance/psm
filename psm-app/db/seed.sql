@@ -41,6 +41,7 @@ DROP TABLE IF EXISTS
   profile_statuses,
   provider_profiles,
   provider_statements,
+  provider_services,
   provider_type_agreement_documents,
   provider_type_license_types,
   provider_type_settings,
@@ -1355,3 +1356,11 @@ INSERT INTO provider_type_settings (
   (100004, '41', 'LicenseType', 'M4', 'QL'),
   (100006, '41', 'LicenseType', 'H1', 'QL'),
   (100007, '41', 'LicenseType', 'H2', 'QL');
+
+CREATE TABLE provider_services(
+  provider_service_id BIGINT PRIMARY KEY,
+  profile_id BIGINT DEFAULT 0 NOT NULL,
+  ticket_id BIGINT DEFAULT 0 NOT NULL,
+  service_category_code CHARACTER VARYING(2)
+    REFERENCES service_categories(code)
+);

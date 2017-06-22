@@ -6,6 +6,10 @@ initial test data.
 This file sets up the database, inserts static data, and create some
 default users to get you going
 
+## jbpm.sql
+Create the tables and static data needed by the embedded [jBPM
+engine](http://www.jbpm.org/).
+
 ## Legacy_seed.sql
 We are in the process of migrating all of the entities from Hibernate 4 to Hibernate 5,
 however during the migration we need some of the unmigrated tables configured to perform

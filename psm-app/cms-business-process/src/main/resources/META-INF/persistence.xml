@@ -11,6 +11,7 @@
     <jta-data-source>jdbc/MitaDS</jta-data-source>
     <non-jta-data-source>jdbc/TaskServiceDS</non-jta-data-source>
 
+    <mapping-file>META-INF/ProcessInstanceInfoMapping-JPA2.xml</mapping-file>
     <mapping-file>META-INF/JBPMorm-JPA2.xml</mapping-file>
     <mapping-file>META-INF/ormTasks.xml</mapping-file>
 
@@ -33,7 +34,6 @@
     <class>org.jbpm.task.EmailNotificationHeader</class>
     <class>org.jbpm.task.PeopleAssignments</class>
     <class>org.jbpm.task.Reassignment</class>
-    <class>org.jbpm.task.Status</class>
     <class>org.jbpm.task.Task</class>
     <class>org.jbpm.task.TaskData</class>
     <class>org.jbpm.task.SubTasksStrategy</class>

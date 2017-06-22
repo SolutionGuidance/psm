@@ -335,13 +335,16 @@ repository, update its location in your local properties:
    If you have a previous build deployed already, you can replace the
    deployment in the UI or add the `--force` switch after `deploy`.
 
-1. Create database schema and initial data. Use the `seed.sql` data to create tables
-and `legacy_seed.sql` to create tables for entities that have not yet
-been migrated to Hibernate5:
+1. Create database schema and initial data. Use `seed.sql` to create tables and
+   data for the application, `jbpm.sql` to create tables and data for the
+   embedded jBPM engine, and `legacy_seed.sql` to create tables for entities
+   that have not yet been migrated to Hibernate5:
 
       ```ShellSession
-      $ psql -h localhost -U psm psm < {/path/to/psm}/psm-app/db/seed.sql
-      $ psql -h localhost -U psm psm < {/path/to/psm}/psm-app/db/legacy_seed.sql
+      $ cat {/path/to/psm}/psm-app/db/legacy_seed.sql \
+            {/path/to/psm}/psm-app/db/jbpm.sql \
+            {/path/to/psm}/psm-app/db/seed.sql \
+        | psql -h localhost -U psm psm
       ```
 
 1. To check that the app is running, navigate to

@@ -111,6 +111,8 @@ public class ProviderTypeController extends BaseServiceAdminController {
      * @return the model and view instance that contains the name of view to be rendered and data to be used for
      *         rendering (not null)
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/viewProviderTypes"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/viewProviderTypes", method = RequestMethod.GET)
     public ModelAndView view() throws PortalServiceException {
@@ -141,6 +143,8 @@ public class ProviderTypeController extends BaseServiceAdminController {
      * @return the model and view instance that contains the name of view to be rendered and data to be used for
      *         rendering (not null)
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/viewProviderTypes"
+     * @verb POST
      */
     @RequestMapping(value = "/admin/viewProviderTypes", method = RequestMethod.POST)
     public ModelAndView search(@ModelAttribute("criteria") ProviderTypeSearchCriteria criteria)
@@ -167,6 +171,8 @@ public class ProviderTypeController extends BaseServiceAdminController {
      * @return the model and view instance that contains the name of view to be rendered and data to be used for
      *         rendering (not null)
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/getProviderType"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/getProviderType", method = RequestMethod.GET)
     public ModelAndView get(@RequestParam("providerTypeId") String providerTypeId) throws PortalServiceException {
@@ -191,6 +197,8 @@ public class ProviderTypeController extends BaseServiceAdminController {
      * @return the model and view instance that contains the name of view to be rendered and data to be used for
      *         rendering (not null)
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/beginCreateProviderType"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/beginCreateProviderType", method = RequestMethod.GET)
     public ModelAndView beginCreate() throws PortalServiceException {
@@ -230,6 +238,8 @@ public class ProviderTypeController extends BaseServiceAdminController {
      * @return the model and view instance that contains the name of view to be rendered and data to be used for
      *         rendering (not null)
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/beginEditProviderType"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/beginEditProviderType", method = RequestMethod.GET)
     public ModelAndView beginEdit(@RequestParam("providerTypeId") String providerTypeId) throws PortalServiceException {
@@ -274,6 +284,8 @@ public class ProviderTypeController extends BaseServiceAdminController {
      * @return the model and view for creationg result
      * @throws IllegalArgumentException if providerType is null/empty
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/createProviderType"
+     * @verb POST
      */
     @RequestMapping(value = "/admin/createProviderType", method = RequestMethod.POST)
     public ModelAndView create(@ModelAttribute("providerType") ProviderType providerType, HttpServletRequest request)
@@ -318,6 +330,8 @@ public class ProviderTypeController extends BaseServiceAdminController {
      * @return the model and view for update result
      * @throws IllegalArgumentException if providerType is null/empty
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/updateProviderType"
+     * @verb POST
      */
     @RequestMapping(value = "/admin/updateProviderType", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("providerType") ProviderType providerType, HttpServletRequest request)
@@ -350,6 +364,8 @@ public class ProviderTypeController extends BaseServiceAdminController {
      * @param request the http servlet request
      * @return the successful text
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/deleteProviderTypes"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/deleteProviderTypes", method = RequestMethod.GET)
     @ResponseBody

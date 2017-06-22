@@ -76,6 +76,8 @@ public class UserController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/ops/getUser"
+     * @verb GET
      */
     @RequestMapping(value = "/ops/getUser", method = RequestMethod.GET)
     public ModelAndView get() throws PortalServiceException {
@@ -102,6 +104,8 @@ public class UserController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/ops/beginEditUser"
+     * @verb GET
      */
     @RequestMapping(value = "/ops/beginEditUser", method = RequestMethod.GET)
     public ModelAndView beginEdit() throws PortalServiceException {
@@ -131,6 +135,8 @@ public class UserController extends BaseServiceAdminController {
      *
      * @throws IllegalArgumentException if user is null
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/ops/updateUser"
+     * @verb POST
      */
     @RequestMapping(value = "/ops/updateUser", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("user") CMSUser user, HttpServletRequest request)

@@ -40,6 +40,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author TCSASSEMBLER
  * @version 1.0
+ * @endpoint "/accounts/*"
  */
 @Controller
 @RequestMapping("/accounts/*")
@@ -82,6 +83,8 @@ public class SelfRegistrationController extends BaseController {
      * Loads the registration form.
      *
      * @return the view and model for the registration page.
+     * @endpoint "/accounts/new"
+     * @verb GET
      */
     @RequestMapping(value = "/accounts/new", method = RequestMethod.GET)
     public ModelAndView viewRegistrationForm() {
@@ -98,6 +101,8 @@ public class SelfRegistrationController extends BaseController {
      * @return the view and model for the registration result.
      * @throws PortalServiceException for non-recoverable errors encountered
      * @throws UnsupportedEncodingException if the system does not support UTF-8
+     * @endpoint "/accounts/new"
+     * @verb POST
      */
     @RequestMapping(value = "/accounts/new", method = RequestMethod.POST)
     public ModelAndView processRegistrationForm(@ModelAttribute("registrant") RegistrationForm registrant,
@@ -133,6 +138,8 @@ public class SelfRegistrationController extends BaseController {
      * @return the view and model for the registration page.
      * @throws PortalServiceException for any errors encountered
      * @throws UnsupportedEncodingException if the system does not support UTF-8
+     * @endpoint "/accounts/confirm"
+     * @verb GET
      */
     @RequestMapping(value = "/accounts/confirm", method = RequestMethod.GET)
     public ModelAndView viewRegisterSuccess(@RequestParam("id") String username, @RequestParam("token") String token)

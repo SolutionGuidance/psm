@@ -83,6 +83,8 @@ public class AgreementDocumentController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/viewAgreementDocuments"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/viewAgreementDocuments", method = RequestMethod.GET)
     public ModelAndView view() throws PortalServiceException {
@@ -116,6 +118,8 @@ public class AgreementDocumentController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/viewAgreementDocuments"
+     * @verb POST
      */
     @RequestMapping(value = "/admin/viewAgreementDocuments", method = RequestMethod.POST)
     public ModelAndView search(@ModelAttribute("criteria") AgreementDocumentSearchCriteria criteria)
@@ -144,6 +148,8 @@ public class AgreementDocumentController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/getAgreementDocument"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/getAgreementDocument", method = RequestMethod.GET)
     public ModelAndView get(@RequestParam("agreementId") long id) throws PortalServiceException {
@@ -171,6 +177,8 @@ public class AgreementDocumentController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/provider/enrollment/agreement"
+     * @verb GET
      */
     @RequestMapping(value = "/provider/enrollment/agreement", method = RequestMethod.GET)
     public ModelAndView getAgreement(@RequestParam("id") long id) throws PortalServiceException {
@@ -199,6 +207,8 @@ public class AgreementDocumentController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/editAgreementDocument"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/editAgreementDocument", method = RequestMethod.GET)
     public ModelAndView beginEdit(@RequestParam("agreementId") long id,
@@ -236,6 +246,8 @@ public class AgreementDocumentController extends BaseServiceAdminController {
      *
      * @throws IllegalArgumentException if agreementDocument is null/empty
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/createAgreementDocument"
+     * @verb POST
      */
     @RequestMapping(value = "/admin/createAgreementDocument", method = RequestMethod.POST)
     public ModelAndView create(@ModelAttribute("agreementDocument") AgreementDocument agreementDocument,
@@ -266,6 +278,8 @@ public class AgreementDocumentController extends BaseServiceAdminController {
      *
      * @throws IllegalArgumentException if agreementDocument is null/empty
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/updateAgreementDocument"
+     * @verb POST
      */
     @RequestMapping(value = "/admin/updateAgreementDocument", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("agreementDocument") AgreementDocument agreementDocument,
@@ -294,6 +308,8 @@ public class AgreementDocumentController extends BaseServiceAdminController {
      * @return the successful text
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/deleteAgreementDocuments"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/deleteAgreementDocuments", method = RequestMethod.GET)
     @ResponseBody

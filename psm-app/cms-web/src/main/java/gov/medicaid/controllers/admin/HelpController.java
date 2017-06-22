@@ -81,6 +81,8 @@ public class HelpController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/searchHelp"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/searchHelp", method = RequestMethod.GET)
     public ModelAndView view() throws PortalServiceException {
@@ -113,6 +115,8 @@ public class HelpController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/searchHelp"
+     * @verb POST
      */
     @RequestMapping(value = "/admin/searchHelp", method = RequestMethod.POST)
     public ModelAndView search(@ModelAttribute("criteria") HelpSearchCriteria criteria) throws PortalServiceException {
@@ -140,6 +144,8 @@ public class HelpController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/getHelpItem"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/getHelpItem", method = RequestMethod.GET)
     public ModelAndView get(@RequestParam("helpItemId") long helpItemId) throws PortalServiceException {
@@ -167,6 +173,8 @@ public class HelpController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/editHelpItem"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/editHelpItem", method = RequestMethod.GET)
     public ModelAndView beginEdit(@RequestParam("helpItemId") long helpItemId) throws PortalServiceException {
@@ -198,6 +206,8 @@ public class HelpController extends BaseServiceAdminController {
      *
      * @throws IllegalArgumentException if helpItem is null/empty
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/createHelpItem"
+     * @verb POST
      */
     @RequestMapping(value = "/admin/createHelpItem", method = RequestMethod.POST)
     public ModelAndView create(@ModelAttribute("helpItem") HelpItem helpItem, HttpServletRequest request)
@@ -229,6 +239,8 @@ public class HelpController extends BaseServiceAdminController {
      *
      * @throws IllegalArgumentException if helpItem is null/empty
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/updateHelpItem"
+     * @verb POST
      */
     @RequestMapping(value = "/admin/updateHelpItem", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("helpItem") HelpItem helpItem, HttpServletRequest request)
@@ -257,6 +269,8 @@ public class HelpController extends BaseServiceAdminController {
      * @param request the http servlet request
      * @return the successful text
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/deleteHelpItem"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/deleteHelpItem", method = RequestMethod.GET)
     @ResponseBody

@@ -35,6 +35,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author TCSASSEMBLER
  * @version 1.0
+ * @endpoint "/forgotpassword"
  */
 @Controller
 @RequestMapping("/forgotpassword")
@@ -77,6 +78,7 @@ public class ForgotPasswordController extends BaseController {
      *
      * @return the form entry.
      * @throws PortalServiceException for any errors encountered
+     * @verb GET
      */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView viewPasswordChange() throws PortalServiceException {
@@ -102,6 +104,7 @@ public class ForgotPasswordController extends BaseController {
      * @param errors the binding results
      * @return the redirect to the login page if successful or back to the input if not.
      * @throws PortalServiceException for any errors encountered
+     * @verb POST
      */
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView processPasswordChange(@ModelAttribute("passwordForm") ForgotPasswordForm form,

@@ -117,6 +117,8 @@ public class DashboardController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/ops/viewDashboard"
+     * @verb GET
      */
     @RequestMapping(value = { "/ops/viewDashboard" }, method = RequestMethod.GET)
     public ModelAndView view() throws PortalServiceException {
@@ -163,6 +165,8 @@ public class DashboardController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/ops/viewDashboard"
+     * @verb POST
      */
     @RequestMapping(value = { "/ops/viewDashboard" }, method = RequestMethod.POST)
     public ModelAndView search(@ModelAttribute("criteria") ProviderSearchCriteria criteria)
@@ -194,6 +198,8 @@ public class DashboardController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/viewHelp"
+     * @verb GET
      */
     @RequestMapping(value = "/viewHelp", method = RequestMethod.GET)
     public ModelAndView getHelp() throws PortalServiceException {
@@ -222,6 +228,8 @@ public class DashboardController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/viewHelpItem"
+     * @verb GET
      */
     @RequestMapping(value = "/viewHelpItem", method = RequestMethod.GET)
     public ModelAndView getHelpItem(@RequestParam("helpItemId") long id) throws PortalServiceException {
@@ -249,6 +257,8 @@ public class DashboardController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/viewHelp"
+     * @verb POST
      */
     @RequestMapping(value = "/viewHelp", method = RequestMethod.POST)
     public ModelAndView searchHelp(@ModelAttribute("criteria") HelpSearchCriteria criteria)

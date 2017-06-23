@@ -773,8 +773,6 @@ they did that, just like they licensed the rest of their code Apache
   - Test Dependencies
     - org.slf4j » slf4j-jdk14 1.5.8_( MIT )_
   - `Source: https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j/1.5.8`
-- jsr94-1.1.jar _(UNLICENSED)_
-  - `Source: https://mvnrepository.com/artifact/jsr94/jsr94/1.1`
 - junit-4.10.jar _(EPL 1.0)_
   - Compile Dependencies
     - org.hamcrest » hamcrest-core 1.1 _(BSD 2-clause)_

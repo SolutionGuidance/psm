@@ -719,3 +719,91 @@ Database section 7.
  #    making a contribution to the database or code waives all rights to
  #    future claims in that contribution or in the TZ Database.
  
+## JAMon License
+
+JAMon License Agreement
+
+Copyright © 2002, Steve Souza (admin@jamonapi.com)
+All rights reserved.
+Modifications: No
+
+Redistribution in binary form, with or without modifications, are
+permitted provided that the following conditions are met:
+
+Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.
+
+If modifications are made to source code then this license should
+indicate that fact in the "Modifications" section above.  Neither the
+author, nor the contributors may be used to endorse or promote
+products derived from this software without specific prior written
+permission.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+## CommonJ Time and Work Manager License
+
+Downloaded from
+http://ebr.springsource.com/repository/app/bundle/version/detail?name=com.springsource.commonj&version=1.1.0
+on 23 June 2017 by J. Vasile.
+
+CommonJ Time and Work Manager License
+General information:
+http://dev2dev.bea.com/wlplatform/commonj/twm.html
+License Text
+
+ The Timer and Work Manager for Application Servers Specification is
+ being provided by the copyright holders under the following
+ license. By using and/or copying this work, you agree that you have
+ read, understood and will comply with the following terms and
+ conditions:
+
+ Permission to copy and display the Timer and Work Manager for
+ Application Servers Specification and/or portions thereof, without
+ modification, in any medium without fee or royalty is hereby granted,
+ provided that you include the following on ALL copies of the Timer
+ and Work Manager for Application Servers Specification, or portions
+ thereof, that you make:
+ 
+  1.  A link or URL to the Timer and Work Manager for Application
+ Servers Specification at this location:
+ http://dev2dev.bea.com/technologies/commonj/index.jsp or at this
+ location: http://www.ibm.com/developerworks/library/j-commonj-sdowmt/
+ 
+  2.  The full text of this copyright notice as shown in the Timer and
+ Work Manager for Application Servers Specification.
+
+ IBM and BEA (collectively, the 'Authors') agree to grant you a
+ royalty-free license, under reasonable, non-discriminatory terms and
+ conditions to patents that they deem necessary to implement the Timer
+ and Work Manager for Application Servers Specification.  THE Timer
+ and Work Manager for Application Servers SPECIFICATION IS PROVIDED
+ 'AS IS,' AND THE AUTHORS MAKE NO REPRESENTATIONS OR WARRANTIES,
+ EXPRESS OR IMPLIED, REGARDING THIS SPECIFICATION AND THE
+ IMPLEMENTATION OF ITS CONTENTS, INCLUDING, BUT NOT LIMITED TO,
+ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ NON-INFRINGEMENT OR TITLE.
+
+ THE AUTHORS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL,
+ INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR RELATING TO ANY
+ USE OR DISTRIBUTION OF THE Timer and Work Manager for Application
+ Servers SPECIFICATION.  The name and trademarks of the Authors may
+ NOT be used in any manner, including advertising or publicity
+ pertaining to the Timer and Work Manager for Application Servers
+ Specification or its contents without specific, written prior
+ permission. Title to copyright in the Timer and Work Manager for
+ Application Servers Specification will at all times remain with the
+ Authors.
+
+ No other rights are granted by implication, estoppel or otherwise.

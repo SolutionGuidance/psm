@@ -1,6 +1,8 @@
 Provider Screening Module for Medicare/Medicaid Provider Enrollment
 ===================================================================
 
+Current build status:  ![Build status](https://travis-ci.org/OpenTechStrategies/psm.svg?branch=master)
+
 Contents:
 
 1.  Introduction and Current Status
@@ -20,7 +22,7 @@ provider enrollment process.  It is released under the
 [Apache-2.0](LICENSE.md) open source license.
 
 This code is a **work-in-progress** and is **not yet ready for
-production deployment**.  Please see the [INSTALL.md](INSTALL.md) for
+production deployment**.  Please see [INSTALL.md](INSTALL.md) for
 details.
 
 Development activity now takes place on the `master` branch, with
@@ -89,14 +91,16 @@ http://www.topcoder.com/cms/medicaid-enrollment-portal/
 SECTION 3: Features and Functionality
 ---------------------------------------------------------------------
 
-As of 7 June 2017, the PSM offers the following functionality:
+As of 21 June 2017, the PSM offers the following functionality:
 
 1. Any user
 * Self-register and create a new account
 * Receive new password via email
 * Log in
+* View homepage
 * Log out
 * Receive password reminder via email
+* Change password in profile
 
 2. User at "System administrator" privilege level
 * View other user accounts
@@ -107,9 +111,25 @@ As of 7 June 2017, the PSM offers the following functionality:
 3. User at "service admin" privilege level
 * View list of provider types
 * View list of help topics
-* View agreements & addendums
-* Create agreements and addendums
+* View, create, edit, and delete agreements & addendums
+* Change agreement and addendum assignments for provider types
 * View, create, edit, and delete service agents
+
+4. User at "provider" privilege level
+* Make a new enrollment
+* While creating an enrollment, save a draft and then come back to it later
+* View existing enrollments (draft, pending, approved, and denied)
+* Print enrollments or export as PDF
+
+5. User at "service agent" privilege level
+* View existing draft and pending enrollments
+* Create a new provider enrollment
+* While creating an enrollment, save a draft and then come back to it later
+
+6. System
+* Issue risk score for an enrollment
+* Record logs in `standalone/log/`
+* Record changes for auditing in database tables `audit_details` and `audit_records`
 
 _[Note: As the developer team conducts initial improvement work on the PSM in June 2017, we anticipate recovering many of the features listed in the [original
 repository](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/blob/master/README.md), such as identity verification, building provider profiles, and MITA integration.]_

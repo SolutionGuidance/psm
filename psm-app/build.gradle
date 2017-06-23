@@ -11,6 +11,7 @@ buildscript {
     }
 }
 
+def jbpm_version = '5.4.0.Final'
 
 // These libraries are known to be used, since they are required during compile
 // or on immediate deployment
@@ -22,9 +23,17 @@ ext.libs = [
     drools_core: 'org.drools:drools-core:5.4.0.Final',
     itext: 'com.lowagie:itext:2.1.7',
     jasypt: 'org.jasypt:jasypt:1.9.0',
-    jbpm_flow: 'org.jbpm:jbpm-flow:5.3.0.Final',
-    jbpm_human_task_core: 'org.jbpm:jbpm-human-task-core:5.3.0.Final',
-    jbpm_persistence_jpa: 'org.jbpm:jbpm-persistence-jpa:5.3.0.Final',
+    jbpm_flow: 'org.jbpm:jbpm-flow:${jbpm_version}',
+    jbpm_human_task_core: dependencies.create("org.jbpm:jbpm-human-task-core:${jbpm_version}") {
+        exclude group: 'javax.transaction'
+        exclude group: 'org.apache.cxf'
+        exclude group: 'org.hibernate.javax.persistence'
+    },
+    jbpm_persistence_jpa: dependencies.create("org.jbpm:jbpm-persistence-jpa:${jbpm_version}") {
+       exclude group: 'javax.transaction'
+       exclude group: 'org.hibernate'
+       exclude group: 'org.hibernate.javax.persistence'
+    }
     log4j: 'log4j:log4j:1.2.16',
     spring_beans: 'org.springframework:spring-beans:3.0.5.RELEASE',
     spring_context: 'org.springframework:spring-context:3.0.5.RELEASE',
@@ -62,12 +71,11 @@ List runtime_libs = [
     'com.sun.xml.bind:jaxb-xjc:2.2.2',
     'org.jbpm:jbpm-bam:5.3.0.Final',
     'org.jbpm:jbpm-bpmn2:5.3.0.Final',
-    'org.jbpm:jbpm-flow-builder:5.3.0.Final',
-    'org.jbpm:jbpm-human-task-hornetq:5.3.0.Final',
-    'org.jbpm:jbpm-human-task-jms:5.3.0.Final',
-    'org.jbpm:jbpm-human-task-mina:5.3.0.Final',
-    'org.jbpm:jbpm-workitems:5.3.0.Final',
-    //'jsr94:jsr94:1.1',
+    'org.jbpm:jbpm-flow-builder:${jbpm_version}',
+    'org.jbpm:jbpm-human-task-hornetq:${jbpm_version}',
+    'org.jbpm:jbpm-human-task-jms:${jbpm_version}',
+    'org.jbpm:jbpm-human-task-mina:${jbpm_version}',
+    'org.jbpm:jbpm-workitems:${jbpm_version}',
     'net.sourceforge.jexcelapi:jxl:2.6.10',
     'org.drools:knowledge-api:5.4.0.Final',
     'org.drools:knowledge-internal-api:5.4.0.Final',
@@ -142,6 +150,7 @@ project(':cms-business-process') {
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/codehaus/jackson')
+        runtime libs.jbpm_persistence_jpa
     }
 
     sourceSets {

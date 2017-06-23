@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -15,55 +15,71 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
-/**
- * Ownership information.
- * @author TCSASSEMBLER
- * @version 1.0
- */
-public class OwnershipInformation extends IdentifiableEntity {
+@javax.persistence.Entity
+@Table(name = "ownership_info")
+public class OwnershipInformation implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ownership_info_id")
+    private long id;
 
     /**
      * If enrolled, the profile identifier.
      */
+    @Column(name = "profile_id")
     private long profileId;
 
     /**
      * References the ticket for this request.
      */
+    @Column(name= "ticket_id")
     private long ticketId;
 
     /**
      * Type of entity for disclosure.
      */
+    @ManyToOne
+    @JoinColumn(name = "entity_structure_type_code")
     private EntityStructureType entityType;
 
     /**
      * Type of entity for disclosure.
      */
+    @ManyToOne
+    @JoinColumn(name = "entity_structure_subtype_code")
     private EntityStructureType entitySubType;
 
     /**
      * If type is OTHER, specify here.
      */
+    @Column(name = "other_entity_type_desc")
     private String otherEntityTypeDesc;
 
     /**
      * Beneficial owners.
      */
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ownership_info_id", referencedColumnName = "ownership_info_id")
     private List<BeneficialOwner> beneficialOwners;
 
     /**
-     * Disclosed property ownership.
+     * Owned Assets
      */
+    @OneToMany
+    @JoinColumn(name = "ownership_info_id", referencedColumnName = "ownership_info_id")
     private List<Asset> assets;
 
-    /**
-     * Ownership information records.
-     */
-    public OwnershipInformation() {
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     /**

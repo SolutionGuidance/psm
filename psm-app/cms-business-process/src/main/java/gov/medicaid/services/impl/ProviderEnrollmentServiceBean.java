@@ -919,7 +919,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         insertAffiliations(details, attachmentMapping);
 
         // save statement
-        insertStatement(details, attachmentMapping);
+        insertStatement(details);
 
         // save agreement documents
         insertAgreements(details);
@@ -972,7 +972,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         for (PayToProvider payToProvider : payToProviders) {
             payToProvider.setProfileId(details.getProfileId());
             payToProvider.setTicketId(details.getTicketId());
-            payToProvider.setId(getSequence().getNextValue(Sequences.PAY_TO_SEQ));
+            payToProvider.setId(0);
             getEm().persist(payToProvider);
         }
     }
@@ -991,7 +991,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         ownership.setProfileId(details.getProfileId());
         ownership.setTicketId(details.getTicketId());
 
-        ownership.setId(getSequence().getNextValue(Sequences.OWNERSHIP_SEQ));
+        ownership.setId(0);
         // save owners
         insertBeneficialOwners(ownership);
 
@@ -1063,10 +1063,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * Inserts the provider profile statement.
      *
      * @param details the provider profile
-     * @param attachmentMapping the attachment id mapping
      * @throws PortalServiceException for any errors encountered
      */
-    private void insertStatement(ProviderProfile details, Map<Long, Long> attachmentMapping)
+    private void insertStatement(ProviderProfile details)
         throws PortalServiceException {
         ProviderStatement statement = details.getStatement();
         if (statement == null) {
@@ -1076,14 +1075,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         statement.setTicketId(details.getTicketId());
         statement.setProfileId(details.getProfileId());
 
-        if (statement.getSignatureAttachmentId() > 0) {
-            if (!attachmentMapping.containsKey(statement.getSignatureAttachmentId())) {
-                throw new PortalServiceException("Signature references an invalid attachment");
-            }
-            statement.setSignatureAttachmentId(attachmentMapping.get(statement.getSignatureAttachmentId()));
-        }
-
-        statement.setId(getSequence().getNextValue(Sequences.STATEMENT_ID));
+        statement.setId(0);
         getEm().persist(statement);
     }
 
@@ -2023,7 +2015,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         n.setText(text);
         n.setCreatedBy(user.getUserId());
         n.setCreatedOn(Calendar.getInstance().getTime());
-        n.setId(getSequence().getNextValue(Sequences.NOTES_SEQ));
+        n.setId(0);
         getEm().persist(n);
     }
 
@@ -2474,7 +2466,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             } else {
                 ownership.setProfileId(profileId);
                 ownership.setTicketId(ticketId);
-                ownership.setId(getSequence().getNextValue(Sequences.OWNERSHIP_SEQ));
+                ownership.setId(0);
                 insertBeneficialOwners(ownership);
                 getEm().persist(ownership);
             }

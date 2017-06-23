@@ -583,13 +583,6 @@
 			type="yes_no">
 			<column name="ADDENDUM_FLG" not-null="true" />
 		</property>
-		<bag cascade="save-update" name="requiredFields" table="PROVIDER_TYPE_REQ_FIELDS">
-			<key>
-				<column name="PROVIDER_TYPE_CD" not-null="true" />
-			</key>
-			<many-to-many class="gov.medicaid.entities.RequiredField"
-				column="REQUIRED_FIELD_CD" unique="false" />
-		</bag>
 		<many-to-one class="gov.medicaid.entities.AgreementDocument"
 			name="agreement">
 			<column name="AGREEMENT_ID" />
@@ -1330,30 +1323,6 @@
 			length="50" name="createdBy" type="string" />
 		<property column="CREATE_TS" generated="never" lazy="false"
 			name="createdOn" type="timestamp" />
-	</class>
-	<class name="gov.medicaid.entities.RequiredFieldType" table="REQUIRED_FLD_TYPE">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.RequiredField" table="REQUIRED_FLD">
-		<id name="code" type="string">
-			<column length="2" name="CODE" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="description"
-			type="string">
-			<column name="DESCRIPTION" />
-		</property>
-		<many-to-one cascade="all" class="gov.medicaid.entities.RequiredField"
-			name="type">
-			<column name="REQUIRED_FLD_TYPE_ID" />
-		</many-to-one>
 	</class>
 	<class name="gov.medicaid.entities.ScreeningSchedule" table="SCREENING_SCHEDULE">
 		<id column="SCREENING_SCHEDULE_ID" name="id" type="long">

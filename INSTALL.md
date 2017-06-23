@@ -7,7 +7,7 @@
 
 # Background and Current Deployment Status
 
-2017-06-12: The PSM is not yet ready for production or development deployment.
+2017-06-12: The PSM is not yet ready for production deployment, but is ready for development deployment.
 
 The PSM was originally developed to run in the open source web
 application server Apache JBoss (now called WildFly).  Somewhat late
@@ -19,9 +19,9 @@ additions made while the PSM was in its WebSphere interregnum.
 
 This INSTALL.md file will be continuously improved as we work.  When
 it loses the warning at the top, that will mean we expect the PSM to
-be deployable in WildFly.  We are currently evaluating the additional
-resources it would take to continue development support for WebSphere
-deployment.
+be deployable in WildFly for production users.  We are currently
+evaluating the additional resources it would take to continue
+development support for WebSphere deployment.
 
 If you are using Red Hat Enterprise Linux, it will be easiest for you
 to run the automated installation script: `rhel-install.sh` in the
@@ -99,7 +99,6 @@ messaging service:
    to check your Java version; "1.8" refers to Java 8. We are testing
    with OpenJDK 8, which you can install on Debian-like systems with
    `sudo apt install openjdk-8-jdk-headless`.
-1. [Ant](https://ant.apache.org/) for building: `sudo apt install ant`.
 1. An SMTP server. For development, consider the built-in Python SMTP
    debugging server (works on Python 2 or Python 3). In your terminal,
    run:
@@ -310,16 +309,14 @@ repository, update its location in your local properties:
    $ {favorite-editor} build.properties
    ```
 
-1. Build the application with `ant`. This depends on libraries provided by the
+1. Build the application with `gradle`. This depends on libraries provided by the
    application server.
 
    ```ShellSession
    $ cd ../{psm}/psm-app
-   $ ant regenerate-model dist
-   Buildfile: {/path/to/psm}/psm-app/build.xml
+   $ ./gradlew build
    ...[cut]...
-   dist:
-         [ear] Building ear: {/path/to/psm}/psm-app/build/cms-portal-services.ear
+   BUILD SUCCESSFUL
    ```
 
 1. Deploy the built app: you can use the Wildfly Management Console UI
@@ -331,16 +328,23 @@ repository, update its location in your local properties:
 
    ```ShellSession
    $ {/path/to/wildfly}/bin/jboss-cli.sh --connect \
-       --command="deploy {/path/to/psm}/psm-app/build/cms-portal-services.ear"
+       --command="deploy {/path/to/psm}/psm-app/cms-portal-services/build/libs/cms-portal-services.ear"
+
    ```
 
    If you have a previous build deployed already, you can replace the
    deployment in the UI or add the `--force` switch after `deploy`.
 
-1. Create database schema and initial data. Use the seed data to create tables:
+1. Create database schema and initial data. Use the `seed.sql` data to
+   create most of the necessary tables, and `legacy_seed.sql` to
+   create tables for entities that have not yet been migrated to
+   Hibernate 5:
 
       ```ShellSession
-      $ psql -h localhost -U psm psm < {/path/to/psm}/psm-app/db/seed.sql
+      $ cat {/path/to/psm}/psm-app/db/legacy_seed.sql \
+            {/path/to/psm}/psm-app/db/jbpm.sql \
+            {/path/to/psm}/psm-app/db/seed.sql \
+        | psql -h localhost -U psm psm
       ```
 
 1. To check that the app is running, navigate to

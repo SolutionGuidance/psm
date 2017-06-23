@@ -28,14 +28,18 @@ DROP TABLE IF EXISTS
   license_statuses,
   license_types,
   licenses,
+  notes,
   organizations,
   owner_assets,
+  ownership_info,
   ownership_types,
+  pay_to_providers,
   pay_to_provider_types,
   people,
   persistent_logins,
   profile_statuses,
   provider_profiles,
+  provider_statements,
   provider_type_agreement_documents,
   provider_type_license_types,
   provider_types,
@@ -104,6 +108,7 @@ INSERT INTO cms_user (
   status,
   role_code
 ) VALUES
+  ('p1', 'p1', 'p1', 'p1', 'p1@example.com', 'ACTIVE', 'R1'),
   ('ADMIN', 'admin', 'admin', 'admin', 'admin@example.com', 'ACTIVE', 'R3'),
   ('SYSTEM', 'system', 'system', 'system', 'system@example.com', 'ACTIVE', 'R4');
 
@@ -113,6 +118,7 @@ CREATE TABLE cms_authentication(
 );
 INSERT INTO cms_authentication (username, password) VALUES
   ('admin', '{SHA}0DPiKuNIrrVmD8IUCuw1hQxNqZc='), -- password: admin
+  ('p1', '{SHA}t49XZhHsBvlq88plTCIXKl10bEA='), -- password: p1
   ('system', '{SHA}MX8edh8vqo2ngaR2K53MLFytIJo='); -- password: system
 
 CREATE TABLE audit_records(
@@ -563,7 +569,7 @@ INSERT INTO license_types (code, description) VALUES
   ('L0', 'Marriage And Family Therapist'),
   ('L1', 'Audiologist License'),
   ('L2', 'Registration with the Department Of Health'),
-  ('L3', 'Optometrist License'),
+  ('L3', 'Optometrist'),
   ('L4', 'Registered Nurse'),
   ('L5', 'PCA Training Certificate'),
   ('L6', 'Traditional Midwife'),
@@ -1103,6 +1109,17 @@ CREATE TABLE affiliations(
   bgs_clearance_date DATE
 );
 
+CREATE TABLE ownership_info (
+  ownership_info_id BIGINT PRIMARY KEY,
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  entity_structure_type_code CHARACTER VARYING(2)
+    REFERENCES entity_structure_types(code),
+  entity_structure_subtype_code CHARACTER VARYING(2)
+    REFERENCES entity_structure_types(code),
+  other_entity_type_desc TEXT
+);
+
 CREATE TABLE beneficial_owner (
   beneficial_owner_id       BIGINT PRIMARY KEY,
   person_ind                CHARACTER VARYING(1),
@@ -1126,7 +1143,8 @@ CREATE TABLE beneficial_owner (
   hired_at                  DATE,
   relationship_type_code    CHARACTER VARYING(2)
     REFERENCES relationship_types (code),
-  ownership_info_id         BIGINT,
+  ownership_info_id         BIGINT
+    REFERENCES ownership_info(ownership_info_id),
   fein                      CHARACTER VARYING(20),
   legal_name                TEXT
 );
@@ -1139,4 +1157,37 @@ CREATE TABLE owner_assets(
   address_id BIGINT
     REFERENCES addresses(address_id),
   ownership_info_id BIGINT
+    REFERENCES ownership_info(ownership_info_id)
 ) ;
+
+CREATE TABLE provider_statements(
+  provider_statement_id BIGINT PRIMARY KEY,
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  name TEXT,
+  title TEXT,
+  "date" DATE
+);
+
+CREATE TABLE notes(
+  note_id BIGINT PRIMARY KEY,
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  note_text TEXT,
+  created_by TEXT,
+  created_at TIMESTAMP WITH TIME ZONE
+);
+
+CREATE TABLE pay_to_providers(
+  pay_to_providers_id  BIGINT PRIMARY KEY,
+  effective_date DATE,
+  pay_to_type_code CHARACTER VARYING(2)
+    REFERENCES pay_to_provider_types(code),
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  target_profile_id BIGINT,
+  name TEXT,
+  contact_name TEXT,
+  npi TEXT,
+  phone TEXT
+);

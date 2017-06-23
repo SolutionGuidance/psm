@@ -1,0 +1,7 @@
+petl==1.1.1
+pytest==3.1.1
+pytest-cov==2.5.1
+python-dateutil==2.6.0
+PyYAML==3.12
+pytest
+requests==2.17.3

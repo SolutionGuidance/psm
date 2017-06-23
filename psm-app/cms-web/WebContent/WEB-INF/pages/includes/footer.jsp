@@ -5,6 +5,6 @@
     @version 1.0
  --%>
 <div id="footer">
-    <strong>Copyright 2012.</strong> Companyname Lorem Ipsum
+    <strong>This module is open source.</strong>  <a href="https://github.com/OpenTechStrategies/psm">Contributions welcome</a>.
 </div>
 <!-- #footer -->

@@ -156,9 +156,6 @@ class Exclusions():
         """Extract, translate, load exclusions (and not reinstatements) from
         the DATA_DIR directory.
 
-        CONN is a db connection
-
-
         Set FORCE_RELOAD to True to turn off the protections against
         reading the same csv file twice.  There is no harm in redoing
         a csv file, since the csv contents replaces the db table

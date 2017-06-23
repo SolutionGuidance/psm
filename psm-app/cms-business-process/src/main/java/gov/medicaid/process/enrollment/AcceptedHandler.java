@@ -23,7 +23,6 @@ import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Event;
 import gov.medicaid.services.CMSConfigurator;
-import gov.medicaid.services.FileNetService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.XMLAdapter;
@@ -53,18 +52,12 @@ public class AcceptedHandler extends GenericHandler {
     private final EntityManager entityManager;
 
     /**
-     * Filenet service.
-     */
-    private final FileNetService fileNetService;
-
-    /**
      * Constructor using the fields.
      */
     public AcceptedHandler() {
         CMSConfigurator config = new CMSConfigurator();
         this.providerService = config.getEnrollmentService();
         this.entityManager = config.getPortalEntityManager();
-        this.fileNetService = config.getFileNetService();
     }
 
     /**
@@ -105,10 +98,8 @@ public class AcceptedHandler extends GenericHandler {
 
             // send to MQ
             providerService.sendSyncronizationRequest(ticket.getTicketId());
-            
-            // Copy Files to FileNet
-            fileNetService.exportFiles(model, ticket.getTicketId());
-            
+
+            // Issue #215 - add hook for approval
         } catch (PortalServiceException e) {
             XMLUtility.moveToStatus(model, actorId, "ERROR", "Approval process failed to completed.");
             abortWorkItem(item, manager);

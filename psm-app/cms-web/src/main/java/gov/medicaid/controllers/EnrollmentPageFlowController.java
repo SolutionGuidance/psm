@@ -1066,14 +1066,9 @@ public class EnrollmentPageFlowController extends BaseController {
             } else {
                 mv.addObject("id", serviceResponse.getTicketNumber());
                 ControllerHelper.flashPopup("submitEnrollmentModal");
-                try {
-                    // export the PDF for filenet use
-                    ModelAndView fileNetModel = showPage(ViewStatics.SUMMARY_INFORMATION, enrollment);
-                    exportService.exportPDFFileNet(ControllerHelper.getCurrentUser(), enrollment,
-                            String.valueOf(serviceResponse.getTicketNumber()), fileNetModel.getModel());
-                } catch (IOException e) {
-                    LogUtil.traceError(getLog(), "EnrollmentPageFlowController#submit", e);
-                }
+
+                // Issue #215 - add hook for successful submission
+
                 return mv;
             }
         } else {
@@ -1137,14 +1132,7 @@ public class EnrollmentPageFlowController extends BaseController {
                 mv.addObject("id", enrollment.getObjectId());
                 ControllerHelper.flashPopup("submitEnrollmentModal");
 
-                try {
-                    // export the PDF for filenet use
-                    ModelAndView fileNetModel = showPage(ViewStatics.SUMMARY_INFORMATION, enrollment);
-                    exportService.exportPDFFileNet(ControllerHelper.getCurrentUser(), enrollment,
-                            String.valueOf(enrollment.getObjectId()), fileNetModel.getModel());
-                } catch (IOException e) {
-                    LogUtil.traceError(getLog(), "EnrollmentPageFlowController#submit", e);
-                }
+                // Issue #215 - add hook for successful resubmission
 
                 return mv;
             }

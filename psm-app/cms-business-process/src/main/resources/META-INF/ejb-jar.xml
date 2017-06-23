@@ -74,10 +74,6 @@
         <ejb-name>DBIdentityProviderDAOBean</ejb-name>
         <ejb-class>gov.medicaid.services.impl.DBIdentityProviderDAOBean</ejb-class>
       </session>
-      <session>
-        <ejb-name>FileNetServiceBean</ejb-name>
-        <ejb-class>gov.medicaid.services.impl.FileNetServiceBean</ejb-class>
-      </session>
       <message-driven>
         <ejb-name>DataSynchronizationMessageBean</ejb-name>
         <ejb-class>gov.medicaid.services.impl.DataSynchronizationMessageBean</ejb-class>

@@ -237,4 +237,4 @@ You should have received a copy of the Affero GNU General Public
 License along with this program.  If not, see
 <https://www.gnu.org/licenses/agpl-3.0.en.html>.
 
-Copyright 2017 Open Tech Strategies, Inc.
+Copyright 2017 Open Tech Strategies, LLC

@@ -30,6 +30,12 @@ free to push the merge button if the conversation around a change has
 concluded.  If you're unsure, ask!  "Is this ready to merge?" is often
 a useful next step in the conversation.
 
+If your PR fixes a bug or adds a feature, please include a brief testing
+plan along with the change.  Once a test framework has been set up, that
+testing plan will come in the form of a test.  For now, use a
+Given-When-Then description like
+[this one](https://github.com/OpenTechStrategies/psm/blob/master/psm-app/cms-web/src/main/test/resources/features/enrollment/create_enrollment.feature).
+
 ### Branching and Branch Names
 
 We do all development on lightweight branches, with each branch

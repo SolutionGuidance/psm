@@ -705,7 +705,8 @@ they did that, just like they licensed the rest of their code Apache
   - `Source: https://mvnrepository.com/artifact/asm/asm/3.3`
 - commons-logging-1.1.1.jar _(Apache 2.0)
   - Compile Dependencies
-    - avalon-framework » avalon-framework (optional) 4.1.3 _(UNLICENSED)_
+    - avalon-framework » avalon-framework (optional) 4.1.3 _(Apache 2.0)_
+      License from: https://en.wikipedia.org/wiki/Apache_Avalon
     - log4j » log4j (optional) 1.2.12 _(Apache 2.0)_
     - logkit » logkit (optional) 1.0.1_( Apache 2.0 )_
   - Provided Dependencies
@@ -733,11 +734,14 @@ they did that, just like they licensed the rest of their code Apache
   - Compile Dependencies
     - com.sun.xml.bind » jaxb-impl 2.2-EA_( CDDL/GPL 1.1 )_
   - `Source: https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-xjc/2.2-EA`
-- jboss-aop-client.jar _(UNLICENSED)_
+- jboss-aop-client.jar _(LGPL)_
+  License from http://jbossaop.jboss.org/downloads.html
 - jboss-common-core.jar _(LGPL 2.1)_
   - Compile Dependencies
-    - apache-httpclient » commons-httpclient (optional) 2.0.2 _(UNLICENSED)_
-    - apache-slide » webdavlib (optional) 2.0 _(UNLICENSED)_
+    - apache-httpclient » commons-httpclient (optional) 2.0.2 _(Apache 2.0)_
+      License from http://hc.apache.org/httpclient-3.x/license.html
+    - apache-slide » webdavlib (optional) 2.0 _(Apache 2.0)_
+      License from https://en.wikipedia.org/wiki/Jakarta_Slide
     - org.jboss.logging » jboss-logging-spi 2.0.5.GA_( LGPL )_
   - Test Dependencies
     - junit » junit 4.4_( EPL 1.0 )_
@@ -758,7 +762,10 @@ they did that, just like they licensed the rest of their code Apache
     - junit » junit 4.4_( EPL 1.0 )_
     - org.jboss.test » jboss-test 1.1.1.GA_( LGPL 2.1 )_
   - `Source: https://mvnrepository.com/artifact/org.jboss/jboss-mdr/2.0.1.GA`
-- jbossall-client.jar _(UNLICENSED)_
+- jbossall-client.jar _(LGPL)_
+  JBoss (now Wildfly) is released under the LGPL 2.1.  This jar is just
+  a compilation of all the JBoss client libraries, which are also LGPL
+  licensed, according to https://mvnrepository.com/artifact/jboss/jboss-client.
   - `Source: https://mvnrepository.com/artifact/jboss/jbossall-client/3.2.3`
 - jcl-over-slf4j-1.5.8.jar _(MIT)_
   - Compile Dependencies
@@ -791,7 +798,8 @@ they did that, just like they licensed the rest of their code Apache
   - Compile Dependencies
     - aopalliance » aopalliance 1.0_( Public )_
     - cglib » cglib-nodep (optional) 2.2_( Apache 2.0 )_
-    - com.jamonapi » jamon (optional) 2.4 _(UNLICENSED)_
+    - com.jamonapi » jamon (optional) 2.4 _(JAMon License)_
+      License text: http://jamonapi.sourceforge.net/JAMonLicense.html
     - commons-pool » commons-pool (optional) 1.5.3_( Apache 2.0 )_
     - org.aspectj » aspectjweaver (optional) 1.6.8 _(EPL 1.0 )_
     - org.springframework » spring-asm 3.0.5.RELEASE_( Apache 2.0 )_
@@ -806,7 +814,8 @@ they did that, just like they licensed the rest of their code Apache
   - `Source: https://mvnrepository.com/artifact/org.springframework/spring-asm/3.0.5.RELEASE`
 - spring-context-support-3.0.5.RELEASE.jar _(Apache 2.0)_
   - Compile Dependencies
-    - com.bea.commonj » com.springsource.commonj (optional) 1.1.0 _(UNLICENSED)_
+    - com.bea.commonj » com.springsource.commonj (optional) 1.1.0 _(CommonJ Time and Work Manager License)_
+      License text available [here](http://ebr.springsource.com/repository/app/bundle/version/detail?name=com.springsource.commonj&version=1.1.0)
     - commons-collections » commons-collections (optional) 3.2_( Apache 2.0 )_
     - jasperreports » jasperreports (optional) 2.0.5_( LGPL )_
     - javax.mail » mail (optional) 1.4_( CDDL/GPL 2.0 )_
@@ -880,12 +889,13 @@ they did that, just like they licensed the rest of their code Apache
   - Compile Dependencies
     - aopalliance » aopalliance 1.0_( Public )_
     - axis » axis (optional) 1.4_( Apache )_
-    - com.caucho » com.springsource.com.caucho (optional) 3.2.1 _(UNLICENSED)_
+    - com.caucho » com.springsource.com.caucho (optional) 3.2.1 _([Apache 1.1](http://ebr.springsource.com/repository/app/bundle/version/detail?name=com.springsource.com.caucho&version=3.2.1))_
     - commons-fileupload » commons-fileupload (optional) 1.2_( Apache 2.0 )_
     - commons-httpclient » commons-httpclient (optional) 3.1_( Apache 2.0 )_
     - javax.el » el-api (optional) 1.0_( CDDL 2/GPL )_
     - javax.faces » jsf-api (optional) 1.2_08_( CDDL/GPL )_
-    - javax.xml » jaxrpc-api (optional) 1.1 _(UNLICENSED)_
+    - javax.xml » jaxrpc-api (optional) 1.1 _(Apache 2.0)_
+      License given at: http://axis.apache.org/axis/java/jaxrpc/
     - javax.xml.ws » jaxws-api (optional) 2.1-1_( CDDL 1.1GPL 2.0 )_
     - log4j » log4j (optional) 1.2.15_( Apache 2.0 )_
     - org.codehaus.jackson » jackson-mapper-asl (optional) 1.4.2_( Apache 2.0 )_

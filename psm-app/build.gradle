@@ -11,6 +11,21 @@ buildscript {
     }
 }
 
+def jbpm_version = '5.4.0.Final'
+
+ext.libs = [
+    jbpm_human_task_core: dependencies.create("org.jbpm:jbpm-human-task-core:${jbpm_version}") {
+        exclude group: 'javax.transaction'
+        exclude group: 'org.apache.cxf'
+        exclude group: 'org.hibernate.javax.persistence'
+    },
+    jbpm_persistence_jpa: dependencies.create("org.jbpm:jbpm-persistence-jpa:${jbpm_version}") {
+       exclude group: 'javax.transaction'
+       exclude group: 'org.hibernate'
+       exclude group: 'org.hibernate.javax.persistence'
+    },
+]
+
 allprojects {
     repositories {
         mavenCentral()
@@ -21,6 +36,7 @@ project(':services') {
     apply plugin: 'java'
 
     dependencies {
+        compile libs.jbpm_human_task_core
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar', exclude: 'cms-core.jar')
         compile project(path: ':cms-business-model', configuration: 'archives')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
@@ -44,10 +60,12 @@ project(':cms-business-process') {
     dependencies {
         compile project(path: ':services', configuration: 'archives')
         compile project(path: ':cms-business-model', configuration: 'archives')
+        compile libs.jbpm_human_task_core
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar', exclude: 'cms-core.jar')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/codehaus/jackson')
+        runtime libs.jbpm_persistence_jpa
     }
 
     sourceSets {
@@ -114,6 +132,8 @@ project(':cms-portal-services') {
         deploy project(path: ':cms-web', configuration: 'archives')
         deploy project(':cms-business-process')
         earlib fileTree(dir: 'lib')
+        earlib libs.jbpm_human_task_core
+        earlib libs.jbpm_persistence_jpa
         earlib project(path: ':cms-business-model', configuration: 'archives')
         earlib project(path: ':services', configuration: 'archives')
    }

@@ -972,7 +972,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         for (PayToProvider payToProvider : payToProviders) {
             payToProvider.setProfileId(details.getProfileId());
             payToProvider.setTicketId(details.getTicketId());
-            payToProvider.setId(getSequence().getNextValue(Sequences.PAY_TO_SEQ));
+            payToProvider.setId(0);
             getEm().persist(payToProvider);
         }
     }
@@ -2015,7 +2015,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         n.setText(text);
         n.setCreatedBy(user.getUserId());
         n.setCreatedOn(Calendar.getInstance().getTime());
-        n.setId(getSequence().getNextValue(Sequences.NOTES_SEQ));
+        n.setId(0);
         getEm().persist(n);
     }
 

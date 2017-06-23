@@ -1,0 +1,6 @@
+include README.mdwn
+include leie/db/dbconf.yml
+include leie/db/sqlite3/*
+include test
+include leie/tests/*.py
+include leie/tests/data/*.csv

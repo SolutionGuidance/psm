@@ -1,0 +1,11 @@
+development:
+  driver: sqlite3
+  open: leie.sqlite3
+
+test:
+  driver: sqlite3
+  open: tests/test.sqlite3
+
+test2:
+  driver: LibraryDB
+  open: tests/test.librarydb

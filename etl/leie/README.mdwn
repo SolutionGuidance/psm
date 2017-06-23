@@ -1,0 +1,240 @@
+The [LEIE data](https://oig.hhs.gov/exclusions/exclusions_list.asp)
+comes as 3 files, each issued monthly:
+
+* UPDATED.csv, which lists all the exclusions
+* `YYMMEXCL.csv` that lists exclusions from that month
+* `YYMMREIN.csv` that lists reinstatements from that month
+
+(where YY are the two least significant digits of the year and MM is a
+number indicating the month)
+
+`UPDATED.csv` contains all of the monthly exclusions.  When a new set
+of files comes out, it is a superset of the monthly EXCL.csv.  It
+removes the REIN.csv entries, though, because those are no longer
+excluded providers.  We ignore the EXCL.csv files because the other
+two files contain all the information we need to tell if somebody is
+excluded or was excluded.
+
+We collect the three monthly files and make two sets of data.  We
+maintain a list of currently excluded providers and a list of
+historically reinstated providers.  Those lists each exist in two
+forms.  One for legal entities (we call them "businesses") and one for
+individual people.  These lists date back to January 2016, which is to
+say they try to capture providers that have been on the exclusions
+list at any point since that date.  Providers that were excluded but
+reinstated before January 2016 will not be reflected in this data set.
+
+If a provider is listed in the exclusions table, it is currently
+excluded.  If a provider is on the reinstatement list, it was excluded
+but was later reinstated.  Becuase providers might be excluded and
+reinstated multiple times, presence on the reinstatement list does not
+mean a provider is currently not excluded.  The reinstatement list
+gives information about historical risk factors (prior exclusions) and
+is not intended to reflect current exclusion status.
+
+## Running
+
+This program assumes the csv files are in ./data.  Acquiring those
+files automatically is left for future work.  They only update
+monthly, so for now we'll just grab them manually from the
+[LEIE site]( https://oig.hhs.gov/exclusions/exclusions_list.asp).
+
+First, generate the migrations:
+    $ ./model.py
+
+Second, run the etl process.
+    $ ./etl.py
+
+This will put data into the development database specified in
+db/dbconf.yml.  Feel free to edit dbconf.yml as you need.
+
+Don't worry about running the ETL twice.  The program is pretty good
+about not saving the same data twice.
+
+If you want to run the tests, use `./test` script.  It sets the tests
+up for you.  Note that the tests depend on you having run model.py and
+etl.py to do base setup.
+
+## Data Retention
+
+Once loaded into the database, old csv files can be discarded.  If you
+leave old YYMMREIN.csv files in the data directory, they will be
+ignored unless you blow away the db.  Keeping them will do no harm
+(they're not large) and they might prove useful if you need to
+rebuild.  For example, if the data format changes and nobody notices
+that the ETL function is failing, you might need to go back and
+reconstruct.
+
+Old UPDATE.csv files are not useful.  They are superseded each
+month by the new UPDATED.csv.  What's more, they are not
+differentiated from new ones by anything in their name.  If you are
+going to archive the old ones for some reason, you'll probably want to
+rename them.
+
+YYMMEXCL.csv files are useless, regardless of recency.  This program
+ignores such files entirely.  Save or discard as you please.
+
+## Notes About The Data
+
+The data can be messy.  Many entries are missing NPI information.
+Dates can be spotty.  Take, for example, Jeffrey Shope, who is listed
+in late 2016 as being excluded in late 2016 but is then listed in
+April 2017 as being excluded in February 2016 while being reinstated
+in late 2016.  He is currently on the exclusions list with an
+exclusion date of February 2016.  It is possible to look at these
+entries and tell a coherent story (he was initially excluded, then
+further action pushed his exclusion date back several months), but the
+four entries that make up that story are not easily understood.  For
+risk analysis purposes, it is enough to know he is currently on the
+exclusions list.
+
+The datasets include address information.  Based on our review of the
+data, addresses change frequently enough that we advise against using
+it to differentiate between providers.  That said, addresses might be
+used as confirmatory or correlating information when identifying
+providers in the dataset.
+
+The datasets include practice area and specialty information.  This
+data changes often enough that we caution against using it to
+differentiate identity among providers.
+
+Some providers have multiple entries.  They have several exclusions
+listed (often with different dates), which presumably stem from
+multiple exclusion actions taken against them.  It is not clear that
+reinstatements or waivers apply to all such exclusion actions or to
+specific ones.
+
+Dates are inconsistently specified in the raw data.  In some places we
+have YYYYMMDD and in others we have YY/MM/DD.  We have regularized
+that in the db to YYYY-MM-DD HH:MM:SS.sss but it is possible we missed
+a weird date format somewhere.
+
+Middle names are often missing or abbreviated as a single initial
+letter.  Two entries that appear to reference the same person can have
+different forms of middle name.  Do not rely on them.
+
+## Data Sources
+
+Data is taken from
+https://oig.hhs.gov/exclusions/exclusions_list.asp.  All data files
+have the following fields:
+
+Here are the LEIE fields:
+FIELD VALUE FIELD LENGTH
+LASTNAME    20
+FIRSTNAME   15
+MIDNAME     15
+BUSNAME     30
+GENERAL     20
+SPECIALTY   20
+UPIN        6
+NPI         10
+DOB         8
+ADDRESS     30
+CITY        20
+STATE       2
+ZIP CODE    5
+EXCLTYPE    9
+EXCLDATE    8
+REINDATE    8
+WAIVERDATE  8
+WAIVERSTATE 2
+
+## ETL and Ext-Sources Strategy
+
+This etl program takes the data from files and loads it in to a
+database.  We are mainly doing writes here and no complex queries.
+All the modeling and reading will happen in another application.  For
+now, we'll aim at SQLite and might add Postgres later.  We're not
+using an ORM for this, mainly because we don't need one yet.  When we
+do the API ext-sources services app, we might use something like that.
+
+For now, this code manages migrations with
+[Goose](https://github.com/pressly/goose).  We might move to Liquibase
+in the future, but Goose is dead simple right now, so we're going with
+it.  The goal is to keep the migrations somewhat language and ORM
+agnostic.  Whatever generates SQL (your ORM, DOA, framework, etc.) for
+your schema can also generate that SQL for a goose migration target.
+If you are hand-writing your schema sql, put it in the goose migration
+files and those files become the canonical reference on correct table
+forms.  If you are generating your SQL, then whatever input you are
+feeding to your SQL-generator (whether it be hibernate or sqlalchemy
+or whatever) should be the canonical form.  Either way, be explicit
+about which it is: for this module, it is the schema generated by
+model.py.  Run the file directly from the commandline to put goose
+migrations into your migrations directory.  If you need further
+migrations, adjust model.py to emit those for goose.
+
+The advantage of using sqlite here is speed and simplicity.  The thing
+is fast and easy to use.  The ETL should result in a read-heavy,
+single-user database.  It will be slow on the write side, fast on the
+read side, but that's ok.  If anything says SQLite, that does.
+
+The advantage of postgres is that you get an actual multi-client
+concurrent server.  If you want to serve data directly to remote
+clients (as opposed to doing it over a web API), you'll want
+Postgresql.
+
+## Dependencies
+
+This code is tested under Python 3.4 and Python 3.5.  It will not run
+under Python 2, though it doesn't use any 3-only features that we know
+of.  Backporting it would not be terribly difficult if your
+environment demands it.
+
+Versions reflect what we used in our python environment.  They are a
+known-good combination of versions but there is no reason to think
+newer versions will break anything.  If you change versions, use the
+test suite.
+
+    $ pip install \
+        petl==1.1.1 \
+        python-dateutil==2.6.0
+        pyyaml=3.12 \
+        requests=2.17.3
+
+If you want sqlite3, don't get it from pypi (you can't).  Use your
+distro's packaged version:
+
+    $ apt-get install sqlite3
+
+You'll want goose to migrate the db up and down, which requires
+golang.  If you don't have golang, you'll need to install it, set your
+GOPATH and add GOPATH to your local PATH.  Here is how you might do
+that on a Debian box:
+
+    $ apt-get install golang
+    $ mkdir -p /usr/local/share/golang
+    $ export GOPATH=/usr/local/share/golang
+    $ export PATH=$PATH:$GOROOT/bin
+
+Then, install goose:
+
+    $ go get -u github.com/pressly/goose/cmd/goose
+
+If you want to run the tests, you'll need pytest and you might want
+tox:
+
+    $ pip install tox==2.7.0 pytest==3.1.1 pytest-cov==2.5.1
+
+To run the tests, just do `./test` or `tox
+--skip-missing-interpreters`.  They run the same tests, but tox lets
+you set up different environments for testing.
+
+## Copyright and License
+
+This program is free software: you can redistribute it and/or
+modify it under the terms of the Affero GNU General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the Affero GNU General Public
+License along with this program.  If not, see
+<https://www.gnu.org/licenses/agpl-3.0.en.html>.
+
+Copyright 2017 Open Tech Strategies, LLC

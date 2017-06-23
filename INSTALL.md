@@ -341,8 +341,10 @@ repository, update its location in your local properties:
    Hibernate 5:
 
       ```ShellSession
-      $ psql -h localhost -U psm psm < {/path/to/psm}/psm-app/db/seed.sql
-      $ psql -h localhost -U psm psm < {/path/to/psm}/psm-app/db/legacy_seed.sql
+      $ cat {/path/to/psm}/psm-app/db/legacy_seed.sql \
+            {/path/to/psm}/psm-app/db/jbpm.sql \
+            {/path/to/psm}/psm-app/db/seed.sql \
+        | psql -h localhost -U psm psm
       ```
 
 1. To check that the app is running, navigate to

@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+if [[ "$1" == "dist" ]]; then
+	shift
+	rm -rf dist
+	python setup.py sdist
+	tar --directory=dist -xvf dist/*.tar.gz
+	cd $(find dist -maxdepth 1 -type d | tail -n 1)
+	./test $@
+	cd ../..
+	rm -rf $(find dist -maxdepth 1 -type d | tail -n 1)
+else
+	cd leie
+	cov=$(find *.py -exec echo --cov={} \;| sed s/\.py//)
+	echo Cov: $cov
+	py.test --cov-report term-missing:skip-covered $cov --ignore=lib --ignore=local $@
+fi

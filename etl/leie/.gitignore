@@ -1,0 +1,9 @@
+*.sqlite3
+.cache/
+.coverage
+__pycache__/
+\#*
+.\#*
+tests/db/
+db/sqlite3/
+/data/*

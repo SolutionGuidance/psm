@@ -28,10 +28,12 @@ DROP TABLE IF EXISTS
   license_statuses,
   license_types,
   licenses,
+  notes,
   organizations,
   owner_assets,
   ownership_info,
   ownership_types,
+  pay_to_providers,
   pay_to_provider_types,
   people,
   persistent_logins,
@@ -1167,5 +1169,25 @@ CREATE TABLE provider_statements(
   "date" DATE
 );
 
+CREATE TABLE notes(
+  note_id BIGINT PRIMARY KEY,
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  note_text TEXT,
+  created_by TEXT,
+  created_at TIMESTAMP WITH TIME ZONE
+);
 
-
+CREATE TABLE pay_to_providers(
+  pay_to_providers_id  BIGINT PRIMARY KEY,
+  effective_date DATE,
+  pay_to_type_code CHARACTER VARYING(2)
+    REFERENCES pay_to_provider_types(code),
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  target_profile_id BIGINT,
+  name TEXT,
+  contact_name TEXT,
+  npi TEXT,
+  phone TEXT
+);

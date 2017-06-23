@@ -96,9 +96,6 @@ public class AcceptedHandler extends GenericHandler {
             item.getResults().put("model", model);
             manager.completeWorkItem(item.getId(), item.getResults());
 
-            // send to MQ
-            providerService.sendSyncronizationRequest(ticket.getTicketId());
-
             // Issue #215 - add hook for approval
         } catch (PortalServiceException e) {
             XMLUtility.moveToStatus(model, actorId, "ERROR", "Approval process failed to completed.");

@@ -73,6 +73,7 @@
     <class>gov.medicaid.entities.OrganizationBeneficialOwner</class>
     <class>gov.medicaid.entities.OwnershipInformation</class>
     <class>gov.medicaid.entities.OwnershipType</class>
+    <class>gov.medicaid.entities.PayToProvider</class>
     <class>gov.medicaid.entities.PayToProviderType</class>
     <class>gov.medicaid.entities.Person</class>
     <class>gov.medicaid.entities.PersonBeneficialOwner</class>

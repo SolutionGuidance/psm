@@ -47,8 +47,6 @@ public class Sequences {
      */
     public static final String EVENT_SEQ = "CMS_EVENT_SEQ";
 
-    public static final String PAY_TO_SEQ = "PAY_TO_SEQ";
-
     public static final String SERVICE_SEQ = "SERVICE_SEQ";
 
     /**

@@ -87,12 +87,6 @@ These should be XA data sources that both point to the same database.
 The application requires the application server to be configured with a mail service:
 - JNDI name `java:/Mail`
 
-### Messaging
-
-The application requires the application server to be configured with a
-messaging service:
-- JNDI name `java:/jms/queue/DataSync`
-
 # Prerequisites
 
 1. A [Java 8](https://www.java.com) JRE and JDK. Run `java -version`
@@ -165,9 +159,9 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    $ ./bin/jboss-cli.sh --connect --command=:shutdown
    ```
 
-1. The `standalone-full` profile includes messaging, which PSM requires.
-   `standalone-full.xml` lives in the WildFly directory, at
-   `standalone/configuration/standalone-full.xml`. To start the server:
+1. PSM requires the `standalone-full` profile.  `standalone-full.xml` lives in
+   the WildFly directory, at `standalone/configuration/standalone-full.xml`. To
+   start the server:
 
    ```ShellSession
    $ ./bin/standalone.sh -c standalone-full.xml
@@ -216,15 +210,6 @@ EOF
 If you are using a production mail server, add a mail session with a JNDI name
 of `java:/Mail` to your application server with the appropriate credentials
 using the command line or web interface.
-
-### Messaging
-
-Create a messaging queue:
-
-```ShellSession
-$ ./bin/jboss-cli.sh --connect \
-  --command='jms-queue add --queue-address=DataSync --entries=["java:/jms/queue/DataSync"]'
-```
 
 ### Database
 

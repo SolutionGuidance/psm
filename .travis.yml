@@ -3,6 +3,10 @@ jdk:
   - openjdk8
 dist: trusty
 
+cache:
+  directories:
+    - $HOME/.gradle/caches
+
 # We depend on a wildfly deploment for some of the production
 # jar files. Download it and install just above our repo
 before_script:
@@ -15,4 +19,4 @@ install: true
 
 script:
   - cd psm-app
-  - ./gradlew build
+  - ./gradlew clean build

@@ -51,8 +51,9 @@ db/dbconf.yml.  Feel free to edit dbconf.yml as you need.
 Don't worry about running the ETL twice.  The program is pretty good
 about not saving the same data twice.
 
-If you want to run the tests, use `./test` script.  It sets things up
-for you.
+If you want to run the tests, use `./test` script.  It sets the tests
+up for you.  Note that the tests depend on you having run model.py and
+etl.py to do base setup.
 
 ## Data Retention
 
@@ -197,7 +198,17 @@ distro's packaged version:
 
     $ apt-get install sqlite3
 
-You'll want goose to migrate the db up and down:
+You'll want goose to migrate the db up and down, which requires
+golang.  If you don't have golang, you'll need to install it, set your
+GOPATH and add GOPATH to your local PATH.  Here is how you might do
+that on a Debian box:
+
+    $ apt-get install golang
+    $ mkdir -p /usr/local/share/golang
+    $ export GOPATH=/usr/local/share/golang
+    $ export PATH=$PATH:$GOROOT/bin
+
+Then, install goose:
 
     $ go get -u github.com/pressly/goose/cmd/goose
 

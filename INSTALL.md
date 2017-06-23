@@ -7,7 +7,7 @@
 
 # Background and Current Deployment Status
 
-2017-06-12: The PSM is not yet ready for production or development deployment.
+2017-06-12: The PSM is not yet ready for production deployment, but is ready for development deployment.
 
 The PSM was originally developed to run in the open source web
 application server Apache JBoss (now called WildFly).  Somewhat late
@@ -19,9 +19,9 @@ additions made while the PSM was in its WebSphere interregnum.
 
 This INSTALL.md file will be continuously improved as we work.  When
 it loses the warning at the top, that will mean we expect the PSM to
-be deployable in WildFly.  We are currently evaluating the additional
-resources it would take to continue development support for WebSphere
-deployment.
+be deployable in WildFly for production users.  We are currently
+evaluating the additional resources it would take to continue
+development support for WebSphere deployment.
 
 If you are using Red Hat Enterprise Linux, it will be easiest for you
 to run the automated installation script: `rhel-install.sh` in the
@@ -335,10 +335,10 @@ repository, update its location in your local properties:
    If you have a previous build deployed already, you can replace the
    deployment in the UI or add the `--force` switch after `deploy`.
 
-1. Create database schema and initial data. Use `seed.sql` to create tables and
-   data for the application, `jbpm.sql` to create tables and data for the
-   embedded jBPM engine, and `legacy_seed.sql` to create tables for entities
-   that have not yet been migrated to Hibernate5:
+1. Create database schema and initial data. Use the `seed.sql` data to
+   create most of the necessary tables, and `legacy_seed.sql` to
+   create tables for entities that have not yet been migrated to
+   Hibernate 5:
 
       ```ShellSession
       $ cat {/path/to/psm}/psm-app/db/legacy_seed.sql \

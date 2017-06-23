@@ -11,6 +11,9 @@ buildscript {
     }
 }
 
+
+// These libraries are known to be used, since they are required during compile
+// or on immediate deployment
 ext.libs = [
     commons_codec: 'commons-codec:commons-codec:1.6',
     commons_fileupload: 'commons-fileupload:commons-fileupload:1.2.2',
@@ -34,7 +37,55 @@ ext.libs = [
     spring_tx: 'org.springframework:spring-tx:3.0.5.RELEASE',
     spring_web: 'org.springframework:spring-web:3.0.5.RELEASE',
     spring_webmvc: 'org.springframework:spring-webmvc:3.0.5.RELEASE',
-    velocity: 'org.apache.velocity:velocity:1.7'
+    velocity: 'org.apache.velocity:velocity:1.7',
+]
+
+// These libraries were included in the original project, but it is unclear if they
+// are required.  We know for sure that SOME of them are loaded during runtime, but
+// need to spend some time investigating one by one.
+List runtime_libs = [
+    'org.antlr:antlr:3.3',
+    'org.antlr:antlr-runtime:3.3',
+    'aopalliance:aopalliance:1.0',
+    'asm:asm:3.3',
+    'org.codehaus.btm:btm:2.1.2',
+    'commons-collections:commons-collections:3.2.1',
+    'commons-logging:commons-logging:1.1.1',
+    'dom4j:dom4j:1.6.1',
+    'org.drools:drools-compiler:5.4.0.Final',
+    'org.drools:drools-persistence-jpa:5.4.0.Final',
+    'org.drools:drools-spring:5.4.0.Final',
+    'org.codehaus.jackson:jackson-mapper-asl:1.9.13',
+    'org.codehaus.janino:janino:2.5.15',
+    'javassist:javassist:3.12.1.GA',
+    'com.sun.xml.bind:jaxb-impl:2.2.2',
+    'com.sun.xml.bind:jaxb-xjc:2.2.2',
+    'org.jbpm:jbpm-bam:5.3.0.Final',
+    'org.jbpm:jbpm-bpmn2:5.3.0.Final',
+    'org.jbpm:jbpm-flow-builder:5.3.0.Final',
+    'org.jbpm:jbpm-human-task-hornetq:5.3.0.Final',
+    'org.jbpm:jbpm-human-task-jms:5.3.0.Final',
+    'org.jbpm:jbpm-human-task-mina:5.3.0.Final',
+    'org.jbpm:jbpm-workitems:5.3.0.Final',
+    //'jsr94:jsr94:1.1',
+    'net.sourceforge.jexcelapi:jxl:2.6.10',
+    'org.drools:knowledge-api:5.4.0.Final',
+    'org.drools:knowledge-internal-api:5.4.0.Final',
+    'org.apache.mina:mina-core:2.0.1',
+    'org.mvel:mvel2:2.1.0.drools16',
+    'com.google.protobuf:protobuf-java:2.4.1',
+    'org.slf4j:slf4j-api:1.6.4',
+    'org.slf4j:slf4j-log4j12:1.6.4',
+    'org.springframework:spring-aop:3.0.5.RELEASE',
+    'org.springframework:spring-asm:3.0.5.RELEASE',
+    'org.springframework:spring-context-support:3.0.5.RELEASE',
+    'org.springframework:spring-core:3.0.5.RELEASE',
+    'org.springframework:spring-expression:3.0.5.RELEASE',
+    'org.springframework.security:spring-security-acl:3.0.5.RELEASE',
+    'org.springframework.security:spring-security-aspects:3.0.5.RELEASE',
+    'org.springframework.security:spring-security-taglibs:3.0.5.RELEASE',
+    'xpp3:xpp3:1.1.4c',
+    'com.thoughtworks.xstream:xstream:1.4'
 ]
 
 allprojects {
@@ -195,6 +246,7 @@ project(':cms-portal-services') {
         earlib libs.velocity
         earlib project(path: ':cms-business-model', configuration: 'archives')
         earlib project(path: ':services', configuration: 'archives')
+        earlib runtime_libs
    }
 
     ear {

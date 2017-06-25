@@ -12,6 +12,7 @@ buildscript {
 }
 
 def jbpm_version = '5.4.0.Final'
+def spring_version = '3.0.5.RELEASE'
 
 // These libraries are known to be used, since they are required during compile
 // or on immediate deployment
@@ -33,19 +34,22 @@ ext.libs = [
        exclude group: 'javax.transaction'
        exclude group: 'org.hibernate'
        exclude group: 'org.hibernate.javax.persistence'
-    }
+    },
     log4j: 'log4j:log4j:1.2.16',
-    spring_beans: 'org.springframework:spring-beans:3.0.5.RELEASE',
-    spring_context: 'org.springframework:spring-context:3.0.5.RELEASE',
-    spring_jdbc: 'org.springframework:spring-jdbc:3.0.5.RELEASE',
+    spring_beans: 'org.springframework:spring-beans:${spring_version}',
+    spring_context: 'org.springframework:spring-context:${spring_version}',
+    spring_jdbc: 'org.springframework:spring-jdbc:${spring_version}',
     spring_ldap: 'org.springframework.ldap:spring-ldap-core:1.3.1.RELEASE',
-    spring_security_config: 'org.springframework.security:spring-security-config:3.0.5.RELEASE',
-    spring_security_core: 'org.springframework.security:spring-security-core:3.0.5.RELEASE',
-    spring_security_ldap: 'org.springframework.security:spring-security-ldap:3.0.5.RELEASE',
-    spring_security_web: 'org.springframework.security:spring-security-web:3.0.5.RELEASE',
-    spring_tx: 'org.springframework:spring-tx:3.0.5.RELEASE',
-    spring_web: 'org.springframework:spring-web:3.0.5.RELEASE',
-    spring_webmvc: 'org.springframework:spring-webmvc:3.0.5.RELEASE',
+    spring_security_acl: "org.springframework.security:spring-security-acl:${spring_version}",
+    spring_security_aspects: "org.springframework.security:spring-security-aspects:${spring_version}",
+    spring_security_config: "org.springframework.security:spring-security-config:${spring_version}",
+    spring_security_core: "org.springframework.security:spring-security-core:${spring_version}",
+    spring_security_ldap: "org.springframework.security:spring-security-ldap:${spring_version}",
+    spring_security_taglibs: "org.springframework.security:spring-security-taglibs:${spring_version}",
+    spring_security_web: "org.springframework.security:spring-security-web:${spring_version}",
+    spring_tx: "org.springframework:spring-tx:${spring_version}",
+    spring_web: "org.springframework:spring-web:${spring_version}",
+    spring_webmvc: "org.springframework:spring-webmvc:${spring_version}",
     velocity: 'org.apache.velocity:velocity:1.7',
 ]
 
@@ -69,13 +73,13 @@ List runtime_libs = [
     'javassist:javassist:3.12.1.GA',
     'com.sun.xml.bind:jaxb-impl:2.2.2',
     'com.sun.xml.bind:jaxb-xjc:2.2.2',
-    'org.jbpm:jbpm-bam:5.3.0.Final',
-    'org.jbpm:jbpm-bpmn2:5.3.0.Final',
-    'org.jbpm:jbpm-flow-builder:${jbpm_version}',
-    'org.jbpm:jbpm-human-task-hornetq:${jbpm_version}',
-    'org.jbpm:jbpm-human-task-jms:${jbpm_version}',
-    'org.jbpm:jbpm-human-task-mina:${jbpm_version}',
-    'org.jbpm:jbpm-workitems:${jbpm_version}',
+    "org.jbpm:jbpm-bam:${jbpm_version}",
+    "org.jbpm:jbpm-bpmn2:${jbpm_version}",
+    "org.jbpm:jbpm-flow-builder:${jbpm_version}",
+    "org.jbpm:jbpm-human-task-hornetq:${jbpm_version}",
+    "org.jbpm:jbpm-human-task-jms:${jbpm_version}",
+    "org.jbpm:jbpm-human-task-mina:${jbpm_version}",
+    "org.jbpm:jbpm-workitems:${jbpm_version}",
     'net.sourceforge.jexcelapi:jxl:2.6.10',
     'org.drools:knowledge-api:5.4.0.Final',
     'org.drools:knowledge-internal-api:5.4.0.Final',
@@ -84,14 +88,11 @@ List runtime_libs = [
     'com.google.protobuf:protobuf-java:2.4.1',
     'org.slf4j:slf4j-api:1.6.4',
     'org.slf4j:slf4j-log4j12:1.6.4',
-    'org.springframework:spring-aop:3.0.5.RELEASE',
-    'org.springframework:spring-asm:3.0.5.RELEASE',
-    'org.springframework:spring-context-support:3.0.5.RELEASE',
-    'org.springframework:spring-core:3.0.5.RELEASE',
-    'org.springframework:spring-expression:3.0.5.RELEASE',
-    'org.springframework.security:spring-security-acl:3.0.5.RELEASE',
-    'org.springframework.security:spring-security-aspects:3.0.5.RELEASE',
-    'org.springframework.security:spring-security-taglibs:3.0.5.RELEASE',
+    "org.springframework:spring-aop:${spring_version}",
+    "org.springframework:spring-asm:${spring_version}",
+    "org.springframework:spring-context-support:${spring_version}",
+    "org.springframework:spring-core:${spring_version}",
+    "org.springframework:spring-expression:${spring_version}",
     'xpp3:xpp3:1.1.4c',
     'com.thoughtworks.xstream:xstream:1.4'
 ]
@@ -120,6 +121,7 @@ project(':services') {
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/codehaus/jackson')
+        compile runtime_libs
     }
     sourceSets {
         main {
@@ -145,12 +147,12 @@ project(':cms-business-process') {
         compile libs.itext
         compile libs.jbpm_flow
         compile libs.jbpm_human_task_core
+        compile libs.jbpm_persistence_jpa
         compile libs.velocity
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar', exclude: 'cms-core.jar')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/codehaus/jackson')
-        runtime libs.jbpm_persistence_jpa
     }
 
     sourceSets {
@@ -170,19 +172,21 @@ project(':cms-web') {
     dependencies {
         providedCompile project(':services')
         providedCompile fileTree(dir: 'WebContent/WEB-INF/lib')
-        providedCompile libs.log4j
-        providedCompile libs.spring_beans
-        providedCompile libs.spring_context
-        providedCompile libs.spring_ldap
-        providedCompile libs.spring_security_core
-        providedCompile libs.spring_security_ldap
-        providedCompile libs.spring_security_web
-        providedCompile libs.spring_tx
-        providedCompile libs.spring_web
-        providedCompile libs.spring_webmvc
-        providedCompile 'org.springframework.security:spring-security-acl:3.0.5.RELEASE'
-        providedCompile 'org.springframework.security:spring-security-aspects:3.0.5.RELEASE'
-        providedCompile 'org.springframework.security:spring-security-config:3.0.5.RELEASE'
+        compile libs.log4j
+        compile libs.spring_beans
+        compile libs.spring_context
+        compile libs.spring_ldap
+        compile libs.spring_security_acl
+        compile libs.spring_security_aspects
+        compile libs.spring_security_config
+        compile libs.spring_security_core
+        compile libs.spring_security_ldap
+        compile libs.spring_security_taglibs
+        compile libs.spring_security_web
+        compile libs.spring_tx
+        compile libs.spring_web
+        compile libs.spring_webmvc
+        compile runtime_libs
     }
     webAppDirName = 'WebContent'
 }
@@ -245,9 +249,12 @@ project(':cms-portal-services') {
         earlib libs.spring_context
         earlib libs.spring_jdbc
         earlib libs.spring_ldap
+        earlib libs.spring_security_acl
+        earlib libs.spring_security_aspects
         earlib libs.spring_security_core
         earlib libs.spring_security_config
         earlib libs.spring_security_ldap
+        earlib libs.spring_security_taglibs
         earlib libs.spring_security_web
         earlib libs.spring_tx
         earlib libs.spring_web

@@ -1,7 +1,6 @@
 DROP TABLE IF EXISTS
   external_account_link,
   external_profile_link,
-  legacy_mapping,
   profile_assured_ext_svcs,
   profile_assured_svc_xref,
   provider_cos,
@@ -29,18 +28,6 @@ create table external_profile_link
 	profile_id bigint,
 	system_id varchar(255),
 	external_profile_id varchar(255)
-)
-;
-
-create table legacy_mapping
-(
-	legacy_mapping_id bigint not null
-		constraint legacy_mapping_pkey
-			primary key,
-	system_nm varchar(255),
-	code_type varchar(255),
-	internal_code varchar(255),
-	external_code varchar(255)
 )
 ;
 

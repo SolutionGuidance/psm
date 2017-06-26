@@ -117,25 +117,4 @@
 			<many-to-many class="gov.medicaid.entities.CategoryOfService" column="PROVIDER_COS_CD" unique="false" />
 		</bag>
 	</class>
-	<class name="gov.medicaid.entities.LegacySystemMapping" table="LEGACY_MAPPING">
-		<id column="LEGACY_MAPPING_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="systemName"
-			type="string">
-			<column name="SYSTEM_NM" />
-		</property>
-		<property generated="never" lazy="false" length="200" name="codeType"
-			type="string">
-			<column name="CODE_TYPE" />
-		</property>
-		<property generated="never" lazy="false" length="200" name="internalCode"
-			type="string">
-			<column name="INTERNAL_CODE" />
-		</property>
-		<property generated="never" lazy="false" length="200" name="externalCode"
-			type="string">
-			<column name="EXTERNAL_CODE" />
-		</property>
-	</class>
 </hibernate-mapping>

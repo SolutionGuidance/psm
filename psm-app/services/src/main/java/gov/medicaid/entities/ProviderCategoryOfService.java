@@ -15,9 +15,6 @@ public class ProviderCategoryOfService extends IdentifiableEntity {
     private Date startDate;
     private Date endDate;
 
-    public ProviderCategoryOfService() {
-    }
-
     public long getProfileId() {
         return profileId;
     }

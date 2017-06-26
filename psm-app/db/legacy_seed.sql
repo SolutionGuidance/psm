@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS
-  event,
   external_account_link,
   external_profile_link,
   legacy_mapping,
@@ -11,19 +10,6 @@ DROP TABLE IF EXISTS
   provider_svcs,
   required_fld
 CASCADE ;
-
-create table event
-(
-	event_id bigint not null
-		constraint event_pkey
-			primary key,
-	npi varchar(10),
-	ticket_id bigint,
-	status_cd varchar(2),
-	created_by varchar(50),
-	create_ts timestamp
-)
-;
 
 create table external_account_link
 (

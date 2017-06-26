@@ -24,8 +24,6 @@ import gov.medicaid.entities.Event;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
-import gov.medicaid.services.SequenceGenerator;
-import gov.medicaid.services.util.Sequences;
 import gov.medicaid.services.util.XMLAdapter;
 
 import java.util.Date;
@@ -60,11 +58,6 @@ public class DisqualificationHandler extends GenericHandler {
     private final EntityManager entityManager;
 
     /**
-     * Sequence generator.
-     */
-    private final SequenceGenerator sequenceGenerator;
-
-    /**
      * The screening system user.
      */
     private CMSUser systemUser;
@@ -76,7 +69,6 @@ public class DisqualificationHandler extends GenericHandler {
         CMSConfigurator config = new CMSConfigurator();
         this.providerService = config.getEnrollmentService();
         this.entityManager = config.getPortalEntityManager();
-        sequenceGenerator = config.getSequenceGenerator();
         systemUser = config.getSystemUser();
     }
 
@@ -106,7 +98,7 @@ public class DisqualificationHandler extends GenericHandler {
                 Event e = new Event();
                 e.setCreatedBy(systemUser.getUserId());
                 e.setCreatedOn(new Date());
-                e.setId(sequenceGenerator.getNextValue(Sequences.EVENT_SEQ));
+                e.setId(0);
                 e.setNpi(model.getEnrollment().getProviderInformation().getNPI());
                 e.setStatus("03");
                 e.setTicketId(ticket.getTicketId());

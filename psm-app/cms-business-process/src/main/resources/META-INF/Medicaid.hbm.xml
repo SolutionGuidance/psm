@@ -138,21 +138,6 @@
 			<many-to-many class="gov.medicaid.entities.CategoryOfService" column="PROVIDER_COS_CD" unique="false" />
 		</bag>
 	</class>
-	<class name="gov.medicaid.entities.Event" table="EVENT">
-		<id column="EVENT_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property column="NPI" generated="never" lazy="false" length="10"
-			name="npi" type="string" />
-		<property column="TICKET_ID" generated="never" lazy="false"
-			name="ticketId" type="long" />
-		<property column="STATUS_CD" generated="never" lazy="false"
-			length="2" name="status" type="string" />
-		<property column="CREATED_BY" generated="never" lazy="false"
-			length="50" name="createdBy" type="string" />
-		<property column="CREATE_TS" generated="never" lazy="false"
-			name="createdOn" type="timestamp" />
-	</class>
 	<class name="gov.medicaid.entities.LegacySystemMapping" table="LEGACY_MAPPING">
 		<id column="LEGACY_MAPPING_ID" name="id" type="long">
 			<generator class="assigned" />

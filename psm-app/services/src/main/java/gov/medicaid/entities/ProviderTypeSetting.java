@@ -15,15 +15,62 @@
  */
 package gov.medicaid.entities;
 
-public class ProviderTypeSetting extends IdentifiableEntity {
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 
+/**
+ * This class contains a polymorphic, application-side many-to-many relationship
+ * between ProviderType and several other classes. It is a legacy pattern that
+ * we are moving away from.
+ */
+@Deprecated
+@javax.persistence.Entity
+@Table(name = "provider_type_settings")
+public class ProviderTypeSetting implements Serializable {
+    @Id
+    @Column(name = "provider_type_setting_id")
+    private int id;
+
+    /**
+     * @see ProviderType
+     */
+    @Column(name = "provider_type_code")
     private String providerTypeCode;
 
+    /**
+     * Describes the relationship between the ProviderType and the related
+     * entity; its value is one of a few constants.
+     *
+     * @see gov.medicaid.entities.dto.ViewStatics
+     */
+    @Column(name = "relationship_type")
     private String relationshipType;
 
+    /**
+     * The Java class name of the related entity.
+     */
+    @Column(name = "related_entity_type")
     private String relatedEntityType;
 
+    /**
+     * The primary key value of the related entity. The related entities always
+     * inherit from LookupEntity, which defines the primary key as a string
+     * named <code>code</code>.
+     *
+     * @see LookupEntity
+     */
+    @Column(name = "related_entity_code")
     private String relatedEntityCode;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getProviderTypeCode() {
         return providerTypeCode;

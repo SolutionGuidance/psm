@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS
   profile_assured_svc_xref,
   provider_cos,
   provider_cos_xref,
-  provider_setting,
   provider_svcs,
   required_fld
 CASCADE ;
@@ -92,18 +91,6 @@ create table provider_cos_xref
 alter table provider_cos
 	add constraint fk2ciqibe0u9h2cmyeut8q5alir
 		foreign key (provider_cos_id) references provider_cos_xref
-;
-
-create table provider_setting
-(
-	provider_setting_id bigint not null
-		constraint provider_setting_pkey
-			primary key,
-	provider_typ_cd varchar(255),
-	rel_typ varchar(2),
-	related_entity_typ varchar(255),
-	related_entity_cd varchar(255)
-)
 ;
 
 create table provider_svcs

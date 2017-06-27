@@ -75,27 +75,6 @@
 			<column name="EXTERNAL_PROFILE_ID" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.ProviderTypeSetting" table="PROVIDER_SETTING">
-		<id column="PROVIDER_SETTING_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="providerTypeCode"
-			type="string">
-			<column name="PROVIDER_TYP_CD" />
-		</property>
-		<property generated="never" lazy="false" name="relationshipType"
-			type="string">
-			<column length="2" name="REL_TYP" />
-		</property>
-		<property generated="never" lazy="false" name="relatedEntityType"
-			type="string">
-			<column name="RELATED_ENTITY_TYP" />
-		</property>
-		<property generated="never" lazy="false" name="relatedEntityCode"
-			type="string">
-			<column name="RELATED_ENTITY_CD" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.ProviderService" table="PROVIDER_SVCS">
 		<id column="PROVIDER_SVCS_ID" name="id" type="long">
 			<generator class="assigned" />

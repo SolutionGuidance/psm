@@ -91,7 +91,7 @@ public class ProviderDashboardController extends BaseController {
      *
      * @return the dashboard page and the needed models
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/"
+     * @endpoint "/provider/dashboard/"
      * @verb GET
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -128,7 +128,7 @@ public class ProviderDashboardController extends BaseController {
      * Shows the account setup page.
      *
      * @return the account setup page (varies depending on user type)
-     * @endpoint "/setup"
+     * @endpoint "/provider/dashboard/setup"
      * @verb GET
      */
     @RequestMapping(value = "/setup", method = RequestMethod.GET)
@@ -146,7 +146,7 @@ public class ProviderDashboardController extends BaseController {
      *
      * @return the dashboard page
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/list"
+     * @endpoint "/provider/dashboard/list"
      * @verb GET
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -159,7 +159,7 @@ public class ProviderDashboardController extends BaseController {
      *
      * @return the drafts page
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/drafts"
+     * @endpoint "/provider/dashboard/drafts"
      * @verb GET
      */
     @RequestMapping(value = "/drafts", method = RequestMethod.GET)
@@ -175,7 +175,7 @@ public class ProviderDashboardController extends BaseController {
      *
      * @return the pending page
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/pending"
+     * @endpoint "/provider/dashboard/pending"
      * @verb GET
      */
     @RequestMapping(value = "/pending", method = RequestMethod.GET)
@@ -191,7 +191,7 @@ public class ProviderDashboardController extends BaseController {
      *
      * @return the approved page
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/approved"
+     * @endpoint "/provider/dashboard/approved"
      * @verb GET
      */
     @RequestMapping(value = "/approved", method = RequestMethod.GET)
@@ -207,7 +207,7 @@ public class ProviderDashboardController extends BaseController {
      *
      * @return the rejected page
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/rejected"
+     * @endpoint "/provider/dashboard/rejected"
      * @verb GET
      */
     @RequestMapping(value = "/rejected", method = RequestMethod.GET)
@@ -239,7 +239,7 @@ public class ProviderDashboardController extends BaseController {
      * @param criteria the search criteria
      * @return the view to show the results by status
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/filter"
+     * @endpoint "/provider/dashboard/filter"
      * @verb GET
      */
     @RequestMapping(value = "/filter", method = RequestMethod.GET)
@@ -261,7 +261,7 @@ public class ProviderDashboardController extends BaseController {
      * @param response the response to write to
      * @throws PortalServiceException for any errors encountered
      * @throws IOException for read/write errors
-     * @endpoint "/export"
+     * @endpoint "/provider/dashboard/export"
      * @verb GET
      */
     @SuppressWarnings("unchecked")
@@ -290,7 +290,7 @@ public class ProviderDashboardController extends BaseController {
      * @param criteria the filter
      * @return the dashboard page
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/list/filter"
+     * @endpoint "/provider/dashboard/list/filter"
      * @verb GET
      */
     @RequestMapping(value = "/list/filter", method = RequestMethod.GET)

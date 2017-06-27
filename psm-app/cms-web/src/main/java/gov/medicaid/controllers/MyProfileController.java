@@ -99,7 +99,7 @@ public class MyProfileController extends BaseController {
      *
      * @return the update password page.
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/reset"
+     * @endpoint "/provider/profile/reset"
      * @verb GET
      */
     @RequestMapping(value = "/reset", method = RequestMethod.GET)
@@ -126,7 +126,7 @@ public class MyProfileController extends BaseController {
      * @param errors the binding results
      * @return the redirect to the profiles page, or back to the input page request is not valid
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/reset"
+     * @endpoint "/provider/profile/reset"
      * @verb POST
      */
     @RequestMapping(value = "/reset", method = RequestMethod.POST)
@@ -154,7 +154,7 @@ public class MyProfileController extends BaseController {
      *
      * @return the my profile model and view
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/"
+     * @endpoint "/provider/profile/"
      * @verb GET
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -172,7 +172,7 @@ public class MyProfileController extends BaseController {
      * @param profileId the profile to renew
      * @return the enrollment start page.
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/renew"
+     * @endpoint "/provider/profile/renew"
      * @verb GET
      */
     @RequestMapping(value = "/renew", method = RequestMethod.GET)
@@ -217,7 +217,7 @@ public class MyProfileController extends BaseController {
      * @param profileId the profile to be edited
      * @return the enrollment start page.
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/edit"
+     * @endpoint "/provider/profile/edit"
      * @verb GET
      */
     @RequestMapping(value = "/edit", method = RequestMethod.GET)

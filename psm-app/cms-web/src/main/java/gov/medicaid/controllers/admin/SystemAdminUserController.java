@@ -92,7 +92,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
      * @return the model and view instance that contains the name of view to be rendered and data to be used for
      *         rendering (not null)
      * @throws PortalServiceException - If there are any errors in the action
-     * @endpoint "/list"
+     * @endpoint "/system/user/list"
      */
     @RequestMapping("/list")
     public ModelAndView view() throws PortalServiceException {
@@ -114,7 +114,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
      *
      * @throws IllegalArgumentException - if role is not one of the four configured roles, or if the criteria is null
      * @throws PortalServiceException - If there are any errors in the action
-     * @endpoint "/search"
+     * @endpoint "/system/user/search"
      */
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam("role") String role,
@@ -149,7 +149,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
      *
      * @throws IllegalArgumentException - if role is not one of the four configured roles
      * @throws PortalServiceException - If there are any errors in the action
-     * @endpoint "/details"
+     * @endpoint "/system/user/details"
      */
     @RequestMapping("/details")
     public ModelAndView get(@RequestParam("role") String role, @RequestParam("userId") String userId)
@@ -174,8 +174,8 @@ public class SystemAdminUserController extends BaseSystemAdminController {
      *
      * @throws IllegalArgumentException - if role is not one of the four configured roles
      * @throws PortalServiceException - If there are any errors in the action
-     * @endpoint "/edit"
-     * @endpoint "/new"
+     * @endpoint "/system/user/edit"
+     * @endpoint "/system/user/new"
      * @verb GET
      */
     @RequestMapping(value = { "/edit", "/new" }, method = RequestMethod.GET)
@@ -204,7 +204,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
      *
      * @throws IllegalArgumentException - if role is not one of the four configured roles, if user is null/empty
      * @throws PortalServiceException - If there are any errors in the action
-     * @endpoint "/new"
+     * @endpoint "/system/user/new"
      * @verb POST
      */
     @RequestMapping(value = "/new", method = RequestMethod.POST)
@@ -260,7 +260,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
      *
      * @throws IllegalArgumentException - if role is not one of the four configured roles, if user is null
      * @throws PortalServiceException - If there are any errors in the action
-     * @endpoint "/edit"
+     * @endpoint "/system/user/edit"
      * @verb POST
      */
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -310,7 +310,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
      *
      * @throws IllegalArgumentException - if role is not one of the four configured roles
      * @throws PortalServiceException - If there are any errors in the action
-     * @endpoint "/delete"
+     * @endpoint "/system/user/delete"
      */
     @RequestMapping(value = "/delete")
     public ModelAndView delete(@RequestParam("role") String role, @RequestParam("userIds") String[] userIds)

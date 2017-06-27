@@ -98,7 +98,7 @@ public class OnboardingController extends BaseController {
      * @param accountId the account id to use
      * @return the external profiles listing
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/list"
+     * @endpoint "/provider/onboarding/list"
      * @verb GET
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -137,7 +137,7 @@ public class OnboardingController extends BaseController {
      * @param externalProfileIds the selection
      * @return back to the listing page
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/list"
+     * @endpoint "/provider/onboarding/list"
      * @verb POST
      */
     @RequestMapping(value = "/list", method = RequestMethod.POST)
@@ -196,7 +196,7 @@ public class OnboardingController extends BaseController {
      *
      * @return the page to get the account details.
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/link"
+     * @endpoint "/provider/onboarding/link"
      * @verb GET
      */
     @RequestMapping(value = "/link", method = RequestMethod.GET)
@@ -214,7 +214,7 @@ public class OnboardingController extends BaseController {
      * @param errors the binding results
      * @return the view to list the profiles for the account, or back to the input if request is not valid
      * @throws PortalServiceException for any errors encountered
-     * @endpoint "/link"
+     * @endpoint "/provider/onboarding/link"
      * @verb POST
      */
     @RequestMapping(value = "/link", method = RequestMethod.POST)

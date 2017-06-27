@@ -69,7 +69,7 @@ public class SystemAdminUserSearchController extends BaseSystemAdminController {
      *        rendering (not null)
      * @throws IllegalArgumentException - If the given criteria is null
      * @throws PortalServiceException - If there are any errors in the action
-     * @endpoint "/list"
+     * @endpoint "/system/search/list"
      */
     @RequestMapping("/list")
     public ModelAndView search(UserSearchCriteria criteria) throws PortalServiceException {
@@ -111,7 +111,7 @@ public class SystemAdminUserSearchController extends BaseSystemAdminController {
      * @param userIds - the entity IDs to be deleted
      * @return the status of the request, including a possible message
      * @throws IllegalArgumentException - If the list given is null
-     * @endpoint "/delete"
+     * @endpoint "/system/search/delete"
      */
     @RequestMapping("/delete")
     @ResponseBody

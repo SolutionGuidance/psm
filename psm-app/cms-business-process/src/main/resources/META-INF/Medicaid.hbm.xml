@@ -75,29 +75,4 @@
 			<column name="EXTERNAL_PROFILE_ID" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.ProviderCategoryOfService" table="PROVIDER_COS_XREF">
-		<id column="PROVIDER_COS_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="profileId"
-			type="long">
-			<column default="0" name="PROFILE_ID" />
-		</property>
-		<property generated="never" lazy="false" name="ticketId"
-			type="long">
-			<column default="0" name="TICKET_ID" />
-		</property>
-		<property generated="never" name="startDate" type="timestamp">
-			<column name="START_DT" not-null="true" />
-		</property>
-		<property generated="never" name="endDate" type="timestamp">
-			<column name="END_DT" />
-		</property>
-		<bag name="categories" table="PROVIDER_COS">
-			<key>
-				<column name="PROVIDER_COS_ID" not-null="true" />
-			</key>
-			<many-to-many class="gov.medicaid.entities.CategoryOfService" column="PROVIDER_COS_CD" unique="false" />
-		</bag>
-	</class>
 </hibernate-mapping>

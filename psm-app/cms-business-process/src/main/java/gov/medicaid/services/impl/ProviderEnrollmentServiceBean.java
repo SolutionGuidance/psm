@@ -67,6 +67,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityGraph;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.sql.rowset.serial.SerialBlob;
@@ -2164,11 +2165,15 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     private TypedQuery<ProviderCategoryOfService> queryCategoriesOfService(
             String condition
     ) {
+        EntityGraph graph = getEm()
+                .getEntityGraph("ProviderCategoryOfService with categories");
         return getEm()
-                .createQuery("FROM ProviderCategoryOfService p " +
+                .createQuery("SELECT DISTINCT p " +
+                                "FROM ProviderCategoryOfService p " +
                                 "WHERE " + condition + " " +
                                 "ORDER BY p.startDate",
-                        ProviderCategoryOfService.class);
+                        ProviderCategoryOfService.class)
+                .setHint("javax.persistence.loadgraph", graph);
     }
 
     /**
@@ -2184,7 +2189,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public void addCOSToProfile(CMSUser user, ProviderCategoryOfService categoryOfService, long prevCatServiceId,
         Date prevCatEndDate) throws PortalServiceException {
         checkProfileEntitlement(user, categoryOfService.getProfileId());
-        categoryOfService.setId(getSequence().getNextValue(Sequences.PROVIDER_COS_SEQ));
+        categoryOfService.setId(0);
         getEm().persist(categoryOfService);
         if (prevCatServiceId != 0) {
             ProviderCategoryOfService service = getEm().find(ProviderCategoryOfService.class, prevCatServiceId);
@@ -2226,7 +2231,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public void addCOSToTicket(CMSUser user, ProviderCategoryOfService categoryOfService, long prevCatServiceId,
         Date prevCatEndDate) throws PortalServiceException {
         checkTicketEntitlement(user, categoryOfService.getTicketId());
-        categoryOfService.setId(getSequence().getNextValue(Sequences.PROVIDER_COS_SEQ));
+        categoryOfService.setId(0);
         getEm().persist(categoryOfService);
         if (prevCatServiceId != 0) {
             ProviderCategoryOfService service = getEm().find(ProviderCategoryOfService.class, prevCatServiceId);

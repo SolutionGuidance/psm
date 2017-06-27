@@ -87,6 +87,13 @@ project(':cms-web') {
         providedCompile fileTree(dir: 'WebContent/WEB-INF/lib')
     }
     webAppDirName = 'WebContent'
+
+    task apiDocs(type: Javadoc) {
+      source = sourceSets.main.allJava
+      classpath += configurations.compile
+      destinationDir = reporting.file('api-docs')
+      options.optionFiles << file('javadoc.options')
+    }
 }
 
 project(':cms-business-model') {

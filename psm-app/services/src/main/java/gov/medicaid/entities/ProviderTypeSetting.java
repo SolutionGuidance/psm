@@ -25,13 +25,6 @@ public class ProviderTypeSetting extends IdentifiableEntity {
 
     private String relatedEntityCode;
 
-    /**
-     * Empty constructor.
-     */
-    public ProviderTypeSetting() {
-
-    }
-
     public String getProviderTypeCode() {
         return providerTypeCode;
     }

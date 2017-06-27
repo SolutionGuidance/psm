@@ -17,6 +17,11 @@ before_script:
 
 install: true
 
+# The build step here also builds our Javadocs.
 script:
   - cd psm-app
-  - ./gradlew --no-daemon --console=plain clean build
+  - ./gradlew --no-daemon --console=plain clean build cms-web:apiDocs
+
+# Push the new Javadocs to our GitHub Pages site.
+after_success:
+  - ../scripts/push-javadoc-to-gh-pages.sh

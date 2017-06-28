@@ -311,11 +311,6 @@ public class ViewStatics {
     /**
      * License option relationship.
      */
-    public static final String REL_LICENSE_OPTIONS = "LO";
-    
-    /**
-     * License option relationship.
-     */
     public static final String REL_QP_LICENSE_OPTIONS = "QL";
 
     /**

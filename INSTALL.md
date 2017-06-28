@@ -354,3 +354,12 @@ repository, update its location in your local properties:
     `system` is a "system administrator" account that can create new
     accounts.  Username `admin` with password `admin` is a "service
     admin" account that can create new provider enrollments.
+
+# Documentation
+
+Generate the API documentation from Javadoc annotations by invoking
+gradle:
+
+    ./gradlew cms-web:apiDocs
+
+The generated documentation will go into `psm-app/cms-web/build/reports/api-docs`.

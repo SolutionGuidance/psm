@@ -37,11 +37,6 @@ public class Sequences {
      */
     public static final String EXT_PROF_LINK_SEQ = "EXT_PROF_LINK_SEQ";
 
-    /**
-     * For help items.
-     */
-    public static final String HELP_ITEM_SEQ = "HELP_ITEM_SEQ";
-
     public static final String SERVICE_SEQ = "SERVICE_SEQ";
 
     /**

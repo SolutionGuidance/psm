@@ -75,7 +75,7 @@ public class HelpServiceBean extends BaseService implements HelpService {
         }
 
         try {
-            help.setId(getSequence().getNextValue(Sequences.HELP_ITEM_SEQ));
+            help.setId(0);
             getEm().persist(help);
             return LogUtil.traceExit(getLog(), signature, help.getId());
         } catch (PersistenceException e) {

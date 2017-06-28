@@ -1,7 +1,14 @@
 # Requirements Traceability Matrix
 
-| Requirement | Source |  Priority |
-| ----------  | ------ | --------- |
+| Requirement | Source |  Source Document | Priority |
+| ----------  | ------ | --------- | ---------- |
+| Keep a record of the date of each screening/monitoring event, the score, and the agencies decision for each provider.  | MO | Screening and Auditing Notes.docx | |
+| Download all monitoring risk scores for each month as a CSV | MO | Screening and Auditing Notes.docx | |
+| Compare monitoring statistics (e.g. license expirations that were not caught within a month, total  number of sanctions) from one month to the next. | MO | Screening and Auditing Notes.docx | |
+| Store monthly audit record for a provider even if their information has not changed. | MO | Screening and Auditing Notes.docx | |
+| Do not send re-screening results to admin for review if provider information has not changed. | MO | Screening and Auditing Notes.docx | |
+| 
+|  |  |   |
 | Capability to link individuals to their organizations and vice versa. | Pre-certification |  |
 | Capability to match on multiple variations of an individual's or organization's name to ensure that the correct entity is verified. | Pre-certification |  |
 | Ability to apply a range of screening rules to cross check data elements within the enrollment application. | Pre-certification |  |
@@ -43,3 +50,4 @@
 | The system accepts, validates, and processes transactions or user entries to update and maintain provider information. | Pre-certification |  |
 | The system maintains an audit trail of all updates to the provider data, for a time period specified by the state. | Pre-certification |  |
 | The system maintains providers’ drug enforcement administration (DEA) numbers. | Pre-certification |  |
+|   |  |  |

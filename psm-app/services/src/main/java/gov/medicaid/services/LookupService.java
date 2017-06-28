@@ -96,17 +96,20 @@ public interface LookupService {
     /**
      * Find the related lookups to the given provider.
      *
-     * @param cls
-     *            the class to search for
-     * @param providerType
-     *            the provider type to filter on
-     * @param relType
-     *            the relationship mapping
-     * @param <T>
-     *            the return type
+     * @param cls          the class to search for
+     * @param providerType the provider type to filter on
+     * @param relType      the relationship mapping
+     * @param <T>          the return type
      * @return the related types
+     * @see gov.medicaid.entities.ProviderTypeSetting
+     * @deprecated These should be replaced with Hibernate relationships.
      */
-    <T extends LookupEntity> List<T> findRelatedLookup(Class<T> cls, String providerType, String relType);
+    @Deprecated
+    <T extends LookupEntity> List<T> findRelatedLookup(
+            Class<T> cls,
+            String providerType,
+            String relType
+    );
 
     /**
      * Retrieves all the lookups of the given class.

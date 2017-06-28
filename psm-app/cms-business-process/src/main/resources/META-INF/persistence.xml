@@ -82,6 +82,7 @@
     <class>gov.medicaid.entities.ProviderProfile</class>
     <class>gov.medicaid.entities.ProviderStatement</class>
     <class>gov.medicaid.entities.ProviderType</class>
+    <class>gov.medicaid.entities.ProviderTypeSetting</class>
     <class>gov.medicaid.entities.QPType</class>
     <class>gov.medicaid.entities.RelationshipType</class>
     <class>gov.medicaid.entities.RequestType</class>

@@ -197,26 +197,29 @@ public class LookupServiceBean implements LookupService {
     /**
      * Find the related lookups to the given provider.
      *
-     * @param cls
-     *            the class to search for
-     * @param providerType
-     *            the provider type to filter on
-     * @param relType
-     *            the relationship mapping
-     * @param <T>
-     *            the return type
+     * @param cls          the class to search for
+     * @param providerType the provider type to filter on
+     * @param relType      the relationship mapping
+     * @param <T>          the return type
      * @return the related types
      */
-    @SuppressWarnings("unchecked")
-    public <T extends LookupEntity> List<T> findRelatedLookup(Class<T> cls, String providerType, String relType) {
-        Query query = em.createQuery("Select l FROM " + cls.getName() + " l, ProviderTypeSetting s WHERE "
-                + "s.providerTypeCode = :providerType AND l.code = s.relatedEntityCode AND "
-                + "s.relationshipType = :relationshipType  AND s.relatedEntityType = :entityType order by l.description");
-        query.setParameter("providerType", providerType);
-        query.setParameter("relationshipType", relType);
-        query.setParameter("entityType", cls.getSimpleName());
-
-        return query.getResultList();
+    public <T extends LookupEntity> List<T> findRelatedLookup(
+            Class<T> cls,
+            String providerType,
+            String relType
+    ) {
+        return em.createQuery("Select l FROM " + cls.getName() + " l, " +
+                        "ProviderTypeSetting s " +
+                        "WHERE s.providerTypeCode = :providerType" +
+                        " AND l.code = s.relatedEntityCode" +
+                        " AND s.relationshipType = :relationshipType" +
+                        " AND s.relatedEntityType = :entityType " +
+                        "order by l.description",
+                cls)
+                .setParameter("providerType", providerType)
+                .setParameter("relationshipType", relType)
+                .setParameter("entityType", cls.getSimpleName())
+                .getResultList();
     }
 
     /**

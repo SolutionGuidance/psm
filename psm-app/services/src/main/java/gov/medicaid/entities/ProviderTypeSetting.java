@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -15,107 +15,91 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+
 /**
- * Represents provider type settings.
- *
- * @author TCSASSEMBLER
- * @version 1.0
+ * This class contains a polymorphic, application-side many-to-many relationship
+ * between ProviderType and several other classes. It is a legacy pattern that
+ * we are moving away from.
  */
-public class ProviderTypeSetting extends IdentifiableEntity {
+@Deprecated
+@javax.persistence.Entity
+@Table(name = "provider_type_settings")
+public class ProviderTypeSetting implements Serializable {
+    @Id
+    @Column(name = "provider_type_setting_id")
+    private int id;
 
     /**
-     * The provider type code.
+     * @see ProviderType
      */
+    @Column(name = "provider_type_code")
     private String providerTypeCode;
 
     /**
-     * The setting relationship type.
+     * Describes the relationship between the ProviderType and the related
+     * entity; its value is one of a few constants.
+     *
+     * @see gov.medicaid.entities.dto.ViewStatics
      */
+    @Column(name = "relationship_type")
     private String relationshipType;
 
     /**
-     * The related entity type.
+     * The Java class name of the related entity.
      */
+    @Column(name = "related_entity_type")
     private String relatedEntityType;
 
     /**
-     * The related entity code.
+     * The primary key value of the related entity. The related entities always
+     * inherit from LookupEntity, which defines the primary key as a string
+     * named <code>code</code>.
+     *
+     * @see LookupEntity
      */
+    @Column(name = "related_entity_code")
     private String relatedEntityCode;
 
-    /**
-     * Empty constructor.
-     */
-    public ProviderTypeSetting() {
-
+    public int getId() {
+        return id;
     }
 
-    /**
-     * Gets the value of the field <code>providerTypeCode</code>.
-     *
-     * @return the providerTypeCode
-     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getProviderTypeCode() {
         return providerTypeCode;
     }
 
-    /**
-     * Sets the value of the field <code>providerTypeCode</code>.
-     *
-     * @param providerTypeCode the providerTypeCode to set
-     */
     public void setProviderTypeCode(String providerTypeCode) {
         this.providerTypeCode = providerTypeCode;
     }
 
-    /**
-     * Gets the value of the field <code>relatedEntityType</code>.
-     *
-     * @return the relatedEntityType
-     */
     public String getRelatedEntityType() {
         return relatedEntityType;
     }
 
-    /**
-     * Sets the value of the field <code>relatedEntityType</code>.
-     *
-     * @param relatedEntityType the relatedEntityType to set
-     */
     public void setRelatedEntityType(String relatedEntityType) {
         this.relatedEntityType = relatedEntityType;
     }
 
-    /**
-     * Gets the value of the field <code>relatedEntityCode</code>.
-     *
-     * @return the relatedEntityCode
-     */
     public String getRelatedEntityCode() {
         return relatedEntityCode;
     }
 
-    /**
-     * Sets the value of the field <code>relatedEntityCode</code>.
-     *
-     * @param relatedEntityCode the relatedEntityCode to set
-     */
     public void setRelatedEntityCode(String relatedEntityCode) {
         this.relatedEntityCode = relatedEntityCode;
     }
 
-    /**
-     * Gets the value of the field <code>relationshipType</code>.
-     * @return the relationshipType
-     */
     public String getRelationshipType() {
         return relationshipType;
     }
 
-    /**
-     * Sets the value of the field <code>relationshipType</code>.
-     * @param relationshipType the relationshipType to set
-     */
     public void setRelationshipType(String relationshipType) {
         this.relationshipType = relationshipType;
     }

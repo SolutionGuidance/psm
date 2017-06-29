@@ -7,7 +7,20 @@
 | Compare monitoring statistics (e.g. license expirations that were not caught within a month, total  number of sanctions) from one month to the next. | MO | Screening and Auditing Notes.docx | |
 | Store monthly audit record for a provider even if their information has not changed. | MO | Screening and Auditing Notes.docx | |
 | Do not send re-screening results to admin for review if provider information has not changed. | MO | Screening and Auditing Notes.docx | |
-| 
+| Accept a form that shows a tax ID number and legal name for each provider (ex forms: CP 575 or 147C letter; 941 Employer's's Quarterly Federal Tax Return; 8109 Tax Coupon; or letter from IRS with the Federal Tax Identification Number and legal name). | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Associate multiple Medicare IDs with the same provider, if the provider has multiple locations. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Provider-type business rules described in the Enrollment Information Guide must be integrated into the system. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Integrate records with MO HealthNet. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Provide per-field instructions on the application screen.  | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Provide detailed instructions for completing the application via a Help link. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Provide a screen to verify entered information. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Allow applicant to edit entered information. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Allow applicant to print application for their records. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Allow applicant to save a partial application as a draft. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Allow applicant to upload attachments to support the application. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Indicate what kinds of documents/attachments are required by provider type. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Indicate which fields are required. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Prevent application submission if required fields are empty. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
 |  |  |   |
 | Capability to link individuals to their organizations and vice versa. | Pre-certification |  |
 | Capability to match on multiple variations of an individual's or organization's name to ensure that the correct entity is verified. | Pre-certification |  |

@@ -185,14 +185,19 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         if (ticket.getRequestType().getDescription().equals(ViewStatics.ENROLLMENT_REQUEST)) {
             profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
-            profile.setProfileId(getSequence().getNextValue(Sequences.PROVIDER_NUMBER_SEQ));
             profile.setOwnerId(ticket.getSubmittedBy());
             profile.setCreatedBy(ticket.getSubmittedBy());
             profile.setCreatedOn(ticket.getStatusDate());
 
             profile.getEntity().setEnrolled("Y");
-            // generate profile id
-            insertProfile(0, profile);
+
+            profile.setId(0);
+            profile.setTicketId(0);
+            getEm().persist(profile);
+
+            profile.setProfileId(profile.getId());
+
+            saveRelatedEntities(profile);
         } else if (ticket.getRequestType().getDescription().equals(ViewStatics.IMPORT_REQUEST)) {
             profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
             profile.setOwnerId(ticket.getSubmittedBy());
@@ -861,6 +866,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         details.setId(0);
         getEm().persist(details);
 
+        saveRelatedEntities(details);
+    }
+
+    private void saveRelatedEntities(ProviderProfile details) throws PortalServiceException {
         // save profile owner
         insertProviderEntity(details);
 

@@ -23,11 +23,6 @@ package gov.medicaid.services.util;
  */
 public class Sequences {
     /**
-     * Used for each new provider enrollment.
-     */
-    public static final String PROVIDER_NUMBER_SEQ = "PROVIDER_NUMBER_SEQ";
-
-    /**
      * Used for each account link.
      */
     public static final String ACOUNT_LINK_SEQ = "ACOUNT_LINK_SEQ";

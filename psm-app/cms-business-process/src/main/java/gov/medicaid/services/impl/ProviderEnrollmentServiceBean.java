@@ -59,6 +59,7 @@ import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.Sequences;
 import gov.medicaid.services.util.Util;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.NotImplementedException;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -740,23 +741,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     public long importProfile(CMSUser user, SystemId sourceSystem, ProviderProfile profile)
         throws PortalServiceException {
-
-        List<Document> attachments = profile.getAttachments();
-        for (Document document : attachments) {
-            saveContentsAndCloseStreams(document);
-        }
-
-        ProviderProfile clone = profile.clone();
-        clone.getEntity().setLegacyIndicator("Y");
-
-        long internalProfileId = getSequence().getNextValue(Sequences.PROVIDER_NUMBER_SEQ);
-        Enrollment ticket = new Enrollment();
-        ticket.setRequestType(findLookupByDescription(RequestType.class, ViewStatics.IMPORT_REQUEST));
-
-        clone.setProfileId(internalProfileId);
-        ticket.setDetails(clone);
-        bypassJBPM(user, ticket);
-        return internalProfileId;
+        throw new NotImplementedException();
     }
 
     /**

@@ -50,3 +50,6 @@ psm-app/schema/
 
 # Ignore IntelliJ Idea files
 psm-app/.idea/
+
+# Output from Serenity runs
+psm-app/integration-tests/target

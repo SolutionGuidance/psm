@@ -186,6 +186,10 @@ project(':cms-business-model') {
             generatePackage = 'gov.medicaid.domain.model'
         }
     }
+    clean {
+        delete jaxb.xjc.destinationDir
+        delete "${rootDir}/schema/"
+    }
 }
 
 project(':cms-portal-services') {

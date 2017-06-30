@@ -74,20 +74,5 @@
         <ejb-name>DBIdentityProviderDAOBean</ejb-name>
         <ejb-class>gov.medicaid.services.impl.DBIdentityProviderDAOBean</ejb-class>
       </session>
-      <session>
-        <ejb-name>FileNetServiceBean</ejb-name>
-        <ejb-class>gov.medicaid.services.impl.FileNetServiceBean</ejb-class>
-      </session>
-      <message-driven>
-        <ejb-name>DataSynchronizationMessageBean</ejb-name>
-        <ejb-class>gov.medicaid.services.impl.DataSynchronizationMessageBean</ejb-class>
-        <message-destination-type>javax.jms.Queue</message-destination-type>
-        <activation-config>
-          <activation-config-property>
-            <activation-config-property-name>destination</activation-config-property-name>
-            <activation-config-property-value>/jms/queue/DataSync</activation-config-property-value>
-          </activation-config-property>
-        </activation-config>
-      </message-driven>
   </enterprise-beans>
 </ejb-jar>

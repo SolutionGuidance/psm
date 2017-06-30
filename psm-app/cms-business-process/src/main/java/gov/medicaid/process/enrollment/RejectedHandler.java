@@ -23,7 +23,6 @@ import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Event;
 import gov.medicaid.services.CMSConfigurator;
-import gov.medicaid.services.FileNetService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 
@@ -52,18 +51,12 @@ public class RejectedHandler extends GenericHandler {
     private final EntityManager entityManager;
 
     /**
-     * Filenet service.
-     */
-    private final FileNetService fileNetService;
-
-    /**
      * Constructor using the fields.
      */
     public RejectedHandler() {
         CMSConfigurator config = new CMSConfigurator();
         this.providerService = config.getEnrollmentService();
         this.entityManager = config.getPortalEntityManager();
-        this.fileNetService = config.getFileNetService();
     }
 
     /**
@@ -101,8 +94,7 @@ public class RejectedHandler extends GenericHandler {
             item.getResults().put("model", model);
             manager.completeWorkItem(item.getId(), item.getResults());
 
-            // Copy Files to FileNet
-            fileNetService.exportFiles(model, ticket.getTicketId());
+            // Issue #215 - add hook for rejection
         } catch (PortalServiceException e) {
             XMLUtility.moveToStatus(model, actorId, "ERROR", "Reject process failed to completed.");
             abortWorkItem(item, manager);

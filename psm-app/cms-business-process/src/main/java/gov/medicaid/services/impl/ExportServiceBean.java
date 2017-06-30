@@ -29,9 +29,6 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.PresentationService;
 import gov.medicaid.services.util.Util;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -262,34 +259,4 @@ public class ExportServiceBean extends BaseService implements ExportService {
         }
     }
 
-    /**
-     * Exports the pdf file for FileNet.
-     * 
-     * @param currentUser
-     *            the current user
-     * @param enrollment
-     *            the enrollment model
-     * @param model
-     *            the view model
-     * @param outputStream
-     *            the stream to export to
-     * @throws PortalServiceException
-     *             for any other errors encountered
-     */
-    @Override
-    public void exportPDFFileNet(CMSUser currentUser, EnrollmentType enrollment, String fileName,
-            Map<String, Object> model) throws PortalServiceException, IOException {
-        CMSConfigurator configurator = new CMSConfigurator();
-        String exportFolder = configurator.getExportPDFFolder();
-        BufferedOutputStream os = null;
-        try {
-            File pdfFile = new File(exportFolder, fileName);
-            os = new BufferedOutputStream(new FileOutputStream(pdfFile));
-            export(currentUser, enrollment, model, os);
-        } finally {
-            if (os != null) {
-                os.close();
-            }
-        }
-    }
 }

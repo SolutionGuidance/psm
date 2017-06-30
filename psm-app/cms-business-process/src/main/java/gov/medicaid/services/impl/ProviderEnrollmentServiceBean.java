@@ -54,9 +54,7 @@ import gov.medicaid.entities.SystemId;
 import gov.medicaid.entities.UserRequest;
 import gov.medicaid.entities.Validity;
 import gov.medicaid.entities.dto.ViewStatics;
-import gov.medicaid.process.enrollment.sync.FlatFileExporter;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.Sequences;
 import gov.medicaid.services.util.Util;
@@ -74,27 +72,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.annotation.Resource;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
-import javax.jms.BytesMessage;
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
-import javax.jms.MessageProducer;
-import javax.jms.Queue;
-import javax.jms.Session;
 import javax.persistence.Query;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 
 import org.apache.commons.io.IOUtils;
-
-import com.topcoder.util.log.Level;
 
 /**
  * This implementation of the persistence interface takes full control of mapping relationships in order to support
@@ -110,19 +98,6 @@ import com.topcoder.util.log.Level;
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class ProviderEnrollmentServiceBean extends BaseService implements ProviderEnrollmentService {
-
-    /**
-     * Synchronization connection factory.
-     */
-    @Resource
-    private ConnectionFactory mqConnectionFactory;
-
-    /**
-     * Synchronization queue.
-     */
-    @Resource
-    private Queue dataSyncQueue;
-
     /**
      * Number of columns in the practice lookup results.
      */
@@ -2351,45 +2326,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         Query items = getEm().createQuery(fetchQuery.toString());
         items.setParameter("npi", profileNPI);
         return !items.getResultList().isEmpty();
-    }
-
-    /**
-     * Sends the given provider for export to the message queue.
-     * @param ticketId the ticket id
-     */
-    @Override
-    public void sendSyncronizationRequest(long ticketId) {
-        Session session = null;
-        Connection connection = null;
-
-        try {
-            connection = mqConnectionFactory.createConnection();
-            session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
-            MessageProducer sender = session.createProducer(dataSyncQueue);
-            BytesMessage message = session.createBytesMessage();
-            byte[] content = exportAsFlatFile(ticketId);
-            getLog().log(Level.INFO, "Sending data sync request:" + new String(content));
-            message.writeBytes(content);
-            sender.send(message);
-        } catch (PortalServiceException e) {
-            getLog().log(Level.ERROR, e);
-            throw new PortalServiceRuntimeException("While attempting to synchronize data", e);
-        } catch (JMSException e) {
-            getLog().log(Level.ERROR, e);
-            throw new PortalServiceRuntimeException("While attempting to synchronize data", e);
-        }
-    }
-
-    /**
-     * Converts the profile represented by the given ticket to a flat file.
-     *
-     * @param ticketId the ticket for the profile
-     * @return the exported flat file
-     * @throws PortalServiceException for any errors encountered
-     */
-    private byte[] exportAsFlatFile(long ticketId) throws PortalServiceException {
-        Enrollment ticket = getTicketDetails(getSystemUser(), ticketId);
-        return new FlatFileExporter().exportProviderFile(ticket);
     }
 
     /**

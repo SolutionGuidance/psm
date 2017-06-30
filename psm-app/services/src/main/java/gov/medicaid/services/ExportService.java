@@ -69,20 +69,4 @@ public interface ExportService {
     void export(CMSUser currentUser, EnrollmentType enrollment, Map<String, Object> model, OutputStream outputStream)
             throws PortalServiceException, IOException;
 
-    /**
-     * Exports the pdf file for FileNet.
-     * 
-     * @param currentUser
-     *            the current user
-     * @param enrollment
-     *            the enrollment model
-     * @param model
-     *            the view model
-     * @param outputStream
-     *            the stream to export to
-     * @throws PortalServiceException
-     *             for any other errors encountered
-     */
-    void exportPDFFileNet(CMSUser currentUser, EnrollmentType enrollment, String fileName, Map<String, Object> model)
-            throws PortalServiceException, IOException;
 }

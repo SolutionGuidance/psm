@@ -355,15 +355,6 @@ public class CMSConfigurator {
 	public String getUseEmbeddedRules() {
         return globalSettings.getProperty("rules.embedded");
 	}
-	
-	/**
-     * Gets the configured filenet folder
-     * 
-     * @return the configured filenet folder
-     */
-    public String getFileNetFolder() {
-        return globalSettings.getProperty("filenet.folder");
-    }
 
     /**
      * Gets the configured pdf files folder
@@ -372,15 +363,6 @@ public class CMSConfigurator {
      */
     public String getExportPDFFolder() {
         return globalSettings.getProperty("export.pdf.folder");
-    }
-
-    /**
-     * Gets the filenet service
-     * 
-     * @return the configured FileNetService
-     */
-    public FileNetService getFileNetService() {
-        return (FileNetService) fromContext("jndi.FileNetService", false);
     }
 
     /**

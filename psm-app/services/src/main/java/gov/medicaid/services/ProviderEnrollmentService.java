@@ -488,12 +488,6 @@ public interface ProviderEnrollmentService {
 	boolean existsProfile(String profileNPI) throws PortalServiceException;
 
     /**
-     * Sends the synchronization request.
-     * @param ticketId the ticket id
-     */
-    void sendSyncronizationRequest(long ticketId);
-
-    /**
      * Callback from legacy system for setting the legacy ID.
      * 
      * @param profileId the profile id

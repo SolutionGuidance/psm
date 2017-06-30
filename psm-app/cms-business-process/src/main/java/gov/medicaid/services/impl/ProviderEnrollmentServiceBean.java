@@ -58,7 +58,17 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.Sequences;
 import gov.medicaid.services.util.Util;
+import org.apache.commons.io.IOUtils;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+import javax.persistence.Query;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -71,18 +81,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import javax.ejb.Local;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.persistence.Query;
-import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialException;
-
-import org.apache.commons.io.IOUtils;
 
 /**
  * This implementation of the persistence interface takes full control of mapping relationships in order to support

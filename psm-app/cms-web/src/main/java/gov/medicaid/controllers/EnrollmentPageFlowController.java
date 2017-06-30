@@ -112,6 +112,7 @@ import com.topcoder.util.log.Level;
  * 
  * @author TCSASSEMBLER
  * @version 1.0
+ * @endpoint "/provider/enrollment/*"
  */
 @Controller
 @RequestMapping("/provider/enrollment/*")
@@ -214,6 +215,8 @@ public class EnrollmentPageFlowController extends BaseController {
      *             for read/write errors
      * @throws PortalServiceException
      *             for any other errors
+     * @endpoint "/provider/enrollment/attachment"
+     * @verb GET
      */
     @RequestMapping(value = "/attachment", method = RequestMethod.GET)
     public void download(@ModelAttribute("enrollment") EnrollmentType enrollment,
@@ -241,6 +244,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the enrollment start page.
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/start"
+     * @verb GET
      */
     @RequestMapping(value = "/start", method = RequestMethod.GET)
     public String startEnrollment(Model model) throws PortalServiceException {
@@ -260,6 +265,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the enrollment start page.
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/renew"
+     * @verb GET
      */
     @RequestMapping(value = "/renew", method = RequestMethod.GET)
     public ModelAndView startRenewal(@RequestParam("profileId") long profileId, Model model)
@@ -280,6 +287,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the enrollment start page.
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/renewTicket"
+     * @verb GET
      */
     @RequestMapping(value = "/renewTicket", method = RequestMethod.GET)
     public ModelAndView startRenewalUsingTicket(@RequestParam("id") long ticketId, Model model)
@@ -302,6 +311,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the enrollment start page.
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/bulkRenewTickets"
+     * @verb POST
      */
     @RequestMapping(value = "/bulkRenewTickets", method = RequestMethod.POST)
     @ResponseBody
@@ -412,6 +423,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the enrollment start page.
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/edit"
+     * @verb GET
      */
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView startEdit(@RequestParam("profileId") long profileId, Model model) throws PortalServiceException {
@@ -431,6 +444,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the enrollment start page.
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/profile"
+     * @verb GET
      */
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public ModelAndView viewProfile(@RequestParam("id") long profileId, Model model) throws PortalServiceException {
@@ -456,6 +471,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the provider type selection page.
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/steps/type"
+     * @verb GET
      */
     @RequestMapping(value = "/steps/type", method = RequestMethod.GET)
     public ModelAndView selectProviderType(@ModelAttribute("enrollment") EnrollmentType enrollment)
@@ -475,6 +492,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the previous page, or the same page if there were errors
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "provider/enrollment/steps/prev"
+     * @verb POST
      */
     @RequestMapping(value = "/steps/prev", method = RequestMethod.POST)
     public ModelAndView previousPage(@ModelAttribute("enrollment") EnrollmentType enrollment,
@@ -507,6 +526,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the next page, or the same page if there were errors
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/steps/next"
+     * @verb POST
      */
     @RequestMapping(value = "/steps/next", method = RequestMethod.POST)
     public ModelAndView nextPage(@ModelAttribute("enrollment") EnrollmentType enrollment, HttpServletRequest request,
@@ -578,6 +599,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the next page, or the same page if there were errors
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/steps/rebind"
+     * @verb POST
      */
     @RequestMapping(value = "/steps/rebind", method = RequestMethod.POST)
     public ModelAndView rebind(@ModelAttribute("enrollment") EnrollmentType enrollment, HttpServletRequest request,
@@ -607,6 +630,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the current page of the enrollment process
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/page"
+     * @verb GET
      */
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public ModelAndView showPage(@ModelAttribute("enrollment") EnrollmentType enrollment) throws PortalServiceException {
@@ -621,6 +646,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the current page of the enrollment process
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/print"
+     * @verb GET
      */
     @RequestMapping(value = "/print", method = RequestMethod.GET)
     public ModelAndView showPrint(@ModelAttribute("enrollment") EnrollmentType enrollment)
@@ -638,6 +665,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the print preview
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/preview"
+     * @verb GET
      */
     @RequestMapping(value = "/preview", method = RequestMethod.GET)
     public ModelAndView showPreview(@RequestParam("id") long ticketId) throws PortalServiceException {
@@ -653,6 +682,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the print preview
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/reviewPrint"
+     * @verb GET
      */
     @RequestMapping(value = "/reviewPrint", method = RequestMethod.GET)
     public ModelAndView reviewPrint(@RequestParam("id") long ticketId) throws PortalServiceException {
@@ -673,6 +704,8 @@ public class EnrollmentPageFlowController extends BaseController {
      *             for read/write errors
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/exportTicket"
+     * @verb GET
      */
     @RequestMapping(value = "/exportTicket", method = RequestMethod.GET)
     public void exportTicket(@RequestParam("id") long ticketId, HttpServletResponse response)
@@ -692,6 +725,8 @@ public class EnrollmentPageFlowController extends BaseController {
      *             for IO related errors
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/export"
+     * @verb GET
      */
     @RequestMapping(value = "/export", method = RequestMethod.GET)
     public void export(@ModelAttribute("enrollment") EnrollmentType enrollment, HttpServletResponse response)
@@ -712,6 +747,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the lookup JSON
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/lookup"
+     * @verb POST
      */
     @RequestMapping(value = "/lookup", method = RequestMethod.POST)
     @ResponseBody
@@ -736,6 +773,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the lookup JSON
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/lookupProvider"
+     * @verb POST
      */
     @RequestMapping(value = "/lookupProvider", method = RequestMethod.POST)
     @ResponseBody
@@ -758,6 +797,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the lookup JSON
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/ownerTypes"
+     * @verb POST
      */
     @RequestMapping(value = "/ownerTypes", method = RequestMethod.POST)
     @ResponseBody
@@ -774,6 +815,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the lookup JSON
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/lookupMinimumLicenses"
+     * @verb POST
      */
     @RequestMapping(value = "/lookupMinimumLicenses", method = RequestMethod.POST)
     @ResponseBody
@@ -795,6 +838,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the edit ticket page
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/view"
+     * @verb GET
      */
     @RequestMapping(value = "/view", method = RequestMethod.GET)
     public ModelAndView viewTicket(@RequestParam("id") long ticketId, Model model) throws PortalServiceException {
@@ -817,6 +862,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the edit ticket page
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/reopen"
+     * @verb GET
      */
     @RequestMapping(value = "/reopen", method = RequestMethod.GET)
     public ModelAndView modifySubmittedTicket(@RequestParam("id") long ticketId, Model model)
@@ -859,6 +906,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the edit ticket page
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/jump"
+     * @verb GET
      */
     @RequestMapping(value = "/jump", method = RequestMethod.GET)
     public ModelAndView jump(@ModelAttribute("enrollment") EnrollmentType enrollment,
@@ -878,6 +927,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the edit ticket page
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/jump"
+     * @verb POST
      */
     @RequestMapping(value = "/jump", method = RequestMethod.POST)
     public ModelAndView jump(@ModelAttribute("enrollment") EnrollmentType enrollment,
@@ -918,6 +969,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the same page, with a success/error message
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/saveNote"
+     * @verb POST
      */
     @RequestMapping(value = "/saveNote", method = RequestMethod.POST)
     public ModelAndView saveNote(@ModelAttribute("enrollment") EnrollmentType enrollment, HttpServletRequest request,
@@ -968,6 +1021,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the same page, with a success/error message
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/save"
+     * @verb POST
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute("enrollment") EnrollmentType enrollment, HttpServletRequest request,
@@ -1026,6 +1081,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the same page, with a success/error message
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/submit"
+     * @verb POST
      */
     @RequestMapping(value = "/submit", method = RequestMethod.POST)
     public ModelAndView submit(@ModelAttribute("enrollment") EnrollmentType enrollment, HttpServletRequest request,
@@ -1095,6 +1152,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return the same page, with a success/error message
      * @throws PortalServiceException
      *             for any errors encountered
+     * @endpoint "/provider/enrollment/resubmitWithChanges"
+     * @verb POST
      */
     @RequestMapping(value = "/resubmitWithChanges", method = RequestMethod.POST)
     public ModelAndView resubmitWithChanges(@ModelAttribute("enrollment") EnrollmentType enrollment,

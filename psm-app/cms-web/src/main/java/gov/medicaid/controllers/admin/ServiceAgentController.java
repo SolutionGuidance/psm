@@ -86,6 +86,8 @@ public class ServiceAgentController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/viewAgents"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/viewAgents", method = RequestMethod.GET)
     public ModelAndView view() throws PortalServiceException {
@@ -120,6 +122,8 @@ public class ServiceAgentController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/viewAgents"
+     * @verb POST
      */
     @RequestMapping(value = "/admin/viewAgents", method = RequestMethod.POST)
     public ModelAndView search(@ModelAttribute("criteria") UserSearchCriteria criteria) throws PortalServiceException {
@@ -149,6 +153,8 @@ public class ServiceAgentController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/getAgent"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/getAgent", method = RequestMethod.GET)
     public ModelAndView get(@RequestParam("userId") String userId) throws PortalServiceException {
@@ -176,6 +182,8 @@ public class ServiceAgentController extends BaseServiceAdminController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/beginEditAgent"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/beginEditAgent", method = RequestMethod.GET)
     public ModelAndView beginEdit(@RequestParam("userId") String userId) throws PortalServiceException {
@@ -209,6 +217,8 @@ public class ServiceAgentController extends BaseServiceAdminController {
      *
      * @throws IllegalArgumentException if user is null/empty
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/createAgent"
+     * @verb POST
      */
     @RequestMapping(value = "/admin/createAgent", method = RequestMethod.POST)
     public ModelAndView create(@ModelAttribute("user") CMSUser user, HttpServletRequest request)
@@ -244,6 +254,8 @@ public class ServiceAgentController extends BaseServiceAdminController {
      *
      * @throws IllegalArgumentException if user is null/empty
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/updateAgent"
+     * @verb POST
      */
     @RequestMapping(value = "/admin/updateAgent", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("user") CMSUser user, HttpServletRequest request)
@@ -272,6 +284,8 @@ public class ServiceAgentController extends BaseServiceAdminController {
      * @return the successful text
      *
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/deleteAgents"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/deleteAgents", method = RequestMethod.GET)
     @ResponseBody

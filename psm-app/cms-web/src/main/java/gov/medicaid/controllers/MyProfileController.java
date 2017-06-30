@@ -48,6 +48,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author TCSASSEMBLER
  * @version 1.0
+ * @endpoint "/provider/profile/*"
  */
 @Controller
 @RequestMapping("/provider/profile/*")
@@ -98,6 +99,8 @@ public class MyProfileController extends BaseController {
      *
      * @return the update password page.
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/provider/profile/reset"
+     * @verb GET
      */
     @RequestMapping(value = "/reset", method = RequestMethod.GET)
     public ModelAndView viewPasswordChange() throws PortalServiceException {
@@ -123,6 +126,8 @@ public class MyProfileController extends BaseController {
      * @param errors the binding results
      * @return the redirect to the profiles page, or back to the input page request is not valid
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/provider/profile/reset"
+     * @verb POST
      */
     @RequestMapping(value = "/reset", method = RequestMethod.POST)
     public ModelAndView processPasswordChange(@ModelAttribute("passwordForm") UpdatePasswordForm form,
@@ -149,6 +154,8 @@ public class MyProfileController extends BaseController {
      *
      * @return the my profile model and view
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/provider/profile/"
+     * @verb GET
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView viewDashboard() throws PortalServiceException {
@@ -165,6 +172,8 @@ public class MyProfileController extends BaseController {
      * @param profileId the profile to renew
      * @return the enrollment start page.
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/provider/profile/renew"
+     * @verb GET
      */
     @RequestMapping(value = "/renew", method = RequestMethod.GET)
     public ModelAndView startRenewal(
@@ -208,6 +217,8 @@ public class MyProfileController extends BaseController {
      * @param profileId the profile to be edited
      * @return the enrollment start page.
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/provider/profile/edit"
+     * @verb GET
      */
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView startEdit(

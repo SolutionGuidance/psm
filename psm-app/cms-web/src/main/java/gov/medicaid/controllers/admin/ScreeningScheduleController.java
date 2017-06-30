@@ -93,6 +93,8 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
      * @return the model and view instance that contains the name of view to be rendered and data to be used for
      *         rendering (not null)
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/getScreeningSchedule"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/getScreeningSchedule", method = RequestMethod.GET)
     public ModelAndView get() throws PortalServiceException {
@@ -117,6 +119,8 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
      * @return the model and view instance that contains the name of view to be rendered and data to be used for
      *         rendering (not null)
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/beginEditScreeningSchedule"
+     * @verb GET
      */
     @RequestMapping(value = "/admin/beginEditScreeningSchedule", method = RequestMethod.GET)
     public ModelAndView beginEdit() throws PortalServiceException {
@@ -143,6 +147,8 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
      * @return the model and view instance
      * @throws IllegalArgumentException if screeningSchedule is null/empty
      * @throws PortalServiceException If there are any errors in the action
+     * @endpoint "/admin/updateScreeningSchedule"
+     * @verb POST
      */
     @RequestMapping(value = "/admin/updateScreeningSchedule", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("schedule") ScreeningSchedule schedule, HttpServletRequest request)

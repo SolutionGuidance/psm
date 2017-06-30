@@ -214,6 +214,7 @@ public class EnrollmentController extends BaseController {
      *         rendering (not null)
      * @throws PortalServiceException
      *             - If there are any errors in the action
+     * @endpoint "/agent/enrollment/"
      */
     @RequestMapping("/agent/enrollment/")
     public ModelAndView view() throws PortalServiceException {
@@ -234,6 +235,8 @@ public class EnrollmentController extends BaseController {
      *         rendering (not null)
      * @throws PortalServiceException
      *             If there are any errors in the action
+     * @endpoint "/agent/enrollment/viewDashboard"
+     * @verb GET
      */
     @RequestMapping(value = "/agent/enrollment/viewDashboard", method = RequestMethod.GET)
     public ModelAndView viewDashboard() throws PortalServiceException {
@@ -270,6 +273,8 @@ public class EnrollmentController extends BaseController {
      *         rendering (not null)
      * @throws PortalServiceException
      *             If there are any errors in the action
+     * @endpoint "/agent/enrollment/viewHelp"
+     * @verb GET
      */
     @RequestMapping(value = "/agent/enrollment/viewHelp", method = RequestMethod.GET)
     public ModelAndView getHelp() throws PortalServiceException {
@@ -301,6 +306,8 @@ public class EnrollmentController extends BaseController {
      *         rendering (not null)
      * @throws PortalServiceException
      *             If there are any errors in the action
+     * @endpoint "/agent/enrollment/viewHelpItem"
+     * @verb GET
      */
     @RequestMapping(value = "/agent/enrollment/viewHelpItem", method = RequestMethod.GET)
     public ModelAndView getHelpItem(@RequestParam("helpItemId") long id) throws PortalServiceException {
@@ -326,6 +333,7 @@ public class EnrollmentController extends BaseController {
      *            the ticket id
      * @return the model and view for
      * @throws PortalServiceException
+     * @endpoint "/agent/enrollment/rejectTicket"
      */
     @RequestMapping("/agent/enrollment/rejectTicket")
     public ModelAndView rejectTicket(@RequestParam("id") long id) throws PortalServiceException {
@@ -347,6 +355,7 @@ public class EnrollmentController extends BaseController {
      *         rendering (not null)
      * @throws PortalServiceException
      *             - If there are any errors in the action
+     * @endpoint "/agent/enrollment/screeningReview"
      */
     @RequestMapping("/agent/enrollment/screeningReview")
     public ModelAndView screeningReview(@RequestParam("id") long id) throws PortalServiceException {
@@ -416,6 +425,7 @@ public class EnrollmentController extends BaseController {
      *         rendering (not null)
      * @throws PortalServiceException
      *             - If there are any errors in the action
+     * @endpoint "/agent/enrollment/autoScreeningResult"
      */
     @RequestMapping("/agent/enrollment/autoScreeningResult")
     public ModelAndView viewScreeningLog(@RequestParam("id") long id, @RequestParam("type") String type,
@@ -478,6 +488,8 @@ public class EnrollmentController extends BaseController {
      *             for read/write errors
      * @throws PortalServiceException
      *             - If there are any errors in the action
+     * @endpoint "/agent/enrollment/exportBatch"
+     * @endpoint "/provider/search/exportBatch"
      */
     @SuppressWarnings("unchecked")
     @RequestMapping({ "/agent/enrollment/exportBatch", "/provider/search/exportBatch" })
@@ -511,6 +523,8 @@ public class EnrollmentController extends BaseController {
      *         rendering (not null)
      * @throws PortalServiceException
      *             - If there are any errors in the action
+     * @endpoint "/agent/enrollment/search/{view}"
+     * @endpoint "/provider/search/{view}"
      */
     @RequestMapping({ "/agent/enrollment/search/{view}", "/provider/search/{view}" })
     public ModelAndView search(@ModelAttribute("criteria") ProviderSearchCriteria criteria, @PathVariable String view,
@@ -559,6 +573,7 @@ public class EnrollmentController extends BaseController {
      *             - if npi is null/empty
      * @throws PortalServiceException
      *             - If there are any errors in the action
+     * @endpoint "/agent/enrollment/status"
      */
     @RequestMapping(value = "/agent/enrollment/status")
     public ModelAndView getByNumber(@RequestParam("npi") String npi) throws PortalServiceException {
@@ -597,6 +612,7 @@ public class EnrollmentController extends BaseController {
      *         rendering (not null)
      * @throws PortalServiceException
      *             - If there are any errors in the action
+     * @endpoint "/agent/enrollment/details"
      */
     @RequestMapping("/agent/enrollment/details")
     public ModelAndView getDetails(@RequestParam("id") long ticketId,
@@ -623,6 +639,7 @@ public class EnrollmentController extends BaseController {
      * @throws IllegalArgumentException
      *             - if note is null/empty
      * @return the operation status and message
+     * @endpoint "/agent/enrollment/note"
      */
     @RequestMapping("/agent/enrollment/note")
     @ResponseBody
@@ -656,6 +673,7 @@ public class EnrollmentController extends BaseController {
      *            - any changes to be applied (manual verification) this is optional, and only provided if any changes
      *            are needed
      * @return the operation status and message
+     * @endpoint "/agent/enrollment/approve"
      */
     @RequestMapping("/agent/enrollment/approve")
     public String approve(@RequestParam("id") long id, ApprovalDTO dto) {
@@ -684,6 +702,7 @@ public class EnrollmentController extends BaseController {
      * @return the status result
      * @throws IllegalArgumentException
      *             - if reason is null/empty
+     * @endpoint "/agent/enrollment/reject"
      */
     @RequestMapping("/agent/enrollment/reject")
     @ResponseBody
@@ -713,6 +732,7 @@ public class EnrollmentController extends BaseController {
      * @param id
      *            - the profile ID
      * @return the status
+     * @endpoint "/agent/enrollment/screen"
      */
     @RequestMapping("/agent/enrollment/screen")
     @ResponseBody
@@ -741,6 +761,7 @@ public class EnrollmentController extends BaseController {
      * @return the status
      * @throws IllegalArgumentException
      *             - if date is null or is a date in the past
+     * @endpoint "/agent/enrollment/schedule"
      */
     @RequestMapping("/agent/enrollment/schedule")
     @ResponseBody
@@ -965,6 +986,7 @@ public class EnrollmentController extends BaseController {
      *         rendering (not null)
      * @throws PortalServiceException
      *             - If there are any errors in the action
+     * @endpoint "/agent/enrollment/cos"
      */
     @RequestMapping("/agent/enrollment/cos")
     public ModelAndView viewCategoryOfService(@RequestParam("id") long profileId) throws PortalServiceException {
@@ -993,6 +1015,7 @@ public class EnrollmentController extends BaseController {
      *         rendering (not null)
      * @throws PortalServiceException
      *             - If there are any errors in the action
+     * @endpoint "/agent/enrollment/pendingcos"
      */
     @RequestMapping("/agent/enrollment/pendingcos")
     public ModelAndView viewPendingCategoryOfService(@RequestParam("id") long ticketId) throws PortalServiceException {
@@ -1031,6 +1054,8 @@ public class EnrollmentController extends BaseController {
      *         rendering (not null)
      * @throws PortalServiceException
      *             - If there are any errors in the action
+     * @endpoint "/agent/enrollment/addCOS"
+     * @verb POST
      */
     @RequestMapping(value = "/agent/enrollment/addCOS", method = RequestMethod.POST)
     public ModelAndView addCategoryOfService(@RequestParam("id") long profileId,
@@ -1090,6 +1115,8 @@ public class EnrollmentController extends BaseController {
      *         rendering (not null)
      * @throws PortalServiceException
      *             - If there are any errors in the action
+     * @endpoint "/agent/enrollment/addPendingCOS"
+     * @verb POST
      */
     @RequestMapping(value = "/agent/enrollment/addPendingCOS", method = RequestMethod.POST)
     public ModelAndView addPendingCategoryOfService(@RequestParam("id") long ticketId,
@@ -1141,6 +1168,7 @@ public class EnrollmentController extends BaseController {
      *         rendering (not null)
      * @throws PortalServiceException
      *             - If there are any errors in the action
+     * @endpoint "/agent/enrollment/deleteCOS"
      */
     @RequestMapping("/agent/enrollment/deleteCOS")
     public ModelAndView deleteCategoryOfService(@RequestParam("profileId") long profileId, @RequestParam("id") long id)
@@ -1163,6 +1191,7 @@ public class EnrollmentController extends BaseController {
      *         rendering (not null)
      * @throws PortalServiceException
      *             - If there are any errors in the action
+     * @endpoint "/agent/enrollment/deletePendingCOS"
      */
     @RequestMapping("/agent/enrollment/deletePendingCOS")
     public ModelAndView deletePendingCategoryOfService(@RequestParam("ticketId") long ticketId,

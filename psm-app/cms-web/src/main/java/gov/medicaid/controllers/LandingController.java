@@ -44,6 +44,8 @@ public class LandingController extends BaseController {
      *
      * @return the redirect to the appropriate initial page.
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/landing"
+     * @verb GET
      */
     @RequestMapping(value = "/landing", method = RequestMethod.GET)
     public String viewLandingPage() throws PortalServiceException {
@@ -68,6 +70,8 @@ public class LandingController extends BaseController {
      *
      * @return the redirect to the appropriate initial page.
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/myprofile"
+     * @verb GET
      */
     @RequestMapping(value = "/myprofile", method = RequestMethod.GET)
     public String viewProfilePage() throws PortalServiceException {

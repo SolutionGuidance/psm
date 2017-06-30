@@ -46,6 +46,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author TCSASSEMBLER
  * @version 1.0
+ * @endpoint "/provider/dashboard/*"
  */
 @Controller
 @RequestMapping("/provider/dashboard/*")
@@ -90,6 +91,8 @@ public class ProviderDashboardController extends BaseController {
      *
      * @return the dashboard page and the needed models
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/provider/dashboard/"
+     * @verb GET
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView viewDashboard() throws PortalServiceException {
@@ -125,6 +128,8 @@ public class ProviderDashboardController extends BaseController {
      * Shows the account setup page.
      *
      * @return the account setup page (varies depending on user type)
+     * @endpoint "/provider/dashboard/setup"
+     * @verb GET
      */
     @RequestMapping(value = "/setup", method = RequestMethod.GET)
     private ModelAndView viewAccountSetup() {
@@ -141,6 +146,8 @@ public class ProviderDashboardController extends BaseController {
      *
      * @return the dashboard page
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/provider/dashboard/list"
+     * @verb GET
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView viewTicketList() throws PortalServiceException {
@@ -152,6 +159,8 @@ public class ProviderDashboardController extends BaseController {
      *
      * @return the drafts page
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/provider/dashboard/drafts"
+     * @verb GET
      */
     @RequestMapping(value = "/drafts", method = RequestMethod.GET)
     public ModelAndView viewDrafts() throws PortalServiceException {
@@ -166,6 +175,8 @@ public class ProviderDashboardController extends BaseController {
      *
      * @return the pending page
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/provider/dashboard/pending"
+     * @verb GET
      */
     @RequestMapping(value = "/pending", method = RequestMethod.GET)
     public ModelAndView viewPending() throws PortalServiceException {
@@ -180,6 +191,8 @@ public class ProviderDashboardController extends BaseController {
      *
      * @return the approved page
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/provider/dashboard/approved"
+     * @verb GET
      */
     @RequestMapping(value = "/approved", method = RequestMethod.GET)
     public ModelAndView viewApproved() throws PortalServiceException {
@@ -194,6 +207,8 @@ public class ProviderDashboardController extends BaseController {
      *
      * @return the rejected page
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/provider/dashboard/rejected"
+     * @verb GET
      */
     @RequestMapping(value = "/rejected", method = RequestMethod.GET)
     public ModelAndView viewRejected() throws PortalServiceException {
@@ -224,6 +239,8 @@ public class ProviderDashboardController extends BaseController {
      * @param criteria the search criteria
      * @return the view to show the results by status
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/provider/dashboard/filter"
+     * @verb GET
      */
     @RequestMapping(value = "/filter", method = RequestMethod.GET)
     public ModelAndView filterTicketsByStatus(@RequestParam("status") String status, ProviderSearchCriteria criteria)
@@ -244,6 +261,8 @@ public class ProviderDashboardController extends BaseController {
      * @param response the response to write to
      * @throws PortalServiceException for any errors encountered
      * @throws IOException for read/write errors
+     * @endpoint "/provider/dashboard/export"
+     * @verb GET
      */
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/export", method = RequestMethod.GET)
@@ -271,6 +290,8 @@ public class ProviderDashboardController extends BaseController {
      * @param criteria the filter
      * @return the dashboard page
      * @throws PortalServiceException for any errors encountered
+     * @endpoint "/provider/dashboard/list/filter"
+     * @verb GET
      */
     @RequestMapping(value = "/list/filter", method = RequestMethod.GET)
     public ModelAndView filterTicketList(ProviderSearchCriteria criteria) throws PortalServiceException {

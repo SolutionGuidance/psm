@@ -142,6 +142,13 @@ project(':cms-web') {
         runtime runtime_libs
     }
     webAppDirName = 'WebContent'
+
+    task apiDocs(type: Javadoc) {
+      source = sourceSets.main.allJava
+      classpath += configurations.compile
+      destinationDir = reporting.file('api-docs')
+      options.optionFiles << file('javadoc.options')
+    }
 }
 
 project(':cms-business-model') {
@@ -216,5 +223,4 @@ project(':cms-portal-services') {
         appDirName 'EarContent'
     }
 }
-
 

@@ -82,7 +82,8 @@ between June 2012 and April 2013, to cover all phases of the software
 development life cycle.  The code and documentation resulting from
 that challenge are hosted in an [original
 repository](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp)
-code, from which this repository was cloned to continue the project.
+code, from which this repository was cloned to continue the
+project. Work restarted in April 2017.
 
 More information on the challenge can be found here:
 http://www.topcoder.com/cms/medicaid-enrollment-portal/

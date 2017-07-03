@@ -41,6 +41,21 @@
 | Share NPI between individual providers, for group practices. | OH |  PSM State Calls Requirements_functionality needs.xlsx |
 | Validate entered information as provider fills out application (not at the end of the process). | OH |  PSM State Calls Requirements_functionality needs.xlsx |
 |  |  |   |
+| Limit enrollment to providers in the following categories: (1) in-state, (2) out-of-state in-network, (3) within a defined "border" region of neighboring states. | VT/WV | VTMedicaidProviderManual.pdf/PSM State Calls Requirements_functionality needs.xlsx |
+| Issue Medicaid provider ID number to each approved provider. | VT | VTMedicaidProviderManual.pdf |
+| Send letter confirming enrollment. | VT | VTMedicaidProviderManual.pdf |
+| Notify providers 90 days before their enrollment expires, so that they can go through revalidation. | VT | VTMedicaidProviderManual.pdf |
+| Automatically reject applications that do not include all mandatory information. | VT | VTMedicaidProviderManual.pdf |
+| Allow providers to terminate their enrollment on a specified date. | VT | VTMedicaidProviderManual.pdf |
+| Require providers to give 30 days notice before terminating enrollment.| VT | VTMedicaidProviderManual.pdf |
+| Require PC Plus providers to give 90 days notice before terminating enrollment.| VT | VTMedicaidProviderManual.pdf |
+| Separate providers into risk categories limited, moderate, and high based on provider type, as established by CMS. | VT | GrnMtnCareEnrollInst.pdf |
+| Screen limited-risk providers by verifying that the provider or supplier meets all applicable federal regulations and state requirements for the provider or supplier type, conducting license verifications, including licensure verifications across state lines for physicians, non-physician practitioners, providers and suppliers, and conducting database checks on a pre-and post-enrollment basis to ensure that providers and suppliers continue to meet the enrollment criteria for their provider/supplier type. | VT | GrnMtnCareEnrollInst.pdf |
+| For moderate- and high-risk provider types, provide space for results of on-site visits. | VT | GrnMtnCareEnrollInst.pdf |
+| For high-risk provider types, conduct a fingerprint-based criminal background check. | VT | GrnMtnCareEnrollInst.pdf |
+| Change a provider's risk level due to: imposition of a payment suspension within the previous 10 years; termination from billing Medicaid; exclusion by the OIG; revocation of billing privileges by a Medicare contractor within the previous 10 years (and such provider/supplier is attempting to establish additional Medicare billing privileges by enrolling as a new provider or supplier or establish billing privileges for a new practice location); exclusion from any federal health care program; subject to any final adverse action (as defined in 42 CFR 424.502) within the past 10 years; instances in which CMS lifts a temporary moratorium for a particular provider or supplier type and a provider or supplier that was prevented from enrolling based on the moratorium, applies for enrollment as a Medicare provider or supplier at any time within 6 months from the date the moratorium was lifted. | VT | GrnMtnCareEnrollInst.pdf |
+| Require revalidation every 3-5 years (depending on risk level); terminate enrollment if revalidation is not completed. | VT | GrnMtnCareEnrollInst.pdf |
+|  |  |   |
 | Capability to link individuals to their organizations and vice versa. | Pre-certification |  |
 | Capability to match on multiple variations of an individual's or organization's name to ensure that the correct entity is verified. | Pre-certification |  |
 | Ability to apply a range of screening rules to cross check data elements within the enrollment application. | Pre-certification |  |

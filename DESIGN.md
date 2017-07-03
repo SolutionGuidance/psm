@@ -3,6 +3,18 @@
 ***NOTE: 2017-04-27: This document is still very much a work in
    progress.  We welcome suggestions on improving it.***
 
+## Overall architecture
+
+The Provider Screening Module is a Java EE Enterprise Application
+using [Gradle](https://gradle.org/) to manage builds, [the Spring
+framework](http://projects.spring.io/spring-framework/) for core web
+application functionality (including providing an API),
+[Hibernate](http://hibernate.org/) for Object Relational Mapping
+(interacting with the database), and [jBPM](http://www.jbpm.org/) and
+[Drools](http://drools.org/) for business rules management. See
+[`DEPENDENCIES.md`](DEPENDENCIES.md) and [`INSTALL.md`](INSTALL.md)
+for more details on component versions and installation requirements.
+
 ## Interfaces
 
 The two pieces of this application (`psm-app` and `ext-sources-app`)

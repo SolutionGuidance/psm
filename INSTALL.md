@@ -14,7 +14,7 @@ The PSM was originally developed to run in the open source web
 application server Apache JBoss (now called WildFly).  Somewhat late
 in the PSM's development, it was retargeted to the IBM WebSphere
 Application Server (WAS) 8.5, in order to better support a particular
-state's MMIS environment.  Our plan is to retarget the PSM to WildFly
+state's MMIS environment.  We have retargeted the PSM to WildFly
 (formerly JBoss), though still keeping all of the functionality
 additions made while the PSM was in its WebSphere interregnum.
 
@@ -46,20 +46,24 @@ time, and will evolve as we understand it more.
 
 ### Hardware
 
-- **Memory**: 8 GB should be enough for a test system
-- **CPU**: TBA; provisioning CPU proportional to memory (whatever that looks
-  like in your environment) should be reasonable.
+- **Memory**: 8 GB should be enough for a test system.
+- **CPU**: TBA; provisioning CPU proportional to memory (whatever that
+  looks like in your environment) should be reasonable. Our
+  demonstration instance runs on two cores of an Intel(R) Xeon(R) CPU
+  E5-2676 v3 @ 2.40GHz.
 - **Storage**: 10 GB of storage for WildFly, the PSM repository, and its
   dependencies should be plenty.
 
 ### Software
 
-- **Operating System**: we recommend the stable Debian 8 (jessie). If
-  that's not feasible for your environment, any of the supported
-  WildFly 10.1 operating systems should work, but our ability to help
-  troubleshoot issues that come up may be limited.  Once we test this
-  on a few more platforms, we will expand the list of compatible
-  operating systems to include onther Linux distributions.
+- **Operating System**: we recommend the old stable Debian 8 (jessie), and
+  a developer has successfully installed the PSM on Red Hat 7.3
+  Enterprise Linux. If that's not feasible for your environment, any
+  of the supported WildFly 10.1 operating systems should work, but our
+  ability to help troubleshoot issues that come up may be limited.
+  Once we test this on a few more platforms, we will expand the list
+  of compatible operating systems to include other Linux
+  distributions.
 - **Java**: We're using OpenJDK 8, which is currently 8u121, but you should
   keep up with the latest releases and post if you have issues relating to
   upgrading.

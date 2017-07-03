@@ -1,13 +1,14 @@
        Installation instructions for the Provider Screening Module
        ===========================================================
 
-***NOTE: 2017-04-28: These instructions are still very incomplete and
-   are a work in progress.  We welcome suggestions on improving
-   them.***
+***NOTE: 2017-07-03: These instructions are fairly reliable but
+   incomplete and a work in progress.  We welcome suggestions on
+   improving them.***
 
 # Background and Current Deployment Status
 
-2017-06-12: The PSM is not yet ready for production deployment, but is ready for development deployment.
+2017-07-03: The PSM is not yet ready for production deployment,
+but is ready for development deployment.
 
 The PSM was originally developed to run in the open source web
 application server Apache JBoss (now called WildFly).  Somewhat late

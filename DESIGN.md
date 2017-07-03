@@ -5,53 +5,53 @@
 
 ## Interfaces
 
-The two pieces of this application (psm-app and ext-sources-app)
-communicate via a web service which is provided by the ext-sources-app.
+The two pieces of this application (`psm-app` and `ext-sources-app`)
+communicate via a web service which is provided by the `ext-sources-app`.
 Let's call that the External Sources Services (ESS).  The ESS takes
 return XML, which is handled by
 [javax.jws](http://docs.oracle.com/javaee/5/api/javax/jws/package-summary.html)
-(this takes serializable java objects and converts them to XML).
+(this takes serializable Java objects and converts them to XML).
 
 Take `AccreditedBirthCentersLicenseService` as a typical example of these
 web services:
 
 The client steps are marked CLIENT below -- paths referenced in these
-items are all rooted on psm-app.  The ESS steps are marked ESS -- paths
-referenced in these items are all rooted on ext-sources-app.
+items are all rooted on `psm-app`.  The ESS steps are marked ESS -- paths
+referenced in these items are all rooted on `ext-sources-app`.
 
 1.  CLIENT: The core application defines the interactions with the
-    service in cms.externalsources.drl
-    (cms-business-processes/src/main/resources/cms.externalsources.drl)
+    service in `cms.externalsources.drl`
+    (`cms-business-processes/src/main/resources/cms.externalsources.drl`)
 
 2.  CLIENT:  The request parameters are translated to XML before being sent to
     the server, the translation is defined in
-    accredited_birth_center_req.xml
-    (services/src/main/resources/xslt/accredited_birth_center_res.xsl)
+    `accredited_birth_center_req.xml`
+    (`services/src/main/resources/xslt/accredited_birth_center_res.xsl`)
 
 3.  ESS: The request arrives at the appropriate endpoint.  The endpoint has
-    been defined in cxf-servlet.xml
-    (startup-war/WebContent/WEB-INF/cxf-servlet.xml  lines 14-17)
+    been defined in `cxf-servlet.xml`
+    (`startup-war/WebContent/WEB-INF/cxf-servlet.xml`  lines 14-17)
 
 4.  ESS: The request is translated from XML to parameters and routed to the
-    service implementation (also defined in cxf-servlet) which is defined
-    in AccreditedBirthCentersLicenseServiceImpl.java
-    (services/src/main/java/gov/medicaid/screening/services/impl/AccreditedBirthCentersLicenseServiceImpl.java)
+    service implementation (also defined in `cxf-servlet`) which is defined
+    in `AccreditedBirthCentersLicenseServiceImpl.java`
+    (`services/src/main/java/gov/medicaid/screening/services/impl/AccreditedBirthCentersLicenseServiceImpl.java`)
 
 5.  ESS: The service calls the DAO which handles the search itself.  In this
-    case AccreditedBirthCentersLicenseDAOBean.java
-    (services/src/main/java/gov/medicaid/screening/dao/impl/AccreditedBirthCentersLicenseDAOBean.java)
+    case `AccreditedBirthCentersLicenseDAOBean.java`
+    (`services/src/main/java/gov/medicaid/screening/dao/impl/AccreditedBirthCentersLicenseDAOBean.java`)
     -- this hits up the third party service to try to pull down data.
     
 6.  ESS: The result is passed as a simple POJO (Plain Old Java Object),
-    whose structure is defined in AccreditedBirthCenter.java
-    (services/src/main/java/gov/medicaid/entities/AccreditedBirthCenter.java)
+    whose structure is defined in `AccreditedBirthCenter.java`
+    (`services/src/main/java/gov/medicaid/entities/AccreditedBirthCenter.java`)
     
 7.  ESS: The POJO is converted to XML by basic Java libraries
-    (javax.jws), and then returned back to the client.
+    (`javax.jws`), and then returned back to the client.
 
 8.  CLIENT: The client translates the XML into a POJO via
-    accredited_birth_center_res.xsl
-    (psm-app/services/src/main/resources/xslt/accredited_birth_center_res.xsl)
+    `accredited_birth_center_res.xsl`
+    (`psm-app/services/src/main/resources/xslt/accredited_birth_center_res.xsl`)
 
 There is no documentation of the data structures yet.  The other
 services all appear to follow a similar pattern in the structure of the
@@ -64,15 +64,15 @@ milestone](https://github.com/OpenTechStrategies/psm/milestone/4)), and
 writing a client for it isn't predictable (you would have to look at the
 POJO to know what kind of return to expect).
 
-The ejb-jar.xml file is used within ESS functionality, not for the
+The `ejb-jar.xml` file is used within ESS functionality, not for the
 actual webservice definition.  It defines the custom URL config
-parameter (mita/config/URL) so that it contains the URL of that bean's
+parameter (`mita/config/URL`) so that it contains the URL of that bean's
 associated third party application.  That variable is used in the DAO's
 superclass
-(services/src/main/java/gov/medicaid/screening/dao/impl/BaseDAO.java --
+(`services/src/main/java/gov/medicaid/screening/dao/impl/BaseDAO.java` --
 see line 102) which uses it to make the actual call to the external
 service.  In the case of our AccreditedBirthCenters the
-ext-sources-app/services/src/main/resources/META-INF/ejb-jar.xml defines
+`ext-sources-app/services/src/main/resources/META-INF/ejb-jar.xml` defines
 the service as
 [http://www.birthcenteraccreditation.org/find-accredited-birth-centers](http://www.birthcenteraccreditation.org/find-accredited-birth-centers).
 

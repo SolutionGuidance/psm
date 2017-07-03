@@ -2,38 +2,6 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-lazy="false">
-	<class name="gov.medicaid.entities.AssuredService" table="PROFILE_ASSURED_SVC_XREF">
-		<id name="id" type="long">
-			<column name="PROFILE_ASSURED_SVC_ID" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="effectiveDate"
-			type="date">
-			<column name="EFF_DT" />
-		</property>
-		<many-to-one class="gov.medicaid.entities.ServiceAssuranceType"
-			name="type">
-			<column name="SVC_ASSURANCE_CD" />
-		</many-to-one>
-		<bag name="extendedTypes" table="PROFILE_ASSURED_EXT_SVCS">
-			<key>
-				<column name="PROFILE_ASSURED_SVC_ID" not-null="true"/>
-			</key>
-			<many-to-many class="gov.medicaid.entities.ServiceAssuranceExtType" />
-		</bag>
-		<property generated="never" lazy="false" name="profileId"
-			type="long">
-			<column name="PROFILE_ID" />
-		</property>
-		<property generated="never" lazy="false" name="ticketId"
-			type="long">
-			<column name="TICKET_ID" />
-		</property>
-		<property generated="never" lazy="false" name="status"
-			type="int">
-			<column name="STATUS" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.ExternalAccountLink" table="EXTERNAL_ACCOUNT_LINK">
 		<id name="id" type="long">
 			<column name="EXTERNAL_ACCOUNT_LINK_ID" />

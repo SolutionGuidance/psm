@@ -18,7 +18,7 @@ state's MMIS environment.  Our plan is to retarget the PSM to WildFly
 (formerly JBoss), though still keeping all of the functionality
 additions made while the PSM was in its WebSphere interregnum.
 
-This INSTALL.md file will be continuously improved as we work.  When
+This `INSTALL.md` file will be continuously improved as we work.  When
 it loses the warning at the top, that will mean we expect the PSM to
 be deployable in WildFly for production users.  We are currently
 evaluating the additional resources it would take to continue
@@ -30,7 +30,7 @@ root of this repository.
 
 You can use Docker to run the current development version of the PSM.
 That would obviate all the manual configuration steps listed in this
-file.  See docker/README.md for details.
+file.  See `docker/README.md` for details.
 
 # Requirements Overview
 
@@ -128,7 +128,7 @@ Building and deploying the PSM application requies WildFly to be installed and
 configured. See also the [WildFly 10 Getting Started
 Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
 
-1. Get Wildfly: Visit
+1. Get WildFly: Visit
    [http://wildfly.org/downloads/](http://wildfly.org/downloads/). Download
    the [10.1.0.Final full
    distribution](http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz).
@@ -310,7 +310,7 @@ repository, update its location in your local properties:
    BUILD SUCCESSFUL
    ```
 
-1. Deploy the built app: you can use the Wildfly Management Console UI
+1. Deploy the built app: you can use the WildFly Management Console UI
    at [http://localhost:9990/](http://localhost:9990/), log in with
    your management console username and password, and do the
    following: "Deployments > Add > Upload a new deployment > browse to
@@ -339,7 +339,8 @@ repository, update its location in your local properties:
       ```
 
 1. To check that the app is running, navigate to
-   http://localhost:8080/cms/login.  You should see a login screen.
+   [http://localhost:8080/cms/login](http://localhost:8080/cms/login).
+   You should see a login screen.
 
 1.  Login with one of the test users: Username `system` with password
     `system` is a "system administrator" account that can create new

@@ -3,7 +3,8 @@
 This document contains information of use to developers looking to
 improve the PSM's codebase.  See [README.md](README.md) for an
 introduction to this project, and if you're thinking of contributing
-you might also want to look at [DESIGN.md](DESIGN.md).
+you might also want to look at [DESIGN.md](DESIGN.md). All discussions
+about PSM work fall under our [code of conduct](code_of_conduct.md).
 
 ## Submitting and Reviewing Code
 
@@ -14,21 +15,26 @@ This repository has a home on
 
 Please submit changes via pull request, even if you have direct commit
 access to the repository.  The PR process allows us to get additional
-eyes on change proposals.  We have caught issues at this stage in even
-simple patches.
+eyes on change proposals, and ensures that your changed code [builds
+cleanly via Travis CI's automated Gradle
+build](https://travis-ci.org/OpenTechStrategies/psm).  We have caught
+issues at this stage in even simple patches.
 
 Generally, the more controversial, complex or large a change, the more
 opportunity people should have to comment on it.  That means it should
 garner more comments/approvals or it means it should sit longer before
 being merged.  We don't have hard rules about such things, and
 documentation changes usually don't need to sit as long as functional
-changes, but figure a day or two for an average patch.
+changes, but figure a business day or two for an average patch.
 
-As to when to merge, that's a judgment call.  Usually Cecilia, James
-or Karl pulls the trigger, but that isn't to say others shouldn't feel
-free to push the merge button if the conversation around a change has
-concluded.  If you're unsure, ask!  "Is this ready to merge?" is often
-a useful next step in the conversation.
+As to when to merge, that's a judgment call.  Usually
+[Cecilia](https://github.com/cecilia-donnelly),
+[James](https://github.com/jvasile) or
+[Karl](https://github.com/kfogel) pulls the trigger, but that isn't to
+say others shouldn't feel free to push the merge button if the
+conversation around a change has concluded.  If you're unsure, ask!
+"Is this ready to merge?" is often a useful next step in the
+conversation.
 
 If your PR fixes a bug or adds a feature, please include a brief testing
 plan along with the change.  Once a test framework has been set up, that
@@ -100,8 +106,9 @@ line of each one's commit message.
 
 Please uses spaces, never tabs.  Indent Java code by 4 spaces per
 level, XML by 2 spaces per level, and avoid trailing whitespaces.  The
-file [.editorconfig](.editorconfig) encodes these formatting
-conventions in a way that most text editors can read.
+file [.editorconfig](.editorconfig), in the repository's root
+directory, encodes these formatting conventions in a way that most
+text editors can read.
 
 Some of the legacy code here may not already conform to these
 standards.  When you find yourself about to make changes to such code,

@@ -173,7 +173,8 @@ We welcome questions and contributions.  You can:
 
 * Submit a [pull
   request](https://help.github.com/articles/about-pull-requests/) to
-  the [repository](https://github.com/OpenTechStrategies/psm/).
+  the [repository](https://github.com/OpenTechStrategies/psm/). Here's
+  [our guide for code contributors](CONTRIBUTING.md).
 
 * Use [IRC](http://www.irchelp.org/) to talk to us in real time.  Most
   of the dedicated team hangs out in `#OpenTechStrategies` on the

@@ -20,7 +20,6 @@ import gov.medicaid.domain.model.AdditionalPracticeLocationsType;
 import gov.medicaid.domain.model.AddressType;
 import gov.medicaid.domain.model.AgencyInformationType;
 import gov.medicaid.domain.model.ApplicantInformationType;
-import gov.medicaid.domain.model.AssuredServiceType;
 import gov.medicaid.domain.model.AttachedDocumentsType;
 import gov.medicaid.domain.model.ContactInformationType;
 import gov.medicaid.domain.model.EnrollmentProcess;

@@ -1062,16 +1062,6 @@
 		</sequence>
 	</complexType>
 
-	<complexType name="AssuredServiceType">
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Type" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ExtendedTypes" type="string" maxOccurs="unbounded" minOccurs="0"></element>
-			<element name="EffectiveDate" type="date" maxOccurs="1" minOccurs="0"></element>
-			<element name="Status" type="int" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
 	<complexType name="ServiceAssuranceType">
 		<sequence>
 			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
@@ -1142,7 +1132,6 @@
     		<element name="ICFNumberOfBeds" type="int" maxOccurs="1" minOccurs="0"></element>
     		<element name="AmbulanceServices" type="tns:AmbulanceServicesType" maxOccurs="unbounded" minOccurs="0"></element>
             <element name="FacilityQualification" type="tns:FacilityQualificationType" maxOccurs="unbounded" minOccurs="0"></element>
-            <element name="AssuredService" type="tns:AssuredServiceType" maxOccurs="unbounded" minOccurs="0"></element>
     	</sequence>
     </complexType>
 

@@ -446,11 +446,6 @@ public class ViewStatics {
     public static final String PHYSICIAN_CLINIC_FACILITY_QUALIFICATION_FORM = "Physician Clinic Facility Qualification Form";
 
     /**
-     * Form to ask for service assurance statement.
-     */
-    public static final String CHEMICAL_DEPENDENCY_SERVICE_ASSURANCE_FORM = "Chemical Dependency Service Assurance Form"; 
-    
-    /**
      * Private constructor.
      */
     private ViewStatics() {

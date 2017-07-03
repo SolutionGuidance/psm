@@ -712,7 +712,6 @@
 			<enumeration value="Birthing Center"></enumeration>
 			<enumeration value="Medical Transportation"></enumeration>
 			<enumeration value="Billing Entity for Physician Services"></enumeration>
-			<enumeration value="Chemical Dependency Program"></enumeration>
 		</restriction>
 	</simpleType>
 

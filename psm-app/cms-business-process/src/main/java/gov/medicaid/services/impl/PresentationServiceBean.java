@@ -313,10 +313,6 @@ public class PresentationServiceBean extends BaseService implements Presentation
         else if (ProviderType.DAY_TREATMENT.value().equals(type)) {
             return false;
         }
-        // Fix for PESP-365
-        else if (ProviderType.CHEMICAL_DEPENDENCY_PROGRAM.value().equals(type)) {
-            return false;
-        }
         // Fix for PESP-406
         else if (ProviderType.MEDICAL_TRANSPORTATION.value().equals(type)) {
             return false;
@@ -647,8 +643,6 @@ public class PresentationServiceBean extends BaseService implements Presentation
                     page.addForm(ViewStatics.FACILITY_ELIGIBILITY_FORM, new FormSettings());
                 } else if (ProviderType.HOSPICE.value().equals(type)) {
                     page.addForm(ViewStatics.AMBULANCE_SERVICES_FORM, new FormSettings());
-                } else if (ProviderType.CHEMICAL_DEPENDENCY_PROGRAM.value().equals(type)) {
-                    page.addForm(ViewStatics.CHEMICAL_DEPENDENCY_SERVICE_ASSURANCE_FORM, new FormSettings());
                 }
 
                 if (facts.get("askForCLIA")) {

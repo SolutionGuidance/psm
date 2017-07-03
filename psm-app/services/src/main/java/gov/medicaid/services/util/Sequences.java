@@ -37,8 +37,6 @@ public class Sequences {
      */
     public static final String EXT_PROF_LINK_SEQ = "EXT_PROF_LINK_SEQ";
 
-    public static final String SERVICE_SEQ = "SERVICE_SEQ";
-
     /**
      * For Assured Services.
      */

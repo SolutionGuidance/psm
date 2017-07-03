@@ -75,23 +75,6 @@
 			<column name="EXTERNAL_PROFILE_ID" />
 		</property>
 	</class>
-	<class name="gov.medicaid.entities.ProviderService" table="PROVIDER_SVCS">
-		<id column="PROVIDER_SVCS_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="profileId"
-			type="long">
-			<column default="0" name="PROFILE_ID" not-null="true" />
-		</property>
-		<property generated="never" lazy="false" name="ticketId"
-			type="long">
-			<column default="0" name="TICKET_ID" not-null="true" />
-		</property>
-		<many-to-one class="gov.medicaid.entities.ServiceCategory"
-			fetch="join" name="category">
-			<column name="SVC_CAT_CD" />
-		</many-to-one>
-	</class>
 	<class name="gov.medicaid.entities.ProviderCategoryOfService" table="PROVIDER_COS_XREF">
 		<id column="PROVIDER_COS_ID" name="id" type="long">
 			<generator class="assigned" />

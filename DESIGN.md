@@ -1,6 +1,6 @@
 # DESIGN.md
 
-***NOTE: 2017-04-27: This document is still very much a work in
+***NOTE: 2017-07-03: This document is still very much a work in
    progress.  We welcome suggestions on improving it.***
 
 ## Overall architecture
@@ -16,6 +16,10 @@ application functionality (including providing an API),
 for more details on component versions and installation requirements.
 
 ## Interfaces
+
+***NOTE:2017-07-03: [We no longer use `ext-sources-app` and are
+   rewriting this section
+   accordingly.](https://github.com/OpenTechStrategies/psm/issues/165).***
 
 The two pieces of this application (`psm-app` and `ext-sources-app`)
 communicate via a web service which is provided by the `ext-sources-app`.
@@ -107,8 +111,8 @@ The PSM has four types of users, each with their own permission level:
     
     This user type can edit and view enrollments just as a service agent
     can, but it can also edit provider types and the screening schedule.
-    This user type is most likely appropriate for someone working on the
-    state side of the app.
+    This user type is most likely appropriate for someone working for a
+    state and overseeing enrollment and service agents.
     
     - Can view: provider dashboard and enrollments
     

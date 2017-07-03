@@ -55,7 +55,6 @@ DROP TABLE IF EXISTS
   risk_levels,
   roles,
   screening_schedules,
-  service_assurance_types,
   service_categories,
   specialty_types,
   states
@@ -79,12 +78,6 @@ INSERT INTO roles (code, description) VALUES
   ('R2', 'Service Agent'),
   ('R3', 'Service Administrator'),
   ('R4', 'System Administrator');
-
-CREATE TABLE service_assurance_types (
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE,
-  patient_indicator TEXT
-);
 
 CREATE TABLE cms_user (
   user_id TEXT PRIMARY KEY,

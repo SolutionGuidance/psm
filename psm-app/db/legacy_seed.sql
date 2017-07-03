@@ -2,8 +2,7 @@ DROP TABLE IF EXISTS
   external_account_link,
   external_profile_link,
   profile_assured_ext_svcs,
-  profile_assured_svc_xref,
-  required_fld
+  profile_assured_svc_xref
 CASCADE ;
 
 create table external_account_link
@@ -51,16 +50,4 @@ create table profile_assured_svc_xref
 alter table profile_assured_ext_svcs
 	add constraint fknpq45dvbn0v9qxjrp3ccs81uy
 		foreign key (profile_assured_svc_id) references profile_assured_svc_xref
-;
-
-create table required_fld
-(
-	code varchar(2) not null
-		constraint required_fld_pkey
-			primary key,
-	description varchar(255),
-	required_fld_type_id varchar(2)
-		constraint fk3pj5itnxvpohvq0q8skilyal0
-			references required_fld
-)
 ;

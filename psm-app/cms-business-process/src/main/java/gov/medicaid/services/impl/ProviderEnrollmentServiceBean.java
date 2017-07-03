@@ -58,7 +58,18 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.Sequences;
 import gov.medicaid.services.util.Util;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.NotImplementedException;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+import javax.persistence.Query;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -71,18 +82,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import javax.ejb.Local;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.persistence.Query;
-import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialException;
-
-import org.apache.commons.io.IOUtils;
 
 /**
  * This implementation of the persistence interface takes full control of mapping relationships in order to support
@@ -186,14 +185,19 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         if (ticket.getRequestType().getDescription().equals(ViewStatics.ENROLLMENT_REQUEST)) {
             profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
-            profile.setProfileId(getSequence().getNextValue(Sequences.PROVIDER_NUMBER_SEQ));
             profile.setOwnerId(ticket.getSubmittedBy());
             profile.setCreatedBy(ticket.getSubmittedBy());
             profile.setCreatedOn(ticket.getStatusDate());
 
             profile.getEntity().setEnrolled("Y");
-            // generate profile id
-            insertProfile(0, profile);
+
+            profile.setId(0);
+            profile.setTicketId(0);
+            getEm().persist(profile);
+
+            profile.setProfileId(profile.getId());
+
+            saveRelatedEntities(profile);
         } else if (ticket.getRequestType().getDescription().equals(ViewStatics.IMPORT_REQUEST)) {
             profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
             profile.setOwnerId(ticket.getSubmittedBy());
@@ -742,23 +746,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     public long importProfile(CMSUser user, SystemId sourceSystem, ProviderProfile profile)
         throws PortalServiceException {
-
-        List<Document> attachments = profile.getAttachments();
-        for (Document document : attachments) {
-            saveContentsAndCloseStreams(document);
-        }
-
-        ProviderProfile clone = profile.clone();
-        clone.getEntity().setLegacyIndicator("Y");
-
-        long internalProfileId = getSequence().getNextValue(Sequences.PROVIDER_NUMBER_SEQ);
-        Enrollment ticket = new Enrollment();
-        ticket.setRequestType(findLookupByDescription(RequestType.class, ViewStatics.IMPORT_REQUEST));
-
-        clone.setProfileId(internalProfileId);
-        ticket.setDetails(clone);
-        bypassJBPM(user, ticket);
-        return internalProfileId;
+        throw new NotImplementedException();
     }
 
     /**
@@ -878,6 +866,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         details.setId(0);
         getEm().persist(details);
 
+        saveRelatedEntities(details);
+    }
+
+    private void saveRelatedEntities(ProviderProfile details) throws PortalServiceException {
         // save profile owner
         insertProviderEntity(details);
 

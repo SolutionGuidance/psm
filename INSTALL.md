@@ -85,7 +85,9 @@ The application requires the application server to be configured with two data s
 - JNDI name `java:/jdbc/MitaDS`
 - JNDI name `java:/jdbc/TaskServiceDS`
 
-These should be XA data sources that both point to the same database.
+These should be XA data sources that both point to the same
+database. The installation instructions below will take care of this
+configuration for a development install.
 
 ### Mail
 

@@ -5,11 +5,11 @@ Current build status:  ![Build status](https://travis-ci.org/OpenTechStrategies/
 
 Contents:
 
-1.  Introduction and Current Status
-2.  Background
-3.  Features and Functionality
-4.  Project Resources and Organization of This Repository
-5.  Participating in the PSM Project
+1. **[Introduction and Current Status](#section-1-introduction-and-current-status)**
+2. **[Background](#section-2-background)**
+3. **[Features and Functionality](#section-3-features-and-functionality)**
+4. **[Project Resources and Organization of This Repository](#section-4-project-resources-and-repository-organization)**
+5. **[Participating in the PSM Project](#section-5-participating-in-the-psm-project)**
 
 ---------------------------------------------------------------------
 SECTION 1: Introduction and Current Status

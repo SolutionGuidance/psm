@@ -20,8 +20,6 @@ import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.entities.BeneficialOwnerType;
 import gov.medicaid.entities.LookupEntity;
 import gov.medicaid.entities.ProviderType;
-import gov.medicaid.entities.ServiceAssuranceExtType;
-import gov.medicaid.entities.ServiceAssuranceType;
 
 import java.util.List;
 
@@ -130,24 +128,6 @@ public interface LookupService {
      * @return the matched lookups
      */
     public List<BeneficialOwnerType> findBeneficialOwnerTypes(String entityType);
-
-    /**
-     * Retrieves all the service types based on indicator.
-     *
-     * @param indicator
-     *            in/out patient indicator
-     * @return the matched lookups
-     */
-    public List<ServiceAssuranceType> findAssuredServiceTypes(String indicator);
-
-    /**
-     * Retrieves all the service types based on code.
-     *
-     * @param code
-     *            the parent service code
-     * @return the matched lookups
-     */
-    public List<ServiceAssuranceExtType> findAssuredServiceExtTypes(String code);
 
     /**
 	 * Updates the ProviderTypeSettings for agreements.

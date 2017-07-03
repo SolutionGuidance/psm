@@ -22,8 +22,6 @@ import gov.medicaid.entities.BeneficialOwnerType;
 import gov.medicaid.entities.EntityStructureType;
 import gov.medicaid.entities.LookupEntity;
 import gov.medicaid.entities.ProviderType;
-import gov.medicaid.entities.ServiceAssuranceExtType;
-import gov.medicaid.entities.ServiceAssuranceType;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.util.Util;
@@ -256,35 +254,6 @@ public class LookupServiceBean implements LookupService {
         }
         return results;
     }
-
-    /**
-     * Retrieves all the service types based on indicator.
-     *
-     * @param indicator
-     *            in/out patient indicator
-     * @return the matched lookups
-     */
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<ServiceAssuranceType> findAssuredServiceTypes(String indicator) {
-        return em.createQuery("from ServiceAssuranceType t where t.patientInd = :ind").setParameter("ind", indicator)
-                .getResultList();
-    }
-
-    /**
-     * Retrieves all the service types based on code.
-     *
-     * @param code
-     *            the parent service code
-     * @return the matched lookups
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public List<ServiceAssuranceExtType> findAssuredServiceExtTypes(String code) {
-        return em.createQuery("from ServiceAssuranceExtType t where t.serviceAssuranceCode = :code")
-                .setParameter("code", code).getResultList();
-    }
-
 
     @Override
     public void updateProviderTypeAgreementSettings(

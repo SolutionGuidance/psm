@@ -21,6 +21,25 @@
 | Indicate what kinds of documents/attachments are required by provider type. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
 | Indicate which fields are required. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
 | Prevent application submission if required fields are empty. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Ensure that tax ID number is 9 digits | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Validate HIPAA Taxonomy codes against http://www.wpc-edi.com/codes/taxonomy | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Require the following fields: Provider Name, Business Phone, Provider Street Address, City, State, Zip Code, County, SSN, Date of Birth, License Number, IRS Payee Name, DBA Name, Payee Address, Payee City, Payee State, Payee Zip Code, Payee Tax ID, Provider Email address | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Accept the following fields:Practice Type, Specialties (1 or more), NPI, HIPAA Taxonomy Codes, CLIA number, DHSS certification, Optical and Audiology y/n, Collaborative Practice Agreement y/n, RHC y/n, Medicare Provider Number, Case Mgmt y/n, Rural Health Rate  | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Show a list of settings in which a provider might see clients/patients, including "Other." | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | | 
+| Allow applicants to choose multiple care settings. | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | | 
+| Require the following fields: Contact email, Merger y/n, Owner/board names and addresses, Care settings, DEA controlled substances certification y/n, DEA revocation y/n | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | | 
+| Accept the following fields: Applicant Name, Contact Person, Contact phone, Medicaid number | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+| Allow providers to update information and initiate re-screening process (e.g., in the following situations: name change, change of ownership/operator - whether or not it is the same practice location, address change, Federal Tax Identification Number change at same practice location, change from Social Security Number to Federal Tax Identification Number at same practice location, change from Federal Tax Identification Number to Social Security Number at same practice location, payment name or address change) | MO | MISSOURI MEDICAID PROVIDER ENROLLMENT INFORMATION GUIDE.docx | |
+|  |  |   |
+| To extent permitted by law, make screening data available for analytics and other reporting purposes. | LA | PSM State Calls Requirements_functionality needs.xlsx |
+| Show integrated history of a provider record -- allow users to scroll back in history to see changes over time without needing to navigate to separate files. | LA | PSM State Calls Requirements_functionality needs.xlsx |
+| Screen providers for managed care plans. | LA | PSM State Calls Requirements_functionality needs.xlsx |
+| Notify managed care plans when a provider becomes eligible (has been screened) and/or allow a managed care plan to check a provider's eligibility. |  LA | PSM State Calls Requirements_functionality needs.xlsx |
+|  |  |   |
+| Detect and ask specific questions of bordering-state providers. | WV | PSM State Calls Requirements_functionality needs.xlsx |
+|  |  |   |
+| Share NPI between individual providers, for group practices. | OH |  PSM State Calls Requirements_functionality needs.xlsx |
+| Validate entered information as provider fills out application (not at the end of the process). | OH |  PSM State Calls Requirements_functionality needs.xlsx |
 |  |  |   |
 | Capability to link individuals to their organizations and vice versa. | Pre-certification |  |
 | Capability to match on multiple variations of an individual's or organization's name to ensure that the correct entity is verified. | Pre-certification |  |

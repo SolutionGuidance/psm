@@ -1069,13 +1069,6 @@
 		</sequence>
 	</complexType>
 
-	<complexType name="ServiceAssuranceExtType">
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ServiceAssuranceCode" type="string" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
 	<complexType name="OwnershipInformationType">
 		<sequence>
 			<element name="EntityType" type="string" maxOccurs="1" minOccurs="0"></element>

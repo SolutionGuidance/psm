@@ -22,10 +22,13 @@ issues at this stage in even simple patches.
 
 Generally, the more controversial, complex or large a change, the more
 opportunity people should have to comment on it.  That means it should
-garner more comments/approvals or it means it should sit longer before
-being merged.  We don't have hard rules about such things, and
-documentation changes usually don't need to sit as long as functional
-changes, but figure a business day or two for an average patch.
+garner more comments/approvals, or it means it should sit longer
+before being merged. You can talk with us about a change you'd like to
+make before or while you work on it; see [the participation section of
+the README](README.md#section-5-participating-in-the-psm-project). We
+don't have hard rules about such things, and documentation changes
+usually don't need to sit as long as functional changes, but figure a
+business day or two for an average patch to get discussed.
 
 As to when to merge, that's a judgment call.  Usually
 [Cecilia](https://github.com/cecilia-donnelly),
@@ -182,3 +185,9 @@ saved version somewhere other than this repository.  If a file can be
 generated from the materials in the repository using
 commonly-available tools, please do not put it in the repository
 without raising it for discussion.
+
+## Thank you!
+
+The PSM will make providers', administrators', agents', and other
+people's lives easier. We're glad to have your help getting there
+faster.

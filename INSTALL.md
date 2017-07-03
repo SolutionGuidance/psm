@@ -32,7 +32,7 @@ You can use Docker to run the current development version of the PSM.
 That would obviate all the manual configuration steps listed in this
 file.  See docker/README.md for details.
 
-# Overview
+# Requirements Overview
 
 The Provider Screening Module is a Java EE Enterprise Application. It depends
 on a correctly-configured Java EE Application Server. While it was originally
@@ -88,7 +88,12 @@ These should be XA data sources that both point to the same database.
 The application requires the application server to be configured with a mail service:
 - JNDI name `java:/Mail`
 
-# Prerequisites
+The installation instructions below will take care of this
+configuration for a development install.
+
+# Installation Instructions
+
+## Install prerequisites
 
 1. A [Java 8](https://www.java.com) JRE and JDK. Run `java -version`
    to check your Java version; "1.8" refers to Java 8. We are testing
@@ -117,7 +122,7 @@ The application requires the application server to be configured with a mail ser
    $ git clone https://github.com/OpenTechStrategies/psm.git
    ```
 
-# Configuring WildFly
+## Configure WildFly
 
 Building and deploying the PSM application requies WildFly to be installed and
 configured. See also the [WildFly 10 Getting Started
@@ -280,7 +285,7 @@ xa-data-source add \
 EOF
 ```
 
-# Building
+## Build and deploy the application
 1. Fill in your local properties:
 
    ```ShellSession
@@ -341,7 +346,7 @@ repository, update its location in your local properties:
     accounts.  Username `admin` with password `admin` is a "service
     admin" account that can create new provider enrollments.
 
-# Documentation
+## Build documentation
 
 Generate the API documentation from Javadoc annotations by invoking
 gradle:

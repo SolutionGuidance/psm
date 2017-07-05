@@ -20,7 +20,6 @@ import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.BeneficialOwnerType;
 import gov.medicaid.entities.EntityStructureType;
-import gov.medicaid.entities.LegacySystemMapping;
 import gov.medicaid.entities.LookupEntity;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ServiceAssuranceExtType;
@@ -286,45 +285,6 @@ public class LookupServiceBean implements LookupService {
                 .setParameter("code", code).getResultList();
     }
 
-
-    /**
-     * Retrieves the mapped code for the given internal lookup.
-     * @param name the system name
-     * @param codeType the code type name
-     * @param internalCodeValue the internal code value
-     * @return the mapped value, or null if not found
-     */
-    @SuppressWarnings("unchecked")
-    public String findLegacyMapping(String name, String codeType, String internalCodeValue) {
-        String query = "from LegacySystemMapping l where l.systemName = :systemName "
-            + "AND l.codeType = :codeType AND l.internalCode = :internalCode";
-
-        List<LegacySystemMapping> resultList = em.createQuery(query).setParameter("systemName", name)
-            .setParameter("codeType", codeType).setParameter("internalCode", internalCodeValue).getResultList();
-        if (resultList.isEmpty()) {
-            return null;
-        }
-        return resultList.get(0).getExternalCode();
-    }
-
-    /**
-     * Retrieves the mapped code for the given external lookup.
-     * @param name the system name
-     * @param codeType the code type name
-     * @param externalCodeValue the external code value
-     * @return the mapped value, or the external code if not found
-     */
-    @SuppressWarnings("unchecked")
-    public String findInternalMapping(String name, String codeType, String externalCodeValue) {
-       String query = "from LegacySystemMapping l where l.systemName = :systemName "
-            + "AND l.codeType = :codeType AND l.externalCode = :externalCode";
-        List<LegacySystemMapping> resultList = em.createQuery(query).setParameter("systemName", name)
-            .setParameter("codeType", codeType).setParameter("externalCode", externalCodeValue).getResultList();
-        if (resultList.isEmpty()) {
-            return null;
-        }
-        return resultList.get(0).getInternalCode();
-    }
 
     @Override
     public void updateProviderTypeAgreementSettings(

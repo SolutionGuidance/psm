@@ -150,24 +150,6 @@ public interface LookupService {
     public List<ServiceAssuranceExtType> findAssuredServiceExtTypes(String code);
 
     /**
-     * Retrieves the mapped code for the given internal lookup.
-     * @param name the system name
-     * @param codeType the code type name
-     * @param internalCodeValue the internal code value
-     * @return the mapped value, or the internal code if not found
-     */
-    public String findLegacyMapping(String name, String codeType, String internalCodeValue);
-
-    /**
-     * Retrieves the mapped code for the given external lookup.
-     * @param name the system name
-     * @param codeType the code type name
-     * @param externalCodeValue the external code value
-     * @return the mapped value, or the external code if not found
-     */
-    public String findInternalMapping(String name, String codeType, String externalCodeValue);
-
-	/**
 	 * Updates the ProviderTypeSettings for agreements.
 	 *
 	 * @param providerType providerType

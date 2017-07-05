@@ -5,7 +5,7 @@ dist: trusty
 
 cache:
   directories:
-    - $HOME/.gradle/caches
+    - $HOME/.gradle/
 
 # We depend on a wildfly deploment for some of the production
 # jar files. Download it and install just above our repo
@@ -19,4 +19,4 @@ install: true
 
 script:
   - cd psm-app
-  - ./gradlew clean build
+  - ./gradlew --no-daemon --console=plain clean build

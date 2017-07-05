@@ -355,6 +355,12 @@ CREATE TABLE subtasksstrategy (
     REFERENCES task(id)
 );
 
+CREATE SEQUENCE comment_id_seq
+  START WITH 1
+  INCREMENT BY 1
+  NO MINVALUE
+  NO MAXVALUE
+  CACHE 1;
 CREATE TABLE task_comment (
   id BIGINT PRIMARY KEY,
   addedat TIMESTAMP WITH TIME ZONE,

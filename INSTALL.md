@@ -1,23 +1,26 @@
        Installation instructions for the Provider Screening Module
        ===========================================================
 
-***NOTE: 2017-04-28: These instructions are still very incomplete and
-   are a work in progress.  We welcome suggestions on improving
-   them.***
+***NOTE: 2017-07-03: These developer installation instructions are a
+   work in progress.  We welcome suggestions on improving them. We do
+   not yet have a production deployment guide, and will seek out
+   conversation with operations engineers in state IT departments to
+   help us develop that guide later in 2017. ***
 
 # Background and Current Deployment Status
 
-2017-06-12: The PSM is not yet ready for production deployment, but is ready for development deployment.
+2017-07-03: The PSM is not yet ready for production deployment,
+but is ready for development deployment.
 
 The PSM was originally developed to run in the open source web
 application server Apache JBoss (now called WildFly).  Somewhat late
 in the PSM's development, it was retargeted to the IBM WebSphere
 Application Server (WAS) 8.5, in order to better support a particular
-state's MMIS environment.  Our plan is to retarget the PSM to WildFly
+state's MMIS environment.  We have retargeted the PSM to WildFly
 (formerly JBoss), though still keeping all of the functionality
 additions made while the PSM was in its WebSphere interregnum.
 
-This INSTALL.md file will be continuously improved as we work.  When
+This `INSTALL.md` file will be continuously improved as we work.  When
 it loses the warning at the top, that will mean we expect the PSM to
 be deployable in WildFly for production users.  We are currently
 evaluating the additional resources it would take to continue
@@ -29,9 +32,9 @@ root of this repository.
 
 You can use Docker to run the current development version of the PSM.
 That would obviate all the manual configuration steps listed in this
-file.  See docker/README.md for details.
+file.  See `docker/README.md` for details.
 
-# Overview
+# Requirements Overview
 
 The Provider Screening Module is a Java EE Enterprise Application. It depends
 on a correctly-configured Java EE Application Server. While it was originally
@@ -45,20 +48,24 @@ time, and will evolve as we understand it more.
 
 ### Hardware
 
-- **Memory**: 8 GB should be enough for a test system
-- **CPU**: TBA; provisioning CPU proportional to memory (whatever that looks
-  like in your environment) should be reasonable.
+- **Memory**: 8 GB should be enough for a test system.
+- **CPU**: TBA; provisioning CPU proportional to memory (whatever that
+  looks like in your environment) should be reasonable. Our
+  demonstration instance runs on two cores of an Intel(R) Xeon(R) CPU
+  E5-2676 v3 @ 2.40GHz.
 - **Storage**: 10 GB of storage for WildFly, the PSM repository, and its
   dependencies should be plenty.
 
 ### Software
 
-- **Operating System**: we recommend the stable Debian 8 (jessie). If
-  that's not feasible for your environment, any of the supported
-  WildFly 10.1 operating systems should work, but our ability to help
-  troubleshoot issues that come up may be limited.  Once we test this
-  on a few more platforms, we will expand the list of compatible
-  operating systems to include onther Linux distributions.
+- **Operating System**: we recommend the old stable Debian 8 (jessie), and
+  a developer has successfully installed the PSM on Red Hat 7.3
+  Enterprise Linux. If that's not feasible for your environment, any
+  of the supported WildFly 10.1 operating systems should work, but our
+  ability to help troubleshoot issues that come up may be limited.
+  Once we test this on a few more platforms, we will expand the list
+  of compatible operating systems to include other Linux
+  distributions.
 - **Java**: We're using OpenJDK 8, which is currently 8u121, but you should
   keep up with the latest releases and post if you have issues relating to
   upgrading.
@@ -80,14 +87,21 @@ The application requires the application server to be configured with two data s
 - JNDI name `java:/jdbc/MitaDS`
 - JNDI name `java:/jdbc/TaskServiceDS`
 
-These should be XA data sources that both point to the same database.
+These should be XA data sources that both point to the same
+database. The installation instructions below will take care of this
+configuration for a development install.
 
 ### Mail
 
 The application requires the application server to be configured with a mail service:
 - JNDI name `java:/Mail`
 
-# Prerequisites
+The installation instructions below will take care of this
+configuration for a development install.
+
+# Installation Instructions
+
+## Install prerequisites
 
 1. A [Java 8](https://www.java.com) JRE and JDK. Run `java -version`
    to check your Java version; "1.8" refers to Java 8. We are testing
@@ -116,13 +130,13 @@ The application requires the application server to be configured with a mail ser
    $ git clone https://github.com/OpenTechStrategies/psm.git
    ```
 
-# Configuring WildFly
+## Configure WildFly
 
 Building and deploying the PSM application requies WildFly to be installed and
 configured. See also the [WildFly 10 Getting Started
 Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
 
-1. Get Wildfly: Visit
+1. Get WildFly: Visit
    [http://wildfly.org/downloads/](http://wildfly.org/downloads/). Download
    the [10.1.0.Final full
    distribution](http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz).
@@ -279,7 +293,7 @@ xa-data-source add \
 EOF
 ```
 
-# Building
+## Build and deploy the application
 1. Fill in your local properties:
 
    ```ShellSession
@@ -304,7 +318,7 @@ repository, update its location in your local properties:
    BUILD SUCCESSFUL
    ```
 
-1. Deploy the built app: you can use the Wildfly Management Console UI
+1. Deploy the built app: you can use the WildFly Management Console UI
    at [http://localhost:9990/](http://localhost:9990/), log in with
    your management console username and password, and do the
    following: "Deployments > Add > Upload a new deployment > browse to
@@ -333,14 +347,15 @@ repository, update its location in your local properties:
       ```
 
 1. To check that the app is running, navigate to
-   http://localhost:8080/cms/login.  You should see a login screen.
+   [http://localhost:8080/cms/login](http://localhost:8080/cms/login).
+   You should see a login screen.
 
 1.  Login with one of the test users: Username `system` with password
     `system` is a "system administrator" account that can create new
     accounts.  Username `admin` with password `admin` is a "service
     admin" account that can create new provider enrollments.
 
-# Documentation
+## Build documentation
 
 Generate the API documentation from Javadoc annotations by invoking
 gradle:

@@ -5,11 +5,11 @@ Current build status:  ![Build status](https://travis-ci.org/OpenTechStrategies/
 
 Contents:
 
-1.  Introduction and Current Status
-2.  Background
-3.  Features and Functionality
-4.  Project Resources and Organization of This Repository
-5.  Participating in the PSM Project
+1. **[Introduction and Current Status](#section-1-introduction-and-current-status)**
+2. **[Background](#section-2-background)**
+3. **[Features and Functionality](#section-3-features-and-functionality)**
+4. **[Project Resources and Organization of This Repository](#section-4-project-resources-and-repository-organization)**
+5. **[Participating in the PSM Project](#section-5-participating-in-the-psm-project)**
 
 ---------------------------------------------------------------------
 SECTION 1: Introduction and Current Status
@@ -82,7 +82,8 @@ between June 2012 and April 2013, to cover all phases of the software
 development life cycle.  The code and documentation resulting from
 that challenge are hosted in an [original
 repository](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp)
-code, from which this repository was cloned to continue the project.
+code, from which this repository was cloned to continue the
+project. Work restarted in April 2017.
 
 More information on the challenge can be found here:
 http://www.topcoder.com/cms/medicaid-enrollment-portal/
@@ -172,7 +173,8 @@ We welcome questions and contributions.  You can:
 
 * Submit a [pull
   request](https://help.github.com/articles/about-pull-requests/) to
-  the [repository](https://github.com/OpenTechStrategies/psm/).
+  the [repository](https://github.com/OpenTechStrategies/psm/). Here's
+  [our guide for code contributors](CONTRIBUTING.md).
 
 * Use [IRC](http://www.irchelp.org/) to talk to us in real time.  Most
   of the dedicated team hangs out in `#OpenTechStrategies` on the

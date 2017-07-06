@@ -2,16 +2,16 @@
 
 # Adaptation of code from https://benlimmer.com/2013/12/26/automatically-publish-javadoc-to-gh-pages-with-travis-ci/
 
-if [ "$TRAVIS_REPO_SLUG" == "brainwane/psm" ] && [ "$TRAVIS_JDK_VERSION" == "openjdk8" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+if [ "$TRAVIS_REPO_SLUG" == "OpenTechStrategies/psm" ] && [ "$TRAVIS_JDK_VERSION" == "openjdk8" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
 
-  echo -e "Publishing javadoc...\n"
+  echo -e "Publishing Javadoc...\n"
 
   cp -R cms-web/build/reports/api-docs $HOME/javadoc-latest
 
   cd $HOME
   git config --global user.email "travis@travis-ci.org"
   git config --global user.name "travis-ci"
-  git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/brainwane/psm gh-pages > /dev/null
+  git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/OpenTechStrategies/psm gh-pages > /dev/null
 
   cd gh-pages
   git rm -rf ./javadoc

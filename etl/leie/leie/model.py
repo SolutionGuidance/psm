@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import datetime
+import dateutil.parser
 import os
 from path import cd
 import sqlite3
@@ -75,6 +77,8 @@ DROP TABLE individual_exclusion;
 DROP TABLE individual_reinstatement;
 DROP TABLE business_exclusion;
 DROP TABLE business_reinstatement;"""
+        if migration == 1:
+            return "DROP TABLE log;"
 
     def goose(self):
         """Returns a dict of goose migrations.  The keys are filenames and the
@@ -84,6 +88,7 @@ DROP TABLE business_reinstatement;"""
         """
 
         fnames = ["20170515130501_initial_create.sql"
+                  ,"20170606100001_create_log.sql"
                   ]
 
         migrations = {}
@@ -178,6 +183,13 @@ DROP TABLE business_reinstatement;"""
                    + "CREATE TABLE IF NOT EXISTS individual_reinstatement (" + indiv_rows + common_rows + ");\n"
                    + "CREATE TABLE IF NOT EXISTS business_exclusion (" + bus_rows + common_rows + ");\n"
                    + "CREATE TABLE IF NOT EXISTS business_reinstatement (" + bus_rows + common_rows + ");")
+        elif migration == 1:
+            return """
+            CREATE TABLE IF NOT EXISTS log (
+            datetime text,
+            datatype text,
+            msg text);
+            """
         else:
             return None
 
@@ -283,6 +295,25 @@ class LEIE(SQL):
 
         """
         return self.get_latest_date("individual_reinstatement", "reindate")
+
+    def log(self, datatype, message, now=""):
+        """Add a MESSAGE string about a DATATYPE (either updated or
+        reinstatement) to the log table in the db.
+
+        Else, NOW = a datestring we can parse
+        """
+
+        assert datatype in ["updated", "reinstatement"]
+
+        # See http://sqlite.org/datatype3.html for info on dates in sqlite3
+        if not now:
+            now = datetime.datetime.now().isoformat()
+        else:
+            now = dateutil.parser.parse(str(now)).isoformat()
+
+        crsr = self.conn.cursor()
+        crsr.execute("INSERT INTO log VALUES(?,?,?)", (now, datatype, message))
+        self.conn.commit()
 
 def main(dirname=None):
     logger = log.logger()

@@ -35,6 +35,18 @@ def test_goose_write():
     for fname in fnames:
         assert os.path.exists(fname)
 
+def test_log(conn):
+    import random
+    msg = "Test %d" % random.randint(0,9999999999)
+    conn.log("updated", msg)
+    crsr = conn.conn.cursor()
+    cols = crsr.execute("Select * from log where msg=?", [msg]).fetchall()
+    print("Log columns returned: ", cols)
+    assert len(cols) == 1
+    cols = cols[0]
+    assert cols[1] == "updated"
+    assert cols[2] == msg
+
 def test_main():
     """Main just does goose_write, so this is the mostly same test as
     test_goose_write"""

@@ -86,6 +86,20 @@ def test_exclusion(conn):
     rows = int(subprocess.check_output("wc -l tests/data/UPDATED.csv", shell=True).decode("utf-8").split(' ')[0])
     assert conn.count_exclusions() == rows - 1
 
+def test_get_datadir():
+    """We can't really know what this will return because if it is run on a
+    running system, there might be a /etc file.  All we can really do is see if
+    we have a string or not."""
+
+    assert type(etl.get_datadir()) == type("")
+
+def test_get_dbdir():
+    """We can't really know what this will return because if it is run on a
+    running system, there might be a /etc file.  All we can really do is see if
+    we have a string or not."""
+
+    assert type(etl.get_dbdir()) == type("")
+
 def test_reinstatement(conn):
     print("We just do a complete reinstatement ETL and then see if the results are as expected.")
     rein = etl.Reinstatements(conn)

@@ -20,3 +20,7 @@ install: true
 script:
   - cd psm-app
   - ./gradlew --no-daemon --console=plain clean build
+
+after_success:
+  - ./gradlew cms-web:apiDocs
+  - ../scripts/push-javadoc-to-gh-pages.sh

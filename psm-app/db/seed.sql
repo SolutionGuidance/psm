@@ -51,7 +51,6 @@ DROP TABLE IF EXISTS
   qualified_professional_types,
   relationship_types,
   request_types,
-  required_field_types,
   risk_levels,
   roles,
   screening_schedules,
@@ -250,14 +249,6 @@ INSERT INTO profile_statuses (code, description) VALUES
   ('01', 'Active'),
   ('02', 'Suspended'),
   ('03', 'Expired');
-
-CREATE TABLE required_field_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
-INSERT INTO required_field_types (code, description) VALUES
-  ('01', 'Required'),
-  ('02', 'Optional');
 
 CREATE TABLE entity_structure_types(
   code CHARACTER VARYING(2) PRIMARY KEY,

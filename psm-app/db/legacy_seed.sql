@@ -3,8 +3,6 @@ DROP TABLE IF EXISTS
   external_profile_link,
   profile_assured_ext_svcs,
   profile_assured_svc_xref,
-  provider_cos,
-  provider_cos_xref,
   required_fld
 CASCADE ;
 
@@ -53,30 +51,6 @@ create table profile_assured_svc_xref
 alter table profile_assured_ext_svcs
 	add constraint fknpq45dvbn0v9qxjrp3ccs81uy
 		foreign key (profile_assured_svc_id) references profile_assured_svc_xref
-;
-
-create table provider_cos
-(
-	provider_cos_id bigint not null,
-	provider_cos_cd varchar(255) not null
-)
-;
-
-create table provider_cos_xref
-(
-	provider_cos_id bigint not null
-		constraint provider_cos_xref_pkey
-			primary key,
-	profile_id bigint default 0,
-	ticket_id bigint default 0,
-	start_dt timestamp not null,
-	end_dt timestamp
-)
-;
-
-alter table provider_cos
-	add constraint fk2ciqibe0u9h2cmyeut8q5alir
-		foreign key (provider_cos_id) references provider_cos_xref
 ;
 
 create table required_fld

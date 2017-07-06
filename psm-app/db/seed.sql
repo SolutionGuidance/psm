@@ -34,11 +34,13 @@ DROP TABLE IF EXISTS
   owner_assets,
   ownership_info,
   ownership_types,
-  pay_to_providers,
   pay_to_provider_types,
+  pay_to_providers,
   people,
   persistent_logins,
   profile_statuses,
+  provider_approved_categories_of_service,
+  provider_category_of_service_approvals,
   provider_profiles,
   provider_statements,
   provider_services,
@@ -783,6 +785,20 @@ CREATE TABLE provider_profiles(
   created_at TIMESTAMP WITH TIME ZONE,
   last_modified_by TEXT,
   last_modified_at TIMESTAMP WITH TIME ZONE
+);
+
+CREATE TABLE provider_category_of_service_approvals(
+  provider_category_of_service_approval_id BIGINT PRIMARY KEY,
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  start_date DATE,
+  end_date DATE
+);
+CREATE TABLE provider_approved_categories_of_service(
+  provider_category_of_service_approval_id BIGINT
+    REFERENCES provider_category_of_service_approvals(provider_category_of_service_approval_id),
+  category_of_service_code CHARACTER VARYING(2)
+    REFERENCES categories_of_service(code)
 );
 
 CREATE TABLE addresses(

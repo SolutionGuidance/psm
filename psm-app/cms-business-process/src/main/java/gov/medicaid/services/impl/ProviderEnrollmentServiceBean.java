@@ -67,7 +67,9 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityGraph;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
@@ -2149,14 +2151,29 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the list of services
      * @throws PortalServiceException for any errors encountered
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public List<ProviderCategoryOfService> getProviderCategoryOfServices(CMSUser user, long profileId)
-        throws PortalServiceException {
+    public List<ProviderCategoryOfService> getProviderCategoryOfServices(
+            CMSUser user,
+            long profileId
+    ) throws PortalServiceException {
         checkProfileEntitlement(user, profileId);
-        return getEm().createQuery("from ProviderCategoryOfService p where p.profileId = :id order by p.startDate")
-            .setParameter("id", profileId).getResultList();
+        return queryCategoriesOfService("p.profileId = :id")
+                .setParameter("id", profileId)
+                .getResultList();
+    }
 
+    private TypedQuery<ProviderCategoryOfService> queryCategoriesOfService(
+            String condition
+    ) {
+        EntityGraph graph = getEm()
+                .getEntityGraph("ProviderCategoryOfService with categories");
+        return getEm()
+                .createQuery("SELECT DISTINCT p " +
+                                "FROM ProviderCategoryOfService p " +
+                                "WHERE " + condition + " " +
+                                "ORDER BY p.startDate",
+                        ProviderCategoryOfService.class)
+                .setHint("javax.persistence.loadgraph", graph);
     }
 
     /**
@@ -2172,7 +2189,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public void addCOSToProfile(CMSUser user, ProviderCategoryOfService categoryOfService, long prevCatServiceId,
         Date prevCatEndDate) throws PortalServiceException {
         checkProfileEntitlement(user, categoryOfService.getProfileId());
-        categoryOfService.setId(getSequence().getNextValue(Sequences.PROVIDER_COS_SEQ));
+        categoryOfService.setId(0);
         getEm().persist(categoryOfService);
         if (prevCatServiceId != 0) {
             ProviderCategoryOfService service = getEm().find(ProviderCategoryOfService.class, prevCatServiceId);
@@ -2214,7 +2231,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public void addCOSToTicket(CMSUser user, ProviderCategoryOfService categoryOfService, long prevCatServiceId,
         Date prevCatEndDate) throws PortalServiceException {
         checkTicketEntitlement(user, categoryOfService.getTicketId());
-        categoryOfService.setId(getSequence().getNextValue(Sequences.PROVIDER_COS_SEQ));
+        categoryOfService.setId(0);
         getEm().persist(categoryOfService);
         if (prevCatServiceId != 0) {
             ProviderCategoryOfService service = getEm().find(ProviderCategoryOfService.class, prevCatServiceId);
@@ -2234,13 +2251,15 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *
      * @throws PortalServiceException for any errors encountered
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public List<ProviderCategoryOfService> getPendingCategoryOfServices(CMSUser user, long ticketId)
-        throws PortalServiceException {
+    public List<ProviderCategoryOfService> getPendingCategoryOfServices(
+            CMSUser user,
+            long ticketId
+    ) throws PortalServiceException {
         checkTicketEntitlement(user, ticketId);
-        return getEm().createQuery("from ProviderCategoryOfService p where ticketId = :id order by p.startDate")
-            .setParameter("id", ticketId).getResultList();
+        return queryCategoriesOfService("ticketId = :id")
+                .setParameter("id", ticketId)
+                .getResultList();
     }
 
     /**

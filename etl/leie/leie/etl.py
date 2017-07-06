@@ -230,8 +230,10 @@ def fname_is_stale(fname, url):
         warn("Can't get head information about %s" % url)
         return False
 
-    # TODO: If size indicated in header differ from size on disk, then
+    # If size indicated in header differ from size on disk, then
     # the file is stale.
+    if int(r.headers["Content-Length"]) != os.path.getsize(fname):
+        return False
 
     # Get mod times of url and fname
     mtime = datetime.fromtimestamp(os.path.getmtime(fname))  # file's mtime
@@ -254,7 +256,7 @@ def dload_if_stale(fname, url):
                 if chunk: # filter out keep-alive new chunks
                     f.write(chunk)
 
-        # TODO: check file size in headers vs what we got.
+        assert int(r.headers["Content-Length"]) == os.path.getsize(fname)
 
 def extract(datadir):
     dload_if_stale(os.path.join(datadir, "UPDATED.csv"), 'https://oig.hhs.gov/exclusions/downloadables/UPDATED.csv')

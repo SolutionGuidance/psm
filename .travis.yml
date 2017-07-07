@@ -2,6 +2,10 @@ language: java
 jdk:
   - openjdk8
 dist: trusty
+services:
+  - postgresql
+addons:
+  postgresql: "9.6"
 
 cache:
   directories:
@@ -20,8 +24,12 @@ install: true
 # The build step here also builds our Javadocs.
 script:
   - cd psm-app
+  - ./gradlew --no-daemon --console=plain clean cms-portal-services:build
+  - ../scripts/start-wildfly-deploy-application.sh
   - ./gradlew --no-daemon --console=plain clean build cms-web:apiDocs
+
 
 # Push the new Javadocs to our GitHub Pages site.
 after_success:
   - ../scripts/push-javadoc-to-gh-pages.sh
+  

@@ -31,12 +31,8 @@ public class LicenseInfoPage extends PageObject {
                 new FileOutputStream(temporaryFile))) {
             writer.println("License");
         }
-        uploadFile(temporaryFile.getAbsolutePath());
+        upload(temporaryFile.getAbsolutePath()).to($("[name=_03_attachment_0]"));
         temporaryFile.deleteOnExit();
-    }
-
-    public void uploadFile(String filepath) {
-        $("[name=_03_attachment_0]").sendKeys(filepath);
     }
 
     public void enterLicenseNumber(String licenseNumber) {

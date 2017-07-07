@@ -2,6 +2,11 @@ language: java
 jdk:
   - openjdk8
 dist: trusty
+services:
+  - postgresql
+addons:
+  postgresql: "9.6"
+  sauce_connect: true
 
 cache:
   directories:
@@ -14,6 +19,7 @@ before_script:
   - pushd ..
   - tar -xvf /tmp/wildfly-10.1.0.Final.tar.gz
   - popd
+  - ./scripts/travis-start-wildfly.sh
 
 install: true
 
@@ -27,6 +33,9 @@ script:
         cms-portal-services:build
         cms-web:apiDocs
         userhelp:html
+  - ../scripts/travis-deploy-application.sh
+  - ./gradlew --no-daemon --info
+        test
   - cd ../
 
 # Push the new Javadocs to our GitHub Pages site.
@@ -35,12 +44,12 @@ after_success:
 
 # Build the Continuous Deployment private key
 before_deploy:
-  - sh scripts/travis-ssh-add.sh
+  - ./scripts/travis-ssh-add.sh
 
 # Continuous Deployment
 deploy:
   provider: script
   skip_cleanup: true
-  script: sh scripts/deploy-ci.sh
+  script: ./scripts/deploy-ci.sh
   on:
     branch: master

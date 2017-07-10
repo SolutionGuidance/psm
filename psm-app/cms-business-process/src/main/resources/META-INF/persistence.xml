@@ -91,8 +91,6 @@
     <class>gov.medicaid.entities.RiskLevel</class>
     <class>gov.medicaid.entities.Role</class>
     <class>gov.medicaid.entities.ScreeningSchedule</class>
-    <class>gov.medicaid.entities.ServiceAssuranceExtType</class>
-    <class>gov.medicaid.entities.ServiceAssuranceType</class>
     <class>gov.medicaid.entities.ServiceCategory</class>
     <class>gov.medicaid.entities.SpecialtyType</class>
     <class>gov.medicaid.entities.StateType</class>

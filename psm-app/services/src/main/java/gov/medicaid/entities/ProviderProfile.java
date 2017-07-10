@@ -240,12 +240,6 @@ public class ProviderProfile implements Cloneable, Serializable {
     @Column(name = "last_modified_at")
     private Date modifiedOn;
 
-    /**
-     * Represents the assured statements required for Chemical Dependency Program.
-     */
-    @Transient
-    private List<AssuredService> assuredStatements;
-
     @Transient
     private List<ProviderCategoryOfService> categoriesOfServiceTypes;
 
@@ -612,14 +606,6 @@ public class ProviderProfile implements Cloneable, Serializable {
 
     public void setPhysicalAndOccupationalTherapyInd(String physicalAndOccupationalTherapyInd) {
         this.physicalAndOccupationalTherapyInd = physicalAndOccupationalTherapyInd;
-    }
-
-    public List<AssuredService> getAssuredStatements() {
-        return assuredStatements;
-    }
-
-    public void setAssuredStatements(List<AssuredService> assuredStatements) {
-        this.assuredStatements = assuredStatements;
     }
 
     public List<ProviderCategoryOfService> getCategoriesOfServiceTypes() {

@@ -20,7 +20,6 @@ import gov.medicaid.entities.AcceptedAgreements;
 import gov.medicaid.entities.Address;
 import gov.medicaid.entities.Affiliation;
 import gov.medicaid.entities.Asset;
-import gov.medicaid.entities.AssuredService;
 import gov.medicaid.entities.BeneficialOwner;
 import gov.medicaid.entities.BinaryContent;
 import gov.medicaid.entities.CMSUser;
@@ -901,20 +900,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         // save services information
         insertServicesInfo(details);
-        insertAssuredServices(details);
-    }
-
-    private void insertAssuredServices(ProviderProfile details) {
-        List<AssuredService> services = details.getAssuredStatements();
-        if (services == null || services.isEmpty()) {
-            return;
-        }
-        for (AssuredService service : services) {
-            service.setTicketId(details.getTicketId());
-            service.setProfileId(details.getProfileId());
-            service.setId(getSequence().getNextValue(Sequences.ASSURED_SERVICE_SEQ));
-            getEm().persist(service);
-        }
     }
 
     private void insertServicesInfo(ProviderProfile details) {
@@ -1355,12 +1340,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 getEm().remove(designatedContact);
             }
         }
-        List<AssuredService> assuredServices = profile.getAssuredStatements();
-        if (assuredServices != null) {
-            for (AssuredService service : assuredServices) {
-                getEm().remove(service);
-            }
-        }
         purgeEntity(profile.getEntity());
         getEm().remove(profile);
     }
@@ -1469,7 +1448,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         profile.setNotes(findNotes(profile.getProfileId(), profile.getTicketId()));
         profile.setPayToProviders(findPayToProviders(profile.getProfileId(), profile.getTicketId()));
         profile.setServices(findServices(profile.getProfileId(), profile.getTicketId()));
-        profile.setAssuredStatements(findAssuredServices(profile.getProfileId(), profile.getTicketId()));
         profile.setCategoriesOfServiceTypes(findCategoriesOfService(profile.getProfileId(), profile.getTicketId()));
     }
 
@@ -1491,15 +1469,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             query.setParameter("ticketId", ticketId);
             query.setParameter("profileId", new Long(0));
         }
-        return query.getResultList();
-    }
-
-    @SuppressWarnings("unchecked")
-    private List<AssuredService> findAssuredServices(long profileId, long ticketId) {
-        Query query = getEm()
-            .createQuery("FROM AssuredService a WHERE ticketId = :ticketId AND profileId = :profileId");
-        query.setParameter("profileId", profileId);
-        query.setParameter("ticketId", ticketId);
         return query.getResultList();
     }
 

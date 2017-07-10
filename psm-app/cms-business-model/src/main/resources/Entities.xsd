@@ -645,7 +645,7 @@
 			<enumeration value="Private Duty Nurse"></enumeration>
 			<enumeration value="Speech Language Pathologist"></enumeration>
 			<enumeration value="Acupuncturist"></enumeration>
-			
+
 			<enumeration value="Certified Mental Health Rehab Prof - CPRP"></enumeration>
 			<enumeration value="Dentist"></enumeration>
 			<enumeration value="Hearing Aid Dispenser"></enumeration>
@@ -653,7 +653,7 @@
 			<enumeration value="Licensed Independent Clinical Social Worker"></enumeration>
 			<enumeration value="Nurse Midwife"></enumeration>
 			<enumeration value="Optometrist"></enumeration>
-			
+
 			<!-- ORG Types -->
 			<enumeration value="Billing Entity for Physical Rehabilitative Providers"></enumeration>
 			<enumeration value="Clearing House"></enumeration>
@@ -678,7 +678,7 @@
 			<enumeration value="Targeted Case Management"></enumeration>
 			<enumeration value="WIC Program"></enumeration>
 			<enumeration value="X-Ray Services"></enumeration>
-			
+
 			<enumeration value="Adult Day Treatment Application"></enumeration>
 			<enumeration value="Ambulatory Surgical Center"></enumeration>
 			<enumeration value="Certified Registered Nurse Anesthetist Group"></enumeration>
@@ -690,17 +690,17 @@
 			<enumeration value="Day Training And Habilitation/Day Activity Center"></enumeration>
 			<enumeration value="Day Treatment"></enumeration>
 			<enumeration value="Home And Community Based Services (Waivered Services)"></enumeration>
-			
+
 			<enumeration value="Billing Intermediary"></enumeration>
 			<enumeration value="Federally Qualified Health Center"></enumeration>
 			<enumeration value="Individual Education Plan"></enumeration>
 			<enumeration value="Personal Care Assistant"></enumeration>
 			<enumeration value="Pharmacist"></enumeration>
-			
+
 			<enumeration value="Nursing Facility"></enumeration>
 			<enumeration value="Hospital"></enumeration>
 			<enumeration value="Hospice"></enumeration>
-			
+
 			<enumeration value="Renal Dialysis Facility"></enumeration>
 			<enumeration value="Intermediate Care Facilities For Persons With Developmental Disabilities"></enumeration>
 			<enumeration value="Physician Clinic"></enumeration>
@@ -712,10 +712,9 @@
 			<enumeration value="Birthing Center"></enumeration>
 			<enumeration value="Medical Transportation"></enumeration>
 			<enumeration value="Billing Entity for Physician Services"></enumeration>
-			<enumeration value="Chemical Dependency Program"></enumeration>
 		</restriction>
 	</simpleType>
-	
+
 	<complexType name="AttachedDocumentsType">
 		<annotation>
 			<documentation xml:lang="en">All documents attached to the enrollment.</documentation>
@@ -725,7 +724,7 @@
 			</element>
 		</sequence>
 	</complexType>
-	
+
 	<simpleType name="LicenseNames">
 		<restriction base="string">
 			<enumeration value="Certificate of Clinical Competence (CCC)"></enumeration>
@@ -762,10 +761,10 @@
             <enumeration value="NBCOT Certification"></enumeration>
             <enumeration value="Rehabilitation Counselor"></enumeration>
             <enumeration value="Psychosocial Rehabilitation Practitioner"></enumeration>
-			
+
 			<enumeration value="Licensed Practical Nurse"></enumeration>
             <enumeration value="Class A License"></enumeration>
-			
+
 			<!-- org certificates -->
 			<enumeration value="Head Start Agency Certification"></enumeration>
 			<enumeration value="Class A Professional Home Care License"></enumeration>
@@ -784,7 +783,7 @@
 			<enumeration value="Independent or Portable X-ray Certification from CMS"></enumeration>
 			<enumeration value="CORF Certification"></enumeration>
 			<enumeration value="PCA 1 or 3 day Steps for Success Training"></enumeration>
-			
+
 			<enumeration value="Medicare Certification"></enumeration>
 			<enumeration value="Rule 5 License issued from MN Department of Human Services"></enumeration>
 			<enumeration value="Certificate of Compliance from MN Department of Human Rights"></enumeration>
@@ -792,7 +791,7 @@
 			<enumeration value="Day Training &amp; Habilitation License"></enumeration>
 			<enumeration value="Pharmacist License"></enumeration>
 			<enumeration value="PCA Training Certificate"></enumeration>
-			
+
             <enumeration value="Birth Center Accreditation"></enumeration>
             <enumeration value="Professional Counselor (Independent)"></enumeration>
             <enumeration value="Alcohol and Drug Counselor"></enumeration>
@@ -805,24 +804,24 @@
             <enumeration value="Intensive Residential Treatment Services"></enumeration>
             <enumeration value="Residential Services, ICF/DD"></enumeration>
             <enumeration value="End Stage Renal Dialysis"></enumeration>
-            
+
             <enumeration value="License and Transmittal (CMS 1539 Form) from MN Department of Health"></enumeration>
             <enumeration value="Hospice license from the MN Dept of Health"></enumeration>
             <enumeration value="CMS Medicare Certification Letter"></enumeration>
-            
+
             <enumeration value="State License to operate as a Hospital"></enumeration>
             <enumeration value="CLIA Certificate if billing Lab Services"></enumeration>
             <enumeration value="Renal Dialysis Facility Approval letter from regional CMS office"></enumeration>
-            
+
             <enumeration value="Birth Center license from the MN Department of Health"></enumeration>
             <enumeration value="Accreditation from the Commission for the Accreditation of Birth Centers"></enumeration>
-            
+
             <enumeration value="Special Transportation (STS) - Transportation Certificate from the MN Department of Transportation"></enumeration>
             <enumeration value="Ambulance - Licensure as Emergency Medical Transportation Provider from the state of practice"></enumeration>
             <enumeration value="Air - FAA Certificate of airworthiness plus Ambulance License"></enumeration>
 		</restriction>
 	</simpleType>
-	
+
 	<simpleType name="DocumentNames">
 		<restriction base="string">
 			<enumeration value="Copy Of Highest Degree Earned"></enumeration>
@@ -834,7 +833,7 @@
             <enumeration value="Copy of Collaborative Agreement"></enumeration>
             <enumeration value="Copy of License of Dentist who signed Collaborative Agreement"></enumeration>
             <enumeration value="Certified Mental Health Rehabilitation Professional Assurance Statement"></enumeration>
-			
+
 			<enumeration value="Diploma From American Board of Clinical Neuropsychology (ABCN)"></enumeration>
 			<enumeration value="Diploma From America Board of Professional Neuropsychology (ABPN)"></enumeration>
 			<enumeration value="Diploma From American Academy of Pediatric Neuropsychology (AAPN)"></enumeration>
@@ -845,7 +844,7 @@
 			<enumeration value="Workers Compensation Insurance"></enumeration>
 			<enumeration value="Fidelity Bond"></enumeration>
 			<enumeration value="Surety Bond"></enumeration>
-			
+
 			<enumeration value="Community Health Board DHS Contract"></enumeration>
 			<enumeration value="Articles Of Incorporation"></enumeration>
 			<enumeration value="Sliding Fee Schedule"></enumeration>
@@ -859,7 +858,7 @@
 			<enumeration value="Copies of the 330 Grant documents"></enumeration>
 			<enumeration value="Cover page of Public Law 93-638 status contract"></enumeration>
 			<enumeration value="Compact with the Indian Health Service"></enumeration>
-			
+
 			<enumeration value="Ambulance Services - Basic Service"></enumeration>
 			<enumeration value="Ambulance Services - Advanced Life Support"></enumeration>
 			<enumeration value="Ambulance Services - Air Transport with FAA Air Worthiness Certificate"></enumeration>
@@ -880,7 +879,7 @@
 			<enumeration value="High"></enumeration>
 		</restriction>
 	</simpleType>
-	
+
 	<simpleType name="ReservationNames">
 		<restriction base="string">
 			<enumeration value="Fond Du Lac Indian Reservation"></enumeration>
@@ -908,13 +907,13 @@
 			<element name="NetStudy" type="string"></element>
 		</sequence>
 	</complexType>
-	
+
 	<complexType name="SpecialtiesType">
 		<sequence>
 			<element name="SpecialtyName" type="string" maxOccurs="unbounded" minOccurs="0"></element>
 		</sequence>
 	</complexType>
-	
+
 	<simpleType name="SpecialtyNames">
 		<restriction base="string">
 			<enumeration value="Allergy" />
@@ -935,7 +934,7 @@
 			<enumeration value="Gynecology" />
 			<enumeration value="Immunology" />
 			<enumeration value="Infectious Disease" />
-			<enumeration value="Internal Medicine" /> 
+			<enumeration value="Internal Medicine" />
 			<enumeration value="Nephrology" />
 			<enumeration value="Neurological Surgery" />
 			<enumeration value="Neurology" />
@@ -969,7 +968,7 @@
 			<enumeration value="Women's Health Care" />
 			<enumeration value="Acute Care" />
 			<enumeration value="Occupational Therapy" />
-			
+
 			<enumeration value="General Dentistry" />
 			<enumeration value="Endodontist" />
 			<enumeration value="Oral Surgery" />
@@ -977,22 +976,22 @@
 			<enumeration value="Pedodontics" />
 			<enumeration value="Periodontics" />
 			<enumeration value="Prosthodontics" />
-			
+
 			<enumeration value="Dialectical Behavioral Therapist" />
 			<enumeration value="Professional Midwife" />
 			<enumeration value="Physical Rehabilitation" />
-			
+
 			<enumeration value="Air Transport (Ambulance)" />
 			<enumeration value="Advanced Life Support (Ambulance)" />
 			<enumeration value="Basic Life Support (Ambulance)" />
 			<enumeration value="Special Transportation Services (STS)" />
 			<enumeration value="Wheelchair Transportation" />
-			
+
 			<enumeration value="Certified Professional Midwife"></enumeration>
 			<enumeration value="Certified Nurse Midwife"></enumeration>
 			<enumeration value="CRNA Certification"></enumeration>
 		</restriction>
-		
+
 	</simpleType>
 	<simpleType name="BoardNames">
 		<restriction base="string">
@@ -1016,7 +1015,7 @@
 			<enumeration value="American Board of Medical Specialty" />
 			<enumeration value="American Board of Physician Specialties" />
 		</restriction>
-	</simpleType>	
+	</simpleType>
 
 	<complexType name="GroupAffiliationsType">
 		<sequence>
@@ -1062,31 +1061,7 @@
 			<element name="PhoneNumber" type="string" maxOccurs="1" minOccurs="0"></element>
 		</sequence>
 	</complexType>
-	
-	<complexType name="AssuredServiceType">
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Type" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ExtendedTypes" type="string" maxOccurs="unbounded" minOccurs="0"></element>
-			<element name="EffectiveDate" type="date" maxOccurs="1" minOccurs="0"></element>
-			<element name="Status" type="int" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-	
-	<complexType name="ServiceAssuranceType">
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="PatientInd" type="string" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-	
-	<complexType name="ServiceAssuranceExtType">
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ServiceAssuranceCode" type="string" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
- 	
+
 	<complexType name="OwnershipInformationType">
 		<sequence>
 			<element name="EntityType" type="string" maxOccurs="1" minOccurs="0"></element>
@@ -1143,7 +1118,6 @@
     		<element name="ICFNumberOfBeds" type="int" maxOccurs="1" minOccurs="0"></element>
     		<element name="AmbulanceServices" type="tns:AmbulanceServicesType" maxOccurs="unbounded" minOccurs="0"></element>
             <element name="FacilityQualification" type="tns:FacilityQualificationType" maxOccurs="unbounded" minOccurs="0"></element>
-            <element name="AssuredService" type="tns:AssuredServiceType" maxOccurs="unbounded" minOccurs="0"></element>
     	</sequence>
     </complexType>
 
@@ -1241,13 +1215,13 @@
 			<enumeration value="Professional Association" />
 			<enumeration value="Other" />
 		</restriction>
-	</simpleType>	
+	</simpleType>
 	<simpleType name="SupervisionAndQualification">
 		<restriction base="string">
 			<enumeration id="SQ1" value="For each site at which we are providing services, we will provide clinical supervision by an enrolled mental health professional who is on-site at least 50% of the time during a 5-day work week. This clinical supervisor will review, approve and sign each client's diagnosis, individual treatment plan and every change in diagnosis or ITP.  The clinical supervisor will review and sign the record of the client's care for all activities in the preceding 30-day period." />
 			<enumeration id="SQ2" value="All staff providing day treatment services which are billed to the MHCP's meet the legal definition of Mental Health Professional or Mental Health Practitioner." />
 		</restriction>
-	</simpleType>	
+	</simpleType>
 
 	<simpleType name="ClinicalServices">
 		<restriction base="string">
@@ -1259,7 +1233,7 @@
 			<enumeration id="CS6" value="Documentation of services are provided." />
 			<enumeration id="CS7" value="Services are regularly coordinated with those being provided by other mental health providers." />
 		</restriction>
-	</simpleType>	
+	</simpleType>
 
 	<simpleType name="ServiceUnits">
 		<restriction base="string">
@@ -1267,7 +1241,7 @@
 			<enumeration id="SU2" value="The three contact hours includes at least 1 hour but not more than 2 hours per day of individual and/or group psychotherapy." />
 			<enumeration id="SU3" value="The remainder of the contact hours per day consists of either recreation therapy, socialization therapy, or independent living skills therapy, with no more than one hour of any one of these therapies." />
 		</restriction>
-	</simpleType>	
+	</simpleType>
 
 	<complexType name="SignedContractType">
 		<sequence>

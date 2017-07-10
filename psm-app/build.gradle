@@ -59,7 +59,7 @@ List runtime_libs = [
 ]
 
 allprojects {
-    apply plugin: 'groovy' 
+    apply plugin: 'groovy'
 
     repositories {
         mavenCentral()
@@ -67,7 +67,7 @@ allprojects {
     }
 
     dependencies {
-        compile 'org.codehaus.groovy:groovy-all:2.4.10'
+        testCompile 'org.codehaus.groovy:groovy-all:2.4.10'
         testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
     }
 }

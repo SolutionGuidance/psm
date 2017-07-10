@@ -66,13 +66,6 @@ public class OwnershipInformation implements Serializable {
     @JoinColumn(name = "ownership_info_id", referencedColumnName = "ownership_info_id")
     private List<BeneficialOwner> beneficialOwners;
 
-    /**
-     * Owned Assets
-     */
-    @OneToMany
-    @JoinColumn(name = "ownership_info_id", referencedColumnName = "ownership_info_id")
-    private List<Asset> assets;
-
 
     public long getId() {
         return id;
@@ -190,21 +183,4 @@ public class OwnershipInformation implements Serializable {
         this.beneficialOwners = beneficialOwners;
     }
 
-    /**
-     * Gets the value of the field <code>assets</code>.
-     *
-     * @return the assets
-     */
-    public List<Asset> getAssets() {
-        return assets;
-    }
-
-    /**
-     * Sets the value of the field <code>assets</code>.
-     *
-     * @param assets the assets to set
-     */
-    public void setAssets(List<Asset> assets) {
-        this.assets = assets;
-    }
 }

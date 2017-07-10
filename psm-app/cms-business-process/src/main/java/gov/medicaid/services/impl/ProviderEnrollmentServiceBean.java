@@ -54,7 +54,6 @@ import gov.medicaid.entities.Validity;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
-import gov.medicaid.services.util.Sequences;
 import gov.medicaid.services.util.Util;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.NotImplementedException;

@@ -33,7 +33,6 @@ import gov.medicaid.services.EntityNotFoundException;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
-import gov.medicaid.services.util.Sequences;
 import gov.medicaid.services.util.Util;
 
 import java.io.StringWriter;

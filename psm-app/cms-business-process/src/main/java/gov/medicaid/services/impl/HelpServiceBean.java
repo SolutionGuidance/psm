@@ -22,7 +22,6 @@ import gov.medicaid.services.EntityNotFoundException;
 import gov.medicaid.services.HelpService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.util.LogUtil;
-import gov.medicaid.services.util.Sequences;
 import gov.medicaid.services.util.Util;
 
 import javax.ejb.Local;

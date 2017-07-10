@@ -22,13 +22,6 @@ public class ExternalProfileLink extends IdentifiableEntity {
 
     private String externalProfileId;
 
-    /**
-     * Empty constructor.
-     */
-    public ExternalProfileLink() {
-
-    }
-
     public long getProfileId() {
         return profileId;
     }

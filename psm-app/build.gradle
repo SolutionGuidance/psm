@@ -2,9 +2,7 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven {
-            url  'http://dl.bintray.com/djmijares/gradle-plugins'
-        }
+        maven { url 'http://dl.bintray.com/djmijares/gradle-plugins' }
     }
     dependencies {
         classpath 'com.github.jacobono:gradle-jaxb-plugin:1.3.6'
@@ -61,8 +59,16 @@ List runtime_libs = [
 ]
 
 allprojects {
+    apply plugin: 'groovy' 
+
     repositories {
         mavenCentral()
+        maven { url 'http://oss.sonatype.org/content/repositories/snapshots/' }
+    }
+
+    dependencies {
+        compile 'org.codehaus.groovy:groovy-all:2.4.10'
+        testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
     }
 }
 

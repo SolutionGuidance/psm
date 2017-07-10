@@ -15,13 +15,40 @@
  */
 package gov.medicaid.entities;
 
-public class ExternalAccountLink extends IdentifiableEntity {
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 
+@javax.persistence.Entity
+@Table(name = "external_account_links")
+public class ExternalAccountLink implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "external_account_link_id")
+    private long id;
+
+    @Column(name = "user_id")
     private String userId;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "system_id")
     private SystemId systemId;
 
+    @Column(name = "external_user_id")
     private String externalUserId;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getUserId() {
         return userId;

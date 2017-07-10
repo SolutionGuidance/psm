@@ -270,7 +270,7 @@ public class RegistrationServiceBean extends BaseService implements Registration
     public void addAccountLink(String userId, ExternalAccountLink link) throws PortalServiceException {
         ExternalAccountLink existing = findAccountLink(userId, link.getSystemId(), link.getExternalUserId());
         if (existing == null) {
-            link.setId(getSequence().getNextValue(Sequences.ACOUNT_LINK_SEQ));
+            link.setId(0);
             link.setUserId(userId);
             getEm().persist(link);
             auditNewAccountLink(userId, link);

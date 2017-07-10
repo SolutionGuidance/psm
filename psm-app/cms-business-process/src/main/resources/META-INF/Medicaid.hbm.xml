@@ -2,26 +2,6 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-lazy="false">
-	<class name="gov.medicaid.entities.ExternalAccountLink" table="EXTERNAL_ACCOUNT_LINK">
-		<id name="id" type="long">
-			<column name="EXTERNAL_ACCOUNT_LINK_ID" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="userId" type="string">
-			<column name="USER_ID" />
-		</property>
-		<property generated="never" lazy="false" name="systemId">
-			<column name="SYSTEM_ID" />
-			<type name="org.hibernate.type.EnumType">
-				<param name="type">12</param>
-				<param name="enumClass">gov.medicaid.entities.SystemId</param>
-			</type>
-		</property>
-		<property generated="never" lazy="false" name="externalUserId"
-			type="string">
-			<column name="EXTERNAL_USER_ID" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.ExternalProfileLink" table="EXTERNAL_PROFILE_LINK">
 		<id name="id" type="long">
 			<column name="EXTERNAL_PROFILE_LINK_ID" />

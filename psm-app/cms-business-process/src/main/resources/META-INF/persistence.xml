@@ -64,6 +64,7 @@
     <class>gov.medicaid.entities.Entity</class>
     <class>gov.medicaid.entities.EntityStructureType</class>
     <class>gov.medicaid.entities.Event</class>
+    <class>gov.medicaid.entities.ExternalAccountLink</class>
     <class>gov.medicaid.entities.HelpItem</class>
     <class>gov.medicaid.entities.IssuingBoard</class>
     <class>gov.medicaid.entities.License</class>

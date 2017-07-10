@@ -23,13 +23,6 @@ public class ExternalAccountLink extends IdentifiableEntity {
 
     private String externalUserId;
 
-    /**
-     * Empty constructor.
-     */
-    public ExternalAccountLink() {
-
-    }
-
     public String getUserId() {
         return userId;
     }

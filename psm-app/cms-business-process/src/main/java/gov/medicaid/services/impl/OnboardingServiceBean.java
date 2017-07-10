@@ -25,7 +25,6 @@ import gov.medicaid.services.OnboardingService;
 import gov.medicaid.services.PartnerSystemService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
-import gov.medicaid.services.util.Sequences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,7 +137,7 @@ public class OnboardingServiceBean extends BaseService implements OnboardingServ
                         providerProfile);
 
                     ExternalProfileLink profileLink = new ExternalProfileLink();
-                    profileLink.setId(getSequence().getNextValue(Sequences.EXT_PROF_LINK_SEQ));
+                    profileLink.setId(0);
                     profileLink.setProfileId(internalProfileId);
                     profileLink.setExternalProfileId("" + providerProfile.getProfileId());
                     profileLink.setSystemId(link.getSystemId());

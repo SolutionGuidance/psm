@@ -15,12 +15,40 @@
  */
 package gov.medicaid.entities;
 
-public class ExternalProfileLink extends IdentifiableEntity {
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+
+@javax.persistence.Entity
+@Table(name = "external_profile_links")
+public class ExternalProfileLink implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "external_profile_link_id")
+    private long id;
+
+    @Column(name = "profile_id")
     private long profileId;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "system_id")
     private SystemId systemId;
 
+    @Column(name = "external_profile_id")
     private String externalProfileId;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getProfileId() {
         return profileId;

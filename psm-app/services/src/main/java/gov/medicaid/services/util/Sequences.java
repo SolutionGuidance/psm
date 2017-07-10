@@ -23,11 +23,6 @@ package gov.medicaid.services.util;
  */
 public class Sequences {
     /**
-     * External profile link.
-     */
-    public static final String EXT_PROF_LINK_SEQ = "EXT_PROF_LINK_SEQ";
-
-    /**
      * Private constructor.
      */
     private Sequences() {

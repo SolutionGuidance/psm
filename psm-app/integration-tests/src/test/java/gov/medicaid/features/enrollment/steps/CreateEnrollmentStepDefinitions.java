@@ -10,13 +10,13 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+// There are properties set by the serenity framework as the tests
+// are being set up
+@SuppressWarnings("unused")
 public class CreateEnrollmentStepDefinitions {
     @Steps
     EnrollmentSteps enrollment;
 
-    // This property is set by the serenity framework as the tests
-    // are being set up
-    @SuppressWarnings("unused")
     private EnrollmentPage enrollmentPage;
 
     @Given("^The database is fresh from seed\\.sql$")

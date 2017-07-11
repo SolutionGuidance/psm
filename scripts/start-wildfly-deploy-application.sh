@@ -15,12 +15,16 @@ function download_and_sha1 {
 
 function wait_for_wildfly {
   until `$1 -c "ls /deployment" &> /dev/null`; do
-    sleep 5
+    sleep 10
     echo "Waiting for wildfly to come up."
   done
 }
 
 createdb -U postgres psm
+psql -d psm -U postgres -w -f ${TRAVIS_BUILD_DIR}/psm-app/db/legacy_seed.sql
+psql -d psm -U postgres -w -f ${TRAVIS_BUILD_DIR}/psm-app/db/seed.sql
+psql -d psm -U postgres -w -f ${TRAVIS_BUILD_DIR}/psm-app/db/jbpm.sql
+
 
 ${WILDFLY_HOME}/bin/standalone.sh -c standalone-full.xml > ${WILDFLY_LOG} &
 
@@ -76,8 +80,3 @@ python -m smtpd -n -c DebuggingServer localhost:1025 &
 PYTHON_SMTPD_PID=$!
 
 curl -v "http://localhost:8080/cms"
-
-${WILDFLY_CLI} --connect --command="shutdown"
-kill ${PYTHON_SMTPD_PID}
-
-cat ${WILDFLY_LOG}

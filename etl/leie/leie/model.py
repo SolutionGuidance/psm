@@ -217,6 +217,7 @@ DROP TABLE business_reinstatement;"""
             out = out.decode("utf-8")
             err = err.decode("utf-8")
             if err != '':
+                sys.stderr.write("%s\n%s" % (out, err))
                 raise subprocess.CalledProcessError(0, cmd, out+err)
             return out
 

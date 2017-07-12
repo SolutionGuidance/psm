@@ -8,6 +8,7 @@ See README.mdwn for details and instructions.
 
 # System modules
 from datetime import datetime
+from datetime import date
 import dateutil.parser
 import glob
 import os
@@ -190,21 +191,39 @@ class Reinstatements():
         # remove dupes.
         self.conn.dedupe_reinstatements()
 
-def fname_is_stale(fname, url):
+def fname_is_stale(fname, url, conn):
     """Return True if URL's Last-Modified is after FNAME's mod datetime.
 
     Return False if FNAME's mod datetime is after URL's Last-Modified.
 
-    Return True if filesize on disk differs from filesize in the headers (Not implemented)
+    Return True if filesize on disk differs from filesize in the headers
 
     Return True if FNAME doesn't exist.
 
     Return False if we can't quite download URL.
 
+    Return False if we have a log entry in the db saying we already
+    downloaded the file and it's not an UPDATED file.
+
+    CONN is a model.LEIE instance and we use it just to get access to
+    the db log
+
     """
 
+    # We should only do csv files, so this is a sanity check.  I mean,
+    # this routine could technically download things other than csv,
+    # but it's not our goal to do so.
+    assert fname.endswith(".csv")
+
+    # If there is no already-existing file, it is stale
     if not os.path.exists(fname):
         return True
+
+    # Check that we haven't already downloaded this according to the log
+    if not fname.endswith("UPDATED.csv"):
+        last = conn.get_download_datetime(os.path.basename(fname))
+        if last != None:
+            return False
 
     # Get head of url target
     r = requests.head(url)
@@ -212,10 +231,11 @@ def fname_is_stale(fname, url):
         warn("Can't get head information about %s" % url)
         return False
 
-    # If size indicated in header differ from size on disk, then
+    # If size indicated in header differs from size on disk, then
     # the file is stale.
     if int(r.headers["Content-Length"]) != os.path.getsize(fname):
-        return False
+        warn("Size differs from that on disk. File %s is stale." % fname)
+        return True
 
     # Get mod times of url and fname
     mtime = datetime.fromtimestamp(os.path.getmtime(fname))  # file's mtime
@@ -223,16 +243,50 @@ def fname_is_stale(fname, url):
     mtime = dateutil.parser.parse("%s %s" % (str(mtime), tz) ) # add timezone to file's mtime info
     dt = dateutil.parser.parse(r.headers['Last-Modified'])   # url's last mod time
 
-    # Send back True if the url is newer, else false
-    return dt > mtime
+    # If the url version is newer than our file on disk, the file on
+    # disk is stale
+    if dt > mtime:
+        return True
 
-def dload_if_stale(fname, url):
-    if fname_is_stale(fname, url):
+    # Retroactively log the download of the cached file
+    if not fname.endswith("UPDATED.csv"):
+        conn.log("reinstatement", "Downloaded %s" % os.path.basename(fname), mtime)
+    else:
+        conn.log("updated", "Downloaded %s" % os.path.basename(fname), mtime)
+
+    # Looks like the cached file is still good
+    return False
+
+def dload_if_stale(fname, url, conn):
+    """Download the file at URL and save it to FNAME, but only if the
+    on-disk version is out of date.
+
+    FNAME is the filename to save the file as
+    
+    URL is the url of the file to download
+
+    CONN is a model.LEIE instance and we use it just to get access to the db log
+
+    Returns True if we downloaded, else False
+    """
+    
+    if fname_is_stale(fname, url, conn):
         debug("Downloading %s" % url)
 
         # We stream and write this in chunks in case it is huge. It's
         # not, now, but maybe it will grow.  Better safe than sorry.
         r=requests.get(url, stream=True)
+
+        # Warn if we can't download properly
+        if r.status_code != 200:
+            warn("Fetching %s returned status code of %d. Discarding result" % (url, r.status_code))
+            return False
+
+        # Did we get forwarded to a 404 page?
+        if "404" in r.url:
+            warn("File not found: %s" % url)
+            return False
+
         with open(fname, 'wb') as f:
             for chunk in r.iter_content(chunk_size=1024):
                 if chunk: # filter out keep-alive new chunks
@@ -240,11 +294,30 @@ def dload_if_stale(fname, url):
 
         assert int(r.headers["Content-Length"]) == os.path.getsize(fname)
 
-def download(datadir):
-    """Download UPDATED.csv and reinstatements to the DATADIR"""
-    dload_if_stale(os.path.join(datadir, "UPDATED.csv"), 'https://oig.hhs.gov/exclusions/downloadables/UPDATED.csv')
+        return True
 
-    # TODO: download reinstatement csv (https://oig.hhs.gov/exclusions/downloadables/2017/1705REIN.csv)
+    return False
+
+def download(datadir, conn):
+    """Download UPDATED.csv and reinstatements to the DATADIR
+
+    CONN is a model.LEIE instance we'll use to log to the database"""
+
+    if dload_if_stale(os.path.join(datadir, "UPDATED.csv"),
+                      'https://oig.hhs.gov/exclusions/downloadables/UPDATED.csv',
+                      conn):
+        conn.log("updated", "Downloaded UPDATED.csv")
+
+    for year in range(2016,date.today().year+1):
+        for month in range(1,13):
+            if (year == date.today().year
+                and month >= date.today().month):
+                continue
+            for suffix in ("REIN.csv", "EXCL.csv"):
+                fname = "%2d%02d%s" % (year-2000, month, suffix)
+                url = "https://oig.hhs.gov/exclusions/downloadables/%4d/%s" % (year, fname)
+                if dload_if_stale(os.path.join(datadir, fname), url, conn):
+                    conn.log("reinstatement", "Downloaded %s" % fname)
 
 def main():
     os.chdir(os.path.dirname(__file__))
@@ -264,7 +337,7 @@ def main():
     assert os.path.exists(datadir)
 
     # Do our ETL
-    download(datadir)
+    download(datadir, conn)
     excl = Exclusions(conn)
     excl.etl_from_dir(datadir)
     rein = Reinstatements(conn)

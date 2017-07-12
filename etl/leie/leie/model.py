@@ -238,11 +238,21 @@ class LEIE(SQL):
         """
         self.dedupe("reinstatement")
 
+    def get_download_datetime(self, fname):
+        """Return the logged time of the last download of the file named FNAME
+
+        If it's not there, return None"""
+        c = self.conn.cursor()
+        all = c.execute("SELECT * FROM log WHERE msg=?", ["Downloaded " + fname]).fetchall()
+        if not all:
+            return None
+        return dateutil.parser.parse(all[-1][0])
+
     def get_header(self, table):
         """Returns a list of the column names in TABLE"""
         c = self.conn.cursor()
         return [f[1] for f in c.execute("PRAGMA table_info(%s)" % table).fetchall()]
-
+        
     def get_latest_date(self, table, field):
         """Find and return the latest month and year in the list of actions in
         TABLE by looking at dates in FIELD.  Return this value as a
@@ -283,12 +293,17 @@ class LEIE(SQL):
         """Add a MESSAGE string about a DATATYPE (either updated or
         reinstatement) to the log table in the db.
 
-        Else, NOW = a datestring we can parse
+        Else, NOW = a datestring we can parse.  It can be anything
+        whose str representation is a parseable datetime, including a
+        datetime.
+
         """
 
         assert datatype in ["updated", "reinstatement"]
-
-        # See http://sqlite.org/datatype3.html for info on dates in sqlite3
+        
+        info("%s: %s" % (datatype, message))
+        
+        # See http://sqlite.org/datatype3.html for info on date formats in sqlite3
         if not now:
             now = datetime.datetime.now().isoformat()
         else:

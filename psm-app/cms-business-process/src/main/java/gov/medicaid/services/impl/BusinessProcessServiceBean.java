@@ -554,7 +554,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             EnrollmentProcess processModel,
             String isAbort
     ) throws IOException {
-        ContentData contentData = null;
         Map<String, Object> data = new HashMap<>();
         data.put("model", processModel);
         data.put("isAbort", isAbort);
@@ -562,7 +561,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         ObjectOutputStream out = new ObjectOutputStream(bos);
         out.writeObject(data);
         out.close();
-        contentData = new ContentData();
+        ContentData contentData = new ContentData();
         contentData.setContent(bos.toByteArray());
         contentData.setAccessType(AccessType.Inline);
         return contentData;

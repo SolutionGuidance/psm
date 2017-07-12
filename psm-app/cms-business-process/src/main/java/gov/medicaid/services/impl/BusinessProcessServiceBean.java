@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -151,7 +151,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         handlers.put("Verify License or Certification", new VerifyLicenseHandler());
         handlers.put("Check Excluded Provider List in OIG", new ExcludedProvidersScreeningHandler());
         handlers.put("Check Excluded Provider List in SAM", new SAMExcludedProvidersScreeningHandler());
-        handlers.put("Auto Disqualification", new DisqualificationHandler()); 
+        handlers.put("Auto Disqualification", new DisqualificationHandler());
         handlers.put("Auto Screening", new ScreeningHandler());
         handlers.put("Send Mailbox Account Request", new SystemOutWorkItemHandler());
         handlers.put("Background Check", new SystemOutWorkItemHandler());
@@ -180,13 +180,13 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     			utx.begin();
     			owner = true;
     		}
-    		
+
 			ksession = CMSKnowledgeUtility.newWorkflowSession(getEmf(), utx);
     		Set<Entry<String, WorkItemHandler>> entrySet = handlers.entrySet();
     		for (Entry<String, WorkItemHandler> entry : entrySet) {
     			ksession.getWorkItemManager().registerWorkItemHandler(entry.getKey(), entry.getValue());
     		}
-    		
+
     		Map<String, Object> params = new HashMap<String, Object>();
     		EnrollmentProcess processModel = new XMLSerializingEnrollmentProcess();
     		processModel.setSessionId(ksession.getId());
@@ -209,7 +209,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     		}
     	}
     }
-    
+
     /**
      * Starts a new enrollment process.
      *
@@ -227,7 +227,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     		for (Entry<String, WorkItemHandler> entry : entrySet) {
     			ksession.getWorkItemManager().registerWorkItemHandler(entry.getKey(), entry.getValue());
     		}
-    		
+
     		Map<String, Object> params = new HashMap<String, Object>();
     		processModel.setSessionId(ksession.getId());
     		params.put("model", processModel);
@@ -249,7 +249,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
 			}
     	}
     }
-    
+
 	/**
 	 * Retrieves the entity manager factory.
 	 * @return the entity manager factory
@@ -384,7 +384,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
      */
     private StatefulKnowledgeSession reloadSessionById(UserTransaction utx, LocalTaskService client, EnrollmentProcess processModel) {
         StatefulKnowledgeSession ksession = null;
-        
+
         Integer session = processModel.getSessionId();
         if (session != null) {
             // this is a workaround based on https://issues.jboss.org/browse/JBPM-3673
@@ -399,7 +399,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         }
         return ksession;
     }
-    
+
     /**
      * Completes the given task.
      *
@@ -414,17 +414,17 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     public void updateRequest(EnrollmentType ticket, String user, String userRole) throws Exception {
     	UserTransaction utx = context.getUserTransaction();
         final ProviderInformationType updates = ticket.getProviderInformation();
-        
+
         if (userRole.equals(ViewStatics.ROLE_PROVIDER)) {
             if (!user.equals(ticket.getSubmittedBy())) {
                 throw new PortalServiceException("Only the submitter and administrators are allowed to modify pending submissions.");
             }
         }
-        
+
         // use process admin to recall submission
         String username = "Administrator";
         List<String> adminRole = Arrays.asList(ViewStatics.ROLE_SVC_ADMIN);
-        
+
         LocalTaskService client = new LocalTaskService(new TaskService(getEmf(), SystemEventListenerFactory.getSystemEventListener()));
 
         List<TaskSummary> tasks = client.getTasksAssignedAsPotentialOwner(username, adminRole, "en-UK", -1, -1);
@@ -438,7 +438,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         if (taskId == 0) {
             throw new PortalServiceException("Request was not found in pending queue.");
         }
-        
+
         try {
             utx.begin();
             client.claim(taskId, username);
@@ -463,7 +463,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             processModel.getEnrollment().getProviderInformation().setReviewedBy(user);
             // reset verification whenever the request is resubmitted
             processModel.getEnrollment().getProviderInformation().setVerificationStatus(new VerificationStatusType());
-            
+
             XMLUtility.moveToStatus(processModel, username, "PENDING", "Request was resubmitted with changes.");
             client.start(taskId, username);
 
@@ -509,27 +509,27 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         UserTransaction ut = context.getUserTransaction();
         try {
 	        Enrollment ticket = providerService.getTicketDetails(user, ticketId);
-	
+
 	        if (!ViewStatics.DRAFT_STATUS.equals(ticket.getStatus().getDescription())) {
 	            throw new PortalServiceException("Cannot submit ticket because it is not in draft status.");
 	        }
-	
+
 	        ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.PENDING_STATUS));
 	        ticket.setSubmittedBy(user.getUserId());
 	        ticket.setSubmissionDate(Calendar.getInstance().getTime());
 	        ticket.setStatusDate(Calendar.getInstance().getTime());
-	
+
 	        try {
 	            if (ViewStatics.ENROLLMENT_REQUEST.equals(ticket.getRequestType().getDescription())) {
 	                long processInstance = enroll(XMLAdapter.toXML(ticket));
 	                ticket.setProcessInstanceId(processInstance);
-	
+
 	            } else if (ViewStatics.RENEWAL_REQUEST.equals(ticket.getRequestType().getDescription())) {
 	                ProviderProfile baseProfile = providerService.getProviderDetails(user, ticket.getDetails()
 	                    .getProfileId());
 	                long processInstance = renew(XMLAdapter.toXML(ticket), XMLAdapter.toXML(baseProfile));
 	                ticket.setProcessInstanceId(processInstance);
-	
+
 	            } else if (ViewStatics.UPDATE_REQUEST.equals(ticket.getRequestType().getDescription())) {
 	                ProviderProfile baseProfile = providerService.getProviderDetails(user, ticket.getDetails()
 	                    .getProfileId());

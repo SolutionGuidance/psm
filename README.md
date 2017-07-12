@@ -147,6 +147,10 @@ and design assumptions.
 The [psm-app](psm-app) subdirectory holds the source code to the PSM
 proper.
 
+[opentechstrategies.github.io](https://opentechstrategies.github.io/psm/javadoc/)
+is our GitHub Pages site, where we publish documentation for the PSM's
+web API.
+
 The ext-sources-app subdirectory has been removed.  It held the source
 code to the semi-separate middleware application that provided a service
 wrapper around external data sources.  This will be replaced as

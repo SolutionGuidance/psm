@@ -99,7 +99,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     /**
      * List of handlers to be registered to workflow sessions.
      */
-    private final Map<String, WorkItemHandler> handlers = new HashMap<String, WorkItemHandler>();
+    private final Map<String, WorkItemHandler> handlers = new HashMap<>();
 
     /**
      * Persistence for provider enrollment.
@@ -174,7 +174,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
                 ksession.getWorkItemManager().registerWorkItemHandler(entry.getKey(), entry.getValue());
             }
 
-            Map<String, Object> params = new HashMap<String, Object>();
+            Map<String, Object> params = new HashMap<>();
             EnrollmentProcess processModel = new XMLSerializingEnrollmentProcess();
             processModel.setSessionId(ksession.getId());
             processModel.setEnrollment(enrollment);
@@ -211,7 +211,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
                 ksession.getWorkItemManager().registerWorkItemHandler(entry.getKey(), entry.getValue());
             }
 
-            Map<String, Object> params = new HashMap<String, Object>();
+            Map<String, Object> params = new HashMap<>();
             processModel.setSessionId(ksession.getId());
             params.put("model", processModel);
             ksession.insert(processModel);
@@ -555,7 +555,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             String isAbort
     ) throws IOException {
         ContentData contentData = null;
-        Map<String, Object> data = new HashMap<String, Object>();
+        Map<String, Object> data = new HashMap<>();
         data.put("model", processModel);
         data.put("isAbort", isAbort);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();

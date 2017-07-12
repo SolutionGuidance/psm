@@ -197,7 +197,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         }
     }
 
-    public void resubmit(
+    private void resubmit(
             String user,
             EnrollmentProcess processModel
     ) throws Exception {
@@ -233,7 +233,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         }
     }
 
-    public EntityManagerFactory getEmf() {
+    private EntityManagerFactory getEmf() {
         return emf;
     }
 

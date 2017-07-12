@@ -15,6 +15,7 @@
  */
 package gov.medicaid.services.impl;
 
+import com.topcoder.util.log.Level;
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.EditHistoryType;
 import gov.medicaid.domain.model.EnrollmentProcess;
@@ -45,33 +46,6 @@ import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.XMLAdapter;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.ejb.EJB;
-import javax.ejb.EJBContext;
-import javax.ejb.Local;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
-import javax.transaction.Status;
-import javax.transaction.UserTransaction;
-
 import org.drools.SystemEventListenerFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.process.ProcessInstance;
@@ -85,7 +59,30 @@ import org.jbpm.task.service.ContentData;
 import org.jbpm.task.service.TaskService;
 import org.jbpm.task.service.local.LocalTaskService;
 
-import com.topcoder.util.log.Level;
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import javax.ejb.EJB;
+import javax.ejb.EJBContext;
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
+import javax.transaction.Status;
+import javax.transaction.UserTransaction;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * A local implementation of the Enrollment service. For process testing purposes.

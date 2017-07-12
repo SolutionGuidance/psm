@@ -84,13 +84,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-/**
- * A local implementation of the Enrollment service. For process testing purposes.
- *
- * v1.1 - WAS Porting - converted to BMP to be able to reference UserTransaction, changed to local client
- * @author TCSASSEMBLER
- * @version 1.1
- */
 @Stateless
 @Local(BusinessProcessService.class)
 @TransactionManagement(TransactionManagementType.BEAN)
@@ -114,9 +107,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     @EJB
     private ProviderEnrollmentService providerService;
 
-    /**
-     * EJB context.
-     */
 	@Resource
 	private EJBContext context;
 
@@ -207,13 +197,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     	}
     }
 
-    /**
-     * Starts a new enrollment process.
-     *
-     * @param enrollment the enrollment requested
-     * @return the process instance id
-     * @throws Exception for any errors encountered
-     */
     public void resubmit(String user, EnrollmentProcess processModel) throws Exception {
     	StatefulKnowledgeSession ksession = null;
     	UserTransaction utx = context.getUserTransaction();
@@ -247,10 +230,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     	}
     }
 
-	/**
-	 * Retrieves the entity manager factory.
-	 * @return the entity manager factory
-	 */
 	public EntityManagerFactory getEmf() {
 		return emf;
 	}
@@ -397,17 +376,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         return ksession;
     }
 
-    /**
-     * Completes the given task.
-     *
-     * @param taskId the task to be completed
-     * @param user the user performing the task
-     * @param roles the roles of the user
-     * @param reject flag if the results are rejected
-     * @param updates the changes
-     * @param comment the change comments
-     * @throws Exception for any errors encountered
-     */
     public void updateRequest(EnrollmentType ticket, String user, String userRole) throws Exception {
     	UserTransaction utx = context.getUserTransaction();
         final ProviderInformationType updates = ticket.getProviderInformation();
@@ -482,7 +450,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
      * @param client the client to be used
      * @param taskId the task id associated
      * @return the process model for the waiting task
-     * @throws Exception for any errors encountered
      */
     @SuppressWarnings("unchecked")
     private EnrollmentProcess getEnrollmentForReview(LocalTaskService client, long taskId) throws IOException, ClassNotFoundException {

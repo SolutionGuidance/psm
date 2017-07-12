@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS
   entities,
   entity_structure_types,
   events,
+  external_account_links,
   help_items,
   issuing_boards,
   license_statuses,
@@ -1356,4 +1357,11 @@ CREATE TABLE provider_services(
   ticket_id BIGINT DEFAULT 0 NOT NULL,
   service_category_code CHARACTER VARYING(2)
     REFERENCES service_categories(code)
+);
+
+CREATE TABLE external_account_links(
+  external_account_link_id BIGINT PRIMARY KEY,
+  user_id TEXT,
+  system_id TEXT,
+  external_user_id TEXT
 );

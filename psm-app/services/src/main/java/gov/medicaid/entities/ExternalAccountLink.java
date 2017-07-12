@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -15,85 +15,61 @@
  */
 package gov.medicaid.entities;
 
-/**
- * Represents a link to an external user.
- * @author TCSASSEMBLER
- * @version 1.0
- */
-public class ExternalAccountLink extends IdentifiableEntity {
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 
-    /**
-     * The user id.
-     */
+@javax.persistence.Entity
+@Table(name = "external_account_links")
+public class ExternalAccountLink implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "external_account_link_id")
+    private long id;
+
+    @Column(name = "user_id")
     private String userId;
 
-    /**
-     * The external system id.
-     */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "system_id")
     private SystemId systemId;
 
-    /**
-     * The external user id.
-     */
+    @Column(name = "external_user_id")
     private String externalUserId;
 
-    /**
-     * Empty constructor.
-     */
-    public ExternalAccountLink() {
-
+    public long getId() {
+        return id;
     }
 
-    /**
-     * Gets the value of the field <code>userId</code>.
-     *
-     * @return the userId
-     */
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getUserId() {
         return userId;
     }
 
-    /**
-     * Sets the value of the field <code>userId</code>.
-     *
-     * @param userId the userId to set
-     */
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    /**
-     * Gets the value of the field <code>externalUserId</code>.
-     *
-     * @return the externalUserId
-     */
     public String getExternalUserId() {
         return externalUserId;
     }
 
-    /**
-     * Sets the value of the field <code>externalUserId</code>.
-     *
-     * @param externalUserId the externalUserId to set
-     */
     public void setExternalUserId(String externalUserId) {
         this.externalUserId = externalUserId;
     }
 
-    /**
-     * Gets the value of the field <code>systemId</code>.
-     *
-     * @return the systemId
-     */
     public SystemId getSystemId() {
         return systemId;
     }
 
-    /**
-     * Sets the value of the field <code>systemId</code>.
-     *
-     * @param systemId the systemId to set
-     */
     public void setSystemId(SystemId systemId) {
         this.systemId = systemId;
     }

@@ -27,8 +27,6 @@ public class Sequences {
      */
     public static final String EXT_PROF_LINK_SEQ = "EXT_PROF_LINK_SEQ";
 
-    public static final String PROVIDER_COS_SEQ = "PROVIDER_COS_SEQ";
-
     /**
      * Private constructor.
      */

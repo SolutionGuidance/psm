@@ -66,7 +66,7 @@ def test_migrate():
     assert subprocess.check_output("echo .schema | sqlite3 %s" % conn.db_conf['open'], shell=True).decode("utf-8") == ""
     conn.migrate()
     assert subprocess.check_output("echo .schema | sqlite3 %s" % conn.db_conf['open'], shell=True).decode("utf-8") != ""
-    assert conn.get_header("individual_exclusion")[0] == "lastname"
+    assert conn.get_header("exclusion")[0] == "lastname"
     conn.close()
 
     # Check that migrate complains about non-existent directory

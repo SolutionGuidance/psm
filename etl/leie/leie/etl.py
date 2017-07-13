@@ -62,8 +62,8 @@ def munge_date(date_entry):
     warn("Unrecognized date format ({0}) parsed as {1}!".format(f, d))
     return d
 
-def clean_and_separate(table):
-    """Do some cleanup of TABLE and split into individual and business tables.
+def clean(table):
+    """Do some cleanup of TABLE
 
     TABLE is a petl table."""
 
@@ -78,25 +78,11 @@ def clean_and_separate(table):
         'WAIVERDATE': munge_date # Arrange date for sqlite
     })
 
-    # Separate into two tables, as this is actually two different data sets
-    individual = etl.select(table, "{LASTNAME} != '' and {FIRSTNAME} != ''")
-    business = etl.select(table, "{LASTNAME} == '' and {FIRSTNAME} == ''")
-
-    # Sanity check: Make sure we split the rows without dupes or
-    # missing any.  The +1 is to account for the second header row
-    # that gets counted when we have two tables.
-    if len(business) + len(individual) != len(table) + 1:
-        fatal("Separating business and individual exclusions came up with the wrong number of rows!")
-
-    # Remove unused columns
-    individual = etl.transform.basics.cutout(individual, "BUSNAME")
-    business = etl.transform.basics.cutout(business, "LASTNAME", "FIRSTNAME", "MIDNAME", "DOB")
-
     # Do some cleanup conversions on individual data
-    individual = etl.convert(individual, {'DOB': munge_date,
-                                          'MIDNAME': lambda f: f if f != " " else ""  # no spaces as middle names
-                                          })
-    return individual, business
+    table = etl.convert(table, {'DOB': munge_date,
+                                'MIDNAME': lambda f: f if f != " " else ""  # no spaces as middle names
+    })
+    return table
 
 class Exclusions():
     """ETL helper class for handling exclusions."""
@@ -122,21 +108,20 @@ class Exclusions():
             # recent date as our db, we've already snarfed this csv file and
             # can skip it.
             db_latest = self.conn.get_latest_exclusion_date().replace('-','')
-            db_num_rows = self.conn.count_exclusions()
+            db_num_rows = self.conn.table_len("exclusion")
             updated_latest = etl.cut(etl.sort(table, 'EXCLDATE'), 'EXCLDATE')[len(table)-1][0]
             updated_num_rows = len(table) - 1
             if (db_num_rows == updated_num_rows and db_latest == updated_latest):
                 return
 
         # Massage data
-        individual, business = clean_and_separate(table)
+        table = clean(table)
 
-        # Save to db, BLOWING AWAY data in the existing tables.  If
-        # tables don't exist, will create them, but without any
+        # Save to db, BLOWING AWAY data in the existing table.  If
+        # table doesn't exist, will create it, but without any
         # constraints.
-        info("Replacing individual_exclusion and business_exclusion tables.")
-        etl.todb(individual, self.conn.conn, 'individual_exclusion')
-        etl.todb(business, self.conn.conn, 'business_exclusion')
+        info("Replacing exclusions table.")
+        etl.todb(table, self.conn.conn, 'exclusion')
 
     def etl_from_filename(self, fname, force_reload=False):
         """Extract, translate, load exclusions (and not reinstatements) from
@@ -185,23 +170,20 @@ class Reinstatements():
 
         # Get the data from REIN CSV files.  Gather reinstatement actions
         # since most_recent
-        total_indiv = []
-        total_bus = []
+        total = []
+        total = []
         for fname in sorted(glob.glob(os.path.join(data_dir, "*REIN.csv"))):
             if int(os.path.basename(fname)[:4]) <= int(most_recent[2:]):
                 continue
             debug("Processing " + fname)
             reinstated = etl.fromcsv(fname)
-            individual, business = clean_and_separate(reinstated)
-            total_indiv.append(individual)
-            total_bus.append(business)
+            reinstated = clean(reinstated)
+            total.append(reinstated)
 
         # Save to db, APPENDING TO existing data tables.  Assumes tables
         # exist.
-        if total_indiv:
-            etl.appenddb(etl.cat(*total_indiv), self.conn.conn, 'individual_reinstatement')
-        if total_bus:
-            etl.appenddb(etl.cat(*total_bus), self.conn.conn, 'business_reinstatement')
+        if total:
+            etl.appenddb(etl.cat(*total), self.conn.conn, 'reinstatement')
 
         # It is possible to end up with duplicate rows if, say, an ETL
         # process is interrupted midway through.  So we should find and

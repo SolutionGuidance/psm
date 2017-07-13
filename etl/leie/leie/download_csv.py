@@ -53,6 +53,6 @@ def save_file(url, location):
 	file_saver.retrieve(url, location)
 
 
-# if __name__=='__main__':
-	# download_csv('/Users/Kevin/Documents/')
+if __name__=='__main__':
+	download_csv('/Users/Kevin/Documents/')
 

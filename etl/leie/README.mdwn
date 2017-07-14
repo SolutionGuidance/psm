@@ -188,6 +188,8 @@ newer versions will break anything.  If you change versions, use the
 test suite.
 
     $ pip install \
+        dicttoxml \
+        flask \
         petl==1.1.1 \
         python-dateutil==2.6.0
         pyyaml=3.12 \

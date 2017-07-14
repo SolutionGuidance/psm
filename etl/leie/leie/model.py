@@ -4,6 +4,7 @@ import datetime
 import dateutil.parser
 import os
 from path import cd
+import simplejson as json
 import sqlite3
 import subprocess
 import sys
@@ -62,6 +63,27 @@ class DBConn(object):
         c = self.conn.cursor()
         return (c.execute("SELECT Count(*) FROM %s" % table).fetchone()[0])
 
+    def row_to_dict(self, row, field=None, description=None):
+        """
+        FIELD is a list or tuple of field names
+
+        DESCRIPTION is the results of cursor.description from sqlite
+
+        Either FIELD or DESCRIPTION must be present, but not both.
+
+        ROW is a tuple of values
+
+        Returns a dict with the keys taken from FIELD and the values taken from ROW.
+        """
+        assert field or description
+        assert not (field and description)
+
+        if description:
+            field = [c[0] for c in description]
+            
+        field = ['id' if f == 'rowid' else f for f in field]
+        return dict(zip(field, row))
+    
 class SQL(DBConn):
     """All the sql and goose stuff goes in this class.
     
@@ -193,8 +215,8 @@ DROP TABLE reinstatement;
             """
         else:
             return None
-
-
+        
+    
 class LEIE(SQL):
     """This is a DAO class but not an ORM class.  We're modeling the
     database, not the data.  Maybe that will change, but it works for
@@ -202,6 +224,10 @@ class LEIE(SQL):
 
     """
 
+    def count_exclusions(self):
+        """Return number of rows in the exclusion table"""
+        return self.table_len("exclusion")
+    
     def dedupe(self, table):
         """
         Remove any duplicate rows from TABLE
@@ -248,6 +274,42 @@ class LEIE(SQL):
             return None
         return dateutil.parser.parse(all[-1][0])
 
+    def get_exclusions(self, limit=10, page=1, filter={}, form="list"):
+        """Return all the rows from the log table up to LIMIT rows
+
+        FORM can be 'list' or 'dict'.  If 'list', return rows as
+        lists.  If dict, return rows as dicts.
+
+        If PAGE is specified, we skip the first (PAGE-1)*LIMIT rows
+        and return LIMIT rows from there.
+
+        """
+        assert form in ["list", "dict"]
+        assert page >= 1
+        assert limit >= 1
+        
+        crsr = self.conn.cursor()
+
+        # Make strings for the filters to be inserted in to the sql
+        # query. Also, make a list of arguments for the query.
+        args = [limit*(page-1)]
+        query = ["SELECT rowid, * FROM exclusion",
+                 "WHERE rowid NOT IN ( SELECT rowid FROM exclusion ORDER BY excldate DESC LIMIT ?)"
+                 ]
+        for k,v in filter.items():
+            if v:
+                query.append("AND %s=?" % k)
+                args.append(v)
+        query.append("ORDER BY excldate DESC LIMIT ?")
+        args.append(limit)
+        
+        # Return a range of rows
+        rows = crsr.execute(" ".join(query), args).fetchall()
+
+        if form == 'list':
+            return rows
+        return [Exclusion(self.row_to_dict(r, description=crsr.description)) for r in rows]
+
     def get_header(self, table):
         """Returns a list of the column names in TABLE"""
         c = self.conn.cursor()
@@ -289,6 +351,30 @@ class LEIE(SQL):
         """
         return self.get_latest_date("reinstatement", "reindate")
 
+    def get_log(self, rowid=None, limit=10, start=0, form="list"):
+        """Return all the rows from the log table up to LIMIT rows
+
+        if ROWID is set, we just return that row and LIMIT parameter has no effect.  If that row doesn't exist, return None.
+
+        FORM can be 'list' or 'dict'.  If 'list', return rows as lists.  If dict, return rows as dicts. 
+
+        If START is specified... I dunno. not implemented yet.
+        """
+        
+        assert form in ["list", "dict"]
+        
+        crsr = self.conn.cursor()
+
+        # Return just the requested row
+        if rowid:
+            return crsr.execute("SELECT rowid, * FROM log WHERE rowid=?", [rowid]).fetchone()
+
+        # Return a range of rows
+        rows = crsr.execute("SELECT rowid, * FROM log ORDER BY datetime DESC LIMIT ?", [limit]).fetchall()
+        if form == 'list':
+            return rows
+        return [self.row_to_dict(r, description=crsr.description) for r in rows]
+
     def log(self, datatype, message, now=""):
         """Add a MESSAGE string about a DATATYPE (either updated or
         reinstatement) to the log table in the db.
@@ -313,6 +399,30 @@ class LEIE(SQL):
         crsr.execute("INSERT INTO log VALUES(?,?,?)", (now, datatype, message))
         self.conn.commit()
 
+class Exclusion(dict):
+    """Model of an exclusion.  
+
+    This is just a dict that we're wrapping in a class so we can
+    attach methods to it.
+
+    """
+    def __init__(self, dictionary):
+        dict.__init__(self)
+        self.update(dictionary)
+
+    def fhir(self, form="dict"):
+        """Return the data of this instance in a way that complies with FHIR.
+        First, we assemble it as a dict, then convert it to JSON or XML if FORM
+        is json' or 'xml'.
+        """
+        ret = self.copy()
+        ret['resourceType'] = 'Exclusion'
+        if form == "dict":
+            return ret
+        if form == "xml":
+            return dicttoxml.dictotoxml(ret)
+        return json.dumps(ret)
+        
 def main(dirname=None):
     logger = log.logger()
     logger.info('Running model.py directly to produce schema/goose output.')

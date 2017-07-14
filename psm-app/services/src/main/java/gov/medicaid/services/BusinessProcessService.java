@@ -45,7 +45,7 @@ public interface BusinessProcessService {
      * @return the process instance id
      * @throws Exception for any errors encountered
      */
-    public long enroll(EnrollmentType enrollment) throws Exception;
+    long enroll(EnrollmentType enrollment) throws Exception;
 
     /**
      * Retrieves the available tasks for the given user and roles.
@@ -55,7 +55,7 @@ public interface BusinessProcessService {
      * @return all tasks that the user can claim or already owns
      * @throws Exception for any errors encountered
      */
-    public List<TaskSummary> getAvailableTasks(
+    List<TaskSummary> getAvailableTasks(
             String username,
             List<String> roles
     ) throws Exception;
@@ -67,7 +67,7 @@ public interface BusinessProcessService {
      * @return all tasks that the user can claim or already owns
      * @throws Exception for any errors encountered
      */
-    public EnrollmentProcess getTaskModel(long taskId) throws Exception;
+    EnrollmentProcess getTaskModel(long taskId) throws Exception;
 
     /**
      * Completes the given task.
@@ -80,7 +80,7 @@ public interface BusinessProcessService {
      * @param comment  the change comments
      * @throws Exception for any errors encountered
      */
-    public void completeReview(
+    void completeReview(
             final long taskId,
             String username,
             List<String> roles,
@@ -97,7 +97,7 @@ public interface BusinessProcessService {
      * @return the process instance id.
      * @throws Exception for any errors encountered
      */
-    public long renew(
+    long renew(
             EnrollmentType ticket,
             EnrollmentType currentProfile
     ) throws Exception;
@@ -110,7 +110,7 @@ public interface BusinessProcessService {
      * @return the process instance id.
      * @throws Exception for any errors encountered
      */
-    public long update(
+    long update(
             EnrollmentType ticket,
             EnrollmentType currentProfile
     ) throws Exception;
@@ -123,7 +123,7 @@ public interface BusinessProcessService {
      * @param userRole the role of the user
      * @throws Exception for any errors encountered
      */
-    public void updateRequest(
+    void updateRequest(
             EnrollmentType ticket,
             String user,
             String userRole

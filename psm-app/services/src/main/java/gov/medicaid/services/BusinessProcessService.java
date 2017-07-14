@@ -26,9 +26,6 @@ import org.jbpm.task.query.TaskSummary;
 
 /**
  * Defines the interface for enrollment.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public interface BusinessProcessService {
 

@@ -363,3 +363,25 @@ gradle:
     ./gradlew cms-web:apiDocs
 
 The generated documentation will go into `psm-app/cms-web/build/reports/api-docs`.
+
+# Production Deployment
+
+If you want to deploy this in earnest, there will be additional steps
+necessary to scale up to a large number of users.  Every deployment
+environment will be different, so this section is not a set of
+instructions to deploy.  Instead, it contains notes that might be
+useful to inform your own approach to deploying the PSM.
+
+## NGINX
+
+NGINX has a maximum upload file size.  It's default can be quite low
+(1MB on our Debian system), and large PDFs of licenses and
+certificates can trigger "413 Request Entity Too Large" errors in
+NGINX.  You will want to set maximum uploaded file size in both NGINX
+*and* in the PSM (adjust max.upload.size in
+`psm/psm-app/services/src/main/resources/cms.properties`).  PDFs can
+get quite large, especially if they are multi-page PDFs of scanned
+documents.  We do not yet have a recommended size to set this too, but
+we will set a sane default in `cms.properties` when we do.  See
+[Issue 263](https://github.com/OpenTechStrategies/psm/issues/263) for
+some discussion of the problem.

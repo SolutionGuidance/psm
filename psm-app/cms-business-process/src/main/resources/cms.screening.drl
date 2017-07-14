@@ -19,7 +19,7 @@ dialect 'mvel'
 
 end
 
-rule 'Assert provider aggreements'
+rule 'Assert provider agreements'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -75,7 +75,7 @@ end
 
 
 /*
-rule 'Provider Agreement(DHS-4138) Is Required'
+rule 'Provider Agreement (DHS-4138) Is Required'
 dialect 'mvel'
     when
         $provider: ProviderInformationType()
@@ -765,7 +765,7 @@ activation-group "marriage-and-family-therapy-license-activation"
 
 end
 
-rule 'MFT with existing registration as LPCC or LICSW should register as such As LPCC,LICSW'
+rule 'MFT with existing registration as LPCC or LICSW should register as such As LPCC, LICSW'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -1085,7 +1085,7 @@ activation-group "psychologist-neuropsychology-supporting-document-is-required"
 
 end
 
-rule 'Received A Diploma From America Board of Professional Neuropsychology (ABPN)'
+rule 'Received A Diploma From American Board of Professional Neuropsychology (ABPN)'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -1102,7 +1102,7 @@ activation-group "psychologist-neuropsychology-supporting-document-is-required"
 
 end
 
-rule 'Received A Diploma From  American Academy of Pediatric Neuropsychology (AAPN)'
+rule 'Received A Diploma From American Academy of Pediatric Neuropsychology (AAPN)'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -1362,7 +1362,7 @@ dialect 'mvel'
 
 end
 
-rule 'Copy Of Masters Degree In A Related  Field Is Required'
+rule 'Copy Of Masters Degree In A Related Field Is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -1908,7 +1908,7 @@ dialect 'mvel'
 
 end
 
-rule 'Out Of State  Optometrist License Is Acceptable If Working On A Reserveration'
+rule 'Out Of State Optometrist License Is Acceptable If Working On A Reserveration'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.

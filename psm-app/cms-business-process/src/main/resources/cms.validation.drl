@@ -1579,7 +1579,7 @@ dialect 'mvel'
 
 end
 
-rule 'Articles Of Incorporation Showing Non-Profit Status Is Required For The Specified Provider Typers II'
+rule 'Articles Of Incorporation Showing Non-Profit Status Is Required For The Specified Provider Types II'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -1603,7 +1603,7 @@ dialect 'mvel'
 
 end
 
-rule 'Articles Of Incorporation Showing Non-Profit Status Is Required For The Specified Provider Typers'
+rule 'Articles Of Incorporation Showing Non-Profit Status Is Required For The Specified Provider Types'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -1892,7 +1892,7 @@ dialect 'mvel'
 
 end
 
-rule 'At Least One Contract,Certification Must Be Provided For County Contracted Mental Health Rehab I'
+rule 'At Least One Contract, Certification Must Be Provided For County Contracted Mental Health Rehab I'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -1919,7 +1919,7 @@ dialect 'mvel'
 
 end
 
-rule 'At Least One Contract,Certification Must Be Provided For County Contracted Mental Health Rehab II'
+rule 'At Least One Contract, Certification Must Be Provided For County Contracted Mental Health Rehab II'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -2261,7 +2261,7 @@ dialect 'mvel'
 
 end
 
-rule 'Begin Providing Services Date Is Cannot Be Before 01-01-1900'
+rule 'Begin Providing Services Date Cannot Be Before 01-01-1900'
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
@@ -3738,7 +3738,7 @@ dialect 'mvel'
 
 end
 
-rule 'Contract,Certificate Begin Date Cannot Be Before 01-01-1900'
+rule 'Contract, Certificate Begin Date Cannot Be Before 01-01-1900'
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
@@ -3757,7 +3757,7 @@ dialect 'mvel'
 
 end
 
-rule 'Contract,Certificate Copy Attachment Id Must Reference A Valid Attachment I'
+rule 'Contract, Certificate Copy Attachment Id Must Reference A Valid Attachment I'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -3783,7 +3783,7 @@ dialect 'mvel'
 
 end
 
-rule 'Contract,Certificate Copy Attachment Id Must Reference A Valid Attachment II'
+rule 'Contract, Certificate Copy Attachment Id Must Reference A Valid Attachment II'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -3828,7 +3828,7 @@ dialect 'mvel'
 
 end
 
-rule 'Contract,Certificate End Date Cannot Be Before 01-01-1900'
+rule 'Contract, Certificate End Date Cannot Be Before 01-01-1900'
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
@@ -3848,7 +3848,7 @@ dialect 'mvel'
 end
 
 
-rule 'Contract,Certificate Name Must Be One Of Accepted Values'
+rule 'Contract, Certificate Name Must Be One Of The Accepted Values'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -4310,7 +4310,7 @@ dialect 'mvel'
 
 end
 
-rule 'Day Training And Habilitation License Is required for Day Training And Habilitation,Day Activity Center'
+rule 'Day Training And Habilitation License Is required for Day Training And Habilitation, Day Activity Center'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -5597,7 +5597,7 @@ dialect 'mvel'
 end
 
 
-rule 'Atleast one specialty is required for Physician'
+rule 'At least one specialty is required for Physician'
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())

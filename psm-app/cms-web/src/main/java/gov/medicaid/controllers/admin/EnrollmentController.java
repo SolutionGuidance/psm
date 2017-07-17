@@ -129,12 +129,6 @@ public class EnrollmentController extends BaseController {
     private ExportService exportService;
 
     /**
-     * Empty constructor.
-     */
-    public EnrollmentController() {
-    }
-
-    /**
      * This method checks that all required injection fields are in fact provided.
      *
      * @throws PortalServiceConfigurationException

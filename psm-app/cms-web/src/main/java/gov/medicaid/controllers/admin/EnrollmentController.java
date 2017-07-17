@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -93,7 +93,7 @@ import org.springframework.web.servlet.ModelAndView;
  * <p>
  * <b>Thread Safety</b> This class is mutable and not thread safe, but used in thread safe manner by framework.
  * </p>
- * 
+ *
  * @author argolite, TCSASSEMBLER
  * @version 1.0
  */
@@ -167,7 +167,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This method checks that all required injection fields are in fact provided.
-     * 
+     *
      * @throws PortalServiceConfigurationException
      *             - If there are required injection fields that are not injected
      */
@@ -195,7 +195,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This method is used to convert the date field.
-     * 
+     *
      * @param binder
      *            the WebDataBinder instance
      */
@@ -209,7 +209,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will load the first page of draft profile enrollments.
-     * 
+     *
      * @return - the model and view instance that contains the name of view to be rendered and data to be used for
      *         rendering (not null)
      * @throws PortalServiceException
@@ -230,7 +230,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will load the dashboard page.
-     * 
+     *
      * @return the model and view instance that contains the name of view to be rendered and data to be used for
      *         rendering (not null)
      * @throws PortalServiceException
@@ -268,7 +268,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will load the help page.
-     * 
+     *
      * @return the model and view instance that contains the name of view to be rendered and data to be used for
      *         rendering (not null)
      * @throws PortalServiceException
@@ -299,7 +299,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will get the entity with the given ID.
-     * 
+     *
      * @param id
      *            the entity ID
      * @return the model and view instance that contains the name of view to be rendered and data to be used for
@@ -328,7 +328,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Rejects the ticket.
-     * 
+     *
      * @param id
      *            the ticket id
      * @return the model and view for
@@ -345,10 +345,10 @@ public class EnrollmentController extends BaseController {
 
         return LogUtil.traceExit(getLog(), signature, mv);
     }
-    
+
     /**
      * This action will load the screening results for manual verification.
-     * 
+     *
      * @param id
      *            - the profile id
      * @return - the model and view instance that contains the name of view to be rendered and data to be used for
@@ -418,7 +418,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will load the screening results log.
-     * 
+     *
      * @param id
      *            - the profile id
      * @return - the model and view instance that contains the name of view to be rendered and data to be used for
@@ -479,7 +479,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will search for profile enrollments.
-     * 
+     *
      * @param criteria
      *            - the search criteria
      * @param response
@@ -514,7 +514,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will search for profile enrollments.
-     * 
+     *
      * @param criteria
      *            - the search criteria
      * @param view
@@ -543,7 +543,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This method is used to supply the lookup values.
-     * 
+     *
      * @param modelAndView
      *            the modelAndView object
      * @throws PortalServiceException
@@ -564,7 +564,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will search for profile enrollment with the given npi.
-     * 
+     *
      * @param npi
      *            - the npi
      * @return - the model and view instance that contains the name of view to be rendered and data to be used for
@@ -605,7 +605,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will get the profile enrollment with the given profile ID.
-     * 
+     *
      * @param ticketId
      *            - the ticket ID
      * @return - the model and view instance that contains the name of view to be rendered and data to be used for
@@ -631,7 +631,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will save the note in current enrollment of the profile with the given ID.
-     * 
+     *
      * @param ticketId
      *            - the ticket ID
      * @param note
@@ -666,7 +666,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will approve the current enrollment.
-     * 
+     *
      * @param id
      *            - the profile ID
      * @param dto
@@ -694,7 +694,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will reject the current enrollment of the profile with the given ID.
-     * 
+     *
      * @param id
      *            - the profile ID
      * @param reason
@@ -728,7 +728,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will initiated an immediate screening of the enrollment.
-     * 
+     *
      * @param id
      *            - the profile ID
      * @return the status
@@ -753,7 +753,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will initiated a screening of the enrollment at the given date.
-     * 
+     *
      * @param id
      *            - the profile ID
      * @param date
@@ -786,7 +786,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Set the helpService.
-     * 
+     *
      * @param helpService
      *            the helpService to set
      */
@@ -796,7 +796,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Set the eventService.
-     * 
+     *
      * @param eventService
      *            the eventService to set
      */
@@ -806,7 +806,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Sets the value of the field <code>screeningService</code>.
-     * 
+     *
      * @param screeningService
      *            the screeningService to set
      */
@@ -816,7 +816,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Completes the review step of the screening process.
-     * 
+     *
      * @param ticketId
      *            the ticket id
      * @param dto
@@ -832,7 +832,7 @@ public class EnrollmentController extends BaseController {
             throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
         Enrollment ticketDetails = enrollmentService.getTicketDetails(user, ticketId);
-        
+
         long processInstanceId = ticketDetails.getProcessInstanceId();
         if (processInstanceId <= 0) {
             throw new PortalServiceException("Requested profile is not available for approval.");
@@ -868,7 +868,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Applies manual verification to the current process model.
-     * 
+     *
      * @param dto
      *            the manual verification dto
      * @param taskId
@@ -925,7 +925,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Executes the search.
-     * 
+     *
      * @param criteria
      *            the search criteria
      * @param view
@@ -979,7 +979,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will load the COS associated with a provider.
-     * 
+     *
      * @param profileId
      *            the profile id
      * @return the model and view instance that contains the name of view to be rendered and data to be used for
@@ -1008,7 +1008,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will load the COS associated with a ticket.
-     * 
+     *
      * @param ticketId
      *            the ticket id
      * @return the model and view instance that contains the name of view to be rendered and data to be used for
@@ -1037,7 +1037,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Saves the category of services.
-     * 
+     *
      * @param profileId
      *            the profile id
      * @param startDate
@@ -1098,7 +1098,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Saves the category of services.
-     * 
+     *
      * @param ticketId
      *            the ticket id
      * @param startDate
@@ -1159,7 +1159,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Deletes the Category of Service.
-     * 
+     *
      * @param profileId
      *            the profile id
      * @param id
@@ -1182,7 +1182,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Deletes the pending Category of Service.
-     * 
+     *
      * @param ticketId
      *            the ticket id
      * @param id
@@ -1205,7 +1205,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * The setter for the lookupService instance variable.
-     * 
+     *
      * @param lookupService
      *            the lookupService to set
      */
@@ -1215,7 +1215,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * The setter for the providerTypeService instance variable.
-     * 
+     *
      * @param providerTypeService
      *            the providerTypeService to set
      */
@@ -1225,7 +1225,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Sets the value of the field <code>enrollmentService</code>.
-     * 
+     *
      * @param enrollmentService
      *            the enrollmentService to set
      */
@@ -1235,7 +1235,7 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Sets the value of the field <code>businessProcessService</code>.
-     * 
+     *
      * @param businessProcessService
      *            the businessProcessService to set
      */
@@ -1245,12 +1245,11 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Sets the value of the field <code>exportService</code>.
-     * 
+     *
      * @param exportService
      *            the exportService to set
      */
     public void setExportService(ExportService exportService) {
         this.exportService = exportService;
     }
-
 }

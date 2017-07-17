@@ -19,7 +19,6 @@ import gov.medicaid.binders.BinderUtils;
 import gov.medicaid.entities.AcceptedAgreements;
 import gov.medicaid.entities.Address;
 import gov.medicaid.entities.Affiliation;
-import gov.medicaid.entities.Asset;
 import gov.medicaid.entities.BeneficialOwner;
 import gov.medicaid.entities.BinaryContent;
 import gov.medicaid.entities.CMSUser;
@@ -949,29 +948,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         // save owners
         insertBeneficialOwners(ownership);
 
-        // save assets
-        insertAssets(ownership);
-
         getEm().persist(ownership);
-    }
-
-    /**
-     * Saves the ownership information assets.
-     *
-     * @param ownership the ownership information
-     */
-    private void insertAssets(OwnershipInformation ownership) {
-        List<Asset> assets = ownership.getAssets();
-        if (assets == null || assets.isEmpty()) {
-            return;
-        }
-
-        for (Asset asset : assets) {
-            insertAddress(asset.getLocation());
-
-            asset.setId(0);
-            getEm().persist(asset);
-        }
     }
 
     /**
@@ -1274,14 +1251,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         OwnershipInformation ownership = profile.getOwnershipInformation();
         if (ownership != null) {
-            List<Asset> assets = ownership.getAssets();
-            if (assets != null) {
-                for (Asset asset : assets) {
-                    purgeAddress(asset.getLocation());
-                    getEm().remove(asset);
-                }
-            }
-
             List<BeneficialOwner> owners = ownership.getBeneficialOwners();
             if (owners != null) {
                 for (BeneficialOwner owner : owners) {

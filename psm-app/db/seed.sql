@@ -32,9 +32,7 @@ DROP TABLE IF EXISTS
   licenses,
   notes,
   organizations,
-  owner_assets,
   ownership_info,
-  ownership_types,
   pay_to_provider_types,
   pay_to_providers,
   people,
@@ -273,11 +271,6 @@ INSERT INTO license_statuses (code, description) VALUES
   ('01', 'Active'),
   ('02', 'Suspended'),
   ('03', 'Expired');
-
-CREATE TABLE ownership_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 
 CREATE TABLE pay_to_provider_types(
   code CHARACTER VARYING(2) PRIMARY KEY,
@@ -1145,17 +1138,6 @@ CREATE TABLE beneficial_owner (
   fein                      CHARACTER VARYING(20),
   legal_name                TEXT
 );
-
-CREATE TABLE owner_assets(
-  owner_asset_id BIGINT PRIMARY KEY ,
-  name TEXT,
-  ownership_type_code CHARACTER VARYING(2)
-    REFERENCES  ownership_types(code),
-  address_id BIGINT
-    REFERENCES addresses(address_id),
-  ownership_info_id BIGINT
-    REFERENCES ownership_info(ownership_info_id)
-) ;
 
 CREATE TABLE provider_statements(
   provider_statement_id BIGINT PRIMARY KEY,

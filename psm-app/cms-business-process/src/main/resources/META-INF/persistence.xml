@@ -45,7 +45,6 @@
     <class>gov.medicaid.entities.Address</class>
     <class>gov.medicaid.entities.Affiliation</class>
     <class>gov.medicaid.entities.AgreementDocument</class>
-    <class>gov.medicaid.entities.Asset</class>
     <class>gov.medicaid.entities.AuditDetail</class>
     <class>gov.medicaid.entities.AuditRecord</class>
     <class>gov.medicaid.entities.Authentication</class>
@@ -74,7 +73,6 @@
     <class>gov.medicaid.entities.Organization</class>
     <class>gov.medicaid.entities.OrganizationBeneficialOwner</class>
     <class>gov.medicaid.entities.OwnershipInformation</class>
-    <class>gov.medicaid.entities.OwnershipType</class>
     <class>gov.medicaid.entities.PayToProvider</class>
     <class>gov.medicaid.entities.PayToProviderType</class>
     <class>gov.medicaid.entities.Person</class>

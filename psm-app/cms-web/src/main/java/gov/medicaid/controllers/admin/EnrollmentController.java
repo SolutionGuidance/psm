@@ -109,49 +109,18 @@ public class EnrollmentController extends BaseController {
      */
     private static final String APPROVAL_TASK_NAME = "Screening Review";
 
-    /**
-     * Client interface for the jBPM enrollment service. It is managed with a getter and setter, may have any value, but
-     * is expected to be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to
-     * change after dependency injection
-     */
     private ProviderEnrollmentService enrollmentService;
 
-    /**
-     * Client interface for the jBPM enrollment service. It is managed with a getter and setter, may have any value, but
-     * is expected to be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to
-     * change after dependency injection
-     */
     private BusinessProcessService businessProcessService;
 
-    /**
-     * Represents the screening service. It is managed with a getter and setter, may have any value, but is expected to
-     * be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to change after
-     * dependency injection
-     */
     private ScreeningService screeningService;
 
-    /**
-     * Represents the help service. it is managed with a getter and setter. It may have any value, but is expected to be
-     * set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to change after
-     * dependency injection.
-     */
     private HelpService helpService;
 
-    /**
-     * Represents the event service. it is managed with a getter and setter. It may have any value, but is expected to
-     * be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to change after
-     * dependency injection.
-     */
     private EventService eventService;
 
-    /**
-     * Lookup service.
-     */
     private LookupService lookupService;
 
-    /**
-     * Represents the provider type service.
-     */
     private ProviderTypeService providerTypeService;
 
     /**
@@ -784,32 +753,14 @@ public class EnrollmentController extends BaseController {
         return LogUtil.traceExit(getLog(), signature, statusDTO);
     }
 
-    /**
-     * Set the helpService.
-     *
-     * @param helpService
-     *            the helpService to set
-     */
     public void setHelpService(HelpService helpService) {
         this.helpService = helpService;
     }
 
-    /**
-     * Set the eventService.
-     *
-     * @param eventService
-     *            the eventService to set
-     */
     public void setEventService(EventService eventService) {
         this.eventService = eventService;
     }
 
-    /**
-     * Sets the value of the field <code>screeningService</code>.
-     *
-     * @param screeningService
-     *            the screeningService to set
-     */
     public void setScreeningService(ScreeningService screeningService) {
         this.screeningService = screeningService;
     }
@@ -1203,52 +1154,22 @@ public class EnrollmentController extends BaseController {
         return new ModelAndView("redirect:/agent/enrollment/pendingcos?id=" + ticketId);
     }
 
-    /**
-     * The setter for the lookupService instance variable.
-     *
-     * @param lookupService
-     *            the lookupService to set
-     */
     public void setLookupService(LookupService lookupService) {
         this.lookupService = lookupService;
     }
 
-    /**
-     * The setter for the providerTypeService instance variable.
-     *
-     * @param providerTypeService
-     *            the providerTypeService to set
-     */
     public void setProviderTypeService(ProviderTypeService providerTypeService) {
         this.providerTypeService = providerTypeService;
     }
 
-    /**
-     * Sets the value of the field <code>enrollmentService</code>.
-     *
-     * @param enrollmentService
-     *            the enrollmentService to set
-     */
     public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
         this.enrollmentService = enrollmentService;
     }
 
-    /**
-     * Sets the value of the field <code>businessProcessService</code>.
-     *
-     * @param businessProcessService
-     *            the businessProcessService to set
-     */
     public void setBusinessProcessService(BusinessProcessService businessProcessService) {
         this.businessProcessService = businessProcessService;
     }
 
-    /**
-     * Sets the value of the field <code>exportService</code>.
-     *
-     * @param exportService
-     *            the exportService to set
-     */
     public void setExportService(ExportService exportService) {
         this.exportService = exportService;
     }

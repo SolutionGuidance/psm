@@ -93,9 +93,6 @@ import org.springframework.web.servlet.ModelAndView;
  * <p>
  * <b>Thread Safety</b> This class is mutable and not thread safe, but used in thread safe manner by framework.
  * </p>
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 public class EnrollmentController extends BaseController {
 
@@ -129,10 +126,11 @@ public class EnrollmentController extends BaseController {
     private ExportService exportService;
 
     /**
-     * This method checks that all required injection fields are in fact provided.
+     * This method checks that all required injection fields have been provided.
      *
-     * @throws PortalServiceConfigurationException
-     *             - If there are required injection fields that are not injected
+     * @throws PortalServiceConfigurationException If there are required
+     *                                             injection fields that are not
+     *                                             injected
      */
     @PostConstruct
     protected void init() {
@@ -159,8 +157,7 @@ public class EnrollmentController extends BaseController {
     /**
      * This method is used to convert the date field.
      *
-     * @param binder
-     *            the WebDataBinder instance
+     * @param binder the WebDataBinder instance
      */
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -173,10 +170,9 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will load the first page of draft profile enrollments.
      *
-     * @return - the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/"
      */
     @RequestMapping("/agent/enrollment/")
@@ -194,10 +190,9 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will load the dashboard page.
      *
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             If there are any errors in the action
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/viewDashboard"
      * @verb GET
      */
@@ -232,10 +227,9 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will load the help page.
      *
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             If there are any errors in the action
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/viewHelp"
      * @verb GET
      */
@@ -263,12 +257,10 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will get the entity with the given ID.
      *
-     * @param id
-     *            the entity ID
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             If there are any errors in the action
+     * @param id the entity ID
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/viewHelpItem"
      * @verb GET
      */
@@ -292,8 +284,7 @@ public class EnrollmentController extends BaseController {
     /**
      * Rejects the ticket.
      *
-     * @param id
-     *            the ticket id
+     * @param id the ticket id
      * @return the model and view for
      * @throws PortalServiceException
      * @endpoint "/agent/enrollment/rejectTicket"
@@ -312,12 +303,10 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will load the screening results for manual verification.
      *
-     * @param id
-     *            - the profile id
-     * @return - the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     * @param id the profile id
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/screeningReview"
      */
     @RequestMapping("/agent/enrollment/screeningReview")
@@ -382,12 +371,10 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will load the screening results log.
      *
-     * @param id
-     *            - the profile id
-     * @return - the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     * @param id the profile id
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/autoScreeningResult"
      */
     @RequestMapping("/agent/enrollment/autoScreeningResult")
@@ -443,14 +430,10 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will search for profile enrollments.
      *
-     * @param criteria
-     *            - the search criteria
-     * @param response
-     *            the response to write the PDF to
-     * @throws IOException
-     *             for read/write errors
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     * @param criteria the search criteria
+     * @param response the response to write the PDF to
+     * @throws IOException            for read/write errors
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/exportBatch"
      * @endpoint "/provider/search/exportBatch"
      */
@@ -478,14 +461,11 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will search for profile enrollments.
      *
-     * @param criteria
-     *            - the search criteria
-     * @param view
-     *            the view name
-     * @return - the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     * @param criteria the search criteria
+     * @param view     the view name
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/search/{view}"
      * @endpoint "/provider/search/{view}"
      */
@@ -507,10 +487,8 @@ public class EnrollmentController extends BaseController {
     /**
      * This method is used to supply the lookup values.
      *
-     * @param modelAndView
-     *            the modelAndView object
-     * @throws PortalServiceException
-     *             if any error occurred.
+     * @param modelAndView the modelAndView object
+     * @throws PortalServiceException if any error occurred.
      */
     private void supplyLookupValues(ModelAndView modelAndView) throws PortalServiceException {
         modelAndView.addObject("requestTypesLookup", lookupService.findAllLookups(RequestType.class));
@@ -528,14 +506,11 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will search for profile enrollment with the given npi.
      *
-     * @param npi
-     *            - the npi
-     * @return - the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws IllegalArgumentException
-     *             - if npi is null/empty
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     * @param npi the npi
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws IllegalArgumentException if npi is null/empty
+     * @throws PortalServiceException   If there are any errors in the action
      * @endpoint "/agent/enrollment/status"
      */
     @RequestMapping(value = "/agent/enrollment/status")
@@ -569,12 +544,10 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will get the profile enrollment with the given profile ID.
      *
-     * @param ticketId
-     *            - the ticket ID
-     * @return - the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     * @param ticketId the ticket ID
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/details"
      */
     @RequestMapping("/agent/enrollment/details")
@@ -593,15 +566,13 @@ public class EnrollmentController extends BaseController {
     }
 
     /**
-     * This action will save the note in current enrollment of the profile with the given ID.
+     * This action will save the note in current enrollment of the profile with
+     * the given ID.
      *
-     * @param ticketId
-     *            - the ticket ID
-     * @param note
-     *            - the note
-     * @throws IllegalArgumentException
-     *             - if note is null/empty
+     * @param ticketId the ticket ID
+     * @param note     the note
      * @return the operation status and message
+     * @throws IllegalArgumentException if note is null/empty
      * @endpoint "/agent/enrollment/note"
      */
     @RequestMapping("/agent/enrollment/note")
@@ -630,11 +601,9 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will approve the current enrollment.
      *
-     * @param id
-     *            - the profile ID
-     * @param dto
-     *            - any changes to be applied (manual verification) this is optional, and only provided if any changes
-     *            are needed
+     * @param id  the profile ID
+     * @param dto any changes to be applied (manual verification) this is
+     *            optional, and only provided if any changes are needed
      * @return the operation status and message
      * @endpoint "/agent/enrollment/approve"
      */
@@ -656,15 +625,13 @@ public class EnrollmentController extends BaseController {
     }
 
     /**
-     * This action will reject the current enrollment of the profile with the given ID.
+     * This action will reject the current enrollment of the profile with the
+     * given ID.
      *
-     * @param id
-     *            - the profile ID
-     * @param reason
-     *            - the reason
+     * @param id     the profile ID
+     * @param reason the reason
      * @return the status result
-     * @throws IllegalArgumentException
-     *             - if reason is null/empty
+     * @throws IllegalArgumentException if reason is null/empty
      * @endpoint "/agent/enrollment/reject"
      */
     @RequestMapping("/agent/enrollment/reject")
@@ -692,8 +659,7 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will initiated an immediate screening of the enrollment.
      *
-     * @param id
-     *            - the profile ID
+     * @param id the profile ID
      * @return the status
      * @endpoint "/agent/enrollment/screen"
      */
@@ -715,15 +681,13 @@ public class EnrollmentController extends BaseController {
     }
 
     /**
-     * This action will initiated a screening of the enrollment at the given date.
+     * This action will initiated a screening of the enrollment at the given
+     * date.
      *
-     * @param id
-     *            - the profile ID
-     * @param date
-     *            - the date of the requested screening
+     * @param id   the profile ID
+     * @param date the date of the requested screening
      * @return the status
-     * @throws IllegalArgumentException
-     *             - if date is null or is a date in the past
+     * @throws IllegalArgumentException if date is null or is a date in the past
      * @endpoint "/agent/enrollment/schedule"
      */
     @RequestMapping("/agent/enrollment/schedule")
@@ -762,16 +726,11 @@ public class EnrollmentController extends BaseController {
     /**
      * Completes the review step of the screening process.
      *
-     * @param ticketId
-     *            the ticket id
-     * @param dto
-     *            the manual verification changes (if any)
-     * @param reject
-     *            true if the application is to be denied
-     * @param reason
-     *            the reason for denial
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @param ticketId the ticket id
+     * @param dto      the manual verification changes (if any)
+     * @param reject   true if the application is to be denied
+     * @param reason   the reason for denial
+     * @throws PortalServiceException for any errors encountered
      */
     private void completeReview(long ticketId, ApprovalDTO dto, boolean reject, String reason)
             throws PortalServiceException {
@@ -814,13 +773,10 @@ public class EnrollmentController extends BaseController {
     /**
      * Applies manual verification to the current process model.
      *
-     * @param dto
-     *            the manual verification dto
-     * @param taskId
-     *            the screening task id
+     * @param dto    the manual verification dto
+     * @param taskId the screening task id
      * @return the modified provider profile
-     * @throws Exception
-     *             for any errors encountered
+     * @throws Exception for any errors encountered
      */
     private ProviderInformationType applyChanges(ApprovalDTO dto, long taskId) throws Exception {
         if (dto == null) { // no changes
@@ -871,13 +827,10 @@ public class EnrollmentController extends BaseController {
     /**
      * Executes the search.
      *
-     * @param criteria
-     *            the search criteria
-     * @param view
-     *            the view to render the results
+     * @param criteria the search criteria
+     * @param view     the view to render the results
      * @return the search results
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      */
     private ModelAndView doSearch(ProviderSearchCriteria criteria, String view) throws PortalServiceException {
         if (criteria.getPageNumber() == 0 && criteria.getPageSize() == 0) {
@@ -925,12 +878,10 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will load the COS associated with a provider.
      *
-     * @param profileId
-     *            the profile id
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     * @param profileId the profile id
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/cos"
      */
     @RequestMapping("/agent/enrollment/cos")
@@ -954,12 +905,10 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will load the COS associated with a ticket.
      *
-     * @param ticketId
-     *            the ticket id
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     * @param ticketId the ticket id
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/pendingcos"
      */
     @RequestMapping("/agent/enrollment/pendingcos")
@@ -983,22 +932,15 @@ public class EnrollmentController extends BaseController {
     /**
      * Saves the category of services.
      *
-     * @param profileId
-     *            the profile id
-     * @param startDate
-     *            start date
-     * @param endDate
-     *            end date
-     * @param cos
-     *            the list of codes
-     * @param prevCosId
-     *            previous cosId if copied
-     * @param prevCosEndDate
-     *            previous cos end date
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     * @param profileId      the profile id
+     * @param startDate      start date
+     * @param endDate        end date
+     * @param cos            the list of codes
+     * @param prevCosId      previous cosId if copied
+     * @param prevCosEndDate previous cos end date
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/addCOS"
      * @verb POST
      */
@@ -1044,22 +986,15 @@ public class EnrollmentController extends BaseController {
     /**
      * Saves the category of services.
      *
-     * @param ticketId
-     *            the ticket id
-     * @param startDate
-     *            start date
-     * @param endDate
-     *            end date
-     * @param cos
-     *            the list of codes
-     * @param prevCosId
-     *            previous cosId if copied
-     * @param prevCosEndDate
-     *            previous cos end date
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     * @param ticketId       the ticket id
+     * @param startDate      start date
+     * @param endDate        end date
+     * @param cos            the list of codes
+     * @param prevCosId      previous cosId if copied
+     * @param prevCosEndDate previous cos end date
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/addPendingCOS"
      * @verb POST
      */
@@ -1105,14 +1040,11 @@ public class EnrollmentController extends BaseController {
     /**
      * Deletes the Category of Service.
      *
-     * @param profileId
-     *            the profile id
-     * @param id
-     *            cos id
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     * @param profileId the profile id
+     * @param id        cos id
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/deleteCOS"
      */
     @RequestMapping("/agent/enrollment/deleteCOS")
@@ -1128,14 +1060,11 @@ public class EnrollmentController extends BaseController {
     /**
      * Deletes the pending Category of Service.
      *
-     * @param ticketId
-     *            the ticket id
-     * @param id
-     *            cos id
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     * @param ticketId the ticket id
+     * @param id       cos id
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/deletePendingCOS"
      */
     @RequestMapping("/agent/enrollment/deletePendingCOS")

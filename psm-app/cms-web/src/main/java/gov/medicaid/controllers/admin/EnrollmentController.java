@@ -180,7 +180,7 @@ public class EnrollmentController extends BaseController {
         String signature = "EnrollmentController#view()";
         LogUtil.traceEntry(getLog(), signature, null, null);
         ProviderSearchCriteria criteria = new ProviderSearchCriteria();
-        ArrayList<String> statuses = new ArrayList<String>();
+        ArrayList<String> statuses = new ArrayList<>();
         criteria.setShowFilterPanel(true);
         statuses.add("Draft");
         criteria.setStatuses(statuses);
@@ -356,7 +356,7 @@ public class EnrollmentController extends BaseController {
                                     StatusMessagesType messages = status.getStatus().getStatusMessages();
                                     if (messages != null) {
                                         List<StatusMessageType> errors = messages.getStatusMessage();
-                                        List<FormError> formErrors = new ArrayList<FormError>();
+                                        List<FormError> formErrors = new ArrayList<>();
                                         for (StatusMessageType statusMessageType : errors) {
                                             FormError error = new FormError();
                                             formErrors.add(error);
@@ -1019,7 +1019,7 @@ public class EnrollmentController extends BaseController {
                 profileId, startDate, endDate, cos});
         CMSUser user = ControllerHelper.getCurrentUser();
         ProviderCategoryOfService categoryOfService = new ProviderCategoryOfService();
-        List<CategoryOfService> categories = new ArrayList<CategoryOfService>();
+        List<CategoryOfService> categories = new ArrayList<>();
         for (String c : cos) {
             categories.add(lookupService.findLookupByCode(CategoryOfService.class, c));
         }
@@ -1080,7 +1080,7 @@ public class EnrollmentController extends BaseController {
                 ticketId, startDate, endDate, cos});
         CMSUser user = ControllerHelper.getCurrentUser();
         ProviderCategoryOfService categoryOfService = new ProviderCategoryOfService();
-        List<CategoryOfService> categories = new ArrayList<CategoryOfService>();
+        List<CategoryOfService> categories = new ArrayList<>();
         for (String c : cos) {
             categories.add(lookupService.findLookupByCode(CategoryOfService.class, c));
         }

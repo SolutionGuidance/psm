@@ -14,14 +14,11 @@ function download_and_sha1 {
 }
 
 function wait_for_wildfly {
-  until `$1 -c "ls /deployment" &> /dev/null`; do
-    sleep 10
-    echo "Waiting for wildfly to come up."
-  done
+  ( tail -f -n0 ${WILDFLY_LOG} & ) | grep -q "WFLYSRV0025"
+  tail -100 ${WILDFLY_LOG}
 }
 
 createdb -U postgres psm
-psql -d psm -U postgres -w -f ${TRAVIS_BUILD_DIR}/psm-app/db/legacy_seed.sql
 psql -d psm -U postgres -w -f ${TRAVIS_BUILD_DIR}/psm-app/db/seed.sql
 psql -d psm -U postgres -w -f ${TRAVIS_BUILD_DIR}/psm-app/db/jbpm.sql
 
@@ -34,6 +31,7 @@ download_and_sha1 "https://jdbc.postgresql.org/download/postgresql-42.1.1.jar" \
 wait_for_wildfly ${WILDFLY_CLI}
 
 ${WILDFLY_CLI} --connect --command="deploy postgresql-42.1.1.jar"
+
 ${WILDFLY_CLI} --connect <<EOF
 /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp:write-attribute(name=port,value=1025)
 
@@ -72,8 +70,12 @@ xa-data-source add \
   --xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
 EOF
 ${WILDFLY_CLI} --connect --command="reload"
+
+sleep 50
+
 ${WILDFLY_CLI} --connect --command="xa-data-source test-connection-in-pool --name=MitaDS"
 ${WILDFLY_CLI} --connect --command="xa-data-source test-connection-in-pool --name=TaskServiceDS"
+
 ${WILDFLY_CLI} --connect --command="deploy ${TRAVIS_BUILD_DIR}/psm-app/cms-portal-services/build/libs/cms-portal-services.ear"
 
 python -m smtpd -n -c DebuggingServer localhost:1025 &

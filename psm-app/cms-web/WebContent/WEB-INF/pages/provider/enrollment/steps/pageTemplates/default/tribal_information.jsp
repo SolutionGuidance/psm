@@ -19,8 +19,22 @@
             <div>
                 <c:set var="formName" value="_13_worksOnReservation"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="radio" onchange="showHideForm('tableLicense3', true);" value="Y" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}><label class="span">Yes</label>
-                <input type="radio" onchange="showHideForm('tableLicense3', false);" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}><label class="span">No</label>            
+                <label class="span">
+                    <input type="radio"
+                           onchange="showHideForm('tableLicense3', true);"
+                           value="Y"
+                           name="${formName}"
+                           ${formValue eq 'Y' ? 'checked' : ''}>
+                    Yes
+                </label>
+                <label class="span">
+                    <input type="radio"
+                           onchange="showHideForm('tableLicense3', false);"
+                           value="N"
+                           name="${formName}"
+                           ${formValue eq 'N' ? 'checked' : ''}>
+                    No
+                </label>
             </div>
         </div>
         <div class="clearFixed"></div>

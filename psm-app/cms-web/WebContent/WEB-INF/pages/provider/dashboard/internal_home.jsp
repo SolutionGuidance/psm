@@ -42,6 +42,21 @@
                             <div class="bl"></div>
                             <div class="br"></div>
                         </div>
+
+<!-- Commented out the "Linked Profiles" section below because that
+     functionality isn't enabled right now.  See commit f5d70d7bb93
+     and any followup commits that refer to it. 
+
+     The commenting-out actually uses two separate comment blocks
+     below, in order to avoid a comment nesting situation with the
+     "/.section" comment that appears in the block.  The first block
+     comments out the opening "div" element followed by a nested (but
+     balanced) div block, and the second comments out four small
+     balanced divs followed by the closing /div that corresponds to
+     that first opening div.
+-->
+
+<!--
                         <div class="detailPanel">
                             <div class="section" id="updateProfile">
                                 <div class="wholeCol">
@@ -56,12 +71,15 @@
                                     </div>
                                 </div>
                             </div>
+-->
                             <!-- /.section -->
+<!--
                             <div class="tl"></div>
                             <div class="tr"></div>
                             <div class="bl"></div>
                             <div class="br"></div>
                         </div>
+-->
                     </div>
                     <!-- /.tabSection -->
                 </div>

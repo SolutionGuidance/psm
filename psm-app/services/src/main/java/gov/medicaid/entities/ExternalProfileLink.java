@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -15,86 +15,61 @@
  */
 package gov.medicaid.entities;
 
-/**
- * Represents a link to an external user.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-public class ExternalProfileLink extends IdentifiableEntity {
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 
-    /**
-     * The user id.
-     */
+@javax.persistence.Entity
+@Table(name = "external_profile_links")
+public class ExternalProfileLink implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "external_profile_link_id")
+    private long id;
+
+    @Column(name = "profile_id")
     private long profileId;
 
-    /**
-     * The external system id.
-     */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "system_id")
     private SystemId systemId;
 
-    /**
-     * The external user id.
-     */
+    @Column(name = "external_profile_id")
     private String externalProfileId;
 
-    /**
-     * Empty constructor.
-     */
-    public ExternalProfileLink() {
-
+    public long getId() {
+        return id;
     }
 
-    /**
-     * Gets the value of the field <code>profileId</code>.
-     *
-     * @return the profileId
-     */
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public long getProfileId() {
         return profileId;
     }
 
-    /**
-     * Sets the value of the field <code>profileId</code>.
-     *
-     * @param profileId the profileId to set
-     */
     public void setProfileId(long profileId) {
         this.profileId = profileId;
     }
 
-    /**
-     * Gets the value of the field <code>systemId</code>.
-     *
-     * @return the systemId
-     */
     public SystemId getSystemId() {
         return systemId;
     }
 
-    /**
-     * Sets the value of the field <code>systemId</code>.
-     *
-     * @param systemId the systemId to set
-     */
     public void setSystemId(SystemId systemId) {
         this.systemId = systemId;
     }
 
-    /**
-     * Gets the value of the field <code>externalProfileId</code>.
-     *
-     * @return the externalProfileId
-     */
     public String getExternalProfileId() {
         return externalProfileId;
     }
 
-    /**
-     * Sets the value of the field <code>externalProfileId</code>.
-     *
-     * @param externalProfileId the externalProfileId to set
-     */
     public void setExternalProfileId(String externalProfileId) {
         this.externalProfileId = externalProfileId;
     }

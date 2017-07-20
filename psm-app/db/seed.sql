@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS
   entity_structure_types,
   events,
   external_account_links,
+  external_profile_links,
   help_items,
   issuing_boards,
   license_statuses,
@@ -1346,4 +1347,11 @@ CREATE TABLE external_account_links(
   user_id TEXT,
   system_id TEXT,
   external_user_id TEXT
+);
+
+CREATE TABLE external_profile_links(
+  external_profile_link_id BIGINT PRIMARY KEY,
+  profile_id BIGINT,
+  system_id TEXT,
+  external_profile_id TEXT
 );

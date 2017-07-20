@@ -7,7 +7,7 @@ cache:
   directories:
     - $HOME/.gradle/
 
-# We depend on a WildFly deploment for some of the production
+# We depend on a WildFly deployment for some of the production
 # .jar files. Download it and install just above our repo.
 before_script:
   - wget http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz -O /tmp/wildfly-10.1.0.Final.tar.gz

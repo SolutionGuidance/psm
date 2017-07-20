@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -61,19 +61,6 @@ import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.ProviderTypeService;
 import gov.medicaid.services.ScreeningService;
 import gov.medicaid.services.util.LogUtil;
-
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletResponse;
-
 import org.jbpm.task.query.TaskSummary;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
@@ -86,6 +73,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
 /**
  * <p>
  * This controller class manages enrollments, except for their creation and update.
@@ -93,9 +91,6 @@ import org.springframework.web.servlet.ModelAndView;
  * <p>
  * <b>Thread Safety</b> This class is mutable and not thread safe, but used in thread safe manner by framework.
  * </p>
- * 
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 public class EnrollmentController extends BaseController {
 
@@ -109,49 +104,18 @@ public class EnrollmentController extends BaseController {
      */
     private static final String APPROVAL_TASK_NAME = "Screening Review";
 
-    /**
-     * Client interface for the jBPM enrollment service. It is managed with a getter and setter, may have any value, but
-     * is expected to be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to
-     * change after dependency injection
-     */
     private ProviderEnrollmentService enrollmentService;
 
-    /**
-     * Client interface for the jBPM enrollment service. It is managed with a getter and setter, may have any value, but
-     * is expected to be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to
-     * change after dependency injection
-     */
     private BusinessProcessService businessProcessService;
 
-    /**
-     * Represents the screening service. It is managed with a getter and setter, may have any value, but is expected to
-     * be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to change after
-     * dependency injection
-     */
     private ScreeningService screeningService;
 
-    /**
-     * Represents the help service. it is managed with a getter and setter. It may have any value, but is expected to be
-     * set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to change after
-     * dependency injection.
-     */
     private HelpService helpService;
 
-    /**
-     * Represents the event service. it is managed with a getter and setter. It may have any value, but is expected to
-     * be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to change after
-     * dependency injection.
-     */
     private EventService eventService;
 
-    /**
-     * Lookup service.
-     */
     private LookupService lookupService;
 
-    /**
-     * Represents the provider type service.
-     */
     private ProviderTypeService providerTypeService;
 
     /**
@@ -160,16 +124,11 @@ public class EnrollmentController extends BaseController {
     private ExportService exportService;
 
     /**
-     * Empty constructor.
-     */
-    public EnrollmentController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     * 
-     * @throws PortalServiceConfigurationException
-     *             - If there are required injection fields that are not injected
+     * This method checks that all required injection fields have been provided.
+     *
+     * @throws PortalServiceConfigurationException If there are required
+     *                                             injection fields that are not
+     *                                             injected
      */
     @PostConstruct
     protected void init() {
@@ -195,9 +154,8 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This method is used to convert the date field.
-     * 
-     * @param binder
-     *            the WebDataBinder instance
+     *
+     * @param binder the WebDataBinder instance
      */
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -209,11 +167,10 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will load the first page of draft profile enrollments.
-     * 
-     * @return - the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     *
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/"
      */
     @RequestMapping("/agent/enrollment/")
@@ -221,7 +178,7 @@ public class EnrollmentController extends BaseController {
         String signature = "EnrollmentController#view()";
         LogUtil.traceEntry(getLog(), signature, null, null);
         ProviderSearchCriteria criteria = new ProviderSearchCriteria();
-        ArrayList<String> statuses = new ArrayList<String>();
+        ArrayList<String> statuses = new ArrayList<>();
         criteria.setShowFilterPanel(true);
         statuses.add("Draft");
         criteria.setStatuses(statuses);
@@ -230,15 +187,17 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will load the dashboard page.
-     * 
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             If there are any errors in the action
+     *
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/viewDashboard"
      * @verb GET
      */
-    @RequestMapping(value = "/agent/enrollment/viewDashboard", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/agent/enrollment/viewDashboard",
+            method = RequestMethod.GET
+    )
     public ModelAndView viewDashboard() throws PortalServiceException {
         String signature = "EnrollmentController#viewDashboard()";
         LogUtil.traceEntry(getLog(), signature, null, null);
@@ -268,15 +227,17 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will load the help page.
-     * 
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             If there are any errors in the action
+     *
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/viewHelp"
      * @verb GET
      */
-    @RequestMapping(value = "/agent/enrollment/viewHelp", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/agent/enrollment/viewHelp",
+            method = RequestMethod.GET
+    )
     public ModelAndView getHelp() throws PortalServiceException {
         String signature = "EnrollmentController#getHelp()";
         LogUtil.traceEntry(getLog(), signature, null, null);
@@ -299,20 +260,23 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will get the entity with the given ID.
-     * 
-     * @param id
-     *            the entity ID
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             If there are any errors in the action
+     *
+     * @param id the entity ID
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/viewHelpItem"
      * @verb GET
      */
-    @RequestMapping(value = "/agent/enrollment/viewHelpItem", method = RequestMethod.GET)
-    public ModelAndView getHelpItem(@RequestParam("helpItemId") long id) throws PortalServiceException {
+    @RequestMapping(
+            value = "/agent/enrollment/viewHelpItem",
+            method = RequestMethod.GET
+    )
+    public ModelAndView getHelpItem(
+            @RequestParam("helpItemId") long id
+    ) throws PortalServiceException {
         String signature = "EnrollmentController#getHelpItem(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "id" }, new Object[] { id });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{id});
 
         try {
             HelpItem helpItem = helpService.get(id);
@@ -328,39 +292,40 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Rejects the ticket.
-     * 
-     * @param id
-     *            the ticket id
+     *
+     * @param id the ticket id
      * @return the model and view for
      * @throws PortalServiceException
      * @endpoint "/agent/enrollment/rejectTicket"
      */
     @RequestMapping("/agent/enrollment/rejectTicket")
-    public ModelAndView rejectTicket(@RequestParam("id") long id) throws PortalServiceException {
+    public ModelAndView rejectTicket(
+            @RequestParam("id") long id
+    ) throws PortalServiceException {
         String signature = "EnrollmentController#rejectTicket(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "id" }, new Object[] { id });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{id});
         CMSUser user = ControllerHelper.getCurrentUser();
         enrollmentService.rejectTicket(user, id, "Manual Reject by the agent");
         ModelAndView mv = new ModelAndView("redirect:/provider/search/rejected?statuses=Rejected&showFilterPanel=true");
 
         return LogUtil.traceExit(getLog(), signature, mv);
     }
-    
+
     /**
      * This action will load the screening results for manual verification.
-     * 
-     * @param id
-     *            - the profile id
-     * @return - the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     *
+     * @param id the profile id
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/screeningReview"
      */
     @RequestMapping("/agent/enrollment/screeningReview")
-    public ModelAndView screeningReview(@RequestParam("id") long id) throws PortalServiceException {
+    public ModelAndView screeningReview(
+            @RequestParam("id") long id
+    ) throws PortalServiceException {
         String signature = "EnrollmentController#viewScreeningResults(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "id" }, new Object[] { id });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{id});
 
         CMSUser user = ControllerHelper.getCurrentUser();
         Enrollment ticket = enrollmentService.getTicketDetails(user, id);
@@ -389,7 +354,7 @@ public class EnrollmentController extends BaseController {
                                     StatusMessagesType messages = status.getStatus().getStatusMessages();
                                     if (messages != null) {
                                         List<StatusMessageType> errors = messages.getStatusMessage();
-                                        List<FormError> formErrors = new ArrayList<FormError>();
+                                        List<FormError> formErrors = new ArrayList<>();
                                         for (StatusMessageType statusMessageType : errors) {
                                             FormError error = new FormError();
                                             formErrors.add(error);
@@ -418,20 +383,21 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will load the screening results log.
-     * 
-     * @param id
-     *            - the profile id
-     * @return - the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     *
+     * @param id the profile id
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/autoScreeningResult"
      */
     @RequestMapping("/agent/enrollment/autoScreeningResult")
-    public ModelAndView viewScreeningLog(@RequestParam("id") long id, @RequestParam("type") String type,
-            @RequestParam(value = "licenseId", required = false) String licenseId) throws PortalServiceException {
+    public ModelAndView viewScreeningLog(
+            @RequestParam("id") long id,
+            @RequestParam("type") String type,
+            @RequestParam(value = "licenseId", required = false) String licenseId
+    ) throws PortalServiceException {
         String signature = "EnrollmentController#viewScreeningResults(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "id" }, new Object[] { id });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{id});
 
         CMSUser user = ControllerHelper.getCurrentUser();
         Enrollment ticket = enrollmentService.getTicketDetails(user, id);
@@ -479,24 +445,25 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will search for profile enrollments.
-     * 
-     * @param criteria
-     *            - the search criteria
-     * @param response
-     *            the response to write the PDF to
-     * @throws IOException
-     *             for read/write errors
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     *
+     * @param criteria the search criteria
+     * @param response the response to write the PDF to
+     * @throws IOException            for read/write errors
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/exportBatch"
      * @endpoint "/provider/search/exportBatch"
      */
     @SuppressWarnings("unchecked")
-    @RequestMapping({ "/agent/enrollment/exportBatch", "/provider/search/exportBatch" })
-    public void exportBatch(@ModelAttribute("criteria") ProviderSearchCriteria criteria, HttpServletResponse response)
-            throws PortalServiceException, IOException {
+    @RequestMapping({
+            "/agent/enrollment/exportBatch",
+            "/provider/search/exportBatch"
+    })
+    public void exportBatch(
+            @ModelAttribute("criteria") ProviderSearchCriteria criteria,
+            HttpServletResponse response
+    ) throws PortalServiceException, IOException {
         String signature = "EnrollmentController#search(ProviderSearchCriteria criteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "criteria" }, new Object[] { criteria });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"criteria"}, new Object[]{criteria});
 
         if (criteria == null) {
             throw new IllegalArgumentException("A valid criteria must be provided.");
@@ -514,25 +481,28 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will search for profile enrollments.
-     * 
-     * @param criteria
-     *            - the search criteria
-     * @param view
-     *            the view name
-     * @return - the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     *
+     * @param criteria the search criteria
+     * @param view     the view name
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/search/{view}"
      * @endpoint "/provider/search/{view}"
      */
-    @RequestMapping({ "/agent/enrollment/search/{view}", "/provider/search/{view}" })
-    public ModelAndView search(@ModelAttribute("criteria") ProviderSearchCriteria criteria, @PathVariable String view,
-            HttpServletResponse response) throws PortalServiceException {
+    @RequestMapping({
+            "/agent/enrollment/search/{view}",
+            "/provider/search/{view}"
+    })
+    public ModelAndView search(
+            @ModelAttribute("criteria") ProviderSearchCriteria criteria,
+            @PathVariable String view,
+            HttpServletResponse response
+    ) throws PortalServiceException {
 
         nocache(response);
         String signature = "EnrollmentController#search(ProviderSearchCriteria criteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "criteria" }, new Object[] { criteria });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"criteria"}, new Object[]{criteria});
 
         if (criteria == null) {
             throw new IllegalArgumentException("A valid criteria must be provided.");
@@ -543,13 +513,13 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This method is used to supply the lookup values.
-     * 
-     * @param modelAndView
-     *            the modelAndView object
-     * @throws PortalServiceException
-     *             if any error occurred.
+     *
+     * @param modelAndView the modelAndView object
+     * @throws PortalServiceException if any error occurred.
      */
-    private void supplyLookupValues(ModelAndView modelAndView) throws PortalServiceException {
+    private void supplyLookupValues(
+            ModelAndView modelAndView
+    ) throws PortalServiceException {
         modelAndView.addObject("requestTypesLookup", lookupService.findAllLookups(RequestType.class));
         modelAndView.addObject("enrollmentStatusesLookup", lookupService.findAllLookups(EnrollmentStatus.class));
         modelAndView.addObject("riskLevelsLookup", lookupService.findAllLookups(RiskLevel.class));
@@ -564,21 +534,20 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will search for profile enrollment with the given npi.
-     * 
-     * @param npi
-     *            - the npi
-     * @return - the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws IllegalArgumentException
-     *             - if npi is null/empty
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     *
+     * @param npi the npi
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws IllegalArgumentException if npi is null/empty
+     * @throws PortalServiceException   If there are any errors in the action
      * @endpoint "/agent/enrollment/status"
      */
     @RequestMapping(value = "/agent/enrollment/status")
-    public ModelAndView getByNumber(@RequestParam("npi") String npi) throws PortalServiceException {
+    public ModelAndView getByNumber(
+            @RequestParam("npi") String npi
+    ) throws PortalServiceException {
         String signature = "EnrollmentController#getByNumber(String npi)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "npi" }, new Object[] { npi });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"npi"}, new Object[]{npi});
 
         if (npi == null || npi.trim().length() == 0) {
             throw new IllegalArgumentException("A valid NPI must be provided.");
@@ -605,20 +574,20 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will get the profile enrollment with the given profile ID.
-     * 
-     * @param ticketId
-     *            - the ticket ID
-     * @return - the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     *
+     * @param ticketId the ticket ID
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/details"
      */
     @RequestMapping("/agent/enrollment/details")
-    public ModelAndView getDetails(@RequestParam("id") long ticketId,
-            @RequestParam(value = "print", required = false) String isPrint) throws PortalServiceException {
+    public ModelAndView getDetails(
+            @RequestParam("id") long ticketId,
+            @RequestParam(value = "print", required = false) String isPrint
+    ) throws PortalServiceException {
         String signature = "EnrollmentController#getDetails(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "id" }, new Object[] { ticketId });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{ticketId});
 
         if ("yes".equals(isPrint)) {
             ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/reviewPrint?id=" + ticketId);
@@ -630,22 +599,23 @@ public class EnrollmentController extends BaseController {
     }
 
     /**
-     * This action will save the note in current enrollment of the profile with the given ID.
-     * 
-     * @param ticketId
-     *            - the ticket ID
-     * @param note
-     *            - the note
-     * @throws IllegalArgumentException
-     *             - if note is null/empty
+     * This action will save the note in current enrollment of the profile with
+     * the given ID.
+     *
+     * @param ticketId the ticket ID
+     * @param note     the note
      * @return the operation status and message
+     * @throws IllegalArgumentException if note is null/empty
      * @endpoint "/agent/enrollment/note"
      */
     @RequestMapping("/agent/enrollment/note")
     @ResponseBody
-    public StatusDTO saveNote(@RequestParam("id") long ticketId, @RequestParam("note") String note) {
+    public StatusDTO saveNote(
+            @RequestParam("id") long ticketId,
+            @RequestParam("note") String note
+    ) {
         String signature = "EnrollmentController#saveNote(long id, String note)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "id", "note" }, new Object[] { ticketId, note });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"id", "note"}, new Object[]{ticketId, note});
 
         if (note == null || note.trim().length() == 0) {
             throw new IllegalArgumentException("A note must be provided.");
@@ -666,19 +636,17 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will approve the current enrollment.
-     * 
-     * @param id
-     *            - the profile ID
-     * @param dto
-     *            - any changes to be applied (manual verification) this is optional, and only provided if any changes
-     *            are needed
+     *
+     * @param id  the profile ID
+     * @param dto any changes to be applied (manual verification) this is
+     *            optional, and only provided if any changes are needed
      * @return the operation status and message
      * @endpoint "/agent/enrollment/approve"
      */
     @RequestMapping("/agent/enrollment/approve")
     public String approve(@RequestParam("id") long id, ApprovalDTO dto) {
         String signature = "EnrollmentController#approve(long id, ApprovalDTO dto)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "id", "dto" }, new Object[] { id, dto });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"id", "dto"}, new Object[]{id, dto});
         StatusDTO statusDTO = new StatusDTO();
 
         try {
@@ -693,22 +661,23 @@ public class EnrollmentController extends BaseController {
     }
 
     /**
-     * This action will reject the current enrollment of the profile with the given ID.
-     * 
-     * @param id
-     *            - the profile ID
-     * @param reason
-     *            - the reason
+     * This action will reject the current enrollment of the profile with the
+     * given ID.
+     *
+     * @param id     the profile ID
+     * @param reason the reason
      * @return the status result
-     * @throws IllegalArgumentException
-     *             - if reason is null/empty
+     * @throws IllegalArgumentException if reason is null/empty
      * @endpoint "/agent/enrollment/reject"
      */
     @RequestMapping("/agent/enrollment/reject")
     @ResponseBody
-    public StatusDTO reject(@RequestParam("id") long id, @RequestParam("reason") String reason) {
+    public StatusDTO reject(
+            @RequestParam("id") long id,
+            @RequestParam("reason") String reason
+    ) {
         String signature = "EnrollmentController#reject(long id, String reason)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "id", "reason" }, new Object[] { id, reason });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"id", "reason"}, new Object[]{id, reason});
 
         if (reason == null || reason.trim().length() == 0) {
             throw new IllegalArgumentException("A reason must be provided.");
@@ -728,9 +697,8 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will initiated an immediate screening of the enrollment.
-     * 
-     * @param id
-     *            - the profile ID
+     *
+     * @param id the profile ID
      * @return the status
      * @endpoint "/agent/enrollment/screen"
      */
@@ -738,7 +706,7 @@ public class EnrollmentController extends BaseController {
     @ResponseBody
     public StatusDTO initiateOnDemandScreening(@RequestParam("id") long id) {
         String signature = "EnrollmentController#initiateOnDemandScreening(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "id" }, new Object[] { id });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{id});
 
         StatusDTO statusDTO = new StatusDTO();
         try {
@@ -752,22 +720,23 @@ public class EnrollmentController extends BaseController {
     }
 
     /**
-     * This action will initiated a screening of the enrollment at the given date.
-     * 
-     * @param id
-     *            - the profile ID
-     * @param date
-     *            - the date of the requested screening
+     * This action will initiated a screening of the enrollment at the given
+     * date.
+     *
+     * @param id   the profile ID
+     * @param date the date of the requested screening
      * @return the status
-     * @throws IllegalArgumentException
-     *             - if date is null or is a date in the past
+     * @throws IllegalArgumentException if date is null or is a date in the past
      * @endpoint "/agent/enrollment/schedule"
      */
     @RequestMapping("/agent/enrollment/schedule")
     @ResponseBody
-    public StatusDTO initiateScheduledScreening(@RequestParam("id") long id, @RequestParam("date") Date date) {
+    public StatusDTO initiateScheduledScreening(
+            @RequestParam("id") long id,
+            @RequestParam("date") Date date
+    ) {
         String signature = "EnrollmentController#initiateScheduledScreening(long id, Date date)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "id", "date" }, new Object[] { id, date });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"id", "date"}, new Object[]{id, date});
 
         if (date == null || date.before(new Date())) {
             throw new IllegalArgumentException("A valid future date must be specified.");
@@ -784,55 +753,36 @@ public class EnrollmentController extends BaseController {
         return LogUtil.traceExit(getLog(), signature, statusDTO);
     }
 
-    /**
-     * Set the helpService.
-     * 
-     * @param helpService
-     *            the helpService to set
-     */
     public void setHelpService(HelpService helpService) {
         this.helpService = helpService;
     }
 
-    /**
-     * Set the eventService.
-     * 
-     * @param eventService
-     *            the eventService to set
-     */
     public void setEventService(EventService eventService) {
         this.eventService = eventService;
     }
 
-    /**
-     * Sets the value of the field <code>screeningService</code>.
-     * 
-     * @param screeningService
-     *            the screeningService to set
-     */
     public void setScreeningService(ScreeningService screeningService) {
         this.screeningService = screeningService;
     }
 
     /**
      * Completes the review step of the screening process.
-     * 
-     * @param ticketId
-     *            the ticket id
-     * @param dto
-     *            the manual verification changes (if any)
-     * @param reject
-     *            true if the application is to be denied
-     * @param reason
-     *            the reason for denial
-     * @throws PortalServiceException
-     *             for any errors encountered
+     *
+     * @param ticketId the ticket id
+     * @param dto      the manual verification changes (if any)
+     * @param reject   true if the application is to be denied
+     * @param reason   the reason for denial
+     * @throws PortalServiceException for any errors encountered
      */
-    private void completeReview(long ticketId, ApprovalDTO dto, boolean reject, String reason)
-            throws PortalServiceException {
+    private void completeReview(
+            long ticketId,
+            ApprovalDTO dto,
+            boolean reject,
+            String reason
+    ) throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
         Enrollment ticketDetails = enrollmentService.getTicketDetails(user, ticketId);
-        
+
         long processInstanceId = ticketDetails.getProcessInstanceId();
         if (processInstanceId <= 0) {
             throw new PortalServiceException("Requested profile is not available for approval.");
@@ -868,16 +818,16 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Applies manual verification to the current process model.
-     * 
-     * @param dto
-     *            the manual verification dto
-     * @param taskId
-     *            the screening task id
+     *
+     * @param dto    the manual verification dto
+     * @param taskId the screening task id
      * @return the modified provider profile
-     * @throws Exception
-     *             for any errors encountered
+     * @throws Exception for any errors encountered
      */
-    private ProviderInformationType applyChanges(ApprovalDTO dto, long taskId) throws Exception {
+    private ProviderInformationType applyChanges(
+            ApprovalDTO dto,
+            long taskId
+    ) throws Exception {
         if (dto == null) { // no changes
             return null;
         }
@@ -925,16 +875,16 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Executes the search.
-     * 
-     * @param criteria
-     *            the search criteria
-     * @param view
-     *            the view to render the results
+     *
+     * @param criteria the search criteria
+     * @param view     the view to render the results
      * @return the search results
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      */
-    private ModelAndView doSearch(ProviderSearchCriteria criteria, String view) throws PortalServiceException {
+    private ModelAndView doSearch(
+            ProviderSearchCriteria criteria,
+            String view
+    ) throws PortalServiceException {
         if (criteria.getPageNumber() == 0 && criteria.getPageSize() == 0) {
             criteria.setPageNumber(1);
             criteria.setPageSize(10);
@@ -979,19 +929,19 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will load the COS associated with a provider.
-     * 
-     * @param profileId
-     *            the profile id
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     *
+     * @param profileId the profile id
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/cos"
      */
     @RequestMapping("/agent/enrollment/cos")
-    public ModelAndView viewCategoryOfService(@RequestParam("id") long profileId) throws PortalServiceException {
+    public ModelAndView viewCategoryOfService(
+            @RequestParam("id") long profileId
+    ) throws PortalServiceException {
         String signature = "EnrollmentController#viewCategoryOfService(long profileId)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "id" }, new Object[] { profileId });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{profileId});
         CMSUser user = ControllerHelper.getCurrentUser();
         ProviderProfile profile = enrollmentService.getProviderDetails(user, profileId);
         if (profile != null) {
@@ -1008,19 +958,19 @@ public class EnrollmentController extends BaseController {
 
     /**
      * This action will load the COS associated with a ticket.
-     * 
-     * @param ticketId
-     *            the ticket id
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     *
+     * @param ticketId the ticket id
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/pendingcos"
      */
     @RequestMapping("/agent/enrollment/pendingcos")
-    public ModelAndView viewPendingCategoryOfService(@RequestParam("id") long ticketId) throws PortalServiceException {
+    public ModelAndView viewPendingCategoryOfService(
+            @RequestParam("id") long ticketId
+    ) throws PortalServiceException {
         String signature = "EnrollmentController#viewCategoryOfService(long ticketId)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "id" }, new Object[] { ticketId });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{ticketId});
         CMSUser user = ControllerHelper.getCurrentUser();
         Enrollment enrollment = enrollmentService.getTicketDetails(user, ticketId);
         if (enrollment != null) {
@@ -1037,37 +987,37 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Saves the category of services.
-     * 
-     * @param profileId
-     *            the profile id
-     * @param startDate
-     *            start date
-     * @param endDate
-     *            end date
-     * @param cos
-     *            the list of codes
-     * @param prevCosId
-     *            previous cosId if copied
-     * @param prevCosEndDate
-     *            previous cos end date
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     *
+     * @param profileId      the profile id
+     * @param startDate      start date
+     * @param endDate        end date
+     * @param cos            the list of codes
+     * @param prevCosId      previous cosId if copied
+     * @param prevCosEndDate previous cos end date
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/addCOS"
      * @verb POST
      */
-    @RequestMapping(value = "/agent/enrollment/addCOS", method = RequestMethod.POST)
-    public ModelAndView addCategoryOfService(@RequestParam("id") long profileId,
-            @RequestParam("startDate") Date startDate, @RequestParam("endDate") String endDate,
-            @RequestParam("cos") String[] cos, @RequestParam("prevCosId") long prevCosId,
-            @RequestParam("prevCosEndDate") String prevCosEndDate) throws PortalServiceException {
+    @RequestMapping(
+            value = "/agent/enrollment/addCOS",
+            method = RequestMethod.POST
+    )
+    public ModelAndView addCategoryOfService(
+            @RequestParam("id") long profileId,
+            @RequestParam("startDate") Date startDate,
+            @RequestParam("endDate") String endDate,
+            @RequestParam("cos") String[] cos,
+            @RequestParam("prevCosId") long prevCosId,
+            @RequestParam("prevCosEndDate") String prevCosEndDate
+    ) throws PortalServiceException {
         String signature = "EnrollmentController#addCategoryOfService(long profileId, String startDate, String endDate, String cos)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "id", "startDate", "endDate", "cos" }, new Object[] {
-                profileId, startDate, endDate, cos });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"id", "startDate", "endDate", "cos"}, new Object[]{
+                profileId, startDate, endDate, cos});
         CMSUser user = ControllerHelper.getCurrentUser();
         ProviderCategoryOfService categoryOfService = new ProviderCategoryOfService();
-        List<CategoryOfService> categories = new ArrayList<CategoryOfService>();
+        List<CategoryOfService> categories = new ArrayList<>();
         for (String c : cos) {
             categories.add(lookupService.findLookupByCode(CategoryOfService.class, c));
         }
@@ -1098,37 +1048,37 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Saves the category of services.
-     * 
-     * @param ticketId
-     *            the ticket id
-     * @param startDate
-     *            start date
-     * @param endDate
-     *            end date
-     * @param cos
-     *            the list of codes
-     * @param prevCosId
-     *            previous cosId if copied
-     * @param prevCosEndDate
-     *            previous cos end date
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     *
+     * @param ticketId       the ticket id
+     * @param startDate      start date
+     * @param endDate        end date
+     * @param cos            the list of codes
+     * @param prevCosId      previous cosId if copied
+     * @param prevCosEndDate previous cos end date
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/addPendingCOS"
      * @verb POST
      */
-    @RequestMapping(value = "/agent/enrollment/addPendingCOS", method = RequestMethod.POST)
-    public ModelAndView addPendingCategoryOfService(@RequestParam("id") long ticketId,
-            @RequestParam("startDate") Date startDate, @RequestParam("endDate") String endDate,
-            @RequestParam("cos") String[] cos, @RequestParam("prevCosId") long prevCosId,
-            @RequestParam("prevCosEndDate") String prevCosEndDate) throws PortalServiceException {
+    @RequestMapping(
+            value = "/agent/enrollment/addPendingCOS",
+            method = RequestMethod.POST
+    )
+    public ModelAndView addPendingCategoryOfService(
+            @RequestParam("id") long ticketId,
+            @RequestParam("startDate") Date startDate,
+            @RequestParam("endDate") String endDate,
+            @RequestParam("cos") String[] cos,
+            @RequestParam("prevCosId") long prevCosId,
+            @RequestParam("prevCosEndDate") String prevCosEndDate
+    ) throws PortalServiceException {
         String signature = "EnrollmentController#addCategoryOfService(long profileId, String startDate, String endDate, String cos)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "id", "startDate", "endDate", "cos" }, new Object[] {
-                ticketId, startDate, endDate, cos });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"id", "startDate", "endDate", "cos"}, new Object[]{
+                ticketId, startDate, endDate, cos});
         CMSUser user = ControllerHelper.getCurrentUser();
         ProviderCategoryOfService categoryOfService = new ProviderCategoryOfService();
-        List<CategoryOfService> categories = new ArrayList<CategoryOfService>();
+        List<CategoryOfService> categories = new ArrayList<>();
         for (String c : cos) {
             categories.add(lookupService.findLookupByCode(CategoryOfService.class, c));
         }
@@ -1159,22 +1109,21 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Deletes the Category of Service.
-     * 
-     * @param profileId
-     *            the profile id
-     * @param id
-     *            cos id
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     *
+     * @param profileId the profile id
+     * @param id        cos id
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/deleteCOS"
      */
     @RequestMapping("/agent/enrollment/deleteCOS")
-    public ModelAndView deleteCategoryOfService(@RequestParam("profileId") long profileId, @RequestParam("id") long id)
-            throws PortalServiceException {
+    public ModelAndView deleteCategoryOfService(
+            @RequestParam("profileId") long profileId,
+            @RequestParam("id") long id
+    ) throws PortalServiceException {
         String signature = "EnrollmentController#deleteCategoryOfService(long profileId, long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "profileId", "id" }, new Object[] { profileId, id });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"profileId", "id"}, new Object[]{profileId, id});
         CMSUser user = ControllerHelper.getCurrentUser();
         enrollmentService.deleteCOSByProfile(user, profileId, id);
         return new ModelAndView("redirect:/agent/enrollment/cos?id=" + profileId);
@@ -1182,75 +1131,49 @@ public class EnrollmentController extends BaseController {
 
     /**
      * Deletes the pending Category of Service.
-     * 
-     * @param ticketId
-     *            the ticket id
-     * @param id
-     *            cos id
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     * @throws PortalServiceException
-     *             - If there are any errors in the action
+     *
+     * @param ticketId the ticket id
+     * @param id       cos id
+     * @return the model and view instance that contains the name of view to be
+     * rendered and data to be used for rendering (not null)
+     * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/agent/enrollment/deletePendingCOS"
      */
     @RequestMapping("/agent/enrollment/deletePendingCOS")
-    public ModelAndView deletePendingCategoryOfService(@RequestParam("ticketId") long ticketId,
-            @RequestParam("id") long id) throws PortalServiceException {
+    public ModelAndView deletePendingCategoryOfService(
+            @RequestParam("ticketId") long ticketId,
+            @RequestParam("id") long id
+    ) throws PortalServiceException {
         String signature = "EnrollmentController#deleteCategoryOfService(long ticketId, long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[] { "ticketId", "id" }, new Object[] { ticketId, id });
+        LogUtil.traceEntry(getLog(), signature, new String[]{"ticketId", "id"}, new Object[]{ticketId, id});
         CMSUser user = ControllerHelper.getCurrentUser();
         enrollmentService.deleteCOSByTicket(user, ticketId, id);
         return new ModelAndView("redirect:/agent/enrollment/pendingcos?id=" + ticketId);
     }
 
-    /**
-     * The setter for the lookupService instance variable.
-     * 
-     * @param lookupService
-     *            the lookupService to set
-     */
     public void setLookupService(LookupService lookupService) {
         this.lookupService = lookupService;
     }
 
-    /**
-     * The setter for the providerTypeService instance variable.
-     * 
-     * @param providerTypeService
-     *            the providerTypeService to set
-     */
-    public void setProviderTypeService(ProviderTypeService providerTypeService) {
+    public void setProviderTypeService(
+            ProviderTypeService providerTypeService
+    ) {
         this.providerTypeService = providerTypeService;
     }
 
-    /**
-     * Sets the value of the field <code>enrollmentService</code>.
-     * 
-     * @param enrollmentService
-     *            the enrollmentService to set
-     */
-    public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
+    public void setEnrollmentService(
+            ProviderEnrollmentService enrollmentService
+    ) {
         this.enrollmentService = enrollmentService;
     }
 
-    /**
-     * Sets the value of the field <code>businessProcessService</code>.
-     * 
-     * @param businessProcessService
-     *            the businessProcessService to set
-     */
-    public void setBusinessProcessService(BusinessProcessService businessProcessService) {
+    public void setBusinessProcessService(
+            BusinessProcessService businessProcessService
+    ) {
         this.businessProcessService = businessProcessService;
     }
 
-    /**
-     * Sets the value of the field <code>exportService</code>.
-     * 
-     * @param exportService
-     *            the exportService to set
-     */
     public void setExportService(ExportService exportService) {
         this.exportService = exportService;
     }
-
 }

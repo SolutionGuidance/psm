@@ -72,7 +72,7 @@
                         </div>
                         <!-- /#tabApproved -->
 
-                        <%!-- 
+                        <%--
                              Commenting this alert out for now, as per
                              github.com/OpenTechStrategies/psm/issues/53.
                              We can put it back when a) we know how to

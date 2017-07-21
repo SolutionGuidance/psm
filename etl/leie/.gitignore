@@ -7,3 +7,8 @@ __pycache__/
 tests/db/
 db/sqlite3/
 /data/*
+.tox/
+MANIFEST
+leie/data/
+leie/db/sqlite3/
+leie/tests/db/

@@ -20,7 +20,7 @@ import time
 # Our modules
 import log
 import model
-from path import get_existing_file
+from path import get_datadir, get_dbdir, get_existing_file
 
 warn, info, debug, fatal = log.reporters()
 
@@ -230,8 +230,10 @@ def fname_is_stale(fname, url):
         warn("Can't get head information about %s" % url)
         return False
 
-    # TODO: If size indicated in header differ from size on disk, then
+    # If size indicated in header differ from size on disk, then
     # the file is stale.
+    if int(r.headers["Content-Length"]) != os.path.getsize(fname):
+        return False
 
     # Get mod times of url and fname
     mtime = datetime.fromtimestamp(os.path.getmtime(fname))  # file's mtime
@@ -254,32 +256,22 @@ def dload_if_stale(fname, url):
                 if chunk: # filter out keep-alive new chunks
                     f.write(chunk)
 
-        # TODO: check file size in headers vs what we got.
+        assert int(r.headers["Content-Length"]) == os.path.getsize(fname)
 
-def extract(datadir):
+def download(datadir):
+    """Download UPDATED.csv and reinstatements to the DATADIR"""
     dload_if_stale(os.path.join(datadir, "UPDATED.csv"), 'https://oig.hhs.gov/exclusions/downloadables/UPDATED.csv')
 
     # TODO: download reinstatement csv (https://oig.hhs.gov/exclusions/downloadables/2017/1705REIN.csv)
 
 def main():
-    # Find data dir
-    datadir = get_existing_file(["/var/etl/leie/data",
-                                 "data",
-                                 "../data",
-                                 os.path.join(os.path.dirname(__file__), "data"),
-                                 os.path.join(os.path.dirname(__file__), "..", "data")],
-                                default="data",
-                                create=True)
-    info("Using '%s' as data directory" % datadir)
+    os.chdir(os.path.dirname(__file__))
+    logger = log.logger()
+    info('Starting ETL of LEIE data.')
 
-    # Figure out where our db is
-    dbdir = get_existing_file(["/var/etl/leie/db",
-                               "db",
-                               "../db",
-                               os.path.join(os.path.dirname(__file__), "db"),
-                               os.path.join(os.path.dirname(__file__), "..", "db")],
-                              "db")
-    info("Using '%s' as db directory" % dbdir)
+    # Figure out where we put data
+    datadir = get_datadir()
+    dbdir = get_dbdir()
 
     # Get a database connection, create db if needed
     conn = model.LEIE("development", db_conf_file=os.path.join(dbdir, "dbconf.yml"))
@@ -290,7 +282,7 @@ def main():
     assert os.path.exists(datadir)
 
     # Do our ETL
-    extract(datadir)
+    download(datadir)
     excl = Exclusions(conn)
     excl.etl_from_dir(datadir)
     rein = Reinstatements(conn)
@@ -299,9 +291,7 @@ def main():
     # Close the db connection
     conn.close()
 
-if __name__ == '__main__':
-    os.chdir(os.path.dirname(__file__))
-    logger = log.logger()
-    info('Starting ETL of LEIE data.')
-    main()
     info('Finished ETL of LEIE data.')
+
+if __name__ == '__main__':
+    main()

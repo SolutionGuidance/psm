@@ -28,8 +28,12 @@ def test_goose_write():
     for fname in fnames:
         assert os.path.exists(fname)
 
-    # Again, to we make sure we bail if sql files already exist
-    assert len(conn.goose_write("tests/db")) == 0
+    # Can we run it again without problems?
+    fnames = conn.goose_write("tests/db")
+    assert os.path.exists("tests/db/sqlite3")
+    assert len(fnames) >= 1
+    for fname in fnames:
+        assert os.path.exists(fname)
 
 def test_main():
     """Main just does goose_write, so this is the mostly same test as
@@ -50,6 +54,7 @@ def test_migrate():
     assert subprocess.check_output("echo .schema | sqlite3 %s" % conn.db_conf['open'], shell=True).decode("utf-8") == ""
     conn.migrate()
     assert subprocess.check_output("echo .schema | sqlite3 %s" % conn.db_conf['open'], shell=True).decode("utf-8") != ""
+    assert conn.get_header("individual_exclusion")[0] == "lastname"
     conn.close()
 
     # Check that migrate complains about non-existent directory
@@ -77,6 +82,7 @@ def test_migrate():
     assert str(exception) == "Command 'goose -dir db/does_not_exist does_not_exist test.sqlite3 up' returned non-zero exit status 0"
     conn.db_conf['driver'] = tmp
 
+    
 def test_sql():
     """Make sure sql function returns something.
 
@@ -87,13 +93,14 @@ def test_sql():
 
     conn = model.LEIE(connect=False, db_conf_file="db/dbconf.yml")
 
-    # At a minimum, there is one migration
-    assert type(conn.sql(0)) == type("")
+    # At a minimum, there is one migration and it is a string
+    assert type(conn.up(0)) == type("")
+    assert type(conn.down(0)) == type("")
 
     # Make sure we get back a string and then None above a certain point
     max_reached = False
     for x in range(100):
-        sql = conn.sql(x)
+        sql = conn.up(x)
         if not max_reached:
             if sql:
                 assert type(sql)==type("")
@@ -106,7 +113,7 @@ def test_sql():
 
     conn.db_conf['driver'] = "LibraryDB"
     with pytest.raises(model.UnsupportedDBType) as exc_info:
-        conn.sql(x)
+        conn.up(x)
     exception = exc_info.value
     assert str(exception) == "We don't have migrations for LibraryDB"
 

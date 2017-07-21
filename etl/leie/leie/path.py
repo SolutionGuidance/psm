@@ -3,6 +3,10 @@
 from contextlib import contextmanager
 import os
 
+# Import our modules
+import log
+warn, info, debug, fatal = log.reporters()
+
 @contextmanager
 def cd(path):
     """Temporarily change directory"""
@@ -12,6 +16,29 @@ def cd(path):
         yield
     finally:
         os.chdir(old)
+
+def get_datadir():
+    """Figure out where the data directory is and return that as a string."""
+    datadir = get_existing_file(["/var/etl/leie/data",
+                                 "data",
+                                 "../data",
+                                 os.path.join(os.path.dirname(__file__), "data"),
+                                 os.path.join(os.path.dirname(__file__), "..", "data")],
+                                default="data",
+                                create=True)
+    info("Using '%s' as data directory" % datadir)
+    return datadir
+
+def get_dbdir():
+    """Figure out where our db is and return that path as a string."""
+    dbdir = get_existing_file(["/var/etl/leie/db",
+                               "db",
+                               "../db",
+                               os.path.join(os.path.dirname(__file__), "db"),
+                               os.path.join(os.path.dirname(__file__), "..", "db")],
+                              default="db")
+    info("Using '%s' as db directory" % dbdir)
+    return dbdir
 
 def get_existing_file(files, default=None, create=False):
     """FILES is a list of files or directories.  We cycle through and return a

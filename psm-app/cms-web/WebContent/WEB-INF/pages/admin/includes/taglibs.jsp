@@ -3,8 +3,8 @@
   - Version: 1.0
   - Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
   -
-  - Description: This page fragment is to be included to all pages.
-  - It includes the common used tag libraries.
+  - Description: This page fragment is to be included in all pages.
+  - It includes the commonly used tag libraries.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>

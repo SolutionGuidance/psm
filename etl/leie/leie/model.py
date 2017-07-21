@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import datetime
+import dateutil.parser
 import os
 from path import cd
 import sqlite3
@@ -55,6 +57,11 @@ class DBConn(object):
         self.conn.commit()
         self.conn.close()
 
+    def table_len(self, table):
+        """Return the number of total rows in the TABLE"""
+        c = self.conn.cursor()
+        return (c.execute("SELECT Count(*) FROM %s" % table).fetchone()[0])
+
 class SQL(DBConn):
     """All the sql and goose stuff goes in this class.
     
@@ -71,10 +78,11 @@ class SQL(DBConn):
         """
         if migration == 0:
             return """
-DROP TABLE individual_exclusion;
-DROP TABLE individual_reinstatement;
-DROP TABLE business_exclusion;
-DROP TABLE business_reinstatement;"""
+DROP TABLE exclusion;
+DROP TABLE reinstatement;
+"""
+        if migration == 1:
+            return "DROP TABLE log;"
 
     def goose(self):
         """Returns a dict of goose migrations.  The keys are filenames and the
@@ -84,6 +92,7 @@ DROP TABLE business_reinstatement;"""
         """
 
         fnames = ["20170515130501_initial_create.sql"
+                  ,"20170606100001_create_log.sql"
                   ]
 
         migrations = {}
@@ -154,6 +163,10 @@ DROP TABLE business_reinstatement;"""
 
         if migration == 0:
             common_rows = """
+            lastname text check(lastname is null or length(lastname) <= 20),
+            firstname text check(firstname is null or length(firstname) <= 15),
+            midname text check(midname is null or length(midname) <= 15),
+            busname text  check(busname is null or length(busname) <= 30),
             general text  check(general is null or length(general) <= 20),
             specialty text check(specialty is null or length(specialty) <= 20),
             upin text check(upin is null or length(upin) <= 6),
@@ -169,15 +182,15 @@ DROP TABLE business_reinstatement;"""
             waiverdate text check(waiverdate is null or length(waiverdate) <= 23),
             waiverstate text check(waiverstate is null or length(waiverstate) <= 2)
             """
-            indiv_rows = """
-            lastname text check(lastname is null or length(lastname) <= 20),
-            firstname text check(firstname is null or length(firstname) <= 15),
-            midname text check(midname is null or length(midname) <= 15),"""
-            bus_rows = """\nbusname text  check(busname is null or length(busname) <= 30),"""
-            return("CREATE TABLE IF NOT EXISTS individual_exclusion (" + indiv_rows + common_rows + ");\n"
-                   + "CREATE TABLE IF NOT EXISTS individual_reinstatement (" + indiv_rows + common_rows + ");\n"
-                   + "CREATE TABLE IF NOT EXISTS business_exclusion (" + bus_rows + common_rows + ");\n"
-                   + "CREATE TABLE IF NOT EXISTS business_reinstatement (" + bus_rows + common_rows + ");")
+            return("CREATE TABLE IF NOT EXISTS exclusion (" + common_rows + ");\n"
+                   + "CREATE TABLE IF NOT EXISTS reinstatement (" + common_rows + ");\n")
+        elif migration == 1:
+            return """
+            CREATE TABLE IF NOT EXISTS log (
+            datetime text,
+            datatype text,
+            msg text);
+            """
         else:
             return None
 
@@ -188,18 +201,6 @@ class LEIE(SQL):
     now.
 
     """
-
-    def count_exclusions(self):
-        """Return the number of total rows in the individual_exclusion and
-        business_exclusion databases."""
-        return self.count_table_tag("exclusion")
-
-    def count_table_tag(self, table_tag):
-        """Return the total number of rows in the individual_TABLE_TAG and
-        business_TABLE_TAG tables."""
-        c = self.conn.cursor()
-        return (c.execute("SELECT Count(*) FROM individual_%s" % table_tag).fetchone()[0] +
-                c.execute("SELECT Count(*) FROM business_%s" % table_tag).fetchone()[0])
 
     def dedupe(self, table):
         """
@@ -232,17 +233,26 @@ class LEIE(SQL):
 
     def dedupe_reinstatements(self):
         """
-        Make sure there are no duplicate rows in the individual_reinstatement or business_reinstatement tables.
+        Make sure there are no duplicate rows in the reinstatement table.
 
         """
-        self.dedupe("individual_reinstatement")
-        self.dedupe("business_reinstatement")
+        self.dedupe("reinstatement")
+
+    def get_download_datetime(self, fname):
+        """Return the logged time of the last download of the file named FNAME
+
+        If it's not there, return None"""
+        c = self.conn.cursor()
+        all = c.execute("SELECT * FROM log WHERE msg=?", ["Downloaded " + fname]).fetchall()
+        if not all:
+            return None
+        return dateutil.parser.parse(all[-1][0])
 
     def get_header(self, table):
         """Returns a list of the column names in TABLE"""
         c = self.conn.cursor()
         return [f[1] for f in c.execute("PRAGMA table_info(%s)" % table).fetchall()]
-
+        
     def get_latest_date(self, table, field):
         """Find and return the latest month and year in the list of actions in
         TABLE by looking at dates in FIELD.  Return this value as a
@@ -267,22 +277,41 @@ class LEIE(SQL):
 
         """
 
-        return self.get_latest_date("individual_exclusion", "excldate")
+        return self.get_latest_date("exclusion", "excldate")
 
     def get_latest_reinstatement_date(self):
         """Find and return the latest month and year in the list of
         reinstatement actions.  Return this value as a string
         formatted "YYYY-MM-DD".
 
-        Because business reinstatements are rare and individual
-        reinstatements are common, we just look at the individual
-        table for the date.  There are months with no business
-        reinstatements.
-
         If there are no rows, return "".
 
         """
-        return self.get_latest_date("individual_reinstatement", "reindate")
+        return self.get_latest_date("reinstatement", "reindate")
+
+    def log(self, datatype, message, now=""):
+        """Add a MESSAGE string about a DATATYPE (either updated or
+        reinstatement) to the log table in the db.
+
+        Else, NOW = a datestring we can parse.  It can be anything
+        whose str representation is a parseable datetime, including a
+        datetime.
+
+        """
+
+        assert datatype in ["updated", "reinstatement"]
+        
+        info("%s: %s" % (datatype, message))
+        
+        # See http://sqlite.org/datatype3.html for info on date formats in sqlite3
+        if not now:
+            now = datetime.datetime.now().isoformat()
+        else:
+            now = dateutil.parser.parse(str(now)).isoformat()
+
+        crsr = self.conn.cursor()
+        crsr.execute("INSERT INTO log VALUES(?,?,?)", (now, datatype, message))
+        self.conn.commit()
 
 def main(dirname=None):
     logger = log.logger()

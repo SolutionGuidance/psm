@@ -8,6 +8,7 @@ See README.mdwn for details and instructions.
 
 # System modules
 from datetime import datetime
+from datetime import date
 import dateutil.parser
 import glob
 import os
@@ -62,8 +63,8 @@ def munge_date(date_entry):
     warn("Unrecognized date format ({0}) parsed as {1}!".format(f, d))
     return d
 
-def clean_and_separate(table):
-    """Do some cleanup of TABLE and split into individual and business tables.
+def clean(table):
+    """Do some cleanup of TABLE
 
     TABLE is a petl table."""
 
@@ -78,25 +79,11 @@ def clean_and_separate(table):
         'WAIVERDATE': munge_date # Arrange date for sqlite
     })
 
-    # Separate into two tables, as this is actually two different data sets
-    individual = etl.select(table, "{LASTNAME} != '' and {FIRSTNAME} != ''")
-    business = etl.select(table, "{LASTNAME} == '' and {FIRSTNAME} == ''")
-
-    # Sanity check: Make sure we split the rows without dupes or
-    # missing any.  The +1 is to account for the second header row
-    # that gets counted when we have two tables.
-    if len(business) + len(individual) != len(table) + 1:
-        fatal("Separating business and individual exclusions came up with the wrong number of rows!")
-
-    # Remove unused columns
-    individual = etl.transform.basics.cutout(individual, "BUSNAME")
-    business = etl.transform.basics.cutout(business, "LASTNAME", "FIRSTNAME", "MIDNAME", "DOB")
-
     # Do some cleanup conversions on individual data
-    individual = etl.convert(individual, {'DOB': munge_date,
-                                          'MIDNAME': lambda f: f if f != " " else ""  # no spaces as middle names
-                                          })
-    return individual, business
+    table = etl.convert(table, {'DOB': munge_date,
+                                'MIDNAME': lambda f: f if f != " " else ""  # no spaces as middle names
+    })
+    return table
 
 class Exclusions():
     """ETL helper class for handling exclusions."""
@@ -122,21 +109,20 @@ class Exclusions():
             # recent date as our db, we've already snarfed this csv file and
             # can skip it.
             db_latest = self.conn.get_latest_exclusion_date().replace('-','')
-            db_num_rows = self.conn.count_exclusions()
+            db_num_rows = self.conn.table_len("exclusion")
             updated_latest = etl.cut(etl.sort(table, 'EXCLDATE'), 'EXCLDATE')[len(table)-1][0]
             updated_num_rows = len(table) - 1
             if (db_num_rows == updated_num_rows and db_latest == updated_latest):
                 return
 
         # Massage data
-        individual, business = clean_and_separate(table)
+        table = clean(table)
 
-        # Save to db, BLOWING AWAY data in the existing tables.  If
-        # tables don't exist, will create them, but without any
+        # Save to db, BLOWING AWAY data in the existing table.  If
+        # table doesn't exist, will create it, but without any
         # constraints.
-        info("Replacing individual_exclusion and business_exclusion tables.")
-        etl.todb(individual, self.conn.conn, 'individual_exclusion')
-        etl.todb(business, self.conn.conn, 'business_exclusion')
+        info("Replacing exclusions table.")
+        etl.todb(table, self.conn.conn, 'exclusion')
 
     def etl_from_filename(self, fname, force_reload=False):
         """Extract, translate, load exclusions (and not reinstatements) from
@@ -185,44 +171,59 @@ class Reinstatements():
 
         # Get the data from REIN CSV files.  Gather reinstatement actions
         # since most_recent
-        total_indiv = []
-        total_bus = []
+        total = []
+        total = []
         for fname in sorted(glob.glob(os.path.join(data_dir, "*REIN.csv"))):
             if int(os.path.basename(fname)[:4]) <= int(most_recent[2:]):
                 continue
             debug("Processing " + fname)
             reinstated = etl.fromcsv(fname)
-            individual, business = clean_and_separate(reinstated)
-            total_indiv.append(individual)
-            total_bus.append(business)
+            reinstated = clean(reinstated)
+            total.append(reinstated)
 
         # Save to db, APPENDING TO existing data tables.  Assumes tables
         # exist.
-        if total_indiv:
-            etl.appenddb(etl.cat(*total_indiv), self.conn.conn, 'individual_reinstatement')
-        if total_bus:
-            etl.appenddb(etl.cat(*total_bus), self.conn.conn, 'business_reinstatement')
+        if total:
+            etl.appenddb(etl.cat(*total), self.conn.conn, 'reinstatement')
 
         # It is possible to end up with duplicate rows if, say, an ETL
         # process is interrupted midway through.  So we should find and
         # remove dupes.
         self.conn.dedupe_reinstatements()
 
-def fname_is_stale(fname, url):
+def fname_is_stale(fname, url, conn):
     """Return True if URL's Last-Modified is after FNAME's mod datetime.
 
     Return False if FNAME's mod datetime is after URL's Last-Modified.
 
-    Return True if filesize on disk differs from filesize in the headers (Not implemented)
+    Return True if filesize on disk differs from filesize in the headers
 
     Return True if FNAME doesn't exist.
 
     Return False if we can't quite download URL.
 
+    Return False if we have a log entry in the db saying we already
+    downloaded the file and it's not an UPDATED file.
+
+    CONN is a model.LEIE instance and we use it just to get access to
+    the db log
+
     """
 
+    # We should only do csv files, so this is a sanity check.  I mean,
+    # this routine could technically download things other than csv,
+    # but it's not our goal to do so.
+    assert fname.endswith(".csv")
+
+    # If there is no already-existing file, it is stale
     if not os.path.exists(fname):
         return True
+
+    # Check that we haven't already downloaded this according to the log
+    if not fname.endswith("UPDATED.csv"):
+        last = conn.get_download_datetime(os.path.basename(fname))
+        if last != None:
+            return False
 
     # Get head of url target
     r = requests.head(url)
@@ -230,10 +231,11 @@ def fname_is_stale(fname, url):
         warn("Can't get head information about %s" % url)
         return False
 
-    # If size indicated in header differ from size on disk, then
+    # If size indicated in header differs from size on disk, then
     # the file is stale.
     if int(r.headers["Content-Length"]) != os.path.getsize(fname):
-        return False
+        warn("Size differs from that on disk. File %s is stale." % fname)
+        return True
 
     # Get mod times of url and fname
     mtime = datetime.fromtimestamp(os.path.getmtime(fname))  # file's mtime
@@ -241,16 +243,50 @@ def fname_is_stale(fname, url):
     mtime = dateutil.parser.parse("%s %s" % (str(mtime), tz) ) # add timezone to file's mtime info
     dt = dateutil.parser.parse(r.headers['Last-Modified'])   # url's last mod time
 
-    # Send back True if the url is newer, else false
-    return dt > mtime
+    # If the url version is newer than our file on disk, the file on
+    # disk is stale
+    if dt > mtime:
+        return True
 
-def dload_if_stale(fname, url):
-    if fname_is_stale(fname, url):
+    # Retroactively log the download of the cached file
+    if not fname.endswith("UPDATED.csv"):
+        conn.log("reinstatement", "Downloaded %s" % os.path.basename(fname), mtime)
+    else:
+        conn.log("updated", "Downloaded %s" % os.path.basename(fname), mtime)
+
+    # Looks like the cached file is still good
+    return False
+
+def dload_if_stale(fname, url, conn):
+    """Download the file at URL and save it to FNAME, but only if the
+    on-disk version is out of date.
+
+    FNAME is the filename to save the file as
+    
+    URL is the url of the file to download
+
+    CONN is a model.LEIE instance and we use it just to get access to the db log
+
+    Returns True if we downloaded, else False
+    """
+    
+    if fname_is_stale(fname, url, conn):
         debug("Downloading %s" % url)
 
         # We stream and write this in chunks in case it is huge. It's
         # not, now, but maybe it will grow.  Better safe than sorry.
         r=requests.get(url, stream=True)
+
+        # Warn if we can't download properly
+        if r.status_code != 200:
+            warn("Fetching %s returned status code of %d. Discarding result" % (url, r.status_code))
+            return False
+
+        # Did we get forwarded to a 404 page?
+        if "404" in r.url:
+            warn("File not found: %s" % url)
+            return False
+
         with open(fname, 'wb') as f:
             for chunk in r.iter_content(chunk_size=1024):
                 if chunk: # filter out keep-alive new chunks
@@ -258,11 +294,30 @@ def dload_if_stale(fname, url):
 
         assert int(r.headers["Content-Length"]) == os.path.getsize(fname)
 
-def download(datadir):
-    """Download UPDATED.csv and reinstatements to the DATADIR"""
-    dload_if_stale(os.path.join(datadir, "UPDATED.csv"), 'https://oig.hhs.gov/exclusions/downloadables/UPDATED.csv')
+        return True
 
-    # TODO: download reinstatement csv (https://oig.hhs.gov/exclusions/downloadables/2017/1705REIN.csv)
+    return False
+
+def download(datadir, conn):
+    """Download UPDATED.csv and reinstatements to the DATADIR
+
+    CONN is a model.LEIE instance we'll use to log to the database"""
+
+    if dload_if_stale(os.path.join(datadir, "UPDATED.csv"),
+                      'https://oig.hhs.gov/exclusions/downloadables/UPDATED.csv',
+                      conn):
+        conn.log("updated", "Downloaded UPDATED.csv")
+
+    for year in range(2016,date.today().year+1):
+        for month in range(1,13):
+            if (year == date.today().year
+                and month >= date.today().month):
+                continue
+            for suffix in ("REIN.csv", "EXCL.csv"):
+                fname = "%2d%02d%s" % (year-2000, month, suffix)
+                url = "https://oig.hhs.gov/exclusions/downloadables/%4d/%s" % (year, fname)
+                if dload_if_stale(os.path.join(datadir, fname), url, conn):
+                    conn.log("reinstatement", "Downloaded %s" % fname)
 
 def main():
     os.chdir(os.path.dirname(__file__))
@@ -282,7 +337,7 @@ def main():
     assert os.path.exists(datadir)
 
     # Do our ETL
-    download(datadir)
+    download(datadir, conn)
     excl = Exclusions(conn)
     excl.etl_from_dir(datadir)
     rein = Reinstatements(conn)

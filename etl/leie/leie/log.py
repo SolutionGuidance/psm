@@ -10,6 +10,10 @@ And in main, do:
 
 logger = log.logger()
 
+There is a second log of activities related to the database.  It is
+contained in the db and the code reads and writes it to record etl
+transactions.  Code for that is in dblog.py and model.py.
+
 """
 
 import logging

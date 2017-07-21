@@ -35,6 +35,18 @@ def test_goose_write():
     for fname in fnames:
         assert os.path.exists(fname)
 
+def test_log(conn):
+    import random
+    msg = "Test %d" % random.randint(0,9999999999)
+    conn.log("updated", msg)
+    crsr = conn.conn.cursor()
+    cols = crsr.execute("Select * from log where msg=?", [msg]).fetchall()
+    print("Log columns returned: ", cols)
+    assert len(cols) == 1
+    cols = cols[0]
+    assert cols[1] == "updated"
+    assert cols[2] == msg
+
 def test_main():
     """Main just does goose_write, so this is the mostly same test as
     test_goose_write"""
@@ -54,7 +66,7 @@ def test_migrate():
     assert subprocess.check_output("echo .schema | sqlite3 %s" % conn.db_conf['open'], shell=True).decode("utf-8") == ""
     conn.migrate()
     assert subprocess.check_output("echo .schema | sqlite3 %s" % conn.db_conf['open'], shell=True).decode("utf-8") != ""
-    assert conn.get_header("individual_exclusion")[0] == "lastname"
+    assert conn.get_header("exclusion")[0] == "lastname"
     conn.close()
 
     # Check that migrate complains about non-existent directory

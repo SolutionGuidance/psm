@@ -72,7 +72,8 @@
                         </div>
                         <!-- /#tabApproved -->
 
-                        <!-- Commenting this alert out for now, as per
+                        <%--
+                             Commenting this alert out for now, as per
                              github.com/OpenTechStrategies/psm/issues/53.
                              We can put it back when a) we know how to
                              conditionalize it on the presence of some
@@ -87,8 +88,9 @@
                              And why isn't the code here doing
                              <%@ include file="/WEB-INF/pages/admin/includes/high_risk_level_means.jsp" %>
                              the way various other places in the
-                             PSM tree do?
-
+                             PSM tree do? 
+                        --%>
+                        <!--
                         <div class="row infoRow">
                             <div class="row red">
                                 <b>* High risk level means:</b>

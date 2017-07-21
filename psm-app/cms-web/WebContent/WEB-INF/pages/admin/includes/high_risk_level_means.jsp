@@ -5,7 +5,8 @@
   -
   - Description: it is used to render the high risk level.
 --%>
-<!-- Commenting this alert out for now, as per
+<!-- 
+     Commenting this alert out for now, as per
      github.com/OpenTechStrategies/psm/issues/53.
      We can put it back when a) we know how to
      conditionalize it on the presence of some
@@ -18,7 +19,8 @@
      between this snippet and a block in
      ../../provider/dashboard/list.jsp (look
      for a comment similar to this one).  
-
+-->
+<!--
 <div class="row infoRow">
     <div class="row red">
         <b>* High risk level means:</b>

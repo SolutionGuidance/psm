@@ -27,15 +27,7 @@
                                     <div class="row">
 				                        <h3>New Enrollments</h3>
 				                        <p>
-				                            You can now start with the enrollment process. <br/>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                            do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                            Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                            irure dolor in reprehenderit in voluptate velit esse cillum
-                                            dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                            cupidatat non proident, sunt in culpa qui officia deserunt
-                                            mollit anim id est laborum.
+				                            You can now begin the enrollment process.
 				                        </p>
 				                        <div class="">
 				                            <a href="<c:url value="/provider/enrollment/start" />" class="purpleBtn"><span class="btR"><span class="btM">Create New Enrollment</span></span></a>
@@ -50,21 +42,28 @@
                             <div class="bl"></div>
                             <div class="br"></div>
                         </div>
+
+<!-- Commented out the "Linked Profiles" section below because that
+     functionality isn't enabled right now.  See commit f5d70d7bb93
+     and any followup commits that refer to it. 
+
+     The commenting-out actually uses two separate comment blocks
+     below, in order to avoid a comment nesting situation with the
+     "/.section" comment that appears in the block.  The first block
+     comments out the opening "div" element followed by a nested (but
+     balanced) div block, and the second comments out four small
+     balanced divs followed by the closing /div that corresponds to
+     that first opening div.
+-->
+
+<!--
                         <div class="detailPanel">
                             <div class="section" id="updateProfile">
                                 <div class="wholeCol">
                                     <div class="row">
                                         <h3>Linked Profiles</h3>
                                         <p>
-                                            You can link your online account to any existing profiles in XXXXX partner services.
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                            do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                            Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                            irure dolor in reprehenderit in voluptate velit esse cillum
-                                            dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                            cupidatat non proident, sunt in culpa qui officia deserunt
-                                            mollit anim id est laborum.
+                                            You can link your online account to any existing profiles in partner services.
                                         </p>
                                         <div class="">
                                             <a href="<c:url value="/provider/onboarding/link" />" class="purpleBtn"><span class="btR"><span class="btM">Get Profiles</span></span></a>
@@ -72,12 +71,15 @@
                                     </div>
                                 </div>
                             </div>
+-->
                             <!-- /.section -->
+<!--
                             <div class="tl"></div>
                             <div class="tr"></div>
                             <div class="bl"></div>
                             <div class="br"></div>
                         </div>
+-->
                     </div>
                     <!-- /.tabSection -->
                 </div>

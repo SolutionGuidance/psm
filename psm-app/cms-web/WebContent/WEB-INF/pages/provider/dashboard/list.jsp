@@ -90,7 +90,7 @@
                              the way various other places in the
                              PSM tree do? 
                         --%>
-                        <--
+                        <!--
                         <div class="row infoRow">
                             <div class="row red">
                                 <b>* High risk level means:</b>

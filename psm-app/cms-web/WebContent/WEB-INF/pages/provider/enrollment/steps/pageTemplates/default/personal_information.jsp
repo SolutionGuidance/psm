@@ -40,8 +40,12 @@
             </div>
             <div class="row requireField">
                 <%-- BUGR-9673 (optional NPI for some provider types) --%>
-                <label>NPI<span class="required">${requireNPI ? '*' : ''}
-                    </span></label>
+                <label
+                    title="<%@ include
+                        file="/WEB-INF/pages/includes/userhelp/npi.jsp" %>">NPI
+                        <span class="required">${requireNPI ? '*' : ''}
+                        </span>
+                </label>
                 <span class="floatL"><b>:</b></span>
 
                 <c:set var="formName" value="_02_npi"></c:set>

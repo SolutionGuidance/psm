@@ -15,10 +15,6 @@ cache:
   directories:
     - $HOME/.gradle/
 
-cache:
-  directories:
-    - $HOME/.gradle/caches
-
 # We depend on a WildFly deployment for some of the production
 # .jar files. Download it and install just above our repo.
 before_script:

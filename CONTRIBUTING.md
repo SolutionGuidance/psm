@@ -20,6 +20,13 @@ cleanly via Travis CI's automated Gradle
 build](https://travis-ci.org/OpenTechStrategies/psm).  We have caught
 issues at this stage in even simple patches.
 
+As you work on your branch, try to test it locally to ensure that it
+still builds and deploys properly. To make it easier to test branches,
+we have a script to refresh a development environment with a new
+Gradle build and a fresh new database:
+`scripts/rebuild-and-change-schema-for-testing.sh`.  Make sure to run
+it from within `scripts/`.
+
 Generally, the more controversial, complex or large a change, the more
 opportunity people should have to comment on it.  That means it should
 garner more comments/approvals, or it means it should sit longer

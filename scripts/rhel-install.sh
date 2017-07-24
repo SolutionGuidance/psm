@@ -8,7 +8,7 @@ function download_and_sha1 {
 }
 
 function wait_for_jboss {
-	until `$1 -c "ls /deployment" &> /dev/null`; do
+	until `$1 --user=psm --password="$(< pass.txt)" -c "ls /deployment" &> /dev/null`; do
 		sleep 5
 		echo "Waiting for wildfly to come up."
 	done
@@ -57,29 +57,47 @@ download_and_sha1 "http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0
 									9ee3c0255e2e6007d502223916cefad2a1a5e333
 tar -xzf wildfly-10.1.0.Final.tar.gz
 rm wildfly-10.1.0.Final.tar.gz
+sudo mv wildfly-10.1.0.Final /opt/
+sudo ln -s /opt/wildfly-10.1.0.Final /opt/wildfly
+sudo echo | sudo dd of=/etc/default/wildfly.conf<<EOF
+JAVA_HOME="/usr/lib/jvm/java-1.8.0"
+JBOSS_HOME="/opt/wildfly"
+JBOSS_USER=wildfly
+JBOSS_MODE=standalone
+JBOSS_CONFIG=standalone-full.xml
+STARTUP_WAIT=60
+SHUTDOWN_WAIT=60
+JBOSS_CONSOLE_LOG="/var/log/wildfly/console.log"
+JBOSS_OPTS="-b 0.0.0.0 -bmanagement 0.0.0.0"
+EOF
+sudo cp /opt/wildfly/docs/contrib/scripts/init.d/wildfly-init-redhat.sh /etc/init.d/wildfly
+sudo chkconfig --add wildfly
+sudo chkconfig wildfly on
+sudo mkdir -p /var/log/wildfly
+sudo adduser --no-create-home wildfly
+sudo usermod -s /sbin/nologin wildfly
+sudo chown -R wildfly:wildfly /opt/wildfly-10.1.0.Final
+sudo chown -R wildfly:wildfly /opt/wildfly
+sudo chown -R wildfly:wildfly /var/log/wildfly
 
 ## Set up wildfly server
 cat pass.txt | awk '{print "psm "$1}'>> script.txt
-eval ./wildfly-10.1.0.Final/bin/add-user.sh "$(< script.txt)"
-rm script.txt
-./wildfly-10.1.0.Final/bin/standalone.sh \
-		-c standalone-full.xml \
-		-b 0.0.0.0 \
-		-bmanagement 0.0.0.0 &
-wait_for_jboss ./wildfly-10.1.0.Final/bin/jboss-cli.sh
+eval sudo /opt/wildfly/bin/add-user.sh "$(< script.txt)"
+sudo service wildfly start
+wait_for_jboss /opt/wildfly/bin/jboss-cli.sh
 
 ## Configure wildfly service bindings
-./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect << EOF
+/opt/wildfly/bin/jboss-cli.sh --user=psm --password="$(< pass.txt)" --connect << EOF
 /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp:write-attribute(name=port,value=1025)
 /subsystem=mail/mail-session="java:/Mail":add(jndi-name="java:/Mail")
 /subsystem=mail/mail-session="java:/Mail"/server=smtp:add(outbound-socket-binding-ref=mail-smtp)
 EOF
-./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect \
+/opt/wildfly/bin/jboss-cli.sh --user=psm --password="$(< pass.txt)" --connect \
 	--command='jms-queue add --queue-address=DataSync --entries=["java:/jms/queue/DataSync"]'
 download_and_sha1 "https://jdbc.postgresql.org/download/postgresql-42.1.1.jar" \
 									8a0b76d763f5382d6357c412eeb14970ba4405f3
-./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect --command="deploy postgresql-42.1.1.jar"
-./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect <<EOF
+/opt/wildfly/bin/jboss-cli.sh --user=psm --password="$(< pass.txt)" --connect --command="deploy postgresql-42.1.1.jar"
+/opt/wildfly/bin/jboss-cli.sh --user=psm --password="$(< pass.txt)" --connect <<EOF
 xa-data-source add \
 	--name=TaskServiceDS \
 	--jndi-name=java:/jdbc/TaskServiceDS \
@@ -109,9 +127,8 @@ xa-data-source add \
 EOF
 
 ## Build and deploy the psm app
-cp psm/psm-app/build.properties.template psm/psm-app/build.properties
 cd psm/psm-app
 ./gradlew cms-portal-services:build
 cd ../../
-./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect \
+/opt/wildfly/bin/jboss-cli.sh --user=psm --password="$(< pass.txt)" --connect \
 		--command="deploy psm/psm-app/cms-portal-services/build/libs/cms-portal-services.ear"

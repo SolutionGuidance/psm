@@ -1,3 +1,3 @@
 #!/bin/bash
-./wildfly-10.1.0.Final/bin/jboss-cli.sh --connect \
+/opt/wildfly/bin/jboss-cli.sh --user="psm" --password="$(< ~/pass.txt)" --connect \
 	--command="deploy ~/cms-portal-services.ear"

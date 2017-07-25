@@ -12,19 +12,19 @@
 <div class="newEnrollmentPanel practicePanel memberInfoPanel">
     <div class="tableHeader topHeader"><span>Eligibity</span></div>
     <div class="clearFixed"></div>
-	<div class="section">
-		<input type="hidden" name="formNames" value="<%= ViewStatics.FACILITY_ELIGIBILITY_FORM %>">
-		<div class="row">
-			<label class="longLbl">Does your facility provide physical or occupational therapy to community residents?</label>
-			<div>
-				<c:set var="formName" value="_38_therapyIndicator"></c:set>
-				<c:set var="formValue" value="${requestScope[formName]}"></c:set>
-				<label class="inline leftPadding"><input type="radio" value="Y" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}>Yes</label>
-				<label class="inline leftPadding"><input type="radio" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}>No</label>
-			</div>
-			<div class="clearFixed"></div>
-		</div>
-		<div class="row">
+    <div class="section">
+        <input type="hidden" name="formNames" value="<%= ViewStatics.FACILITY_ELIGIBILITY_FORM %>">
+        <div class="row">
+            <label class="longLbl">Does your facility provide physical or occupational therapy to community residents?</label>
+            <div>
+                <c:set var="formName" value="_38_therapyIndicator"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label class="inline leftPadding"><input type="radio" value="Y" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}>Yes</label>
+                <label class="inline leftPadding"><input type="radio" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}>No</label>
+            </div>
+            <div class="clearFixed"></div>
+        </div>
+        <div class="row">
             <table class="eligibilityTable">
                 <thead>
                 <tr>
@@ -66,7 +66,7 @@
             </table>
         </div>
         <div class="clearFixed"></div>
-	</div>
+    </div>
     <div class="tl"></div>
     <div class="tr"></div>
     <div class="bl"></div>

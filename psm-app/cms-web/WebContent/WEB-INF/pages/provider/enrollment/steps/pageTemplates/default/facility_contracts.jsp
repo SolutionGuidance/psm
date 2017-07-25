@@ -25,21 +25,21 @@
             </div>
         </div>
         <div class="hiddenSection" style="display: ${formValue eq 'Y' ? 'block' : 'none'}">
-	        <div class="leftCol">
-	            <div class="row requireField">
-	                <label>Begin Date<span class="required">*</span>
-	                    <span class="label">(MM/DD/YYYY)</span>
-	                </label>
-	                <span class="floatL"><b>:</b></span>
-	                            <span class="dateWrapper floatL">
-	                    <c:set var="formName" value="_34_beginDate_0"></c:set>
-	                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                    <input class="date" type="text" name="${formName}" value="${formValue}"/>
-	                                    </span>
-	            </div>
-	            <div class="clearFixed"></div>
-	        </div>
-	        <div class="rightCol">
+            <div class="leftCol">
+                <div class="row requireField">
+                    <label>Begin Date<span class="required">*</span>
+                        <span class="label">(MM/DD/YYYY)</span>
+                    </label>
+                    <span class="floatL"><b>:</b></span>
+                                <span class="dateWrapper floatL">
+                        <c:set var="formName" value="_34_beginDate_0"></c:set>
+                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                        <input class="date" type="text" name="${formName}" value="${formValue}"/>
+                                        </span>
+                </div>
+                <div class="clearFixed"></div>
+            </div>
+            <div class="rightCol">
                 <div class="row requireField">
                     <label>End Date<span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
@@ -52,11 +52,11 @@
                                         </span>
                 </div>
                 <div class="clearFixed"></div>
-	        </div>
-	        <div class="clear"></div>
-	        <div class="row requireField">
-	            <label>Certification <span class="required">*</span></label>
-	            <span class="floatL"><b>:</b></span>
+            </div>
+            <div class="clear"></div>
+            <div class="row requireField">
+                <label>Certification <span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_34_attachment_0"></c:set>
                 <input type="file" class="fileUpload" name="${formName}" />
                 <c:set var="formName" value="_34_filename_0"></c:set>
@@ -70,8 +70,8 @@
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input type="hidden" name="${formName}" value="${formValue}"/>
                 </c:if>
-	        </div>
-	    </div>
+            </div>
+        </div>
         <div class="clearFixed"></div>
     </div>
     

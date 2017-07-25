@@ -10,33 +10,33 @@
 
 <div class="practicePanel">
     <div>
-	<div class="section">
-	    <input type="hidden" name="formNames" value="<%= ViewStatics.PCA_INDIVIDUAL_FORM %>">
-	    <div class="wholeCol">
-	        <div class="row requireField">
-	            <label>First Name<span class="required">*</span></label>
-	            <span class="floatL"><b>:</b></span>
-	            
-	            <c:set var="formName" value="_10_firstName"></c:set>
-	            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	            <input type="text" class="normalInput" id="firstName" name="${formName}" value="${formValue}" maxlength="45"/>
-	        </div>
-	        <div class="row">
-	            <label>Middle Name</label>
-	            <span class="floatL"><b>:</b></span>
-	            
-	            <c:set var="formName" value="_10_middleName"></c:set>
-	            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	            <input type="text" class="normalInput" id="middleName" name="${formName}" value="${formValue}" maxlength="45"/>
-	        </div>
-	        <div class="row requireField">
-	            <label>Last Name<span class="required">*</span></label>
-	            <span class="floatL"><b>:</b></span>
-	
-		        <c:set var="formName" value="_10_lastName"></c:set>
-		        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	            <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
-	        </div>
+    <div class="section">
+        <input type="hidden" name="formNames" value="<%= ViewStatics.PCA_INDIVIDUAL_FORM %>">
+        <div class="wholeCol">
+            <div class="row requireField">
+                <label>First Name<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+
+                <c:set var="formName" value="_10_firstName"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <input type="text" class="normalInput" id="firstName" name="${formName}" value="${formValue}" maxlength="45"/>
+            </div>
+            <div class="row">
+                <label>Middle Name</label>
+                <span class="floatL"><b>:</b></span>
+
+                <c:set var="formName" value="_10_middleName"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <input type="text" class="normalInput" id="middleName" name="${formName}" value="${formValue}" maxlength="45"/>
+            </div>
+            <div class="row requireField">
+                <label>Last Name<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+
+                <c:set var="formName" value="_10_lastName"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
+            </div>
             <div class="row requireField">
                 <label>Social Security Number<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
@@ -88,11 +88,11 @@
                 <c:set var="formName" value="_10_county"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <select class="countySelectFor" name="${formName}">
-           			<option value="">Please select</option>
-               		<c:forEach var="opt" items="${requestScope['_99_counties']}">
+                       <option value="">Please select</option>
+                       <c:forEach var="opt" items="${requestScope['_99_counties']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
-           		</select>
+                   </select>
             </div>
                 
             <div class="row">
@@ -135,10 +135,10 @@
                 <input type="text" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
             </div>
             
-	        <div class="clearFixed"></div>
-	    </div>
-	</div>
-	<!-- /.section -->
+            <div class="clearFixed"></div>
+        </div>
+    </div>
+    <!-- /.section -->
     </div>
     <div class="tl"></div>
     <div class="tr"></div>

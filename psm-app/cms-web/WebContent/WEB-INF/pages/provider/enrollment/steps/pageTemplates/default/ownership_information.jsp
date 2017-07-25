@@ -93,8 +93,8 @@
                     <label class="">Name Subcontractor</label>
                     <span class="floatL"><b>:</b></span>
                     
-	                <c:set var="formName" value="_17_iboSubcontractorName_${status.index - 1}"></c:set>
-	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <c:set var="formName" value="_17_iboSubcontractorName_${status.index - 1}"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     
                     <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
                     <div class="clear"></div>
@@ -255,8 +255,8 @@
                 <label class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <span class="floatL inputCnt">
-		            <c:set var="formName" value="_17_iboOtherInterestName_${status.index - 1}"></c:set>
-		            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <c:set var="formName" value="_17_iboOtherInterestName_${status.index - 1}"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
                     <span class="label">(Taxpayer name of FEIN or on W-9 from IRS)</span>
                 </span>
@@ -318,7 +318,7 @@
         <div class="clearFixed"></div>
     </div>
     </div>
-	</c:forEach>
+    </c:forEach>
 
     <div class="tl"></div>
     <div class="tr"></div>
@@ -398,8 +398,8 @@
                 <label class="">Full Legal Name<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <span class="floatL inputCnt">
-	                <c:set var="formName" value="_17_cboLegalName_${status.index - 1}"></c:set>
-	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <c:set var="formName" value="_17_cboLegalName_${status.index - 1}"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
                     <span class="label">(Taxpayer name of FEIN or on W-9 from IRS)</span>
                 </span>
@@ -998,6 +998,6 @@
     </div>
 </div>
 
-	<c:url var="lookupUrl" value="/provider/enrollment/ownerTypes" />
-	<input type="hidden" id="ownerTypeLookupURL" value="${lookupUrl}"/>
+    <c:url var="lookupUrl" value="/provider/enrollment/ownerTypes" />
+    <input type="hidden" id="ownerTypeLookupURL" value="${lookupUrl}"/>
 </div>

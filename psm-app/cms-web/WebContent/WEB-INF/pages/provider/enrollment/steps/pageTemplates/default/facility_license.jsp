@@ -14,45 +14,45 @@
 <input type="hidden" name="formNames" value="<%= ViewStatics.FACILITY_LICENSE_FORM %>">
 
 <c:if test="${showCategories}">
-	<div class="newEnrollmentPanel practicePanel memberInfoPanel">
-	    <div class="tableHeader topHeader"><span>Please select type of service(s) you provide</span></div>
-	    <div class="clearFixed"></div>
-	    <div class="section">
-	        <div class="">
-	            <div class="row">
-	               <ul>
-			            <c:set var="formName" value="_21_categorySize"></c:set>
-			            <c:forEach begin="1" end="${requestScope[formName]}" varStatus="status">
-			            <li>
-			                <c:set var="formName" value="_21_category_${status.index - 1}"></c:set>
-			                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-			                <c:set var="checkedName" value="_21_category_selected_${status.index - 1}"></c:set>
-			                <c:set var="checkedValue" value="${requestScope[checkedName]}"></c:set>
-			                <input type="checkbox" name="_21_serviceCategory" ${checkedValue eq 'Y' ? 'checked' : ''} value="${formValue}"/> ${formValue}
-			            </li>
-			            </c:forEach>
-	               </ul>
-	            </div>
-	            <div class="clearFixed"></div>
-	        </div>
-	    </div>
-	    <!-- /.section -->
-	    <div class="tl"></div>
-	    <div class="tr"></div>
-	    <div class="bl"></div>
-	    <div class="br"></div>
-	</div>
+    <div class="newEnrollmentPanel practicePanel memberInfoPanel">
+        <div class="tableHeader topHeader"><span>Please select type of service(s) you provide</span></div>
+        <div class="clearFixed"></div>
+        <div class="section">
+            <div class="">
+                <div class="row">
+                   <ul>
+                        <c:set var="formName" value="_21_categorySize"></c:set>
+                        <c:forEach begin="1" end="${requestScope[formName]}" varStatus="status">
+                        <li>
+                            <c:set var="formName" value="_21_category_${status.index - 1}"></c:set>
+                            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                            <c:set var="checkedName" value="_21_category_selected_${status.index - 1}"></c:set>
+                            <c:set var="checkedValue" value="${requestScope[checkedName]}"></c:set>
+                            <input type="checkbox" name="_21_serviceCategory" ${checkedValue eq 'Y' ? 'checked' : ''} value="${formValue}"/> ${formValue}
+                        </li>
+                        </c:forEach>
+                   </ul>
+                </div>
+                <div class="clearFixed"></div>
+            </div>
+        </div>
+        <!-- /.section -->
+        <div class="tl"></div>
+        <div class="tr"></div>
+        <div class="bl"></div>
+        <div class="br"></div>
+    </div>
 </c:if>
 
 <div class="newEnrollmentPanel practicePanel">
     <div class="section">
         <c:if test="${showCategories}">
-	        <div class="tableHeader topHeader"><span>Required Licenses/Certifications based on your service selection</span></div>
-	        <div class="clearFixed"></div>
+            <div class="tableHeader topHeader"><span>Required Licenses/Certifications based on your service selection</span></div>
+            <div class="clearFixed"></div>
         </c:if>
         <c:if test="${not showCategories}">
-	        <div class="tableHeader topHeader"><span>Facility Licenses/Certifications</span></div>
-	        <div class="clearFixed"></div>
+            <div class="tableHeader topHeader"><span>Facility Licenses/Certifications</span></div>
+            <div class="clearFixed"></div>
         </c:if>
     
         <div class="addPracticeLocations">
@@ -117,14 +117,14 @@
                         <select name="${formName}" class="licenseStates">
                             <option value="">Please select</option>
                             <c:choose>
-                            	<c:when test="${formValue == 'MEDICARE'}">
-                            		<option value="MEDICARE" selected="selected">Medicare</option>
-                            	</c:when>
-                            	<c:otherwise>
-                            		<c:forEach var="opt" items="${requestScope['_99_states']}">
-		                                <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
-		                            </c:forEach>
-                            	</c:otherwise>
+                                <c:when test="${formValue == 'MEDICARE'}">
+                                    <option value="MEDICARE" selected="selected">Medicare</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach var="opt" items="${requestScope['_99_states']}">
+                                        <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+                                    </c:forEach>
+                                </c:otherwise>
                             </c:choose>
                         </select>
                     </td>
@@ -173,7 +173,7 @@
                     <c:set var="formName" value="_21_licenseType"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <select class="bigSelect medicareCheck" name="${formName}">
-	                    <option value="">Please select</option>
+                        <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_21_licenseTypes']}">
                             <option value="${opt.description}"><c:out value="${opt.description}" /></option>
                         </c:forEach>
@@ -184,8 +184,8 @@
                 <td><input type="text" class="longInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
                 <td class="dateCell">
                     <span class="dateWrapper">
-		                <c:set var="formName" value="_21_originalIssueDate"></c:set>
-		                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                        <c:set var="formName" value="_21_originalIssueDate"></c:set>
+                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                         <input class="date" type="text" name="${formName}" value="${formValue}"/>
                     </span>
                 </td>
@@ -200,7 +200,7 @@
                     <c:set var="formName" value="_21_issuingState"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <select name="${formName}" class="licenseStates">
-	                    <option value="">Please select</option>
+                        <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_99_states']}">
                             <option value="${opt.code}"><c:out value="${opt.description}" /></option>
                         </c:forEach>

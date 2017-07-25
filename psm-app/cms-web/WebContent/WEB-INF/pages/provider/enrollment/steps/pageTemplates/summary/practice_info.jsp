@@ -2,8 +2,8 @@
 <div class="practiceSection">
     <div class="wholeCol">
         <c:if test="${requestScope['_04_bound'] eq 'Y'}">
-	       <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/practice_type.jsp" %>
-	    </c:if>
+           <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/practice_type.jsp" %>
+        </c:if>
         <c:if test="${requestScope['_05_bound'] eq 'Y'}">
             <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/private_practice.jsp" %>
         </c:if>

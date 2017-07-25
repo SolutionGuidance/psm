@@ -18,12 +18,12 @@
     <label>Practice Address</label>
     <span class="floatL"><b>:</b></span>
     <span>
-		<c:if test="${not empty requestScope['_05_addressLine1']}"><c:out value="${requestScope['_05_addressLine1']}" /><br /></c:if>
-		<c:out value="${requestScope['_05_addressLine2']}" /><br />
-		<c:set var="city" value="${requestScope['_05_city']}" /><c:out value="${city}" /> 
-		<c:set var="state" value="${requestScope['_05_state']}" /><c:if test="${not empty state}">,</c:if>${state}
-		<c:set var="zip" value="${requestScope['_05_zip']}" /><c:if test="${not empty zip}">,</c:if>${zip} 
-		<c:set var="county" value="${requestScope['_05_county']}" /><c:if test="${not empty county}">,</c:if>${county} 
+        <c:if test="${not empty requestScope['_05_addressLine1']}"><c:out value="${requestScope['_05_addressLine1']}" /><br /></c:if>
+        <c:out value="${requestScope['_05_addressLine2']}" /><br />
+        <c:set var="city" value="${requestScope['_05_city']}" /><c:out value="${city}" />
+        <c:set var="state" value="${requestScope['_05_state']}" /><c:if test="${not empty state}">,</c:if>${state}
+        <c:set var="zip" value="${requestScope['_05_zip']}" /><c:if test="${not empty zip}">,</c:if>${zip}
+        <c:set var="county" value="${requestScope['_05_county']}" /><c:if test="${not empty county}">,</c:if>${county}
     </span>
 </div>
 <div class="row">
@@ -51,13 +51,13 @@
     </c:if>
     <c:if test="${requestScope['_05_billingSameAsPrimary'] ne 'Y'}">
         <span>
-			<c:if test="${not empty requestScope['_05_addressLine1']}"><c:out value="${requestScope['_05_billingAddressLine1']}" /><br /></c:if>
-			<c:out value="${requestScope['_05_billingAddressLine2']}" /><br />
-			<c:set var="city" value="${requestScope['_05_billingCity']}" /><c:out value="${city}" /> 
-			<c:set var="state" value="${requestScope['_05_billingState']}" /><c:if test="${not empty state}">,</c:if>${state}
-			<c:set var="zip" value="${requestScope['_05_billingZip']}" /><c:if test="${not empty zip}">,</c:if>${zip} 
-			<c:set var="county" value="${requestScope['_05_billingCounty']}" /><c:if test="${not empty county}">,</c:if>${county} 
-	    </span>
+            <c:if test="${not empty requestScope['_05_addressLine1']}"><c:out value="${requestScope['_05_billingAddressLine1']}" /><br /></c:if>
+            <c:out value="${requestScope['_05_billingAddressLine2']}" /><br />
+            <c:set var="city" value="${requestScope['_05_billingCity']}" /><c:out value="${city}" />
+            <c:set var="state" value="${requestScope['_05_billingState']}" /><c:if test="${not empty state}">,</c:if>${state}
+            <c:set var="zip" value="${requestScope['_05_billingZip']}" /><c:if test="${not empty zip}">,</c:if>${zip}
+            <c:set var="county" value="${requestScope['_05_billingCounty']}" /><c:if test="${not empty county}">,</c:if>${county}
+        </span>
     </c:if>
 </div>
 <div class="row">

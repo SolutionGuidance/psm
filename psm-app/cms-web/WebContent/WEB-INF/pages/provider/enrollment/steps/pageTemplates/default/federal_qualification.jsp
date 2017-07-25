@@ -29,15 +29,15 @@
                                     <input type="radio" value="Approval Letter from Health Care Finance Administration (HCFA)" name="${formName}"  ${formValue eq 'Approval Letter from Health Care Finance Administration (HCFA)' ? 'checked' : ''}/> Approval Letter from Health Care Finance Administration (HCFA) 
                                 </td>
                                 <td>
-			                        <c:set var="formName" value="_37_hcfaApproval"></c:set>
-			                        <input type="file" class="fileUpload" name="${formName}" />
-			                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-			                        <c:if test="${not empty formValue}">
-			                            <c:url var="downloadLink" value="/provider/enrollment/attachment">
-			                                 <c:param name="id" value="${formValue}"></c:param>
-			                            </c:url>
-			                            <div><a href="${downloadLink}">Download</a></div>
-			                        </c:if>
+                                    <c:set var="formName" value="_37_hcfaApproval"></c:set>
+                                    <input type="file" class="fileUpload" name="${formName}" />
+                                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                                    <c:if test="${not empty formValue}">
+                                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                                             <c:param name="id" value="${formValue}"></c:param>
+                                        </c:url>
+                                        <div><a href="${downloadLink}">Download</a></div>
+                                    </c:if>
                                 </td>
                             </tr>
                             <tr>
@@ -47,15 +47,15 @@
                                     <input type="radio" value="Copies of the 330 Grant documents" name="${formName}"  ${formValue eq 'Copies of the 330 Grant documents' ? 'checked' : ''}/> Copies of the 330 Grant documents 
                                 </td>
                                 <td>
-			                        <c:set var="formName" value="_37_grantDocuments"></c:set>
-			                        <input type="file" class="fileUpload" name="${formName}" />
-			                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-			                        <c:if test="${not empty formValue}">
-			                            <c:url var="downloadLink" value="/provider/enrollment/attachment">
-			                                 <c:param name="id" value="${formValue}"></c:param>
-			                            </c:url>
-			                            <div><a href="${downloadLink}">Download</a></div>
-			                        </c:if>
+                                    <c:set var="formName" value="_37_grantDocuments"></c:set>
+                                    <input type="file" class="fileUpload" name="${formName}" />
+                                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                                    <c:if test="${not empty formValue}">
+                                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                                             <c:param name="id" value="${formValue}"></c:param>
+                                        </c:url>
+                                        <div><a href="${downloadLink}">Download</a></div>
+                                    </c:if>
                                 </td>
                             </tr>
                             <tr>

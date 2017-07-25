@@ -17,16 +17,16 @@
 <c:if test="${isActivated}">
 <div class="practiceSection">
     <div class="wholeCol">
-		<div class="row">
-		    <label>Highest Degree Earned</label>
+        <div class="row">
+            <label>Highest Degree Earned</label>
             <span class="floatL"><b>:</b></span>
-		    <span>${requestScope['_14_highestDegreeEarned']}</span>            
-		</div>
-		<div class="row">
-		    <label>Degree Award Date</label>
+            <span>${requestScope['_14_highestDegreeEarned']}</span>
+        </div>
+        <div class="row">
+            <label>Degree Award Date</label>
             <span class="floatL"><b>:</b></span>
-		    <span>${requestScope['_14_degreeAwardDate']}</span>            
-		</div>
+            <span>${requestScope['_14_degreeAwardDate']}</span>
+        </div>
     </div>
     <div class="clearFixed"></div>
 </div>

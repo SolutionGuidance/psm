@@ -29,15 +29,15 @@
                                     <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/> Basic Service 
                                 </td>
                                 <td>
-			                        <c:set var="formName" value="_39_basicServices"></c:set>
-			                        <input type="file" class="fileUpload" name="${formName}" />
-			                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-			                        <c:if test="${not empty formValue}">
-			                            <c:url var="downloadLink" value="/provider/enrollment/attachment">
-			                                 <c:param name="id" value="${formValue}"></c:param>
-			                            </c:url>
-			                            <div><a href="${downloadLink}">Download</a></div>
-			                        </c:if>
+                                    <c:set var="formName" value="_39_basicServices"></c:set>
+                                    <input type="file" class="fileUpload" name="${formName}" />
+                                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                                    <c:if test="${not empty formValue}">
+                                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                                             <c:param name="id" value="${formValue}"></c:param>
+                                        </c:url>
+                                        <div><a href="${downloadLink}">Download</a></div>
+                                    </c:if>
                                 </td>
                             </tr>
                             <tr>

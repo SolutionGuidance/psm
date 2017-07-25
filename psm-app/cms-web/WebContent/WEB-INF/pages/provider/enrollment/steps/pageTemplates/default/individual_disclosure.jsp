@@ -29,18 +29,24 @@
                     value="_08_criminalConvictionInd"></c:set>
                 <c:set var="formValue"
                     value="${requestScope[formName]}"></c:set>
-                <input
-                    type="radio"
-                        value="Y"
-                        name="${formName}"
-                        ${formValue eq 'Y' ? 'checked' : ''} /><label
-                            class="span">Yes</label>
-                <input
-                    type="radio"
-                    value="N"
-                    name="${formName}"
-                    ${formValue eq 'N' ? 'checked' : ''} /><label
-                        class="span">No</label>
+                <label
+                    class="span">
+                        <input
+                            type="radio"
+                            value="Y"
+                            name="${formName}"
+                            ${formValue eq 'Y' ? 'checked' : ''} />
+                    Yes
+                </label>
+                <label
+                    class="span">
+                        <input
+                            type="radio"
+                            value="N"
+                            name="${formName}"
+                            ${formValue eq 'N' ? 'checked' : ''} />
+                    No
+                </label>
             </div>
         </div>
         <div class="row">
@@ -52,18 +58,24 @@
                     value="_08_civilPenaltyInd"></c:set>
                 <c:set var="formValue"
                     value="${requestScope[formName]}"></c:set>
-                <input
-                    type="radio"
-                    value="Y"
-                    name="${formName}"
-                    ${formValue eq 'Y' ? 'checked' : ''} /><label
-                        class="span">Yes</label>
-                <input
-                    type="radio"
-                    value="N"
-                    name="${formName}"
-                    ${formValue eq 'N' ? 'checked' : ''} /><label
-                        class="span">No</label>
+                <label
+                    class="span">
+                        <input
+                            type="radio"
+                            value="Y"
+                            name="${formName}"
+                            ${formValue eq 'Y' ? 'checked' : ''} />
+                    Yes
+                </label>
+                <label
+                    class="span">
+                        <input
+                            type="radio"
+                            value="N"
+                            name="${formName}"
+                            ${formValue eq 'N' ? 'checked' : ''} />
+                    No
+                </label>
             </div>
         </div>
         <div class="row">
@@ -78,18 +90,24 @@
                     value="_08_previousExclusionInd"></c:set>
                 <c:set var="formValue"
                     value="${requestScope[formName]}"></c:set>
-                <input
-                    type="radio"
-                    value="Y"
-                    name="${formName}"
-                    ${formValue eq 'Y' ? 'checked' : ''} /><label
-                        class="span">Yes</label>
-                <input
-                    type="radio"
-                    value="N"
-                    name="${formName}"
-                    ${formValue eq 'N' ? 'checked' : ''} /><label
-                        class="span">No</label>
+                <label
+                    class="span">
+                        <input
+                            type="radio"
+                            value="Y"
+                            name="${formName}"
+                            ${formValue eq 'Y' ? 'checked' : ''} />
+                    Yes
+                </label>
+                <label
+                    class="span">
+                        <input
+                            type="radio"
+                            value="N"
+                            name="${formName}"
+                            ${formValue eq 'N' ? 'checked' : ''} />
+                    No
+                </label>
             </div>
         </div>
         <div class="clearFixed"></div>

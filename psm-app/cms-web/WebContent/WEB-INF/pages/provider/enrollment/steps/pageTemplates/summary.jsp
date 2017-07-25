@@ -22,23 +22,23 @@
         <c:if test="${tabName ne pageName and not afterSummary}">
             <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/header.jsp" %>
         </c:if>
-	    <c:choose>
-	        <c:when test="${tabName eq 'Personal Information'}">
-	            <jsp:include page="pageTemplates/summary/personal_info.jsp" />
-	        </c:when>
-	        <c:when test="${tabName eq 'Practice Information'}">
-	            <jsp:include page="pageTemplates/summary/practice_info.jsp" />
-	        </c:when>
-	        <c:otherwise>
-				<c:forEach var="formName" items="${viewModel.tabModels[tabName].formNames}">
-				    <c:forEach var="entry" items="${summaryViewRegistry}">
-				        <c:if test="${formName eq entry.key}">
-				            <jsp:include page="${entry.value}" />
-				        </c:if>
-				    </c:forEach>
-				</c:forEach>
-	        </c:otherwise>
-	    </c:choose>
+        <c:choose>
+            <c:when test="${tabName eq 'Personal Information'}">
+                <jsp:include page="pageTemplates/summary/personal_info.jsp" />
+            </c:when>
+            <c:when test="${tabName eq 'Practice Information'}">
+                <jsp:include page="pageTemplates/summary/practice_info.jsp" />
+            </c:when>
+            <c:otherwise>
+                <c:forEach var="formName" items="${viewModel.tabModels[tabName].formNames}">
+                    <c:forEach var="entry" items="${summaryViewRegistry}">
+                        <c:if test="${formName eq entry.key}">
+                            <jsp:include page="${entry.value}" />
+                        </c:if>
+                    </c:forEach>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
         <c:if test="${tabName eq pageName}"><c:set var="afterSummary" value="${true}"></c:set></c:if>
     </c:forEach>
     <div class="tl"></div>

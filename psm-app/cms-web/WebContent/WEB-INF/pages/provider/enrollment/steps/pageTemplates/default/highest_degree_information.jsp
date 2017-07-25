@@ -14,10 +14,10 @@
     <c:set var="isActivated" value="${false}"></c:set>
     <c:set var="formName" value="_09_attachmentSize"></c:set>
     <c:forEach begin="1" end="${requestScope[formName]}" varStatus="status">
-		<c:set var="formName" value="_09_specialtyType_${status.index - 1}"></c:set>
-		<c:if test="${requestScope[formName] eq specialtyTrigger}">
-    		<c:set var="isActivated" value="${true}"></c:set>
-		</c:if>
+        <c:set var="formName" value="_09_specialtyType_${status.index - 1}"></c:set>
+        <c:if test="${requestScope[formName] eq specialtyTrigger}">
+            <c:set var="isActivated" value="${true}"></c:set>
+        </c:if>
     </c:forEach>
 </c:if>
 <input type="hidden" name="formNames" value="<%= ViewStatics.HIGHEST_DEGREE_FORM %>">
@@ -53,18 +53,18 @@
             <div class="row">
                 <label>Copy of Highest Degree Earned</label>
                 <span class="floatL">
-					<c:set var="formName" value="_14_copyOfHighestDegree"></c:set>
-					<input type="file" class="fileUpload" size="10" name="${formName}" />
-					<c:set var="formValue" value="${requestScope[formName]}"></c:set>
-					
-					<c:if test="${not empty formValue}">
-					    <c:url var="downloadLink" value="/provider/enrollment/attachment">
-					         <c:param name="id" value="${requestScope[formName]}"></c:param>
-					    </c:url>
-					    <div><a href="${downloadLink}">View</a></div>
-					    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-					    <input type="hidden" name="${formName}" value="${formValue}"/>
-					</c:if>
+                    <c:set var="formName" value="_14_copyOfHighestDegree"></c:set>
+                    <input type="file" class="fileUpload" size="10" name="${formName}" />
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+
+                    <c:if test="${not empty formValue}">
+                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                             <c:param name="id" value="${requestScope[formName]}"></c:param>
+                        </c:url>
+                        <div><a href="${downloadLink}">View</a></div>
+                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                        <input type="hidden" name="${formName}" value="${formValue}"/>
+                    </c:if>
                 </span>
             </div>
             <div class="clearFixed"></div>

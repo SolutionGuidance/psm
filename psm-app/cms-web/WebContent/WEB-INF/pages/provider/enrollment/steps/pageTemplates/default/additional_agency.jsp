@@ -45,12 +45,12 @@
                             <c:set var="formName" value="_12_objectId_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <input type="hidden" name="${formName}" value="${formValue}">
-						    <c:set var="disableLinkedFields" value=""></c:set>
-						    <c:set var="isLinked" value="${false}"></c:set>
-						    <c:if test="${not empty formValue}">
-						        <c:set var="disableLinkedFields" value='disabled="disabled"'></c:set>
-						        <c:set var="isLinked" value="${true}"></c:set>
-						    </c:if>
+                            <c:set var="disableLinkedFields" value=""></c:set>
+                            <c:set var="isLinked" value="${false}"></c:set>
+                            <c:if test="${not empty formValue}">
+                                <c:set var="disableLinkedFields" value='disabled="disabled"'></c:set>
+                                <c:set var="isLinked" value="${true}"></c:set>
+                            </c:if>
                             <c:set var="formName" value="_12_objectIdHash_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <input type="hidden" name="${formName}" value="${formValue}">

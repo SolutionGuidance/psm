@@ -32,12 +32,12 @@
                 <input type="text" class="umpiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
                 <a href="javascript:;" class="purpleBtn NPILook"><span class="btR"><span class="btM"><span class="icon">
                 <c:choose>
-                	<c:when test="${askUMPIorNPI}">
-                		NPI/UMPI Lookup
-                	</c:when>
-                	<c:otherwise>
-                		NPI Lookup
-                	</c:otherwise>
+                    <c:when test="${askUMPIorNPI}">
+                        NPI/UMPI Lookup
+                    </c:when>
+                    <c:otherwise>
+                        NPI Lookup
+                    </c:otherwise>
                 </c:choose>
                 </span></span></span></a>
                 <span class="errorMsg">No records found with NPI number <span></span></span>
@@ -51,17 +51,17 @@
                 <c:set var="formName" value="_16_providerType_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <select name="${formName}">
-                	<c:choose>
-	                	<c:when test="${onlyPharmacist}">
-	                		<option value="Pharmacist">Pharmacist</option>
-	                	</c:when>
-	                	<c:otherwise>
-	                		<option value="">Please select</option>
-		                    <c:forEach var="opt" items="${individualMemberProviderTypes}">
-		                       <option ${formValue eq opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
-		                    </c:forEach>
-	                	</c:otherwise>
-                	</c:choose>
+                    <c:choose>
+                        <c:when test="${onlyPharmacist}">
+                            <option value="Pharmacist">Pharmacist</option>
+                        </c:when>
+                        <c:otherwise>
+                            <option value="">Please select</option>
+                            <c:forEach var="opt" items="${individualMemberProviderTypes}">
+                               <option ${formValue eq opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
                 </select>
             </div>
             <div class="row requireField">
@@ -108,14 +108,14 @@
                 <input type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
             </div>
             <c:if test="${askBGSInfo == true}">
-            	<div class="row requireField">
-	                <label class="">BGS Study ID<span class="required">*</span></label>
-	                <span class="floatL"><b>:</b></span>
-	                <c:set var="formName" value="_16_bgsStudyId_${status.index - 1}"></c:set>
-	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="75"/>
-	            </div>
-            	<div class="row requireField">
+                <div class="row requireField">
+                    <label class="">BGS Study ID<span class="required">*</span></label>
+                    <span class="floatL"><b>:</b></span>
+                    <c:set var="formName" value="_16_bgsStudyId_${status.index - 1}"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="75"/>
+                </div>
+                <div class="row requireField">
                 <label>BGS Clearance Date<span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
@@ -125,7 +125,7 @@
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input class="date" type="text" name="${formName}" value="${formValue}"/>
                                     </span>
-            	</div>
+                </div>
             </c:if>
             <div class="clearFixed"></div>
         </div>
@@ -158,12 +158,12 @@
                 <input type="text" class="umpiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
                 <a href="javascript:;" class="purpleBtn NPILook"><span class="btR"><span class="btM"><span class="icon"></span>
                 <c:choose>
-                	<c:when test="${askUMPIorNPI}">
-                		NPI/UMPI Lookup
-                	</c:when>
-                	<c:otherwise>
-                		NPI Lookup
-                	</c:otherwise>
+                    <c:when test="${askUMPIorNPI}">
+                        NPI/UMPI Lookup
+                    </c:when>
+                    <c:otherwise>
+                        NPI Lookup
+                    </c:otherwise>
                 </c:choose>
                 </span></span></a>
                 <span class="errorMsg">No records found with NPI number <span></span></span>
@@ -177,17 +177,17 @@
                 <c:set var="formName" value="_16_providerType"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <select name="${formName}">
-                	<c:choose>
-	                	<c:when test="${onlyPharmacist}">
-	                		<option value="Pharmacist">Pharmacist</option>
-	                	</c:when>
-	                	<c:otherwise>
-	                		<option value="">Please select</option>
-		                    <c:forEach var="opt" items="${individualMemberProviderTypes}">
-		                       <option ${formValue eq opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
-		                    </c:forEach>
-	                	</c:otherwise>
-                	</c:choose>
+                    <c:choose>
+                        <c:when test="${onlyPharmacist}">
+                            <option value="Pharmacist">Pharmacist</option>
+                        </c:when>
+                        <c:otherwise>
+                            <option value="">Please select</option>
+                            <c:forEach var="opt" items="${individualMemberProviderTypes}">
+                               <option ${formValue eq opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
                 </select>
             </div>
             <div class="row requireField">
@@ -234,14 +234,14 @@
                 <input type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
             </div>
             <c:if test="${askBGSInfo == true}">
-            	<div class="row requireField">
-	                <label class="">BGS Study ID<span class="required">*</span></label>
-	                <span class="floatL"><b>:</b></span>
-	                <c:set var="formName" value="_16_bgsStudyId"></c:set>
-	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="75"/>
-	            </div>
-            	<div class="row requireField">
+                <div class="row requireField">
+                    <label class="">BGS Study ID<span class="required">*</span></label>
+                    <span class="floatL"><b>:</b></span>
+                    <c:set var="formName" value="_16_bgsStudyId"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="75"/>
+                </div>
+                <div class="row requireField">
                 <label>BGS Clearance Date<span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
@@ -251,7 +251,7 @@
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input class="date" type="text" name="${formName}" value="${formValue}"/>
                                     </span>
-            	</div>
+                </div>
             </c:if>
             <div class="clearFixed"></div>
         </div>

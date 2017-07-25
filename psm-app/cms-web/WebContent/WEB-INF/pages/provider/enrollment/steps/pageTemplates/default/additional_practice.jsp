@@ -53,12 +53,12 @@
                             <c:set var="formName" value="_07_objectId_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <input type="hidden" name="${formName}" value="${formValue}">
-						    <c:set var="disableLinkedFields" value=""></c:set>
-						    <c:set var="isLinked" value="${false}"></c:set>
-						    <c:if test="${not empty formValue}">
-						        <c:set var="disableLinkedFields" value='disabled="disabled"'></c:set>
-						        <c:set var="isLinked" value="${true}"></c:set>
-						    </c:if>
+                            <c:set var="disableLinkedFields" value=""></c:set>
+                            <c:set var="isLinked" value="${false}"></c:set>
+                            <c:if test="${not empty formValue}">
+                                <c:set var="disableLinkedFields" value='disabled="disabled"'></c:set>
+                                <c:set var="isLinked" value="${true}"></c:set>
+                            </c:if>
                             <c:set var="formName" value="_07_objectIdHash_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <input type="hidden" name="${formName}" value="${formValue}">
@@ -99,9 +99,9 @@
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <select ${disableLinkedFields} name="${formName}">
                                 <option value="">Please select</option>
-		                        <c:forEach var="opt" items="${requestScope['_99_states']}">
-		                            <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
-		                        </c:forEach>
+                                <c:forEach var="opt" items="${requestScope['_99_states']}">
+                                    <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+                                </c:forEach>
                             </select>
                         </td>
                         <td>
@@ -121,8 +121,8 @@
         </table>
         <div class="clearFixed"></div>
         <div class="tableBottom">
-        	<c:if test="${requestScope['_07_allowAdd'] eq 'Y'}">
-            	<a href="javascript:;" id="addPractice">+ Add Another Practice Location</a>
+            <c:if test="${requestScope['_07_allowAdd'] eq 'Y'}">
+                <a href="javascript:;" id="addPractice">+ Add Another Practice Location</a>
             </c:if>
         </div>
     </div>

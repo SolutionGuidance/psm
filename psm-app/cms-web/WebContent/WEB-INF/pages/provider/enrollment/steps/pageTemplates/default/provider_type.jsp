@@ -33,16 +33,16 @@
                 </c:if>
             </c:if>
             <c:if test="${not empty individualProviderTypes and not empty organizationProviderTypes}">
-	            <optgroup label="Individual Providers">
-	                <c:forEach var="opt" items="${individualProviderTypes}">
-	                    <option ${formValue == opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
-	                </c:forEach>
-	            </optgroup>
-	            <optgroup label="Organization Providers">
-	                <c:forEach var="opt" items="${organizationProviderTypes}">
-	                    <option ${formValue == opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
-	                </c:forEach>
-	            </optgroup>
+                <optgroup label="Individual Providers">
+                    <c:forEach var="opt" items="${individualProviderTypes}">
+                        <option ${formValue == opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
+                    </c:forEach>
+                </optgroup>
+                <optgroup label="Organization Providers">
+                    <c:forEach var="opt" items="${organizationProviderTypes}">
+                        <option ${formValue == opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
+                    </c:forEach>
+                </optgroup>
             </c:if>
         </select>
     </div>

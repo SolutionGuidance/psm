@@ -26,7 +26,7 @@
                                 <td>
                                     <c:set var="formName" value="_26_countyIndicator"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-			                        <input type="radio" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/> Is a county, specify county name
+                                    <input type="radio" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/> Is a county, specify county name
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_26_countyName"></c:set>
@@ -41,15 +41,15 @@
                                     <input type="radio" value="N" name="${formName}"  ${formValue eq 'N' ? 'checked' : ''}/> Have a contract with a county, upload copy
                                 </td>
                                 <td>
-			                        <c:set var="formName" value="_26_contractAttachment"></c:set>
-			                        <input type="file" class="fileUpload" name="${formName}" />
-			                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-			                        <c:if test="${not empty formValue}">
-			                            <c:url var="downloadLink" value="/provider/enrollment/attachment">
-			                                 <c:param name="id" value="${formValue}"></c:param>
-			                            </c:url>
-			                            <div><a href="${downloadLink}">Download</a></div>
-			                        </c:if>
+                                    <c:set var="formName" value="_26_contractAttachment"></c:set>
+                                    <input type="file" class="fileUpload" name="${formName}" />
+                                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                                    <c:if test="${not empty formValue}">
+                                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                                             <c:param name="id" value="${formValue}"></c:param>
+                                        </c:url>
+                                        <div><a href="${downloadLink}">Download</a></div>
+                                    </c:if>
                                 </td>
                             </tr>
                             </tbody>

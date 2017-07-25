@@ -26,14 +26,14 @@
             <div class="row">
                 <label>Street Address</label>
                 <span class="floatL"><b>:</b></span>
-			    <span>
-			        <c:if test="${not empty requestScope['_15_addressLine1']}"><c:out value="${requestScope['_15_addressLine1']}" /><br /></c:if>
-			        <c:out value="${requestScope['_15_addressLine2']}" /><br />
-			        <c:set var="city" value="${requestScope['_15_city']}" /><c:out value="${city}" /> 
-			        <c:set var="state" value="${requestScope['_15_state']}" /><c:if test="${not empty state}">,</c:if>${state}
-			        <c:set var="zip" value="${requestScope['_15_zip']}" /><c:if test="${not empty zip}">,</c:if>${zip} 
-			        <c:set var="county" value="${requestScope['_15_orgCountyName']}" /><c:if test="${not empty county}">,</c:if>${county} 
-			    </span>
+                <span>
+                    <c:if test="${not empty requestScope['_15_addressLine1']}"><c:out value="${requestScope['_15_addressLine1']}" /><br /></c:if>
+                    <c:out value="${requestScope['_15_addressLine2']}" /><br />
+                    <c:set var="city" value="${requestScope['_15_city']}" /><c:out value="${city}" />
+                    <c:set var="state" value="${requestScope['_15_state']}" /><c:if test="${not empty state}">,</c:if>${state}
+                    <c:set var="zip" value="${requestScope['_15_zip']}" /><c:if test="${not empty zip}">,</c:if>${zip}
+                    <c:set var="county" value="${requestScope['_15_orgCountyName']}" /><c:if test="${not empty county}">,</c:if>${county}
+                </span>
             </div>
             <div class="row">
                 <label>Federal Employer ID (FEIN)</label>
@@ -149,110 +149,110 @@
     </c:when>
     
     <c:when test="${useEDILayout}">
-		<div class="section">
-		    <div class="leftCol">
-		        <div class="row">
-		            <label>Type</label>
-		            <span class="floatL"><b>:</b></span>
-		            <span>${requestScope['_15_subType']}</span>
-		        </div>
-		        <div class="row">
-		            <label>Organization Name</label>
-		            <span class="floatL"><b>:</b></span>
-		            <span>${requestScope['_15_name']}</span>
-		        </div>
-		        <div class="row">
-		            <label>Federal Employer ID (FEIN)</label>
-		            <span class="floatL"><b>:</b></span>
-		            <span>${requestScope['_15_fein']}</span>
-		        </div>
-		        <div class="row">
-		            <label>MN Tax Id</label>
-		            <span class="floatL"><b>:</b></span>
-		            <span>${requestScope['_15_stateTaxId']}</span>
-		        </div>
-		        <div class="row">
-		            <label>Legal Name</label>
-		            <span class="floatL"><b>:</b></span>
-		            <span>${requestScope['_15_legalName']}</span>
-		        </div>
-		        <div class="row">
-		            <label>Address</label>
-		            <span class="floatL"><b>:</b></span>
-	                <span>
-	                    <c:if test="${not empty requestScope['_15_addressLine1']}"><c:out value="${requestScope['_15_addressLine1']}" /><br /></c:if>
-	                    <c:out value="${requestScope['_15_addressLine2']}" /><br />
-	                    <c:set var="city" value="${requestScope['_15_city']}" /><c:out value="${city}" /> 
-	                    <c:set var="state" value="${requestScope['_15_state']}" /><c:if test="${not empty state}">,</c:if>${state}
-	                    <c:set var="zip" value="${requestScope['_15_zip']}" /><c:if test="${not empty zip}">,</c:if>${zip} 
-	                    <c:set var="county" value="${requestScope['_15_county']}" /><c:if test="${not empty county}">,</c:if>${county} 
-	                </span>
-		        </div>
-		        <div class="row">
-		            <label>Phone Number</label>
-		            <span class="floatL"><b>:</b></span>
-		            <span>
+        <div class="section">
+            <div class="leftCol">
+                <div class="row">
+                    <label>Type</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${requestScope['_15_subType']}</span>
+                </div>
+                <div class="row">
+                    <label>Organization Name</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${requestScope['_15_name']}</span>
+                </div>
+                <div class="row">
+                    <label>Federal Employer ID (FEIN)</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${requestScope['_15_fein']}</span>
+                </div>
+                <div class="row">
+                    <label>MN Tax Id</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${requestScope['_15_stateTaxId']}</span>
+                </div>
+                <div class="row">
+                    <label>Legal Name</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${requestScope['_15_legalName']}</span>
+                </div>
+                <div class="row">
+                    <label>Address</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>
+                        <c:if test="${not empty requestScope['_15_addressLine1']}"><c:out value="${requestScope['_15_addressLine1']}" /><br /></c:if>
+                        <c:out value="${requestScope['_15_addressLine2']}" /><br />
+                        <c:set var="city" value="${requestScope['_15_city']}" /><c:out value="${city}" />
+                        <c:set var="state" value="${requestScope['_15_state']}" /><c:if test="${not empty state}">,</c:if>${state}
+                        <c:set var="zip" value="${requestScope['_15_zip']}" /><c:if test="${not empty zip}">,</c:if>${zip}
+                        <c:set var="county" value="${requestScope['_15_county']}" /><c:if test="${not empty county}">,</c:if>${county}
+                    </span>
+                </div>
+                <div class="row">
+                    <label>Phone Number</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>
                         ${requestScope['_15_phone1']}<c:if test="${requestScope['_15_phone2'] ne ''}"> - </c:if>${requestScope['_15_phone2']}<c:if test="${requestScope['_15_phone3'] ne ''}"> - </c:if>${requestScope['_15_phone3']}<c:if test="${requestScope['_15_phone4'] ne ''}"> ext. </c:if>${requestScope['_15_phone4']}
-		            </span>
-		        </div>
-		    </div>
-		    <!-- /.leftCol -->
-		    <div class="rightCol">
-		        <div class="row">
-		            <label>&nbsp;</label>
-		            <span class="address">&nbsp;<br/>&nbsp;</span>
-		        </div>
-		        <div class="row">
-		            <label>Legal Name</label>
-		            <span class="floatL"><b>:</b></span>
-		            <span>${requestScope['_15_legalName']}</span>
-		        </div>
-		        <div class="row">
-		            <label>Fax Number</label>
-		            <span class="floatL"><b>:</b></span>
-		            <span>
+                    </span>
+                </div>
+            </div>
+            <!-- /.leftCol -->
+            <div class="rightCol">
+                <div class="row">
+                    <label>&nbsp;</label>
+                    <span class="address">&nbsp;<br/>&nbsp;</span>
+                </div>
+                <div class="row">
+                    <label>Legal Name</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${requestScope['_15_legalName']}</span>
+                </div>
+                <div class="row">
+                    <label>Fax Number</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>
                     ${requestScope['_15_fax1']}<c:if test="${requestScope['_15_fax2'] ne ''}"> - </c:if>${requestScope['_15_fax2']}<c:if test="${requestScope['_15_fax3'] ne ''}"> - </c:if>${requestScope['_15_fax3']}
-		            </span>
-		        </div>
-		        <div class="row">
-		            <label>UMPI</label>
-		            <span class="floatL"><b>:</b></span>
-		            <span>${requestScope['_15_npi']}</span>
-		        </div>
-		        <c:if test="${showNameOfPersonFillingTheForm}">
-			        <div class="row">
-			            <label>Name of person completing this form</label>
-			            <span class="floatL"><b>:</b></span>
-			            <span>${requestScope['_15_personCompletingForm']}</span>
-			        </div>
-			    </c:if>
-		    </div>
-		    <div class="clearFixed"></div>
+                    </span>
+                </div>
+                <div class="row">
+                    <label>UMPI</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${requestScope['_15_npi']}</span>
+                </div>
+                <c:if test="${showNameOfPersonFillingTheForm}">
+                    <div class="row">
+                        <label>Name of person completing this form</label>
+                        <span class="floatL"><b>:</b></span>
+                        <span>${requestScope['_15_personCompletingForm']}</span>
+                    </div>
+                </c:if>
+            </div>
+            <div class="clearFixed"></div>
         </div>
     </c:when>
     <c:otherwise>
-		<div class="section">
-		    <div class="leftCol">
-		        <div class="row">
-			        <c:choose>
-			        	<c:when test="${askUMPI}">
-			        		<label>UMPI</label>
-			        	</c:when>
-			        	<c:otherwise>
-			        		<label>NPI</label>
-			        	</c:otherwise>
-			        </c:choose>	
-		            <span class="floatL"><b>:</b></span>
-		            <span>${requestScope['_15_npi']}</span>
-		        </div>
-		        <div class="row">
-		            <label>${askDBAName ? 'DBA Name' : 'Doing Business As'}</label>
-		            <span class="floatL"><b>:</b></span>
-		            <span>${requestScope['_15_name']}</span>
-		        </div>
-		        <div class="row">
-		            <label>Practice Address</label>
-		            <span class="floatL"><b>:</b></span>
+        <div class="section">
+            <div class="leftCol">
+                <div class="row">
+                    <c:choose>
+                        <c:when test="${askUMPI}">
+                            <label>UMPI</label>
+                        </c:when>
+                        <c:otherwise>
+                            <label>NPI</label>
+                        </c:otherwise>
+                    </c:choose>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${requestScope['_15_npi']}</span>
+                </div>
+                <div class="row">
+                    <label>${askDBAName ? 'DBA Name' : 'Doing Business As'}</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${requestScope['_15_name']}</span>
+                </div>
+                <div class="row">
+                    <label>Practice Address</label>
+                    <span class="floatL"><b>:</b></span>
                     <span>
                         <c:if test="${not empty requestScope['_15_addressLine1']}"><c:out value="${requestScope['_15_addressLine1']}" /><br /></c:if>
                         <c:out value="${requestScope['_15_addressLine2']}" /><br />
@@ -261,61 +261,61 @@
                         <c:set var="zip" value="${requestScope['_15_zip']}" /><c:if test="${not empty zip}">,</c:if>${zip} 
                         <c:set var="county" value="${requestScope['_15_county']}" /><c:if test="${not empty county}">,</c:if>${county} 
                     </span>
-		        </div>
-		        <div class="row">
-		            <label>Office Phone Number</label>
-		            <span class="floatL"><b>:</b></span>
-		
-				    <span>
+                </div>
+                <div class="row">
+                    <label>Office Phone Number</label>
+                    <span class="floatL"><b>:</b></span>
+
+                    <span>
                         ${requestScope['_15_phone1']}<c:if test="${requestScope['_15_phone2'] ne ''}"> - </c:if>${requestScope['_15_phone2']}<c:if test="${requestScope['_15_phone3'] ne ''}"> - </c:if>${requestScope['_15_phone3']}<c:if test="${requestScope['_15_phone4'] ne ''}"> ext. </c:if>${requestScope['_15_phone4']}
-				    </span>
-		        </div>
-		        <div class="row">
-		            <label>Federal Employer ID (FEIN)</label>
-		            <span class="floatL"><b>:</b></span>
-		            <span>${requestScope['_15_fein']}</span>
-		        </div>
-	            <c:if test="${askFiscalYear}">
-		            <div class="row">
-		                <label>Fiscal Year End</label>
-		                <span class="floatL"><b>:</b></span>
-		                <span>${requestScope['_15_fye1']}</span>
-		            </div>
-	            </c:if>
-		    </div>
-		    <!-- /.leftCol -->
-		    <div class="rightCol">
-	            <c:if test="${askEffectiveDate}">
-			        <div class="row">
-			            <label>Effective Date</label>
-			            <span class="floatL"><b>:</b></span>
-			            <span>${requestScope['_15_effectiveDate']}</span>
-			        </div>
-		        </c:if>
-		        <div class="row">
-		            <label>${askTaxPayerName ? 'Taxpayer Name' : 'Legal Name'}</label>
-		            <span class="floatL"><b>:</b></span>
-		            <span>${requestScope['_15_legalName']}</span>
-		        </div>
-		        <div class="row">
-		            <label>&nbsp;</label>
-		            <span class="address">&nbsp;<br/>&nbsp;</span>
-		        </div>
-		        <div class="row">
-		            <label>Office Fax Number</label>
-		            <span class="floatL"><b>:</b></span>
-		            <span>
+                    </span>
+                </div>
+                <div class="row">
+                    <label>Federal Employer ID (FEIN)</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${requestScope['_15_fein']}</span>
+                </div>
+                <c:if test="${askFiscalYear}">
+                    <div class="row">
+                        <label>Fiscal Year End</label>
+                        <span class="floatL"><b>:</b></span>
+                        <span>${requestScope['_15_fye1']}</span>
+                    </div>
+                </c:if>
+            </div>
+            <!-- /.leftCol -->
+            <div class="rightCol">
+                <c:if test="${askEffectiveDate}">
+                    <div class="row">
+                        <label>Effective Date</label>
+                        <span class="floatL"><b>:</b></span>
+                        <span>${requestScope['_15_effectiveDate']}</span>
+                    </div>
+                </c:if>
+                <div class="row">
+                    <label>${askTaxPayerName ? 'Taxpayer Name' : 'Legal Name'}</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${requestScope['_15_legalName']}</span>
+                </div>
+                <div class="row">
+                    <label>&nbsp;</label>
+                    <span class="address">&nbsp;<br/>&nbsp;</span>
+                </div>
+                <div class="row">
+                    <label>Office Fax Number</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>
                         ${requestScope['_15_fax1']}<c:if test="${requestScope['_15_fax2'] ne ''}"> - </c:if>${requestScope['_15_fax2']}<c:if test="${requestScope['_15_fax3'] ne ''}"> - </c:if>${requestScope['_15_fax3']}
-		            </span>
-		        </div>
-		        <div class="row">
-		            <label>MN TAX ID </label>
-		            <span class="floatL"><b>:</b></span>
-		            <span>${requestScope['_15_stateTaxId']}</span>
-		        </div>
-		    </div>
-		    <div class="clearFixed"></div>
-		</div>
+                    </span>
+                </div>
+                <div class="row">
+                    <label>MN TAX ID </label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${requestScope['_15_stateTaxId']}</span>
+                </div>
+            </div>
+            <div class="clearFixed"></div>
+        </div>
     </c:otherwise>
 </c:choose>
 <c:if test="${not useEDILayout}">

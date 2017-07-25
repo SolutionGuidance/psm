@@ -24,11 +24,11 @@
         <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/view_practice_info.jsp" %>
     </c:when>
     <c:when test="${pageName eq 'Provider Statement'}">
-	    <c:if test="${viewModel.individual}">
-	        <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/view_individual_disclosure.jsp" %>
+        <c:if test="${viewModel.individual}">
+            <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/view_individual_disclosure.jsp" %>
         </c:if>
         <c:if test="${not viewModel.individual}">
-	        <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/view_organization_disclosure.jsp" %>
+            <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/view_organization_disclosure.jsp" %>
         </c:if>
     
     </c:when>

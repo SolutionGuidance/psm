@@ -69,10 +69,10 @@
     
                 <c:set var="formName" value="_25_suretyBondId"></c:set>
                 <c:if test="${not empty  requestScope[formName]}">
-	                <c:url var="downloadLink" value="/provider/enrollment/attachment">
-	                     <c:param name="id" value="${requestScope[formName]}"></c:param>
-	                </c:url>
-	                <a href="${downloadLink}">Download</a>
+                    <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                         <c:param name="id" value="${requestScope[formName]}"></c:param>
+                    </c:url>
+                    <a href="${downloadLink}">Download</a>
                 </c:if>
                 <input type="file" class="fileUpload" name="${formName}" />
             </div>

@@ -15,33 +15,33 @@
     </div>
 
     <div>
-	<div class="section">
-	    <input type="hidden" name="formNames" value="<%= ViewStatics.INDIVIDUAL_AGENCY_FORM %>">
-	    <div class="wholeCol">
-	        <div class="row requireField">
-	            <label>Agency Name<span class="required">*</span></label>
-	            <span class="floatL"><b>:</b></span>
-	
-		        <c:set var="formName" value="_11_name"></c:set>
-		        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	            <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
-	        </div>
-	        <div class="row requireField">
-	            <label>Agency Id<span class="required">*</span></label>
-	            <span class="floatL"><b>:</b></span>
-	            
-	            <c:set var="formName" value="_11_agencyId"></c:set>
-	            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	            <input type="text" class="normalInput" id="firstName" name="${formName}" value="${formValue}" maxlength="100"/>
-	        </div>
-	        <div class="row">
-	            <label>Agency NPI/UMPI<span class="required">*</span></label>
-	            <span class="floatL"><b>:</b></span>
-	            
-	            <c:set var="formName" value="_11_npi"></c:set>
-	            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	            <input type="text" class="npiMasked normalInput" id="middleName" name="${formName}" value="${formValue}" maxlength="10"/>
-	        </div>
+    <div class="section">
+        <input type="hidden" name="formNames" value="<%= ViewStatics.INDIVIDUAL_AGENCY_FORM %>">
+        <div class="wholeCol">
+            <div class="row requireField">
+                <label>Agency Name<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+
+                <c:set var="formName" value="_11_name"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+            </div>
+            <div class="row requireField">
+                <label>Agency Id<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+
+                <c:set var="formName" value="_11_agencyId"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <input type="text" class="normalInput" id="firstName" name="${formName}" value="${formValue}" maxlength="100"/>
+            </div>
+            <div class="row">
+                <label>Agency NPI/UMPI<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+
+                <c:set var="formName" value="_11_npi"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <input type="text" class="npiMasked normalInput" id="middleName" name="${formName}" value="${formValue}" maxlength="10"/>
+            </div>
                 
             <div class="row">
                 <label>Fax Number<span class="required">*</span></label>
@@ -86,10 +86,10 @@
                 <input class="date" type="text" name="${formName}" value="${formValue}"/>
             </div>
 
-	        <div class="clearFixed"></div>
-	    </div>
-	</div>
-	<!-- /.section -->
+            <div class="clearFixed"></div>
+        </div>
+    </div>
+    <!-- /.section -->
     </div>
     <div class="tl"></div>
     <div class="tr"></div>

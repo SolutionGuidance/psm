@@ -46,21 +46,21 @@
             </div>
             <c:set var="formName" value="_19_requiredAgreementsSize"></c:set>
             <c:forEach begin="1" end="${requestScope[formName]}" varStatus="status">
-	            <div class="checkRow">
-	                <c:set var="formName" value="_19_accepted_${status.index - 1}"></c:set>
-		            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                <input type="checkbox" value="" class="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}"/>
+                <div class="checkRow">
+                    <c:set var="formName" value="_19_accepted_${status.index - 1}"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <input type="checkbox" value="" class="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}"/>
                     <c:set var="formName" value="_19_documentId_${status.index - 1}"></c:set>
                     <c:set var="documentId" value="${requestScope[formName]}"></c:set>
-	                <input type="hidden" value="${documentId}" name="${formName}"/>
+                    <input type="hidden" value="${documentId}" name="${formName}"/>
                     <c:set var="formName" value="_19_documentName_${status.index - 1}"></c:set>
                     <c:set var="documentName" value="${requestScope[formName]}"></c:set>
                     <c:url var="viewDocumentUrl" value="/provider/enrollment/agreement"><c:param name="id" value="${documentId}"></c:param></c:url>
-	                <span>I have read and agree to the terms of the</span><a href="${viewDocumentUrl}" target="_blank">${documentName}</a>
+                    <span>I have read and agree to the terms of the</span><a href="${viewDocumentUrl}" target="_blank">${documentName}</a>
                     <c:set var="formName" value="_19_updatedVersion_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                <c:if test="${formValue eq 'Y'}"><span>(Updated)</span></c:if>
-	            </div>
+                    <c:if test="${formValue eq 'Y'}"><span>(Updated)</span></c:if>
+                </div>
             </c:forEach>
             <div class="clearFixed"></div>
         </div>
@@ -69,8 +69,8 @@
                 <label>Date<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper">
-	                <c:set var="formName" value="_19_date"></c:set>
-	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <c:set var="formName" value="_19_date"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input class="date" type="text" name="${formName}" value="${formValue}"/>
                 </span>
             </div>

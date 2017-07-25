@@ -65,26 +65,26 @@
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <select class="bigSelect" name="${formName}">
                         <option value="">Please select</option>
-	                    <c:forEach var="opt" items="${requestScope['_13_tribalCodes']}">
-	                        <option ${formValue eq opt.description ? 'selected' : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
-	                    </c:forEach>
+                        <c:forEach var="opt" items="${requestScope['_13_tribalCodes']}">
+                            <option ${formValue eq opt.description ? 'selected' : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
+                        </c:forEach>
                     </select>
                 </td>
                 <td>
-					<c:set var="formName" value="_13_attachment_0"></c:set>
-					<input type="file" class="fileUpload" size="10" name="${formName}" />
-					
-					<c:set var="formName" value="_13_filename_0"></c:set>
-					<c:set var="formValue" value="${requestScope[formName]}"></c:set>
-					<c:if test="${not empty formValue}">
-						<c:set var="formName" value="_13_attachmentId_0"></c:set>
-						<c:url var="downloadLink" value="/provider/enrollment/attachment">
-						     <c:param name="id" value="${requestScope[formName]}"></c:param>
-						</c:url>
+                    <c:set var="formName" value="_13_attachment_0"></c:set>
+                    <input type="file" class="fileUpload" size="10" name="${formName}" />
+
+                    <c:set var="formName" value="_13_filename_0"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <c:if test="${not empty formValue}">
+                        <c:set var="formName" value="_13_attachmentId_0"></c:set>
+                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                             <c:param name="id" value="${requestScope[formName]}"></c:param>
+                        </c:url>
                         <div><a href="${downloadLink}"><cms:truncate text="${formValue}" /></a></div>
-						<c:set var="formValue" value="${requestScope[formName]}"></c:set>
-   						<input type="hidden" name="${formName}" value="${formValue}"/>
-					</c:if>
+                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                           <input type="hidden" name="${formName}" value="${formValue}"/>
+                    </c:if>
                 </td>
                 <c:set var="formName" value="_13_licenseNumber_0"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>

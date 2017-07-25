@@ -21,19 +21,19 @@
     <tbody>
         <c:set var="formName" value="_03_attachmentSize"></c:set>
         <c:forEach begin="1" end="${requestScope[formName]}" varStatus="status">
-	        <tr>
-	            <td class="alignCenter">${status.count}</td>
-	            <c:set var="formName" value="_03_licenseType_${status.index - 1}"></c:set>
-	            <td>${requestScope[formName]}</td>
-	            <c:set var="formName" value="_03_licenseNumber_${status.index - 1}"></c:set>
-	            <td>${requestScope[formName]}</td>
-	            <c:set var="formName" value="_03_originalIssueDate_${status.index - 1}"></c:set>
-	            <td>${requestScope[formName]}</td>
-	            <c:set var="formName" value="_03_renewalDate_${status.index - 1}"></c:set>
-	            <td>${requestScope[formName]}</td>
-	            <c:set var="formName" value="_03_issuingState_${status.index - 1}"></c:set>
-	            <td>${requestScope[formName]}</td>
-	        </tr>
+            <tr>
+                <td class="alignCenter">${status.count}</td>
+                <c:set var="formName" value="_03_licenseType_${status.index - 1}"></c:set>
+                <td>${requestScope[formName]}</td>
+                <c:set var="formName" value="_03_licenseNumber_${status.index - 1}"></c:set>
+                <td>${requestScope[formName]}</td>
+                <c:set var="formName" value="_03_originalIssueDate_${status.index - 1}"></c:set>
+                <td>${requestScope[formName]}</td>
+                <c:set var="formName" value="_03_renewalDate_${status.index - 1}"></c:set>
+                <td>${requestScope[formName]}</td>
+                <c:set var="formName" value="_03_issuingState_${status.index - 1}"></c:set>
+                <td>${requestScope[formName]}</td>
+            </tr>
         </c:forEach>
     </tbody>
 </table>

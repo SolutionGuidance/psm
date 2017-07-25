@@ -19,7 +19,7 @@
 <div class="newEnrollmentPanel practicePanel memberInfoPanel">
     <div class="section">
         <div class="leftCol">
-        	<div class="row requireField">
+            <div class="row requireField">
                 <label>QP Type<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 
@@ -63,22 +63,22 @@
             <div class="clearFixed"></div>
         </div>
         <div class="rightCol">
-        	<c:set var="qpType" value="_29_qpType_${status.index - 1}"></c:set>
+            <c:set var="qpType" value="_29_qpType_${status.index - 1}"></c:set>
             <c:set var="qpTypeValue" value="${requestScope[qpType]}"></c:set>
             <c:choose>
-            	<c:when test="${qpTypeValue == 'Mental Health Professional'}">
-					<div class="row mhpType">
-            	</c:when>
-            	<c:otherwise>
-					<div class="row mhpType hide">
-            	</c:otherwise>
+                <c:when test="${qpTypeValue == 'Mental Health Professional'}">
+                    <div class="row mhpType">
+                </c:when>
+                <c:otherwise>
+                    <div class="row mhpType hide">
+                </c:otherwise>
             </c:choose>
                 <label>MHP Type</label>
                 <span class="floatL"><b>:</b></span>
                 <span class="floatL">
-                	<c:set var="formName" value="_29_qpSubType_${status.index - 1}"></c:set>
-                	<c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                	<input type="text" class="normalInput" name="${formName}" value="${formValue}"/>
+                    <c:set var="formName" value="_29_qpSubType_${status.index - 1}"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <input type="text" class="normalInput" name="${formName}" value="${formValue}"/>
                 </span>
             </div>
             <div class="row requireField">
@@ -227,23 +227,23 @@
             <c:set var="formName" value="_29_licenseSize_${status.index - 1}"></c:set>
             <c:forEach begin="1" end="${requestScope[formName]}" varStatus="licenseRow">
             <tr>
-            	<c:set var="totalLiceses" value="${licenseRow.count}" />
+                <c:set var="totalLiceses" value="${licenseRow.count}" />
                 <td class="alignCenter">${licenseRow.count}</td>
                 <td class="licenseTypeInput">
-	                <c:set var="formName" value="_29_licenseType_${status.index - 1}_${licenseRow.index - 1}"></c:set>
-	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                <c:if test="${formValue eq 'PCA 1 or 3 day Steps for Success Training'}">
-	                    <span>PCA 1 or 3 day Steps for Success Training</span>
-	                    <input type="hidden" name="${formName}" value="PCA 1 or 3 day Steps for Success Training"/>
-	                </c:if>
-	                <c:if test="${formValue ne 'PCA 1 or 3 day Steps for Success Training'}">
-	                    <select class="bigSelect" name="${formName}">
-	                        <option value="">Please select</option>
-	                        <c:forEach var="opt" items="${requestScope['_29_licenseTypes']}">
-	                            <option ${formValue eq opt.description ? 'selected' : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
-	                        </c:forEach>
-	                    </select>
-	                </c:if>
+                    <c:set var="formName" value="_29_licenseType_${status.index - 1}_${licenseRow.index - 1}"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <c:if test="${formValue eq 'PCA 1 or 3 day Steps for Success Training'}">
+                        <span>PCA 1 or 3 day Steps for Success Training</span>
+                        <input type="hidden" name="${formName}" value="PCA 1 or 3 day Steps for Success Training"/>
+                    </c:if>
+                    <c:if test="${formValue ne 'PCA 1 or 3 day Steps for Success Training'}">
+                        <select class="bigSelect" name="${formName}">
+                            <option value="">Please select</option>
+                            <c:forEach var="opt" items="${requestScope['_29_licenseTypes']}">
+                                <option ${formValue eq opt.description ? 'selected' : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
+                            </c:forEach>
+                        </select>
+                    </c:if>
                 </td>
                 <td class="licenseCopyInput">
                     <c:set var="formName" value="_29_attachment_${status.index - 1}_${licenseRow.index - 1}"></c:set>
@@ -291,60 +291,60 @@
             </tr>
             </c:forEach>
             <tr>
-	  			<td colspan="7">Enter the Steps for Success Training information when you have completed the training.</td>
-			</tr>
+                  <td colspan="7">Enter the Steps for Success Training information when you have completed the training.</td>
+            </tr>
             <c:if test="${totalLiceses == 1}">
-            	<tr>
-	                <td class="alignCenter">2</td>
-	                <td class="licenseTypeInput">
-	                    <c:set var="formName" value="_29_licenseType_${status.index - 1}_1"></c:set>
-	                    <span>PCA 1 or 3 day Steps for Success Training</span>
-	                    <input type="hidden" name="${formName}" value="PCA 1 or 3 day Steps for Success Training"/>
-	                </td>
-	                <td class="licenseCopyInput">
-	                    <c:set var="formName" value="_29_attachment_${status.index - 1}_1"></c:set>
-	                    <input type="file" class="fileUpload" size="10" name="${formName}" />
-	                    
-	                    <c:set var="formName" value="_29_filename_${status.index - 1}_1"></c:set>
-	                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                    <c:if test="${not empty formValue}">
-	                        <c:set var="formName" value="_29_attachmentId_${status.index - 1}_1"></c:set>
-	                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
-	                             <c:param name="id" value="${requestScope[formName]}"></c:param>
-	                        </c:url>
-	                        <div><a href="${downloadLink}"><c:out value="${formValue}"></c:out></a></div>
-	                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                        <input type="hidden" name="${formName}" value="${formValue}"/>
-	                    </c:if>
-	                </td>
-	                <c:set var="formName" value="_29_licenseNumber_${status.index - 1}_1"></c:set>
-	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                <td class="licenseNoInput"><input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
-	                <td class="dateCell licenseDateInput">
-	                    <span class="dateWrapper">
-	                        <c:set var="formName" value="_29_originalIssueDate_${status.index - 1}_1"></c:set>
-	                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                        <input class="date" type="text" name="${formName}" value="${formValue}"/>
-	                    </span>
-	                </td>
-	                <td class="dateCell licenseRenewalInput">
-	                    <span class="dateWrapper">
-	                        <c:set var="formName" value="_29_renewalDate_${status.index - 1}_1"></c:set>
-	                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                        <input class="date" type="text"  name="${formName}" value="${formValue}"/>
-	                    </span>
-	                </td>
-	                <td class="licenseStateInput">
-	                    <c:set var="formName" value="_29_issuingState_${status.index - 1}_1"></c:set>
-	                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                    <select name="${formName}">
-	                        <option value="">Please select</option>
-	                        <c:forEach var="opt" items="${requestScope['_29_licenseStates']}">
-	                            <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
-	                        </c:forEach>
-	                    </select>
-	                </td>
-	            </tr>
+                <tr>
+                    <td class="alignCenter">2</td>
+                    <td class="licenseTypeInput">
+                        <c:set var="formName" value="_29_licenseType_${status.index - 1}_1"></c:set>
+                        <span>PCA 1 or 3 day Steps for Success Training</span>
+                        <input type="hidden" name="${formName}" value="PCA 1 or 3 day Steps for Success Training"/>
+                    </td>
+                    <td class="licenseCopyInput">
+                        <c:set var="formName" value="_29_attachment_${status.index - 1}_1"></c:set>
+                        <input type="file" class="fileUpload" size="10" name="${formName}" />
+
+                        <c:set var="formName" value="_29_filename_${status.index - 1}_1"></c:set>
+                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                        <c:if test="${not empty formValue}">
+                            <c:set var="formName" value="_29_attachmentId_${status.index - 1}_1"></c:set>
+                            <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                                 <c:param name="id" value="${requestScope[formName]}"></c:param>
+                            </c:url>
+                            <div><a href="${downloadLink}"><c:out value="${formValue}"></c:out></a></div>
+                            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                            <input type="hidden" name="${formName}" value="${formValue}"/>
+                        </c:if>
+                    </td>
+                    <c:set var="formName" value="_29_licenseNumber_${status.index - 1}_1"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <td class="licenseNoInput"><input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
+                    <td class="dateCell licenseDateInput">
+                        <span class="dateWrapper">
+                            <c:set var="formName" value="_29_originalIssueDate_${status.index - 1}_1"></c:set>
+                            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                            <input class="date" type="text" name="${formName}" value="${formValue}"/>
+                        </span>
+                    </td>
+                    <td class="dateCell licenseRenewalInput">
+                        <span class="dateWrapper">
+                            <c:set var="formName" value="_29_renewalDate_${status.index - 1}_1"></c:set>
+                            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                            <input class="date" type="text"  name="${formName}" value="${formValue}"/>
+                        </span>
+                    </td>
+                    <td class="licenseStateInput">
+                        <c:set var="formName" value="_29_issuingState_${status.index - 1}_1"></c:set>
+                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                        <select name="${formName}">
+                            <option value="">Please select</option>
+                            <c:forEach var="opt" items="${requestScope['_29_licenseStates']}">
+                                <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                </tr>
             </c:if>
         </tbody>
         </table>
@@ -370,7 +370,7 @@
 <div class="newEnrollmentPanel practicePanel memberInfoPanel" id="qpTemplate">
     <div class="section">
         <div class="leftCol">
-        	<div class="row requireField">
+            <div class="row requireField">
                 <label>QP Type<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 
@@ -414,13 +414,13 @@
             <div class="clearFixed"></div>
         </div>
         <div class="rightCol">
-        	<div class="row mhpType hide">
+            <div class="row mhpType hide">
                 <label>MHP Type</label>
                 <span class="floatL"><b>:</b></span>
                 <span class="floatL">
-                	<c:set var="formName" value="_29_qpSubType"></c:set>
-                	<c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                	<input type="text" class="normalInput" name="${formName}" value="${formValue}"/>
+                    <c:set var="formName" value="_29_qpSubType"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <input type="text" class="normalInput" name="${formName}" value="${formValue}"/>
                 </span>
             </div>
             <div class="row requireField">
@@ -444,9 +444,9 @@
             </div>
             <div class="row requireField">
                 <label>
-	                <c:set var="formName" value="_29_ended"></c:set>
-	                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-	                <input type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" value="Y"/>
+                    <c:set var="formName" value="_29_ended"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <input type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" value="Y"/>
                     The affiliation has ended
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
@@ -665,9 +665,9 @@
                 </td>
             </tr>
             <tr>
-  				<td colspan="7">Enter the Steps for Success Training information when you have completed the training.</td>
-			</tr>
-	    </tbody>
+                  <td colspan="7">Enter the Steps for Success Training information when you have completed the training.</td>
+            </tr>
+        </tbody>
         </table>
         </div>
     <div class="clearFixed"></div>
@@ -683,8 +683,8 @@
 
 <script>
 $(document).ready(function() {
- 	if ($('.memberInfoPanel').length == 1) {
-		createQPs();
-	}
+     if ($('.memberInfoPanel').length == 1) {
+        createQPs();
+    }
 });
 </script>

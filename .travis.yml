@@ -27,23 +27,24 @@ script:
 after_success:
   - ./scripts/push-javadoc-to-gh-pages.sh
 
-# Continuous Deployment
-env:
-  global:
-  - secure: "JE68v/aK+J2bnu49IdZ7/o+1OTcOnDqcK3N4OyKBDeP2DkI5BAUKk4Q4/0LVzucVFI5UGuKJ0907grS3hGF7wtEv8DMhAIlrZILO0rJLBkawevBzN9QtwoRvLlY0nGEiVHlugNXq8CLGL0mo8NjU6rk8fscq871FgNDIfvUk4stwJOZx2Hv2BKBR13smryOP3CWnXRbU7bqbPqI1Zk8+HH+f6qpzCLAx7gP8PqwAUpr6EuVRQKopnlvjeKpqtUWaOyyGxKVJY4ceRTesk7bojzPrhI67phRweEVZgsX8f8IfR2HoFEFfVAsG1qMWxWazDhwKU8ElVocRJn+iM/Ap6W6yeviSPS5lzgixNijxz4b9T8mSdS/PGIBpM8GXIdwxABhHYQ281kTGWH3zndyc7GC/OIqdNztPNcpV2ISe2Xoifpw80BhmdjcMeWbWt0k9Sb0ll8TRPA4VA6RX+o9wCESGOafjK2ZiZU/xIaLpuO8CFaJw4YrKdkhdQQTj9T/AIQo9S6jQBwGAOZbYnY3JU9k/BLbrgSZtbixEGBZlCcq0m+hnf/iWluwsB0ZHYBuyVYC6noY2j3RywfXD3vUa3cSbr67X4lTaGh5OrzdznJzrpxKy3rsjc7k4h9/+DIlw4q3vKctOhwTe6Cy+99wRzeWY5qEehmzaNKalj5P7PpA="
-  - secure: "uKKODxo7VBfN906T6IbqTCV29adsa8tl5YBxjOtf41c3yOkHlTtAwowgEfSsYnWI2qmqnQNbxhmxWxj5e/c4HTErxXykqn9v9zInXZhkro1zPHQbZkz90M7c/qnkYDqWY6l6G1gMuJxPcAvH8Kc3ltSlVmFUf7OC0oG+3yIRb8jTZUjTeORAjD7yMmqEIxBnn1x7pEV+eNeP75u5Rfp8kbuSRCE01U2o8F9F8qc2b65e0HhvsA6RPDf3G7CEkK7vnRTy3MuoOPzC1+8rMeKA2aFcUYZeLpS5FXoA64gVxH7O2M4JBetjGEKG/tsMRW6XwbV9eg3T+ToEGI5dnZaoFb6Mvd7AJoyscNRDxNkIdaNYRSeAZwGMtO0NqoPJIGSNf9YLE/NYjM5m7T2pJaJACeDWMhD7CdX309DDqXd3EbXOgbR92Iui27MWu7RQzL8vpJG48VDm4evLY9dG8XcGGG5oVFjO7UZcFm6/tS6zQlqAELd0oTMGa+ajCOQQNvJHDKrGu0ExOVQX0hppv/lsU/RPVfZGMFiZKf1mNMUOeb3zTNQJE10IUi4GZcRs+NZr5LKJ9ks7SvwHpB+RqgUz642j+kpiYzmEMFBUJLa7us/wu57CSQfXMcooPbW/hxLxopES2KURdYwJdX0cDteWigbtJdmmM1rVMaTopk3c2ME="
-
+# Build the Continuous Deployment private key
 before_deploy:
-  - openssl aes-256-cbc -K $encrypted_f64cd7b1869a_key -iv $encrypted_f64cd7b1869a_iv
-    -in deploy_rsa.enc -out deploy_rsa -d
+  - echo $CD_KEY > deploy_rsa
+  - sed -i -e 's/ /\n/g' deploy_rsa
+  - head -n -4 deploy_rsa > tmp
+  - tail -n +5 tmp > deploy_rsa
+  - rm tmp
+  - sed -i '1s/^/-----BEGIN RSA PRIVATE KEY-----\n/' deploy_rsa
+  - sed -i -e "\$a-----END RSA PRIVATE KEY-----" deploy_rsa
   - eval "$(ssh-agent -s)"
   - chmod 600 deploy_rsa
   - ssh-add deploy_rsa
   - rm deploy_rsa
 
+# Continuous Deployment
 deploy:
   provider: script
   skip_cleanup: true
   script: sh scripts/deploy-ci.sh
   on:
-    branch: 222-continuous-deployment
+    branch: master

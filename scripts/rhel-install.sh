@@ -59,6 +59,7 @@ tar -xzf wildfly-10.1.0.Final.tar.gz
 rm wildfly-10.1.0.Final.tar.gz
 sudo mv wildfly-10.1.0.Final /opt/
 sudo ln -s /opt/wildfly-10.1.0.Final /opt/wildfly
+sudo ln -s /opt/wildfly-10.1.0.Final ~/wildfly-10.1.0.Final
 sudo echo | sudo dd of=/etc/default/wildfly.conf<<EOF
 JAVA_HOME="/usr/lib/jvm/java-1.8.0"
 JBOSS_HOME="/opt/wildfly"
@@ -83,6 +84,7 @@ sudo chown -R wildfly:wildfly /var/log/wildfly
 ## Set up wildfly server
 cat pass.txt | awk '{print "psm "$1}'>> script.txt
 eval sudo /opt/wildfly/bin/add-user.sh "$(< script.txt)"
+rm script.txt
 sudo service wildfly start
 wait_for_jboss /opt/wildfly/bin/jboss-cli.sh
 
@@ -132,3 +134,15 @@ cd psm/psm-app
 cd ../../
 /opt/wildfly/bin/jboss-cli.sh --user=psm --password="$(< pass.txt)" --connect \
 		--command="deploy psm/psm-app/cms-portal-services/build/libs/cms-portal-services.ear"
+
+## Set up CD information
+sudo adduser travis
+sudo cp ~/pass.txt /home/travis/
+sudo chown travis:travis /home/travis/pass.txt
+sudo ssh-keygen -t rsa -N "" -f cd.key
+sudo mkdir /home/travis/.ssh
+sudo chown travis:travis /home/travis/.ssh
+sudo chmod 700 /home/travis/.ssh
+sudo echo | sudo dd of=/home/travis/.ssh/authorized_keys < cd.key.pub
+sudo chown travis:travis /home/travis/.ssh/authorized_keys
+sudo chmod 600 /home/travis/.ssh/authorized_keys

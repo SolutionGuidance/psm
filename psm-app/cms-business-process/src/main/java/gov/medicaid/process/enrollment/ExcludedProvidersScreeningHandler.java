@@ -40,24 +40,10 @@ import com.topcoder.util.log.Log;
 
 /**
  * This checks the excluded providers from the OIG website.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since External Sources Integration Assembly II
  */
 public class ExcludedProvidersScreeningHandler extends GenericHandler {
-
-    /**
-     * Class logger.
-     */
     private Log log = LogUtil.getLog("ExcludedProvidersScreeningHandler");
 
-    /**
-     * OIG exclusion screening.
-     *
-     * @param item the work item to abort
-     * @param manager the work item manager
-     */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
         log.log(Level.INFO, "Checking provider exclusion.");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");

@@ -21,9 +21,7 @@
     <span>
         <c:if test="${not empty requestScope['_06_addressLine1']}"><c:out value="${requestScope['_06_addressLine1']}" /><br /></c:if>
         <c:out value="${requestScope['_06_addressLine2']}" /><br />
-        <c:set var="city" value="${requestScope['_06_city']}" /><c:out value="${city}" /> 
-        <c:set var="state" value="${requestScope['_06_state']}" /><c:if test="${not empty state}">,</c:if>${state}
-        <c:set var="zip" value="${requestScope['_06_zip']}" /><c:if test="${not empty zip}">,</c:if>${zip} 
+        ${requestScope['_06_city']}, ${requestScope['_06_state']} ${requestScope['_06_zip']}
         <c:set var="county" value="${requestScope['_06_county']}" /><c:if test="${not empty county}">,</c:if>${county} 
     </span>
 </div>
@@ -53,9 +51,7 @@
         <span>
             <c:if test="${not empty requestScope['_06_reimbursementAddressLine1']}"><c:out value="${requestScope['_06_reimbursementAddressLine1']}" /><br /></c:if>
             <c:out value="${requestScope['_06_reimbursementAddressLine2']}" /><br />
-            <c:set var="city" value="${requestScope['_06_reimbursementCity']}" /><c:out value="${city}" />
-            <c:set var="state" value="${requestScope['_06_reimbursementState']}" /><c:if test="${not empty state}">,</c:if>${state}
-            <c:set var="zip" value="${requestScope['_06_reimbursementZip']}" /><c:if test="${not empty zip}">,</c:if>${zip}
+            ${requestScope['_06_reimbursementCity']}, ${requestScope['_06_reimbursementState']} ${requestScope['_06_reimbursementZip']}
         </span>
     </c:if>
 </div>

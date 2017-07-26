@@ -24,16 +24,9 @@ import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.ScreeningResultType;
 import gov.medicaid.domain.model.ScreeningResultsType;
 import gov.medicaid.domain.model.VerificationStatusType;
-import gov.medicaid.domain.rules.inference.MatchStatus;
 import gov.medicaid.services.util.LogUtil;
-import gov.medicaid.verification.OIGExclusionSearchClient;
-import gov.medicaid.verification.OIGExclusionServiceMatcher;
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
-
-import javax.xml.bind.JAXBException;
-import javax.xml.transform.TransformerException;
-import java.io.IOException;
 
 /**
  * This checks the excluded providers from the OIG website.
@@ -46,40 +39,22 @@ public class ExcludedProvidersScreeningHandler extends GenericHandler {
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
 
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
+        log.log(Level.INFO, "Provider NPI: ", provider.getNPI());
+
+        VerificationStatusType verificationStatus =
+                XMLUtility.nsGetVerificationStatus(processModel);
+        log.log(
+                Level.INFO,
+                "TODO: set non-exclusion verification status: ",
+                verificationStatus.getNonExclusion()
+        );
+
+        ExternalSourcesScreeningResultType results = new ExternalSourcesScreeningResultType();
+        results.setStatus(XMLUtility.newStatus("ERROR"));
+
         ScreeningResultsType screeningResults = XMLUtility.nsGetScreeningResults(processModel);
         ScreeningResultType screeningResultType = new ScreeningResultType();
         screeningResults.getScreeningResult().add(screeningResultType);
-
-        ExternalSourcesScreeningResultType results = null;
-        try {
-            OIGExclusionSearchClient client = new OIGExclusionSearchClient();
-            results = client.verify(XMLUtility.nsGetProvider(processModel));
-
-            VerificationStatusType verificationStatus = XMLUtility.nsGetVerificationStatus(processModel);
-            if (!results.getSearchResults().getSearchResultItem().isEmpty()) {
-                OIGExclusionServiceMatcher matcher = new OIGExclusionServiceMatcher();
-                MatchStatus status = matcher.match(provider, null, results);
-                if (status == MatchStatus.PARTIAL_MATCH || status == MatchStatus.EXACT_MATCH) {
-                    verificationStatus.setNonExclusion("N");
-                } else {
-                    verificationStatus.setNonExclusion("Y");
-                }
-            } else {
-                verificationStatus.setNonExclusion("Y");
-            }
-        } catch (TransformerException e) {
-            log.log(Level.ERROR, e);
-            results = new ExternalSourcesScreeningResultType();
-            results.setStatus(XMLUtility.newStatus("ERROR"));
-        } catch (JAXBException e) {
-            log.log(Level.ERROR, e);
-            results = new ExternalSourcesScreeningResultType();
-            results.setStatus(XMLUtility.newStatus("ERROR"));
-        } catch (IOException e) {
-            log.log(Level.ERROR, e);
-            results = new ExternalSourcesScreeningResultType();
-            results.setStatus(XMLUtility.newStatus("ERROR"));
-        }
 
         screeningResultType.setExclusionVerificationResult(results.getSearchResults());
         screeningResultType.setScreeningType("EXCLUDED PROVIDERS");

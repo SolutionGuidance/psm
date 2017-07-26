@@ -204,23 +204,6 @@
         </complexType>
     </element>
 
-    <element name="OIGVerificationRequest">
-        <complexType>
-            <sequence>
-                <element name="ProviderInformation" type="Q2:ProviderInformationType" maxOccurs="1" minOccurs="1"></element>
-                <element name="EntityId" type="string" maxOccurs="1" minOccurs="1"></element>
-            </sequence>
-        </complexType>
-    </element>
-    
-    <element name="OIGVerificationResponse">
-        <complexType>
-            <sequence>
-                <element name="Output" type="Q2:ExternalSourcesScreeningResultType"></element>
-            </sequence>
-        </complexType>
-    </element>
-    
     <element name="SAMVerificationRequest">
         <complexType>
             <sequence>

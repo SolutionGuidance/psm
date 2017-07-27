@@ -294,15 +294,6 @@ public class CMSConfigurator {
     }
 
     /**
-     * Retrieves the sequence generator from the JNDI tree.
-     *
-     * @return the sequence generator
-     */
-    public SequenceGenerator getSequenceGenerator() {
-        return (SequenceGenerator) fromContext("jndi.SequenceGenerator", false);
-    }
-
-    /**
      * Retrieves the portal entity manager from the JNDI tree.
      *
      * @return the portal entity manager

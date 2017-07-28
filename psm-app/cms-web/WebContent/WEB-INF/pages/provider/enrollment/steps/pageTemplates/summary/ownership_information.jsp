@@ -71,7 +71,7 @@
                         <span>${requestScope[formName]}</span>
                     </div>
                     <div class="row">
-                        <label class="multiLine">Relationshop to any other listed person</label>
+                        <label class="multiLine">Relationship to any other listed person</label>
                         <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_17_iboRelationship_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>

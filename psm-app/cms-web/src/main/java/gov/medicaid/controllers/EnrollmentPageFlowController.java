@@ -201,7 +201,6 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Downloads an attachment.
      *
-     * @param enrollment   the session model
      * @param attachmentId the attachment to download
      * @param response     the response to write to
      * @throws IOException            for read/write errors
@@ -211,21 +210,11 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/attachment", method = RequestMethod.GET)
     public void download(
-            @ModelAttribute("enrollment") EnrollmentType enrollment,
             @RequestParam("id") long attachmentId,
             HttpServletResponse response
     ) throws PortalServiceException, IOException {
-        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(enrollment.getProviderInformation());
-        List<DocumentType> attachment = attachments.getAttachment();
-        for (DocumentType documentType : attachment) {
-            if (documentType.getObjectId().equals("" + attachmentId)) {
-                response.setContentType(documentType.getMimeType());
-                response.setHeader("Content-Disposition", "attachment; filename=" + documentType.getName());
-                break;
-            }
-        }
         CMSUser user = ControllerHelper.getCurrentUser();
-        enrollmentService.streamContent(user, attachmentId, response.getOutputStream());
+        enrollmentService.streamContent(user, attachmentId, response);
     }
 
     /**

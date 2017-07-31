@@ -19,7 +19,6 @@ import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.LookupEntity;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.LookupService;
-import gov.medicaid.services.SequenceGenerator;
 import gov.medicaid.services.util.LogUtil;
 
 import javax.annotation.PostConstruct;
@@ -52,12 +51,6 @@ public abstract class BaseService {
      */
     @EJB
     private LookupService lookupService;
-
-    /**
-     * Sequence generator.
-     */
-    @EJB
-    private SequenceGenerator sequence;
 
     /**
      * The entity manager.
@@ -101,10 +94,6 @@ public abstract class BaseService {
 
         if (em == null) {
             em = config.getPortalEntityManager();
-        }
-
-        if (sequence == null) {
-            sequence = config.getSequenceGenerator();
         }
 
         systemUser = config.getSystemUser();
@@ -162,22 +151,6 @@ public abstract class BaseService {
      */
     public CMSUser getSystemUser() {
         return systemUser;
-    }
-
-    /**
-     * Gets the value of the field <code>sequence</code>.
-     * @return the sequence
-     */
-    public SequenceGenerator getSequence() {
-        return sequence;
-    }
-
-    /**
-     * Sets the value of the field <code>sequence</code>.
-     * @param sequence the sequence to set
-     */
-    public void setSequence(SequenceGenerator sequence) {
-        this.sequence = sequence;
     }
 
     /**

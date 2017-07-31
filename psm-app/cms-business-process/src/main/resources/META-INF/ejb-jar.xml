@@ -39,10 +39,6 @@
         <ejb-class>gov.medicaid.services.impl.ExportServiceBean</ejb-class>
       </session>
       <session>
-        <ejb-name>SequenceGeneratorBean</ejb-name>
-        <ejb-class>gov.medicaid.services.impl.SequenceGeneratorBean</ejb-class>
-      </session>
-      <session>
         <ejb-name>HibernateAgreementDocumentBean</ejb-name>
         <ejb-class>gov.medicaid.services.impl.HibernateAgreementDocumentBean</ejb-class>
       </session>

@@ -15,7 +15,7 @@ def jbpm_version = '5.4.0.Final'
 // or on immediate deployment
 ext.libs = [
     commons_codec: 'commons-codec:commons-codec:1.6',
-    commons_fileupload: 'commons-fileupload:commons-fileupload:1.2.2',
+    commons_fileupload: 'commons-fileupload:commons-fileupload:1.3.3',
     commons_io: 'commons-io:commons-io:2.0.1',
     commons_lang: 'commons-lang:commons-lang:2.4',
     itext: 'com.lowagie:itext:2.1.7',

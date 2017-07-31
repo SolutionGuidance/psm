@@ -179,7 +179,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     ) throws PortalServiceException {
         Enrollment ticket = getTicketDetails(user, ticketId);
         if (!ViewStatics.PENDING_STATUS.equals(ticket.getStatus().getDescription())
-            && !ViewStatics.PENDING_STATUS.equals(ticket.getStatus().getDescription())) {
+                && !ViewStatics.PENDING_STATUS.equals(ticket.getStatus().getDescription())) {
             throw new PortalServiceException("Cannot change status because it is not in pending state.");
         }
 
@@ -330,8 +330,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         results.setPageSize(criteria.getPageSize());
 
         String fromClause = "FROM ProviderProfile p LEFT JOIN p.riskLevel rl, Enrollment t LEFT JOIN t.requestType rt "
-            + "LEFT JOIN t.status ts, Entity e LEFT JOIN e.providerType pt WHERE p.ticketId = t.ticketId "
-            + "AND e.ticketId = p.ticketId AND p.profileId = e.profileId AND p.ticketId > 0 ";
+                + "LEFT JOIN t.status ts, Entity e LEFT JOIN e.providerType pt WHERE p.ticketId = t.ticketId "
+                + "AND e.ticketId = p.ticketId AND p.profileId = e.profileId AND p.ticketId > 0 ";
 
         StringBuilder countQuery = new StringBuilder("SELECT count(*) " + fromClause);
         appendCriteria(countQuery, user, criteria);
@@ -341,9 +341,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         results.setTotal(((Number) count.getSingleResult()).intValue());
 
         StringBuilder fetchQuery = new StringBuilder(
-            "SELECT NEW gov.medicaid.entities.UserRequest(t.ticketId, e.npi, t.submissionDate, "
-                + "rt.description, ts.description, t.statusDate, rl.description, pt.description, "
-                + "e.name, t.createdOn, rl.sortIndex, t.processInstanceId, t.profileReferenceId) " + fromClause);
+                "SELECT NEW gov.medicaid.entities.UserRequest(t.ticketId, e.npi, t.submissionDate, "
+                        + "rt.description, ts.description, t.statusDate, rl.description, pt.description, "
+                        + "e.name, t.createdOn, rl.sortIndex, t.processInstanceId, t.profileReferenceId) " + fromClause);
 
         appendCriteria(fetchQuery, user, criteria);
         appendSorting(fetchQuery, criteria);
@@ -466,13 +466,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the matching practice results
      * @throws PortalServiceException for any errors encountered
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public List<ProviderLookup> lookupProvider(
             String npi
     ) throws PortalServiceException {
         StringBuilder fetchQuery = new StringBuilder(
-            "SELECT NEW gov.medicaid.entities.ProviderLookup(e.profileId, e.npi, e.name, e.providerType.description) "
-                + "FROM Entity e WHERE e.npi = :npi AND ticketId = 0 AND e.enrolled = 'Y'");
+                "SELECT NEW gov.medicaid.entities.ProviderLookup(e.profileId, e.npi, e.name, e.providerType.description) "
+                        + "FROM Entity e WHERE e.npi = :npi AND ticketId = 0 AND e.enrolled = 'Y'");
         Query items = getEm().createQuery(fetchQuery.toString());
         items.setParameter("npi", npi);
         List resultList = items.getResultList();
@@ -510,7 +510,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         results.setPageSize(criteria.getPageSize());
 
         String fromClause = "FROM Organization e LEFT JOIN e.contactInformation ci LEFT JOIN ci.address a "
-            + "WHERE e.enrolled = 'Y'";
+                + "WHERE e.enrolled = 'Y'";
 
         StringBuilder countQuery = new StringBuilder("SELECT count(*) " + fromClause);
         appendCriteria(countQuery, user, criteria);
@@ -520,10 +520,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         results.setTotal(((Number) count.getSingleResult()).intValue());
 
         StringBuilder fetchQuery = new StringBuilder(
-            "SELECT NEW gov.medicaid.entities.PracticeLookup(e.profileId, e.npi, e.name, "
-                + "ci.address.line1, ci.address.line2, ci.address.city, ci.address.state, "
-                + "ci.address.zipcode, ci.address.county, ci.phoneNumber, ci.faxNumber, "
-                + "e.backgroundStudyId, e.backgroundClearanceDate, e.agencyId) " + fromClause);
+                "SELECT NEW gov.medicaid.entities.PracticeLookup(e.profileId, e.npi, e.name, "
+                        + "ci.address.line1, ci.address.line2, ci.address.city, ci.address.state, "
+                        + "ci.address.zipcode, ci.address.county, ci.phoneNumber, ci.faxNumber, "
+                        + "e.backgroundStudyId, e.backgroundClearanceDate, e.agencyId) " + fromClause);
 
         appendCriteria(fetchQuery, user, criteria);
         appendSorting(fetchQuery, criteria);
@@ -561,8 +561,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
 
         StringBuilder fetchQuery = new StringBuilder(
-            "SELECT NEW gov.medicaid.entities.ContactData(dc.profileId, dc.person.name) "
-                + "FROM DesignatedContact dc WHERE dc.type = 'ENROLLMENT' AND dc.profileId IN (:profileIds)");
+                "SELECT NEW gov.medicaid.entities.ContactData(dc.profileId, dc.person.name) "
+                        + "FROM DesignatedContact dc WHERE dc.type = 'ENROLLMENT' AND dc.profileId IN (:profileIds)");
         Query q = getEm().createQuery(fetchQuery.toString());
         q.setParameter("profileIds", new ArrayList<Long>(map.keySet()));
         List<ContactData> rs = q.getResultList();
@@ -591,8 +591,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
 
         StringBuilder fetchQuery = new StringBuilder(
-            "SELECT NEW gov.medicaid.entities.ContactData(dc.profileId, dc.person.name, dc.person.contactInformation.phoneNumber) "
-                + "FROM DesignatedContact dc WHERE dc.type = 'ENROLLMENT' AND dc.profileId IN (:profileIds)");
+                "SELECT NEW gov.medicaid.entities.ContactData(dc.profileId, dc.person.name, dc.person.contactInformation.phoneNumber) "
+                        + "FROM DesignatedContact dc WHERE dc.type = 'ENROLLMENT' AND dc.profileId IN (:profileIds)");
         Query q = getEm().createQuery(fetchQuery.toString());
         q.setParameter("profileIds", new ArrayList<Long>(map.keySet()));
         List<ContactData> rs = q.getResultList();
@@ -625,9 +625,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         if (user.getProxyForNPI() == null) {
             String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
-                + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
-                + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and p.ownerId = :ownerId "
-                + "AND p.ticketId = 0 ORDER BY 5 DESC";
+                    + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
+                    + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and p.ownerId = :ownerId "
+                    + "AND p.ticketId = 0 ORDER BY 5 DESC";
 
             Query items = getEm().createQuery(fetchQuery.toString());
             items.setParameter("ownerId", user.getUserId());
@@ -635,9 +635,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         } else {
             // not the creator but given proxy access via the NPI ID
             String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
-                + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
-                + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and e.npi = :npi "
-                + "AND p.ticketId = 0 ORDER BY 5 DESC";
+                    + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
+                    + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and e.npi = :npi "
+                    + "AND p.ticketId = 0 ORDER BY 5 DESC";
 
             Query items = getEm().createQuery(fetchQuery.toString());
             items.setParameter("npi", user.getProxyForNPI());
@@ -879,7 +879,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         if (!FULL_ACCESS.contains(user.getRole().getDescription())) {
             if (user.getProxyForNPI() == null) {
                 Query q = getEm().createQuery(
-                    "SELECT 1 FROM Enrollment t WHERE t.ticketId = :ticketId AND t.createdBy = :username");
+                        "SELECT 1 FROM Enrollment t WHERE t.ticketId = :ticketId AND t.createdBy = :username");
                 q.setParameter("username", user.getUserId());
                 q.setParameter("ticketId", ticketId);
                 List rs = q.getResultList();
@@ -912,8 +912,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         if (!FULL_ACCESS.contains(user.getRole().getDescription())) {
             if (user.getProxyForNPI() == null) {
                 Query q = getEm().createQuery(
-                    "SELECT 1 FROM ProviderProfile p WHERE p.profileId = :profileId "
-                        + "AND p.ticketId = 0 AND p.ownerId = :username");
+                        "SELECT 1 FROM ProviderProfile p WHERE p.profileId = :profileId "
+                                + "AND p.ticketId = 0 AND p.ownerId = :username");
                 q.setParameter("username", user.getUserId());
                 q.setParameter("profileId", profileId);
                 List rs = q.getResultList();
@@ -1532,7 +1532,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             long ticketId
     ) {
         Query query = getEm().createQuery(
-            "FROM ProviderCategoryOfService p WHERE ticketId = :ticketId AND profileId = :profileId");
+                "FROM ProviderCategoryOfService p WHERE ticketId = :ticketId AND profileId = :profileId");
         if (ticketId > 0) { // COS tickets do not populate the original profile id even on UPDATE
             query.setParameter("profileId", new Long(0));
             query.setParameter("ticketId", ticketId);
@@ -1546,7 +1546,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     @SuppressWarnings("unchecked")
     private List<ProviderService> findServices(long profileId, long ticketId) {
         Query query = getEm().createQuery(
-            "FROM ProviderService a WHERE ticketId = :ticketId AND profileId = :profileId");
+                "FROM ProviderService a WHERE ticketId = :ticketId AND profileId = :profileId");
         query.setParameter("profileId", profileId);
         query.setParameter("ticketId", ticketId);
         return query.getResultList();
@@ -1559,7 +1559,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param ticketId  the request ticket id
      * @return the related ownership information to the profile
      */
-    @SuppressWarnings({ "unchecked" })
+    @SuppressWarnings({"unchecked"})
     private List<PayToProvider> findPayToProviders(
             long profileId,
             long ticketId
@@ -1583,7 +1583,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             long ticketId
     ) {
         Query query = getEm().createQuery(
-            "FROM OwnershipInformation o WHERE ticketId = :ticketId AND profileId = :profileId");
+                "FROM OwnershipInformation o WHERE ticketId = :ticketId AND profileId = :profileId");
         query.setParameter("profileId", profileId);
         query.setParameter("ticketId", ticketId);
         List rs = query.getResultList();
@@ -1610,7 +1610,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             long ticketId
     ) {
         Query query = getEm().createQuery(
-            "FROM AcceptedAgreements a WHERE ticketId = :ticketId AND profileId = :profileId");
+                "FROM AcceptedAgreements a WHERE ticketId = :ticketId AND profileId = :profileId");
         query.setParameter("profileId", profileId);
         query.setParameter("ticketId", ticketId);
         return query.getResultList();
@@ -1644,7 +1644,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             long ticketId
     ) {
         Query query = getEm().createQuery(
-            "FROM ProviderStatement ps WHERE ticketId = :ticketId AND profileId = :profileId");
+                "FROM ProviderStatement ps WHERE ticketId = :ticketId AND profileId = :profileId");
         query.setParameter("profileId", profileId);
         query.setParameter("ticketId", ticketId);
         List rs = query.getResultList();
@@ -1729,7 +1729,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             long ticketId
     ) {
         Query query = getEm().createQuery(
-            "FROM DesignatedContact d WHERE ticketId = :ticketId AND profileId = :profileId");
+                "FROM DesignatedContact d WHERE ticketId = :ticketId AND profileId = :profileId");
         query.setParameter("profileId", profileId);
         query.setParameter("ticketId", ticketId);
         return query.getResultList();
@@ -1766,7 +1766,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     ) {
         if (Util.isNotBlank(criteria.getSortColumn())) {
             fetchQuery.append(" ORDER BY ").append(criteria.getSortColumn())
-                .append(criteria.isAscending() ? " ASC" : " DESC");
+                    .append(criteria.isAscending() ? " ASC" : " DESC");
         }
     }
 
@@ -2160,7 +2160,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
 
         if (ViewStatics.UPDATE_REQUEST.equals(ticket.getRequestType().getDescription())
-            || ViewStatics.RENEWAL_REQUEST.equals(ticket.getRequestType().getDescription())) {
+                || ViewStatics.RENEWAL_REQUEST.equals(ticket.getRequestType().getDescription())) {
 
             // updates and renewals should have a reference to an existing approved profile
             ProviderProfile baseProfile = getProviderDetails(profileId, false);
@@ -2410,9 +2410,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             String profileNPI
     ) {
         String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
-            + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
-            + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and e.npi = :npi "
-            + "AND p.ticketId = 0 ORDER BY 5 DESC";
+                + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
+                + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and e.npi = :npi "
+                + "AND p.ticketId = 0 ORDER BY 5 DESC";
 
         Query items = getEm().createQuery(fetchQuery.toString());
         items.setParameter("npi", profileNPI);
@@ -2450,9 +2450,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     public boolean existsProfile(String profileNPI) {
         String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
-            + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
-            + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and e.npi = :npi "
-            + "AND p.ticketId = 0 ORDER BY 5 DESC";
+                + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
+                + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and e.npi = :npi "
+                + "AND p.ticketId = 0 ORDER BY 5 DESC";
 
         Query items = getEm().createQuery(fetchQuery.toString());
         items.setParameter("npi", profileNPI);

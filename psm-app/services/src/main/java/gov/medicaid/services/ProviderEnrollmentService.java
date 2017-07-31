@@ -53,7 +53,10 @@ public interface ProviderEnrollmentService {
      * @param ticketId the ticket id to be removed
      * @throws PortalServiceException for any errors encountered
      */
-    void removeDraftTicket(CMSUser user, long ticketId) throws PortalServiceException;
+    void removeDraftTicket(
+            CMSUser user,
+            long ticketId
+    ) throws PortalServiceException;
 
     /**
      * This is the service method to be called after the process has completed
@@ -64,7 +67,11 @@ public interface ProviderEnrollmentService {
      * @param reason    the reason for rejecting the request
      * @throws PortalServiceException for any errors encountered
      */
-    void suspendProvider(CMSUser user, long profileId, String reason) throws PortalServiceException;
+    void suspendProvider(
+            CMSUser user,
+            long profileId,
+            String reason
+    ) throws PortalServiceException;
 
     /**
      * This is the service method to be called after the process has completed
@@ -75,7 +82,11 @@ public interface ProviderEnrollmentService {
      * @param reason   the reason for rejecting the request
      * @throws PortalServiceException for any errors encountered
      */
-    void rejectTicket(CMSUser user, long ticketId, String reason) throws PortalServiceException;
+    void rejectTicket(
+            CMSUser user,
+            long ticketId,
+            String reason
+    ) throws PortalServiceException;
 
     /**
      * This is the service method to be called after the process has completed
@@ -86,7 +97,10 @@ public interface ProviderEnrollmentService {
      * @param ticketId the ticket id that was approved
      * @throws PortalServiceException for any errors encountered
      */
-    void approveTicket(CMSUser user, long ticketId) throws PortalServiceException;
+    void approveTicket(
+            CMSUser user,
+            long ticketId
+    ) throws PortalServiceException;
 
     /**
      * This is the service method to be called after the process has completed
@@ -97,7 +111,10 @@ public interface ProviderEnrollmentService {
      * @param ticket the ticket that will be approved (after saving it)
      * @throws PortalServiceException for any errors encountered
      */
-    void approveTicketWithChanges(CMSUser user, Enrollment ticket) throws PortalServiceException;
+    void approveTicketWithChanges(
+            CMSUser user,
+            Enrollment ticket
+    ) throws PortalServiceException;
 
     /**
      * This is the method to be called to stream the attachment contents to the
@@ -110,7 +127,11 @@ public interface ProviderEnrollmentService {
      *                                attachment contents
      * @throws PortalServiceException for any errors encountered
      */
-    void streamContent(CMSUser user, long attachmentId, OutputStream output) throws IOException, PortalServiceException;
+    void streamContent(
+            CMSUser user,
+            long attachmentId,
+            OutputStream output
+    ) throws IOException, PortalServiceException;
 
     /**
      * This method gets all the providers that meet the search criteria. If none
@@ -124,8 +145,10 @@ public interface ProviderEnrollmentService {
      *                                  invalid
      * @throws PortalServiceException   for any errors encountered
      */
-    SearchResult<UserRequest> searchTickets(CMSUser user, ProviderSearchCriteria criteria)
-            throws PortalServiceException;
+    SearchResult<UserRequest> searchTickets(
+            CMSUser user,
+            ProviderSearchCriteria criteria
+    ) throws PortalServiceException;
 
     /**
      * This method gets all the providers owned by the given user. If none
@@ -135,7 +158,9 @@ public interface ProviderEnrollmentService {
      * @return the applicable providers
      * @throws PortalServiceException for any errors encountered
      */
-    List<ProfileHeader> findMyProfiles(CMSUser user) throws PortalServiceException;
+    List<ProfileHeader> findMyProfiles(
+            CMSUser user
+    ) throws PortalServiceException;
 
     /**
      * Saves the given ticket as draft.
@@ -145,7 +170,10 @@ public interface ProviderEnrollmentService {
      * @return the ticket id for the draft created
      * @throws PortalServiceException for any errors encountered
      */
-    long saveAsDraft(CMSUser user, Enrollment ticket) throws PortalServiceException;
+    long saveAsDraft(
+            CMSUser user,
+            Enrollment ticket
+    ) throws PortalServiceException;
 
     /**
      * Retrieves the ticket details (full).
@@ -155,7 +183,10 @@ public interface ProviderEnrollmentService {
      * @return the complete ticket and provider profile
      * @throws PortalServiceException for any errors encountered
      */
-    Enrollment getTicketByProcessInstanceId(CMSUser user, long processInstanceId) throws PortalServiceException;
+    Enrollment getTicketByProcessInstanceId(
+            CMSUser user,
+            long processInstanceId
+    ) throws PortalServiceException;
 
     /**
      * Retrieves the ticket details (full).
@@ -165,7 +196,10 @@ public interface ProviderEnrollmentService {
      * @return the complete ticket and provider profile
      * @throws PortalServiceException for any errors encountered
      */
-    Enrollment getTicketDetails(CMSUser user, long ticketId) throws PortalServiceException;
+    Enrollment getTicketDetails(
+            CMSUser user,
+            long ticketId
+    ) throws PortalServiceException;
 
     /**
      * Retrieves the provider details (full).
@@ -175,7 +209,10 @@ public interface ProviderEnrollmentService {
      * @return the complete provider profile
      * @throws PortalServiceException for any errors encountered
      */
-    ProviderProfile getProviderDetails(CMSUser user, long profileId) throws PortalServiceException;
+    ProviderProfile getProviderDetails(
+            CMSUser user,
+            long profileId
+    ) throws PortalServiceException;
 
     /**
      * Search for practice.
@@ -185,8 +222,10 @@ public interface ProviderEnrollmentService {
      * @return the matching practice results
      * @throws PortalServiceException for any errors encountered
      */
-    SearchResult<PracticeLookup> searchPractice(CMSUser user, PracticeSearchCriteria criteria)
-            throws PortalServiceException;
+    SearchResult<PracticeLookup> searchPractice(
+            CMSUser user,
+            PracticeSearchCriteria criteria
+    ) throws PortalServiceException;
 
     /**
      * Creates a renewal ticket from the given profile id.
@@ -196,7 +235,10 @@ public interface ProviderEnrollmentService {
      * @return the generated ticket
      * @throws PortalServiceException for any errors encountered
      */
-    Enrollment renewProfile(CMSUser user, long profileId) throws PortalServiceException;
+    Enrollment renewProfile(
+            CMSUser user,
+            long profileId
+    ) throws PortalServiceException;
 
     /**
      * Creates an update ticket from the given profile id.
@@ -206,7 +248,10 @@ public interface ProviderEnrollmentService {
      * @return the generated ticket
      * @throws PortalServiceException for any errors encountered
      */
-    Enrollment editProfile(CMSUser user, long profileId) throws PortalServiceException;
+    Enrollment editProfile(
+            CMSUser user,
+            long profileId
+    ) throws PortalServiceException;
 
     /**
      * Uploads an attachment to the database.
@@ -216,7 +261,10 @@ public interface ProviderEnrollmentService {
      * @return the attachment id generated
      * @throws PortalServiceException for any errors encountered
      */
-    long uploadAttachment(CMSUser user, Document attachment) throws PortalServiceException;
+    long uploadAttachment(
+            CMSUser user,
+            Document attachment
+    ) throws PortalServiceException;
 
     /**
      * Creates a note on a request, the note will remain on the request until it
@@ -227,7 +275,11 @@ public interface ProviderEnrollmentService {
      * @param text     the note text
      * @throws PortalServiceException for any errors encountered
      */
-    void addNoteToTicket(CMSUser user, long ticketId, String text) throws PortalServiceException;
+    void addNoteToTicket(
+            CMSUser user,
+            long ticketId,
+            String text
+    ) throws PortalServiceException;
 
     /**
      * Creates a note on a profile, the note will also be visible on all active
@@ -238,7 +290,11 @@ public interface ProviderEnrollmentService {
      * @param text      the note text
      * @throws PortalServiceException for any errors encountered
      */
-    void addNoteToProfile(CMSUser user, long profileId, String text) throws PortalServiceException;
+    void addNoteToProfile(
+            CMSUser user,
+            long profileId,
+            String text
+    ) throws PortalServiceException;
 
     /**
      * Used by data onboarding service to fully import a mapped profile.
@@ -249,8 +305,11 @@ public interface ProviderEnrollmentService {
      * @return the internal profile id for the imported profile
      * @throws PortalServiceException for any errors encountered
      */
-    long importProfile(CMSUser user, SystemId sourceSystem, ProviderProfile providerProfile)
-            throws PortalServiceException;
+    long importProfile(
+            CMSUser user,
+            SystemId sourceSystem,
+            ProviderProfile providerProfile
+    ) throws PortalServiceException;
 
     /**
      * Retrieves the attachments with the given id.
@@ -260,7 +319,10 @@ public interface ProviderEnrollmentService {
      * @return the matching attachment
      * @throws PortalServiceException for any errors encountered
      */
-    Document findAttachment(CMSUser user, long attachmentId) throws PortalServiceException;
+    Document findAttachment(
+            CMSUser user,
+            long attachmentId
+    ) throws PortalServiceException;
 
     /**
      * Checks the validity status of the ticket.
@@ -270,7 +332,10 @@ public interface ProviderEnrollmentService {
      * @return the validity status of the ticket
      * @throws PortalServiceException for any errors encountered
      */
-    Validity getSubmissionValidity(long ticketId, long profileId) throws PortalServiceException;
+    Validity getSubmissionValidity(
+            long ticketId,
+            long profileId
+    ) throws PortalServiceException;
 
     /**
      * Retrieves all the notes for the given ticket.
@@ -288,7 +353,9 @@ public interface ProviderEnrollmentService {
      * @return the public lookup data
      * @throws PortalServiceException for any errors encountered
      */
-    List<ProviderLookup> lookupProvider(String npi) throws PortalServiceException;
+    List<ProviderLookup> lookupProvider(
+            String npi
+    ) throws PortalServiceException;
 
     /**
      * Direct save (no logical checks) Used by business processes.
@@ -296,7 +363,9 @@ public interface ProviderEnrollmentService {
      * @param enrollment the enrollment to be saved
      * @throws PortalServiceException for any errors encountered
      */
-    void saveEnrollmentDetails(Enrollment enrollment) throws PortalServiceException;
+    void saveEnrollmentDetails(
+            Enrollment enrollment
+    ) throws PortalServiceException;
 
     /**
      * Renews the profiles directly, without making any data changes.
@@ -305,7 +374,10 @@ public interface ProviderEnrollmentService {
      * @param profileIds  the profiles to renew
      * @return
      */
-    Long[] renewalProfiles(CMSUser currentUser, Set<Long> profileIds) throws PortalServiceException;
+    Long[] renewalProfiles(
+            CMSUser currentUser,
+            Set<Long> profileIds
+    ) throws PortalServiceException;
 
     /**
      * Gets the COS associated with a profile.
@@ -315,8 +387,10 @@ public interface ProviderEnrollmentService {
      * @return the list of services
      * @throws PortalServiceException for any errors encountered
      */
-    List<ProviderCategoryOfService> getProviderCategoryOfServices(CMSUser user, long profileId)
-            throws PortalServiceException;
+    List<ProviderCategoryOfService> getProviderCategoryOfServices(
+            CMSUser user,
+            long profileId
+    ) throws PortalServiceException;
 
     /**
      * Adds COS to the profile.
@@ -328,8 +402,12 @@ public interface ProviderEnrollmentService {
      * @param prevCatEndDate    last COS end date
      * @throws PortalServiceException for any errors encountered
      */
-    void addCOSToProfile(CMSUser user, ProviderCategoryOfService categoryOfService, long prevCatServiceId,
-                         Date prevCatEndDate) throws PortalServiceException;
+    void addCOSToProfile(
+            CMSUser user,
+            ProviderCategoryOfService categoryOfService,
+            long prevCatServiceId,
+            Date prevCatEndDate
+    ) throws PortalServiceException;
 
     /**
      * Adds COS to the ticket.
@@ -341,8 +419,12 @@ public interface ProviderEnrollmentService {
      * @param prevCatEndDate    last COS end date
      * @throws PortalServiceException for any errors encountered
      */
-    void addCOSToTicket(CMSUser user, ProviderCategoryOfService categoryOfService, long prevCatServiceId,
-                        Date prevCatEndDate) throws PortalServiceException;
+    void addCOSToTicket(
+            CMSUser user,
+            ProviderCategoryOfService categoryOfService,
+            long prevCatServiceId,
+            Date prevCatEndDate
+    ) throws PortalServiceException;
 
     /**
      * Deletes the COS by profile.
@@ -352,7 +434,11 @@ public interface ProviderEnrollmentService {
      * @param id        the cos id
      * @throws PortalServiceException for any errors encountered
      */
-    void deleteCOSByProfile(CMSUser user, long profileId, long id) throws PortalServiceException;
+    void deleteCOSByProfile(
+            CMSUser user,
+            long profileId,
+            long id
+    ) throws PortalServiceException;
 
     /**
      * Gets the COS associated with a ticket.
@@ -362,8 +448,10 @@ public interface ProviderEnrollmentService {
      * @return the list of services
      * @throws PortalServiceException for any errors encountered
      */
-    List<ProviderCategoryOfService> getPendingCategoryOfServices(CMSUser user, long ticketId)
-            throws PortalServiceException;
+    List<ProviderCategoryOfService> getPendingCategoryOfServices(
+            CMSUser user,
+            long ticketId
+    ) throws PortalServiceException;
 
     /**
      * Deletes the COS by ticket.
@@ -373,7 +461,11 @@ public interface ProviderEnrollmentService {
      * @param id       the cos id
      * @throws PortalServiceException for any errors encountered
      */
-    void deleteCOSByTicket(CMSUser user, long ticketId, long id) throws PortalServiceException;
+    void deleteCOSByTicket(
+            CMSUser user,
+            long ticketId,
+            long id
+    ) throws PortalServiceException;
 
     /**
      * Returns true if the first parameter can be considered an employer of the
@@ -385,7 +477,10 @@ public interface ProviderEnrollmentService {
      * gives the first access to the latter
      * @throws PortalServiceException for any errors encountered
      */
-    boolean hasGroupAffiliation(String externalUserId, String profileNPI) throws PortalServiceException;
+    boolean hasGroupAffiliation(
+            String externalUserId,
+            String profileNPI
+    ) throws PortalServiceException;
 
     /**
      * Returns true if there is a profile found in the database with the given
@@ -404,5 +499,8 @@ public interface ProviderEnrollmentService {
      * @param legacyId  the legacy id
      * @throws PortalServiceException for any errors encountered
      */
-    void updateLegacyId(long profileId, String legacyId) throws PortalServiceException;
+    void updateLegacyId(
+            long profileId,
+            String legacyId
+    ) throws PortalServiceException;
 }

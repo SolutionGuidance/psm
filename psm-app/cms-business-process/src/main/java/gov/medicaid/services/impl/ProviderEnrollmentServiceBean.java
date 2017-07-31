@@ -427,8 +427,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     /**
      * Search for provider by NPI.
      *
-     * @param user the user performing the search
-     * @param criteria the criteria filter
+     * @param npi the National Provider Identifier to search by
      * @return the matching practice results
      * @throws PortalServiceException for any errors encountered
      */

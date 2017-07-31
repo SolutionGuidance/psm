@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package gov.medicaid.controllers;
 
+import com.topcoder.util.log.Level;
 import gov.medicaid.binders.BinderException;
 import gov.medicaid.binders.BinderUtils;
 import gov.medicaid.binders.FormBinder;
@@ -70,10 +71,24 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.PresentationService;
 import gov.medicaid.services.ProviderEnrollmentService;
-import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
 import gov.medicaid.services.util.XMLAdapter;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -88,30 +103,9 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.UUID;
 
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.topcoder.util.log.Level;
-
 /**
  * Handles requests for enrollment pages.
- * 
- * @author TCSASSEMBLER
- * @version 1.0
+ *
  * @endpoint "/provider/enrollment/*"
  */
 @Controller
@@ -177,10 +171,12 @@ public class EnrollmentPageFlowController extends BaseController {
     }
 
     /**
-     * This method checks that all required injection fields are in fact provided.
-     * 
-     * @throws PortalServiceConfigurationException
-     *             - If there are required injection fields that are not injected
+     * This method checks that all required injection fields are in fact
+     * provided.
+     *
+     * @throws PortalServiceConfigurationException If there are required
+     *                                             injection fields that are not
+     *                                             injected
      */
     @PostConstruct
     protected void init() {
@@ -204,25 +200,21 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Downloads an attachment.
-     * 
-     * @param enrollment
-     *            the session model
-     * @param attachmentId
-     *            the attachment to download
-     * @param response
-     *            the response to write to
-     * @throws IOException
-     *             for read/write errors
-     * @throws PortalServiceException
-     *             for any other errors
+     *
+     * @param enrollment   the session model
+     * @param attachmentId the attachment to download
+     * @param response     the response to write to
+     * @throws IOException            for read/write errors
+     * @throws PortalServiceException for any other errors
      * @endpoint "/provider/enrollment/attachment"
      * @verb GET
      */
     @RequestMapping(value = "/attachment", method = RequestMethod.GET)
-    public void download(@ModelAttribute("enrollment") EnrollmentType enrollment,
-            @RequestParam("id") long attachmentId, HttpServletResponse response) throws PortalServiceException,
-            IOException {
-
+    public void download(
+            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            @RequestParam("id") long attachmentId,
+            HttpServletResponse response
+    ) throws PortalServiceException, IOException {
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(enrollment.getProviderInformation());
         List<DocumentType> attachment = attachments.getAttachment();
         for (DocumentType documentType : attachment) {
@@ -238,12 +230,10 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Starts the enrollment process.
-     * 
-     * @param model
-     *            the request model
+     *
+     * @param model the request model
      * @return the enrollment start page.
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/start"
      * @verb GET
      */
@@ -257,20 +247,19 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Starts the renewal process.
-     * 
-     * @param profileId
-     *            the profile to renew
-     * @param model
-     *            the request model
+     *
+     * @param profileId the profile to renew
+     * @param model     the request model
      * @return the enrollment start page.
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/renew"
      * @verb GET
      */
     @RequestMapping(value = "/renew", method = RequestMethod.GET)
-    public ModelAndView startRenewal(@RequestParam("profileId") long profileId, Model model)
-            throws PortalServiceException {
+    public ModelAndView startRenewal(
+            @RequestParam("profileId") long profileId,
+            Model model
+    ) throws PortalServiceException {
         Enrollment ticket = enrollmentService.renewProfile(ControllerHelper.getCurrentUser(), profileId);
         EnrollmentType enrollment = XMLAdapter.toXML(ticket);
         model.addAttribute("enrollment", enrollment);
@@ -279,20 +268,19 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Starts the renewal process using an old ticket.
-     * 
-     * @param ticketId
-     *            the profile to renew
-     * @param model
-     *            the request model
+     *
+     * @param ticketId the profile to renew
+     * @param model    the request model
      * @return the enrollment start page.
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/renewTicket"
      * @verb GET
      */
     @RequestMapping(value = "/renewTicket", method = RequestMethod.GET)
-    public ModelAndView startRenewalUsingTicket(@RequestParam("id") long ticketId, Model model)
-            throws PortalServiceException {
+    public ModelAndView startRenewalUsingTicket(
+            @RequestParam("id") long ticketId,
+            Model model
+    ) throws PortalServiceException {
         Enrollment oldTicket = enrollmentService.getTicketDetails(ControllerHelper.getCurrentUser(), ticketId);
         long profileId = oldTicket.getProfileReferenceId();
         Enrollment ticket = enrollmentService.renewProfile(ControllerHelper.getCurrentUser(), profileId);
@@ -303,20 +291,20 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Starts the renewal process using an old ticket.
-     * 
-     * @param ticketId
-     *            the profile to renew
-     * @param model
-     *            the request model
+     *
+     * @param ticketId the profile to renew
+     * @param model    the request model
      * @return the enrollment start page.
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/bulkRenewTickets"
      * @verb POST
      */
     @RequestMapping(value = "/bulkRenewTickets", method = RequestMethod.POST)
     @ResponseBody
-    public StatusDTO bulkRenewTickets(@RequestParam("ids") long[] ticketIds, Model model) {
+    public StatusDTO bulkRenewTickets(
+            @RequestParam("ids") long[] ticketIds,
+            Model model
+    ) {
         Set<Long> profileIds = new HashSet<Long>();
         StatusDTO results = new StatusDTO();
         try {
@@ -415,19 +403,19 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Starts the update process.
-     * 
-     * @param profileId
-     *            the profile to edit
-     * @param model
-     *            the request model
+     *
+     * @param profileId the profile to edit
+     * @param model     the request model
      * @return the enrollment start page.
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/edit"
      * @verb GET
      */
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public ModelAndView startEdit(@RequestParam("profileId") long profileId, Model model) throws PortalServiceException {
+    public ModelAndView startEdit(
+            @RequestParam("profileId") long profileId,
+            Model model
+    ) throws PortalServiceException {
         Enrollment ticket = enrollmentService.editProfile(ControllerHelper.getCurrentUser(), profileId);
         EnrollmentType enrollment = XMLAdapter.toXML(ticket);
         model.addAttribute("enrollment", enrollment);
@@ -436,20 +424,19 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Views the given profile.
-     * 
-     * @param profileId
-     *            the profile to view
-     * @param model
-     *            the request model
+     *
+     * @param profileId the profile to view
+     * @param model     the request model
      * @return the enrollment start page.
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/profile"
      * @verb GET
      */
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public ModelAndView viewProfile(@RequestParam("id") long profileId, Model model) throws PortalServiceException {
-
+    public ModelAndView viewProfile(
+            @RequestParam("id") long profileId,
+            Model model
+    ) throws PortalServiceException {
         GetProfileDetailsRequest request = new GetProfileDetailsRequest();
         CMSPrincipal principal = ControllerHelper.getPrincipal();
         request.setSystemId(principal.getAuthenticatedBySystem().name());
@@ -465,40 +452,37 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Displays the initial provider type selection.
-     * 
-     * @param enrollment
-     *            the current model
+     *
+     * @param enrollment the current model
      * @return the provider type selection page.
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/steps/type"
      * @verb GET
      */
     @RequestMapping(value = "/steps/type", method = RequestMethod.GET)
-    public ModelAndView selectProviderType(@ModelAttribute("enrollment") EnrollmentType enrollment)
-            throws PortalServiceException {
+    public ModelAndView selectProviderType(
+            @ModelAttribute("enrollment") EnrollmentType enrollment
+    ) throws PortalServiceException {
         return showPage(ViewStatics.PROVIDER_TYPE_PAGE, enrollment, null);
     }
 
     /**
      * Handles requests to go back to the previous page.
-     * 
-     * @param enrollment
-     *            the current enrollment model
-     * @param request
-     *            the request
-     * @param model
-     *            the request model
+     *
+     * @param enrollment the current enrollment model
+     * @param request    the request
+     * @param model      the request model
      * @return the previous page, or the same page if there were errors
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "provider/enrollment/steps/prev"
      * @verb POST
      */
     @RequestMapping(value = "/steps/prev", method = RequestMethod.POST)
-    public ModelAndView previousPage(@ModelAttribute("enrollment") EnrollmentType enrollment,
-            HttpServletRequest request, Model model) throws PortalServiceException {
-
+    public ModelAndView previousPage(
+            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            HttpServletRequest request,
+            Model model
+    ) throws PortalServiceException {
         String[] formNames = request.getParameterValues("formNames");
         String pageName = request.getParameter("pageName");
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
@@ -516,23 +500,21 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Handles requests to go to the next page.
-     * 
-     * @param enrollment
-     *            the current enrollment model
-     * @param request
-     *            the request
-     * @param model
-     *            the request model
+     *
+     * @param enrollment the current enrollment model
+     * @param request    the request
+     * @param model      the request model
      * @return the next page, or the same page if there were errors
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/steps/next"
      * @verb POST
      */
     @RequestMapping(value = "/steps/next", method = RequestMethod.POST)
-    public ModelAndView nextPage(@ModelAttribute("enrollment") EnrollmentType enrollment, HttpServletRequest request,
-            Model model) throws PortalServiceException {
-
+    public ModelAndView nextPage(
+            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            HttpServletRequest request,
+            Model model
+    ) throws PortalServiceException {
         String pageName = request.getParameter("pageName");
         String[] formNames = request.getParameterValues("formNames");
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
@@ -557,9 +539,8 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Sets the defaults for person applications.
-     * 
-     * @param enrollment
-     *            the enrollment request.
+     *
+     * @param enrollment the enrollment request.
      */
     private void setPersonDefaults(EnrollmentType enrollment) {
         if (enrollment.getRequestType() == RequestType.ENROLLMENT) {
@@ -589,23 +570,21 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Handles requests to go to the next page.
-     * 
-     * @param enrollment
-     *            the current enrollment model
-     * @param request
-     *            the request
-     * @param model
-     *            the request model
+     *
+     * @param enrollment the current enrollment model
+     * @param request    the request
+     * @param model      the request model
      * @return the next page, or the same page if there were errors
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/steps/rebind"
      * @verb POST
      */
     @RequestMapping(value = "/steps/rebind", method = RequestMethod.POST)
-    public ModelAndView rebind(@ModelAttribute("enrollment") EnrollmentType enrollment, HttpServletRequest request,
-            Model model) throws PortalServiceException {
-
+    public ModelAndView rebind(
+            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            HttpServletRequest request,
+            Model model
+    ) throws PortalServiceException {
         String pageName = request.getParameter("pageName");
         String[] formNames = request.getParameterValues("formNames");
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
@@ -624,34 +603,33 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Loads the given current page of the enrollment process.
-     * 
-     * @param enrollment
-     *            the enrollment model
+     *
+     * @param enrollment the enrollment model
      * @return the current page of the enrollment process
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/page"
      * @verb GET
      */
     @RequestMapping(value = "/page", method = RequestMethod.GET)
-    public ModelAndView showPage(@ModelAttribute("enrollment") EnrollmentType enrollment) throws PortalServiceException {
+    public ModelAndView showPage(
+            @ModelAttribute("enrollment") EnrollmentType enrollment
+    ) throws PortalServiceException {
         return showPage(enrollment.getProgressPage(), enrollment);
     }
 
     /**
      * Loads the given current page of the enrollment process.
-     * 
-     * @param enrollment
-     *            the enrollment model
+     *
+     * @param enrollment the enrollment model
      * @return the current page of the enrollment process
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/print"
      * @verb GET
      */
     @RequestMapping(value = "/print", method = RequestMethod.GET)
-    public ModelAndView showPrint(@ModelAttribute("enrollment") EnrollmentType enrollment)
-            throws PortalServiceException {
+    public ModelAndView showPrint(
+            @ModelAttribute("enrollment") EnrollmentType enrollment
+    ) throws PortalServiceException {
         ModelAndView mv = showPage(ViewStatics.SUMMARY_INFORMATION, enrollment);
         mv.setViewName("provider/enrollment/print_modal");
         return mv;
@@ -659,34 +637,34 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Shows the print preview for the given ticket.
-     * 
-     * @param ticketId
-     *            the ticket to be exported
+     *
+     * @param ticketId the ticket to be exported
      * @return the print preview
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/preview"
      * @verb GET
      */
     @RequestMapping(value = "/preview", method = RequestMethod.GET)
-    public ModelAndView showPreview(@RequestParam("id") long ticketId) throws PortalServiceException {
+    public ModelAndView showPreview(
+            @RequestParam("id") long ticketId
+    ) throws PortalServiceException {
         EnrollmentType ticket = getTicket(ticketId);
         return showPrint(ticket);
     }
 
     /**
      * Shows the print preview for the given ticket.
-     * 
-     * @param ticketId
-     *            the ticket to be exported
+     *
+     * @param ticketId the ticket to be exported
      * @return the print preview
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/reviewPrint"
      * @verb GET
      */
     @RequestMapping(value = "/reviewPrint", method = RequestMethod.GET)
-    public ModelAndView reviewPrint(@RequestParam("id") long ticketId) throws PortalServiceException {
+    public ModelAndView reviewPrint(
+            @RequestParam("id") long ticketId
+    ) throws PortalServiceException {
         EnrollmentType ticket = getTicket(ticketId);
         ModelAndView mv = showPage(ViewStatics.SUMMARY_INFORMATION, ticket);
         mv.setViewName("admin/service_agent_view_enrollment_details");
@@ -695,42 +673,38 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Exports the ticket with the given id.
-     * 
-     * @param ticketId
-     *            the ticket to be exported
-     * @param response
-     *            the servlet response
-     * @throws IOException
-     *             for read/write errors
-     * @throws PortalServiceException
-     *             for any errors encountered
+     *
+     * @param ticketId the ticket to be exported
+     * @param response the servlet response
+     * @throws IOException            for read/write errors
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/exportTicket"
      * @verb GET
      */
     @RequestMapping(value = "/exportTicket", method = RequestMethod.GET)
-    public void exportTicket(@RequestParam("id") long ticketId, HttpServletResponse response)
-            throws PortalServiceException, IOException {
+    public void exportTicket(
+            @RequestParam("id") long ticketId,
+            HttpServletResponse response
+    ) throws PortalServiceException, IOException {
         EnrollmentType ticket = getTicket(ticketId);
         export(ticket, response);
     }
 
     /**
      * Exports the given.
-     * 
-     * @param enrollment
-     *            the enrollment model
-     * @param response
-     *            the response to write to
-     * @throws IOException
-     *             for IO related errors
-     * @throws PortalServiceException
-     *             for any errors encountered
+     *
+     * @param enrollment the enrollment model
+     * @param response   the response to write to
+     * @throws IOException            for IO related errors
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/export"
      * @verb GET
      */
     @RequestMapping(value = "/export", method = RequestMethod.GET)
-    public void export(@ModelAttribute("enrollment") EnrollmentType enrollment, HttpServletResponse response)
-            throws PortalServiceException, IOException {
+    public void export(
+            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            HttpServletResponse response
+    ) throws PortalServiceException, IOException {
         ModelAndView mv = showPage(ViewStatics.SUMMARY_INFORMATION, enrollment);
         response.reset();
         response.setContentType("application/pdf");
@@ -741,18 +715,18 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Performs practice lookup.
-     * 
-     * @param criteria
-     *            the lookup criteria
+     *
+     * @param criteria the lookup criteria
      * @return the lookup JSON
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/lookup"
      * @verb POST
      */
     @RequestMapping(value = "/lookup", method = RequestMethod.POST)
     @ResponseBody
-    public SearchResult<PracticeLookup> lookup(PracticeSearchCriteria criteria) throws PortalServiceException {
+    public SearchResult<PracticeLookup> lookup(
+            PracticeSearchCriteria criteria
+    ) throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
         SearchResult<PracticeLookup> results = getEnrollmentService().searchPractice(user, criteria);
         List<PracticeLookup> items = results.getItems();
@@ -767,18 +741,18 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Performs provider lookup.
-     * 
-     * @param npi
-     *            the provider NPI
+     *
+     * @param npi the provider NPI
      * @return the lookup JSON
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/lookupProvider"
      * @verb POST
      */
     @RequestMapping(value = "/lookupProvider", method = RequestMethod.POST)
     @ResponseBody
-    public List<ProviderLookup> lookupProvider(@RequestParam("npi") String npi) throws PortalServiceException {
+    public List<ProviderLookup> lookupProvider(
+            @RequestParam("npi") String npi
+    ) throws PortalServiceException {
         List<ProviderLookup> results = getEnrollmentService().lookupProvider(npi);
         if (results != null) {
             for (ProviderLookup item : results) {
@@ -791,37 +765,37 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Performs beneficial owner type lookup.
-     * 
-     * @param entity
-     *            type
+     *
+     * @param entity type
      * @return the lookup JSON
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/ownerTypes"
      * @verb POST
      */
     @RequestMapping(value = "/ownerTypes", method = RequestMethod.POST)
     @ResponseBody
-    public List<BeneficialOwnerType> lookupOwnerTypes(@RequestParam("entityType") String entityType)
-            throws PortalServiceException {
+    public List<BeneficialOwnerType> lookupOwnerTypes(
+            @RequestParam("entityType") String entityType
+    ) throws PortalServiceException {
         return lookupService.findBeneficialOwnerTypes(entityType);
     }
 
     /**
      * Performs license type lookup.
-     * 
-     * @param entity
-     *            type
+     *
+     * @param entity type
      * @return the lookup JSON
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/lookupMinimumLicenses"
      * @verb POST
      */
     @RequestMapping(value = "/lookupMinimumLicenses", method = RequestMethod.POST)
     @ResponseBody
-    public MinimumLicenseRulesModel lookupMinimumLicenses(@ModelAttribute("enrollment") EnrollmentType enrollment,
-            HttpServletRequest request, Model model) throws PortalServiceException {
+    public MinimumLicenseRulesModel lookupMinimumLicenses(
+            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            HttpServletRequest request,
+            Model model
+    ) throws PortalServiceException {
 
         String[] formNames = request.getParameterValues("formNames");
         bindRequest(formNames, enrollment, request);
@@ -830,19 +804,19 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Loads the given enrollment by id.
-     * 
-     * @param ticketId
-     *            the enrollment ticket id
-     * @param model
-     *            the view model
+     *
+     * @param ticketId the enrollment ticket id
+     * @param model    the view model
      * @return the edit ticket page
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/view"
      * @verb GET
      */
     @RequestMapping(value = "/view", method = RequestMethod.GET)
-    public ModelAndView viewTicket(@RequestParam("id") long ticketId, Model model) throws PortalServiceException {
+    public ModelAndView viewTicket(
+            @RequestParam("id") long ticketId,
+            Model model
+    ) throws PortalServiceException {
         EnrollmentType enrollment = getTicket(ticketId);
         model.addAttribute("enrollment", enrollment);
         String page = enrollment.getProgressPage();
@@ -854,20 +828,19 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Loads the given enrollment by id.
-     * 
-     * @param ticketId
-     *            the enrollment ticket id
-     * @param model
-     *            the view model
+     *
+     * @param ticketId the enrollment ticket id
+     * @param model    the view model
      * @return the edit ticket page
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/reopen"
      * @verb GET
      */
     @RequestMapping(value = "/reopen", method = RequestMethod.GET)
-    public ModelAndView modifySubmittedTicket(@RequestParam("id") long ticketId, Model model)
-            throws PortalServiceException {
+    public ModelAndView modifySubmittedTicket(
+            @RequestParam("id") long ticketId,
+            Model model
+    ) throws PortalServiceException {
         EnrollmentType enrollment = getTicket(ticketId);
         enrollment.setReopenedForEdit("Y");
         model.addAttribute("enrollment", enrollment);
@@ -876,14 +849,14 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Retrieves the ticket.
-     * 
-     * @param ticketId
-     *            ticket identifier
+     *
+     * @param ticketId ticket identifier
      * @return the ticket
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      */
-    private EnrollmentType getTicket(long ticketId) throws PortalServiceException {
+    private EnrollmentType getTicket(
+            long ticketId
+    ) throws PortalServiceException {
         GetTicketDetailsRequest request = new GetTicketDetailsRequest();
         CMSPrincipal principal = ControllerHelper.getPrincipal();
         request.setSystemId(principal.getAuthenticatedBySystem().name());
@@ -898,42 +871,39 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Loads the given page enrollment.
-     * 
-     * @param enrollment
-     *            the enrollment model
-     * @param toPageName
-     *            the page to jump to
+     *
+     * @param enrollment the enrollment model
+     * @param toPageName the page to jump to
      * @return the edit ticket page
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/jump"
      * @verb GET
      */
     @RequestMapping(value = "/jump", method = RequestMethod.GET)
-    public ModelAndView jump(@ModelAttribute("enrollment") EnrollmentType enrollment,
-            @RequestParam("page") String toPageName) throws PortalServiceException {
+    public ModelAndView jump(
+            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            @RequestParam("page") String toPageName
+    ) throws PortalServiceException {
         return showPage(toPageName, enrollment);
     }
 
     /**
      * Loads the given page enrollment.
-     * 
-     * @param enrollment
-     *            the enrollment model
-     * @param toPageName
-     *            the page to jump to
-     * @param request
-     *            the request
+     *
+     * @param enrollment the enrollment model
+     * @param toPageName the page to jump to
+     * @param request    the request
      * @return the edit ticket page
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/jump"
      * @verb POST
      */
     @RequestMapping(value = "/jump", method = RequestMethod.POST)
-    public ModelAndView jump(@ModelAttribute("enrollment") EnrollmentType enrollment,
-            @RequestParam("page") String toPageName, HttpServletRequest request) throws PortalServiceException {
-
+    public ModelAndView jump(
+            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            @RequestParam("page") String toPageName,
+            HttpServletRequest request
+    ) throws PortalServiceException {
         String fromPage = request.getParameter("pageName");
         String[] formNames = request.getParameterValues("formNames");
 
@@ -957,25 +927,23 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Saves the current enrollment ticket as draft.
-     * 
-     * @param enrollment
-     *            the current enrollment model
-     * @param request
-     *            the request
-     * @param status
-     *            the session status
-     * @param model
-     *            the request model
+     *
+     * @param enrollment the current enrollment model
+     * @param request    the request
+     * @param status     the session status
+     * @param model      the request model
      * @return the same page, with a success/error message
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/saveNote"
      * @verb POST
      */
     @RequestMapping(value = "/saveNote", method = RequestMethod.POST)
-    public ModelAndView saveNote(@ModelAttribute("enrollment") EnrollmentType enrollment, HttpServletRequest request,
-            Model model, SessionStatus status) throws PortalServiceException {
-
+    public ModelAndView saveNote(
+            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            HttpServletRequest request,
+            Model model,
+            SessionStatus status
+    ) throws PortalServiceException {
         CMSPrincipal principal = ControllerHelper.getPrincipal();
         String text = request.getParameter("noteText");
 
@@ -1009,25 +977,23 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Saves the current enrollment ticket as draft.
-     * 
-     * @param enrollment
-     *            the current enrollment model
-     * @param request
-     *            the request
-     * @param status
-     *            the session status
-     * @param model
-     *            the request model
+     *
+     * @param enrollment the current enrollment model
+     * @param request    the request
+     * @param status     the session status
+     * @param model      the request model
      * @return the same page, with a success/error message
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/save"
      * @verb POST
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ModelAndView save(@ModelAttribute("enrollment") EnrollmentType enrollment, HttpServletRequest request,
-            Model model, SessionStatus status) throws PortalServiceException {
-
+    public ModelAndView save(
+            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            HttpServletRequest request,
+            Model model,
+            SessionStatus status
+    ) throws PortalServiceException {
         String pageName = request.getParameter("pageName");
         String[] formNames = request.getParameterValues("formNames");
 
@@ -1069,24 +1035,23 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Submits the current enrollment.
-     * 
-     * @param enrollment
-     *            the current enrollment model
-     * @param request
-     *            the request
-     * @param model
-     *            the request model
-     * @param status
-     *            the session status
+     *
+     * @param enrollment the current enrollment model
+     * @param request    the request
+     * @param model      the request model
+     * @param status     the session status
      * @return the same page, with a success/error message
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/submit"
      * @verb POST
      */
     @RequestMapping(value = "/submit", method = RequestMethod.POST)
-    public ModelAndView submit(@ModelAttribute("enrollment") EnrollmentType enrollment, HttpServletRequest request,
-            Model model, SessionStatus status) throws PortalServiceException {
+    public ModelAndView submit(
+            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            HttpServletRequest request,
+            Model model,
+            SessionStatus status
+    ) throws PortalServiceException {
         String pageName = request.getParameter("pageName");
         String[] formNames = request.getParameterValues("formNames");
 
@@ -1135,24 +1100,23 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Submits the current enrollment.
-     * 
-     * @param enrollment
-     *            the current enrollment model
-     * @param request
-     *            the request
-     * @param model
-     *            the request model
-     * @param status
-     *            the session status
+     *
+     * @param enrollment the current enrollment model
+     * @param request    the request
+     * @param model      the request model
+     * @param status     the session status
      * @return the same page, with a success/error message
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/resubmitWithChanges"
      * @verb POST
      */
     @RequestMapping(value = "/resubmitWithChanges", method = RequestMethod.POST)
-    public ModelAndView resubmitWithChanges(@ModelAttribute("enrollment") EnrollmentType enrollment,
-            HttpServletRequest request, Model model, SessionStatus status) throws PortalServiceException {
+    public ModelAndView resubmitWithChanges(
+            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            HttpServletRequest request,
+            Model model,
+            SessionStatus status
+    ) throws PortalServiceException {
         String pageName = request.getParameter("pageName");
         String[] formNames = request.getParameterValues("formNames");
 
@@ -1202,16 +1166,16 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Shows the previous page.
-     * 
-     * @param pageName
-     *            the current page
-     * @param enrollment
-     *            the current enrollment model
+     *
+     * @param pageName   the current page
+     * @param enrollment the current enrollment model
      * @return the view for the previous page
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      */
-    private ModelAndView showPrevPage(String pageName, EnrollmentType enrollment) throws PortalServiceException {
+    private ModelAndView showPrevPage(
+            String pageName,
+            EnrollmentType enrollment
+    ) throws PortalServiceException {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         ViewModel viewModel = presentationService.getProviderViewModel(provider);
         List<String> pages = viewModel.getTabNames();
@@ -1231,34 +1195,33 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Shows the requested page.
-     * 
-     * @param pageName
-     *            the requested page name
-     * @param enrollment
-     *            the current enrollment mode
+     *
+     * @param pageName   the requested page name
+     * @param enrollment the current enrollment mode
      * @return the page model
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      */
-    private ModelAndView showPage(String pageName, EnrollmentType enrollment) throws PortalServiceException {
+    private ModelAndView showPage(
+            String pageName,
+            EnrollmentType enrollment
+    ) throws PortalServiceException {
         return showPage(pageName, enrollment, NO_ERRORS);
     }
 
     /**
      * Shows the requested page.
-     * 
-     * @param pageName
-     *            the requested page name
-     * @param enrollment
-     *            the current enrollment mode
-     * @param errors
-     *            the errors encountered
+     *
+     * @param pageName   the requested page name
+     * @param enrollment the current enrollment mode
+     * @param errors     the errors encountered
      * @return the page model
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      */
-    private ModelAndView showPage(String pageName, EnrollmentType enrollment, List<FormError> errors)
-            throws PortalServiceException {
+    private ModelAndView showPage(
+            String pageName,
+            EnrollmentType enrollment,
+            List<FormError> errors
+    ) throws PortalServiceException {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         ViewModel viewModel = presentationService.getProviderViewModel(provider);
 
@@ -1283,21 +1246,20 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Shows the requested page.
-     * 
-     * @param pageName
-     *            the requested page name
-     * @param enrollment
-     *            the current enrollment mode
-     * @param errors
-     *            the errors encountered
-     * @param viewModel
-     *            the view settings
+     *
+     * @param pageName   the requested page name
+     * @param enrollment the current enrollment mode
+     * @param errors     the errors encountered
+     * @param viewModel  the view settings
      * @return the page model
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      */
-    private ModelAndView showPage(String pageName, EnrollmentType enrollment, List<FormError> errors,
-            ViewModel viewModel) throws PortalServiceException {
+    private ModelAndView showPage(
+            String pageName,
+            EnrollmentType enrollment,
+            List<FormError> errors,
+            ViewModel viewModel
+    ) throws PortalServiceException {
 
         viewModel.setCurrentTab(pageName);
         enrollment.setProgressPage(pageName);
@@ -1316,23 +1278,23 @@ public class EnrollmentPageFlowController extends BaseController {
         boolean reopened = "Y".equals(enrollment.getReopenedForEdit());
         mv.addObject("isReopened", reopened);
         if (requestType != null) { // imported data?x
-        	switch (requestType) {
-        	case UPDATE:
-        		mv.addObject("isEditEnrollment", true);
-        		mv.addObject("isNewEnrollment", false);
-        		mv.addObject("isRenewalEnrollment", false);
-        		break;
-        	case RENEWAL:
-        		mv.addObject("isEditEnrollment", false);
-        		mv.addObject("isNewEnrollment", false);
-        		mv.addObject("isRenewalEnrollment", true);
-        		break;
-        	default:
-        		mv.addObject("isNewEnrollment", true);
-        		mv.addObject("isEditEnrollment", false);
-        		mv.addObject("isRenewalEnrollment", false);
-        		break;
-        	}
+            switch (requestType) {
+                case UPDATE:
+                    mv.addObject("isEditEnrollment", true);
+                    mv.addObject("isNewEnrollment", false);
+                    mv.addObject("isRenewalEnrollment", false);
+                    break;
+                case RENEWAL:
+                    mv.addObject("isEditEnrollment", false);
+                    mv.addObject("isNewEnrollment", false);
+                    mv.addObject("isRenewalEnrollment", true);
+                    break;
+                default:
+                    mv.addObject("isNewEnrollment", true);
+                    mv.addObject("isEditEnrollment", false);
+                    mv.addObject("isRenewalEnrollment", false);
+                    break;
+            }
         }
         bindTicketDetailsToPage(mv, enrollment);
 
@@ -1401,13 +1363,14 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Adds the ticket details to the page (not modifiable directly by user).
-     * 
-     * @param mv
-     *            the model and view
-     * @param enrollment
-     *            the currently viewed request
+     *
+     * @param mv         the model and view
+     * @param enrollment the currently viewed request
      */
-    private void bindTicketDetailsToPage(ModelAndView mv, EnrollmentType enrollment) {
+    private void bindTicketDetailsToPage(
+            ModelAndView mv,
+            EnrollmentType enrollment
+    ) {
         mv.addObject("_99_states", lookupService.findAllLookups(StateType.class));
         mv.addObject("_99_counties", lookupService.findAllLookups(CountyType.class));
         mv.addObject("_99_legacyInd", enrollment.getProviderInformation().getLegacyTransfer());
@@ -1432,12 +1395,10 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Retrieves the configured binder for the named form.
-     * 
-     * @param form
-     *            the name of the form
+     *
+     * @param form the name of the form
      * @return the configured binder
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      */
     private FormBinder getBinder(String form) throws PortalServiceException {
         FormBinder formBinder = binderRegistry.get(form);
@@ -1450,14 +1411,15 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Determines the JSP name for the given page.
-     * 
-     * @param pageName
-     *            the page name
-     * @param enrollment
-     *            the enrollment model
+     *
+     * @param pageName   the page name
+     * @param enrollment the enrollment model
      * @return the jsp view for the page
      */
-    private String determineViewName(String pageName, EnrollmentType enrollment) {
+    private String determineViewName(
+            String pageName,
+            EnrollmentType enrollment
+    ) {
         String status = enrollment.getStatus();
         if (enrollment.getRequestType() == null) {
             return "provider/enrollment/steps/view_profile_details";
@@ -1476,28 +1438,28 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Checks if the status is submitted.
-     * 
-     * @param status
-     *            the current status
+     *
+     * @param status the current status
      * @return true if the status is submitted
      */
     private boolean isSubmitted(String status) {
-        return ViewStatics.PENDING_STATUS.equals(status) || ViewStatics.REJECTED_STATUS.equals(status)
+        return ViewStatics.PENDING_STATUS.equals(status)
+                || ViewStatics.REJECTED_STATUS.equals(status)
                 || ViewStatics.APPROVED_STATUS.equals(status);
     }
 
     /**
      * Shows the next page.
-     * 
-     * @param pageName
-     *            the current page
-     * @param enrollment
-     *            the enrollment model
+     *
+     * @param pageName   the current page
+     * @param enrollment the enrollment model
      * @return the next page
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      */
-    private ModelAndView showNextPage(String pageName, EnrollmentType enrollment) throws PortalServiceException {
+    private ModelAndView showNextPage(
+            String pageName,
+            EnrollmentType enrollment
+    ) throws PortalServiceException {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         ViewModel viewModel = presentationService.getProviderViewModel(provider);
         List<String> pages = viewModel.getTabNames();
@@ -1525,19 +1487,18 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Validates the given enrollment.
-     * 
-     * @param enrollment
-     *            the enrollment to be validated
-     * @param pageName
-     *            the current page to validate
-     * @param formNames
-     *            the names of the forms to be validated
+     *
+     * @param enrollment the enrollment to be validated
+     * @param pageName   the current page to validate
+     * @param formNames  the names of the forms to be validated
      * @return any errors for the specified forms
-     * @throws PortalServiceException
-     *             for any errors encountered
+     * @throws PortalServiceException for any errors encountered
      */
-    private List<FormError> validate(EnrollmentType enrollment, String pageName, String[] formNames)
-            throws PortalServiceException {
+    private List<FormError> validate(
+            EnrollmentType enrollment,
+            String pageName,
+            String[] formNames
+    ) throws PortalServiceException {
         List<FormError> errors = new ArrayList<FormError>();
         if (formNames != null) {
             ValidationResponse results = presentationService.checkForErrors(enrollment, Arrays.asList(pageName));
@@ -1561,30 +1522,29 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Binds all the submitted forms.
-     * 
-     * @param formNames
-     *            the forms submitted
-     * @param enrollment
-     *            the model to bind to
-     * @param request
-     *            the request
-     * @throws BinderException
-     *             for binding errors due to invalid data type/formats
-     * @throws PortalServiceException
-     *             for any other errors encountered
+     *
+     * @param formNames  the forms submitted
+     * @param enrollment the model to bind to
+     * @param request    the request
+     * @throws BinderException        for binding errors due to invalid data
+     *                                type/formats
+     * @throws PortalServiceException for any other errors encountered
      */
-    private List<BinderException> bindRequest(String[] formNames, EnrollmentType enrollment, HttpServletRequest request)
-            throws PortalServiceException {
+    private List<BinderException> bindRequest(
+            String[] formNames,
+            EnrollmentType enrollment,
+            HttpServletRequest request
+    ) throws PortalServiceException {
 
         List<BinderException> exceptions = new ArrayList<BinderException>();
 
         bindFiles(enrollment, request);
-        
+
         CMSUser user = ControllerHelper.getCurrentUser();
         if (formNames != null) { // submitted forms
-    		for (String form : formNames) {
-    			exceptions.addAll(getBinder(form).bindFromPage(user, enrollment, request));
-    		}
+            for (String form : formNames) {
+                exceptions.addAll(getBinder(form).bindFromPage(user, enrollment, request));
+            }
         }
 
         return exceptions;
@@ -1592,15 +1552,15 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Binds uploaded files.
-     * 
-     * @param enrollment
-     *            the enrollment
-     * @param request
-     *            the current request
-     * @throws PortalServiceException
-     *             for any errors encountered
+     *
+     * @param enrollment the enrollment
+     * @param request    the current request
+     * @throws PortalServiceException for any errors encountered
      */
-    private void bindFiles(EnrollmentType enrollment, HttpServletRequest request) throws PortalServiceException {
+    private void bindFiles(
+            EnrollmentType enrollment,
+            HttpServletRequest request
+    ) throws PortalServiceException {
         if (request instanceof MultipartHttpServletRequest) {
             try {
                 MultipartHttpServletRequest multipart = (MultipartHttpServletRequest) request;
@@ -1634,9 +1594,8 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Sets the value of the field <code>enrollmentWebService</code>.
-     * 
-     * @param enrollmentWebService
-     *            the enrollmentWebService to set
+     *
+     * @param enrollmentWebService the enrollmentWebService to set
      */
     public void setEnrollmentWebService(EnrollmentWebService enrollmentWebService) {
         this.enrollmentWebService = enrollmentWebService;
@@ -1644,9 +1603,8 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Sets the value of the field <code>presentationService</code>.
-     * 
-     * @param presentationService
-     *            the presentationService to set
+     *
+     * @param presentationService the presentationService to set
      */
     public void setPresentationService(PresentationService presentationService) {
         this.presentationService = presentationService;
@@ -1654,9 +1612,8 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Sets the value of the field <code>binderRegistry</code>.
-     * 
-     * @param binderRegistry
-     *            the binderRegistry to set
+     *
+     * @param binderRegistry the binderRegistry to set
      */
     public void setBinderRegistry(Map<String, FormBinder> binderRegistry) {
         this.binderRegistry = binderRegistry;
@@ -1664,7 +1621,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Gets the value of the field <code>enrollmentService</code>.
-     * 
+     *
      * @return the enrollmentService
      */
     public ProviderEnrollmentService getEnrollmentService() {
@@ -1673,9 +1630,8 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Sets the value of the field <code>enrollmentService</code>.
-     * 
-     * @param enrollmentService
-     *            the enrollmentService to set
+     *
+     * @param enrollmentService the enrollmentService to set
      */
     public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
         this.enrollmentService = enrollmentService;
@@ -1683,9 +1639,8 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Sets the value of the field <code>exportService</code>.
-     * 
-     * @param exportService
-     *            the exportService to set
+     *
+     * @param exportService the exportService to set
      */
     public void setExportService(ExportService exportService) {
         this.exportService = exportService;
@@ -1693,9 +1648,8 @@ public class EnrollmentPageFlowController extends BaseController {
 
     /**
      * Sets the value of the field <code>lookupService</code>.
-     * 
-     * @param lookupService
-     *            the lookupService to set
+     *
+     * @param lookupService the lookupService to set
      */
     public void setLookupService(LookupService lookupService) {
         this.lookupService = lookupService;

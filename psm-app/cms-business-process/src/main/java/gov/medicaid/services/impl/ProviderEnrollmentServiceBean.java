@@ -105,8 +105,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     /**
      * List of roles with full access to all profiles and tickets.
      */
-    private static final List<String> FULL_ACCESS = Arrays.asList(ViewStatics.ROLE_SERVICE_AGENT,
-        ViewStatics.ROLE_SERVICE_ADMINISTRATOR, ViewStatics.ROLE_SYSTEM_ADMINISTRATOR);
+    private static final List<String> FULL_ACCESS = Arrays.asList(
+            ViewStatics.ROLE_SERVICE_AGENT,
+            ViewStatics.ROLE_SERVICE_ADMINISTRATOR,
+            ViewStatics.ROLE_SYSTEM_ADMINISTRATOR
+    );
 
     /**
      * Empty constructor.

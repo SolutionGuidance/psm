@@ -1282,23 +1282,23 @@ public class EnrollmentPageFlowController extends BaseController {
         boolean reopened = "Y".equals(enrollment.getReopenedForEdit());
         mv.addObject("isReopened", reopened);
         if (requestType != null) { // imported data?x
-        	switch (requestType) {
-        	case UPDATE:
-        		mv.addObject("isEditEnrollment", true);
-        		mv.addObject("isNewEnrollment", false);
-        		mv.addObject("isRenewalEnrollment", false);
-        		break;
-        	case RENEWAL:
-        		mv.addObject("isEditEnrollment", false);
-        		mv.addObject("isNewEnrollment", false);
-        		mv.addObject("isRenewalEnrollment", true);
-        		break;
-        	default:
-        		mv.addObject("isNewEnrollment", true);
-        		mv.addObject("isEditEnrollment", false);
-        		mv.addObject("isRenewalEnrollment", false);
-        		break;
-        	}
+            switch (requestType) {
+                case UPDATE:
+                    mv.addObject("isEditEnrollment", true);
+                    mv.addObject("isNewEnrollment", false);
+                    mv.addObject("isRenewalEnrollment", false);
+                    break;
+                case RENEWAL:
+                    mv.addObject("isEditEnrollment", false);
+                    mv.addObject("isNewEnrollment", false);
+                    mv.addObject("isRenewalEnrollment", true);
+                    break;
+                default:
+                    mv.addObject("isNewEnrollment", true);
+                    mv.addObject("isEditEnrollment", false);
+                    mv.addObject("isRenewalEnrollment", false);
+                    break;
+            }
         }
         bindTicketDetailsToPage(mv, enrollment);
 
@@ -1447,7 +1447,8 @@ public class EnrollmentPageFlowController extends BaseController {
      * @return true if the status is submitted
      */
     private boolean isSubmitted(String status) {
-        return ViewStatics.PENDING_STATUS.equals(status) || ViewStatics.REJECTED_STATUS.equals(status)
+        return ViewStatics.PENDING_STATUS.equals(status)
+                || ViewStatics.REJECTED_STATUS.equals(status)
                 || ViewStatics.APPROVED_STATUS.equals(status);
     }
 
@@ -1542,12 +1543,12 @@ public class EnrollmentPageFlowController extends BaseController {
         List<BinderException> exceptions = new ArrayList<BinderException>();
 
         bindFiles(enrollment, request);
-        
+
         CMSUser user = ControllerHelper.getCurrentUser();
         if (formNames != null) { // submitted forms
-    		for (String form : formNames) {
-    			exceptions.addAll(getBinder(form).bindFromPage(user, enrollment, request));
-    		}
+            for (String form : formNames) {
+                exceptions.addAll(getBinder(form).bindFromPage(user, enrollment, request));
+            }
         }
 
         return exceptions;

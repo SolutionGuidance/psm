@@ -125,6 +125,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param ticketId the ticket id to be removed
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public void removeDraftTicket(
             CMSUser user,
             long ticketId
@@ -147,6 +148,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param reason   the reason for rejecting the request
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public void rejectTicket(
             CMSUser user,
             long ticketId,
@@ -173,6 +175,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param ticketId the ticket id that was approved
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public void approveTicket(
             CMSUser user,
             long ticketId
@@ -242,6 +245,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param ticket the ticket that will be approved (after saving it)
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public void approveTicketWithChanges(
             CMSUser user,
             Enrollment ticket
@@ -264,6 +268,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *                                attachment contents
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public void streamContent(
             CMSUser user,
             long attachmentId,
@@ -309,6 +314,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @throws PortalServiceException   for any errors encountered
      */
     @SuppressWarnings("unchecked")
+    @Override
     public SearchResult<UserRequest> searchTickets(
             CMSUser user,
             ProviderSearchCriteria criteria
@@ -368,6 +374,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the ticket id for the draft created
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public long saveAsDraft(
             CMSUser user,
             Enrollment ticket
@@ -403,6 +410,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the complete ticket and provider profile
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public Enrollment getTicketDetails(
             CMSUser user,
             long ticketId
@@ -421,6 +429,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the complete provider profile
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public ProviderProfile getProviderDetails(
             CMSUser user,
             long profileId
@@ -467,6 +476,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
+    @Override
     public List<ProviderLookup> lookupProvider(
             String npi
     ) throws PortalServiceException {
@@ -489,6 +499,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings("unchecked")
+    @Override
     public SearchResult<PracticeLookup> searchPractice(
             CMSUser user,
             PracticeSearchCriteria criteria
@@ -618,6 +629,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings("unchecked")
+    @Override
     public List<ProfileHeader> findMyProfiles(CMSUser user) throws PortalServiceException {
         if (user == null || user.getRole() == null) {
             throw new IllegalArgumentException("User and the corresponding role cannot be null.");
@@ -653,6 +665,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the generated ticket
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public Enrollment renewProfile(
             CMSUser user,
             long profileId
@@ -676,6 +689,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the generated ticket
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public Enrollment editProfile(
             CMSUser user,
             long profileId
@@ -696,6 +710,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the attachment id generated
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public long uploadAttachment(
             CMSUser user,
             Document attachment
@@ -723,6 +738,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param text     the note text
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public void addNoteToTicket(
             CMSUser user,
             long ticketId,
@@ -743,6 +759,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param text      the note text
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public void addNoteToProfile(
             CMSUser user,
             long profileId,
@@ -761,6 +778,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings("rawtypes")
+    @Override
     public Enrollment getTicketByProcessInstanceId(
             CMSUser user,
             long processInstanceId
@@ -787,6 +805,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param reason    the reason for rejecting the request
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public void suspendProvider(
             CMSUser user,
             long profileId,
@@ -809,6 +828,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the assigned internal id
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public long importProfile(
             CMSUser user,
             SystemId sourceSystem,
@@ -2150,6 +2170,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the validity status of the ticket
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public Validity getSubmissionValidity(
             long ticketId,
             long profileId
@@ -2227,6 +2248,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param user       the current user
      * @param profileIds the profiles to renew
      */
+    @Override
     public Long[] renewalProfiles(
             CMSUser user,
             Set<Long> profileIds
@@ -2405,6 +2427,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings("unchecked")
+    @Override
     public boolean hasGroupAffiliation(
             String externalUserId,
             String profileNPI
@@ -2448,6 +2471,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return true if a record matches
      * @throws PortalServiceException for any errors encountered
      */
+    @Override
     public boolean existsProfile(String profileNPI) {
         String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
                 + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "

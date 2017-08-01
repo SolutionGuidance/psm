@@ -72,7 +72,7 @@
 			</div>
 			<!-- /#mainContent -->
 
-            <%@include file="/WEB-INF/pages/includes/footer.jsp" %>
+            <%@include file="/WEB-INF/pages/footer.jsp" %>
 		</div>
 		<!-- /#wrapper -->
 	</body>

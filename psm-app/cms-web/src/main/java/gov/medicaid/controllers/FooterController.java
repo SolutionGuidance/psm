@@ -8,39 +8,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import gov.medicaid.controllers.BaseController;
 import org.springframework.web.servlet.ModelAndView;
-import gov.medicaid.services.util.LogUtil;
 
 /**
  * Allows us to insert a variable into the footer display.
  */
 @Controller
-public class FooterController extends BaseController {
-    /**
-     * Empty constructor.
-     */
-    public FooterController() {
-    }
-
+public class FooterController {
     /**
      * This shows the footer, with the latest commit date.
      *
      * @return the model and view instance that contains the name of view to be
      * rendered and data to be used for rendering (not null)
      * @throws PortalServiceException If there are any errors in the action
-     * @endpoint "/footer"
+     * @endpoint "/"
      * @verb GET
      */
     @RequestMapping(
-            value = "/footer",
+            value = "/",
             method = RequestMethod.GET
     )
     public ModelAndView getFooter( ) throws PortalServiceException {
-        String signature = "FooterController#getFooter";
-        LogUtil.traceEntry(getLog(), signature, new String[]{""}, new Object[]{null});
 
-        ModelAndView model = new ModelAndView("/includes/footer");
-        model.addObject("date", "TEST");
+        String test = "TEST";
+        ModelAndView model = new ModelAndView("footer");
+        System.out.println("DEBUG: test value is " + test);
+        model.addObject("date", test);
 
-        return LogUtil.traceExit(getLog(), signature, model);
+        return model;
     }
 }

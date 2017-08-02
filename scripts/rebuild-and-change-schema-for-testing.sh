@@ -25,7 +25,6 @@ else
     cd ..
     echo "Re-seeding database"
     cat scripts/drop-contents-of-db-for-testing.sql \
-	psm-app/db/legacy_seed.sql \
 	psm-app/db/jbpm.sql \
 	psm-app/db/seed.sql | psql -h localhost -U psm psm
     # Once we have a new dev enrollment schema:

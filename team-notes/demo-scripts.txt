@@ -71,8 +71,7 @@
 
 * For MESC 2017  (exact revision still TBD as of 2 Aug 2017)
 
-  Use testing.psm.solutionguidance.com (though we should freeze merges to
-  master a few days beforehand, since this is our CD server).
+  Use demo.psm.solutionguidance.com.
   
   1. Show an organizational provider enrollment:
      - Choose "Durable Medical Equipment"

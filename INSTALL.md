@@ -313,7 +313,7 @@ repository, update its location in your local properties:
 
    ```ShellSession
    $ cd ../{psm}/psm-app
-   $ ./gradlew build
+   $ ./gradlew cms-portal-services:build
    ...[cut]...
    BUILD SUCCESSFUL
    ```

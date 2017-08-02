@@ -1,86 +1,6 @@
    Scripts for live demonstrations of the PSM to various audiences.
    ================================================================
 
-* For initial demos to states (based on master at ad7e051).
-
-  1. Sign in as a provider "provider1"
-    - Create New Enrollment
-    - Scroll through provider types to show individual vs. organizational providers
-    - Choose "Audiologist" (this is a simple type without special requirements)
-    - Use NPI 0000000006
-    - Try a DOB in the future and show the error shows up when you click "next" (but not immediately on tabbing away from the field)
-      # Karl asks: We should talk about how we plan to add immediate validation,
-      #            so that the user is made aware of such errors as soon as they
-      #            indicate the field is complete (e.g., by tabbing or clicking
-      #            away from the field).  However, I went looking for an issue
-      #            about this, and we don't seem to have any filed?  At least,
-      #            I didn't see it when I searched for "validation" or "validate"
-      #            or "validity" in the issue tracker.  Do we agree that this is
-      #            on the roadmap (even if not for MVP), and that it's something
-      #            we can talk about?
-      - See the "provider must be at least 18yo error, too! (for fun)
-    - Show that the "next" doesn't work if required fields are missing (e.g. SSN)
-    - Contact info "same as above" saves time
-    - Indian reservation question is MN-specific, but we can ask similar questions for other states
-      # Karl asks: That's hardcoded in right now, right?  Making it
-      #            configurable on a per-state basis would be a rules
-      #            (Drools) change, not a workflow change, I assume? 
-    - Show that the license type dropdown is limited to those that match this provider type
-      - Choose "Audiologist License"
-      - Browse to a file that you feel okay about sharing on the sandbox /
-        showing to the audience. :) (NOTE: we're not validating the file
-        type yet)
-      - I usually do 01/01/2015 - 12/31/2018
-      - The issuing state must be Minnesota for now (NOTE: talk about
-        state-specific rules, and how those will be editable -- e.g.,
-        maybe you accept licenses from your state and neighboring states)
-    - Private practice? Yes
-      - Show that the fields change based on the answer to this question
-    - Employed by group? No
-      - Additional practice locations show up if you click "Yes"
-    - Point out "Practice Lookup" button (click, it works)
-      - We don't have data in here yet, but later providers will be able
-        to find their practice
-    - Fill in form:
-      - Test Audiologist, 01/01/2017, 1300 S State St, Minneapolis, MN, 55404, Hennepin
-      - Billing address SAME
-      - Leave non-required fields blank, for time
-      - 06/30 and Patient Account
-    - Review form, show print button, save as draft, ability to go back and edit
-    - Disclosure: no to all, sign, date, "Submit Enrollment"
-  
-    - Great!  Can see the enrollment on the dashboard, under "Pending."
-      Risk level depends on provider type -- Audiologists are limited
-      risk.  Now that it's been submitted they can't edit it anymore.
-  
-  Now we're ready for the admin side:
-  
-  2. Sign out and sign back in as a state reviewer, "admin"
-     - Navigate to "Enrollments" tab, then "Pending" subtab
-     - Look at available "Actions"
-     - Export downloads it as a PDF, COS is "Categories of Service" (not
-       fully implemented/work in progress), Edit and Print are what it
-       says on the tin
-     - Review is what we're interested in.
-     - Click "Review"
-     - Not very interesting yet, because we're not hooked up to these
-       external services, but soon we'll be checking these boxes
-       automatically.  For now, you could do the manual checks you're used
-       to.
-       - Later, other sources can be added to this list
-     - Can click "View" and see the actual uploaded license
-     - View Log is an audit log -- we haven't done any external screening,
-       because we're not attached to those external sources yet
-     - "Reject" and the enrollment will show up in the "Denied" tab.  We
-       no longer have the ability to re-review
-     - "Approve" ...claims to work, but the enrollment does not reliably
-       show up in the "Approved" tab.  Not sure what's going on with that,
-       but best not to draw attention to it.
-  
-  Those are the two main workflows we have, with different options for
-  different provider types, etc.  We also have admin roles to create new
-  users, etc. Comments/questions?
-
 * For MESC 2017  (exact revision still TBD as of 2 Aug 2017)
 
   Use demo.psm.solutionguidance.com.
@@ -96,6 +16,8 @@
        # Karl asks: What does the above comment mean, in terms
        #            of what's happening in the demo?  Does the 
        #            demo-er do something b/c of it?
+       # CMD: No, it's a note to the person running the demo that they
+       # don't need to have a valid Employer ID, as they need a valid NPI. 
      - "Ownership Info" (something that a couple states have asked about)
        - Note that you can add multiple individual owners
        - And also multiple business owners
@@ -105,7 +27,15 @@
   
   2. Show an individual provider enrollment with multiple locations:
      - Choose "Audiologist"
+     - Try a DOB in the future and show the error shows up when you
+       click "next" (but not immediately on tabbing away from the field) 
+      - See the "provider must be at least 18yo error, too! (for fun)
      - Practice Info:
+       - Indian reservation question is MN-specific, but we can ask
+         similar questions for other states 
+       # Karl asks: That's hardcoded in right now, right?  Making it
+       #            configurable on a per-state basis would be a rules
+       #            (Drools) change, not a workflow change, I assume? 
        - For "Are you employed and/or independently contracted by a group
          practice?" choose Yes
          - At bottom of page, click "Add Another Practice Location"
@@ -124,25 +54,28 @@
        #            PDF rendering or whatever it would be.
      - Review is what we're interested in.
      - Click "Review"
-     - Not very interesting yet, because we're not hooked up to these
-       external services, but soon we'll be checking these boxes
-       automatically.  For now, you could do the manual checks you're used
-       to.
-       # Karl asks: Hmm, the above has just changed, with Jason's news
-       #            https://groups.google.com/forum/#!topic/psm-dev/h1lAHrUMkU4
-       #            right?  That should definitely become part of the demo; 
-       #            it's something everyone who's expressed interest in the PSM
-       #            has been focused on.
-       - Later, other sources can be added to this list
-     - Can click "View" and see the actual uploaded license
-       # Karl asks: Maybe have printout of that with us too, for an
-       #            amusing physical-world-vs-screen-world comparison.
-     - View Log is an audit log -- we haven't done any external screening,
-       because we're not attached to those external sources yet
+     - Excluded provider version:
+       - One pre-filled enrollment will be for a person in the LEIE
+       - Review that enrollment and click "View Log"
+       - View Log is an audit log -- we haven't done any external screening,
+         because we're not attached to those external sources yet, but
+         it will show results when we are.
        # Karl asks: Again, re Jason's post: we are attached now, right?
        #            But, do we have an audit log?  Can we?
-     - "Reject" and the enrollment will show up in the "Denied" tab.  We
-       no longer have the ability to re-review
-     - "Approve" the DME enrollment and it will show up in the "Approved"
-       tab (after a "request has been sent" message)
-       # Karl asks: So we're going to choose "Approve" in the demo?
+       # CMD: The audit log is what's shown in Jason's screenshot (!).
+       # We will show it once it's ready.
+       - "Reject" and the enrollment will show up in the "Denied" tab.  We
+         no longer have the ability to re-review
+
+     - Non-excluded provider version:
+       - Still working on linking up to these external services, but soon
+         we'll be checking these boxes automatically.  For now, you could
+         do the manual checks you're used to.
+       - Will be able to look at "View Log" for LEIE (TBD)
+       - Later, other sources can be added to this list
+       - Can click "View" and see the actual uploaded license
+         # Karl asks: Maybe have printout of that with us too, for an
+         #            amusing physical-world-vs-screen-world comparison.
+       - "Approve" the DME enrollment and it will show up in the "Approved"
+         tab (after a "request has been sent" message)
+

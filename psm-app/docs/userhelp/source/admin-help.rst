@@ -20,9 +20,15 @@ If a user can't self-register, here are some things to troubleshoot:
 1. Has the user turned JavaScript off? The PSM's registration page
    requires JavaScript.
 2. Ask the user: did they receive an email confirming a successful
-   account registration? If not: Has the user included a valid email
-   address? And ask IT: is the PSM's email working? If the PSM can't
-   reach an email server, it won't create the new account.
+   account registration? If not:
+
+   a. Has the user included a valid email address?
+
+   b. Ask IT: is the PSM's email working? If the PSM can't reach an
+      email server, it will create a new account but won't email the
+      user their password. Once the PSM's email is working again, ask
+      the user to click "Forgot Password?" to get a password reset
+      email.
 
 
 Why can't users log in?

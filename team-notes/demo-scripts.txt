@@ -9,10 +9,22 @@
     - Choose "Audiologist" (this is a simple type without special requirements)
     - Use NPI 0000000006
     - Try a DOB in the future and show the error shows up when you click "next" (but not immediately on tabbing away from the field)
-       - See the "provider must be at least 18yo error, too! (for fun)
+      # Karl asks: We should talk about how we plan to add immediate validation,
+      #            so that the user is made aware of such errors as soon as they
+      #            indicate the field is complete (e.g., by tabbing or clicking
+      #            away from the field).  However, I went looking for an issue
+      #            about this, and we don't seem to have any filed?  At least,
+      #            I didn't see it when I searched for "validation" or "validate"
+      #            or "validity" in the issue tracker.  Do we agree that this is
+      #            on the roadmap (even if not for MVP), and that it's something
+      #            we can talk about?
+      - See the "provider must be at least 18yo error, too! (for fun)
     - Show that the "next" doesn't work if required fields are missing (e.g. SSN)
     - Contact info "same as above" saves time
     - Indian reservation question is MN-specific, but we can ask similar questions for other states
+      # Karl asks: That's hardcoded in right now, right?  Making it
+      #            configurable on a per-state basis would be a rules
+      #            (Drools) change, not a workflow change, I assume? 
     - Show that the license type dropdown is limited to those that match this provider type
       - Choose "Audiologist License"
       - Browse to a file that you feel okay about sharing on the sandbox /
@@ -73,11 +85,17 @@
 
   Use demo.psm.solutionguidance.com.
   
+  This demo assumes that much of the provider information has already
+  been filled in -- that is, that we're re-opening an application in
+  progress and continuing it.  This is to save time during the demo.
+
   1. Show an organizational provider enrollment:
      - Choose "Durable Medical Equipment"
      - Effective Date must be within past 12 months
      - Employer ID doesn't seem to be checked
-  
+       # Karl asks: What does the above comment mean, in terms
+       #            of what's happening in the demo?  Does the 
+       #            demo-er do something b/c of it?
      - "Ownership Info" (something that a couple states have asked about)
        - Note that you can add multiple individual owners
        - And also multiple business owners
@@ -100,17 +118,31 @@
      - Export downloads it as a PDF, COS is "Categories of Service" (not
        fully implemented/work in progress), Edit and Print are what it
        says on the tin
+       # Karl asks: Shall we have a printed-out copy physically there with
+       #            us so we can wave it and show that printing is A Thing?
+       #            That's more effective than clicking to show an on-screen
+       #            PDF rendering or whatever it would be.
      - Review is what we're interested in.
      - Click "Review"
      - Not very interesting yet, because we're not hooked up to these
        external services, but soon we'll be checking these boxes
        automatically.  For now, you could do the manual checks you're used
        to.
+       # Karl asks: Hmm, the above has just changed, with Jason's news
+       #            https://groups.google.com/forum/#!topic/psm-dev/h1lAHrUMkU4
+       #            right?  That should definitely become part of the demo; 
+       #            it's something everyone who's expressed interest in the PSM
+       #            has been focused on.
        - Later, other sources can be added to this list
      - Can click "View" and see the actual uploaded license
+       # Karl asks: Maybe have printout of that with us too, for an
+       #            amusing physical-world-vs-screen-world comparison.
      - View Log is an audit log -- we haven't done any external screening,
        because we're not attached to those external sources yet
+       # Karl asks: Again, re Jason's post: we are attached now, right?
+       #            But, do we have an audit log?  Can we?
      - "Reject" and the enrollment will show up in the "Denied" tab.  We
        no longer have the ability to re-review
      - "Approve" the DME enrollment and it will show up in the "Approved"
        tab (after a "request has been sent" message)
+       # Karl asks: So we're going to choose "Approve" in the demo?

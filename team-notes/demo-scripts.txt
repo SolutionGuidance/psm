@@ -1,0 +1,81 @@
+   Scripts for live demonstrations of the PSM to various audiences.
+   ================================================================
+
+* For MESC 2017  (exact revision still TBD as of 2 Aug 2017)
+
+  Use demo.psm.solutionguidance.com.
+  
+  This demo assumes that much of the provider information has already
+  been filled in -- that is, that we're re-opening an application in
+  progress and continuing it.  This is to save time during the demo.
+
+  1. Show an organizational provider enrollment:
+     - Choose "Durable Medical Equipment"
+     - Effective Date must be within past 12 months
+     - Employer ID doesn't seem to be checked
+       # Karl asks: What does the above comment mean, in terms
+       #            of what's happening in the demo?  Does the 
+       #            demo-er do something b/c of it?
+       # CMD: No, it's a note to the person running the demo that they
+       # don't need to have a valid Employer ID, as they need a valid NPI. 
+     - "Ownership Info" (something that a couple states have asked about)
+       - Note that you can add multiple individual owners
+       - And also multiple business owners
+  
+     - Back on the dashboard, note that DME is automatically flagged as
+       "High" risk (based on provider type)
+  
+  2. Show an individual provider enrollment with multiple locations:
+     - Choose "Audiologist"
+     - Try a DOB in the future and show the error shows up when you
+       click "next" (but not immediately on tabbing away from the field) 
+      - See the "provider must be at least 18yo error, too! (for fun)
+     - Practice Info:
+       - Indian reservation question is MN-specific, but we can ask
+         similar questions for other states 
+       # Karl asks: That's hardcoded in right now, right?  Making it
+       #            configurable on a per-state basis would be a rules
+       #            (Drools) change, not a workflow change, I assume? 
+       - For "Are you employed and/or independently contracted by a group
+         practice?" choose Yes
+         - At bottom of page, click "Add Another Practice Location"
+           - Group NPI can be the same as the initial Provider NPI, and we
+             can use the same NPI for multiple locations
+  
+  3. Admin flow:
+     - Navigate to "Enrollments" tab, then "Pending" subtab
+     - Look at available "Actions"
+     - Export downloads it as a PDF, COS is "Categories of Service" (not
+       fully implemented/work in progress), Edit and Print are what it
+       says on the tin
+       # Karl asks: Shall we have a printed-out copy physically there with
+       #            us so we can wave it and show that printing is A Thing?
+       #            That's more effective than clicking to show an on-screen
+       #            PDF rendering or whatever it would be.
+     - Review is what we're interested in.
+     - Click "Review"
+     - Excluded provider version:
+       - One pre-filled enrollment will be for a person in the LEIE
+       - Review that enrollment and click "View Log"
+       - View Log is an audit log -- we haven't done any external screening,
+         because we're not attached to those external sources yet, but
+         it will show results when we are.
+       # Karl asks: Again, re Jason's post: we are attached now, right?
+       #            But, do we have an audit log?  Can we?
+       # CMD: The audit log is what's shown in Jason's screenshot (!).
+       # We will show it once it's ready.
+       - "Reject" and the enrollment will show up in the "Denied" tab.  We
+         no longer have the ability to re-review
+
+     - Non-excluded provider version:
+       - Still working on linking up to these external services, but soon
+         we'll be checking these boxes automatically.  For now, you could
+         do the manual checks you're used to.
+       - Will be able to look at "View Log" for LEIE (TBD)
+       - Later, other sources can be added to this list
+       - Can click "View" and see the actual uploaded license
+         # Karl asks: Maybe have printout of that with us too, for an
+         #            amusing physical-world-vs-screen-world comparison.
+       - "Approve" the DME enrollment and it will show up in the "Approved"
+         tab (after a "request has been sent" message)
+

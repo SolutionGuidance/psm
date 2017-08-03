@@ -1,0 +1,2 @@
+provider_too_young,Provider age should be 18 or above during enrollment
+invalid_login,No AuthenticationProvider found for gov.medicaid.security.DomainAuthenticationToken

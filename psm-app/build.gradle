@@ -259,8 +259,4 @@ project(':integration-tests') {
         }
     }
 
-    test {
-        environment "DISPLAY", System.getenv('XVFB_DISPLAY')
-        systemProperty "webdriver.firefox.bin", System.getenv('FIREFOX_HOME')
-    }
 }

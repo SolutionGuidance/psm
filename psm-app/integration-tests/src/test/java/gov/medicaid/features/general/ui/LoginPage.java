@@ -5,7 +5,7 @@ import net.thucydides.core.pages.PageObject;
 import net.thucydides.core.annotations.DefaultUrl;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DefaultUrl("http://localhost:8080/cms")
+@DefaultUrl("http://ohio.psm.solutionguidance.com:8080/cms/login")
 public class LoginPage extends PageObject {
 
     public void enterProviderCredentials() {

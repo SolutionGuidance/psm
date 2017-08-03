@@ -10,7 +10,8 @@ Welcome to Provider Screening Module's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   system-admin-help
+   service-admin-help
 
 Indices and tables
 ==================

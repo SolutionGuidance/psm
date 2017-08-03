@@ -31,8 +31,8 @@ import gov.medicaid.entities.SystemId;
 import gov.medicaid.entities.UserRequest;
 import gov.medicaid.entities.Validity;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -122,7 +122,7 @@ public interface ProviderEnrollmentService {
      *
      * @param user         the current user
      * @param attachmentId the attachment id to be streamed.
-     * @param output       the stream to write the contents to
+     * @param response     the response object to write the contents to
      * @throws IOException            for any I/O errors while streaming the
      *                                attachment contents
      * @throws PortalServiceException for any errors encountered
@@ -130,7 +130,7 @@ public interface ProviderEnrollmentService {
     void streamContent(
             CMSUser user,
             long attachmentId,
-            OutputStream output
+            HttpServletResponse response
     ) throws IOException, PortalServiceException;
 
     /**

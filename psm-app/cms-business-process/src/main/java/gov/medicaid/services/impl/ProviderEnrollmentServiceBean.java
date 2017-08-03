@@ -67,11 +67,11 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityGraph;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -263,7 +263,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *
      * @param user         the current user
      * @param attachmentId the attachment id to be streamed.
-     * @param output       the stream to write the contents to
+     * @param response     the response object to write the contents to
      * @throws IOException            for any I/O errors while streaming the
      *                                attachment contents
      * @throws PortalServiceException for any errors encountered
@@ -272,7 +272,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public void streamContent(
             CMSUser user,
             long attachmentId,
-            OutputStream output
+            HttpServletResponse response
     ) throws IOException, PortalServiceException {
         Document attachment = getEm().find(Document.class, attachmentId);
         if (attachment != null) {
@@ -290,7 +290,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             InputStream input = null;
             try {
                 input = content.getContent().getBinaryStream();
-                IOUtils.copy(input, output);
+                response.setContentType(attachment.getType());
+                response.setHeader(
+                        "Content-Disposition",
+                        "attachment; filename=" + attachment.getFilename()
+                );
+                IOUtils.copy(input, response.getOutputStream());
             } catch (SQLException e) {
                 throw new IOException("Cannot read binary content from database.", e);
             } finally {

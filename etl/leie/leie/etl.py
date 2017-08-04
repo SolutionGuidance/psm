@@ -87,6 +87,10 @@ def clean(table):
     table = etl.convert(table, {'DOB': munge_date,
                                 'MIDNAME': lambda f: f if f != " " else ""  # no spaces as middle names
     })
+    table = etl.convertall(
+            table,
+            lambda f: None if f.strip() == '' else f
+    )
     return table
 
 class Exclusions():

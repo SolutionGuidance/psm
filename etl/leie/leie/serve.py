@@ -42,6 +42,7 @@ def home():
     return slurp("api.html")
 
 @app.route("/exclusion", methods=["DELETE", "PATCH", "POST", "PUT"])
+@app.route("/Exclusion", methods=["DELETE", "PATCH", "POST", "PUT"])
 def method_not_allowed():
     return "", 405
 
@@ -51,8 +52,10 @@ def parse_param_date(param_date):
         return None
     return dateutil.parser.parse(param_date).date()
 
+@app.route('/exclusion')
 @app.route('/exclusion/<rowid>')
-@app.route("/exclusion")
+@app.route('/Exclusion')
+@app.route('/Exclusion/<rowid>')
 def get_exclusions(rowid=None):
     """Search the exclusions table and return rows.
 

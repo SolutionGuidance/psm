@@ -49,7 +49,7 @@ def parse_param_date(param_date):
     """Try to parse the date. Return None if there's nothing there to parse."""
     if not param_date:
         return None
-    return dateutil.parser.parse(param_date)
+    return dateutil.parser.parse(param_date).date()
 
 @app.route('/exclusion/<rowid>')
 @app.route("/exclusion")

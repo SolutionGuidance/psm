@@ -41,16 +41,18 @@ def conn():
     os.unlink(conn.db_conf['open'])
 
 def test_munge_date():
-    assert etl.munge_date("20120620") == "2012-06-20 00:00:00.000"
-    assert etl.munge_date("03/09/62") == "1962-03-09 00:00:00.000"
-    assert etl.munge_date("03/09/01") == "2001-03-09 00:00:00.000"
-    assert etl.munge_date("03/09/00") == "2000-03-09 00:00:00.000"
-    assert etl.munge_date("03/09/99") == "1999-03-09 00:00:00.000"
-    assert etl.munge_date("03/09/1999") == "1999-03-09 00:00:00.000"
-    assert etl.munge_date("03/09/2000") == "2000-03-09 00:00:00.000"
-    assert etl.munge_date("03/09/2001") == "2001-03-09 00:00:00.000"
-    assert etl.munge_date("03/09/1801") == "1801-03-09 00:00:00.000"
-    assert etl.munge_date("03/09/2101") == "2101-03-09 00:00:00.000"
+    assert etl.munge_date("20120620") == "2012-06-20"
+    assert etl.munge_date("00000000") == None
+    assert etl.munge_date("03/09/62") == "1962-03-09"
+    assert etl.munge_date("03/09/01") == "2001-03-09"
+    assert etl.munge_date("03/09/00") == "2000-03-09"
+    assert etl.munge_date("03/09/99") == "1999-03-09"
+    assert etl.munge_date("00/00/00") == None
+    assert etl.munge_date("03/09/1999") == "1999-03-09"
+    assert etl.munge_date("03/09/2000") == "2000-03-09"
+    assert etl.munge_date("03/09/2001") == "2001-03-09"
+    assert etl.munge_date("03/09/1801") == "1801-03-09"
+    assert etl.munge_date("03/09/2101") == "2101-03-09"
 
     # Test the regexes that munge_data relies on
     assert etl.date_re.match("20120620")

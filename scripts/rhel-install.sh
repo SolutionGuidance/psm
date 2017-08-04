@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 function download_and_sha1 {
 		base=$(basename $1)
@@ -18,6 +18,7 @@ sudo yum -y update
 
 ## Generate a password to use when passwords are needed
 < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c30 | awk '{print $1"!"}' > pass.txt
+
 ## Install posgresql repo, then postgres
 echo "Installing postgres"
 download_and_sha1 "https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-redhat96-9.6-3.noarch.rpm" \
@@ -33,6 +34,9 @@ sudo systemctl enable postgresql-9.6.service
 sudo systemctl start postgresql-9.6.service
 sudo -upostgres psql -c "create user \"psm\" with password '$(< pass.txt)'"
 sudo -upostgres psql -c "create database \"psm\" with owner \"psm\" encoding='utf8' template template0"
+echo localhost:5432:psm:psm:$(< pass.txt) > ~/.pgpass
+chmod 600 ~/.pgpass
+
 
 ## Get the project code base
 echo "Getting the project code base"
@@ -59,8 +63,8 @@ tar -xzf wildfly-10.1.0.Final.tar.gz
 rm wildfly-10.1.0.Final.tar.gz
 sudo mv wildfly-10.1.0.Final /opt/
 sudo ln -s /opt/wildfly-10.1.0.Final /opt/wildfly
-sudo ln -s /opt/wildfly-10.1.0.Final ~/wildfly-10.1.0.Final
-sudo echo | sudo dd of=/etc/default/wildfly.conf<<EOF
+ln -s /opt/wildfly-10.1.0.Final ~/wildfly-10.1.0.Final
+sudo dd of=/etc/default/wildfly.conf<<EOF
 JAVA_HOME="/usr/lib/jvm/java-1.8.0"
 JBOSS_HOME="/opt/wildfly"
 JBOSS_USER=wildfly
@@ -69,22 +73,19 @@ JBOSS_CONFIG=standalone-full.xml
 STARTUP_WAIT=60
 SHUTDOWN_WAIT=60
 JBOSS_CONSOLE_LOG="/var/log/wildfly/console.log"
-JBOSS_OPTS="-b 0.0.0.0 -bmanagement 0.0.0.0"
+JBOSS_OPTS="-b 0.0.0.0"
 EOF
 sudo cp /opt/wildfly/docs/contrib/scripts/init.d/wildfly-init-redhat.sh /etc/init.d/wildfly
 sudo chkconfig --add wildfly
 sudo chkconfig wildfly on
 sudo mkdir -p /var/log/wildfly
-sudo adduser --no-create-home wildfly
-sudo usermod -s /sbin/nologin wildfly
+sudo useradd --no-create-home wildfly --system --home-dir /opt/wildfly --shell /sbin/nologin
 sudo chown -R wildfly:wildfly /opt/wildfly-10.1.0.Final
 sudo chown -R wildfly:wildfly /opt/wildfly
 sudo chown -R wildfly:wildfly /var/log/wildfly
 
-## Set up wildfly server
-cat pass.txt | awk '{print "psm "$1}'>> script.txt
-eval sudo /opt/wildfly/bin/add-user.sh "$(< script.txt)"
-rm script.txt
+## Set up wildfly as a service
+sudo -u wildfly /opt/wildfly/bin/add-user.sh psm $(< pass.txt)
 sudo service wildfly start
 wait_for_jboss /opt/wildfly/bin/jboss-cli.sh
 
@@ -128,6 +129,12 @@ xa-data-source add \
 	--xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
 EOF
 
+## Populate the database with seed data
+cat psm/psm-app/db/jbpm.sql \
+    psm/psm-app/db/seed.sql \
+  | psql -h localhost -U psm psm
+
+
 ## Build and deploy the psm app
 cd psm/psm-app
 ./gradlew cms-portal-services:build
@@ -135,14 +142,18 @@ cd ../../
 /opt/wildfly/bin/jboss-cli.sh --user=psm --password="$(< pass.txt)" --connect \
 		--command="deploy psm/psm-app/cms-portal-services/build/libs/cms-portal-services.ear"
 
-## Set up CD information
-sudo adduser travis
-sudo cp ~/pass.txt /home/travis/
-sudo chown travis:travis /home/travis/pass.txt
-sudo ssh-keygen -t rsa -N "" -f cd.key
-sudo mkdir /home/travis/.ssh
-sudo chown travis:travis /home/travis/.ssh
-sudo chmod 700 /home/travis/.ssh
-sudo echo | sudo dd of=/home/travis/.ssh/authorized_keys < cd.key.pub
-sudo chown travis:travis /home/travis/.ssh/authorized_keys
-sudo chmod 600 /home/travis/.ssh/authorized_keys
+## Set up CD user
+sudo useradd travis
+
+## Create a key that Travis can use to login as the user
+ssh-keygen -t rsa -N "" -f CD_KEY.env
+sudo -u travis mkdir -m 700 /home/travis/.ssh
+sudo -u travis touch /home/travis/.ssh/authorized_keys
+sudo -u travis chmod 600 /home/travis/.ssh/authorized_keys
+sudo dd of=/home/travis/.ssh/authorized_keys < CD_KEY.env.pub
+
+## Set up the wildfly password in an expected location for CD
+sudo install -o travis -g travis ~/pass.txt /home/travis/
+
+## Set up files additional travis env variables
+install /etc/ssh/ssh_host_rsa_key.pub ~/CD_HOSTKEY.env

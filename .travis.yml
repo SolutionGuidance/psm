@@ -29,17 +29,7 @@ after_success:
 
 # Build the Continuous Deployment private key
 before_deploy:
-  - echo $CD_KEY > deploy_rsa
-  - sed -i -e 's/ /\n/g' deploy_rsa
-  - head -n -4 deploy_rsa > tmp
-  - tail -n +5 tmp > deploy_rsa
-  - rm tmp
-  - sed -i '1s/^/-----BEGIN RSA PRIVATE KEY-----\n/' deploy_rsa
-  - sed -i -e "\$a-----END RSA PRIVATE KEY-----" deploy_rsa
-  - eval "$(ssh-agent -s)"
-  - chmod 600 deploy_rsa
-  - ssh-add deploy_rsa
-  - rm deploy_rsa
+  - sh scripts/travis-ssh-add.sh
 
 # Continuous Deployment
 deploy:

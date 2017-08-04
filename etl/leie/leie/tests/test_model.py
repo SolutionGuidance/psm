@@ -94,7 +94,7 @@ def test_migrate():
     assert str(exception) == "Command 'goose -dir db/does_not_exist does_not_exist test.sqlite3 up' returned non-zero exit status 0"
     conn.db_conf['driver'] = tmp
 
-    
+
 def test_sql():
     """Make sure sql function returns something.
 

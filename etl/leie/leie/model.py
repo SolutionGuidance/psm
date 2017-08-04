@@ -80,16 +80,16 @@ class DBConn(object):
 
         if description:
             field = [c[0] for c in description]
-            
+
         field = ['id' if f == 'rowid' else f for f in field]
         return dict(zip(field, row))
-    
+
 class SQL(DBConn):
     """All the sql and goose stuff goes in this class.
-    
+
     We generate the SQL here becuase in the future I think we might want some
     smart/scripted way to manage sql for different DB types."""
-     
+
     def down(self, migration):
         """Returns schema sql for migrating the db down
 
@@ -215,8 +215,8 @@ DROP TABLE reinstatement;
             """
         else:
             return None
-        
-    
+
+
 class LEIE(SQL):
     """This is a DAO class but not an ORM class.  We're modeling the
     database, not the data.  Maybe that will change, but it works for
@@ -227,7 +227,7 @@ class LEIE(SQL):
     def count_exclusions(self):
         """Return number of rows in the exclusion table"""
         return self.table_len("exclusion")
-    
+
     def dedupe(self, table):
         """
         Remove any duplicate rows from TABLE
@@ -287,7 +287,7 @@ class LEIE(SQL):
         assert form in ["list", "dict"]
         assert page >= 1
         assert limit >= 1
-        
+
         crsr = self.conn.cursor()
 
         # Make strings for the filters to be inserted in to the sql
@@ -302,7 +302,7 @@ class LEIE(SQL):
                 args.append(v)
         query.append("ORDER BY excldate DESC LIMIT ?")
         args.append(limit)
-        
+
         # Return a range of rows
         rows = crsr.execute(" ".join(query), args).fetchall()
 
@@ -314,7 +314,7 @@ class LEIE(SQL):
         """Returns a list of the column names in TABLE"""
         c = self.conn.cursor()
         return [f[1] for f in c.execute("PRAGMA table_info(%s)" % table).fetchall()]
-        
+
     def get_latest_date(self, table, field):
         """Find and return the latest month and year in the list of actions in
         TABLE by looking at dates in FIELD.  Return this value as a
@@ -356,13 +356,13 @@ class LEIE(SQL):
 
         if ROWID is set, we just return that row and LIMIT parameter has no effect.  If that row doesn't exist, return None.
 
-        FORM can be 'list' or 'dict'.  If 'list', return rows as lists.  If dict, return rows as dicts. 
+        FORM can be 'list' or 'dict'.  If 'list', return rows as lists.  If dict, return rows as dicts.
 
         If START is specified... I dunno. not implemented yet.
         """
-        
+
         assert form in ["list", "dict"]
-        
+
         crsr = self.conn.cursor()
 
         # Return just the requested row
@@ -386,9 +386,9 @@ class LEIE(SQL):
         """
 
         assert datatype in ["updated", "reinstatement"]
-        
+
         info("%s: %s" % (datatype, message))
-        
+
         # See http://sqlite.org/datatype3.html for info on date formats in sqlite3
         if not now:
             now = datetime.datetime.now().isoformat()
@@ -400,7 +400,7 @@ class LEIE(SQL):
         self.conn.commit()
 
 class Exclusion(dict):
-    """Model of an exclusion.  
+    """Model of an exclusion.
 
     This is just a dict that we're wrapping in a class so we can
     attach methods to it.
@@ -422,7 +422,7 @@ class Exclusion(dict):
         if form == "xml":
             return dicttoxml.dictotoxml(ret)
         return json.dumps(ret)
-        
+
 def main(dirname=None):
     logger = log.logger()
     logger.info('Running model.py directly to produce schema/goose output.')

@@ -37,7 +37,7 @@ def test_get_existing_file():
     assert path.get_existing_file([__file__, "tests/exists", "doesntexist"]) == __file__
     assert path.get_existing_file(["doesntexist", __file__]) == __file__
     assert path.get_existing_file(["tests/exists", __file__, "doesntexist"]) == "tests/exists"
-    
+
     # Test fallback to default
     assert path.get_existing_file(["doesntexist"], "tests/exists") == "tests/exists"
 
@@ -57,7 +57,7 @@ def test_get_existing_file():
         path.get_existing_file(["doesntexist"], create=True)
     exception = exc_info.value
     assert str(exception) == "Can't create because no default specified!"
-    
+
     # cleanup
     os.rmdir("tests/exists")
 

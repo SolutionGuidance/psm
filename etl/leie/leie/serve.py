@@ -88,14 +88,14 @@ def get_exclusions(rowid=None):
                   dob=parse_param_date(request.args.get('dob')),
                   reindate=parse_param_date(request.args.get('reindate')),
     )
-    
+
     page = int(request.args.get('page') or 1) # default 1
     page_size = min(int(request.args.get('page_size') or 15), 100) # default 15, max 100
     params.update(dict(page=page, page_size=page_size, **filter))
 
     func_name = sys._getframe().f_code.co_name # get name of current function
     exclusions = [e.fhir() for e in conn.get_exclusions(limit=page_size, page=page, filter=filter, form="dict")]
-    
+
     if rowid and len(exclusions) == 1:
         ret = exclusions[0]
         ret['link'] = [{"relation": "self", "url": baseurl + url_for(func_name, **params)}]
@@ -111,7 +111,7 @@ def get_exclusions(rowid=None):
                 {"relation": "previous", "url": baseurl + url_for(func_name, **dict(params.items(), page=max([page-1, 1])))},
                 {"relation": "next", "url": baseurl + url_for(func_name, **dict(params.items(), page=min([page+1, num_pages])))},
                 {"relation": "last", "url": baseurl + url_for(func_name, **dict(params.items(), page=num_pages))}
-            ],        
+            ],
             "meta":{"tag":[]},
             "total":len(exclusions),
             "type":"searchset",

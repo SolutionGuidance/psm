@@ -262,14 +262,14 @@ def dload_if_stale(fname, url, conn):
     on-disk version is out of date.
 
     FNAME is the filename to save the file as
-    
+
     URL is the url of the file to download
 
     CONN is a model.LEIE instance and we use it just to get access to the db log
 
     Returns True if we downloaded, else False
     """
-    
+
     if fname_is_stale(fname, url, conn):
         debug("Downloading %s" % url)
 

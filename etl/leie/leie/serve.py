@@ -126,15 +126,40 @@ def get_exclusions(rowid=None):
         if num_pages > 1:
             ret['meta']['tag'].append("SUBSETTED")
 
-    ## Render output as html, json or xml and return it
-    if not request.content_type or 'html' in request.content_type:
-        # We pass here because we want to fall through to the default, which is html
-        pass
-    elif 'json' in request.content_type:
-        return Response(json.dumps(ret), mimetype='application/fhir+json')
-    elif 'xml' in request.content_type:
-        return Response(dicttoxml.dicttoxml(ret), mimetype='application/fhir+xml')
-    return Response(json.dumps(ret), mimetype='text/html') #TODO: put this in an html template
+    if requested_mimetype() == 'json':
+        return Response(
+                json.dumps(ret, indent=2, sort_keys=True),
+                mimetype='application/fhir+json'
+        )
+    else:
+        return Response(
+                dicttoxml.dicttoxml(ret),
+                mimetype='application/fhir+xml'
+        )
+
+def requested_mimetype():
+    """Check the '_format' query parameter and the 'Accept:' header (in that
+    order) to determine whether to respond with JSON or XML."""
+
+    allowed_mimetypes = [
+        'application/xml',
+        'application/fhir+xml',
+        'application/xml+fhir',
+        'text/xml',
+        'application/json',
+        'application/fhir+json',
+        'application/json+fhir',
+    ]
+    allowed_format_types = allowed_mimetypes + ['json', 'xml']
+    if request.args.get('_format') in allowed_format_types:
+        best = request.args.get('_format')
+    else:
+        best = request.accept_mimetypes.best_match(allowed_mimetypes)
+
+    if 'xml' in best:
+        return 'xml'
+    else:
+        return 'json'
 
 if __name__ == "__main__":
     os.system('pandoc api.mdwn > api.html')

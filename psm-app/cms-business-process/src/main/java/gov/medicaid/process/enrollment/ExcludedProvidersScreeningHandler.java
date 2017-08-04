@@ -15,6 +15,11 @@
  */
 package gov.medicaid.process.enrollment;
 
+import ca.uhn.fhir.context.FhirContext;
+import ca.uhn.fhir.rest.client.IGenericClient;
+import ca.uhn.fhir.rest.client.ServerValidationModeEnum;
+import ca.uhn.fhir.rest.gclient.StringClientParam;
+import ca.uhn.fhir.rest.server.EncodingEnum;
 import com.topcoder.util.log.Level;
 import com.topcoder.util.log.Log;
 import gov.medicaid.binders.XMLUtility;
@@ -22,45 +27,130 @@ import gov.medicaid.domain.model.EnrollmentProcess;
 import gov.medicaid.domain.model.ExternalSourcesScreeningResultType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.ScreeningResultType;
-import gov.medicaid.domain.model.ScreeningResultsType;
+import gov.medicaid.domain.model.SearchResultItemType;
+import gov.medicaid.domain.model.SearchResultType;
 import gov.medicaid.domain.model.VerificationStatusType;
 import gov.medicaid.services.util.LogUtil;
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
+import org.hl7.fhir.dstu3.model.Bundle;
 
 /**
- * This checks the excluded providers from the OIG website.
+ * This checks the excluded providers from the OIG LEIE.
  */
 public class ExcludedProvidersScreeningHandler extends GenericHandler {
     private Log log = LogUtil.getLog("ExcludedProvidersScreeningHandler");
+
+    private String baseUri;
+    private FhirContext fhirContext;
+
+    public ExcludedProvidersScreeningHandler(String baseUri) {
+        this.baseUri = baseUri;
+        fhirContext = FhirContext.forDstu3();
+        fhirContext.registerCustomType(Exclusion.class);
+        fhirContext.getRestfulClientFactory().setServerValidationMode(
+                ServerValidationModeEnum.NEVER
+        );
+    }
 
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
         log.log(Level.INFO, "Checking provider exclusion.");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
 
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
-        log.log(Level.INFO, "Provider NPI: ", provider.getNPI());
 
-        VerificationStatusType verificationStatus =
-                XMLUtility.nsGetVerificationStatus(processModel);
-        log.log(
-                Level.INFO,
-                "TODO: set non-exclusion verification status: ",
-                verificationStatus.getNonExclusion()
-        );
-
-        ExternalSourcesScreeningResultType results = new ExternalSourcesScreeningResultType();
-        results.setStatus(XMLUtility.newStatus("ERROR"));
-
-        ScreeningResultsType screeningResults = XMLUtility.nsGetScreeningResults(processModel);
-        ScreeningResultType screeningResultType = new ScreeningResultType();
-        screeningResults.getScreeningResult().add(screeningResultType);
-
-        screeningResultType.setExclusionVerificationResult(results.getSearchResults());
-        screeningResultType.setScreeningType("EXCLUDED PROVIDERS");
-        screeningResultType.setStatus(XMLUtility.newStatus("SUCCESS"));
+        try {
+            Bundle providerSearchResults = searchLeieForProvider(provider.getNPI());
+            if (providerIsExcluded(providerSearchResults)) {
+                setResultExcluded(processModel, providerSearchResults);
+            } else {
+                setResultNotExcluded(processModel);
+            }
+        } catch (RuntimeException e) {
+            log.log(Level.WARN, "Error checking provider against LEIE: ", e);
+            setResultError(processModel);
+        }
 
         item.getResults().put("model", processModel);
         manager.completeWorkItem(item.getId(), item.getResults());
+    }
+
+    private void setResultExcluded(
+            EnrollmentProcess processModel,
+            Bundle providerSearchResults
+    ) {
+        setNonExclusionVerificationStatus(processModel, "N");
+
+        ExternalSourcesScreeningResultType results = new ExternalSourcesScreeningResultType();
+        SearchResultType searchResults = new SearchResultType();
+        for (Bundle.BundleEntryComponent e : providerSearchResults.getEntry()) {
+            Exclusion exclusion = (Exclusion) e.getResource();
+
+            SearchResultItemType searchResultItem = new SearchResultItemType();
+            searchResultItem.setColumnData(exclusion.toPropertyList());
+
+            searchResults.getSearchResultItem().add(searchResultItem);
+        }
+
+        results.setSearchResults(searchResults);
+        results.setStatus(XMLUtility.newStatus("SUCCESS"));
+
+        attachScreeningResultToProcess(processModel, results);
+    }
+
+    private void setResultNotExcluded(EnrollmentProcess processModel) {
+        setNonExclusionVerificationStatus(processModel, "Y");
+
+        ExternalSourcesScreeningResultType results =
+                new ExternalSourcesScreeningResultType();
+        results.setSearchResults(new SearchResultType());
+        results.setStatus(XMLUtility.newStatus("SUCCESS"));
+        attachScreeningResultToProcess(processModel, results);
+    }
+
+    private void setNonExclusionVerificationStatus(
+            EnrollmentProcess processModel,
+            String status
+    ) {
+        VerificationStatusType verificationStatus =
+                XMLUtility.nsGetVerificationStatus(processModel);
+        verificationStatus.setNonExclusion(status);
+    }
+
+    private void setResultError(EnrollmentProcess processModel) {
+        ExternalSourcesScreeningResultType results =
+                new ExternalSourcesScreeningResultType();
+        results.setStatus(XMLUtility.newStatus("ERROR"));
+        attachScreeningResultToProcess(processModel, results);
+    }
+
+    private void attachScreeningResultToProcess(
+            EnrollmentProcess processModel,
+            ExternalSourcesScreeningResultType results
+    ) {
+        ScreeningResultType screeningResultType = new ScreeningResultType();
+        screeningResultType.setExclusionVerificationResult(
+                results.getSearchResults()
+        );
+        screeningResultType.setScreeningType("EXCLUDED PROVIDERS");
+        screeningResultType.setStatus(XMLUtility.newStatus("SUCCESS"));
+        XMLUtility.nsGetScreeningResults(processModel)
+                .getScreeningResult()
+                .add(screeningResultType);
+    }
+
+    private boolean providerIsExcluded(Bundle providerSearchResults) {
+        return providerSearchResults.getTotal() > 0;
+    }
+
+    private Bundle searchLeieForProvider(String npi) {
+        IGenericClient client = fhirContext.newRestfulGenericClient(baseUri);
+        client.setEncoding(EncodingEnum.JSON);
+        return client
+                .search()
+                .forResource("Exclusion")
+                .where(new StringClientParam("npi").matches().value(npi))
+                .returnBundle(org.hl7.fhir.dstu3.model.Bundle.class)
+                .execute();
     }
 }

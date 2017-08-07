@@ -54,7 +54,7 @@
 
                                         <c:if test="${not recordsMatched}">
                                         <div class="row">
-                                            No records were matched. Please check the source manually.
+                                            No records were matched.
                                         </div>
                                         </c:if>
                                     </c:if>

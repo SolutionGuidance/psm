@@ -52,6 +52,50 @@ testing plan will come in the form of a test.  For now, use a
 Given-When-Then description like
 [this one](https://github.com/OpenTechStrategies/psm/blob/master/psm-app/cms-web/src/main/test/resources/features/enrollment/create_enrollment.feature).
 
+### The "Obvious Fix" rule: committing some minor changes directly to 'master'
+
+Certain kinds of presumed-safe changes may be reviewed post-commit
+instead of pre-commit, meaning that they can be committed directly to
+`master` without going through a PR, when the committer has push
+access to do so.
+
+The purpose of this is to save time for busy developers.  It avoids
+the low-but-still-noticeable overhead of the PR review process for
+changes where the that process would not provide much additional
+protection beyond what post-commit review provides anyway.  In
+practice, that means the following kinds of changes:
+
+* Clear typo fixes.
+
+  If there's an obvious typo that doesn't affect code flow (e.g., a
+  typo in a code comment, or even in a user-visible string), you can
+  just fix it.  However, if the typo affects code behavior, other than
+  in how user-visible text is displayed, then it should go through the
+  normal PR review process.
+  
+* Whitespace and formatting cleanups.
+
+  Commits that are formatting-only and make the code more compliant
+  with our coding guidelines can just be committed directly.  There is
+  no need to take a reviewer's time with them.
+
+* Developer documentation changes.
+
+  If the substance of a development documentation change is agreed on,
+  and it's just a matter of wording, then the change can just be
+  committed directly, since after all, it's easy to improve it later.
+  (For example, the commit that added this section to this document
+  would qualify.)
+
+  Substantive changes to user-facing documentation should, of course,
+  still go through the normal PR process.
+
+Developers should always exercise judgement, of course.  It's always
+okay to still use a PR for a change qualifies as an "obvious fix", and
+if one thinks there is any chance of controversy or disagreement about
+the change, then the best thing to do is put it into a PR so it can go
+through the regular review process.
+
 ### Branching and Branch Names
 
 We do all development on lightweight branches, with each branch

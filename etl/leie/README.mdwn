@@ -42,7 +42,9 @@ monthly, so for now we'll just grab them manually from the
 First, generate the migrations:
     $ ./model.py
 
-Second, run the etl process.
+Second, run the etl process.  See below for how to install `goose`,
+which is required to do this.
+
     $ ./etl.py
 
 This will put data into the development database specified in
@@ -54,6 +56,53 @@ about not saving the same data twice.
 If you want to run the tests, use `./test` script.  It sets the tests
 up for you.  Note that the tests depend on you having run model.py and
 etl.py to do base setup.
+
+To serve requests over the API, run:
+
+   $ cd {path_to_psm}/etl/leie/leie
+   $ ./serve.py flask run
+
+A good test command to see if this is working correctly is:
+
+  $ curl http://localhost:5000/Exclusion?excldate=2010-09-01
+
+If the API is running, you should see a response like:
+
+```
+{
+  "entry": [],
+  "link": [
+    {
+      "relation": "self",
+      "url": "/Exclusion?page=1&page_size=15&excldate=2010-09-01T00%3A00%3A00"
+    },
+    {
+      "relation": "first",
+      "url": "/Exclusion?page=1&page_size=15&excldate=2010-09-01T00%3A00%3A00"
+    },
+    {
+      "relation": "previous",
+      "url": "/Exclusion?page=1&page_size=15&excldate=2010-09-01T00%3A00%3A00"
+    },
+    {
+      "relation": "next",
+      "url": "/Exclusion?page=2&page_size=15&excldate=2010-09-01T00%3A00%3A00"
+    },
+    {
+      "relation": "last",
+      "url": "/Exclusion?page=4520&page_size=15&excldate=2010-09-01T00%3A00%3A00"
+    }
+  ],
+  "meta": {
+    "tag": [
+      "SUBSETTED"
+    ]
+  },
+  "resourceType": "Bundle",
+  "total": 0,
+  "type": "searchset"
+}
+```
 
 ## Data Retention
 
@@ -204,9 +253,19 @@ that on a Debian box:
     $ export GOPATH=/usr/local/share/golang
     $ export PATH=$PATH:$GOROOT/bin
 
+Or, if you don't want to install goose as a superuser:
+
+    $ mkdir -p {path-to-psm}/etl/golang
+    $ export GOPATH={path-to-psm}/etl/golang
+
 Then, install goose:
 
     $ go get -u github.com/pressly/goose/cmd/goose
+
+This puts it in the `bin` subdir under your specified `$GOPATH`.  Add
+that path to your `$PATH`:
+
+    $ export PATH=$PATH:{path-to-psm}/etl/golang/bin
 
 If you want to run the tests, you'll need pytest and you might want
 tox:

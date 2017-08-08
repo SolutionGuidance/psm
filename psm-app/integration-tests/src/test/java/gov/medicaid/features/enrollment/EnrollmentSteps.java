@@ -27,4 +27,9 @@ public class EnrollmentSteps {
         enrollmentPage.selectProviderType("Dental Clinic");
         enrollmentPage.clickNext();
     }
+
+    public void selectIndividualProviderType() {
+        enrollmentPage.selectProviderType("Podiatrist");
+        enrollmentPage.clickNext();
+    }
 }

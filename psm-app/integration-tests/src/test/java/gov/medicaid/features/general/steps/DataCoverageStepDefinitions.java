@@ -47,6 +47,4 @@ public class DataCoverageStepDefinitions {
         enrollmentPage.verifyContactPhoneAccepted();
         enrollmentPage.verifyMedicaidNumberAccepted();
     }
-
-
 }

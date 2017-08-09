@@ -20,8 +20,6 @@ import ca.uhn.fhir.rest.client.IGenericClient;
 import ca.uhn.fhir.rest.client.ServerValidationModeEnum;
 import ca.uhn.fhir.rest.gclient.StringClientParam;
 import ca.uhn.fhir.rest.server.EncodingEnum;
-import com.topcoder.util.log.Level;
-import com.topcoder.util.log.Log;
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.EnrollmentProcess;
 import gov.medicaid.domain.model.ExternalSourcesScreeningResultType;
@@ -30,16 +28,20 @@ import gov.medicaid.domain.model.ScreeningResultType;
 import gov.medicaid.domain.model.SearchResultItemType;
 import gov.medicaid.domain.model.SearchResultType;
 import gov.medicaid.domain.model.VerificationStatusType;
-import gov.medicaid.services.util.LogUtil;
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
 import org.hl7.fhir.dstu3.model.Bundle;
+
+import java.util.logging.Logger;
+
+import static java.util.logging.Level.WARNING;
 
 /**
  * This checks the excluded providers from the OIG LEIE.
  */
 public class ExcludedProvidersScreeningHandler extends GenericHandler {
-    private Log log = LogUtil.getLog("ExcludedProvidersScreeningHandler");
+    private static final Logger LOGGER =
+            Logger.getLogger(ExcludedProvidersScreeningHandler.class.getName());
 
     private String baseUri;
     private FhirContext fhirContext;
@@ -54,7 +56,7 @@ public class ExcludedProvidersScreeningHandler extends GenericHandler {
     }
 
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
-        log.log(Level.INFO, "Checking provider exclusion.");
+        LOGGER.info("Checking provider exclusion.");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
 
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
@@ -67,7 +69,7 @@ public class ExcludedProvidersScreeningHandler extends GenericHandler {
                 setResultNotExcluded(processModel);
             }
         } catch (RuntimeException e) {
-            log.log(Level.WARN, "Error checking provider against LEIE: ", e);
+            LOGGER.log(WARNING, "Error checking provider against LEIE", e);
             setResultError(processModel);
         }
 

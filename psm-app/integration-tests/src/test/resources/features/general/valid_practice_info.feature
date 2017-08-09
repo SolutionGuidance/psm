@@ -15,7 +15,7 @@ Feature: Fill out the Practice Info with valid information
     And I fill the form with "Charlottesville" for City
     And I fill the form with "Virginia" for State
     And I fill the form with "22904" for Zip Code
-    And I fill the form with "703-861-7780" for Practice Phone Number
+    And I fill the form with "123-234-3241" for Practice Phone Number
     And I check Same as Above for Billing Address
     And I fill the form with "11/15" for Fiscal Year End
     And I check the first Remittance Sequence

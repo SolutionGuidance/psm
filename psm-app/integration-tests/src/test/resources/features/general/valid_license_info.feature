@@ -5,7 +5,7 @@ Feature: Filling out the license information form with valid information should
     when I am not a provider at a PHS Indian Hospital
     Given I am logged in as a <provider> and I am at the license information form
     And I choose a valid type of license of <valid_license>
-    And I upload an acceptable file from location "/home/kwan/code/psm/README.md"
+    And I upload an acceptable file from location "../../../../../../README.md"
     And I use a valid certification number of "930"
     And I use a valid origin date of "11/11/1995"
     And I use a valid renewal date of "11/11/2000"

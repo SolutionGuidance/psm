@@ -85,8 +85,8 @@ repository](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp)
 code, from which this repository was cloned to continue the
 project. Work restarted in April 2017.
 
-More information on the challenge can be found here:
-http://www.topcoder.com/cms/medicaid-enrollment-portal/
+More information on the challenge can be found
+[here](https://web.archive.org/web/20141111041442/http://www.topcoder.com:80/cms/medicaid-enrollment-portal/).
 
 ---------------------------------------------------------------------
 SECTION 3: Features and Functionality

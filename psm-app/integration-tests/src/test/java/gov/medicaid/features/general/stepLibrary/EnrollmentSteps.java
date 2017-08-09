@@ -16,9 +16,8 @@ public class EnrollmentSteps extends ScenarioSteps {
     public void login() {
         homepage.open();
         homepage.enterProviderCredentials();
-	homepage.login();
-	homepage.checkUserLoggedIn("p1");
-        //loggedInPage.checkHeader();
+    	homepage.login();
+    	homepage.checkUserLoggedIn("p1");
     }
     @Step
     public void createEnrollment() {

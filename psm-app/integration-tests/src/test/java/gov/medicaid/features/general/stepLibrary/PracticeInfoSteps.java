@@ -9,11 +9,6 @@ import gov.medicaid.features.general.ui.EnrollmentPage;
 import gov.medicaid.features.general.ui.PersonalInfoPage;
 import gov.medicaid.features.general.ui.PracticeInfoPage;
 import gov.medicaid.features.general.ui.LicenseInfoPage;
-
-//import static org.hamcrest.MatcherAssert.assertThat;
-//import static org.hamcrest.core.StringContains.containsString;
-//import static org.hamcrest.Matchers.equalTo;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.io.BufferedReader;
@@ -49,8 +44,8 @@ public class PracticeInfoSteps extends ScenarioSteps {
         homepage.open();
         homepage.open();
         homepage.enterProviderCredentials();
-	homepage.login();
-	homepage.checkUserLoggedIn("p1");
+    	homepage.login();
+    	homepage.checkUserLoggedIn("p1");
         loggedInPage.createEnrollment();
         loggedInPage.selectProviderType(aProviderType);
         loggedInPage.clickNext();
@@ -137,8 +132,8 @@ public class PracticeInfoSteps extends ScenarioSteps {
     public void enterState(String state) {
 
         practiceInfoPage.enterState(state);
-        //Write a map for all the states to their abbreviations...
-        //Right now just hard code
+        //TODO Write a map mapping each State to its Abbreviation
+        //Used because the summary page table displays an abbreviation, but user inputs a state's full name
         if (state.equals("Virginia")) {
             state = "VA";
         }

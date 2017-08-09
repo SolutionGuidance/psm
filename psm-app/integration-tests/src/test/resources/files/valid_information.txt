@@ -6,7 +6,7 @@ NPI, 0000000006
 SSN, 231-20-1232
 DOB, 11/15/1998
 email, kevin@123.com
-license, /home/kwan/code/psm/README.md
+license, ../../../../../../README.md
 licenseNumber, 930
 issueDate, 11/11/1990
 renewalDate, 11/11/1999

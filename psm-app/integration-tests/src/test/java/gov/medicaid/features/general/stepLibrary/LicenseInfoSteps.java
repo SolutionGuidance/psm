@@ -8,8 +8,6 @@ import gov.medicaid.features.general.ui.LoginPage;
 import gov.medicaid.features.general.ui.EnrollmentPage;
 import gov.medicaid.features.general.ui.PersonalInfoPage;
 import gov.medicaid.features.general.ui.LicenseInfoPage;
-// import static org.hamcrest.MatcherAssert.assertThat;
-// import static org.hamcrest.core.StringContains.containsString;
 import java.util.Map;
 import java.util.HashMap;
 import java.io.BufferedReader;
@@ -41,8 +39,8 @@ public class LicenseInfoSteps extends ScenarioSteps {
         Map<String,String> validInfo = getValidInformation();
         homepage.open();
         homepage.enterProviderCredentials();
-	homepage.login();
-	homepage.checkUserLoggedIn("p1");
+    	homepage.login();
+    	homepage.checkUserLoggedIn("p1");
         loggedInPage.createEnrollment();
         loggedInPage.selectProviderType(aProviderType);
         loggedInPage.clickNext();
@@ -59,12 +57,10 @@ public class LicenseInfoSteps extends ScenarioSteps {
     @Step
     public void clickNo() {
         licenseInfoPage.clickNo();
-//        assertThat($("#tableLicense3").exists == null);
     }
     @Step
     public void addLicense() {
         licenseInfoPage.addLicense();
-//        assertThat($("#tableLicense").exists);
     }
     @Step
     public void addLicenseType(String licenseType) {

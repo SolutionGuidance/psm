@@ -8,8 +8,7 @@ import net.thucydides.core.annotations.Steps;
 import gov.medicaid.features.general.ui.SubmitPage;
 import gov.medicaid.features.general.stepLibrary.SubmitSteps;
 import static org.assertj.core.api.Assertions.assertThat;
-//import static org.hamcrest.MatcherAssert.assertThat;
-//import static org.hamcrest.core.StringContains.containsString;
+
 
 public class SubmitStepDefinitions {
     @Steps

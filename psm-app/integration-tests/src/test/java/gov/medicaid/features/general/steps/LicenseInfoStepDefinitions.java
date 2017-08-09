@@ -7,8 +7,6 @@ import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 import gov.medicaid.features.general.ui.LicenseInfoPage;
 import gov.medicaid.features.general.stepLibrary.LicenseInfoSteps;
-// import static org.hamcrest.MatcherAssert.assertThat;
-// import static org.hamcrest.core.StringContains.containsString;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LicenseInfoStepDefinitions {

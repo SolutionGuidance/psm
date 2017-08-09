@@ -18,8 +18,8 @@ public class PersonalInfoSteps extends ScenarioSteps {
     public void getToPersonalInfoPage(String aProviderType) {
         homepage.open();
         homepage.enterProviderCredentials();
-	homepage.login();
-	homepage.checkUserLoggedIn("p1");
+    	homepage.login();
+    	homepage.checkUserLoggedIn("p1");
         loggedInPage.createEnrollment();
         loggedInPage.selectProviderType(aProviderType);
         loggedInPage.clickNext();

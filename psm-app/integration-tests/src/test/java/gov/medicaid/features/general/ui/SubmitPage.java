@@ -11,8 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-// import static org.hamcrest.MatcherAssert.assertThat;
-// import static org.hamcrest.core.StringContains.containsString;
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.HashMap;
 import java.util.List;
@@ -78,16 +76,12 @@ public class SubmitPage extends PageObject {
         $(".buttonBox > .purpleBtn").click();
     }
     public void closePopup() {
-//        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("buttonArea")));
         String parentWindowHandler = getDriver().getWindowHandle();
-//        System.out.println(parentWindowHandler);
         String subWindowHandler = null;
         Set<String> handles = getDriver().getWindowHandles();
         Iterator<String> iterator = handles.iterator();
         while(iterator.hasNext()) {
             subWindowHandler = iterator.next();
-//            System.out.println(subWindowHandler);
         }
         getDriver().switchTo().window(subWindowHandler);
         $("#submitEnrollmentModal > div > div:nth-child(2) > div > div > div > a").click();

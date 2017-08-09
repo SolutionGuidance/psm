@@ -10,8 +10,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-//import static org.hamcrest.MatcherAssert.assertThat;
-//import static org.hamcrest.core.StringContains.containsString;
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.HashMap;
 import java.util.List;
@@ -99,12 +97,8 @@ public class PracticeInfoPage extends PageObject {
         assertThat($(".printModalBtn").getText().contains("Print"));
     }
     public Map<String, String> getSummaryValues() {
-//        List<WebElement> rows = driver.findElements(By.className("rows"));
-//        System.out.println(rows.get(2).getText());
-
-
         Map<String, String> summaryValues = new HashMap<String, String>();
-//        //first name
+//          //first name
         summaryValues.put($(".leftCol > div:nth-child(1) > label").getText(), $(".leftCol > div:nth-child(1) > span:nth-child(3)").getText());
 //        //last name
         summaryValues.put($(".leftCol > div:nth-child(3) > label").getText(), $(".leftCol > div:nth-child(3) > span:nth-child(3)").getText());

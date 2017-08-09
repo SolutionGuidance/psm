@@ -12,8 +12,6 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.List;
 import java.util.regex.Pattern;
-// import static org.hamcrest.MatcherAssert.assertThat;
-// import static org.hamcrest.core.StringContains.containsString;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class EnrollmentPage extends PageObject {

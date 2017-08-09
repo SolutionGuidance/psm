@@ -9,8 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-// import static org.hamcrest.MatcherAssert.assertThat;
-// import static org.hamcrest.core.StringContains.containsString;
 import static org.assertj.core.api.Assertions.assertThat;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -40,7 +38,6 @@ public class PersonalInfoPage extends PageObject {
     public void checkForTooYoungError() throws Exception {
         Map<String, String> errorMap = getErrorInformation();
         assertThat($(".errorInfo > ._02_dob").getText().contains(errorMap.get("provider_too_young")));
-//        System.out.println(errorMap.get("provider_too_young"));
     }
     public void enterFirstName(String firstName) {
 
@@ -80,8 +77,8 @@ public class PersonalInfoPage extends PageObject {
         $(".prevBtn").click();
     }
     public void confirmNoErrors() {
-        assertThat(getTitle().contains("License Information"));    }
-
+        assertThat(getTitle().contains("License Information"));   
+    }
 
 
 }

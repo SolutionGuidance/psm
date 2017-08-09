@@ -8,8 +8,7 @@ import net.thucydides.core.annotations.Steps;
 import gov.medicaid.features.general.ui.PracticeInfoPage;
 import gov.medicaid.features.general.stepLibrary.PracticeInfoSteps;
 import static org.assertj.core.api.Assertions.assertThat;
-//import static org.hamcrest.MatcherAssert.assertThat;
-//import static org.hamcrest.core.StringContains.containsString;
+
 
 public class PracticeInfoStepDefinitions {
     @Steps

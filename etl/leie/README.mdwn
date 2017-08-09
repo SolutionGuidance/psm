@@ -48,14 +48,16 @@ which is required to do this.
     $ ./etl.py
 
 This will put data into the development database specified in
-db/dbconf.yml.  Feel free to edit dbconf.yml as you need.
+`db/dbconf.yml`.  Feel free to edit `dbconf.yml` as you need.
 
 Don't worry about running the ETL twice.  The program is pretty good
 about not saving the same data twice.
 
 If you want to run the tests, use `./test` script.  It sets the tests
-up for you.  Note that the tests depend on you having run model.py and
-etl.py to do base setup.
+up for you.  Note that the tests depend on you having run `model.py`
+and `etl.py` to do base setup, and that running the tests erases the
+LEIE data (so you'll have to run the ETL again in order to run the
+verification service).
 
 To serve requests over the API, run:
 
@@ -274,7 +276,9 @@ tox:
 
 To run the tests, just do `./test` or `tox
 --skip-missing-interpreters`.  They run the same tests, but tox lets
-you set up different environments for testing.
+you set up different environments for testing. Note that running the
+tests deletes the LEIE data, so after running the tests, you'll need
+to get it again.
 
 ## Copyright and License
 

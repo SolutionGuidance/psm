@@ -127,4 +127,72 @@ public class EnrollmentPage extends PageObject {
     public void setIndividualOwnerSoSec(String soSec) {
         $("[name='_16_ssn_0']").sendKeys(soSec);
     }
+
+    public void setIndividualHireDate(String hireDate) {
+        $("[name='_16_startDate_0'").type(hireDate);
+    }
+
+    public void setIndividualOwnerDOB(String dob) {
+        $("[name='_16_dob_0']").type(dob);
+    }
+
+    public void selectEntityType(String entityType) {
+        $("#entityType").selectByVisibleText(entityType);
+    }
+
+    public void addOwnership() {
+        $("#addOwnership").click();
+    }
+
+    public void selectOwnershipType(String ownershipType) {
+        $(".ownershipType").selectByVisibleText(ownershipType);
+    }
+
+    public void setOwnershipFirstName(String first) {
+        $("[name='_17_iboFirstName_0']").sendKeys(first);
+    }
+
+    public void setOwnershipMiddleName(String middle){
+        $("[name='_17_iboMiddleName_0']").sendKeys(middle);
+    }
+
+    public void setOwnershipLastName(String last){
+        $("[name='_17_iboLastName_0']").sendKeys(last);
+    }
+
+    public void setOwnershipSoSec(String sosec) {
+        $("[name='_17_iboSSN_0']").sendKeys(sosec);
+    }
+
+    public void setOwnershipAddr1(String addr1){
+        $("[name='_17_iboAddressLine1_0']").sendKeys(addr1);
+    }
+
+    public void setOwnershipDOB(String dob) {
+        $("[name='_17_iboDOB_0']").sendKeys(dob);
+    }
+
+    public void setOwnershipHireDate(String hireDate) {
+        $("[name='_17_iboHireDate_0']").sendKeys(hireDate);
+    }
+
+    public void setOwnershipCity(String city){
+        $("[name='_17_iboCity_0']").sendKeys(city);
+    }
+
+    public void selectOwnershipState(String state){
+        $("[name='_17_iboState_0']").selectByVisibleText(state);
+    }
+
+    public void setOwnershipZip(String zip) {
+        $("[name='_17_iboZip_0']").sendKeys(zip);
+    }
+
+    public void selectOwnershipCounty(String county){
+        $("[name='_17_iboOtherState_0']").selectByVisibleText(county);
+    }
+
+    public void clickDisclosure() {
+        $("[name='_17_iboCounty_0']").click();
+    }
 }

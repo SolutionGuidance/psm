@@ -30,6 +30,25 @@ public class EnrollmentStepDefinitions {
         enrollmentPage.setIndividualOwnerName("Test Owner");
         enrollmentPage.setIndividualProviderType("Dentist");
         enrollmentPage.setIndividualOwnerSoSec("123456789");
+        enrollmentPage.setIndividualOwnerDOB("01011970");
+        enrollmentPage.setIndividualHireDate("01012000");
+        enrollmentPage.clickNext();
+        enrollmentPage.selectEntityType("Sole Proprietorship");
+        enrollmentPage.addOwnership();
+        enrollmentPage.selectOwnershipType("Managing Employee");
+        enrollmentPage.setOwnershipFirstName("First");
+        enrollmentPage.setOwnershipMiddleName("Middle");
+        enrollmentPage.setOwnershipLastName("Last");
+        enrollmentPage.setOwnershipSoSec("123456789");
+        enrollmentPage.setOwnershipAddr1("OwnerAddr1");
+        enrollmentPage.setOwnershipDOB("01011970");
+        enrollmentPage.setOwnershipHireDate("01012000");
+        enrollmentPage.setOwnershipCity("Ownertown");
+        enrollmentPage.selectOwnershipState("Texas");
+        enrollmentPage.setOwnershipZip("77706");
+        enrollmentPage.selectOwnershipCounty("Beltrami");
+        enrollmentPage.clickDisclosure();
+
     }
 
     @When("^I click 'next' on the Ownership Info Page$")

@@ -17,10 +17,7 @@ public class EnrollmentSteps {
     private DashboardPage dashboardPage;
     private EnrollmentPage enrollmentPage;
 
-    // The Javascript handler for dates gets confused by sendKeys with the date
-    // it works if you call this with the year value first.
     private SimpleDateFormat formFieldDateFormat = new SimpleDateFormat("MMddyyyy");
-//    private SimpleDateFormat formFieldDateFormat = new SimpleDateFormat("yyyyddMM");
 
     @Step
     public void loginAsProvider(){

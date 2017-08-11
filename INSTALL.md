@@ -197,6 +197,17 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    and [https://localhost:8443/](https://localhost:8443/) for the app(s) it
    hosts - currently none.
 
+   At this point, please make sure that Wildfly starts and runs with
+   no errors.  Warnings are ok at this stage, but any errors in the
+   console output in the terminal (usually displayed in red text) will
+   prevent successful completion of the install process.
+
+   If you see errors, one thing to check is that you do not have any
+   other processes running on the ports Wildfly needs.  With Wildfly
+   shut down, make sure nothing is listening on ports 8080, 8443, and
+   9990.  You can see what ports are open with `nmap localhost` or
+   `nmap {ip address of wildfly server}`.
+
 1. Leave WildFly running as you continue the install process.
 
 ## Configure services

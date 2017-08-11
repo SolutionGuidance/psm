@@ -151,24 +151,18 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    $ cd wildfly-10.1.0.Final
    ```
 
-1. Add a WildFly management console user:
+1. Add a WildFly management console user named 'psm' with a password of 'psm':
 
    ```ShellSession
-   $ ./bin/add-user.sh
-   What type of user do you wish to add?
-   a) Management User (mgmt-users.properties)
-   b) Application User (application-users.properties)
-   (a): a
-
-   {Choose username, create and confirm password.}
-
-   What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]:
-
-   Is this new user going to be used for one AS process to connect to another AS process?
-   e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
-   yes/no? no
+   $ ./bin/add-user.sh psm psm
    ```
 
+   Note that this puts the password in your shell history.  If that
+   concerns you, just run `./bin/add-user` without the arguments and
+   follow the prompts to add a "Management User" with the desired name
+   and password, leave the group blank and answer "no" to the question
+   about host controllers.
+   
 1. Stop the server if it is already running:
 
    ```ShellSession

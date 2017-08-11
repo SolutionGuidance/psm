@@ -264,17 +264,17 @@ $ sudo -u postgres createdb --owner=psm psm
 ```
 
 After creating the databases, add the data sources to the application
-server. In the command below, replace `{VERSION}` with the version of
-the PostgreSQL JDBC driver you downloaded and `{PostgreSQL psm user
-password}` with the password you assigned to your `psm` database user,
-and paste it into your terminal:
+server. In the first line of the command below, replace `VERSION` with
+the version of the PostgreSQL JDBC driver you downloaded and `PWORD`
+with the password you assigned to your `psm` database user, and paste
+it into your terminal:
 
 ```ShellSession
-$ ./bin/jboss-cli.sh --connect <<EOF
+$ VERSION=42.1.4; PWORD=psm; ./bin/jboss-cli.sh --connect <<EOF
 xa-data-source add \
   --name=TaskServiceDS \
   --jndi-name=java:/jdbc/TaskServiceDS \
-  --driver-name=postgresql-{VERSION}.jar \
+  --driver-name=postgresql-${VERSION}.jar \
   --xa-datasource-class=org.postgresql.xa.PGXADataSource \
   --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
   --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter \
@@ -282,12 +282,12 @@ xa-data-source add \
   --use-ccm=true \
   --background-validation=true \
   --user-name=psm \
-  --password={PostgreSQL psm user password} \
+  --password=${PWORD} \
   --xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
 xa-data-source add \
   --name=MitaDS \
   --jndi-name=java:/jdbc/MitaDS \
-  --driver-name=postgresql-{VERSION}.jar \
+  --driver-name=postgresql-${VERSION}.jar \
   --xa-datasource-class=org.postgresql.xa.PGXADataSource \
   --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
   --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter \
@@ -295,7 +295,7 @@ xa-data-source add \
   --use-ccm=true \
   --background-validation=true \
   --user-name=psm \
-  --password={PostgreSQL psm user password} \
+  --password=${PWORD} \
   --xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
 EOF
 ```

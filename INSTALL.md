@@ -58,14 +58,15 @@ time, and will evolve as we understand it more.
 
 ### Software
 
-- **Operating System**: we recommend the old stable Debian 8 (jessie), and
-  a developer has successfully installed the PSM on Red Hat 7.3
-  Enterprise Linux. If that's not feasible for your environment, any
-  of the supported WildFly 10.1 operating systems should work, but our
-  ability to help troubleshoot issues that come up may be limited.
-  Once we test this on a few more platforms, we will expand the list
-  of compatible operating systems to include other Linux
-  distributions.
+- **Operating System**: we recommend Debian 9 stable, also known as
+  Jessie.  If you prefer Debian testing, we have had success with
+  Debian testing (aka Buster).  A developer has also successfully
+  installed the PSM on Red Hat 7.3 Enterprise Linux. If that's not
+  feasible for your environment, any of the supported WildFly 10.1
+  operating systems should work, but our ability to help troubleshoot
+  issues that come up may be limited.  Once we test this on a few more
+  platforms, we will expand the list of compatible operating systems
+  to include other Linux distributions.
 - **Java**: We're using OpenJDK 8, which is currently 8u121, but you should
   keep up with the latest releases and post if you have issues relating to
   upgrading.

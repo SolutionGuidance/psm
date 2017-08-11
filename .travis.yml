@@ -21,7 +21,20 @@ install: true
 script:
   - cd psm-app
   - ./gradlew --no-daemon --console=plain clean cms-portal-services:build cms-web:apiDocs
+  - cd ../
 
 # Push the new Javadocs to our GitHub Pages site.
 after_success:
-  - ../scripts/push-javadoc-to-gh-pages.sh
+  - ./scripts/push-javadoc-to-gh-pages.sh
+
+# Build the Continuous Deployment private key
+before_deploy:
+  - sh scripts/travis-ssh-add.sh
+
+# Continuous Deployment
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: sh scripts/deploy-ci.sh
+  on:
+    branch: master

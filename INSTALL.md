@@ -383,3 +383,25 @@ documents.  We do not yet have a recommended size to set this too, but
 we will set a sane default in `cms.properties` when we do.  See
 [Issue 263](https://github.com/OpenTechStrategies/psm/issues/263) for
 some discussion of the problem.
+
+## Continuous Deployment
+
+This project leverages Travis to power Continuous Deployment.  To set
+up a CD server, follow these steps:
+
+1. Create a fresh RHEL instance
+2. Run the `scripts/rhel-install.sh` script
+3. This will generate two files of importance on the server: `~/CD_KEY.env`
+and `~/CD_HOSTKEY.env`
+4. Create and fill the necessary environment variables via the Travis UI.
+NOTE: these values are sensitive. The "Display value in build log" setting
+should be turned off.
+
+### Travis Environment Variables
+
+- CD_USER: `travis`
+- CD_SERVER: `{Your Server's IP or Hostname}`
+- CD_KEY: `"{Contents of CD_KEY.env}"` <-- NOTE: the wrapping quotes must
+be included
+- CD_HOSTKEY: `"{Contents of CD_HOSTKEY.env}"` <-- NOTE: the wrapping
+quotes must be included

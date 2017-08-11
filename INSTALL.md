@@ -120,7 +120,8 @@ configuration for a development install.
    you continue the install process.
 
 1. [PostgreSQL 9.6](https://www.postgresql.org/). We are testing with
-   PostgreSQL 9.6.2. Check that you have PostgreSQL installed.
+   PostgreSQL 9.6.2. Check that you have PostgreSQL installed.  If you
+   do not, it is available on Debian via `sudo apt install postgresql-9.6`.
 
 1. The PSM code repository. Currently we suggest you run the PSM from
    the master branch of the development repository. Run the command

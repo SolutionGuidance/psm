@@ -60,6 +60,7 @@ public class EnrollmentSteps {
         enrollmentPage.setContactPhone("4445556666");
     }
 
+
     public String generateEffectiveDate() {
         GregorianCalendar cal = new GregorianCalendar();
         cal.setTime(new Date());

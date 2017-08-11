@@ -49,6 +49,16 @@ public class EnrollmentStepDefinitions {
         enrollmentPage.selectOwnershipCounty("Beltrami");
         enrollmentPage.clickDisclosure();
 
+        enrollmentPage.setControlOwnershipOtherLegalName("My Other Name");
+        enrollmentPage.setControlOwnershipPctInterest(12.5);
+        enrollmentPage.setControlOwnershipAddr1("333 Test Ln");
+        enrollmentPage.setControlOwnershipCity("Tyler");
+        enrollmentPage.setControlOwnershipZip("77707");
+        enrollmentPage.selectControlOwnershipState("Texas");
+
+        enrollmentPage.setNoToAllDisclosures();
+        enrollmentPage.clickNext();
+
     }
 
     @When("^I click 'next' on the Ownership Info Page$")

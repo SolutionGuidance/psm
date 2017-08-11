@@ -2,7 +2,11 @@ package gov.medicaid.features.general.ui;
 
 
 import cucumber.api.PendingException;
+import net.serenitybdd.core.annotations.findby.By;
 import net.thucydides.core.pages.PageObject;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 
 public class EnrollmentPage extends PageObject {
@@ -169,11 +173,11 @@ public class EnrollmentPage extends PageObject {
     }
 
     public void setOwnershipDOB(String dob) {
-        $("[name='_17_iboDOB_0']").sendKeys(dob);
+        $("[name='_17_iboDOB_0']").type(dob);
     }
 
     public void setOwnershipHireDate(String hireDate) {
-        $("[name='_17_iboHireDate_0']").sendKeys(hireDate);
+        $("[name='_17_iboHireDate_0']").type(hireDate);
     }
 
     public void setOwnershipCity(String city){
@@ -194,5 +198,51 @@ public class EnrollmentPage extends PageObject {
 
     public void clickDisclosure() {
         $("[name='_17_iboCounty_0']").click();
+    }
+
+    public void setControlOwnershipOtherLegalName(String legalName){
+        $("[name='_17_iboOtherInterestInd_0']").sendKeys(legalName);
+    }
+
+    public void setControlOwnershipPctInterest(double pctInterest){
+        $("[name='_17_iboOtherInterestName_0']").sendKeys(String.valueOf(pctInterest));
+    }
+
+    public void setControlOwnershipAddr1(String addr1) {
+        $("[name='_17_iboOtherAddressLine2_0']").sendKeys(addr1);
+    }
+
+    public void setControlOwnershipCity(String city) {
+        $("[name='_17_iboOtherZip_0']").sendKeys(city);
+    }
+
+    public void setControlOwnershipZip(String zip) {
+        $("[name='_17_iboOtherZip']").sendKeys(zip);
+    }
+
+    public void selectControlOwnershipState(String state) {
+        $("[name='_17_iboOtherState']").selectByVisibleText(state);
+    }
+
+
+    public void setNoToAllDisclosures() {
+        String disclosureFields[] = {
+                "_18_empCriminalConvictionInd",
+                "_18_empCivilPenaltyInd",
+                "_18_empPreviousExclusionInd",
+                "_18_criminalConvictionInd",
+                "_18_civilPenaltyInd",
+                "_18_previousExclusionInd"
+        };
+
+        for(int i = 0; i < disclosureFields.length; i++){
+            setNoForRadioButton(disclosureFields[i]);
+        }
+
+    }
+
+    private void setNoForRadioButton(String name){
+        List<WebElement> buttons = getDriver().findElements(By.cssSelector("[name='"+name+"']"));
+        buttons.get(1).click();
     }
 }

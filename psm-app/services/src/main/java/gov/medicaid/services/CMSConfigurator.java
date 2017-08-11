@@ -339,6 +339,13 @@ public class CMSConfigurator {
         }
     }
 
+    public String getLeieApiBaseUrl() {
+        return globalSettings.getProperty(
+                "external-sources.leie",
+                "http://localhost:5000/"
+        );
+    }
+
     /**
      * Retrieves the flag setting for using external or embedded rules
      * @return the flag setting for rules

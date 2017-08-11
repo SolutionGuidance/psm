@@ -307,8 +307,11 @@ EOF
    $ cd ../{psm}/psm-app
    ```
 
-1. Build the application with `gradle`. This depends on libraries provided by the
-   application server.
+1. Build the application with `gradle`. This depends on libraries
+   provided by the application server.  Note that command is a wrapper
+   around gradle and it is called `gradlew`, not `gradle`.  The
+   gradlew wrapper executable is in the psm-app directory of the git
+   repository.
 
    ```ShellSession
    $ cd ../{psm}/psm-app

@@ -234,7 +234,7 @@ using the command line or web interface.
 
 ### Database
 
-Download the [PostgreSQL JDBC driver](https://jdbc.postgresql.org/)
+Download the [PostgreSQL JDBC driver](https://jdbc.postgresql.org/download.html)
 (specifically, the JDBC 4.2 version of the driver). Place it in the
 parent directory, relative to the WildFly directory, and deploy it to
 your application server:

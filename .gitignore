@@ -1,6 +1,3 @@
-# Per-system build configuration
-psm-app/build.properties
-
 # Output of build process, including staged xml and other bundled files
 build/
 

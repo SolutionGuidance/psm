@@ -58,14 +58,15 @@ time, and will evolve as we understand it more.
 
 ### Software
 
-- **Operating System**: we recommend the old stable Debian 8 (jessie), and
-  a developer has successfully installed the PSM on Red Hat 7.3
-  Enterprise Linux. If that's not feasible for your environment, any
-  of the supported WildFly 10.1 operating systems should work, but our
-  ability to help troubleshoot issues that come up may be limited.
-  Once we test this on a few more platforms, we will expand the list
-  of compatible operating systems to include other Linux
-  distributions.
+- **Operating System**: we recommend Debian 9 stable, also known as
+  Jessie.  If you prefer Debian testing, we have had success with
+  Debian testing (aka Buster).  A developer has also successfully
+  installed the PSM on Red Hat 7.3 Enterprise Linux. If that's not
+  feasible for your environment, any of the supported WildFly 10.1
+  operating systems should work, but our ability to help troubleshoot
+  issues that come up may be limited.  Once we test this on a few more
+  platforms, we will expand the list of compatible operating systems
+  to include other Linux distributions.
 - **Java**: We're using OpenJDK 8, which is currently 8u121, but you should
   keep up with the latest releases and post if you have issues relating to
   upgrading.
@@ -119,7 +120,8 @@ configuration for a development install.
    you continue the install process.
 
 1. [PostgreSQL 9.6](https://www.postgresql.org/). We are testing with
-   PostgreSQL 9.6.2. Check that you have PostgreSQL installed.
+   PostgreSQL 9.6.2. Check that you have PostgreSQL installed.  If you
+   do not, it is available on Debian via `sudo apt install postgresql-9.6`.
 
 1. The PSM code repository. Currently we suggest you run the PSM from
    the master branch of the development repository. Run the command
@@ -149,24 +151,18 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    $ cd wildfly-10.1.0.Final
    ```
 
-1. Add a WildFly management console user:
+1. Add a WildFly management console user named 'psm' with a password of 'psm':
 
    ```ShellSession
-   $ ./bin/add-user.sh
-   What type of user do you wish to add?
-   a) Management User (mgmt-users.properties)
-   b) Application User (application-users.properties)
-   (a): a
-
-   {Choose username, create and confirm password.}
-
-   What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]:
-
-   Is this new user going to be used for one AS process to connect to another AS process?
-   e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
-   yes/no? no
+   $ ./bin/add-user.sh psm psm
    ```
 
+   Note that this puts the password in your shell history.  If that
+   concerns you, just run `./bin/add-user` without the arguments and
+   follow the prompts to add a "Management User" with the desired name
+   and password, leave the group blank and answer "no" to the question
+   about host controllers.
+   
 1. Stop the server if it is already running:
 
    ```ShellSession
@@ -201,6 +197,17 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    and [https://localhost:8443/](https://localhost:8443/) for the app(s) it
    hosts - currently none.
 
+   At this point, please make sure that Wildfly starts and runs with
+   no errors.  Warnings are ok at this stage, but any errors in the
+   console output in the terminal (usually displayed in red text) will
+   prevent successful completion of the install process.
+
+   If you see errors, one thing to check is that you do not have any
+   other processes running on the ports Wildfly needs.  With Wildfly
+   shut down, make sure nothing is listening on ports 8080, 8443, and
+   9990.  You can see what ports are open with `nmap localhost` or
+   `nmap {ip address of wildfly server}`.
+
 1. Leave WildFly running as you continue the install process.
 
 ## Configure services
@@ -227,7 +234,7 @@ using the command line or web interface.
 
 ### Database
 
-Download the [PostgreSQL JDBC driver](https://jdbc.postgresql.org/)
+Download the [PostgreSQL JDBC driver](https://jdbc.postgresql.org/download.html)
 (specifically, the JDBC 4.2 version of the driver). Place it in the
 parent directory, relative to the WildFly directory, and deploy it to
 your application server:
@@ -257,17 +264,17 @@ $ sudo -u postgres createdb --owner=psm psm
 ```
 
 After creating the databases, add the data sources to the application
-server. In the command below, replace `{VERSION}` with the version of
-the PostgreSQL JDBC driver you downloaded and `{PostgreSQL psm user
-password}` with the password you assigned to your `psm` database user,
-and paste it into your terminal:
+server. In the first line of the command below, replace `VERSION` with
+the version of the PostgreSQL JDBC driver you downloaded and `PWORD`
+with the password you assigned to your `psm` database user, and paste
+it into your terminal:
 
 ```ShellSession
-$ ./bin/jboss-cli.sh --connect <<EOF
+$ VERSION=42.1.4; PWORD=psm; ./bin/jboss-cli.sh --connect <<EOF
 xa-data-source add \
   --name=TaskServiceDS \
   --jndi-name=java:/jdbc/TaskServiceDS \
-  --driver-name=postgresql-{VERSION}.jar \
+  --driver-name=postgresql-${VERSION}.jar \
   --xa-datasource-class=org.postgresql.xa.PGXADataSource \
   --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
   --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter \
@@ -275,12 +282,12 @@ xa-data-source add \
   --use-ccm=true \
   --background-validation=true \
   --user-name=psm \
-  --password={PostgreSQL psm user password} \
+  --password=${PWORD} \
   --xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
 xa-data-source add \
   --name=MitaDS \
   --jndi-name=java:/jdbc/MitaDS \
-  --driver-name=postgresql-{VERSION}.jar \
+  --driver-name=postgresql-${VERSION}.jar \
   --xa-datasource-class=org.postgresql.xa.PGXADataSource \
   --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
   --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter \
@@ -288,7 +295,7 @@ xa-data-source add \
   --use-ccm=true \
   --background-validation=true \
   --user-name=psm \
-  --password={PostgreSQL psm user password} \
+  --password=${PWORD} \
   --xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
 EOF
 ```
@@ -298,18 +305,13 @@ EOF
 
    ```ShellSession
    $ cd ../{psm}/psm-app
-   $ cp build.properties.template build.properties
    ```
 
-1. If you do not have WildFly deployed in a peer directory to the PSM
-repository, update its location in your local properties:
-
-   ```ShellSession
-   $ {favorite-editor} build.properties
-   ```
-
-1. Build the application with `gradle`. This depends on libraries provided by the
-   application server.
+1. Build the application with `gradle`. This depends on libraries
+   provided by the application server.  Note that command is a wrapper
+   around gradle and it is called `gradlew`, not `gradle`.  The
+   gradlew wrapper executable is in the psm-app directory of the git
+   repository.
 
    ```ShellSession
    $ cd ../{psm}/psm-app

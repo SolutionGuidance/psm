@@ -29,7 +29,7 @@ date_re = re.compile(r'[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
 slash_date_re = re.compile(r'[0-9][0-9]/[0-9][0-9]/[0-9][0-9]$')
 def munge_date(date_entry):
     """Return a string with a date in the format that SQLite wants
-    (YYYY-MM-DD HH:MM:SS.sss). (see
+    (YYYY-MM-DD). (see
     https://stackoverflow.com/questions/17227110/what-is-the-best-way-to-save-datetime-type-in-sqlite)
 
     DATE_ENTRY is either a YYMMDD string or a MM/DD/YY string.
@@ -50,16 +50,20 @@ def munge_date(date_entry):
 
     f = date_entry
     if date_re.match(f):
-        return "%s-%s-%s 00:00:00.000" % (f[:4], f[4:6], f[6:8])
+        if '00000000' == date_entry:
+            return None
+        return "%s-%s-%s" % (f[:4], f[4:6], f[6:8])
     if slash_date_re.match(f):
+        if '00/00/00' == date_entry:
+            return None
         y = int(f[6:8])+2000
         if y > datetime.now().year+1:
             y -= 100
-        return "%s-%s-%s 00:00:00.000" % (y, f[:2], f[3:5])
+        return "%s-%s-%s" % (y, f[:2], f[3:5])
 
     # We shouldn't get here, but just in case dates get all funky, we
     # do our best guess at parsing the date:
-    d = str(dateutil.parser.parse(f)) + ".000"
+    d = dateutil.parser.parse(f).date().isoformat()
     warn("Unrecognized date format ({0}) parsed as {1}!".format(f, d))
     return d
 
@@ -83,6 +87,10 @@ def clean(table):
     table = etl.convert(table, {'DOB': munge_date,
                                 'MIDNAME': lambda f: f if f != " " else ""  # no spaces as middle names
     })
+    table = etl.convertall(
+            table,
+            lambda f: None if f.strip() == '' else f
+    )
     return table
 
 class Exclusions():
@@ -262,14 +270,14 @@ def dload_if_stale(fname, url, conn):
     on-disk version is out of date.
 
     FNAME is the filename to save the file as
-    
+
     URL is the url of the file to download
 
     CONN is a model.LEIE instance and we use it just to get access to the db log
 
     Returns True if we downloaded, else False
     """
-    
+
     if fname_is_stale(fname, url, conn):
         debug("Downloading %s" % url)
 

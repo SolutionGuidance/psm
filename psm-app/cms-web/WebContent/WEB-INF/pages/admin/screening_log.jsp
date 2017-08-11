@@ -26,41 +26,41 @@
                     </div>
                     <h1>External Source Screening Log</h1>
                     <div class="tabSection" id="enrollmentSection">
-                    	<div class="detailPanel">
-                    		<div class="section">
-								<div class="wholeCol">
-			                        <c:if test="${empty output}">
-			                            No external screening was performed.
-			                        </c:if>
-			                        <c:if test="${not empty output}">
-			                            <div class="row">
-			                                <label>Status</label>
-			                                <span class="floatL"><b>:</b></span>
-			                                <span>SUCCESS</span>
-			                            </div>
-			                        
-			                            <c:set var="recordsMatched" value="${false}"></c:set>
-			                            <c:forEach var="record" items="${output.searchResultItem}">
-			                                <hr />
-			                                <c:forEach var="coldata" items="${record.columnData.nameValuePair}">
-			                                    <c:set var="recordsMatched" value="${true}"></c:set>
-										        <div class="row">
-										            <label>${coldata.name}</label>
-										            <span class="floatL"><b>:</b></span>
-										            <span><c:out value="${coldata.value}"></c:out> </span>
-										        </div>
-			                                </c:forEach>
-			                            </c:forEach>
-			                            
-			                            <c:if test="${not recordsMatched}">
-			                            <div class="row">
-			                                No records were matched. Please check the source manually.
-			                            </div>
-			                            </c:if>
-			                        </c:if>
-			                    </div>
-			                </div>
-			            </div>
+                        <div class="detailPanel">
+                            <div class="section">
+                                <div class="wholeCol">
+                                    <c:if test="${empty output}">
+                                        No external screening was performed.
+                                    </c:if>
+                                    <c:if test="${not empty output}">
+                                        <div class="row">
+                                            <label>Status</label>
+                                            <span class="floatL"><b>:</b></span>
+                                            <span>SUCCESS</span>
+                                        </div>
+
+                                        <c:set var="recordsMatched" value="${false}"></c:set>
+                                        <c:forEach var="record" items="${output.searchResultItem}">
+                                            <hr />
+                                            <c:forEach var="coldata" items="${record.columnData.nameValuePair}">
+                                                <c:set var="recordsMatched" value="${true}"></c:set>
+                                                <div class="row">
+                                                    <label>${coldata.name}</label>
+                                                    <span class="floatL"><b>:</b></span>
+                                                    <span><c:out value="${coldata.value}"></c:out> </span>
+                                                </div>
+                                            </c:forEach>
+                                        </c:forEach>
+
+                                        <c:if test="${not recordsMatched}">
+                                        <div class="row">
+                                            No records were matched.
+                                        </div>
+                                        </c:if>
+                                    </c:if>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.tabSection -->
                 </div>

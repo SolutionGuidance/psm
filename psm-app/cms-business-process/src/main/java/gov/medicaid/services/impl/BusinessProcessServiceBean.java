@@ -76,6 +76,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.URI;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -136,7 +137,10 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         handlers.put("Verify SSN", new VerifySSNHandler());
         handlers.put("NPI Lookup", new NPILookupHandler());
         handlers.put("Verify License or Certification", new VerifyLicenseHandler());
-        handlers.put("Check Excluded Provider List in OIG", new ExcludedProvidersScreeningHandler());
+        handlers.put(
+                "Check Excluded Provider List in OIG",
+                new ExcludedProvidersScreeningHandler("http://localhost:5000/")
+        );
         handlers.put("Check Excluded Provider List in SAM", new SAMExcludedProvidersScreeningHandler());
         handlers.put("Auto Disqualification", new DisqualificationHandler());
         handlers.put("Auto Screening", new ScreeningHandler());

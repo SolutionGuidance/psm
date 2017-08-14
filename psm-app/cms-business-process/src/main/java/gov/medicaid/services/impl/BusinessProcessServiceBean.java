@@ -129,6 +129,8 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     @PostConstruct
     public void init() {
         super.init();
+        CMSConfigurator config = new CMSConfigurator();
+
         handlers.put("PreProcess", new PreProcessHandler());
         handlers.put("Validate", new ValidationHandler());
         handlers.put("Data Transformation", new SystemOutWorkItemHandler());
@@ -139,7 +141,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         handlers.put("Verify License or Certification", new VerifyLicenseHandler());
         handlers.put(
                 "Check Excluded Provider List in OIG",
-                new ExcludedProvidersScreeningHandler("http://localhost:5000/")
+                new ExcludedProvidersScreeningHandler(config.getLeieApiBaseUrl())
         );
         handlers.put("Check Excluded Provider List in SAM", new SAMExcludedProvidersScreeningHandler());
         handlers.put("Auto Disqualification", new DisqualificationHandler());
@@ -149,7 +151,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         handlers.put("SIRS", new SystemOutWorkItemHandler());
         handlers.put("Accept Application", new AcceptedHandler());
 
-        CMSConfigurator config = new CMSConfigurator();
         if (providerService == null) {
             providerService = config.getEnrollmentService();
         }

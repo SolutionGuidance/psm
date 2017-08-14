@@ -48,39 +48,81 @@
                                     <td>NPI LOOKUP</td>
                                     <td>${model.enrollment.providerInformation.NPI}</td>
                                     <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=NPI LOOKUP&id=${id}" target="_blank">View</a></td>
-                                    <td><input type="checkbox" name="npiLookupVerified" value="Y" ${verification.NPILookup eq 'Y' ? 'checked' : ''} /></td>
+                                    <td>
+                                        <input
+                                            type="checkbox"
+                                            name="npiLookupVerified"
+                                            value="Y"
+                                            ${verification.NPILookup eq 'Y' ? 'checked' : ''}
+                                        />
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>SSN DMF VERIFICATION</td>
                                     <td>${model.enrollment.providerInformation.applicantInformation.personalInformation.socialSecurityNumber}</td>
                                     <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=SSN DMF VERIFICATION&id=${id}" target="_blank">View</a></td>
-                                    <td><input type="checkbox" name="ssnVerified" value="Y" ${verification.socialSecurityNumber eq 'Y' ? 'checked' : ''} /></td>
+                                    <td>
+                                        <input
+                                            type="checkbox"
+                                            name="ssnVerified"
+                                            value="Y"
+                                            ${verification.socialSecurityNumber eq 'Y' ? 'checked' : ''}
+                                        />
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>NPI PECOS VERIFICATION</td>
                                     <td>${model.enrollment.providerInformation.NPI}</td>
                                     <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=NPI PECOS VERIFICATION&id=${id}" target="_blank">View</a></td>
-                                    <td><input type="checkbox" name="npiVerified" value="Y" ${verification.NPI eq 'Y' ? 'checked' : ''} /></td>
+                                    <td>
+                                        <input
+                                            type="checkbox"
+                                            name="npiVerified"
+                                            value="Y"
+                                            ${verification.NPI eq 'Y' ? 'checked' : ''}
+                                        />
+                                    </td>
                                 </tr>
                                 <c:if test="${not empty model.enrollment.providerInformation.agencyInformation.backgroundStudyId}">
                                     <tr>
                                         <td>NET STUDY ID VERIFICATION</td>
                                         <td>${model.enrollment.providerInformation.agencyInformation.backgroundStudyId}</td>
                                         <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=NET STUDY ID VERIFICATION&id=${id}" target="_blank">View Log</a></td>
-                                        <td><input type="checkbox" name="bgsVerified" value="Y" ${verification.netStudy eq 'Y' ? 'checked' : ''} /></td>
+                                        <td>
+                                            <input
+                                                type="checkbox"
+                                                name="bgsVerified"
+                                                value="Y"
+                                                ${verification.netStudy eq 'Y' ? 'checked' : ''}
+                                            />
+                                        </td>
                                     </tr>
                                 </c:if>
                                 <tr>
                                     <td>EXCLUDED PROVIDER VERIFICATION IN OIG (checked means not in exclusion list)</td>
                                     <td></td>
                                     <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=EXCLUDED PROVIDERS&id=${id}" target="_blank">View</a></td>
-                                    <td><input type="checkbox" name="nonExclusionVerified" value="Y" ${verification.nonExclusion eq 'Y' ? 'checked' : ''} /></td>
+                                    <td>
+                                        <input
+                                            type="checkbox"
+                                            name="nonExclusionVerified"
+                                            value="Y"
+                                            ${verification.nonExclusion eq 'Y' ? 'checked' : ''}
+                                        />
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>EXCLUDED PROVIDER VERIFICATION IN SAM (checked means not in exclusion list)</td>
                                     <td></td>
                                     <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=SAM EXCLUDED PROVIDERS&id=${id}" target="_blank">View</a></td>
-                                    <td><input type="checkbox" name="nonSAMExclusionVerified" value="Y" ${verification.SAMNonExclusion eq 'Y' ? 'checked' : ''} /></td>
+                                    <td>
+                                        <input
+                                            type="checkbox"
+                                            name="nonSAMExclusionVerified"
+                                            value="Y"
+                                            ${verification.SAMNonExclusion eq 'Y' ? 'checked' : ''}
+                                        />
+                                    </td>
                                 </tr>
                             </tbody>
                             </table>
@@ -109,7 +151,14 @@
 
                                     </td>
                                     <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=LICENSE VERIFICATION&id=${id}&licenseId=${license.objectId}" target="_blank">View Log</a></td>
-                                    <td><input type="checkbox" name="verifiedLicenses" value="${license.attachmentObjectId}" ${license.verified eq 'Y' ? 'checked' : ''} /></td>
+                                    <td>
+                                        <input
+                                            type="checkbox"
+                                            name="verifiedLicenses"
+                                            value="${license.attachmentObjectId}"
+                                            ${license.verified eq 'Y' ? 'checked' : ''}
+                                        />
+                                    </td>
                                 </tr>
                                 </c:forEach>
                             </tbody>

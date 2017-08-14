@@ -1,81 +1,172 @@
    Scripts for live demonstrations of the PSM to various audiences.
    ================================================================
 
-* For MESC 2017  (exact revision still TBD as of 2 Aug 2017)
+* For MESC 2017  (`wip-leie` branch as of 7 August 2017)
 
-  Use demo.psm.solutionguidance.com.
+  Use demo.psm.solutionguidance.com or a local copy.
+
+  For this demo, you should have a copy of the LEIE API running at
+  localhost:5000 (that is, on the same box that is running the PSM on
+  port 8080).  The demo copy of the PSM should have the following users:
   
+  - excluded1 (an excluded provider)
+  - provider1 (a valid provider)
+  - admin (a reviewer)
+
+  - A draft DME enrollment with valid NPI
+  - A draft audiologist enrollment with excluded NPI
+
   This demo assumes that much of the provider information has already
   been filled in -- that is, that we're re-opening an application in
-  progress and continuing it.  This is to save time during the demo.
+  progress and continuing it.  This is to save time during the demo.  To
+  insert this information, run:
+  
+  $ psql psm
+  psm=# DROP OWNED BY ${psm_user};
+  $ \i team-notes/demo-db-dbd7cf5.sql
 
-  1. Show an organizational provider enrollment:
-     - Choose "Durable Medical Equipment"
-     - Effective Date must be within past 12 months
-     - Employer ID doesn't seem to be checked
-       # Karl asks: What does the above comment mean, in terms
-       #            of what's happening in the demo?  Does the 
-       #            demo-er do something b/c of it?
-       # CMD: No, it's a note to the person running the demo that they
-       # don't need to have a valid Employer ID, as they need a valid NPI. 
-     - "Ownership Info" (something that a couple states have asked about)
-       - Note that you can add multiple individual owners
-       - And also multiple business owners
+  If you use the pre-filled data, make sure the provider statement date
+  is today's date.
+
+  # add a fake exclusion to LEIE data, to avoid demo-ing with a real
+  person's name:
+  
+  $ sqlite3 leie.sqlite3 <<EOF
+INSERT INTO exclusion(
+  firstname,
+  lastname,
+  general,
+  npi,
+  dob,
+  address,
+  city,
+  state,
+  zip,
+  excltype,
+  excldate
+) values (
+  'Demo',
+  'Exclusion',
+  'NURSING PROFESSION',
+  '1234567893',
+  '1970-01-01',
+  '1234 Main Street',
+  'Somewhere',
+  'NY',
+  '12345',
+  '1128b4',
+  '2000-01-01'
+);
+EOF
+
+  Before beginning the demo, stop and restart Wildfly to reduce the risk
+  of "out of memory" errors.
+
+
+* DEMO PLAN:
+
+  1. Show an organizational provider enrollment with a valid provider:
+  
+     - Log in as provider1
+     - DME enrollment already exists
+       - "Previous page" goes one back
+       - Point out multiple owners without going back further and
+         entering data, to avoid the bug and save time
+
+     - Click "Next", then submit the enrollment
   
      - Back on the dashboard, note that DME is automatically flagged as
        "High" risk (based on provider type)
   
   2. Show an individual provider enrollment with multiple locations:
-     - Choose "Audiologist"
-     - Try a DOB in the future and show the error shows up when you
-       click "next" (but not immediately on tabbing away from the field) 
-      - See the "provider must be at least 18yo error, too! (for fun)
-     - Practice Info:
+     - Log in as excluded1
+     - "Audiologist" enrollment exists
+     - Click in then "previous" all the way back to the beginning, to show the screens
+     - Has an excluded NPI: 1234567893 (this is a fake one that doesn't
+       show a real provider's name) 
+     - Validation tests, if there's time: try a DOB in the future and
+       show the error shows up when you click "next" (but not immediately on
+       tabbing away from the field)  
+       - See the "provider must be at least 18yo error, too! (for fun)
+     - License info
        - Indian reservation question is MN-specific, but we can ask
-         similar questions for other states 
-       # Karl asks: That's hardcoded in right now, right?  Making it
-       #            configurable on a per-state basis would be a rules
-       #            (Drools) change, not a workflow change, I assume? 
+         similar questions for other states
+       - Upload the fake license:
+         psm-app/docs/sample-generic-provider-license.pdf (should
+         already be there)
+     - Practice Info:
        - For "Are you employed and/or independently contracted by a group
          practice?" choose Yes
          - At bottom of page, click "Add Another Practice Location"
            - Group NPI can be the same as the initial Provider NPI, and we
              can use the same NPI for multiple locations
-  
+
+      - Submit the enrollment
+
+      - Back on the dashboard, note that Audiologists are "Limited" risk
+        (the lowest possible level).  This is true even though we happen
+        to know that the NPI we used is one that is excluded -- risk
+        levels right now are *only* based on provider type.
+
   3. Admin flow:
+     - Login as "admin"
      - Navigate to "Enrollments" tab, then "Pending" subtab
      - Look at available "Actions"
      - Export downloads it as a PDF, COS is "Categories of Service" (not
        fully implemented/work in progress), Edit and Print are what it
        says on the tin
-       # Karl asks: Shall we have a printed-out copy physically there with
-       #            us so we can wave it and show that printing is A Thing?
-       #            That's more effective than clicking to show an on-screen
-       #            PDF rendering or whatever it would be.
      - Review is what we're interested in.
-     - Click "Review"
-     - Excluded provider version:
-       - One pre-filled enrollment will be for a person in the LEIE
-       - Review that enrollment and click "View Log"
-       - View Log is an audit log -- we haven't done any external screening,
-         because we're not attached to those external sources yet, but
-         it will show results when we are.
-       # Karl asks: Again, re Jason's post: we are attached now, right?
-       #            But, do we have an audit log?  Can we?
-       # CMD: The audit log is what's shown in Jason's screenshot (!).
-       # We will show it once it's ready.
+     - Click "Review" on the Audiologist enrollment
+       - We see that most of these have not been checked
+       - Note particularly "Applicant Must Not Be In the Excluded
+         Providers List." in the list of errors
+       - View Log for "EXCLUDED PROVIDER VERIFICATION IN OIG (checked
+         means not in exclusion list)."
+         - Results show up in a new tab
+         - "Status: SUCCESS" -- we got a response from the LEIE
+         - Results below show that we found this person in the LEIE,
+           therefore he is excluded and we should reject this enrollment. 
+       - Go back to original tab
+         - If interested, show that we're not doing automated screening
+           for other external sources (yet).
+         - Can view the license file if we have time/interest
        - "Reject" and the enrollment will show up in the "Denied" tab.  We
          no longer have the ability to re-review
 
-     - Non-excluded provider version:
-       - Still working on linking up to these external services, but soon
-         we'll be checking these boxes automatically.  For now, you could
-         do the manual checks you're used to.
-       - Will be able to look at "View Log" for LEIE (TBD)
+     - Now, the non-excluded provider version:
+       - Go back to the "Pending" tab
+       - Review the DME enrollment
+       - Note that "EXCLUDED PROVIDER VERIFICATION IN OIG (checked means
+         not in exclusion list)" is already checked -- this person is
+         not in the LEIE!
+         - Click "View Log" and see "Success - no records were matched."
+          (i.e., we searched and didn't find anything)
+       - For now, we'd manually check the other sources -- check all
+         checkboxes 
        - Later, other sources can be added to this list
-       - Can click "View" and see the actual uploaded license
-         # Karl asks: Maybe have printout of that with us too, for an
-         #            amusing physical-world-vs-screen-world comparison.
        - "Approve" the DME enrollment and it will show up in the "Approved"
          tab (after a "request has been sent" message)
+         - Note, the "request has been sent" doesn't actually do
+           anything yet -- possibly a chance for discussion about what
+           it *should* do
 
+
+
+* Notes about the demo, as background:
+  - Valid provider:
+     - Choose "Durable Medical Equipment"
+     - NPI: 1111111112 (valid, non-excluded)
+       - Perhaps note that we are searching the LEIE via NPI right now
+     - Effective Date must be within past 12 months: 07/01/2017
+     - "Ownership Info" (something that a couple states have asked
+       about)
+       - Business type: corporation
+       - Note that you can add multiple individual owners of a corporation
+         - The "This person/business has an ownership or control
+           interest in another Medicaid disclosing entity, or an entity that
+           does not participate in Medicaid but is required to disclose
+           ownership and control interest because of participation in any
+           Title V, XVIII, or XX programs. " is quite broken -- see #308
+         - I'd suggest using it as an example of validation errors, then
+           unchecking it to continue
+     

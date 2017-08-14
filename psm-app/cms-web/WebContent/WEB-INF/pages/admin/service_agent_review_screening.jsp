@@ -47,7 +47,16 @@
                                 <tr>
                                     <td>NPI LOOKUP</td>
                                     <td>${model.enrollment.providerInformation.NPI}</td>
-                                    <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=NPI LOOKUP&id=${id}" target="_blank">View</a></td>
+                                    <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=NPI LOOKUP&id=${id}" target="_blank">
+                                        <c:choose>
+                                            <c:when test="${empty verification.NPILookup}">
+                                                Not performed
+                                            </c:when>
+                                            <c:otherwise>
+                                                View results
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </a></td>
                                     <td>
                                         <input
                                             type="checkbox"
@@ -60,7 +69,16 @@
                                 <tr>
                                     <td>SSN DMF VERIFICATION</td>
                                     <td>${model.enrollment.providerInformation.applicantInformation.personalInformation.socialSecurityNumber}</td>
-                                    <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=SSN DMF VERIFICATION&id=${id}" target="_blank">View</a></td>
+                                    <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=SSN DMF VERIFICATION&id=${id}" target="_blank">
+                                        <c:choose>
+                                            <c:when test="${empty verification.socialSecurityNumber}">
+                                                Not performed
+                                            </c:when>
+                                            <c:otherwise>
+                                                View results
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </a></td>
                                     <td>
                                         <input
                                             type="checkbox"
@@ -73,7 +91,16 @@
                                 <tr>
                                     <td>NPI PECOS VERIFICATION</td>
                                     <td>${model.enrollment.providerInformation.NPI}</td>
-                                    <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=NPI PECOS VERIFICATION&id=${id}" target="_blank">View</a></td>
+                                    <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=NPI PECOS VERIFICATION&id=${id}" target="_blank">
+                                        <c:choose>
+                                            <c:when test="${empty verification.NPI}">
+                                                Not performed
+                                            </c:when>
+                                            <c:otherwise>
+                                                View results
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </a></td>
                                     <td>
                                         <input
                                             type="checkbox"
@@ -87,7 +114,16 @@
                                     <tr>
                                         <td>NET STUDY ID VERIFICATION</td>
                                         <td>${model.enrollment.providerInformation.agencyInformation.backgroundStudyId}</td>
-                                        <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=NET STUDY ID VERIFICATION&id=${id}" target="_blank">View Log</a></td>
+                                        <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=NET STUDY ID VERIFICATION&id=${id}" target="_blank">
+                                            <c:choose>
+                                                <c:when test="${empty verification.netStudy}">
+                                                    Not performed
+                                                </c:when>
+                                                <c:otherwise>
+                                                    View results
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </a></td>
                                         <td>
                                             <input
                                                 type="checkbox"
@@ -101,7 +137,16 @@
                                 <tr>
                                     <td>EXCLUDED PROVIDER VERIFICATION IN OIG (checked means not in exclusion list)</td>
                                     <td></td>
-                                    <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=EXCLUDED PROVIDERS&id=${id}" target="_blank">View</a></td>
+                                    <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=EXCLUDED PROVIDERS&id=${id}" target="_blank">
+                                        <c:choose>
+                                            <c:when test="${empty verification.nonExclusion}">
+                                                Not performed
+                                            </c:when>
+                                            <c:otherwise>
+                                                View results
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </a></td>
                                     <td>
                                         <input
                                             type="checkbox"
@@ -114,7 +159,16 @@
                                 <tr>
                                     <td>EXCLUDED PROVIDER VERIFICATION IN SAM (checked means not in exclusion list)</td>
                                     <td></td>
-                                    <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=SAM EXCLUDED PROVIDERS&id=${id}" target="_blank">View</a></td>
+                                    <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=SAM EXCLUDED PROVIDERS&id=${id}" target="_blank">
+                                        <c:choose>
+                                            <c:when test="${empty verification.SAMNonExclusion}">
+                                                Not performed
+                                            </c:when>
+                                            <c:otherwise>
+                                                View results
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </a></td>
                                     <td>
                                         <input
                                             type="checkbox"
@@ -150,7 +204,16 @@
                                     <a href="${downloadLink}">View</a>
 
                                     </td>
-                                    <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=LICENSE VERIFICATION&id=${id}&licenseId=${license.objectId}" target="_blank">View Log</a></td>
+                                    <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=LICENSE VERIFICATION&id=${id}&licenseId=${license.objectId}" target="_blank">
+                                        <c:choose>
+                                            <c:when test="${empty license.verified}">
+                                                Not performed
+                                            </c:when>
+                                            <c:otherwise>
+                                                View results
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </a></td>
                                     <td>
                                         <input
                                             type="checkbox"

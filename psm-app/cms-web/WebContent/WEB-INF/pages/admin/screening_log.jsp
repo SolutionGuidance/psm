@@ -39,11 +39,25 @@
                                             <span>SUCCESS</span>
                                         </div>
 
-                                        <c:set var="recordsMatched" value="${false}"></c:set>
+                                        <c:set var="recordsMatched"
+                                         value="${fn:length(output.searchResultItem)}"/>
+                                        <div class="row">
+                                            <c:choose>
+                                                <c:when test="${recordsMatched == 0}">
+                                                    No records were matched.
+                                                </c:when>
+                                                <c:when test="${recordsMatched == 1}">
+                                                    1 record matched.
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${recordsMatched} records matched.
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+
                                         <c:forEach var="record" items="${output.searchResultItem}">
                                             <hr />
                                             <c:forEach var="coldata" items="${record.columnData.nameValuePair}">
-                                                <c:set var="recordsMatched" value="${true}"></c:set>
                                                 <div class="row">
                                                     <label>${coldata.name}</label>
                                                     <span class="floatL"><b>:</b></span>
@@ -51,12 +65,6 @@
                                                 </div>
                                             </c:forEach>
                                         </c:forEach>
-
-                                        <c:if test="${not recordsMatched}">
-                                        <div class="row">
-                                            No records were matched.
-                                        </div>
-                                        </c:if>
                                     </c:if>
                                 </div>
                             </div>

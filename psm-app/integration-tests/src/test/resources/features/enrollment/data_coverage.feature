@@ -26,3 +26,13 @@ Feature: Data Coverage Checks
     When  I move to the personal info page
     Then I should be asked to enter Contact phone, Medicaid number
 
+  @issue-362
+  Scenario: Captures Individual Beneficial Owner's City
+    Given I have started an enrollment
+    And I am entering ownership information
+    And I have indicated that the owner has an interest in another Medicaid disclosing entity
+    And I have entered a city for that other entity
+    When I click 'next' on the Ownership Info Page
+    Then the city should be accepted
+
+

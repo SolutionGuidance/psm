@@ -62,7 +62,8 @@
                                             type="checkbox"
                                             name="npiLookupVerified"
                                             value="Y"
-                                            ${verification.NPILookup eq 'Y' ? 'checked' : ''}
+                                            ${verification.NPILookup eq 'Y' or empty verification.NPILookup
+                                                ? 'checked' : ''}
                                         />
                                     </td>
                                 </tr>
@@ -84,7 +85,8 @@
                                             type="checkbox"
                                             name="ssnVerified"
                                             value="Y"
-                                            ${verification.socialSecurityNumber eq 'Y' ? 'checked' : ''}
+                                            ${verification.socialSecurityNumber eq 'Y' or empty verification.socialSecurityNumber
+                                                ? 'checked' : ''}
                                         />
                                     </td>
                                 </tr>
@@ -106,7 +108,8 @@
                                             type="checkbox"
                                             name="npiVerified"
                                             value="Y"
-                                            ${verification.NPI eq 'Y' ? 'checked' : ''}
+                                            ${verification.NPI eq 'Y' or empty verification.NPI
+                                                ? 'checked' : ''}
                                         />
                                     </td>
                                 </tr>
@@ -129,7 +132,8 @@
                                                 type="checkbox"
                                                 name="bgsVerified"
                                                 value="Y"
-                                                ${verification.netStudy eq 'Y' ? 'checked' : ''}
+                                                ${verification.netStudy eq 'Y' or empty verification.netStudy
+                                                    ? 'checked' : ''}
                                             />
                                         </td>
                                     </tr>
@@ -152,7 +156,8 @@
                                             type="checkbox"
                                             name="nonExclusionVerified"
                                             value="Y"
-                                            ${verification.nonExclusion eq 'Y' ? 'checked' : ''}
+                                            ${verification.nonExclusion eq 'Y' or empty verification.nonExclusion
+                                                ? 'checked' : ''}
                                         />
                                     </td>
                                 </tr>
@@ -174,7 +179,8 @@
                                             type="checkbox"
                                             name="nonSAMExclusionVerified"
                                             value="Y"
-                                            ${verification.SAMNonExclusion eq 'Y' ? 'checked' : ''}
+                                            ${verification.SAMNonExclusion eq 'Y' or empty verification.SAMNonExclusion
+                                                ? 'checked' : ''}
                                         />
                                     </td>
                                 </tr>
@@ -219,7 +225,8 @@
                                             type="checkbox"
                                             name="verifiedLicenses"
                                             value="${license.attachmentObjectId}"
-                                            ${license.verified eq 'Y' ? 'checked' : ''}
+                                            ${license.verified eq 'Y' or empty license.verified
+                                                ? 'checked' : ''}
                                         />
                                     </td>
                                 </tr>

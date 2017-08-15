@@ -84,6 +84,10 @@ elif [ -e "/etc/redhat_version" ]; then
 	sudo yum-config-manager --enable rhui-REGION-rhel-server-optional
 	sudo yum -y install gcc ruby-devel rubygems sqlite-devel
 	sudo yum -y groupinstall 'Development Tools'
+else
+	echo "We don't appear to be on a Red Hat or a Debian system. Exiting."
+	echo "Please feel free to add support for your favorite system here!"
+	exit
 fi
 
 # Install and run mailcatcher as needed

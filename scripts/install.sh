@@ -32,7 +32,7 @@ function kill_jboss {
 }
 
 function seed_db {
-	# Seed the database, then rm the password file
+	# Seed the database
 	echo Seed the database
 	export PGPASSWORD=${pword}; cat psm/psm-app/db/jbpm.sql psm/psm-app/db/seed.sql | psql -h localhost -U psm psm
 	echo Your db user psm has a password of ${pword}

@@ -28,6 +28,7 @@ function download_and_sha1 {
 function kill_jboss {
 	# kill any running wildfly servers
 	pgrep -f "^java.*wildfly" && pgrep -f "^java.*wildfly" | xargs kill -9
+	echo Killed any running Wildfly instances
 }
 
 function seed_db {
@@ -86,6 +87,7 @@ elif [ -e "/etc/redhat_version" ]; then
 fi
 
 # Install and run mailcatcher as needed
+echo Making sure mailcatcher is available
 which mailcatcher > /dev/null || sudo gem install mailcatcher
 pgrep mailcatcher > /dev/null || mailcatcher
 
@@ -131,7 +133,6 @@ sudo -upostgres psql -c "\du" | grep -q "^ psm" && sudo -upostgres psql -c "drop
 sudo -upostgres psql -c "create user psm with password '${pword}'"
 sudo -upostgres psql -c "create database psm with owner psm encoding=utf8 template template0"
 popd > /dev/null
-
 
 # Set up user and run wildfly server
 JBOSS_CLI=./wildfly-10.1.0.Final/bin/jboss-cli.sh

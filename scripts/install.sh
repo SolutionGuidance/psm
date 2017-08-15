@@ -149,13 +149,6 @@ if ! grep -Fq "<remote-destination host=\"localhost\" port=\"1025\"/>" ./wildfly
 EOF
 fi
 
-echo Set up message queue
-if ! grep -Fq '<jms-queue name="DataSync" entries="java:/jms/queue/DataSync"/>' \
-	 ./wildfly-10.1.0.Final/standalone/configuration/standalone-full.xml; then
-	${JBOSS_CLI} --connect \
-				 --command='jms-queue add --queue-address=DataSync --entries=["java:/jms/queue/DataSync"]'
-fi
-
 echo Deploy jdbc jar
 JDBC_VERSION=42.1.4
 download_and_sha1 "https://jdbc.postgresql.org/download/postgresql-$JDBC_VERSION.jar" \

@@ -64,7 +64,7 @@ if [ -e "/etc/debian_version" ]; then
 	let "a = $(date +%s) - $(stat -c %Y /var/cache/apt)"
 	[[ "$a" -gt "3600" ]] && sudo apt -y update
 	
-	sudo apt install -y git gradle libsqlite3-dev openjdk-8-jdk-headless postgresql-9.6 ruby-dev
+	sudo apt install -y git libsqlite3-dev openjdk-8-jdk-headless postgresql-9.6 ruby-dev
 elif [ -e "/etc/redhat_version" ]; then
 	echo "Installing postgres"
 	download_and_sha1 "https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-redhat96-9.6-3.noarch.rpm" \
@@ -80,9 +80,9 @@ elif [ -e "/etc/redhat_version" ]; then
 	sudo systemctl start postgresql-9.6.service
 
 	sudo yum -y install git
-	sudo yum -y install java-1.8.0-openjdk ant
+	sudo yum -y install java-1.8.0-openjdk
 	sudo yum-config-manager --enable rhui-REGION-rhel-server-optional
-	sudo yum -y install gcc mysql-devel ruby-devel rubygems sqlite-devel
+	sudo yum -y install gcc ruby-devel rubygems sqlite-devel
 	sudo yum -y groupinstall 'Development Tools'
 fi
 

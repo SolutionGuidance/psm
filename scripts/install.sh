@@ -100,7 +100,7 @@ pgrep mailcatcher > /dev/null || mailcatcher
 # codebase.  If we are, then cd to the dir above the git tree so we
 # can put wildfly in a dir that is parallel to the psm repo.
 pushd $(dirname $0) > /dev/null
-if git remote show origin | grep -q "git@github.com:OpenTechStrategies/psm.git"; then
+if git remote -v | grep -q "OpenTechStrategies/psm.git"; then
 	printf "Install script is in a PSM repo, so we'll use that repo for the install.\n"
 	cd $(git rev-parse --show-toplevel)
 	cd ..

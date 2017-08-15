@@ -1,10 +1,9 @@
-package gov.medicaid.features.general.steps;
+package gov.medicaid.features.enrollment.steps;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import gov.medicaid.features.enrollment.EnrollmentSteps;
-import gov.medicaid.features.general.ui.EnrollmentPage;
+import gov.medicaid.features.enrollment.ui.EnrollmentPage;
 import net.thucydides.core.annotations.Steps;
 import org.apache.commons.lang3.StringUtils;
 

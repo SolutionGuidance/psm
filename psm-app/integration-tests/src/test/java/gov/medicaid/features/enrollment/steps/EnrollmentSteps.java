@@ -1,7 +1,7 @@
-package gov.medicaid.features.enrollment;
+package gov.medicaid.features.enrollment.steps;
 
 import gov.medicaid.features.general.ui.DashboardPage;
-import gov.medicaid.features.general.ui.EnrollmentPage;
+import gov.medicaid.features.enrollment.ui.EnrollmentPage;
 import gov.medicaid.features.general.ui.LoginPage;
 import net.thucydides.core.annotations.Step;
 

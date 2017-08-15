@@ -1,4 +1,4 @@
-package gov.medicaid.features.general.ui;
+package gov.medicaid.features.enrollment.ui;
 
 
 import cucumber.api.PendingException;

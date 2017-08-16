@@ -56,7 +56,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 public class DashboardController extends BaseServiceAdminController {
     /**
-     * Represents the provoder profile service. it is managed with a getter and setter. It may have any value, but is
+     * Represents the provider profile service. it is managed with a getter and setter. It may have any value, but is
      * expected to be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to
      * change after dependency injection.
      */

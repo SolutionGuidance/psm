@@ -200,7 +200,10 @@ class Reinstatements():
         self.conn.dedupe_reinstatements()
 
 def fname_is_stale(fname, url, conn):
-    """Return True if URL's Last-Modified is after FNAME's mod datetime.
+    """Tries to answer the question of whether the file named FNAME needs
+    to be redownloaded.
+
+    Return True if URL's Last-Modified is after FNAME's mod datetime.
 
     Return False if FNAME's mod datetime is after URL's Last-Modified.
 

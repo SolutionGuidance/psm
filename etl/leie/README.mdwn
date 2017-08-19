@@ -34,10 +34,8 @@ is not intended to reflect current exclusion status.
 
 ## Running
 
-This program assumes the csv files are in ./data.  Acquiring those
-files automatically is left for future work.  They only update
-monthly, so for now we'll just grab them manually from the
-[LEIE site]( https://oig.hhs.gov/exclusions/exclusions_list.asp).
+This program downloads the csv files.  Run it periodically to stay up
+to date.  They only update monthly.
 
 First, generate the migrations:
     $ ./model.py

@@ -92,7 +92,7 @@ EOF
        - Indian reservation question is MN-specific, but we can ask
          similar questions for other states
        - Upload the fake license:
-         psm-app/docs/sample-generic-provider-license.pdf (should
+         docs/sample-generic-provider-license.pdf (should
          already be there)
      - Practice Info:
        - For "Are you employed and/or independently contracted by a group

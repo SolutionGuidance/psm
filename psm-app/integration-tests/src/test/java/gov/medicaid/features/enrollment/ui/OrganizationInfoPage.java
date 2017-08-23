@@ -1,19 +1,8 @@
-package gov.medicaid.features.general.ui;
-
+package gov.medicaid.features.enrollment.ui;
 
 import cucumber.api.PendingException;
-import net.thucydides.core.pages.PageObject;
 
-
-public class EnrollmentPage extends PageObject {
-    public void selectProviderType(String aProviderType) {
-        $("[name=_01_providerType]").selectByVisibleText(aProviderType);
-    }
-
-    public void clickNext() {
-        $("#nextBtn").click();
-    }
-
+public class OrganizationInfoPage extends EnrollmentPage {
     public void setFEIN(String feinValue) {
         $("#fein").typeAndTab(feinValue);
     }
@@ -58,5 +47,54 @@ public class EnrollmentPage extends PageObject {
 
     public boolean isOrganizaionalEnrollment() {
         return this.getTitle().equals("Organization Information");
+    }
+
+    public void setNPI(String npi) {
+        $("[name='_15_npi']").type(npi);
+    }
+
+    public void setEffectiveDate(String effectiveDate) {
+        $("[name='_15_effectiveDate']").type(effectiveDate);
+    }
+
+
+    public void setDoingBusinessAs(String dba) {
+        $("#name").sendKeys(dba);
+    }
+
+    public void setLegalName(String legalNamne) {
+        $("#legalName").sendKeys(legalNamne);
+    }
+
+    public void setCity(String city) {
+        $(".cityInputFor").sendKeys(city);
+    }
+
+    public void selectState(String state) {
+        $(".stateSelectFor").selectByVisibleText(state);
+    }
+
+    public void setAddr1(String addr1) {
+        $("[name='_15_addressLine1']").sendKeys(addr1);
+    }
+
+    public void setZipcode(String zipcode) {
+        $(".zipInputFor").sendKeys(zipcode);
+    }
+
+    public void selectCounty(String countyName) {
+        $(".countySelectFor").selectByVisibleText(countyName);
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        $("[name='_15_phone1']").sendKeys(phoneNumber);
+    }
+
+    public void setContactName(String contactName) {
+        $("#contactName").sendKeys(contactName);
+    }
+
+    public void setContactPhone(String contactPhone) {
+        $("[name='_15_contactPhone1']").sendKeys(contactPhone);
     }
 }

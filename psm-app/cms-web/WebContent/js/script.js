@@ -1778,13 +1778,16 @@ $(document).ready(function() {
 			$i.find('input:eq(15)').attr("name", "_17_iboCity_" + index);
 			$i.find('select:eq(1)').attr("name", "_17_iboState_" + index);
 			$i.find('input:eq(16)').attr("name", "_17_iboZip_" + index);
-			$i.find('input:eq(17)').attr("name", "_17_iboCounty_" + index);
-			$i.find('input:eq(18)').attr("name", "_17_iboOtherInterestInd_" + index);
-			$i.find('input:eq(19)').attr("name", "_17_iboOtherInterestName_" + index);
-			$i.find('input:eq(20)').attr("name", "_17_iboOtherAddressLine2_" + index);
-			$i.find('input:eq(21)').attr("name", "_17_iboOtherCity_" + index);
-			$i.find('select:eq(2)').attr("name", "_17_iboOtherState_" + index);
-			$i.find('input:eq(22)').attr("name", "_17_iboOtherZip_" + index);
+			$i.find('select:eq(2)').attr("name", "_17_iboCounty_" + index);
+			$i.find('input:eq(17)').attr("name", "_17_iboOtherInterestInd_" + index);
+			$i.find('input:eq(18)').attr("name", "_17_iboOtherInterestName_" + index);
+			$i.find('input:eq(19)').attr("name", "_17_iboOtherInterestPct_" + index);
+			$i.find('input:eq(20)').attr("name", "_17_iboOtherAddressLine1_" + index);
+			$i.find('input:eq(21)').attr("name", "_17_iboOtherAddressLine2_" + index);
+			$i.find('input:eq(22)').attr("name", "_17_iboOtherCity_" + index);
+			$i.find('select:eq(3)').attr("name", "_17_iboOtherCounty" + index);
+			$i.find('select:eq(4)').attr("name", "_17_iboOtherState_" + index);
+			$i.find('input:eq(23)').attr("name", "_17_iboOtherZip_" + index);
 		});
  	}
     

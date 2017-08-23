@@ -6,11 +6,11 @@ help documents. The source documents live in `source/`.
 To build the documentation:
 
 $ pip install sphinx # or, if you're not in a virtualenv, sudo pip install sphinx
-$ cd psm-app/docs/userhelp/
+$ cd docs/userhelp/
 $ make html
 
 Then you should be able to see
-`psm-app/docs/userhelp/build/html/index.html` in your browser.  [Read
+`docs/userhelp/build/html/index.html` in your browser.  [Read
 The Docs's guide to
 Sphinx](https://docs.readthedocs.io/en/latest/getting_started.html) is
 a good guide to our usage of Sphinx.

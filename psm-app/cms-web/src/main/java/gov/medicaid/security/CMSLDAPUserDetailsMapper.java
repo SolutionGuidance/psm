@@ -137,8 +137,11 @@ public class CMSLDAPUserDetailsMapper extends LdapUserDetailsMapper {
      * @return the user details
      */
     @Override
-    public UserDetails mapUserFromContext(DirContextOperations context, String username,
-        Collection<GrantedAuthority> authority) {
+    public UserDetails mapUserFromContext(
+            DirContextOperations context,
+            String username,
+            Collection<GrantedAuthority> authority
+    ) {
         try {
             UserDetails original = super.mapUserFromContext(context, username, authority);
             log.info("Searching for LDAP groups...");

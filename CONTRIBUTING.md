@@ -4,7 +4,8 @@ This document contains information of use to developers looking to
 improve the PSM's codebase.  See [README.md](README.md) for an
 introduction to this project, and if you're thinking of contributing
 you might also want to look at [DESIGN.md](DESIGN.md). All discussions
-about PSM work fall under our [code of conduct](code_of_conduct.md).
+about PSM work fall under our [code of
+conduct](docs/CODE_OF_CONDUCT.md).
 
 ## Submitting and Reviewing Code
 
@@ -72,7 +73,7 @@ practice, that means the following kinds of changes:
   just fix it.  However, if the typo affects code behavior, other than
   in how user-visible text is displayed, then it should go through the
   normal PR review process.
-  
+
 * Whitespace and formatting cleanups.
 
   Commits that are formatting-only and make the code more compliant

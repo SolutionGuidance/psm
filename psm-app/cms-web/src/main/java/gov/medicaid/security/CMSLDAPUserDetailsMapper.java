@@ -136,6 +136,7 @@ public class CMSLDAPUserDetailsMapper extends LdapUserDetailsMapper {
      * @param authority the granted authorities
      * @return the user details
      */
+    @Override
     public UserDetails mapUserFromContext(DirContextOperations context, String username,
         Collection<GrantedAuthority> authority) {
         try {

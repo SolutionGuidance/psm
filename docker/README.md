@@ -1,18 +1,18 @@
 # PSM in a Docker container
 
 Installing and standing up the PSM is a multi-step process.  We intend
-this docker directory to make this process less onerous.  
+this docker directory to make this process less onerous.
 
-The `docker-compose.yml` currently sets up Postgres, creates a db user
-named 'psm' with password 'psm' and creates a database named 'psm'.
-This database lives in a data volume, so it is separable from the
-running postgres container.
+The `docker-compose.yml` currently sets up Postgres, creates a
+database user named 'psm' with password 'psm', and creates a database
+named 'psm'.  This database lives in a data volume, so it is separable
+from the running Postgres container.
 
 Docker also includes a mailcatcher, which is just a dummy SMTP server.
 The PSM app needs a way to send mail and this suffices.
 
-Finally, there is the wildfly container.  This container builds the
-code it finds in psm-app and deploys the resulting ear file.
+Finally, there is the WildFly container.  This container builds the
+code it finds in `psm-app` and deploys the resulting EAR file.
 
 There is little setup needed.  If Docker works on your system, just
 change to the docker directory and:
@@ -21,7 +21,7 @@ change to the docker directory and:
 
 Then point your browser at
 [172:20.128.3/cms/login](http://172:20.128.3/cms/login)
-		
+
 ## Installing Docker
 
 ### docker.io
@@ -41,7 +41,7 @@ installing Docker from
 [a .deb file](https://download.docker.com/linux/debian/dists/stretch/pool/stable/amd64/docker-ce_17.03.1~ce-0~debian-stretch_amd64.deb)
 from the Docker website.
 
-Alternatively, if you want to use the Docker apt-get repository, see
+Alternatively, if you want to use the Docker `apt-get` repository, see
 [this page](https://docs.docker.com/engine/installation/linux/debian/).
 
 ### docker-compose

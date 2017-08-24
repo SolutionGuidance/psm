@@ -45,7 +45,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>NPI LOOKUP</td>
+                                    <td><abbr title="National Provider Identifier">NPI</abbr> LOOKUP</td>
                                     <td>${model.enrollment.providerInformation.NPI}</td>
                                     <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=NPI LOOKUP&id=${id}" target="_blank">
                                         <c:choose>
@@ -67,7 +67,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>SSN DMF VERIFICATION</td>
+                                    <td><abbr title="Social Security Number">SSN</abbr> <abbr title="Death Master File">DMF</abbr> VERIFICATION</td>
                                     <td>${model.enrollment.providerInformation.applicantInformation.personalInformation.socialSecurityNumber}</td>
                                     <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=SSN DMF VERIFICATION&id=${id}" target="_blank">
                                         <c:choose>
@@ -89,7 +89,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>NPI PECOS VERIFICATION</td>
+                                    <td><abbr title="National Provider Identifier">NPI</abbr> <abbr title="Provider Enrollment, Chain, and Ownership System">PECOS</abbr> VERIFICATION</td>
                                     <td>${model.enrollment.providerInformation.NPI}</td>
                                     <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=NPI PECOS VERIFICATION&id=${id}" target="_blank">
                                         <c:choose>
@@ -135,7 +135,7 @@
                                     </tr>
                                 </c:if>
                                 <tr>
-                                    <td>EXCLUDED PROVIDER VERIFICATION IN OIG (checked means not in exclusion list)</td>
+                                    <td>EXCLUDED PROVIDER VERIFICATION IN <abbr title="Office of the Inspector General">OIG</abbr> (checked means not in exclusion list)</td>
                                     <td></td>
                                     <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=EXCLUDED PROVIDERS&id=${id}" target="_blank">
                                         <c:choose>

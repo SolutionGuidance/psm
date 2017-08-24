@@ -42,7 +42,7 @@
                                     <table cellpadding="0" cellspacing="0" class="generalTable fixedWidthTable">
                                         <thead>
                                             <tr>
-                                                <th class="alignCenter">NPI / UMPI<span class="sep"></span></th>
+                                                <th class="alignCenter"><abbr title="National Provider Identifier">NPI</abbr> / <abbr title="Unique Minnesota Provider Identifier">UMPI</abbr><span class="sep"></span></th>
                                                 <th class="alignCenter">Provider Type<span class="sep"></span></th>
                                                 <th class="alignCenter">Provider Name<span class="sep"></span></th>
                                                 <th class="alignCenter">Request Type<span class="sep"></span></th>
@@ -104,7 +104,7 @@
                                             <ul>
                                                 <c:forEach items="${notifications}" var="item">
                                                     <li>
-                                                        <p><strong>NPI/UMPI</strong>
+                                                        <p><strong><abbr title="National Provider Identifier">NPI</abbr>/<abbr title="Unique Minnesota Provider Identifier">UMPI</abbr></strong>
                                                             <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">${item.npi}</a> has been 
                                                         <c:choose>
                                                             <c:when test="${fn:toLowerCase(item.status)=='approved'}"><span class="green">${item.status}</span></c:when>

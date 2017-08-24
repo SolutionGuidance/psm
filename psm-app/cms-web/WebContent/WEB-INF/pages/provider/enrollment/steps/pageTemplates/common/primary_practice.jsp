@@ -7,7 +7,7 @@
     <span id="primaryPracticeName">${requestScope['_06_name']}</span>
 </div>
 <div class="row">
-    <label>Group NPI/UMPI</label>
+    <label>Group <abbr title="National Provider Identifier">NPI</abbr>/<abbr title="Unique Minnesota Provider Identifier">UMPI</abbr></label>
     <span class="floatL"><b>:</b></span>
     <span id="groupNPI">${requestScope['_06_npi']}</span>
 </div>

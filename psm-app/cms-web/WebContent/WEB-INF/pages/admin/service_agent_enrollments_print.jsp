@@ -37,7 +37,7 @@
                                             <table cellpadding="0" cellspacing="0" class="generalTable fixedWidthTable">
                                                 <thead>
                                                     <tr>
-                                                        <th class="alignCenter">NPI/UMPI</th>
+                                                        <th class="alignCenter"><abbr title="National Provider Identifier">NPI</abbr>/<abbr title="Unique Minnesota Provider Identifier">UMPI</abbr></th>
                                                         <th class="alignCenter">Date Submitted</th>
                                                         <th class="alignCenter">Provider Type</th>
                                                         <th class="alignCenter">Provider Name</th>        

@@ -53,7 +53,7 @@
                 <span class="sep"></span>
             </th>
             <c:set var="sortFieldOfEntity" value="2"/>
-            <c:set var="sortColumnTitle" value="NPI/UMPI"/>
+            <c:set var="sortColumnTitle" value="<abbr title='National Provider Identifier'>NPI</abbr>/<abbr title='Unique Minnesota Provider Identifier'>UMPI</abbr>"/>
             <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
             
             <c:choose>

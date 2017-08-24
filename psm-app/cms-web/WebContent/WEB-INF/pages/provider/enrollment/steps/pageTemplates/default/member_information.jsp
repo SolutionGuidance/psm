@@ -24,7 +24,7 @@
     
         <div class="">
             <div class="row requireField">
-                <label>NPI/UMPI<span class="required">*</span></label>
+                <label><abbr title="National Provider Identifier">NPI</abbr>/<abbr title="Unique Minnesota Provider Identifier">UMPI</abbr><span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 
                 <c:set var="formName" value="_16_npi_${status.index - 1}"></c:set>
@@ -33,14 +33,14 @@
                 <a href="javascript:;" class="purpleBtn NPILook"><span class="btR"><span class="btM"><span class="icon">
                 <c:choose>
                     <c:when test="${askUMPIorNPI}">
-                        NPI/UMPI Lookup
+                        <abbr title="National Provider Identifier">NPI</abbr>/<abbr title="Unique Minnesota Provider Identifier">UMPI</abbr> Lookup
                     </c:when>
                     <c:otherwise>
-                        NPI Lookup
+                        <abbr title="National Provider Identifier">NPI</abbr> Lookup
                     </c:otherwise>
                 </c:choose>
                 </span></span></span></a>
-                <span class="errorMsg">No records found with NPI number <span></span></span>
+                <span class="errorMsg">No records found with <abbr title="National Provider Identifier">NPI</abbr> number <span></span></span>
             </div>
         </div>
         <div class="leftCol">
@@ -150,7 +150,7 @@
     
         <div class="">
             <div class="row requireField">
-                <label>NPI/UMPI<span class="required">*</span></label>
+                <label><abbr title="National Provider Identifier">NPI</abbr>/<abbr title="Unique Minnesota Provider Identifier">UMPI</abbr><span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 
                 <c:set var="formName" value="_16_npi"></c:set>
@@ -159,10 +159,10 @@
                 <a href="javascript:;" class="purpleBtn NPILook"><span class="btR"><span class="btM"><span class="icon"></span>
                 <c:choose>
                     <c:when test="${askUMPIorNPI}">
-                        NPI/UMPI Lookup
+                        <abbr title="National Provider Identifier">NPI</abbr>/<abbr title="Unique Minnesota Provider Identifier">UMPI</abbr> Lookup
                     </c:when>
                     <c:otherwise>
-                        NPI Lookup
+                        <abbr title="National Provider Identifier">NPI</abbr> Lookup
                     </c:otherwise>
                 </c:choose>
                 </span></span></a>

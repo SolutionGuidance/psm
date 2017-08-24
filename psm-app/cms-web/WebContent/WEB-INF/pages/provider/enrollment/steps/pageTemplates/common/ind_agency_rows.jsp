@@ -9,7 +9,7 @@
     <span>${requestScope['_11_agencyId']}</span>
 </div>
 <div class="row">
-    <label>Agency NPI/UMPI</label>
+    <label>Agency <abbr title="National Provider Identifier">NPI</abbr>/<abbr title="Unique Minnesota Provider Identifier">UMPI</abbr></label>
     <span class="floatL"><b>:</b></span>
     <span>${requestScope['_11_npi']}</span>
 </div>

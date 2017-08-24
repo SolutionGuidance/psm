@@ -508,7 +508,7 @@
                             <input type="text" class="umpiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
                         </c:when>
                         <c:when test="${askUMPIorNPI}">
-                            <label>NPI / UMPI</label>
+                            <label><abbr title="National Provider Identifier">NPI</abbr> / <abbr title="Unique Minnesota Provider Identifier">UMPI</abbr></label>
                             <span class="floatL"><b>:</b></span>
 
                             <c:set var="formName" value="_15_npi"></c:set>

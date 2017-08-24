@@ -35,7 +35,7 @@
                 <input type="text" class="normalInput" id="firstName" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="row">
-                <label>Agency NPI/UMPI<span class="required">*</span></label>
+                <label>Agency <abbr title="National Provider Identifier">NPI</abbr>/<abbr title="Unique Minnesota Provider Identifier">UMPI</abbr><span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
 
                 <c:set var="formName" value="_11_npi"></c:set>

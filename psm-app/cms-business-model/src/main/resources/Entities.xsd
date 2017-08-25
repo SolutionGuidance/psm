@@ -1,1316 +1,1189 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://gov.medicaid.shared/Entities" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://gov.medicaid.shared/Entities" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
-	<annotation>
-		<documentation xml:lang="en">
-			This defines the common entities used by the enrollment business process.
-		</documentation>
-	</annotation>
-
-	<complexType name="ProviderInformationType">
-		<annotation>
-			<documentation xml:lang="en">Represents a provider.</documentation>
-		</annotation>
-
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ApplicantType" maxOccurs="1" minOccurs="1" type="tns:ApplicantType"></element>
-			<element name="ProviderType" type="string" maxOccurs="1" minOccurs="1"></element>
-			<element name="NPI" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="UMPI" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ApplicantInformation" type="tns:ApplicantInformationType" maxOccurs="1" minOccurs="0"></element>
-			<element name="ContactInformation" type="tns:ContactInformationType" maxOccurs="1" minOccurs="0"></element>
-			<element name="MaintainsOwnPrivatePractice" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="EmployedOrContractedByGroup" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="HasCriminalConviction" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="HasCivilPenalty" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="HasPreviousExclusion" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="EmployeeHasCriminalConviction" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="EmployeeHasCivilPenalty" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="EmployeeHasPreviousExclusion" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="AssignedAgencyId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="RemittanceSequenceNumber" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="AdditionalLocationIndicator" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="AgreeToDiscloseLocations" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="County" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="PreviousMedicareNumber" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="EighteenAndAbove" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="FiscalYearEnd" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Specialties" type="tns:SpecialtiesType" maxOccurs="1" minOccurs="0"></element>
-			<element name="LicenseInformation" type="tns:LicenseInformationType" maxOccurs="1" minOccurs="0"></element>
-			<element name="PracticeInformation" type="tns:PracticeInformationType" maxOccurs="1" minOccurs="0"></element>
-			<element name="AlternateAddresses" type="tns:AlternateAddressesType" maxOccurs="1" minOccurs="0"></element>
-			<element name="AcceptedAgreements" type="tns:AcceptedAgreementsType" maxOccurs="1" minOccurs="0"></element>
-			<element name="ProviderStatement" type="tns:ProviderStatementType" maxOccurs="1" minOccurs="0"></element>
-			<element name="AttachedDocuments" type="tns:AttachedDocumentsType" maxOccurs="1" minOccurs="0"></element>
-			<element name="VerificationStatus" type="tns:VerificationStatusType" maxOccurs="1" minOccurs="0"></element>
-			<element name="NotificationSettings" type="tns:NotificationSettingsType" maxOccurs="1" minOccurs="0"></element>
-			<element name="GroupAffiliations" type="tns:GroupAffiliationsType" maxOccurs="1" minOccurs="0"></element>
-			<element name="MemberInformation" type="tns:MemberInformationType" maxOccurs="1" minOccurs="0"></element>
-			<element name="ProviderSetupInformation" type="tns:ProviderSetupInformationType" maxOccurs="1" minOccurs="0"></element>
-			<element name="OwnershipInformation" type="tns:OwnershipInformationType" maxOccurs="1" minOccurs="0"></element>
-			<element name="FacilityCredentials" type="tns:FacilityCredentialsType" maxOccurs="1" minOccurs="0"></element>
-			<element name="QualifiedProfessionals" type="tns:QualifiedProfessionalsType" maxOccurs="1" minOccurs="0"></element>
-			<element name="ComplianceInformation" type="tns:ComplianceInformationType" maxOccurs="1" minOccurs="0"></element>
-			<element name="DesignatedContactInformation" type="tns:DesignatedContactInformationType" maxOccurs="1" minOccurs="0"></element>
-			<element name="CategoriesOfService" type="tns:CategoriesOfServiceType" maxOccurs="1" minOccurs="0"></element>
-			<element name="AgencyEligibility" type="tns:AgencyEligibilityType" maxOccurs="1" minOccurs="0"></element>
-			<element name="AdditionalLocations" type="tns:AdditionalLocationsType" maxOccurs="1" minOccurs="0"></element>
-			<element name="AgencyInformation" type="tns:AgencyInformationType" maxOccurs="1" minOccurs="0"></element>
-			<element name="ReviewedBy" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="LegacyTransfer" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="RenewalShowBlankStatement"  type="string" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<simpleType name="ApplicantType">
-		<restriction base="string">
-			<enumeration value="INDIVIDUAL"></enumeration>
-			<enumeration value="ORGANIZATION"></enumeration>
-		</restriction>
-	</simpleType>
-
-	<complexType name="ApplicantInformationType">
-		<annotation>
-			<documentation xml:lang="en">Represents the applicant information, it would either be an individual or an organization.</documentation>
-		</annotation>
-		<choice maxOccurs="1" minOccurs="1">
-            <element name="PersonalInformation" type="tns:IndividualApplicantType">
-			</element>
-            <element name="OrganizationInformation" type="tns:OrganizationApplicantType">
-			</element>
-		</choice>
-	</complexType>
-
-	<complexType name="OrganizationApplicantType">
-		<annotation>
-			<documentation xml:lang="en">Represents an organization.</documentation>
-		</annotation>
-		<complexContent>
-			<extension base="tns:OrganizationType">
-				<sequence>
-					<element name="SubType" type="string" maxOccurs="1" minOccurs="0"></element>
-					<element name="Name" type="string" maxOccurs="1" minOccurs="0"></element>
-					<element name="NPI" type="string" maxOccurs="1" minOccurs="0"></element>
-					<element name="UMPI" type="string" maxOccurs="1" minOccurs="0"></element>
-					<element name="StateTaxID" type="string" maxOccurs="1" minOccurs="0"></element>
-					<element name="Ten99AddressIndex" type="int" maxOccurs="1" minOccurs="0"></element>
-					<element name="BillingAddressIndex" type="int" maxOccurs="1" minOccurs="0"></element>
-					<element name="FiscalYearEnd" type="string" maxOccurs="1" minOccurs="0"></element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-
-	<complexType name="IndividualApplicantType">
-		<annotation>
-			<documentation xml:lang="en">Represents an individual.</documentation>
-		</annotation>
-		<complexContent>
-			<extension base="tns:PersonType"></extension>
-		</complexContent>
-	</complexType>
-
-	<complexType name="ContactInformationType">
-		<annotation>
-			<documentation xml:lang="en">Represents the contact details of a person or entity.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0">
-			</element>
-			<element name="Name" type="string" maxOccurs="1" minOccurs="0">
-			</element>
-			<element name="PhoneNumber" type="string" maxOccurs="1" minOccurs="0">
-			</element>
-			<element name="FaxNumber" type="string" maxOccurs="1" minOccurs="0">
-			</element>
-			<element name="Address" type="tns:AddressType" maxOccurs="1" minOccurs="0">
-			</element>
-			<element name="EmailAddress" type="string" maxOccurs="1" minOccurs="0">
-			</element>
-		</sequence>
-	</complexType>
-
-	<complexType name="PersonType">
-		<annotation>
-			<documentation xml:lang="en">Represents a person.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ObjectId" type="string"></element>
-			<element name="NPI" type="string"></element>
-			<element name="Prefix" type="string"></element>
-			<element name="FirstName" type="string"></element>
-			<element name="MiddleName" type="string"></element>
-			<element name="LastName" type="string"></element>
-			<element name="Suffix" type="string"></element>
-			<element name="FullName" type="string"></element>
-			<element name="SocialSecurityNumber" type="string"></element>
-			<element name="DateOfBirth" type="date"></element>
-			<element name="HighestDegreeEarned" type="string"></element>
-			<element name="DegreeAwardDate" type="date"></element>
-			<element name="ContactInformation" type="tns:ContactInformationType"></element>
-			<element name="SSNVerified" type="string"></element>
-			<element name="Enrolled" type="string"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="AddressType">
-		<annotation>
-			<documentation xml:lang="en">Represents an address.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="AttentionTo" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="AddressLine1" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="AddressLine2" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="City" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="State" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ZipCode" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="County" type="string" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="AlternateAddressesType">
-		<annotation>
-			<documentation xml:lang="en">Collection wrapper for alternate addresses.</documentation>
-		</annotation>
-		<sequence>
-			<element name="Address" type="tns:AddressType" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="NotificationSettingsType">
-		<sequence>
-			<element name="RemittanceAdvice" type="int" maxOccurs="1" minOccurs="0">
-			</element>
-			<element name="ReimbursementCheck" type="int" maxOccurs="1" minOccurs="0">
-			</element>
-			<element name="ProviderCorrespondence" type="int" maxOccurs="1" minOccurs="0">
-			</element>
-			<element name="AuthorizationRequestAndServiceAgreements" type="int" maxOccurs="1" minOccurs="0">
-			</element>
-			<element name="CredentialsEnrollmentStatus" type="int" maxOccurs="1" minOccurs="0">
-			</element>
-		</sequence>
-	</complexType>
-
-
-	<complexType name="PracticeInformationType">
-		<annotation>
-			<documentation xml:lang="en">Represents a provider practice.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0">
-			</element>
-			<element name="GroupNPI" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Name" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="EffectiveDate" type="date" maxOccurs="1" minOccurs="0"></element>
-			<element name="ContactInformation" type="tns:ContactInformationType" maxOccurs="1" minOccurs="0">
-			</element>
-			<element name="BillingAddress" type="tns:AddressType" maxOccurs="1" minOccurs="0"></element>
-			<element name="ReimbursementAddress" type="tns:AddressType" maxOccurs="1" minOccurs="0">
-			</element>
-			<element name="FEIN" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="StateTaxId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="FiscalYearEnd" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="EFTVendorNumber" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="AdditionalPracticeLocations" type="tns:AdditionalPracticeLocationsType" maxOccurs="1" minOccurs="0"></element>
-            <element name="BillingSameAsPrimary" type="string" maxOccurs="1" minOccurs="0"></element>
-            <element name="ReimbursementSameAsPrimary" type="string" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="MajorProgramsType">
-		<annotation>
-			<documentation xml:lang="en">Represents major program codes assigned to the provider type.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ProgramCode" type="string" maxOccurs="unbounded" minOccurs="0">
-			</element>
-		</sequence>
-	</complexType>
-
-	<complexType name="CategoriesOfServiceType">
-		<annotation>
-			<documentation xml:lang="en">Represents categories of services assigned to the provider type.</documentation>
-		</annotation>
-		<sequence>
-			<element name="CategoryName" type="string" maxOccurs="unbounded" minOccurs="0">
-			</element>
-		</sequence>
-	</complexType>
-
-	<complexType name="EnrollmentStatusType">
-		<annotation>
-			<documentation xml:lang="en">Represents the status of the enrollment.</documentation>
-		</annotation>
-		<sequence>
-			<element name="Status" type="string"></element>
-			<element name="StatusReason" type="string"></element>
-			<element name="StatusDate" type="dateTime"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="EnrollmentStatusHistoryType">
-		<annotation>
-			<documentation xml:lang="en">Collection wrapper for the historical status changes for an enrollment.</documentation>
-		</annotation>
-		<sequence>
-			<element name="EnrollmentStatusChange" type="tns:EnrollmentStatusChangeType" maxOccurs="unbounded" minOccurs="0">
-			</element>
-		</sequence>
-	</complexType>
-
-	<complexType name="EnrollmentStatusChangeType">
-		<annotation>
-			<documentation xml:lang="en">Represents a change in the status of an enrollment.</documentation>
-		</annotation>
-		<sequence>
-			<element name="FromStatus" type="string"></element>
-			<element name="ToStatus" type="string"></element>
-			<element name="StatusReason" type="string"></element>
-			<element name="StatusDate" type="dateTime"></element>
-			<element name="ModifiedBy" type="string"></element>
-		</sequence>
-	</complexType>
-
-
-	<complexType name="DocumentType">
-		<annotation>
-			<documentation xml:lang="en">Represents an uploaded document included in the application.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ObjectId" type="string"></element>
-			<element name="Name" type="string"></element>
-			<element name="Description" type="string"></element>
-			<element name="MimeType" type="string"></element>
-			<element name="CheckSum" type="string"></element>
-			<element name="Contents" type="base64Binary" xmime:expectedContentTypes="application/octet-stream"></element>
-            <element name="Verified" type="string"></element>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://gov.medicaid.shared/Entities"
+        xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+        targetNamespace="http://gov.medicaid.shared/Entities"
+        elementFormDefault="qualified">
+  <annotation>
+    <documentation xml:lang="en">
+      This defines the common entities used by the enrollment business process.
+    </documentation>
+  </annotation>
+  <complexType name="ProviderInformationType">
+    <annotation>
+      <documentation xml:lang="en">Represents a provider.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ApplicantType" maxOccurs="1" minOccurs="1" type="tns:ApplicantType"/>
+      <element name="ProviderType" type="string" maxOccurs="1" minOccurs="1"/>
+      <element name="NPI" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="UMPI" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ApplicantInformation" type="tns:ApplicantInformationType" maxOccurs="1" minOccurs="0"/>
+      <element name="ContactInformation" type="tns:ContactInformationType" maxOccurs="1" minOccurs="0"/>
+      <element name="MaintainsOwnPrivatePractice" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="EmployedOrContractedByGroup" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="HasCriminalConviction" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="HasCivilPenalty" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="HasPreviousExclusion" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="EmployeeHasCriminalConviction" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="EmployeeHasCivilPenalty" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="EmployeeHasPreviousExclusion" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="AssignedAgencyId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="RemittanceSequenceNumber" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="AdditionalLocationIndicator" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="AgreeToDiscloseLocations" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="County" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="PreviousMedicareNumber" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="EighteenAndAbove" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="FiscalYearEnd" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Specialties" type="tns:SpecialtiesType" maxOccurs="1" minOccurs="0"/>
+      <element name="LicenseInformation" type="tns:LicenseInformationType" maxOccurs="1" minOccurs="0"/>
+      <element name="PracticeInformation" type="tns:PracticeInformationType" maxOccurs="1" minOccurs="0"/>
+      <element name="AlternateAddresses" type="tns:AlternateAddressesType" maxOccurs="1" minOccurs="0"/>
+      <element name="AcceptedAgreements" type="tns:AcceptedAgreementsType" maxOccurs="1" minOccurs="0"/>
+      <element name="ProviderStatement" type="tns:ProviderStatementType" maxOccurs="1" minOccurs="0"/>
+      <element name="AttachedDocuments" type="tns:AttachedDocumentsType" maxOccurs="1" minOccurs="0"/>
+      <element name="VerificationStatus" type="tns:VerificationStatusType" maxOccurs="1" minOccurs="0"/>
+      <element name="NotificationSettings" type="tns:NotificationSettingsType" maxOccurs="1" minOccurs="0"/>
+      <element name="GroupAffiliations" type="tns:GroupAffiliationsType" maxOccurs="1" minOccurs="0"/>
+      <element name="MemberInformation" type="tns:MemberInformationType" maxOccurs="1" minOccurs="0"/>
+      <element name="ProviderSetupInformation" type="tns:ProviderSetupInformationType" maxOccurs="1" minOccurs="0"/>
+      <element name="OwnershipInformation" type="tns:OwnershipInformationType" maxOccurs="1" minOccurs="0"/>
+      <element name="FacilityCredentials" type="tns:FacilityCredentialsType" maxOccurs="1" minOccurs="0"/>
+      <element name="QualifiedProfessionals" type="tns:QualifiedProfessionalsType" maxOccurs="1" minOccurs="0"/>
+      <element name="ComplianceInformation" type="tns:ComplianceInformationType" maxOccurs="1" minOccurs="0"/>
+      <element name="DesignatedContactInformation" type="tns:DesignatedContactInformationType" maxOccurs="1" minOccurs="0"/>
+      <element name="CategoriesOfService" type="tns:CategoriesOfServiceType" maxOccurs="1" minOccurs="0"/>
+      <element name="AgencyEligibility" type="tns:AgencyEligibilityType" maxOccurs="1" minOccurs="0"/>
+      <element name="AdditionalLocations" type="tns:AdditionalLocationsType" maxOccurs="1" minOccurs="0"/>
+      <element name="AgencyInformation" type="tns:AgencyInformationType" maxOccurs="1" minOccurs="0"/>
+      <element name="ReviewedBy" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="LegacyTransfer" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="RenewalShowBlankStatement" type="string" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <simpleType name="ApplicantType">
+    <restriction base="string">
+      <enumeration value="INDIVIDUAL"/>
+      <enumeration value="ORGANIZATION"/>
+    </restriction>
+  </simpleType>
+  <complexType name="ApplicantInformationType">
+    <annotation>
+      <documentation xml:lang="en">Represents the applicant information, it would either be an individual or an organization.</documentation>
+    </annotation>
+    <choice maxOccurs="1" minOccurs="1">
+      <element name="PersonalInformation" type="tns:IndividualApplicantType"/>
+      <element name="OrganizationInformation" type="tns:OrganizationApplicantType"/>
+    </choice>
+  </complexType>
+  <complexType name="OrganizationApplicantType">
+    <annotation>
+      <documentation xml:lang="en">Represents an organization.</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="tns:OrganizationType">
+        <sequence>
+          <element name="SubType" type="string" maxOccurs="1" minOccurs="0"/>
+          <element name="Name" type="string" maxOccurs="1" minOccurs="0"/>
+          <element name="NPI" type="string" maxOccurs="1" minOccurs="0"/>
+          <element name="UMPI" type="string" maxOccurs="1" minOccurs="0"/>
+          <element name="StateTaxID" type="string" maxOccurs="1" minOccurs="0"/>
+          <element name="Ten99AddressIndex" type="int" maxOccurs="1" minOccurs="0"/>
+          <element name="BillingAddressIndex" type="int" maxOccurs="1" minOccurs="0"/>
+          <element name="FiscalYearEnd" type="string" maxOccurs="1" minOccurs="0"/>
         </sequence>
-	</complexType>
-
-	<complexType name="EnrollmentInformationType">
-		<annotation>
-			<documentation xml:lang="en">Represents the enrollment details.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="RequestType" maxOccurs="1" minOccurs="1" type="tns:RequestType"></element>
-			<element name="EffectiveDate" type="date" maxOccurs="1" minOccurs="0"></element>
-			<element name="RiskLevel" type="tns:RiskLevelType" maxOccurs="1" minOccurs="0"></element>
-			<element name="PersonWhoAccomplishedForm" type="string" maxOccurs="1" minOccurs="0"></element>
-            <element name="ContactSameAsApplicant" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ContactInformation" type="tns:ContactInformationType" maxOccurs="1" minOccurs="1"></element>
-			<element name="SubmittedBy" type="string" maxOccurs="1" minOccurs="1"></element>
-			<element name="SubmittedOn" type="date" maxOccurs="1" minOccurs="1"></element>
-			<element name="SourceSystem" type="string" maxOccurs="1" minOccurs="1"></element>
-			<element name="ProgressPage" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Status" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="StatusDate" type="date" maxOccurs="1" minOccurs="0"></element>
-			<element name="ReopenedForEdit" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ProcessInstanceId" type="long" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<simpleType name="RequestType">
-		<restriction base="string">
-			<enumeration value="Enrollment"></enumeration>
-			<enumeration value="Renewal"></enumeration>
-			<enumeration value="Update"></enumeration>
-			<enumeration value="Import Profile"></enumeration>
-			<enumeration value="Suspend"></enumeration>
-		</restriction>
-	</simpleType>
-
-	<complexType name="AdditionalPracticeLocationsType">
-		<annotation>
-			<documentation xml:lang="en">Collection wrapper for additional practice locations.</documentation>
-		</annotation>
-		<sequence>
-			<element name="PracticeLocation" type="tns:PracticeLocationType" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="PracticeLocationType">
-		<annotation>
-			<documentation xml:lang="en">Additional practice location.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="GroupNPI" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="GroupName" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Address" type="tns:AddressType" maxOccurs="1" minOccurs="0"></element>
-			<element name="EffectiveDate" type="date" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="PostSubmissionInformationType">
-		<annotation>
-			<documentation xml:lang="en">Represents fields derived from the submission information.</documentation>
-		</annotation>
-		<sequence>
-			<element name="SortName" type="string"></element>
-			<element name="FullName" type="string"></element>
-			<element name="InstitutionOwner" type="string"></element>
-			<element name="SelfRestrictIndicator" type="string"></element>
-			<element name="MedicaidPartIndicator" type="string"></element>
-			<element name="MedicarePartIndicator" type="string"></element>
-			<element name="MedicaidAgreement" type="string"></element>
-			<element name="BillAgreement" type="string"></element>
-			<element name="ProviderStatus" type="string"></element>
-			<element name="RemitMedia" type="string"></element>
-			<element name="BRDR" type="string"></element>
-			<element name="MajorPrograms" type="tns:MajorProgramsType"></element>
-			<element name="CategoriesOfService" type="tns:CategoriesOfServiceType"></element>
-			<element name="RequiresMailbox" type="string"></element>
-			<element name="RequiresSIRS" type="string"></element>
-			<element name="RequiresBackgroundCheck" type="string"></element>
-		</sequence>
-	</complexType>
-
-
-	<complexType name="PaymentInformationType">
-		<annotation>
-			<documentation xml:lang="en">Represents fees and payment status assessed.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="PaymentStatus" type="string" maxOccurs="1" minOccurs="1"></element>
-			<element name="TotalAmount" type="double" maxOccurs="1" minOccurs="1"></element>
-			<element name="StatusDate" type="date" maxOccurs="1" minOccurs="1"></element>
-			<element name="StatusNote" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ReferenceId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="PaymentItems" type="tns:PaymentItemsType" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="PaymentItemsType">
-		<annotation>
-			<documentation xml:lang="en">Collection wrapper for payment items.</documentation>
-		</annotation>
-		<sequence>
-			<element name="PaymentItem" type="tns:PaymentItemType"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="PaymentItemType">
-		<annotation>
-			<documentation xml:lang="en">Represents a line item for assessed fees.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ItemName" type="string" maxOccurs="1" minOccurs="1"></element>
-			<element name="ItemDescription" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Amount" type="double" maxOccurs="1" minOccurs="1"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="AcceptedAgreementsType">
-		<annotation>
-			<documentation xml:lang="en">Collection wrapper for agreed documents.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ProviderAgreement" type="tns:ProviderAgreementType" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="ProviderAgreementType">
-		<annotation>
-			<documentation xml:lang="en">Represents an agreement document that the provider has accepted.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ObjectId" type="string"></element>
-			<element name="AgreementDocumentId" type="string"></element>
-			<element name="AgreementDocumentType" type="string"></element>
-			<element name="AgreementDocumentTitle" type="string"></element>
-			<element name="AgreementDocumentVersion" type="string"></element>
-			<element name="AcceptedDate" type="date"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="ProviderStatementType">
-		<annotation>
-			<documentation xml:lang="en">Represents the signed provider statement.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ObjectId" type="string"></element>
-			<element name="Name" type="string"></element>
-			<element name="Title" type="string"></element>
-			<element name="Signature" type="base64Binary"></element>
-			<element name="SignDate" type="date"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="ValidationResultType">
-		<annotation>
-			<documentation xml:lang="en">Represents the result of the validation process.</documentation>
-		</annotation>
-		<sequence>
-			<element name="Status" maxOccurs="1" minOccurs="1" type="tns:OperationStatusType">
-			</element>
-		</sequence>
-	</complexType>
-
-
-	<complexType name="StatusMessageType">
-		<annotation>
-			<documentation xml:lang="en">Represents messages included in process execution results.</documentation>
-		</annotation>
-		<sequence>
-			<element name="Severity" maxOccurs="1" minOccurs="1">
-				<simpleType>
-					<restriction base="string">
-						<enumeration value="ERROR"></enumeration>
-						<enumeration value="WARNING"></enumeration>
-						<enumeration value="INFO"></enumeration>
-					</restriction>
-				</simpleType>
-			</element>
-			<element name="Code" type="string" maxOccurs="1" minOccurs="1"></element>
-			<element name="Message" type="string" maxOccurs="1" minOccurs="1">
-			</element>
-			<element name="RelatedElementPath" type="string" maxOccurs="1" minOccurs="0">
-			</element>
-		</sequence>
-	</complexType>
-
-	<complexType name="ScreeningResultType">
-		<annotation>
-			<documentation xml:lang="en">Represents the result of screening processes.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ScreeningType" type="string" maxOccurs="1" minOccurs="1">
-			</element>
-			<element name="Status" type="tns:OperationStatusType" maxOccurs="1" minOccurs="1"></element>
-			<choice>
-				<element name="LicenseVerificationResult" type="tns:LicenseVerificationSearchResultType" maxOccurs="1" minOccurs="0">
-				</element>
-				<element name="ExclusionVerificationResult" type="tns:SearchResultType" maxOccurs="1" minOccurs="0">
-				</element>
-				<element name="SAMExclusionVerificationResult" type="tns:SearchResultType" maxOccurs="1" minOccurs="0">
-				</element>
-				<element name="SearchResult" type="tns:SearchResultType" maxOccurs="1" minOccurs="0"></element>
-			</choice>
-		</sequence>
-	</complexType>
-
-
-	<complexType name="ExternalSourcesScreeningResultType">
-		<annotation>
-			<documentation xml:lang="en">Represents the result of CMS external sources screening.</documentation>
-		</annotation>
-		<sequence>
-			<element name="Status" type="tns:OperationStatusType" maxOccurs="1" minOccurs="0">
-			</element>
-			<element name="SearchResults" type="tns:SearchResultType" maxOccurs="1" minOccurs="0">
-			</element>
-		</sequence>
-	</complexType>
-
-	<complexType name="SearchResultType">
-		<annotation>
-			<documentation xml:lang="en">Represents a generic search result wrapper.</documentation>
-		</annotation>
-		<sequence>
-			<element name="SearchResultItem" type="tns:SearchResultItemType" maxOccurs="unbounded" minOccurs="0">
-			</element>
-		</sequence>
-	</complexType>
-
-	<complexType name="OperationStatusType">
-		<annotation>
-			<documentation xml:lang="en">Represents the status of an executed process.</documentation>
-		</annotation>
-		<sequence>
-			<element name="StatusCode">
-				<simpleType>
-					<restriction base="string">
-						<enumeration value="SUCCESS"></enumeration>
-						<enumeration value="FAILURE"></enumeration>
-						<enumeration value="INCOMPLETE"></enumeration>
-					</restriction>
-				</simpleType>
-			</element>
-			<element name="StatusMessages" type="tns:StatusMessagesType"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="SearchResultItemType">
-		<annotation>
-			<documentation xml:lang="en">Represents a search result row.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ColumnData" type="tns:PropertyListType"></element>
-			<element name="SupplementaryData" type="tns:PropertyListType"></element>
-		</sequence>
-	</complexType>
-
-
-
-	<complexType name="PropertyListType">
-		<annotation>
-			<documentation xml:lang="en">Collection wrapper for name value pairs.</documentation>
-		</annotation>
-		<sequence>
-			<element name="NameValuePair" type="tns:NameValuePairType" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="NameValuePairType">
-		<annotation>
-			<documentation xml:lang="en">Represents a simple name-value data type.</documentation>
-		</annotation>
-		<sequence>
-			<element name="Name" type="string"></element>
-			<element name="Value" type="string"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="LicenseVerificationSearchResultType">
-		<annotation>
-			<documentation xml:lang="en">Represents a license specific search result.</documentation>
-		</annotation>
-		<complexContent>
-			<extension base="tns:ExternalSourcesScreeningResultType">
-				<sequence>
-					<element name="LicenseObjectId" type="string"></element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-
-	<complexType name="StatusMessagesType">
-		<sequence>
-			<element name="StatusMessage" type="tns:StatusMessageType" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="LicenseInformationType">
-		<sequence>
-			<element name="WorksOnReservation" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="TribalCode" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="AdditionalServiceCategoryRequest" type="string" maxOccurs="unbounded" minOccurs="0"></element>
-			<element name="License" type="tns:LicenseType" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="LicenseType">
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-            <element name="ObjectType" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="SpecialtyType" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="LicenseType" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="LicenseNumber" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="OriginalIssueDate" type="date" maxOccurs="1" minOccurs="0"></element>
-			<element name="RenewalDate" type="date" maxOccurs="1" minOccurs="0"></element>
-			<element name="IssuingState" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="IssuingBoard" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="AttachmentObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Verified" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Status" type="string" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<simpleType name="ProviderType">
-		<restriction base="string">
-			<enumeration value="Audiologist"></enumeration>
-			<enumeration value="Certified Professional Midwife"></enumeration>
-			<enumeration value="Community Health Care Worker"></enumeration>
-			<enumeration value="Physical Therapist"></enumeration>
-			<enumeration value="Hearing Aid Dispenser"></enumeration>
-			<enumeration value="Clinical Nurse Specialist"></enumeration>
-			<enumeration value="Certified Registered Nurse Anesthetist"></enumeration>
-			<enumeration value="Chiropractor"></enumeration>
-			<enumeration value="Podiatrist"></enumeration>
-			<enumeration value="Licensed Marriage and Family Therapist"></enumeration>
-			<enumeration value="Licensed Psychologist"></enumeration>
-			<enumeration value="Licensed Professional Clinical Counselor"></enumeration>
-			<enumeration value="Physician"></enumeration>
-			<enumeration value="Childrens Residential Services"></enumeration>
-			<enumeration value="Home &amp; Community Based Services"></enumeration>
-			<enumeration value="Day Training Rehabilitation"></enumeration>
-			<enumeration value="Allied Dental Professional"></enumeration>
-			<enumeration value="Allied Dental Professional Organization"></enumeration>
-			<enumeration value="Personal Care"></enumeration>
-			<enumeration value="County Human Services"></enumeration>
-			<enumeration value="WIC Program"></enumeration>
-			<enumeration value="Head Start Program"></enumeration>
-			<enumeration value="Billing Intermediary"></enumeration>
-			<enumeration value="Nurse Practitioner"></enumeration>
-			<enumeration value="Occupational Therapist"></enumeration>
-			<enumeration value="Physician Assistant"></enumeration>
-			<enumeration value="Private Duty Nurse"></enumeration>
-			<enumeration value="Speech Language Pathologist"></enumeration>
-			<enumeration value="Acupuncturist"></enumeration>
-
-			<enumeration value="Certified Mental Health Rehab Prof - CPRP"></enumeration>
-			<enumeration value="Dentist"></enumeration>
-			<enumeration value="Hearing Aid Dispenser"></enumeration>
-			<enumeration value="Licensed Dietician or Licensed Nutritionist"></enumeration>
-			<enumeration value="Licensed Independent Clinical Social Worker"></enumeration>
-			<enumeration value="Nurse Midwife"></enumeration>
-			<enumeration value="Optometrist"></enumeration>
-
-			<!-- ORG Types -->
-			<enumeration value="Billing Entity for Physical Rehabilitative Providers"></enumeration>
-			<enumeration value="Clearing House"></enumeration>
-			<enumeration value="Durable Medical Equipment"></enumeration>
-			<enumeration value="EDI Trading Partner"></enumeration>
-			<enumeration value="Family Planning Agency"></enumeration>
-			<enumeration value="Head Start"></enumeration>
-			<enumeration value="Home Health Agency"></enumeration>
-			<enumeration value="Independent Diagnostic Testing Facility"></enumeration>
-			<enumeration value="Independent Laboratory"></enumeration>
-			<enumeration value="Indian Health Service Facility"></enumeration>
-			<enumeration value="Intensive Residential Treatment Facility"></enumeration>
-			<enumeration value="Optical Supplier"></enumeration>
-			<enumeration value="Personal Care Provider Organization"></enumeration>
-			<enumeration value="Pharmacy"></enumeration>
-			<enumeration value="Private Duty Nursing Agency"></enumeration>
-			<enumeration value="Public Health Clinic"></enumeration>
-			<enumeration value="Public Health Nursing Organization"></enumeration>
-			<enumeration value="Regional Treatment Center"></enumeration>
-			<enumeration value="Rehabilitation Agency"></enumeration>
-			<enumeration value="Rural Health Clinic"></enumeration>
-			<enumeration value="Targeted Case Management"></enumeration>
-			<enumeration value="WIC Program"></enumeration>
-			<enumeration value="X-Ray Services"></enumeration>
-
-			<enumeration value="Adult Day Treatment Application"></enumeration>
-			<enumeration value="Ambulatory Surgical Center"></enumeration>
-			<enumeration value="Certified Registered Nurse Anesthetist Group"></enumeration>
-			<enumeration value="Child And Teen Checkup Clinic"></enumeration>
-			<enumeration value="Childrens Mental Health Residential Treatment Facility"></enumeration>
-			<enumeration value="Community Health Clinic"></enumeration>
-			<enumeration value="Community Mental Health Center"></enumeration>
-			<enumeration value="County Contracted Mental Health Rehab"></enumeration>
-			<enumeration value="Day Training And Habilitation/Day Activity Center"></enumeration>
-			<enumeration value="Day Treatment"></enumeration>
-			<enumeration value="Home And Community Based Services (Waivered Services)"></enumeration>
-
-			<enumeration value="Billing Intermediary"></enumeration>
-			<enumeration value="Federally Qualified Health Center"></enumeration>
-			<enumeration value="Individual Education Plan"></enumeration>
-			<enumeration value="Personal Care Assistant"></enumeration>
-			<enumeration value="Pharmacist"></enumeration>
-
-			<enumeration value="Nursing Facility"></enumeration>
-			<enumeration value="Hospital"></enumeration>
-			<enumeration value="Hospice"></enumeration>
-
-			<enumeration value="Renal Dialysis Facility"></enumeration>
-			<enumeration value="Intermediate Care Facilities For Persons With Developmental Disabilities"></enumeration>
-			<enumeration value="Physician Clinic"></enumeration>
-			<enumeration value="Dental Clinic"></enumeration>
-			<enumeration value="Dental Hygienist Clinic"></enumeration>
-			<enumeration value="Billing Entity For Mental Health"></enumeration>
-			<enumeration value="Podiatry Clinic"></enumeration>
-			<enumeration value="Chiropractic Clinic"></enumeration>
-			<enumeration value="Birthing Center"></enumeration>
-			<enumeration value="Medical Transportation"></enumeration>
-			<enumeration value="Billing Entity for Physician Services"></enumeration>
-		</restriction>
-	</simpleType>
-
-	<complexType name="AttachedDocumentsType">
-		<annotation>
-			<documentation xml:lang="en">All documents attached to the enrollment.</documentation>
-		</annotation>
-		<sequence>
-			<element name="Attachment" type="tns:DocumentType" maxOccurs="unbounded" minOccurs="0">
-			</element>
-		</sequence>
-	</complexType>
-
-	<simpleType name="LicenseNames">
-		<restriction base="string">
-			<enumeration value="Certificate of Clinical Competence (CCC)"></enumeration>
-			<enumeration value="Audiologist"></enumeration>
-			<enumeration value="Hearing Aid Dispenser"></enumeration>
-			<enumeration value="Traditional Midwife"></enumeration>
-			<enumeration value="Professional Midwife Certification"></enumeration>
-			<enumeration value="MnSCU Certification"></enumeration>
-			<enumeration value="Registered Nurse"></enumeration>
-			<enumeration value="Clinical Nurse Specialist"></enumeration>
-			<enumeration value="Nurse Anesthetist"></enumeration>
-			<enumeration value="Certified Registered Nurse Anesthetist"></enumeration>
-			<enumeration value="Chiropractic Examiner"></enumeration>
-			<enumeration value="Podiatrist License"></enumeration>
-			<enumeration value="Marriage And Family Therapist"></enumeration>
-			<enumeration value="Psychologist"></enumeration>
-			<enumeration value="MDH Psychologist Registration"></enumeration>
-			<enumeration value="Professional Clinical Counselor"></enumeration>
-			<enumeration value="Physician"></enumeration>
-			<enumeration value="Nurse Practitioner"></enumeration>
-			<enumeration value="Occupational Therapy"></enumeration>
-			<enumeration value="Physician Assistant"></enumeration>
-			<enumeration value="Physical Therapist"></enumeration>
-			<enumeration value="Speech Language Pathologist"></enumeration>
-			<enumeration value="Acupuncturist"></enumeration>
-			<enumeration value="Dental Hygienist"></enumeration>
-			<enumeration value="Mental Health Rehab Professional"></enumeration>
-			<enumeration value="Rehab Counselor Certification"></enumeration>
-			<enumeration value="Psychosocial Rehab Practitioner Certification"></enumeration>
-			<enumeration value="Dental"></enumeration>
-			<enumeration value="Dietician or Nutritionist"></enumeration>
-			<enumeration value="Clinical Social Worker"></enumeration>
-			<enumeration value="Optometrist"></enumeration>
-            <enumeration value="NBCOT Certification"></enumeration>
-            <enumeration value="Rehabilitation Counselor"></enumeration>
-            <enumeration value="Psychosocial Rehabilitation Practitioner"></enumeration>
-
-			<enumeration value="Licensed Practical Nurse"></enumeration>
-            <enumeration value="Class A License"></enumeration>
-
-			<!-- org certificates -->
-			<enumeration value="Head Start Agency Certification"></enumeration>
-			<enumeration value="Class A Professional Home Care License"></enumeration>
-			<enumeration value="HCFA Medicare Certification"></enumeration>
-			<enumeration value="Off-site Approval Letter From Medicare"></enumeration>
-			<enumeration value="Verification of IHS status"></enumeration>
-			<enumeration value="County Contract to Provider IRTS"></enumeration>
-			<enumeration value="Rule 36 Licensed Facility"></enumeration>
-			<enumeration value="Class A License"></enumeration>
-			<enumeration value="Background Study"></enumeration>
-			<enumeration value="Pharmacy License"></enumeration>
-			<enumeration value="Class A License For Private Duty Nursing Services"></enumeration>
-			<enumeration value="Medicare Certification For Home Health Aide And Skilled Nursing Services"></enumeration>
-			<enumeration value="Regional Treatment Center Certification"></enumeration>
-			<enumeration value="Medicare Approval Letter"></enumeration>
-			<enumeration value="Independent or Portable X-ray Certification from CMS"></enumeration>
-			<enumeration value="CORF Certification"></enumeration>
-			<enumeration value="PCA 1 or 3 day Steps for Success Training"></enumeration>
-
-			<enumeration value="Medicare Certification"></enumeration>
-			<enumeration value="Rule 5 License issued from MN Department of Human Services"></enumeration>
-			<enumeration value="Certificate of Compliance from MN Department of Human Rights"></enumeration>
-			<enumeration value="Rule 29 License"></enumeration>
-			<enumeration value="Day Training &amp; Habilitation License"></enumeration>
-			<enumeration value="Pharmacist License"></enumeration>
-			<enumeration value="PCA Training Certificate"></enumeration>
-
-            <enumeration value="Birth Center Accreditation"></enumeration>
-            <enumeration value="Professional Counselor (Independent)"></enumeration>
-            <enumeration value="Alcohol and Drug Counselor"></enumeration>
-            <enumeration value="Chemical Dependency Treatment"></enumeration>
-            <enumeration value="Children's Residential Facilities"></enumeration>
-            <enumeration value="Medicare Certification Community Mental Health Clinic"></enumeration>
-            <enumeration value="Dual Audiologist and Speech-Language Pathologist"></enumeration>
-            <enumeration value="Medicare Certified Hospice"></enumeration>
-            <enumeration value="Certified Hospital"></enumeration>
-            <enumeration value="Intensive Residential Treatment Services"></enumeration>
-            <enumeration value="Residential Services, ICF/DD"></enumeration>
-            <enumeration value="End Stage Renal Dialysis"></enumeration>
-
-            <enumeration value="License and Transmittal (CMS 1539 Form) from MN Department of Health"></enumeration>
-            <enumeration value="Hospice license from the MN Dept of Health"></enumeration>
-            <enumeration value="CMS Medicare Certification Letter"></enumeration>
-
-            <enumeration value="State License to operate as a Hospital"></enumeration>
-            <enumeration value="CLIA Certificate if billing Lab Services"></enumeration>
-            <enumeration value="Renal Dialysis Facility Approval letter from regional CMS office"></enumeration>
-
-            <enumeration value="Birth Center license from the MN Department of Health"></enumeration>
-            <enumeration value="Accreditation from the Commission for the Accreditation of Birth Centers"></enumeration>
-
-            <enumeration value="Special Transportation (STS) - Transportation Certificate from the MN Department of Transportation"></enumeration>
-            <enumeration value="Ambulance - Licensure as Emergency Medical Transportation Provider from the state of practice"></enumeration>
-            <enumeration value="Air - FAA Certificate of airworthiness plus Ambulance License"></enumeration>
-		</restriction>
-	</simpleType>
-
-	<simpleType name="DocumentNames">
-		<restriction base="string">
-			<enumeration value="Copy Of Highest Degree Earned"></enumeration>
-			<enumeration value="Provider Agreement(DHS-4138)"></enumeration>
-			<enumeration value="MHCP Applicant Assurance Statement - Community Health Workers (DHS-5308)"></enumeration>
-			<enumeration value="Child And Teen Checkup Agreement (DHS-4646)"></enumeration>
-            <enumeration value="Electronic Funds Transfer (EFT) Request Form"></enumeration>
-            <enumeration value="Collaborative Practice Dental Hygienist Assurance Statement"></enumeration>
-            <enumeration value="Copy of Collaborative Agreement"></enumeration>
-            <enumeration value="Copy of License of Dentist who signed Collaborative Agreement"></enumeration>
-            <enumeration value="Certified Mental Health Rehabilitation Professional Assurance Statement"></enumeration>
-
-			<enumeration value="Diploma From American Board of Clinical Neuropsychology (ABCN)"></enumeration>
-			<enumeration value="Diploma From America Board of Professional Neuropsychology (ABPN)"></enumeration>
-			<enumeration value="Diploma From American Academy of Pediatric Neuropsychology (AAPN)"></enumeration>
-			<enumeration value="Proof of completed internship or its equivalent, in a clinically relevant area of professional psychology"></enumeration>
-			<enumeration value="Proof of equivalent of two full-time years of experience and specialize training, at least one which is at the post-doctoral level, in the study and practice of clinical neuropsychology and related neurosciences supervised by a clinical neuropsychologist"></enumeration>
-			<enumeration value="Qualified Mental Health Supervision AAS (DHS-6330)"></enumeration>
-			<enumeration value="Certificate Of Liability Insurance"></enumeration>
-			<enumeration value="Workers Compensation Insurance"></enumeration>
-			<enumeration value="Fidelity Bond"></enumeration>
-			<enumeration value="Surety Bond"></enumeration>
-
-			<enumeration value="Community Health Board DHS Contract"></enumeration>
-			<enumeration value="Articles Of Incorporation"></enumeration>
-			<enumeration value="Sliding Fee Schedule"></enumeration>
-			<enumeration value="Adult Rehabilitative Mental Health Services"></enumeration>
-			<enumeration value="Children's Therapeutic Services and Supports (CTSS)"></enumeration>
-			<enumeration value="Adult Crisis Response Services - Crisis Assessment &amp; Crisis Intervention"></enumeration>
-			<enumeration value="Adult Crisis Response Services - Crisis Stabilization"></enumeration>
-			<enumeration value="Adult Crisis Response Services - Short-Term Residential"></enumeration>
-			<enumeration value="Applicant Assurance Statement - Community Mental Health Center (DHS-5748)"></enumeration>
-			<enumeration value="Approval Letter from Health Care Finance Administration (HCFA)"></enumeration>
-			<enumeration value="Copies of the 330 Grant documents"></enumeration>
-			<enumeration value="Cover page of Public Law 93-638 status contract"></enumeration>
-			<enumeration value="Compact with the Indian Health Service"></enumeration>
-
-			<enumeration value="Ambulance Services - Basic Service"></enumeration>
-			<enumeration value="Ambulance Services - Advanced Life Support"></enumeration>
-			<enumeration value="Ambulance Services - Air Transport with FAA Air Worthiness Certificate"></enumeration>
-		</restriction>
-	</simpleType>
-
-	<simpleType name="ServiceCategoryNames">
-		<restriction base="string">
-			<enumeration value="Hearing Aids"></enumeration>
-			<enumeration value="Marriage And Family Therapy"></enumeration>
-		</restriction>
-	</simpleType>
-
-	<simpleType name="RiskLevelType">
-		<restriction base="string">
-			<enumeration value="Limited"></enumeration>
-			<enumeration value="Moderate"></enumeration>
-			<enumeration value="High"></enumeration>
-		</restriction>
-	</simpleType>
-
-	<simpleType name="ReservationNames">
-		<restriction base="string">
-			<enumeration value="Fond Du Lac Indian Reservation"></enumeration>
-			<enumeration value="Grand Portage Indian Reservation"></enumeration>
-			<enumeration value="Leech Lake Indian Reservation"></enumeration>
-			<enumeration value="Mille Lacs Indian Reservation"></enumeration>
-			<enumeration value="Net Lake Indian Reservation"></enumeration>
-			<enumeration value="Prairie Island Indian Reservation"></enumeration>
-			<enumeration value="Red Lake Reservation"></enumeration>
-			<enumeration value="Upper Sioux Indian Reservation"></enumeration>
-			<enumeration value="White Earth Indian Reservation"></enumeration>
-			<enumeration value="Lower Sioux Indian Reservation"></enumeration>
-		</restriction>
-	</simpleType>
-
-	<complexType name="VerificationStatusType">
-		<sequence>
-			<element name="SocialSecurityNumber" type="string"></element>
-			<element name="NPI" type="string"></element>
-			<element name="NPILookup" type="string"></element>
-			<element name="Licenses" type="string"></element>
-			<element name="NonExclusion" type="string"></element>
-			<element name="SAMNonExclusion" type="string"></element>
-			<element name="PECOS" type="string"></element>
-			<element name="NetStudy" type="string"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="SpecialtiesType">
-		<sequence>
-			<element name="SpecialtyName" type="string" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<simpleType name="SpecialtyNames">
-		<restriction base="string">
-			<enumeration value="Allergy" />
-			<enumeration value="Anesthesiology" />
-			<enumeration value="Cardiovascular Disease" />
-			<enumeration value="Cardiovascular Surgery" />
-			<enumeration value="Child Psychiatry" />
-			<enumeration value="Colon and Rectal Surgery" />
-			<enumeration value="Dermatology" />
-			<enumeration value="Diabetes" />
-			<enumeration value="Emergency Services" />
-			<enumeration value="Endocrinology" />
-			<enumeration value="Family Practice" />
-			<enumeration value="Gastroenterology" />
-			<enumeration value="General Practice" />
-			<enumeration value="General Surgery" />
-			<enumeration value="Gerontology" />
-			<enumeration value="Gynecology" />
-			<enumeration value="Immunology" />
-			<enumeration value="Infectious Disease" />
-			<enumeration value="Internal Medicine" />
-			<enumeration value="Nephrology" />
-			<enumeration value="Neurological Surgery" />
-			<enumeration value="Neurology" />
-			<enumeration value="Nuclear Medicine" />
-			<enumeration value="Obstetrics" />
-			<enumeration value="Obstetrics and Gynecology" />
-			<enumeration value="Oncology" />
-			<enumeration value="Ophthalmology" />
-			<enumeration value="Pathology" />
-			<enumeration value="Pediatrics" />
-			<enumeration value="Peripheral Vascular Diseases or Surgery" />
-			<enumeration value="Physical Medicine and Rehabilitation" />
-			<enumeration value="Plastic Surgery" />
-			<enumeration value="Preventive Medicine" />
-			<enumeration value="Psychiatry" />
-			<enumeration value="Pulmonary Disease" />
-			<enumeration value="Radiology" />
-			<enumeration value="Radiology and Radiation Therapy" />
-			<enumeration value="Rheumatology" />
-			<enumeration value="Thoracic Surgery" />
-			<enumeration value="Urology" />
-			<enumeration value="Other" />
-			<enumeration value="Qualified Mental Health Supervision" />
-			<enumeration value="Neuropsychology" />
-			<enumeration value="Psychiatric/Mental Health" />
-			<enumeration value="Gerontological" />
-			<enumeration value="Pediatric" />
-			<enumeration value="Family" />
-			<enumeration value="Adult" />
-			<enumeration value="Neonatal" />
-			<enumeration value="Women's Health Care" />
-			<enumeration value="Acute Care" />
-			<enumeration value="Occupational Therapy" />
-
-			<enumeration value="General Dentistry" />
-			<enumeration value="Endodontist" />
-			<enumeration value="Oral Surgery" />
-			<enumeration value="Orthodontics" />
-			<enumeration value="Pedodontics" />
-			<enumeration value="Periodontics" />
-			<enumeration value="Prosthodontics" />
-
-			<enumeration value="Dialectical Behavioral Therapist" />
-			<enumeration value="Professional Midwife" />
-			<enumeration value="Physical Rehabilitation" />
-
-			<enumeration value="Air Transport (Ambulance)" />
-			<enumeration value="Advanced Life Support (Ambulance)" />
-			<enumeration value="Basic Life Support (Ambulance)" />
-			<enumeration value="Special Transportation Services (STS)" />
-			<enumeration value="Wheelchair Transportation" />
-
-			<enumeration value="Certified Professional Midwife"></enumeration>
-			<enumeration value="Certified Nurse Midwife"></enumeration>
-			<enumeration value="CRNA Certification"></enumeration>
-		</restriction>
-
-	</simpleType>
-	<simpleType name="BoardNames">
-		<restriction base="string">
-			<enumeration value="United States Psychiatric Rehab Association" />
-			<enumeration value="Summit Academy" />
-			<enumeration value="Inver Grove Community and Technical College" />
-			<enumeration value="Minneapolis Community and Tech College" />
-			<enumeration value="Rochester Community and Tech College" />
-			<enumeration value="South Central Tech - Mankato" />
-			<enumeration value="St. Catherine University" />
-			<enumeration value="Normandale Community and Tech College" />
-			<enumeration value="American Academy of Nurse Practitioners" />
-			<enumeration value="American Nurses Credentialing Center" />
-			<enumeration value="Pediatric Nursing Certification Board" />
-			<enumeration value="National Certification Corporation" />
-			<enumeration value="American Midwifery Certification Board" />
-			<enumeration value="American Association of Nurse Anesthetists" />
-			<enumeration value="American Nurses Credentialing Center" />
-			<enumeration value="North American Registry of Midwives" />
-			<enumeration value="National Board for Certification in Occupational Therapy" />
-			<enumeration value="American Board of Medical Specialty" />
-			<enumeration value="American Board of Physician Specialties" />
-		</restriction>
-	</simpleType>
-
-	<complexType name="GroupAffiliationsType">
-		<sequence>
-			<element name="GroupInformation" type="tns:PracticeLocationType" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="MemberInformationType">
-		<sequence>
-			<element name="GroupMember" type="tns:GroupMemberType" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="GroupMemberType">
-		<complexContent>
-			<extension base="tns:PersonType">
-				<sequence>
-					<element name="ProviderType" type="string"></element>
-					<element name="StartDate" type="date"></element>
-					<element name="BGSStudyId" type="string"></element>
-					<element name="BGSClearanceDate" type="date"></element>
-					<element name="Specialties" type="tns:SpecialtiesType" maxOccurs="1" minOccurs="0"></element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-
-	<complexType name="ProviderSetupInformationType">
-		<sequence>
-			<element name="PayToProvider" type="tns:PayToProviderType" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="PayToProviderType">
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Type" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="NPI" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Name" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ContactName" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Signature" type="base64Binary" maxOccurs="1" minOccurs="0"></element>
-			<element name="EffectiveDate" type="date" maxOccurs="1" minOccurs="0"></element>
-			<element name="PhoneNumber" type="string" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="OwnershipInformationType">
-		<sequence>
-			<element name="EntityType" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="EntitySubType" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="OtherEntityDescription" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="BeneficialOwner" type="tns:BeneficialOwnerType" maxOccurs="unbounded" minOccurs="0"></element>
-			<element name="RealProperty" type="tns:RealPropertyType" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-    <complexType name="OrganizationType">
-    	<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="LegalName" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ContactInformation" type="tns:ContactInformationType" maxOccurs="1" minOccurs="0"></element>
-			<element name="FEIN" type="string" maxOccurs="1" minOccurs="0"></element>
-    	</sequence>
-    </complexType>
-
-    <complexType name="BeneficialOwnerType">
-    	<sequence>
-    		<element name="PersonInd" type="string" maxOccurs="1" minOccurs="1"></element>
-    		<element name="BeneficialOwnerType" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="OtherBeneficialOwnerDescription" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="SubcontractorName" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="PercentOwnership" type="double" maxOccurs="1" minOccurs="0"></element>
-    		<element name="PersonInformation" type="tns:PersonType" maxOccurs="1" minOccurs="0"></element>
-    		<element name="EntityInformation" type="tns:OrganizationType" maxOccurs="1" minOccurs="0"></element>
-    		<element name="HireDate" type="date" maxOccurs="1" minOccurs="0"></element>
-    		<element name="Relationship" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="OtherInterestInd" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="OtherInterestName" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="OtherInterestPercentOwnership" type="double" maxOccurs="1" minOccurs="0"></element>
-    		<element name="OtherInterestAddress" type="tns:AddressType" maxOccurs="1" minOccurs="0"></element>
-    	</sequence>
-    </complexType>
-
-    <complexType name="FacilityCredentialsType">
-    	<sequence>
-    		<element name="NumberOfBeds" type="int" maxOccurs="1" minOccurs="0"></element>
-    		<element name="NumberOfBedsEffectiveDate" type="date" maxOccurs="1" minOccurs="0"></element>
-    		<element name="CommunityHealthBoard" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="FacilityType" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="AdultDayTreatmentApplication" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="FederalQualificationType" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="ContractWithCounty" type="tns:CountyContractType" maxOccurs="1" minOccurs="0"></element>
-    		<element name="License" type="tns:LicenseType" maxOccurs="unbounded" minOccurs="0"></element>
-    		<element name="CLIACertificate" type="tns:CLIACertificateType" maxOccurs="unbounded" minOccurs="0"></element>
-    		<element name="SignedContract" type="tns:SignedContractType" maxOccurs="unbounded" minOccurs="0"></element>
-    		<element name="PhysicalAndOccupationTherapyServices" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="Title18NumberOfBeds" type="int" maxOccurs="1" minOccurs="0"></element>
-    		<element name="Title19NumberOfBeds" type="int" maxOccurs="1" minOccurs="0"></element>
-    		<element name="DualCertifiedNumberOfBeds" type="int" maxOccurs="1" minOccurs="0"></element>
-    		<element name="ICFNumberOfBeds" type="int" maxOccurs="1" minOccurs="0"></element>
-    		<element name="AmbulanceServices" type="tns:AmbulanceServicesType" maxOccurs="unbounded" minOccurs="0"></element>
-            <element name="FacilityQualification" type="tns:FacilityQualificationType" maxOccurs="unbounded" minOccurs="0"></element>
-    	</sequence>
-    </complexType>
-
-    <complexType name="CLIACertificateType">
-    	<sequence>
-    		<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="CertificateNumber" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="AttachmentObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-    	</sequence>
-    </complexType>
-    <complexType name="CountyContractType">
-    	<sequence>
-    		<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="CountyInd" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="CountyName" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="ContractAttachmentObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="CoverSheetName" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="CoverSheetAttachmentObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-    	</sequence>
-    </complexType>
-    <complexType name="QualifiedProfessionalsType">
-    	<sequence>
-    		<element name="QualifiedProfessional" type="tns:QualifiedProfessionalType" maxOccurs="unbounded" minOccurs="0"></element>
-    	</sequence>
-    </complexType>
-    <complexType name="QualifiedProfessionalType">
-    	<complexContent>
-    		<extension base="tns:PersonType">
-    			<sequence>
-    				<element name="Type" type="string" maxOccurs="1" minOccurs="0"></element>
-    				<element name="SubType" type="string" maxOccurs="1" minOccurs="0"></element>
-    				<element name="StartDate" type="date" maxOccurs="1" minOccurs="0"></element>
-    				<element name="EndedInd" type="string" maxOccurs="1" minOccurs="0"></element>
-    				<element name="EndDate" type="date" maxOccurs="1" minOccurs="0"></element>
-    				<element name="BGSNumber" type="string" maxOccurs="1" minOccurs="0"></element>
-    				<element name="BGSClearanceDate" type="date" maxOccurs="1" minOccurs="0"></element>
-    				<element name="AcknowledgementObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-    				<element name="License" type="tns:LicenseType" maxOccurs="unbounded" minOccurs="0"></element>
-    			</sequence>
-    		</extension>
-    	</complexContent>
-    </complexType>
-    <complexType name="DesignatedContactInformationType">
-    	<sequence>
-    		<element name="DesignatedContact" type="tns:DesignatedContactType" maxOccurs="unbounded" minOccurs="0"></element>
-    	</sequence>
-    </complexType>
-    <complexType name="DesignatedContactType">
-    	<complexContent>
-    		<extension base="tns:PersonType">
-    			<sequence>
-    				<element name="DesignationType">
-    					<simpleType>
-    						<restriction base="string">
-    							<enumeration value="PCABilling"></enumeration>
-    						</restriction>
-    					</simpleType>
-    				</element>
-    				<element name="HireDate" type="date"></element>
-    			</sequence>
-    		</extension>
-    	</complexContent>
-    </complexType>
-    <complexType name="RealPropertyType">
-    	<sequence>
-    		<element name="OwnershipType" type="string" maxOccurs="1" minOccurs="1"></element>
-    		<element name="LegalName" type="string" maxOccurs="1" minOccurs="0"></element>
-    		<element name="Address" type="tns:AddressType" maxOccurs="1" minOccurs="0"></element>
-    	</sequence>
-    </complexType>
-    <complexType name="ComplianceInformationType">
-    	<sequence>
-    		<element name="RequiredTrainingAndService" type="string" maxOccurs="unbounded" minOccurs="0"></element>
-    	</sequence>
-    </complexType>
-	<simpleType name="TrainingAndSupervision">
-		<restriction base="string">
-			<enumeration value="Oversee and assume provider responsibility for all services performed"></enumeration>
-			<enumeration value="Ensure each employee applying fluoride varnish has completed online FVA training"></enumeration>
-			<enumeration value="Document course completion in the employee file"></enumeration>
-			<enumeration value="Be responsible for the FVA and have policies and procedures in place"></enumeration>
-			<enumeration value="Define FVA roles and responsibilities of the program or agency and the staff"></enumeration>
-			<enumeration value="Document with consent (typical) from the child's parent or guardian"></enumeration>
-		</restriction>
-	</simpleType>
-	<simpleType name="CorporateStructure">
-		<restriction base="string">
-			<enumeration value="Sole Proprietorship" />
-			<enumeration value="Partnership" />
-			<enumeration value="Corporation, LLC" />
-			<enumeration value="Non-Profit" />
-			<enumeration value="Hospital Based" />
-			<enumeration value="State" />
-			<enumeration value="Public" />
-			<enumeration value="Professional Association" />
-			<enumeration value="Other" />
-		</restriction>
-	</simpleType>
-	<simpleType name="SupervisionAndQualification">
-		<restriction base="string">
-			<enumeration id="SQ1" value="For each site at which we are providing services, we will provide clinical supervision by an enrolled mental health professional who is on-site at least 50% of the time during a 5-day work week. This clinical supervisor will review, approve and sign each client's diagnosis, individual treatment plan and every change in diagnosis or ITP.  The clinical supervisor will review and sign the record of the client's care for all activities in the preceding 30-day period." />
-			<enumeration id="SQ2" value="All staff providing day treatment services which are billed to the MHCP's meet the legal definition of Mental Health Professional or Mental Health Practitioner." />
-		</restriction>
-	</simpleType>
-
-	<simpleType name="ClinicalServices">
-		<restriction base="string">
-			<enumeration id="CS1" value="Each client has a current diagnostic assessment prior to the initiation of day treatment services." />
-			<enumeration id="CS2" value="Each participant has an individual treatment plan." />
-			<enumeration id="CS3" value="The participation of a psychiatrist is assured." />
-			<enumeration id="CS4" value="Services are individually tailored to meet the needs of individual participants." />
-			<enumeration id="CS5" value="Clients are encouraged to actively participate in setting goals and objectives." />
-			<enumeration id="CS6" value="Documentation of services are provided." />
-			<enumeration id="CS7" value="Services are regularly coordinated with those being provided by other mental health providers." />
-		</restriction>
-	</simpleType>
-
-	<simpleType name="ServiceUnits">
-		<restriction base="string">
-			<enumeration id="SU1" value="Regular day treatment services will be provided for 3 hours per day at least one day per week to recipients in the program." />
-			<enumeration id="SU2" value="The three contact hours includes at least 1 hour but not more than 2 hours per day of individual and/or group psychotherapy." />
-			<enumeration id="SU3" value="The remainder of the contact hours per day consists of either recreation therapy, socialization therapy, or independent living skills therapy, with no more than one hour of any one of these therapies." />
-		</restriction>
-	</simpleType>
-
-	<complexType name="SignedContractType">
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="CertificateInd" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Name" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="BeginDate" type="date" maxOccurs="1" minOccurs="0"></element>
-			<element name="EndDate" type="date" maxOccurs="1" minOccurs="0"></element>
-			<element name="CopyAttachmentId" type="string" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="AgencyEligibilityType">
-		<sequence>
-			<element name="ProgramType" type="string"></element>
-			<element name="TargetPopulation" type="string" maxOccurs="unbounded" minOccurs="0"></element>
-			<element name="SupervisionAndQualification" type="string" maxOccurs="unbounded" minOccurs="0"></element>
-			<element name="ClinicalServices" type="string" maxOccurs="unbounded" minOccurs="0"></element>
-			<element name="EligibleServiceUnits" type="string" maxOccurs="unbounded" minOccurs="0"></element>
-			<element name="ContractWithCounty" type="tns:CountyContractType" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="AdditionalLocationsType">
-		<sequence>
-			<element name="ProviderNumber" type="string" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="AgencyInformationType">
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Name" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="AgencyId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="NPI" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="FaxNumber" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ContactName" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="BackgroundStudyId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ClearanceDate" type="date" maxOccurs="1" minOccurs="0"></element>
-			<element name="ContinuousEmploymentIndicator" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="GroupAffiliationIndicator" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Affiliation" type="tns:GroupAffiliationType" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="GroupAffiliationType">
-		<sequence>
-            <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="Name" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="NPI" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="StudyId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ClearanceDate" type="date" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="DocumentsOnFileType">
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="ServiceType" type="string" maxOccurs="1" minOccurs="0"></element>
-			<element name="AttachmentObjectId" type="string" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="AmbulanceServicesType">
-		<complexContent>
-			<extension base="tns:DocumentsOnFileType"></extension>
-		</complexContent>
-	</complexType>
-
-	<complexType name="FacilityQualificationType">
-		<complexContent>
-			<extension base="tns:DocumentsOnFileType"></extension>
-		</complexContent>
-	</complexType>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="IndividualApplicantType">
+    <annotation>
+      <documentation xml:lang="en">Represents an individual.</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="tns:PersonType"/>
+    </complexContent>
+  </complexType>
+  <complexType name="ContactInformationType">
+    <annotation>
+      <documentation xml:lang="en">Represents the contact details of a person or entity.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Name" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="PhoneNumber" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="FaxNumber" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Address" type="tns:AddressType" maxOccurs="1" minOccurs="0"/>
+      <element name="EmailAddress" type="string" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="PersonType">
+    <annotation>
+      <documentation xml:lang="en">Represents a person.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ObjectId" type="string"/>
+      <element name="NPI" type="string"/>
+      <element name="Prefix" type="string"/>
+      <element name="FirstName" type="string"/>
+      <element name="MiddleName" type="string"/>
+      <element name="LastName" type="string"/>
+      <element name="Suffix" type="string"/>
+      <element name="FullName" type="string"/>
+      <element name="SocialSecurityNumber" type="string"/>
+      <element name="DateOfBirth" type="date"/>
+      <element name="HighestDegreeEarned" type="string"/>
+      <element name="DegreeAwardDate" type="date"/>
+      <element name="ContactInformation" type="tns:ContactInformationType"/>
+      <element name="SSNVerified" type="string"/>
+      <element name="Enrolled" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="AddressType">
+    <annotation>
+      <documentation xml:lang="en">Represents an address.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="AttentionTo" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="AddressLine1" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="AddressLine2" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="City" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="State" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ZipCode" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="County" type="string" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="AlternateAddressesType">
+    <annotation>
+      <documentation xml:lang="en">Collection wrapper for alternate addresses.</documentation>
+    </annotation>
+    <sequence>
+      <element name="Address" type="tns:AddressType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="NotificationSettingsType">
+    <sequence>
+      <element name="RemittanceAdvice" type="int" maxOccurs="1" minOccurs="0"/>
+      <element name="ReimbursementCheck" type="int" maxOccurs="1" minOccurs="0"/>
+      <element name="ProviderCorrespondence" type="int" maxOccurs="1" minOccurs="0"/>
+      <element name="AuthorizationRequestAndServiceAgreements" type="int" maxOccurs="1" minOccurs="0"/>
+      <element name="CredentialsEnrollmentStatus" type="int" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="PracticeInformationType">
+    <annotation>
+      <documentation xml:lang="en">Represents a provider practice.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="GroupNPI" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Name" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="EffectiveDate" type="date" maxOccurs="1" minOccurs="0"/>
+      <element name="ContactInformation" type="tns:ContactInformationType" maxOccurs="1" minOccurs="0"/>
+      <element name="BillingAddress" type="tns:AddressType" maxOccurs="1" minOccurs="0"/>
+      <element name="ReimbursementAddress" type="tns:AddressType" maxOccurs="1" minOccurs="0"/>
+      <element name="FEIN" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="StateTaxId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="FiscalYearEnd" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="EFTVendorNumber" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="AdditionalPracticeLocations" type="tns:AdditionalPracticeLocationsType" maxOccurs="1" minOccurs="0"/>
+      <element name="BillingSameAsPrimary" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ReimbursementSameAsPrimary" type="string" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="MajorProgramsType">
+    <annotation>
+      <documentation xml:lang="en">Represents major program codes assigned to the provider type.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ProgramCode" type="string" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="CategoriesOfServiceType">
+    <annotation>
+      <documentation xml:lang="en">Represents categories of services assigned to the provider type.</documentation>
+    </annotation>
+    <sequence>
+      <element name="CategoryName" type="string" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="EnrollmentStatusType">
+    <annotation>
+      <documentation xml:lang="en">Represents the status of the enrollment.</documentation>
+    </annotation>
+    <sequence>
+      <element name="Status" type="string"/>
+      <element name="StatusReason" type="string"/>
+      <element name="StatusDate" type="dateTime"/>
+    </sequence>
+  </complexType>
+  <complexType name="EnrollmentStatusHistoryType">
+    <annotation>
+      <documentation xml:lang="en">Collection wrapper for the historical status changes for an enrollment.</documentation>
+    </annotation>
+    <sequence>
+      <element name="EnrollmentStatusChange" type="tns:EnrollmentStatusChangeType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="EnrollmentStatusChangeType">
+    <annotation>
+      <documentation xml:lang="en">Represents a change in the status of an enrollment.</documentation>
+    </annotation>
+    <sequence>
+      <element name="FromStatus" type="string"/>
+      <element name="ToStatus" type="string"/>
+      <element name="StatusReason" type="string"/>
+      <element name="StatusDate" type="dateTime"/>
+      <element name="ModifiedBy" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="DocumentType">
+    <annotation>
+      <documentation xml:lang="en">Represents an uploaded document included in the application.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ObjectId" type="string"/>
+      <element name="Name" type="string"/>
+      <element name="Description" type="string"/>
+      <element name="MimeType" type="string"/>
+      <element name="CheckSum" type="string"/>
+      <element name="Contents" type="base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+      <element name="Verified" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="EnrollmentInformationType">
+    <annotation>
+      <documentation xml:lang="en">Represents the enrollment details.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="RequestType" maxOccurs="1" minOccurs="1" type="tns:RequestType"/>
+      <element name="EffectiveDate" type="date" maxOccurs="1" minOccurs="0"/>
+      <element name="RiskLevel" type="tns:RiskLevelType" maxOccurs="1" minOccurs="0"/>
+      <element name="PersonWhoAccomplishedForm" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ContactSameAsApplicant" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ContactInformation" type="tns:ContactInformationType" maxOccurs="1" minOccurs="1"/>
+      <element name="SubmittedBy" type="string" maxOccurs="1" minOccurs="1"/>
+      <element name="SubmittedOn" type="date" maxOccurs="1" minOccurs="1"/>
+      <element name="SourceSystem" type="string" maxOccurs="1" minOccurs="1"/>
+      <element name="ProgressPage" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Status" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="StatusDate" type="date" maxOccurs="1" minOccurs="0"/>
+      <element name="ReopenedForEdit" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ProcessInstanceId" type="long" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <simpleType name="RequestType">
+    <restriction base="string">
+      <enumeration value="Enrollment"/>
+      <enumeration value="Renewal"/>
+      <enumeration value="Update"/>
+      <enumeration value="Import Profile"/>
+      <enumeration value="Suspend"/>
+    </restriction>
+  </simpleType>
+  <complexType name="AdditionalPracticeLocationsType">
+    <annotation>
+      <documentation xml:lang="en">Collection wrapper for additional practice locations.</documentation>
+    </annotation>
+    <sequence>
+      <element name="PracticeLocation" type="tns:PracticeLocationType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="PracticeLocationType">
+    <annotation>
+      <documentation xml:lang="en">Additional practice location.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="GroupNPI" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="GroupName" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Address" type="tns:AddressType" maxOccurs="1" minOccurs="0"/>
+      <element name="EffectiveDate" type="date" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="PostSubmissionInformationType">
+    <annotation>
+      <documentation xml:lang="en">Represents fields derived from the submission information.</documentation>
+    </annotation>
+    <sequence>
+      <element name="SortName" type="string"/>
+      <element name="FullName" type="string"/>
+      <element name="InstitutionOwner" type="string"/>
+      <element name="SelfRestrictIndicator" type="string"/>
+      <element name="MedicaidPartIndicator" type="string"/>
+      <element name="MedicarePartIndicator" type="string"/>
+      <element name="MedicaidAgreement" type="string"/>
+      <element name="BillAgreement" type="string"/>
+      <element name="ProviderStatus" type="string"/>
+      <element name="RemitMedia" type="string"/>
+      <element name="BRDR" type="string"/>
+      <element name="MajorPrograms" type="tns:MajorProgramsType"/>
+      <element name="CategoriesOfService" type="tns:CategoriesOfServiceType"/>
+      <element name="RequiresMailbox" type="string"/>
+      <element name="RequiresSIRS" type="string"/>
+      <element name="RequiresBackgroundCheck" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="PaymentInformationType">
+    <annotation>
+      <documentation xml:lang="en">Represents fees and payment status assessed.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="PaymentStatus" type="string" maxOccurs="1" minOccurs="1"/>
+      <element name="TotalAmount" type="double" maxOccurs="1" minOccurs="1"/>
+      <element name="StatusDate" type="date" maxOccurs="1" minOccurs="1"/>
+      <element name="StatusNote" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ReferenceId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="PaymentItems" type="tns:PaymentItemsType" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="PaymentItemsType">
+    <annotation>
+      <documentation xml:lang="en">Collection wrapper for payment items.</documentation>
+    </annotation>
+    <sequence>
+      <element name="PaymentItem" type="tns:PaymentItemType"/>
+    </sequence>
+  </complexType>
+  <complexType name="PaymentItemType">
+    <annotation>
+      <documentation xml:lang="en">Represents a line item for assessed fees.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ItemName" type="string" maxOccurs="1" minOccurs="1"/>
+      <element name="ItemDescription" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Amount" type="double" maxOccurs="1" minOccurs="1"/>
+    </sequence>
+  </complexType>
+  <complexType name="AcceptedAgreementsType">
+    <annotation>
+      <documentation xml:lang="en">Collection wrapper for agreed documents.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ProviderAgreement" type="tns:ProviderAgreementType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="ProviderAgreementType">
+    <annotation>
+      <documentation xml:lang="en">Represents an agreement document that the provider has accepted.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ObjectId" type="string"/>
+      <element name="AgreementDocumentId" type="string"/>
+      <element name="AgreementDocumentType" type="string"/>
+      <element name="AgreementDocumentTitle" type="string"/>
+      <element name="AgreementDocumentVersion" type="string"/>
+      <element name="AcceptedDate" type="date"/>
+    </sequence>
+  </complexType>
+  <complexType name="ProviderStatementType">
+    <annotation>
+      <documentation xml:lang="en">Represents the signed provider statement.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ObjectId" type="string"/>
+      <element name="Name" type="string"/>
+      <element name="Title" type="string"/>
+      <element name="Signature" type="base64Binary"/>
+      <element name="SignDate" type="date"/>
+    </sequence>
+  </complexType>
+  <complexType name="ValidationResultType">
+    <annotation>
+      <documentation xml:lang="en">Represents the result of the validation process.</documentation>
+    </annotation>
+    <sequence>
+      <element name="Status" maxOccurs="1" minOccurs="1" type="tns:OperationStatusType"/>
+    </sequence>
+  </complexType>
+  <complexType name="StatusMessageType">
+    <annotation>
+      <documentation xml:lang="en">Represents messages included in process execution results.</documentation>
+    </annotation>
+    <sequence>
+      <element name="Severity" maxOccurs="1" minOccurs="1">
+        <simpleType>
+          <restriction base="string">
+            <enumeration value="ERROR"/>
+            <enumeration value="WARNING"/>
+            <enumeration value="INFO"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Code" type="string" maxOccurs="1" minOccurs="1"/>
+      <element name="Message" type="string" maxOccurs="1" minOccurs="1"/>
+      <element name="RelatedElementPath" type="string" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="ScreeningResultType">
+    <annotation>
+      <documentation xml:lang="en">Represents the result of screening processes.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ScreeningType" type="string" maxOccurs="1" minOccurs="1"/>
+      <element name="Status" type="tns:OperationStatusType" maxOccurs="1" minOccurs="1"/>
+      <choice>
+        <element name="LicenseVerificationResult" type="tns:LicenseVerificationSearchResultType" maxOccurs="1" minOccurs="0"/>
+        <element name="ExclusionVerificationResult" type="tns:SearchResultType" maxOccurs="1" minOccurs="0"/>
+        <element name="SAMExclusionVerificationResult" type="tns:SearchResultType" maxOccurs="1" minOccurs="0"/>
+        <element name="SearchResult" type="tns:SearchResultType" maxOccurs="1" minOccurs="0"/>
+      </choice>
+    </sequence>
+  </complexType>
+  <complexType name="ExternalSourcesScreeningResultType">
+    <annotation>
+      <documentation xml:lang="en">Represents the result of CMS external sources screening.</documentation>
+    </annotation>
+    <sequence>
+      <element name="Status" type="tns:OperationStatusType" maxOccurs="1" minOccurs="0"/>
+      <element name="SearchResults" type="tns:SearchResultType" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="SearchResultType">
+    <annotation>
+      <documentation xml:lang="en">Represents a generic search result wrapper.</documentation>
+    </annotation>
+    <sequence>
+      <element name="SearchResultItem" type="tns:SearchResultItemType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="OperationStatusType">
+    <annotation>
+      <documentation xml:lang="en">Represents the status of an executed process.</documentation>
+    </annotation>
+    <sequence>
+      <element name="StatusCode">
+        <simpleType>
+          <restriction base="string">
+            <enumeration value="SUCCESS"/>
+            <enumeration value="FAILURE"/>
+            <enumeration value="INCOMPLETE"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="StatusMessages" type="tns:StatusMessagesType"/>
+    </sequence>
+  </complexType>
+  <complexType name="SearchResultItemType">
+    <annotation>
+      <documentation xml:lang="en">Represents a search result row.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ColumnData" type="tns:PropertyListType"/>
+      <element name="SupplementaryData" type="tns:PropertyListType"/>
+    </sequence>
+  </complexType>
+  <complexType name="PropertyListType">
+    <annotation>
+      <documentation xml:lang="en">Collection wrapper for name value pairs.</documentation>
+    </annotation>
+    <sequence>
+      <element name="NameValuePair" type="tns:NameValuePairType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="NameValuePairType">
+    <annotation>
+      <documentation xml:lang="en">Represents a simple name-value data type.</documentation>
+    </annotation>
+    <sequence>
+      <element name="Name" type="string"/>
+      <element name="Value" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="LicenseVerificationSearchResultType">
+    <annotation>
+      <documentation xml:lang="en">Represents a license specific search result.</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="tns:ExternalSourcesScreeningResultType">
+        <sequence>
+          <element name="LicenseObjectId" type="string"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="StatusMessagesType">
+    <sequence>
+      <element name="StatusMessage" type="tns:StatusMessageType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="LicenseInformationType">
+    <sequence>
+      <element name="WorksOnReservation" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="TribalCode" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="AdditionalServiceCategoryRequest" type="string" maxOccurs="unbounded" minOccurs="0"/>
+      <element name="License" type="tns:LicenseType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="LicenseType">
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ObjectType" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="SpecialtyType" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="LicenseType" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="LicenseNumber" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="OriginalIssueDate" type="date" maxOccurs="1" minOccurs="0"/>
+      <element name="RenewalDate" type="date" maxOccurs="1" minOccurs="0"/>
+      <element name="IssuingState" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="IssuingBoard" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="AttachmentObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Verified" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Status" type="string" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <simpleType name="ProviderType">
+    <restriction base="string">
+      <enumeration value="Audiologist"/>
+      <enumeration value="Certified Professional Midwife"/>
+      <enumeration value="Community Health Care Worker"/>
+      <enumeration value="Physical Therapist"/>
+      <enumeration value="Hearing Aid Dispenser"/>
+      <enumeration value="Clinical Nurse Specialist"/>
+      <enumeration value="Certified Registered Nurse Anesthetist"/>
+      <enumeration value="Chiropractor"/>
+      <enumeration value="Podiatrist"/>
+      <enumeration value="Licensed Marriage and Family Therapist"/>
+      <enumeration value="Licensed Psychologist"/>
+      <enumeration value="Licensed Professional Clinical Counselor"/>
+      <enumeration value="Physician"/>
+      <enumeration value="Childrens Residential Services"/>
+      <enumeration value="Home &amp; Community Based Services"/>
+      <enumeration value="Day Training Rehabilitation"/>
+      <enumeration value="Allied Dental Professional"/>
+      <enumeration value="Allied Dental Professional Organization"/>
+      <enumeration value="Personal Care"/>
+      <enumeration value="County Human Services"/>
+      <enumeration value="WIC Program"/>
+      <enumeration value="Head Start Program"/>
+      <enumeration value="Billing Intermediary"/>
+      <enumeration value="Nurse Practitioner"/>
+      <enumeration value="Occupational Therapist"/>
+      <enumeration value="Physician Assistant"/>
+      <enumeration value="Private Duty Nurse"/>
+      <enumeration value="Speech Language Pathologist"/>
+      <enumeration value="Acupuncturist"/>
+      <enumeration value="Certified Mental Health Rehab Prof - CPRP"/>
+      <enumeration value="Dentist"/>
+      <enumeration value="Hearing Aid Dispenser"/>
+      <enumeration value="Licensed Dietician or Licensed Nutritionist"/>
+      <enumeration value="Licensed Independent Clinical Social Worker"/>
+      <enumeration value="Nurse Midwife"/>
+      <enumeration value="Optometrist"/>
+      <!-- ORG Types -->
+      <enumeration value="Billing Entity for Physical Rehabilitative Providers"/>
+      <enumeration value="Clearing House"/>
+      <enumeration value="Durable Medical Equipment"/>
+      <enumeration value="EDI Trading Partner"/>
+      <enumeration value="Family Planning Agency"/>
+      <enumeration value="Head Start"/>
+      <enumeration value="Home Health Agency"/>
+      <enumeration value="Independent Diagnostic Testing Facility"/>
+      <enumeration value="Independent Laboratory"/>
+      <enumeration value="Indian Health Service Facility"/>
+      <enumeration value="Intensive Residential Treatment Facility"/>
+      <enumeration value="Optical Supplier"/>
+      <enumeration value="Personal Care Provider Organization"/>
+      <enumeration value="Pharmacy"/>
+      <enumeration value="Private Duty Nursing Agency"/>
+      <enumeration value="Public Health Clinic"/>
+      <enumeration value="Public Health Nursing Organization"/>
+      <enumeration value="Regional Treatment Center"/>
+      <enumeration value="Rehabilitation Agency"/>
+      <enumeration value="Rural Health Clinic"/>
+      <enumeration value="Targeted Case Management"/>
+      <enumeration value="WIC Program"/>
+      <enumeration value="X-Ray Services"/>
+      <enumeration value="Adult Day Treatment Application"/>
+      <enumeration value="Ambulatory Surgical Center"/>
+      <enumeration value="Certified Registered Nurse Anesthetist Group"/>
+      <enumeration value="Child And Teen Checkup Clinic"/>
+      <enumeration value="Childrens Mental Health Residential Treatment Facility"/>
+      <enumeration value="Community Health Clinic"/>
+      <enumeration value="Community Mental Health Center"/>
+      <enumeration value="County Contracted Mental Health Rehab"/>
+      <enumeration value="Day Training And Habilitation/Day Activity Center"/>
+      <enumeration value="Day Treatment"/>
+      <enumeration value="Home And Community Based Services (Waivered Services)"/>
+      <enumeration value="Billing Intermediary"/>
+      <enumeration value="Federally Qualified Health Center"/>
+      <enumeration value="Individual Education Plan"/>
+      <enumeration value="Personal Care Assistant"/>
+      <enumeration value="Pharmacist"/>
+      <enumeration value="Nursing Facility"/>
+      <enumeration value="Hospital"/>
+      <enumeration value="Hospice"/>
+      <enumeration value="Renal Dialysis Facility"/>
+      <enumeration value="Intermediate Care Facilities For Persons With Developmental Disabilities"/>
+      <enumeration value="Physician Clinic"/>
+      <enumeration value="Dental Clinic"/>
+      <enumeration value="Dental Hygienist Clinic"/>
+      <enumeration value="Billing Entity For Mental Health"/>
+      <enumeration value="Podiatry Clinic"/>
+      <enumeration value="Chiropractic Clinic"/>
+      <enumeration value="Birthing Center"/>
+      <enumeration value="Medical Transportation"/>
+      <enumeration value="Billing Entity for Physician Services"/>
+    </restriction>
+  </simpleType>
+  <complexType name="AttachedDocumentsType">
+    <annotation>
+      <documentation xml:lang="en">All documents attached to the enrollment.</documentation>
+    </annotation>
+    <sequence>
+      <element name="Attachment" type="tns:DocumentType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <simpleType name="LicenseNames">
+    <restriction base="string">
+      <enumeration value="Certificate of Clinical Competence (CCC)"/>
+      <enumeration value="Audiologist"/>
+      <enumeration value="Hearing Aid Dispenser"/>
+      <enumeration value="Traditional Midwife"/>
+      <enumeration value="Professional Midwife Certification"/>
+      <enumeration value="MnSCU Certification"/>
+      <enumeration value="Registered Nurse"/>
+      <enumeration value="Clinical Nurse Specialist"/>
+      <enumeration value="Nurse Anesthetist"/>
+      <enumeration value="Certified Registered Nurse Anesthetist"/>
+      <enumeration value="Chiropractic Examiner"/>
+      <enumeration value="Podiatrist License"/>
+      <enumeration value="Marriage And Family Therapist"/>
+      <enumeration value="Psychologist"/>
+      <enumeration value="MDH Psychologist Registration"/>
+      <enumeration value="Professional Clinical Counselor"/>
+      <enumeration value="Physician"/>
+      <enumeration value="Nurse Practitioner"/>
+      <enumeration value="Occupational Therapy"/>
+      <enumeration value="Physician Assistant"/>
+      <enumeration value="Physical Therapist"/>
+      <enumeration value="Speech Language Pathologist"/>
+      <enumeration value="Acupuncturist"/>
+      <enumeration value="Dental Hygienist"/>
+      <enumeration value="Mental Health Rehab Professional"/>
+      <enumeration value="Rehab Counselor Certification"/>
+      <enumeration value="Psychosocial Rehab Practitioner Certification"/>
+      <enumeration value="Dental"/>
+      <enumeration value="Dietician or Nutritionist"/>
+      <enumeration value="Clinical Social Worker"/>
+      <enumeration value="Optometrist"/>
+      <enumeration value="NBCOT Certification"/>
+      <enumeration value="Rehabilitation Counselor"/>
+      <enumeration value="Psychosocial Rehabilitation Practitioner"/>
+      <enumeration value="Licensed Practical Nurse"/>
+      <enumeration value="Class A License"/>
+      <!-- org certificates -->
+      <enumeration value="Head Start Agency Certification"/>
+      <enumeration value="Class A Professional Home Care License"/>
+      <enumeration value="HCFA Medicare Certification"/>
+      <enumeration value="Off-site Approval Letter From Medicare"/>
+      <enumeration value="Verification of IHS status"/>
+      <enumeration value="County Contract to Provider IRTS"/>
+      <enumeration value="Rule 36 Licensed Facility"/>
+      <enumeration value="Class A License"/>
+      <enumeration value="Background Study"/>
+      <enumeration value="Pharmacy License"/>
+      <enumeration value="Class A License For Private Duty Nursing Services"/>
+      <enumeration value="Medicare Certification For Home Health Aide And Skilled Nursing Services"/>
+      <enumeration value="Regional Treatment Center Certification"/>
+      <enumeration value="Medicare Approval Letter"/>
+      <enumeration value="Independent or Portable X-ray Certification from CMS"/>
+      <enumeration value="CORF Certification"/>
+      <enumeration value="PCA 1 or 3 day Steps for Success Training"/>
+      <enumeration value="Medicare Certification"/>
+      <enumeration value="Rule 5 License issued from MN Department of Human Services"/>
+      <enumeration value="Certificate of Compliance from MN Department of Human Rights"/>
+      <enumeration value="Rule 29 License"/>
+      <enumeration value="Day Training &amp; Habilitation License"/>
+      <enumeration value="Pharmacist License"/>
+      <enumeration value="PCA Training Certificate"/>
+      <enumeration value="Birth Center Accreditation"/>
+      <enumeration value="Professional Counselor (Independent)"/>
+      <enumeration value="Alcohol and Drug Counselor"/>
+      <enumeration value="Chemical Dependency Treatment"/>
+      <enumeration value="Children's Residential Facilities"/>
+      <enumeration value="Medicare Certification Community Mental Health Clinic"/>
+      <enumeration value="Dual Audiologist and Speech-Language Pathologist"/>
+      <enumeration value="Medicare Certified Hospice"/>
+      <enumeration value="Certified Hospital"/>
+      <enumeration value="Intensive Residential Treatment Services"/>
+      <enumeration value="Residential Services, ICF/DD"/>
+      <enumeration value="End Stage Renal Dialysis"/>
+      <enumeration value="License and Transmittal (CMS 1539 Form) from MN Department of Health"/>
+      <enumeration value="Hospice license from the MN Dept of Health"/>
+      <enumeration value="CMS Medicare Certification Letter"/>
+      <enumeration value="State License to operate as a Hospital"/>
+      <enumeration value="CLIA Certificate if billing Lab Services"/>
+      <enumeration value="Renal Dialysis Facility Approval letter from regional CMS office"/>
+      <enumeration value="Birth Center license from the MN Department of Health"/>
+      <enumeration value="Accreditation from the Commission for the Accreditation of Birth Centers"/>
+      <enumeration value="Special Transportation (STS) - Transportation Certificate from the MN Department of Transportation"/>
+      <enumeration value="Ambulance - Licensure as Emergency Medical Transportation Provider from the state of practice"/>
+      <enumeration value="Air - FAA Certificate of airworthiness plus Ambulance License"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="DocumentNames">
+    <restriction base="string">
+      <enumeration value="Copy Of Highest Degree Earned"/>
+      <enumeration value="Provider Agreement(DHS-4138)"/>
+      <enumeration value="MHCP Applicant Assurance Statement - Community Health Workers (DHS-5308)"/>
+      <enumeration value="Child And Teen Checkup Agreement (DHS-4646)"/>
+      <enumeration value="Electronic Funds Transfer (EFT) Request Form"/>
+      <enumeration value="Collaborative Practice Dental Hygienist Assurance Statement"/>
+      <enumeration value="Copy of Collaborative Agreement"/>
+      <enumeration value="Copy of License of Dentist who signed Collaborative Agreement"/>
+      <enumeration value="Certified Mental Health Rehabilitation Professional Assurance Statement"/>
+      <enumeration value="Diploma From American Board of Clinical Neuropsychology (ABCN)"/>
+      <enumeration value="Diploma From America Board of Professional Neuropsychology (ABPN)"/>
+      <enumeration value="Diploma From American Academy of Pediatric Neuropsychology (AAPN)"/>
+      <enumeration value="Proof of completed internship or its equivalent, in a clinically relevant area of professional psychology"/>
+      <enumeration value="Proof of equivalent of two full-time years of experience and specialize training, at least one which is at the post-doctoral level, in the study and practice of clinical neuropsychology and related neurosciences supervised by a clinical neuropsychologist"/>
+      <enumeration value="Qualified Mental Health Supervision AAS (DHS-6330)"/>
+      <enumeration value="Certificate Of Liability Insurance"/>
+      <enumeration value="Workers Compensation Insurance"/>
+      <enumeration value="Fidelity Bond"/>
+      <enumeration value="Surety Bond"/>
+      <enumeration value="Community Health Board DHS Contract"/>
+      <enumeration value="Articles Of Incorporation"/>
+      <enumeration value="Sliding Fee Schedule"/>
+      <enumeration value="Adult Rehabilitative Mental Health Services"/>
+      <enumeration value="Children's Therapeutic Services and Supports (CTSS)"/>
+      <enumeration value="Adult Crisis Response Services - Crisis Assessment &amp; Crisis Intervention"/>
+      <enumeration value="Adult Crisis Response Services - Crisis Stabilization"/>
+      <enumeration value="Adult Crisis Response Services - Short-Term Residential"/>
+      <enumeration value="Applicant Assurance Statement - Community Mental Health Center (DHS-5748)"/>
+      <enumeration value="Approval Letter from Health Care Finance Administration (HCFA)"/>
+      <enumeration value="Copies of the 330 Grant documents"/>
+      <enumeration value="Cover page of Public Law 93-638 status contract"/>
+      <enumeration value="Compact with the Indian Health Service"/>
+      <enumeration value="Ambulance Services - Basic Service"/>
+      <enumeration value="Ambulance Services - Advanced Life Support"/>
+      <enumeration value="Ambulance Services - Air Transport with FAA Air Worthiness Certificate"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="ServiceCategoryNames">
+    <restriction base="string">
+      <enumeration value="Hearing Aids"/>
+      <enumeration value="Marriage And Family Therapy"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="RiskLevelType">
+    <restriction base="string">
+      <enumeration value="Limited"/>
+      <enumeration value="Moderate"/>
+      <enumeration value="High"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="ReservationNames">
+    <restriction base="string">
+      <enumeration value="Fond Du Lac Indian Reservation"/>
+      <enumeration value="Grand Portage Indian Reservation"/>
+      <enumeration value="Leech Lake Indian Reservation"/>
+      <enumeration value="Mille Lacs Indian Reservation"/>
+      <enumeration value="Net Lake Indian Reservation"/>
+      <enumeration value="Prairie Island Indian Reservation"/>
+      <enumeration value="Red Lake Reservation"/>
+      <enumeration value="Upper Sioux Indian Reservation"/>
+      <enumeration value="White Earth Indian Reservation"/>
+      <enumeration value="Lower Sioux Indian Reservation"/>
+    </restriction>
+  </simpleType>
+  <complexType name="VerificationStatusType">
+    <sequence>
+      <element name="SocialSecurityNumber" type="string"/>
+      <element name="NPI" type="string"/>
+      <element name="NPILookup" type="string"/>
+      <element name="Licenses" type="string"/>
+      <element name="NonExclusion" type="string"/>
+      <element name="SAMNonExclusion" type="string"/>
+      <element name="PECOS" type="string"/>
+      <element name="NetStudy" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="SpecialtiesType">
+    <sequence>
+      <element name="SpecialtyName" type="string" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <simpleType name="SpecialtyNames">
+    <restriction base="string">
+      <enumeration value="Allergy"/>
+      <enumeration value="Anesthesiology"/>
+      <enumeration value="Cardiovascular Disease"/>
+      <enumeration value="Cardiovascular Surgery"/>
+      <enumeration value="Child Psychiatry"/>
+      <enumeration value="Colon and Rectal Surgery"/>
+      <enumeration value="Dermatology"/>
+      <enumeration value="Diabetes"/>
+      <enumeration value="Emergency Services"/>
+      <enumeration value="Endocrinology"/>
+      <enumeration value="Family Practice"/>
+      <enumeration value="Gastroenterology"/>
+      <enumeration value="General Practice"/>
+      <enumeration value="General Surgery"/>
+      <enumeration value="Gerontology"/>
+      <enumeration value="Gynecology"/>
+      <enumeration value="Immunology"/>
+      <enumeration value="Infectious Disease"/>
+      <enumeration value="Internal Medicine"/>
+      <enumeration value="Nephrology"/>
+      <enumeration value="Neurological Surgery"/>
+      <enumeration value="Neurology"/>
+      <enumeration value="Nuclear Medicine"/>
+      <enumeration value="Obstetrics"/>
+      <enumeration value="Obstetrics and Gynecology"/>
+      <enumeration value="Oncology"/>
+      <enumeration value="Ophthalmology"/>
+      <enumeration value="Pathology"/>
+      <enumeration value="Pediatrics"/>
+      <enumeration value="Peripheral Vascular Diseases or Surgery"/>
+      <enumeration value="Physical Medicine and Rehabilitation"/>
+      <enumeration value="Plastic Surgery"/>
+      <enumeration value="Preventive Medicine"/>
+      <enumeration value="Psychiatry"/>
+      <enumeration value="Pulmonary Disease"/>
+      <enumeration value="Radiology"/>
+      <enumeration value="Radiology and Radiation Therapy"/>
+      <enumeration value="Rheumatology"/>
+      <enumeration value="Thoracic Surgery"/>
+      <enumeration value="Urology"/>
+      <enumeration value="Other"/>
+      <enumeration value="Qualified Mental Health Supervision"/>
+      <enumeration value="Neuropsychology"/>
+      <enumeration value="Psychiatric/Mental Health"/>
+      <enumeration value="Gerontological"/>
+      <enumeration value="Pediatric"/>
+      <enumeration value="Family"/>
+      <enumeration value="Adult"/>
+      <enumeration value="Neonatal"/>
+      <enumeration value="Women's Health Care"/>
+      <enumeration value="Acute Care"/>
+      <enumeration value="Occupational Therapy"/>
+      <enumeration value="General Dentistry"/>
+      <enumeration value="Endodontist"/>
+      <enumeration value="Oral Surgery"/>
+      <enumeration value="Orthodontics"/>
+      <enumeration value="Pedodontics"/>
+      <enumeration value="Periodontics"/>
+      <enumeration value="Prosthodontics"/>
+      <enumeration value="Dialectical Behavioral Therapist"/>
+      <enumeration value="Professional Midwife"/>
+      <enumeration value="Physical Rehabilitation"/>
+      <enumeration value="Air Transport (Ambulance)"/>
+      <enumeration value="Advanced Life Support (Ambulance)"/>
+      <enumeration value="Basic Life Support (Ambulance)"/>
+      <enumeration value="Special Transportation Services (STS)"/>
+      <enumeration value="Wheelchair Transportation"/>
+      <enumeration value="Certified Professional Midwife"/>
+      <enumeration value="Certified Nurse Midwife"/>
+      <enumeration value="CRNA Certification"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="BoardNames">
+    <restriction base="string">
+      <enumeration value="United States Psychiatric Rehab Association"/>
+      <enumeration value="Summit Academy"/>
+      <enumeration value="Inver Grove Community and Technical College"/>
+      <enumeration value="Minneapolis Community and Tech College"/>
+      <enumeration value="Rochester Community and Tech College"/>
+      <enumeration value="South Central Tech - Mankato"/>
+      <enumeration value="St. Catherine University"/>
+      <enumeration value="Normandale Community and Tech College"/>
+      <enumeration value="American Academy of Nurse Practitioners"/>
+      <enumeration value="American Nurses Credentialing Center"/>
+      <enumeration value="Pediatric Nursing Certification Board"/>
+      <enumeration value="National Certification Corporation"/>
+      <enumeration value="American Midwifery Certification Board"/>
+      <enumeration value="American Association of Nurse Anesthetists"/>
+      <enumeration value="American Nurses Credentialing Center"/>
+      <enumeration value="North American Registry of Midwives"/>
+      <enumeration value="National Board for Certification in Occupational Therapy"/>
+      <enumeration value="American Board of Medical Specialty"/>
+      <enumeration value="American Board of Physician Specialties"/>
+    </restriction>
+  </simpleType>
+  <complexType name="GroupAffiliationsType">
+    <sequence>
+      <element name="GroupInformation" type="tns:PracticeLocationType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="MemberInformationType">
+    <sequence>
+      <element name="GroupMember" type="tns:GroupMemberType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="GroupMemberType">
+    <complexContent>
+      <extension base="tns:PersonType">
+        <sequence>
+          <element name="ProviderType" type="string"/>
+          <element name="StartDate" type="date"/>
+          <element name="BGSStudyId" type="string"/>
+          <element name="BGSClearanceDate" type="date"/>
+          <element name="Specialties" type="tns:SpecialtiesType" maxOccurs="1" minOccurs="0"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ProviderSetupInformationType">
+    <sequence>
+      <element name="PayToProvider" type="tns:PayToProviderType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="PayToProviderType">
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Type" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="NPI" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Name" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ContactName" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Signature" type="base64Binary" maxOccurs="1" minOccurs="0"/>
+      <element name="EffectiveDate" type="date" maxOccurs="1" minOccurs="0"/>
+      <element name="PhoneNumber" type="string" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="OwnershipInformationType">
+    <sequence>
+      <element name="EntityType" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="EntitySubType" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="OtherEntityDescription" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="BeneficialOwner" type="tns:BeneficialOwnerType" maxOccurs="unbounded" minOccurs="0"/>
+      <element name="RealProperty" type="tns:RealPropertyType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="OrganizationType">
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="LegalName" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ContactInformation" type="tns:ContactInformationType" maxOccurs="1" minOccurs="0"/>
+      <element name="FEIN" type="string" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="BeneficialOwnerType">
+    <sequence>
+      <element name="PersonInd" type="string" maxOccurs="1" minOccurs="1"/>
+      <element name="BeneficialOwnerType" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="OtherBeneficialOwnerDescription" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="SubcontractorName" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="PercentOwnership" type="double" maxOccurs="1" minOccurs="0"/>
+      <element name="PersonInformation" type="tns:PersonType" maxOccurs="1" minOccurs="0"/>
+      <element name="EntityInformation" type="tns:OrganizationType" maxOccurs="1" minOccurs="0"/>
+      <element name="HireDate" type="date" maxOccurs="1" minOccurs="0"/>
+      <element name="Relationship" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="OtherInterestInd" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="OtherInterestName" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="OtherInterestPercentOwnership" type="double" maxOccurs="1" minOccurs="0"/>
+      <element name="OtherInterestAddress" type="tns:AddressType" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="FacilityCredentialsType">
+    <sequence>
+      <element name="NumberOfBeds" type="int" maxOccurs="1" minOccurs="0"/>
+      <element name="NumberOfBedsEffectiveDate" type="date" maxOccurs="1" minOccurs="0"/>
+      <element name="CommunityHealthBoard" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="FacilityType" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="AdultDayTreatmentApplication" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="FederalQualificationType" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ContractWithCounty" type="tns:CountyContractType" maxOccurs="1" minOccurs="0"/>
+      <element name="License" type="tns:LicenseType" maxOccurs="unbounded" minOccurs="0"/>
+      <element name="CLIACertificate" type="tns:CLIACertificateType" maxOccurs="unbounded" minOccurs="0"/>
+      <element name="SignedContract" type="tns:SignedContractType" maxOccurs="unbounded" minOccurs="0"/>
+      <element name="PhysicalAndOccupationTherapyServices" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Title18NumberOfBeds" type="int" maxOccurs="1" minOccurs="0"/>
+      <element name="Title19NumberOfBeds" type="int" maxOccurs="1" minOccurs="0"/>
+      <element name="DualCertifiedNumberOfBeds" type="int" maxOccurs="1" minOccurs="0"/>
+      <element name="ICFNumberOfBeds" type="int" maxOccurs="1" minOccurs="0"/>
+      <element name="AmbulanceServices" type="tns:AmbulanceServicesType" maxOccurs="unbounded" minOccurs="0"/>
+      <element name="FacilityQualification" type="tns:FacilityQualificationType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="CLIACertificateType">
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="CertificateNumber" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="AttachmentObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="CountyContractType">
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="CountyInd" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="CountyName" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ContractAttachmentObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="CoverSheetName" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="CoverSheetAttachmentObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="QualifiedProfessionalsType">
+    <sequence>
+      <element name="QualifiedProfessional" type="tns:QualifiedProfessionalType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="QualifiedProfessionalType">
+    <complexContent>
+      <extension base="tns:PersonType">
+        <sequence>
+          <element name="Type" type="string" maxOccurs="1" minOccurs="0"/>
+          <element name="SubType" type="string" maxOccurs="1" minOccurs="0"/>
+          <element name="StartDate" type="date" maxOccurs="1" minOccurs="0"/>
+          <element name="EndedInd" type="string" maxOccurs="1" minOccurs="0"/>
+          <element name="EndDate" type="date" maxOccurs="1" minOccurs="0"/>
+          <element name="BGSNumber" type="string" maxOccurs="1" minOccurs="0"/>
+          <element name="BGSClearanceDate" type="date" maxOccurs="1" minOccurs="0"/>
+          <element name="AcknowledgementObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+          <element name="License" type="tns:LicenseType" maxOccurs="unbounded" minOccurs="0"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="DesignatedContactInformationType">
+    <sequence>
+      <element name="DesignatedContact" type="tns:DesignatedContactType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="DesignatedContactType">
+    <complexContent>
+      <extension base="tns:PersonType">
+        <sequence>
+          <element name="DesignationType">
+            <simpleType>
+              <restriction base="string">
+                <enumeration value="PCABilling"/>
+              </restriction>
+            </simpleType>
+          </element>
+          <element name="HireDate" type="date"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="RealPropertyType">
+    <sequence>
+      <element name="OwnershipType" type="string" maxOccurs="1" minOccurs="1"/>
+      <element name="LegalName" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Address" type="tns:AddressType" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="ComplianceInformationType">
+    <sequence>
+      <element name="RequiredTrainingAndService" type="string" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <simpleType name="TrainingAndSupervision">
+    <restriction base="string">
+      <enumeration value="Oversee and assume provider responsibility for all services performed"/>
+      <enumeration value="Ensure each employee applying fluoride varnish has completed online FVA training"/>
+      <enumeration value="Document course completion in the employee file"/>
+      <enumeration value="Be responsible for the FVA and have policies and procedures in place"/>
+      <enumeration value="Define FVA roles and responsibilities of the program or agency and the staff"/>
+      <enumeration value="Document with consent (typical) from the child's parent or guardian"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="CorporateStructure">
+    <restriction base="string">
+      <enumeration value="Sole Proprietorship"/>
+      <enumeration value="Partnership"/>
+      <enumeration value="Corporation, LLC"/>
+      <enumeration value="Non-Profit"/>
+      <enumeration value="Hospital Based"/>
+      <enumeration value="State"/>
+      <enumeration value="Public"/>
+      <enumeration value="Professional Association"/>
+      <enumeration value="Other"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SupervisionAndQualification">
+    <restriction base="string">
+      <enumeration id="SQ1" value="For each site at which we are providing services, we will provide clinical supervision by an enrolled mental health professional who is on-site at least 50% of the time during a 5-day work week. This clinical supervisor will review, approve and sign each client's diagnosis, individual treatment plan and every change in diagnosis or ITP.  The clinical supervisor will review and sign the record of the client's care for all activities in the preceding 30-day period."/>
+      <enumeration id="SQ2" value="All staff providing day treatment services which are billed to the MHCP's meet the legal definition of Mental Health Professional or Mental Health Practitioner."/>
+    </restriction>
+  </simpleType>
+  <simpleType name="ClinicalServices">
+    <restriction base="string">
+      <enumeration id="CS1" value="Each client has a current diagnostic assessment prior to the initiation of day treatment services."/>
+      <enumeration id="CS2" value="Each participant has an individual treatment plan."/>
+      <enumeration id="CS3" value="The participation of a psychiatrist is assured."/>
+      <enumeration id="CS4" value="Services are individually tailored to meet the needs of individual participants."/>
+      <enumeration id="CS5" value="Clients are encouraged to actively participate in setting goals and objectives."/>
+      <enumeration id="CS6" value="Documentation of services are provided."/>
+      <enumeration id="CS7" value="Services are regularly coordinated with those being provided by other mental health providers."/>
+    </restriction>
+  </simpleType>
+  <simpleType name="ServiceUnits">
+    <restriction base="string">
+      <enumeration id="SU1" value="Regular day treatment services will be provided for 3 hours per day at least one day per week to recipients in the program."/>
+      <enumeration id="SU2" value="The three contact hours includes at least 1 hour but not more than 2 hours per day of individual and/or group psychotherapy."/>
+      <enumeration id="SU3" value="The remainder of the contact hours per day consists of either recreation therapy, socialization therapy, or independent living skills therapy, with no more than one hour of any one of these therapies."/>
+    </restriction>
+  </simpleType>
+  <complexType name="SignedContractType">
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="CertificateInd" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Name" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="BeginDate" type="date" maxOccurs="1" minOccurs="0"/>
+      <element name="EndDate" type="date" maxOccurs="1" minOccurs="0"/>
+      <element name="CopyAttachmentId" type="string" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="AgencyEligibilityType">
+    <sequence>
+      <element name="ProgramType" type="string"/>
+      <element name="TargetPopulation" type="string" maxOccurs="unbounded" minOccurs="0"/>
+      <element name="SupervisionAndQualification" type="string" maxOccurs="unbounded" minOccurs="0"/>
+      <element name="ClinicalServices" type="string" maxOccurs="unbounded" minOccurs="0"/>
+      <element name="EligibleServiceUnits" type="string" maxOccurs="unbounded" minOccurs="0"/>
+      <element name="ContractWithCounty" type="tns:CountyContractType" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="AdditionalLocationsType">
+    <sequence>
+      <element name="ProviderNumber" type="string" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="AgencyInformationType">
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Name" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="AgencyId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="NPI" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="FaxNumber" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ContactName" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="BackgroundStudyId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ClearanceDate" type="date" maxOccurs="1" minOccurs="0"/>
+      <element name="ContinuousEmploymentIndicator" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="GroupAffiliationIndicator" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Affiliation" type="tns:GroupAffiliationType" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="GroupAffiliationType">
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="Name" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="NPI" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="StudyId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ClearanceDate" type="date" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="DocumentsOnFileType">
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="ServiceType" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="AttachmentObjectId" type="string" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="AmbulanceServicesType">
+    <complexContent>
+      <extension base="tns:DocumentsOnFileType"/>
+    </complexContent>
+  </complexType>
+  <complexType name="FacilityQualificationType">
+    <complexContent>
+      <extension base="tns:DocumentsOnFileType"/>
+    </complexContent>
+  </complexType>
 </schema>

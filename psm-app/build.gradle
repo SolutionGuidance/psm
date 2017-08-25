@@ -50,7 +50,6 @@ ext.libs = [
 // are required.  We know for sure that SOME of them are loaded during runtime, but
 // need to spend some time investigating one by one.
 List runtime_libs = [
-    'asm:asm:3.3',
     'commons-logging:commons-logging:1.1.1',
     'net.sourceforge.jexcelapi:jxl:2.6.10',
     'org.codehaus.jackson:jackson-mapper-asl:1.9.13',

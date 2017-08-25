@@ -3,9 +3,6 @@
 	<annotation>
 		<documentation xml:lang="en">
 			This defines the common entities used by the enrollment business process.
-
-			@author TCSASSEMBLER
-			@version 1.0
 		</documentation>
 	</annotation>
 

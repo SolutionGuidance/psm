@@ -64,7 +64,7 @@ Medicaid Services (CMS) administered a crowd-sourced application
 development challenge for the Medicare and Medicaid Services, Center
 for Medicaid and CHIP Services (CMCS).  The challenge was to build a
 multi-state, multi-program provider screening application capable of
-risk scoring, credentialing validation, identify authentication, and
+risk scoring, credentialing validation, identity authentication, and
 sanction checks, that lowered the burden on providers and reduced
 administrative and infrastructure expenses for states and federal
 programs.

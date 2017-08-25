@@ -165,6 +165,8 @@ project(':cms-web') {
 project(':cms-business-model') {
     apply plugin: 'com.github.jacobono.jaxb'
     apply plugin: 'java'
+    sourceCompatibility = 1.6
+    targetCompatibility = 1.6
     compileJava.dependsOn xjc
     System.setProperty('javax.xml.accessExternalSchema', 'file')
 

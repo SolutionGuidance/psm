@@ -6,6 +6,17 @@
 Welcome to Provider Screening Module's documentation!
 =====================================================
 
+This code is a work-in-progress and is not yet ready for production
+deployment. Please see `our installation documentation
+<https://github.com/OpenTechStrategies/psm/blob/master/INSTALL.md>`__
+for details, and check our current status.
+
+If you have suggestions for improving this user help guide, please add
+them `as comments on this issue
+<https://github.com/OpenTechStrategies/psm/issues/338>`__ or `as
+emails to this mailing list
+<https://groups.google.com/forum/#!forum/psm-dev>`__. Thank you!
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

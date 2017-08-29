@@ -32,7 +32,28 @@ example of adding a new Selenium test.
 
 ## API Tests
 
-See [the relevant README](etl/leie/README.mdwn) for details.  This set
-of tests uses `pytest`.
+See [the relevant
+README](https://github.com/OpenTechStrategies/psm/blob/master/etl/leie/README.mdwn)
+for details.  This set of tests uses `pytest`.  The full list of
+dependencies is in the LEIE API's README -- see the [Testing
+section](https://github.com/OpenTechStrategies/psm/blob/master/etl/leie/README.mdwn#Testing).
+To run the tests, get those dependencies and then do:
+
+    $ cd {path-to-psm}/etl/leie
+    $ ./test
+
+If you add new functionality to the ETL process, add a new test in
+`{path-to-psm}/etl/leie/leie/tests`.
 
 ## Unit Tests
+
+We use [Spock](http://spockframework.org/) for our unit tests.
+Currently the framework is set up with a few example tests.  Look at [PR
+#253](https://github.com/OpenTechStrategies/psm/pull/253) to see where
+to add one or more new unit tests in each of the subprojects.  To run
+the unit tests, do:
+
+    $ cd {path-to-psm}/psm-app
+    $ ./gradlew clean test
+
+When we add new functionality, we add unit tests along with it.

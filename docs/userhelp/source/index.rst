@@ -10,8 +10,13 @@ Welcome to Provider Screening Module's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   system-admin-help
+   process-purpose
+   account-help
+   provider-help
+   enrollment
+   service-agent-help
    service-admin-help
+   system-admin-help
 
 Indices and tables
 ==================

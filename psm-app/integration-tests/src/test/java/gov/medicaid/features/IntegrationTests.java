@@ -4,6 +4,9 @@ import cucumber.api.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
 import org.junit.runner.RunWith;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 
 /**
  * Integration test glue for serenity
@@ -13,4 +16,9 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features = "src/test/resources/features")
 public class IntegrationTests {
+    public static String format(LocalDate date) {
+        return date.format(
+                DateTimeFormatter.ofPattern("MM/dd/yyyy")
+        );
+    }
 }

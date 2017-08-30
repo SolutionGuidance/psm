@@ -40,3 +40,10 @@ Feature: Data Coverage Checks
     Given I am on the personal info page
     When I enter valid personal information
     Then I can move on from the personal info page with no errors
+
+  @psm-FR-2.4
+  Scenario: Accepts license
+    Given I am on the individual provider license info page
+    When I enter valid license information
+    And I upload a valid license
+    Then the license is accepted

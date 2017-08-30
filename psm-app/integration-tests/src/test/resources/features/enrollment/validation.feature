@@ -9,3 +9,9 @@ Feature: Form and Field Validations
     And I am on the organization page
     When when I enter an 8 digit FEIN
     Then It should be rejected
+
+  Scenario: Validate minimum age
+    Given I am on the personal info page
+    When I enter a date of birth less than eighteen years ago
+    And I click 'next' on the personal info page
+    Then I should get a provider too young error

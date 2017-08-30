@@ -2,6 +2,7 @@ package gov.medicaid.features.enrollment.steps;
 
 import gov.medicaid.features.enrollment.ui.IndividualInfoPage;
 import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
+import gov.medicaid.features.enrollment.ui.PersonalInfoPage;
 import gov.medicaid.features.enrollment.ui.SelectProviderTypePage;
 import gov.medicaid.features.general.ui.DashboardPage;
 import gov.medicaid.features.general.ui.LoginPage;
@@ -19,6 +20,7 @@ public class EnrollmentSteps {
     private SelectProviderTypePage selectProviderTypePage;
     private OrganizationInfoPage organizationInfoPage;
     private IndividualInfoPage individualInfoPage;
+    private PersonalInfoPage personalInfoPage;
 
     private SimpleDateFormat formFieldDateFormat = new SimpleDateFormat("MMddyyyy");
 
@@ -80,5 +82,10 @@ public class EnrollmentSteps {
         individualInfoPage.setIndividualOwnerSoSec("123456789");
         individualInfoPage.setIndividualOwnerDOB("01011970");
         individualInfoPage.setIndividualHireDate("01012000");
+    }
+
+    @Step
+    public void checkForTooYoungError() throws Exception {
+        personalInfoPage.checkForTooYoungError();
     }
 }

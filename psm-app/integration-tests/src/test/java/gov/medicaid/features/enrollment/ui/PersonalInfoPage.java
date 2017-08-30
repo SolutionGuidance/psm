@@ -23,6 +23,35 @@ public class PersonalInfoPage extends PageObject {
         $("[name=_02_dob]").type(dob);
     }
 
+    public void enterFirstName(String firstName) {
+        $("#firstName").type(firstName);
+    }
+
+    public void enterMiddleName(String middleName) {
+        $("#middleName").type(middleName);
+    }
+
+    public void enterLastName(String lastName) {
+        $("[name=_02_lastName]").type(lastName);
+    }
+
+    public void enterNPI(String NPI) {
+        $("[name=_02_npi]").type(NPI);
+    }
+
+    public void enterSSN(String SSN) {
+        $("[name=_02_ssn]").type(SSN);
+    }
+
+
+    public void enterEmail(String email) {
+        $("#emailAddress").type(email);
+    }
+
+    public void checkSameAsAbove() {
+        $("#sameAsAbove").click();
+    }
+
     public void clickNext() {
         $("#nextBtn").click();
     }

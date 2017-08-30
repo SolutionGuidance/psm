@@ -9,9 +9,12 @@ import gov.medicaid.features.general.ui.LoginPage;
 import net.thucydides.core.annotations.Step;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("unused")
 public class EnrollmentSteps {
@@ -44,6 +47,26 @@ public class EnrollmentSteps {
     public void selectIndividualProviderType() {
         selectProviderTypePage.selectProviderType("Podiatrist");
         selectProviderTypePage.clickNext();
+    }
+
+    @Step
+    void enterIndividualPersonalInfo() {
+        personalInfoPage.enterFirstName("FirstName");
+        personalInfoPage.enterMiddleName("MiddleName");
+        personalInfoPage.enterLastName("LastName");
+        personalInfoPage.enterNPI("0000000006");
+        personalInfoPage.enterSSN("000-00-0000");
+        personalInfoPage.enterDOB(
+                LocalDate.of(1970, 1, 1)
+        );
+        personalInfoPage.enterEmail("p1@example.com");
+        personalInfoPage.checkSameAsAbove();
+    }
+
+    @Step
+    void advanceFromIndividualPersonalInfoToLicenseInfo() {
+        personalInfoPage.clickNext();
+        assertThat(personalInfoPage.getTitle()).contains("License Information");
     }
 
     public void enterOrganizationInfo() {

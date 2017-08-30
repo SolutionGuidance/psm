@@ -18,7 +18,6 @@ public class EnrollmentStepDefinitions {
     private EnrollmentPage enrollmentPage;
     private OwnershipInfoPage ownershipInfoPage;
 
-
     @Given("^I am entering ownership information$")
     public void i_am_entering_ownership_information() {
         enrollmentSteps.selectOrganizationalProviderType();
@@ -72,4 +71,13 @@ public class EnrollmentStepDefinitions {
         assertThat(enrollmentPage.getTitle()).isEqualTo("Summary Information");
     }
 
+    @When("^I enter valid personal information$")
+    public void enter_valid_personal_information() {
+        enrollmentSteps.enterIndividualPersonalInfo();
+    }
+
+    @Then("^I can move on from the personal info page with no errors$")
+    public void i_will_move_on_from_the_personal_info_page_with_no_errors() {
+        enrollmentSteps.advanceFromIndividualPersonalInfoToLicenseInfo();
+    }
 }

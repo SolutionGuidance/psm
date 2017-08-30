@@ -35,4 +35,8 @@ Feature: Data Coverage Checks
     When I click 'next' on the Ownership Info Page
     Then the city should be accepted
 
-
+  @psm-FR-2.6
+  Scenario: Accepts valid individual provider personal information
+    Given I am on the personal info page
+    When I enter valid personal information
+    Then I can move on from the personal info page with no errors

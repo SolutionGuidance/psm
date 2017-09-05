@@ -3,6 +3,7 @@ Feature: Form and Field Validations
   against data quality rules.
 
   @issue_291
+  @psm-FR-1.2
   Scenario: Validate Tax ID Number
     Given I have started an enrollment
     And I am on the organization page

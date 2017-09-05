@@ -21,10 +21,18 @@ To add a new Selenium test, do the following:
 flow of the new test.  These feature files are in this repository in
 `psm-app/integration-tests/src/test/resources/features`.
 
-2. Write the handlers to enter the information or click the buttons in
-the `ui` subdirectory.
+2. Run the test suite after creating new scenarios in the feature
+file. Serenity writes out template code to the console for any
+statements that don't have matching step definitions. You can paste
+these template methods into your step definition class to make it easy
+to write the behavior.  Remember to remove the unneeded `throws
+Throwable` annotation that Serenity automatically adds to the template
+method definitions.
 
-3. Write the test in the `steps` subdirectory (being sure to import the
+3. Write or adjust the handlers to enter the information or click the
+buttons in the `ui` subdirectory.
+
+4. Write the test in the `steps` subdirectory (being sure to import the
 `ui` file you created, if any).
 
 See [PR #348](https://github.com/OpenTechStrategies/psm/pull/348) for an
@@ -56,4 +64,14 @@ the unit tests, do:
     $ cd {path-to-psm}/psm-app
     $ ./gradlew clean test
 
-When we add new functionality, we add unit tests along with it.
+When we add new functionality, we add unit tests along with it.  To
+specifically see the Spock tests, there are more specific Gradle tasks
+that can be run, like `./gradlew cms-business-process:check`.  You can
+also run `./gradlew tasks --all` to see all the tasks, and in particular
+there is a section labeled "Verification Tasks."  Note that Gradle will
+not run all the tests every time if it can see that neither the
+underlying code nor the tests have changed, so when you run `./gradlew
+test` you might not see test results.  However, those results are
+available.  Run `./gradlew cms-business-process:clean
+cms-business-process:test --info` to see where the reports are stored.
+

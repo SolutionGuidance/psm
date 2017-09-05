@@ -7,3 +7,6 @@ administrators or our build systems.
   documentation using Javadoc and push it to the `gh-pages` branch,
   which updates our GitHub Pages site,
   https://opentechstrategies.github.io/psm/javadoc/ .
+* `drools-microservice.sh` sets up a copy of jbpm and Guvnor on a
+  standalone server, which the core application can then be configured
+  to communicate with.

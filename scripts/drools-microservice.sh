@@ -13,8 +13,8 @@ sudo yum -y install unzip java-1.6.0-openjdk.x86_64 ant
 sudo alternatives --set java /usr/lib/jvm/jre-1.6.0-openjdk.x86_64/bin/java
 
 # Download the jbpm installer
-download_and_sha1 "https://downloads.sourceforge.net/project/jbpm/jBPM%205/jbpm-5.4.0.Final/jbpm-5.4.0.Final-installer-full.zip?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fjbpm%2Ffiles%2FjBPM%25205%2Fjbpm-5.4.0.Final%2F&ts=1503270090&use_mirror=svwh" f96ed9ee2e574325693c8ce5a0ffea76fb0de319
-mv "jbpm-5.4.0.Final-installer-full.zip?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fjbpm%2Ffiles%2FjBPM%25205%2Fjbpm-5.4.0.Final%2F&ts=1503270090&use_mirror=svwh" jbpm-installer.zip
+download_and_sha1 "https://downloads.sourceforge.net/project/jbpm/jBPM%205/jbpm-5.4.0.Final/jbpm-5.4.0.Final-installer-full.zip" f96ed9ee2e574325693c8ce5a0ffea76fb0de319
+mv jbpm-5.4.0.Final-installer-full.zip jbpm-installer.zip
 unzip jbpm-installer.zip
 rm jbpm-installer.zip
 

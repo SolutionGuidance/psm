@@ -4857,6 +4857,15 @@ p.confirm {
     word-wrap: break-word;
 }
 
+div.row > .h-adr > .p-street-address,
+div.row > .h-adr > .p-extended-address,
+div.row > .h-adr > .p-locality,
+div.row > .h-adr > .p-region,
+div.row > .h-adr > .p-postal-code {
+    float: none;
+    width: auto;
+}
+
 .summaryPageWrapper .row , #printModal .row {
 	margin-top: 12px;
 	line-height: 18px;

@@ -82,15 +82,15 @@
 <div class="row">
     <label>Remittance Sequence</label>
     <span class="floatL"><b>:</b></span>
-    <c:choose>
+    <span><c:choose>
         <c:when test="${requestScope['_05_remittanceSequence'] eq 'PATIENT_ACCOUNT_OR_OWN_REFERENCE_ORDER'}">
-      <span>Patient Account or Own Reference Number Order</span>
+            Patient Account or Own Reference Number Order
         </c:when>
         <c:when test="${requestScope['_05_remittanceSequence'] eq 'DHS_TRANSACTION_CONTROL_ORDER'}">
-      <span>DHS Transaction Control Number Order</span>
+            DHS Transaction Control Number Order
         </c:when>
         <c:when test="${requestScope['_05_remittanceSequence'] eq 'RECIPIENT_MHCP_ID_NUMBER_ORDER'}">
-      <span>Recipient MHCP ID Number Order</span>
+            Recipient MHCP ID Number Order
         </c:when>
-    </c:choose>
+    </c:choose></span>
 </div>

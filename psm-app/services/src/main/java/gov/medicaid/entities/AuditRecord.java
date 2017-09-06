@@ -41,7 +41,7 @@ public class AuditRecord {
     private long id;
 
     /**
-     * User name.
+     * Username.
      */
     private String username;
 

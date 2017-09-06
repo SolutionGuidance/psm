@@ -131,7 +131,7 @@ public class CMSLDAPUserDetailsMapper extends LdapUserDetailsMapper {
      * Wraps the user details to contain tracking information.
      *
      * @param context the directory context
-     * @param username the user name
+     * @param username the username
      * @param authority the granted authorities
      * @return the user details
      */

@@ -36,7 +36,7 @@
                                 <div class="section" id="updateProfile">
                                     <div class="wholeCol">
                                         <div class="row">
-                                            <label>User Name</label>
+                                            <label>Username</label>
                                             <span class="floatL"><b>:</b></span>
                                             <form:hidden path="username" />
                                             <span><c:out value="${user.username}"/></span>

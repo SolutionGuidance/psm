@@ -64,7 +64,7 @@ public abstract class BaseServiceAdminController {
     }
 
     /**
-     * Get user name from the session.
+     * Get username from the session.
      * @param request the http request
      * @return the username
      */

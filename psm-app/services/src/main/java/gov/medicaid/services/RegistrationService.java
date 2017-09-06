@@ -40,7 +40,7 @@ public interface RegistrationService {
     CMSUser findByExternalUsername(SystemId systemName, String username) throws PortalServiceException;
 
     /**
-     * Retrieves the user with the given user name.
+     * Retrieves the user with the given username.
      *
      * @param username the username to search for
      * @return the matching user, null if not found

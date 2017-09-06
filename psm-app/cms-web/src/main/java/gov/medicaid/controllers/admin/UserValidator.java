@@ -115,7 +115,7 @@ public class UserValidator extends BaseValidator implements Validator {
         // perform format validations
         rejectIfEmpty(errors, "firstName", "field.required", "First Name");
         rejectIfEmpty(errors, "lastName", "field.required", "Last Name");
-        rejectIfEmpty(errors, "username", "field.required", "User Name");
+        rejectIfEmpty(errors, "username", "field.required", "Username");
         rejectIfEmpty(errors, "email", "field.required", "Email");
         rejectIfEmpty(errors, "role.description", "field.required", "Role");
 
@@ -137,7 +137,7 @@ public class UserValidator extends BaseValidator implements Validator {
         }
 
         if (user.getUsername() != null && user.getUsername().length() > USERNAME_MAX_LENGTH) {
-            rejectValue(errors, "username", "length.exceeded", "User Name", USERNAME_MAX_LENGTH);
+            rejectValue(errors, "username", "length.exceeded", "Username", USERNAME_MAX_LENGTH);
         }
 
         // perform logical validations

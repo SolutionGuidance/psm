@@ -26,7 +26,7 @@ import java.util.List;
 public class UserSearchCriteria extends SearchCriteria {
 
     /**
-     * The user name.
+     * The username.
      */
     private String username;
 

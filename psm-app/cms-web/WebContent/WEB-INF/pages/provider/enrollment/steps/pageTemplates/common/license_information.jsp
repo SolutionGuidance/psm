@@ -1,5 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<table cellpadding="0" cellspacing="0" class="generalTable noInput">
+<table
+        cellpadding="0"
+        cellspacing="0"
+        class="generalTable noInput"
+        id="licenseTable"
+>
     <colgroup>
         <col width="28"/>
         <col width="184"/>

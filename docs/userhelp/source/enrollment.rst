@@ -1,18 +1,15 @@
 Enrollment
 ==========
 
-This help section explains what an enrollment is, tells you what you
-need to do to create one and submit it, and answers common questions
-about confusing terms.
+What information do I need to apply to enroll?
+----------------------------------------------
 
-What information do I need to create an enrollment?
----------------------------------------------------
+First, you'll need to register for an account (see `"how do I register
+for an account on this
+site?" <account-help.html#how-do-i-register-for-an-account-on-this-site>`__).
+Then you'll need to click the button to create a new enrollment.
 
-First, you'll need to register for an account (see "how do I register
-for an account on this site?"). Then you'll need to click the button to
-create a new enrollment.
-
-An enrollment includes:
+An application includes:
 
 -  provider/organization information, such as provider type, name, NPI,
    and contact information
@@ -34,16 +31,17 @@ An enrollment includes:
 What are the steps in the enrollment process?
 ---------------------------------------------
 
--  A provider, service agent, or service admin creates and submits a new
-   enrollment for a particular provider. (A user can save a draft
-   enrollment and come back later to finish and submit it.)
+-  A provider, a service agent, or a state Medicaid agency staffer
+   creates and submits a new enrollment application for a particular
+   provider. (A user can save a draft application and come back later to
+   finish and submit it.)
 
--  A service admin reviews the enrollment, using links provided by the
-   PSM to verify enrollment details, and decides whether to approve or
-   reject the submission.
+-  A state Medicaid agency staffer reviews the enrollment, using links
+   provided by the PSM to verify enrollment details, and decides whether
+   to approve or reject the submission.
 
--  After an enrollment has been approved, a service admin can select and
-   renew it.
+-  After an enrollment has been approved, a state Medicaid agency
+   staffer can select and renew it.
 
 Who can view enrollments?
 -------------------------
@@ -51,40 +49,43 @@ Who can view enrollments?
 A provider can view their own enrollments (including draft, rejected,
 approved, and pending enrollments).
 
-A service agent or service admin can view all enrollments (including
-draft, rejected, approved, and pending enrollments).
+A service agent or state Medicaid agency staffer can view all
+enrollments (including draft, rejected, approved, and pending
+enrollments). (`The PSM may limit this ability in a future
+version. <https://github.com/OpenTechStrategies/psm/issues/10>`__)
 
 A system admin should not be able to view any enrollments. `The PSM
 currently allows a system admin to view enrollments, but will remove
 that capability in a future
 version. <https://github.com/OpenTechStrategies/psm/issues/10>`__
 
-Which enrollment information can a provider, service agent, or service admin modify or delete?
-----------------------------------------------------------------------------------------------
+Which enrollment information can a provider, service agent, or state Medicaid agency staffer modify or delete?
+--------------------------------------------------------------------------------------------------------------
 
 A provider can modify a draft enrollment, but can't delete it. A
 provider also cannot delete or modify an enrollment after submitting it
 (once it is "pending", "approved", or "denied").
 
-A service agent or service admin can modify a draft or pending
-enrollment, but cannot delete any enrollments.
+A service agent or state Medicaid agency staffer can modify a draft or
+pending enrollment, but cannot delete any enrollments.
 
-What will a provider see or receive when enrollment is pending, modified, approved, or rejected?
-------------------------------------------------------------------------------------------------
+How will a provider learn when their enrollment changes status?
+---------------------------------------------------------------
 
 When you log into the PSM, you'll see any enrollments you've submitted
 or started drafting via your PSM user account. You'll be able to see the
 status of each enrollment.
 
 Right now, a provider does not receive any email notifications about
-their enrollment. (A future version of the PSM will send email
-notifications to providers when the status of your enrollment changes.)
+their enrollment. (`A future version of the PSM will send email
+notifications to providers when the status of your enrollment
+changes. <https://github.com/OpenTechStrategies/psm/issues/341>`__)
 
 Can I create an enrollment for someone else?
 --------------------------------------------
 
-A service agent or a service admin can create an enrollment for someone
-else.
+A service agent or a state Medicaid agency staffer can create an
+enrollment for someone else.
 
 Can I start an enrollment now and finish it later, or do I have to start and submit it all in one session?
 ----------------------------------------------------------------------------------------------------------
@@ -98,13 +99,19 @@ under Enrollments.
 Can I start a draft enrollment and then have someone else finish it for me?
 ---------------------------------------------------------------------------
 
-Service agents and service admins can do this, but providers cannot.
+Service agents and state Medicaid agency staffers can finish draft
+enrollments started by other people. A provider can save a draft
+enrollment and then phone or otherwise contact a service agent or the
+state Medicaid agency to ask them to help finish it for you. One
+provider cannot access, and therefore cannot finish and submit, a draft
+enrollment started by another provider.
 
-How do we renew an enrollment or update an enrollment?
-------------------------------------------------------
+How do I renew an enrollment or update an enrollment?
+-----------------------------------------------------
 
-Right now that's not something the PSM can do, but it'll be possible in
-a future version.
+Right now that's not something the PSM can do, but `it'll be possible in
+a future
+version. <https://github.com/OpenTechStrategies/psm/issues/401>`__
 
 I've already submitted an enrollment and it's pending, but I need to change something; what can I do?
 -----------------------------------------------------------------------------------------------------
@@ -116,15 +123,13 @@ How will I find out when my enrollment is accepted or rejected?
 ---------------------------------------------------------------
 
 Right now, this site does not notify you via email or paper mail when
-the state accepts or rejects an enrollment you have submitted. This will
-change in a future version of the Provider Screening Module.
+the state accepts or rejects an enrollment you have submitted. `This
+will change in a future version of the Provider Screening
+Module. <https://github.com/OpenTechStrategies/psm/issues/341>`__
 
 When you log into the PSM, you'll see any enrollments you've submitted
-or started drafting via your PSM user account. You'll be able to see the
-status of each enrollment. We recommend you log in and check regularly
-for status updates.
-
-It is your responsibility to check this regularly.
+or saved as a draft. You'll be able to see the status of each
+enrollment.
 
 What can I do to reduce the risk of delay or rejection for an enrollment?
 -------------------------------------------------------------------------
@@ -222,8 +227,8 @@ When viewing a pending enrollment, on the "Review Enrollment" screen,
 look under the "License Information" heading. Next to a license or
 certification number (issued by the licensure or certification
 authority), you'll see a "View" link. Click that to access the scanned
-image of the provider's license or certification. Your PC will probably
-automatically open a program to view the file, such as:
+image of the provider's license or certification. Your computer will
+probably automatically open a program to view the file, such as:
 
 -  PDF files: Adobe Acrobat
 -  PNG, JPEG, BMP, GIF and TIF files: built-in image viewer
@@ -239,5 +244,6 @@ How do I end (terminate) my own active enrollment?
 --------------------------------------------------
 
 Currently the PSM does not give you a way to terminate an approved
-enrollment, but a future version of the PSM will. Please contact the
-state Medicaid office directly to terminate an enrollment.
+enrollment, but `a future version of the PSM
+will <https://github.com/OpenTechStrategies/psm/issues/407>`__. Please
+contact the state Medicaid office directly to terminate an enrollment.

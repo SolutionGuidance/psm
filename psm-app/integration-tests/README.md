@@ -7,7 +7,7 @@ drive Selenium tests. The output from Serenity is an interactive dashboard which
 shows the states of all of the tests and captures screenshots of the web page
 taken as the tests are being run.
 
-# Preparation to Run Tests
+# Preparation to Run Tests Locally
 The tests will launch a browser against http://localhost:8080/cms so make sure
 that your wildfly server is running locally and the psm app has been deployed.
 
@@ -15,8 +15,9 @@ Serenity supports multiple browsers from which the tests will be run. The choice
 of browser as well as other settings is made in `serenity.properties` in the
 root directory of the integration-tests module.
 
-The repo contains a template version of this file which you will need to edit
-to fit your needs. Make a copy of `serenity.properties.template` as `serenity.properties`
+The repo contains a template version of this file which you will need to
+edit to fit your needs. Make a copy of `serenity.properties.template` as
+`serenity.properties` and edit the latter file.
 
 The most straightforward browser configuration is Chrome with the chromedriver.
 It can be run in GUI mode so you can follow along with the tests, or headless
@@ -32,10 +33,12 @@ For Linux distros you will also need to install `libgconf-2-4`.
 `sudo apt-get install -y libgconf-2-4`
 
 # Running the Tests
-To run the tests run the gradle target `test aggregate`
+To run the tests run:
 
-It will run the tests and put the generated dashboard into
-`target/site/serenity`
+    $ ./gradlew test aggregate
+
+This command will run the tests and put the generated dashboard into
+`target/site/serenity`.
 
 
 # Other Browser Configurations
@@ -44,10 +47,13 @@ correct configuration for each browser and operating system can be a challenge.
 The following sections document what works.
 
 ## Headless Chrome & Firefox
-For testing the system in a continuous integration environment it is necessary
-that the application can be run without an attached monitor. Selenium offers
-support for this through a variety of mechanisms.  The currently suggested
-approach is using Xvfb, an X virtual framebuffer.
+
+For testing the system in a continuous integration environment it is
+necessary that the application can be run without an attached
+monitor. Selenium offers support for this through a variety of
+mechanisms.  The currently suggested approach is using
+[Xvfb](https://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml), an
+X virtual framebuffer.
 
 ### Install Xvfb
 In Linux we need to find the relevant package names for the package manager and
@@ -58,23 +64,24 @@ The service can be started from the command line as:
 
   `Xvfb :10 -ac &`
 
-This starts the service off as Display :10 and runs it in the background.
+This starts the service as Display :10 and runs it in the background.
 
 In order for `gradle.build` to select the correct X Display, it expects an
 environment variable to be set called `XVFB_DISPLAY`. Set it to `:10` before
-starting the gradle task.
+starting the gradle task like so:
 
-`env XVFB_DISPLAY=":10" ./gradlew test aggregate`
+    $ env XVFB_DISPLAY=":10" ./gradlew test aggregate
 
 ## Interactive Chrome on Linux
-On linux the only way we've found to force an interactive chrome session is
+On Linux the only way we've found to force an interactive Chrome session is
 to delete the line in `build.gradle` in the test settings
 for `integration-tests`
 
 `environment "DISPLAY", System.getenv('XVFB_DISPLAY')`
 
-Delete this line and re-run the tests. You should see chrome pop up on your
-screen
+Delete this line and re-run the tests. You should see Chrome pop up on your
+screen and run through the tests.
+
 ## Firefox
 Selenium can only interact with specific versions of Firefox. The current version
 of the library requires Firefox version 46.
@@ -83,9 +90,10 @@ To install this version, download the tar file from [https://ftp.mozilla.org/pub
 
 UnTAR this file in the directory above the PSM repo on your workstation.
 
-In order for `gradle.build` to find the correct version of Firefox, it expects an
-environment variable to be set called `FIREFOX_HOME`. Set it to the path to
-your installed firefox binary before starting the gradle task.
+In order for `gradle.build` to find the correct version of Firefox, it
+expects an environment variable to be set called `FIREFOX_HOME`. Set it
+to the path to your installed Firefox binary (the newly downloaded file)
+before starting the gradle task.
 
 ## Running Headless with Phantom JS
 The PhanomJS driver was a popular headless web driver used for Selenium tests.
@@ -93,8 +101,9 @@ This product no longer enjoys much support and it has been deprecated.
 Nevertheless, it might be useful in some environments.
 
 To run these tests locally you will need a copy of the PhantomJS driver
-executable. You can download it from http://phantomjs.org/download.html the
-tests are configured in `serenity.properties` to find this driver in the
-directory above the psm repo. The committed version assumes this is running on
-linux and the driver is in `bin` inside a directory called
-`phantomjs-2.1.1-linux-x86_64`.
+executable. You can download it from
+http://phantomjs.org/download.html. The tests are configured in
+`serenity.properties` to find this driver in the directory above the
+`psm` dir (where this repository is checked out). The committed version
+assumes this is running on Linux and the driver is in `bin` inside a
+directory called `phantomjs-2.1.1-linux-x86_64`.

@@ -16,9 +16,10 @@ import java.time.format.DateTimeFormatter;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features = "src/test/resources/features")
 public class IntegrationTests {
+    public static final DateTimeFormatter DATE_FORMATTER =
+            DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
     public static String format(LocalDate date) {
-        return date.format(
-                DateTimeFormatter.ofPattern("MM/dd/yyyy")
-        );
+        return date.format(DATE_FORMATTER);
     }
 }

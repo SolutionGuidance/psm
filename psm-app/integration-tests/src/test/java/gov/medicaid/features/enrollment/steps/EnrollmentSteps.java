@@ -1,9 +1,11 @@
 package gov.medicaid.features.enrollment.steps;
 
 import gov.medicaid.features.enrollment.ui.IndividualInfoPage;
+import gov.medicaid.features.enrollment.ui.IndividualSummaryPage;
 import gov.medicaid.features.enrollment.ui.LicenseInfoPage;
 import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
 import gov.medicaid.features.enrollment.ui.PersonalInfoPage;
+import gov.medicaid.features.enrollment.ui.PracticeInfoPage;
 import gov.medicaid.features.enrollment.ui.SelectProviderTypePage;
 import gov.medicaid.features.general.ui.DashboardPage;
 import gov.medicaid.features.general.ui.LoginPage;
@@ -20,6 +22,40 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("unused")
 public class EnrollmentSteps {
+    private static final String FIRST_NAME = "FirstName";
+    private static final String MIDDLE_NAME = "MiddleName";
+    private static final String LAST_NAME = "LastName";
+    private static final String NPI = "0000000006";
+    private static final String SSN = "000-00-0000";
+    private static final LocalDate DATE_OF_BIRTH =
+            LocalDate.of(1970, 1, 1);
+    private static final String EMAIL = "p1@example.com";
+
+    private static final String LICENSE_TYPE = "Speech Language Pathologist";
+    private static final String LICENSE_NUMBER = "1";
+    private static final LocalDate LICENSE_ISSUE_DATE =
+            LocalDate.of(2002, 2, 2);
+    private static final LocalDate LICENSE_RENEWAL_DATE =
+            LocalDate.of(2020, 2, 2);
+    private static final String LICENSE_ISSUING_STATE_FULL = "Alaska";
+    private static final String LICENSE_ISSUING_STATE_ABBR = "AK";
+
+    private static final String PRIVATE_PRACTICE_NAME = "My Private Practice";
+    private static final String PRACTICE_GROUP_NPI = "1111111112";
+    private static final LocalDate PRACTICE_EFFECTIVE_DATE =
+            LocalDate.of(2000, 1, 1);
+    private static final String PRACTICE_ADDRESS_1 = "1234 Main St";
+    private static final String PRACTICE_ADDRESS_2 = "Suite 56";
+    private static final String PRACTICE_CITY = "Springfield";
+    private static final String PRACTICE_STATE_FULL = "Illinois";
+    private static final String PRACTICE_STATE_ABBR = "IL";
+    private static final String PRACTICE_ZIP = "12345-6789";
+    private static final String PRACTICE_PHONE = "444-555-6666";
+    private static final String PRACTICE_FEIN = "12-3456789";
+    private static final String PRACTICE_STATE_TAX_ID = "1234567";
+    private static final String PRACTICE_YEAR_END = "12/31";
+    private static final String PRACTICE_EFT_VENDOR_NUMBER = "1234567890-123";
+
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
     private SelectProviderTypePage selectProviderTypePage;
@@ -27,6 +63,8 @@ public class EnrollmentSteps {
     private IndividualInfoPage individualInfoPage;
     private PersonalInfoPage personalInfoPage;
     private LicenseInfoPage licenseInfoPage;
+    private PracticeInfoPage practiceInfoPage;
+    private IndividualSummaryPage individualSummaryPage;
 
     private SimpleDateFormat formFieldDateFormat = new SimpleDateFormat("MMddyyyy");
 
@@ -54,15 +92,13 @@ public class EnrollmentSteps {
 
     @Step
     void enterIndividualPersonalInfo() {
-        personalInfoPage.enterFirstName("FirstName");
-        personalInfoPage.enterMiddleName("MiddleName");
-        personalInfoPage.enterLastName("LastName");
-        personalInfoPage.enterNPI("0000000006");
-        personalInfoPage.enterSSN("000-00-0000");
-        personalInfoPage.enterDOB(
-                LocalDate.of(1970, 1, 1)
-        );
-        personalInfoPage.enterEmail("p1@example.com");
+        personalInfoPage.enterFirstName(FIRST_NAME);
+        personalInfoPage.enterMiddleName(MIDDLE_NAME);
+        personalInfoPage.enterLastName(LAST_NAME);
+        personalInfoPage.enterNPI(NPI);
+        personalInfoPage.enterSSN(SSN);
+        personalInfoPage.enterDOB(DATE_OF_BIRTH);
+        personalInfoPage.enterEmail(EMAIL);
         personalInfoPage.checkSameAsAbove();
     }
 
@@ -123,11 +159,11 @@ public class EnrollmentSteps {
     @Step
     public void enterIndividualLicenseInfo() {
         licenseInfoPage.addLicense();
-        licenseInfoPage.addLicenseType("Speech Language Pathologist");
-        licenseInfoPage.enterLicenseNumber("1");
-        licenseInfoPage.enterIssueDate(LocalDate.of(2002, 2, 2));
-        licenseInfoPage.enterRenewalDate(LocalDate.of(2020, 2, 2));
-        licenseInfoPage.enterIssueState("Alaska");
+        licenseInfoPage.addLicenseType(LICENSE_TYPE);
+        licenseInfoPage.enterLicenseNumber(LICENSE_NUMBER);
+        licenseInfoPage.enterIssueDate(LICENSE_ISSUE_DATE);
+        licenseInfoPage.enterRenewalDate(LICENSE_RENEWAL_DATE);
+        licenseInfoPage.enterIssueState(LICENSE_ISSUING_STATE_FULL);
     }
 
     @Step
@@ -139,5 +175,102 @@ public class EnrollmentSteps {
     public void advanceFromIndividualLicenseInfoToPracticeInfo() {
         licenseInfoPage.clickNext();
         assertThat(licenseInfoPage.getTitle()).contains("Practice Information");
+    }
+
+    @Step
+    void enterIndividualPrivatePracticeInfo() {
+        practiceInfoPage.checkYesPrivatePractice();
+        practiceInfoPage.checkNoGroupPractice();
+        practiceInfoPage.enterPracticeName(PRIVATE_PRACTICE_NAME);
+        practiceInfoPage.enterGroupNPI(PRACTICE_GROUP_NPI);
+        practiceInfoPage.enterEffectiveDate(PRACTICE_EFFECTIVE_DATE);
+        practiceInfoPage.enterPracticeAddress1(PRACTICE_ADDRESS_1);
+        practiceInfoPage.enterPracticeAddress2(PRACTICE_ADDRESS_2);
+        practiceInfoPage.enterCity(PRACTICE_CITY);
+        practiceInfoPage.enterState(PRACTICE_STATE_FULL);
+        practiceInfoPage.enterZipCode(PRACTICE_ZIP);
+        practiceInfoPage.enterPhoneNumber(PRACTICE_PHONE);
+        practiceInfoPage.clickSameAsAbove();
+        practiceInfoPage.enterFein(PRACTICE_FEIN);
+        practiceInfoPage.enterStateTaxId(PRACTICE_STATE_TAX_ID);
+        practiceInfoPage.enterFiscalYearEnd(PRACTICE_YEAR_END);
+        practiceInfoPage.enterEftVendorNumber(PRACTICE_EFT_VENDOR_NUMBER);
+        practiceInfoPage.checkFirstRemittanceSequence();
+    }
+
+    @Step
+    void advanceFromIndividualPracticeInfoToSummaryPage() {
+        practiceInfoPage.clickNext();
+        assertThat(individualSummaryPage.getTitle()).contains("Summary Information");
+    }
+
+    @Step
+    void validatePersonalSummaryInformation() {
+        assertThat(individualSummaryPage.getFirstName())
+                .isEqualToIgnoringWhitespace(FIRST_NAME);
+        assertThat(individualSummaryPage.getMiddleName())
+                .isEqualToIgnoringWhitespace(MIDDLE_NAME);
+        assertThat(individualSummaryPage.getLastName())
+                .isEqualToIgnoringWhitespace(LAST_NAME);
+        assertThat(individualSummaryPage.getNPI())
+                .isEqualToIgnoringWhitespace(NPI);
+        assertThat(individualSummaryPage.getSSN())
+                .isEqualToIgnoringWhitespace(SSN);
+        assertThat(individualSummaryPage.getDOB())
+                .isEqualTo(DATE_OF_BIRTH);
+        assertThat(individualSummaryPage.getEmail())
+                .isEqualToIgnoringWhitespace(EMAIL);
+    }
+
+    @Step
+    void validateLicenseSummaryInfo() {
+        assertThat(individualSummaryPage.isProviderAtPublicHealthServiceIndianHospital())
+                .isFalse();
+        assertThat(individualSummaryPage.getFirstLicenseType())
+                .isEqualToIgnoringWhitespace(LICENSE_TYPE);
+        assertThat(individualSummaryPage.getFirstLicenseNumber())
+                .isEqualToIgnoringWhitespace(LICENSE_NUMBER);
+        assertThat(individualSummaryPage.getFirstLicenseOriginalIssueDate())
+                .isEqualTo(LICENSE_ISSUE_DATE);
+        assertThat(individualSummaryPage.getFirstLicenseRenewalEndDate())
+                .isEqualTo(LICENSE_RENEWAL_DATE);
+        assertThat(individualSummaryPage.getFirstLicenseIssuingState())
+                .isEqualToIgnoringWhitespace(LICENSE_ISSUING_STATE_ABBR);
+    }
+
+    @Step
+    void validatePracticeSummaryInformation() {
+        assertThat(individualSummaryPage.isPrivatePractice()).isTrue();
+        assertThat(individualSummaryPage.isPartOfGroupPractice()).isFalse();
+        assertThat(individualSummaryPage.getPrivatePracticeName())
+                .isEqualToIgnoringWhitespace(PRIVATE_PRACTICE_NAME);
+        assertThat(individualSummaryPage.getGroupNPI())
+                .isEqualToIgnoringWhitespace(PRACTICE_GROUP_NPI);
+        assertThat(individualSummaryPage.getEffectiveDate())
+                .isEqualTo(PRACTICE_EFFECTIVE_DATE);
+        assertThat(individualSummaryPage.getPracticeAddressLine1())
+                .isEqualToIgnoringWhitespace(PRACTICE_ADDRESS_1);
+        assertThat(individualSummaryPage.getPracticeAddressLine2())
+                .isEqualToIgnoringWhitespace(PRACTICE_ADDRESS_2);
+        assertThat(individualSummaryPage.getPracticeCity())
+                .isEqualToIgnoringWhitespace(PRACTICE_CITY);
+        assertThat(individualSummaryPage.getPracticeState())
+                .isEqualToIgnoringWhitespace(PRACTICE_STATE_ABBR);
+        assertThat(individualSummaryPage.getPracticeZip())
+                .isEqualToIgnoringWhitespace(PRACTICE_ZIP);
+        assertThat(individualSummaryPage.getPracticePhoneNumber())
+                .isEqualToIgnoringWhitespace(PRACTICE_PHONE);
+        assertThat(individualSummaryPage.isBillingAddressSameAsPracticeAddress())
+                .isTrue();
+        assertThat(individualSummaryPage.getFein())
+                .isEqualToIgnoringWhitespace(PRACTICE_FEIN);
+        assertThat(individualSummaryPage.getStateTaxId())
+                .isEqualToIgnoringWhitespace(PRACTICE_STATE_TAX_ID);
+        assertThat(individualSummaryPage.getFiscalYearEnd())
+                .isEqualToIgnoringWhitespace(PRACTICE_YEAR_END);
+        assertThat(individualSummaryPage.getEftVendorNumber())
+                .isEqualToIgnoringWhitespace(PRACTICE_EFT_VENDOR_NUMBER);
+        assertThat(individualSummaryPage.getRemittanceSequence())
+                .isEqualToIgnoringWhitespace("Patient Account or Own Reference Number Order");
     }
 }

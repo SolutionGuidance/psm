@@ -9,7 +9,7 @@
 
 # Background and Current Deployment Status
 
-2017-07-03: The PSM is not yet ready for production deployment,
+2017-09-08: The PSM is not yet ready for production deployment,
 but is ready for development deployment.
 
 The PSM was originally developed to run in the open source web
@@ -363,6 +363,10 @@ gradle:
     ./gradlew cms-web:apiDocs
 
 The generated documentation will go into `psm-app/cms-web/build/reports/api-docs`.
+
+## Run automated tests
+
+See `docs/TESTING.md` for instructions on running the automated tests.
 
 # Production Deployment
 

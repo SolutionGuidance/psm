@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -25,7 +26,7 @@
                         Enrollment
                     </div>
                     <h1>Dashboard</h1>
-                    
+
                     <div class="tabSection">
                         <c:set var="paginatedResults" value="${results}" />
                         <div class="tabHead">
@@ -35,14 +36,15 @@
                                     <a class="tab ${statusFilter eq 'Pending' ? 'active' : ''}" href="<c:url value="/provider/dashboard/pending" />"><span class="aR"><span class="aM">Pending</span></span></a>
                                     <a class="tab ${statusFilter eq 'Approved' ? 'active' : ''}" href="<c:url value="/provider/dashboard/approved" />"><span class="aR"><span class="aM">Approved</span></span></a>
                                     <a class="tab ${statusFilter eq 'Rejected' ? 'active' : ''}" href="<c:url value="/provider/dashboard/rejected" />"><span class="aR"><span class="aM">Denied</span></span></a>
-                                    <a class="purpleBtn" href="<c:url value="/provider/enrollment/start" />"><span class="btR"><span class="btM">Create New Enrollment</span></span></a>
+                                    <h:create-enrollment-button
+                                       cssClass="purpleBtn" />
                                 </div>
                             </div>
                         </div>
                         <!-- /.tabHead -->
                         <div class="tabContent" id="tabDraft">
                             <c:url var="exportResultsURL" value="/provider/dashboard/export" />
-                        
+
                             <div class="pagination">
                                 <div class="left">
                                     <%@include file="/WEB-INF/pages/includes/pagination_details.jsp" %>
@@ -59,12 +61,12 @@
                             <div class="filterPanel" style="display: ${param.filterViewState eq 'visible' ? 'block' : 'none'};">
                                 <div class="floatW">
                                     <input type="hidden" id="filterViewStateId" name="filterViewState" value="${param.filterViewState eq 'visible' ? 'visible' : 'hidden'}" />
-							        <form:hidden path="pageSize" />
-							        <form:hidden path="pageNumber" />
-							        <form:hidden path="sortColumn" />
-							        <form:hidden path="ascending" />
+                                    <form:hidden path="pageSize" />
+                                    <form:hidden path="pageNumber" />
+                                    <form:hidden path="sortColumn" />
+                                    <form:hidden path="ascending" />
                                     <input type="hidden" name="status" value="${statusFilter}" />
-                                    
+
                                     <div class="leftCol">
                                         <div class="row">
                                             <label>NPI/UMPI</label>
@@ -124,7 +126,7 @@
                                     <div class="tabM">
                                         <div class="pagination">
                                             <div class="left">
-                                                <%@include file="/WEB-INF/pages/includes/pagination_details.jsp" %>                                                
+                                                <%@include file="/WEB-INF/pages/includes/pagination_details.jsp" %>
                                             </div>
                                             <div class="right">
                                                 <%@include file="/WEB-INF/pages/includes/pagination_links.jsp" %>
@@ -138,7 +140,7 @@
                         </div>
                         <!-- /#tabDraft -->
                     </div>
-                    <!-- /.tabSection -->                    
+                    <!-- /.tabSection -->
                 </div>
             </div>
             <!-- /#mainContent -->
@@ -151,25 +153,24 @@
         <!-- /#modalBackground-->
         <div id="modalBackground"></div>
         <div id="new-modal">
-        
+
         <div id="printModal" class="outLay">
-            <div class="inner"> 
+            <div class="inner">
                 <!-- title -->
                 <div class="modal-title">
-                    <a href="javascript:;" class="greyBtn"><span class="btR"><span class="btM"><img src="<c:url value="/i/icon-x.png" />" alt="" />Close</span></span></a> 
+                    <a href="javascript:;" class="greyBtn"><span class="btR"><span class="btM"><img src="<c:url value="/i/icon-x.png" />" alt="" />Close</span></span></a>
                     <a href="javascript:;" class="purpleBtn printBtn"><span class="btR"><span class="btM"><img src="<c:url value="/i/icon-print2.png" />" alt="" />Print</span></span></a>
                     <h3>Print Preview</h3>
                 </div>
-                <!-- End .modal-title --> 
+                <!-- End .modal-title -->
                 <!-- content -->
                 <div class="modal-content">
-                    
+
                 </div>
                 <!-- End .content -->
             </div>
         </div>
         <!-- /#printModal-->
-        
         </div>
     </body>
 </html>

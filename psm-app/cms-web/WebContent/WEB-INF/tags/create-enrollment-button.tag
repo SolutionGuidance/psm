@@ -3,6 +3,7 @@
 <a
     href="<c:url value="/provider/enrollment/start" />"
     class="${cssClass}"
+    id="createNewEnrollment"
     >
   <span class="btR"><span class="btM">Create New Enrollment</span></span>
 </a>

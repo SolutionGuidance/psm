@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DashboardPage extends PageObject {
     public void clickOnNewEnrollment() {
-        $("#mainContent > div > div.tabContent.contentT > div.tableHeader.tableHeader2 > a").click();
+        $("#createNewEnrollment").click();
         assertThat(getTitle().equals("Provider Type Page"));
     }
 

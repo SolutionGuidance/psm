@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 
 <div class="row">
     <label>Primary Practice Name</label>
@@ -18,12 +19,13 @@
 <div class="row">
     <label>Practice Address</label>
     <span class="floatL"><b>:</b></span>
-    <span>
-        <c:if test="${not empty requestScope['_06_addressLine1']}"><c:out value="${requestScope['_06_addressLine1']}" /><br /></c:if>
-        <c:out value="${requestScope['_06_addressLine2']}" /><br />
-        ${requestScope['_06_city']}, ${requestScope['_06_state']} ${requestScope['_06_zip']}
-        <c:set var="county" value="${requestScope['_06_county']}" /><c:if test="${not empty county}">,</c:if>${county} 
-    </span>
+    <h:address name="practice"
+        streetAddress="${requestScope['_06_addressLine1']}"
+        extendedAddress="${requestScope['_06_addressLine2']}"
+        city="${requestScope['_06_city']}"
+        state="${requestScope['_06_state']}"
+        postalCode="${requestScope['_06_zip']}"
+        county="${requestScope['_06_county']}" />
 </div>
 <div class="row">
     <label>Practice Phone Number</label>
@@ -48,10 +50,11 @@
         <span>Same As Above</span>
     </c:if>
     <c:if test="${requestScope['_06_reimbursementSameAsPrimary'] ne 'Y'}">
-        <span>
-            <c:if test="${not empty requestScope['_06_reimbursementAddressLine1']}"><c:out value="${requestScope['_06_reimbursementAddressLine1']}" /><br /></c:if>
-            <c:out value="${requestScope['_06_reimbursementAddressLine2']}" /><br />
-            ${requestScope['_06_reimbursementCity']}, ${requestScope['_06_reimbursementState']} ${requestScope['_06_reimbursementZip']}
-        </span>
+        <h:address name="billing"
+            streetAddress="${requestScope['_06_reimbursementAddressLine1']}"
+            extendedAddress="${requestScope['_06_reimbursementAddressLine2']}"
+            city="${requestScope['_06_reimbursementCity']}"
+            state="${requestScope['_06_reimbursementState']}"
+            postalCode="${requestScope['_06_reimbursementZip']}" />
     </c:if>
 </div>

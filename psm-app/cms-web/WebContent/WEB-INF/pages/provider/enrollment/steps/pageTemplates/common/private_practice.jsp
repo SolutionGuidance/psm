@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
+
 <div class="row">
     <label>Private Practice Name</label>
     <span class="floatL"><b>:</b></span>
@@ -17,12 +19,13 @@
 <div class="row">
     <label>Practice Address</label>
     <span class="floatL"><b>:</b></span>
-    <span>
-        <c:if test="${not empty requestScope['_05_addressLine1']}"><c:out value="${requestScope['_05_addressLine1']}" /><br /></c:if>
-        <c:out value="${requestScope['_05_addressLine2']}" /><br />
-        ${requestScope['_05_city']}, ${requestScope['_05_state']} ${requestScope['_05_zip']}
-        <c:set var="county" value="${requestScope['_05_county']}" /><c:if test="${not empty county}">,</c:if>${county}
-    </span>
+    <h:address name="practice"
+        streetAddress="${requestScope['_05_addressLine1']}"
+        extendedAddress="${requestScope['_05_addressLine2']}"
+        city="${requestScope['_05_city']}"
+        state="${requestScope['_05_state']}"
+        postalCode="${requestScope['_05_zip']}"
+        county="${requestScope['_05_county']}" />
 </div>
 <div class="row">
     <label>Practice Phone Number</label>
@@ -43,17 +46,17 @@
 <div class="row">
     <label>Billing Address</label>
     <span class="floatL"><b>:</b></span>
-    
     <c:if test="${requestScope['_05_billingSameAsPrimary'] eq 'Y'}">
         <span>Same As Above</span>
     </c:if>
     <c:if test="${requestScope['_05_billingSameAsPrimary'] ne 'Y'}">
-        <span>
-            <c:if test="${not empty requestScope['_05_addressLine1']}"><c:out value="${requestScope['_05_billingAddressLine1']}" /><br /></c:if>
-            <c:out value="${requestScope['_05_billingAddressLine2']}" /><br />
-            ${requestScope['_05_billingCity']}, ${requestScope['_05_billingState']} ${requestScope['_05_billingZip']}
-            <c:set var="county" value="${requestScope['_05_billingCounty']}" /><c:if test="${not empty county}">,</c:if>${county}
-        </span>
+        <h:address name="billing"
+            streetAddress="${requestScope['_05_billingAddressLine1']}"
+            extendedAddress="${requestScope['_05_billingAddressLine2']}"
+            city="${requestScope['_05_billingCity']}"
+            state="${requestScope['_05_billingState']}"
+            postalCode="${requestScope['_05_billingZip']}"
+            county="${requestScope['_05_billingCounty']}" />
     </c:if>
 </div>
 <div class="row">

@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -35,7 +36,8 @@
                                     <a class="tab ${statusFilter eq 'Pending' ? 'active' : ''}" href="<c:url value="/provider/dashboard/pending" />"><span class="aR"><span class="aM">Pending</span></span></a>
                                     <a class="tab ${statusFilter eq 'Approved' ? 'active' : ''}" href="<c:url value="/provider/dashboard/approved" />"><span class="aR"><span class="aM">Approved</span></span></a>
                                     <a class="tab ${statusFilter eq 'Rejected' ? 'active' : ''}" href="<c:url value="/provider/dashboard/rejected" />"><span class="aR"><span class="aM">Denied</span></span></a>
-                                    <a class="purpleBtn" href="<c:url value="/provider/enrollment/start" />"><span class="btR"><span class="btM">Create New Enrollment</span></span></a>
+                                    <h:create-enrollment-button
+                                       cssClass="purpleBtn" />
                                 </div>
                             </div>
                         </div>

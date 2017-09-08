@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -28,7 +29,8 @@
                     <div class="tabContent contentT">
                             <c:set var="paginatedResults" value="${results}" />
                             <div class="tableHeader tableHeader2">
-                                <a class="purpleBtn purpleBtnR" href="<c:url value="/provider/enrollment/start" />"><span class="btR"><span class="btM">Create New Enrollment</span></span></a>
+                                            <h:create-enrollment-button
+                                               cssClass="purpleBtn purpleBtnR" />
                                 <span>Latest Activities</span>
                             </div>
                             <div class="tl"></div>

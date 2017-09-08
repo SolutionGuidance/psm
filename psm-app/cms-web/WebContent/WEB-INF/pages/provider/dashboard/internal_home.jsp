@@ -16,23 +16,22 @@
                 <div class="contentWidth">
                     <div class="mainNav">
                         <%@include file="/WEB-INF/pages/includes/logo.jsp" %>
-                        <%@include file="/WEB-INF/pages/includes/nav.jsp" %>                        
+                        <%@include file="/WEB-INF/pages/includes/nav.jsp" %>
                     </div>
-					<div class="breadCrumb"></div>
-					<h1>Account Setup</h1>
+                    <div class="breadCrumb"></div>
+                    <h1>Account Setup</h1>
                     <div class="tabSection">
                         <div class="detailPanel">
                             <div class="section" id="updateProfile">
                                 <div class="wholeCol">
                                     <div class="row">
-				                        <h3>New Enrollments</h3>
-				                        <p>
-				                            You can now begin the enrollment process.
-				                        </p>
-				                        <div class="">
-				                            <a href="<c:url value="/provider/enrollment/start" />" class="purpleBtn"><span class="btR"><span class="btM">Create New Enrollment</span></span></a>
-				                        </div>
-				                        
+                                        <h3>New Enrollments</h3>
+                                        <p>
+                                            You can now begin the enrollment process.
+                                        </p>
+                                        <div class="">
+                                            <a href="<c:url value="/provider/enrollment/start" />" class="purpleBtn"><span class="btR"><span class="btM">Create New Enrollment</span></span></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +44,7 @@
 
 <!-- Commented out the "Linked Profiles" section below because that
      functionality isn't enabled right now.  See commit f5d70d7bb93
-     and any followup commits that refer to it. 
+     and any followup commits that refer to it.
 
      The commenting-out actually uses two separate comment blocks
      below, in order to avoid a comment nesting situation with the

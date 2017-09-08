@@ -25,7 +25,7 @@
                         Enrollment
                     </div>
                     <h1>Dashboard</h1>
-                    
+
                     <div class="tabSection">
                         <c:set var="paginatedResults" value="${results}" />
                         <div class="tabHead">
@@ -42,7 +42,7 @@
                         <!-- /.tabHead -->
                         <div class="tabContent" id="tabDraft">
                             <c:url var="exportResultsURL" value="/provider/dashboard/export" />
-                        
+
                             <div class="pagination">
                                 <div class="left">
                                     <%@include file="/WEB-INF/pages/includes/pagination_details.jsp" %>
@@ -59,12 +59,12 @@
                             <div class="filterPanel" style="display: ${param.filterViewState eq 'visible' ? 'block' : 'none'};">
                                 <div class="floatW">
                                     <input type="hidden" id="filterViewStateId" name="filterViewState" value="${param.filterViewState eq 'visible' ? 'visible' : 'hidden'}" />
-							        <form:hidden path="pageSize" />
-							        <form:hidden path="pageNumber" />
-							        <form:hidden path="sortColumn" />
-							        <form:hidden path="ascending" />
+                                    <form:hidden path="pageSize" />
+                                    <form:hidden path="pageNumber" />
+                                    <form:hidden path="sortColumn" />
+                                    <form:hidden path="ascending" />
                                     <input type="hidden" name="status" value="${statusFilter}" />
-                                    
+
                                     <div class="leftCol">
                                         <div class="row">
                                             <label>NPI/UMPI</label>
@@ -124,7 +124,7 @@
                                     <div class="tabM">
                                         <div class="pagination">
                                             <div class="left">
-                                                <%@include file="/WEB-INF/pages/includes/pagination_details.jsp" %>                                                
+                                                <%@include file="/WEB-INF/pages/includes/pagination_details.jsp" %>
                                             </div>
                                             <div class="right">
                                                 <%@include file="/WEB-INF/pages/includes/pagination_links.jsp" %>
@@ -138,7 +138,7 @@
                         </div>
                         <!-- /#tabDraft -->
                     </div>
-                    <!-- /.tabSection -->                    
+                    <!-- /.tabSection -->
                 </div>
             </div>
             <!-- /#mainContent -->
@@ -151,25 +151,24 @@
         <!-- /#modalBackground-->
         <div id="modalBackground"></div>
         <div id="new-modal">
-        
+
         <div id="printModal" class="outLay">
-            <div class="inner"> 
+            <div class="inner">
                 <!-- title -->
                 <div class="modal-title">
-                    <a href="javascript:;" class="greyBtn"><span class="btR"><span class="btM"><img src="<c:url value="/i/icon-x.png" />" alt="" />Close</span></span></a> 
+                    <a href="javascript:;" class="greyBtn"><span class="btR"><span class="btM"><img src="<c:url value="/i/icon-x.png" />" alt="" />Close</span></span></a>
                     <a href="javascript:;" class="purpleBtn printBtn"><span class="btR"><span class="btM"><img src="<c:url value="/i/icon-print2.png" />" alt="" />Print</span></span></a>
                     <h3>Print Preview</h3>
                 </div>
-                <!-- End .modal-title --> 
+                <!-- End .modal-title -->
                 <!-- content -->
                 <div class="modal-content">
-                    
+
                 </div>
                 <!-- End .content -->
             </div>
         </div>
         <!-- /#printModal-->
-        
         </div>
     </body>
 </html>

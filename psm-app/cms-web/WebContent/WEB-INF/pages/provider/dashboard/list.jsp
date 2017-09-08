@@ -44,15 +44,15 @@
                                 </div>
                             </div>
                             <!-- /.pagination -->
-                            
-                            <%@include file="dashboard_filter.jsp" %>                            
+
+                            <%@include file="dashboard_filter.jsp" %>
                             <!-- /.filterPanel -->
-                            
+
                             <div class="tableContainer">
                                 <%@include file="dashboard_table.jsp" %>
                             </div>
                             <!-- /.tableContainer -->
-                            
+
                             <div class="tabFoot">
                                 <div class="tabR">
                                     <div class="tabM">
@@ -88,7 +88,7 @@
                              And why isn't the code here doing
                              <%@ include file="/WEB-INF/pages/admin/includes/high_risk_level_means.jsp" %>
                              the way various other places in the
-                             PSM tree do? 
+                             PSM tree do?
                         --%>
                         <!--
                         <div class="row infoRow">
@@ -114,7 +114,7 @@
         <div id="new-modal">
 
         <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/print_modal.jsp" %>
-        
+
         </div>
     </body>
 </html>

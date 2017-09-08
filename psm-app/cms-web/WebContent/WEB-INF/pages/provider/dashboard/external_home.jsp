@@ -18,10 +18,10 @@
                         <%@include file="/WEB-INF/pages/includes/logo.jsp" %>
                         <%@include file="/WEB-INF/pages/includes/nav.jsp" %>
                     </div>
-					<div class="breadCrumb"></div>
-					<h1>Account Setup</h1>
+                    <div class="breadCrumb"></div>
+                    <h1>Account Setup</h1>
                     <div class="tabSection">
-                    	<!-- 
+                        <!--
                         <div class="detailPanel">
                             <div class="section" id="updateProfile">
                                 <div class="wholeCol">
@@ -49,27 +49,27 @@
                             <div class="bl"></div>
                             <div class="br"></div>
                         </div>
-                    	-->
+                        -->
                         <div class="detailPanel">
                             <div class="section" id="updateProfile">
                                 <div class="wholeCol">
                                     <div class="row">
-				                        <h3>Additional Enrollments</h3>
-				                        <p>
-				                            You also have the option to create new enrollments. <br />
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-											do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-											Ut enim ad minim veniam, quis nostrud exercitation ullamco
-											laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-											irure dolor in reprehenderit in voluptate velit esse cillum
-											dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-											cupidatat non proident, sunt in culpa qui officia deserunt
-											mollit anim id est laborum.
-										</p>
-				                        <div class="">
-				                            <a href="<c:url value="/provider/enrollment/start" />" class="purpleBtn"><span class="btR"><span class="btM">Create New Enrollment</span></span></a>
-				                        </div>
-				                        
+                                        <h3>Additional Enrollments</h3>
+                                        <p>
+                                            You also have the option to create new enrollments. <br />
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                                            do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                                            irure dolor in reprehenderit in voluptate velit esse cillum
+                                            dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                                            cupidatat non proident, sunt in culpa qui officia deserunt
+                                            mollit anim id est laborum.
+                                        </p>
+                                        <div class="">
+                                            <a href="<c:url value="/provider/enrollment/start" />" class="purpleBtn"><span class="btR"><span class="btM">Create New Enrollment</span></span></a>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

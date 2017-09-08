@@ -1,4 +1,4 @@
-#  Integration Tests
+#  Integration tests
 This module implements integration tests for the application using a popular
 Behavior Driven Development framework called
 [Serenity](http://www.thucydides.info/#/whatisserenity) to use formal
@@ -7,9 +7,9 @@ drive Selenium tests. The output from Serenity is an interactive dashboard which
 shows the states of all of the tests and captures screenshots of the web page
 taken as the tests are being run.
 
-# Preparation to Run Tests Locally
+# Preparing to run tests locally
 The tests will launch a browser against http://localhost:8080/cms so make sure
-that your wildfly server is running locally and the psm app has been deployed.
+that your WildFly server is running locally and the PSM app has been deployed.
 
 Serenity supports multiple browsers from which the tests will be run. The choice
 of browser as well as other settings is made in `serenity.properties` in the
@@ -32,7 +32,7 @@ For Linux distros you will also need to install `libgconf-2-4`.
 
 `sudo apt-get install -y libgconf-2-4`
 
-# Running the Tests
+# Running the tests
 To run the tests run:
 
     $ ./gradlew test aggregate
@@ -41,7 +41,7 @@ This command will run the tests and put the generated dashboard into
 `target/site/serenity`.
 
 
-# Other Browser Configurations
+# Other browser configurations
 There are many different options for running the serenity tests. Finding the
 correct configuration for each browser and operating system can be a challenge.
 The following sections document what works.
@@ -73,9 +73,10 @@ starting the gradle task like so:
     $ env XVFB_DISPLAY=":10" ./gradlew test aggregate
 
 ## Interactive Chrome on Linux
-On Linux the only way we've found to force an interactive Chrome session is
-to delete the line in `build.gradle` in the test settings
-for `integration-tests`
+On Linux, the only way we've found to force an interactive Chrome session is
+to delete [the line in `build.gradle` in the test settings
+for
+`integration-tests`](https://github.com/OpenTechStrategies/psm/blob/master/psm-app/build.gradle#L264):
 
 `environment "DISPLAY", System.getenv('XVFB_DISPLAY')`
 
@@ -90,20 +91,20 @@ To install this version, download the tar file from [https://ftp.mozilla.org/pub
 
 UnTAR this file in the directory above the PSM repo on your workstation.
 
-In order for `gradle.build` to find the correct version of Firefox, it
+In order for `build.gradle` to find the correct version of Firefox, it
 expects an environment variable to be set called `FIREFOX_HOME`. Set it
 to the path to your installed Firefox binary (the newly downloaded file)
-before starting the gradle task.
+before starting the Gradle task.
 
-## Running Headless with Phantom JS
-The PhanomJS driver was a popular headless web driver used for Selenium tests.
+## Running headless with PhantomJS (unsupported)
+The PhantomJS driver was a popular headless web driver used for Selenium tests.
 This product no longer enjoys much support and it has been deprecated.
 Nevertheless, it might be useful in some environments.
 
-To run these tests locally you will need a copy of the PhantomJS driver
+To run these tests locally, you will need a copy of the PhantomJS driver
 executable. You can download it from
 http://phantomjs.org/download.html. The tests are configured in
 `serenity.properties` to find this driver in the directory above the
-`psm` dir (where this repository is checked out). The committed version
+`psm` directory (where this repository is checked out). The committed version
 assumes this is running on Linux and the driver is in `bin` inside a
 directory called `phantomjs-2.1.1-linux-x86_64`.

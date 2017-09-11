@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DashboardPage extends PageObject {
     public void clickOnNewEnrollment() {
         $("#createNewEnrollment").click();
-        assertThat(getTitle().equals("Provider Type Page"));
+        assertThat(getTitle()).isEqualTo("Provider Type Page");
     }
 
     public void selectProviderType(String aProviderType) {

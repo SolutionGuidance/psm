@@ -34,7 +34,7 @@
 							<div class="section">
 								<div class="wholeCol">
                                     <div class="row">
-                                        <label>User Name</label>
+                                        <label>Username</label>
                                         <span class="floatL"><b>:</b></span>
                                         <span><c:out value="${user.username}"/></span>
                                     </div>

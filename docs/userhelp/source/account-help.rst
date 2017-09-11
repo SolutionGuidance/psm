@@ -33,8 +33,8 @@ Medicaid office for an account.
 How do I log in?
 ----------------
 
-Go to the main page of the website and enter your user name and
-password, and click the "Login" button.
+Go to the main page of the website and enter your username and password,
+and click the "Login" button.
 
 I forgot my password. Can I retrieve or reset it?
 -------------------------------------------------

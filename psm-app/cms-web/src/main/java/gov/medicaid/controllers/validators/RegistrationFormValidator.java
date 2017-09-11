@@ -80,7 +80,7 @@ public class RegistrationFormValidator extends BaseValidator {
      */
     public void validate(Object target, Errors errors) {
         // perform format validations
-        rejectIfEmpty(errors, "username", "field.required", "User Name");
+        rejectIfEmpty(errors, "username", "field.required", "Username");
         rejectIfEmpty(errors, "firstName", "field.required", "First Name");
         rejectIfEmpty(errors, "lastName", "field.required", "Last Name");
         rejectIfEmpty(errors, "email", "field.required", "Email");
@@ -88,7 +88,7 @@ public class RegistrationFormValidator extends BaseValidator {
         RegistrationForm user = (RegistrationForm) target;
 
         if (user.getUsername() != null && user.getUsername().length() > USERNAME_MAX_LENGTH) {
-            rejectValue(errors, "username", "length.exceeded", "User Name", USERNAME_MAX_LENGTH);
+            rejectValue(errors, "username", "length.exceeded", "Username", USERNAME_MAX_LENGTH);
         }
         if (user.getFirstName() != null && user.getFirstName().length() > NAME_MAX_LENGTH) {
             rejectValue(errors, "firstName", "length.exceeded", "First Name", NAME_MAX_LENGTH);

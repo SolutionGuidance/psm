@@ -22,7 +22,7 @@
             <div class="section">
                 <div class="leftCol">
                     <div class="row">
-                        <label>User Name</label>
+                        <label>Username</label>
                         <span class="floatL"><b>:</b></span>
                         <input type="text" class="normalInput" name="username"/>
                     </div>

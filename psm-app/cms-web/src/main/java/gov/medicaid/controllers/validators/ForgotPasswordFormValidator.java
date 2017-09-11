@@ -50,7 +50,7 @@ public class ForgotPasswordFormValidator extends BaseValidator {
      * @param errors the binding results
      */
     public void validate(Object target, Errors errors) {
-        rejectIfEmpty(errors, "username", "field.required", "User Name");
+        rejectIfEmpty(errors, "username", "field.required", "Username");
         rejectIfEmpty(errors, "email", "field.required", "Email");
     }
 

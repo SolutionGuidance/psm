@@ -153,7 +153,7 @@ public class RegistrationServiceBean extends BaseService implements Registration
     }
 
     /**
-     * Retrieves the user with the given user name.
+     * Retrieves the user with the given username.
      *
      * @param username the username to search for
      * @return the matching user, null if not found

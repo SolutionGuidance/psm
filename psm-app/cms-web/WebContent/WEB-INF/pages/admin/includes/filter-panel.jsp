@@ -15,7 +15,7 @@
     <div class="floatW">
         <div class="leftCol">
             <div class="row">
-                <label>User Name</label>
+                <label>Username</label>
                 <span class="floatL"><b>:</b></span>
                 <form:input cssClass="normalInput" path="username" />
             </div>

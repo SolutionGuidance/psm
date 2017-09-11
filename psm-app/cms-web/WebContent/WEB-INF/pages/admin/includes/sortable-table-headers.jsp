@@ -11,7 +11,10 @@
 <th>
     <c:choose>
         <c:when test="${criteria.sortColumn == 'username'}">
-            <a class="sortable_column" rel="username" href="javascript:;"><span>User Name</span>
+            <a
+                class="sortable_column"
+                rel="username"
+                href="javascript:;"><span>Username</span>
                 <c:choose>
                     <c:when test="${criteria.ascending}">
                         <span class="sort-up"></span>
@@ -23,7 +26,10 @@
             </a>
         </c:when>
         <c:otherwise>
-            <a class="sortable_column" rel="username" href="javascript:;"><span>User Name</span></a>
+            <a
+                class="sortable_column"
+                rel="username"
+                href="javascript:;"><span>Username</span></a>
         </c:otherwise>
     </c:choose>
     <span class="sep"></span>

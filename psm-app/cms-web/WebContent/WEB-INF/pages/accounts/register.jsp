@@ -41,7 +41,7 @@
                             <div class="section" id="updateProfile">
                                 <div class="wholeCol">
                                     <div class="row">
-                                        <label>User Name<span class="required">*</span></label>
+                                        <label>Username<span class="required">*</span></label>
                                         <span class="floatL"><b>:</b></span>
                                         
                                         <c:set var="errorCls" value="" />

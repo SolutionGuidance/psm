@@ -441,6 +441,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                 organization.setLegalName(oInfo.getLegalName());
                 organization.setFein(oInfo.getFEIN());
                 organization.setStateTaxId(oInfo.getStateTaxID());
+                organization.setStateMedicaidId(oInfo.getStateMedicaidID());
                 organization.setFiscalYearEnd(oInfo.getFiscalYearEnd());
 
                 ContactInformationType cInfo = oInfo.getContactInformation();
@@ -497,6 +498,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                 org.setLegalName(organization.getLegalName());
                 org.setFEIN(organization.getFein());
                 org.setStateTaxID(organization.getStateTaxId());
+                org.setStateMedicaidID(organization.getStateMedicaidId());
                 org.setFiscalYearEnd(organization.getFiscalYearEnd());
                 org.setSubType(organization.getProviderSubType());
                 enrollment.getProviderInformation().setNPI(organization.getNpi());

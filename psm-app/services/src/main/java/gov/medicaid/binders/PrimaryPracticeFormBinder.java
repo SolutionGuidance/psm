@@ -81,6 +81,7 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         if (!"Y".equals(provider.getMaintainsOwnPrivatePractice())) { // assumes practice type is bound first
+            practice.setStateMedicaidId(param(request, "stateMedicaidId"));
             if (param(request, "reimbursementSameAsPrimary") != null) {
                 practice.setReimbursementSameAsPrimary("Y");
                 AddressType reimbursementAddress = readPrimaryAddress(request);
@@ -128,6 +129,7 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
         super.bindToPage(user, enrollment, mv, readOnly);
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
 
+        attr(mv, "stateMedicaidId", practice.getStateMedicaidId());
         attr(mv, "reimbursementSameAsPrimary", practice.getReimbursementSameAsPrimary());
 
         if (!"Y".equals(practice.getReimbursementSameAsPrimary())) {
@@ -234,6 +236,8 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
         if (Util.isBlank(practice.getObjectId())) {
             Organization employer = (Organization) primary.getEntity();
 
+            employer.setStateMedicaidId(practice.getStateMedicaidId());
+
             employer.setReimbursementSameAsPrimary(practice.getReimbursementSameAsPrimary());
             if ("Y".equals(practice.getReimbursementSameAsPrimary())) {
                 employer.setReimbursementAddress(null);
@@ -264,6 +268,7 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
 
         Organization employer = (Organization) primary.getEntity();
         if (!"Y".equals(employer.getEnrolled())) {
+            practice.setStateMedicaidId(employer.getStateMedicaidId());
 
             // user owned employer record, show everything
             ContactInformation hContact = employer.getContactInformation();
@@ -290,6 +295,7 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
         if ("Y".equals(PDFHelper.value(model, ns, "bound"))) {
             PDFHelper.addLabelValueCell(practiceInfo, "Primary Practice Name", PDFHelper.value(model, ns, "name"));
             PDFHelper.addLabelValueCell(practiceInfo, "Group NPI/UMPI", PDFHelper.value(model, ns, "npi"));
+            PDFHelper.addLabelValueCell(practiceInfo, "State Medicaid ID", PDFHelper.value(model, ns, "stateMedicaidId"));
             PDFHelper.addLabelValueCell(practiceInfo, "Requested Effective Date",
                     PDFHelper.value(model, ns, "effectiveDate"));
             PDFHelper.addLabelValueCell(practiceInfo, "Practice Address", PDFHelper.getAddress(model, ns, null));

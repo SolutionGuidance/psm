@@ -988,6 +988,7 @@ CREATE TABLE organizations(
   ten99_address_id BIGINT
     REFERENCES addresses(address_id),
   state_tax_id TEXT,
+  state_medicaid_id TEXT,
   fiscal_year_end TEXT,
   remittance_sequence_order TEXT,
   eft_vendor_number TEXT

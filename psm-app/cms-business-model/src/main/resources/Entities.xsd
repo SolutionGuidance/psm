@@ -89,6 +89,7 @@
           <element name="Name" type="string" maxOccurs="1" minOccurs="0"/>
           <element name="NPI" type="string" maxOccurs="1" minOccurs="0"/>
           <element name="UMPI" type="string" maxOccurs="1" minOccurs="0"/>
+          <element name="StateMedicaidID" type="string" maxOccurs="1" minOccurs="0"/>
           <element name="StateTaxID" type="string" maxOccurs="1" minOccurs="0"/>
           <element name="Ten99AddressIndex" type="int" maxOccurs="1" minOccurs="0"/>
           <element name="BillingAddressIndex" type="int" maxOccurs="1" minOccurs="0"/>
@@ -186,6 +187,7 @@
       <element name="ReimbursementAddress" type="tns:AddressType" maxOccurs="1" minOccurs="0"/>
       <element name="FEIN" type="string" maxOccurs="1" minOccurs="0"/>
       <element name="StateTaxId" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="StateMedicaidId" type="string" maxOccurs="1" minOccurs="0"/>
       <element name="FiscalYearEnd" type="string" maxOccurs="1" minOccurs="0"/>
       <element name="EFTVendorNumber" type="string" maxOccurs="1" minOccurs="0"/>
       <element name="AdditionalPracticeLocations" type="tns:AdditionalPracticeLocationsType" maxOccurs="1" minOccurs="0"/>

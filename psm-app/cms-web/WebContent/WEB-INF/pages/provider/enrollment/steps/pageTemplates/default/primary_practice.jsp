@@ -65,6 +65,14 @@
                     <input id="unlinkPracticeButton" type="button" value="Remove Reference" onclick="unlinkPractice('_06_')" style="display: ${isLinked ? 'inline' : 'none'}"/>
                 </div>
                 <div class="row">
+                    <label>State Medicaid ID</label>
+                    <span class="floatL"><b>:</b></span>
+
+                    <c:set var="formName" value="_06_stateMedicaidId"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <input ${disableLinkedFields} type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                </div>
+                <div class="row">
                     <label>Effective Date<span class="required">*</span></label>
                     <span class="floatL"><b>:</b></span>
                     <span class="dateWrapper floatL">

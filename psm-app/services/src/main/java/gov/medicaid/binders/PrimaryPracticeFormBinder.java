@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ import com.lowagie.text.pdf.PdfPTable;
 
 /**
  * This binder handles the provider type selection form.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -63,13 +63,13 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
 
     /**
      * Binds the request to the model.
-     * @param user 
+     * @param user
      * 	          the requesting user, for user based data view control
      * @param enrollment
      *            the model to bind to
      * @param request
      *            the request containing the form fields
-     * 
+     *
      * @throws BinderException
      *             if the format of the fields could not be bound properly
      */
@@ -112,7 +112,7 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
 
     /**
      * Binds the model to the request attributes.
-     * @param user 
+     * @param user
      * 	          the requesting user, for user based data update control
 	 * @param enrollment
      *            the model to bind from
@@ -152,12 +152,12 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
 
     /**
      * Captures the error messages related to the form.
-     * 
+     *
      * @param enrollment
      *            the enrollment that was validated
      * @param messages
      *            the messages to select from
-     * 
+     *
      * @return the list of errors related to the form
      */
     protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
@@ -218,7 +218,7 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
 
     /**
      * Binds the fields of the form to the persistence model.
-     * 
+     *
      * @param enrollment
      *            the front end model
      * @param ticket
@@ -247,7 +247,7 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
 
     /**
      * Binds the fields of the persistence model to the front end xml.
-     * 
+     *
      * @param ticket
      *            the persistent model
      * @param enrollment
@@ -304,7 +304,7 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
 
     /**
      * Reads the billing address from the request.
-     * 
+     *
      * @param request
      *            the request to read from
      * @return the bound address

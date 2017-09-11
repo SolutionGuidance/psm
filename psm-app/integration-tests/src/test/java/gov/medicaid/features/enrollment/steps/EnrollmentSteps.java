@@ -2,15 +2,19 @@ package gov.medicaid.features.enrollment.steps;
 
 import gov.medicaid.features.enrollment.ui.IndividualInfoPage;
 import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
+import gov.medicaid.features.enrollment.ui.PersonalInfoPage;
 import gov.medicaid.features.enrollment.ui.SelectProviderTypePage;
 import gov.medicaid.features.general.ui.DashboardPage;
 import gov.medicaid.features.general.ui.LoginPage;
 import net.thucydides.core.annotations.Step;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("unused")
 public class EnrollmentSteps {
@@ -19,6 +23,7 @@ public class EnrollmentSteps {
     private SelectProviderTypePage selectProviderTypePage;
     private OrganizationInfoPage organizationInfoPage;
     private IndividualInfoPage individualInfoPage;
+    private PersonalInfoPage personalInfoPage;
 
     private SimpleDateFormat formFieldDateFormat = new SimpleDateFormat("MMddyyyy");
 
@@ -42,6 +47,26 @@ public class EnrollmentSteps {
     public void selectIndividualProviderType() {
         selectProviderTypePage.selectProviderType("Podiatrist");
         selectProviderTypePage.clickNext();
+    }
+
+    @Step
+    void enterIndividualPersonalInfo() {
+        personalInfoPage.enterFirstName("FirstName");
+        personalInfoPage.enterMiddleName("MiddleName");
+        personalInfoPage.enterLastName("LastName");
+        personalInfoPage.enterNPI("0000000006");
+        personalInfoPage.enterSSN("000-00-0000");
+        personalInfoPage.enterDOB(
+                LocalDate.of(1970, 1, 1)
+        );
+        personalInfoPage.enterEmail("p1@example.com");
+        personalInfoPage.checkSameAsAbove();
+    }
+
+    @Step
+    void advanceFromIndividualPersonalInfoToLicenseInfo() {
+        personalInfoPage.clickNext();
+        assertThat(personalInfoPage.getTitle()).contains("License Information");
     }
 
     public void enterOrganizationInfo() {
@@ -80,5 +105,10 @@ public class EnrollmentSteps {
         individualInfoPage.setIndividualOwnerSoSec("123456789");
         individualInfoPage.setIndividualOwnerDOB("01011970");
         individualInfoPage.setIndividualHireDate("01012000");
+    }
+
+    @Step
+    public void checkForTooYoungError() throws Exception {
+        personalInfoPage.checkForTooYoungError();
     }
 }

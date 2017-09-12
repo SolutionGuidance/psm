@@ -86,6 +86,9 @@ public class Organization extends Entity {
     @Column(name = "state_tax_id")
     private String stateTaxId;
 
+    @Column(name = "state_medicaid_id")
+    private String stateMedicaidId;
+
     /**
      * Practice fiscal year end.
      */
@@ -143,6 +146,14 @@ public class Organization extends Entity {
 
     public void setStateTaxId(String stateTaxId) {
         this.stateTaxId = stateTaxId;
+    }
+
+    public String getStateMedicaidId() {
+        return stateMedicaidId;
+    }
+
+    public void setStateMedicaidId(String stateMedicaidId) {
+        this.stateMedicaidId = stateMedicaidId;
     }
 
     public String getFiscalYearEnd() {

@@ -12,6 +12,11 @@
     <span>${requestScope['_06_npi']}</span>
 </div>
 <div class="row">
+    <label>State Medicaid ID</label>
+    <span class="floatL"><b>:</b></span>
+    <span>${requestScope['_06_stateMedicaidId']}</span>
+</div>
+<div class="row">
     <label>Effective Date</label>
     <span class="floatL"><b>:</b></span>
     <span>${requestScope['_06_effectiveDate']}</span>

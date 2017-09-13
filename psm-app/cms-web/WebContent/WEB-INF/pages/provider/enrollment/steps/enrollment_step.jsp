@@ -90,6 +90,7 @@
         <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/submit_enrollment.jsp" %>
         <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/print_modal.jsp" %>
         <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/definitions_modal.jsp" %>
+        <%@include file="/WEB-INF/pages/includes/userhelp/npi_explanation.jsp" %>
         <!-- /#saveAsDraftModal-->
         </div>
         <c:if test="${not empty requestScope['flash_popup']}">

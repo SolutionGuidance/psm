@@ -3502,92 +3502,92 @@ a.searchBtn span.btM{
 						.additionalInfo strong{
 							color:#0d4478;
 							}
-							
-    #new-modal #definitionsModal{
+
+    #new-modal .definitionsModal{
         margin-left:-15px;
         width:960px;
         margin-bottom:100px;
         }
-        #new-modal #definitionsModal .modal-title{
+        #new-modal .definitionsModal .modal-title{
             background:url(../i/print-header.png) repeat-x 0 0 #fff;
             padding-top:37px;
             line-height:normal;
             padding:37px 35px 0;
             width:890px;
             }
-                #new-modal #definitionsModal .modal-title h3{
+                #new-modal .definitionsModal .modal-title h3{
                     font-size:18px;
                     color:#0d4478;
                     background:url(../i/pirnt-icon-blue.png) no-repeat 0 center;
                     padding-left:30px;
                     }
-                #new-modal #definitionsModal .modal-title a,
-                #new-modal #definitionsModal .modal-title a:visited{
+                #new-modal .definitionsModal .modal-title a,
+                #new-modal .definitionsModal .modal-title a:visited{
                     float:right;
                     margin-left:6px;
                     }
-                #new-modal #definitionsModal .modal-title a .btM{
+                #new-modal .definitionsModal .modal-title a .btM{
                     width:63px;
                     padding:0;
                     text-align:center;
                     }
-                #new-modal #definitionsModal .modal-title a img{
+                #new-modal .definitionsModal .modal-title a img{
                     float: left;
                     margin: 6px 0px 5px 9px;
                     }
-                #new-modal #definitionsModal .modal-title a.greyBtn img{
+                #new-modal .definitionsModal .modal-title a.greyBtn img{
                     margin-top: 7px;
                     }
-                #new-modal #definitionsModal .modal-content{
+                #new-modal .definitionsModal .modal-content{
                     background:#fff;
                     padding:5px 35px 17px;
                     }
-        #new-modal #definitionsModal .tabSection{
+        #new-modal .definitionsModal .tabSection{
             margin-bottom:20px;
             }
-        #new-modal #definitionsModal .modal-content .tabContent{
+        #new-modal .definitionsModal .modal-content .tabContent{
             width:890px;
             }
-            #new-modal #definitionsModal .modal-content .tabHead .tabM{
+            #new-modal .definitionsModal .modal-content .tabHead .tabM{
                 line-height:39px;
                 padding-left:15px;
                 }
-            #new-modal #definitionsModal .modal-content .tabHead h5{
+            #new-modal .definitionsModal .modal-content .tabHead h5{
                 text-shadow:0 1px 1px #fffffe;
                 color:#064265;
                 font-size:14px;
                 }
-            #new-modal #definitionsModal .tableContainer{
+            #new-modal .definitionsModal .tableContainer{
                 border-bottom:1px solid #d2d2d2;
                 padding-bottom:15px;
                 }
-            #new-modal #definitionsModal .modal-content .right{
+            #new-modal .definitionsModal .modal-content .right{
                 background:none;
-                }       
-                #new-modal #definitionsModal .topPanel .leftCol,
-                #new-modal #definitionsModal .bottomPanel .leftCol{
+                }
+                #new-modal .definitionsModal .topPanel .leftCol,
+                #new-modal .definitionsModal .bottomPanel .leftCol{
                     width:48%;
                     }
-                    #new-modal #definitionsModal .modal-content .topPanel,
-                    #new-modal #definitionsModal .modal-content .bottomPanel{
+                    #new-modal .definitionsModal .modal-content .topPanel,
+                    #new-modal .definitionsModal .modal-content .bottomPanel{
                         border:none;
                         }
-                        #new-modal #definitionsModal .topPanel label,
-                        #new-modal #definitionsModal .bottomPanel label{
+                        #new-modal .definitionsModal .topPanel label,
+                        #new-modal .definitionsModal .bottomPanel label{
                             width:220px;
                             padding-left:10px;
                             }
-                        #new-modal #definitionsModal .tabContentP label{
+                        #new-modal .definitionsModal .tabContentP label{
                             width:570px;
                             padding-left:20px;
                             padding-right:50px;
                             float:left;
                             }
-                        #new-modal #definitionsModal .tabContentP span {
+                        #new-modal .definitionsModal .tabContentP span {
                             display: inline-block;
                             line-height: 24px;
                             }
-                    #new-modal #definitionsModal p.additionalInfo{
+                    #new-modal .definitionsModal p.additionalInfo{
                         font-size:14px;
                         background:#fcfbea;
                         border:1px solid #bcb870;
@@ -4375,20 +4375,20 @@ input.passwordNormalInput{
     }
 
     /*definition modal style*/
-    #new-modal #definitionsModal.definitions .modal-title h3{
+    #new-modal .definitionsModal.definitions .modal-title h3{
         background: none;
         padding-left: 0;
     }
-        #new-modal #definitionsModal .modal-content .section{
+        #new-modal .definitionsModal .modal-content .section{
             font-size: 13px;
             line-height: 18px;
             padding-bottom: 15px;
         }
-            #new-modal #definitionsModal .modal-content .section ul{
+            #new-modal .definitionsModal .modal-content .section ul{
                 margin-left: 25px;
                 list-style: disc;
             }
-                #new-modal #definitionsModal .modal-content .section ul li{
+                #new-modal .definitionsModal .modal-content .section ul li{
                     padding-bottom: 5px;
                 }
 

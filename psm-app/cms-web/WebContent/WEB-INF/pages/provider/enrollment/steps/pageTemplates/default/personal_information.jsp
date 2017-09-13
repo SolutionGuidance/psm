@@ -42,17 +42,16 @@
             </div>
             <div class="row requireField">
                 <%-- BUGR-9673 (optional NPI for some provider types) --%>
-                <label
-                    title="<%@ include
-                        file="/WEB-INF/pages/includes/userhelp/npi.jsp" %>">NPI
-                        <span class="required">${requireNPI ? '*' : ''}
-                        </span>
+                <label><abbr title="National Provider Identifier">NPI</abbr>
+                       <span><a href="javascript:" class="NPIdefinition">?</a></span>
                 </label>
                 <span class="floatL"><b>:</b></span>
 
                 <c:set var="formName" value="_02_npi"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
+                <span class="required">${requireNPI ? '*' : ''}
+                </span>
             </div>
             <div class="row requireField">
                 <label>Social Security Number</label>

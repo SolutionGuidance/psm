@@ -6,7 +6,7 @@
     @version 1.0
  --%>
 <!-- /#saveAsDraftModal-->
-<div id="definitionsModal" class="outLay definitions">
+<div id="definitionsModal" class="outLay definitions definitionsModal">
 <div class="inner">
 <!-- title -->
 <div class="modal-title">

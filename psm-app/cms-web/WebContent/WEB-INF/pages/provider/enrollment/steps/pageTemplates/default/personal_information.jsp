@@ -15,12 +15,13 @@
         <input type="hidden" name="formNames" value="<%= ViewStatics.PERSONAL_INFO_FORM %>">
         <div class="wholeCol">
             <div class="row requireField">
-                <label>First Name<span class="required">*</span></label>
+                <label>First Name</label>
                 <span class="floatL"><b>:</b></span>
 
                 <c:set var="formName" value="_02_firstName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="normalInput" id="firstName" name="${formName}" value="${formValue}" maxlength="45"/>
+                <span class="required">*</span>
             </div>
             <div class="row">
                 <label>Middle Name</label>
@@ -31,12 +32,13 @@
                 <input type="text" class="normalInput" id="middleName" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row requireField">
-                <label>Last Name<span class="required">*</span></label>
+                <label>Last Name</label>
                 <span class="floatL"><b>:</b></span>
 
                 <c:set var="formName" value="_02_lastName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
+                <span class="required">*</span>
             </div>
             <div class="row requireField">
                 <%-- BUGR-9673 (optional NPI for some provider types) --%>
@@ -53,21 +55,23 @@
                 <input type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
             </div>
             <div class="row requireField">
-                <label>Social Security Number<span class="required">*</span></label>
+                <label>Social Security Number</label>
                 <span class="floatL"><b>:</b></span>
 
                 <c:set var="formName" value="_02_ssn"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
+                <span class="required">*</span>
             </div>
             <div class="row requireField">
-                <label>Date of Birth<span class="required">*</span></label>
+                <label>Date of Birth</label>
                 <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
 
                     <c:set var="formName" value="_02_dob"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input class="date" type="text" name="${formName}" value="${formValue}" maxlength="10"/>
+                    <span class="required">*</span>
                 </span>
             </div>
             <div class="row">
@@ -90,11 +94,12 @@
                 <input type="checkbox" class="checkbox" id="sameAsAbove" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" />Same as Above
             </div>
             <div class="row requireField">
-                <label>Contact Name<span class="required">*</span></label>
+                <label>Contact Name</label>
                 <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_02_contactName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input ${disableContact} type="text" class="${disableContact} normalInput" id="contactName" name="${formName}" value="${formValue}" maxlength="100"/>
+                <span class="required">*</span>
             </div>
             <div class="row">
                 <label>Contact Email Address</label>

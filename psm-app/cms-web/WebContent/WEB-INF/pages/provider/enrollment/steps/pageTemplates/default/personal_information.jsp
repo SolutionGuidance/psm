@@ -87,7 +87,15 @@
                 <c:set var="formName" value="_02_useProviderAsContact"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <c:set var="disableContact" value="${formValue eq 'Y' ? 'disabled' : ''}"></c:set>
-                <input type="checkbox" class="checkbox" id="sameAsAbove" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" />Same as Above
+                <label>
+                    <input
+                        type="checkbox"
+                        class="checkbox"
+                        id="sameAsAbove"
+                        ${formValue eq 'Y' ? 'checked' : ''}
+                        name="${formName}" />
+                    Same as Above
+                </label>
             </div>
             <div class="row requireField">
                 <label>Contact Name<span class="required">*</span></label>

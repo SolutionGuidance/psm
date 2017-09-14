@@ -49,13 +49,13 @@ $(document).ready(function() {
         $('#modalBackground').hide();
 		$('#new-modal>div').hide();
     }
-	
-	
-	$(".closeModal,#new-modal #printModal .modal-title a.greyBtn,#new-modal #definitionsModal .modal-title a.greyBtn").click(function() {
+
+
+	$(".closeModal,#new-modal #printModal .modal-title a.greyBtn,#new-modal .definitionsModal .modal-title a.greyBtn").click(function() {
 		addresscloseModal();
 	});
-	
-	
+
+
 	$(".submitEnrollmentModalBtn").click(function(){
 		addresscloseModal();
         addressLoadModal('#submitEnrollmentModal');
@@ -1882,9 +1882,14 @@ $(document).ready(function() {
     });
 
 
-    /*show definition modal*/
+    /*show definitions modal*/
     $('a.definition').live('click',function(){
         addressLoadModal('#definitionsModal');
+    });
+
+    /*show NPI definition modal*/
+    $('a.NPIdefinition').live('click',function(){
+        addressLoadModal('#NPIdefinitionModal');
     });
 
     //$('.inline input[type=radio]').removeAttr('checked');

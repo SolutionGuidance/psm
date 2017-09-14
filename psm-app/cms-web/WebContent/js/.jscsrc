@@ -1,0 +1,16 @@
+{
+  "preset": "airbnb",
+  "maxErrors": 2000,
+  "disallowQuotedKeysInObjects": false,
+  "disallowYodaConditions": false,
+  "maximumLineLength": false,
+  "requireCamelCaseOrUpperCaseIdentifiers": false,
+  "requireDollarBeforejQueryAssignment": false,
+  "requireDotNotation": false,
+  "requirePaddingNewLinesBeforeLineComments": false,
+  "requireSemicolons": false,
+  "requireSpaceAfterKeywords": true,
+  "requireSpaceBeforeKeywords": true,
+  "requireTrailingComma": false,
+  "validateQuoteMarks": false
+}

@@ -154,6 +154,13 @@
 		</property>
 	</bean>
 
+  <bean id="viewResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
+    <property name="order" value="1" />
+    <property name="prefix" value="/templates/" />
+    <property name="suffix" value=".template.html" />
+    <property name="failOnMissingFile" value="false" />
+  </bean>
+
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename">
 			<value>messages</value>

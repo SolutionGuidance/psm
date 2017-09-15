@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -103,7 +103,7 @@ public class ControllerHelper {
         HttpSession session = attr.getRequest().getSession();
         session.setAttribute(FlashMessageInterceptor.FLASH_ERROR, message);
     }
-    
+
     /**
      * Adds a flash error message to the session.
      * @param message the message to be added

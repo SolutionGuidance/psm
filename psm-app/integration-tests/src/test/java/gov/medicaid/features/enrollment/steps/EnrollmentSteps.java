@@ -34,9 +34,9 @@ public class EnrollmentSteps {
     private static final String LICENSE_TYPE = "Speech Language Pathologist";
     private static final String LICENSE_NUMBER = "1";
     private static final LocalDate LICENSE_ISSUE_DATE =
-            LocalDate.of(2002, 2, 2);
+            LocalDate.now().minusWeeks(30);
     private static final LocalDate LICENSE_RENEWAL_DATE =
-            LocalDate.of(2020, 2, 2);
+            LocalDate.now().plusWeeks(30);
     private static final String LICENSE_ISSUING_STATE_FULL = "Alaska";
     private static final String LICENSE_ISSUING_STATE_ABBR = "AK";
 

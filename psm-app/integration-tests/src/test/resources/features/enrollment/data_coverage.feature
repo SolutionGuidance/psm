@@ -47,3 +47,9 @@ Feature: Data Coverage Checks
     When I enter valid license information
     And I upload a valid license
     Then the license is accepted
+
+  Scenario: Accepts practice information
+    Given I am on the individual provider practice info page
+    When I enter a valid private practice
+    Then the practice information is accepted
+    And the summary page shows expected information

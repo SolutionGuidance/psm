@@ -17,11 +17,24 @@ public class DataCoverageStepDefinitions {
 
     @Given("I am on the individual provider license info page")
     public void enter_individual_provider_license_info_page() {
+        navigateToLicensePage();
+    }
+
+    private void navigateToLicensePage() {
         enrollmentSteps.loginAsProvider();
         enrollmentSteps.createEnrollment();
         enrollmentSteps.selectIndividualProviderType();
         enrollmentSteps.enterIndividualPersonalInfo();
         enrollmentSteps.advanceFromIndividualPersonalInfoToLicenseInfo();
+    }
+
+    @Given("^I am on the individual provider practice info page$")
+    public void enter_individual_provider_practice_info_page() throws IOException {
+        navigateToLicensePage();
+        enrollmentSteps.enterNotAProviderAtPublicHealthServiceIndianHospital();
+        enrollmentSteps.enterIndividualLicenseInfo();
+        enrollmentSteps.uploadLicense();
+        enrollmentSteps.advanceFromIndividualLicenseInfoToPracticeInfo();
     }
 
     @When("^I enter valid license information$")
@@ -38,6 +51,11 @@ public class DataCoverageStepDefinitions {
     @When("^I move to the organization page$")
     public void i_move_to_the_organization_page() {
         enrollmentSteps.selectOrganizationalProviderType();
+    }
+
+    @When("^I enter a valid private practice$")
+    public void enter_valid_private_practice_information() {
+        enrollmentSteps.enterIndividualPrivatePracticeInfo();
     }
 
     @Then("^I should be asked to enter Applicant Name, Contact Person, Contact phone$")
@@ -72,5 +90,17 @@ public class DataCoverageStepDefinitions {
     @Then("^the license is accepted$")
     public void license_is_accepted() {
         enrollmentSteps.advanceFromIndividualLicenseInfoToPracticeInfo();
+    }
+
+    @Then("^the practice information is accepted$")
+    public void practice_information_is_accepted() {
+        enrollmentSteps.advanceFromIndividualPracticeInfoToSummaryPage();
+    }
+
+    @Then("^the summary page shows expected information$")
+    public void summary_information_is_correct() {
+        enrollmentSteps.validatePersonalSummaryInformation();
+        enrollmentSteps.validateLicenseSummaryInfo();
+        enrollmentSteps.validatePracticeSummaryInformation();
     }
 }

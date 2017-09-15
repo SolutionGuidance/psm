@@ -20,6 +20,8 @@ ext.libs = [
     commons_io: 'commons-io:commons-io:2.0.1',
     commons_lang: 'commons-lang:commons-lang:2.4',
     hapi_fhir: 'ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:2.5',
+    handlebars: 'com.github.jknack:handlebars:4.0.6',
+    handlebars_springmvc: 'com.github.jknack:handlebars-springmvc:4.0.6',
     itext: 'com.lowagie:itext:2.1.7',
     jasypt: 'org.jasypt:jasypt:1.9.0',
     jbpm_human_task_core: dependencies.create("org.jbpm:jbpm-human-task-core:${jbpm_version}") {
@@ -147,6 +149,8 @@ project(':cms-web') {
         compile libs.spring_security_ldap
         compile libs.spring_security_taglibs
         compile libs.spring_webmvc
+        runtime libs.handlebars
+        runtime libs.handlebars_springmvc
         runtime runtime_libs
     }
     webAppDirName = 'WebContent'

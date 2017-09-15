@@ -1,6 +1,7 @@
 package gov.medicaid.features.enrollment.steps;
 
 import gov.medicaid.features.enrollment.ui.IndividualInfoPage;
+import gov.medicaid.features.enrollment.ui.LicenseInfoPage;
 import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
 import gov.medicaid.features.enrollment.ui.PersonalInfoPage;
 import gov.medicaid.features.enrollment.ui.SelectProviderTypePage;
@@ -8,6 +9,7 @@ import gov.medicaid.features.general.ui.DashboardPage;
 import gov.medicaid.features.general.ui.LoginPage;
 import net.thucydides.core.annotations.Step;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -24,6 +26,7 @@ public class EnrollmentSteps {
     private OrganizationInfoPage organizationInfoPage;
     private IndividualInfoPage individualInfoPage;
     private PersonalInfoPage personalInfoPage;
+    private LicenseInfoPage licenseInfoPage;
 
     private SimpleDateFormat formFieldDateFormat = new SimpleDateFormat("MMddyyyy");
 
@@ -45,7 +48,7 @@ public class EnrollmentSteps {
     }
 
     public void selectIndividualProviderType() {
-        selectProviderTypePage.selectProviderType("Podiatrist");
+        selectProviderTypePage.selectProviderType("Speech Language Pathologist");
         selectProviderTypePage.clickNext();
     }
 
@@ -110,5 +113,31 @@ public class EnrollmentSteps {
     @Step
     public void checkForTooYoungError() throws Exception {
         personalInfoPage.checkForTooYoungError();
+    }
+
+    @Step
+    public void enterNotAProviderAtPublicHealthServiceIndianHospital() {
+        licenseInfoPage.clickNo();
+    }
+
+    @Step
+    public void enterIndividualLicenseInfo() {
+        licenseInfoPage.addLicense();
+        licenseInfoPage.addLicenseType("Speech Language Pathologist");
+        licenseInfoPage.enterLicenseNumber("1");
+        licenseInfoPage.enterIssueDate(LocalDate.of(2002, 2, 2));
+        licenseInfoPage.enterRenewalDate(LocalDate.of(2020, 2, 2));
+        licenseInfoPage.enterIssueState("Alaska");
+    }
+
+    @Step
+    public void uploadLicense() throws IOException {
+        licenseInfoPage.uploadSampleFile();
+    }
+
+    @Step
+    public void advanceFromIndividualLicenseInfoToPracticeInfo() {
+        licenseInfoPage.clickNext();
+        assertThat(licenseInfoPage.getTitle()).contains("Practice Information");
     }
 }

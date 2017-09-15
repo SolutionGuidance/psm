@@ -3,8 +3,8 @@ package gov.medicaid.features.enrollment.ui;
 import net.thucydides.core.pages.PageObject;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
+import static gov.medicaid.features.IntegrationTests.format;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -17,10 +17,7 @@ public class PersonalInfoPage extends PageObject {
             "Provider age should be 18 or above during enrollment.";
 
     public void enterDOB(LocalDate dateOfBirth) {
-        String dob = dateOfBirth.format(
-                DateTimeFormatter.ofPattern("MM/dd/yyyy")
-        );
-        $("[name=_02_dob]").type(dob);
+        $("[name=_02_dob]").type(format(dateOfBirth));
     }
 
     public void enterFirstName(String firstName) {

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{{> admin/includes/html_head title="My Profile (Service Admin)" }}
+  <body>
+    <div id="wrapper">
+      {{> includes/header }}
+      <div id="mainContent">
+        <div class="contentWidth">
+          <div class="mainNav">
+            {{> includes/logo }}
+            {{> includes/nav activeTab3=1 }}
+          </div>
+        <div class="breadCrumb">
+          <span>My Profile</span>
+        </div>
+        <div class="head">
+          <h1 class="text">My Profile</h1>
+          <a href="{{ctx}}/ops/beginEditUser" class="purpleBtn"><span class="btR"><span class="btM">Update Profile</span></span></a>
+        </div>
+
+        <div class="tabSection" id="myProfile">
+          <div class="detailPanel">
+            <div class="section">
+              <div class="wholeCol">
+                <div class="row">
+                  <label>User Name</label>
+                  <span class="floatL"><b>:</b></span>
+                  <span>{{user.username}}</span>
+                </div>
+                <div class="row">
+                  <label>Last Name</label>
+                  <span class="floatL"><b>:</b></span>
+                  <span>{{user.lastName}}</span>
+                </div>
+                <div class="row">
+                  <label>First Name</label>
+                  <span class="floatL"><b>:</b></span>
+                  <span>{{user.firstName}}</span>
+                </div>
+                <div class="row">
+                  <label>Middle Name</label>
+                  <span class="floatL"><b>:</b></span>
+                  <span>{{user.middleName}}</span>
+                </div>
+                <div class="row">
+                  <label>Business Phone</label>
+                  <span class="floatL"><b>:</b></span>
+                  <span>{{user.businessPhonePart1}} - {{user.businessPhonePart2}} - {{user.businessPhonePart3}} <b>ext.</b> {{user.businessPhoneExt}}</span>
+                </div>
+                <div class="row">
+                  <label>Email</label>
+                  <span class="floatL"><b>:</b></span>
+                  <span>{{user.email}}</span>
+                </div>
+              </div>
+            </div>
+            <!-- /.section -->
+            <div class="tl"></div>
+            <div class="tr"></div>
+            <div class="bl"></div>
+            <div class="br"></div>
+          </div>
+        </div>
+        <!-- /.tabSection -->
+      </div>
+      </div>
+      <!-- /#mainContent -->
+      {{> includes/footer }}
+    </div>
+    <!-- /#wrapper -->
+  </body>
+</html>

@@ -53,6 +53,7 @@ import gov.medicaid.entities.Note;
 import gov.medicaid.entities.PracticeLookup;
 import gov.medicaid.entities.PracticeSearchCriteria;
 import gov.medicaid.entities.ProviderLookup;
+import gov.medicaid.entities.Role;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.StateType;
 import gov.medicaid.entities.Validity;
@@ -812,6 +813,15 @@ public class EnrollmentPageFlowController extends BaseController {
         if (isSubmitted(enrollment.getStatus())) {
             page = null; // go to first page.
         }
+
+        Role role = ControllerHelper.getCurrentUser().getRole();
+        if (ViewStatics.ROLE_SVC_ADMIN.equals(role.getDescription()) &&
+                ViewStatics.PENDING_STATUS.equals(enrollment.getStatus())) {
+            model.addAttribute("showReviewLink", true);
+        } else {
+            model.addAttribute("showReviewLink", false);
+        }
+
         return showPage(page, enrollment);
     }
 

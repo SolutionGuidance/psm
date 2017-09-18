@@ -4932,7 +4932,15 @@ td.nopad {
 }
 
 input.zipInput, input.zipInputFor {
-	width: 50px !important;
+	width: 75px !important;
+}
+
+select.countySelect, select.countySelectFor {
+    width: 100px !important;
+}
+
+select.stateSelect, select.stateSelectFor {
+    width: 100px !important;
 }
 
 .noteInputPanel, .noteInputPanel .noteText {

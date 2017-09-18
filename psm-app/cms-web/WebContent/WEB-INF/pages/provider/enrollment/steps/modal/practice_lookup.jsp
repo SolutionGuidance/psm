@@ -46,7 +46,7 @@
                         </span>
                         <span class="last">
                             <label>Zip:</label>
-                            <input type="text" class="normalInput inputS" name="zip"/>
+                            <input type="text" class="normalInput inputS zipInput" name="zip"/>
                         </span>
                         <div class="clear"></div>
                         </form>

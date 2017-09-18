@@ -299,12 +299,22 @@ $(document).ready(function () {
 
   //Save As Above
   $('#sameAsAbove').live('click', function () {
+    contactFormElements = [
+      '#contactName',
+      '#contactEmail',
+      '#contactPhone1',
+      '#contactPhone2',
+      '#contactPhone3',
+      '#contactPhone4'
+    ];
     if ($(this).attr('checked')) {
-      $('#contactName').val('').addClass("disabled").prop('disabled', true);
-      $('#contactEmail').val('').addClass("disabled").prop('disabled', true);
+      contactFormElements.forEach(function (element) {
+        $(element).val('').addClass("disabled").prop('disabled', true);
+      });
     } else {
-      $('#contactName').val('').removeClass("disabled").prop('disabled', false);
-      $('#contactEmail').val('').removeClass("disabled").prop('disabled', false);
+      contactFormElements.forEach(function (element) {
+        $(element).val('').removeClass("disabled").prop('disabled', false);
+      });
     }
   });
 

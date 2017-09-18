@@ -108,6 +108,51 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input ${disableContact} type="text" class="${disableContact} normalInput" id="contactEmail" name="${formName}" value="${formValue}" maxlength="50"/>
             </div>
+            <div class="row">
+                <label>Contact Phone Number</label>
+                <span class="floatL"><b>:</b></span>
+
+                <c:set var="formName" value="_02_contactPhone1"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <input ${disableContact}
+                    id="contactPhone1"
+                    type="text"
+                    class="${disableContact} autotab smallInput"
+                    name="${formName}"
+                    value="${formValue}"
+                    maxlength="3"/>
+                <span class="sep">-</span>
+                <c:set var="formName" value="_02_contactPhone2"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <input ${disableContact}
+                    id="contactPhone2"
+                    type="text"
+                    class="${disableContact}
+                    autotab smallInput"
+                    name="${formName}"
+                    value="${formValue}"
+                    maxlength="3"/>
+                <span class="sep">-</span>
+                <c:set var="formName" value="_02_contactPhone3"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <input ${disableContact}
+                    id="contactPhone3"
+                    type="text"
+                    class="${disableContact} autotab smallInputP"
+                    name="${formName}"
+                    value="${formValue}"
+                    maxlength="4"/>
+                <span class="sep"><strong>ext.</strong></span>
+                <c:set var="formName" value="_02_contactPhone4"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <input ${disableContact}
+                    id="contactPhone4"
+                    type="text"
+                    class="${disableContact} autotab smallInput"
+                    name="${formName}"
+                    value="${formValue}"
+                    maxlength="3"/>
+            </div>
             <div class="clearFixed"></div>
         </div>
     </div>

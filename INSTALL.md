@@ -59,8 +59,8 @@ time, and will evolve as we understand it more.
 ### Software
 
 - **Operating System**: we recommend Debian 9 stable, also known as
-  Jessie.  If you prefer Debian testing, we have had success with
-  Debian testing (aka Buster).  A developer has also successfully
+  stretch.  If you prefer Debian testing, we have had success with
+  Debian testing (aka buster).  A developer has also successfully
   installed the PSM on Red Hat 7.3 Enterprise Linux. If that's not
   feasible for your environment, any of the supported WildFly 10.1
   operating systems should work, but our ability to help troubleshoot

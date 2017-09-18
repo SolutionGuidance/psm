@@ -9,18 +9,20 @@ This depends on whether you are a healthcare provider or not.
 If you're a healthcare provider:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Go to the main page and click the "Register New Account" link.
+Go to the main page and click the "Register New Account" link. The site
+will help you create an account that can submit enrollment applications
+for individual or organizational healthcare providers.
 
-A new account needs a username, first and last name, a user role, and an
-email address. The site will create a random password and email it to
-you, and will assume that the account is for a provider.
+A new account needs a username, first and last name, and an email
+address. The site will create a random password and email it to you.
 
 Your account can also have a middle name (this is optional).
 
 This site does not enforce any limits on the number or type of
 characters in the user's first name, last name, username or password.
 
-You will need to have JavaScript turned on in your browser.
+You will need to `have JavaScript turned on in your
+browser <http://www.enable-javascript.com/>`__.
 
 If you are not a healthcare provider:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -66,4 +68,5 @@ Profile" and click the "Change Password" link.
 Can I delete my account?
 ------------------------
 
-No, you cannot. A future version of the PSM may let you do so.
+No, you cannot. `A future version of the PSM may let you do
+so. <https://github.com/OpenTechStrategies/psm/issues/327>`__

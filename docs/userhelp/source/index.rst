@@ -7,8 +7,8 @@ Welcome to Provider Screening Module's documentation!
 =====================================================
 
 This code is a work-in-progress and is not yet ready for production
-deployment. Please see `our installation documentation
-<https://github.com/OpenTechStrategies/psm/blob/master/INSTALL.md>`__
+deployment. Please see `our code repository
+<https://github.com/OpenTechStrategies/psm/>`__
 for details, and check our current status.
 
 If you have suggestions for improving this user help guide, please add

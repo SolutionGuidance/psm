@@ -124,19 +124,7 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
 
         ContactInformationType contact = XMLUtility.nsGetContactInformation(individual);
         if (contact.getAddress() != null) {
-            AddressType address = contact.getAddress();
-            String line1 = address.getAddressLine1();
-            String line2 = address.getAddressLine2();
-            if (Util.isBlank(line1)) {
-                line1 = line2;
-                line2 = null;
-            }
-            attr(mv, "addressLine1", line1);
-            attr(mv, "addressLine2", line2);
-            attr(mv, "city", address.getCity());
-            attr(mv, "state", address.getState());
-            attr(mv, "zip", address.getZipCode());
-            attr(mv, "county", address.getCounty());
+            attr(mv, contact.getAddress());
         }
 
         String[] phone = BinderUtils.splitPhone(contact.getPhoneNumber());

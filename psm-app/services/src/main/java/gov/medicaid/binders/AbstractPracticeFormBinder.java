@@ -149,19 +149,7 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
         attr(mv, "name", practice.getName());
         attr(mv, "npi", practice.getGroupNPI());
 
-        AddressType address = XMLUtility.nsGetAddress(practice);
-        String line1 = address.getAddressLine1();
-        String line2 = address.getAddressLine2();
-        if (Util.isBlank(line1)) {
-            line1 = line2;
-            line2 = null;
-        }
-        attr(mv, "addressLine1", line1);
-        attr(mv, "addressLine2", line2);
-        attr(mv, "city", address.getCity());
-        attr(mv, "state", address.getState());
-        attr(mv, "zip", address.getZipCode());
-        attr(mv, "county", address.getCounty());
+        attr(mv, XMLUtility.nsGetAddress(practice));
 
         ContactInformationType contact = XMLUtility.nsGetContactInformation(practice);
         String[] phone = BinderUtils.splitPhone(contact.getPhoneNumber());

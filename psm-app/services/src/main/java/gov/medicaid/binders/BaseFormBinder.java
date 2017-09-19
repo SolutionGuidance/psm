@@ -257,6 +257,28 @@ public abstract class BaseFormBinder implements FormBinder {
         mv.put(name(key), values);
     }
 
+
+    /**
+     * Adds an address to the model.
+     *
+     * @param mv the model and view to add to
+     * @param address the address to add
+     */
+    protected void attr(Map<String, Object> mv, AddressType address) {
+        String line1 = address.getAddressLine1();
+        String line2 = address.getAddressLine2();
+        if (Util.isBlank(line1)) {
+            line1 = line2;
+            line2 = null;
+        }
+        attr(mv, "addressLine1", line1);
+        attr(mv, "addressLine2", line2);
+        attr(mv, "city", address.getCity());
+        attr(mv, "state", address.getState());
+        attr(mv, "zip", address.getZipCode());
+        attr(mv, "county", address.getCounty());
+    }
+
     /**
      * Instantiates the correct entity type based on the provider type.
      *

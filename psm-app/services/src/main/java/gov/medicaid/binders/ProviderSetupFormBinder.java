@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ public class ProviderSetupFormBinder extends BaseFormBinder implements FormBinde
      * @param enrollment the model to bind to
      * @param request the request containing the form fields
      *
-     * @return 
+     * @return
      * @throws BinderException if the format of the fields could not be bound properly
      */
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
@@ -87,7 +87,7 @@ public class ProviderSetupFormBinder extends BaseFormBinder implements FormBinde
             setup.getPayToProvider().add(payTo);
             i++;
         }
-        
+
         return exceptions;
     }
 
@@ -158,7 +158,7 @@ public class ProviderSetupFormBinder extends BaseFormBinder implements FormBinde
 
         return errors.isEmpty() ? NO_ERRORS : errors;
     }
-    
+
     /**
      * Resolves the specific license that is causing the error from the license list.
      * @param ruleError the error to resolve
@@ -185,7 +185,7 @@ public class ProviderSetupFormBinder extends BaseFormBinder implements FormBinde
                 return createError("npi", index, message);
             }
         }
-        
+
         // general location error
         return createError("group", message);
     }
@@ -213,11 +213,11 @@ public class ProviderSetupFormBinder extends BaseFormBinder implements FormBinde
      */
     public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) throws PortalServiceException {
         ProviderProfile profile = ticket.getDetails();
-        
+
         ProviderSetupInformationType setup = XMLUtility.nsGetProviderSetup(enrollment);
         profile.setPayToProviders(new ArrayList<PayToProvider>());
         List<PayToProvider> providers = profile.getPayToProviders();
-        
+
         for (PayToProviderType payTo : setup.getPayToProvider()) {
             PayToProvider p = new PayToProvider();
             p.setEffectiveDate(BinderUtils.toDate(payTo.getEffectiveDate()));
@@ -230,7 +230,7 @@ public class ProviderSetupFormBinder extends BaseFormBinder implements FormBinde
             providers.add(p);
         }
     }
-    
+
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
@@ -244,7 +244,7 @@ public class ProviderSetupFormBinder extends BaseFormBinder implements FormBinde
             if (payToProviders != null) {
                 ProviderSetupInformationType setup = XMLUtility.nsGetProviderSetup(enrollment);
                 setup.getPayToProvider().clear();
-                
+
                 for (PayToProvider payToProvider : payToProviders) {
                     PayToProviderType payTo = new PayToProviderType();
                     payTo.setObjectId("" + payToProvider.getTargetProfileId());
@@ -257,11 +257,10 @@ public class ProviderSetupFormBinder extends BaseFormBinder implements FormBinde
                     if (payToProvider.getType() != null) {
                         payTo.setType(payToProvider.getType().getDescription());
                     }
-                    
+
                     setup.getPayToProvider().add(payTo);
                 }
             }
         }
     }
-    
 }

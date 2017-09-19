@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -76,22 +76,22 @@ public class FederalQualificationFormBinder extends BaseFormBinder {
         if (attachmentId != null) {
             replaceDocument(attachments, attachmentId, DocumentNames.APPROVAL_LETTER_FROM_HEALTH_CARE_FINANCE_ADMINISTRATION_HCFA.value());
         }
-        
+
         attachmentId = (String) request.getAttribute(NAMESPACE + "grantDocuments");
         if (attachmentId != null) {
             replaceDocument(attachments, attachmentId, DocumentNames.COPIES_OF_THE_330_GRANT_DOCUMENTS.value());
         }
-        
+
         attachmentId = (String) request.getAttribute(NAMESPACE + "statusContract");
         if (attachmentId != null) {
             replaceDocument(attachments, attachmentId, DocumentNames.COVER_PAGE_OF_PUBLIC_LAW_93_638_STATUS_CONTRACT.value());
         }
-        
+
         attachmentId = (String) request.getAttribute(NAMESPACE + "indianHealthServiceContract");
         if (attachmentId != null) {
             replaceDocument(attachments, attachmentId, DocumentNames.COMPACT_WITH_THE_INDIAN_HEALTH_SERVICE.value());
         }
-        
+
         if (DocumentNames.APPROVAL_LETTER_FROM_HEALTH_CARE_FINANCE_ADMINISTRATION_HCFA.value().equals(creds.getFederalQualificationType())) {
             deleteAttachment(attachments, DocumentNames.COPIES_OF_THE_330_GRANT_DOCUMENTS.value());
             deleteAttachment(attachments, DocumentNames.COVER_PAGE_OF_PUBLIC_LAW_93_638_STATUS_CONTRACT.value());
@@ -109,10 +109,10 @@ public class FederalQualificationFormBinder extends BaseFormBinder {
             deleteAttachment(attachments, DocumentNames.COPIES_OF_THE_330_GRANT_DOCUMENTS.value());
             deleteAttachment(attachments, DocumentNames.COVER_PAGE_OF_PUBLIC_LAW_93_638_STATUS_CONTRACT.value());
         }
-        
+
         return Collections.EMPTY_LIST;
     }
-    
+
     private void deleteAttachment(AttachedDocumentsType attachments2, String name) {
         List<DocumentType> attachments = attachments2.getAttachment();
         if (attachments != null) {
@@ -137,7 +137,7 @@ public class FederalQualificationFormBinder extends BaseFormBinder {
                 toRemove.add(doc);
             }
         }
-        
+
         attachments.getAttachment().removeAll(toRemove);
     }
 
@@ -152,7 +152,7 @@ public class FederalQualificationFormBinder extends BaseFormBinder {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
         List<DocumentType> attachment = attachments.getAttachment();
-        
+
         FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
         attr(mv, "qualificationType", creds.getFederalQualificationType());
 
@@ -168,7 +168,7 @@ public class FederalQualificationFormBinder extends BaseFormBinder {
             }
         }
     }
-    
+
     /**
      * Captures the error messages related to the form.
      * @param enrollment the enrollment that was validated
@@ -225,14 +225,14 @@ public class FederalQualificationFormBinder extends BaseFormBinder {
      *
      * @param enrollment the front end model
      * @param ticket the persistent model
-     * @throws PortalServiceException 
+     * @throws PortalServiceException
      */
     public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) throws PortalServiceException {
         ProviderProfile profile = ticket.getDetails();
         if (profile == null || !(profile.getEntity() instanceof Organization)) {
             throw new PortalServiceException("Provider type should be bound first.");
         }
-        
+
         FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
         Organization org = (Organization) profile.getEntity();
         org.setProviderSubType(credentials.getFederalQualificationType());

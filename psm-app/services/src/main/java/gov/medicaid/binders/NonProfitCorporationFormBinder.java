@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -68,7 +68,7 @@ public class NonProfitCorporationFormBinder extends BaseFormBinder {
         if (attachmentId != null) {
             replaceDocument(XMLUtility.nsGetAttachments(provider), attachmentId, DocumentNames.ARTICLES_OF_INCORPORATION.value());
         }
-        
+
         return Collections.EMPTY_LIST;
     }
 
@@ -102,7 +102,7 @@ public class NonProfitCorporationFormBinder extends BaseFormBinder {
                 toRemove.add(doc);
             }
         }
-        
+
         attachments.getAttachment().removeAll(toRemove);
     }
 
@@ -127,7 +127,7 @@ public class NonProfitCorporationFormBinder extends BaseFormBinder {
                 if (path == null) {
                     continue;
                 }
-                
+
                 if (path.equals("/ProviderInformation/AttachedDocuments/Document[name=\"Articles of Incorporation\"]")) {
                     errors.add(createError("articlesOfIncorporation", ruleError.getMessage()));
                 }

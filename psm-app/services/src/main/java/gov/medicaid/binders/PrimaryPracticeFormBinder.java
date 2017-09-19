@@ -64,7 +64,7 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
     /**
      * Binds the request to the model.
      * @param user
-     * 	          the requesting user, for user based data view control
+     *            the requesting user, for user based data view control
      * @param enrollment
      *            the model to bind to
      * @param request
@@ -74,9 +74,9 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
      *             if the format of the fields could not be bound properly
      */
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-    	if (!canModifyExistingPractice(user, enrollment)) {
-    		return new ArrayList<BinderException>();
-    	}
+        if (!canModifyExistingPractice(user, enrollment)) {
+            return new ArrayList<BinderException>();
+        }
         List<BinderException> exceptions = super.bindFromPage(user, enrollment, request);
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
@@ -114,18 +114,18 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
     /**
      * Binds the model to the request attributes.
      * @param user
-     * 	          the requesting user, for user based data update control
-	 * @param enrollment
+     *            the requesting user, for user based data update control
+     * @param enrollment
      *            the model to bind from
-	 * @param mv
+     * @param mv
      *            the model and view to bind to
-	 * @param readOnly
+     * @param readOnly
      *            true if the binding is for a read only view
      */
     public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
-    	if (!canModifyExistingPractice(user, enrollment)) {
-    		return;
-    	}
+        if (!canModifyExistingPractice(user, enrollment)) {
+            return;
+        }
         super.bindToPage(user, enrollment, mv, readOnly);
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
 

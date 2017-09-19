@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -174,7 +174,7 @@ public abstract class BaseFormBinder implements FormBinder {
     protected String name(String key) {
         return id() + key;
     }
-    
+
     /**
      * Retrieves the indexed name of the parameter.
      * @param key the base name
@@ -390,7 +390,7 @@ public abstract class BaseFormBinder implements FormBinder {
         error.setMessage(message);
         return error;
     }
-    
+
     /**
      * Creates an error for the given fields.
      *
@@ -449,14 +449,14 @@ public abstract class BaseFormBinder implements FormBinder {
         }
         return mapping;
     }
-    
+
     /**
      * Empty implementation by default.
      *
      * @param enrollment the enrollment to be rendered
      * @param document the PDF document to render on
      * @param model the view model
-     * @throws DocumentException 
+     * @throws DocumentException
      */
     public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model) throws DocumentException {
     }

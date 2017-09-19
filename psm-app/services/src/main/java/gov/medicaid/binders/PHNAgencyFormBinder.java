@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ public class PHNAgencyFormBinder extends BaseFormBinder {
      * @param enrollment the model to bind to
      * @param request the request containing the form fields
      *
-     * @return 
+     * @return
      * @throws BinderException if the format of the fields could not be bound properly
      */
     @SuppressWarnings("unchecked")
@@ -80,7 +80,7 @@ public class PHNAgencyFormBinder extends BaseFormBinder {
             if (attachmentId != null) {
                 replaceDocument(XMLUtility.nsGetAttachments(provider), attachmentId, CONTRACT_WITH_COUNTY);
             }
-            
+
             AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
             List<DocumentType> attachment = attachments.getAttachment();
             for (DocumentType doc : attachment) {
@@ -121,7 +121,7 @@ public class PHNAgencyFormBinder extends BaseFormBinder {
                 toRemove.add(doc);
             }
         }
-        
+
         attachments.getAttachment().removeAll(toRemove);
     }
 
@@ -146,7 +146,7 @@ public class PHNAgencyFormBinder extends BaseFormBinder {
                 if (path == null) {
                     continue;
                 }
-                
+
                 if (path.equals("/ProviderInformation/FacilityCredentials/ContractWithCounty")) {
                     errors.add(createError("countyIndicator", ruleError.getMessage()));
                 } else if (path.equals("/ProviderInformation/FacilityCredentials/ContractWithCounty/ContractAttachmentObjectId")) {
@@ -177,16 +177,16 @@ public class PHNAgencyFormBinder extends BaseFormBinder {
      */
     public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
         ProviderProfile profile = ticket.getDetails();
-        
+
         FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
         CountyContractType contract = credentials.getContractWithCounty();
-        
+
         if (contract == null || !"Y".equals(contract.getCountyInd())) {
             profile.setCounty(null);
         } else {
             profile.setCounty(contract.getCountyName());
         }
-        
+
         if (contract == null || "Y".equals(contract.getCountyInd())) {
             deleteAttachment(profile, CONTRACT_WITH_COUNTY);
         } else {
@@ -216,7 +216,7 @@ public class PHNAgencyFormBinder extends BaseFormBinder {
     public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
         ProviderProfile profile = ticket.getDetails();
         String county = profile.getCounty();
-        
+
         FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
         CountyContractType countyInfo = new CountyContractType();
         credentials.setContractWithCounty(countyInfo);

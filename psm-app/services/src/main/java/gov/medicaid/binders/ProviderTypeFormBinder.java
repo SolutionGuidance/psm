@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
      * @param enrollment the model to bind to
      * @param request the request containing the form fields
      *
-     * @return 
+     * @return
      */
     @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
@@ -82,7 +82,7 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
                 provider.setApplicantType(ApplicantType.ORGANIZATION);
             }
         }
-        
+
         return Collections.EMPTY_LIST;
     }
 
@@ -116,7 +116,7 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
             }
         }
     }
-    
+
     /**
      * Sorts the displayed provider types (PESP-252_
      * @param providerTypes the provider types to sort

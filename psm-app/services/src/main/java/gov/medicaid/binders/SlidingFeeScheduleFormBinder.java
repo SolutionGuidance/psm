@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ public class SlidingFeeScheduleFormBinder extends BaseFormBinder {
      * @param enrollment the model to bind to
      * @param request the request containing the form fields
      *
-     * @return 
+     * @return
      * @throws BinderException if the format of the fields could not be bound properly
      */
     @SuppressWarnings("unchecked")
@@ -69,7 +69,7 @@ public class SlidingFeeScheduleFormBinder extends BaseFormBinder {
         FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
         CountyContractType countyInfo = new CountyContractType();
         credentials.setContractWithCounty(countyInfo);
-        
+
         String attachmentId = (String) request.getAttribute(NAMESPACE + "slidingFeeSchedule");
         if (attachmentId != null) {
             replaceDocument(XMLUtility.nsGetAttachments(provider), attachmentId, DocumentNames.SLIDING_FEE_SCHEDULE.value());
@@ -107,7 +107,7 @@ public class SlidingFeeScheduleFormBinder extends BaseFormBinder {
                 toRemove.add(doc);
             }
         }
-        
+
         attachments.getAttachment().removeAll(toRemove);
     }
 
@@ -132,7 +132,7 @@ public class SlidingFeeScheduleFormBinder extends BaseFormBinder {
                 if (path == null) {
                     continue;
                 }
-                
+
                 if (path.equals("/ProviderInformation/AttachedDocuments/Document[name=\"Sliding Fee Schedule\"]")) {
                     errors.add(createError("slidingFeeSchedule", ruleError.getMessage()));
                 }

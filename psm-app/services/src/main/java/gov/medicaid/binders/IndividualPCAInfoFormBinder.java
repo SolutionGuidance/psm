@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -69,12 +69,12 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
      * @param enrollment the model to bind to
      * @param request the request containing the form fields
      *
-     * @return 
+     * @return
      * @throws BinderException if the format of the fields could not be bound properly
      */
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        
+
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
         individual.setLastName(param(request, "lastName"));
@@ -99,7 +99,7 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
         // reinstatement UMPI
         provider.setNPI(param(request, "umpi"));
         provider.setEighteenAndAbove(param(request, "adultInd"));
-        
+
         return exceptions;
     }
 
@@ -158,7 +158,7 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
-        
+
         IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
         ContactInformationType contact = XMLUtility.nsGetContactInformation(individual);
         boolean switchAddressLines = false;

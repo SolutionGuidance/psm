@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -120,20 +120,20 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
             }
 
             // for employer view, do not accept any other NPI
-        	if (user.getExternalRoleView() == RoleView.EMPLOYER) {
-        		if (user.getExternalAccountLink().getExternalUserId().equals(location.getGroupNPI())) {
-            		locations.getPracticeLocation().add(location);
-        		}
-        	} else {
-        		locations.getPracticeLocation().add(location);
-        	}
+            if (user.getExternalRoleView() == RoleView.EMPLOYER) {
+                if (user.getExternalAccountLink().getExternalUserId().equals(location.getGroupNPI())) {
+                    locations.getPracticeLocation().add(location);
+                }
+            } else {
+                locations.getPracticeLocation().add(location);
+            }
             i++;
         }
 
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
-    	if (user.getExternalRoleView() == RoleView.EMPLOYER) {
-    		retainLocations(practice, locations, user.getExternalAccountLink().getExternalUserId());
-    	}
+        if (user.getExternalRoleView() == RoleView.EMPLOYER) {
+            retainLocations(practice, locations, user.getExternalAccountLink().getExternalUserId());
+        }
         practice.setAdditionalPracticeLocations(locations);
         return exceptions;
     }
@@ -147,19 +147,19 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
      * @param externalUserId the NPI of the current user
      */
     private void retainLocations(PracticeInformationType practice,
-    	AdditionalPracticeLocationsType locations, String externalUserId) {
-    	AdditionalPracticeLocationsType orig = practice.getAdditionalPracticeLocations();
-    	List<PracticeLocationType> base = orig.getPracticeLocation();
-    	for (PracticeLocationType old : base) {
-			if (old.getGroupNPI().equals(externalUserId)) {
-				continue;
-			} else {
-				locations.getPracticeLocation().add(old);
-			}
-		}
-	}
+        AdditionalPracticeLocationsType locations, String externalUserId) {
+        AdditionalPracticeLocationsType orig = practice.getAdditionalPracticeLocations();
+        List<PracticeLocationType> base = orig.getPracticeLocation();
+        for (PracticeLocationType old : base) {
+            if (old.getGroupNPI().equals(externalUserId)) {
+                continue;
+            } else {
+                locations.getPracticeLocation().add(old);
+            }
+        }
+    }
 
-	/**
+    /**
      * Binds the model to the request attributes.
      * @param enrollment the model to bind from
      * @param mv the model and view to bind to
@@ -168,22 +168,22 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
     public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
         if (user.getExternalRoleView() == RoleView.EMPLOYER) {
-        	attr(mv, "allowAdd", "N");
+            attr(mv, "allowAdd", "N");
         } else {
-        	attr(mv, "allowAdd", "Y");
+            attr(mv, "allowAdd", "Y");
         }
-        
+
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
         AdditionalPracticeLocationsType locations = XMLUtility.nsGetOtherLocations(practice);
         List<PracticeLocationType> xList = locations.getPracticeLocation();
         int i = 0;
         for (PracticeLocationType location : xList) {
-        	if (user.getExternalRoleView() == RoleView.EMPLOYER) {
-        		// this view only has access to its own NPI
-        		if (!user.getExternalAccountLink().getExternalUserId().equals(location.getGroupNPI())) {
-        			continue;
-        		}
-        	}
+            if (user.getExternalRoleView() == RoleView.EMPLOYER) {
+                // this view only has access to its own NPI
+                if (!user.getExternalAccountLink().getExternalUserId().equals(location.getGroupNPI())) {
+                    continue;
+                }
+            }
             attr(mv, "objectId", i, location.getObjectId());
             if (Util.isNotBlank(location.getObjectId())) {
                 attr(mv, "objectIdHash", i, Util.hash(location.getObjectId(), getServerHashKey()));
@@ -270,7 +270,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
         if (index != null) {
             PracticeLocationType location = locations.getPracticeLocation().get(index);
             message = ruleError.getMessage() + "(Group #" + (index + 1) + ")";
-            
+
             boolean switchAddressLines = false;
             if (location.getAddress() != null || Util.isBlank(location.getAddress().getAddressLine1())) {
                 // since line 2 is populated instead of line 1 by default
@@ -463,5 +463,4 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
             throw new PortalServiceRuntimeException("Cannot verify linked practice.", e);
         }
     }
-
 }

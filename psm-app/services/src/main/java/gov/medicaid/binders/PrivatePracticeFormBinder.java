@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -70,9 +70,9 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
      * @throws BinderException if the format of the fields could not be bound properly
      */
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-    	if (!canModifyExistingPractice(user, enrollment)) {
-    		return new ArrayList<BinderException>();
-    	}
+        if (!canModifyExistingPractice(user, enrollment)) {
+            return new ArrayList<BinderException>();
+        }
         List<BinderException> exceptions = new ArrayList<BinderException>(super.bindFromPage(user, enrollment, request));
 
         ProviderInformationType provider = enrollment.getProviderInformation();
@@ -85,7 +85,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
                 e.setAttribute(name("effectiveDate"), param(request, "effectiveDate"));
                 exceptions.add(e);
             }
-            
+
             if (param(request, "billingSameAsPrimary") != null) {
                 practice.setBillingSameAsPrimary("Y");
                 AddressType billingAddress = readPrimaryAddress(request);
@@ -95,7 +95,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
                 AddressType billingAddress = readBillingAddress(request);
                 practice.setBillingAddress(billingAddress);
             }
-            
+
             practice.setFEIN(param(request, "fein"));
             practice.setStateTaxId(param(request, "stateTaxId"));
             practice.setFiscalYearEnd(BinderUtils.concatFiscalYearEnd(param(request, "fye1"), param(request, "fye2")));
@@ -111,7 +111,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
             practice.setEFTVendorNumber(null);
             provider.setRemittanceSequenceNumber(null);
         }
-        
+
         return exceptions;
     }
 
@@ -122,18 +122,18 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
      * @param readOnly if the view is read only
      */
     public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
-    	if (!canModifyExistingPractice(user, enrollment)) {
-    		return;
-    	}
+        if (!canModifyExistingPractice(user, enrollment)) {
+            return;
+        }
         super.bindToPage(user, enrollment, mv, readOnly);
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
 
         attr(mv, "effectiveDate", BinderUtils.formatCalendar(practice.getEffectiveDate()));
-        
+
         if (Util.isBlank(practice.getObjectId())) { // do not display private data from linked profile
             attr(mv, "billingSameAsPrimary", practice.getBillingSameAsPrimary());
-            
+
             AddressType billingAddress = practice.getBillingAddress();
             if (billingAddress != null && !"Y".equals(practice.getBillingSameAsPrimary())) {
                 String line1 = billingAddress.getAddressLine1();
@@ -149,7 +149,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
                 attr(mv, "billingZip", billingAddress.getZipCode());
                 attr(mv, "billingCounty", billingAddress.getCounty());
             }
-            
+
             attr(mv, "fein", practice.getFEIN());
             attr(mv, "stateTaxId", practice.getStateTaxId());
             String[] fye = BinderUtils.splitFiscalYear(practice.getFiscalYearEnd());
@@ -183,7 +183,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
                 if (path == null) {
                     continue;
                 }
-                
+
                 boolean switchBillingAddressLines = false;
                 if (practice.getBillingAddress() == null || Util.isBlank(practice.getBillingAddress().getAddressLine1())) {
                     switchBillingAddressLines = true;
@@ -306,12 +306,12 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
 
         practice.setEffectiveDate(BinderUtils.toCalendar(primary.getEffectiveDate()));
     }
-    
+
     @Override
     public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
         throws DocumentException {
         super.renderPDF(enrollment, document, model);
-        
+
         PdfPTable practiceInfo = new PdfPTable(2);
         PDFHelper.setTableAsFullPage(practiceInfo);
 
@@ -333,7 +333,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
 
         document.add(practiceInfo);
     }
-    
+
     /**
      * Reads the billing address from the request.
      *
@@ -356,5 +356,4 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
         address.setCounty(param(request, "billingCounty"));
         return address;
     }
-
 }

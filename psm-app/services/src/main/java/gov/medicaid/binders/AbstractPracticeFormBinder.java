@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -98,7 +98,7 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
             contact.setFaxNumber(BinderUtils.concatPhone(param(request, "fax1"), param(request, "fax2"),
                 param(request, "fax3"), ""));
         }
-        
+
         return Collections.EMPTY_LIST;
     }
 
@@ -352,20 +352,24 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
         return null;
     }
 
-	/**
-	 * For external users with RoleView = EMPLOYER, they cannot touch any information with NPI is not their own
-	 * @param user the current request user
-	 * @param enrollment the
-	 * @return
-	 */
-	protected boolean canModifyExistingPractice(CMSUser user, EnrollmentType enrollment) {
-		if (user.getExternalRoleView() == RoleView.EMPLOYER) {
-			PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
-			if (user.getExternalAccountLink().getExternalUserId().equals(practice.getGroupNPI())) {
-				return true;
-			}
-			return false;
-		}
-		return true;
-	}
+    /**
+     * For external users with RoleView = EMPLOYER, they cannot touch any information with NPI is not their own
+     *
+     * @param user       the current request user
+     * @param enrollment the
+     * @return
+     */
+    protected boolean canModifyExistingPractice(
+            CMSUser user,
+            EnrollmentType enrollment
+    ) {
+        if (user.getExternalRoleView() == RoleView.EMPLOYER) {
+            PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+            if (user.getExternalAccountLink().getExternalUserId().equals(practice.getGroupNPI())) {
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
 }

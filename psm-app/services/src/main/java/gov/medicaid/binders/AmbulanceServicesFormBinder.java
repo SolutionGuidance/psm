@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -53,12 +53,12 @@ public class AmbulanceServicesFormBinder extends BaseFormBinder {
      * The namespace for this form.
      */
     public static final String NAMESPACE = "_39_";
-    
+
     /**
      * Ambulance service selection.
      */
     private final List<ServiceCategory> categories = new ArrayList<ServiceCategory>();
-    
+
     /**
      * Initializes the available options for ambulance services.
      */
@@ -75,17 +75,17 @@ public class AmbulanceServicesFormBinder extends BaseFormBinder {
      */
     public AmbulanceServicesFormBinder() {
         super(NAMESPACE);
-        
+
         ServiceCategory cat = new ServiceCategory();
         cat.setCode("basicServices");
         cat.setDescription(DocumentNames.AMBULANCE_SERVICES_BASIC_SERVICE.value());
         categories.add(cat);
-        
+
         ServiceCategory cat2 = new ServiceCategory();
         cat2.setCode("advancedLifeSupport");
         cat2.setDescription(DocumentNames.AMBULANCE_SERVICES_ADVANCED_LIFE_SUPPORT.value());
         categories.add(cat2);
-        
+
         ServiceCategory cat3 = new ServiceCategory();
         cat3.setCode("airTransport");
         cat3.setDescription(DocumentNames.AMBULANCE_SERVICES_AIR_TRANSPORT_WITH_FAA_AIR_WORTHINESS_CERTIFICATE.value());
@@ -105,7 +105,7 @@ public class AmbulanceServicesFormBinder extends BaseFormBinder {
         FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
         List<AmbulanceServicesType> servicesList = creds.getAmbulanceServices();
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
-        
+
         for (ServiceCategory category : categories) {
             String type1Indicator = param(request, category.getCode() + "Indicator");
             if ("Y".equals(type1Indicator)) {
@@ -121,7 +121,7 @@ public class AmbulanceServicesFormBinder extends BaseFormBinder {
         }
         return Collections.EMPTY_LIST;
     }
-    
+
     /**
      * Finds the service with the given name
      * @param servicesList the service list
@@ -134,7 +134,7 @@ public class AmbulanceServicesFormBinder extends BaseFormBinder {
                 return ambulanceServicesType;
             }
         }
-        
+
         AmbulanceServicesType ambulanceServicesType = new AmbulanceServicesType();
         ambulanceServicesType.setServiceType(serviceName);
         servicesList.add(ambulanceServicesType);
@@ -214,7 +214,7 @@ public class AmbulanceServicesFormBinder extends BaseFormBinder {
 
         return errors.isEmpty() ? NO_ERRORS : errors;
     }
-    
+
     /**
      * Resolves the specific license that is causing the error from the license list.
      * @param services the services entered

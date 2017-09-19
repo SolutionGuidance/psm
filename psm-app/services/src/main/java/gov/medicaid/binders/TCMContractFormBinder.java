@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ public class TCMContractFormBinder extends BaseFormBinder {
      * @param enrollment the model to bind to
      * @param request the request containing the form fields
      *
-     * @return 
+     * @return
      * @throws BinderException if the format of the fields could not be bound properly
      */
     @SuppressWarnings("unchecked")
@@ -69,7 +69,7 @@ public class TCMContractFormBinder extends BaseFormBinder {
         FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
         CountyContractType countyInfo = new CountyContractType();
         credentials.setContractWithCounty(countyInfo);
-        
+
         String attachmentId = (String) request.getAttribute(NAMESPACE + "contractAttachment");
         if (attachmentId != null) {
             replaceDocument(XMLUtility.nsGetAttachments(provider), attachmentId, CONTRACT_WITH_COUNTY);
@@ -81,19 +81,19 @@ public class TCMContractFormBinder extends BaseFormBinder {
             countyInfo.setContractAttachmentObjectId(attachmentId);
             replaceDocument(attachments, attachmentId, "DHS-5638");
         }
-        
+
         attachmentId = (String) request.getAttribute(NAMESPACE + "coverSheet2");
         if (attachmentId != null) {
             countyInfo.setContractAttachmentObjectId(attachmentId);
             replaceDocument(attachments, attachmentId, "DHS-5639");
         }
-        
+
         attachmentId = (String) request.getAttribute(NAMESPACE + "coverSheet3");
         if (attachmentId != null) {
             countyInfo.setContractAttachmentObjectId(attachmentId);
             replaceDocument(attachments, attachmentId, "DHS-5702");
         }
-        
+
         return Collections.EMPTY_LIST;
     }
 
@@ -132,7 +132,7 @@ public class TCMContractFormBinder extends BaseFormBinder {
                 toRemove.add(doc);
             }
         }
-        
+
         attachments.getAttachment().removeAll(toRemove);
     }
 

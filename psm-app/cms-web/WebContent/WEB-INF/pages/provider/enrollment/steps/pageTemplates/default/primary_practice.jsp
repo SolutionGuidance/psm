@@ -201,7 +201,7 @@
                             <c:set var="formName" value="_06_reimbursementZip"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <label class="smallLabel">ZIP Code<span class="required">*</span> : </label>
-                            <input ${reimbursementAddressMarkup} type="text" class="${disableReimbursementAddress ? 'disabled' : '' } zipInput" name="${formName}" value="${formValue}" maxlength="10"/>
+                            <input ${reimbursementAddressMarkup} type="text" class="${disableReimbursementAddress ? 'disabled' : '' } zipInputFor" id="primaryReimbursementZip" name="${formName}" value="${formValue}" maxlength="10"/>
                         </div>
                     </div>
                 </div>

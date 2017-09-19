@@ -1767,10 +1767,6 @@ a.purpleSmallBtn:hover{
 				width:350px;
 				}
 				
-			.affiliationPanel table tr td .zipInput{
-				width:120px;
-				}
-			
 			.affiliationPanel table tr td .groupNameInput{
 				width:674px;
 				}
@@ -4931,7 +4927,7 @@ td.nopad {
 	width: 204px;
 }
 
-input.zipInput, input.zipInputFor {
+input.zipInputFor {
 	width: 75px !important;
 }
 

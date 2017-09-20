@@ -1,11 +1,13 @@
 package gov.medicaid.features.enrollment.steps;
 
+import gov.medicaid.features.enrollment.ui.EnrollmentDetailsPage;
 import gov.medicaid.features.enrollment.ui.IndividualInfoPage;
 import gov.medicaid.features.enrollment.ui.IndividualSummaryPage;
 import gov.medicaid.features.enrollment.ui.LicenseInfoPage;
 import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
 import gov.medicaid.features.enrollment.ui.PersonalInfoPage;
 import gov.medicaid.features.enrollment.ui.PracticeInfoPage;
+import gov.medicaid.features.enrollment.ui.ProviderStatementPage;
 import gov.medicaid.features.enrollment.ui.SelectProviderTypePage;
 import gov.medicaid.features.general.ui.DashboardPage;
 import gov.medicaid.features.general.ui.LoginPage;
@@ -65,6 +67,8 @@ public class EnrollmentSteps {
     private LicenseInfoPage licenseInfoPage;
     private PracticeInfoPage practiceInfoPage;
     private IndividualSummaryPage individualSummaryPage;
+    private ProviderStatementPage providerStatementPage;
+    private EnrollmentDetailsPage enrollmentDetailsPage;
 
     private SimpleDateFormat formFieldDateFormat = new SimpleDateFormat("MMddyyyy");
 
@@ -272,5 +276,39 @@ public class EnrollmentSteps {
                 .isEqualToIgnoringWhitespace(PRACTICE_EFT_VENDOR_NUMBER);
         assertThat(individualSummaryPage.getRemittanceSequence())
                 .isEqualToIgnoringWhitespace("Patient Account or Own Reference Number Order");
+    }
+
+    @Step
+    void advanceFromIndividualSummaryToProviderStatementPage() {
+        individualSummaryPage.clickNext();
+    }
+
+    @Step
+    void checkNoOnProviderDisclosureQuestions() {
+        providerStatementPage.checkNoCriminalConviction();
+        providerStatementPage.checkNoCivilPenalty();
+        providerStatementPage.checkNoPreviousExclusion();
+    }
+
+    @Step
+    void signAndDateProviderStatement() {
+        providerStatementPage.enterProviderName(LAST_NAME);
+        providerStatementPage.enterProviderTitle("Title");
+        providerStatementPage.enterValidDate();
+    }
+
+    @Step
+    void submitEnrollment() {
+        providerStatementPage.clickSubmitButton();
+    }
+
+    @Step
+    void verifySubmitModal() {
+        enrollmentDetailsPage.verifySubmitModal();
+    }
+
+    @Step
+    void closeSubmitModal() {
+        enrollmentDetailsPage.closeSubmitModal();
     }
 }

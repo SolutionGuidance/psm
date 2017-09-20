@@ -30,11 +30,23 @@ public class DataCoverageStepDefinitions {
 
     @Given("^I am on the individual provider practice info page$")
     public void enter_individual_provider_practice_info_page() throws IOException {
+        navigateToProviderPracticePage();
+    }
+
+    private void navigateToProviderPracticePage() throws IOException {
         navigateToLicensePage();
         enrollmentSteps.enterNotAProviderAtPublicHealthServiceIndianHospital();
         enrollmentSteps.enterIndividualLicenseInfo();
         enrollmentSteps.uploadLicense();
         enrollmentSteps.advanceFromIndividualLicenseInfoToPracticeInfo();
+    }
+
+    @Given("^I am on the individual provider statement page$")
+    public void enter_individual_provider_statement_page() throws IOException {
+        navigateToProviderPracticePage();
+        enrollmentSteps.enterIndividualPrivatePracticeInfo();
+        enrollmentSteps.advanceFromIndividualPracticeInfoToSummaryPage();
+        enrollmentSteps.advanceFromIndividualSummaryToProviderStatementPage();
     }
 
     @When("^I enter valid license information$")
@@ -56,6 +68,17 @@ public class DataCoverageStepDefinitions {
     @When("^I enter a valid private practice$")
     public void enter_valid_private_practice_information() {
         enrollmentSteps.enterIndividualPrivatePracticeInfo();
+    }
+
+    @When("^I enter my provider statement$")
+    public void enter_provider_statement() {
+        enrollmentSteps.checkNoOnProviderDisclosureQuestions();
+        enrollmentSteps.signAndDateProviderStatement();
+    }
+
+    @When("^I submit the enrollment$")
+    public void submit_enrollment() {
+        enrollmentSteps.submitEnrollment();
     }
 
     @Then("^I should be asked to enter Applicant Name, Contact Person, Contact phone$")
@@ -102,5 +125,11 @@ public class DataCoverageStepDefinitions {
         enrollmentSteps.validatePersonalSummaryInformation();
         enrollmentSteps.validateLicenseSummaryInfo();
         enrollmentSteps.validatePracticeSummaryInformation();
+    }
+
+    @Then("^the enrollment is successfully submitted$")
+    public void enrollment_is_successfully_submitted() {
+        enrollmentSteps.verifySubmitModal();
+        enrollmentSteps.closeSubmitModal();
     }
 }

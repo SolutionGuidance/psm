@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -89,6 +89,7 @@ public class UserController extends BaseServiceAdminController {
             CMSUser user = registrationService.findByUserId(userId);
             ModelAndView model = new ModelAndView("admin/service_admin_view_user_profile");
             model.addObject("user", user);
+            ControllerHelper.addContextInfoToModel(model);
 
             return LogUtil.traceExit(getLog(), signature, model);
         } catch (PortalServiceException e) {
@@ -153,6 +154,8 @@ public class UserController extends BaseServiceAdminController {
             registrationService.updateUserProfile(currentUser.getUserId(), user);
             ModelAndView model = new ModelAndView("admin/service_admin_view_user_profile");
             model.addObject("user", user);
+            ControllerHelper.addContextInfoToModel(model);
+
             return LogUtil.traceExit(getLog(), signature, model);
         } catch (PortalServiceException e) {
             LogUtil.traceError(getLog(), signature, e);

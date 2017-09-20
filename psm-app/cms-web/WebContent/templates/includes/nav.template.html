@@ -1,0 +1,36 @@
+<div class="nav">
+  <div class="navR">
+    <div class="navM">
+      <ul>
+        <li class="{{#if activeTab1 }} active {{/if}}">
+          <a href="{{ctx}}/landing">DASHBOARD</a>
+          {{#if activeTab1 }} <span class="arrow"></span> {{/if}}
+        </li>
+
+        <li class="{{#if activeTab2 }} active {{/if}}">
+          <a href="{{ctx}}/provider/dashboard/drafts">ENROLLMENTS</a>
+          {{#if activeTab2 }} <span class="arrow"></span> {{/if}}
+        </li>
+
+        {{#if isServiceAdministrator}}
+        <li class="{{#if activeTab4 }} active {{/if}}">
+          <a href="{{ctx}}/admin/viewProviderTypes">FUNCTIONS</a>
+          {{#if activeTab4 }} <span class="arrow"></span> {{/if}}
+        </li>
+        {{/if}}
+
+        <li class="last {{#if activeTab3 }} active {{/if}}">
+          <a href="{{ctx}}/myprofile">MY PROFILE</a>
+          {{#if activeTab3 }} <span class="arrow"></span> {{/if}}
+        </li>
+      </ul>
+
+      <div class="searchWidget">
+        <a href="{{ctx}}/provider/search/advanced">Advanced Search</a>
+        <div class="inputContainer">
+          <a id="enrollmentQuickSearch" href="{{ctx}}/provider/search/quick" class="search"></a> <input id="quickSearchInput" type="text" class="hint" value="{{#if param.npi }} {{param.npi}} {{else}} Search Keyword {{/if}}" title="Search Keyword" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

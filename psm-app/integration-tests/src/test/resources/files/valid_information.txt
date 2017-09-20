@@ -1,0 +1,22 @@
+username, p1
+password, p1
+firstname, p1
+lastname, p1
+NPI, 0000000006
+SSN, 231-20-1232
+DOB, 11/15/1998
+email, kevin@123.com
+license, ../../../../../../README.md
+licenseNumber, 930
+issueDate, 11/11/1990
+renewalDate, 11/11/1999
+issueState, Alabama
+stateAbbreviation, AL
+practiceName, Kevin's Private Practice
+effectiveDate, 11/15/1993
+practiceAddress, 1000 West Main St
+city, Charlottesville
+state, Virginia
+zipCode, 22904
+phoneNumber, 703-871-1234
+fiscalYear, 11/15

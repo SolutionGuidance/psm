@@ -105,6 +105,14 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
             enrollment.setContactSameAsApplicant("N");
             enrollmentContact.setName(param(request, "contactName"));
             enrollmentContact.setEmailAddress(param(request, "contactEmail"));
+            enrollmentContact.setPhoneNumber(
+                    BinderUtils.concatPhone(
+                            param(request, "contactPhone1"),
+                            param(request, "contactPhone2"),
+                            param(request, "contactPhone3"),
+                            param(request, "contactPhone4")
+                    )
+            );
         }
         return exceptions;
     }
@@ -136,6 +144,11 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
         } else {
             attr(mv, "contactName", enrollmentContact.getName());
             attr(mv, "contactEmail", enrollmentContact.getEmailAddress());
+            String[] phone = BinderUtils.splitPhone(enrollmentContact.getPhoneNumber());
+            attr(mv, "contactPhone1", phone[0]);
+            attr(mv, "contactPhone2", phone[1]);
+            attr(mv, "contactPhone3", phone[2]);
+            attr(mv, "contactPhone4", phone[3]);
         }
     }
 
@@ -278,6 +291,9 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
                         person.setContactInformation(new ContactInformation());
                     }
                     person.getContactInformation().setEmail(enrollment.getContactInformation().getEmailAddress());
+                    person.getContactInformation().setPhoneNumber(
+                            enrollment.getContactInformation().getPhoneNumber()
+                    );
                     found = true;
                 }
             }
@@ -291,6 +307,9 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
                 person.setName(enrollment.getContactInformation().getName());
                 person.setContactInformation(new ContactInformation());
                 person.getContactInformation().setEmail(enrollment.getContactInformation().getEmailAddress());
+                person.getContactInformation().setPhoneNumber(
+                        enrollment.getContactInformation().getPhoneNumber()
+                );
                 profile.getDesignatedContacts().add(designatedContact);
             }
         }
@@ -320,6 +339,7 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
                 if (hContact != null) {
                     ContactInformationType contact = XMLUtility.nsGetContactInformation(individual);
                     contact.setEmailAddress(hContact.getEmail());
+                    contact.setPhoneNumber(hContact.getPhoneNumber());
                 }
             }
 
@@ -333,6 +353,7 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
                         xContact.setName(hPerson.getName());
                         if (hPerson.getContactInformation() != null) {
                             xContact.setEmailAddress(hPerson.getContactInformation().getEmail());
+                            xContact.setPhoneNumber(hPerson.getContactInformation().getPhoneNumber());
                         }
                         found = true;
                     }
@@ -389,6 +410,7 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
         contactInfo.addCell(PDFHelper.createHeaderCell("Contact Information", 2));
         PDFHelper.addLabelValueCell(contactInfo, "Contact Name", PDFHelper.value(model, ns, "contactName"));
         PDFHelper.addLabelValueCell(contactInfo, "Contact Email Address", PDFHelper.value(model, ns, "contactEmail"));
+        PDFHelper.addLabelValueCell(contactInfo, "Contact Phone Number", PDFHelper.getPhone(model, ns, "contactPhone"));
 
         document.add(contactInfo);
     }

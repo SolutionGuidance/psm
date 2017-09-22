@@ -15,10 +15,9 @@
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import sys
 # sys.path.insert(0, os.path.abspath('.'))
 import os
+import sys
 
 # -- General configuration ------------------------------------------------
 
@@ -149,6 +148,16 @@ texinfo_documents = [
 ]
 
 
+# -- Options for LaTeX output ---------------------------------------------
+
+latex_show_pagerefs = True
+
+latex_show_urls = 'footnote'
+
+latex_logo = os.path.join(os.path.abspath(os.pardir),
+                          os.pardir,
+                          os.pardir,
+                          "psm-app/cms-web/WebContent/i/psm-logo.png")
 
 # -- Options for Epub output ----------------------------------------------
 

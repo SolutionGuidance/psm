@@ -153,24 +153,26 @@ texinfo_documents = [
 # -- Options for Epub output ----------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = project
-epub_author = author
-epub_publisher = author
+epub_title = "Provider Service Module documentation"
+epub_author = "Open Tech Strategies"
+epub_publisher = "Open Tech Strategies https://github.com/OpenTechStrategies/psm/"
 epub_copyright = copyright
 
 # The unique identifier of the text. This can be a ISBN number
 # or the project homepage.
 #
-# epub_identifier = ''
+# epub_identifier = 'PSM'
 
 # A unique identification for the text.
-#
-# epub_uid = ''
+
+epub_uid = 'psm-documentation'
 
 # A list of files that should not be packed into the epub file.
 epub_exclude_files = ['search.html']
 
+epub_show_urls = 'footnote'
 
+epub_use_index = True
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}

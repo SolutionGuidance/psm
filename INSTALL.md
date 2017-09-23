@@ -364,6 +364,8 @@ gradle:
 
 The generated documentation will go into `psm-app/cms-web/build/reports/api-docs`.
 
+To build the user documentation, see `docs/userhelp/README.mdwn`.
+
 ## Run automated tests
 
 See `docs/TESTING.md` for instructions on running the automated tests.

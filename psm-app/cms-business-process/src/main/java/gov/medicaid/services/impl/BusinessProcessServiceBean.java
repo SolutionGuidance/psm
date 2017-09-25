@@ -15,7 +15,6 @@
  */
 package gov.medicaid.services.impl;
 
-import com.topcoder.util.log.Level;
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.EditHistoryType;
 import gov.medicaid.domain.model.EnrollmentProcess;
@@ -84,11 +83,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.logging.Logger;
+
+import static java.util.logging.Level.SEVERE;
 
 @Stateless
 @Local(BusinessProcessService.class)
 @TransactionManagement(TransactionManagementType.BEAN)
 public class BusinessProcessServiceBean extends BaseService implements BusinessProcessService {
+    private static final Logger LOGGER =
+            Logger.getLogger(BusinessProcessServiceBean.class.getName());
 
     /**
      * See https://issues.jboss.org/browse/JBPM-3791
@@ -196,7 +200,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
                 try {
                     ksession.dispose();
                 } catch (Throwable t) {
-                    getLog().log(Level.ERROR, t, "Could not close session.");
+                    LOGGER.log(SEVERE, "Could not close session.", t);
                 }
             }
         }
@@ -233,7 +237,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             try {
                 ksession.dispose();
             } catch (Throwable t) {
-                getLog().log(Level.ERROR, t, "Could not close session.");
+                LOGGER.log(SEVERE, "Could not close session.", t);
             }
         }
     }
@@ -365,7 +369,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             try {
                 ksession.dispose();
             } catch (Throwable t) {
-                getLog().log(Level.ERROR, t, "Could not close session.");
+                LOGGER.log(SEVERE, "Could not close session.", t);
             }
             client.dispose();
         }

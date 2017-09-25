@@ -15,6 +15,8 @@
  */
 package gov.medicaid.verification;
 
+import com.topcoder.util.log.Level;
+import com.topcoder.util.log.Log;
 import gov.medicaid.domain.model.ExternalSourcesScreeningResultType;
 import gov.medicaid.domain.model.NETStudyVerificationRequest;
 import gov.medicaid.domain.model.NETStudyVerificationResponse;
@@ -26,18 +28,14 @@ import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
 
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.TransformerException;
-
-import com.topcoder.util.log.Level;
-import com.topcoder.util.log.Log;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
 
 /**
  * Used to verify SSN against the Death Master file records.

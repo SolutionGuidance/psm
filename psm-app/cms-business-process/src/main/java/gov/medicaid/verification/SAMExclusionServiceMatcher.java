@@ -3,6 +3,8 @@
  */
 package gov.medicaid.verification;
 
+import com.topcoder.util.log.Level;
+import com.topcoder.util.log.Log;
 import gov.medicaid.domain.model.ExternalSourcesScreeningResultType;
 import gov.medicaid.domain.model.NameValuePairType;
 import gov.medicaid.domain.model.ObjectFactory;
@@ -14,17 +16,13 @@ import gov.medicaid.domain.rules.inference.ResultMatchResolver;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.util.LogUtil;
 
-import java.io.IOException;
-import java.io.StringWriter;
-import java.util.List;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.transform.TransformerException;
-
-import com.topcoder.util.log.Level;
-import com.topcoder.util.log.Log;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.util.List;
 
 /**
  * Uses a web service call to filter multiple search results into an exact match.

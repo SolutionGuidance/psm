@@ -15,6 +15,8 @@
  */
 package gov.medicaid.process.enrollment;
 
+import com.topcoder.util.log.Level;
+import com.topcoder.util.log.Log;
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.EnrollmentProcess;
 import gov.medicaid.domain.model.FacilityCredentialsType;
@@ -35,22 +37,17 @@ import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
 import gov.medicaid.verification.LicenseVerificationClient;
+import org.drools.runtime.StatefulKnowledgeSession;
+import org.drools.runtime.process.WorkItem;
+import org.drools.runtime.process.WorkItemManager;
 
+import javax.xml.bind.JAXBException;
+import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.xml.bind.JAXBException;
-import javax.xml.transform.TransformerException;
-
-import org.drools.runtime.StatefulKnowledgeSession;
-import org.drools.runtime.process.WorkItem;
-import org.drools.runtime.process.WorkItemManager;
-
-import com.topcoder.util.log.Level;
-import com.topcoder.util.log.Log;
 
 /**
  * This handler is used to verify facility and individual licenses.

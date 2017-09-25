@@ -15,6 +15,8 @@
  */
 package gov.medicaid.process.enrollment;
 
+import com.topcoder.util.log.Level;
+import com.topcoder.util.log.Log;
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.AgencyInformationType;
 import gov.medicaid.domain.model.EnrollmentProcess;
@@ -29,18 +31,13 @@ import gov.medicaid.domain.model.VerificationStatusType;
 import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
 import gov.medicaid.verification.BackgroundStudyClient;
-
-import java.io.IOException;
-import java.util.List;
-
-import javax.xml.bind.JAXBException;
-import javax.xml.transform.TransformerException;
-
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
 
-import com.topcoder.util.log.Level;
-import com.topcoder.util.log.Log;
+import javax.xml.bind.JAXBException;
+import javax.xml.transform.TransformerException;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * This verifies that the background study ID is valid and that it is not denied.

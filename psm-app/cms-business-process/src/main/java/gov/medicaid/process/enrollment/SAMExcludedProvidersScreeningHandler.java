@@ -3,8 +3,6 @@
  */
 package gov.medicaid.process.enrollment;
 
-import com.topcoder.util.log.Level;
-import com.topcoder.util.log.Log;
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.EnrollmentProcess;
 import gov.medicaid.domain.model.ExternalSourcesScreeningResultType;
@@ -13,7 +11,6 @@ import gov.medicaid.domain.model.ScreeningResultType;
 import gov.medicaid.domain.model.ScreeningResultsType;
 import gov.medicaid.domain.model.VerificationStatusType;
 import gov.medicaid.domain.rules.inference.MatchStatus;
-import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.verification.SAMExclusionSearchClient;
 import gov.medicaid.verification.SAMExclusionServiceMatcher;
 import org.drools.runtime.process.WorkItem;
@@ -22,6 +19,7 @@ import org.drools.runtime.process.WorkItemManager;
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 /**
  * This checks the excluded providers from the SAM website.
@@ -30,11 +28,8 @@ import java.io.IOException;
  * @version 1.0
  */
 public class SAMExcludedProvidersScreeningHandler extends GenericHandler {
-
-    /**
-     * Class logger.
-     */
-    private Log log = LogUtil.getLog("SAMExcludedProvidersScreeningHandler");
+    private static final Logger LOGGER =
+            Logger.getLogger(SAMExcludedProvidersScreeningHandler.class.getName());
 
     /**
      * SAM exclusion screening.
@@ -45,7 +40,7 @@ public class SAMExcludedProvidersScreeningHandler extends GenericHandler {
      *            the work item manager
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
-        log.log(Level.INFO, "Checking SAM provider exclusion.");
+        LOGGER.info("Checking SAM provider exclusion.");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
 
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
@@ -74,15 +69,15 @@ public class SAMExcludedProvidersScreeningHandler extends GenericHandler {
             screeningResultType.setStatus(XMLUtility.newStatus("SUCCESS"));
             screeningResultType.setSAMExclusionVerificationResult(results.getSearchResults());
         } catch (TransformerException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (JAXBException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (IOException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         }

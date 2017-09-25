@@ -15,8 +15,6 @@
  */
 package gov.medicaid.process.enrollment;
 
-import com.topcoder.util.log.Level;
-import com.topcoder.util.log.Log;
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.ApplicantInformationType;
 import gov.medicaid.domain.model.EnrollmentProcess;
@@ -25,7 +23,6 @@ import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.ScreeningResultType;
 import gov.medicaid.domain.model.ScreeningResultsType;
 import gov.medicaid.domain.model.VerificationStatusType;
-import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.verification.DMFSearchClient;
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
@@ -33,6 +30,7 @@ import org.drools.runtime.process.WorkItemManager;
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 /**
  * This verifies that the SSN is not present in the DMF records.
@@ -42,11 +40,8 @@ import java.io.IOException;
  * @since External Sources Integration Assembly II
  */
 public class VerifySSNHandler extends GenericHandler {
-
-    /**
-     * Class logger.
-     */
-    private Log log = LogUtil.getLog("VerifySSNHandler");
+    private static final Logger LOGGER =
+            Logger.getLogger(VerifySSNHandler.class.getName());
 
     /**
      * Checks the DMF service for the SSN of the provider.
@@ -55,7 +50,7 @@ public class VerifySSNHandler extends GenericHandler {
      * @param manager the work item manager
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
-        log.log(Level.INFO, "Verifying SSN...");
+        LOGGER.info("Verifying SSN...");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
         ApplicantInformationType applicant = provider.getApplicantInformation();
@@ -81,15 +76,15 @@ public class VerifySSNHandler extends GenericHandler {
             }
             screeningResultType.setSearchResult(results.getSearchResults());
         } catch (JAXBException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (IOException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (TransformerException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         }

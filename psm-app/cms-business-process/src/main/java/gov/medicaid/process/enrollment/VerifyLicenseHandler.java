@@ -15,8 +15,6 @@
  */
 package gov.medicaid.process.enrollment;
 
-import com.topcoder.util.log.Level;
-import com.topcoder.util.log.Log;
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.EnrollmentProcess;
 import gov.medicaid.domain.model.FacilityCredentialsType;
@@ -34,7 +32,6 @@ import gov.medicaid.domain.rules.CMSKnowledgeUtility;
 import gov.medicaid.domain.rules.inference.LicenseLookupConfiguration;
 import gov.medicaid.domain.rules.inference.MatchStatus;
 import gov.medicaid.services.CMSConfigurator;
-import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
 import gov.medicaid.verification.LicenseVerificationClient;
 import org.drools.runtime.StatefulKnowledgeSession;
@@ -48,6 +45,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * This handler is used to verify facility and individual licenses.
@@ -57,11 +55,8 @@ import java.util.Map;
  * @since External Sources Integration Assembly II
  */
 public class VerifyLicenseHandler extends GenericHandler {
-
-    /**
-     * Class logger.
-     */
-    private Log log = LogUtil.getLog("VerifyLicenseHandler");
+    private static final Logger LOGGER =
+            Logger.getLogger(VerifyLicenseHandler.class.getName());
 
     /**
      * Executes verification of licenses and facility credentials.
@@ -75,7 +70,7 @@ public class VerifyLicenseHandler extends GenericHandler {
      * @param manager the work item manager
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
-        log.log(Level.INFO, "Verifying license and certifications.");
+        LOGGER.info("Verifying license and certifications.");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
 
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
@@ -92,7 +87,7 @@ public class VerifyLicenseHandler extends GenericHandler {
             LicenseLookupConfiguration lookup = config.get(licenseType.getLicenseType());
 
             if ("Y".equals(lookup.getLookupSupported())) {
-                log.log(Level.INFO, "Verifying license type " + licenseType.getLicenseType());
+                LOGGER.info("Verifying license type " + licenseType.getLicenseType());
 
                 ScreeningResultType licenseResult = new ScreeningResultType();
                 licenseResult.setScreeningType("LICENSE VERIFICATION");
@@ -100,7 +95,7 @@ public class VerifyLicenseHandler extends GenericHandler {
                 licenseResult.setStatus(XMLUtility.newStatus("SUCCESS"));
                 results.getScreeningResult().add(licenseResult);
             } else {
-                log.log(Level.INFO, "License " + licenseType.getLicenseType()
+                LOGGER.info("License " + licenseType.getLicenseType()
                     + " does not support automatic verification");
             }
         }
@@ -153,33 +148,33 @@ public class VerifyLicenseHandler extends GenericHandler {
             results = client.verify(provider, licenseType);
             SearchResultType externalResults = results.getSearchResults();
             if (externalResults != null && !externalResults.getSearchResultItem().isEmpty()) {
-                log.log(Level.INFO, "External service returned results, resolving exact match.");
+                LOGGER.info("External service returned results, resolving exact match.");
                 // multiple records, resolve any "REAL" match
                 MatchStatus matchStatus = lookup.getMatcher().match(provider, licenseType, results);
                 if (matchStatus == MatchStatus.EXACT_MATCH) {
                     licenseType.setVerified("Y");
                     populateStatus(licenseType, results.getSearchResults());
-                    log.log(Level.INFO, "Resolving to an exact match.");
+                    LOGGER.info("Resolving to an exact match.");
                 } else {
                     licenseType.setVerified("N");
-                    log.log(Level.INFO, "Cannot resolve exact match : " + matchStatus);
+                    LOGGER.info("Cannot resolve exact match : " + matchStatus);
                 }
             } else {
-                log.log(Level.INFO, "External service returned no results.");
+                LOGGER.info("External service returned no results.");
                 licenseType.setVerified("N");
             }
         } catch (JAXBException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new LicenseVerificationSearchResultType();
             results.setLicenseObjectId(licenseType.getObjectId());
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (IOException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new LicenseVerificationSearchResultType();
             results.setLicenseObjectId(licenseType.getObjectId());
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (TransformerException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new LicenseVerificationSearchResultType();
             results.setLicenseObjectId(licenseType.getObjectId());
             results.setStatus(XMLUtility.newStatus("ERROR"));
@@ -196,7 +191,7 @@ public class VerifyLicenseHandler extends GenericHandler {
     private void populateStatus(LicenseType licenseType, SearchResultType searchResults) {
         List<SearchResultItemType> items = searchResults.getSearchResultItem();
         if (items.size() > 1) {
-            log.log(Level.INFO, "Cannot set license status because multiple results are present.");
+            LOGGER.info("Cannot set license status because multiple results are present.");
             return;
         }
         for (SearchResultItemType searchResultItemType : items) {
@@ -204,7 +199,7 @@ public class VerifyLicenseHandler extends GenericHandler {
             List<NameValuePairType> nameValuePair = cols.getNameValuePair();
             for (NameValuePairType col : nameValuePair) {
                 if (col.getName().equals("License Status")) {
-                    log.log(Level.INFO, "Setting license status to: " + col.getValue());
+                    LOGGER.info("Setting license status to: " + col.getValue());
                     licenseType.setStatus(col.getValue());
                     break;
                 }

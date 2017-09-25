@@ -475,23 +475,6 @@ $(document).ready(function () {
     $('.buttonBox').show();
   }
 
-  //Same As Above
-  $('.reimbursementAddressRow .checkbox').live('click', function () {
-    if ($(this).attr('checked')) {
-      $(this).parents('.reimbursementAddressRow').find('.addressInput').val($(this).parents('.wholeCol').find('.addressInputFor').val());
-      $(this).parents('.reimbursementAddressRow').find('.cityInput').val($(this).parents('.wholeCol').find('.cityInputFor').val());
-      $(this).parents('.reimbursementAddressRow').find('.stateSelect').val($(this).parents('.wholeCol').find('.stateSelectFor').val());
-      $(this).parents('.reimbursementAddressRow').find('.zipInput').val($(this).parents('.wholeCol').find('.zipInputFor').val());
-      $(this).parents('.reimbursementAddressRow').find('.countryInput').val($(this).parents('.wholeCol').find('.conurtyInputFor').val());
-    } else {
-      $(this).parents('.reimbursementAddressRow').find('.addressInput').val('');
-      $(this).parents('.reimbursementAddressRow').find('.cityInput').val('');
-      $(this).parents('.reimbursementAddressRow').find('.stateSelect').val('Please select');
-      $(this).parents('.reimbursementAddressRow').find('.zipInput').val('');
-      $(this).parents('.reimbursementAddressRow').find('.countryInput').val('');
-    }
-  });
-
   //Add License
   if ($('#tablePractice tbody tr').length < 2) {
     $('#tablePractice .remove').hide();

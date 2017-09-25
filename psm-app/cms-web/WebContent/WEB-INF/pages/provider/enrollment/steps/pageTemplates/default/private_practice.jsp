@@ -191,7 +191,7 @@
                             <c:set var="formName" value="_05_billingZip"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <label class="smallLabel">ZIP Code<span class="required">*</span> : </label>
-                            <input ${billingAddressMarkup} type="text" class="${disableBillingAddress ? 'disabled' : '' } zipInput" name="${formName}" value="${formValue}" maxlength="10"/>
+                            <input ${billingAddressMarkup} type="text" class="${disableBillingAddress ? 'disabled' : '' } zipInputFor" id="privateReimbursementZip" name="${formName}" value="${formValue}" maxlength="10"/>
                             <c:set var="formName" value="_05_billingCounty"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <label class="smallLabel">County : </label>

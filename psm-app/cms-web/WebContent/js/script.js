@@ -705,20 +705,16 @@ $(document).ready(function () {
     $('.buttonBox').show();
   }
 
-  //Same As Above
+  // Same As Above
   $('.reimbursementAddressRow .checkbox').live('click', function () {
     if ($(this).attr('checked')) {
-      $(this).parents('.reimbursementAddressRow').find('.addressInput').val('').addClass("disabled").prop('disabled', true);
-      $(this).parents('.reimbursementAddressRow').find('.cityInput').val('').addClass("disabled").prop('disabled', true);
-      $(this).parents('.reimbursementAddressRow').find('.stateSelect').val('').addClass("disabled").prop('disabled', true);
-      $(this).parents('.reimbursementAddressRow').find('.zipInput').val('').addClass("disabled").prop('disabled', true);
-      $(this).parents('.reimbursementAddressRow').find('.countryInput').val('').addClass("disabled").prop('disabled', true);
+        $(this).parents('.reimbursementAddressRow').find('input:text, select').each(function () {
+            $(this).val('').addClass("disabled").prop("disabled", true);
+        });
     } else {
-      $(this).parents('.reimbursementAddressRow').find('.addressInput').val('').removeClass("disabled").prop('disabled', false);
-      $(this).parents('.reimbursementAddressRow').find('.cityInput').val('').removeClass("disabled").prop('disabled', false);
-      $(this).parents('.reimbursementAddressRow').find('.stateSelect').val('').removeClass("disabled").prop('disabled', false);
-      $(this).parents('.reimbursementAddressRow').find('.zipInput').val('').removeClass("disabled").prop('disabled', false);
-      $(this).parents('.reimbursementAddressRow').find('.countryInput').val('').removeClass("disabled").prop('disabled', false);
+        $(this).parents('.reimbursementAddressRow').find('input:text, select').each(function () {
+            $(this).val('').removeClass("disabled").prop('disabled', false);
+        });
     }
   });
 

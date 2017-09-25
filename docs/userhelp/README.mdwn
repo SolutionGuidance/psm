@@ -28,3 +28,8 @@ $ make latexpdf
 ~~~
 
 Sphinx will create `build/latex/ProviderScreeningModule.pdf`.
+
+Each time the underlying content changes, or the styling choices (as
+defined in `conf.py`) change, you'll have to `sphinx-build` to build
+fresh LaTeX files, and then `make latexpdf` to turn those LaTeX files
+into an updated PDF.

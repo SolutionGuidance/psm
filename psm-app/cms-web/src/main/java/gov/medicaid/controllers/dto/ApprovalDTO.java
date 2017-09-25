@@ -58,11 +58,6 @@ public class ApprovalDTO {
     private String nonSAMExclusionVerified;
 
     /**
-     * If Y, user has verified the BGS ID.
-     */
-    private String bgsVerified;
-
-    /**
      * Empty constructor.
      */
     public ApprovalDTO() {
@@ -143,25 +138,6 @@ public class ApprovalDTO {
      */
     public void setNonExclusionVerified(String nonExclusionVerified) {
         this.nonExclusionVerified = nonExclusionVerified;
-    }
-
-    /**
-     * Gets the value of the field <code>bgsVerified</code>.
-     *
-     * @return the bgsVerified
-     */
-    public String getBgsVerified() {
-        return bgsVerified;
-    }
-
-    /**
-     * Sets the value of the field <code>bgsVerified</code>.
-     *
-     * @param bgsVerified
-     *            the bgsVerified to set
-     */
-    public void setBgsVerified(String bgsVerified) {
-        this.bgsVerified = bgsVerified;
     }
 
     /**

@@ -230,18 +230,7 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
                     if (personInformation.getContactInformation() != null) {
                         AddressType homeAddress = personInformation.getContactInformation().getAddress();
                         if (homeAddress != null) {
-                            String line1 = homeAddress.getAddressLine1();
-                            String line2 = homeAddress.getAddressLine2();
-                            if (Util.isBlank(line1)) {
-                                line1 = line2;
-                                line2 = null;
-                            }
-                            attr(mv, "iboAddressLine1", personIndex, line1);
-                            attr(mv, "iboAddressLine2", personIndex, line2);
-                            attr(mv, "iboCity", personIndex, homeAddress.getCity());
-                            attr(mv, "iboState", personIndex, homeAddress.getState());
-                            attr(mv, "iboZip", personIndex, homeAddress.getZipCode());
-                            attr(mv, "iboCounty", personIndex, homeAddress.getCounty());
+                            attr(mv, "ibo", personIndex, homeAddress);
                         }
                     }
                 }
@@ -256,18 +245,7 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
 
                 AddressType otherAddress = bo.getOtherInterestAddress();
                 if (otherAddress != null) {
-                    String line1 = otherAddress.getAddressLine1();
-                    String line2 = otherAddress.getAddressLine2();
-                    if (Util.isBlank(line1)) {
-                        line1 = line2;
-                        line2 = null;
-                    }
-                    attr(mv, "iboOtherAddressLine1", personIndex, line1);
-                    attr(mv, "iboOtherAddressLine2", personIndex, line2);
-                    attr(mv, "iboOtherCity", personIndex, otherAddress.getCity());
-                    attr(mv, "iboOtherState", personIndex, otherAddress.getState());
-                    attr(mv, "iboOtherZip", personIndex, otherAddress.getZipCode());
-                    attr(mv, "iboOtherCounty", personIndex, otherAddress.getCounty());
+                    attr(mv, "iboOther", personIndex, otherAddress);
                 }
 
                 personIndex++;
@@ -287,18 +265,7 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
                     if (orgInformation.getContactInformation() != null) {
                         AddressType homeAddress = orgInformation.getContactInformation().getAddress();
                         if (homeAddress != null) {
-                            String line1 = homeAddress.getAddressLine1();
-                            String line2 = homeAddress.getAddressLine2();
-                            if (Util.isBlank(line1)) {
-                                line1 = line2;
-                                line2 = null;
-                            }
-                            attr(mv, "cboAddressLine1", corpIndex, line1);
-                            attr(mv, "cboAddressLine2", corpIndex, line2);
-                            attr(mv, "cboCity", corpIndex, homeAddress.getCity());
-                            attr(mv, "cboState", corpIndex, homeAddress.getState());
-                            attr(mv, "cboZip", corpIndex, homeAddress.getZipCode());
-                            attr(mv, "cboCounty", corpIndex, homeAddress.getCounty());
+                            attr(mv, "cbo", corpIndex, homeAddress);
                         }
                     }
                 }
@@ -311,18 +278,7 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
 
                 AddressType otherAddress = bo.getOtherInterestAddress();
                 if (otherAddress != null) {
-                    String line1 = otherAddress.getAddressLine1();
-                    String line2 = otherAddress.getAddressLine2();
-                    if (Util.isBlank(line1)) {
-                        line1 = line2;
-                        line2 = null;
-                    }
-                    attr(mv, "cboOtherAddressLine1", personIndex, line1);
-                    attr(mv, "cboOtherAddressLine2", personIndex, line2);
-                    attr(mv, "cboOtherCity", corpIndex, otherAddress.getCity());
-                    attr(mv, "cboOtherState", corpIndex, otherAddress.getState());
-                    attr(mv, "cboOtherZip", corpIndex, otherAddress.getZipCode());
-                    attr(mv, "cboOtherCounty", corpIndex, otherAddress.getCounty());
+                    attr(mv, "cboOther", personIndex, otherAddress);
                 }
 
                 corpIndex++;
@@ -340,6 +296,26 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
             mv.put("entityStructureTypes", getLookupService().findAllLookups(EntityStructureType.class));
             mv.put("relationshipTypes", getLookupService().findAllLookups(RelationshipType.class));
         }
+    }
+
+    private void attr(
+            Map<String, Object> mv,
+            String prefix,
+            int index,
+            AddressType address
+    ) {
+        String line1 = address.getAddressLine1();
+        String line2 = address.getAddressLine2();
+        if (Util.isBlank(line1)) {
+            line1 = line2;
+            line2 = null;
+        }
+        attr(mv, prefix + "AddressLine1", index, line1);
+        attr(mv, prefix + "AddressLine2", index, line2);
+        attr(mv, prefix + "City", index, address.getCity());
+        attr(mv, prefix + "State", index, address.getState());
+        attr(mv, prefix + "Zip", index, address.getZipCode());
+        attr(mv, prefix + "County", index, address.getCounty());
     }
 
     /**

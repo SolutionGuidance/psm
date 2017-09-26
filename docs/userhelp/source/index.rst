@@ -28,10 +28,3 @@ emails to this mailing list
    service-agent-help
    service-admin-help
    system-admin-help
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

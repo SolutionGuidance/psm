@@ -183,18 +183,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
 
             AddressType address = location.getAddress();
             if (address != null) {
-                String line1 = address.getAddressLine1();
-                String line2 = address.getAddressLine2();
-                if (Util.isBlank(line1)) {
-                    line1 = line2;
-                    line2 = null;
-                }
-                attr(mv, "addressLine1", i, line1);
-                attr(mv, "addressLine2", i, line2);
-                attr(mv, "city", i, address.getCity());
-                attr(mv, "state", i, address.getState());
-                attr(mv, "zip", i, address.getZipCode());
-                attr(mv, "county", i, address.getCounty());
+                attr(mv, i, address);
             }
             i++;
         }

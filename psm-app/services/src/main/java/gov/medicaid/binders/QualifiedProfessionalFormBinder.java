@@ -231,18 +231,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
             if (qp.getContactInformation() != null) {
                 AddressType address = qp.getContactInformation().getAddress();
                 if (address != null) {
-                    String line1 = address.getAddressLine1();
-                    String line2 = address.getAddressLine2();
-                    if (Util.isBlank(line1)) {
-                        line1 = line2;
-                        line2 = null;
-                    }
-                    attr(mv, "addressLine1", qpIndex, line1);
-                    attr(mv, "addressLine2", qpIndex, line2);
-                    attr(mv, "city", qpIndex, address.getCity());
-                    attr(mv, "state", qpIndex, address.getState());
-                    attr(mv, "zip", qpIndex, address.getZipCode());
-                    attr(mv, "county", qpIndex, address.getCounty());
+                    attr(mv, qpIndex, address);
                 }
             }
 

@@ -299,6 +299,21 @@ public abstract class BaseFormBinder implements FormBinder {
         attr(mv, prefix + "County", address.getCounty());
     }
 
+    protected void attr(Map<String, Object> mv, int i, AddressType address) {
+        String line1 = address.getAddressLine1();
+        String line2 = address.getAddressLine2();
+        if (Util.isBlank(line1)) {
+            line1 = line2;
+            line2 = null;
+        }
+        attr(mv, "addressLine1", i, line1);
+        attr(mv, "addressLine2", i, line2);
+        attr(mv, "city", i, address.getCity());
+        attr(mv, "state", i, address.getState());
+        attr(mv, "zip", i, address.getZipCode());
+        attr(mv, "county", i, address.getCounty());
+    }
+
     /**
      * Instantiates the correct entity type based on the provider type.
      *

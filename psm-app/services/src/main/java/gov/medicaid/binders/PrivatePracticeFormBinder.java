@@ -136,18 +136,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
 
             AddressType billingAddress = practice.getBillingAddress();
             if (billingAddress != null && !"Y".equals(practice.getBillingSameAsPrimary())) {
-                String line1 = billingAddress.getAddressLine1();
-                String line2 = billingAddress.getAddressLine2();
-                if (Util.isBlank(line1)) {
-                    line1 = line2;
-                    line2 = null;
-                }
-                attr(mv, "billingAddressLine1", line1);
-                attr(mv, "billingAddressLine2", line2);
-                attr(mv, "billingCity", billingAddress.getCity());
-                attr(mv, "billingState", billingAddress.getState());
-                attr(mv, "billingZip", billingAddress.getZipCode());
-                attr(mv, "billingCounty", billingAddress.getCounty());
+                attr(mv, "billing", billingAddress);
             }
 
             attr(mv, "fein", practice.getFEIN());

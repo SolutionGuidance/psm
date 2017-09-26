@@ -135,18 +135,7 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
         if (!"Y".equals(practice.getReimbursementSameAsPrimary())) {
             AddressType reimbursementAddress = practice.getReimbursementAddress();
             if (reimbursementAddress != null) {
-                String line1 = reimbursementAddress.getAddressLine1();
-                String line2 = reimbursementAddress.getAddressLine2();
-                if (Util.isBlank(line1)) {
-                    line1 = line2;
-                    line2 = null;
-                }
-                attr(mv, "reimbursementAddressLine1", line1);
-                attr(mv, "reimbursementAddressLine2", line2);
-                attr(mv, "reimbursementCity", reimbursementAddress.getCity());
-                attr(mv, "reimbursementState", reimbursementAddress.getState());
-                attr(mv, "reimbursementZip", reimbursementAddress.getZipCode());
-                attr(mv, "reimbursementCounty", reimbursementAddress.getCounty());
+                attr(mv, "reimbursement", reimbursementAddress);
             }
         }
         attr(mv, "effectiveDate", practice.getEffectiveDate());

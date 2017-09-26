@@ -204,19 +204,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                 if (org.getBillingAddressIndex() != null) {
                     if (alternateAddresses.getAddress().size() >= org.getBillingAddressIndex()) {
                         AddressType billingAddress = alternateAddresses.getAddress().get(org.getBillingAddressIndex() - 1);
-                        String line1 = billingAddress.getAddressLine1();
-                        String line2 = billingAddress.getAddressLine2();
-                        if (Util.isBlank(line1)) {
-                            line1 = line2;
-                            line2 = null;
-                        }
-                        attr(mv, "billingAttention", billingAddress.getAttentionTo());
-                        attr(mv, "billingAddressLine1", line1);
-                        attr(mv, "billingAddressLine2", line2);
-                        attr(mv, "billingCity", billingAddress.getCity());
-                        attr(mv, "billingState", billingAddress.getState());
-                        attr(mv, "billingZip", billingAddress.getZipCode());
-                        attr(mv, "billingCounty", billingAddress.getCounty());
+                        attr(mv, "billing", billingAddress);
                     }
                 }
             }
@@ -227,19 +215,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                 if (org.getTen99AddressIndex() != null) {
                     if (alternateAddresses.getAddress().size() >= org.getTen99AddressIndex()) {
                         AddressType ten99Address = alternateAddresses.getAddress().get(org.getTen99AddressIndex() - 1);
-                        String line1 = ten99Address.getAddressLine1();
-                        String line2 = ten99Address.getAddressLine2();
-                        if (Util.isBlank(line1)) {
-                            line1 = line2;
-                            line2 = null;
-                        }
-                        attr(mv, "ten99Attention", ten99Address.getAttentionTo());
-                        attr(mv, "ten99AddressLine1", line1);
-                        attr(mv, "ten99AddressLine2", line2);
-                        attr(mv, "ten99City", ten99Address.getCity());
-                        attr(mv, "ten99State", ten99Address.getState());
-                        attr(mv, "ten99Zip", ten99Address.getZipCode());
-                        attr(mv, "ten99County", ten99Address.getCounty());
+                        attr(mv, "ten99", ten99Address);
                     }
                 }
             }
@@ -710,4 +686,5 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
         address.setCounty(param(request, "ten99County"));
         return address;
     }
+
 }

@@ -330,19 +330,6 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
      * @return the bound address
      */
     private AddressType readBillingAddress(HttpServletRequest request) {
-        AddressType address = new AddressType();
-        String line1 = param(request, "billingAddressLine1");
-        String line2 = param(request, "billingAddressLine2");
-        if (Util.isBlank(line2)) { // prioritize line 2 usage
-            line2 = line1;
-            line1 = null;
-        }
-        address.setAddressLine1(line1);
-        address.setAddressLine2(line2);
-        address.setCity(param(request, "billingCity"));
-        address.setState(param(request, "billingState"));
-        address.setZipCode(param(request, "billingZip"));
-        address.setCounty(param(request, "billingCounty"));
-        return address;
+        return readPrefixedAddress(request, "billing");
     }
 }

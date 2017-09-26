@@ -305,20 +305,6 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
      * @return the bound address
      */
     private AddressType readReimbursementAddress(HttpServletRequest request) {
-        AddressType address = new AddressType();
-        String line1 = param(request, "reimbursementAddressLine1");
-        String line2 = param(request, "reimbursementAddressLine2");
-        if (Util.isBlank(line2)) { // prioritize line 2 usage
-            line2 = line1;
-            line1 = null;
-        }
-        address.setAddressLine1(line1);
-        address.setAddressLine2(line2);
-        address.setCity(param(request, "reimbursementCity"));
-        address.setState(param(request, "reimbursementState"));
-        address.setZipCode(param(request, "reimbursementZip"));
-        address.setCounty(param(request, "reimbursementCounty"));
-        return address;
+        return readPrefixedAddress(request, "reimbursement");
     }
-
 }

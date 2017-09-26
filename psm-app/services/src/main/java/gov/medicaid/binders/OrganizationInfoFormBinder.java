@@ -646,21 +646,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
      * @return the bound address
      */
     private AddressType readBillingAddress(HttpServletRequest request) {
-        AddressType address = new AddressType();
-        String line1 = param(request, "billingAddressLine1");
-        String line2 = param(request, "billingAddressLine2");
-        if (Util.isBlank(line2)) { // prioritize line 2 usage
-            line2 = line1;
-            line1 = null;
-        }
-        address.setAddressLine1(line1);
-        address.setAddressLine2(line2);
-        address.setAttentionTo(param(request, "billingAttention"));
-        address.setCity(param(request, "billingCity"));
-        address.setState(param(request, "billingState"));
-        address.setZipCode(param(request, "billingZip"));
-        address.setCounty(param(request, "billingCounty"));
-        return address;
+        return readPrefixedAddress(request, "billing");
     }
 
     /**
@@ -670,21 +656,6 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
      * @return the bound address
      */
     private AddressType readTen99Address(HttpServletRequest request) {
-        AddressType address = new AddressType();
-        String line1 = param(request, "ten99AddressLine1");
-        String line2 = param(request, "ten99AddressLine2");
-        if (Util.isBlank(line2)) { // prioritize line 2 usage
-            line2 = line1;
-            line1 = null;
-        }
-        address.setAddressLine1(line1);
-        address.setAddressLine2(line2);
-        address.setAttentionTo(param(request, "ten99Attention"));
-        address.setCity(param(request, "ten99City"));
-        address.setState(param(request, "ten99State"));
-        address.setZipCode(param(request, "ten99Zip"));
-        address.setCounty(param(request, "ten99County"));
-        return address;
+        return readPrefixedAddress(request, "ten99");
     }
-
 }

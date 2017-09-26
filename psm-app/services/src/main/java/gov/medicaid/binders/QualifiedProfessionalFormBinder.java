@@ -130,7 +130,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
                 }
             }
 
-            AddressType address = readQPAddress(request, qpIndex);
+            AddressType address = readIndexedAddress(request, qpIndex);
             ContactInformationType contact = new ContactInformationType();
             qp.setContactInformation(contact);
             qp.getContactInformation().setAddress(address);
@@ -576,29 +576,5 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
             xQPs.getQualifiedProfessional().add(xQP);
         }
-    }
-
-    /**
-     * Reads the primary practice address from the request.
-     *
-     * @param request
-     *            the request to read from
-     * @return the bound address
-     */
-    protected AddressType readQPAddress(HttpServletRequest request, int index) {
-        AddressType address = new AddressType();
-        String line1 = param(request, "addressLine1", index);
-        String line2 = param(request, "addressLine2", index);
-        if (Util.isBlank(line2)) { // prioritize line 2 usage
-            line2 = line1;
-            line1 = null;
-        }
-        address.setAddressLine1(line1);
-        address.setAddressLine2(line2);
-        address.setCity(param(request, "city", index));
-        address.setState(param(request, "state", index));
-        address.setZipCode(param(request, "zip", index));
-        address.setCounty(param(request, "county", index));
-        return address;
     }
 }

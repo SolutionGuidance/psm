@@ -103,19 +103,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
                     exceptions.add(e);
                 }
 
-                AddressType address = new AddressType();
-                String line2 = param(request, "addressLine2", i);
-                String line1 = param(request, "addressLine1", i);
-                if (Util.isBlank(line2)) {
-                    line2 = line1;
-                    line1 = null;
-                }
-                address.setAddressLine1(line1);
-                address.setAddressLine2(line2);
-                address.setCity(param(request, "city", i));
-                address.setState(param(request, "state", i));
-                address.setZipCode(param(request, "zip", i));
-                address.setCounty(param(request, "county", i));
+                AddressType address = readIndexedAddress(request, i);
                 location.setAddress(address);
             }
 

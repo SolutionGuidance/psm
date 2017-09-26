@@ -546,4 +546,24 @@ public abstract class BaseFormBinder implements FormBinder {
         address.setCounty(param(request, prefix + "County"));
         return address;
     }
+
+    AddressType readIndexedAddress(
+            HttpServletRequest request,
+            int index
+    ) {
+        AddressType address = new AddressType();
+        String line1 = param(request, "addressLine1", index);
+        String line2 = param(request, "addressLine2", index);
+        if (Util.isBlank(line2)) {
+            line2 = line1;
+            line1 = null;
+        }
+        address.setAddressLine1(line1);
+        address.setAddressLine2(line2);
+        address.setCity(param(request, "city", index));
+        address.setState(param(request, "state", index));
+        address.setZipCode(param(request, "zip", index));
+        address.setCounty(param(request, "county", index));
+        return address;
+    }
 }

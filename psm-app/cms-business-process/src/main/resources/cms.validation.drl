@@ -536,20 +536,20 @@ dialect 'mvel'
 
 end
 
-rule 'Address Line 1 Should be left empty if Address Line 2 Is Not Provided'
+rule 'Address Line 2 Should be left empty if Address Line 1 Is Not Provided'
 dialect 'mvel'
     when
-        $entry: AddressEntry(errorOnLine1 != "Y")
-        AddressType(addressLine2 == null || addressLine2 matches "^[\\s]*$", addressLine1 != null, addressLine1 != "") from $entry.address
+        $entry: AddressEntry(errorOnLine2 != "Y")
+        AddressType(addressLine1 == null || addressLine1 matches "^[\\s]*$", addressLine2 != null, addressLine2 != "") from $entry.address
         $report: ErrorReporter()
     then
         modify($entry) {
-            setErrorOnLine1("Y")
+            setErrorOnLine2("Y")
         }
         $report.addError(
-            $entry.getPath() + "/AddressLine1",
+            $entry.getPath() + "/AddressLine2",
             "00001",
-            $entry.getType() + " line 1 should be left empty if line 2 is not provided."
+            $entry.getType() + " line 2 should be left empty if line 1 is not provided."
         );
 
 end
@@ -1337,7 +1337,7 @@ dialect 'mvel'
 
 end
 
-rule 'All Addresses Line 2 Is Required'
+rule 'Address must not be empty'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -1347,15 +1347,15 @@ dialect 'mvel'
  * @since Provider Enrollment Drools Front End Validation Part 3
  */
     when
-        $entry: AddressEntry(errorOnLine2 != "Y")
+        $entry: AddressEntry(errorOnLine1 != "Y")
         AddressType(addressLine2 == null || addressLine2 matches "^[\\s]*$", addressLine1 == null || addressLine1 matches "^[\\s]*$") from $entry.address
         $report: ErrorReporter()
     then
         modify($entry) {
-            setErrorOnLine2("Y")
+            setErrorOnLine1("Y")
         }
         $report.addError(
-            $entry.getPath() + "/AddressLine2",
+            $entry.getPath() + "/AddressLine1",
             "00001",
             $entry.getType() + " street address is required."
         );

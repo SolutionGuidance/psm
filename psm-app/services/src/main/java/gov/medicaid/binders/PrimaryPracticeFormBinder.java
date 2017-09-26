@@ -157,8 +157,6 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
 
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
-
         synchronized (ruleErrors) {
             for (StatusMessageType ruleError : ruleErrors) {
                 int count = errors.size();
@@ -168,23 +166,15 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
                     continue;
                 }
 
-                boolean switchAddressLines = false;
-                if (practice.getReimbursementAddress() == null
-                        || Util.isBlank(practice.getReimbursementAddress().getAddressLine1())) {
-                    switchAddressLines = true;
-                }
-
                 if (path.equals(PRACTICE_INFO + "ReimbursementAddress")) {
                     errors.add(createError(new String[] { "reimbursementAddressLine1", "reimbursementAddressLine2" },
                             ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "EffectiveDate")) {
                     errors.add(createError("effectiveDate", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ReimbursementAddress/AddressLine1")) {
-                    errors.add(createError(switchAddressLines ? "reimbursementAddressLine2"
-                            : "reimbursementAddressLine1", ruleError.getMessage()));
+                    errors.add(createError("reimbursementAddressLine1", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ReimbursementAddress/AddressLine2")) {
-                    errors.add(createError(switchAddressLines ? "reimbursementAddressLine1"
-                            : "reimbursementAddressLine2", ruleError.getMessage()));
+                    errors.add(createError("reimbursementAddressLine2", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ReimbursementAddress/City")) {
                     errors.add(createError("reimbursementCity", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ReimbursementAddress/State")) {

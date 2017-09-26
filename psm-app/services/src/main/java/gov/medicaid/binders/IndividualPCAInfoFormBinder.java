@@ -31,7 +31,6 @@ import gov.medicaid.entities.Person;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -147,13 +146,6 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
 
-        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
-        ContactInformationType contact = XMLUtility.nsGetContactInformation(individual);
-        boolean switchAddressLines = false;
-        if (contact.getAddress() == null || Util.isBlank(contact.getAddress().getAddressLine1())) {
-            switchAddressLines = true;;
-        }
-
         synchronized (ruleErrors) {
             for (StatusMessageType ruleError : ruleErrors) {
                 int count = errors.size();
@@ -180,9 +172,9 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
                 } else if (path.equals(PERSONAL_INFO + "ContactInformation/Address")) {
                     errors.add(createError(new String[] {"addressLine1", "addressLine2"}, ruleError.getMessage()));
                 } else if (path.equals(PERSONAL_INFO + "ContactInformation/Address/AddressLine1")) {
-                    errors.add(createError(switchAddressLines ? "addressLine2" : "addressLine1", ruleError.getMessage()));
+                    errors.add(createError("addressLine1", ruleError.getMessage()));
                 } else if (path.equals(PERSONAL_INFO + "ContactInformation/Address/AddressLine2")) {
-                    errors.add(createError(switchAddressLines ? "addressLine1" : "addressLine2", ruleError.getMessage()));
+                    errors.add(createError("addressLine2", ruleError.getMessage()));
                 } else if (path.equals(PERSONAL_INFO + "ContactInformation/Address/City")) {
                     errors.add(createError("city", ruleError.getMessage()));
                 } else if (path.equals(PERSONAL_INFO + "ContactInformation/Address/State")) {

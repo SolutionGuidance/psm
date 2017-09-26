@@ -255,14 +255,6 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
 
         OrganizationApplicantType org = XMLUtility.nsGetOrganization(enrollment);
-        AlternateAddressesType alternateAddresses = enrollment.getProviderInformation().getAlternateAddresses();
-
-        boolean switchAddressLineFields = false;
-        ContactInformationType contact = XMLUtility.nsGetContactInformation(org);
-        AddressType addressType = contact.getAddress();
-        if (addressType == null || Util.isBlank(addressType.getAddressLine1())) {
-            switchAddressLineFields = true;
-        }
 
         synchronized (ruleErrors) {
             for (StatusMessageType ruleError : ruleErrors) {
@@ -289,9 +281,9 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                 } else if (path.equals("/ProviderInformation/ApplicantInformation/OrganizationInformation/Name")) {
                     errors.add(createError("name", ruleError.getMessage()));
                 } else if (path.equals("/ProviderInformation/ApplicantInformation/OrganizationInformation/ContactInformation/Address/AddressLine1")) {
-                    errors.add(createError(switchAddressLineFields? "addressLine2" : "addressLine1", ruleError.getMessage()));
+                    errors.add(createError("addressLine1", ruleError.getMessage()));
                 } else if (path.equals("/ProviderInformation/ApplicantInformation/OrganizationInformation/ContactInformation/Address/AddressLine2")) {
-                    errors.add(createError(switchAddressLineFields? "addressLine1" : "addressLine2", ruleError.getMessage()));
+                    errors.add(createError("addressLine2", ruleError.getMessage()));
                 } else if (path.equals("/ProviderInformation/ApplicantInformation/OrganizationInformation/ContactInformation/Address/City")) {
                     errors.add(createError("city", ruleError.getMessage()));
                 } else if (path.equals("/ProviderInformation/ApplicantInformation/OrganizationInformation/ContactInformation/Address/State")) {
@@ -315,12 +307,12 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                     if (addressIndex != null) {
                         if (org.getTen99AddressIndex() != null) {
                             if (org.getTen99AddressIndex() - 1 == addressIndex) {
-                                errors.add(resolveAddressFieldError(alternateAddresses.getAddress().get(addressIndex), "ten99", path, ruleError));
+                                errors.add(resolveAddressFieldError("ten99", path, ruleError));
                             }
                         }
                         if (org.getBillingAddressIndex() != null) {
                             if (org.getBillingAddressIndex() - 1 == addressIndex) {
-                                errors.add(resolveAddressFieldError(alternateAddresses.getAddress().get(addressIndex), "billing", path, ruleError));
+                                errors.add(resolveAddressFieldError("billing", path, ruleError));
                             }
                         }
                     }
@@ -338,15 +330,15 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
         return errors.isEmpty() ? NO_ERRORS : errors;
     }
 
-    private FormError resolveAddressFieldError(AddressType addressType, String prefix, String path, StatusMessageType ruleError) {
-        boolean switchAddressLineFields = false;
-        if (addressType == null || Util.isBlank(addressType.getAddressLine1())) {
-            switchAddressLineFields = true;
-        }
+    private FormError resolveAddressFieldError(
+            String prefix,
+            String path,
+            StatusMessageType ruleError
+    ) {
         if (path.endsWith("/AddressLine1")) {
-            return createError(switchAddressLineFields ? prefix + "AddressLine2" : prefix + "AddressLine1", ruleError.getMessage());
+            return createError(prefix + "AddressLine1", ruleError.getMessage());
         } else if (path.endsWith("/AddressLine2")) {
-            return createError(switchAddressLineFields ? prefix + "AddressLine1" : prefix + "AddressLine2", ruleError.getMessage());
+            return createError(prefix + "AddressLine2", ruleError.getMessage());
         } else if (path.endsWith("/City")) {
             return createError(prefix + "City", ruleError.getMessage());
         } else if (path.endsWith("/State")) {

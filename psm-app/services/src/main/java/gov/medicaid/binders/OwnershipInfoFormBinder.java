@@ -176,16 +176,8 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
      */
     private AddressType readAddress(HttpServletRequest request, String prefix, int i) {
         AddressType address = new AddressType();
-        String line1 = param(request, prefix + "AddressLine1", i);
-        String line2 = param(request, prefix +  "AddressLine2", i);
-
-        if (Util.isBlank(line2)) { // prioritize line 2 usage
-            line2 = line1;
-            line1 = null;
-        }
-
-        address.setAddressLine1(line1);
-        address.setAddressLine2(line2);
+        address.setAddressLine1(param(request, prefix + "AddressLine1", i));
+        address.setAddressLine2(param(request, prefix +  "AddressLine2", i));
         address.setCity(param(request, prefix +  "City", i));
         address.setState(param(request, prefix + "State", i));
         address.setZipCode(param(request, prefix +  "Zip", i));
@@ -304,14 +296,8 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
             int index,
             AddressType address
     ) {
-        String line1 = address.getAddressLine1();
-        String line2 = address.getAddressLine2();
-        if (Util.isBlank(line1)) {
-            line1 = line2;
-            line2 = null;
-        }
-        attr(mv, prefix + "AddressLine1", index, line1);
-        attr(mv, prefix + "AddressLine2", index, line2);
+        attr(mv, prefix + "AddressLine1", index, address.getAddressLine1());
+        attr(mv, prefix + "AddressLine2", index, address.getAddressLine2());
         attr(mv, prefix + "City", index, address.getCity());
         attr(mv, prefix + "State", index, address.getState());
         attr(mv, prefix + "Zip", index, address.getZipCode());
@@ -354,7 +340,7 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
                 } else if (path.equals("/ProviderInformation/OwnershipInformation")) {
                     errors.add(createError("ownershipInformation", ruleError.getMessage()));
                 } else if (path.startsWith("/ProviderInformation/OwnershipInformation/BeneficialOwner[")) {
-                    FormError error = resolveFieldError(ownershipInformation, ruleError, entityIndex);
+                    FormError error = resolveFieldError(ruleError, entityIndex);
                     errors.add(error);
                 }
 
@@ -372,40 +358,23 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
 
     /**
      * Resolves the specific license that is causing the error from the license list.
-     * @param ownershipInformation
-     * @param ruleError the error to resolve
+     *
+     * @param ruleError   the error to resolve
      * @param entityIndex
      * @return the resolved error
      */
-    private FormError resolveFieldError(OwnershipInformationType ownershipInformation, StatusMessageType ruleError, int entityIndex) {
+    private FormError resolveFieldError(
+            StatusMessageType ruleError,
+            int entityIndex
+    ) {
         String path = ruleError.getRelatedElementPath();
         Integer index = resolveIndex(path);
         boolean entity = false;
 
-        boolean switch1 = false;
-        boolean switch2 = false;
         if (index != null) {
-            BeneficialOwnerType owner = ownershipInformation.getBeneficialOwner().get(index);
-
             if (index >= entityIndex) {
                 index = index - entityIndex;
                 entity = true;
-            }
-
-            if (entity) {
-                if (owner.getEntityInformation() != null) {
-                    ContactInformationType contact = owner.getEntityInformation().getContactInformation();
-                    if (contact == null || contact.getAddress() == null || Util.isBlank(contact.getAddress().getAddressLine1())) {
-                        switch1 = true;
-                    }
-                }
-            } else {
-                if (owner.getPersonInformation() != null) {
-                    ContactInformationType contact = owner.getPersonInformation().getContactInformation();
-                    if (contact == null || contact.getAddress() == null || Util.isBlank(contact.getAddress().getAddressLine1())) {
-                        switch2 = true;
-                    }
-                }
             }
         }
 
@@ -422,17 +391,9 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
             } else if (path.endsWith("/OtherInterestPercentOwnership")) {
                 return createError(entity ? "cboOtherInterestPct" : "iboOtherInterestPct", index, message);
             } else if (path.endsWith("/OtherInterestAddress/AddressLine1")) {
-                if (switch2) {
-                    return createError(entity ? "cboOtherAddressLine2" : "iboOtherAddressLine2", index, message);
-                } else {
-                    return createError(entity ? "cboOtherAddressLine1" : "iboOtherAddressLine1", index, message);
-                }
+                return createError(entity ? "cboOtherAddressLine1" : "iboOtherAddressLine1", index, message);
             } else if (path.endsWith("/OtherInterestAddress/AddressLine2")) {
-                if (switch2) {
-                    return createError(entity ? "cboOtherAddressLine1" : "iboOtherAddressLine1", index, message);
-                } else {
-                    return createError(entity ? "cboOtherAddressLine2" : "iboOtherAddressLine2", index, message);
-                }
+                return createError(entity ? "cboOtherAddressLine2" : "iboOtherAddressLine2", index, message);
             } else if (path.endsWith("/OtherInterestAddress/City")) {
                 return createError(entity ? "cboOtherCity" : "iboOtherCity", index, message);
             } else if (path.endsWith("/OtherInterestAddress/State")) {
@@ -454,9 +415,9 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
             } else if (path.endsWith("/PersonInformation/SocialSecurityNumber")) {
                 return createError("iboSSN", index, message);
             } else if (path.endsWith("/PersonInformation/ContactInformation/Address/AddressLine1")) {
-                return createError(switch1 ? "iboAddressLine2" : "iboAddressLine1", index, message);
+                return createError("iboAddressLine1", index, message);
             } else if (path.endsWith("/PersonInformation/ContactInformation/Address/AddressLine2")) {
-                return createError(switch1 ? "iboAddressLine1" : "iboAddressLine2", index, message);
+                return createError("iboAddressLine2", index, message);
             } else if (path.endsWith("/PersonInformation/ContactInformation/Address/City")) {
                 return createError("iboCity", index, message);
             } else if (path.endsWith("/PersonInformation/ContactInformation/Address/State")) {
@@ -466,9 +427,9 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
             } else if (path.endsWith("/PersonInformation/ContactInformation/Address/County")) {
                 return createError("iboCounty", index, message);
             } else if (path.endsWith("/EntityInformation/ContactInformation/Address/AddressLine1")) {
-                return createError(switch1 ? "cboAddressLine2" : "cboAddressLine1", index, message);
+                return createError("cboAddressLine1", index, message);
             } else if (path.endsWith("/EntityInformation/ContactInformation/Address/AddressLine2")) {
-                return createError(switch1 ? "cboAddressLine1" : "cboAddressLine2", index, message);
+                return createError("cboAddressLine2", index, message);
             } else if (path.endsWith("/EntityInformation/ContactInformation/Address/City")) {
                 return createError("cboCity", index, message);
             } else if (path.endsWith("/EntityInformation/ContactInformation/Address/State")) {

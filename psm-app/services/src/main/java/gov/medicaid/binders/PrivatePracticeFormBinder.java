@@ -162,8 +162,6 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
 
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
-
         synchronized (ruleErrors) {
             for (StatusMessageType ruleError : ruleErrors) {
                 int count = errors.size();
@@ -173,19 +171,14 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
                     continue;
                 }
 
-                boolean switchBillingAddressLines = false;
-                if (practice.getBillingAddress() == null || Util.isBlank(practice.getBillingAddress().getAddressLine1())) {
-                    switchBillingAddressLines = true;
-                }
-
                 if (path.equals(PRACTICE_INFO + "EffectiveDate")) {
                     errors.add(createError("effectiveDate", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "BillingAddress")) {
                     errors.add(createError(new String[]{"billingAddressLine1", "billingAddressLine2"}, ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "BillingAddress/AddressLine1")) {
-                    errors.add(createError(switchBillingAddressLines ? "billingAddressLine2" : "billingAddressLine1", ruleError.getMessage()));
+                    errors.add(createError("billingAddressLine1", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "BillingAddress/AddressLine2")) {
-                    errors.add(createError(switchBillingAddressLines ? "billingAddressLine1" :"billingAddressLine2", ruleError.getMessage()));
+                    errors.add(createError("billingAddressLine2", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "BillingAddress/City")) {
                     errors.add(createError("billingCity", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "BillingAddress/State")) {

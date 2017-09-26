@@ -110,7 +110,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
                     line2 = line1;
                     line1 = null;
                 }
-                address.setAddressLine2(line1);
+                address.setAddressLine1(line1);
                 address.setAddressLine2(line2);
                 address.setCity(param(request, "city", i));
                 address.setState(param(request, "state", i));

@@ -1,0 +1,195 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Service administrator help documentation &#8212; Provider Screening Module 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Administrator help documentation" href="system-admin-help.html" />
+    <link rel="prev" title="Service agent help documentation" href="service-agent-help.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="system-admin-help.html" title="Administrator help documentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="service-agent-help.html" title="Service agent help documentation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Provider Screening Module 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/psm-logo-small.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="service-agent-help.html"
+                        title="previous chapter">Service agent help documentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="system-admin-help.html"
+                        title="next chapter">Administrator help documentation</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="service-administrator-help-documentation">
+<h1>Service administrator help documentation<a class="headerlink" href="#service-administrator-help-documentation" title="Permalink to this headline">¶</a></h1>
+<p>This is documentation for service administrators for the Provider
+Screening Module.</p>
+<div class="section" id="how-do-i-use-the-enrollment-verification-process">
+<h2>How do I use the enrollment verification process?<a class="headerlink" href="#how-do-i-use-the-enrollment-verification-process" title="Permalink to this headline">¶</a></h2>
+<p>Verification is checking an enrollment with federal or state data
+sources and visually inspecting the license(s) or certification(s) in a
+submitted enrollment.</p>
+<p>Click “Enrollments” in the navigation bar and go to the “Pending” tab.
+Click the “Review” link for the enrollment you want to verify. You’ll
+see a list of things that you want to verify about the pending
+enrollment before approving it. Under “Auto Screening”, click “View” or
+“View Log” to see the “External Source Screening Log,” which will tell
+you whether the PSM has been able to automatically verify each piece of
+enrollment data with an external information source. If you are
+satisfied with that result, or if you go to the government database
+yourself and manually verify that piece of the enrollment, click the
+“Verified” checkbox for that row.</p>
+<p>Check the Provider Information:</p>
+<ul class="simple">
+<li>Is this person’s National Provider Identifier accurate and valid, as
+listed in <a class="reference external" href="http://npiregistry.cms.hhs.gov/">the National Plan and Provider Enumeration System
+registry</a>? If not, you should
+reject the enrollment.</li>
+<li>Is this person in the <a class="reference external" href="https://www.ssa.gov/dataexchange/request_dmf.html">Social Security Administration’s Death Master
+File</a> (<a class="reference external" href="https://classic.ntis.gov/products/ssa-dmf/">how to
+access</a>)? If so, SSA
+lists them as dead, in which case you should reject the enrollment.</li>
+<li>What does <a class="reference external" href="https://pecos.cms.hhs.gov/">PECOS (the federal Medicare Provider Enrollment, Chain,
+and Ownership System)</a> say about the
+provider’s NPI? Is the Provider enrolled? If they are not, you should
+reject the enrollment.</li>
+<li>Is this provider on the <a class="reference external" href="https://oig.hhs.gov/exclusions/exclusions_list.asp">List of Excluded Individuals and Entities
+provided by the Office of the Inspector General for the US Department
+of Health and Human
+Services</a>? If
+so, you should reject the enrollment.</li>
+<li>Does this provider have an active exclusion record in the <a class="reference external" href="https://www.sam.gov/">federal
+System for Award Management</a>? (Click “Search
+Records”.) If so, you should reject the enrollment.</li>
+</ul>
+<p>Check the License Information (more details below). Look at the files to
+see whether they are legitimate licenses or certifications, and (if
+applicable) check with the issuing board or authority to validate the
+license. Go back to the list of pending enrollments and click the
+NPI/UMPI number to view the enrollment details, and look at the License
+Info tab. Confirm that the issue and renewal end dates in the image are
+the same as in the enrollment. If you see any discrepancies, you should
+reject the enrollment.</p>
+<p>At the bottom of the screen, choose “Reject” or “Approve” as
+appropriate.</p>
+<p>Future verification processes will be increasingly automated.</p>
+</div>
+<div class="section" id="how-do-i-look-at-and-change-the-risk-assessment-rules">
+<h2>How do I look at and change the risk assessment rules?<a class="headerlink" href="#how-do-i-look-at-and-change-the-risk-assessment-rules" title="Permalink to this headline">¶</a></h2>
+<p>Right now that’s not something you can do in the PSM, but it’ll be
+possible in a future version. For the moment, speak with your internal
+IT team. You can also refer to the Centers for Medicare and Medicaid
+Services’ rules, and to the
+<a class="reference external" href="https://www.law.cornell.edu/cfr/text/42/424.518">regulations</a> they
+implement.</p>
+</div>
+<div class="section" id="what-s-the-difference-between-an-agreement-and-an-addendum">
+<h2>What’s the difference between an agreement and an addendum?<a class="headerlink" href="#what-s-the-difference-between-an-agreement-and-an-addendum" title="Permalink to this headline">¶</a></h2>
+<p>Both agreements and addenda are documents meant for the “Provider
+Statement” step in the enrollment process; they are where you place
+legal terms and conditions for providers to sign. They are identical in
+format: each agreement and each addendum has a title and content. You
+can format and style the format of the content.</p>
+<p>You should create a few agreements to cover the major types of providers
+in your program, and then use special provider-specific addenda for
+additional statements that providers need to sign.</p>
+</div>
+<div class="section" id="where-do-i-create-edit-or-delete-agreements-and-addenda">
+<h2>Where do I create, edit, or delete agreements and addenda?<a class="headerlink" href="#where-do-i-create-edit-or-delete-agreements-and-addenda" title="Permalink to this headline">¶</a></h2>
+<p>Click on “Functions” in the navigation bar, and look at the “Agreements
+&amp; Addendums” tab. There, you can create or edit agreements and addenda.</p>
+<p>You cannot delete an agreement or an addendum.</p>
+</div>
+<div class="section" id="where-do-i-create-edit-or-delete-a-provider-type">
+<h2>Where do I create, edit, or delete a provider type?<a class="headerlink" href="#where-do-i-create-edit-or-delete-a-provider-type" title="Permalink to this headline">¶</a></h2>
+<p>Click on “Functions” in the navigation bar, and look at the “Provider
+Types” tab. Each provider type has a name and zero or more agreements or
+addenda. You can edit a provider type to change its name and to add or
+remove an agreement or addendum.</p>
+<p>You cannot create or delete a provider type.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="system-admin-help.html" title="Administrator help documentation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="service-agent-help.html" title="Service agent help documentation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Provider Screening Module 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Open Tech Strategies, LLC.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+  </body>
+</html>

@@ -134,12 +134,18 @@ enrollment.
 What can I do to reduce the risk of delay or rejection for an enrollment?
 -------------------------------------------------------------------------
 
-You should: \* Include clear, accurate scans of your
-licenses/certifications \* Make sure your NPI number, address, and other
-details in the application are correct \* Check the `NPPES (National
-Plan and Provider Enumeration System)
-website <https://nppes.cms.hhs.gov/>`__ to ensure your NPI status is
-active \* Check the state Medicaid provider guidelines
+You should:
+
+-  Include clear, accurate scans of your licenses/certifications
+
+-  Make sure your NPI number, address, and other details in the
+   application are correct
+
+-  Check the `NPPES (National Plan and Provider Enumeration System)
+   website <https://nppes.cms.hhs.gov/>`__ to ensure your NPI status is
+   active
+
+-  Check the state Medicaid provider guidelines
 
 What is the difference between a private practice and a group practice?
 -----------------------------------------------------------------------

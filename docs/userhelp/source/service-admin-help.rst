@@ -1,8 +1,8 @@
-Service administrator help documentation
-========================================
+Application reviewer help documentation
+=======================================
 
 This is documentation for service administrators for the Provider
-Screening Module.
+Screening Module. Usually these are state Medicaid agency staffers.
 
 How do I use the enrollment verification process?
 -------------------------------------------------

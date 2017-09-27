@@ -1,5 +1,5 @@
-Administrator help documentation
-================================
+System administrator help documentation
+=======================================
 
 This is documentation for system administrators for the Provider
 Screening Module.

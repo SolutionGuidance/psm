@@ -7,4 +7,14 @@
     <property name="file" value="checkstyle_suppressions.xml"/>
   </module>
   <module name="FileTabCharacter"/>
+  <module name="TreeWalker">
+    <module name="EmptyForInitializerPad"/>
+    <module name="EmptyForIteratorPad"/>
+    <module name="GenericWhitespace"/>
+    <module name="MethodParamPad"/>
+    <module name="NoLineWrap"/>
+    <module name="NoWhitespaceBefore"/>
+    <module name="ParenPad"/>
+    <module name="TypecastParenPad"/>
+  </module>
 </module>

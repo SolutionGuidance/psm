@@ -126,7 +126,6 @@ public class FederalQualificationFormBinder extends BaseFormBinder {
         }
     }
 
-
     private void replaceDocument(AttachedDocumentsType attachments, String id, String value) {
         List<DocumentType> toRemove = new ArrayList<DocumentType>();
         List<DocumentType> attachment = attachments.getAttachment();

@@ -379,7 +379,6 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
         }
     }
 
-
     @Override
     public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
         throws DocumentException {

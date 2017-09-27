@@ -66,7 +66,6 @@ public class OwnershipInformation implements Serializable {
     @JoinColumn(name = "ownership_info_id", referencedColumnName = "ownership_info_id")
     private List<BeneficialOwner> beneficialOwners;
 
-
     public long getId() {
         return id;
     }

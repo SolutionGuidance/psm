@@ -41,7 +41,6 @@ public class OrganizationBeneficialOwner extends BeneficialOwner {
     @Column()
     private String fein;
 
-
     public String getLegalName() {
         return legalName;
     }

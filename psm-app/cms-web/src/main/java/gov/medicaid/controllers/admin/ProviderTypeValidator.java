@@ -87,6 +87,4 @@ public class ProviderTypeValidator implements Validator {
             // empty
         }
     }
-
-
 }

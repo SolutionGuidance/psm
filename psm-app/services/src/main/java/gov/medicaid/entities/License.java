@@ -15,7 +15,6 @@
  */
 package gov.medicaid.entities;
 
-
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

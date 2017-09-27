@@ -1,6 +1,5 @@
 package gov.medicaid.features.general.ui;
 
-
 import net.thucydides.core.pages.PageObject;
 
 import static org.assertj.core.api.Assertions.assertThat;

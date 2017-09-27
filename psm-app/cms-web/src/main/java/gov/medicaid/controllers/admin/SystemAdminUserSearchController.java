@@ -87,6 +87,7 @@ public class SystemAdminUserSearchController extends BaseSystemAdminController {
         mv.addObject("roles", getRolesStr(criteria.getRoles()));
         return LogUtil.traceExit(getLog(), signature, mv);
     }
+
     /**
      * Gets all roles string.
      *
@@ -105,6 +106,7 @@ public class SystemAdminUserSearchController extends BaseSystemAdminController {
         }
         return Arrays.toString(roles);
     }
+
     /**
      * This action will delete the entities with the given IDs.
      *

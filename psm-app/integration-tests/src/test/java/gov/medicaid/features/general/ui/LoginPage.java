@@ -1,8 +1,8 @@
 package gov.medicaid.features.general.ui;
 
-
 import net.thucydides.core.pages.PageObject;
 import net.thucydides.core.annotations.DefaultUrl;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DefaultUrl("http://localhost:8080/cms")

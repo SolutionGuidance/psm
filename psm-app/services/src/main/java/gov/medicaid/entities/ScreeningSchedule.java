@@ -49,7 +49,6 @@ public class ScreeningSchedule implements Serializable {
     @Column(name = "interval_type")
     private ScreeningIntervalType intervalType;
 
-
     public Date getUpcomingScreeningDate() {
         return upcomingScreeningDate;
     }

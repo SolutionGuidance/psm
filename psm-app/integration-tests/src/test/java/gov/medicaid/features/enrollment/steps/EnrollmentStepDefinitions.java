@@ -9,7 +9,6 @@ import net.thucydides.core.annotations.Steps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 @SuppressWarnings("unused")
 public class EnrollmentStepDefinitions {
     @Steps

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 package gov.medicaid.entities;
+
 import javax.persistence.Table;
 import javax.persistence.Column;
 

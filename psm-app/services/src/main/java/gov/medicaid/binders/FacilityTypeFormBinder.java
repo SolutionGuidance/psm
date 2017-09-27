@@ -81,7 +81,6 @@ public class FacilityTypeFormBinder extends BaseFormBinder {
                 replaceDocument(XMLUtility.nsGetAttachments(provider), attachmentId, CONTRACT_WITH_COUNTY);
             }
 
-
             List<DocumentType> attachment = attachments.getAttachment();
             for (DocumentType doc : attachment) {
                 if (CONTRACT_WITH_COUNTY.equals(doc.getName())) {

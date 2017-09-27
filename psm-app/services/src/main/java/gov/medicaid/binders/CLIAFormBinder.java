@@ -80,7 +80,6 @@ public class CLIAFormBinder extends BaseFormBinder {
         List<CLIACertificateType> licenseList = new ArrayList<CLIACertificateType>(licenseInfo.getCLIACertificate());
         licenseInfo.getCLIACertificate().clear();
 
-
         // bind licenses
         int i = 0;
         Set<String> linkedAttachments = new HashSet<String>();

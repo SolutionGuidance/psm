@@ -88,7 +88,6 @@ public class OwnershipInfoPage extends EnrollmentPage {
         $("[name='_17_iboOtherState_0']").selectByVisibleText(state);
     }
 
-
     public void selectControlOwnershipCounty(String county) {
         $("[name='_17_iboOtherCounty0']").selectByVisibleText(county);
     }

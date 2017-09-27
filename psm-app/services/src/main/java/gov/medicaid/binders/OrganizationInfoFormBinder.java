@@ -585,7 +585,6 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
         PdfPTable personalInfo = new PdfPTable(2);
         PDFHelper.setTableAsFullPage(personalInfo);
 
-
         if (useEDILayout) {
             PDFHelper.addLabelValueCell(personalInfo, "EDI Type", PDFHelper.value(model, ns, "subType"));
         }

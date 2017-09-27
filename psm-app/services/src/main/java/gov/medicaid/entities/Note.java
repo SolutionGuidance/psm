@@ -59,7 +59,6 @@ public class Note implements Serializable {
     @Column(name = "created_at")
     private Date createdOn;
 
-
     public long getProfileId() {
         return profileId;
     }

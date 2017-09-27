@@ -141,17 +141,17 @@ SECTION 4: Project Resources and Repository Organization
 
 Please see [INSTALL.md](INSTALL.md) for the latest installation instructions.
 
-See [DESIGN.md](DESIGN.md) for an overview of the PSM's architecture
+See [DESIGN.md](docs/DESIGN.md) for an overview of the PSM's architecture
 and design assumptions.
 
 The [psm-app](psm-app) subdirectory holds the source code to the PSM
 proper.
 
-[opentechstrategies.github.io](https://opentechstrategies.github.io/psm/javadoc/)
-is our GitHub Pages site, where we publish documentation for the PSM's
-web API.
+[opentechstrategies.github.io](https://opentechstrategies.github.io/psm/)
+is our GitHub Pages site, where we publish the user manual as well as
+documentation for the PSM's web API.
 
-The ext-sources-app subdirectory has been removed.  It held the source
+The `ext-sources-app` subdirectory has been removed.  It held the source
 code to the semi-separate middleware application that provided a service
 wrapper around external data sources.  This will be replaced as
 discussed on [the mailing

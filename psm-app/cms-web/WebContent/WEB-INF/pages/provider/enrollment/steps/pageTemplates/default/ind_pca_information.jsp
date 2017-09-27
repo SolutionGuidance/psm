@@ -83,7 +83,7 @@
                 <label>ZIP Code<span class="required">*</span> : </label>
                 <c:set var="formName" value="_10_zip"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="6"/>
+                <input type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
                 <label>County : </label>
                 <c:set var="formName" value="_10_county"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>

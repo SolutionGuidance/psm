@@ -1,28 +1,43 @@
 # User help documentation for the PSM
 
 We use Sphinx to build reStructuredText files into user-readable HTML
-help documents. The source documents live in `source/`.
+help documents. The source documents live in `source/`. [Read The
+Docs's guide to
+Sphinx](https://docs.readthedocs.io/en/latest/getting_started.html) is
+a good guide to our usage of Sphinx.
 
-To build the documentation:
+We also publish HTML, PDF, and ePub versions of the PSM documentation
+on [our GitHub Pages site](https://opentechstrategies.github.io/psm/).
+
+## Prerequisites
+
+To build the documentation in any format, you must install Sphinx.
 
 ~~~
 $ pip install sphinx # or, if you're not in a virtualenv, sudo pip install sphinx
+~~~
+
+## HTML generation
+
+To build the documentation as HTML:
+
+~~~
 $ cd docs/userhelp/
 $ make html
 ~~~
 
 Then you should be able to see
-`docs/userhelp/build/html/index.html` in your browser.  [Read
-The Docs's guide to
-Sphinx](https://docs.readthedocs.io/en/latest/getting_started.html) is
-a good guide to our usage of Sphinx.
+`docs/userhelp/build/html/index.html` in your browser.
 
 ## PDF generation
 
-After you've installed Sphinx and changed to the `userhelp` directory, as above:
+To build the documentation as a single PDF file, you'll need to
+install some LaTeX packages locally, then have Sphinx build LaTeX
+files that you can turn into a PDF.
 
 ~~~
 $ sudo apt install texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk
+$ cd docs/userhelp/
 $ sphinx-build -b latex -a source/ build/latex/
 $ make latexpdf
 ~~~
@@ -33,3 +48,14 @@ Each time the underlying content changes, or the styling choices (as
 defined in `conf.py`) change, you'll have to `sphinx-build` to build
 fresh LaTeX files, and then `make latexpdf` to turn those LaTeX files
 into an updated PDF.
+
+## ePub generation
+
+To build the documentation as a single ePub ebook file:
+
+~~~
+$ cd docs/userhelp/
+$ make epub
+~~~
+
+Sphinx will create `build/epub/ProviderScreeningModule.epub`.

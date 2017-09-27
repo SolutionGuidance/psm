@@ -15,10 +15,9 @@
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import sys
 # sys.path.insert(0, os.path.abspath('.'))
 import os
+import sys
 
 # -- General configuration ------------------------------------------------
 
@@ -50,7 +49,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Provider Screening Module'
+project = u'Provider Screening Module user manual'
 copyright = u'2017, Open Tech Strategies, LLC'
 author = u'Open Tech Strategies, LLC'
 
@@ -149,28 +148,42 @@ texinfo_documents = [
 ]
 
 
+# -- Options for LaTeX output ---------------------------------------------
+
+latex_show_pagerefs = True
+
+latex_show_urls = 'footnote'
+
+latex_logo = os.path.join(os.path.abspath(os.pardir),
+                          os.pardir,
+                          os.pardir,
+                          "psm-app/cms-web/WebContent/i/psm-logo.png")
+
+latex_toplevel_sectioning = 'chapter'
 
 # -- Options for Epub output ----------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = project
-epub_author = author
-epub_publisher = author
+epub_title = "Provider Service Module user manual"
+epub_author = "Open Tech Strategies"
+epub_publisher = "Open Tech Strategies https://github.com/OpenTechStrategies/psm/"
 epub_copyright = copyright
 
 # The unique identifier of the text. This can be a ISBN number
 # or the project homepage.
 #
-# epub_identifier = ''
+# epub_identifier = 'PSM'
 
 # A unique identification for the text.
-#
-# epub_uid = ''
+
+epub_uid = 'psm-documentation'
 
 # A list of files that should not be packed into the epub file.
 epub_exclude_files = ['search.html']
 
+epub_show_urls = 'footnote'
 
+epub_use_index = True
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}

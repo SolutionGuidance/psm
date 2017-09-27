@@ -3,9 +3,11 @@ buildscript {
     repositories {
         mavenCentral()
         maven { url 'http://dl.bintray.com/djmijares/gradle-plugins' }
+        maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
         classpath 'com.github.jacobono:gradle-jaxb-plugin:1.3.6'
+        classpath 'kr.motd.gradle:sphinx-gradle-plugin:1.0.5'
         classpath 'net.serenity-bdd:serenity-gradle-plugin:1.4.0'
     }
 }
@@ -60,21 +62,32 @@ List runtime_libs = [
 ]
 
 allprojects {
-    apply plugin: 'groovy'
     apply plugin: 'checkstyle'
-
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        testCompile 'org.codehaus.groovy:groovy-all:2.4.10'
-        testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
-    }
 
     checkstyle {
         toolVersion = '8.2'
         configFile = new File(rootDir, 'checkstyle.xml')
+    }
+}
+
+[
+    'cms-business-model',
+    'cms-business-process',
+    'cms-portal-services',
+    'cms-web',
+    'services',
+].each { name ->
+    project(":$name") {
+        apply plugin: 'groovy'
+
+        repositories {
+            mavenCentral()
+        }
+
+        dependencies {
+            testCompile 'org.codehaus.groovy:groovy-all:2.4.10'
+            testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
+        }
     }
 }
 
@@ -279,4 +292,45 @@ project(':integration-tests') {
         environment "DISPLAY", System.getenv('XVFB_DISPLAY')
         systemProperty "webdriver.firefox.bin", System.getenv('FIREFOX_HOME')
     }
+}
+
+project(':userhelp') {
+    apply plugin: BasePlugin
+
+    ['epub', 'html', 'latex',].each { name ->
+        task(
+            name,
+            group: 'Build',
+            description: "Build user docs in ${name} format",
+            type: kr.motd.gradle.sphinx.gradle.SphinxTask
+        ) {
+            sourceDirectory = 'source'
+            outputDirectory = "build/${name}"
+            builder = name
+        }
+    }
+
+    task(
+        'pdf',
+        group: 'Build',
+        description: "Build user docs in pdf format",
+        type: Exec,
+        dependsOn: latex
+    ) {
+        workingDir 'build/latex/'
+        commandLine 'make'
+    }
+
+    task(
+        'linkcheck',
+        group: 'Verification',
+        description: 'Check all external links for integrity',
+        type: kr.motd.gradle.sphinx.gradle.SphinxTask
+    ) {
+        sourceDirectory = 'source'
+        builder = 'linkcheck'
+    }
+
+    check.dependsOn linkcheck
+    assemble.dependsOn html
 }

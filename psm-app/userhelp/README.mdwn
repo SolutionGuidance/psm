@@ -9,53 +9,42 @@ a good guide to our usage of Sphinx.
 We also publish HTML, PDF, and ePub versions of the PSM documentation
 on [our GitHub Pages site](https://opentechstrategies.github.io/psm/).
 
-## Prerequisites
-
-To build the documentation in any format, you must install Sphinx.
-
-~~~
-$ pip install sphinx # or, if you're not in a virtualenv, sudo pip install sphinx
-~~~
-
 ## HTML generation
 
 To build the documentation as HTML:
 
 ~~~
-$ cd docs/userhelp/
-$ make html
+$ cd psm-app
+$ ./gradlew userhelp:html
 ~~~
 
 Then you should be able to see
-`docs/userhelp/build/html/index.html` in your browser.
+`psm-app/userhelp/build/html/index.html` in your browser.
 
 ## PDF generation
 
 To build the documentation as a single PDF file, you'll need to
-install some LaTeX packages locally, then have Sphinx build LaTeX
-files that you can turn into a PDF.
+install some LaTeX packages locally.
 
 ~~~
 $ sudo apt install texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk
-$ cd docs/userhelp/
-$ sphinx-build -b latex -a source/ build/latex/
-$ make latexpdf
+$ cd psm-app
+$ ./gradlew userhelp:pdf
 ~~~
 
-Sphinx will create `build/latex/ProviderScreeningModuleusermanual.pdf`.
+Sphinx will create `userhelp/build/latex/ProviderScreeningModuleusermanual.pdf`.
 
 Each time the underlying content changes, or the styling choices (as
-defined in `conf.py`) change, you'll have to `sphinx-build` to build
-fresh LaTeX files, and then `make latexpdf` to turn those LaTeX files
-into an updated PDF.
+defined in `conf.py`) change, you'll have to rerun the `userhelp:pdf`
+task to generate an updated PDF.
 
 ## ePub generation
 
 To build the documentation as a single ePub ebook file:
 
 ~~~
-$ cd docs/userhelp/
-$ make epub
+$ cd psm-app
+$ ./gradlew userhelp:epub
 ~~~
 
-Sphinx will create `build/epub/ProviderScreeningModuleusermanual.epub`.
+Sphinx will create `userhelp/build/epub/ProviderScreeningModuleusermanual.epub`.

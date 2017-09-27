@@ -113,8 +113,8 @@ Right now that's not something the PSM can do, but `it'll be possible in
 a future
 version. <https://github.com/OpenTechStrategies/psm/issues/401>`__
 
-I've already submitted an enrollment and it's pending, but I need to change something; what can I do?
------------------------------------------------------------------------------------------------------
+Can I change something in a pending enrollment after I submit it?
+-----------------------------------------------------------------
 
 You'll need to directly contact the state Medicaid office; once you've
 submitted an enrollment, you can't update it in the PSM.

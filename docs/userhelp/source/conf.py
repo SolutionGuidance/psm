@@ -49,7 +49,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Provider Screening Module'
+project = u'Provider Screening Module user manual'
 copyright = u'2017, Open Tech Strategies, LLC'
 author = u'Open Tech Strategies, LLC'
 
@@ -159,10 +159,12 @@ latex_logo = os.path.join(os.path.abspath(os.pardir),
                           os.pardir,
                           "psm-app/cms-web/WebContent/i/psm-logo.png")
 
+latex_toplevel_sectioning = 'chapter'
+
 # -- Options for Epub output ----------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = "Provider Service Module documentation"
+epub_title = "Provider Service Module user manual"
 epub_author = "Open Tech Strategies"
 epub_publisher = "Open Tech Strategies https://github.com/OpenTechStrategies/psm/"
 epub_copyright = copyright

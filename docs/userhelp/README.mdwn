@@ -42,7 +42,7 @@ $ sphinx-build -b latex -a source/ build/latex/
 $ make latexpdf
 ~~~
 
-Sphinx will create `build/latex/ProviderScreeningModule.pdf`.
+Sphinx will create `build/latex/ProviderScreeningModuleusermanual.pdf`.
 
 Each time the underlying content changes, or the styling choices (as
 defined in `conf.py`) change, you'll have to `sphinx-build` to build
@@ -58,4 +58,4 @@ $ cd docs/userhelp/
 $ make epub
 ~~~
 
-Sphinx will create `build/epub/ProviderScreeningModule.epub`.
+Sphinx will create `build/epub/ProviderScreeningModuleusermanual.epub`.

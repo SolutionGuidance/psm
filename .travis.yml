@@ -20,7 +20,12 @@ install: true
 # The build step here also builds our Javadocs.
 script:
   - cd psm-app
-  - ./gradlew --no-daemon --console=plain clean cms-portal-services:build cms-web:apiDocs
+  - ./gradlew --no-daemon --console=plain
+        clean
+        checkstyleMain
+        checkstyleTest
+        cms-portal-services:build
+        cms-web:apiDocs
   - cd ../
 
 # Push the new Javadocs to our GitHub Pages site.

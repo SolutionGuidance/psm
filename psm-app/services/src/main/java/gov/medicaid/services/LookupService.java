@@ -130,10 +130,10 @@ public interface LookupService {
     public List<BeneficialOwnerType> findBeneficialOwnerTypes(String entityType);
 
     /**
-	 * Updates the ProviderTypeSettings for agreements.
-	 *
-	 * @param providerType providerType
-	 * @param agreementIds agreement ids
-	 */
-	public void updateProviderTypeAgreementSettings(ProviderType providerType, long[] agreementIds);
+     * Updates the ProviderTypeSettings for agreements.
+     *
+     * @param providerType providerType
+     * @param agreementIds agreement ids
+     */
+    public void updateProviderTypeAgreementSettings(ProviderType providerType, long[] agreementIds);
 }

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -55,19 +55,19 @@ public class CustomAuthenticationProcessingFilter extends UsernamePasswordAuthen
         if (password == null) {
             password = "";
         }
-        
+
         username = username.trim();
 
         DomainAuthenticationToken authRequest;
         if (domain == null || "MN_ITS".equalsIgnoreCase(domain)) {
-        	domain = "MN_ITS";
-        	String token = request.getParameter("token");
-        	String userNPI  = request.getParameter("userNPI");
-        	String profileNPI  = request.getParameter("profileNPI");
-        	String referrer  = request.getParameter("referrer");
-        	authRequest = new DomainAuthenticationToken(userNPI, profileNPI, token, referrer, domain);
+            domain = "MN_ITS";
+            String token = request.getParameter("token");
+            String userNPI  = request.getParameter("userNPI");
+            String profileNPI  = request.getParameter("profileNPI");
+            String referrer  = request.getParameter("referrer");
+            authRequest = new DomainAuthenticationToken(userNPI, profileNPI, token, referrer, domain);
         } else {
-			authRequest = new DomainAuthenticationToken(username, password, domain);
+            authRequest = new DomainAuthenticationToken(username, password, domain);
         }
 
         // Place the last username attempted into HttpSession for views

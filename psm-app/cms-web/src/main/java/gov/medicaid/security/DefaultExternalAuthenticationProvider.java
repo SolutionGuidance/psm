@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -109,11 +109,11 @@ public class DefaultExternalAuthenticationProvider implements AuthenticationProv
             if (Util.isBlank(username)) {
                 throw new BadCredentialsException("Username is required.");
             } else if (Util.isBlank(password)) {
-            	throw new BadCredentialsException("Token is required.");
+                throw new BadCredentialsException("Token is required.");
             } else if (Util.isBlank(profileNPI)) {
-            	throw new BadCredentialsException("Provider NPI is required.");
+                throw new BadCredentialsException("Provider NPI is required.");
             } else if (Util.isBlank(referrer)) {
-            	throw new BadCredentialsException("Referrer is required.");
+                throw new BadCredentialsException("Referrer is required.");
             }
 
             try {
@@ -133,30 +133,30 @@ public class DefaultExternalAuthenticationProvider implements AuthenticationProv
      * Loads the user information by the external user. Auto provisions a CMS user for this record.
      *
      * @param userNPI the username used to login
-     * @param profileNPI 
+     * @param profileNPI
      * @return the mapped details
      */
     private UserDetails loadProxyUser(String userNPI, String profileNPI) {
         try {
-        	CMSUser cmsUser = registrationService.findByExternalUsername(system, userNPI);
-        	if (cmsUser == null) {
-        		cmsUser = new CMSUser();
-        		// set defaults
-        		cmsUser.setLastName(userNPI);
-        		registrationService.registerExternalUser(system, userNPI, cmsUser);
-        	}
+            CMSUser cmsUser = registrationService.findByExternalUsername(system, userNPI);
+            if (cmsUser == null) {
+                cmsUser = new CMSUser();
+                // set defaults
+                cmsUser.setLastName(userNPI);
+                registrationService.registerExternalUser(system, userNPI, cmsUser);
+            }
 
-        	// set session based fields
-        	if (userNPI.equals(profileNPI)) {
-        		cmsUser.setExternalRoleView(RoleView.SELF);
-        	} else {
-        		cmsUser.setExternalRoleView(RoleView.EMPLOYER);
-        	}
-        	cmsUser.setProxyForNPI(profileNPI);
-			ExternalAccountLink link = registrationService.findAccountLink(
-					cmsUser.getUserId(), system, userNPI);
+            // set session based fields
+            if (userNPI.equals(profileNPI)) {
+                cmsUser.setExternalRoleView(RoleView.SELF);
+            } else {
+                cmsUser.setExternalRoleView(RoleView.EMPLOYER);
+            }
+            cmsUser.setProxyForNPI(profileNPI);
+            ExternalAccountLink link = registrationService.findAccountLink(
+                    cmsUser.getUserId(), system, userNPI);
             cmsUser.setExternalAccountLink(link);
-            
+
             User springUserObject = new User(userNPI, "", true, true, true, true, EMPTY_AUTH);
             return new CMSUserDetailsWrapper(springUserObject, cmsUser, system);
         } catch (PortalServiceException e) {

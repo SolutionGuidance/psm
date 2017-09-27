@@ -125,14 +125,14 @@ public class AgreementDocument implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-    	if (obj instanceof AgreementDocument) {
-    		return ((AgreementDocument)obj).getId() == this.getId();
-    	}
-    	return false;
+        if (obj instanceof AgreementDocument) {
+            return ((AgreementDocument)obj).getId() == this.getId();
+        }
+        return false;
     }
 
     @Override
     public int hashCode() {
-    	return (int) this.getId();
+        return (int) this.getId();
     }
 }

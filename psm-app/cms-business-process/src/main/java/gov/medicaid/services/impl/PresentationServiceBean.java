@@ -487,7 +487,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
                     personalInfoFormSettings.addSetting("requireNPI", false);
                 }
                 if (ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value().equals(type)) {
-                	personalInfoFormSettings.addSetting("hideRenewalDate", true);
+                    personalInfoFormSettings.addSetting("hideRenewalDate", true);
                     personalInfoFormSettings.addSetting("hideLicenseNumber", true);
                 }
                 page.addForm(ViewStatics.PERSONAL_INFO_FORM, personalInfoFormSettings);
@@ -565,11 +565,11 @@ public class PresentationServiceBean extends BaseService implements Presentation
             }
 
             if (ProviderType.DAY_TRAINING_AND_HABILITATION_DAY_ACTIVITY_CENTER.value().equals(type)) {
-            	settings.addSetting("requireNPI", false);
+                settings.addSetting("requireNPI", false);
             }
 
             if (ProviderType.HOME_AND_COMMUNITY_BASED_SERVICES_WAIVERED_SERVICES.value().equals(type)) {
-            	settings.addSetting("askUMPI", true);
+                settings.addSetting("askUMPI", true);
             }
             if (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value().equals(type)) {
                 // custom form settings
@@ -675,8 +675,8 @@ public class PresentationServiceBean extends BaseService implements Presentation
                 FormSettings formSettings = new FormSettings();
                 formSettings.addSetting("askBGSInfo", false);
                 if (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value().equals(type)) {
-                	formSettings.addSetting("askBGSInfo", true);
-                	formSettings.addSetting("askUMPIorNPI", true);
+                    formSettings.addSetting("askBGSInfo", true);
+                    formSettings.addSetting("askUMPIorNPI", true);
                 }
                 page.addForm(ViewStatics.MEMBER_INFO_FORM, formSettings);
                 viewModel.addTabModel(ViewStatics.MEMBER_INFO, page);

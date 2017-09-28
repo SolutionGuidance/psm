@@ -16,3 +16,7 @@ administrators or our build systems.
   development installation, or testing a pull request or other
   branch. It builds a fresh EAR, blows away the old database contents
   and builds a new schema, and deploys the EAR.
+* `make-zip-of-documents.sh` builds PDFs of our prose documents for
+  users, administrators, and developers, builds the HTML
+  documentation for our API, and puts together a ZIP file with a
+  table of contents.

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{{> admin/includes/html_head title="Update Profile (Service Admin)" }}
+  <body>
+    <div id="wrapper">
+      {{> includes/header }}
+      <div id="mainContent">
+        <div class="contentWidth">
+          <div class="mainNav">
+            {{> includes/logo }}
+            {{> includes/nav activeTab3=1 }}
+          </div>
+        <div class="breadCrumb">
+          <a href="{{ctx}}/ops/getUser">My Profile</a>
+          <span>Update Profile</span>
+        </div>
+        <div class="head">
+          <h1 class="text">Update Profile</h1>
+        </div>
+
+        <div class="tabSection">
+          <form id="userForm" action="{{ctx}}/ops/updateUser" method="post">
+            <div class="detailPanel">
+              <input id="userId" name="userId" type="hidden" value="{{user.userId}}" />
+              <div class="section" id="updateProfile">
+                <div class="wholeCol">
+                  <div class="row">
+                    <label>Username</label>
+                    <span class="floatL"><b>:</b></span>
+                    <input id="username" name="username" type="hidden" value="{{user.username}}" />
+                    <span>{{user.username}}</span>
+                  </div>
+                  <div class="row">
+                    <label>Last Name</label>
+                    <span class="floatL"><b>:</b></span>
+                    <input id="lastName" name="lastName" class="normalInput" type="text" value="{{user.lastName}}" />
+                  </div>
+                  <div class="row">
+                    <label>First Name</label>
+                    <span class="floatL"><b>:</b></span>
+                    <input id="firstName" name="firstName" class="normalInput" type="text" value="{{user.firstName}}" />
+                  </div>
+                  <div class="row">
+                    <label>Middle Name</label>
+                    <span class="floatL"><b>:</b></span>
+                    <input id="middleName" name="middleName" class="normalInput" type="text" value="{{user.middleName}}" />
+                    <em class="grey">(optional)</em>
+                  </div>
+                  <div class="row">
+                    <label>Business Phone</label>
+                    <span class="floatL"><b>:</b></span>
+                    <input id="businessPhonePart1" name="businessPhonePart1" class="smallInput" type="text" value="{{user.businessPhonePart1}}" />
+                    <span class="sep">-</span>
+                    <input id="businessPhonePart2" name="businessPhonePart2" class="smallInput" type="text" value="{{user.businessPhonePart2}}" />
+                    <span class="sep">-</span>
+                    <input id="businessPhonePart3" name="businessPhonePart3" class="smallInputP" type="text" value="{{user.businessPhonePart3}}" />
+                    <span class="sep"><strong>ext.</strong></span>
+                    <input id="businessPhoneExt" name="businessPhoneExt" class="smallInput" type="text" value="{{user.businessPhoneExt}}" />
+                  </div>
+                  <div class="row">
+                    <label>Email</label>
+                    <span class="floatL"><b>:</b></span>
+                    <input id="email" name="email" class="normalInput" type="text" value="{{user.email}}" />
+                  </div>
+                </div>
+              </div>
+              <!-- /.section -->
+              <div class="tl"></div>
+              <div class="tr"></div>
+              <div class="bl"></div>
+              <div class="br"></div>
+            </div>
+          </form>
+          <div class="buttonBox">
+            <a href="{{ctx}}/ops/getUser" class="greyBtn"><span class="btR"><span class="btM">Cancel</span></span></a>
+            <a id="saveUserBtn" href="javascript:;" class="purpleBtn"><span class="btR"><span class="btM">Save</span></span></a>
+          </div>
+          <!-- /.buttonBox -->
+        </div>
+        <!-- /.tabSection -->
+      </div>
+      </div>
+      <!-- /#mainContent -->
+      {{> includes/footer }}
+    </div>
+    <!-- /#wrapper -->
+  </body>
+</html>

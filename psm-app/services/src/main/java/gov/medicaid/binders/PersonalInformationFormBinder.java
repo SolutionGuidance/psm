@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -375,10 +375,10 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
             }
         }
     }
-    
+
     /**
      * Renders this form as a PDF.
-     * 
+     *
      * @param enrollment the enrollment to be rendered
      * @param document the PDF document to render on
      * @param model the view model
@@ -389,7 +389,7 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
         if (!"Y".equals(PDFHelper.value(model, ns, "bound"))) {
             return;
         }
-        
+
         // Personal Info Section
         PdfPTable personalInfo = new PdfPTable(2);
         PDFHelper.setTableAsFullPage(personalInfo);

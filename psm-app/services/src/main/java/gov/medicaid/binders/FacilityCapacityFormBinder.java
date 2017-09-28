@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -66,14 +66,14 @@ public class FacilityCapacityFormBinder extends BaseFormBinder {
         if (StringUtils.isNumeric(beds)) {
             creds.setNumberOfBeds((int) BinderUtils.getAsLong(beds));
         }
-        
+
         try {
             creds.setNumberOfBedsEffectiveDate(BinderUtils.getAsCalendar(param(request, "effectiveDate")));
         } catch (BinderException e) {
             e.setAttribute(name("effectiveDate"), param(request, "effectiveDate"));
             exceptions.add(e);
         }
-        
+
         return exceptions;
     }
 
@@ -113,7 +113,7 @@ public class FacilityCapacityFormBinder extends BaseFormBinder {
                 if (path == null) {
                     continue;
                 }
-                
+
                 if (path.equals("/ProviderInformation/FacilityCredentials/NumberOfBeds")) {
                     errors.add(createError("numberOfBeds", ruleError.getMessage()));
                 } else if (path.equals("/ProviderInformation/FacilityCredentials/NumberOfBedsEffectiveDate")) {

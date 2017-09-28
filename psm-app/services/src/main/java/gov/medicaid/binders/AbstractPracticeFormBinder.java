@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -98,7 +98,7 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
             contact.setFaxNumber(BinderUtils.concatPhone(param(request, "fax1"), param(request, "fax2"),
                 param(request, "fax3"), ""));
         }
-        
+
         return Collections.EMPTY_LIST;
     }
 
@@ -149,19 +149,7 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
         attr(mv, "name", practice.getName());
         attr(mv, "npi", practice.getGroupNPI());
 
-        AddressType address = XMLUtility.nsGetAddress(practice);
-        String line1 = address.getAddressLine1();
-        String line2 = address.getAddressLine2();
-        if (Util.isBlank(line1)) {
-            line1 = line2;
-            line2 = null;
-        }
-        attr(mv, "addressLine1", line1);
-        attr(mv, "addressLine2", line2);
-        attr(mv, "city", address.getCity());
-        attr(mv, "state", address.getState());
-        attr(mv, "zip", address.getZipCode());
-        attr(mv, "county", address.getCounty());
+        attr(mv, XMLUtility.nsGetAddress(practice));
 
         ContactInformationType contact = XMLUtility.nsGetContactInformation(practice);
         String[] phone = BinderUtils.splitPhone(contact.getPhoneNumber());
@@ -189,12 +177,6 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
 
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
-        AddressType xAddress = XMLUtility.nsGetAddress(practice);
-        boolean switchAddressLineFields = false;
-        if (Util.isBlank(xAddress.getAddressLine1())) {
-            switchAddressLineFields = true;
-        }
         synchronized (ruleErrors) {
             for (StatusMessageType ruleError : ruleErrors) {
                 int count = errors.size();
@@ -214,9 +196,9 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
                     String[] addressLines = new String[]{"addressLine1", "addressLine2"};
                     errors.add(createError(addressLines, ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ContactInformation/Address/AddressLine1")) {
-                    errors.add(createError(switchAddressLineFields ? "addressLine2" : "addressLine1", ruleError.getMessage()));
+                    errors.add(createError("addressLine1", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ContactInformation/Address/AddressLine2")) {
-                    errors.add(createError(switchAddressLineFields ? "addressLine1" : "addressLine2", ruleError.getMessage()));
+                    errors.add(createError("addressLine2", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ContactInformation/Address/City")) {
                     errors.add(createError("city", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ContactInformation/Address/State")) {
@@ -352,20 +334,24 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
         return null;
     }
 
-	/**
-	 * For external users with RoleView = EMPLOYER, they cannot touch any information with NPI is not their own
-	 * @param user the current request user
-	 * @param enrollment the
-	 * @return
-	 */
-	protected boolean canModifyExistingPractice(CMSUser user, EnrollmentType enrollment) {
-		if (user.getExternalRoleView() == RoleView.EMPLOYER) {
-			PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
-			if (user.getExternalAccountLink().getExternalUserId().equals(practice.getGroupNPI())) {
-				return true;
-			}
-			return false;
-		}
-		return true;
-	}
+    /**
+     * For external users with RoleView = EMPLOYER, they cannot touch any information with NPI is not their own
+     *
+     * @param user       the current request user
+     * @param enrollment the
+     * @return
+     */
+    protected boolean canModifyExistingPractice(
+            CMSUser user,
+            EnrollmentType enrollment
+    ) {
+        if (user.getExternalRoleView() == RoleView.EMPLOYER) {
+            PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+            if (user.getExternalAccountLink().getExternalUserId().equals(practice.getGroupNPI())) {
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
 }

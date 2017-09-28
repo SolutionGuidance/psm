@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -31,7 +31,6 @@ import gov.medicaid.entities.Person;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,12 +68,12 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
      * @param enrollment the model to bind to
      * @param request the request containing the form fields
      *
-     * @return 
+     * @return
      * @throws BinderException if the format of the fields could not be bound properly
      */
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        
+
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
         individual.setLastName(param(request, "lastName"));
@@ -99,7 +98,7 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
         // reinstatement UMPI
         provider.setNPI(param(request, "umpi"));
         provider.setEighteenAndAbove(param(request, "adultInd"));
-        
+
         return exceptions;
     }
 
@@ -124,19 +123,7 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
 
         ContactInformationType contact = XMLUtility.nsGetContactInformation(individual);
         if (contact.getAddress() != null) {
-            AddressType address = contact.getAddress();
-            String line1 = address.getAddressLine1();
-            String line2 = address.getAddressLine2();
-            if (Util.isBlank(line1)) {
-                line1 = line2;
-                line2 = null;
-            }
-            attr(mv, "addressLine1", line1);
-            attr(mv, "addressLine2", line2);
-            attr(mv, "city", address.getCity());
-            attr(mv, "state", address.getState());
-            attr(mv, "zip", address.getZipCode());
-            attr(mv, "county", address.getCounty());
+            attr(mv, contact.getAddress());
         }
 
         String[] phone = BinderUtils.splitPhone(contact.getPhoneNumber());
@@ -158,13 +145,6 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
-        
-        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
-        ContactInformationType contact = XMLUtility.nsGetContactInformation(individual);
-        boolean switchAddressLines = false;
-        if (contact.getAddress() == null || Util.isBlank(contact.getAddress().getAddressLine1())) {
-            switchAddressLines = true;;
-        }
 
         synchronized (ruleErrors) {
             for (StatusMessageType ruleError : ruleErrors) {
@@ -192,9 +172,9 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
                 } else if (path.equals(PERSONAL_INFO + "ContactInformation/Address")) {
                     errors.add(createError(new String[] {"addressLine1", "addressLine2"}, ruleError.getMessage()));
                 } else if (path.equals(PERSONAL_INFO + "ContactInformation/Address/AddressLine1")) {
-                    errors.add(createError(switchAddressLines ? "addressLine2" : "addressLine1", ruleError.getMessage()));
+                    errors.add(createError("addressLine1", ruleError.getMessage()));
                 } else if (path.equals(PERSONAL_INFO + "ContactInformation/Address/AddressLine2")) {
-                    errors.add(createError(switchAddressLines ? "addressLine1" : "addressLine2", ruleError.getMessage()));
+                    errors.add(createError("addressLine2", ruleError.getMessage()));
                 } else if (path.equals(PERSONAL_INFO + "ContactInformation/Address/City")) {
                     errors.add(createError("city", ruleError.getMessage()));
                 } else if (path.equals(PERSONAL_INFO + "ContactInformation/Address/State")) {

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -80,7 +80,7 @@ public class CLIAFormBinder extends BaseFormBinder {
         List<CLIACertificateType> licenseList = new ArrayList<CLIACertificateType>(licenseInfo.getCLIACertificate());
         licenseInfo.getCLIACertificate().clear();
 
-        
+
         // bind licenses
         int i = 0;
         Set<String> linkedAttachments = new HashSet<String>();
@@ -116,7 +116,7 @@ public class CLIAFormBinder extends BaseFormBinder {
                 }
             }
         }
-        
+
         return Collections.EMPTY_LIST;
     }
 
@@ -198,7 +198,7 @@ public class CLIAFormBinder extends BaseFormBinder {
 
         return errors.isEmpty() ? NO_ERRORS : errors;
     }
-    
+
     /**
      * Resolves the specific license that is causing the error from the license list.
      * @param ruleError the error to resolve

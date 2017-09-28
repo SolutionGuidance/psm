@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -70,9 +70,9 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
      * @throws BinderException if the format of the fields could not be bound properly
      */
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-    	if (!canModifyExistingPractice(user, enrollment)) {
-    		return new ArrayList<BinderException>();
-    	}
+        if (!canModifyExistingPractice(user, enrollment)) {
+            return new ArrayList<BinderException>();
+        }
         List<BinderException> exceptions = new ArrayList<BinderException>(super.bindFromPage(user, enrollment, request));
 
         ProviderInformationType provider = enrollment.getProviderInformation();
@@ -85,7 +85,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
                 e.setAttribute(name("effectiveDate"), param(request, "effectiveDate"));
                 exceptions.add(e);
             }
-            
+
             if (param(request, "billingSameAsPrimary") != null) {
                 practice.setBillingSameAsPrimary("Y");
                 AddressType billingAddress = readPrimaryAddress(request);
@@ -95,7 +95,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
                 AddressType billingAddress = readBillingAddress(request);
                 practice.setBillingAddress(billingAddress);
             }
-            
+
             practice.setFEIN(param(request, "fein"));
             practice.setStateTaxId(param(request, "stateTaxId"));
             practice.setFiscalYearEnd(BinderUtils.concatFiscalYearEnd(param(request, "fye1"), param(request, "fye2")));
@@ -111,7 +111,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
             practice.setEFTVendorNumber(null);
             provider.setRemittanceSequenceNumber(null);
         }
-        
+
         return exceptions;
     }
 
@@ -122,34 +122,23 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
      * @param readOnly if the view is read only
      */
     public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
-    	if (!canModifyExistingPractice(user, enrollment)) {
-    		return;
-    	}
+        if (!canModifyExistingPractice(user, enrollment)) {
+            return;
+        }
         super.bindToPage(user, enrollment, mv, readOnly);
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
 
         attr(mv, "effectiveDate", BinderUtils.formatCalendar(practice.getEffectiveDate()));
-        
+
         if (Util.isBlank(practice.getObjectId())) { // do not display private data from linked profile
             attr(mv, "billingSameAsPrimary", practice.getBillingSameAsPrimary());
-            
+
             AddressType billingAddress = practice.getBillingAddress();
             if (billingAddress != null && !"Y".equals(practice.getBillingSameAsPrimary())) {
-                String line1 = billingAddress.getAddressLine1();
-                String line2 = billingAddress.getAddressLine2();
-                if (Util.isBlank(line1)) {
-                    line1 = line2;
-                    line2 = null;
-                }
-                attr(mv, "billingAddressLine1", line1);
-                attr(mv, "billingAddressLine2", line2);
-                attr(mv, "billingCity", billingAddress.getCity());
-                attr(mv, "billingState", billingAddress.getState());
-                attr(mv, "billingZip", billingAddress.getZipCode());
-                attr(mv, "billingCounty", billingAddress.getCounty());
+                attr(mv, "billing", billingAddress);
             }
-            
+
             attr(mv, "fein", practice.getFEIN());
             attr(mv, "stateTaxId", practice.getStateTaxId());
             String[] fye = BinderUtils.splitFiscalYear(practice.getFiscalYearEnd());
@@ -173,8 +162,6 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
 
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
-
         synchronized (ruleErrors) {
             for (StatusMessageType ruleError : ruleErrors) {
                 int count = errors.size();
@@ -183,20 +170,15 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
                 if (path == null) {
                     continue;
                 }
-                
-                boolean switchBillingAddressLines = false;
-                if (practice.getBillingAddress() == null || Util.isBlank(practice.getBillingAddress().getAddressLine1())) {
-                    switchBillingAddressLines = true;
-                }
 
                 if (path.equals(PRACTICE_INFO + "EffectiveDate")) {
                     errors.add(createError("effectiveDate", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "BillingAddress")) {
                     errors.add(createError(new String[]{"billingAddressLine1", "billingAddressLine2"}, ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "BillingAddress/AddressLine1")) {
-                    errors.add(createError(switchBillingAddressLines ? "billingAddressLine2" : "billingAddressLine1", ruleError.getMessage()));
+                    errors.add(createError("billingAddressLine1", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "BillingAddress/AddressLine2")) {
-                    errors.add(createError(switchBillingAddressLines ? "billingAddressLine1" :"billingAddressLine2", ruleError.getMessage()));
+                    errors.add(createError("billingAddressLine2", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "BillingAddress/City")) {
                     errors.add(createError("billingCity", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "BillingAddress/State")) {
@@ -306,12 +288,12 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
 
         practice.setEffectiveDate(BinderUtils.toCalendar(primary.getEffectiveDate()));
     }
-    
+
     @Override
     public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
         throws DocumentException {
         super.renderPDF(enrollment, document, model);
-        
+
         PdfPTable practiceInfo = new PdfPTable(2);
         PDFHelper.setTableAsFullPage(practiceInfo);
 
@@ -333,7 +315,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
 
         document.add(practiceInfo);
     }
-    
+
     /**
      * Reads the billing address from the request.
      *
@@ -341,20 +323,6 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
      * @return the bound address
      */
     private AddressType readBillingAddress(HttpServletRequest request) {
-        AddressType address = new AddressType();
-        String line1 = param(request, "billingAddressLine1");
-        String line2 = param(request, "billingAddressLine2");
-        if (Util.isBlank(line2)) { // prioritize line 2 usage
-            line2 = line1;
-            line1 = null;
-        }
-        address.setAddressLine1(line1);
-        address.setAddressLine2(line2);
-        address.setCity(param(request, "billingCity"));
-        address.setState(param(request, "billingState"));
-        address.setZipCode(param(request, "billingZip"));
-        address.setCounty(param(request, "billingCounty"));
-        return address;
+        return readPrefixedAddress(request, "billing");
     }
-
 }

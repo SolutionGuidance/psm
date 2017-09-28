@@ -64,7 +64,7 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
     /**
      * Binds the request to the model.
      * @param user
-     * 	          the requesting user, for user based data view control
+     *            the requesting user, for user based data view control
      * @param enrollment
      *            the model to bind to
      * @param request
@@ -74,9 +74,9 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
      *             if the format of the fields could not be bound properly
      */
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-    	if (!canModifyExistingPractice(user, enrollment)) {
-    		return new ArrayList<BinderException>();
-    	}
+        if (!canModifyExistingPractice(user, enrollment)) {
+            return new ArrayList<BinderException>();
+        }
         List<BinderException> exceptions = super.bindFromPage(user, enrollment, request);
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
@@ -114,18 +114,18 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
     /**
      * Binds the model to the request attributes.
      * @param user
-     * 	          the requesting user, for user based data update control
-	 * @param enrollment
+     *            the requesting user, for user based data update control
+     * @param enrollment
      *            the model to bind from
-	 * @param mv
+     * @param mv
      *            the model and view to bind to
-	 * @param readOnly
+     * @param readOnly
      *            true if the binding is for a read only view
      */
     public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
-    	if (!canModifyExistingPractice(user, enrollment)) {
-    		return;
-    	}
+        if (!canModifyExistingPractice(user, enrollment)) {
+            return;
+        }
         super.bindToPage(user, enrollment, mv, readOnly);
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
 
@@ -135,18 +135,7 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
         if (!"Y".equals(practice.getReimbursementSameAsPrimary())) {
             AddressType reimbursementAddress = practice.getReimbursementAddress();
             if (reimbursementAddress != null) {
-                String line1 = reimbursementAddress.getAddressLine1();
-                String line2 = reimbursementAddress.getAddressLine2();
-                if (Util.isBlank(line1)) {
-                    line1 = line2;
-                    line2 = null;
-                }
-                attr(mv, "reimbursementAddressLine1", line1);
-                attr(mv, "reimbursementAddressLine2", line2);
-                attr(mv, "reimbursementCity", reimbursementAddress.getCity());
-                attr(mv, "reimbursementState", reimbursementAddress.getState());
-                attr(mv, "reimbursementZip", reimbursementAddress.getZipCode());
-                attr(mv, "reimbursementCounty", reimbursementAddress.getCounty());
+                attr(mv, "reimbursement", reimbursementAddress);
             }
         }
         attr(mv, "effectiveDate", practice.getEffectiveDate());
@@ -168,8 +157,6 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
 
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
-
         synchronized (ruleErrors) {
             for (StatusMessageType ruleError : ruleErrors) {
                 int count = errors.size();
@@ -179,23 +166,15 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
                     continue;
                 }
 
-                boolean switchAddressLines = false;
-                if (practice.getReimbursementAddress() == null
-                        || Util.isBlank(practice.getReimbursementAddress().getAddressLine1())) {
-                    switchAddressLines = true;
-                }
-
                 if (path.equals(PRACTICE_INFO + "ReimbursementAddress")) {
                     errors.add(createError(new String[] { "reimbursementAddressLine1", "reimbursementAddressLine2" },
                             ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "EffectiveDate")) {
                     errors.add(createError("effectiveDate", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ReimbursementAddress/AddressLine1")) {
-                    errors.add(createError(switchAddressLines ? "reimbursementAddressLine2"
-                            : "reimbursementAddressLine1", ruleError.getMessage()));
+                    errors.add(createError("reimbursementAddressLine1", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ReimbursementAddress/AddressLine2")) {
-                    errors.add(createError(switchAddressLines ? "reimbursementAddressLine1"
-                            : "reimbursementAddressLine2", ruleError.getMessage()));
+                    errors.add(createError("reimbursementAddressLine2", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ReimbursementAddress/City")) {
                     errors.add(createError("reimbursementCity", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "ReimbursementAddress/State")) {
@@ -316,20 +295,6 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
      * @return the bound address
      */
     private AddressType readReimbursementAddress(HttpServletRequest request) {
-        AddressType address = new AddressType();
-        String line1 = param(request, "reimbursementAddressLine1");
-        String line2 = param(request, "reimbursementAddressLine2");
-        if (Util.isBlank(line2)) { // prioritize line 2 usage
-            line2 = line1;
-            line1 = null;
-        }
-        address.setAddressLine1(line1);
-        address.setAddressLine2(line2);
-        address.setCity(param(request, "reimbursementCity"));
-        address.setState(param(request, "reimbursementState"));
-        address.setZipCode(param(request, "reimbursementZip"));
-        address.setCounty(param(request, "reimbursementCounty"));
-        return address;
+        return readPrefixedAddress(request, "reimbursement");
     }
-
 }

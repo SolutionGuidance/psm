@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
     private static final String[] ALL_CONTRACTS = new String[] {"Adult Rehabilitative Mental Health Services",
         "Children's Therapeutic Services and Supports (CTSS)", "Adult Crisis Response Services - Crisis Assessment & Crisis Intervention",
         "Adult Crisis Response Services - Crisis Stabilization", "Adult Crisis Response Services - Short-Term Residential",};
-    
+
     /**
      * Creates a new binder.
      */
@@ -98,14 +98,14 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
                     e.setAttribute(name("beginDate", i), param(request, "beginDate", i));
                     exceptions.add(e);
                 }
-                
+
                 try {
                     contract.setEndDate(BinderUtils.getAsCalendar(param(request, "endDate", i)));
                 } catch (BinderException e) {
                     e.setAttribute(name("endDate", i), param(request, "endDate", i));
                     exceptions.add(e);
                 }
-    
+
                 String attachmentId = (String) request.getAttribute(name("attachment", i));
                 if (attachmentId == null) { // not uploaded check for old value
                     attachmentId = param(request, "attachmentId", i);
@@ -206,7 +206,7 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
                 if (path.equals("/ProviderInformation/FacilityCredentials/SignedContract")) {
                     errors.add(createError("signedContracts", ruleError.getMessage()));
                 } else if (path.startsWith(LICENSE_PATH)) {
-                    
+
                     FormError error = resolveFieldError(ruleError, indexMap);
                     if (error != null) {
                         errors.add(error);
@@ -244,7 +244,7 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
                 }
                 i++;
             }
-            
+
         }
         return m;
     }

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -69,17 +69,17 @@ public class PCPOInsuranceFormBinder extends BaseFormBinder {
         if (attachmentId != null) {
             replaceDocument(attachments, attachmentId, DocumentNames.CERTIFICATE_OF_LIABILITY_INSURANCE.value());
         }
-        
+
         attachmentId = (String) request.getAttribute(NAMESPACE + "compensationInsuranceId");
         if (attachmentId != null) {
             replaceDocument(attachments, attachmentId, DocumentNames.WORKERS_COMPENSATION_INSURANCE.value());
         }
-        
+
         attachmentId = (String) request.getAttribute(NAMESPACE + "fidelityBondId");
         if (attachmentId != null) {
             replaceDocument(attachments, attachmentId, DocumentNames.FIDELITY_BOND.value());
         }
-        
+
         attachmentId = (String) request.getAttribute(NAMESPACE + "suretyBondId");
         if (attachmentId != null) {
             replaceDocument(attachments, attachmentId, DocumentNames.SURETY_BOND.value());
@@ -97,7 +97,7 @@ public class PCPOInsuranceFormBinder extends BaseFormBinder {
                 toRemove.add(doc);
             }
         }
-        
+
         attachments.getAttachment().removeAll(toRemove);
     }
 
@@ -124,7 +124,7 @@ public class PCPOInsuranceFormBinder extends BaseFormBinder {
             }
         }
     }
-    
+
     /**
      * Captures the error messages related to the form.
      * @param enrollment the enrollment that was validated

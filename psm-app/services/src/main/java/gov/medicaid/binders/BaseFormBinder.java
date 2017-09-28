@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -32,7 +32,6 @@ import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.ProviderEnrollmentService;
-import gov.medicaid.services.util.Util;
 
 import java.util.Calendar;
 import java.util.Collections;
@@ -174,7 +173,7 @@ public abstract class BaseFormBinder implements FormBinder {
     protected String name(String key) {
         return id() + key;
     }
-    
+
     /**
      * Retrieves the indexed name of the parameter.
      * @param key the base name
@@ -255,6 +254,45 @@ public abstract class BaseFormBinder implements FormBinder {
      */
     protected void attr(Map<String, Object> mv, String key, List<? extends LookupEntity> values) {
         mv.put(name(key), values);
+    }
+
+
+    /**
+     * Adds an address to the model.
+     *
+     * @param mv the model and view to add to
+     * @param address the address to add
+     */
+    protected void attr(Map<String, Object> mv, AddressType address) {
+        attr(mv, "addressLine1", address.getAddressLine1());
+        attr(mv, "addressLine2", address.getAddressLine2());
+        attr(mv, "city", address.getCity());
+        attr(mv, "state", address.getState());
+        attr(mv, "zip", address.getZipCode());
+        attr(mv, "county", address.getCounty());
+    }
+
+    protected void attr(
+            Map<String, Object> mv,
+            String prefix,
+            AddressType address
+    ) {
+        attr(mv, prefix + "Attention", address.getAttentionTo());
+        attr(mv, prefix + "AddressLine1", address.getAddressLine1());
+        attr(mv, prefix + "AddressLine2", address.getAddressLine2());
+        attr(mv, prefix + "City", address.getCity());
+        attr(mv, prefix + "State", address.getState());
+        attr(mv, prefix + "Zip", address.getZipCode());
+        attr(mv, prefix + "County", address.getCounty());
+    }
+
+    protected void attr(Map<String, Object> mv, int i, AddressType address) {
+        attr(mv, "addressLine1", i, address.getAddressLine1());
+        attr(mv, "addressLine2", i, address.getAddressLine2());
+        attr(mv, "city", i, address.getCity());
+        attr(mv, "state", i, address.getState());
+        attr(mv, "zip", i, address.getZipCode());
+        attr(mv, "county", i, address.getCounty());
     }
 
     /**
@@ -390,7 +428,7 @@ public abstract class BaseFormBinder implements FormBinder {
         error.setMessage(message);
         return error;
     }
-    
+
     /**
      * Creates an error for the given fields.
      *
@@ -449,14 +487,14 @@ public abstract class BaseFormBinder implements FormBinder {
         }
         return mapping;
     }
-    
+
     /**
      * Empty implementation by default.
      *
      * @param enrollment the enrollment to be rendered
      * @param document the PDF document to render on
      * @param model the view model
-     * @throws DocumentException 
+     * @throws DocumentException
      */
     public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model) throws DocumentException {
     }
@@ -469,18 +507,41 @@ public abstract class BaseFormBinder implements FormBinder {
      */
     protected AddressType readPrimaryAddress(HttpServletRequest request) {
         AddressType address = new AddressType();
-        String line1 = param(request, "addressLine1");
-        String line2 = param(request, "addressLine2");
-        if (Util.isBlank(line2)) { // prioritize line 2 usage
-            line2 = line1;
-            line1 = null;
-        }
-        address.setAddressLine1(line1);
-        address.setAddressLine2(line2);
+        address.setAddressLine1(param(request, "addressLine1"));
+        address.setAddressLine2(param(request, "addressLine2"));
         address.setCity(param(request, "city"));
         address.setState(param(request, "state"));
         address.setZipCode(param(request, "zip"));
         address.setCounty(param(request, "county"));
+        return address;
+    }
+
+    AddressType readPrefixedAddress(
+            HttpServletRequest request,
+            String prefix
+    ) {
+        AddressType address = new AddressType();
+        address.setAddressLine1(param(request, prefix + "AddressLine1"));
+        address.setAddressLine2(param(request, prefix + "AddressLine2"));
+        address.setAttentionTo(param(request, prefix + "Attention"));
+        address.setCity(param(request, prefix + "City"));
+        address.setState(param(request, prefix + "State"));
+        address.setZipCode(param(request, prefix + "Zip"));
+        address.setCounty(param(request, prefix + "County"));
+        return address;
+    }
+
+    AddressType readIndexedAddress(
+            HttpServletRequest request,
+            int index
+    ) {
+        AddressType address = new AddressType();
+        address.setAddressLine1(param(request, "addressLine1", index));
+        address.setAddressLine2(param(request, "addressLine2", index));
+        address.setCity(param(request, "city", index));
+        address.setState(param(request, "state", index));
+        address.setZipCode(param(request, "zip", index));
+        address.setCounty(param(request, "county", index));
         return address;
     }
 }

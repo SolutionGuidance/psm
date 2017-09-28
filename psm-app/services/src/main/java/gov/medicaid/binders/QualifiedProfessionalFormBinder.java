@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the provider type selection form.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -79,7 +79,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
      *            the model to bind to
      * @param request
      *            the request containing the form fields
-     * 
+     *
      * @throws BinderException
      *             if the format of the fields could not be bound properly
      */
@@ -130,7 +130,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
                 }
             }
 
-            AddressType address = readQPAddress(request, qpIndex);
+            AddressType address = readIndexedAddress(request, qpIndex);
             ContactInformationType contact = new ContactInformationType();
             qp.setContactInformation(contact);
             qp.getContactInformation().setAddress(address);
@@ -231,18 +231,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
             if (qp.getContactInformation() != null) {
                 AddressType address = qp.getContactInformation().getAddress();
                 if (address != null) {
-                    String line1 = address.getAddressLine1();
-                    String line2 = address.getAddressLine2();
-                    if (Util.isBlank(line1)) {
-                        line1 = line2;
-                        line2 = null;
-                    }
-                    attr(mv, "addressLine1", qpIndex, line1);
-                    attr(mv, "addressLine2", qpIndex, line2);
-                    attr(mv, "city", qpIndex, address.getCity());
-                    attr(mv, "state", qpIndex, address.getState());
-                    attr(mv, "zip", qpIndex, address.getZipCode());
-                    attr(mv, "county", qpIndex, address.getCounty());
+                    attr(mv, qpIndex, address);
                 }
             }
 
@@ -284,7 +273,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Retrieves only QP affiliations.
-     * 
+     *
      * @param affiliations
      *            the affiliations to be filtered
      * @return the filtered affiliations
@@ -307,7 +296,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Retrieves the related attachment name.
-     * 
+     *
      * @param enrollment
      *            the enrollment to retrieve from
      * @param attachmentObjectId
@@ -329,12 +318,12 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Captures the error messages related to the form.
-     * 
+     *
      * @param enrollment
      *            the enrollment that was validated
      * @param messages
      *            the messages to select from
-     * 
+     *
      * @return the list of errors related to the form
      */
     protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
@@ -375,7 +364,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Resolves the specific license that is causing the error from the license list.
-     * 
+     *
      * @param ruleError
      *            the error to resolve
      * @return the resolved error
@@ -442,7 +431,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Resolves the index of the field that caused the error.
-     * 
+     *
      * @param path
      *            the field path
      * @return the index of the field, null if cannot be resolved
@@ -457,7 +446,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Binds the fields of the form to the persistence model.
-     * 
+     *
      * @param enrollment
      *            the front end model
      * @param ticket
@@ -520,7 +509,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
 
     /**
      * Binds the fields of the persistence model to the front end xml.
-     * 
+     *
      * @param ticket
      *            the persistent model
      * @param enrollment
@@ -577,29 +566,4 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
             xQPs.getQualifiedProfessional().add(xQP);
         }
     }
-
-    /**
-     * Reads the primary practice address from the request.
-     * 
-     * @param request
-     *            the request to read from
-     * @return the bound address
-     */
-    protected AddressType readQPAddress(HttpServletRequest request, int index) {
-        AddressType address = new AddressType();
-        String line1 = param(request, "addressLine1", index);
-        String line2 = param(request, "addressLine2", index);
-        if (Util.isBlank(line2)) { // prioritize line 2 usage
-            line2 = line1;
-            line1 = null;
-        }
-        address.setAddressLine1(line1);
-        address.setAddressLine2(line2);
-        address.setCity(param(request, "city", index));
-        address.setState(param(request, "state", index));
-        address.setZipCode(param(request, "zip", index));
-        address.setCounty(param(request, "county", index));
-        return address;
-    }
-
 }

@@ -22,7 +22,7 @@ This site does not enforce any limits on the number or type of
 characters in the user's first name, last name, username or password.
 
 You will need to `have JavaScript turned on in your
-browser <http://www.enable-javascript.com/>`__.
+browser <https://www.enable-javascript.com/>`__.
 
 If you are not a healthcare provider:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

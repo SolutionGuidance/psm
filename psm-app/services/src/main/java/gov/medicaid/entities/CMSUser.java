@@ -18,6 +18,8 @@ package gov.medicaid.entities;
 import gov.medicaid.binders.BinderUtils;
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -56,6 +58,7 @@ public class CMSUser implements Serializable {
     @Column(name = "middle_name")
     private String middleName;
 
+    @Access(AccessType.PROPERTY)
     @Column(name = "phone_number")
     private String phoneNumber;
 

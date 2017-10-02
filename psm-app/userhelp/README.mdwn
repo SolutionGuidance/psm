@@ -27,7 +27,11 @@ To build the documentation as a single PDF file, you'll need to
 install some LaTeX packages locally.
 
 ~~~
-$ sudo apt install texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk
+$ sudo apt install \
+    texlive-latex-recommended \
+    texlive-fonts-recommended \
+    texlive-latex-extra \
+    latexmk
 $ cd psm-app
 $ ./gradlew userhelp:pdf
 ~~~

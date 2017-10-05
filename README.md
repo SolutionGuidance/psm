@@ -92,7 +92,7 @@ More information on the challenge can be found
 SECTION 3: Features and Functionality
 ---------------------------------------------------------------------
 
-As of 21 June 2017, the PSM offers the following functionality:
+As of 5 October 2017, the PSM offers the following functionality:
 
 1. Any user
 * Self-register and create a new account
@@ -115,6 +115,7 @@ As of 21 June 2017, the PSM offers the following functionality:
 * View, create, edit, and delete agreements & addendums
 * Change agreement and addendum assignments for provider types
 * View, create, edit, and delete service agents
+* Review and reject or approve enrollments
 
 4. User at "provider" privilege level
 * Make a new enrollment
@@ -131,6 +132,7 @@ As of 21 June 2017, the PSM offers the following functionality:
 * Issue risk score for an enrollment
 * Record logs in `standalone/log/`
 * Record changes for auditing in database tables `audit_details` and `audit_records`
+* Extract, transform, and load List of Excluded Individuals data
 
 _[Note: As the developer team conducts initial improvement work on the PSM in June 2017, we anticipate recovering many of the features listed in the [original
 repository](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/blob/master/README.md), such as identity verification, building provider profiles, and MITA integration.]_

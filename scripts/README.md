@@ -10,3 +10,7 @@ administrators or our build systems.
 * `drools-microservice.sh` sets up a copy of jbpm and Guvnor on a
   standalone server, which the core application can then be configured
   to communicate with.
+* `make-zip-of-documents.sh` builds PDFs of our prose documents for
+  users, administrators, and developers, builds the HTML
+  documentation for our API, and puts together a ZIP file with a
+  table of contents.

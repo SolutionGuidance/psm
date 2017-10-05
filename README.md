@@ -68,7 +68,7 @@ risk scoring, credentialing validation, identity authentication, and
 sanction checks, that lowered the burden on providers and reduced
 administrative and infrastructure expenses for states and federal
 programs.
- 
+
 The application was built using NASA's contract with Harvard Business
 School in association with the Institute of Quantitative Social
 Sciences and their subcontract with TopCoder.  The Application
@@ -76,7 +76,7 @@ Development Challenge was sponsored by CMS as part of the Partnership
 for Program Integrity Innovation program with the specific intent of
 developing an application to improve capabilities for streamlining
 operations and screening providers to reduce fraud and abuse.
- 
+
 The challenge was comprised of an omnibus of 120 contests launched
 between June 2012 and April 2013, to cover all phases of the software
 development life cycle.  The code and documentation resulting from
@@ -132,8 +132,12 @@ As of 21 June 2017, the PSM offers the following functionality:
 * Record logs in `standalone/log/`
 * Record changes for auditing in database tables `audit_details` and `audit_records`
 
-_[Note: As the developer team conducts initial improvement work on the PSM in June 2017, we anticipate recovering many of the features listed in the [original
-repository](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/blob/master/README.md), such as identity verification, building provider profiles, and MITA integration.]_
+_[Note: As the developer team conducts initial improvement work on the
+PSM in June 2017, we anticipate recovering many of the features listed
+in the [original
+repository](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/blob/master/README.md),
+such as identity verification, building provider profiles, and MITA
+integration.]_
 
 ---------------------------------------------------------------------
 SECTION 4: Project Resources and Repository Organization

@@ -4,28 +4,28 @@ Enrollment
 What information do I need to apply to enroll?
 ----------------------------------------------
 
-First, you'll need to register for an account (see `"how do I register
-for an account on this
-site?" <account-help.html#how-do-i-register-for-an-account-on-this-site>`__).
-Then you'll need to click the button to create a new enrollment.
+Register for an account (see `"How do I register for an account on this
+site?"
+<account-help.html#how-do-i-register-for-an-account-on-this-site>`__).
+Then click the button to create a new enrollment.
 
 An application includes:
 
--  provider/organization information, such as provider type, name, NPI,
+-  Provider/organization information, such as provider type, name, NPI,
    and contact information
 
--  license and certification information, including a scan of the
+-  License and certification information, including a scan of the
    license or certification itself
 
--  contact and billing/reimbursement addresses for the practice
+-  Contact and billing/reimbursement addresses for the practice
 
--  answers to questions about the provider's past exclusions, penalties,
+-  Answers to questions about the provider's past exclusions, penalties,
    terminations, and convictions, if any
 
--  information about ownership and potential conflicts (e.g. ownership
+-  Information about ownership and potential conflicts (e.g. ownership
    over other entities billing Medicaid)
 
--  an electronic signature and date attesting to the accuracy of the
+-  An electronic signature and date attesting to the accuracy of the
    enrollment information
 
 What are the steps in the enrollment process?
@@ -62,9 +62,9 @@ version. <https://github.com/OpenTechStrategies/psm/issues/10>`__
 Which enrollment information can a provider, service agent, or state Medicaid agency staffer modify or delete?
 --------------------------------------------------------------------------------------------------------------
 
-A provider can modify a draft enrollment, but can't delete it. A
-provider also cannot delete or modify an enrollment after submitting it
-(once it is "pending", "approved", or "denied").
+A provider or service agent can modify a draft enrollment, but cannot
+delete it. These roles can neither delete nor modify an enrollment after
+submitting it, when its status is "pending", "approved", or "denied."
 
 A service agent or state Medicaid agency staffer can modify a draft or
 pending enrollment, but cannot delete any enrollments.
@@ -76,9 +76,10 @@ When you log into the PSM, you'll see any enrollments you've submitted
 or started drafting via your PSM user account. You'll be able to see the
 status of each enrollment.
 
-Right now, a provider does not receive any email notifications about
-their enrollment. (`A future version of the PSM will send email
-notifications to providers when the status of your enrollment
+Currently, the PSM does not notify you by email or paper mail when the
+state accepts or rejects an enrollment you have submitted. (`A future
+version of the PSM will send email notifications to providers when the
+status of your enrollment
 changes. <https://github.com/OpenTechStrategies/psm/issues/341>`__)
 
 Can I create an enrollment for someone else?
@@ -90,8 +91,8 @@ enrollment for someone else.
 Can I start an enrollment now and finish it later, or do I have to start and submit it all in one session?
 ----------------------------------------------------------------------------------------------------------
 
-This site lets you save a "draft" at any point while you are creating a
-new enrollment. Click the "Save as draft" button. Even if you log out
+The PSM lets you save a "draft" at any point while you are creating a
+new enrollment. Click the "Save as Draft" button. Even if you log out
 and then log back in, that draft enrollment will still be available for
 you to work on -- you will see it in your Dashboard and in the Draft tab
 under Enrollments.
@@ -109,8 +110,8 @@ enrollment started by another provider.
 How do I renew an enrollment or update an enrollment?
 -----------------------------------------------------
 
-Right now that's not something the PSM can do, but `it'll be possible in
-a future
+Currently the PSM cannot renew or update an enrollment, but `it'll be
+possible in a future
 version. <https://github.com/OpenTechStrategies/psm/issues/401>`__
 
 Can I change something in a pending enrollment after I submit it?
@@ -133,8 +134,6 @@ enrollment.
 
 What can I do to reduce the risk of delay or rejection for an enrollment?
 -------------------------------------------------------------------------
-
-You should:
 
 -  Include clear, accurate scans of your licenses/certifications
 

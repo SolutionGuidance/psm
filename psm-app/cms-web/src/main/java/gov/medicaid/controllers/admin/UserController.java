@@ -118,6 +118,7 @@ public class UserController extends BaseServiceAdminController {
             CMSUser user = registrationService.findByUserId(userId);
             ModelAndView model = new ModelAndView("admin/service_admin_edit_user_profile");
             model.addObject("user", user);
+            ControllerHelper.addContextInfoToModel(model);
 
             return LogUtil.traceExit(getLog(), signature, model);
         } catch (PortalServiceException e) {

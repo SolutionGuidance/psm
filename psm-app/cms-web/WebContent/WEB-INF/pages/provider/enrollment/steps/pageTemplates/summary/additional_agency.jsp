@@ -11,7 +11,7 @@
         <tr>
             <th class="firstTheader">#<span class="sep"></span></th>
             <th>Organization/Agency Name<span class="sep"></span></th>
-            <th>NPI / UMPI<span class="sep"></span></th>
+            <th><abbr title="National Provider Identifier">NPI</abbr> / <abbr title="Unique Minnesota Provider Identifier">UMPI</abbr><span class="sep"></span></th>
             <th>Study ID<span class="sep"></span></th>
             <th>Clearance Date<span class="sep"></span></th>
         </tr>

@@ -19,7 +19,7 @@
         
         <div class="leftCol">
             <div class="row">
-                <label>NPI/UMPI</label>
+                <label><abbr title="National Provider Identifier">NPI</abbr>/<abbr title="Unique Minnesota Provider Identifier">UMPI</abbr></label>
                 <span class="floatL"><b>:</b></span>
                 <form:input path="npi" cssClass="normalInput"/>
             </div>

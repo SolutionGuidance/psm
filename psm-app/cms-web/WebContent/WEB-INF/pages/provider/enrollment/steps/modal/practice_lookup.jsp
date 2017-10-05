@@ -33,7 +33,7 @@
                             <input type="text" class="normalInput inputL" name="name"/>
                         </span>
                         <span>
-                            <label>NPI / UMPI:</label>
+                            <label><abbr title="National Provider Identifier">NPI</abbr> / <abbr title="Unique Minnesota Provider Identifier">UMPI</abbr>:</label>
                             <input type="text" class="normalInput inputL" name="npi"/>
                         </span>
                         <span>
@@ -70,7 +70,7 @@
                                 <tr class="tablesorter-header">
                                     <th class="alignCenter"><span class="sep"></span></th>
                                     <th class="alignCenter">Practice Name<span class="sep"></span></th>
-                                    <th class="alignCenter">NPI / UMPI<span class="sep"></span></th>
+                                    <th class="alignCenter"><abbr title="National Provider Identifier">NPI</abbr> / <abbr title="Unique Minnesota Provider Identifier">UMPI</abbr><span class="sep"></span></th>
                                     <th class="alignCenter">Address<span class="sep"></span></th>
                                     <th class="alignCenter">City<span class="sep"></span></th>
                                     <th class="alignCenter">State<span class="sep"></span></th>

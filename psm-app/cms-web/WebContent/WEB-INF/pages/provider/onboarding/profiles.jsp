@@ -48,7 +48,7 @@
                                         <c:if test="${not empty profiles}">
                                             <th class="alignCenter"><span class="sep"></span></th>
                                         </c:if>
-                                        <th class="alignCenter">NPI / UMPI<span class="sep"></span></th>
+                                        <th class="alignCenter"><abbr title="National Provider Identifier">NPI</abbr> / <abbr title="Unique Minnesota Provider Identifier">UMPI</abbr><span class="sep"></span></th>
                                         <th class="alignCenter">Provider Type<span class="sep"></span></th>
                                         <th class="alignCenter">Provider Name<span class="sep"></span></th>
                                     </tr>

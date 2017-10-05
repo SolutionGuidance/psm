@@ -43,7 +43,7 @@
                                 <div class="floatW">
                                     <div class="leftCol">
                                         <div class="row">
-                                            <label>NPI/UMPI</label>
+                                            <label><abbr title="National Provider Identifier">NPI</abbr>/<abbr title="Unique Minnesota Provider Identifier">UMPI</abbr></label>
                                             <span class="floatL"><b>:</b></span>
                                             <input id="npiInput" type="text" class="normalInput" value="${searchCriteria.npi}"/>
                                         </div>

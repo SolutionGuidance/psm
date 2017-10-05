@@ -56,7 +56,7 @@
                     <input ${disableLinkedFields} type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
                 </div>
                 <div class="row">
-                    <label>Group NPI / UMPI<span class="required">*</span></label>
+                    <label>Group <abbr title="National Provider Identifier">NPI</abbr> / <abbr title="Unique Minnesota Provider Identifier">UMPI</abbr><span class="required">*</span></label>
                     <span class="floatL"><b>:</b></span>
 
                     <c:set var="formName" value="_06_npi"></c:set>

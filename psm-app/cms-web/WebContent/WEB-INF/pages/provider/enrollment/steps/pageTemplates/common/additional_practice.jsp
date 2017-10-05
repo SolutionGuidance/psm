@@ -14,7 +14,7 @@
     <thead>
         <tr>
             <th class="firstTheader">#<span class="sep"></span></th>
-            <th>Group NPI / UMPI<span class="sep"></span></th>
+            <th>Group <abbr title="National Provider Identifier">NPI</abbr> / <abbr title="Unique Minnesota Provider Identifier">UMPI</abbr><span class="sep"></span></th>
             <th>Group Name<span class="sep"></span></th>
             <th>Effective Date<span class="sep"></span></th>
             <th>Practice Address<span class="sep"></span></th>

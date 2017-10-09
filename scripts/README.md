@@ -7,6 +7,10 @@ administrators or our build systems.
   documentation using Javadoc and push it to the `gh-pages` branch,
   which updates our GitHub Pages site,
   https://opentechstrategies.github.io/psm/javadoc/ .
-* `drools-microservice.sh` sets up a copy of jbpm and Guvnor on a
+* `drools-microservice.sh` sets up a copy of jBPM and Guvnor on a
   standalone server, which the core application can then be configured
   to communicate with.
+* `rebuild-and-change-schema-for-testing.sh` is useful in testing a
+  development installation, or testing a pull request or other
+  branch. It builds a fresh EAR, blows away the old database contents
+  and builds a new schema, and deploys the EAR.

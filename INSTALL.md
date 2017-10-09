@@ -1,7 +1,7 @@
        Installation instructions for the Provider Screening Module
        ===========================================================
 
-***NOTE: 2017-07-03: These developer installation instructions are a
+***NOTE: 2017-10-09: These developer installation instructions are a
    work in progress.  We welcome suggestions on improving them. We do
    not yet have a production deployment guide, and will seek out
    conversation with operations engineers in state IT departments to
@@ -162,7 +162,7 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    follow the prompts to add a "Management User" with the desired name
    and password, leave the group blank and answer "no" to the question
    about host controllers.
-   
+
 1. Stop the server if it is already running:
 
    ```ShellSession
@@ -368,13 +368,22 @@ To build the user documentation, invoke gradle:
 
     ./gradlew userhelp:html
 
-The generated documentation will go into `psm-app/userhelp/build/html`.
+The generated documentation will go into
+`psm-app/userhelp/build/html`. Open
+[`psm-app/userhelp/build/html/index.html`](psm-app/userhelp/build/html/index.html)
+in your browser.
+
 More commands are available; run `./gradlew userhelp:tasks` or see
 `psm-app/userhelp/README.mdwn`.
 
 ## Run automated tests
 
 See `docs/TESTING.md` for instructions on running the automated tests.
+
+## Maintain and update environment
+
+See `scripts/` for several utility scripts for use by system
+administrators or our build systems.
 
 # Production Deployment
 
@@ -386,17 +395,17 @@ useful to inform your own approach to deploying the PSM.
 
 ## NGINX
 
-NGINX has a maximum upload file size.  It's default can be quite low
+NGINX has a maximum upload file size.  Its default can be quite low
 (1MB on our Debian system), and large PDFs of licenses and
 certificates can trigger "413 Request Entity Too Large" errors in
 NGINX.  You will want to set maximum uploaded file size in both NGINX
-*and* in the PSM (adjust max.upload.size in
+*and* in the PSM (adjust `max.upload.size` in
 `psm/psm-app/services/src/main/resources/cms.properties`).  PDFs can
 get quite large, especially if they are multi-page PDFs of scanned
-documents.  We do not yet have a recommended size to set this too, but
-we will set a sane default in `cms.properties` when we do.  See
-[Issue 263](https://github.com/OpenTechStrategies/psm/issues/263) for
-some discussion of the problem.
+documents.  We do not yet have a recommended size to set this to, but
+we will set a sane default in `cms.properties` when we do.  See [issue
+263 in GitHub](https://github.com/OpenTechStrategies/psm/issues/263)
+for some discussion of the problem.
 
 ## Continuous Deployment
 

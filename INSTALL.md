@@ -162,7 +162,7 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    follow the prompts to add a "Management User" with the desired name
    and password, leave the group blank and answer "no" to the question
    about host controllers.
-   
+
 1. Stop the server if it is already running:
 
    ```ShellSession

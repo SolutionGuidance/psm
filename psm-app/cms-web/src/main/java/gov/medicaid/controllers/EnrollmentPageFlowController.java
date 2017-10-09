@@ -282,10 +282,9 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Starts the renewal process using an old ticket.
      *
-     * @param ticketId the profile to renew
-     * @param model    the request model
+     * @param ticketIds the profile(s) to renew
+     * @param model     the request model
      * @return the enrollment start page.
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/bulkRenewTickets"
      * @verb POST
      */
@@ -756,7 +755,7 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Performs beneficial owner type lookup.
      *
-     * @param entity type
+     * @param entityType The owner type to look up
      * @return the lookup JSON
      * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/ownerTypes"
@@ -773,7 +772,6 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Performs license type lookup.
      *
-     * @param entity type
      * @return the lookup JSON
      * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/lookupMinimumLicenses"

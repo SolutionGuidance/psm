@@ -26,6 +26,7 @@ script:
         checkstyleTest
         cms-portal-services:build
         cms-web:apiDocs
+        userhelp:html
   - cd ../
 
 # Push the new Javadocs to our GitHub Pages site.

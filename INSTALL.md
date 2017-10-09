@@ -376,6 +376,11 @@ More commands are available; run `./gradlew userhelp:tasks` or see
 
 See `docs/TESTING.md` for instructions on running the automated tests.
 
+## Maintain and update environment
+
+See `scripts/` for several utility scripts for use by system
+administrators or our build systems.
+
 # Production Deployment
 
 If you want to deploy this in earnest, there will be additional steps

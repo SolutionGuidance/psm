@@ -1,7 +1,7 @@
        Installation instructions for the Provider Screening Module
        ===========================================================
 
-***NOTE: 2017-07-03: These developer installation instructions are a
+***NOTE: 2017-10-09: These developer installation instructions are a
    work in progress.  We welcome suggestions on improving them. We do
    not yet have a production deployment guide, and will seek out
    conversation with operations engineers in state IT departments to
@@ -368,7 +368,11 @@ To build the user documentation, invoke gradle:
 
     ./gradlew userhelp:html
 
-The generated documentation will go into `psm-app/userhelp/build/html`.
+The generated documentation will go into
+`psm-app/userhelp/build/html`. Open
+[`psm-app/userhelp/build/html/index.html`](psm-app/userhelp/build/html/index.html)
+in your browser.
+
 More commands are available; run `./gradlew userhelp:tasks` or see
 `psm-app/userhelp/README.mdwn`.
 

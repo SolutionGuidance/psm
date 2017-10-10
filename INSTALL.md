@@ -7,6 +7,28 @@
    conversation with operations engineers in state IT departments to
    help us develop that guide later in 2017. ***
 
+**Contents**
+
+- **[Background and Current Deployment Status](#background-and-current-deployment-status)**
+- **[Requirements Overview](#requirements-overview)**
+    - [Hardware](#hardware)
+    - [Software](#software)
+    - [Database](#database)
+    - [Mail](#mail)
+- **[Installation Instructions](#installation-instructions)**
+    - [Install prerequisites](#install-prerequisites)
+    - [Configure WildFly](#configure-wildfly)
+    - [Configure Mail](#configure-mail)
+    - [Configure Database](#configure-database)
+    - [Build and deploy the application](#build-and-deploy-the-application)
+    - [Build documentation](#build-documentation)
+    - [Run automated tests](#run-automated-tests)
+    - [Maintain and update environment](#maintain-and-update-environment)
+- **[Production Deployment](#production-deployment)**
+    - [NGINX](#nginx)
+    - [Continuous Deployment](#continuous-deployment)
+        - [Travis Environment Variables](#travis-environment-variables)
+
 # Background and Current Deployment Status
 
 2017-09-08: The PSM is not yet ready for production deployment,
@@ -41,12 +63,10 @@ on a correctly-configured Java EE Application Server. While it was originally
 written for the Java EE 6 profile, it is currently being ported to run on Java
 EE 7 Application Servers, starting with WildFly 10.
 
-## System Requirements
-
 These requirements are based on our understanding of the application at this
 time, and will evolve as we understand it more.
 
-### Hardware
+## Hardware
 
 - **Memory**: 8 GB should be enough for a test system.
 - **CPU**: TBA; provisioning CPU proportional to memory (whatever that
@@ -56,7 +76,7 @@ time, and will evolve as we understand it more.
 - **Storage**: 10 GB of storage for WildFly, the PSM repository, and its
   dependencies should be plenty.
 
-### Software
+## Software
 
 This is just an overview; see installation instructions below.
 
@@ -75,7 +95,7 @@ This is just an overview; see installation instructions below.
 - **Java EE Application Server**: currently WildFly 10.1. We may support other
   application servers in the future.
 
-### Database
+## Database
 
 We're testing with latest stable PostgreSQL, currently 9.6.2. PostgreSQL 10
 will be released shortly and we hope/intend to verify compatibility with that.
@@ -94,7 +114,7 @@ These should be XA data sources that both point to the same
 database. The installation instructions below will take care of this
 configuration for a development install.
 
-### Mail
+## Mail
 
 The application requires the application server to be configured with a mail service:
 - JNDI name `java:/Mail`
@@ -213,9 +233,7 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
 
 1. Leave WildFly running as you continue the install process.
 
-## Configure services
-
-### Mail
+## Configure Mail
 
 If you are using a debugging mail server such as the Python
 `DebuggingServer` recommended above: open a new terminal session so
@@ -236,7 +254,7 @@ If you are using a production mail server, add a mail session with a JNDI name
 of `java:/Mail` to your application server with the appropriate credentials
 using the command line or web interface.
 
-### Database
+## Configure Database
 
 Download the [PostgreSQL JDBC driver](https://jdbc.postgresql.org/download.html)
 (specifically, the JDBC 4.2 version of the driver). Place it in the

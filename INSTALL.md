@@ -58,6 +58,8 @@ time, and will evolve as we understand it more.
 
 ### Software
 
+This is just an overview; see installation instructions below.
+
 - **Operating System**: we recommend Debian 9 stable, also known as
   stretch.  If you prefer Debian testing, we have had success with
   Debian testing (aka buster).  A developer has also successfully
@@ -121,7 +123,8 @@ configuration for a development install.
 
 1. [PostgreSQL 9.6](https://www.postgresql.org/). We are testing with
    PostgreSQL 9.6.2. Check that you have PostgreSQL installed.  If you
-   do not, it is available on Debian via `sudo apt install postgresql-9.6`.
+   do not, it is available on Debian via `sudo apt install postgresql-9.6`,
+   or you can download it from https://www.postgresql.org.
 
 1. The PSM code repository. Currently we suggest you run the PSM from
    the master branch of the development repository. Run the command
@@ -163,7 +166,7 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    and password, leave the group blank and answer "no" to the question
    about host controllers.
 
-1. Stop the server if it is already running:
+1. Stop the server if it is already running.  (It should not be running yet.)
 
    ```ShellSession
    $ ./bin/jboss-cli.sh --connect --command=:shutdown
@@ -217,8 +220,9 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
 If you are using a debugging mail server such as the Python
 `DebuggingServer` recommended above: open a new terminal session so
 you can leave WildFly running in its existing terminal and Python
-running in its existing terminal. Paste the entire command below, all
-the way through the second `EOF`, into your terminal:
+running in its existing terminal. In the new terminal navigate to the
+WildFly directory and paste in the entire command below, all the
+way through the second `EOF`:
 
 ```ShellSession
 $ ./bin/jboss-cli.sh --connect << EOF
@@ -236,8 +240,9 @@ using the command line or web interface.
 
 Download the [PostgreSQL JDBC driver](https://jdbc.postgresql.org/download.html)
 (specifically, the JDBC 4.2 version of the driver). Place it in the
-parent directory, relative to the WildFly directory, and deploy it to
-your application server:
+parent directory, relative to the WildFly directory.  Then deploy it to
+your application server by running the following command in the WildFly
+directory:
 
 ```ShellSession
 $ ./bin/jboss-cli.sh --connect --command="deploy ../postgresql-{VERSION}.jar"
@@ -251,12 +256,11 @@ WildFly server. The terminal logging for WildFly should then include
 an `INFO` line like:
 
 ```
-15:32:15, 773 INFO [org.jboss.as.server] )ServerService Thread Pool --37) WFLYSRV0010: Deployed "postgresql-42.1.1.jar" (runtime-name: "postgresql-42.1.1.jar")
+15:32:15, 773 INFO [org.jboss.as.server] (management-handler-thread - 6) WFLYSRV0010: Deployed "postgresql-42.1.1.jar" (runtime-name: "postgresql-42.1.1.jar")
 ```
 
-You will need a database user, and a database owned by that
-user. Create them, and make a note of the password for the database
-user:
+Create a database user and a database owned by that user.  You will be prompted
+to enter/create a password for the database user. Make a note of this password.
 
 ```ShellSession
 $ sudo -u postgres createuser --pwprompt psm
@@ -301,7 +305,7 @@ EOF
 ```
 
 ## Build and deploy the application
-1. Fill in your local properties:
+1. Navigate to the psm-app directory:
 
    ```ShellSession
    $ cd ../{psm}/psm-app
@@ -320,12 +324,16 @@ EOF
    BUILD SUCCESSFUL
    ```
 
-1. Deploy the built app: you can use the WildFly Management Console UI
-   at [http://localhost:9990/](http://localhost:9990/), log in with
-   your management console username and password, and do the
-   following: "Deployments > Add > Upload a new deployment > browse to
-   file." Alternatively, you can use the command line interface,
-   replacing the relevant paths below:
+1. Deploy the built app.  You can use the WildFly Management Console UI
+   at [http://localhost:9990/](http://localhost:9990/).  Log in with
+   your management console username and password (if you are not already logged
+   in).  Then do the following: "Deployments [tab] > Add [button] > Upload a new
+   deployment > browse to file."  And browse to this file:
+
+   `{/path/to/psm}/psm-app/cms-portal-services/build/libs/cms-portal-services.ear`
+
+   Alternatively, you can use the command line interface, replacing the relevant
+   paths below:
 
    ```ShellSession
    $ {/path/to/wildfly}/bin/jboss-cli.sh --connect \
@@ -357,8 +365,8 @@ EOF
 
 ## Build documentation
 
-Generate the API documentation from Javadoc annotations by invoking
-gradle:
+Generate the API documentation from Javadoc annotations by navigating to the
+psm-app directory and invoking gradle:
 
     ./gradlew cms-web:apiDocs
 

@@ -12,19 +12,15 @@ import gov.medicaid.domain.model.SearchResultItemType;
 import gov.medicaid.domain.rules.inference.MatchStatus;
 import gov.medicaid.domain.rules.inference.ResultMatchResolver;
 import gov.medicaid.services.CMSConfigurator;
-import gov.medicaid.services.util.LogUtil;
-
-import java.io.IOException;
-import java.io.StringWriter;
-import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.transform.TransformerException;
-
-import com.topcoder.util.log.Level;
-import com.topcoder.util.log.Log;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Uses a web service call to filter multiple search results into an exact match.
@@ -33,11 +29,8 @@ import com.topcoder.util.log.Log;
  * @version 1.0
  */
 public class SAMExclusionServiceMatcher extends BaseSOAPClient implements ResultMatchResolver {
-
-    /**
-     * Class logger.
-     */
-    private Log log = LogUtil.getLog("SAMExclusionServiceMatcher");
+    private static final Logger LOGGER =
+            Logger.getLogger(SAMExclusionServiceMatcher.class.getName());
 
     /**
      * Assigns the given values to the field with the same name.
@@ -114,11 +107,11 @@ public class SAMExclusionServiceMatcher extends BaseSOAPClient implements Result
                             exactMatch = searchResultItemType;
                         }
                     } catch (JAXBException e) {
-                        log.log(Level.ERROR, e);
+                        LOGGER.severe(e.toString());
                     } catch (IOException e) {
-                        log.log(Level.ERROR, e);
+                        LOGGER.severe(e.toString());
                     } catch (TransformerException e) {
-                        log.log(Level.ERROR, e);
+                        LOGGER.severe(e.toString());
                     }
                     break;
                 }

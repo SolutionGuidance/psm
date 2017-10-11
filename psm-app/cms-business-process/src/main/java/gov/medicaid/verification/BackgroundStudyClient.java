@@ -23,21 +23,19 @@ import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.SearchResultItemType;
 import gov.medicaid.domain.model.SearchResultType;
 import gov.medicaid.services.CMSConfigurator;
-import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
-
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.TransformerException;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.logging.Logger;
 
-import com.topcoder.util.log.Level;
-import com.topcoder.util.log.Log;
+import static java.util.logging.Level.INFO;
 
 /**
  * Used to verify SSN against the Death Master file records.
@@ -46,11 +44,8 @@ import com.topcoder.util.log.Log;
  * @version 1.0
  */
 public class BackgroundStudyClient extends BaseSOAPClient {
-
-    /**
-     * Class logger.
-     */
-    private Log log = LogUtil.getLog("BackgroundStudyClient");
+    private static final Logger LOGGER =
+            Logger.getLogger(BackgroundStudyClient.class.getName());
 
     /**
      * Assigns the given values to the field with the same name.
@@ -105,10 +100,11 @@ public class BackgroundStudyClient extends BaseSOAPClient {
             r1.getColumnData().getNameValuePair().addAll(r2.getColumnData().getNameValuePair());
             result.setRawResponse(null); // not needed now that we have transformed it
 
-            if (log.isEnabled(Level.INFO)) {
+
+            if (LOGGER.isLoggable(INFO)) {
                 sw = new StringWriter();
                 m.marshal(result, sw);
-                log.log(Level.INFO, sw.toString()); // finally! an XML we can actually process!
+                LOGGER.info(sw.toString()); // finally! an XML we can actually process!
             }
         }
 

@@ -26,19 +26,14 @@ import gov.medicaid.domain.model.SearchResultType;
 import gov.medicaid.domain.model.VerificationStatusType;
 import gov.medicaid.domain.rules.inference.MatchStatus;
 import gov.medicaid.domain.rules.inference.ProviderNameMatcher;
-import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.verification.PECOSSearchClient;
-
-import java.io.IOException;
-
-import javax.xml.bind.JAXBException;
-import javax.xml.transform.TransformerException;
-
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
 
-import com.topcoder.util.log.Level;
-import com.topcoder.util.log.Log;
+import javax.xml.bind.JAXBException;
+import javax.xml.transform.TransformerException;
+import java.io.IOException;
+import java.util.logging.Logger;
 
 /**
  * This verifies that the NPI is present in the PECOS records.
@@ -48,11 +43,8 @@ import com.topcoder.util.log.Log;
  * @since External Sources Integration Assembly II
  */
 public class VerifyPECOSRecordHandler extends GenericHandler {
-
-    /**
-     * Class logger.
-     */
-    private Log log = LogUtil.getLog("VerifySSNHandler");
+    private static final Logger LOGGER =
+            Logger.getLogger(VerifyPECOSRecordHandler.class.getName());
 
     /**
      * Checks the PECOS service for the NPI of the provider.
@@ -61,7 +53,7 @@ public class VerifyPECOSRecordHandler extends GenericHandler {
      * @param manager the work item manager
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
-        log.log(Level.INFO, "Verifying NPI in PECOS...");
+        LOGGER.info("Verifying NPI in PECOS...");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
         ApplicantInformationType applicant = provider.getApplicantInformation();
@@ -94,15 +86,15 @@ public class VerifyPECOSRecordHandler extends GenericHandler {
             }
             screeningResultType.setSearchResult(matchResults);
         } catch (JAXBException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (IOException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (TransformerException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         }

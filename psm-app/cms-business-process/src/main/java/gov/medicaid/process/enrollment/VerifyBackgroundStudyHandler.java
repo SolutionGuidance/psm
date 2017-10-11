@@ -26,21 +26,16 @@ import gov.medicaid.domain.model.ScreeningResultsType;
 import gov.medicaid.domain.model.SearchResultItemType;
 import gov.medicaid.domain.model.SearchResultType;
 import gov.medicaid.domain.model.VerificationStatusType;
-import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
 import gov.medicaid.verification.BackgroundStudyClient;
-
-import java.io.IOException;
-import java.util.List;
-
-import javax.xml.bind.JAXBException;
-import javax.xml.transform.TransformerException;
-
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
 
-import com.topcoder.util.log.Level;
-import com.topcoder.util.log.Log;
+import javax.xml.bind.JAXBException;
+import javax.xml.transform.TransformerException;
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * This verifies that the background study ID is valid and that it is not denied.
@@ -50,11 +45,8 @@ import com.topcoder.util.log.Log;
  * @since External Sources Integration Assembly II
  */
 public class VerifyBackgroundStudyHandler extends GenericHandler {
-
-    /**
-     * Class logger.
-     */
-    private Log log = LogUtil.getLog("VerifyBackgroundStudyHandler");
+    private static final Logger LOGGER =
+            Logger.getLogger(VerifyBackgroundStudyHandler.class.getName());
 
     /**
      * Checks the NETStudy service for the background study id entered for agencies.
@@ -63,7 +55,7 @@ public class VerifyBackgroundStudyHandler extends GenericHandler {
      * @param manager the work item manager
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
-        log.log(Level.INFO, "Verifying Background study results...");
+        LOGGER.info("Verifying Background study results...");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
         AgencyInformationType agency = provider.getAgencyInformation();
@@ -99,15 +91,15 @@ public class VerifyBackgroundStudyHandler extends GenericHandler {
             }
             screeningResultType.setSearchResult(matchResults);
         } catch (JAXBException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (IOException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (TransformerException e) {
-            log.log(Level.ERROR, e);
+            LOGGER.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         }

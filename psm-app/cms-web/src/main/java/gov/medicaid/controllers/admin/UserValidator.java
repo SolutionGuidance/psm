@@ -71,9 +71,9 @@ public class UserValidator extends BaseValidator implements Validator {
      */
     private static final List<String> ROLES = Arrays.asList(
             ViewStatics.ROLE_PROVIDER,
-            ViewStatics.ROLE_SVC_AGENT,
-            ViewStatics.ROLE_SVC_ADMIN,
-            ViewStatics.ROLE_SYS_ADMIN
+            ViewStatics.ROLE_SERVICE_AGENT,
+            ViewStatics.ROLE_SERVICE_ADMINISTRATOR,
+            ViewStatics.ROLE_SYSTEM_ADMINISTRATOR
     );
 
     /**

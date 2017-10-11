@@ -174,21 +174,6 @@ public class ViewStatics {
     public static final String SUSPENDED = "Suspended";
 
     /**
-     * Role description for provider.
-     */
-    public static final String ROLE_SVC_AGENT = "Service Agent";
-
-    /**
-     * Role description for provider.
-     */
-    public static final String ROLE_SVC_ADMIN = "Service Administrator";
-
-    /**
-     * Role description for provider.
-     */
-    public static final String ROLE_SYS_ADMIN = "System Administrator";
-
-    /**
      * User id for internal system.
      */
     public static final String SYSTEM_USER = "SYSTEM_USER_ID";

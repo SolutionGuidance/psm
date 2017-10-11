@@ -423,7 +423,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         // use process admin to recall submission
         String username = "Administrator";
         List<String> adminRole = Arrays.asList(
-                ViewStatics.ROLE_SVC_ADMIN
+                ViewStatics.ROLE_SERVICE_ADMINISTRATOR
         );
 
         LocalTaskService client = new LocalTaskService(new TaskService(getEmf(), SystemEventListenerFactory.getSystemEventListener()));

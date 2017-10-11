@@ -55,11 +55,11 @@ public class LandingController extends BaseController {
 
         if (ViewStatics.ROLE_PROVIDER.equals(role)) {
             return "redirect:/provider/dashboard/";
-        } else if (ViewStatics.ROLE_SVC_AGENT.equals(role)) {
+        } else if (ViewStatics.ROLE_SERVICE_AGENT.equals(role)) {
             return "redirect:/ops/viewDashboard";
-        } else if (ViewStatics.ROLE_SVC_ADMIN.equals(role)) {
+        } else if (ViewStatics.ROLE_SERVICE_ADMINISTRATOR.equals(role)) {
             return "redirect:/ops/viewDashboard";
-        } else if (ViewStatics.ROLE_SYS_ADMIN.equals(role)) {
+        } else if (ViewStatics.ROLE_SYSTEM_ADMINISTRATOR.equals(role)) {
             return "redirect:/system/user/list";
         }
 

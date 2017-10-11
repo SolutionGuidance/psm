@@ -814,7 +814,7 @@ public class EnrollmentPageFlowController extends BaseController {
         }
 
         Role role = ControllerHelper.getCurrentUser().getRole();
-        if (ViewStatics.ROLE_SVC_ADMIN.equals(role.getDescription()) &&
+        if (ViewStatics.ROLE_SERVICE_ADMINISTRATOR.equals(role.getDescription()) &&
                 ViewStatics.PENDING_STATUS.equals(enrollment.getStatus())) {
             model.addAttribute("showReviewLink", true);
         } else {

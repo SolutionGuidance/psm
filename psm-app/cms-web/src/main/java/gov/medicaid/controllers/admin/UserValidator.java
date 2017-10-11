@@ -69,8 +69,12 @@ public class UserValidator extends BaseValidator implements Validator {
      * It is injected by the container, may have any value, is fully mutable, but not expected to change after
      * dependency injection.
      */
-    private static final List<String> ROLES = Arrays.asList(ViewStatics.ROLE_PROVIDER, ViewStatics.ROLE_SVC_AGENT,
-        ViewStatics.ROLE_SVC_ADMIN, ViewStatics.ROLE_SYS_ADMIN);
+    private static final List<String> ROLES = Arrays.asList(
+            ViewStatics.ROLE_PROVIDER,
+            ViewStatics.ROLE_SVC_AGENT,
+            ViewStatics.ROLE_SVC_ADMIN,
+            ViewStatics.ROLE_SYS_ADMIN
+    );
 
     /**
      * Represents the user service used for validation.

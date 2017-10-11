@@ -176,11 +176,6 @@ public class ViewStatics {
     /**
      * Role description for provider.
      */
-    public static final String ROLE_PROVIDER = "Provider";
-
-    /**
-     * Role description for provider.
-     */
     public static final String ROLE_SVC_AGENT = "Service Agent";
 
     /**
@@ -293,6 +288,11 @@ public class ViewStatics {
      * Ticket header form.
      */
     public static final String TICKET_HEADER_FORM = "Ticket Header Form";
+
+    /**
+     * Role description for provider.
+     */
+    public static final String ROLE_PROVIDER = "Provider";
 
     /**
      * Administrator role.

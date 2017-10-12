@@ -101,7 +101,6 @@ public class BackgroundStudyClient extends BaseSOAPClient {
             r1.getColumnData().getNameValuePair().addAll(r2.getColumnData().getNameValuePair());
             result.setRawResponse(null); // not needed now that we have transformed it
 
-
             if (LOGGER.isLoggable(INFO)) {
                 sw = new StringWriter();
                 m.marshal(result, sw);

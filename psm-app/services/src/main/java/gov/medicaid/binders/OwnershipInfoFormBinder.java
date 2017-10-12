@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.binders;
 
 import gov.medicaid.domain.model.AddressType;
@@ -109,7 +110,6 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
             person.setContactInformation(new ContactInformationType());
             AddressType address = readAddress(request, "ibo", i);
             person.getContactInformation().setAddress(address);
-
 
             try {
                 bo.setHireDate(BinderUtils.getAsCalendar(param(request, "iboHireDate", i)));
@@ -603,6 +603,5 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
 
     @Override
     public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
-        throws DocumentException {
-    }
+        throws DocumentException {}
 }

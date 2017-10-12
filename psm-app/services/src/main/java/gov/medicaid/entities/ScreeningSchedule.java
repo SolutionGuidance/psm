@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.entities;
 
 import javax.persistence.Column;
@@ -48,7 +49,6 @@ public class ScreeningSchedule implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "interval_type")
     private ScreeningIntervalType intervalType;
-
 
     public Date getUpcomingScreeningDate() {
         return upcomingScreeningDate;

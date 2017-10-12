@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.binders;
 
 import gov.medicaid.domain.model.AddressType;
@@ -584,7 +585,6 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
         // Personal Info Section
         PdfPTable personalInfo = new PdfPTable(2);
         PDFHelper.setTableAsFullPage(personalInfo);
-
 
         if (useEDILayout) {
             PDFHelper.addLabelValueCell(personalInfo, "EDI Type", PDFHelper.value(model, ns, "subType"));

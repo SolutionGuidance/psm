@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.entities;
 
 import java.util.Date;
 import javax.persistence.*;
+
 /**
  * A person beneficial owner.
  *
@@ -71,7 +73,6 @@ public class PersonBeneficialOwner extends BeneficialOwner {
     @ManyToOne
     @JoinColumn(name = "relationship_type_code")
     private RelationshipType relationship;
-
 
     public String getFirstName() {
         return firstName;

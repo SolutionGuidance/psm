@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2013 TopCoder Inc., All Rights Reserved.
  */
+
 package gov.medicaid.services.impl;
 
 import gov.medicaid.process.enrollment.GenericHandler;
@@ -44,9 +45,9 @@ import java.util.logging.Logger;
 
 /**
  * This is a port of org.jbpm.process.workitem.wsht.CommandBasedWSHumanTaskHandler to use local connections.
- * 
+ *
  * See https://community.jboss.org/thread/201834
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -74,7 +75,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
 
     /**
      * Creates a new instance using the given session and service.
-     * 
+     *
      * @param session the knowledge session
      * @param service the task service
      */
@@ -99,7 +100,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
 
     /**
      * Executes the human task. Maps the work item to the Task table and persists it.
-     * 
+     *
      * @param workItem the task work item
      * @param manager the work item manager.
      */
@@ -111,7 +112,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
             names.add(new I18NText(LOCALE_DEFAULT, taskName));
             task.setNames(names);
         }
-        
+
         // set default values
         List<I18NText> empty = new ArrayList<I18NText>();
         empty.add(new I18NText(LOCALE_DEFAULT, ""));
@@ -159,7 +160,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
     /**
      * Saves the task content data.
      * @param workItem the current work item
-     * @return the content data 
+     * @return the content data
      */
     private ContentData saveContent(WorkItem workItem) {
         ContentData content = null;
@@ -205,7 +206,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
 
     /**
      * Callback for completed human task.
-     * 
+     *
      * @author TCSASSEMBLER
      * @version 1.0
      */
@@ -213,7 +214,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
 
         /**
          * Executes the callback logic.
-         * 
+         *
          * @param payload the work parameters
          */
         @SuppressWarnings("rawtypes")
@@ -245,11 +246,11 @@ public class LocalHumanTaskHandler extends GenericHandler {
                                 }
                             }
                         }
-                        
+
                         if ("Y".equals(results.get("isAbort"))) {
                             session.getWorkItemManager().abortWorkItem(workItemId);
                         } else {
-                        	session.getWorkItemManager().completeWorkItem(task.getTaskData().getWorkItemId(), results);
+                            session.getWorkItemManager().completeWorkItem(task.getTaskData().getWorkItemId(), results);
                         }
                     } catch (IOException e) {
                         logger.log(Level.SEVERE, e.getMessage(), e);
@@ -266,7 +267,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
 
         /**
          * Return false.
-         * 
+         *
          * @return false
          */
         public boolean isRemove() {

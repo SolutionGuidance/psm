@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.binders;
 
 import gov.medicaid.domain.model.EnrollmentType;
@@ -163,7 +164,6 @@ public class PracticeTypeFormBinder extends BaseFormBinder {
             pInfo.setEmployedOrContractedByGroup(profile.getEmployedOrContractedByGroup());
         }
     }
-
 
     @Override
     public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.security;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,16 +30,16 @@ public class DomainAuthenticationToken extends UsernamePasswordAuthenticationTok
      * The domain.
      */
     private final String domain;
-    
+
     /**
      * Profile NPI.
      */
-	private String profileNPI;
-	
-	/**
-	 * Referrer URL.
-	 */
-	private String referrer;
+    private String profileNPI;
+
+    /**
+     * Referrer URL.
+     */
+    private String referrer;
 
     /**
      * Creates a new instance from the given properties.
@@ -53,7 +54,7 @@ public class DomainAuthenticationToken extends UsernamePasswordAuthenticationTok
 
     /**
      * Creates a new instance from the given properties.
-     * 
+     *
      * @param userNPI the NPI of the user
      * @param profileNPI the requested profile
      * @param token the token for verification
@@ -61,14 +62,14 @@ public class DomainAuthenticationToken extends UsernamePasswordAuthenticationTok
      * @param domain the domain
      */
     public DomainAuthenticationToken(String userNPI, String profileNPI,
-			String token, String referrer, String domain) {
-    	super(userNPI, token);
-		this.profileNPI = profileNPI;
-		this.referrer = referrer;
-    	this.domain = domain;
-	}
+            String token, String referrer, String domain) {
+        super(userNPI, token);
+        this.profileNPI = profileNPI;
+        this.referrer = referrer;
+        this.domain = domain;
+    }
 
-	/**
+    /**
      * Gets the value of the field <code>domain</code>.
      *
      * @return the domain
@@ -77,35 +78,35 @@ public class DomainAuthenticationToken extends UsernamePasswordAuthenticationTok
         return domain;
     }
 
-	/**
-	 * Gets the value of the field <code>profileNPI</code>.
-	 * @return the profileNPI
-	 */
-	public String getProfileNPI() {
-		return profileNPI;
-	}
+    /**
+     * Gets the value of the field <code>profileNPI</code>.
+     * @return the profileNPI
+     */
+    public String getProfileNPI() {
+        return profileNPI;
+    }
 
-	/**
-	 * Sets the value of the field <code>profileNPI</code>.
-	 * @param profileNPI the profileNPI to set
-	 */
-	public void setProfileNPI(String profileNPI) {
-		this.profileNPI = profileNPI;
-	}
+    /**
+     * Sets the value of the field <code>profileNPI</code>.
+     * @param profileNPI the profileNPI to set
+     */
+    public void setProfileNPI(String profileNPI) {
+        this.profileNPI = profileNPI;
+    }
 
-	/**
-	 * Gets the value of the field <code>referrer</code>.
-	 * @return the referrer
-	 */
-	public String getReferrer() {
-		return referrer;
-	}
+    /**
+     * Gets the value of the field <code>referrer</code>.
+     * @return the referrer
+     */
+    public String getReferrer() {
+        return referrer;
+    }
 
-	/**
-	 * Sets the value of the field <code>referrer</code>.
-	 * @param referrer the referrer to set
-	 */
-	public void setReferrer(String referrer) {
-		this.referrer = referrer;
-	}
+    /**
+     * Sets the value of the field <code>referrer</code>.
+     * @param referrer the referrer to set
+     */
+    public void setReferrer(String referrer) {
+        this.referrer = referrer;
+    }
 }

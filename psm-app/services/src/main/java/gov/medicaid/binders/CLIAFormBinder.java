@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.binders;
 
 import gov.medicaid.domain.model.AttachedDocumentsType;
@@ -79,7 +80,6 @@ public class CLIAFormBinder extends BaseFormBinder {
         FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollment);
         List<CLIACertificateType> licenseList = new ArrayList<CLIACertificateType>(licenseInfo.getCLIACertificate());
         licenseInfo.getCLIACertificate().clear();
-
 
         // bind licenses
         int i = 0;

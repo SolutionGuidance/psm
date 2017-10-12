@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.entities;
 
 import gov.medicaid.binders.BinderUtils;
@@ -354,51 +355,51 @@ public class CMSUser implements Serializable {
             businessPhoneExt);
     }
 
-	/**
-	 * Gets the value of the field <code>externalRoleView</code>.
-	 * @return the externalRoleView
-	 */
-	public RoleView getExternalRoleView() {
-		return externalRoleView;
-	}
+    /**
+     * Gets the value of the field <code>externalRoleView</code>.
+     * @return the externalRoleView
+     */
+    public RoleView getExternalRoleView() {
+        return externalRoleView;
+    }
 
-	/**
-	 * Sets the value of the field <code>externalRoleView</code>.
-	 * @param externalRoleView the externalRoleView to set
-	 */
-	public void setExternalRoleView(RoleView externalRoleView) {
-		this.externalRoleView = externalRoleView;
-	}
+    /**
+     * Sets the value of the field <code>externalRoleView</code>.
+     * @param externalRoleView the externalRoleView to set
+     */
+    public void setExternalRoleView(RoleView externalRoleView) {
+        this.externalRoleView = externalRoleView;
+    }
 
-	/**
-	 * Gets the value of the field <code>proxyForNPI</code>.
-	 * @return the proxyForNPI
-	 */
-	public String getProxyForNPI() {
-		return proxyForNPI;
-	}
+    /**
+     * Gets the value of the field <code>proxyForNPI</code>.
+     * @return the proxyForNPI
+     */
+    public String getProxyForNPI() {
+        return proxyForNPI;
+    }
 
-	/**
-	 * Sets the value of the field <code>proxyForNPI</code>.
-	 * @param proxyForNPI the proxyForNPI to set
-	 */
-	public void setProxyForNPI(String proxyForNPI) {
-		this.proxyForNPI = proxyForNPI;
-	}
+    /**
+     * Sets the value of the field <code>proxyForNPI</code>.
+     * @param proxyForNPI the proxyForNPI to set
+     */
+    public void setProxyForNPI(String proxyForNPI) {
+        this.proxyForNPI = proxyForNPI;
+    }
 
-	/**
-	 * Gets the value of the field <code>externalAccountLink</code>.
-	 * @return the externalAccountLink
-	 */
-	public ExternalAccountLink getExternalAccountLink() {
-		return externalAccountLink;
-	}
+    /**
+     * Gets the value of the field <code>externalAccountLink</code>.
+     * @return the externalAccountLink
+     */
+    public ExternalAccountLink getExternalAccountLink() {
+        return externalAccountLink;
+    }
 
-	/**
-	 * Sets the value of the field <code>externalAccountLink</code>.
-	 * @param externalAccountLink the externalAccountLink to set
-	 */
-	public void setExternalAccountLink(ExternalAccountLink externalAccountLink) {
-		this.externalAccountLink = externalAccountLink;
-	}
+    /**
+     * Sets the value of the field <code>externalAccountLink</code>.
+     * @param externalAccountLink the externalAccountLink to set
+     */
+    public void setExternalAccountLink(ExternalAccountLink externalAccountLink) {
+        this.externalAccountLink = externalAccountLink;
+    }
 }

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.controllers.admin;
 
 import gov.medicaid.controllers.ControllerHelper;
@@ -87,6 +88,7 @@ public class SystemAdminUserSearchController extends BaseSystemAdminController {
         mv.addObject("roles", getRolesStr(criteria.getRoles()));
         return LogUtil.traceExit(getLog(), signature, mv);
     }
+
     /**
      * Gets all roles string.
      *
@@ -105,6 +107,7 @@ public class SystemAdminUserSearchController extends BaseSystemAdminController {
         }
         return Arrays.toString(roles);
     }
+
     /**
      * This action will delete the entities with the given IDs.
      *

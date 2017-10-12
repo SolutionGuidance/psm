@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.binders;
 
 import gov.medicaid.domain.model.AttachedDocumentsType;
@@ -80,7 +81,6 @@ public class FacilityTypeFormBinder extends BaseFormBinder {
             if (attachmentId != null) {
                 replaceDocument(XMLUtility.nsGetAttachments(provider), attachmentId, CONTRACT_WITH_COUNTY);
             }
-
 
             List<DocumentType> attachment = attachments.getAttachment();
             for (DocumentType doc : attachment) {

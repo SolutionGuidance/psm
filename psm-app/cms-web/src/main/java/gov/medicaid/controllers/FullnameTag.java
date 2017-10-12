@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2013 TopCoder Inc., All Rights Reserved.
  */
+
 package gov.medicaid.controllers;
 
 import gov.medicaid.entities.CMSUser;

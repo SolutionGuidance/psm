@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.controllers.admin;
 
 import gov.medicaid.entities.AgreementDocument;
@@ -167,7 +168,7 @@ public class AgreementDocumentController extends BaseServiceAdminController {
             throw e;
         }
     }
- 
+
     /**
      * This action will get the entity with the given ID.
      *
@@ -196,7 +197,7 @@ public class AgreementDocumentController extends BaseServiceAdminController {
             throw e;
         }
     }
-    
+
     /**
      * This action will get the entity with the given ID.
      *
@@ -256,7 +257,7 @@ public class AgreementDocumentController extends BaseServiceAdminController {
         LogUtil.traceEntry(getLog(), signature, new String[] {"agreementDocument"}, new Object[] {agreementDocument});
 
         try {
-        	agreementDocument.setCreatedBy(principal.getName());
+            agreementDocument.setCreatedBy(principal.getName());
             agreementDocumentService.create(agreementDocument);
             ModelAndView model = new ModelAndView("admin/service_admin_view_agreement_document");
             model.addObject("agreementDocument", agreementDocument);
@@ -289,7 +290,7 @@ public class AgreementDocumentController extends BaseServiceAdminController {
 
         try {
             agreementDocumentService.update(agreementDocument);
-            
+
             ModelAndView model = new ModelAndView("admin/service_admin_view_agreement_document");
             model.addObject("agreementDocument", agreementDocument);
 

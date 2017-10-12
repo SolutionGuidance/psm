@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.controllers.admin;
 
 import gov.medicaid.entities.ProviderType;
@@ -84,9 +85,7 @@ public class ProviderTypeValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         if (target != null) {
-        	// empty
+            // empty
         }
     }
-
-
 }

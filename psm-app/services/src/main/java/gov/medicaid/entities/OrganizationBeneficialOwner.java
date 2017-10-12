@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.entities;
 
 /**
@@ -40,7 +41,6 @@ public class OrganizationBeneficialOwner extends BeneficialOwner {
      */
     @Column()
     private String fein;
-
 
     public String getLegalName() {
         return legalName;

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.entities;
 
 import gov.medicaid.domain.model.ApplicantType;
@@ -110,13 +111,13 @@ public class ProviderType extends LookupEntity {
         this.applicantType = applicantType;
     }
 
-	public boolean isCanDelete() {
-		return canDelete;
-	}
+    public boolean isCanDelete() {
+        return canDelete;
+    }
 
-	public void setCanDelete(boolean canDelete) {
-		this.canDelete = canDelete;
-	}
+    public void setCanDelete(boolean canDelete) {
+        this.canDelete = canDelete;
+    }
 
     public List<AgreementDocument> getAgreementDocuments() {
         return agreementDocuments;

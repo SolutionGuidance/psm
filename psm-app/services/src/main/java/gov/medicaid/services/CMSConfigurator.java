@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.services;
 
 import gov.medicaid.binders.BaseFormBinder;
@@ -63,9 +64,9 @@ public class CMSConfigurator {
     /**
      * EMF that uses the XA data source.
      */
-	private EntityManagerFactory emf;
+    private EntityManagerFactory emf;
 
-	private EntityManager portalEntityManager;
+    private EntityManager portalEntityManager;
 
     /**
      * Reads the configuration and stores it.
@@ -299,11 +300,11 @@ public class CMSConfigurator {
      * @return the portal entity manager
      */
     public EntityManager getPortalEntityManager() {
-    	if (emf == null) {
-    		emf = Persistence.createEntityManagerFactory("cms");
-    		portalEntityManager = emf.createEntityManager();
-    	}
-		return portalEntityManager;
+        if (emf == null) {
+            emf = Persistence.createEntityManagerFactory("cms");
+            portalEntityManager = emf.createEntityManager();
+        }
+        return portalEntityManager;
     }
 
     /**
@@ -350,13 +351,13 @@ public class CMSConfigurator {
      * Retrieves the flag setting for using external or embedded rules
      * @return the flag setting for rules
      */
-	public String getUseEmbeddedRules() {
+    public String getUseEmbeddedRules() {
         return globalSettings.getProperty("rules.embedded");
-	}
+    }
 
     /**
      * Gets the configured pdf files folder
-     * 
+     *
      * @return the pdf files folder
      */
     public String getExportPDFFolder() {
@@ -367,15 +368,15 @@ public class CMSConfigurator {
      * The allowed referrer domain for MN logins.
      * @return the configured domain
      */
-	public String getInternalSecurityDomain() {
+    public String getInternalSecurityDomain() {
         return globalSettings.getProperty("internalSecurityDomain");
-	}
-	
-	/**
-	 * The allowed referrer domain for MN logins.
-	 * @return the configured domain
-	 */
-	public String getInternalSecurityToken() {
-		return globalSettings.getProperty("internalSecurityToken");
-	}
+    }
+
+    /**
+     * The allowed referrer domain for MN logins.
+     * @return the configured domain
+     */
+    public String getInternalSecurityToken() {
+        return globalSettings.getProperty("internalSecurityToken");
+    }
 }

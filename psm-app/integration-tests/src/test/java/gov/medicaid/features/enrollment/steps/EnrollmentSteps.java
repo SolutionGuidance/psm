@@ -131,7 +131,6 @@ public class EnrollmentSteps {
         organizationInfoPage.setContactPhone("4445556666");
     }
 
-
     public String generateEffectiveDate() {
         GregorianCalendar cal = new GregorianCalendar();
         cal.setTime(new Date());

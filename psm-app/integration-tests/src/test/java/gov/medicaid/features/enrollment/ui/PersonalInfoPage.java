@@ -40,7 +40,6 @@ public class PersonalInfoPage extends PageObject {
         $("[name=_02_ssn]").type(SSN);
     }
 
-
     public void enterEmail(String email) {
         $("#emailAddress").type(email);
     }

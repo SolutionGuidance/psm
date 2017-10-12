@@ -7,7 +7,6 @@ public class OrganizationInfoPage extends EnrollmentPage {
         $("#fein").typeAndTab(feinValue);
     }
 
-
     public String getFEINValue() {
         return $("#fein").getValue();
     }
@@ -40,7 +39,6 @@ public class OrganizationInfoPage extends EnrollmentPage {
         throw new PendingException("Issue #347 - Capture Medicaid Number for new Enrollments");
     }
 
-
     public boolean isPersonalEnrollment() {
         return this.getTitle().equals("Personal Information");
     }
@@ -56,7 +54,6 @@ public class OrganizationInfoPage extends EnrollmentPage {
     public void setEffectiveDate(String effectiveDate) {
         $("[name='_15_effectiveDate']").type(effectiveDate);
     }
-
 
     public void setDoingBusinessAs(String dba) {
         $("#name").sendKeys(dba);

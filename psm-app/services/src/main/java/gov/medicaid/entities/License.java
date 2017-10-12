@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package gov.medicaid.entities;
 
+package gov.medicaid.entities;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.domain.rules;
 
 import gov.medicaid.services.CMSConfigurator;
@@ -71,16 +72,16 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
      * Flag indicating if guvnor should be used.
      */
     private final boolean useGuvnor;
-    
+
     /**
      * Private constructor.
      */
     DroolsKnowledgeDelegate() {
-    	CMSConfigurator config = new CMSConfigurator();
-    	useGuvnor = "N".equalsIgnoreCase(config.getUseEmbeddedRules());
-    	validationKnowledgeBase = readValidationKnowledgeBase();
-    	screeningKnowledgeBase = readScreeningKnowledgeBase();
-    	externalSourcesKnowledgeBase = readExternalSourcesKnowledgeBase();
+        CMSConfigurator config = new CMSConfigurator();
+        useGuvnor = "N".equalsIgnoreCase(config.getUseEmbeddedRules());
+        validationKnowledgeBase = readValidationKnowledgeBase();
+        screeningKnowledgeBase = readScreeningKnowledgeBase();
+        externalSourcesKnowledgeBase = readExternalSourcesKnowledgeBase();
     }
 
     /* (non-Javadoc)
@@ -96,7 +97,7 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
             new LocalHumanTaskHandler(ksession, client));
         return ksession;
     }
-    
+
     @Override
     public StatefulKnowledgeSession reloadWorkflowSession(int sessionId, EntityManagerFactory factory, UserTransaction utx) {
         StatefulKnowledgeSession ksession = JPAKnowledgeService.loadStatefulKnowledgeSession(sessionId, processKnowledgeBase, null,
@@ -119,13 +120,13 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
      * Creates a rule environment.
      *
      * @param emf the persistence factory
-     * @param utx 
+     * @param utx
      * @return a new environment
      */
     private Environment createEnvironment(EntityManagerFactory emf, UserTransaction utx) {
         Environment env = EnvironmentFactory.newEnvironment();
-		env.set(EnvironmentName.ENTITY_MANAGER_FACTORY, emf);
-		env.set(EnvironmentName.APP_SCOPED_ENTITY_MANAGER, emf.createEntityManager());
+        env.set(EnvironmentName.ENTITY_MANAGER_FACTORY, emf);
+        env.set(EnvironmentName.APP_SCOPED_ENTITY_MANAGER, emf.createEntityManager());
         return env;
     }
 
@@ -145,7 +146,7 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
     private KnowledgeBase readScreeningKnowledgeBase() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
         if (useGuvnor) {
-        	kbuilder.add(ResourceFactory.newClassPathResource("ScreeningRules.xml"), ResourceType.CHANGE_SET);
+            kbuilder.add(ResourceFactory.newClassPathResource("ScreeningRules.xml"), ResourceType.CHANGE_SET);
         } else {
             kbuilder.add(ResourceFactory.newClassPathResource("cms.screening.drl"), ResourceType.DRL);
         }
@@ -170,7 +171,7 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
     private KnowledgeBase readExternalSourcesKnowledgeBase() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
         if (useGuvnor) {
-        	kbuilder.add(ResourceFactory.newClassPathResource("ExternalSourcesRules.xml"), ResourceType.CHANGE_SET);
+            kbuilder.add(ResourceFactory.newClassPathResource("ExternalSourcesRules.xml"), ResourceType.CHANGE_SET);
         } else {
             kbuilder.add(ResourceFactory.newClassPathResource("cms.externalsources.drl"), ResourceType.DRL);
         }
@@ -195,13 +196,13 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
     private KnowledgeBase readValidationKnowledgeBase() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
         if (useGuvnor) {
-        	kbuilder.add(ResourceFactory.newClassPathResource("ValidationRules.xml"), ResourceType.CHANGE_SET);
+            kbuilder.add(ResourceFactory.newClassPathResource("ValidationRules.xml"), ResourceType.CHANGE_SET);
         } else {
-        	kbuilder.add(ResourceFactory.newClassPathResource("cms.dsl"), ResourceType.DSL);
-        	kbuilder.add(ResourceFactory.newClassPathResource("cms.validation.dslr"), ResourceType.DSLR);
-        	kbuilder.add(ResourceFactory.newClassPathResource("cms.validation.drl"), ResourceType.DRL);
+            kbuilder.add(ResourceFactory.newClassPathResource("cms.dsl"), ResourceType.DSL);
+            kbuilder.add(ResourceFactory.newClassPathResource("cms.validation.dslr"), ResourceType.DSLR);
+            kbuilder.add(ResourceFactory.newClassPathResource("cms.validation.drl"), ResourceType.DRL);
         }
-        
+
         KnowledgeBuilderErrors errors = kbuilder.getErrors();
         if (errors.size() > 0) {
             for (KnowledgeBuilderError error : errors) {

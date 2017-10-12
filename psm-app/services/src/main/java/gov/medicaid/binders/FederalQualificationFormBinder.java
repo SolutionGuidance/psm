@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.binders;
 
 import gov.medicaid.domain.model.AttachedDocumentsType;
@@ -125,7 +126,6 @@ public class FederalQualificationFormBinder extends BaseFormBinder {
             }
         }
     }
-
 
     private void replaceDocument(AttachedDocumentsType attachments, String id, String value) {
         List<DocumentType> toRemove = new ArrayList<DocumentType>();

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.entities;
 
 import javax.persistence.*;
@@ -65,7 +66,6 @@ public class OwnershipInformation implements Serializable {
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "ownership_info_id", referencedColumnName = "ownership_info_id")
     private List<BeneficialOwner> beneficialOwners;
-
 
     public long getId() {
         return id;

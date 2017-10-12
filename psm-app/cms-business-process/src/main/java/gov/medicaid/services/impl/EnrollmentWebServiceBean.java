@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.services.impl;
 
 import gov.medicaid.binders.BinderUtils;
@@ -228,7 +229,7 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
      *
      * @param username the username
      * @param systemId the system authenticator
-     * @param string 
+     * @param string
      * @return the user matched
      * @throws PortalServiceException for any errors encountered
      */
@@ -238,15 +239,15 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
         if (system != SystemId.CMS_ONLINE) {
             user = registrationService.findByExternalUsername(system, username);
             if (Util.isNotBlank(npi)) { // proxy user
-            	user.setProxyForNPI(npi);
-            	if (username.equals(npi)) {
-            		user.setExternalRoleView(RoleView.SELF);
-            	} else {
-            		user.setExternalRoleView(RoleView.EMPLOYER);
-            	}
-				ExternalAccountLink link = registrationService.findAccountLink(
-						user.getUserId(), system, username);
-            	user.setExternalAccountLink(link);
+                user.setProxyForNPI(npi);
+                if (username.equals(npi)) {
+                    user.setExternalRoleView(RoleView.SELF);
+                } else {
+                    user.setExternalRoleView(RoleView.EMPLOYER);
+                }
+                ExternalAccountLink link = registrationService.findAccountLink(
+                        user.getUserId(), system, username);
+                user.setExternalAccountLink(link);
             }
         } else {
             user = registrationService.findByUsername(username);
@@ -283,7 +284,7 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
         } else {
             ticket = XMLAdapter.fromXML(user, enrollment);
         }
-        
+
         if (resetToDraft) {
             ticketId = providerEnrollmentService.saveAsDraft(user, ticket);
         } else {
@@ -303,31 +304,31 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
     @Override
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED) // allow SAVE even if SUBMIT fails
     public SubmitTicketResponse submitEnrollment(SubmitTicketRequest request) throws PortalServiceException {
-    	try {
-	        EnrollmentType enrollment = request.getEnrollment();
-	        CMSUser user = findUser(request.getUsername(), request.getSystemId(), request.getNpi());
-	        // transaction #1
-	        long ticketId = saveTicket(user, enrollment, true);
-	
-	        long profileId = BinderUtils.getAsLong(enrollment.getProviderInformation().getObjectId());
-	        Validity validity = providerEnrollmentService.getSubmissionValidity(ticketId, profileId);
-	
-	        SubmitTicketResponse response = new SubmitTicketResponse();
-	        response.setTicketNumber(ticketId);
-	        if (validity == Validity.VALID) {
-	        	
-	        	// transaction #2
-	            businessProcessService.submitTicket(user, ticketId);
-	            
-	            response.setStatus("SUCCESS");
-	            return response;
-	        } else {
-	            response.setStatus(validity.name());
-	            return response;
-	        }
-    	} catch (Throwable t) {
-    		throw new PortalServiceException("error during submit.", t);
-    	}
+        try {
+            EnrollmentType enrollment = request.getEnrollment();
+            CMSUser user = findUser(request.getUsername(), request.getSystemId(), request.getNpi());
+            // transaction #1
+            long ticketId = saveTicket(user, enrollment, true);
+
+            long profileId = BinderUtils.getAsLong(enrollment.getProviderInformation().getObjectId());
+            Validity validity = providerEnrollmentService.getSubmissionValidity(ticketId, profileId);
+
+            SubmitTicketResponse response = new SubmitTicketResponse();
+            response.setTicketNumber(ticketId);
+            if (validity == Validity.VALID) {
+
+                // transaction #2
+                businessProcessService.submitTicket(user, ticketId);
+
+                response.setStatus("SUCCESS");
+                return response;
+            } else {
+                response.setStatus(validity.name());
+                return response;
+            }
+        } catch (Throwable t) {
+            throw new PortalServiceException("error during submit.", t);
+        }
     }
 
     /**
@@ -352,7 +353,7 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
     public ResubmitTicketResponse resubmitEnrollment(ResubmitTicketRequest request) throws PortalServiceException {
         EnrollmentType enrollment = request.getEnrollment();
         CMSUser user = findUser(request.getUsername(), request.getSystemId(), request.getNpi());
-        
+
         long ticketId = BinderUtils.getAsLong(request.getTicketId());
         long profileId = BinderUtils.getAsLong(enrollment.getProviderInformation().getObjectId());
         Validity validity = providerEnrollmentService.getSubmissionValidity(ticketId, profileId);

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.process.enrollment;
 
 import gov.medicaid.binders.XMLUtility;
@@ -72,7 +73,7 @@ public class ScreeningHandler extends GenericHandler {
         this.entityManager = config.getPortalEntityManager();
         systemUser = config.getSystemUser();
     }
-    
+
     /**
      * Runs the screening rules.
      *
@@ -90,7 +91,7 @@ public class ScreeningHandler extends GenericHandler {
         // known facts for screening
         ksession.insert(processModel.getPostSubmissionInformation());
         EnrollmentType enrollment = processModel.getEnrollment();
-		ksession.insert(enrollment);
+        ksession.insert(enrollment);
         ksession.insert(enrollment.getProviderInformation());
         ksession.insert(enrollment.getProviderInformation().getVerificationStatus());
         ksession.insert(processModel.getProcessResults().getScreeningResults());
@@ -105,12 +106,12 @@ public class ScreeningHandler extends GenericHandler {
         // merge rule changes to the model
         try {
             providerService.saveEnrollmentDetails(XMLAdapter.fromXML(systemUser, enrollment));
-			long ticketId = Long.parseLong(enrollment.getObjectId());
-			ProviderInformationType providerInformation = enrollment.getProviderInformation();
-			String reviewer = providerInformation.getReviewedBy(); // transient field (should really add to DB)
-			ProviderInformationType updatedInfo = XMLAdapter.toXML(providerService.getTicketDetails(systemUser, ticketId)).getProviderInformation();
-			updatedInfo.setReviewedBy(reviewer);
-			enrollment.setProviderInformation(updatedInfo);
+            long ticketId = Long.parseLong(enrollment.getObjectId());
+            ProviderInformationType providerInformation = enrollment.getProviderInformation();
+            String reviewer = providerInformation.getReviewedBy(); // transient field (should really add to DB)
+            ProviderInformationType updatedInfo = XMLAdapter.toXML(providerService.getTicketDetails(systemUser, ticketId)).getProviderInformation();
+            updatedInfo.setReviewedBy(reviewer);
+            enrollment.setProviderInformation(updatedInfo);
         } catch (PortalServiceException e) {
             logger.log(java.util.logging.Level.SEVERE, e.getMessage(), e);
         }

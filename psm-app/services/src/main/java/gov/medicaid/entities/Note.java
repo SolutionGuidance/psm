@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.entities;
 
 import java.util.Date;
@@ -58,7 +59,6 @@ public class Note implements Serializable {
      */
     @Column(name = "created_at")
     private Date createdOn;
-
 
     public long getProfileId() {
         return profileId;

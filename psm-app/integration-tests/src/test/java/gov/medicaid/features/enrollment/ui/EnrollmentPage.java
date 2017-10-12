@@ -1,11 +1,9 @@
 package gov.medicaid.features.enrollment.ui;
 
-
 import net.serenitybdd.core.annotations.findby.By;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.WebElement;
 import java.util.List;
-
 
 public class EnrollmentPage extends PageObject {
 

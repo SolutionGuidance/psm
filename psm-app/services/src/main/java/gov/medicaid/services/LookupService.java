@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package gov.medicaid.services;
 
 import gov.medicaid.domain.model.ApplicantType;
@@ -130,10 +131,10 @@ public interface LookupService {
     public List<BeneficialOwnerType> findBeneficialOwnerTypes(String entityType);
 
     /**
-	 * Updates the ProviderTypeSettings for agreements.
-	 *
-	 * @param providerType providerType
-	 * @param agreementIds agreement ids
-	 */
-	public void updateProviderTypeAgreementSettings(ProviderType providerType, long[] agreementIds);
+     * Updates the ProviderTypeSettings for agreements.
+     *
+     * @param providerType providerType
+     * @param agreementIds agreement ids
+     */
+    public void updateProviderTypeAgreementSettings(ProviderType providerType, long[] agreementIds);
 }

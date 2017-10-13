@@ -5,6 +5,7 @@ import net.thucydides.core.pages.PageObject;
 
 import java.time.LocalDate;
 
+import static gov.medicaid.features.IntegrationTests.click;
 import static gov.medicaid.features.IntegrationTests.DATE_FORMATTER;
 
 /**
@@ -175,7 +176,7 @@ public class IndividualSummaryPage extends PageObject {
     }
 
     public void clickNext() {
-        $("#nextBtn").click();
+        click(this, $("#nextBtn"));
     }
 
     private String textOf(String xpathOrCssSelector) {

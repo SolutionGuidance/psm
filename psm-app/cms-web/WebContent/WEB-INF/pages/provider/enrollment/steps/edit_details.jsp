@@ -23,7 +23,7 @@
                     </div>
                     <!-- /.mainNav -->
                     <div class="breadCrumb">
-                        <a href="<c:url value="/cms/provider/dashboard/drafts" />">Enrollments</a>
+                        <a href="<c:url value="/provider/dashboard/drafts" />">Enrollments</a>
                         <span>Edit Enrollment</span>
                     </div>
                     <div class="head">

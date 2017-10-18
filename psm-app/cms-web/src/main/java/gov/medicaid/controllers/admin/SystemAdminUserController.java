@@ -399,8 +399,10 @@ public class SystemAdminUserController extends BaseSystemAdminController {
      * @throws IllegalArgumentException if the role is not one of the configured types
      */
     private void checkRoleParameter(String role) {
-        if (!ViewStatics.ROLE_PROVIDER.equals(role) && !ViewStatics.ROLE_SERVICE_AGENT.equals(role)
-            && !ViewStatics.ROLE_SVC_ADMIN.equals(role) && !ViewStatics.ROLE_SYS_ADMIN.equals(role)) {
+        if (!ViewStatics.ROLE_PROVIDER.equals(role)
+                && !ViewStatics.ROLE_SERVICE_AGENT.equals(role)
+                && !ViewStatics.ROLE_SERVICE_ADMINISTRATOR.equals(role)
+                && !ViewStatics.ROLE_SYSTEM_ADMINISTRATOR.equals(role)) {
             throw new IllegalArgumentException("Unrecognized 'role' argument was provided.");
         }
     }

@@ -38,7 +38,7 @@
                                         <c:otherwise>
                                             <a href="javascript:;"  style="text-decoration: none;color: gray;cursor: default;" class="greyBtn disabledBtn"><span class="btR"><span class="btM">Delete</span></span></a>
                                         </c:otherwise>
-                                    </c:choose>  
+                                    </c:choose>
                                     <a href="${ctx}/admin/beginEditProviderType?providerTypeId=${providerType.code}" class="purpleBtn editProviderLink"><span class="btR"><span class="btM">Edit</span></span></a>
                                 </div>
                                 <div class="newEnrollmentPanel">
@@ -53,7 +53,7 @@
                                             	<div class="row">
                                                         <div class="col2">
                                                         	<c:forEach var="agreement" items="${agreements}">
-                                                        		<div class="row">	
+                                                        		<div class="row">
                                                                 	<span>${agreement.title}</span>
                                                             	</div>
                                                         	</c:forEach>

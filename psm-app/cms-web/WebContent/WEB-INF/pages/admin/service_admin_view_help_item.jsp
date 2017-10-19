@@ -34,7 +34,7 @@
                                     <div class="sideBorder">
                                         <h3><c:out value="${helpItem.title}"/></h3>
                                         <a href="javascript:;" class="deleteHelpTopicBtn greyBtn"><span class="btR"><span class="btM">Delete</span></span></a>
-                                        <a href="${ctx}/admin/editHelpItem?helpItemId=${helpItem.id}" class="editHelpTopicBtn purpleBtn"><span class="btR"><span class="btM">Edit</span></span></a>    
+                                        <a href="${ctx}/admin/editHelpItem?helpItemId=${helpItem.id}" class="editHelpTopicBtn purpleBtn"><span class="btR"><span class="btM">Edit</span></span></a>
                                     </div>
                                     <div class="newEnrollmentPanel">
                                         <div class="section">

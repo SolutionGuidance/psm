@@ -28,23 +28,23 @@
                     <div class="tabSection functionTab" id="enrollmentSection">
                         <c:set var="functions_service_active_menu" value="serviceAgents"/>
                         <%@ include file="/WEB-INF/pages/admin/includes/functions_service_nav.jsp" %>
-                        
+
                         <div class="tabContent" id="tabServiceAgents">
                             <div id="agentsPanel">
                                 <c:set var="itemsName" value="Service Agents"/>
                                 <c:set var="searchResult" value="${usersSearchResult}"/>
-                                
+
                                 <form:form id="searchForm" action="${ctx}/admin/viewAgents" modelAttribute="searchCriteria" method="post">
                                     <form:hidden id="searchFormPageSize" path="pageSize" />
                                     <form:hidden id="searchFormPageNumber" path="pageNumber" />
                                     <form:hidden id="searchFormSortColumn" path="sortColumn" />
                                     <form:hidden id="searchFormAscending" path="ascending" />
                                     <form:hidden id="searchFormShowFilterPanel" path="showFilterPanel" />
-                                    
+
                                     <form:hidden id="searchFormUserLastName" path="lastName" />
                                     <form:hidden id="searchFormUserFirstName" path="firstName" />
                                 </form:form>
-                                
+
                                 <div class="pagination">
                                     <%@ include file="/WEB-INF/pages/admin/includes/page_left_navigation.jsp" %>
                                     <div class="right">
@@ -87,7 +87,7 @@
                                 <c:choose>
                                     <c:when test="${searchResult.total == 0}">
                                         <div class="tableWrapper">
-                                            <div class="tableContainer"></div>                                    
+                                            <div class="tableContainer"></div>
                                             <div class="tabFoot">
                                                 <div class="tabR">
                                                     <div class="tabM" style="color: red">
@@ -295,7 +295,7 @@
                 </div>
                 <!-- /.modalFooter -->
             </div>
-            
+
             <div class="modal" id="noSelectedItemsModal">
                 <div class="modalHeader">
                     <div class="corner">

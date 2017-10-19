@@ -30,17 +30,17 @@
                         <%@ include file="/WEB-INF/pages/admin/includes/functions_service_nav.jsp" %>
                         <div class="tabContent" id="tabProviderTypes">
                             <div id="providerTablePanel">
-                            
+
                                 <c:set var="itemsName" value="Provider Types"/>
                                 <c:set var="searchResult" value="${providerTypesSearchResult}"/>
-                                
+
                                 <form:form id="searchForm" action="${ctx}/admin/viewProviderTypes" modelAttribute="searchCriteria" method="post">
                                     <form:hidden id="searchFormPageSize" path="pageSize" />
                                     <form:hidden id="searchFormPageNumber" path="pageNumber" />
                                     <form:hidden id="searchFormSortColumn" path="sortColumn" />
                                     <form:hidden id="searchFormAscending" path="ascending" />
                                     <form:hidden id="searchFormShowFilterPanel" path="showFilterPanel" />
-                                    
+
                                     <form:hidden id="searchFormProviderType" path="typeName" />
                                 </form:form>
                                 <div class="pagination">
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                 <!-- /.pagination -->
-                               
+
                                 <div <c:if test="${!searchCriteria.showFilterPanel}">style="display: none"</c:if>  class="filterPanel">
                                     <div class="floatW">
                                         <div class="leftCol">
@@ -77,7 +77,7 @@
                                 <c:choose>
                                     <c:when test="${searchResult.total == 0}">
                                         <div class="tableWrapper">
-                                            <div class="tableContainer"></div>                                    
+                                            <div class="tableContainer"></div>
                                             <div class="tabFoot">
                                                 <div class="tabR">
                                                     <div class="tabM" style="color: red">
@@ -132,7 +132,7 @@
                                                                     <c:choose>
                                                                         <c:when test="${item.canDelete}"><a rel="${item.code}" href="javascript:;" class="deleteProviderTypeBtn">Delete</a></c:when>
                                                                         <c:otherwise><a style="text-decoration: none;color: gray" href="javascript:;" class="disabledBtn">Delete</a></c:otherwise>
-                                                                    </c:choose>   
+                                                                    </c:choose>
                                                                  </td>
                                                             </tr>
                                                         </c:forEach>
@@ -203,7 +203,7 @@
                 </div>
                 <!-- /.modalFooter -->
             </div>
-            
+
             <div class="modal" id="noSelectedItemsModal">
                 <div class="modalHeader">
                     <div class="corner">

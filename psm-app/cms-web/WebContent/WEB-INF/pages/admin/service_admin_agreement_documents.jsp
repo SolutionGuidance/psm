@@ -32,18 +32,18 @@
                             <div id="agreementPanel">
                                 <c:set var="itemsName" value="Agreement and AddendumTypes"/>
                                 <c:set var="searchResult" value="${agreementDocumentsSearchResult}"/>
-                                
+
                                 <form:form id="searchForm" action="${ctx}/admin/viewAgreementDocuments" modelAttribute="searchCriteria" method="post">
                                     <form:hidden id="searchFormPageSize" path="pageSize" />
                                     <form:hidden id="searchFormPageNumber" path="pageNumber" />
                                     <form:hidden id="searchFormSortColumn" path="sortColumn" />
                                     <form:hidden id="searchFormAscending" path="ascending" />
                                     <form:hidden id="searchFormShowFilterPanel" path="showFilterPanel" />
-                                    
+
                                     <form:hidden id="searchFormAgreementDocumentTitle" path="title" />
                                     <form:hidden id="searchFormAgreementType" path="type" />
                                 </form:form>
-                                
+
                                 <div class="pagination">
                                     <div class="right">
                                         <a href="${ctx}/admin/editAgreementDocument?agreementId=0&agreementDocumentType=ADDENDUM" class="purpleBtn addAgreementBtn"><span class="btR"><span class="btM">Add Agreement Addendum</span></span></a>
@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
                                 <!-- /.pagination -->
-                                
+
                                 <div <c:if test="${!searchCriteria.showFilterPanel}">style="display: none"</c:if> class="filterPanel">
                                     <div class="floatW">
                                         <div class="leftCol">
@@ -96,7 +96,7 @@
                                 <c:choose>
                                     <c:when test="${searchResult.total == 0}">
                                         <div class="tableWrapper">
-                                            <div class="tableContainer"></div>                                    
+                                            <div class="tableContainer"></div>
                                             <div class="tabFoot">
                                                 <div class="tabR">
                                                     <div class="tabM" style="color: red">
@@ -172,7 +172,7 @@
                                                                     <c:choose>
                                                                         <c:when test="${item.canDelete}"><a rel="${item.id}" href="javascript:;" class="deleteAgreementDocumentBtn">Delete</a></c:when>
                                                                         <c:otherwise><a style="text-decoration: none;color: gray" href="javascript:;" class="disabledBtn">Delete</a></c:otherwise>
-                                                                    </c:choose>   
+                                                                    </c:choose>
                                                                </td>
                                                             </tr>
                                                         </c:forEach>
@@ -243,7 +243,7 @@
                 </div>
                 <!-- /.modalFooter -->
             </div>
-            
+
             <div class="modal" id="noSelectedItemsModal">
                 <div class="modalHeader">
                     <div class="corner">

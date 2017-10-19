@@ -14,7 +14,7 @@ buildscript {
 
 def jbpm_version = '5.4.0.Final'
 def spring_core_version = '3.0.5.RELEASE'
-def spring_security_version = '3.0.5.RELEASE'
+def spring_security_version = '3.1.4.RELEASE'
 
 // These libraries are known to be used, since they are required during compile
 // or on immediate deployment

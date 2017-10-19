@@ -140,7 +140,7 @@ public class CMSLDAPUserDetailsMapper extends LdapUserDetailsMapper {
     public UserDetails mapUserFromContext(
             DirContextOperations context,
             String username,
-            Collection<GrantedAuthority> authority
+            Collection<? extends GrantedAuthority> authority
     ) {
         try {
             UserDetails original = super.mapUserFromContext(context, username, authority);

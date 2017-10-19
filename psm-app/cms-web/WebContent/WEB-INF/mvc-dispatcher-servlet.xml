@@ -292,7 +292,7 @@
   </bean>
 
   <bean id="BaseSystemAdminController"
-        class="gov.medicaid.controllers.admin.BaseController"
+        class="gov.medicaid.controllers.admin.BaseSystemAdminController"
         abstract="true">
     <property name="log" ref="Log"/>
     <property name="registrationService" ref="RegistrationService"/>

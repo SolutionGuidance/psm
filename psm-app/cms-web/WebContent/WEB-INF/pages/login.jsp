@@ -36,7 +36,7 @@
 
               <div class="row">
                 <label class="label">Username:</label>
-                <input type="text" name="j_username" class="text" id="username" value="${SPRING_SECURITY_LAST_USERNAME}" maxlength="50"/>
+                <input type="text" name="j_username" class="text" id="username" value="${LAST_USERNAME}" maxlength="50"/>
               </div>
               <div class="row">
                 <label class="label">Password:</label>

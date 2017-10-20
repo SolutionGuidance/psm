@@ -75,7 +75,7 @@ public class CustomAuthenticationProcessingFilter extends UsernamePasswordAuthen
         HttpSession session = request.getSession(false);
 
         if (session != null || getAllowSessionCreation()) {
-            request.getSession().setAttribute(SPRING_SECURITY_LAST_USERNAME_KEY,
+            request.getSession().setAttribute("LAST_USERNAME",
                 TextEscapeUtils.escapeEntities(username));
         }
 

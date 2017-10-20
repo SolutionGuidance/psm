@@ -12,9 +12,9 @@
     http://www.springframework.org/schema/context/spring-context-3.2.xsd">
   <context:annotation-config/>
 
-  <mvc:resources location="/js/**" mapping="/js/**"/>
-  <mvc:resources location="/css/**" mapping="/css/**"/>
-  <mvc:resources location="/i/**" mapping="/i/**"/>
+  <mvc:resources location="/js/" mapping="/js/**"/>
+  <mvc:resources location="/css/" mapping="/css/**"/>
+  <mvc:resources location="/i/" mapping="/i/**"/>
 
   <mvc:annotation-driven/>
 

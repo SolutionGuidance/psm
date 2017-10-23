@@ -4,6 +4,7 @@ import net.thucydides.core.pages.PageObject;
 
 import java.time.LocalDate;
 
+import static gov.medicaid.features.IntegrationTests.click;
 import static gov.medicaid.features.IntegrationTests.format;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -45,11 +46,11 @@ public class PersonalInfoPage extends PageObject {
     }
 
     public void checkSameAsAbove() {
-        $("#sameAsAbove").click();
+        click(this, $("#sameAsAbove"));
     }
 
     public void clickNext() {
-        $("#nextBtn").click();
+        click(this, $("#nextBtn"));
     }
 
     public void checkForTooYoungError() throws Exception {

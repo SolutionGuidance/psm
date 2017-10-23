@@ -1,9 +1,11 @@
 package gov.medicaid.features.enrollment.ui;
 
+import static gov.medicaid.features.IntegrationTests.click;
+
 public class IndividualInfoPage extends EnrollmentPage {
 
     public void enterIndividualMember() {
-        $("#addMember").click();
+        click(this, $("#addMember"));
     }
 
     public void setIndividualOwnerNPI(String npi) {

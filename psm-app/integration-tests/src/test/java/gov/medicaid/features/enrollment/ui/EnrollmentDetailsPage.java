@@ -2,6 +2,8 @@ package gov.medicaid.features.enrollment.ui;
 
 import net.thucydides.core.pages.PageObject;
 
+import static gov.medicaid.features.IntegrationTests.click;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class EnrollmentDetailsPage extends PageObject {
@@ -12,6 +14,6 @@ public class EnrollmentDetailsPage extends PageObject {
     }
 
     public void closeSubmitModal() {
-        $("#submitEnrollmentModal a.okBtn").click();
+        click(this, $("#submitEnrollmentModal a.okBtn"));
     }
 }

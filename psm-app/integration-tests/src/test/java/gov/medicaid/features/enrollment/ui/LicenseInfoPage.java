@@ -8,16 +8,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 
+import static gov.medicaid.features.IntegrationTests.click;
 import static gov.medicaid.features.IntegrationTests.format;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LicenseInfoPage extends PageObject {
     public void clickNo() {
-        $("input[value='N'").click();
+        click(this, $("input[value='N'"));
     }
 
     public void addLicense() {
-        $("#addLicense").click();
+        click(this, $("#addLicense"));
     }
 
     public void addLicenseType(String licenseType) {
@@ -59,7 +60,7 @@ public class LicenseInfoPage extends PageObject {
     }
 
     public void clickNext() {
-        $("#nextBtn").click();
+        click(this, $("#nextBtn"));
         assertThat(getTitle()).contains("Practice Information");
     }
 }

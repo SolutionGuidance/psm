@@ -2,11 +2,11 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <%@include file="/WEB-INF/pages/includes/html_head.jsp" %>
-    <title>Registration Complete</title>
-  </head>
+  <c:set var="title" value="Registration Complete"/>
+  <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+  <h:handlebars template="includes/html_head" context="${pageContext}"/>
   <body>
     <div id="wrapper">
       <div id="header">

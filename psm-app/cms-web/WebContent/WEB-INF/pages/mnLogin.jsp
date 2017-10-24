@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@page import="org.springframework.security.web.WebAttributes"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <%@include file="/WEB-INF/pages/includes/html_head.jsp" %>
-    <title>Login</title>
-  </head>
+  <c:set var="title" value="Login"/>
+  <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+  <h:handlebars template="includes/html_head" context="${pageContext}"/>
   <body>
     <div id="wrapper">
       <div id="header">

@@ -5,10 +5,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <%@include file="/WEB-INF/pages/includes/html_head.jsp" %>
-    <title>Dashboard</title>
-  </head>
+  <c:set var="title" value="Dashboard"/>
+  <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+  <h:handlebars template="includes/html_head" context="${pageContext}"/>
   <body>
     <div id="wrapper">
       <%@include file="/WEB-INF/pages/includes/header.jsp" %>

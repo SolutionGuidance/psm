@@ -5,6 +5,7 @@
   -
   - Description: This is the admin provider types create page.
 --%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -25,12 +26,12 @@
                         Functions
                     </div>
                     <h1>Functions</h1>
-                    
+
                     <c:if test="${not empty requestScope['flash_error']}">
                         <div class="clear"></div>
                         <div class="errorInfo formErrorMarker" style="display: block;">
                             <h3>Please correct the following errors:</h3>
-                            <p class="bindingError"><c:out value="${requestScope['flash_error']}"></c:out></p>        
+                            <p class="bindingError"><c:out value="${requestScope['flash_error']}"></c:out></p>
                             <div class="tl"></div>
                             <div class="tr"></div>
                             <div class="bl"></div>
@@ -39,10 +40,10 @@
                         <div class="clear"></div>
                     </c:if>
                     <div class="tabSection functionTab" id="enrollmentSection">
-                        <c:set var="functions_service_active_menu" value="providerTypes"/>
-                        <%@ include file="/WEB-INF/pages/admin/includes/functions_service_nav.jsp" %>
-                        
-                        
+                        <c:set var="functionsServiceActiveMenuProviderTypes" value="1"/>
+                        <h:handlebars template="admin/includes/functions_service_nav" context="${pageContext}" />
+
+
                         <div class="tabContent" id="tabProviderTypes">
                             <form:form id="providerTypeForm" modelAttribute="providerType" action="${ctx}/admin/createProviderType" method="post">
                                 <div id="addProviderPanel">

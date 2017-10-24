@@ -5,6 +5,7 @@
   -
   - Description: This is the admin help topic view page.
 --%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -26,15 +27,15 @@
                     </div>
                     <h1>Functions</h1>
                     <div class="tabSection functionTab" id="enrollmentSection">
-                        <c:set var="functions_service_active_menu" value="helpTopics"/>
-                        <%@ include file="/WEB-INF/pages/admin/includes/functions_service_nav.jsp" %>
+                        <c:set var="functionsServiceActiveMenuHelpTopics" value="1"/>
+                        <h:handlebars template="admin/includes/functions_service_nav" context="${pageContext}" />
                         <div class="tabContent" id="tabHelpTopics">
                             <div id="viewHelpTopicPanel">
                                 <div>
                                     <div class="sideBorder">
                                         <h3><c:out value="${helpItem.title}"/></h3>
                                         <a href="javascript:;" class="deleteHelpTopicBtn greyBtn"><span class="btR"><span class="btM">Delete</span></span></a>
-                                        <a href="${ctx}/admin/editHelpItem?helpItemId=${helpItem.id}" class="editHelpTopicBtn purpleBtn"><span class="btR"><span class="btM">Edit</span></span></a>    
+                                        <a href="${ctx}/admin/editHelpItem?helpItemId=${helpItem.id}" class="editHelpTopicBtn purpleBtn"><span class="btR"><span class="btM">Edit</span></span></a>
                                     </div>
                                     <div class="newEnrollmentPanel">
                                         <div class="section">

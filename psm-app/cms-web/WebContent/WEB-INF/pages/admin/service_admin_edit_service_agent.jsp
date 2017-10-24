@@ -5,6 +5,7 @@
   -
   - Description: This is the admin service agents edit/create page.
 --%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -26,8 +27,8 @@
                     </div>
                     <h1>Functions</h1>
                     <div class="tabSection functionTab" id="enrollmentSection">
-                        <c:set var="functions_service_active_menu" value="serviceAgents"/>
-                        <%@ include file="/WEB-INF/pages/admin/includes/functions_service_nav.jsp" %>
+                        <c:set var="functionsServiceActiveMenuServiceAgents" value="1"/>
+                        <h:handlebars template="admin/includes/functions_service_nav" context="${pageContext}" />
                         <div class="tabContent" id="tabServiceAgents">
                             <c:choose>
                                 <c:when test="${empty user.userId}">
@@ -44,7 +45,7 @@
                                                 <c:when test="${empty user.userId}"><h3>Add Service Agent</h3></c:when>
                                                 <c:otherwise><h3>Edit Service Agent</h3></c:otherwise>
                                             </c:choose>
-                                            
+
                                         </div>
                                         <div class="detailPanel">
                                             <form:hidden path="userId" />

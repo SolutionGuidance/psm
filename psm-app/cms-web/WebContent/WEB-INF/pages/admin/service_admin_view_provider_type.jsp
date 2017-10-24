@@ -5,6 +5,7 @@
   -
   - Description: This is the admin provider types page.
 --%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -26,8 +27,8 @@
                     </div>
                     <h1>Functions</h1>
                     <div class="tabSection functionTab" id="enrollmentSection">
-                        <c:set var="functions_service_active_menu" value="providerTypes"/>
-                        <%@ include file="/WEB-INF/pages/admin/includes/functions_service_nav.jsp" %>
+                        <c:set var="functionsServiceActiveMenuProviderTypes" value="1"/>
+                        <h:handlebars template="admin/includes/functions_service_nav" context="${pageContext}" />
                         <div class="tabContent" id="tabProviderTypes">
                             <div id="viewProviderPanel">
                                 <div class="sideBorder">
@@ -38,7 +39,7 @@
                                         <c:otherwise>
                                             <a href="javascript:;"  style="text-decoration: none;color: gray;cursor: default;" class="greyBtn disabledBtn"><span class="btR"><span class="btM">Delete</span></span></a>
                                         </c:otherwise>
-                                    </c:choose>  
+                                    </c:choose>
                                     <a href="${ctx}/admin/beginEditProviderType?providerTypeId=${providerType.code}" class="purpleBtn editProviderLink"><span class="btR"><span class="btM">Edit</span></span></a>
                                 </div>
                                 <div class="newEnrollmentPanel">
@@ -53,7 +54,7 @@
                                             	<div class="row">
                                                         <div class="col2">
                                                         	<c:forEach var="agreement" items="${agreements}">
-                                                        		<div class="row">	
+                                                        		<div class="row">
                                                                 	<span>${agreement.title}</span>
                                                             	</div>
                                                         	</c:forEach>

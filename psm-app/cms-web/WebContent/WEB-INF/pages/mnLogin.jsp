@@ -24,7 +24,7 @@
               <p>
                 This is a mockup for requests coming from an internal site. Fill up the expected data below and submit.
               </p>
-              <%@include file="/WEB-INF/pages/includes/flash.jsp" %>
+              <h:handlebars template="includes/flash" context="${pageContext}"/>
 
               <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
                 <div class="errorInfo" style="display: block;">

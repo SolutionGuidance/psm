@@ -21,7 +21,7 @@
           <!-- /.mainNav -->
           <form id="loginForm" action="<c:url value='j_spring_security_check'/>" method="post">
             <div class="loginPanel">
-              <%@include file="/WEB-INF/pages/includes/flash.jsp" %>
+              <h:handlebars template="includes/flash" context="${pageContext}"/>
 
               <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
                 <div class="errorInfo" style="display: block;">

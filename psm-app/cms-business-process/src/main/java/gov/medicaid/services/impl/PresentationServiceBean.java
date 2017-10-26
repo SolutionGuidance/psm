@@ -163,21 +163,17 @@ public class PresentationServiceBean extends BaseService implements Presentation
             return true;
         } else if (ProviderType.RENAL_DIALYSIS_FACILITY.value().equals(type)) {
             return true;
-        }
-        // Fix for PESP-413
-        else if (ProviderType.PHYSICIAN_CLINIC.value().equals(type)) {
+        } else if (ProviderType.PHYSICIAN_CLINIC.value().equals(type)) {
+            // Fix for PESP-413
             return true;
-        }
-        // Fix for PESP-428
-        else if (ProviderType.RURAL_HEALTH_CLINIC.value().equals(type)) {
+        } else if (ProviderType.RURAL_HEALTH_CLINIC.value().equals(type)) {
+            // Fix for PESP-428
             return true;
-        }
-        // Fix for PESP-353
-        else if (ProviderType.AMBULATORY_SURGICAL_CENTER.value().equals(type)) {
+        } else if (ProviderType.AMBULATORY_SURGICAL_CENTER.value().equals(type)) {
+            // Fix for PESP-353
             return true;
-        }
-        // Fix for PESP-363
-        else if (ProviderType.BIRTHING_CENTER.value().equals(type)) {
+        } else if (ProviderType.BIRTHING_CENTER.value().equals(type)) {
+            // Fix for PESP-363
             return true;
         }
         return false;
@@ -297,25 +293,20 @@ public class PresentationServiceBean extends BaseService implements Presentation
         } else if (ProviderType.INTERMEDIATE_CARE_FACILITIES_FOR_PERSONS_WITH_DEVELOPMENTAL_DISABILITIES.value()
                 .equals(type)) {
             return false;
-        }
-        // Fix for PESP-390
-        else if (ProviderType.HOME_AND_COMMUNITY_BASED_SERVICES_WAIVERED_SERVICES.value().equals(type)) {
+        } else if (ProviderType.HOME_AND_COMMUNITY_BASED_SERVICES_WAIVERED_SERVICES.value().equals(type)) {
+            // Fix for PESP-390
             return false;
-        }
-        // Fix for PESP-300
-        else if (ProviderType.DAY_TRAINING_AND_HABILITATION_DAY_ACTIVITY_CENTER.value().equals(type)) {
+        } else if (ProviderType.DAY_TRAINING_AND_HABILITATION_DAY_ACTIVITY_CENTER.value().equals(type)) {
+            // Fix for PESP-300
             return false;
-        }
-        // Fix for PESP-298
-        else if (ProviderType.NURSING_FACILITY.value().equals(type)) {
+        } else if (ProviderType.NURSING_FACILITY.value().equals(type)) {
+            // Fix for PESP-298
             return false;
-        }
-        // Fix for PESP-350
-        else if (ProviderType.DAY_TREATMENT.value().equals(type)) {
+        } else if (ProviderType.DAY_TREATMENT.value().equals(type)) {
+            // Fix for PESP-350
             return false;
-        }
-        // Fix for PESP-406
-        else if (ProviderType.MEDICAL_TRANSPORTATION.value().equals(type)) {
+        } else if (ProviderType.MEDICAL_TRANSPORTATION.value().equals(type)) {
+            // Fix for PESP-406
             return false;
         }
         return true;

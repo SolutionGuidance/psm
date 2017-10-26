@@ -97,7 +97,8 @@ public class MockMNITSPartnerServiceBean extends BaseService implements
         if (!internalSecurityDomain.equals(referrer)) {
             getLog().log(Level.WARN, "Rejecting external login due to invalid domain: " + referrer);
             return false;
-        } if (!internalSecurityToken.equals(password)) {
+        }
+        if (!internalSecurityToken.equals(password)) {
             getLog().log(Level.WARN, "Rejecting external login due to invalid token: " + password);
             return false;
         }

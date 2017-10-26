@@ -112,7 +112,7 @@
                 <div class="br"></div>
               </div>
               <div class="buttonBox">
-                <a href="<c:url value=" /login" />" class="greyBtn">
+                <a href="<c:url value="/login" />" class="greyBtn">
                   <span class="btR">
                     <span class="btM">Cancel</span>
                   </span>

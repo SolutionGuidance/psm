@@ -22,7 +22,7 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <a href="<c:url value=" /provider/dashboard/drafts" />">Enrollments</a>
+            <a href="<c:url value="/provider/dashboard/drafts" />">Enrollments</a>
             <span>Edit Enrollment</span>
           </div>
           <div class="head">
@@ -31,7 +31,7 @@
 
           <div class="tabSection">
 
-            <form action="<c:url value=" /provider/enrollment/steps/rebind" />" id="changeProviderTypeForm" method="post" enctype="multipart/form-data">
+            <form action="<c:url value="/provider/enrollment/steps/rebind" />" id="changeProviderTypeForm" method="post" enctype="multipart/form-data">
               <c:if test="${isReopened}">
                 <div class="detailPanel" style="width: 940px;">
                   <div class="section">

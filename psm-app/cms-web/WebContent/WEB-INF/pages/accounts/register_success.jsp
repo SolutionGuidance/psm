@@ -47,7 +47,7 @@
               <div class="br"></div>
             </div>
             <div class="buttonBox">
-              <a href="<c:url value=" /login" />" class="purpleBtn">
+              <a href="<c:url value="/login" />" class="purpleBtn">
                 <span class="btR">
                   <span class="btM">Login</span>
                 </span>

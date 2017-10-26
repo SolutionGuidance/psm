@@ -25,7 +25,7 @@
           <c:choose>
             <c:when test="${isRenewalEnrollment}">
               <div class="breadCrumb">
-                <a href="<c:url value=" /provider/dashboard/drafts" />">Enrollments</a>
+                <a href="<c:url value="/provider/dashboard/drafts" />">Enrollments</a>
                 <span>Enrollment Renewal</span>
               </div>
               <div class="head">
@@ -37,7 +37,7 @@
             </c:when>
             <c:otherwise>
               <div class="breadCrumb">
-                <a href="<c:url value=" /provider/dashboard/drafts" />">Enrollments</a>
+                <a href="<c:url value="/provider/dashboard/drafts" />">Enrollments</a>
                 <span>Register New Enrollment</span>
               </div>
               <div class="head">

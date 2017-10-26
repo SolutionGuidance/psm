@@ -34,7 +34,7 @@
                       dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
                     <div class="">
-                      <a href="<c:url value=" /provider/onboarding/list" />" class="purpleBtn">
+                      <a href="<c:url value="/provider/onboarding/list" />" class="purpleBtn">
                         <span class="btR">
                           <span class="btM">Import Profile</span>
                         </span>

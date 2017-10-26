@@ -21,7 +21,7 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <a href="<c:url value=" /provider/search/approved?statuses=Approved" />">Enrollments</a>
+            <a href="<c:url value="/provider/search/approved?statuses=Approved" />">Enrollments</a>
             <span>Confirm Edit</span>
           </div>
 

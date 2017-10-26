@@ -21,7 +21,7 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <a href="<c:url value=" /provider/profile/" />">My Profile</a>
+            <a href="<c:url value="/provider/profile/" />">My Profile</a>
             <span class="text">Update Password</span>
           </div>
           <div class="head">
@@ -82,7 +82,7 @@
                     </div>
                   </div>
                   <div class="buttonBox">
-                    <a href="<c:url value=" /provider/profile/" />" class="greyBtn">
+                    <a href="<c:url value="/provider/profile/" />" class="greyBtn">
                       <span class="btR">
                         <span class="btM">Cancel</span>
                       </span>

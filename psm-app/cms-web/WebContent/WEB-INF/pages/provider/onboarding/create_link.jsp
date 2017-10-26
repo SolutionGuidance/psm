@@ -20,7 +20,7 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <a href="<c:url value=" /provider/dashboard/setup" />">Account Setup</a>
+            <a href="<c:url value="/provider/dashboard/setup" />">Account Setup</a>
             <span class="text">Account Details</span>
           </div>
           <div class="head">
@@ -82,7 +82,7 @@
                     </div>
                   </div>
                   <div class="buttonBox">
-                    <a href="<c:url value=" /provider/dashboard/setup" />" class="greyBtn">
+                    <a href="<c:url value="/provider/dashboard/setup" />" class="greyBtn">
                       <span class="btR">
                         <span class="btM">Cancel</span>
                       </span>

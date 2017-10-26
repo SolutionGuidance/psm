@@ -31,22 +31,22 @@
             <div class="tabHead">
               <div class="tabR">
                 <div class="tabM">
-                  <a class="tab ${statusFilter eq 'Draft' ? 'active' : ''}" href="<c:url value=" /provider/dashboard/drafts" />">
+                  <a class="tab ${statusFilter eq 'Draft' ? 'active' : ''}" href="<c:url value="/provider/dashboard/drafts" />">
                     <span class="aR">
                       <span class="aM">Draft</span>
                     </span>
                   </a>
-                  <a class="tab ${statusFilter eq 'Pending' ? 'active' : ''}" href="<c:url value=" /provider/dashboard/pending" />">
+                  <a class="tab ${statusFilter eq 'Pending' ? 'active' : ''}" href="<c:url value="/provider/dashboard/pending" />">
                     <span class="aR">
                       <span class="aM">Pending</span>
                     </span>
                   </a>
-                  <a class="tab ${statusFilter eq 'Approved' ? 'active' : ''}" href="<c:url value=" /provider/dashboard/approved" />">
+                  <a class="tab ${statusFilter eq 'Approved' ? 'active' : ''}" href="<c:url value="/provider/dashboard/approved" />">
                     <span class="aR">
                       <span class="aM">Approved</span>
                     </span>
                   </a>
-                  <a class="tab ${statusFilter eq 'Rejected' ? 'active' : ''}" href="<c:url value=" /provider/dashboard/rejected" />">
+                  <a class="tab ${statusFilter eq 'Rejected' ? 'active' : ''}" href="<c:url value="/provider/dashboard/rejected" />">
                     <span class="aR">
                       <span class="aM">Denied</span>
                     </span>
@@ -74,7 +74,7 @@
                   </a>
                   <a href="javascript:submitFormById('paginationForm','${exportResultsURL}')" class="greyBtn">
                     <span class="btR">
-                      <span class="btM"><img src="<c:url value=" /i/icon-pdf.png" />" alt=""/>Export to PDF</span>
+                      <span class="btM"><img src="<c:url value="/i/icon-pdf.png" />" alt=""/>Export to PDF</span>
                     </span>
                   </a>
                 </div>
@@ -200,12 +200,12 @@
           <div class="modal-title">
             <a href="javascript:;" class="greyBtn">
               <span class="btR">
-                <span class="btM"><img src="<c:url value=" /i/icon-x.png" />" alt=""/>Close</span>
+                <span class="btM"><img src="<c:url value="/i/icon-x.png" />" alt=""/>Close</span>
               </span>
             </a>
             <a href="javascript:;" class="purpleBtn printBtn">
               <span class="btR">
-                <span class="btM"><img src="<c:url value=" /i/icon-print2.png" />" alt=""/>Print</span>
+                <span class="btM"><img src="<c:url value="/i/icon-print2.png" />" alt=""/>Print</span>
               </span>
             </a>
             <h3>Print Preview</h3>

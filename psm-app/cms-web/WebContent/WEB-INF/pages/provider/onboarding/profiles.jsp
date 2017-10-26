@@ -20,7 +20,7 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <a href="<c:url value=" /provider/dashboard/setup" />">Account Setup</a>
+            <a href="<c:url value="/provider/dashboard/setup" />">Account Setup</a>
             <span class="text">Import Profiles</span>
           </div>
           <div class="head">
@@ -32,7 +32,7 @@
 
           <div class="dashboardPanel">
             <div class="tableData">
-              <form id="importProfilesForm" action="<c:url value=" /provider/onboarding/list" />" method="post">
+              <form id="importProfilesForm" action="<c:url value="/provider/onboarding/list" />" method="post">
                 <div class="tableTitle">
                   <h2>Profiles</h2>
                 </div>
@@ -103,7 +103,7 @@
             <!-- /.sideBar -->
 
             <div class="tableDataButtons buttonBox">
-              <a href="<c:url value=" /provider/dashboard/setup" />" class="greyBtn">
+              <a href="<c:url value="/provider/dashboard/setup" />" class="greyBtn">
                 <span class="btR">
                   <span class="btM">Cancel</span>
                 </span>

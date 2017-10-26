@@ -22,19 +22,19 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <a href="<c:url value=" /provider/profile/" />">My Profile</a>
+            <a href="<c:url value="/provider/profile/" />">My Profile</a>
             <span>View Profile Details</span>
           </div>
           <div class="head">
             <h1>View Profile Details</h1>
-            <a class="greyBtn" href="<c:url value=" /provider/enrollment/export" />">
+            <a class="greyBtn" href="<c:url value="/provider/enrollment/export" />">
               <span class="btR">
-                <span class="btM"><img alt="" src="<c:url value=" /i/icon-pdf.png" />"/>Export to PDF</span>
+                <span class="btM"><img alt="" src="<c:url value="/i/icon-pdf.png" />"/>Export to PDF</span>
               </span>
             </a>
             <a class="greyBtn printModalBtn" href="javascript:printThis();">
               <span class="btR">
-                <span class="btM"><img alt="" src="<c:url value=" /i/icon-print.png" />"/>Print</span>
+                <span class="btM"><img alt="" src="<c:url value="/i/icon-print.png" />"/>Print</span>
               </span>
             </a>
           </div>

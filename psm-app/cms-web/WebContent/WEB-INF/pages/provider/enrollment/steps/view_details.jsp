@@ -22,24 +22,24 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <a href="<c:url value=" /provider/dashboard/list" />">Enrollments</a>
+            <a href="<c:url value="/provider/dashboard/list" />">Enrollments</a>
             <span>View Enrollment Details</span>
           </div>
 
           <div class="head">
             <h1>View Enrollment Details</h1>
-            <a class="greyBtn" href="<c:url value=" /provider/enrollment/export" />">
+            <a class="greyBtn" href="<c:url value="/provider/enrollment/export" />">
               <span class="btR">
-                <span class="btM"><img alt="" src="<c:url value=" /i/icon-pdf.png" />"/>Export to PDF</span>
+                <span class="btM"><img alt="" src="<c:url value="/i/icon-pdf.png" />"/>Export to PDF</span>
               </span>
             </a>
             <a class="greyBtn printModalBtn" href="javascript:printThis();">
               <span class="btR">
-                <span class="btM"><img alt="" src="<c:url value=" /i/icon-print.png" />"/>Print</span>
+                <span class="btM"><img alt="" src="<c:url value="/i/icon-print.png" />"/>Print</span>
               </span>
             </a>
             <c:if test="${showReviewLink}">
-              <a class="greyBtn" href="<c:url value=" /agent/enrollment/screeningReview?id=${enrollment.objectId}" />">
+              <a class="greyBtn" href="<c:url value="/agent/enrollment/screeningReview?id=${enrollment.objectId}" />">
                 <span class="btR">
                   <span class="btM">Review</span>
                 </span>

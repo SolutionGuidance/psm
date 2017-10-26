@@ -18,10 +18,7 @@
     </div>
     <!-- /.userSection -->
     <div class="mastHead">
-      <sec:authentication property="principal.loginDate" var="loginDate"/>
-      Last login:
-      <fmt:formatDate value="${loginDate}"
-                      pattern="EEEE, d MMMM yyyy hh:mm:ss a zzz"/>
+      Last login: <c:out value="${loginDate}" />
     </div>
     <!-- /.mastHead -->
   </div>

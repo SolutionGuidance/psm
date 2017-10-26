@@ -21,16 +21,23 @@ try {
 
   // parent page context, passed via attr
   PageContext parentContext = (PageContext) jspContext.getAttribute("context");
-  Enumeration attrs = parentContext.getAttributeNamesInScope(PageContext.PAGE_SCOPE);
 
-  while(attrs.hasMoreElements()) {
-      String name = attrs.nextElement().toString();
+  int[] scopes = {
+    PageContext.APPLICATION_SCOPE,
+    PageContext.SESSION_SCOPE,
+    PageContext.REQUEST_SCOPE,
+    PageContext.PAGE_SCOPE,
+  };
+  for (int scope : scopes) {
+    Enumeration attrs = parentContext.getAttributeNamesInScope(scope);
 
-      // replicate attrs into current context too
-      map.put(name, parentContext.getAttribute(name));
-      jspContext.setAttribute(name, parentContext.getAttribute(name), PageContext.PAGE_SCOPE);
+    while(attrs.hasMoreElements()) {
+        String name = attrs.nextElement().toString();
+
+        // replicate attrs into current context too
+        map.put(name, parentContext.getAttribute(name, scope));
+    }
   }
-
   Context context = Context.newBuilder(map).build();
 
   %><%= t.apply(context) %><%

@@ -5,7 +5,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <c:set var="title" value="Import Profiles"/>
-  <c:set var="ctx" value="${pageContext.request.contextPath}"/>
   <h:handlebars template="includes/html_head" context="${pageContext}"/>
   <body>
     <div id="wrapper">

@@ -30,6 +30,10 @@
       <mvc:mapping path="/**"/>
       <bean class="gov.medicaid.interceptors.FlashMessageInterceptor"/>
     </mvc:interceptor>
+    <mvc:interceptor>
+      <mvc:mapping path="/**"/>
+      <bean class="gov.medicaid.interceptors.HandlebarsInterceptor"/>
+    </mvc:interceptor>
   </mvc:interceptors>
 
   <bean id="log4jLogFactory"

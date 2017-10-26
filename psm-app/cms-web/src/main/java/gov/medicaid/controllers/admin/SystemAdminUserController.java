@@ -197,6 +197,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
      *
      * @param role - the role being managed
      * @param password - the password for the new user
+     * @param password2 - the confirmed password for the new user
      * @param user - the user
      * @param errors - the framework binding results
      * @return - the model and view instance that contains the name of view to be rendered and data to be used for
@@ -209,9 +210,13 @@ public class SystemAdminUserController extends BaseSystemAdminController {
      * @verb POST
      */
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public ModelAndView create(@RequestParam(value = "roleName") String role,
-        @RequestParam(value = "password", required = false) String password, @ModelAttribute("user") CMSUser user,
-        BindingResult errors) throws PortalServiceException {
+    public ModelAndView create(
+            @RequestParam(value = "roleName") String role,
+            @RequestParam(value = "password", required = false) String password,
+            @RequestParam(value = "password2", required = false) String password2,
+            @ModelAttribute("user") CMSUser user,
+            BindingResult errors
+    ) throws PortalServiceException {
 
         String signature = "SystemAdminUserController#create(String, String, User, BindingResult)";
         LogUtil.traceEntry(getLog(), signature, new String[] {"role", "password", "user", "errors"}, new Object[] {
@@ -226,6 +231,9 @@ public class SystemAdminUserController extends BaseSystemAdminController {
         userValidator.validate(user, errors);
         if (password == null || password.trim().length() == 0) {
             errors.rejectValue("userId", "field.required", new Object[]{"Password"}, "Enter a valid password.");
+        } else if (!password.equals(password2)) {
+            // if first and second password don't match, throw an error
+            errors.rejectValue("userId", "password.mismatch");
         } else {
             if (password.length() > PASSWD_MAX_LENGTH) {
                 // password is not stored in the domain model so just mark the id

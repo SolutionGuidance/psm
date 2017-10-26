@@ -73,7 +73,7 @@
               <div class="row">
                 <label>Confirm Password</label>
                   <span class="floatL"><b>:</b></span>
-                  <input type="password" class="passwordNormalInput" value="" />
+                  <input type="password" class="passwordNormalInput" value="" name="password2"/>
                 </div>
                 <div class="row">
                     <label>Last Name</label>

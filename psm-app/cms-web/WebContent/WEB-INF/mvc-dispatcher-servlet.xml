@@ -28,7 +28,7 @@
   <mvc:interceptors>
     <mvc:interceptor>
       <mvc:mapping path="/**"/>
-      <bean class="gov.medicaid.controllers.FlashMessageInterceptor"/>
+      <bean class="gov.medicaid.interceptors.FlashMessageInterceptor"/>
     </mvc:interceptor>
   </mvc:interceptors>
 

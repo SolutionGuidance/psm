@@ -22,6 +22,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpSession;
 
 import gov.medicaid.entities.CMSUser;
+import gov.medicaid.interceptors.FlashMessageInterceptor;
 import gov.medicaid.security.CMSPrincipal;
 
 import org.springframework.web.servlet.ModelAndView;

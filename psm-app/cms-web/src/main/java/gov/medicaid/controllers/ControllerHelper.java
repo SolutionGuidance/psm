@@ -135,7 +135,7 @@ public class ControllerHelper {
             model.addObject("principalUser", principalUser);
 
             // <c:if test="${requestPrincipal.user.role.description eq 'Service Administrator'}">
-            if (principalUser.getRole().getDescription() == "Service Administrator") {
+            if (principalUser.getRole().getDescription().equals("Service Administrator")) {
                 model.addObject("isServiceAdministrator", true);
             }
 

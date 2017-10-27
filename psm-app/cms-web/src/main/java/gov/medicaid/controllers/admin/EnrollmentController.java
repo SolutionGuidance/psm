@@ -497,7 +497,7 @@ public class EnrollmentController extends BaseController {
     })
     public ModelAndView search(
             @ModelAttribute("criteria") ProviderSearchCriteria criteria,
-            @PathVariable String view,
+            @PathVariable("view") String view,
             HttpServletResponse response
     ) throws PortalServiceException {
 

@@ -1,150 +1,155 @@
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:s="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
-    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+<?xml version="1.0"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:s="http://www.springframework.org/schema/security"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-3.2.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+  <s:http pattern="/css/**" security="none"/>
+  <s:http pattern="/js/**" security="none"/>
+  <s:http pattern="/i/**" security="none"/>
 
-	<s:http entry-point-ref="authenticationProcessingFilterEntryPoint">
-		<s:intercept-url pattern="/css/**" filters="none" />
-		<s:intercept-url pattern="/js/**" filters="none" />
-		<s:intercept-url pattern="/i/**" filters="none" />
+  <s:http entry-point-ref="authenticationProcessingFilterEntryPoint">
+    <s:intercept-url pattern="/system/**" access="ROLE_SYSTEM_ADMINISTRATOR"/>
+    <s:intercept-url pattern="/admin/**" access="ROLE_SERVICE_ADMINISTRATOR,ROLE_SERVICE_AGENT,ROLE_SYSTEM_ADMINISTRATOR"/>
+    <s:intercept-url pattern="/agent/**" access="ROLE_SERVICE_ADMINISTRATOR,ROLE_SERVICE_AGENT,ROLE_SYSTEM_ADMINISTRATOR"/>
+    <s:intercept-url pattern="/provider/profile/edit" access="ROLE_PROVIDER,ROLE_SERVICE_AGENT,ROLE_SERVICE_ADMINISTRATOR"/>
+    <s:intercept-url pattern="/provider/profile/renew" access="ROLE_PROVIDER,ROLE_SERVICE_AGENT,ROLE_SERVICE_ADMINISTRATOR"/>
+    <s:intercept-url pattern="/provider/profile/**" access="ROLE_PROVIDER"/>
+    <s:intercept-url pattern="/provider/**" access="IS_AUTHENTICATED_REMEMBERED"/>
+    <s:intercept-url pattern="/landing" access="IS_AUTHENTICATED_REMEMBERED"/>
+    <s:intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 
-		<s:intercept-url pattern="/system/**" access="ROLE_SYSTEM_ADMINISTRATOR" />
-		<s:intercept-url pattern="/admin/**" access="ROLE_SERVICE_ADMINISTRATOR,ROLE_SERVICE_AGENT,ROLE_SYSTEM_ADMINISTRATOR" />
-		<s:intercept-url pattern="/agent/**" access="ROLE_SERVICE_ADMINISTRATOR,ROLE_SERVICE_AGENT,ROLE_SYSTEM_ADMINISTRATOR" />
-		<s:intercept-url pattern="/provider/profile/edit" access="ROLE_PROVIDER,ROLE_SERVICE_AGENT,ROLE_SERVICE_ADMINISTRATOR" />
-		<s:intercept-url pattern="/provider/profile/renew" access="ROLE_PROVIDER,ROLE_SERVICE_AGENT,ROLE_SERVICE_ADMINISTRATOR" />
-		<s:intercept-url pattern="/provider/profile/**" access="ROLE_PROVIDER" />
-		<s:intercept-url pattern="/provider/**" access="IS_AUTHENTICATED_REMEMBERED" />
-		<s:intercept-url pattern="/landing" access="IS_AUTHENTICATED_REMEMBERED" />
-		<s:intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+    <s:remember-me key="${keys.remembermehash}" services-ref="rememberMeServices"/>
+    <s:custom-filter ref="customAuthenticationProcessingFilter" position="FORM_LOGIN_FILTER"/>
+    <s:anonymous/>
+    <s:logout logout-success-url="/login"/>
+  </s:http>
 
-        <s:remember-me key="${keys.remembermehash}" services-ref="rememberMeServices"/>
-        <s:custom-filter ref="customAuthenticationProcessingFilter" position="FORM_LOGIN_FILTER"/>
-		<s:anonymous />
-		<s:logout logout-success-url="/login" />
-	</s:http>
+  <bean id="customAuthenticationProcessingFilter" class="gov.medicaid.security.CustomAuthenticationProcessingFilter">
+    <property name="authenticationSuccessHandler" ref="simpleUrlAuthenticationSuccessHandler"/>
+    <property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler"/>
+    <property name="filterProcessesUrl" value="/j_spring_security_check"/>
+    <property name="authenticationManager" ref="authenticationManagerAlias"/>
+    <property name="rememberMeServices" ref="rememberMeServices"/>
+  </bean>
 
-	<bean id="customAuthenticationProcessingFilter" class="gov.medicaid.security.CustomAuthenticationProcessingFilter">
-		<property name="authenticationSuccessHandler" ref="simpleUrlAuthenticationSuccessHandler" />
-		<property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler" />
-		<property name="filterProcessesUrl" value="/j_spring_security_check" />
-		<property name="authenticationManager" ref="authenticationManagerAlias" />
-		<property name="rememberMeServices" ref="rememberMeServices" />
-	</bean>
-	
+  <!-- Defines which remember me implementation to use - in this case using a database table to log 'remembered' tokens -->
+  <bean id="rememberMeServices" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+    <property name="tokenRepository" ref="tokenRepository"/>
+    <property name="userDetailsService" ref="CMSRememberMeUserDetailsService"/>
+    <property name="key" value="${keys.remembermehash}"/>
+    <property name="parameter" value="keepUserSignedIn"/>
+    <property name="alwaysRemember" value="false"/>
+    <property name="tokenValiditySeconds" value="604800"/>
+  </bean>
 
-	<!-- Defines which remember me implementation to use - in this case using a database table to log 'remembered' tokens --> 
-	<bean id="rememberMeServices" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices"> 
-	    <property name="tokenRepository" ref="tokenRepository" /> 
-	    <property name="userDetailsService" ref="CMSRememberMeUserDetailsService" /> 
-	    <property name="key" value="${keys.remembermehash}" />
-	    <property name="parameter" value="keepUserSignedIn" />
-	    <property name="alwaysRemember" value="false" /> 
-	    <property name="tokenValiditySeconds" value="604800" /> 
-	</bean> 
-	 
-	
-    <bean id="simpleUrlAuthenticationSuccessHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler">
-		<property name="defaultTargetUrl" value="/landing" />
-    </bean>
-    		
-    <bean id="simpleUrlAuthenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
-        <constructor-arg value="/login"></constructor-arg>
-    </bean>		
-		
-	<bean id="authenticationProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-		<property name="loginFormUrl" value="/login" />
-		<property name="forceHttps" value="false" />
-	</bean>
-   
-	<s:authentication-manager alias="authenticationManagerAlias">
-		<s:authentication-provider ref="PrimaryDatabaseProvider" />
-<!-- todo: dive deep into user authentication; see issue #34
+  <bean id="simpleUrlAuthenticationSuccessHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler">
+    <property name="defaultTargetUrl" value="/landing"/>
+  </bean>
+
+  <bean id="simpleUrlAuthenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+    <constructor-arg value="/login"/>
+  </bean>
+
+  <bean id="authenticationProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+    <property name="loginFormUrl" value="/login"/>
+    <property name="forceHttps" value="false"/>
+  </bean>
+
+  <s:authentication-manager alias="authenticationManagerAlias">
+    <s:authentication-provider ref="PrimaryDatabaseProvider"/>
+    <!-- todo: dive deep into user authentication; see issue #34
      https://github.com/OpenTechStrategies/psm/issues/34
-		<s:authentication-provider ref="PrimaryLdapProvider" />
-		<s:authentication-provider ref="MNITSAuthenticationProvider" />
+    <s:authentication-provider ref="PrimaryLdapProvider" />
+    <s:authentication-provider ref="MNITSAuthenticationProvider" />
 -->
-	</s:authentication-manager>
+  </s:authentication-manager>
 
-	<context:property-placeholder location="classpath:cms.properties" />
+  <context:property-placeholder location="classpath:cms.properties"/>
 
-	<!-- Traditional Bean version of the same configuration -->
+  <!-- Traditional Bean version of the same configuration -->
 
-	<!-- This bean points at the embedded directory server created by the ldap-server element above -->
-	<bean id="contextSource" class="org.springframework.security.ldap.DefaultSpringSecurityContextSource">
-		<constructor-arg value="${ldap.java.naming.provider.url}" />
-	</bean>
+  <!-- This bean points at the embedded directory server created by the ldap-server element above -->
+  <bean id="contextSource" class="org.springframework.security.ldap.DefaultSpringSecurityContextSource">
+    <constructor-arg value="${ldap.java.naming.provider.url}"/>
+  </bean>
 
-    <bean id="MNITSAuthenticationProvider" class="gov.medicaid.security.DefaultExternalAuthenticationProvider">
-        <property name="system" value="MN_ITS"></property>
-        <property name="registrationService">
-            <bean class="org.springframework.jndi.JndiObjectFactoryBean">
-                <property name="jndiName">
-                    <value>${jndi.RegistrationService}</value>
-                </property>
-            </bean>
+  <bean id="MNITSAuthenticationProvider" class="gov.medicaid.security.DefaultExternalAuthenticationProvider">
+    <property name="system" value="MN_ITS"/>
+    <property name="registrationService">
+      <bean class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+          <value>${jndi.RegistrationService}</value>
         </property>
-        <property name="partnerService">
-            <bean class="org.springframework.jndi.JndiObjectFactoryBean">
-                <property name="jndiName">
-                    <value>${jndi.MNITSPartnerServiceBean}</value>
-                </property>
-            </bean>
+      </bean>
+    </property>
+    <property name="partnerService">
+      <bean class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+          <value>${jndi.MNITSPartnerServiceBean}</value>
         </property>
-    </bean>
-    
-    <bean id="CMSRememberMeUserDetailsService" class="gov.medicaid.security.CMSRememberMeUserDetailsService">
-        <property name="registrationService">
-            <bean class="org.springframework.jndi.JndiObjectFactoryBean">
-                <property name="jndiName">
-                    <value>${jndi.RegistrationService}</value>
-                </property>
-            </bean>
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="CMSRememberMeUserDetailsService" class="gov.medicaid.security.CMSRememberMeUserDetailsService">
+    <property name="registrationService">
+      <bean class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+          <value>${jndi.RegistrationService}</value>
         </property>
-    </bean>
+      </bean>
+    </property>
+  </bean>
 
-    <bean id="tokenRepository" class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
-      <property name="dataSource">
-		    <bean class="org.springframework.jndi.JndiObjectFactoryBean">
-		        <property name="jndiName">
-		            <value>${jndi.DataSource}</value>
-		        </property>
-		    </bean>
-      </property>
-    </bean>	   
-
-	<bean id="PrimaryDatabaseProvider" class="gov.medicaid.security.DomainDatabaseAuthenticationProvider">
-        <property name="registrationService">
-            <bean class="org.springframework.jndi.JndiObjectFactoryBean">
-                <property name="jndiName">
-                    <value>${jndi.RegistrationService}</value>
-                </property>
-            </bean>
+  <bean id="tokenRepository" class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+    <property name="dataSource">
+      <bean class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+          <value>${jndi.DataSource}</value>
         </property>
-	</bean>
-	
-	<bean id="PrimaryLdapProvider" class="gov.medicaid.security.DomainLdapAuthenticationProvider">
-		<constructor-arg>
-			<bean class="org.springframework.security.ldap.authentication.BindAuthenticator">
-				<constructor-arg ref="contextSource" />
-				<property name="userSearch">
-					<bean id="userSearch" class="org.springframework.security.ldap.search.FilterBasedLdapUserSearch">
-						<constructor-arg index="0" value="${ldap.userSearchBase}" />
-						<constructor-arg index="1" value="${ldap.userSearchFilter}" />
-						<constructor-arg index="2" ref="contextSource" />
-					</bean>
-				</property>
-			</bean>
-		</constructor-arg>
-		<property name="userDetailsContextMapper" ref="CMSLDAPUserDetailsMapper"></property>
-	</bean>
+      </bean>
+    </property>
+  </bean>
 
-	<bean id="CMSLDAPUserDetailsMapper" class="gov.medicaid.security.CMSLDAPUserDetailsMapper">
-		<property name="registrationService">
-			<bean class="org.springframework.jndi.JndiObjectFactoryBean">
-				<property name="jndiName">
-					<value>${jndi.RegistrationService}</value>
-				</property>
-			</bean>
-		</property>
-	</bean>
+  <bean id="PrimaryDatabaseProvider" class="gov.medicaid.security.DomainDatabaseAuthenticationProvider">
+    <property name="registrationService">
+      <bean class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+          <value>${jndi.RegistrationService}</value>
+        </property>
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="PrimaryLdapProvider" class="gov.medicaid.security.DomainLdapAuthenticationProvider">
+    <constructor-arg>
+      <bean class="org.springframework.security.ldap.authentication.BindAuthenticator">
+        <constructor-arg ref="contextSource"/>
+        <property name="userSearch">
+          <bean id="userSearch" class="org.springframework.security.ldap.search.FilterBasedLdapUserSearch">
+            <constructor-arg index="0" value="${ldap.userSearchBase}"/>
+            <constructor-arg index="1" value="${ldap.userSearchFilter}"/>
+            <constructor-arg index="2" ref="contextSource"/>
+          </bean>
+        </property>
+      </bean>
+    </constructor-arg>
+    <property name="userDetailsContextMapper" ref="CMSLDAPUserDetailsMapper"/>
+  </bean>
+
+  <bean id="CMSLDAPUserDetailsMapper" class="gov.medicaid.security.CMSLDAPUserDetailsMapper">
+    <property name="registrationService">
+      <bean class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+          <value>${jndi.RegistrationService}</value>
+        </property>
+      </bean>
+    </property>
+  </bean>
 </beans>

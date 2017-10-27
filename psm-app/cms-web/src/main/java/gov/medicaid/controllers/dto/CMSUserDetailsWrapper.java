@@ -26,7 +26,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
@@ -78,7 +78,7 @@ public class CMSUserDetailsWrapper implements UserDetails, CMSPrincipal {
 
         if (user.getRole() != null) {
             String role = user.getRole().getDescription().replace(' ', '_').toUpperCase();
-            authorities.add(new GrantedAuthorityImpl("ROLE_" + role));
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
         }
     }
 

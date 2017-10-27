@@ -20,7 +20,7 @@
 
   <context:property-placeholder location="classpath:cms.properties"/>
 
-  <bean id="multipartResolver"
+  <bean id="filterMultipartResolver"
         class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
     <property name="maxUploadSize" value="${max.upload.size}"/>
   </bean>

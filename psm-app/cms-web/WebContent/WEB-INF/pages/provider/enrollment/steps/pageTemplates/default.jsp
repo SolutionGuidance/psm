@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <div class="clearFixed"></div>
 <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/tabs.jsp" %>
@@ -9,7 +10,7 @@
 <!-- /.requiredInfo -->
 
 <form action="" id="enrollmentForm" method="post" enctype="multipart/form-data">
-
+  <sec:csrfInput />
   <!-- /.errorInfo -->
   <%@include file="/WEB-INF/pages/provider/enrollment/steps/errors.jsp" %>
 

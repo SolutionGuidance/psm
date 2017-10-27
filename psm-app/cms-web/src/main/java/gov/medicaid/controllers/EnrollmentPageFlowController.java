@@ -89,6 +89,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletRequestWrapper;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
@@ -102,6 +104,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -1559,9 +1562,11 @@ public class EnrollmentPageFlowController extends BaseController {
             EnrollmentType enrollment,
             HttpServletRequest request
     ) throws PortalServiceException {
-        if (request instanceof MultipartHttpServletRequest) {
+        Optional<MultipartHttpServletRequest> unwrappedRequest
+                = unwrapMultipartRequest(request);
+        if (unwrappedRequest.isPresent()) {
             try {
-                MultipartHttpServletRequest multipart = (MultipartHttpServletRequest) request;
+                MultipartHttpServletRequest multipart = unwrappedRequest.get();
                 Map<String, MultipartFile> uploads = multipart.getFileMap();
                 for (Entry<String, MultipartFile> file : uploads.entrySet()) {
                     Document attachment = new Document();
@@ -1587,6 +1592,20 @@ public class EnrollmentPageFlowController extends BaseController {
             } catch (IOException e) {
                 throw new PortalServiceException("Could not read uploaded file", e);
             }
+        }
+    }
+
+    private Optional<MultipartHttpServletRequest> unwrapMultipartRequest(
+            ServletRequest request
+    ) {
+        if (request instanceof MultipartHttpServletRequest) {
+            return Optional.of((MultipartHttpServletRequest) request);
+        } else if (request instanceof ServletRequestWrapper) {
+            return unwrapMultipartRequest(
+                    ((ServletRequestWrapper) request).getRequest()
+            );
+        } else {
+            return Optional.empty();
         }
     }
 

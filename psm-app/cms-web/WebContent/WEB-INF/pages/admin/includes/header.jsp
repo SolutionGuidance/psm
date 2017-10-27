@@ -62,7 +62,13 @@
             Welcome,
             <strong><sec:authentication property="principal.username" /></strong>
             | <a href="<c:url value='/system/help-system-admin' />">Help</a>
-            | <a href="<spring:url value="/j_spring_security_logout" />">Logout</a>
+            | <c:url var="logoutUrl" value="/logout"/>
+              <form action="${logoutUrl}" method="post" class="logoutForm">
+                <input type="submit" class="logoutButton" value="Logout"/>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+              </form>
           </div>
           <!-- /.userSection -->
           <div class="mastHead">
@@ -90,6 +96,7 @@
                   <div class="searchWidget">
                     <a href="<c:url value='/system/advanced-search-system-admin' />">Advanced Search</a>
                     <form id="searchBoxForm" class="inputContainer" action="<c:url value='/system/user/search?role=Provider' />"  method="post">
+                      <sec:csrfInput />
                       <a href="javascript:;" class="search searchBox"></a>
                       <input type="text" class="hint" value="Search Keyword" title="Search Keyword" name="firstName" id="searchBoxFirstName"/>
                       <input type="hidden" name="lastName" id="searchBoxLastName" />

@@ -18,6 +18,7 @@
 <h1>Advanced Search</h1>
 <div class="systemAdminFrom">
   <form cssClass="tabSection" id="advancedSearch" action="${ctx}/system/search/list" method="post">
+    <sec:csrfInput />
     <div class="detailPanel">
       <div class="section">
         <div class="leftCol">

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <div class="clearFixed"></div>
 <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/tabs.jsp" %>
@@ -16,6 +17,7 @@
 
 <!-- /.buttonBox -->
 <form action="" id="enrollmentForm" method="post" enctype="multipart/form-data">
+  <sec:csrfInput />
   <div class="personalPanel summaryPageWrapper">
     <c:set var="afterSummary" value="${false}"></c:set>
     <c:forEach var="tabName" items="${viewModel.tabNames}" varStatus="status">

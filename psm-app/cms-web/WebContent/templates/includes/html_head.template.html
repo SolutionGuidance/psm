@@ -1,6 +1,8 @@
 {{!-- Common HTML head element declarations. --}}
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="_csrf" content="{{csrf.token}}"/>
+  <meta name="_csrf_header" content="{{csrf.headerName}}"/>
 
   <title>{{title}}</title>
   <link rel="stylesheet" href="{{ctx}}/css/reset.css" type="text/css" media="all" />

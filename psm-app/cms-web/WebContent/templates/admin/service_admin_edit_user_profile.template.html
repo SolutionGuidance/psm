@@ -20,6 +20,7 @@
 
         <div class="tabSection">
           <form id="userForm" action="{{ctx}}/ops/updateUser" method="post">
+            <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}"/>
             <div class="detailPanel">
               <input id="userId" name="userId" type="hidden" value="{{user.userId}}" />
               <div class="section" id="updateProfile">

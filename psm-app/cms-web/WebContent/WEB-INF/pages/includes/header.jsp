@@ -14,7 +14,11 @@
     <div class="userSection">
       Welcome, <strong><sec:authentication property="principal.username" /></strong>
       | <a href="javascript:;">Help</a>
-      | <a href="<spring:url value="/j_spring_security_logout" />">Logout</a>
+      | <c:url var="logoutUrl" value="/logout"/>
+        <form action="${logoutUrl}" method="post" class="logoutForm">
+          <input type="submit" class="logoutButton" value="Logout"/>
+          <sec:csrfInput />
+        </form>
     </div>
     <!-- /.userSection -->
     <div class="mastHead">

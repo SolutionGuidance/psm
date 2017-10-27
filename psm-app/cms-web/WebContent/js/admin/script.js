@@ -1770,6 +1770,9 @@ function renewSelections(url) {
   }
 
   if (confirm("Renewal applications will be submitted for the following requests: " + selected + ". Continue?")) {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+
     $.ajax({
       url: url,
       data: { "ids": selected },
@@ -1777,6 +1780,9 @@ function renewSelections(url) {
       traditional: true,
       type: "POST",
       dataType: "json",
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader(header, token);
+      },
       success: function (data) {
         alert(data.message);
       }

@@ -27,7 +27,12 @@
     <s:remember-me key="${keys.remembermehash}" services-ref="rememberMeServices"/>
     <s:custom-filter ref="customAuthenticationProcessingFilter" position="FORM_LOGIN_FILTER"/>
     <s:anonymous/>
-    <s:logout logout-success-url="/login"/>
+    <s:logout
+        logout-url="/logout"
+        logout-success-url="/login"
+        invalidate-session="true"
+    />
+    <s:csrf />
   </s:http>
 
   <bean id="customAuthenticationProcessingFilter" class="gov.medicaid.security.CustomAuthenticationProcessingFilter">

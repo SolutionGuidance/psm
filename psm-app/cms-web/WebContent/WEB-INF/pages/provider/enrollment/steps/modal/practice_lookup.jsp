@@ -6,6 +6,7 @@
  --%>
 <!-- /#practiceLookupModal-->
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <div id="practiceLookupModal" class="outLay">
   <div class="inner">
     <!-- title -->
@@ -26,6 +27,7 @@
           <div class="searchRow">
             <c:url var="lookupUrl" value="/provider/enrollment/lookup" />
             <form action="${lookupUrl}" id="practiceLookupForm">
+              <sec:csrfInput />
               <span>
                 <label>Practice Name:</label>
                 <input type="hidden" name="agency" value="false"/>

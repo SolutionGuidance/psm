@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <div class="tabSection">
   <form action="" id="enrollmentForm" method="post">
+    <sec:csrfInput />
     <%@include file="/WEB-INF/pages/provider/enrollment/steps/errors.jsp" %>
 
     <div class="detailPanel firstRegistrant" style="width: 940px;">

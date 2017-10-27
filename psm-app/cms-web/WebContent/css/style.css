@@ -58,6 +58,22 @@ input,select,textarea{
   font-weight:bold;
   margin:0 4px;
 }
+.logoutForm {
+  display: inline;
+}
+.logoutButton {
+  background: none!important;
+  border: none;
+  color: #1aabff;
+  cursor: pointer;
+  font: inherit;
+  padding: 0!important;
+  text-decoration: underline;
+}
+.logoutButton:hover {
+  text-decoration: none;
+}
+
 #mainContent{
   float:left;
   width:100%;

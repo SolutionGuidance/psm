@@ -27,6 +27,8 @@ public class HandlebarsInterceptor extends HandlerInterceptorAdapter {
         // <c:set var="ctx" value="${pageContext.request.contextPath}"/>
         modelAndView.addObject("ctx", request.getContextPath());
 
+        modelAndView.addObject("csrf", request.getAttribute("_csrf"));
+
         CMSPrincipal principal = ControllerHelper.getPrincipal();
         if (principal != null) {
             CMSUser principalUser = principal.getUser();

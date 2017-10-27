@@ -60,7 +60,7 @@
         <div class="contentWidth">
           <div class="userSection">
             Welcome,
-            <strong><sec:authentication property="principal.username" /></strong>
+            <strong><c:out value="${principalUser.username}" /></strong>
             | <a href="<c:url value='/system/help-system-admin' />">Help</a>
             | <a href="<spring:url value="/j_spring_security_logout" />">Logout</a>
           </div>

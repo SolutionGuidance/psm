@@ -20,7 +20,7 @@
             <%@include file="/WEB-INF/pages/includes/logo.jsp" %>
           </div>
           <!-- /.mainNav -->
-          <form id="loginForm" action="<c:url value='j_spring_security_check'/>" method="post">
+          <form id="loginForm" action="<c:url value='login'/>" method="post">
             <sec:csrfInput />
             <div class="loginPanel">
               <h:handlebars template="includes/flash" context="${pageContext}"/>
@@ -38,11 +38,11 @@
 
               <div class="row">
                 <label class="label">Username:</label>
-                <input type="text" name="j_username" class="text" id="username" value="${LAST_USERNAME}" maxlength="50"/>
+                <input type="text" name="username" class="text" id="username" value="${LAST_USERNAME}" maxlength="50"/>
               </div>
               <div class="row">
                 <label class="label">Password:</label>
-                <input type="password" name="j_password" id="password"/>
+                <input type="password" name="password" id="password"/>
               </div>
               <div class="row">
                 <label class="label">Domain:</label>

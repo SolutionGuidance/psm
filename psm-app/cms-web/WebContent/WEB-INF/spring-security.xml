@@ -6,14 +6,15 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
     http://www.springframework.org/schema/security
-    http://www.springframework.org/schema/security/spring-security-3.2.xsd
+    http://www.springframework.org/schema/security/spring-security-4.0.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-4.1.xsd">
   <s:http pattern="/css/**" security="none"/>
   <s:http pattern="/js/**" security="none"/>
   <s:http pattern="/i/**" security="none"/>
 
-  <s:http entry-point-ref="authenticationProcessingFilterEntryPoint">
+  <s:http entry-point-ref="authenticationProcessingFilterEntryPoint"
+      use-expressions="false">
     <s:intercept-url pattern="/system/**" access="ROLE_SYSTEM_ADMINISTRATOR"/>
     <s:intercept-url pattern="/admin/**" access="ROLE_SERVICE_ADMINISTRATOR,ROLE_SERVICE_AGENT,ROLE_SYSTEM_ADMINISTRATOR"/>
     <s:intercept-url pattern="/agent/**" access="ROLE_SERVICE_ADMINISTRATOR,ROLE_SERVICE_AGENT,ROLE_SYSTEM_ADMINISTRATOR"/>
@@ -38,16 +39,17 @@
   <bean id="customAuthenticationProcessingFilter" class="gov.medicaid.security.CustomAuthenticationProcessingFilter">
     <property name="authenticationSuccessHandler" ref="simpleUrlAuthenticationSuccessHandler"/>
     <property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler"/>
-    <property name="filterProcessesUrl" value="/j_spring_security_check"/>
     <property name="authenticationManager" ref="authenticationManagerAlias"/>
     <property name="rememberMeServices" ref="rememberMeServices"/>
   </bean>
 
   <!-- Defines which remember me implementation to use - in this case using a database table to log 'remembered' tokens -->
-  <bean id="rememberMeServices" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
-    <property name="tokenRepository" ref="tokenRepository"/>
-    <property name="userDetailsService" ref="CMSRememberMeUserDetailsService"/>
-    <property name="key" value="${keys.remembermehash}"/>
+  <bean id="rememberMeServices"
+        class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+    <constructor-arg value="${keys.remembermehash}"/>
+    <constructor-arg ref="CMSRememberMeUserDetailsService"/>
+    <constructor-arg ref="tokenRepository"/>
+
     <property name="parameter" value="keepUserSignedIn"/>
     <property name="alwaysRemember" value="false"/>
     <property name="tokenValiditySeconds" value="604800"/>
@@ -61,8 +63,9 @@
     <constructor-arg value="/login"/>
   </bean>
 
-  <bean id="authenticationProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-    <property name="loginFormUrl" value="/login"/>
+  <bean id="authenticationProcessingFilterEntryPoint"
+        class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+    <constructor-arg value="/login"/>
     <property name="forceHttps" value="false"/>
   </bean>
 

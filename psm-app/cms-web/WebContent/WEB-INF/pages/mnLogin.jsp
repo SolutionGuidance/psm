@@ -20,7 +20,7 @@
             <%@include file="/WEB-INF/pages/includes/logo.jsp" %>
           </div>
 
-          <form id="loginForm" action="<c:url value='j_spring_security_check'/>" method="post">
+          <form id="loginForm" action="<c:url value='login'/>" method="post">
             <sec:csrfInput />
             <div class="loginPanel">
               <p>

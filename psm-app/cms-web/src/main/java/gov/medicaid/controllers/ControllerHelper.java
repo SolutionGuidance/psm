@@ -22,6 +22,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpSession;
 
 import gov.medicaid.entities.CMSUser;
+import gov.medicaid.interceptors.FlashMessageInterceptor;
 import gov.medicaid.security.CMSPrincipal;
 
 import org.springframework.web.servlet.ModelAndView;
@@ -64,8 +65,12 @@ public class ControllerHelper {
     public static CMSPrincipal getPrincipal() {
         SecurityContext context = SecurityContextHolder.getContext();
         Authentication authentication = context.getAuthentication();
-        CMSPrincipal principal = (CMSPrincipal) authentication.getPrincipal();
-        return principal;
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof CMSPrincipal) {
+            return (CMSPrincipal) principal;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -117,39 +122,5 @@ public class ControllerHelper {
     public static void addError(String message) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         attr.getRequest().setAttribute(FlashMessageInterceptor.FLASH_ERROR, message);
-    }
-
-    /**
-     * Adds request and application context info to model
-     * @param model to add extra information
-     */
-    public static void addContextInfoToModel(ModelAndView model) {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-
-        // <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-        model.addObject("ctx", attr.getRequest().getContextPath());
-
-        CMSPrincipal principal = ControllerHelper.getPrincipal();
-        if (principal != null) {
-            CMSUser principalUser = principal.getUser();
-            model.addObject("principalUser", principalUser);
-
-            // <c:if test="${requestPrincipal.user.role.description eq 'Service Administrator'}">
-            if (principalUser.getRole().getDescription().equals("Service Administrator")) {
-                model.addObject("isServiceAdministrator", true);
-            }
-
-            // <sec:authentication property="principal.loginDate" var="loginDate"/>
-            // <fmt:setLocale value="en_US" scope="session"/>
-            // Last login: <fmt:formatDate value="${loginDate}" pattern="EEEE, d MMMM yyyy hh:mm:ss a zzz"/>
-            SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, d MMMM yyyy hh:mm:ss a zzz", Locale.US);
-            model.addObject("loginDate", dateFormat.format(principal.getLoginDate()));
-
-            // TODO for provider/profile/list template of MyProfileController
-            // <sec:authentication property="principal.authenticatedBySystem" var="authenticatedBySystem"/>
-            // <sec:authentication property="principal" var="requestPrincipal"/>
-            // <spring:eval expression="authenticatedBySystem == T(gov.medicaid.entities.SystemId).CMS_ONLINE" var="isInternalUser" />
-            // if (principal.authenticatedBySystem == gov.medicaid.entities.SystemId.CMS_ONLINE) model.addObject("isInternalUser", true);
-        }
     }
 }

@@ -10,7 +10,6 @@
   <c:when test="${principal ne null && principal.enabled}">
     <html xmlns="http://www.w3.org/1999/xhtml">
       <c:set var="title" value="Server Error"/>
-      <c:set var="ctx" value="${pageContext.request.contextPath}"/>
       <h:handlebars template="includes/html_head" context="${pageContext}"/>
       <body>
         <div id="wrapper">

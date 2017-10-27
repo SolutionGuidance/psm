@@ -5,7 +5,6 @@
     @version 1.0
  --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <div class="nav">
     <div class="navR">
         <div class="navM">
@@ -18,18 +17,18 @@
                     <a href="<c:url value="/provider/dashboard/drafts" />">ENROLLMENTS</a>
                     <c:if test="${activeTab == 2}"><span class="arrow"></span></c:if>
                 </li>
-                <c:if test="${requestPrincipal.user.role.description eq 'Service Administrator'}">
+                <c:if test="${isServiceAdministrator}">
                 <li class="${activeTab == 4 ? 'active' : ''}">
-                    <a href="<c:url value="/admin/viewProviderTypes" />">FUNCTIONS</a> 
+                    <a href="<c:url value="/admin/viewProviderTypes" />">FUNCTIONS</a>
                     <c:if test="${activeTab == 4}"><span class="arrow"></span></c:if>
                 </li>
                 </c:if>
                 <li class="last ${activeTab == 3 ? 'active' : ''}">
-                    <a href="<c:url value="/myprofile" />">MY PROFILE</a> 
+                    <a href="<c:url value="/myprofile" />">MY PROFILE</a>
                     <c:if test="${activeTab == 3}"><span class="arrow"></span></c:if>
                 </li>
             </ul>
-            
+
                 <div class="searchWidget">
                     <a href="${ctx}/provider/search/advanced">Advanced Search</a>
                     <div class="inputContainer">

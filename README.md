@@ -134,8 +134,11 @@ As of 5 October 2017, the PSM offers the following functionality:
 * Record changes for auditing in database tables `audit_details` and `audit_records`
 * Extract, transform, and load List of Excluded Individuals data
 
-_[Note: As the developer team conducts initial improvement work on the PSM in June 2017, we anticipate recovering many of the features listed in the [original
-repository](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/blob/master/README.md), such as identity verification, building provider profiles, and MITA integration.]_
+_[Note: As the developer team conducts improvement work on the PSM, we
+anticipate recovering many of the features listed in the [original
+repository](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/blob/master/README.md),
+such as identity verification, building provider profiles, and MITA
+integration.]_
 
 ---------------------------------------------------------------------
 SECTION 4: Project Resources and Repository Organization

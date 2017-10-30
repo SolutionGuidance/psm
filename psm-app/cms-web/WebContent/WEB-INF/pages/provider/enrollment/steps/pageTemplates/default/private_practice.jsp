@@ -16,28 +16,28 @@
     <c:set var="formName" value="_05_objectId"></c:set>
     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
     <input type="hidden" name="${formName}" value="${formValue}"/>
-        
+
     <c:set var="disableLinkedFields" value=""></c:set>
     <c:set var="isLinked" value="${false}"></c:set>
     <c:if test="${not empty formValue}">
         <c:set var="disableLinkedFields" value='disabled="disabled"'></c:set>
         <c:set var="isLinked" value="${true}"></c:set>
     </c:if>
-    
+
     <c:set var="disableBillingAddress" value="${isLinked}" />
     <c:set var="billingAddressMarkup" value="${disableLinkedFields}" />
     <c:set var="formName" value="_05_billingSameAsPrimary"></c:set>
     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-    
+
     <c:if test="${formValue eq 'Y'}">
         <c:set var="disableBillingAddress" value="${true}" />
         <c:set var="billingAddressMarkup" value='disabled="disabled"'></c:set>
     </c:if>
-    
+
     <c:set var="formName" value="_05_objectIdHash"></c:set>
     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
     <input type="hidden" name="${formName}" value="${formValue}"/>
-    
+
     <div id="privatePractice">
         <div class="tableHeader otherTableHeader">
             <span>Private Practice or Primary Office Location Information</span>
@@ -49,7 +49,7 @@
                 <div class="row">
                     <label>Private Practice Name<span class="required">*</span></label>
                     <span class="floatL"><b>:</b></span>
-                    
+
                     <c:set var="formName" value="_05_name"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input ${disableLinkedFields} type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
@@ -75,7 +75,7 @@
                 <div class="row addressline1">
                     <label>Practice Address<span class="required">*</span></label>
                     <span class="floatL"><b>:</b></span>
-                    
+
                     <c:set var="formName" value="_05_addressLine1"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input ${disableLinkedFields} type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
@@ -161,19 +161,19 @@
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <input ${disableLinkedFields} type="checkbox" class="checkbox" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}/>Same as Above
                         </div>
-                        
+
                         <div class="row addressline1">
                             <c:set var="formName" value="_05_billingAddressLine1"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <input ${billingAddressMarkup} type="text" class="${disableBillingAddress ? 'disabled' : '' } addressInput normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
                         </div>
-                        
+
                         <div class="row addressline2">
                             <c:set var="formName" value="_05_billingAddressLine2"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <input ${billingAddressMarkup} type="text" class="${disableBillingAddress ? 'disabled' : '' } addressInput normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
                         </div>
-                        
+
                         <div class="addreddWrapper">
                             <label class="smallLabel">City<span class="required">*</span> : </label>
                             <c:set var="formName" value="_05_billingCity"></c:set>
@@ -262,7 +262,7 @@
         </div>
         <!-- /.section -->
     </div>
-    
+
     <!-- /#primaryOffice -->
     <div class="clear"></div>
     <div class="tl"></div>

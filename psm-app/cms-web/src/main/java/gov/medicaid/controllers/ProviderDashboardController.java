@@ -327,8 +327,23 @@ public class ProviderDashboardController extends BaseController {
 
         CMSUser principal = ControllerHelper.getCurrentUser();
         SearchResult<UserRequest> results = enrollmentService.searchTickets(principal, criteria);
+        int pageNumber = results.getPageNumber();
+        int pageSize = results.getPageSize();
+        int totalItems = results.getTotalItems();
         ModelAndView mv = new ModelAndView(view);
         mv.addObject("results", results);
+        mv.addObject(
+                "pageStartItem",
+                totalItems == 0 ? 0 : ((pageNumber - 1) * pageSize) + 1
+        );
+        mv.addObject(
+                "pageEndItem",
+                ((pageNumber - 1) * pageSize) + totalItems
+        );
+        mv.addObject(
+                "pageSize" + String.valueOf(pageSize),
+                true
+        );
 
         // revert changes to input
         criteria.setEnrollmentNumber(enrollmentNumber);

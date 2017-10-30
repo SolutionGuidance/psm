@@ -1,0 +1,9 @@
+{{!-- Fragment for common pagination details. --}}
+
+ Displaying <strong>{{pageStartItem}}</strong> - <strong>{{pageEndItem}}</strong> of <strong>{{results.total}}</strong> Enrollment | Show:
+ <select onchange="changePageSize(this.value);">
+     <option value="10" {{#if pageSize10}} selected {{/if}}>10</option>
+     <option value="25" {{#if pageSize25}} selected {{/if}}>25</option>
+     <option value="50" {{#if pageSize50}} selected {{/if}}>50</option>
+     <option value="0" {{#if pageSize0}} selected {{/if}}>All</option>
+ </select>

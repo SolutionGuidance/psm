@@ -1,9 +1,10 @@
 # TESTING
 
-The PSM has a few different categories of tests: integration, unit, and
-API tests.  This document describes what tests and test frameworks are
-in place and gives guidance about contributing new tests in each of
-these categories.
+The PSM has a few different categories of tests: integration, unit,
+and API tests.  This document describes what tests and test frameworks
+are in place and gives guidance about contributing new tests in each
+of these categories, and about additional manual or semi-automated
+testing you should do when developing.
 
 ## Browser / Integration Tests
 
@@ -75,3 +76,47 @@ test` you might not see test results.  However, those results are
 available.  Run `./gradlew cms-business-process:clean
 cms-business-process:test --info` to see where the reports are stored.
 
+## Manual and Semi-automated Testing
+
+To check for accessibility issues in a new template or other
+user-visible change, use
+[HTML_CodeSniffer](https://squizlabs.github.io/HTML_CodeSniffer/) as a
+bookmarklet in your browser. Choose "Section508" in the "Standards"
+dropdown [since that's the standard we need to comply
+with](https://github.com/OpenTechStrategies/psm/issues/415). [This
+checklist](https://www.section508.gov/content/build/website-accessibility-improvement/major-web-issues)
+is useful to help you find major accessibility problems.
+
+To test several pages, you can use
+[`pa11y`](https://github.com/pa11y/pa11y) on the command line against
+a live webpage or a local saved one, and can filter results so it only
+tells you about Section 508 issues. To install `pa11y`:
+
+1. [Install Node.js](https://nodejs.org/en/download/package-manager/)
+4+ ([Debian/Ubuntu
+instructions](https://github.com/nodesource/distributions#deb)
+
+2. [Follow these instructions to handle NPM
+packages](https://stackoverflow.com/a/13021677)
+
+3. Install [`pa11y`](https://www.npmjs.com/package/pa11y) with:
+
+`$ npm install -g pa11y`
+
+To run `pa11y` against your running developer instance:
+
+`$ pa11y --standard Section508 http://localhost:8080/cms/login`
+
+Right now we don't have `pa11y` wired up to get past the login screen
+or fill in forms. You can get around this by runing `pa11y` against a
+webpage you've saved locally:
+
+`$ pa11y -s Section508 file:///tmp/ProviderTypePage.html`
+
+You can use the `-r` flag to get `pa11y` output in a different format,
+such as JSON or CSV, to make it easier to run larger analyses.
+
+To make it easier to test branches, we have a script to refresh a
+development environment with a new Gradle build and a fresh new
+database: `scripts/rebuild-and-change-schema-for-testing.sh`.  Make
+sure to run it from within `scripts/`.

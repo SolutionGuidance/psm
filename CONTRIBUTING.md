@@ -22,11 +22,11 @@ build](https://travis-ci.org/OpenTechStrategies/psm).  We have caught
 issues at this stage in even simple patches.
 
 As you work on your branch, try to test it locally to ensure that it
-still builds and deploys properly. To make it easier to test branches,
-we have a script to refresh a development environment with a new
-Gradle build and a fresh new database:
-`scripts/rebuild-and-change-schema-for-testing.sh`.  Make sure to run
-it from within `scripts/`.
+still builds and deploys properly, and that you haven't introduced new
+accessibility bugs. See `docs/TESTING.md` for more instructions, and
+use [this
+checklist](https://www.section508.gov/content/build/website-accessibility-improvement/major-web-issues)
+as you look for major accessibility problems.
 
 Generally, the more controversial, complex or large a change, the more
 opportunity people should have to comment on it.  That means it should
@@ -47,11 +47,12 @@ conversation around a change has concluded.  If you're unsure, ask!
 "Is this ready to merge?" is often a useful next step in the
 conversation.
 
-If your PR fixes a bug or adds a feature, please include a brief testing
-plan along with the change.  Once a test framework has been set up, that
-testing plan will come in the form of a test.  For now, use a
-Given-When-Then description like
-[this one](https://github.com/OpenTechStrategies/psm/blob/master/psm-app/cms-web/src/main/test/resources/features/enrollment/create_enrollment.feature).
+If your PR fixes a bug or adds a feature, please include a brief
+testing plan along with the change.  Once our testing framework (see
+`docs/TESTING.md`) is more formalized, that testing plan will come in
+the form of a test.  For now, use a Given-When-Then description like
+[this
+one](https://github.com/OpenTechStrategies/psm/blob/master/psm-app/cms-web/src/main/test/resources/features/enrollment/create_enrollment.feature).
 
 ### The "Obvious Fix" rule: committing some minor changes directly to 'master'
 

@@ -16,16 +16,14 @@
 
 package gov.medicaid.controllers.admin;
 
+import com.topcoder.util.log.Log;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.LogUtil;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.topcoder.util.log.Log;
 
 /**
  * A base controller class that other classes will extend that provides logging, auditing, and additional services.

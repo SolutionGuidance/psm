@@ -16,20 +16,17 @@
 
 package gov.medicaid.controllers;
 
+import com.topcoder.util.log.Log;
 import gov.medicaid.controllers.validators.StrictCustomDateEditor;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.util.LogUtil;
-
-import java.util.Date;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 
-import com.topcoder.util.log.Log;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 /**
  * A base controller class that other classes will extend that provides logging.

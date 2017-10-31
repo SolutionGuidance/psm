@@ -18,13 +18,16 @@ package gov.medicaid.controllers;
 
 import com.topcoder.util.log.Log;
 import gov.medicaid.controllers.validators.StrictCustomDateEditor;
+import gov.medicaid.interceptors.HandlebarsInterceptor;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.util.LogUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
@@ -77,15 +80,22 @@ public abstract class BaseController {
     }
 
     /**
-     * Captures any exception that is thrown from the controllers and sends the user to the
-     * error page.
-     * @param ex the exception thrown
+     * Captures any exception that is thrown from the controllers and renders
+     * the error page.
+     *
+     * @param request the request that resulted in an exception
+     * @param ex      the exception thrown
      * @return the error view
      */
     @ExceptionHandler(Exception.class)
-    public String handleError(Exception ex) {
+    public ModelAndView handleError(
+            HttpServletRequest request,
+            Exception ex
+    ) {
         LogUtil.traceError(getLog(), "BaseController#handleError(Exception ex)", ex);
-        return "error";
+        ModelAndView view = new ModelAndView("error");
+        HandlebarsInterceptor.addCommonVariables(request, view);
+        return view;
     }
 
     /**

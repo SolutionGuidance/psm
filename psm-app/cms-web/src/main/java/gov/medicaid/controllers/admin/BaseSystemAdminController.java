@@ -17,6 +17,7 @@
 package gov.medicaid.controllers.admin;
 
 import com.topcoder.util.log.Log;
+import gov.medicaid.interceptors.HandlebarsInterceptor;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.RegistrationService;
@@ -24,6 +25,8 @@ import gov.medicaid.services.util.LogUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * A base controller class that other classes will extend that provides logging, auditing, and additional services.
@@ -65,14 +68,20 @@ public abstract class BaseSystemAdminController {
 
     /**
      * Directs all exceptions encountered by subclasses to a generic error page.
-     * @param ex the exception encountered
+     *
+     * @param request the request that resulted in an exception
+     * @param ex      the exception encountered
      * @return the error view name
      */
     @ExceptionHandler(Exception.class)
-    public ModelAndView handleException(Exception ex) {
+    public ModelAndView handleException(
+            HttpServletRequest request,
+            Exception ex
+    ) {
         LogUtil.traceError(getLog(), "BaseSystemAdminController#handleException(Exception ex)", ex);
         ModelAndView view = new ModelAndView("error");
         view.addObject("exception", ex);
+        HandlebarsInterceptor.addCommonVariables(request, view);
         return view;
     }
 

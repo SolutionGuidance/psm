@@ -8,6 +8,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -24,6 +25,13 @@ public class HandlebarsInterceptor extends HandlerInterceptorAdapter {
             return;
         }
 
+        addCommonVariables(request, modelAndView);
+    }
+
+    public static void addCommonVariables(
+            @NotNull HttpServletRequest request,
+            @NotNull ModelAndView modelAndView
+    ) {
         // <c:set var="ctx" value="${pageContext.request.contextPath}"/>
         modelAndView.addObject("ctx", request.getContextPath());
 

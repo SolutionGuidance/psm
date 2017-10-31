@@ -7,6 +7,28 @@
    conversation with operations engineers in state IT departments to
    help us develop that guide later in 2017. ***
 
+**Contents**
+
+- **[Background and Current Deployment Status](#background-and-current-deployment-status)**
+- **[Requirements Overview](#requirements-overview)**
+    - [Hardware](#hardware)
+    - [Software](#software)
+    - [Database](#database)
+    - [Mail](#mail)
+- **[Installation Instructions](#installation-instructions)**
+    - [Install prerequisites](#install-prerequisites)
+    - [Configure WildFly](#configure-wildfly)
+    - [Configure Mail](#configure-mail)
+    - [Configure Database](#configure-database)
+    - [Build and deploy the application](#build-and-deploy-the-application)
+    - [Build documentation](#build-documentation)
+    - [Run automated tests](#run-automated-tests)
+    - [Maintain and update environment](#maintain-and-update-environment)
+- **[Production Deployment](#production-deployment)**
+    - [NGINX](#nginx)
+    - [Continuous Deployment](#continuous-deployment)
+        - [Travis Environment Variables](#travis-environment-variables)
+
 # Background and Current Deployment Status
 
 2017-09-08: The PSM is not yet ready for production deployment,
@@ -41,12 +63,10 @@ on a correctly-configured Java EE Application Server. While it was originally
 written for the Java EE 6 profile, it is currently being ported to run on Java
 EE 7 Application Servers, starting with WildFly 10.
 
-## System Requirements
-
 These requirements are based on our understanding of the application at this
 time, and will evolve as we understand it more.
 
-### Hardware
+## Hardware
 
 - **Memory**: 8 GB should be enough for a test system.
 - **CPU**: TBA; provisioning CPU proportional to memory (whatever that
@@ -56,7 +76,9 @@ time, and will evolve as we understand it more.
 - **Storage**: 10 GB of storage for WildFly, the PSM repository, and its
   dependencies should be plenty.
 
-### Software
+## Software
+
+This is just an overview; see installation instructions below.
 
 - **Operating System**: we recommend Debian 9 stable, also known as
   stretch.  If you prefer Debian testing, we have had success with
@@ -73,7 +95,7 @@ time, and will evolve as we understand it more.
 - **Java EE Application Server**: currently WildFly 10.1. We may support other
   application servers in the future.
 
-### Database
+## Database
 
 We're testing with latest stable PostgreSQL, currently 9.6.2. PostgreSQL 10
 will be released shortly and we hope/intend to verify compatibility with that.
@@ -92,7 +114,7 @@ These should be XA data sources that both point to the same
 database. The installation instructions below will take care of this
 configuration for a development install.
 
-### Mail
+## Mail
 
 The application requires the application server to be configured with a mail service:
 - JNDI name `java:/Mail`
@@ -121,7 +143,8 @@ configuration for a development install.
 
 1. [PostgreSQL 9.6](https://www.postgresql.org/). We are testing with
    PostgreSQL 9.6.2. Check that you have PostgreSQL installed.  If you
-   do not, it is available on Debian via `sudo apt install postgresql-9.6`.
+   do not, it is available on Debian via `sudo apt install postgresql-9.6`,
+   or you can download it from https://www.postgresql.org.
 
 1. The PSM code repository. Currently we suggest you run the PSM from
    the master branch of the development repository. Run the command
@@ -163,7 +186,7 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
    and password, leave the group blank and answer "no" to the question
    about host controllers.
 
-1. Stop the server if it is already running:
+1. Stop the server if it is already running.  (It should not be running yet.)
 
    ```ShellSession
    $ ./bin/jboss-cli.sh --connect --command=:shutdown
@@ -210,15 +233,14 @@ Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
 
 1. Leave WildFly running as you continue the install process.
 
-## Configure services
-
-### Mail
+## Configure Mail
 
 If you are using a debugging mail server such as the Python
 `DebuggingServer` recommended above: open a new terminal session so
 you can leave WildFly running in its existing terminal and Python
-running in its existing terminal. Paste the entire command below, all
-the way through the second `EOF`, into your terminal:
+running in its existing terminal. In the new terminal navigate to the
+WildFly directory and paste in the entire command below, all the
+way through the second `EOF`:
 
 ```ShellSession
 $ ./bin/jboss-cli.sh --connect << EOF
@@ -232,12 +254,13 @@ If you are using a production mail server, add a mail session with a JNDI name
 of `java:/Mail` to your application server with the appropriate credentials
 using the command line or web interface.
 
-### Database
+## Configure Database
 
 Download the [PostgreSQL JDBC driver](https://jdbc.postgresql.org/download.html)
 (specifically, the JDBC 4.2 version of the driver). Place it in the
-parent directory, relative to the WildFly directory, and deploy it to
-your application server:
+parent directory, relative to the WildFly directory.  Then deploy it to
+your application server by running the following command in the WildFly
+directory:
 
 ```ShellSession
 $ ./bin/jboss-cli.sh --connect --command="deploy ../postgresql-{VERSION}.jar"
@@ -251,12 +274,11 @@ WildFly server. The terminal logging for WildFly should then include
 an `INFO` line like:
 
 ```
-15:32:15, 773 INFO [org.jboss.as.server] )ServerService Thread Pool --37) WFLYSRV0010: Deployed "postgresql-42.1.1.jar" (runtime-name: "postgresql-42.1.1.jar")
+15:32:15, 773 INFO [org.jboss.as.server] (management-handler-thread - 6) WFLYSRV0010: Deployed "postgresql-42.1.1.jar" (runtime-name: "postgresql-42.1.1.jar")
 ```
 
-You will need a database user, and a database owned by that
-user. Create them, and make a note of the password for the database
-user:
+Create a database user and a database owned by that user.  You will be prompted
+to enter/create a password for the database user. Make a note of this password.
 
 ```ShellSession
 $ sudo -u postgres createuser --pwprompt psm
@@ -301,7 +323,7 @@ EOF
 ```
 
 ## Build and deploy the application
-1. Fill in your local properties:
+1. Navigate to the psm-app directory:
 
    ```ShellSession
    $ cd ../{psm}/psm-app
@@ -320,12 +342,16 @@ EOF
    BUILD SUCCESSFUL
    ```
 
-1. Deploy the built app: you can use the WildFly Management Console UI
-   at [http://localhost:9990/](http://localhost:9990/), log in with
-   your management console username and password, and do the
-   following: "Deployments > Add > Upload a new deployment > browse to
-   file." Alternatively, you can use the command line interface,
-   replacing the relevant paths below:
+1. Deploy the built app.  You can use the WildFly Management Console UI
+   at [http://localhost:9990/](http://localhost:9990/).  Log in with
+   your management console username and password (if you are not already logged
+   in).  Then do the following: "Deployments [tab] > Add [button] > Upload a new
+   deployment > browse to file."  And browse to this file:
+
+   `{/path/to/psm}/psm-app/cms-portal-services/build/libs/cms-portal-services.ear`
+
+   Alternatively, you can use the command line interface, replacing the relevant
+   paths below:
 
    ```ShellSession
    $ {/path/to/wildfly}/bin/jboss-cli.sh --connect \
@@ -357,8 +383,8 @@ EOF
 
 ## Build documentation
 
-Generate the API documentation from Javadoc annotations by invoking
-gradle:
+Generate the API documentation from Javadoc annotations by navigating to the
+psm-app directory and invoking gradle:
 
     ./gradlew cms-web:apiDocs
 

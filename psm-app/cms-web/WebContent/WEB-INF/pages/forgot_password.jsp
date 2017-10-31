@@ -23,7 +23,7 @@
           <div class="head">
             <h1 class="text">Forgot Password</h1>
           </div>
-          <%@include file="/WEB-INF/pages/includes/flash.jsp" %>
+          <h:handlebars template="includes/flash" context="${pageContext}"/>
 
           <div class="tabSection">
             <form:form commandName="passwordForm" id="passwordForm">

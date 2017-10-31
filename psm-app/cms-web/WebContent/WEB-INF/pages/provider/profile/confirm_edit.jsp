@@ -28,8 +28,7 @@
             <h1>Confirm Edit</h1>
           </div>
           <div class="clearFixed"></div>
-
-          <%@include file="/WEB-INF/pages/includes/flash.jsp" %>
+          <h:handlebars template="includes/flash" context="${pageContext}"/>
 
           <div class="dashboardPanel">
             <div class="tableDataButtons buttonBox">

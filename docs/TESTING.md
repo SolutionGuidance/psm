@@ -39,6 +39,25 @@ buttons in the `ui` subdirectory.
 See [PR #348](https://github.com/OpenTechStrategies/psm/pull/348) for an
 example of adding a new Selenium test.
 
+### Running Browser Tests
+
+#### With SauceLabs
+Sauce Labs is a proprietary service that is free for open source projects.
+We use it for our continuous integration, but local developers are welcome
+to use it for local tests as well.  This documentation is geared towards
+setting up continuous integration, but the environment variables are the
+same in both cases.  To set up local sauce labs testing, please read the
+[sauce labs documentation](https://wiki.saucelabs.com/display/DOCS/Sauce+Connect+Proxy).
+
+**Environment Variables:**
+These must be set in the testing environment in order to communicate with
+Sauce Labs.
+
+- **SAUCE_ACCESS_KEY - ** The saucelabs access key, found in your Sauce
+Labs account.
+
+- **SAUCE_USERNAME - ** The username you use when logging into Sauce Labs.
+
 ## API Tests
 
 See [the relevant

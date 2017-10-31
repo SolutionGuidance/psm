@@ -15,6 +15,7 @@ buildscript {
 def jbpm_version = '5.4.0.Final'
 def spring_core_version = '4.1.9.RELEASE'
 def spring_security_version = '3.2.10.RELEASE'
+def serenity_version = '1.5.5'
 
 // These libraries are known to be used, since they are required during compile
 // or on immediate deployment
@@ -272,8 +273,8 @@ project(':integration-tests') {
     }
 
     dependencies {
-        testCompile 'net.serenity-bdd:serenity-core:1.4.0'
-        testCompile 'net.serenity-bdd:serenity-junit:1.4.0'
+        testCompile "net.serenity-bdd:serenity-core:${serenity_version}"
+        testCompile "net.serenity-bdd:serenity-junit:${serenity_version}"
         testCompile 'net.serenity-bdd:serenity-cucumber:1.1.35'
         testCompile 'junit:junit:4.12'
         testCompile 'org.assertj:assertj-core:3.8.0'
@@ -291,8 +292,21 @@ project(':integration-tests') {
     }
 
     test {
-        environment "DISPLAY", System.getenv('XVFB_DISPLAY')
-        systemProperty "webdriver.firefox.bin", System.getenv('FIREFOX_HOME')
+
+        // Run sauce labs if it is configured
+        if(System.getenv("SAUCE_USERNAME") != null) {
+            // TODO: Platform, driver, and version can be env configurable
+            systemProperty "webdriver.driver",  "chrome"
+            systemProperty "saucelabs.url", "https://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.saucelabs.com:443/wd/hub"
+            systemProperty "saucelabs.target.platform", "MAC" // See: https://github.com/SeleniumHQ/selenium/blob/master/java/client/src/org/openqa/selenium/Platform.java
+            systemProperty "saucelabs.driver.version", "60"
+            systemProperty "saucelabs.access.key", System.getenv("SAUCE_ACCESS_KEY")
+            systemProperty "saucelabs.user.id", System.getenv("SAUCE_USERNAME")
+
+            if(System.getenv("TRAVIS_JOB_NUMBER") != null) {
+                systemProperty "saucelabs.tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER")
+            }
+        }
     }
 }
 

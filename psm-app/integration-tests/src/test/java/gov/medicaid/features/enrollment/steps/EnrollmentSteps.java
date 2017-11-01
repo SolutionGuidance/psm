@@ -56,7 +56,6 @@ public class EnrollmentSteps {
     private static final String PRACTICE_FEIN = "12-3456789";
     private static final String PRACTICE_STATE_TAX_ID = "1234567";
     private static final String PRACTICE_YEAR_END = "12/31";
-    private static final String PRACTICE_EFT_VENDOR_NUMBER = "1234567890-123";
 
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
@@ -197,7 +196,7 @@ public class EnrollmentSteps {
         practiceInfoPage.enterFein(PRACTICE_FEIN);
         practiceInfoPage.enterStateTaxId(PRACTICE_STATE_TAX_ID);
         practiceInfoPage.enterFiscalYearEnd(PRACTICE_YEAR_END);
-        practiceInfoPage.enterEftVendorNumber(PRACTICE_EFT_VENDOR_NUMBER);
+        practiceInfoPage.checkYesEftAccepted();
         practiceInfoPage.checkFirstRemittanceSequence();
     }
 
@@ -271,8 +270,8 @@ public class EnrollmentSteps {
                 .isEqualToIgnoringWhitespace(PRACTICE_STATE_TAX_ID);
         assertThat(individualSummaryPage.getFiscalYearEnd())
                 .isEqualToIgnoringWhitespace(PRACTICE_YEAR_END);
-        assertThat(individualSummaryPage.getEftVendorNumber())
-                .isEqualToIgnoringWhitespace(PRACTICE_EFT_VENDOR_NUMBER);
+        assertThat(individualSummaryPage.getEftAccepted())
+                .isTrue();
         assertThat(individualSummaryPage.getRemittanceSequence())
                 .isEqualToIgnoringWhitespace("Patient Account or Own Reference Number Order");
     }

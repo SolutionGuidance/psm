@@ -152,7 +152,27 @@ public class PDFHelper {
     public static String formatBoolean(String val) {
         return "Y".equals(val) ? "Yes" : "N".equals(val) ? "No" : "";
     }
-    
+
+    /**
+     * Retrieves the namespaced attribute.
+     *
+     * @param model the view model
+     * @param ns    the namespace
+     * @param name  the attribute name
+     * @return the attribute value
+     */
+    public static String getBoolean(
+            Map<String, Object> model,
+            String ns,
+            String name
+    ) {
+        Object val = model.get(ns + name);
+        if (val == null) {
+            return "";
+        }
+        return (Boolean) val ? "Yes" : "No";
+    }
+
     /**
      * Formats the address as string.
      *

@@ -231,11 +231,30 @@
                     <span class="shrtFldInfo">MM/DD</span>
                 </div>
                 <div class="row">
-                    <label>EFT Vendor Number</label>
+                    <label>Do you accept <abbr title="Electronic Funds Transfer">EFT</abbr>?<span class="required">*</span></label>
                     <span class="floatL"><b>:</b></span>
-                    <c:set var="formName" value="_05_eftVendorNo"></c:set>
+                    <c:set var="formName" value="_05_eftAccepted"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input ${disableLinkedFields} type="text" class="normalInput eftMasked" name="${formName}" value="${formValue}" maxlength="14"/>
+                    <div class="rowWrapper">
+                        <div class="row">
+                            <label class="span">
+                                <input type="radio"
+                                    value="true"
+                                    name="${formName}"
+                                    ${formValue ? 'checked' : ''}>
+                                Yes
+                            </label>
+                        </div>
+                        <div class="row">
+                            <label class="span">
+                                <input type="radio"
+                                    value="false"
+                                    name="${formName}"
+                                    ${empty formValue or formValue ? '' : 'checked'}>
+                                No
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <label>Remittance Sequence<span class="required">*</span></label>

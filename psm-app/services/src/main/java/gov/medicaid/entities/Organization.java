@@ -100,8 +100,8 @@ public class Organization extends Entity {
     @Column(name = "remittance_sequence_order")
     private RemittanceSequenceOrder remittanceSequenceOrder;
 
-    @Column(name = "eft_vendor_number")
-    private String eftVendorNumber;
+    @Column(name = "eft_accepted")
+    private Boolean eftAccepted;
 
     /**
      * Empty constructor.
@@ -173,14 +173,6 @@ public class Organization extends Entity {
         this.remittanceSequenceOrder = remittanceSequenceOrder;
     }
 
-    public String getEftVendorNumber() {
-        return eftVendorNumber;
-    }
-
-    public void setEftVendorNumber(String eftVendorNumber) {
-        this.eftVendorNumber = eftVendorNumber;
-    }
-
     public String getBillingSameAsPrimary() {
         return billingSameAsPrimary;
     }
@@ -211,5 +203,13 @@ public class Organization extends Entity {
 
     public void setAgencyId(String agencyId) {
         this.agencyId = agencyId;
+    }
+
+    public Boolean isEftAccepted() {
+        return eftAccepted;
+    }
+
+    public void setEftAccepted(Boolean eftAccepted) {
+        this.eftAccepted = eftAccepted;
     }
 }

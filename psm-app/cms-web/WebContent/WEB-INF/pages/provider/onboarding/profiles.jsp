@@ -2,6 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <c:set var="title" value="Import Profiles"/>
@@ -31,6 +32,7 @@
           <div class="dashboardPanel">
             <div class="tableData">
               <form id="importProfilesForm" action="<c:url value="/provider/onboarding/list" />" method="post">
+                <sec:csrfInput />
                 <div class="tableTitle">
                   <h2>Profiles</h2>
                 </div>

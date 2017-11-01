@@ -91,6 +91,7 @@
               </div>
               <!-- /.mainNav -->
               <form id="loginForm" action="<c:url value='j_spring_security_check'/>" method="post">
+                <sec:csrfInput />
                 <div class="loginPanel">
                   <h:handlebars template="includes/flash" context="${pageContext}"/>
 

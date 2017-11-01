@@ -28,6 +28,7 @@
           <div class="tabSection" id="enrollmentSection">
             <%@include file="/WEB-INF/pages/provider/enrollment/steps/screening_errors.jsp" %>
             <form action="${ctx}/agent/enrollment/approve" method="post" id="approvalForm">
+              <sec:csrfInput />
 
               <div class="newEnrollmentPanel practicePanel">
                 <div class="tableHeader topHeader"><span>Provider Information</span></div>

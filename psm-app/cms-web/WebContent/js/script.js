@@ -2206,14 +2206,25 @@ function openAgencyLookup(primary) {
   openModal('#practiceLookupModal');
 }
 
+function postJson(settings) {
+  var token = $("meta[name='_csrf']").attr("content");
+  var header = $("meta[name='_csrf_header']").attr("content");
+  $.extend(settings, {
+    type: "post",
+    dataType: "json",
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader(header, token);
+    },
+  })
+  $.ajax(settings);
+}
+
 function performPracticeLookup() {
   var $form = $("#practiceLookupForm");
   $('#practiceLookupForm input[name="agency"]').val(isAgencyLookup);
 
-  $.ajax({
+  postJson({
     url: $form.attr("action"),
-    type: "post",
-    dataType: "json",
     async: false, // we are in modal anyway
     data: $form.serialize(),
     success: function (response, textStatus, jqXHR) {
@@ -2562,10 +2573,8 @@ function performMemberLookup(el) {
   var val = $(el).prev().val();
   var parent = $(el).closest('.memberInfoPanel');
 
-  $.ajax({
+  postJson({
     url: $url + "?npi=" + val,
-    type: "post",
-    dataType: "json",
     success: function (response, textStatus, jqXHR) {
       if (response.length > 0) {
         $(el).next().hide();
@@ -2589,10 +2598,8 @@ function performSetupLookup(el) {
   var val = $(el).prev().val();
   var parent = $(el).closest('.memberInfoPanel');
 
-  $.ajax({
+  postJson({
     url: $url + "?npi=" + val,
-    type: "post",
-    dataType: "json",
     success: function (response, textStatus, jqXHR) {
       if (response.length > 0) {
         $(el).next().hide();
@@ -2626,10 +2633,8 @@ function performSetupLookup(el) {
 function updateBeneficialOwnerTypes(val) {
   var $url = $("#ownerTypeLookupURL").val();
 
-  $.ajax({
+  postJson({
     url: $url + "?entityType=" + val,
-    type: "post",
-    dataType: "json",
     success: function (response, textStatus, jqXHR) {
 
       // update person owners

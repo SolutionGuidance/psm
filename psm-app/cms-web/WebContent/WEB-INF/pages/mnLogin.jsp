@@ -2,6 +2,7 @@
 <%@page import="org.springframework.security.web.WebAttributes"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <c:set var="title" value="Login"/>
   <h:handlebars template="includes/html_head" context="${pageContext}"/>
@@ -20,6 +21,7 @@
           </div>
 
           <form id="loginForm" action="<c:url value='j_spring_security_check'/>" method="post">
+            <sec:csrfInput />
             <div class="loginPanel">
               <p>
                 This is a mockup for requests coming from an internal site. Fill up the expected data below and submit.

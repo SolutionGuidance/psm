@@ -31,6 +31,7 @@
           <div class="tabSection">
             <c:set var="actionPath" value="${ctx}/agent/enrollment/addCOS"/>
             <form action="${actionPath}" method="post" id="cosForm">
+              <sec:csrfInput />
               <input type="hidden" name="id" value="${profile.profileId}" />
               <div class="detailPanel">
                 <c:forEach var="cos" items="${existingServices}" varStatus="loop">

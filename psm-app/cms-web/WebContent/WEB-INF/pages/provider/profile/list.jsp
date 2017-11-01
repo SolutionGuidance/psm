@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -31,6 +31,7 @@
           <div class="dashboardPanel">
             <div class="tableData">
               <form id="myProfilesForm" action="" method="get">
+                <sec:csrfInput />
                 <div class="tableTitle">
                   <h2>Profiles</h2>
                 </div>

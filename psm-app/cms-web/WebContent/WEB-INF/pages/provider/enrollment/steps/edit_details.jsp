@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -31,6 +32,7 @@
           <div class="tabSection">
 
             <form action="<c:url value="/provider/enrollment/steps/rebind" />" id="changeProviderTypeForm" method="post" enctype="multipart/form-data">
+              <sec:csrfInput />
               <c:if test="${isReopened}">
                 <div class="detailPanel" style="width: 940px;">
                   <div class="section">
@@ -144,6 +146,7 @@
 
               <div class="editTabWrapper">
                 <form action="" id="enrollmentForm" method="post" enctype="multipart/form-data">
+                  <sec:csrfInput />
                   <input type="hidden" name="pageName" value="${pageName}"/>
                   <c:choose>
                     <c:when test="${viewModel.currentTab eq 'Notes'}">

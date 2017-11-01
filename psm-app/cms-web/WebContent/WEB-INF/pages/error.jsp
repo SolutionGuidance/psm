@@ -5,9 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
-<sec:authentication var="principal" property="principal"/>
 <c:choose>
-  <c:when test="${principal ne null && principal.enabled}">
+  <c:when test="${principalUser ne null}">
     <html xmlns="http://www.w3.org/1999/xhtml">
       <c:set var="title" value="Server Error"/>
       <h:handlebars template="includes/html_head" context="${pageContext}"/>

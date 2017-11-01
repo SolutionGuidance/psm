@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -16,20 +16,20 @@
 
 package gov.medicaid.controllers;
 
+import com.topcoder.util.log.Log;
 import gov.medicaid.controllers.validators.StrictCustomDateEditor;
+import gov.medicaid.interceptors.HandlebarsInterceptor;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.util.LogUtil;
-
-import java.util.Date;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.topcoder.util.log.Log;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 /**
  * A base controller class that other classes will extend that provides logging.
@@ -80,15 +80,22 @@ public abstract class BaseController {
     }
 
     /**
-     * Captures any exception that is thrown from the controllers and sends the user to the
-     * error page.
-     * @param ex the exception thrown
+     * Captures any exception that is thrown from the controllers and renders
+     * the error page.
+     *
+     * @param request the request that resulted in an exception
+     * @param ex      the exception thrown
      * @return the error view
      */
     @ExceptionHandler(Exception.class)
-    public String handleError(Exception ex) {
+    public ModelAndView handleError(
+            HttpServletRequest request,
+            Exception ex
+    ) {
         LogUtil.traceError(getLog(), "BaseController#handleError(Exception ex)", ex);
-        return "error";
+        ModelAndView view = new ModelAndView("error");
+        HandlebarsInterceptor.addCommonVariables(request, view);
+        return view;
     }
 
     /**
@@ -114,8 +121,8 @@ public abstract class BaseController {
      * @param response the response to add disable cache headers on
      */
     protected void nocache(HttpServletResponse response) {
-        response.addHeader("Cache-Control", "no-cache,no-store,private,must-revalidate,max-stale=0,post-check=0,pre-check=0"); 
-        response.addHeader("Pragma", "no-cache"); 
+        response.addHeader("Cache-Control", "no-cache,no-store,private,must-revalidate,max-stale=0,post-check=0,pre-check=0");
+        response.addHeader("Pragma", "no-cache");
         response.addDateHeader("Expires", 0);
     }
 }

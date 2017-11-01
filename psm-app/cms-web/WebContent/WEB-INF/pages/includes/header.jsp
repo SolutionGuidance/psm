@@ -12,7 +12,7 @@
 <div id="header">
   <div class="contentWidth">
     <div class="userSection">
-      Welcome, <strong><sec:authentication property="principal.username" /></strong>
+      Welcome, <strong><c:out value="${principalUser.username}" /></strong>
       | <a href="javascript:;">Help</a>
       | <a href="<spring:url value="/j_spring_security_logout" />">Logout</a>
     </div>

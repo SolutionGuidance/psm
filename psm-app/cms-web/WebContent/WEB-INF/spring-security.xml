@@ -15,10 +15,10 @@
 
   <s:http entry-point-ref="authenticationProcessingFilterEntryPoint">
     <s:intercept-url pattern="/system/**" access="ROLE_SYSTEM_ADMINISTRATOR"/>
-    <s:intercept-url pattern="/admin/**" access="ROLE_SERVICE_ADMINISTRATOR,ROLE_SERVICE_AGENT,ROLE_SYSTEM_ADMINISTRATOR"/>
-    <s:intercept-url pattern="/agent/**" access="ROLE_SERVICE_ADMINISTRATOR,ROLE_SERVICE_AGENT,ROLE_SYSTEM_ADMINISTRATOR"/>
-    <s:intercept-url pattern="/provider/profile/edit" access="ROLE_PROVIDER,ROLE_SERVICE_AGENT,ROLE_SERVICE_ADMINISTRATOR"/>
-    <s:intercept-url pattern="/provider/profile/renew" access="ROLE_PROVIDER,ROLE_SERVICE_AGENT,ROLE_SERVICE_ADMINISTRATOR"/>
+    <s:intercept-url pattern="/admin/**" access="ROLE_SERVICE_ADMINISTRATOR"/>
+    <s:intercept-url pattern="/agent/**" access="ROLE_SERVICE_ADMINISTRATOR"/>
+    <s:intercept-url pattern="/provider/profile/edit" access="ROLE_PROVIDER,ROLE_SERVICE_ADMINISTRATOR"/>
+    <s:intercept-url pattern="/provider/profile/renew" access="ROLE_PROVIDER,ROLE_SERVICE_ADMINISTRATOR"/>
     <s:intercept-url pattern="/provider/profile/**" access="ROLE_PROVIDER"/>
     <s:intercept-url pattern="/provider/**" access="IS_AUTHENTICATED_REMEMBERED"/>
     <s:intercept-url pattern="/landing" access="IS_AUTHENTICATED_REMEMBERED"/>

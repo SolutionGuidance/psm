@@ -31,6 +31,7 @@ import gov.medicaid.services.util.Util;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.UUID;
 
 import javax.annotation.PostConstruct;
@@ -117,12 +118,17 @@ public class ProviderDashboardController extends BaseController {
 
     /**
      * Is operations user.
-     * @return true if the user is an agent or admin
+     *
+     * @return true if the user is an admin
      */
     private boolean isOperations() {
+        final Collection<String> operationsRoles = Arrays.asList(
+                ViewStatics.ROLE_SERVICE_ADMINISTRATOR,
+                ViewStatics.ROLE_SYSTEM_ADMINISTRATOR
+        );
         CMSUser user = ControllerHelper.getCurrentUser();
         String role = user.getRole().getDescription();
-        return !ViewStatics.ROLE_PROVIDER.equals(role);
+        return operationsRoles.contains(role);
     }
 
     /**

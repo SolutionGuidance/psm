@@ -66,7 +66,7 @@
                       <h:handlebars template="includes/pagination_details" context="${pageContext}" />
                     </div>
                     <div class="right">
-                      <%@include file="/WEB-INF/pages/includes/pagination_links.jsp" %>
+                      <h:handlebars template="includes/pagination_links" context="${pageContext}" />
                     </div>
                   </div>
                   <!-- /.pagination -->

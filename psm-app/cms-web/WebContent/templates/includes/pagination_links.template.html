@@ -1,0 +1,19 @@
+{{!-- Fragment for common paging links. --}}
+{{#if thereArePages }}
+  <div class="pagi">
+    <span class="paginationHeading">Pages:</span>
+    {{#if prevPages }}
+      <a href="javascript:changePageNumber({{currentPage}} - 1)">&lt;&lt; Prev</a>
+    {{/if}}
+    {{#each prevPages }}
+      <a href="javascript:changePageNumber({{this}})">{{this}}</a>
+    {{/each}}
+    <span class="pageNumber">{{currentPage}}</span>
+    {{#each nextPages }}
+      <a href="javascript:changePageNumber({{this}})">{{this}}</a>
+    {{/each}}
+    {{#if nextPages }}
+      <a href="javascript:changePageNumber({{currentPage}} + 1)">Next &gt;&gt;</a>
+    {{/if}}
+  </div>
+{{/if}}

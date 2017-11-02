@@ -2149,14 +2149,8 @@ function changeSort(idx) {
 * @param size the new page size
 */
 function changePageSize(size) {
-  if (size == 0) {
-    $('#paginationForm input[name=pageSize]').val(0);
-    $('#paginationForm input[name=pageNumber]').val(0);
-  } else {
-    $('#paginationForm input[name=pageSize]').val(size);
-    $('#paginationForm input[name=pageNumber]').val(1);
-  }
-
+  $('#paginationForm input[name=pageSize]').val(size);
+  $('#paginationForm input[name=pageNumber]').val(1);
   $('#paginationForm').submit();
 }
 

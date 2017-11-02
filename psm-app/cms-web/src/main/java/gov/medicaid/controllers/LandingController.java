@@ -56,7 +56,7 @@ public class LandingController extends BaseController {
         if (ViewStatics.ROLE_PROVIDER.equals(role)) {
             return "redirect:/provider/dashboard/";
         } else if (ViewStatics.ROLE_SERVICE_AGENT.equals(role)) {
-            return "redirect:/ops/viewDashboard";
+            return "redirect:/provider/dashboard/";
         } else if (ViewStatics.ROLE_SERVICE_ADMINISTRATOR.equals(role)) {
             return "redirect:/ops/viewDashboard";
         } else if (ViewStatics.ROLE_SYSTEM_ADMINISTRATOR.equals(role)) {

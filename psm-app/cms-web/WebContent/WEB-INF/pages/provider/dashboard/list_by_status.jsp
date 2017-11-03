@@ -60,7 +60,7 @@
 
               <div class="pagination">
                 <div class="left">
-                  <%@include file="/WEB-INF/pages/includes/pagination_details.jsp" %>
+                  <h:handlebars template="includes/pagination_details" context="${pageContext}" />
                 </div>
                 <div class="right">
                   <a href="javascript:;" class="blueBtn filterBtn ${param.filterViewState eq 'visible' ? 'hideFilter' : 'showFilter'}">
@@ -165,7 +165,7 @@
                   <div class="tabM">
                     <div class="pagination">
                       <div class="left">
-                        <%@include file="/WEB-INF/pages/includes/pagination_details.jsp" %>
+                        <h:handlebars template="includes/pagination_details" context="${pageContext}" />
                       </div>
                       <div class="right">
                         <%@include file="/WEB-INF/pages/includes/pagination_links.jsp" %>

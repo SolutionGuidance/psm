@@ -185,10 +185,15 @@ We welcome questions and contributions.  You can:
   the [repository](https://github.com/OpenTechStrategies/psm/). Here's
   [our guide for code contributors](CONTRIBUTING.md).
 
-* Use [IRC](http://www.irchelp.org/) to talk to us in real time.  Most
-  of the dedicated team hangs out in `#OpenTechStrategies` on the
-  `irc.freenode.net` server network.  If you don't have IRC client
-  software, you can use the [Freenode webchat
+* Chat with us in real time using [Zulip](https://zulipchat.com/).  Our
+  Zulip site where the dedicated team hangs out is
+  [chat.opentechstrategies.com](https://chat.opentechstrategies.com/).
+  Set up an account there to join us.
+
+* Before moving to Zulip we used [IRC](http://www.irchelp.org/).  If you
+  use IRC you can still reach us in `#OpenTechStrategies` on the
+  `irc.freenode.net` server network.  If you don't have IRC client software,
+  you can use the [Freenode webchat
   interface](http://webchat.freenode.net?channels=%23OpenTechStrategies&uio=d4)
   in your browser.
 

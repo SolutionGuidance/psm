@@ -433,6 +433,14 @@ we will set a sane default in `cms.properties` when we do.  See [issue
 263 in GitHub](https://github.com/OpenTechStrategies/psm/issues/263)
 for some discussion of the problem.
 
+## Configuration options
+
+Note: This section will grow as we describe more configurable options.
+
+1. The amount of time before the system logs out an inactive user can be
+set in the `session-timeout` variable in
+`psm-app/cms-web/WebContent/WEB-INF/web.xml`.
+
 ## Continuous Deployment
 
 This project leverages Travis to power Continuous Deployment.  To set

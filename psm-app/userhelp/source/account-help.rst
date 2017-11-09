@@ -70,3 +70,11 @@ Can I delete my account?
 
 No, you cannot. `A future version of the PSM may let you do
 so. <https://github.com/OpenTechStrategies/psm/issues/327>`__
+
+I stopped using the PSM for a while and when I came back I had to log in again.  Is that normal?
+------------------------------------------------------------------------------------------------
+
+Yes.  For security purposes, the PSM will automatically log you out
+after you haven't interacted with the application for a given amount of
+time.  The default is 30 minutes, but it may be as little as 15 minutes
+depending on the guidelines in your state.

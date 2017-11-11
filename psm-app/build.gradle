@@ -20,7 +20,7 @@ def serenity_version = '1.5.5'
 // These libraries are known to be used, since they are required during compile
 // or on immediate deployment
 ext.libs = [
-    commons_codec: 'commons-codec:commons-codec:1.6',
+    commons_codec: 'commons-codec:commons-codec:1.11',
     commons_fileupload: 'commons-fileupload:commons-fileupload:1.3.3',
     commons_io: 'commons-io:commons-io:2.0.1',
     commons_lang: 'commons-lang:commons-lang:2.4',

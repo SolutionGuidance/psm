@@ -325,12 +325,11 @@ input,select,textarea{
   width:60%;
   margin-left:10px;
 }
-.tabContent .pagination .right{
+.tabContent .pagination .right {
   float:right;
   width:35%;
 }
-.tabContent .pagination .right a{
-  float:right;
+.tabContent .pagination .right a {
   margin-top:8px;
   margin-right:8px;
 }
@@ -356,14 +355,15 @@ input,select,textarea{
   width:auto; /* was 143px */
   float:right;
   display:inline;
-  margin-left:15px;
 }
 .tabContent .pagination .right .pagi a{
   margin-top:0px;
   text-decoration:none;
 }
+.paginationHeading {
+  margin-right: 15px;
+}
 .pageNumber{
-  float:right;
   margin-right: 8px;
   font-weight:bold;
   margin-top:0px;

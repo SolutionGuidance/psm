@@ -28,20 +28,23 @@ import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.Util;
-
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.UUID;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
+
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 /**
  * Handles dashboard functions.
@@ -68,6 +71,8 @@ public class ProviderDashboardController extends BaseController {
      * Used to export results to PDF.
      */
     private ExportService exportService;
+    static final int MAX_PAGE_LINKS_TO_SHOW = 4;
+    private static final int PREVIOUS_PAGES_TO_SHOW = 2;
 
     /**
      * Empty constructor.
@@ -327,28 +332,74 @@ public class ProviderDashboardController extends BaseController {
 
         CMSUser principal = ControllerHelper.getCurrentUser();
         SearchResult<UserRequest> results = enrollmentService.searchTickets(principal, criteria);
-        int pageNumber = results.getPageNumber();
-        int pageSize = results.getPageSize();
-        int totalItems = results.getTotalItems();
         ModelAndView mv = new ModelAndView(view);
         mv.addObject("results", results);
-        mv.addObject(
-                "pageStartItem",
-                totalItems == 0 ? 0 : ((pageNumber - 1) * pageSize) + 1
-        );
-        mv.addObject(
-                "pageEndItem",
-                ((pageNumber - 1) * pageSize) + totalItems
-        );
-        mv.addObject(
-                "pageSize" + String.valueOf(pageSize),
-                true
-        );
+
+        addPaginationDetails(results, mv);
+        addPaginationLinks(results, mv);
 
         // revert changes to input
         criteria.setEnrollmentNumber(enrollmentNumber);
         mv.addObject("criteria", criteria);
         return mv;
+    }
+
+    void addPaginationLinks(SearchResult<?> results, ModelAndView mv) {
+        int pageNumber = results.getPageNumber();
+        int totalPages = results.getTotalPages();
+
+        mv.addObject("thereArePages", totalPages > 0);
+        mv.addObject("currentPage", pageNumber);
+
+        int firstPage = getFirstPage(pageNumber, totalPages);
+        int lastPage = min(firstPage + MAX_PAGE_LINKS_TO_SHOW, totalPages);
+
+        List<Integer> prevPages = new ArrayList<>();
+        List<Integer> nextPages = new ArrayList<>();
+        for (Integer i = firstPage; i <= lastPage; i++) {
+            if (i < pageNumber) {
+                prevPages.add(i);
+            } else if (i > pageNumber) {
+                nextPages.add(i);
+            }
+        }
+        mv.addObject("prevPages", prevPages);
+        mv.addObject("nextPages", nextPages);
+    }
+
+    void addPaginationDetails(SearchResult<?> results, ModelAndView mv) {
+        int pageNumber = results.getPageNumber();
+        int pageSize = results.getPageSize();
+        int itemsOnPage = results.getTotalItems();
+        int lastItemOfPreviousPage = (pageNumber - 1) * pageSize;
+
+        mv.addObject(
+                "pageStartItem",
+                itemsOnPage == 0 ? 0 : lastItemOfPreviousPage + 1
+        );
+        mv.addObject(
+                "pageEndItem",
+                lastItemOfPreviousPage + itemsOnPage
+        );
+        mv.addObject(
+                "pageSize" + String.valueOf(pageSize),
+                true
+        );
+    }
+
+    private int getFirstPage(int pageNumber, int totalPages) {
+        int firstPage;
+        if (nearEndOfPages(pageNumber, totalPages)) {
+            firstPage = totalPages - MAX_PAGE_LINKS_TO_SHOW;
+        } else {
+            firstPage = pageNumber - PREVIOUS_PAGES_TO_SHOW;
+        }
+        return max(1, firstPage);
+    }
+
+    private boolean nearEndOfPages(int pageNumber, int totalPages) {
+        final int MAX_FIRST_PAGE = totalPages - MAX_PAGE_LINKS_TO_SHOW;
+        return pageNumber > MAX_FIRST_PAGE;
     }
 
     /**

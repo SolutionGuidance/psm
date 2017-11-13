@@ -100,7 +100,11 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
             practice.setFEIN(param(request, "fein"));
             practice.setStateTaxId(param(request, "stateTaxId"));
             practice.setFiscalYearEnd(BinderUtils.concatFiscalYearEnd(param(request, "fye1"), param(request, "fye2")));
-            practice.setEFTVendorNumber(param(request, "eftVendorNo"));
+            if (param(request, "eftAccepted") != null) {
+                practice.setEftAccepted(
+                        Boolean.valueOf(param(request, "eftAccepted"))
+                );
+            }
             provider.setRemittanceSequenceNumber(param(request, "remittanceSequence"));
         } else {
             practice.setEffectiveDate(null);
@@ -109,7 +113,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
             practice.setFEIN(null);
             practice.setStateTaxId(null);
             practice.setFiscalYearEnd(null);
-            practice.setEFTVendorNumber(null);
+            practice.setEftAccepted(null);
             provider.setRemittanceSequenceNumber(null);
         }
 
@@ -145,7 +149,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
             String[] fye = BinderUtils.splitFiscalYear(practice.getFiscalYearEnd());
             attr(mv, "fye1", fye[0]);
             attr(mv, "fye2", fye[1]);
-            attr(mv, "eftVendorNo", practice.getEFTVendorNumber());
+            attr(mv, "eftAccepted", practice.isEftAccepted());
             attr(mv, "remittanceSequence", provider.getRemittanceSequenceNumber());
         }
     }
@@ -194,8 +198,8 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
                     errors.add(createError("stateTaxId", ruleError.getMessage()));
                 } else if (path.equals("/ProviderInformation/RemittanceSequenceNumber")) {
                     errors.add(createError("remittanceSequence", ruleError.getMessage()));
-                } else if (path.equals(PRACTICE_INFO + "EFTVendorNumber")) {
-                    errors.add(createError("eftVendorNo", ruleError.getMessage()));
+                } else if (path.equals(PRACTICE_INFO + "EftAccepted")) {
+                    errors.add(createError("EftAccepted", ruleError.getMessage()));
                 } else if (path.equals(PRACTICE_INFO + "FiscalYearEnd")) {
                     String[] fiscalYearGroup = new String[]{"fye1", "fye2"};
                     errors.add(createError(fiscalYearGroup, ruleError.getMessage()));
@@ -232,7 +236,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
         if (Util.isBlank(practice.getObjectId())) {
             Organization employer = (Organization) primary.getEntity();
             employer.setFein(practice.getFEIN());
-            employer.setEftVendorNumber(practice.getEFTVendorNumber());
+            employer.setEftAccepted(practice.isEftAccepted());
             employer.setStateTaxId(practice.getStateTaxId());
             employer.setFiscalYearEnd(practice.getFiscalYearEnd());
             if (Util.isNotBlank(provider.getRemittanceSequenceNumber())) {
@@ -269,7 +273,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
         if (!"Y".equals(employer.getEnrolled())) {
             // user owned employer record, show everything
             practice.setFEIN(employer.getFein());
-            practice.setEFTVendorNumber(employer.getEftVendorNumber());
+            practice.setEftAccepted(employer.isEftAccepted());
             practice.setStateTaxId(employer.getStateTaxId());
             practice.setFiscalYearEnd(employer.getFiscalYearEnd());
             if (employer.getRemittanceSequenceOrder() != null) {
@@ -310,7 +314,7 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
             PDFHelper.addLabelValueCell(practiceInfo, "FEIN", PDFHelper.value(model, ns, "fein"));
             PDFHelper.addLabelValueCell(practiceInfo, "State Tax ID", PDFHelper.value(model, ns, "stateTaxId"));
             PDFHelper.addLabelValueCell(practiceInfo, "Fiscal Year End", PDFHelper.getFiscalYear(model, ns));
-            PDFHelper.addLabelValueCell(practiceInfo, "EFT Vendor Number", PDFHelper.value(model, ns, "eftVendorNo"));
+            PDFHelper.addLabelValueCell(practiceInfo, "Accepts EFT", PDFHelper.getBoolean(model, ns, "eftAccepted"));
             PDFHelper.addLabelValueCell(practiceInfo, "Remittance Sequence", PDFHelper.value(model, ns, "remittanceSequence"));
         }
 

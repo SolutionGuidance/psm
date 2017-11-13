@@ -5244,51 +5244,19 @@ dialect 'mvel'
 
 end
 
-rule 'EFT Vendor Number Maximum Length Check'
+rule 'EFT Accepted Indicator Must Be Answered'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- * Updated character length check - PEPS-254
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( )
-        PracticeInformationType(EFTVendorNumber != null, EFTVendorNumber not matches "^.{0,14}$") from $provider.practiceInformation
+        PracticeInformationType(isEftAccepted() == null) from $provider.practiceInformation
         $report: ErrorReporter()
     then
         $report.addError(
-            "/ProviderInformation/PracticeInformation/EFTVendorNumber",
+            "/ProviderInformation/PracticeInformation/EftAccepted",
             "00001",
-            "EFT vendor number length cannot exceed 14 characters."
+            "EFT Accepted question must be answered."
         );
-
-end
-
-rule 'EFT Vendor Number Should Be Left Empty'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
-        $provider: ProviderInformationType( maintainsOwnPrivatePractice != "Y" )
-        PracticeInformationType(EFTVendorNumber != null, EFTVendorNumber != "") from $provider.practiceInformation
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/PracticeInformation/EFTVendorNumber",
-            "00001",
-            "EFT vendor number must be left empty if not in private practice."
-        );
-
 end
 
 rule 'Eighteen Years Old And Above Must Be Answered For Specified Provider Types'

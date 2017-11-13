@@ -90,8 +90,8 @@ public class PracticeInfoPage extends PageObject {
         $("[name=_05_fye2]").type(day);
     }
 
-    public void enterEftVendorNumber(String eftVendorNumber) {
-        $("[name=_05_eftVendorNo]").type(eftVendorNumber);
+    public void checkYesEftAccepted() {
+        click(this, $("[name=_05_eftAccepted]"));
     }
 
     public void checkFirstRemittanceSequence() {

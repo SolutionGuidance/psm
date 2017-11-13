@@ -2411,7 +2411,7 @@ function copyPrimaryPracticeFields(namespace, row) {
   $('.practicePanel input[name="' + namespace + 'stateTaxId"]').val('');
   $('.practicePanel input[name="' + namespace + 'fye1"]').val('');
   $('.practicePanel input[name="' + namespace + 'fye2"]').val('');
-  $('.practicePanel input[name="' + namespace + 'eftVendorNo"]').val('');
+  $('.practicePanel input[name="' + namespace + 'eftAccepted"]').val('');
   $('.practicePanel input[name="' + namespace + 'remittanceSequence"]').val('');
 
   $('.practicePanel input[name="' + namespace + 'reimbursementSameAsPrimary"]').prop('checked', true);
@@ -2465,7 +2465,7 @@ function togglePrimaryPracticeFields(namespace, disabled) {
   $('.practicePanel input[name="' + namespace + 'stateTaxId"]').prop('disabled', disabled);
   $('.practicePanel input[name="' + namespace + 'fye1"]').prop('disabled', disabled);
   $('.practicePanel input[name="' + namespace + 'fye2"]').prop('disabled', disabled);
-  $('.practicePanel input[name="' + namespace + 'eftVendorNo"]').prop('disabled', disabled);
+  $('.practicePanel input[name="' + namespace + 'eftAccepted"]').prop('disabled', disabled);
   $('.practicePanel input[name="' + namespace + 'remittanceSequence"]').prop('disabled', disabled);
 
   $('.practicePanel input[name="' + namespace + 'reimbursementSameAsPrimary"]').prop('disabled', disabled);

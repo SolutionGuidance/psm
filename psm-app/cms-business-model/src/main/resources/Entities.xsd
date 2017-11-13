@@ -189,7 +189,7 @@
       <element name="StateTaxId" type="string" maxOccurs="1" minOccurs="0"/>
       <element name="StateMedicaidId" type="string" maxOccurs="1" minOccurs="0"/>
       <element name="FiscalYearEnd" type="string" maxOccurs="1" minOccurs="0"/>
-      <element name="EFTVendorNumber" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="EftAccepted" type="boolean" maxOccurs="1" minOccurs="0"/>
       <element name="AdditionalPracticeLocations" type="tns:AdditionalPracticeLocationsType" maxOccurs="1" minOccurs="0"/>
       <element name="BillingSameAsPrimary" type="string" maxOccurs="1" minOccurs="0"/>
       <element name="ReimbursementSameAsPrimary" type="string" maxOccurs="1" minOccurs="0"/>

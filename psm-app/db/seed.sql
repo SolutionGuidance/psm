@@ -991,7 +991,7 @@ CREATE TABLE organizations(
   state_medicaid_id TEXT,
   fiscal_year_end TEXT,
   remittance_sequence_order TEXT,
-  eft_vendor_number TEXT
+  eft_accepted BOOLEAN
 );
 CREATE TABLE people(
   entity_id BIGINT PRIMARY KEY

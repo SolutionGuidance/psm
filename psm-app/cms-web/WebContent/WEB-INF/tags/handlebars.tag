@@ -1,21 +1,25 @@
 <%@ tag import="java.util.*" %>
-<%@ tag import="com.github.jknack.handlebars.io.TemplateLoader" %>
-<%@ tag import="com.github.jknack.handlebars.io.ServletContextTemplateLoader" %>
-<%@ tag import="com.github.jknack.handlebars.Handlebars" %>
-<%@ tag import="com.github.jknack.handlebars.Template" %>
 <%@ tag import="com.github.jknack.handlebars.Context" %>
+<%@ tag import="com.github.jknack.handlebars.Handlebars" %>
+<%@ tag import="com.github.jknack.handlebars.io.ServletContextTemplateLoader" %>
+<%@ tag import="com.github.jknack.handlebars.io.TemplateLoader" %>
+<%@ tag import="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver" %>
+<%@ tag import="com.github.jknack.handlebars.Template" %>
 <%@ attribute name="template" required="true" %>
 <%@ attribute name="context" required="true" type="javax.servlet.jsp.PageContext" %>
 <%
 JspContext jspContext = getJspContext();
 
-TemplateLoader loader = new ServletContextTemplateLoader(
-  ((PageContext) jspContext).getServletContext(),
-  "/templates",
-  ".template.html");
-
 try {
-  Handlebars handlebars = new Handlebars(loader);
+  HandlebarsViewResolver viewResolver =
+    (HandlebarsViewResolver) jspContext.getAttribute(
+      "HandlebarsViewResolver",
+      PageContext.REQUEST_SCOPE
+  );
+  if (viewResolver == null) {
+    %>could not load handlebars view resolver<%
+  }
+  Handlebars handlebars = viewResolver.getHandlebars();
   Template t = handlebars.compile(jspContext.getAttribute("template").toString());
   Map map = new HashMap();
 

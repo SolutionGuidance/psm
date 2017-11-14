@@ -185,14 +185,26 @@
     <property name="suffix">
       <value>.jsp</value>
     </property>
+    <property name="exposedContextBeanNames">
+      <list>
+        <value>HandlebarsViewResolver</value>
+      </list>
+    </property>
   </bean>
 
-  <bean id="viewResolver"
+  <bean id="SelectedHelper" class="gov.medicaid.handlebars.SelectedHelper"/>
+
+  <bean id="HandlebarsViewResolver"
         class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
     <property name="order" value="1"/>
     <property name="prefix" value="/templates/"/>
     <property name="suffix" value=".template.html"/>
     <property name="failOnMissingFile" value="false"/>
+    <property name="helpers">
+      <map>
+        <entry key="selected" value-ref="SelectedHelper"/>
+      </map>
+    </property>
   </bean>
 
   <bean id="messageSource"

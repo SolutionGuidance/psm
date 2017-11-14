@@ -1,9 +1,10 @@
 {{!-- Fragment for common pagination details. --}}
+{{selected "test"}} <!-- call to selected helper -->
 
  Displaying <strong>{{pageStartItem}}</strong> - <strong>{{pageEndItem}}</strong> of <strong>{{results.total}}</strong> Enrollment | Show:
  <select onchange="changePageSize(this.value);">
-     <option value="10" {{#if pageSize10}} selected {{/if}}>10</option>
-     <option value="25" {{#if pageSize25}} selected {{/if}}>25</option>
-     <option value="50" {{#if pageSize50}} selected {{/if}}>50</option>
-     <option value="0" {{#if pageSize0}} selected {{/if}}>All</option>
+     <option value="10" {{selected "10" pageSize10}}>10</option>
+     <option value="25" {{selected "25" pageSize25}}>25</option>
+     <option value="50" {{selected 50 pageSize50}}>50</option>
+     <option value="0" {{selected "0" pageSize0}}>All</option>
  </select>

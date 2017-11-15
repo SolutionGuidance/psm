@@ -377,4 +377,20 @@ public class CMSConfigurator {
     public String getInternalSecurityToken() {
         return globalSettings.getProperty("internalSecurityToken");
     }
+
+    public String getPasswordSecret() {
+        return globalSettings.getProperty("keys.password.secret");
+    }
+
+    public Integer getPasswordIterations() {
+        return Integer.valueOf(
+                globalSettings.getProperty("keys.password.iterations")
+        );
+    }
+
+    public Integer getPasswordHashWidth() {
+        return Integer.valueOf(
+                globalSettings.getProperty("keys.password.hashWidth")
+        );
+    }
 }

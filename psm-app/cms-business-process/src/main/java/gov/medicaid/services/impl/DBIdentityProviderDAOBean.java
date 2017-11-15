@@ -21,17 +21,14 @@ import gov.medicaid.entities.Authentication;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.impl.BaseService;
+import org.apache.commons.codec.binary.Base64;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.ejb.Local;
-import javax.ejb.Stateless;
-
-import org.apache.commons.codec.binary.Base64;
 
 /**
  * This is an EJB implementation for the {@link IdentityProviderDAO} which connects directly to the database

@@ -3667,20 +3667,20 @@ a.okBtn span.btM{
 .serviceAdminTable{
   font-size:11px;
 }
-/* approveModal & rejectOKModal & screenModal & editModal & deleteProviderTypesModal & deleteHelpTopicModal & deleteAgreementModal & deleteAgentModal*/
+/* approveModal & rejectOKModal & screenModal & editModal & deleteProviderTypesModal & deleteHelpTopicModal & deleteAgreementModal */
 #noSelectedItemsModal,#approveModal,#rejectOKModal,#screenModal,#editModal,#deleteProviderTypesModal,#deleteHelpTopicModal,#deleteAgreementModal
-,#deleteAgentModal{
+{
   width:564px;
 }
 
 #noSelectedItemsModal .container,#approveModal .container,#rejectOKModal .container,#screenModal .container,#editModal .container
 ,#deleteProviderTypesModal .container,#deleteHelpTopicModal .container,#deleteAgreementModal .container
-,#deleteAgentModal .container{
+{
   padding:20px 0 10px 0;
 }
 
 #noSelectedItemsModal p,#approveModal p,#rejectOKModal p,#screenModal p,#editModal p,#deleteProviderTypesModal p,#deleteHelpTopicModal p
-,#deleteAgreementModal p,#deleteAgentModal p{
+,#deleteAgreementModal p {
   width:100%;
   height:50px;
   line-height:18px;
@@ -3689,11 +3689,11 @@ a.okBtn span.btM{
   vertical-align: middle;
   text-align:center;
 }
-#noSelectedItemsModal p,#approveModal p,#rejectOKModal p,#deleteProviderTypesModal p,#deleteHelpTopicModal p,#deleteAgreementModal p,#deleteAgentModal p{
+#noSelectedItemsModal p,#approveModal p,#rejectOKModal p,#deleteProviderTypesModal p,#deleteHelpTopicModal p,#deleteAgreementModal p {
   line-height:50px;
 }
 #noSelectedItemsModal .buttons,#approveModal .buttons,#rejectOKModal .buttons,#screenModal .buttons,#editModal .buttons,#deleteProviderTypesModal .buttons
-,#deleteHelpTopicModal .buttons,#deleteAgreementModal .buttons,#deleteAgentModal .buttons{
+,#deleteHelpTopicModal .buttons,#deleteAgreementModal .buttons {
   height:25px;
   padding:20px 0 30px 0;
   text-align:center;
@@ -3705,7 +3705,7 @@ a.okBtn span.btM{
   margin:0 10px 0 210px;
 }
 #editModal .buttons .saveBtn,#deleteProviderTypesModal .buttons .saveBtn,#deleteProviderTypesModal .buttons .deleteOKBtn,#deleteHelpTopicModal .buttons .deleteOKBtn
-,#deleteAgreementModal .buttons .deleteOKBtn,#deleteAgentModal .buttons .deleteOKBtn{
+,#deleteAgreementModal .buttons .deleteOKBtn {
   margin:0 10px 0 170px;
 }
 #editModal .modalBody .buttons .saveBtn .btM{

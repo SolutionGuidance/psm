@@ -267,11 +267,6 @@
         parent="BaseServiceAdminController">
     <property name="screeningService" ref="ScreeningService"/>
   </bean>
-  <bean id="ServiceAgentController"
-        class="gov.medicaid.controllers.admin.ServiceAgentController"
-        parent="BaseServiceAdminController">
-    <property name="registrationService" ref="RegistrationService"/>
-  </bean>
   <bean id="UserController"
         class="gov.medicaid.controllers.admin.UserController"
         parent="BaseServiceAdminController">

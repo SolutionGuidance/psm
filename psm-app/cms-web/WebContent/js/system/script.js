@@ -1222,27 +1222,6 @@ $(document).ready(function () {
     $('#editAgreementPanel').show();
   });
 
-  $('.addAgentBtn').live('click', function () {
-    $('#viewAgentPanel').hide();
-    $('#editAgentPanel').hide();
-    $('#agentsPanel').hide();
-    $('#addAgentPanel').show();
-  });
-
-  $('.cancelEditAgentBtn').live('click', function () {
-    $('#editAgentPanel').hide();
-    $('#addAgentPanel').hide();
-    $('#viewAgentPanel').hide();
-    $('#agentsPanel').show();
-  });
-
-  $('.editAgentLink').live('click', function () {
-    $('#addAgentPanel').hide();
-    $('#viewAgentPanel').hide();
-    $('#agentsPanel').hide();
-    $('#editAgentPanel').show();
-  });
-
   $('.functionTab .tab.first').click();
 
   /* END OF SERVICE ADMIN SCRIPT -------------------------------------------------- */

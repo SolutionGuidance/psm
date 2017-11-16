@@ -25,15 +25,15 @@
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
 
-<div class="breadCrumb">
-    <span class="text">Search Results</span>
-</div>
-<h1>Search Results</h1>
+          <div class="breadCrumb">
+            <span class="text">Search Results</span>
+          </div>
+          <h1>Search Results</h1>
 
-<c:set var="hasFilterPanel" value="true" />
+          <c:set var="hasFilterPanel" value="true" />
 
-<%@ include file="/WEB-INF/pages/admin/includes/search-result-section.jsp" %>
+          <%@ include file="/WEB-INF/pages/admin/includes/search-result-section.jsp" %>
 
-<%@ include file="/WEB-INF/pages/admin/includes/footer.jsp" %>
+          <%@ include file="/WEB-INF/pages/admin/includes/footer.jsp" %>
 
-<input type="hidden" value="<c:url value='/system/user/delete' />" id="deleteAccountsURL" />
+          <input type="hidden" value="<c:url value='/system/user/delete' />" id="deleteAccountsURL" />

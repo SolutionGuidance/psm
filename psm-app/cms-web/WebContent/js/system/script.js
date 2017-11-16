@@ -1222,10 +1222,6 @@ $(document).ready(function () {
     $('#editAgreementPanel').show();
   });
 
-  $('.deleteAgentBtn').live('click', function () {
-    loadModal('#deleteAgentModal');
-  });
-
   $('.addAgentBtn').live('click', function () {
     $('#viewAgentPanel').hide();
     $('#editAgentPanel').hide();

@@ -250,7 +250,7 @@
         </div>
       </div>
       <!-- /#mainContent -->
-      <%@ include file="/WEB-INF/pages/includes/footer.jsp" %>
+      <h:handlebars template="includes/footer" context="${pageContext}"/>
       <!-- #footer -->
     </div>
     <!-- /#wrapper -->

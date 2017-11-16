@@ -80,7 +80,7 @@
       </div>
       <!-- /#mainContent -->
 
-      <%@ include file="/WEB-INF/pages/includes/footer.jsp" %>
+      <h:handlebars template="includes/footer" context="${pageContext}"/>
     </div>
     <!-- /#wrapper -->
   </body>

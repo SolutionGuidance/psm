@@ -24,4 +24,3 @@
 <%@ include file="/WEB-INF/pages/admin/includes/footer.jsp" %>
 
 <input type="hidden" value="<c:url value='/system/user/delete' />" id="deleteAccountsURL" />
-

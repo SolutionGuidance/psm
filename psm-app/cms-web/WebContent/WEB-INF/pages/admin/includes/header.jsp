@@ -82,7 +82,7 @@
       <div id="mainContent" <c:if test='${isUpdateUser}'>class="detailPage"</c:if>>
         <div class="contentWidth">
           <div class="mainNav">
-            <%@include file="/WEB-INF/pages/includes/logo.jsp" %>
+            <h:handlebars template="includes/logo" context="${pageContext}"/>
             <div class="nav">
               <div class="navR">
                 <div class="navM">

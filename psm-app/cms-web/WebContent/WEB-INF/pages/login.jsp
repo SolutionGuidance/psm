@@ -17,7 +17,7 @@
       <div id="mainContent">
         <div class="contentWidth">
           <div class="mainNav">
-            <%@include file="/WEB-INF/pages/includes/logo.jsp" %>
+            <h:handlebars template="includes/logo" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->
           <form id="loginForm" action="<c:url value='login'/>" method="post">

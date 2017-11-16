@@ -19,7 +19,7 @@
       <div id="mainContent">
         <div class="contentWidth">
           <div class="mainNav">
-            <%@include file="/WEB-INF/pages/includes/logo.jsp" %>
+            <h:handlebars template="includes/logo" context="${pageContext}"/>
             <%@include file="/WEB-INF/pages/includes/nav.jsp" %>
           </div>
           <!-- /.mainNav -->

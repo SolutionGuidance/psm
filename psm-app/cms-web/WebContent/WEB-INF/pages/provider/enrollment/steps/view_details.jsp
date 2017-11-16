@@ -9,7 +9,7 @@
   <c:set var="selectedMarkup" value='selected="selected"'/>
   <body>
     <div id="wrapper">
-      <%@include file="/WEB-INF/pages/includes/header.jsp" %>
+      <h:handlebars template="includes/header" context="${pageContext}"/>
       <!-- /#header -->
 
       <div id="mainContent" class="detailPage providerReadOnly">

@@ -13,7 +13,7 @@
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
-      <%@ include file="/WEB-INF/pages/includes/header.jsp" %>
+      <h:handlebars template="includes/header" context="${pageContext}"/>
       <div id="mainContent" class="helpPage">
         <div class="contentWidth">
           <%@ include file="/WEB-INF/pages/includes/nav.jsp" %>

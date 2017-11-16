@@ -7,11 +7,17 @@
  The advanced search section jsp.
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
-
-<c:set value="Advanced Search (System Admin)" var="title"></c:set>
 <c:set value="false" var="isUpdateUser"></c:set>
 <c:set value="false" var="hasArrow"></c:set>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <c:set value="Advanced Search (System Admin)" var="title"></c:set>
+  <c:set value="true" var="systemPage"></c:set>
+  <h:handlebars template="includes/html_head" context="${pageContext}" />
+
 <%@ include file="/WEB-INF/pages/admin/includes/header.jsp" %>
+
 <div class="breadCrumb">
     <span class="text">Advanced Search</span>
 </div>

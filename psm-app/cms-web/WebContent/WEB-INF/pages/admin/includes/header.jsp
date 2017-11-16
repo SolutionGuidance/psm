@@ -8,52 +8,6 @@
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
-  <head>
-    <meta http-equiv="Content-Type"
-          content="text/html; charset=UTF-8"
-          lang="en" />
-    <title>${title}</title>
-    <link rel="stylesheet"
-          href="<c:url value='/css/reset.css' />"
-          type="text/css"
-          media="all"/>
-    <link rel="stylesheet"
-          href="<c:url value='/css/style.css' />"
-          type="text/css"
-          media="all"/>
-    <link rel="stylesheet"
-          href="<c:url value='/css/jquery.ui.css' />"
-          type="text/css"
-          media="all"/>
-    <link rel="stylesheet"
-          href="<c:url value='/js/chosen/chosen.css' />"
-          type="text/css"
-          media="all"/>
-
-    <!--[if IE 7]>
-      <link rel="stylesheet"
-            href="<c:url value='/css/style-ie7.css' />"
-            type="text/css" />
-    <![endif]-->
-    <script src="<c:url value='/js/jquery-1.7.1.min.js' />"
-            type="text/javascript"></script>
-    <script src="<c:url value='/js/jquery.tablesorter.min.js' />"
-            type="text/javascript"></script>
-    <script src="<c:url value='/js/jquery.tablesorter.widgets.js' />"
-            type="text/javascript"></script>
-    <script src="<c:url value='/js/jquery.ui.core.js' />"
-            type="text/javascript"></script>
-    <script src="<c:url value='/js/jquery.ui.widget.js' />"
-            type="text/javascript"></script>
-    <script src="<c:url value='/js/jquery.ui.datepicker.js' />"
-            type="text/javascript"></script>
-    <script src="<c:url value='/js/chosen/chosen.jquery.min.js' />"
-            type="text/javascript"></script>
-    <script src="<c:url value='/js/system/script.js' />"
-            type="text/javascript"></script>
-  </head>
   <body>
     <div id="wrapper">
       <div id="header">

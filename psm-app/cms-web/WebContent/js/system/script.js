@@ -1229,13 +1229,6 @@ $(document).ready(function () {
     $('#addAgentPanel').show();
   });
 
-  $('.viewAgentLink').live('click', function () {
-    $('#editAgentPanel').hide();
-    $('#agentsPanel').hide();
-    $('#addAgentPanel').hide();
-    $('#viewAgentPanel').show();
-  });
-
   $('.saveAddAgentBtn,.saveEditAgentBtn ,.cancelEditAgentBtn ,.cancelAddAgentBtn ').live('click', function () {
     $('#editAgentPanel').hide();
     $('#addAgentPanel').hide();

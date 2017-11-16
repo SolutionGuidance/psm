@@ -51,16 +51,6 @@ $(document).ready(function () {
     $("#printForm").submit();
   });
 
-  $('#viewAgentDetailsTabSection .tab').click(function (e) {
-    $(this).parent().find('.active').removeClass('active');
-    $('.tabContent').hide();
-    $('#new-modal #printModal .modal-content .tabContent').show();
-    $(this).addClass('active');
-    $($(this).attr('href')).show();
-    e.preventDefault();
-    return false;
-  });
-
   function setupSearchFormCriteria() {
     $("#exportForm").html('');
     $("#printForm").html('');

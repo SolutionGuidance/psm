@@ -15,11 +15,11 @@
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
-      <%@ include file="/WEB-INF/pages/includes/header.jsp"%>
+      <h:handlebars template="includes/header" context="${pageContext}"/>
       <div id="mainContent" class="detailPage">
         <div class="contentWidth">
           <c:set var="active_menu" value="dashboard" />
-          <%@ include file="/WEB-INF/pages/includes/nav.jsp"%>
+          <h:handlebars template="includes/nav" context="${pageContext}"/>
           <div class="head">
             <h1>Error</h1>
           </div>
@@ -33,7 +33,7 @@
       </div>
       <!-- /#mainContent -->
 
-      <%@ include file="/WEB-INF/pages/includes/footer.jsp"%>
+      <h:handlebars template="includes/footer" context="${pageContext}"/>
     </div>
     <!-- /#wrapper -->
   </body>

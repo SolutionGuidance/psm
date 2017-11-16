@@ -17,7 +17,7 @@
       <div id="mainContent" class="detailPage">
         <div class="contentWidth">
           <div class="mainNav">
-            <%@include file="/WEB-INF/pages/includes/logo.jsp" %>
+            <h:handlebars template="includes/logo" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->
           <div class="head">
@@ -57,7 +57,7 @@
       </div>
       <!-- /#mainContent -->
 
-      <%@include file="/WEB-INF/pages/includes/footer.jsp" %>
+      <h:handlebars template="includes/footer" context="${pageContext}"/>
     </div>
     <!-- /#wrapper -->
   </body>

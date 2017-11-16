@@ -9,15 +9,15 @@
   <c:set var="selectedMarkup" value='selected="selected"'/>
   <body>
     <div id="wrapper">
-      <%@include file="/WEB-INF/pages/includes/header.jsp" %>
+      <h:handlebars template="includes/header" context="${pageContext}"/>
       <!-- /#header -->
 
       <div id="mainContent" class="detailPage providerReadOnly">
         <div class="contentWidth">
           <div class="mainNav">
-            <%@include file="/WEB-INF/pages/includes/logo.jsp" %>
+            <h:handlebars template="includes/logo" context="${pageContext}"/>
             <c:set var="activeTab" value="2"></c:set>
-            <%@include file="/WEB-INF/pages/includes/nav.jsp" %>
+            <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
@@ -106,7 +106,7 @@
       </div>
       <!-- /#mainContent -->
 
-      <%@include file="/WEB-INF/pages/includes/footer.jsp" %>
+      <h:handlebars template="includes/footer" context="${pageContext}"/>
       <!-- #footer -->
       <div class="clear"></div>
     </div>

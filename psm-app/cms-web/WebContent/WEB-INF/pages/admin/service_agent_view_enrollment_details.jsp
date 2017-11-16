@@ -14,7 +14,7 @@
   <body>
     <div id="wrapper">
       <c:if test="${param.print != 'yes' }">
-        <%@ include file="/WEB-INF/pages/includes/header.jsp" %>
+        <h:handlebars template="includes/header" context="${pageContext}"/>
       </c:if>
       <div id="mainContent" class="detailPage providerReadOnly">
         <div class="contentWidth">
@@ -72,7 +72,7 @@
       </div>
       <!-- /#mainContent -->
 
-      <%@ include file="/WEB-INF/pages/includes/footer.jsp" %>
+      <h:handlebars template="includes/footer" context="${pageContext}"/>
       <!-- #footer -->
     </div>
     <!-- /#wrapper -->

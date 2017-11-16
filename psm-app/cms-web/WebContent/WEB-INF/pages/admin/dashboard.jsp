@@ -20,7 +20,7 @@
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
             <c:set var="activeTab" value="1"></c:set>
-            <%@include file="/WEB-INF/pages/includes/nav.jsp" %>
+            <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
 
           <div class="breadCrumb">

@@ -19,7 +19,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
-            <%@include file="/WEB-INF/pages/includes/nav.jsp" %>
+            <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <div class="breadCrumb">
             <span class="text">Search Results</span>

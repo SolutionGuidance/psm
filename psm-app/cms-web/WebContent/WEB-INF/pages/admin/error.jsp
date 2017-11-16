@@ -19,7 +19,7 @@
       <div id="mainContent" class="detailPage">
         <div class="contentWidth">
           <c:set var="active_menu" value="dashboard" />
-          <%@ include file="/WEB-INF/pages/includes/nav.jsp"%>
+          <h:handlebars template="includes/nav" context="${pageContext}"/>
           <div class="head">
             <h1>Error</h1>
           </div>

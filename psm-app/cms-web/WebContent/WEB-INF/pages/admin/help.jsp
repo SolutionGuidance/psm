@@ -16,7 +16,7 @@
       <h:handlebars template="includes/header" context="${pageContext}"/>
       <div id="mainContent" class="helpPage">
         <div class="contentWidth">
-          <%@ include file="/WEB-INF/pages/includes/nav.jsp" %>
+          <h:handlebars template="includes/nav" context="${pageContext}"/>
           <div class="breadCrumb">
             <span>Help Topics</span>
           </div>

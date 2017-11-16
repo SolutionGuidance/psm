@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -19,19 +19,15 @@ package gov.medicaid.services.impl;
 import gov.medicaid.dao.IdentityProviderDAO;
 import gov.medicaid.entities.Authentication;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.services.PortalServiceConfigurationException;
+import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.impl.BaseService;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-
-import org.apache.commons.codec.binary.Base64;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is an EJB implementation for the {@link IdentityProviderDAO} which connects directly to the database
@@ -43,11 +39,18 @@ import org.apache.commons.codec.binary.Base64;
 @Stateless
 @Local(IdentityProviderDAO.class)
 public class DBIdentityProviderDAOBean extends BaseService implements IdentityProviderDAO {
+    private final PasswordEncoder passwordEncoder;
 
     /**
      * Empty constructor.
      */
     public DBIdentityProviderDAOBean() {
+        CMSConfigurator config = new CMSConfigurator();
+        passwordEncoder = new Pbkdf2PasswordEncoder(
+                config.getPasswordSecret(),
+                config.getPasswordIterations(),
+                config.getPasswordHashWidth()
+        );
     }
 
     /**
@@ -60,7 +63,7 @@ public class DBIdentityProviderDAOBean extends BaseService implements IdentityPr
     public void provisionUser(CMSUser user, String password) throws PortalServiceException {
         Authentication authentication = new Authentication();
         authentication.setUsername(user.getUsername());
-        authentication.setPassword(hash(password));
+        authentication.setPassword(passwordEncoder.encode(password));
         getEm().persist(authentication);
     }
 
@@ -83,7 +86,7 @@ public class DBIdentityProviderDAOBean extends BaseService implements IdentityPr
      */
     public void resetPassword(String username, String password) throws PortalServiceException {
         Authentication auth = getEm().find(Authentication.class, username);
-        auth.setPassword(hash(password));
+        auth.setPassword(passwordEncoder.encode(password));
         getEm().merge(auth);
     }
 
@@ -110,26 +113,6 @@ public class DBIdentityProviderDAOBean extends BaseService implements IdentityPr
     }
 
     /**
-     * Hashes the given password so it is not stored as plain text on LDAP.
-     *
-     * @param password the plain text password to hash
-     * @return the hashed password
-     */
-    private String hash(String password) {
-        if (password == null) {
-            return hash("");
-        }
-        try {
-            MessageDigest sha = MessageDigest.getInstance("SHA");
-            sha.update(password.getBytes());
-            byte[] hash = sha.digest();
-            return "{SHA}" + new String(Base64.encodeBase64(hash));
-        } catch (NoSuchAlgorithmException e) {
-            throw new PortalServiceConfigurationException("No valid encryption algorithm was found.", e);
-        }
-    }
-
-    /**
      * Password authenticate.
      *
      * @param username the user to be used
@@ -142,7 +125,7 @@ public class DBIdentityProviderDAOBean extends BaseService implements IdentityPr
         if (auth == null) {
             return false;
         }
-        
-        return auth.getPassword().equals(hash(password));
+
+        return passwordEncoder.matches(password, auth.getPassword());
     }
 }

@@ -47,6 +47,7 @@ ext.libs = [
     spring_security_acl: "org.springframework.security:spring-security-acl:${spring_security_version}",
     spring_security_aspects: "org.springframework.security:spring-security-aspects:${spring_security_version}",
     spring_security_config: "org.springframework.security:spring-security-config:${spring_security_version}",
+    spring_security_core: "org.springframework.security:spring-security-core:${spring_security_version}",
     spring_security_ldap: "org.springframework.security:spring-security-ldap:${spring_security_version}",
     spring_security_taglibs: "org.springframework.security:spring-security-taglibs:${spring_security_version}",
     spring_webmvc: "org.springframework:spring-webmvc:${spring_core_version}",
@@ -135,6 +136,7 @@ project(':cms-business-process') {
         compile libs.hapi_fhir
         compile libs.itext
         compile libs.jbpm_human_task_core
+        compile libs.spring_security_core
         compile libs.velocity
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')

@@ -27,9 +27,10 @@
       <h:handlebars template="includes/header" context="${pageContext}" />
       <div id="mainContent" <c:if test='${isUpdateUser}'>class="detailPage"</c:if>>
         <div class="contentWidth">
-
-
-<%@ include file="/WEB-INF/pages/admin/includes/header.jsp" %>
+          <div class="mainNav">
+            <h:handlebars template="includes/logo" context="${pageContext}"/>
+            <h:handlebars template="includes/nav" context="${pageContext}"/>
+          </div>
 
 <c:choose>
 <c:when test="${not empty user.userId}">

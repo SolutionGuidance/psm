@@ -20,8 +20,11 @@
       <h:handlebars template="includes/header" context="${pageContext}" />
       <div id="mainContent" <c:if test='${isUpdateUser}'>class="detailPage"</c:if>>
         <div class="contentWidth">
+          <div class="mainNav">
+            <h:handlebars template="includes/logo" context="${pageContext}"/>
+            <h:handlebars template="includes/nav" context="${pageContext}"/>
+          </div>
 
-<%@ include file="/WEB-INF/pages/admin/includes/header.jsp" %>
 <div class="breadCrumb">
     <span class="text">Search Results</span>
 </div>

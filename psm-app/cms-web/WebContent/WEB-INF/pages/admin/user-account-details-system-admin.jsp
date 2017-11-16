@@ -20,8 +20,10 @@
       <h:handlebars template="includes/header" context="${pageContext}" />
       <div id="mainContent" <c:if test='${isUpdateUser}'>class="detailPage"</c:if>>
         <div class="contentWidth">
-
-<%@ include file="/WEB-INF/pages/admin/includes/header.jsp" %>
+          <div class="mainNav">
+            <h:handlebars template="includes/logo" context="${pageContext}"/>
+            <h:handlebars template="includes/nav" context="${pageContext}"/>
+          </div>
 
 <div class="breadCrumb">
     <a href="<c:url value='/system/user/list' />">User Accounts</a>

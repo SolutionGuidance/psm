@@ -1229,7 +1229,7 @@ $(document).ready(function () {
     $('#addAgentPanel').show();
   });
 
-  $('.saveAddAgentBtn,.saveEditAgentBtn ,.cancelEditAgentBtn ,.cancelAddAgentBtn ').live('click', function () {
+  $('.cancelEditAgentBtn').live('click', function () {
     $('#editAgentPanel').hide();
     $('#addAgentPanel').hide();
     $('#viewAgentPanel').hide();

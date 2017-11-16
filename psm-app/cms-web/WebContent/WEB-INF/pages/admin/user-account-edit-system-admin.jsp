@@ -22,6 +22,12 @@
   </c:choose>
   <c:set value="true" var="systemPage"></c:set>
   <h:handlebars template="includes/html_head" context="${pageContext}" />
+  <body>
+    <div id="wrapper">
+      <h:handlebars template="includes/header" context="${pageContext}" />
+      <div id="mainContent" <c:if test='${isUpdateUser}'>class="detailPage"</c:if>>
+        <div class="contentWidth">
+
 
 <%@ include file="/WEB-INF/pages/admin/includes/header.jsp" %>
 

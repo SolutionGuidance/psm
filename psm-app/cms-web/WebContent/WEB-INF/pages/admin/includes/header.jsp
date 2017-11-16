@@ -8,33 +8,6 @@
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 
-  <body>
-    <div id="wrapper">
-      <div id="header">
-        <div class="contentWidth">
-          <div class="userSection">
-            Welcome,
-            <strong><c:out value="${principalUser.username}" /></strong>
-            | <a href="<c:url value='/system/help-system-admin' />">Help</a>
-            | <c:url var="logoutUrl" value="/logout"/>
-              <form action="${logoutUrl}" method="post" class="logoutForm">
-                <input type="submit" class="logoutButton" value="Logout"/>
-                <input type="hidden"
-                       name="${_csrf.parameterName}"
-                       value="${_csrf.token}"/>
-              </form>
-          </div>
-          <!-- /.userSection -->
-          <div class="mastHead">
-            Last login: <c:out value="${loginDate}" />
-          </div>
-          <!-- /.mastHead -->
-        </div>
-      </div>
-      <!-- /#header -->
-
-      <div id="mainContent" <c:if test='${isUpdateUser}'>class="detailPage"</c:if>>
-        <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
             <div class="nav">

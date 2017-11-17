@@ -131,5 +131,17 @@
               </div>
               <!-- /.buttonBox -->
             </div>
-
-            <%@ include file="/WEB-INF/pages/admin/includes/footer.jsp" %>
+            <!-- /.tabSection -->
+          </div>
+        </div>
+      </div>
+      <!-- /#mainContent -->
+      <h:handlebars template="includes/footer" context="${pageContext}"/>
+      <!-- #footer -->
+      <div class="clear"></div>
+    </div>
+    <!-- /#wrapper -->
+    <%@ include file="/WEB-INF/pages/admin/includes/modal.jsp" %>
+    <input type="hidden" value="<c:url value='/admin/user/list' />" id="userAccountsURL" />
+  </body>
+</html>

@@ -40,6 +40,12 @@
     <script src="{{ctx}}/js/admin/script.js" type="text/javascript"></script>
   {{else if systemPage}}
     <script src="{{ctx}}/js/system/script.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var ctx = "{{ctx}}";
+      var roles = "{{role}}";
+      var searchedResult = "{{searchedResult}}";
+      var searchFirstName = "{{searchFirstName}}";
+    </script>
   {{else}}
     <script src="{{ctx}}/js/jquery.compare.js" type="text/javascript"></script>
     <script src="{{ctx}}/js/script.js" type="text/javascript"></script>

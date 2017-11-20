@@ -47,12 +47,13 @@ conversation around a change has concluded.  If you're unsure, ask!
 "Is this ready to merge?" is often a useful next step in the
 conversation.
 
-If your PR fixes a bug or adds a feature, please include a brief
-testing plan along with the change.  Once our testing framework (see
-`docs/TESTING.md`) is more formalized, that testing plan will come in
-the form of a test.  For now, use a Given-When-Then description like
-[this
-one](https://github.com/OpenTechStrategies/psm/blob/master/psm-app/cms-web/src/main/test/resources/features/enrollment/create_enrollment.feature).
+If your PR fixes a bug or adds a feature, please write a test to go with
+the change (see [TESTING.md](https://github.com/OpenTechStrategies/psm/blob/master/docs/TESTING.md) for details on our testing
+framework).  If the change involves libraries or would be difficult to
+test, please use a Given-When-Then description like [this
+one](https://github.com/OpenTechStrategies/psm/blob/master/psm-app/cms-web/src/main/test/resources/features/enrollment/create_enrollment.feature)
+or describe in your PR message how reviewers should test that your
+change works as expected.  
 
 ### The "Obvious Fix" rule: committing some minor changes directly to 'master'
 

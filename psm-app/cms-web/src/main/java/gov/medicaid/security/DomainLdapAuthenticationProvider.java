@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package gov.medicaid.security;
 
 import gov.medicaid.entities.SystemId;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.ldap.authentication.LdapAuthenticationProvider;
 import org.springframework.security.ldap.authentication.LdapAuthenticator;
@@ -31,11 +31,8 @@ import org.springframework.security.ldap.authentication.LdapAuthenticator;
  */
 public class DomainLdapAuthenticationProvider extends LdapAuthenticationProvider {
 
-    /**
-     * Logger.
-     */
-    private Logger log = Logger.getLogger(getClass());
-    
+    private final Logger logger = Logger.getLogger(getClass().getName());
+
     /**
      * Wraps the given authenticator.
      *
@@ -54,11 +51,11 @@ public class DomainLdapAuthenticationProvider extends LdapAuthenticationProvider
     public Authentication authenticate(Authentication authentication) {
         final DomainAuthenticationToken userToken = (DomainAuthenticationToken) authentication;
         if (SystemId.valueOf(userToken.getDomain()) == SystemId.CMS_ONLINE) {
-            log.info("Authenticating user via LDAP bind.");
+            logger.info("Authenticating user via LDAP bind.");
             Authentication authenticate = super.authenticate(authentication);
 
             if (authenticate.isAuthenticated()) {
-                log.info("Successfully bound user..");
+                logger.info("Successfully bound user..");
                 return authenticate;
             }
         }

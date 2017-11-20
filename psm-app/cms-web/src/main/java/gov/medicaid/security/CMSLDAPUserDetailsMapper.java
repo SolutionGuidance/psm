@@ -45,7 +45,8 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import org.springframework.ldap.core.DirContextOperations;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -74,10 +75,7 @@ public class CMSLDAPUserDetailsMapper extends LdapUserDetailsMapper {
      */
     private static final String GROUP_SEARCH_FILTER = "groupSearchFilter";
 
-    /**
-     * Logger.
-     */
-    private Logger log = Logger.getLogger(getClass());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * Service used to get the registration.
@@ -144,9 +142,9 @@ public class CMSLDAPUserDetailsMapper extends LdapUserDetailsMapper {
     ) {
         try {
             UserDetails original = super.mapUserFromContext(context, username, authority);
-            log.info("Searching for LDAP groups...");
+            logger.info("Searching for LDAP groups...");
             List<String> roles = findRoles(username);
-            log.info("Found: " + roles);
+            logger.info("Found: " + roles);
 
             CMSUser user = registrationService.findByExternalUsername(SystemId.MN_ITS, username);
             if (user == null || user.getRole() == null) {
@@ -166,13 +164,13 @@ public class CMSLDAPUserDetailsMapper extends LdapUserDetailsMapper {
                     role.setDescription(ViewStatics.ROLE_PROVIDER);
                 }
                 user.setRole(role);
-                log.info("First time login detected.. provisioning external user. " + user.getUsername());
+                logger.info("First time login detected.. provisioning external user. " + user.getUsername());
                 registrationService.registerExternalUser(SystemId.MN_ITS, username, user);
             }
             return new CMSUserDetailsWrapper(original, user, SystemId.MN_ITS);
         } catch (PortalServiceException e) {
             dumpLDAPConfig();
-            log.error("Could not complete LDAP login and authorization.", e);
+            logger.log(Level.SEVERE, "Could not complete LDAP login and authorization.", e);
             throw new PortalServiceRuntimeException("Could not complete LDAP login and authorization.", e);
         }
     }
@@ -182,9 +180,9 @@ public class CMSLDAPUserDetailsMapper extends LdapUserDetailsMapper {
      */
     private void dumpLDAPConfig() {
         Set<Entry<Object, Object>> entrySet = env.entrySet();
-        log.info("dumping LDAP Configuration");
+        logger.info("dumping LDAP Configuration");
         for (Entry<Object, Object> entry : entrySet) {
-            log.info(entry.getKey() + "=" + entry.getValue());
+            logger.info(entry.getKey() + "=" + entry.getValue());
         }
     }
 

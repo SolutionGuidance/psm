@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -37,16 +37,12 @@ import org.drools.runtime.process.WorkItemManager;
 
 /**
  * This initializes the application model.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 public class DisqualificationHandler extends GenericHandler {
-
-    /**
-     * The logger for this class.
-     */
-    private Logger logger = Logger.getLogger(DisqualificationHandler.class.getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * Provider service.
@@ -75,7 +71,7 @@ public class DisqualificationHandler extends GenericHandler {
 
     /**
      * If any of the provider enrollment question is answered as 'Yes' then the enrollment will be rejected.
-     * 
+     *
      * @param item
      *            the work item to abort
      * @param manager

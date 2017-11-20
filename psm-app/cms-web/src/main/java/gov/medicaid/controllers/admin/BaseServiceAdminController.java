@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 
-import com.topcoder.util.log.Log;
+import java.util.logging.Logger;
 
 
 /**
@@ -43,25 +43,12 @@ public abstract class BaseServiceAdminController {
      * have any value, but is expected to be set to a non-null value.  It is fully mutable, but not expected to change
      * after dependency injection.
      */
-    private Log log;
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * Empty constructor.
      */
     protected BaseServiceAdminController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException If there are required injection fields that are not injected
-     */
-    @PostConstruct
-    protected void init() {
-        if (log == null) {
-            throw new PortalServiceConfigurationException("log must be configured.");
-        }
-
     }
 
     /**
@@ -75,20 +62,16 @@ public abstract class BaseServiceAdminController {
     }
 
     /**
-     * Getter of the log.
-     *
-     * @return the log
+     * Ensure the object is properly initialized
      */
-    public Log getLog() {
-        return log;
-    }
+    protected void init() {}
 
     /**
-     * Setter of the log.
+     * Getter of the logger.
      *
-     * @param log the log to set
+     * @return the logger
      */
-    public void setLog(Log log) {
-        this.log = log;
+    public Logger getLogger() {
+        return logger;
     }
 }

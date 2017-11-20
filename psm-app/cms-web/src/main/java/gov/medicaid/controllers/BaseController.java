@@ -16,7 +16,7 @@
 
 package gov.medicaid.controllers;
 
-import com.topcoder.util.log.Log;
+import java.util.logging.Logger;
 import gov.medicaid.controllers.validators.StrictCustomDateEditor;
 import gov.medicaid.interceptors.HandlebarsInterceptor;
 import gov.medicaid.services.PortalServiceConfigurationException;
@@ -49,7 +49,7 @@ public abstract class BaseController {
      * It is injected by the container, may have any value, is fully mutable, but not expected to change after
      * dependency injection.
      */
-    private Log log;
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * Empty constructor.
@@ -58,15 +58,9 @@ public abstract class BaseController {
     }
 
     /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException - If there are required injection fields that are not injected
+     * Ensure the object is properly initialized
      */
-    protected void init() {
-        if (log == null) {
-            throw new PortalServiceConfigurationException("log is not configured correctly.");
-        }
-    }
+    protected void init() {}
 
     /**
      * Sets up custom editors.
@@ -97,21 +91,12 @@ public abstract class BaseController {
     }
 
     /**
-     * Gets the value of the field <code>log</code>.
+     * Gets the value of the field <code>logger</code>.
      *
-     * @return the log
+     * @return the logger
      */
-    public Log getLog() {
-        return log;
-    }
-
-    /**
-     * Sets the value of the field <code>log</code>.
-     *
-     * @param log the log to set
-     */
-    public void setLog(Log log) {
-        this.log = log;
+    public Logger getLogger() {
+        return logger;
     }
 
     /**

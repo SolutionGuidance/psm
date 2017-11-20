@@ -58,10 +58,7 @@ public class LocalHumanTaskHandler extends GenericHandler {
      */
     public static final String LOCALE_DEFAULT = "en-UK";
 
-    /**
-     * The logger for this class.
-     */
-    private Logger logger = Logger.getLogger(LocalHumanTaskHandler.class.getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * Associated session.

@@ -51,16 +51,6 @@ $(document).ready(function () {
     $("#printForm").submit();
   });
 
-  $('#viewAgentDetailsTabSection .tab').click(function (e) {
-    $(this).parent().find('.active').removeClass('active');
-    $('.tabContent').hide();
-    $('#new-modal #printModal .modal-content .tabContent').show();
-    $(this).addClass('active');
-    $($(this).attr('href')).show();
-    e.preventDefault();
-    return false;
-  });
-
   function setupSearchFormCriteria() {
     $("#exportForm").html('');
     $("#printForm").html('');
@@ -438,13 +428,6 @@ $(document).ready(function () {
     return false;
   });
 
-  $("#searchServiceAgents").click(function () {
-    $("#searchFormUserLastName").val($("#userLastNameFilterText").val());
-    $("#searchFormUserFirstName").val($("#userFirstNameFilterText").val());
-    $('#searchForm').submit();
-    return false;
-  });
-
   $("#searchAgreementDocuments").click(function () {
     $("#searchFormAgreementDocumentTitle").val($("#agreementDocumentTitleFilterText").val());
     $("#searchFormAgreementType").val($("#agreementDocumentTypeFilterText").val());
@@ -550,53 +533,6 @@ $(document).ready(function () {
 
     $.ajax({
           url: ctx + "/admin/deleteAgreementDocuments" + urlParams,
-          cache: false,
-          type: "GET",
-          dataType: "text",
-          success: function (data) {
-            $('#searchForm').submit();
-          }
-        });
-  });
-
-  // delete service agents part
-  var deleteServiceAgentIds = [];
-
-  $('.deleteServiceAgentBtn').live('click', function () {
-    closeModal();
-    deleteServiceAgentIds = [$(this).attr("rel")];
-    $("#deleteAgentModal .modal_title").text("Are you sure you want to delete the selected service agent?");
-    loadModal('#deleteAgentModal');
-  });
-
-  $('.deleteServiceAgentsBtn').live('click', function () {
-    closeModal();
-    var cbs = $(".serviceAgentCheckBox:checked");
-    if (cbs.length == 0) {
-      loadModal('#noSelectedItemsModal');
-      return false;
-    }
-
-    deleteServiceAgentIds = [];
-    for (var i = 0; i < cbs.length; i++) {
-      deleteServiceAgentIds[i] = $(cbs[i]).val();
-    }
-
-    $("#deleteAgentModal .modal_title").text("Are you sure you want to delete the selected service agent" + (cbs.length > 1 ? "s" : "") + "?");
-    loadModal('#deleteAgentModal');
-  });
-
-  $('#deleteAgentModal .deleteOKBtn').live('click', function () {
-    var urlParams = "?";
-    for (var i = 0; i < deleteServiceAgentIds.length; i++) {
-      urlParams += ("userIds=" + deleteServiceAgentIds[i]);
-      if (i != deleteServiceAgentIds.length - 1) {
-        urlParams += '&&';
-      }
-    }
-
-    $.ajax({
-          url: ctx + "/admin/deleteAgents" + urlParams,
           cache: false,
           type: "GET",
           dataType: "text",

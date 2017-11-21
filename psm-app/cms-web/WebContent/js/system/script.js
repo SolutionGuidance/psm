@@ -1222,38 +1222,6 @@ $(document).ready(function () {
     $('#editAgreementPanel').show();
   });
 
-  $('.deleteAgentBtn').live('click', function () {
-    loadModal('#deleteAgentModal');
-  });
-
-  $('.addAgentBtn').live('click', function () {
-    $('#viewAgentPanel').hide();
-    $('#editAgentPanel').hide();
-    $('#agentsPanel').hide();
-    $('#addAgentPanel').show();
-  });
-
-  $('.viewAgentLink').live('click', function () {
-    $('#editAgentPanel').hide();
-    $('#agentsPanel').hide();
-    $('#addAgentPanel').hide();
-    $('#viewAgentPanel').show();
-  });
-
-  $('.saveAddAgentBtn,.saveEditAgentBtn ,.cancelEditAgentBtn ,.cancelAddAgentBtn ').live('click', function () {
-    $('#editAgentPanel').hide();
-    $('#addAgentPanel').hide();
-    $('#viewAgentPanel').hide();
-    $('#agentsPanel').show();
-  });
-
-  $('.editAgentLink').live('click', function () {
-    $('#addAgentPanel').hide();
-    $('#viewAgentPanel').hide();
-    $('#agentsPanel').hide();
-    $('#editAgentPanel').show();
-  });
-
   $('.functionTab .tab.first').click();
 
   /* END OF SERVICE ADMIN SCRIPT -------------------------------------------------- */

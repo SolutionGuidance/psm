@@ -44,6 +44,29 @@ See
 for a diagrammatic representation of the jBPM workflow defined in
 `psm-app/cms-business-process/src/main/resources/EnrollmentProcess.bpmn`.
 
+
+## UI Templates
+
+Originally, the PSM used
+[JSP](http://www.caucho.com/resin-3.1/doc/jsp-templates.xtp) templates,
+as detailed in [issue
+#238](https://github.com/OpenTechStrategies/psm/issues/238#issuecomment-313217566).
+We have converted some of these JSP templates to
+[Mustache](https://mustache.github.io/), for easier reuse.  Mustache
+templates can be used with code written in any number of languages, not
+just Java.  For this reason, they are not as exactly tuned to Java
+development.  JSPs are able to hold more complex logic than Mustache,
+and work well for the PSM's screens, which are so specific that they are
+unlikely to be reused.  The framing templates of the PSM (the headers,
+footers, and navigation bar) have been converted to Mustache, since they
+are the most likely to be reused in other applications or in pieces of
+the PSM that might be written in another language.
+
+As part of this conversion, we deduplicated many of the templates.  When
+you are editing a piece of UI functionality, it should appear in either
+a JSP template or a Mustache template.  Use the correct formatting for
+whichever style applies.
+
 ## Interfaces
 
 ***NOTE:2017-07-03: [We no longer use `ext-sources-app` and are

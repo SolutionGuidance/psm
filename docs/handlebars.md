@@ -56,7 +56,7 @@ Additional helpers can be implemented, however, this should not be necessary as 
 ## Particulars in converting from JSP
 
 ### 1. Page Context Data
-Data that is not part of the rendered model but accessed and used in JSP via separate taglibs like spring security tags will have to be added to the model. For example, this convenience method `addContextInfoToModel(ModelAndView model)` in [`ControllerHelper.java`](https://github.com/OpenTechStrategies/psm/blob/master/psm-app/cms-web/src/main/java/gov/medicaid/controllers/ControllerHelper.java) should be used in each controller to add context data to the model passed to the view, for example in [UserController.java](https://github.com/OpenTechStrategies/psm/blob/3fd8a0a14fc802cb7a5061eddc5109c091ecb85d/psm-app/cms-web/src/main/java/gov/medicaid/controllers/admin/UserController.java]) we do
+Data that is not part of the rendered model but accessed and used in JSP via separate taglibs like spring security tags will have to be added to the model. For example, this convenience method `addContextInfoToModel(ModelAndView model)` in [`ControllerHelper.java`](https://github.com/SolutionGuidance/psm/blob/master/psm-app/cms-web/src/main/java/gov/medicaid/controllers/ControllerHelper.java) should be used in each controller to add context data to the model passed to the view, for example in [UserController.java](https://github.com/SolutionGuidance/psm/blob/3fd8a0a14fc802cb7a5061eddc5109c091ecb85d/psm-app/cms-web/src/main/java/gov/medicaid/controllers/admin/UserController.java]) we do
 
 ```java
 model.addObject("user", user);

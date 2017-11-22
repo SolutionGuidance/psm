@@ -11,7 +11,7 @@
 
      (Note that we may later separate core and ext projects into two
      repositories.  For now, that idea is filed in
-     [github.com/OpenTechStrategies/psm/issues/11](https://github.com/OpenTechStrategies/psm/issues/11),
+     [github.com/SolutionGuidance/psm/issues/11](https://github.com/OpenTechStrategies/psm/issues/11),
      as it is not urgent and does not affect current development.)
 
 2. Jason: convert was-core to WildFly + PSQL and deploy on local or

@@ -19,7 +19,7 @@ for more details on component versions and installation requirements.
 
 ***NOTE:2017-07-03: [We no longer use `ext-sources-app` and are
    rewriting this section
-   accordingly.](https://github.com/OpenTechStrategies/psm/issues/165).***
+   accordingly.](https://github.com/SolutionGuidance/psm/issues/165).***
 
 The two pieces of this application (`psm-app` and `ext-sources-app`)
 communicate via a web service which is provided by the `ext-sources-app`.
@@ -76,7 +76,7 @@ common superclass.
 
 This all means that the API is currently brittle; it hasn't been
 engineered or documented (see [this
-milestone](https://github.com/OpenTechStrategies/psm/milestone/4)), and
+milestone](https://github.com/SolutionGuidance/psm/milestone/4)), and
 writing a client for it isn't predictable (you would have to look at the
 POJO to know what kind of return to expect).
 

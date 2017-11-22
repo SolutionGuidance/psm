@@ -10,7 +10,7 @@ Attendees: James, Dan, Karl, Jason, Cecilia
 
 * GitHub repos restructuring, and reflecting structure in README.md   
 ** DONE File a ticket about separating ext-srcs.                    :CECILIA:
-   https://github.com/OpenTechStrategies/psm/issues/11
+   https://github.com/SolutionGuidance/psm/issues/11
 * Any need for an Oracle DB server?
     - Dan points out that the process of getting WebSphere up (in the
       previous phase) was not easy
@@ -72,7 +72,7 @@ Attendees: James, Dan, Karl, Jason, Cecilia
     - Oracle dependencies
     - Find WebSphere 
 ** DONE Ticket this just for tracking                               :CECILIA:
-   https://github.com/OpenTechStrategies/psm/issues/12
+   https://github.com/SolutionGuidance/psm/issues/12
 ** DONE Karl to post on psm-dev about this                             :KARL:
 
 # Please leave this block here.  For people using Emacs Org Mode

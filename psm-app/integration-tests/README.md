@@ -76,7 +76,7 @@ starting the gradle task like so:
 On Linux, the only way we've found to force an interactive Chrome session is
 to delete [the line in `build.gradle` in the test settings
 for
-`integration-tests`](https://github.com/OpenTechStrategies/psm/blob/master/psm-app/build.gradle#L264):
+`integration-tests`](https://github.com/SolutionGuidance/psm/blob/master/psm-app/build.gradle#L264):
 
 `environment "DISPLAY", System.getenv('XVFB_DISPLAY')`
 

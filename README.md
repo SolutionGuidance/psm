@@ -1,7 +1,7 @@
 Provider Screening Module for Medicare/Medicaid Provider Enrollment
 ===================================================================
 
-Current build status:  ![Build status](https://travis-ci.org/OpenTechStrategies/psm.svg?branch=master)
+Current build status:  ![Build status](https://travis-ci.org/SolutionGuidance/psm.svg?branch=master)
 
 Contents:
 
@@ -29,7 +29,7 @@ Development activity now takes place on the `master` branch, with
 short-lived development branches used for specific tasks.  Code
 contribution guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md).
 Please feel free to [file issue
-tickets](https://github.com/OpenTechStrategies/psm/issues/new) in this
+tickets](https://github.com/SolutionGuidance/psm/issues/new) in this
 repository to ask questions.
 
 See the "Background" section for the provenance of this project.
@@ -40,10 +40,10 @@ help us organize legacy code for eventual landing or rearrangement on
 (soon to be WildFly), the WebSphere side (which is divided into two
 subtrees in the original repository), and the documentation changes:
 
-* [jboss-core](https://github.com/OpenTechStrategies/coeci-cms-mpsp/tree/jboss-core)
-* [was-core](https://github.com/OpenTechStrategies/coeci-cms-mpsp/tree/was-core)
-* [was-ext](https://github.com/OpenTechStrategies/coeci-cms-mpsp/tree/was-ext)
-* [documentation](https://github.com/OpenTechStrategies/coeci-cms-mpsp/tree/documentation)
+* [jboss-core](https://github.com/SolutionGuidance/coeci-cms-mpsp/tree/jboss-core)
+* [was-core](https://github.com/SolutionGuidance/coeci-cms-mpsp/tree/was-core)
+* [was-ext](https://github.com/SolutionGuidance/coeci-cms-mpsp/tree/was-ext)
+* [documentation](https://github.com/SolutionGuidance/coeci-cms-mpsp/tree/documentation)
 
 The point of the replay branches is to give us a clean, disentangled
 view of the changes that happened in each line of development.  They
@@ -178,11 +178,11 @@ We welcome questions and contributions.  You can:
   are public, and anyone can post.  The posting guidelines are fairly
   loose -- as long as your question is about the PSM, it's on-topic.
 
-* File a new issue ticket at https://github.com/OpenTechStrategies/psm/issues.
+* File a new issue ticket at https://github.com/SolutionGuidance/psm/issues.
 
 * Submit a [pull
   request](https://help.github.com/articles/about-pull-requests/) to
-  the [repository](https://github.com/OpenTechStrategies/psm/). Here's
+  the [repository](https://github.com/SolutionGuidance/psm/). Here's
   [our guide for code contributors](CONTRIBUTING.md).
 
 * Chat with us in real time using [Zulip](https://zulipchat.com/).  Our

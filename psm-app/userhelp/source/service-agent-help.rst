@@ -20,7 +20,7 @@ When the state accepts or rejects an enrollment I've submitted, how do I find ou
 Right now, this site does not notify you via email or paper mail when
 the state accepts or rejects an enrollment you have submitted. `This
 will change in a future version of the Provider Screening
-Module. <https://github.com/OpenTechStrategies/psm/issues/341>`__
+Module. <https://github.com/SolutionGuidance/psm/issues/341>`__
 
 When you log into the PSM, you'll see any enrollments you've submitted
 or started drafting via your PSM user account. You'll be able to see the
@@ -39,7 +39,7 @@ you can click on the draft enrollment and edit the provider's name. If
 you have already submitted the enrollment, then it is not possible to
 edit the provider's name. `A future version of the PSM will allow you to
 change a provider's name in the
-system. <https://github.com/OpenTechStrategies/psm/issues/408>`__
+system. <https://github.com/SolutionGuidance/psm/issues/408>`__
 
 Currently you cannot update multiple draft enrollments at once.
 
@@ -51,7 +51,7 @@ you can click on the draft enrollment and edit the provider's contact
 information. If you have already submitted the enrollment, then it is
 not possible to edit the provider's contact information. However, `a
 future version of the PSM will let you do
-this. <https://github.com/OpenTechStrategies/psm/issues/416>`__
+this. <https://github.com/SolutionGuidance/psm/issues/416>`__
 
 Currently you cannot update multiple draft enrollments at once.
 
@@ -61,12 +61,12 @@ How do I update the license/certification information for an approved enrollment
 Currently, the PSM does not allow you to update information for an
 approved enrollment. You'll need to contact the state Medicaid office
 directly. `A future version of the PSM will let you do
-this. <https://github.com/OpenTechStrategies/psm/issues/416>`__
+this. <https://github.com/SolutionGuidance/psm/issues/416>`__
 
 How do I terminate an enrollment (e.g., if a provider retires or dies)?
 -----------------------------------------------------------------------
 
 Currently the PSM does not give you a way to terminate an approved
 enrollment, but `a future version of the PSM
-will <https://github.com/OpenTechStrategies/psm/issues/407>`__. Please
+will <https://github.com/SolutionGuidance/psm/issues/407>`__. Please
 contact the state Medicaid office directly to terminate an enrollment.

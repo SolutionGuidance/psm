@@ -9,7 +9,7 @@ a good guide to our usage of Sphinx.
 We also publish HTML, PDF, and ePub versions of the PSM documentation
 on [our GitHub Pages site](https://opentechstrategies.github.io/psm/),
 and update those versions every few weeks (see [the GitHub
-issue](https://github.com/OpenTechStrategies/psm/issues/452)).
+issue](https://github.com/SolutionGuidance/psm/issues/452)).
 
 ## HTML generation
 

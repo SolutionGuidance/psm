@@ -50,7 +50,6 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Provider Screening Module user manual'
-copyright = u'2017, Open Tech Strategies, LLC'
 author = u'Open Tech Strategies, LLC'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -166,7 +165,7 @@ latex_toplevel_sectioning = 'chapter'
 # Bibliographic Dublin Core info.
 epub_title = "Provider Service Module user manual"
 epub_author = "Open Tech Strategies"
-epub_publisher = "Open Tech Strategies https://github.com/OpenTechStrategies/psm/"
+epub_publisher = "Solution Guidance Corporation https://github.com/SolutionGuidance/psm/"
 epub_copyright = copyright
 
 # The unique identifier of the text. This can be a ISBN number

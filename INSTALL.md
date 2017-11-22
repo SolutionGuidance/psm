@@ -152,7 +152,7 @@ configuration for a development install.
    called `psm`.
 
    ```ShellSession
-   $ git clone https://github.com/OpenTechStrategies/psm.git
+   $ git clone https://github.com/SolutionGuidance/psm.git
    ```
 
 ## Configure WildFly
@@ -430,7 +430,7 @@ NGINX.  You will want to set maximum uploaded file size in both NGINX
 get quite large, especially if they are multi-page PDFs of scanned
 documents.  We do not yet have a recommended size to set this to, but
 we will set a sane default in `cms.properties` when we do.  See [issue
-263 in GitHub](https://github.com/OpenTechStrategies/psm/issues/263)
+263 in GitHub](https://github.com/SolutionGuidance/psm/issues/263)
 for some discussion of the problem.
 
 ## Configuration options

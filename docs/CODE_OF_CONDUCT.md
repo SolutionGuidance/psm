@@ -45,7 +45,7 @@ advances
 
 We all share a responsibility to create an environment that encourages
 behavior that meets these standards.  In addition,
-[Project maintainers](https://github.com/orgs/OpenTechStrategies/teams/psm?query=role%3Aowner)
+[Project maintainers](https://github.com/orgs/SolutionGuidance/teams/psm?query=role%3Aowner)
 are responsible for clarifying the standards of acceptable behavior
 and are expected to take appropriate and fair corrective action in
 response to instances of unacceptable behavior.  Their own behavior

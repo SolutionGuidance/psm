@@ -3,7 +3,7 @@ set -ex
 
 # Adaptation of code from https://benlimmer.com/2013/12/26/automatically-publish-javadoc-to-gh-pages-with-travis-ci/
 
-if [ "$TRAVIS_REPO_SLUG" == "OpenTechStrategies/psm" ] \
+if [ "$TRAVIS_REPO_SLUG" == "SolutionGuidance/psm" ] \
        && [ "$TRAVIS_JDK_VERSION" == "openjdk8" ] \
        && [ "$TRAVIS_PULL_REQUEST" == "false" ] \
        && [ "$TRAVIS_BRANCH" == "master" ]; then
@@ -14,7 +14,7 @@ if [ "$TRAVIS_REPO_SLUG" == "OpenTechStrategies/psm" ] \
 
   cd $HOME
   git clone --quiet --branch=gh-pages \
-      https://${GH_TOKEN}@github.com/OpenTechStrategies/psm gh-pages > /dev/null
+      https://${GH_TOKEN}@github.com/SolutionGuidance/psm gh-pages > /dev/null
 
   cd gh-pages
   git rm -rf ./javadoc

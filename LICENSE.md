@@ -1,5 +1,4 @@
 Copyright 2012-2013 TopCoder, Inc.
-Copyright 2017 Open Tech Strategies, LLC.
 
 This code was developed under U.S. government contract NNH10CD71C.
 

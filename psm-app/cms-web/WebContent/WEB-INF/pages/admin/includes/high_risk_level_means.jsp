@@ -7,7 +7,7 @@
 --%>
 <!-- 
      Commenting this alert out for now, as per
-     github.com/OpenTechStrategies/psm/issues/53.
+     github.com/SolutionGuidance/psm/issues/53.
      We can put it back when a) we know how to
      conditionalize it on the presence of some
      actual "high"-risk provider in the pagination

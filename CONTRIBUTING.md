@@ -10,7 +10,7 @@ conduct](docs/CODE_OF_CONDUCT.md).
 ## Submitting and Reviewing Code
 
 This repository has a home on
-[GitHub](https://github.com/OpenTechStrategies/psm).  Please submit
+[GitHub](https://github.com/SolutionGuidance/psm).  Please submit
 [pull requests](https://help.github.com/articles/about-pull-requests/)
 (PRs) there.
 
@@ -18,7 +18,7 @@ Please submit changes via pull request, even if you have direct commit
 access to the repository.  The PR process allows us to get additional
 eyes on change proposals, and ensures that your changed code [builds
 cleanly via Travis CI's automated Gradle
-build](https://travis-ci.org/OpenTechStrategies/psm).  We have caught
+build](https://travis-ci.org/SolutionGuidance/psm).  We have caught
 issues at this stage in even simple patches.
 
 As you work on your branch, try to test it locally to ensure that it
@@ -48,10 +48,10 @@ conversation around a change has concluded.  If you're unsure, ask!
 conversation.
 
 If your PR fixes a bug or adds a feature, please write a test to go with
-the change (see [TESTING.md](https://github.com/OpenTechStrategies/psm/blob/master/docs/TESTING.md) for details on our testing
+the change (see [TESTING.md](https://github.com/SolutionGuidance/psm/blob/master/docs/TESTING.md) for details on our testing
 framework).  If the change involves libraries or would be difficult to
 test, please use a Given-When-Then description like [this
-one](https://github.com/OpenTechStrategies/psm/blob/master/psm-app/cms-web/src/main/test/resources/features/enrollment/create_enrollment.feature)
+one](https://github.com/SolutionGuidance/psm/blob/master/psm-app/cms-web/src/main/test/resources/features/enrollment/create_enrollment.feature)
 or describe in your PR message how reviewers should test that your
 change works as expected.  
 

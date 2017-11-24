@@ -44,8 +44,8 @@ advances
 ## Our Responsibilities
 
 We all share a responsibility to create an environment that encourages
-behavior that meets these standards.  In addition,
-[Project maintainers](https://github.com/orgs/OpenTechStrategies/teams/psm?query=role%3Aowner)
+behavior that meets these standards.  In addition, the
+project maintainers (those who have direct push access to the repository)
 are responsible for clarifying the standards of acceptable behavior
 and are expected to take appropriate and fair corrective action in
 response to instances of unacceptable behavior.  Their own behavior
@@ -72,7 +72,7 @@ with each other, when they feel comfortable doing so.
 If issues can not be resolved directly among affected people, they should
 report instances of abusive, harassing, or otherwise unacceptable
 behavior to the Code of Conduct team at
-**`psm-coc{_AT_}opentechstrategies.com`**. The current CoC team is:
+**`psm-coc{_AT_}solutionguidance.com`**. The current CoC team is:
 
 * [Cecilia Donnelly](https://github.com/cecilia-donnelly)
 * [Karl Fogel](https://github.com/kfogel)

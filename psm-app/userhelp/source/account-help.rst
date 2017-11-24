@@ -69,7 +69,7 @@ Can I delete my account?
 ------------------------
 
 No, you cannot. `A future version of the PSM may let you do
-so. <https://github.com/OpenTechStrategies/psm/issues/327>`__
+so. <https://github.com/SolutionGuidance/psm/issues/327>`__
 
 I stopped using the PSM for a while and when I came back I had to log in again.  Is that normal?
 ------------------------------------------------------------------------------------------------

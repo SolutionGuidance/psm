@@ -12,7 +12,7 @@ We use [Selenium](http://www.seleniumhq.org/) for integration testing.
 Specifically, we use the
 [cucumber](https://github.com/selenium-cucumber/selenium-cucumber-java)
 framework.  See [the Selenium
-README](https://github.com/OpenTechStrategies/psm/blob/master/psm-app/integration-tests/README.md)
+README](https://github.com/SolutionGuidance/psm/blob/master/psm-app/integration-tests/README.md)
 for more details on how to set up and run these tests.
 
 To add a new Selenium test, do the following:
@@ -36,7 +36,7 @@ buttons in the `ui` subdirectory.
 4. Write the test in the `steps` subdirectory (being sure to import the
 `ui` file you created, if any).
 
-See [PR #348](https://github.com/OpenTechStrategies/psm/pull/348) for an
+See [PR #348](https://github.com/SolutionGuidance/psm/pull/348) for an
 example of adding a new Selenium test.
 
 ### Running Browser Tests
@@ -61,10 +61,10 @@ Labs account.
 ## API Tests
 
 See [the relevant
-README](https://github.com/OpenTechStrategies/psm/blob/master/etl/leie/README.mdwn)
+README](https://github.com/SolutionGuidance/psm/blob/master/etl/leie/README.mdwn)
 for details.  This set of tests uses `pytest`.  The full list of
 dependencies is in the LEIE API's README -- see the [Testing
-section](https://github.com/OpenTechStrategies/psm/blob/master/etl/leie/README.mdwn#Testing).
+section](https://github.com/SolutionGuidance/psm/blob/master/etl/leie/README.mdwn#Testing).
 To run the tests, get those dependencies and then do:
 
     $ cd {path-to-psm}/etl/leie
@@ -77,7 +77,7 @@ If you add new functionality to the ETL process, add a new test in
 
 We use [Spock](http://spockframework.org/) for our unit tests.
 Currently the framework is set up with a few example tests.  Look at [PR
-#253](https://github.com/OpenTechStrategies/psm/pull/253) to see where
+#253](https://github.com/SolutionGuidance/psm/pull/253) to see where
 to add one or more new unit tests in each of the subprojects.  To run
 the unit tests, do:
 
@@ -102,7 +102,7 @@ user-visible change, use
 [HTML_CodeSniffer](https://squizlabs.github.io/HTML_CodeSniffer/) as a
 bookmarklet in your browser. Choose "Section508" in the "Standards"
 dropdown [since that's the standard we need to comply
-with](https://github.com/OpenTechStrategies/psm/issues/415). [This
+with](https://github.com/SolutionGuidance/psm/issues/415). [This
 checklist](https://www.section508.gov/content/build/website-accessibility-improvement/major-web-issues)
 is useful to help you find major accessibility problems.
 

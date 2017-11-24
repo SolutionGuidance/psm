@@ -1,5 +1,5 @@
 FROM jboss/wildfly
-MAINTAINER James Vasile <james@opentechstrategies.com>
+MAINTAINER James Vasile <jvasile@solutionguidance.com>
 
 ENV JBOSS_HOME /opt/jboss/wildfly
 ENV JBOSS_CLI ${JBOSS_HOME}/bin/jboss-cli.sh

@@ -15,7 +15,7 @@ communications, and to be tactful and courteous when broaching
 divergent or controversial views.
 
 We require participants in our project and our community to maintain
-high standards for rejecting harassment and discrmination,
+high standards for rejecting harassment and discrimination,
 particularly with regard to age, body size, disability, ethnicity,
 gender identity and expression, level of experience, employment,
 nationality, personal appearance, race, religion, or sexual identity

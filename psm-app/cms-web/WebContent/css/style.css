@@ -35,7 +35,7 @@ input,select,textarea{
   width:85px;
 }
 #header {
-  background: #0d4478;
+  background: #033a6e;
   border-bottom: 2px solid #d5e2e5;
   height: 33px;
   line-height: 33px;
@@ -804,7 +804,6 @@ input.date{
 }
 #footer{
   height:40px;
-  background:#faf9f9;
   line-height:40px;
   font-size:12px;
   color:#000;

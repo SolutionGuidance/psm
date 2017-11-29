@@ -298,7 +298,7 @@ $(document).ready(function () {
   });
 
   //Next Button
-  $('#nextBtn').live('click', function () {
+  $('.nextBtn').live('click', function () {
     if ($('.flyout').is(':hidden')) {
       $('.flyout').show();
       if ($(this).offset().left + $('.flyout').width() > $('body').width() - 50) {
@@ -542,61 +542,61 @@ $(document).ready(function () {
   $('#urlRelead').live('change', function () {
     switch ($(this).val()){
     case 'Audiologist' :
-      $('#nextBtn').attr('href', 'new-enrollment-no-payment-audiologist-personal.html');
+      $('.nextBtn').attr('href', 'new-enrollment-no-payment-audiologist-personal.html');
     break;
     case 'Certified Mental Health Rehab Prof':
-      $('#nextBtn').attr('href', 'javascript:;');
+      $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Certified Professional Midwife':
-      $('#nextBtn').attr('href', 'javascript:;');
+      $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Certified Registered Nurse Anesthetist':
-      $('#nextBtn').attr('href', 'new-enrollment-no-payment-certified-registered-nurse-anesthetists-personal.html');
+      $('.nextBtn').attr('href', 'new-enrollment-no-payment-certified-registered-nurse-anesthetists-personal.html');
     break;
     case 'Chiropractor':
-      $('#nextBtn').attr('href', 'javascript:;');
+      $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Clinical Nurse Specialist':
-      $('#nextBtn').attr('href', 'javascript:;');
+      $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Community Health Care Worker':
-      $('#nextBtn').attr('href', 'new-enrollment-no-payment-community-health-workers-personal.html');
+      $('.nextBtn').attr('href', 'new-enrollment-no-payment-community-health-workers-personal.html');
     break;
     case 'Dental Hygienist':
-      $('#nextBtn').attr('href', 'javascript:;');
+      $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Dentists':
-      $('#nextBtn').attr('href', 'javascript:;');
+      $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Nurse':
-      $('#nextBtn').attr('href', 'javascript:;');
+      $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Licensed Marriage and Family Therapist':
-      $('#nextBtn').attr('href', 'javascript:;');
+      $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Licensed Psychologist':
-      $('#nextBtn').attr('href', 'new-enrollment-no-payment-licensed-psychologist-personal.html');
+      $('.nextBtn').attr('href', 'new-enrollment-no-payment-licensed-psychologist-personal.html');
     break;
     case 'PCA Individual':
-      $('#nextBtn').attr('href', 'javascript:;');
+      $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Pharmacist':
-      $('#nextBtn').attr('href', 'javascript:;');
+      $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Physician':
-      $('#nextBtn').attr('href', 'javascript:;');
+      $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Physician Assistant':
-      $('#nextBtn').attr('href', 'javascript:;');
+      $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Physical Therapist':
-      $('#nextBtn').attr('href', 'new-enrollment-no-payment-physical-therapist-personal.html');
+      $('.nextBtn').attr('href', 'new-enrollment-no-payment-physical-therapist-personal.html');
     break;
     case 'Podiatrist':
-      $('#nextBtn').attr('href', 'new-enrollment-no-payment-podiatrist-personal.html');
+      $('.nextBtn').attr('href', 'new-enrollment-no-payment-podiatrist-personal.html');
     break;
     default:
-      $('#nextBtn').attr('href', 'javascript:;');
+      $('.nextBtn').attr('href', 'javascript:;');
   }
   });
 

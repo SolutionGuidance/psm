@@ -19,7 +19,7 @@
     <div class="buttonBox">
       <input type="hidden" name="pageName" value="${pageName}"/>
       <c:url var="nextPageUrl" value="/provider/enrollment/steps/next" />
-      <a id="nextBtn" class="greyBtn" href="javascript:submitFormById('enrollmentForm', '${nextPageUrl}')"><span class="btR"><span class="btM"><span class="icon">Next</span></span></span></a>
+      <a class="nextBtn greyBtn" href="javascript:submitFormById('enrollmentForm', '${nextPageUrl}')"><span class="btR"><span class="btM"><span class="icon">Next</span></span></span></a>
     </div>
   </form>
 </div>

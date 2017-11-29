@@ -31,7 +31,7 @@
 
     <a href="javascript:submitFormById('enrollmentForm', '${prevPageUrl}')" class="greyBtn prevBtn"><span class="btR"><span class="btM"><span class="icon">Previous</span></span></span></a>
     <c:if test="${not isInSubmissionPage}">
-      <a id="nextBtn" class="greyBtn" href="javascript:submitFormById('enrollmentForm', '${nextPageUrl}')"><span class="btR"><span class="btM"><span class="icon">Next</span></span></span></a>
+      <a class="nextBtn greyBtn" href="javascript:submitFormById('enrollmentForm', '${nextPageUrl}')"><span class="btR"><span class="btM"><span class="icon">Next</span></span></span></a>
     </c:if>
     <c:if test="${isInSubmissionPage}">
       <a href="javascript:submitFormById('enrollmentForm', '${submitUrl}')" class="purpleBtn"><span class="btR"><span class="btM">Submit Enrollment</span></span></a>

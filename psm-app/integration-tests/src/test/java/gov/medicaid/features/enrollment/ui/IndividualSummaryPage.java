@@ -176,7 +176,7 @@ public class IndividualSummaryPage extends PageObject {
     }
 
     public void clickNext() {
-        click(this, $("#nextBtn"));
+        click(this, $(".nextBtn"));
     }
 
     private String textOf(String xpathOrCssSelector) {

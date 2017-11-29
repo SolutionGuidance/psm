@@ -10,7 +10,7 @@
   <c:url var="saveUrl" value="/provider/enrollment/save" />
 
   <a href="javascript:submitFormById('enrollmentForm', '${prevPageUrl}')" class="greyBtn prevBtn"><span class="btR"><span class="btM"><span class="icon">Previous</span></span></span></a>
-  <a id="nextBtn" class="greyBtn" href="javascript:submitFormById('enrollmentForm', '${nextPageUrl}')"><span class="btR"><span class="btM"><span class="icon">Next</span></span></span></a>
+  <a class="nextBtn greyBtn" href="javascript:submitFormById('enrollmentForm', '${nextPageUrl}')"><span class="btR"><span class="btM"><span class="icon">Next</span></span></span></a>
   <a href="javascript:submitFormById('enrollmentForm', '${saveUrl}')" class="greyBtn"><span class="btR"><span class="btM">Save as Draft</span></span></a>
   <a href="javascript:printThis();" class="greyBtn printModalBtn"><span class="btR"><span class="btM"><img src="<c:url value="/i/icon-print.png" />" alt=""/>Print</span></span></a>
 </div>
@@ -52,7 +52,7 @@
   <div class="buttonBox topButtonBox">
     <input type="hidden" name="pageName" value="${pageName}"/>
     <a href="javascript:submitFormById('enrollmentForm', '${prevPageUrl}')" class="greyBtn prevBtn"><span class="btR"><span class="btM"><span class="icon">Previous</span></span></span></a>
-    <a id="nextBtn" class="greyBtn" href="javascript:submitFormById('enrollmentForm', '${nextPageUrl}')"><span class="btR"><span class="btM"><span class="icon">Next</span></span></span></a>
+    <a class="nextBtn greyBtn" href="javascript:submitFormById('enrollmentForm', '${nextPageUrl}')"><span class="btR"><span class="btM"><span class="icon">Next</span></span></span></a>
     <a href="javascript:submitFormById('enrollmentForm', '${saveUrl}')" class="greyBtn"><span class="btR"><span class="btM">Save as Draft</span></span></a>
     <a href="javascript:printThis();" class="greyBtn printModalBtn"><span class="btR"><span class="btM"><img src="<c:url value="/i/icon-print.png" />" alt=""/>Print</span></span></a>
   </div>

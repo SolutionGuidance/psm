@@ -10,7 +10,7 @@ import static gov.medicaid.features.IntegrationTests.click;
 
 public class EnrollmentPage extends PageObject {
     public void clickNext() {
-        click(this, $("#nextBtn"));
+        click(this, $(".nextBtn"));
     }
 
     void setNoForRadioButton(String name) {

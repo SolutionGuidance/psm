@@ -56,7 +56,7 @@ public class LicenseInfoPage extends PageObject {
     }
 
     public void clickNext() {
-        click(this, $("#nextBtn"));
+        click(this, $(".nextBtn"));
         assertThat(getTitle()).contains("Practice Information");
     }
 }

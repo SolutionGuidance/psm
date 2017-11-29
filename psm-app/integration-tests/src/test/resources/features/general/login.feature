@@ -8,3 +8,6 @@ Feature: Log into the Application as Provider
     When I click on Login
     Then I should see my dashboard page
 
+  Scenario:
+    Given I have the application open in my browser
+    Then I should have no accessibility issues

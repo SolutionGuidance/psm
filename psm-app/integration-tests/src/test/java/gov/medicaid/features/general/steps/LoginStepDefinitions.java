@@ -15,6 +15,11 @@ public class LoginStepDefinitions {
         loginPage.open();
     }
 
+    @Then("^I should have no accessibility issues$")
+    public void i_should_have_no_accessibility_issues() {
+        loginPage.checkAccessibility();
+    }
+
     @Given("^I enter my username and password$")
     public void i_enter_my_username_and_password()  {
         loginPage.enterProviderCredentials();

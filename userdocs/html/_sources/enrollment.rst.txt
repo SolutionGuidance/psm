@@ -52,12 +52,12 @@ approved, and pending enrollments).
 A service agent or state Medicaid agency staffer can view all
 enrollments (including draft, rejected, approved, and pending
 enrollments). (`The PSM may limit this ability in a future
-version. <https://github.com/OpenTechStrategies/psm/issues/10>`__)
+version. <https://github.com/SolutionGuidance/psm/issues/10>`__)
 
 A system admin should not be able to view any enrollments. `The PSM
 currently allows a system admin to view enrollments, but will remove
 that capability in a future
-version. <https://github.com/OpenTechStrategies/psm/issues/10>`__
+version. <https://github.com/SolutionGuidance/psm/issues/10>`__
 
 Which enrollment information can a provider, service agent, or state Medicaid agency staffer modify or delete?
 --------------------------------------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ status of each enrollment.
 Right now, a provider does not receive any email notifications about
 their enrollment. (`A future version of the PSM will send email
 notifications to providers when the status of your enrollment
-changes. <https://github.com/OpenTechStrategies/psm/issues/341>`__)
+changes. <https://github.com/SolutionGuidance/psm/issues/341>`__)
 
 Can I create an enrollment for someone else?
 --------------------------------------------
@@ -111,7 +111,7 @@ How do I renew an enrollment or update an enrollment?
 
 Right now that's not something the PSM can do, but `it'll be possible in
 a future
-version. <https://github.com/OpenTechStrategies/psm/issues/401>`__
+version. <https://github.com/SolutionGuidance/psm/issues/401>`__
 
 Can I change something in a pending enrollment after I submit it?
 -----------------------------------------------------------------
@@ -125,7 +125,7 @@ How will I find out when my enrollment is accepted or rejected?
 Right now, this site does not notify you via email or paper mail when
 the state accepts or rejects an enrollment you have submitted. `This
 will change in a future version of the Provider Screening
-Module. <https://github.com/OpenTechStrategies/psm/issues/341>`__
+Module. <https://github.com/SolutionGuidance/psm/issues/341>`__
 
 When you log into the PSM, you'll see any enrollments you've submitted
 or saved as a draft. You'll be able to see the status of each
@@ -251,5 +251,5 @@ How do I end (terminate) my own active enrollment?
 
 Currently the PSM does not give you a way to terminate an approved
 enrollment, but `a future version of the PSM
-will <https://github.com/OpenTechStrategies/psm/issues/407>`__. Please
+will <https://github.com/SolutionGuidance/psm/issues/407>`__. Please
 contact the state Medicaid office directly to terminate an enrollment.

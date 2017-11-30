@@ -152,6 +152,10 @@ and design assumptions.
 The [psm-app](psm-app) subdirectory holds the source code to the PSM
 proper.
 
+[solutionguidance.github.io](https://solutionguidance.github.io/psm/)
+is our GitHub Pages site, where we publish the user manual as well as
+documentation for the PSM's web API.
+
 The `ext-sources-app` subdirectory has been removed.  It held the source
 code to the semi-separate middleware application that provided a service
 wrapper around external data sources.  This will be replaced as

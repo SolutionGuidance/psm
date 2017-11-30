@@ -7,7 +7,8 @@ Sphinx](https://docs.readthedocs.io/en/latest/getting_started.html) is
 a good guide to our usage of Sphinx.
 
 We also publish HTML, PDF, and ePub versions of the PSM documentation
-to a GitHub Pages site that is updated every few weeks (see [the GitHub
+to [a GitHub Pages site](https://solutionguidance.github.io/psm/) that
+is updated every few weeks (see [the GitHub
 issue](https://github.com/SolutionGuidance/psm/issues/452)).
 
 ## HTML generation

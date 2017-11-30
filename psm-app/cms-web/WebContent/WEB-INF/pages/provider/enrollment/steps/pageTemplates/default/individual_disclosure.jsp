@@ -171,7 +171,7 @@
                 type="hidden"
                 name="${formName}"
                 value="${formValue}" />
-            
+
             <c:set var="formName"
                 value="_08_requiredAgreementsSize"></c:set>
             <c:forEach

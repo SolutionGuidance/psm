@@ -11,7 +11,7 @@
 
 <div class="practicePanel">
     <input type="hidden" name="formNames" value="<%= ViewStatics.ADDITIONAL_AGENCY_FORM %>">
-    
+
     <div class="tableHeader otherTableHeader">
         <span>Group Affiliation Information</span>
         <a href="javascript:openAgencyLookup(false, false);" class="purpleSmallBtn practiceLookupModalBtn"><span class="btR"><span class="btM">Agency Lookup</span></span></a>

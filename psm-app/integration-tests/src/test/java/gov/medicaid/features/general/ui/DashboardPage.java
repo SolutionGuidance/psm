@@ -16,7 +16,7 @@ public class DashboardPage extends PageObject {
     }
 
     public void clickNext() {
-        click(this, $("#nextBtn"));
+        click(this, $(".nextBtn"));
     }
 
 }

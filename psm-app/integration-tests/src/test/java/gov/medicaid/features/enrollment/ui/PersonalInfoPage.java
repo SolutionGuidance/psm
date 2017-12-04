@@ -50,7 +50,7 @@ public class PersonalInfoPage extends PageObject {
     }
 
     public void clickNext() {
-        click(this, $("#nextBtn"));
+        click(this, $(".nextBtn"));
     }
 
     public void checkForTooYoungError() throws Exception {

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ import gov.medicaid.entities.ScreeningSchedule;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ScreeningService;
-import gov.medicaid.services.util.LogUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -99,17 +98,13 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/getScreeningSchedule", method = RequestMethod.GET)
     public ModelAndView get() throws PortalServiceException {
-        String signature = "ScreeningScheduleController#get()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
-
         try {
             ScreeningSchedule schedule = screeningService.getScreeningSchedule();
             ModelAndView model = new ModelAndView("admin/service_admin_view_schedule");
             model.addObject("schedule", schedule);
 
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -125,17 +120,12 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/beginEditScreeningSchedule", method = RequestMethod.GET)
     public ModelAndView beginEdit() throws PortalServiceException {
-        String signature = "ScreeningScheduleController#beginEdit()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
-
         try {
             ScreeningSchedule schedule = screeningService.getScreeningSchedule();
             ModelAndView model = new ModelAndView("admin/service_admin_edit_schedule");
             model.addObject("schedule", schedule);
-
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -154,18 +144,14 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
     @RequestMapping(value = "/admin/updateScreeningSchedule", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("schedule") ScreeningSchedule schedule, HttpServletRequest request)
         throws PortalServiceException {
-        String signature = "ScreeningScheduleController#edit(ScreeningSchedule screeningSchedule)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"screeningSchedule"}, new Object[] {schedule});
-
         try {
             screeningService.saveScreeningSchedule(schedule);
 
             ModelAndView model = new ModelAndView("admin/service_admin_view_schedule");
             model.addObject("schedule", schedule);
 
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }

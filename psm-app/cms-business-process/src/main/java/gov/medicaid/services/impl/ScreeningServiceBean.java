@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ import java.util.Date;
 import gov.medicaid.entities.ScreeningSchedule;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ScreeningService;
-import gov.medicaid.services.util.LogUtil;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -66,11 +65,9 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
      */
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public ScreeningSchedule getScreeningSchedule() throws PortalServiceException {
-        String signature = "ScreeningDAOBean#getScreeningSchedule()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
         try {
             ScreeningSchedule schedule = getEm().find(ScreeningSchedule.class, SCREENING_SCHEDULE_ID);
-            return LogUtil.traceExit(getLog(), signature, schedule);
+            return schedule;
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);
         }
@@ -86,18 +83,13 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void saveScreeningSchedule(ScreeningSchedule screeningSchedule) throws PortalServiceException {
-        String signature = "ScreeningDAOBean#saveScreeningSchedule(ScreeningSchedule screeningSchedule)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"screeningSchedule"}, new Object[]{screeningSchedule});
-
         if (screeningSchedule == null) {
             throw new IllegalArgumentException("Argument 'screeningSchedule' cannot be null.");
         }
 
         try {
             getEm().merge(screeningSchedule);
-            LogUtil.traceExit(getLog(), signature, null);
         } catch (PersistenceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw new PortalServiceException("Could not database complete operation.", e);
         }
     }

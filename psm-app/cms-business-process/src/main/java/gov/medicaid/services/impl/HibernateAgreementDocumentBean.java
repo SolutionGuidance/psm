@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ import gov.medicaid.entities.SearchResult;
 import gov.medicaid.services.AgreementDocumentService;
 import gov.medicaid.services.EntityNotFoundException;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
 
 import java.util.Date;
@@ -75,9 +74,6 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public long create(AgreementDocument agreementDocument) throws PortalServiceException {
-        String signature = "HibernateAgreementDocumentDAO#create(AgreementDocument agreementDocument)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"agreementDocument"}, new Object[] {agreementDocument});
-
         try {
             if (agreementDocument == null) {
                 throw new IllegalArgumentException("Argument 'agreementDocument' cannot be null.");
@@ -87,12 +83,10 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
             agreementDocument.setCreatedOn(new Date());
             getEm().persist(agreementDocument);
 
-            return LogUtil.traceExit(getLog(), signature, agreementDocument.getId());
+            return agreementDocument.getId();
         } catch (IllegalArgumentException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         } catch (PersistenceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw new PortalServiceException("Could not database complete operation.", e);
         }
     }
@@ -107,24 +101,20 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void update(AgreementDocument agreementDocument) throws PortalServiceException {
-        String signature = "HibernateAgreementDocumentDAO#update(AgreementDocument agreementDocument)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"agreementDocument"}, new Object[] {agreementDocument});
-
         if (agreementDocument == null) {
             throw new IllegalArgumentException("Argument 'agreementDocument' cannot be null.");
         }
 
         try {
             AgreementDocument entity = getEm().find(AgreementDocument.class, agreementDocument.getId());
-            
+
             if (entity == null) {
                 throw new EntityNotFoundException("No such entity in the database.");
             }
             agreementDocument.setVersion(agreementDocument.getVersion() + 1);
             getEm().merge(agreementDocument);
-            
+
             GlobalLookups.refresh();
-            LogUtil.traceExit(getLog(), signature, null);
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);
         }
@@ -140,12 +130,8 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
      */
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public AgreementDocument get(long agreementDocumentId) throws PortalServiceException {
-        String signature = "HibernateAgreementDocumentDAO#get(long agreementDocumentId)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"agreementDocumentId"},
-            new Object[] {agreementDocumentId});
-
         try {
-            return LogUtil.traceExit(getLog(), signature, getEm().find(AgreementDocument.class, agreementDocumentId));
+            return getEm().find(AgreementDocument.class, agreementDocumentId);
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);
         }
@@ -160,10 +146,6 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void delete(long agreementDocumentId) throws PortalServiceException {
-        String signature = "HibernateAgreementDocumentDAO#delete(long agreementDocumentId)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"agreementDocumentId"},
-            new Object[] {agreementDocumentId});
-
         try {
             AgreementDocument item = getEm().find(AgreementDocument.class, agreementDocumentId);
 
@@ -172,7 +154,6 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
             }
 
             getEm().remove(item);
-            LogUtil.traceExit(getLog(), signature, null);
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);
         }
@@ -193,9 +174,6 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public SearchResult<AgreementDocument> search(AgreementDocumentSearchCriteria criteria)
         throws PortalServiceException {
-        String signature = "HibernateAgreementDocumentDAO#search(AgreementDocumentSearchCriteria criteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"criteria"}, new Object[] {criteria});
-
         try {
             if (criteria == null) {
                 throw new IllegalArgumentException("criteria cannot be null.");
@@ -244,9 +222,8 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
             searchResults = assembleResult(searchResults, criteria.getPageNumber(), criteria.getPageSize(),
                 totalRecordCount);
 
-            return LogUtil.traceExit(getLog(), signature, searchResults);
+            return searchResults;
         } catch (IllegalArgumentException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);

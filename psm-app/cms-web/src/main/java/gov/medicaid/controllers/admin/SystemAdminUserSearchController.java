@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.UserSearchCriteria;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.util.LogUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -74,8 +73,6 @@ public class SystemAdminUserSearchController extends BaseSystemAdminController {
      */
     @RequestMapping("/list")
     public ModelAndView search(UserSearchCriteria criteria) throws PortalServiceException {
-        String signature = "SystemAdminUserSearchController#search(UserSearchCriteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"criteria"}, new Object[] {criteria});
 
         if (criteria == null) { // never true if called by spring MVC
             throw new IllegalArgumentException("Argument 'criteria' cannot be null.");
@@ -86,7 +83,7 @@ public class SystemAdminUserSearchController extends BaseSystemAdminController {
         mv.addObject("results", results);
         mv.addObject("criteria", criteria);
         mv.addObject("roles", getRolesStr(criteria.getRoles()));
-        return LogUtil.traceExit(getLog(), signature, mv);
+        return mv;
     }
 
     /**
@@ -119,8 +116,6 @@ public class SystemAdminUserSearchController extends BaseSystemAdminController {
     @RequestMapping("/delete")
     @ResponseBody
     public StatusDTO delete(@RequestParam("userIds") String[] userIds) {
-        String signature = "SystemAdminUserSearchController#delete(String[])";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"userIds"}, new Object[] {userIds});
 
         if (userIds == null) { // never true if called by spring MVC
             throw new IllegalArgumentException("Argument 'userIds' cannot be null.");
@@ -132,10 +127,9 @@ public class SystemAdminUserSearchController extends BaseSystemAdminController {
             getRegistrationService().unregisterUsers(actor.getUserId(), userIds);
             statusDTO.setSuccess(true);
         } catch (PortalServiceException ex) {
-            LogUtil.traceError(getLog(), signature, ex);
             statusDTO.setMessage(USER_ERROR_MSG);
         }
-        return LogUtil.traceExit(getLog(), signature, statusDTO);
+        return statusDTO;
     }
 
     /**

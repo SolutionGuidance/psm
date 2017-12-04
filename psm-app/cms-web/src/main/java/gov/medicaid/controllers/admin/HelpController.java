@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ import gov.medicaid.entities.SearchResult;
 import gov.medicaid.services.HelpService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.util.LogUtil;
 
 import java.util.List;
 
@@ -87,9 +86,6 @@ public class HelpController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/searchHelp", method = RequestMethod.GET)
     public ModelAndView view() throws PortalServiceException {
-        String signature = "HelpController#view()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
-
         try {
             // Package a ProviderSearchCriteria with first page of size 10 sorted by last update date column
             HelpSearchCriteria criteria = new HelpSearchCriteria();
@@ -100,9 +96,8 @@ public class HelpController extends BaseServiceAdminController {
             ModelAndView model = new ModelAndView("admin/service_admin_help_items");
             model.addObject("helpItems", result.getItems());
 
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -121,17 +116,13 @@ public class HelpController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/searchHelp", method = RequestMethod.POST)
     public ModelAndView search(@ModelAttribute("criteria") HelpSearchCriteria criteria) throws PortalServiceException {
-        String signature = "HelpController#searchHelp(HelpSearchCriteria criteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"criteria"}, new Object[] {criteria});
-
         try {
             List<HelpItem> helpItems = helpService.search(criteria).getItems();
             ModelAndView model = new ModelAndView("admin/service_admin_help_items");
             model.addObject("helpItems", helpItems);
 
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -150,17 +141,13 @@ public class HelpController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/getHelpItem", method = RequestMethod.GET)
     public ModelAndView get(@RequestParam("helpItemId") long helpItemId) throws PortalServiceException {
-        String signature = "HelpController#getHelpItem(long helpItemId)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"helpItemId"}, new Object[] {helpItemId});
-
         try {
             HelpItem helpItem = helpService.get(helpItemId);
             ModelAndView model = new ModelAndView("admin/service_admin_view_help_item");
             model.addObject("helpItem", helpItem);
 
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -179,9 +166,6 @@ public class HelpController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/editHelpItem", method = RequestMethod.GET)
     public ModelAndView beginEdit(@RequestParam("helpItemId") long helpItemId) throws PortalServiceException {
-        String signature = "HelpController#beginEdit(long helpItemId)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"helpItemId"}, new Object[] {helpItemId});
-
         try {
             ModelAndView model = new ModelAndView("admin/service_admin_edit_help_item");
             if (helpItemId == 0) {
@@ -190,9 +174,8 @@ public class HelpController extends BaseServiceAdminController {
                 HelpItem helpItem = helpService.get(helpItemId);
                 model.addObject("helpItem", helpItem);
             }
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -213,9 +196,6 @@ public class HelpController extends BaseServiceAdminController {
     @RequestMapping(value = "/admin/createHelpItem", method = RequestMethod.POST)
     public ModelAndView create(@ModelAttribute("helpItem") HelpItem helpItem, HttpServletRequest request)
         throws PortalServiceException {
-        String signature = "HelpController#create(HelpItem helpItem)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"helpItem"}, new Object[] {helpItem});
-
         try {
             helpService.create(helpItem);
             helpItem = helpService.get(helpItem.getId());
@@ -223,9 +203,8 @@ public class HelpController extends BaseServiceAdminController {
             ModelAndView model = new ModelAndView("admin/service_admin_view_help_item");
             model.addObject("helpItem", helpItem);
 
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -246,8 +225,6 @@ public class HelpController extends BaseServiceAdminController {
     @RequestMapping(value = "/admin/updateHelpItem", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("helpItem") HelpItem helpItem, HttpServletRequest request)
         throws PortalServiceException {
-        String signature = "HelpController#edit(HelpItem helpItem)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"admin/helpItem"}, new Object[] {helpItem});
 
         try {
             helpService.update(helpItem);
@@ -256,9 +233,8 @@ public class HelpController extends BaseServiceAdminController {
             ModelAndView model = new ModelAndView("service_admin_view_help_item");
             model.addObject("helpItem", helpItem);
 
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -277,14 +253,11 @@ public class HelpController extends BaseServiceAdminController {
     @ResponseBody
     public String delete(@RequestParam("helpItemId") long helpItemId, HttpServletRequest request)
         throws PortalServiceException {
-        String signature = "HelpController#delete(long helpItemId)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"helpItemId"}, new Object[] {helpItemId});
 
         try {
             helpService.delete(helpItemId);
-            return LogUtil.traceExit(getLog(), signature, "success");
+            return "success";
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }

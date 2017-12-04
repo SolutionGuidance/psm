@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ import gov.medicaid.entities.Event;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.EventService;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.util.LogUtil;
 
 import java.util.List;
 
@@ -88,9 +87,6 @@ public class HibernateEventServiceBean extends BaseService implements EventServi
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public long create(Event event) throws PortalServiceException {
-        String signature = "HibernateEventDAO#create(Event event)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"event"}, new Object[] {event});
-
         try {
             if (event == null) {
                 throw new IllegalArgumentException("Argument 'event' cannot be null.");
@@ -98,9 +94,8 @@ public class HibernateEventServiceBean extends BaseService implements EventServi
 
             getEm().persist(event);
 
-            return LogUtil.traceExit(getLog(), signature, event.getId());
+            return event.getId();
         } catch (PersistenceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw new PortalServiceException("Could not database complete operation.", e);
         }
     }
@@ -116,9 +111,6 @@ public class HibernateEventServiceBean extends BaseService implements EventServi
     @SuppressWarnings("unchecked")
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public List<Event> getLatest() throws PortalServiceException {
-        String signature = "HibernateEventDAO#getLatest";
-        LogUtil.traceEntry(getLog(), signature, null, null);
-
         try {
             if (maxResults <= 0) {
                 throw new IllegalStateException("maxResults should be configured as positive");
@@ -135,7 +127,7 @@ public class HibernateEventServiceBean extends BaseService implements EventServi
             // Execute query:
             List<Event> events = query.getResultList();
 
-            return LogUtil.traceExit(getLog(), signature, events);
+            return events;
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);
         }

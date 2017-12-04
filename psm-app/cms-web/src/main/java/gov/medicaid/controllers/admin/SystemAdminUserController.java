@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ import gov.medicaid.entities.UserSearchCriteria;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
 
 import java.util.Arrays;
@@ -97,11 +96,8 @@ public class SystemAdminUserController extends BaseSystemAdminController {
      */
     @RequestMapping("/list")
     public ModelAndView view() throws PortalServiceException {
-        String signature = "SystemAdminUserController#view()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
-
         ModelAndView mv = loadUserManagement(ViewStatics.ROLE_PROVIDER, null);
-        return LogUtil.traceExit(getLog(), signature, mv);
+        return mv;
     }
 
     /**
@@ -121,8 +117,6 @@ public class SystemAdminUserController extends BaseSystemAdminController {
     public ModelAndView search(@RequestParam("role") String role,
         @RequestParam(value = "initSearchBox", required = false, defaultValue = "false") boolean initSearchBox,
         UserSearchCriteria criteria) throws PortalServiceException {
-        String signature = "SystemAdminUserController#search(String, UserSearchCriteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"role", "criteria"}, new Object[] {role, criteria});
 
         checkRoleParameter(role);
         if (criteria == null) {
@@ -136,7 +130,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
             criteria.setFirstName("");
             mv.addObject("searchedResult", true);
         }
-        return LogUtil.traceExit(getLog(), signature, mv);
+        return mv;
     }
 
     /**
@@ -155,14 +149,12 @@ public class SystemAdminUserController extends BaseSystemAdminController {
     @RequestMapping("/details")
     public ModelAndView get(@RequestParam("role") String role, @RequestParam("userId") String userId)
         throws PortalServiceException {
-        String signature = "SystemAdminUserController#get(String, long)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"role", "userId"}, new Object[] {role, userId});
         checkRoleParameter(role);
 
         String viewName = "admin/user-account-details-system-admin";
         ModelAndView mv = loadUser(viewName, role, userId);
 
-        return LogUtil.traceExit(getLog(), signature, mv);
+        return mv;
     }
 
     /**
@@ -182,14 +174,12 @@ public class SystemAdminUserController extends BaseSystemAdminController {
     @RequestMapping(value = { "/edit", "/new" }, method = RequestMethod.GET)
     public ModelAndView beginEdit(@RequestParam("role") String role,
         @RequestParam(value = "userId", required = false) String userId) throws PortalServiceException {
-        String signature = "SystemAdminUserController#beginEdit(String, long)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"role", "userId"}, new Object[] {role, userId});
         checkRoleParameter(role);
 
         String viewName = "admin/user-account-edit-system-admin";
         ModelAndView mv = loadUser(viewName, role, userId);
 
-        return LogUtil.traceExit(getLog(), signature, mv);
+        return mv;
     }
 
     /**
@@ -217,10 +207,6 @@ public class SystemAdminUserController extends BaseSystemAdminController {
             @ModelAttribute("user") CMSUser user,
             BindingResult errors
     ) throws PortalServiceException {
-
-        String signature = "SystemAdminUserController#create(String, String, User, BindingResult)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"role", "password", "user", "errors"}, new Object[] {
-            role, "*******", user, "[Framework Object]"});
 
         checkRoleParameter(role);
         if (user == null) {
@@ -254,7 +240,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
             mv = loadUser(viewName, role, userId);
         }
 
-        return LogUtil.traceExit(getLog(), signature, mv);
+        return mv;
     }
 
     /**
@@ -276,9 +262,6 @@ public class SystemAdminUserController extends BaseSystemAdminController {
     public ModelAndView edit(@RequestParam("roleName") String role,
         @RequestParam(value = "password", required = false) String password, @ModelAttribute("user") CMSUser user,
         BindingResult errors) throws PortalServiceException {
-        String signature = "SystemAdminUserController#edit(String, String, User, BindingResult)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"role", "password", "user", "errors"}, new Object[] {
-            role, "*******", user, "[Framework Object]"});
 
         checkRoleParameter(role);
         if (user == null) {
@@ -306,7 +289,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
             mv = loadUser(viewName, role, userId);
         }
 
-        return LogUtil.traceExit(getLog(), signature, mv);
+        return mv;
     }
 
     /**
@@ -324,9 +307,6 @@ public class SystemAdminUserController extends BaseSystemAdminController {
     @RequestMapping(value = "/delete")
     public ModelAndView delete(@RequestParam("role") String role, @RequestParam("userIds") String[] userIds)
         throws PortalServiceException {
-        String signature = "SystemAdminUserController#delete(String, String[])";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"role", "userIds"}, new Object[] {role, userIds});
-
         checkRoleParameter(role);
         if (userIds == null) {
             throw new IllegalArgumentException("Argument 'userIds' cannot be null.");
@@ -337,7 +317,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
         // we may need to add criteria if the client wants to preserve current filters
         ModelAndView mv = loadUserManagement(role, null);
 
-        return LogUtil.traceExit(getLog(), signature, mv);
+        return mv;
     }
 
     /**

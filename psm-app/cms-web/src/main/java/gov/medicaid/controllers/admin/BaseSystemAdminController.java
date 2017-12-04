@@ -21,7 +21,6 @@ import gov.medicaid.interceptors.HandlebarsInterceptor;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.RegistrationService;
-import gov.medicaid.services.util.LogUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -78,7 +77,6 @@ public abstract class BaseSystemAdminController {
             HttpServletRequest request,
             Exception ex
     ) {
-        LogUtil.traceError(getLog(), "BaseSystemAdminController#handleException(Exception ex)", ex);
         ModelAndView view = new ModelAndView("error");
         view.addObject("exception", ex);
         HandlebarsInterceptor.addCommonVariables(request, view);

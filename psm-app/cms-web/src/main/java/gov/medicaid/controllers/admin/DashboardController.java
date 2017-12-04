@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -32,7 +32,6 @@ import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
-import gov.medicaid.services.util.LogUtil;
 
 import java.util.List;
 
@@ -123,9 +122,6 @@ public class DashboardController extends BaseServiceAdminController {
      */
     @RequestMapping(value = { "/ops/viewDashboard" }, method = RequestMethod.GET)
     public ModelAndView view() throws PortalServiceException {
-        String signature = "DashboardController#view()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
-
         try {
             // Package a ProviderSearchCriteria with first page of size 10 sorted by last update date column
             ProviderSearchCriteria criteria = new ProviderSearchCriteria();
@@ -150,9 +146,8 @@ public class DashboardController extends BaseServiceAdminController {
             model.addObject("profiles", result.getItems());
             model.addObject("notifications", notifications);
 
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -172,8 +167,6 @@ public class DashboardController extends BaseServiceAdminController {
     @RequestMapping(value = { "/ops/viewDashboard" }, method = RequestMethod.POST)
     public ModelAndView search(@ModelAttribute("criteria") ProviderSearchCriteria criteria)
         throws PortalServiceException {
-        String signature = "DashboardController#search(ProviderSearchCriteria criteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"criteria"}, new Object[] {criteria});
 
         try {
             SearchResult<UserRequest> result = providerProfileService.searchTickets(ControllerHelper.getCurrentUser(),
@@ -185,9 +178,8 @@ public class DashboardController extends BaseServiceAdminController {
             model.addObject("profiles", result.getItems());
             model.addObject("notifications", notifications);
 
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -204,18 +196,14 @@ public class DashboardController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/viewHelp", method = RequestMethod.GET)
     public ModelAndView getHelp() throws PortalServiceException {
-        String signature = "DashboardController#getHelp()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
-
         try {
             // Get all help topics with help service
             SearchResult<HelpItem> result = helpService.search(new HelpSearchCriteria());
             ModelAndView model = new ModelAndView("admin/help");
             model.addObject("helpItems", result.getItems());
 
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -234,17 +222,12 @@ public class DashboardController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/viewHelpItem", method = RequestMethod.GET)
     public ModelAndView getHelpItem(@RequestParam("helpItemId") long id) throws PortalServiceException {
-        String signature = "DashboardController#getHelpItem(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"id"}, new Object[] {id});
-
         try {
             HelpItem helpItem = helpService.get(id);
             ModelAndView model = new ModelAndView("admin/help_detail");
             model.addObject("helpItem", helpItem);
-
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -264,17 +247,12 @@ public class DashboardController extends BaseServiceAdminController {
     @RequestMapping(value = "/viewHelp", method = RequestMethod.POST)
     public ModelAndView searchHelp(@ModelAttribute("criteria") HelpSearchCriteria criteria)
         throws PortalServiceException {
-        String signature = "DashboardController#searchHelp(HelpSearchCriteria criteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"criteria"}, new Object[] {criteria});
-
         try {
             List<HelpItem> helpItems = helpService.search(criteria).getItems();
             ModelAndView model = new ModelAndView("admin/help");
             model.addObject("helpItems", helpItems);
-
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }

@@ -20,7 +20,6 @@ import com.topcoder.util.log.Log;
 import gov.medicaid.controllers.validators.StrictCustomDateEditor;
 import gov.medicaid.interceptors.HandlebarsInterceptor;
 import gov.medicaid.services.PortalServiceConfigurationException;
-import gov.medicaid.services.util.LogUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -92,7 +91,6 @@ public abstract class BaseController {
             HttpServletRequest request,
             Exception ex
     ) {
-        LogUtil.traceError(getLog(), "BaseController#handleError(Exception ex)", ex);
         ModelAndView view = new ModelAndView("error");
         HandlebarsInterceptor.addCommonVariables(request, view);
         return view;

@@ -61,7 +61,6 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.ProviderTypeService;
 import gov.medicaid.services.ScreeningService;
-import gov.medicaid.services.util.LogUtil;
 import org.jbpm.task.query.TaskSummary;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
@@ -176,14 +175,12 @@ public class EnrollmentController extends BaseController {
      */
     @RequestMapping("/agent/enrollment/")
     public ModelAndView view() throws PortalServiceException {
-        String signature = "EnrollmentController#view()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
         ProviderSearchCriteria criteria = new ProviderSearchCriteria();
         ArrayList<String> statuses = new ArrayList<>();
         criteria.setShowFilterPanel(true);
         statuses.add("Draft");
         criteria.setStatuses(statuses);
-        return LogUtil.traceExit(getLog(), signature, doSearch(criteria, "draft"));
+        return doSearch(criteria, "draft");
     }
 
     /**
@@ -200,9 +197,6 @@ public class EnrollmentController extends BaseController {
             method = RequestMethod.GET
     )
     public ModelAndView viewDashboard() throws PortalServiceException {
-        String signature = "EnrollmentController#viewDashboard()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
-
         try {
             // Package a ProviderSearchCriteria with first page of size 10 sorted by last update date column
             ProviderSearchCriteria criteria = new ProviderSearchCriteria();
@@ -218,10 +212,8 @@ public class EnrollmentController extends BaseController {
             ModelAndView model = new ModelAndView("admin/dashboard");
             model.addObject("profiles", result.getItems());
             model.addObject("notifications", notifications);
-
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -240,9 +232,6 @@ public class EnrollmentController extends BaseController {
             method = RequestMethod.GET
     )
     public ModelAndView getHelp() throws PortalServiceException {
-        String signature = "EnrollmentController#getHelp()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
-
         try {
             // Get all help topics with help service
             HelpSearchCriteria criteria = new HelpSearchCriteria();
@@ -251,10 +240,8 @@ public class EnrollmentController extends BaseController {
             SearchResult<HelpItem> result = helpService.search(criteria);
             ModelAndView model = new ModelAndView("admin/help");
             model.addObject("helpItems", result.getItems());
-
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -276,17 +263,12 @@ public class EnrollmentController extends BaseController {
     public ModelAndView getHelpItem(
             @RequestParam("helpItemId") long id
     ) throws PortalServiceException {
-        String signature = "EnrollmentController#getHelpItem(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{id});
-
         try {
             HelpItem helpItem = helpService.get(id);
             ModelAndView model = new ModelAndView("admin/help_detail");
             model.addObject("helpItem", helpItem);
-
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -303,13 +285,10 @@ public class EnrollmentController extends BaseController {
     public ModelAndView rejectTicket(
             @RequestParam("id") long id
     ) throws PortalServiceException {
-        String signature = "EnrollmentController#rejectTicket(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{id});
         CMSUser user = ControllerHelper.getCurrentUser();
         enrollmentService.rejectTicket(user, id, "Manual Reject by the agent");
         ModelAndView mv = new ModelAndView("redirect:/provider/search/rejected?statuses=Rejected&showFilterPanel=true");
-
-        return LogUtil.traceExit(getLog(), signature, mv);
+        return mv;
     }
 
     /**
@@ -325,9 +304,6 @@ public class EnrollmentController extends BaseController {
     public ModelAndView screeningReview(
             @RequestParam("id") long id
     ) throws PortalServiceException {
-        String signature = "EnrollmentController#viewScreeningResults(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{id});
-
         CMSUser user = ControllerHelper.getCurrentUser();
         Enrollment ticket = enrollmentService.getTicketDetails(user, id);
         long processInstanceId = ticket.getProcessInstanceId();
@@ -376,7 +352,7 @@ public class EnrollmentController extends BaseController {
             if (mv == null) {
                 throw new PortalServiceException("The screening results are not yet available for review.");
             }
-            return LogUtil.traceExit(getLog(), signature, mv);
+            return mv;
         } catch (Exception e) {
             throw new PortalServiceException("Error while invoking process server.", e);
         }
@@ -397,9 +373,6 @@ public class EnrollmentController extends BaseController {
             @RequestParam("type") String type,
             @RequestParam(value = "licenseId", required = false) String licenseId
     ) throws PortalServiceException {
-        String signature = "EnrollmentController#viewScreeningResults(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{id});
-
         CMSUser user = ControllerHelper.getCurrentUser();
         Enrollment ticket = enrollmentService.getTicketDetails(user, id);
         long processInstanceId = ticket.getProcessInstanceId();
@@ -438,7 +411,7 @@ public class EnrollmentController extends BaseController {
                     break;
                 }
             }
-            return LogUtil.traceExit(getLog(), signature, mv);
+            return mv;
         } catch (Exception e) {
             throw new PortalServiceException("Error while invoking process server.", e);
         }
@@ -463,9 +436,6 @@ public class EnrollmentController extends BaseController {
             @ModelAttribute("criteria") ProviderSearchCriteria criteria,
             HttpServletResponse response
     ) throws PortalServiceException, IOException {
-        String signature = "EnrollmentController#search(ProviderSearchCriteria criteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"criteria"}, new Object[]{criteria});
-
         if (criteria == null) {
             throw new IllegalArgumentException("A valid criteria must be provided.");
         }
@@ -502,14 +472,11 @@ public class EnrollmentController extends BaseController {
     ) throws PortalServiceException {
 
         nocache(response);
-        String signature = "EnrollmentController#search(ProviderSearchCriteria criteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"criteria"}, new Object[]{criteria});
-
         if (criteria == null) {
             throw new IllegalArgumentException("A valid criteria must be provided.");
         }
 
-        return LogUtil.traceExit(getLog(), signature, doSearch(criteria, view));
+        return doSearch(criteria, view);
     }
 
     /**
@@ -547,8 +514,6 @@ public class EnrollmentController extends BaseController {
     public ModelAndView getByNumber(
             @RequestParam("npi") String npi
     ) throws PortalServiceException {
-        String signature = "EnrollmentController#getByNumber(String npi)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"npi"}, new Object[]{npi});
 
         if (npi == null || npi.trim().length() == 0) {
             throw new IllegalArgumentException("A valid NPI must be provided.");
@@ -570,7 +535,7 @@ public class EnrollmentController extends BaseController {
 
         UserRequest result = results.getItems().get(0);
         ModelAndView mv = new ModelAndView("admin/service_agent_enrollment_status", "profile", result);
-        return LogUtil.traceExit(getLog(), signature, mv);
+        return mv;
     }
 
     /**
@@ -587,15 +552,12 @@ public class EnrollmentController extends BaseController {
             @RequestParam("id") long ticketId,
             @RequestParam(value = "print", required = false) String isPrint
     ) throws PortalServiceException {
-        String signature = "EnrollmentController#getDetails(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{ticketId});
-
         if ("yes".equals(isPrint)) {
             ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/reviewPrint?id=" + ticketId);
-            return LogUtil.traceExit(getLog(), signature, mv);
+            return mv;
         } else {
             ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/view?id=" + ticketId);
-            return LogUtil.traceExit(getLog(), signature, mv);
+            return mv;
         }
     }
 
@@ -615,9 +577,6 @@ public class EnrollmentController extends BaseController {
             @RequestParam("id") long ticketId,
             @RequestParam("note") String note
     ) {
-        String signature = "EnrollmentController#saveNote(long id, String note)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id", "note"}, new Object[]{ticketId, note});
-
         if (note == null || note.trim().length() == 0) {
             throw new IllegalArgumentException("A note must be provided.");
         }
@@ -628,11 +587,10 @@ public class EnrollmentController extends BaseController {
             enrollmentService.addNoteToTicket(user, ticketId, note);
             statusDTO.setSuccess(true);
         } catch (PortalServiceException ex) {
-            LogUtil.traceError(getLog(), signature, ex);
             statusDTO.setMessage(USER_ERROR_MSG);
         }
 
-        return LogUtil.traceExit(getLog(), signature, statusDTO);
+        return statusDTO;
     }
 
     /**
@@ -646,8 +604,6 @@ public class EnrollmentController extends BaseController {
      */
     @RequestMapping("/agent/enrollment/approve")
     public String approve(@RequestParam("id") long id, ApprovalDTO dto) {
-        String signature = "EnrollmentController#approve(long id, ApprovalDTO dto)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id", "dto"}, new Object[]{id, dto});
         StatusDTO statusDTO = new StatusDTO();
 
         try {
@@ -655,7 +611,6 @@ public class EnrollmentController extends BaseController {
             statusDTO.setSuccess(true);
             ControllerHelper.flashInfo("Approval request has been sent, you will be notified once it is processed.");
         } catch (PortalServiceException ex) {
-            LogUtil.traceError(getLog(), signature, ex);
             ControllerHelper.flashError(USER_ERROR_MSG);
         }
         return "redirect:/ops/viewDashboard";
@@ -677,9 +632,6 @@ public class EnrollmentController extends BaseController {
             @RequestParam("id") long id,
             @RequestParam("reason") String reason
     ) {
-        String signature = "EnrollmentController#reject(long id, String reason)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id", "reason"}, new Object[]{id, reason});
-
         if (reason == null || reason.trim().length() == 0) {
             throw new IllegalArgumentException("A reason must be provided.");
         }
@@ -689,11 +641,10 @@ public class EnrollmentController extends BaseController {
             completeReview(id, null, true, reason);
             statusDTO.setMessage("Request has been sent, you will be notified once it is processed.");
         } catch (PortalServiceException ex) {
-            LogUtil.traceError(getLog(), signature, ex);
             statusDTO.setMessage(USER_ERROR_MSG);
         }
 
-        return LogUtil.traceExit(getLog(), signature, statusDTO);
+        return statusDTO;
     }
 
     /**
@@ -706,18 +657,14 @@ public class EnrollmentController extends BaseController {
     @RequestMapping("/agent/enrollment/screen")
     @ResponseBody
     public StatusDTO initiateOnDemandScreening(@RequestParam("id") long id) {
-        String signature = "EnrollmentController#initiateOnDemandScreening(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{id});
-
         StatusDTO statusDTO = new StatusDTO();
         try {
             screeningService.performScreening(id);
             statusDTO.setSuccess(true);
         } catch (PortalServiceException ex) {
-            LogUtil.traceError(getLog(), signature, ex);
             statusDTO.setMessage(USER_ERROR_MSG);
         }
-        return LogUtil.traceExit(getLog(), signature, statusDTO);
+        return statusDTO;
     }
 
     /**
@@ -736,9 +683,6 @@ public class EnrollmentController extends BaseController {
             @RequestParam("id") long id,
             @RequestParam("date") Date date
     ) {
-        String signature = "EnrollmentController#initiateScheduledScreening(long id, Date date)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id", "date"}, new Object[]{id, date});
-
         if (date == null || date.before(new Date())) {
             throw new IllegalArgumentException("A valid future date must be specified.");
         }
@@ -748,10 +692,9 @@ public class EnrollmentController extends BaseController {
             screeningService.scheduleScreening(id, date);
             statusDTO.setSuccess(true);
         } catch (PortalServiceException ex) {
-            LogUtil.traceError(getLog(), signature, ex);
             statusDTO.setMessage(USER_ERROR_MSG);
         }
-        return LogUtil.traceExit(getLog(), signature, statusDTO);
+        return statusDTO;
     }
 
     public void setHelpService(HelpService helpService) {
@@ -941,8 +884,6 @@ public class EnrollmentController extends BaseController {
     public ModelAndView viewCategoryOfService(
             @RequestParam("id") long profileId
     ) throws PortalServiceException {
-        String signature = "EnrollmentController#viewCategoryOfService(long profileId)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{profileId});
         CMSUser user = ControllerHelper.getCurrentUser();
         ProviderProfile profile = enrollmentService.getProviderDetails(user, profileId);
         if (profile != null) {
@@ -970,8 +911,6 @@ public class EnrollmentController extends BaseController {
     public ModelAndView viewPendingCategoryOfService(
             @RequestParam("id") long ticketId
     ) throws PortalServiceException {
-        String signature = "EnrollmentController#viewCategoryOfService(long ticketId)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{ticketId});
         CMSUser user = ControllerHelper.getCurrentUser();
         Enrollment enrollment = enrollmentService.getTicketDetails(user, ticketId);
         if (enrollment != null) {
@@ -1013,9 +952,6 @@ public class EnrollmentController extends BaseController {
             @RequestParam("prevCosId") long prevCosId,
             @RequestParam("prevCosEndDate") String prevCosEndDate
     ) throws PortalServiceException {
-        String signature = "EnrollmentController#addCategoryOfService(long profileId, String startDate, String endDate, String cos)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id", "startDate", "endDate", "cos"}, new Object[]{
-                profileId, startDate, endDate, cos});
         CMSUser user = ControllerHelper.getCurrentUser();
         ProviderCategoryOfService categoryOfService = new ProviderCategoryOfService();
         List<CategoryOfService> categories = new ArrayList<>();
@@ -1074,9 +1010,6 @@ public class EnrollmentController extends BaseController {
             @RequestParam("prevCosId") long prevCosId,
             @RequestParam("prevCosEndDate") String prevCosEndDate
     ) throws PortalServiceException {
-        String signature = "EnrollmentController#addCategoryOfService(long profileId, String startDate, String endDate, String cos)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id", "startDate", "endDate", "cos"}, new Object[]{
-                ticketId, startDate, endDate, cos});
         CMSUser user = ControllerHelper.getCurrentUser();
         ProviderCategoryOfService categoryOfService = new ProviderCategoryOfService();
         List<CategoryOfService> categories = new ArrayList<>();
@@ -1123,8 +1056,6 @@ public class EnrollmentController extends BaseController {
             @RequestParam("profileId") long profileId,
             @RequestParam("id") long id
     ) throws PortalServiceException {
-        String signature = "EnrollmentController#deleteCategoryOfService(long profileId, long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"profileId", "id"}, new Object[]{profileId, id});
         CMSUser user = ControllerHelper.getCurrentUser();
         enrollmentService.deleteCOSByProfile(user, profileId, id);
         return new ModelAndView("redirect:/agent/enrollment/cos?id=" + profileId);
@@ -1145,8 +1076,6 @@ public class EnrollmentController extends BaseController {
             @RequestParam("ticketId") long ticketId,
             @RequestParam("id") long id
     ) throws PortalServiceException {
-        String signature = "EnrollmentController#deleteCategoryOfService(long ticketId, long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"ticketId", "id"}, new Object[]{ticketId, id});
         CMSUser user = ControllerHelper.getCurrentUser();
         enrollmentService.deleteCOSByTicket(user, ticketId, id);
         return new ModelAndView("redirect:/agent/enrollment/pendingcos?id=" + ticketId);

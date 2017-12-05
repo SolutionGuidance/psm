@@ -4,6 +4,7 @@
 <%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<!-- <c:out value="${pageScope['javax.servlet.jsp.jspPage']}"></c:out> -->
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
   <c:set var="title" value="Import Profiles"/>
   <h:handlebars template="includes/html_head" context="${pageContext}"/>

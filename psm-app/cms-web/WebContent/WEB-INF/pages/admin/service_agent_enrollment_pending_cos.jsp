@@ -7,6 +7,7 @@
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- <c:out value="${pageScope['javax.servlet.jsp.jspPage']}"></c:out> -->
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
   <c:set var="title" value="Category of Service"/>
   <c:set var="adminPage" value="true" />

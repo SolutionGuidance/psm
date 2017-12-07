@@ -15,6 +15,35 @@ application functionality (including providing an API),
 [`DEPENDENCIES.md`](DEPENDENCIES.md) and [`INSTALL.md`](INSTALL.md)
 for more details on component versions and installation requirements.
 
+Within the PSM codebase are several "projects" within the `psm-app`
+directory. The major ones are:
+
+* `cms-business-model` (contains XML-defined Java data types, e.g.,
+  license type)
+
+* `cms-business-process` (includes callbacks into Java from jBPM)
+
+* `cms-services` (includes Hibernate entities, binders that map
+  frontend elements to Java handles, definitions of EE services that
+  `cms-business-process` implements)
+
+* `cms-web` (MVC, web controller, frontend, UI)
+
+* `cms-portal-services` (generates EAR file, and is where TopCoder JAR
+  files live)
+
+* `userhelp` (contains prose documents for end user help)
+
+A diagram of the components mentioned above is available at
+[`docs/psm-architecture-for-stakeholders.pdf`](psm-architecture-for-stakeholders.pdf).
+
+## Workflow for processing submissions
+
+See
+[`psm-app/cms-business-process/src/main/resources/EnrollmentProcess.png`](../psm-app/cms-business-process/src/main/resources/EnrollmentProcess.png)
+for a diagrammatic representation of the jBPM workflow defined in
+`psm-app/cms-business-process/src/main/resources/EnrollmentProcess.bpmn`.
+
 ## Interfaces
 
 ***NOTE:2017-07-03: [We no longer use `ext-sources-app` and are

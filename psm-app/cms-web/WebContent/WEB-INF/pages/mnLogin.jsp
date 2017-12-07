@@ -60,11 +60,7 @@
                 <input type="text" name="referrer" class="text" id="referrer" value="localhost"/>
               </div>
               <div class="buttons">
-                <a href="javascript:;" id="btnLogin" class="purpleBtn">
-                  <span class="btR">
-                    <span class="btM">Login</span>
-                  </span>
-                </a>
+                <button id="btnLogin" class="purpleBtn" type="submit">Login</button>
               </div>
               <div class="tl"></div>
               <div class="tr"></div>

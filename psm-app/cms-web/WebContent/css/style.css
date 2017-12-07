@@ -786,7 +786,8 @@ input.date{
   float:left;
   margin-left: 5%;
 }
-.loginPanel  a{
+.loginPanel  a,
+#btnLogin {
   float:right;
   margin-right:18%;
 }

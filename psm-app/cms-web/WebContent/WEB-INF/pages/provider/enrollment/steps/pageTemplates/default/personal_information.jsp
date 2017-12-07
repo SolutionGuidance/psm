@@ -20,7 +20,7 @@
 
                 <c:set var="formName" value="_02_firstName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" id="firstName" name="${formName}" value="${formValue}" maxlength="45"/>
+                <input type="text" class="normalInput" id="firstName" title="first name" name="${formName}" value="${formValue}" maxlength="45"/>
                 <span class="required">*</span>
             </div>
             <div class="row">
@@ -29,7 +29,7 @@
 
                 <c:set var="formName" value="_02_middleName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" id="middleName" name="${formName}" value="${formValue}" maxlength="45"/>
+                <input type="text" class="normalInput" id="middleName" title="middle name" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row requireField">
                 <label>Last Name</label>
@@ -37,7 +37,7 @@
 
                 <c:set var="formName" value="_02_lastName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
+                <input type="text" class="normalInput" title="last name" name="${formName}" value="${formValue}" maxlength="45"/>
                 <span class="required">*</span>
             </div>
             <div class="row requireField">
@@ -49,7 +49,7 @@
 
                 <c:set var="formName" value="_02_npi"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
+                <input type="text" class="npiMasked normalInput" title="NPI (National Provider Identifier)" name="${formName}" value="${formValue}" maxlength="10"/>
                 <span class="required">${requireNPI ? '*' : ''}
                 </span>
             </div>
@@ -59,7 +59,7 @@
 
                 <c:set var="formName" value="_02_ssn"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
+                <input type="text" class="ssnMasked normalInput" title="social security number" name="${formName}" value="${formValue}" maxlength="11"/>
                 <span class="required">*</span>
             </div>
             <div class="row requireField">
@@ -69,7 +69,7 @@
 
                     <c:set var="formName" value="_02_dob"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input class="date" type="text" name="${formName}" value="${formValue}" maxlength="10"/>
+                    <input class="date" type="text" title="date of birth" name="${formName}" value="${formValue}" maxlength="10"/>
                     <span class="required">*</span>
                 </span>
             </div>
@@ -79,7 +79,7 @@
 
                 <c:set var="formName" value="_02_email"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" id="emailAddress" name="${formName}" value="${formValue}" maxlength="50"/>
+                <input type="text" class="normalInput" id="emailAddress" title="email address" name="${formName}" value="${formValue}" maxlength="50"/>
             </div>
             <div class="clearFixed"></div>
         </div>
@@ -95,6 +95,7 @@
                         type="checkbox"
                         class="checkbox"
                         id="sameAsAbove"
+                        title="same as above"
                         ${formValue eq 'Y' ? 'checked' : ''}
                         name="${formName}" />
                     Same as Above
@@ -105,7 +106,7 @@
                 <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_02_contactName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input ${disableContact} type="text" class="${disableContact} normalInput" id="contactName" name="${formName}" value="${formValue}" maxlength="100"/>
+                <input ${disableContact} type="text" class="${disableContact} normalInput" id="contactName" title="contact name" name="${formName}" value="${formValue}" maxlength="100"/>
                 <span class="required">*</span>
             </div>
             <div class="row">
@@ -114,7 +115,7 @@
 
                 <c:set var="formName" value="_02_contactEmail"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input ${disableContact} type="text" class="${disableContact} normalInput" id="contactEmail" name="${formName}" value="${formValue}" maxlength="50"/>
+                <input ${disableContact} type="text" class="${disableContact} normalInput" id="contactEmail" title="contact email address" name="${formName}" value="${formValue}" maxlength="50"/>
             </div>
             <div class="row">
                 <label>Contact Phone Number</label>
@@ -126,6 +127,7 @@
                     id="contactPhone1"
                     type="text"
                     class="${disableContact} autotab smallInput"
+                    title="contact phone number, part one"
                     name="${formName}"
                     value="${formValue}"
                     maxlength="3"/>
@@ -137,6 +139,7 @@
                     type="text"
                     class="${disableContact}
                     autotab smallInput"
+                    title="contact phone number, part two"
                     name="${formName}"
                     value="${formValue}"
                     maxlength="3"/>
@@ -147,6 +150,7 @@
                     id="contactPhone3"
                     type="text"
                     class="${disableContact} autotab smallInputP"
+                    title="contact phone number, part three"
                     name="${formName}"
                     value="${formValue}"
                     maxlength="4"/>
@@ -157,6 +161,7 @@
                     id="contactPhone4"
                     type="text"
                     class="${disableContact} autotab smallInput"
+                    title="contact phone number, extension"
                     name="${formName}"
                     value="${formValue}"
                     maxlength="3"/>

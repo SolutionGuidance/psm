@@ -38,15 +38,15 @@
 
               <div class="row">
                 <label class="label">Username:</label>
-                <input type="text" name="username" class="text" id="username" value="${LAST_USERNAME}" maxlength="50"/>
+                <input type="text" name="username" class="text" id="username" title="username" value="${LAST_USERNAME}" maxlength="50"/>
               </div>
               <div class="row">
                 <label class="label">Password:</label>
-                <input type="password" name="password" id="password"/>
+                <input type="password" name="password" id="password" title="password"/>
               </div>
               <div class="row">
                 <label class="label">Domain:</label>
-                <select name="domain" onchange="disableElement('remember', this.value != 'CMS_ONLINE')">
+                <select name="domain" title="domain" onchange="disableElement('remember', this.value != 'CMS_ONLINE')">
                   <option value="CMS_ONLINE" selected="selected">Online Portal</option>
                   <option value="MN_ITS">MN-ITS</option>
                 </select>

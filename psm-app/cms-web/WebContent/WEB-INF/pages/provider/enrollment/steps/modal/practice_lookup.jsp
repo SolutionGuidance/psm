@@ -31,23 +31,23 @@
               <span>
                 <label>Practice Name:</label>
                 <input type="hidden" name="agency" value="false"/>
-                <input type="text" class="normalInput inputL" name="name"/>
+                <input type="text" class="normalInput inputL" name="name" title="practice name"/>
               </span>
               <span>
                 <label>NPI / UMPI:</label>
-                <input type="text" class="normalInput inputL" name="npi"/>
+                <input type="text" class="normalInput inputL" name="npi" title="NPI / UMPI"/>
               </span>
               <span>
                 <label>City:</label>
-                <input type="text" class="normalInput inputM" name="city"/>
+                <input type="text" class="normalInput inputM" name="city" title="city"/>
               </span>
               <span>
                 <label>State:</label>
-                <input type="text" class="normalInput inputM" name="state"/>
+                <input type="text" class="normalInput inputM" name="state" title="state"/>
               </span>
               <span class="last">
                 <label>Zip:</label>
-                <input type="text" class="normalInput inputS zipInputFor" name="zip"/>
+                <input type="text" class="normalInput inputS zipInputFor" name="zip" title="zip code"/>
               </span>
               <div class="clear"></div>
             </form>

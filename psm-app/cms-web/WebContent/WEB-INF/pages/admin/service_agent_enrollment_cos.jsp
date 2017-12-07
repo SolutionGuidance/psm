@@ -77,17 +77,17 @@
                     <div class="row">
                       <label>Start Date</label>
                       <span class="floatL"><b>:</b></span>
-                      <span><input id="startDate" name="startDate" class="shortInput text mdate" value="" /></span>
+                      <span><input id="startDate" name="startDate" title="start date" class="shortInput text mdate" value="" /></span>
                     </div>
                     <div class="row">
                       <label>End Date</label>
                       <span class="floatL"><b>:</b></span>
-                      <span><input id="endDate" name="endDate" class="shortInput text mdate" value="" /></span>
+                      <span><input id="endDate" name="endDate" title="end date" class="shortInput text mdate" value="" /></span>
                     </div>
                     <div class="row">
                       <label>COS</label>
                       <span class="floatL"><b>:</b></span>
-                      <select id="cosSelect" name="cos" multiple="multiple" style="width:350px;" class="chzn-select">
+                      <select id="cosSelect" name="cos" title="COS (category of service)" multiple="multiple" style="width:350px;" class="chzn-select">
                         <c:forEach var="code" items="${codes}">
                           <option value="${code.code}">${code.code}</option>
                         </c:forEach>

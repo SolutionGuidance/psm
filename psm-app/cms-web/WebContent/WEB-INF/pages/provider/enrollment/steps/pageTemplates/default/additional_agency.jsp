@@ -58,22 +58,22 @@
                         <td>
                             <c:set var="formName" value="_12_name_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} type="text" class="long250Input" name="${formName}" value="${formValue}" maxlength="100"/>
+                            <input ${disableLinkedFields} type="text" class="long250Input" name="${formName}" value="${formValue}" title="organization/agency name" maxlength="100"/>
                         </td>
                         <td>
                             <c:set var="formName" value="_12_npi_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}"  maxlength="10"/>
+                            <input ${disableLinkedFields} type="text" class="npiMasked normalInput" name="${formName}" title="agency NPI/UMPI" value="${formValue}"  maxlength="10"/>
                         </td>
                         <td>
                             <c:set var="formName" value="_12_studyId_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} type="text" class="normalInput" name="${formName}" value="${formValue}"  maxlength="100"/>
+                            <input ${disableLinkedFields} type="text" class="normalInput" name="${formName}" value="${formValue}" title="study ID" maxlength="100"/>
                         </td>
                         <td>
                             <c:set var="formName" value="_12_clearanceDate_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} type="text" class="date" name="${formName}" value="${formValue}"  maxlength="10"/>
+                            <input ${disableLinkedFields} type="text" class="date" name="${formName}" value="${formValue}" title="clearance date" maxlength="10"/>
                         </td>
                         <td class="alignCenter"><a href="javascript:;" class="remove">REMOVE</a></td>
                     </tr>

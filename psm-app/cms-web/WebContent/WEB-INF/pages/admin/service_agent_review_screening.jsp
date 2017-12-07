@@ -63,6 +63,7 @@
                             <input
                               type="checkbox"
                               name="npiLookupVerified"
+                              title="NPI lookup verified"
                               value="Y"
                               ${verification.NPILookup eq 'Y' ? 'checked' : ''}
                               />
@@ -85,6 +86,7 @@
                             <input
                               type="checkbox"
                               name="ssnVerified"
+                              title="SSN DMF verified"
                               value="Y"
                               ${verification.socialSecurityNumber eq 'Y' ? 'checked' : ''}
                               />
@@ -107,6 +109,7 @@
                             <input
                               type="checkbox"
                               name="npiVerified"
+                              title="NPI PECOS verified"
                               value="Y"
                               ${verification.NPI eq 'Y' ? 'checked' : ''}
                               />
@@ -130,6 +133,7 @@
                               <input
                                 type="checkbox"
                                 name="bgsVerified"
+                                title="NET study ID verified"
                                 value="Y"
                                 ${verification.netStudy eq 'Y' ? 'checked' : ''}
                                 />
@@ -153,6 +157,7 @@
                           <input
                             type="checkbox"
                             name="nonExclusionVerified"
+                            title="excluded provider verified in OIG (checked means not in exclusion list)"
                             value="Y"
                             ${verification.nonExclusion eq 'Y' ? 'checked' : ''}
                             />
@@ -175,6 +180,7 @@
                           <input
                             type="checkbox"
                             name="nonSAMExclusionVerified"
+                            title="excluded provider verified in SAM (checked means not in exclusion list)"
                             value="Y"
                             ${verification.SAMNonExclusion eq 'Y' ? 'checked' : ''}
                             />
@@ -220,6 +226,7 @@
                             <input
                               type="checkbox"
                               name="verifiedLicenses"
+                              title="licenses verified"
                               value="${license.attachmentObjectId}"
                               ${license.verified eq 'Y' ? 'checked' : ''}
                               />

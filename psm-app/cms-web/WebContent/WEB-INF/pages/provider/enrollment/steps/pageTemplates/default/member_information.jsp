@@ -29,7 +29,7 @@
 
                 <c:set var="formName" value="_16_npi_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="umpiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
+                <input type="text" title="NPI/UMPI" class="umpiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
                 <a href="javascript:;" class="purpleBtn NPILook"><span class="btR"><span class="btM"><span class="icon">
                 <c:choose>
                     <c:when test="${askUMPIorNPI}">

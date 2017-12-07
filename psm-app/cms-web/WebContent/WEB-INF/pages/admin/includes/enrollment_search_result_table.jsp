@@ -49,7 +49,7 @@
     <thead>
         <tr>
             <th class="alignCenter">
-                <input type="checkbox" id="enrollmentSelectAll" name="enrollmentRowCheckBox" class="selectAll"/>
+                <input type="checkbox" id="enrollmentSelectAll" name="enrollmentRowCheckBox" class="selectAll" title="select all"/>
                 <span class="sep"></span>
             </th>
             <c:set var="sortFieldOfEntity" value="2"/>

@@ -17,7 +17,7 @@
 
         <c:set var="formName" value="_01_providerType"></c:set>
         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-        <select name="${formName}">
+        <select name="${formName}" title="provider type">
             <option value="">Please select</option>
             <c:if test="${empty individualProviderTypes or empty organizationProviderTypes}">
                 <%-- no need to group as there is only one group --%>

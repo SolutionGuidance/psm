@@ -82,7 +82,7 @@
                 </div>
                 <div class="panelSection">
                   <label>Enrollment Number:</label>
-                  <input id="enrollmentNumber" type="text" class="text" value="${invalidEnrollmentNumberValue}" />
+                  <input id="enrollmentNumber" title="enrollment number" type="text" class="text" value="${invalidEnrollmentNumberValue}" />
                   <input type="hidden" id="invalidEnrollmentNumber" value="${invalidEnrollmentNumber}"/>
                   <a id="queryEnrollmentStatus" href="javascript:;" class="purpleBtn"><span class="btR"><span class="btM">Query Status</span></span></a>
                 </div>

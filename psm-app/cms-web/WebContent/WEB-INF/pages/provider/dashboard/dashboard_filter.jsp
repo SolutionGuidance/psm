@@ -16,17 +16,17 @@
         <form:hidden path="pageNumber" />
         <form:hidden path="sortColumn" />
         <form:hidden path="ascending" />
-        
+
         <div class="leftCol">
             <div class="row">
                 <label>NPI/UMPI</label>
                 <span class="floatL"><b>:</b></span>
-                <form:input path="npi" cssClass="normalInput"/>
+                <form:input path="npi" cssClass="normalInput" title="NPI/UMPI"/>
             </div>
             <div class="row">
                 <label>Request Type</label>
                 <span class="floatL"><b>:</b></span>
-                <form:select path="requestTypes" cssClass="longSelect" multiple="false">
+                <form:select path="requestTypes" cssClass="longSelect" multiple="false" title="request types">
                     <form:option value="">All</form:option>
                     <form:option value="Enrollment">Enrollment</form:option>
                     <form:option value="Renewal">Renewal</form:option>
@@ -38,11 +38,11 @@
                 <label>Date Submitted</label>
                 <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
-                    <form:input path="submissionDateStart" cssClass="date" readonly=""/>
+                    <form:input path="submissionDateStart" cssClass="date" readonly="" title="submission start date"/>
                 </span>
                 <span class="floatL"> - </span>
                 <span class="dateWrapper floatL">
-                    <form:input path="submissionDateEnd" cssClass="date" readonly=""/>
+                    <form:input path="submissionDateEnd" cssClass="date" readonly="" title="submission end date"/>
                 </span>
             </div>
         </div>
@@ -50,7 +50,7 @@
             <div class="row">
                 <label>Status</label>
                 <span class="floatL"><b>:</b></span>
-                <form:select path="statuses" cssClass="longSelect" multiple="false">
+                <form:select path="statuses" cssClass="longSelect" multiple="false" title="status">
                     <form:option value="">All</form:option>
                     <form:option value="Draft">Draft</form:option>
                     <form:option value="Pending">Pending</form:option>
@@ -61,7 +61,7 @@
             <div class="row">
                 <label>Risk Level</label>
                 <span class="floatL"><b>:</b></span>
-                <form:select path="riskLevel" cssClass="longSelect">
+                <form:select path="riskLevel" cssClass="longSelect" title="risk level">
                     <form:option value="">All</form:option>
                     <form:option value="NULL">Not screened yet</form:option>
                     <form:option value="Low">Low</form:option>
@@ -73,11 +73,11 @@
                 <label>Status Date</label>
                 <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
-                    <form:input path="statusDateStart" cssClass="date" readonly=""/>
+                    <form:input path="statusDateStart" cssClass="date" readonly="" title="status date range start"/>
                 </span>
                 <span class="floatL"> - </span>
                 <span class="dateWrapper floatL">
-                    <form:input path="statusDateEnd" cssClass="date" readonly=""/>
+                    <form:input path="statusDateEnd" cssClass="date" readonly="" title="status date range end"/>
                 </span>
             </div>
         </div>

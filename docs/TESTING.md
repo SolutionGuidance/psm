@@ -98,9 +98,12 @@ cms-business-process:test --info` to see where the reports are stored.
 ## Manual and Semi-automated Testing
 
 To check for accessibility issues in a new template or other
-user-visible change, use
-[HTML_CodeSniffer](https://squizlabs.github.io/HTML_CodeSniffer/) as a
-bookmarklet in your browser. Choose "Section508" in the "Standards"
+user-visible change, use HTML_CodeSniffer as a
+bookmarklet in your browser. Go to the
+[HTML_CodeSniffer website](https://squizlabs.github.io/HTML_CodeSniffer/)
+and drag the bookmarklet link to your browser's bookmarks toolbar.  Then click
+the bookmarklet to run the widget on any given page.
+Choose "WCAG2AA" in the "Standards"
 dropdown [since that's the standard we need to comply
 with](https://github.com/SolutionGuidance/psm/issues/415). [This
 checklist](https://www.section508.gov/content/build/website-accessibility-improvement/major-web-issues)

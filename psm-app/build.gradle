@@ -13,6 +13,7 @@ buildscript {
 }
 
 def jbpm_version = '5.4.0.Final'
+def hapi_fhir_version = '3.1.0'
 def spring_core_version = '4.3.12.RELEASE'
 def spring_security_version = '4.2.3.RELEASE'
 def serenity_version = '1.5.5'
@@ -25,7 +26,8 @@ ext.libs = [
     commons_io: 'commons-io:commons-io:2.6',
     commons_lang: 'commons-lang:commons-lang:2.6',
     commons_lang3: 'org.apache.commons:commons-lang3:3.7',
-    hapi_fhir: 'ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:2.5',
+    hapi_fhir: "ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:${hapi_fhir_version}",
+    hapi_fhir_structures: "ca.uhn.hapi.fhir:hapi-fhir-structures-dstu3:${hapi_fhir_version}",
     handlebars: 'com.github.jknack:handlebars:4.0.6',
     handlebars_springmvc: 'com.github.jknack:handlebars-springmvc:4.0.6',
     itext: 'com.lowagie:itext:2.1.7',
@@ -137,6 +139,7 @@ project(':cms-business-process') {
         compile libs.commons_lang
         compile libs.commons_lang3
         compile libs.hapi_fhir
+        compile libs.hapi_fhir_structures
         compile libs.itext
         compile libs.jbpm_human_task_core
         compile libs.spring_security_core
@@ -243,6 +246,7 @@ project(':cms-portal-services') {
         earlib libs.commons_lang
         earlib libs.commons_lang3
         earlib libs.hapi_fhir
+        earlib libs.hapi_fhir_structures
         earlib libs.itext
         earlib libs.jasypt
         earlib libs.jbpm_human_task_core

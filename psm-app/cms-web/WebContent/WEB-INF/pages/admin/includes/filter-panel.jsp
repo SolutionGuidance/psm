@@ -47,6 +47,6 @@
     <form:hidden id="searchBox" path="searchBox" />
     <input type="hidden" id="initSearchBox" name="initSearchBox" value="false" />
     <form:hidden id="roles" path="roles"/>
-    <a href="javascript:;" class="purpleBtn" id="filterBtn"><span class="btR"><span class="btM">Filter</span></span></a>
+    <button id="filterBtn" class="purpleBtn" type="submit">Filter</button>
 </form:form>
 <!-- /.filterPanel -->

@@ -127,7 +127,7 @@
               </div>
               <div class="buttonBox">
                 <a href="<c:url value='/system/user/list' />" class="greyBtn"><span class="btR"><span   class="btM">Cancel</span></span></a>
-                <a href="javascript:;" class="purpleBtn editAccountSaveBtn"><span class="btR"><span class="btM">Save</span></span></a>
+                <button class="purpleBtn editAccountSaveBtn" type="submit">Save</button>
               </div>
               <!-- /.buttonBox -->
             </div>

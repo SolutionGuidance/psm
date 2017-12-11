@@ -12,6 +12,8 @@ import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import static gov.medicaid.entities.SystemId.CMS_ONLINE;
+
 public class HandlebarsInterceptor extends HandlerInterceptorAdapter {
     @Override
     public void postHandle(
@@ -50,6 +52,13 @@ public class HandlebarsInterceptor extends HandlerInterceptorAdapter {
                 );
             }
 
+            if (CMS_ONLINE.equals(principal.getAuthenticatedBySystem())) {
+                modelAndView.addObject(
+                        "isInternalUser",
+                        true
+                );
+            }
+
             // <sec:authentication property="principal.loginDate" var="loginDate"/>
             // <fmt:setLocale value="en_US" scope="session"/>
             // Last login: <fmt:formatDate value="${loginDate}" pattern="EEEE, d MMMM yyyy hh:mm:ss a zzz"/>
@@ -61,12 +70,6 @@ public class HandlebarsInterceptor extends HandlerInterceptorAdapter {
                     "loginDate",
                     dateFormat.format(principal.getLoginDate())
             );
-
-            // TODO for provider/profile/list template of MyProfileController
-            // <sec:authentication property="principal.authenticatedBySystem" var="authenticatedBySystem"/>
-            // <sec:authentication property="principal" var="requestPrincipal"/>
-            // <spring:eval expression="authenticatedBySystem == T(gov.medicaid.entities.SystemId).CMS_ONLINE" var="isInternalUser" />
-            // if (principal.authenticatedBySystem == gov.medicaid.entities.SystemId.CMS_ONLINE) model.addObject("isInternalUser", true);
         }
     }
 }

@@ -485,10 +485,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public List<ProviderLookup> lookupProvider(
             String npi
     ) throws PortalServiceException {
-        StringBuilder fetchQuery = new StringBuilder(
+        String fetchQuery =
                 "SELECT NEW gov.medicaid.entities.ProviderLookup(e.profileId, e.npi, e.name, e.providerType.description) "
-                        + "FROM Entity e WHERE e.npi = :npi AND ticketId = 0 AND e.enrolled = 'Y'");
-        Query items = getEm().createQuery(fetchQuery.toString());
+                + "FROM Entity e WHERE e.npi = :npi AND ticketId = 0 AND e.enrolled = 'Y'";
+        Query items = getEm().createQuery(fetchQuery);
         items.setParameter("npi", npi);
         List resultList = items.getResultList();
         populateContactPerson(resultList);
@@ -576,10 +576,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             map.put(practiceLookup.getProfileId(), practiceLookup);
         }
 
-        StringBuilder fetchQuery = new StringBuilder(
+        String fetchQuery =
                 "SELECT NEW gov.medicaid.entities.ContactData(dc.profileId, dc.person.name) "
-                        + "FROM DesignatedContact dc WHERE dc.type = 'ENROLLMENT' AND dc.profileId IN (:profileIds)");
-        Query q = getEm().createQuery(fetchQuery.toString());
+                + "FROM DesignatedContact dc WHERE dc.type = 'ENROLLMENT' AND dc.profileId IN (:profileIds)";
+        Query q = getEm().createQuery(fetchQuery);
         q.setParameter("profileIds", new ArrayList<Long>(map.keySet()));
         List<ContactData> rs = q.getResultList();
         for (ContactData contactData : rs) {
@@ -606,10 +606,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             map.put(practiceLookup.getProfileId(), practiceLookup);
         }
 
-        StringBuilder fetchQuery = new StringBuilder(
+        String fetchQuery =
                 "SELECT NEW gov.medicaid.entities.ContactData(dc.profileId, dc.person.name, dc.person.contactInformation.phoneNumber) "
-                        + "FROM DesignatedContact dc WHERE dc.type = 'ENROLLMENT' AND dc.profileId IN (:profileIds)");
-        Query q = getEm().createQuery(fetchQuery.toString());
+                + "FROM DesignatedContact dc WHERE dc.type = 'ENROLLMENT' AND dc.profileId IN (:profileIds)";
+        Query q = getEm().createQuery(fetchQuery);
         q.setParameter("profileIds", new ArrayList<Long>(map.keySet()));
         List<ContactData> rs = q.getResultList();
         for (ContactData contactData : rs) {
@@ -646,7 +646,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                     + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and p.ownerId = :ownerId "
                     + "AND p.ticketId = 0 ORDER BY 5 DESC";
 
-            Query items = getEm().createQuery(fetchQuery.toString());
+            Query items = getEm().createQuery(fetchQuery);
             items.setParameter("ownerId", user.getUserId());
             return items.getResultList();
         } else {
@@ -656,7 +656,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                     + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and e.npi = :npi "
                     + "AND p.ticketId = 0 ORDER BY 5 DESC";
 
-            Query items = getEm().createQuery(fetchQuery.toString());
+            Query items = getEm().createQuery(fetchQuery);
             items.setParameter("npi", user.getProxyForNPI());
             return items.getResultList();
         }
@@ -2442,7 +2442,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and e.npi = :npi "
                 + "AND p.ticketId = 0 ORDER BY 5 DESC";
 
-        Query items = getEm().createQuery(fetchQuery.toString());
+        Query items = getEm().createQuery(fetchQuery);
         items.setParameter("npi", profileNPI);
         List<ProfileHeader> profiles = items.getResultList();
 
@@ -2483,7 +2483,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and e.npi = :npi "
                 + "AND p.ticketId = 0 ORDER BY 5 DESC";
 
-        Query items = getEm().createQuery(fetchQuery.toString());
+        Query items = getEm().createQuery(fetchQuery);
         items.setParameter("npi", profileNPI);
         return !items.getResultList().isEmpty();
     }

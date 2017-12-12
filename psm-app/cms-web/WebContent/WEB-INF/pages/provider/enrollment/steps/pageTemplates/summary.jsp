@@ -3,21 +3,25 @@
 
 <div class="clearFixed"></div>
 <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/tabs.jsp" %>
-
-<div class="buttonBox topButtonBox">
-  <c:url var="nextPageUrl" value="/provider/enrollment/steps/next" />
-  <c:url var="prevPageUrl" value="/provider/enrollment/steps/prev" />
-  <c:url var="saveUrl" value="/provider/enrollment/save" />
-
-  <a href="javascript:submitFormById('enrollmentForm', '${prevPageUrl}')" class="greyBtn prevBtn"><span class="btR"><span class="btM"><span class="icon">Previous</span></span></span></a>
-  <a class="nextBtn greyBtn" href="javascript:submitFormById('enrollmentForm', '${nextPageUrl}')"><span class="btR"><span class="btM"><span class="icon">Next</span></span></span></a>
-  <a href="javascript:submitFormById('enrollmentForm', '${saveUrl}')" class="greyBtn"><span class="btR"><span class="btM">Save as Draft</span></span></a>
-  <a href="javascript:printThis();" class="greyBtn printModalBtn"><span class="btR"><span class="btM"><img src="<c:url value="/i/icon-print.png" />" alt=""/>Print</span></span></a>
-</div>
-
-<!-- /.buttonBox -->
-<form action="" id="enrollmentForm" method="post" enctype="multipart/form-data">
+<form action="<c:url value="/provider/enrollment/page" />"
+    id="enrollmentForm"
+    method="post"
+    enctype="multipart/form-data">
   <sec:csrfInput />
+  <div class="buttonBox topButtonBox">
+    <button class="greyBtn prevBtn" type="submit" name="previous">
+      <span class="icon">Previous</span>
+    </button>
+    <button class="nextBtn greyBtn" type="submit" name="next">
+      <span class="icon">Next</span>
+    </button>
+    <button class="greyBtn" type="submit" name="save">
+      Save as Draft
+    </button>
+    <a href="javascript:printThis();" class="greyBtn printModalBtn"><span class="btR"><span class="btM"><img src="<c:url value="/i/icon-print.png" />" alt=""/>Print</span></span></a>
+  </div>
+
+  <!-- /.buttonBox -->
   <div class="personalPanel summaryPageWrapper">
     <c:set var="afterSummary" value="${false}"></c:set>
     <c:forEach var="tabName" items="${viewModel.tabNames}" varStatus="status">
@@ -51,9 +55,15 @@
 
   <div class="buttonBox topButtonBox">
     <input type="hidden" name="pageName" value="${pageName}"/>
-    <a href="javascript:submitFormById('enrollmentForm', '${prevPageUrl}')" class="greyBtn prevBtn"><span class="btR"><span class="btM"><span class="icon">Previous</span></span></span></a>
-    <a class="nextBtn greyBtn" href="javascript:submitFormById('enrollmentForm', '${nextPageUrl}')"><span class="btR"><span class="btM"><span class="icon">Next</span></span></span></a>
-    <a href="javascript:submitFormById('enrollmentForm', '${saveUrl}')" class="greyBtn"><span class="btR"><span class="btM">Save as Draft</span></span></a>
+    <button class="greyBtn prevBtn" type="submit" name="previous">
+      <span class="icon">Previous</span>
+    </button>
+    <button class="nextBtn greyBtn" type="submit" name="next">
+      <span class="icon">Next</span>
+    </button>
+    <button class="greyBtn" type="submit" name="save">
+      Save as Draft
+    </button>
     <a href="javascript:printThis();" class="greyBtn printModalBtn"><span class="btR"><span class="btM"><img src="<c:url value="/i/icon-print.png" />" alt=""/>Print</span></span></a>
   </div>
   <!-- /.buttonBox -->

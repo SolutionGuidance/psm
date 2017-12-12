@@ -631,6 +631,10 @@ public class EnrollmentPageFlowController extends BaseController {
             return submit(enrollment, request, status);
         } else if (null != request.getParameter("save")) {
             return save(enrollment, request, status);
+        } else if (null != request.getParameter("saveNote")) {
+            return saveNote(enrollment, request, status);
+        } else if (null != request.getParameter("resubmitWithChanges")) {
+            return resubmitWithChanges(enrollment, request, status);
         }
         throw new PortalServiceException("Submit action not recognized");
     }
@@ -957,7 +961,6 @@ public class EnrollmentPageFlowController extends BaseController {
      * @param enrollment the current enrollment model
      * @param request    the request
      * @param status     the session status
-     * @param model      the request model
      * @return the same page, with a success/error message
      * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/saveNote"
@@ -967,7 +970,6 @@ public class EnrollmentPageFlowController extends BaseController {
     public ModelAndView saveNote(
             @ModelAttribute("enrollment") EnrollmentType enrollment,
             HttpServletRequest request,
-            Model model,
             SessionStatus status
     ) throws PortalServiceException {
         CMSPrincipal principal = ControllerHelper.getPrincipal();
@@ -1125,7 +1127,6 @@ public class EnrollmentPageFlowController extends BaseController {
      *
      * @param enrollment the current enrollment model
      * @param request    the request
-     * @param model      the request model
      * @param status     the session status
      * @return the same page, with a success/error message
      * @throws PortalServiceException for any errors encountered
@@ -1136,7 +1137,6 @@ public class EnrollmentPageFlowController extends BaseController {
     public ModelAndView resubmitWithChanges(
             @ModelAttribute("enrollment") EnrollmentType enrollment,
             HttpServletRequest request,
-            Model model,
             SessionStatus status
     ) throws PortalServiceException {
         String pageName = request.getParameter("pageName");

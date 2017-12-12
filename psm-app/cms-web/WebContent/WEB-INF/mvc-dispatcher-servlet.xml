@@ -163,6 +163,11 @@
     <property name="validator" ref="UpdatePasswordFormValidator"/>
   </bean>
 
+  <bean id="VoluntaryTerminationController"
+        class="gov.medicaid.controllers.VoluntaryTerminationController">
+    <constructor-arg ref="ProviderEnrollmentService"/>
+  </bean>
+
   <bean id="RegistrationFormValidator" class="gov.medicaid.controllers.validators.RegistrationFormValidator">
     <property name="registrationService" ref="RegistrationService"/>
   </bean>

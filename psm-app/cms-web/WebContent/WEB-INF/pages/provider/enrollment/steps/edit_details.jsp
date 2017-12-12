@@ -31,7 +31,10 @@
 
           <div class="tabSection">
 
-            <form action="<c:url value="/provider/enrollment/steps/rebind" />" id="changeProviderTypeForm" method="post" enctype="multipart/form-data">
+            <form action="<c:url value="/provider/enrollment/steps/rebind" />"
+                id="changeProviderTypeForm"
+                method="post"
+                enctype="multipart/form-data">
               <sec:csrfInput />
               <c:if test="${isReopened}">
                 <div class="detailPanel" style="width: 940px;">

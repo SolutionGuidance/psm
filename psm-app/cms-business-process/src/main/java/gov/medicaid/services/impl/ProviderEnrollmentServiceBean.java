@@ -1559,11 +1559,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         Query query = getEm().createQuery(
                 "FROM ProviderCategoryOfService p WHERE ticketId = :ticketId AND profileId = :profileId");
         if (ticketId > 0) { // COS tickets do not populate the original profile id even on UPDATE
-            query.setParameter("profileId", new Long(0));
+            query.setParameter("profileId", 0L);
             query.setParameter("ticketId", ticketId);
         } else {
             query.setParameter("ticketId", ticketId);
-            query.setParameter("profileId", new Long(0));
+            query.setParameter("profileId", 0L);
         }
         return query.getResultList();
     }

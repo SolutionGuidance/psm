@@ -7,6 +7,7 @@
 <%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <c:choose>
   <c:when test="${principalUser ne null}">
+    <!-- <c:out value="${pageScope['javax.servlet.jsp.jspPage']}"></c:out> -->
     <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
       <c:set var="title" value="Server Error"/>
       <h:handlebars template="includes/html_head" context="${pageContext}"/>
@@ -65,6 +66,7 @@
   </c:when>
   <c:otherwise>
     <%@page import="org.springframework.security.web.WebAttributes"%>
+    <!-- <c:out value="${pageScope['javax.servlet.jsp.jspPage']}"></c:out> -->
     <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
       <c:set var="title" value="Login"/>
       <c:set var="ctx" value="${pageContext.request.contextPath}"/>

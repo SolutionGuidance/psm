@@ -16,7 +16,7 @@
         <form:hidden path="pageNumber" />
         <form:hidden path="sortColumn" />
         <form:hidden path="ascending" />
-        
+
         <div class="leftCol">
             <div class="row">
                 <label>NPI/UMPI</label>

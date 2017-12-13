@@ -11,7 +11,7 @@
 
 <div class="practicePanel">
     <input type="hidden" name="formNames" value="<%= ViewStatics.ADDITIONAL_PRACTICE_FORM %>">
-    
+
     <div class="tableHeader otherTableHeader">
         <span>Additional Practice Locations</span>
         <a href="javascript:openPracticeLookup(false, false);" class="purpleSmallBtn practiceLookupModalBtn"><span class="btR"><span class="btM">Practice Lookup</span></span></a>
@@ -66,38 +66,38 @@
                         <td>
                             <c:set var="formName" value="_07_npi_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
+                            <input ${disableLinkedFields} type="text" class="npiMasked normalInput" name="${formName}" title="group NPI/UMPI" value="${formValue}" maxlength="10"/>
                         </td>
                         <td>
                             <c:set var="formName" value="_07_name_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                            <input ${disableLinkedFields} type="text" class="normalInput" name="${formName}" value="${formValue}" title="group name" maxlength="100"/>
                         </td>
                         <td>
                             <span class="dateWrapper">
                                 <c:set var="formName" value="_07_effectiveDate_${status.index - 1}"></c:set>
                                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                <input ${disableLinkedFields} class="date" type="text" name="${formName}" value="${formValue}" maxlength="10"/>
+                                <input ${disableLinkedFields} class="date" type="text" name="${formName}" value="${formValue}" title="effective date" maxlength="10"/>
                             </span>
                         </td>
                         <td>
                             <c:set var="formName" value="_07_addressLine1_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} type="text" class="addressLine1 normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
-                            
+                            <input ${disableLinkedFields} type="text" class="addressLine1 normalInput" name="${formName}" value="${formValue}" title="practice address, line one" maxlength="28"/>
+
                             <c:set var="formName" value="_07_addressLine2_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} type="text" class="addressLine2 normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
+                            <input ${disableLinkedFields} type="text" class="addressLine2 normalInput" name="${formName}" value="${formValue}" title="practice address, line two" maxlength="28"/>
                         </td>
                         <td>
                             <c:set var="formName" value="_07_city_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} type="text" class="smallInput" name="${formName}" value="${formValue}" maxlength="18"/>
+                            <input ${disableLinkedFields} type="text" class="smallInput" name="${formName}" value="${formValue}" title="city" maxlength="18"/>
                         </td>
                         <td>
                             <c:set var="formName" value="_07_state_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <select ${disableLinkedFields} name="${formName}">
+                            <select ${disableLinkedFields} name="${formName}" title="state">
                                 <option value="">Please select</option>
                                 <c:forEach var="opt" items="${requestScope['_99_states']}">
                                     <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
@@ -107,12 +107,12 @@
                         <td>
                             <c:set var="formName" value="_07_zip_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} type="text" class="zipInputFor smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
+                            <input ${disableLinkedFields} type="text" class="zipInputFor smallInput" name="${formName}" value="${formValue}" title="zip code" maxlength="10"/>
                         </td>
                         <td>
                             <c:set var="formName" value="_07_county_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} type="text" class="smallInput countyMask" name="${formName}" value="${formValue}" maxlength="3"/>
+                            <input ${disableLinkedFields} type="text" class="smallInput countyMask" name="${formName}" value="${formValue}" title="county" maxlength="3"/>
                         </td>
                         <td class="alignCenter"><a href="javascript:;" class="remove">REMOVE</a></td>
                     </tr>
@@ -141,28 +141,28 @@
                 <td class="alignCenter"><span>1</span>
                     <input type="hidden" name="_07_objectId" value=""><input type="hidden" name="_07_objectIdHash" value="">
                 </td>
-                <td><input type="text" class="npiMasked normalInput"  maxlength="10"/></td>
-                <td><input type="text" class="normalInput"  maxlength="100"/></td>
+                <td><input type="text" class="npiMasked normalInput" title="group NPI/UMPI" maxlength="10"/></td>
+                <td><input type="text" class="normalInput" title="group name" maxlength="100"/></td>
                 <td>
                     <span class="dateWrapper">
-                        <input class="date" type="text" maxlength="10"/>
+                        <input class="date" title="effective date" type="text" maxlength="10"/>
                     </span>
                 </td>
                 <td>
-                    <input type="text" class="addressLine1 normalInput"  maxlength="28"/>
-                    <input type="text" class="addressLine2 normalInput"  maxlength="28"/>
+                    <input type="text" class="addressLine1 normalInput" title="practice address, line one" maxlength="28"/>
+                    <input type="text" class="addressLine2 normalInput" title="practice address, line two" maxlength="28"/>
                 </td>
-                <td><input type="text" class="smallInput"  maxlength="18"/></td>
+                <td><input type="text" class="smallInput" title="city" maxlength="18"/></td>
                 <td>
-                    <select>
+                    <select title="state">
                         <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_99_states']}">
                             <option value="${opt.code}"><c:out value="${opt.description}" /></option>
                         </c:forEach>
                     </select>
                 </td>
-                <td><input type="text" class="zipInputFor smallInput"  maxlength="10"/></td>
-                <td><input type="text" class="smallInput"  maxlength="20"/></td>
+                <td><input type="text" class="zipInputFor smallInput" title="zip code" maxlength="10"/></td>
+                <td><input type="text" class="smallInput" title="county" maxlength="20"/></td>
                 <td class="alignCenter"><a href="javascript:;" class="remove">REMOVE</a></td>
             </tr>
         </tbody>

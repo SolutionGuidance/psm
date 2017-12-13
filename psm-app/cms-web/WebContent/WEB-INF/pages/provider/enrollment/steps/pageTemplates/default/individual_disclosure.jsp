@@ -143,6 +143,7 @@
                     type="text"
                     class="normalInput"
                     name="${formName}"
+                    title="provider name"
                     value="${formValue}"
                     maxlength="45"/>
             </div>
@@ -159,10 +160,11 @@
                     type="text"
                     class="normalInput"
                     name="${formName}"
+                    title="provider title"
                     value="${formValue}"
                     maxlength="45"/>
             </div>
-            
+
             <c:set var="formName"
                 value="_08_renewalBlankInit"></c:set>
             <c:set var="formValue"
@@ -171,7 +173,7 @@
                 type="hidden"
                 name="${formName}"
                 value="${formValue}" />
-            
+
             <c:set var="formName"
                 value="_08_requiredAgreementsSize"></c:set>
             <c:forEach
@@ -185,6 +187,7 @@
                         value="${requestScope[formName]}"></c:set>
                     <input
                         type="checkbox"
+                        title="I have read and agree to the terms"
                         value=""
                         class="checkbox"
                         ${formValue eq 'Y' ? 'checked' : ''}
@@ -229,6 +232,7 @@
                     <input
                         class="date"
                         type="text"
+                        title="date"
                         name="${formName}"
                         value="${formValue}"/>
                 </span>

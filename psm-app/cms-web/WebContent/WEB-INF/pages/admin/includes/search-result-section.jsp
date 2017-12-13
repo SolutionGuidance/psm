@@ -39,7 +39,7 @@
                 <thead>
                     <tr>
                         <th class="alignCenter">
-                            <input type="checkbox" name="search" class="selectAll"/>
+                            <input type="checkbox" name="search" class="selectAll" title="select all"/>
                             <span class="sep"></span>
                         </th>
                         <%@ include file="/WEB-INF/pages/admin/includes/sortable-table-headers.jsp" %>

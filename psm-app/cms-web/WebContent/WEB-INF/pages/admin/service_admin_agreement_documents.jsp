@@ -75,14 +75,14 @@
                       <div class="row">
                         <label>Title</label>
                         <span class="floatL"><b>:</b></span>
-                        <input id="agreementDocumentTitleFilterText" value="${searchCriteria.title}" type="text" class="normalInput"/>
+                        <input id="agreementDocumentTitleFilterText" title="title" value="${searchCriteria.title}" type="text" class="normalInput"/>
                       </div>
                     </div>
                     <div class="rightCol">
                       <div class="row">
                         <label>Agreement Type</label>
                         <span class="floatL"><b>:</b></span>
-                        <select id="agreementDocumentTypeFilterText">
+                        <select id="agreementDocumentTypeFilterText" title="agreement type">
                           <option value="">---SELECT---</option>
                           <option <c:if test="${searchCriteria.type=='AGREEMENT'}">selected="selected"</c:if> value="AGREEMENT">AGREEMENT</option>
                           <option <c:if test="${searchCriteria.type=='ADDENDUM'}">selected="selected"</c:if> value="ADDENDUM">ADDENDUM</option>
@@ -114,7 +114,7 @@
                         <thead>
                           <tr>
                             <th class="alignCenter">
-                              <input type="checkbox" name="agreementType" class="selectAll"/>
+                              <input type="checkbox" name="agreementType" class="selectAll" title="select all"/>
                               <span class="sep"></span>
                             </th>
                             <th>
@@ -164,7 +164,7 @@
                           <c:forEach var="item" items="${searchResult.items}">
                             <tr>
                               <td class="alignCenter">
-                                <input <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="agreementDocumentCheckBox" value="${item.id}" type="checkbox" name="agreementType"/>
+                                <input <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="agreementDocumentCheckBox" value="${item.id}" type="checkbox" name="agreementType" title="agreement document check box" />
                               </td>
                               <td><a href="${ctx}/admin/getAgreementDocument?agreementId=${item.id}" class="viewAgreementLink">${item.title}</a></td>
                               <td>${item.type}</td>

@@ -17,10 +17,10 @@
             <div>
                 <c:set var="formName" value="_04_maintainsOwnPrivatePractice"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                
+
                 <c:url var="rebindUrl" value="/provider/enrollment/steps/rebind" />
-                <input onchange="javascript:submitFormById('enrollmentForm', '${rebindUrl}')" type="radio" value="Y" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}><label class="span">Yes</label>
-                <input onchange="javascript:submitFormById('enrollmentForm', '${rebindUrl}')" type="radio" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}><label class="span">No</label>
+                <input onchange="javascript:submitFormById('enrollmentForm', '${rebindUrl}')" type="radio" value="Y" title="yes, I maintain my own private practice" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}><label class="span">Yes</label>
+                <input onchange="javascript:submitFormById('enrollmentForm', '${rebindUrl}')" type="radio" value="N" title="no, I do not maintain my own private practice" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}><label class="span">No</label>
             </div>
         </div>
         <div id="switchRadioWrapper" class="row">
@@ -28,9 +28,9 @@
             <div>
                 <c:set var="formName" value="_04_employedOrContractedByGroup"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                
-                <input onchange="javascript:submitFormById('enrollmentForm', '${rebindUrl}')" type="radio" value="Y" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}><label class="span">Yes</label>
-                <input onchange="javascript:submitFormById('enrollmentForm', '${rebindUrl}')" type="radio" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}><label class="span">No</label>
+
+                <input onchange="javascript:submitFormById('enrollmentForm', '${rebindUrl}')" type="radio" value="Y" title="yes, I am employed and/or independently contracted by a group practice" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}><label class="span">Yes</label>
+                <input onchange="javascript:submitFormById('enrollmentForm', '${rebindUrl}')" type="radio" value="N" title="no, I am not employed and/or independently contracted by a group practice" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}><label class="span">No</label>
             </div>
         </div>
         <div class="clearFixed"></div>

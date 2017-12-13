@@ -46,23 +46,23 @@
                     <div class="row">
                       <label>NPI/UMPI</label>
                       <span class="floatL"><b>:</b></span>
-                      <input id="npiInput" type="text" class="normalInput" value="${searchCriteria.npi}"/>
+                      <input id="npiInput" type="text" class="normalInput" title="NPI/UMPI" value="${searchCriteria.npi}"/>
                     </div>
                     <div class="row">
                       <label>Date Submitted</label>
                       <span class="floatL"><b>:</b></span>
                       <span class="dateWrapper floatL">
-                        <input id="submissionDateStartInput" value='<fmt:formatDate value="${searchCriteria.submissionDateStart}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
+                        <input id="submissionDateStartInput" title="submission date range start" value='<fmt:formatDate value="${searchCriteria.submissionDateStart}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
                       </span>
                       <span class="floatL"> - </span>
                       <span class="dateWrapper floatL">
-                        <input id="submissionDateEndInput"  value='<fmt:formatDate value="${searchCriteria.submissionDateEnd}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
+                        <input id="submissionDateEndInput" title="submission date range end" value='<fmt:formatDate value="${searchCriteria.submissionDateEnd}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
                       </span>
                     </div>
                     <div class="row">
                       <label>Provider Type</label>
                       <span class="floatL"><b>:</b></span>
-                      <select id="providerTypeInput" class="longSelect">
+                      <select id="providerTypeInput" title="provider type" class="longSelect">
                         <option value="">All</option>
                         <c:forEach var="item" items="${providerTypesLookup}">
                           <option <c:if test="${item.description == searchCriteria.providerType}">selected="selected"</c:if> value="${item.description}">${item.description}</option>
@@ -72,14 +72,14 @@
                     <div class="row">
                       <label>Provider Name</label>
                       <span class="floatL"><b>:</b></span>
-                      <input id="providerNameInput" value="${searchCriteria.providerName}" type="text" class="normalInput"/>
+                      <input id="providerNameInput" title="provider name" value="${searchCriteria.providerName}" type="text" class="normalInput"/>
                     </div>
                   </div>
                   <div class="rightCol">
                     <div class="row">
                       <label>Request Type</label>
                       <span class="floatL"><b>:</b></span>
-                      <select id="requestTypeInput" class="longSelect">
+                      <select id="requestTypeInput" title="request type" class="longSelect">
                         <option value="">All</option>
                         <c:forEach var="item" items="${requestTypesLookup}">
                           <option <c:forEach var="selectedItem" items="${searchCriteria.requestTypes}"><c:if test="${item.description == selectedItem}">selected="selected"</c:if></c:forEach> value="${item.description}">${item.description}</option>
@@ -89,7 +89,7 @@
                     <div class="row">
                       <label>Status</label>
                       <span class="floatL"><b>:</b></span>
-                      <select id="enrollmentStatusesInput" class="longSelect">
+                      <select id="enrollmentStatusesInput" title="status" class="longSelect">
                         <option value="">All</option>
                         <c:forEach var="item" items="${enrollmentStatusesLookup}">
                           <option <c:forEach var="selectedItem" items="${searchCriteria.statuses}"><c:if test="${item.description == selectedItem}">selected="selected"</c:if></c:forEach> value="${item.description}">${item.description}</option>
@@ -99,7 +99,7 @@
                     <div class="row">
                       <label>Risk Level</label>
                       <span class="floatL"><b>:</b></span>
-                      <select id="riskLevelInput" class="longSelect">
+                      <select id="riskLevelInput" title="risk level" class="longSelect">
                         <option value="">All</option>
                         <c:forEach var="item" items="${riskLevelsLookup}">
                           <option <c:forEach var="selectedItem" items="${searchCriteria.riskLevels}"><c:if test="${item.description == selectedItem}">selected="selected"</c:if></c:forEach> value="${item.description}">${item.description}</option>

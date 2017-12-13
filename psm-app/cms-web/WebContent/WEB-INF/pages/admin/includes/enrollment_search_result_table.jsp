@@ -49,13 +49,13 @@
     <thead>
         <tr>
             <th class="alignCenter">
-                <input type="checkbox" id="enrollmentSelectAll" name="enrollmentRowCheckBox" class="selectAll"/>
+                <input type="checkbox" id="enrollmentSelectAll" name="enrollmentRowCheckBox" class="selectAll" title="select all"/>
                 <span class="sep"></span>
             </th>
             <c:set var="sortFieldOfEntity" value="2"/>
             <c:set var="sortColumnTitle" value="NPI/UMPI"/>
             <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
-            
+
             <c:choose>
                 <c:when test="${active_enrollment_tab=='notes'}">
                     <th class="towline">
@@ -85,29 +85,29 @@
                     <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
                 </c:otherwise>
             </c:choose>
-                        
+
             <c:set var="sortFieldOfEntity" value="8"/>
             <c:set var="sortColumnTitle" value="Provider Type"/>
             <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
-                        
+
             <c:set var="sortFieldOfEntity" value="9"/>
             <c:set var="sortColumnTitle" value="Provider Name"/>
             <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
-                        
+
             <c:set var="sortFieldOfEntity" value="4"/>
             <c:set var="sortColumnTitle" value="Request Type"/>
             <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
-            
+
             <c:if test="${addStatusColumn=='yes'}">
                 <c:set var="sortFieldOfEntity" value="5"/>
                 <c:set var="sortColumnTitle" value="Status"/>
                 <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
             </c:if>
-                        
+
             <c:set var="sortFieldOfEntity" value="7"/>
             <c:set var="sortColumnTitle" value="Risk Level"/>
             <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
-            
+
             <c:set var="sortFieldOfEntity" value="6"/>
             <c:set var="sortColumnTitle" value="Status Date"/>
             <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
@@ -168,7 +168,7 @@
                             </c:forEach>
                         </c:when>
                         <c:when test="${fn:toLowerCase(item.status)=='draft'}">
-                        	<a href="${ctx}/agent/enrollment/pendingcos?id=${item.ticketId}">COS</a><span class="sep">|</span>                        
+                        	<a href="${ctx}/agent/enrollment/pendingcos?id=${item.ticketId}">COS</a><span class="sep">|</span>
                             <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">Edit</a><span class="sep">|</span>
                         </c:when>
                         <c:when test="${fn:toLowerCase(item.status)=='approved'}">

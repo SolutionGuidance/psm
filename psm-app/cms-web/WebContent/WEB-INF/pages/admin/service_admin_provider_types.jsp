@@ -68,7 +68,7 @@
                     <div class="row">
                       <label>Provider Type</label>
                       <span class="floatL"><b>:</b></span>
-                      <input id="providerTypeFilterText" type="text" class="normalInput" value="${searchCriteria.typeName}"/>
+                      <input id="providerTypeFilterText" title="provider type" type="text" class="normalInput" value="${searchCriteria.typeName}"/>
                     </div>
                   </div>
                 </div>
@@ -95,7 +95,7 @@
                       <thead>
                         <tr>
                           <th class="alignCenter">
-                            <input type="checkbox" name="providerType" class="selectAll"/>
+                            <input type="checkbox" name="providerType" class="selectAll" title="select all"/>
                             <span class="sep"></span>
                           </th>
                           <th>
@@ -125,7 +125,7 @@
                         <c:forEach var="item" items="${searchResult.items}">
                           <tr>
                             <td class="alignCenter">
-                              <input <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="providerTypeCheckBox" value="${item.code}" type="checkbox" name="providerType"/>
+                              <input title="provider type checkbox" <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="providerTypeCheckBox" value="${item.code}" type="checkbox" name="providerType"/>
                             </td>
                             <td>${item.description}</td>
                             <td class="alignCenter"><a href="${ctx}/admin/getProviderType?providerTypeId=${item.code}" class="viewProviderLink">View</a><span class="sep">|</span><a href="${ctx}/admin/beginEditProviderType?providerTypeId=${item.code}" class="editProviderLink">Edit</a>

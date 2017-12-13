@@ -96,7 +96,7 @@
                         <span class="floatL">
                           <b>:</b>
                         </span>
-                        <form:input path="npi" cssClass="normalInput"/>
+                        <form:input path="npi" title="NPI/UMPI" cssClass="normalInput"/>
                       </div>
                       <div class="row">
                         <label>Date Created</label>
@@ -104,13 +104,13 @@
                           <b>:</b>
                         </span>
                         <span class="dateWrapper floatL">
-                          <form:input path="createDateStart" cssClass="date" readonly=""/>
+                          <form:input path="createDateStart" title="created date range start" cssClass="date" readonly=""/>
                         </span>
                         <span class="floatL">
                           -
                         </span>
                         <span class="dateWrapper floatL">
-                          <form:input path="createDateEnd" cssClass="date" readonly=""/>
+                          <form:input path="createDateEnd" title="created date range end" cssClass="date" readonly=""/>
                         </span>
                       </div>
                     </div>
@@ -120,7 +120,7 @@
                         <span class="floatL">
                           <b>:</b>
                         </span>
-                        <form:select path="requestTypes" cssClass="longSelect" multiple="false">
+                        <form:select path="requestTypes" title="request type" cssClass="longSelect" multiple="false">
                           <form:option value="">All</form:option>
                           <form:option value="Enrollment">Enrollment</form:option>
                           <form:option value="Renewal">Renewal</form:option>
@@ -134,13 +134,13 @@
                           <b>:</b>
                         </span>
                         <span class="dateWrapper floatL">
-                          <form:input path="statusDateStart" cssClass="date" readonly=""/>
+                          <form:input path="statusDateStart" title="status date range start" cssClass="date" readonly=""/>
                         </span>
                         <span class="floatL">
                           -
                         </span>
                         <span class="dateWrapper floatL">
-                          <form:input path="statusDateEnd" cssClass="date" readonly=""/>
+                          <form:input path="statusDateEnd" title="status date range end" cssClass="date" readonly=""/>
                         </span>
                       </div>
                     </div>

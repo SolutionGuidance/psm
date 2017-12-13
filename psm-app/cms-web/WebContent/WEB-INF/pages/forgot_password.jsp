@@ -51,7 +51,7 @@
                       <spring:bind path="username">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
                       </spring:bind>
-                      <form:input path="username" cssClass="normalInput ${errorCls}"/>
+                      <form:input path="username" title="username" cssClass="normalInput ${errorCls}"/>
                     </div>
                     <div class="row">
                       <label>Email<span class="required">*</span>
@@ -64,7 +64,7 @@
                       <spring:bind path="email">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
                       </spring:bind>
-                      <form:input path="email" cssClass="normalInput ${errorCls}"/>
+                      <form:input path="email" title="email" cssClass="normalInput ${errorCls}"/>
                     </div>
                   </div>
                 </div>

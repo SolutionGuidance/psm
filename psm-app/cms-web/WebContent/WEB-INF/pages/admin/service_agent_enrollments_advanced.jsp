@@ -38,23 +38,23 @@
                   <div class="row">
                     <label>Enrollment #</label>
                     <span class="floatL"><b>:</b></span>
-                    <input id="npiInput" type="text" class="normalInput" value="${searchCriteria.npi}"/>
+                    <input id="npiInput" title="enrollment number" type="text" class="normalInput" value="${searchCriteria.npi}"/>
                   </div>
                   <div class="row">
                     <label>Date Submitted</label>
                     <span class="floatL"><b>:</b></span>
                     <span class="dateWrapper floatL">
-                      <input id="submissionDateStartInput" value='<fmt:formatDate value="${searchCriteria.submissionDateStart}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
+                      <input id="submissionDateStartInput" title="submitted date range start" value='<fmt:formatDate value="${searchCriteria.submissionDateStart}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
                     </span>
                     <span class="floatL"> - </span>
                     <span class="dateWrapper floatL">
-                      <input id="submissionDateEndInput"  value='<fmt:formatDate value="${searchCriteria.submissionDateEnd}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
+                      <input id="submissionDateEndInput" title="submitted date range end" value='<fmt:formatDate value="${searchCriteria.submissionDateEnd}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
                     </span>
                   </div>
                   <div class="row">
                     <label>Provider Type</label>
                     <span class="floatL"><b>:</b></span>
-                    <select id="providerTypeInput" class="longSelect">
+                    <select id="providerTypeInput" title="provider type" class="longSelect">
                       <option value="">All</option>
                       <c:forEach var="item" items="${providerTypesLookup}">
                         <option <c:if test="${item.description == searchCriteria.providerType}">selected="selected"</c:if> value="${item.description}">${item.description}</option>
@@ -64,7 +64,7 @@
                   <div class="row">
                     <label>Provider Name</label>
                     <span class="floatL"><b>:</b></span>
-                    <input id="providerNameInput" value="${searchCriteria.providerName}" type="text" class="normalInput"/>
+                    <input id="providerNameInput" title="provider name" value="${searchCriteria.providerName}" type="text" class="normalInput"/>
                   </div>
                 </div>
                 <!-- /.leftCol -->
@@ -73,10 +73,10 @@
                     <label>Request Type</label>
                     <span class="floatL"><b>:</b></span>
                     <div class="checkWrapper">
-                      <input type="checkbox" name="requestType" class="checkAll" />
+                      <input type="checkbox" title="all request types" name="requestType" class="checkAll" />
                       <span class="label">All</span>
                       <c:forEach var="item" items="${requestTypesLookup}">
-                        <input type="checkbox" name="requestType" class="requestType" value="${item.description}" <c:forEach var="selectedItem" items="${searchCriteria.requestTypes}"><c:if test="${item.description == selectedItem}">checked="checked"</c:if></c:forEach>/>
+                        <input type="checkbox" title="${item.description}" name="requestType" class="requestType" value="${item.description}" <c:forEach var="selectedItem" items="${searchCriteria.requestTypes}"><c:if test="${item.description == selectedItem}">checked="checked"</c:if></c:forEach>/>
                         <span class="label">${item.description}</span>
                       </c:forEach>
                     </div>
@@ -85,10 +85,10 @@
                     <label>Status</label>
                     <span class="floatL"><b>:</b></span>
                     <div class="checkWrapper">
-                      <input type="checkbox" name="enrollmentStatus" class="checkAll" />
+                      <input type="checkbox" title="all statuses" name="enrollmentStatus" class="checkAll" />
                       <span class="label">All</span>
                       <c:forEach var="item" items="${enrollmentStatusesLookup}">
-                        <input type="checkbox" name="enrollmentStatus" class="enrollmentStatus" value="${item.description}" <c:forEach var="selectedItem" items="${searchCriteria.statuses}"><c:if test="${item.description == selectedItem}">checked="checked"</c:if></c:forEach>/>
+                        <input type="checkbox" title="${item.description eq 'Rejected' ? 'Denied' : item.description}" name="enrollmentStatus" class="enrollmentStatus" value="${item.description}" <c:forEach var="selectedItem" items="${searchCriteria.statuses}"><c:if test="${item.description == selectedItem}">checked="checked"</c:if></c:forEach>/>
                         <span class="label">${item.description eq 'Rejected' ? 'Denied' : item.description}</span>
                       </c:forEach>
                     </div>
@@ -97,10 +97,10 @@
                     <label>Risk Level</label>
                     <span class="floatL"><b>:</b></span>
                     <div class="checkWrapper">
-                      <input type="checkbox" name="riskLevel" class="checkAll" />
+                      <input type="checkbox" title="all risk levels" name="riskLevel" class="checkAll" />
                       <span class="label">All</span>
                       <c:forEach var="item" items="${riskLevelsLookup}">
-                        <input type="checkbox" name="riskLevel" class="riskLevel" value="${item.description}" <c:forEach var="selectedItem" items="${searchCriteria.riskLevels}"><c:if test="${item.description == selectedItem}">checked="checked"</c:if></c:forEach>/>
+                        <input type="checkbox" title="${item.description}" name="riskLevel" class="riskLevel" value="${item.description}" <c:forEach var="selectedItem" items="${searchCriteria.riskLevels}"><c:if test="${item.description == selectedItem}">checked="checked"</c:if></c:forEach>/>
                         <span class="label">${item.description}</span>
                       </c:forEach>
                     </div>

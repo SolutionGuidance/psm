@@ -80,11 +80,7 @@
                     <span class="btM">Cancel</span>
                   </span>
                 </a>
-                <a href="javascript:submitFormById('passwordForm');" class="purpleBtn">
-                  <span class="btR">
-                    <span class="btM">Reset Password</span>
-                  </span>
-                </a>
+                <button class="purpleBtn" type="submit">Reset Password</button>
               </div>
               <!-- /.buttonBox -->
             </form:form>

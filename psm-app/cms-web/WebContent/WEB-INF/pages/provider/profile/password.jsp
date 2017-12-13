@@ -86,11 +86,7 @@
                         <span class="btM">Cancel</span>
                       </span>
                     </a>
-                    <a href="javascript:submitFormById('passwordForm');" class="purpleBtn">
-                      <span class="btR">
-                        <span class="btM">Update</span>
-                      </span>
-                    </a>
+                    <button class="purpleBtn" type="submit">Update</button>
                   </div>
                 </div>
                 <!-- /.section -->

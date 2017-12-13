@@ -30,54 +30,54 @@
 
           <div class="dashboardPanel">
             <div class="tableData">
-                <div class="tableTitle">
-                  <h2>Profiles</h2>
-                </div>
-                <table cellpadding="0" cellspacing="0" class="generalTable">
-                  <thead>
+              <div class="tableTitle">
+                <h2>Profiles</h2>
+              </div>
+              <table cellpadding="0" cellspacing="0" class="generalTable">
+                <thead>
+                  <tr>
+                    <th class="alignCenter">NPI / UMPI<span class="sep"></span>
+                    </th>
+                    <th class="alignCenter">Provider Type<span class="sep"></span>
+                    </th>
+                    <th class="alignCenter">Last Modified On<span class="sep"></span>
+                    </th>
+                    <th class="alignCenter">Action<span class="sep"></span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <c:forEach var="profile" items="${profiles}">
+                    <c:url var="viewProfileLink" value="/provider/enrollment/profile">
+                      <c:param name="id" value="${profile.profileId}"/>
+                    </c:url>
+                    <c:url var="editProfileLink" value="/provider/profile/edit">
+                      <c:param name="profileId" value="${profile.profileId}"/>
+                    </c:url>
+                    <c:url var="renewProfileLink" value="/provider/profile/renew">
+                      <c:param name="profileId" value="${profile.profileId}"/>
+                    </c:url>
                     <tr>
-                      <th class="alignCenter">NPI / UMPI<span class="sep"></span>
-                      </th>
-                      <th class="alignCenter">Provider Type<span class="sep"></span>
-                      </th>
-                      <th class="alignCenter">Last Modified On<span class="sep"></span>
-                      </th>
-                      <th class="alignCenter">Action<span class="sep"></span>
-                      </th>
+                      <td><c:out value="${profile.npi}"/></td>
+                      <td><c:out value="${profile.providerType}"/></td>
+                      <td><fmt:formatDate value="${profile.lastModifiedDate}" pattern="MM/dd/yyyy"/></td>
+                      <td class="alignCenter">
+                        <a href="${viewProfileLink}">View</a><span class="sep">|</span>
+                        <a href="${editProfileLink}">Edit</a><span class="sep">|</span>
+                        <a href="${renewProfileLink}">Renew</a>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    <c:forEach var="profile" items="${profiles}">
-                      <c:url var="viewProfileLink" value="/provider/enrollment/profile">
-                        <c:param name="id" value="${profile.profileId}"/>
-                      </c:url>
-                      <c:url var="editProfileLink" value="/provider/profile/edit">
-                        <c:param name="profileId" value="${profile.profileId}"/>
-                      </c:url>
-                      <c:url var="renewProfileLink" value="/provider/profile/renew">
-                        <c:param name="profileId" value="${profile.profileId}"/>
-                      </c:url>
-                      <tr>
-                        <td><c:out value="${profile.npi}"/></td>
-                        <td><c:out value="${profile.providerType}"/></td>
-                        <td><fmt:formatDate value="${profile.lastModifiedDate}" pattern="MM/dd/yyyy"/></td>
-                        <td class="alignCenter">
-                          <a href="${viewProfileLink}">View</a><span class="sep">|</span>
-                          <a href="${editProfileLink}">Edit</a><span class="sep">|</span>
-                          <a href="${renewProfileLink}">Renew</a>
-                        </td>
-                      </tr>
-                    </c:forEach>
-                    <c:if test="${empty profiles}">
-                      <tr>
-                        <td colspan="4">No profiles found.</td>
-                      </tr>
-                    </c:if>
-                  </tbody>
-                </table>
-                <div class="clearFixed"></div>
-                <div class="tl"></div>
-                <div class="tr"></div>
+                  </c:forEach>
+                  <c:if test="${empty profiles}">
+                    <tr>
+                      <td colspan="4">No profiles found.</td>
+                    </tr>
+                  </c:if>
+                </tbody>
+              </table>
+              <div class="clearFixed"></div>
+              <div class="tl"></div>
+              <div class="tr"></div>
             </div>
             <!-- /.tableData -->
             <div class="sideBar">

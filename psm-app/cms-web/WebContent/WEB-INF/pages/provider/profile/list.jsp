@@ -36,14 +36,10 @@
               <table cellpadding="0" cellspacing="0" class="generalTable">
                 <thead>
                   <tr>
-                    <th class="alignCenter">NPI / UMPI<span class="sep"></span>
-                    </th>
-                    <th class="alignCenter">Provider Type<span class="sep"></span>
-                    </th>
-                    <th class="alignCenter">Last Modified On<span class="sep"></span>
-                    </th>
-                    <th class="alignCenter">Action<span class="sep"></span>
-                    </th>
+                    <th>NPI / UMPI<span class="sep"></span></th>
+                    <th>Provider Type<span class="sep"></span></th>
+                    <th>Last Modified On<span class="sep"></span></th>
+                    <th class="alignCenter">Action<span class="sep"></span></th>
                   </tr>
                 </thead>
                 <tbody>

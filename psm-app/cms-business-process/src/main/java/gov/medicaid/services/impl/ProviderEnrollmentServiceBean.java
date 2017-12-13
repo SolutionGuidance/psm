@@ -2209,12 +2209,26 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         return Validity.VALID;
     }
 
-    private boolean profileHasPendingSubmission(long profileId) throws PortalServiceException {
-        ProviderSearchCriteria criteria = new ProviderSearchCriteria();
-        criteria.setProfileId(profileId);
-        criteria.setStatuses(Arrays.asList(ViewStatics.PENDING_STATUS));
-        SearchResult<UserRequest> results = searchTickets(getSystemUser(), criteria);
-        return results.getTotal() > 0;
+    private boolean profileHasPendingSubmission(long profileId) {
+        String query = "SELECT count(*) " +
+                "FROM ProviderProfile p, " +
+                "Enrollment t " +
+                "LEFT JOIN t.status ts, " +
+                "Entity e " +
+                "WHERE p.ticketId = t.ticketId " +
+                "AND e.ticketId = p.ticketId " +
+                "AND p.profileId = e.profileId " +
+                "AND p.ticketId > 0 " +
+                "AND e.profileId = :profileId " +
+                "AND ts.description = :enrollmentStatus";
+
+        int pendingSubmissions = getEm()
+                .createQuery(query, Number.class)
+                .setParameter("profileId", profileId)
+                .setParameter("enrollmentStatus", ViewStatics.PENDING_STATUS)
+                .getSingleResult()
+                .intValue();
+        return pendingSubmissions > 0;
     }
 
     @Override

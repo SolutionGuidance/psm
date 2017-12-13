@@ -30,9 +30,9 @@
           <h:handlebars template="includes/flash" context="${pageContext}"/>
 
           <div class="dashboardPanel">
-            <div class="tableData">
-              <form id="importProfilesForm" action="<c:url value="/provider/onboarding/list" />" method="post">
-                <sec:csrfInput />
+            <form id="importProfilesForm" action="<c:url value="/provider/onboarding/list" />" method="post">
+              <sec:csrfInput />
+              <div class="tableData">
                 <div class="tableTitle">
                   <h2>Profiles</h2>
                 </div>
@@ -78,8 +78,7 @@
                 <div class="clearFixed"></div>
                 <div class="tl"></div>
                 <div class="tr"></div>
-              </form>
-            </div>
+              </div>
             <!-- /.tableData -->
             <div class="sideBar">
               <div class="notificationsPanel panel">
@@ -109,17 +108,14 @@
                 </span>
               </a>
               <c:if test="${not empty profiles}">
-                <a href="javascript:submitFormById('importProfilesForm');" class="purpleBtn">
-                  <span class="btR">
-                    <span class="btM">Import Selected</span>
-                  </span>
-                </a>
+                <button class="purpleBtn" type="submit">Import Selected</button>
               </c:if>
               <c:if test="${empty profiles}">
                 <h:create-enrollment-button cssClass="purpleBtn"/>
               </c:if>
             </div>
             <!-- /.tableDataButtons -->
+            </form>
           </div>
           <!-- /.dashboardPanel -->
         </div>

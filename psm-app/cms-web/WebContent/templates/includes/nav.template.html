@@ -2,35 +2,61 @@
   <div class="navR">
     <div class="navM">
       <ul>
-        <li class="{{#if activeTab1 }} active {{/if}}">
-          <a href="{{ctx}}/landing">DASHBOARD</a>
-          {{#if activeTab1 }} <span class="arrow"></span> {{/if}}
-        </li>
+        {{#if systemPage}}
+          <li class="active">
+            <a href="{{ctx}}/system/user/list">USER ACCOUNTS</a>
+            {{#if hasArrow}}<span class="arrow"></span>{{/if}}
+          </li>
+        {{else}}
+          <li class="{{#if activeTab1 }} active {{/if}}">
+            <a href="{{ctx}}/landing">DASHBOARD</a>
+            {{#if activeTab1 }} <span class="arrow"></span> {{/if}}
+          </li>
 
-        <li class="{{#if activeTab2 }} active {{/if}}">
-          <a href="{{ctx}}/provider/dashboard/drafts">ENROLLMENTS</a>
-          {{#if activeTab2 }} <span class="arrow"></span> {{/if}}
-        </li>
+          <li class="{{#if activeTab2 }} active {{/if}}">
+            <a href="{{ctx}}/provider/dashboard/drafts">ENROLLMENTS</a>
+            {{#if activeTab2 }} <span class="arrow"></span> {{/if}}
+          </li>
 
-        {{#if isServiceAdministrator}}
-        <li class="{{#if activeTab4 }} active {{/if}}">
-          <a href="{{ctx}}/admin/viewProviderTypes">FUNCTIONS</a>
-          {{#if activeTab4 }} <span class="arrow"></span> {{/if}}
-        </li>
+          {{#if isServiceAdministrator}}
+          <li class="{{#if activeTab4 }} active {{/if}}">
+            <a href="{{ctx}}/admin/viewProviderTypes">FUNCTIONS</a>
+            {{#if activeTab4 }} <span class="arrow"></span> {{/if}}
+          </li>
+          {{/if}}
+
+          <li class="last {{#if activeTab3 }} active {{/if}}">
+            <a href="{{ctx}}/myprofile">MY PROFILE</a>
+            {{#if activeTab3 }} <span class="arrow"></span> {{/if}}
+          </li>
         {{/if}}
-
-        <li class="last {{#if activeTab3 }} active {{/if}}">
-          <a href="{{ctx}}/myprofile">MY PROFILE</a>
-          {{#if activeTab3 }} <span class="arrow"></span> {{/if}}
-        </li>
       </ul>
 
-      <div class="searchWidget">
-        <a href="{{ctx}}/provider/search/advanced">Advanced Search</a>
-        <div class="inputContainer">
-          <a id="enrollmentQuickSearch" href="{{ctx}}/provider/search/quick" class="search"></a> <input id="quickSearchInput" type="text" class="hint" value="{{#if param.npi }} {{param.npi}} {{else}} Search Keyword {{/if}}" title="Search Keyword" />
+      {{#if systemPage}}
+        <div class="searchWidget">
+          <a href="{{ctx}}/system/advanced-search-system-admin">Advanced Search</a>
+          <form id="searchBoxForm" class="inputContainer" action="{{ctx}}/system/user/search?role=Provider"  method="post">
+            <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}"/>
+            <a href="javascript:;" class="search searchBox"></a>
+            <input type="text" class="hint" value="Search Keyword" title="Search Keyword" name="firstName" id="searchBoxFirstName"/>
+            <input type="hidden" name="lastName" id="searchBoxLastName" />
+            <input type="hidden" name="and" value="false" />
+            <input type="hidden" name="searchBox" value="true" />
+            <input type="hidden" name="initSearchBox" value="true" />
+            <input type="hidden" name="roles" value="Provider"/>
+            <input type="hidden" name="roles" value="Service Agent"/>
+            <input type="hidden" name="roles" value="Service Administrator"/>
+            <input type="hidden" name="roles" value="System Administrator"/>
+          </form>
         </div>
-      </div>
+      {{else}}
+        <div class="searchWidget">
+          <a href="{{ctx}}/provider/search/advanced">Advanced Search</a>
+          <div class="inputContainer">
+            <a id="enrollmentQuickSearch" href="{{ctx}}/provider/search/quick" class="search"></a> <input id="quickSearchInput" type="text" class="hint" value="{{#if param.npi }} {{param.npi}} {{else}} Search Keyword {{/if}}" title="Search Keyword" />
+          </div>
+        </div>
+      {{/if}}
     </div>
   </div>
 </div>

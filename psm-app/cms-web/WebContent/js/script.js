@@ -932,6 +932,33 @@ $(document).ready(function () {
       }
     });
 
+  // Practice Lookup
+  $('.performPracticeLookupBtn').click(function performPracticeLookup (event) {
+    event.preventDefault();
+
+    var $form = $("#practiceLookupForm");
+    $('#practiceLookupForm input[name="agency"]').val(isAgencyLookup);
+
+    postJson({
+      url: $form.attr("action"),
+      async: false, // we are in modal anyway
+      data: $form.serialize(),
+      success: function (response, textStatus, jqXHR) {
+        practiceLookupResults = response;
+      },
+
+      error: function (jqXHR, textStatus, errorThrown) {
+        alert("There was an error encountered while performing lookup.");
+      }
+    });
+
+    populatePracticeLookupResults();
+
+    $('#practiceLookupModal .tableContainer').show();
+    repositionModal();
+  });
+
+
   /* START OF SERVICE AGENT SCRIPT ------------------------------------------------ */
 
   $('#draftEnrollmentTable').tablesorter({
@@ -2161,29 +2188,6 @@ function postJson(settings) {
     },
   })
   $.ajax(settings);
-}
-
-function performPracticeLookup() {
-  var $form = $("#practiceLookupForm");
-  $('#practiceLookupForm input[name="agency"]').val(isAgencyLookup);
-
-  postJson({
-    url: $form.attr("action"),
-    async: false, // we are in modal anyway
-    data: $form.serialize(),
-    success: function (response, textStatus, jqXHR) {
-      practiceLookupResults = response;
-    },
-
-    error: function (jqXHR, textStatus, errorThrown) {
-      alert("There was an error encountered while performing lookup.");
-    }
-  });
-
-  populatePracticeLookupResults();
-
-  $('#practiceLookupModal .tableContainer').show();
-  repositionModal();
 }
 
 function populatePracticeLookupResults() {

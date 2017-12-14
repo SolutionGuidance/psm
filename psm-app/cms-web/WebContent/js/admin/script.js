@@ -1069,38 +1069,6 @@ $(document).ready(function () {
   }
   });
 
-  // Login
-  $("#btnLogin").click(function () {
-    var url = '';
-    switch ($('#username').val()){
-    case 'service-admin':
-      url = 'dashboard-service-admin.html';
-    break;
-    case 'service-agent':
-      url = 'dashboard-service-agent.html';
-    break;
-    case 'certified-registered-nurse-anesthetists':
-      url = 'enrollment-certified-registered-nurse-anesthetists.html';
-    break;
-    case 'community-health-workers':
-      url = 'enrollment-community-health-workers.html';
-    break;
-    case 'licensed-psychologist':
-      url = 'enrollment-licensed-psychologist.html';
-    break;
-    case 'physical-therapist':
-      url = 'enrollment-physical-therapist.html';
-    break;
-    case 'podiatrist':
-      url = 'enrollment-podiatrist.html';
-    break;
-    default:
-      url = 'enrollment-Audiologist.html';
-  }
-    window.location.href = url;
-    return false;
-  });
-
   $('#verificationBtn').live('click', function () {
     var flag = true;
     var iArray = [];

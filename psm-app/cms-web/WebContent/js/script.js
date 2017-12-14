@@ -907,19 +907,6 @@ $(document).ready(function () {
   }
   });
 
-  // Login
-  $("input").keypress(function (event) {
-    if (event.which == 13) {
-      $("#loginForm").submit();
-      return false;
-    }
-  });
-
-  $("#btnLogin").click(function () {
-    $('#loginForm').submit();
-    return false;
-  });
-
   $('#verificationBtn').live('click', function () {
       var flag = true;
       var iArray = [];

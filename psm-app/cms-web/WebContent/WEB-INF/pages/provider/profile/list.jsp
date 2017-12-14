@@ -30,54 +30,50 @@
 
           <div class="dashboardPanel">
             <div class="tableData">
-              <form id="myProfilesForm" action="" method="get">
-                <sec:csrfInput />
-                <div class="tableTitle">
-                  <h2>Profiles</h2>
-                </div>
-                <table cellpadding="0" cellspacing="0" class="generalTable">
-                  <thead>
+              <div class="tableTitle">
+                <h2>Profiles</h2>
+              </div>
+              <table cellpadding="0" cellspacing="0" class="generalTable">
+                <thead>
+                  <tr>
+                    <th>NPI / UMPI<span class="sep"></span></th>
+                    <th>Provider Type<span class="sep"></span></th>
+                    <th>Last Modified On<span class="sep"></span></th>
+                    <th class="alignCenter">Action<span class="sep"></span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <c:forEach var="profile" items="${profiles}">
+                    <c:url var="viewProfileLink" value="/provider/enrollment/profile">
+                      <c:param name="id" value="${profile.profileId}"/>
+                    </c:url>
+                    <c:url var="editProfileLink" value="/provider/profile/edit">
+                      <c:param name="profileId" value="${profile.profileId}"/>
+                    </c:url>
+                    <c:url var="renewProfileLink" value="/provider/profile/renew">
+                      <c:param name="profileId" value="${profile.profileId}"/>
+                    </c:url>
                     <tr>
-                      <c:if test="${not empty profiles}">
-                        <th class="alignCenter">
-                          <span class="sep"></span>
-                        </th>
-                      </c:if>
-                      <th class="alignCenter">NPI / UMPI<span class="sep"></span>
-                      </th>
-                      <th class="alignCenter">Provider Type<span class="sep"></span>
-                      </th>
-                      <th class="alignCenter">Last Modified On<span class="sep"></span>
-                      </th>
+                      <td><c:out value="${profile.npi}"/></td>
+                      <td><c:out value="${profile.providerType}"/></td>
+                      <td><fmt:formatDate value="${profile.lastModifiedDate}" pattern="MM/dd/yyyy"/></td>
+                      <td class="alignCenter">
+                        <a href="${viewProfileLink}">View</a><span class="sep">|</span>
+                        <a href="${editProfileLink}">Edit</a><span class="sep">|</span>
+                        <a href="${renewProfileLink}">Renew</a>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    <c:forEach var="profile" items="${profiles}">
-                      <c:url var="viewProfileLink" value="/provider/enrollment/profile">
-                        <c:param name="id" value="${profile.profileId}"/>
-                      </c:url>
-                      <tr>
-                        <td class="alignCenter">
-                          <input type="radio" name="profileId" value="${profile.profileId}"/>
-                        </td>
-                        <td>
-                          <a href="${viewProfileLink}"><c:out value="${profile.npi}"/></a>
-                        </td>
-                        <td><c:out value="${profile.providerType}"/></td>
-                        <td><fmt:formatDate value="${profile.lastModifiedDate}" pattern="MM/dd/yyyy"/></td>
-                      </tr>
-                    </c:forEach>
-                    <c:if test="${empty profiles}">
-                      <tr>
-                        <td colspan="3">No profiles found.</td>
-                      </tr>
-                    </c:if>
-                  </tbody>
-                </table>
-                <div class="clearFixed"></div>
-                <div class="tl"></div>
-                <div class="tr"></div>
-              </form>
+                  </c:forEach>
+                  <c:if test="${empty profiles}">
+                    <tr>
+                      <td colspan="4">No profiles found.</td>
+                    </tr>
+                  </c:if>
+                </tbody>
+              </table>
+              <div class="clearFixed"></div>
+              <div class="tl"></div>
+              <div class="tr"></div>
             </div>
             <!-- /.tableData -->
             <div class="sideBar">
@@ -110,22 +106,6 @@
               </div>
             </div>
             <!-- /.sideBar -->
-
-            <div class="tableDataButtons buttonBox">
-              <c:url var="editProfileLink" value="/provider/profile/edit"></c:url>
-              <c:url var="renewProfileLink" value="/provider/profile/renew"></c:url>
-              <a href="javascript:submitFormById('myProfilesForm', '${renewProfileLink}');" class="purpleBtn">
-                <span class="btR">
-                  <span class="btM">Renew Enrollment</span>
-                </span>
-              </a>
-              <a href="javascript:submitFormById('myProfilesForm', '${editProfileLink}');" class="purpleBtn">
-                <span class="btR">
-                  <span class="btM">Edit Profile</span>
-                </span>
-              </a>
-            </div>
-            <!-- /.tableDataButtons -->
           </div>
           <!-- /.dashboardPanel -->
         </div>

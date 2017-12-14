@@ -98,15 +98,11 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/getScreeningSchedule", method = RequestMethod.GET)
     public ModelAndView get() throws PortalServiceException {
-        try {
-            ScreeningSchedule schedule = screeningService.getScreeningSchedule();
-            ModelAndView model = new ModelAndView("admin/service_admin_view_schedule");
-            model.addObject("schedule", schedule);
+        ScreeningSchedule schedule = screeningService.getScreeningSchedule();
+        ModelAndView model = new ModelAndView("admin/service_admin_view_schedule");
+        model.addObject("schedule", schedule);
 
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -120,14 +116,10 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/beginEditScreeningSchedule", method = RequestMethod.GET)
     public ModelAndView beginEdit() throws PortalServiceException {
-        try {
-            ScreeningSchedule schedule = screeningService.getScreeningSchedule();
-            ModelAndView model = new ModelAndView("admin/service_admin_edit_schedule");
-            model.addObject("schedule", schedule);
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        ScreeningSchedule schedule = screeningService.getScreeningSchedule();
+        ModelAndView model = new ModelAndView("admin/service_admin_edit_schedule");
+        model.addObject("schedule", schedule);
+        return model;
     }
 
     /**
@@ -144,16 +136,12 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
     @RequestMapping(value = "/admin/updateScreeningSchedule", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("schedule") ScreeningSchedule schedule, HttpServletRequest request)
         throws PortalServiceException {
-        try {
-            screeningService.saveScreeningSchedule(schedule);
+        screeningService.saveScreeningSchedule(schedule);
 
-            ModelAndView model = new ModelAndView("admin/service_admin_view_schedule");
-            model.addObject("schedule", schedule);
+        ModelAndView model = new ModelAndView("admin/service_admin_view_schedule");
+        model.addObject("schedule", schedule);
 
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        return model;
     }
 
     /**

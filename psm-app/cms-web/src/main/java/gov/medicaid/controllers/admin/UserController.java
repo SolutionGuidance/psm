@@ -81,17 +81,12 @@ public class UserController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/ops/getUser", method = RequestMethod.GET)
     public ModelAndView get() throws PortalServiceException {
+        String userId = ControllerHelper.getCurrentUser().getUserId();
+        CMSUser user = registrationService.findByUserId(userId);
+        ModelAndView model = new ModelAndView("admin/service_admin_view_user_profile");
+        model.addObject("user", user);
 
-        try {
-            String userId = ControllerHelper.getCurrentUser().getUserId();
-            CMSUser user = registrationService.findByUserId(userId);
-            ModelAndView model = new ModelAndView("admin/service_admin_view_user_profile");
-            model.addObject("user", user);
-
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -106,17 +101,12 @@ public class UserController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/ops/beginEditUser", method = RequestMethod.GET)
     public ModelAndView beginEdit() throws PortalServiceException {
+        String userId = ControllerHelper.getCurrentUser().getUserId();
+        CMSUser user = registrationService.findByUserId(userId);
+        ModelAndView model = new ModelAndView("admin/service_admin_edit_user_profile");
+        model.addObject("user", user);
 
-        try {
-            String userId = ControllerHelper.getCurrentUser().getUserId();
-            CMSUser user = registrationService.findByUserId(userId);
-            ModelAndView model = new ModelAndView("admin/service_admin_edit_user_profile");
-            model.addObject("user", user);
-
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -135,21 +125,16 @@ public class UserController extends BaseServiceAdminController {
     @RequestMapping(value = "/ops/updateUser", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("user") CMSUser user, HttpServletRequest request)
         throws PortalServiceException {
-
-        try {
-            CMSUser currentUser = ControllerHelper.getCurrentUser();
-            if (!currentUser.getUserId().equals(user.getUserId())) {
-                throw new PortalServiceException("Invalid navigation path.");
-            }
-            user.concatPhone();
-            registrationService.updateUserProfile(currentUser.getUserId(), user);
-            ModelAndView model = new ModelAndView("admin/service_admin_view_user_profile");
-            model.addObject("user", user);
-
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
+        CMSUser currentUser = ControllerHelper.getCurrentUser();
+        if (!currentUser.getUserId().equals(user.getUserId())) {
+            throw new PortalServiceException("Invalid navigation path.");
         }
+        user.concatPhone();
+        registrationService.updateUserProfile(currentUser.getUserId(), user);
+        ModelAndView model = new ModelAndView("admin/service_admin_view_user_profile");
+        model.addObject("user", user);
+
+        return model;
     }
 
     /**

@@ -122,34 +122,30 @@ public class DashboardController extends BaseServiceAdminController {
      */
     @RequestMapping(value = { "/ops/viewDashboard" }, method = RequestMethod.GET)
     public ModelAndView view() throws PortalServiceException {
-        try {
-            // Package a ProviderSearchCriteria with first page of size 10 sorted by last update date column
-            ProviderSearchCriteria criteria = new ProviderSearchCriteria();
-            criteria.setPageNumber(1);
-            criteria.setPageSize(10);
-            criteria.setSortColumn("6");
+        // Package a ProviderSearchCriteria with first page of size 10 sorted by last update date column
+        ProviderSearchCriteria criteria = new ProviderSearchCriteria();
+        criteria.setPageNumber(1);
+        criteria.setPageSize(10);
+        criteria.setSortColumn("6");
 
-            CMSUser currentUser = ControllerHelper.getCurrentUser();
-            SearchResult<UserRequest> result = providerProfileService.searchTickets(currentUser, criteria);
+        CMSUser currentUser = ControllerHelper.getCurrentUser();
+        SearchResult<UserRequest> result = providerProfileService.searchTickets(currentUser, criteria);
 
-            // Get latest notifications:
-            List<Event> notifications = eventService.getLatest();
-            List<EnrollmentStatus> findAllLookups = lookupService.findAllLookups(EnrollmentStatus.class);
-            for (Event event : notifications) {
-                for (EnrollmentStatus enrollmentStatus : findAllLookups) {
-                    if (event.getStatus().equals(enrollmentStatus.getCode())) {
-                        event.setStatus(enrollmentStatus.getDescription());
-                    }
+        // Get latest notifications:
+        List<Event> notifications = eventService.getLatest();
+        List<EnrollmentStatus> findAllLookups = lookupService.findAllLookups(EnrollmentStatus.class);
+        for (Event event : notifications) {
+            for (EnrollmentStatus enrollmentStatus : findAllLookups) {
+                if (event.getStatus().equals(enrollmentStatus.getCode())) {
+                    event.setStatus(enrollmentStatus.getDescription());
                 }
             }
-            ModelAndView model = new ModelAndView("admin/dashboard");
-            model.addObject("profiles", result.getItems());
-            model.addObject("notifications", notifications);
-
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
         }
+        ModelAndView model = new ModelAndView("admin/dashboard");
+        model.addObject("profiles", result.getItems());
+        model.addObject("notifications", notifications);
+
+        return model;
     }
 
     /**
@@ -167,21 +163,16 @@ public class DashboardController extends BaseServiceAdminController {
     @RequestMapping(value = { "/ops/viewDashboard" }, method = RequestMethod.POST)
     public ModelAndView search(@ModelAttribute("criteria") ProviderSearchCriteria criteria)
         throws PortalServiceException {
+        SearchResult<UserRequest> result = providerProfileService.searchTickets(ControllerHelper.getCurrentUser(),
+            criteria);
 
-        try {
-            SearchResult<UserRequest> result = providerProfileService.searchTickets(ControllerHelper.getCurrentUser(),
-                criteria);
+        // Get latest notifications:
+        List<Event> notifications = eventService.getLatest();
+        ModelAndView model = new ModelAndView("admin/dashboard");
+        model.addObject("profiles", result.getItems());
+        model.addObject("notifications", notifications);
 
-            // Get latest notifications:
-            List<Event> notifications = eventService.getLatest();
-            ModelAndView model = new ModelAndView("admin/dashboard");
-            model.addObject("profiles", result.getItems());
-            model.addObject("notifications", notifications);
-
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -196,16 +187,12 @@ public class DashboardController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/viewHelp", method = RequestMethod.GET)
     public ModelAndView getHelp() throws PortalServiceException {
-        try {
-            // Get all help topics with help service
-            SearchResult<HelpItem> result = helpService.search(new HelpSearchCriteria());
-            ModelAndView model = new ModelAndView("admin/help");
-            model.addObject("helpItems", result.getItems());
+        // Get all help topics with help service
+        SearchResult<HelpItem> result = helpService.search(new HelpSearchCriteria());
+        ModelAndView model = new ModelAndView("admin/help");
+        model.addObject("helpItems", result.getItems());
 
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -222,14 +209,10 @@ public class DashboardController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/viewHelpItem", method = RequestMethod.GET)
     public ModelAndView getHelpItem(@RequestParam("helpItemId") long id) throws PortalServiceException {
-        try {
-            HelpItem helpItem = helpService.get(id);
-            ModelAndView model = new ModelAndView("admin/help_detail");
-            model.addObject("helpItem", helpItem);
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        HelpItem helpItem = helpService.get(id);
+        ModelAndView model = new ModelAndView("admin/help_detail");
+        model.addObject("helpItem", helpItem);
+        return model;
     }
 
     /**
@@ -247,14 +230,10 @@ public class DashboardController extends BaseServiceAdminController {
     @RequestMapping(value = "/viewHelp", method = RequestMethod.POST)
     public ModelAndView searchHelp(@ModelAttribute("criteria") HelpSearchCriteria criteria)
         throws PortalServiceException {
-        try {
-            List<HelpItem> helpItems = helpService.search(criteria).getItems();
-            ModelAndView model = new ModelAndView("admin/help");
-            model.addObject("helpItems", helpItems);
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        List<HelpItem> helpItems = helpService.search(criteria).getItems();
+        ModelAndView model = new ModelAndView("admin/help");
+        model.addObject("helpItems", helpItems);
+        return model;
     }
 
     /**

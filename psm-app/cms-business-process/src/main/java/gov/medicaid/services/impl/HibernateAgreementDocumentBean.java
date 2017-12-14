@@ -84,8 +84,6 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
             getEm().persist(agreementDocument);
 
             return agreementDocument.getId();
-        } catch (IllegalArgumentException e) {
-            throw e;
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);
         }
@@ -223,8 +221,6 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
                 totalRecordCount);
 
             return searchResults;
-        } catch (IllegalArgumentException e) {
-            throw e;
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);
         }

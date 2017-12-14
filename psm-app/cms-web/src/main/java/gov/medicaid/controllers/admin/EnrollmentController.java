@@ -197,25 +197,21 @@ public class EnrollmentController extends BaseController {
             method = RequestMethod.GET
     )
     public ModelAndView viewDashboard() throws PortalServiceException {
-        try {
-            // Package a ProviderSearchCriteria with first page of size 10 sorted by last update date column
-            ProviderSearchCriteria criteria = new ProviderSearchCriteria();
-            criteria.setPageNumber(1);
-            criteria.setPageSize(10);
-            criteria.setSortColumn("modifiedTime");
+        // Package a ProviderSearchCriteria with first page of size 10 sorted by last update date column
+        ProviderSearchCriteria criteria = new ProviderSearchCriteria();
+        criteria.setPageNumber(1);
+        criteria.setPageSize(10);
+        criteria.setSortColumn("modifiedTime");
 
-            SearchResult<UserRequest> result = enrollmentService.searchTickets(ControllerHelper.getCurrentUser(),
-                    criteria);
+        SearchResult<UserRequest> result = enrollmentService.searchTickets(ControllerHelper.getCurrentUser(),
+                criteria);
 
-            // Get latest notifications:
-            List<Event> notifications = eventService.getLatest();
-            ModelAndView model = new ModelAndView("admin/dashboard");
-            model.addObject("profiles", result.getItems());
-            model.addObject("notifications", notifications);
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        // Get latest notifications:
+        List<Event> notifications = eventService.getLatest();
+        ModelAndView model = new ModelAndView("admin/dashboard");
+        model.addObject("profiles", result.getItems());
+        model.addObject("notifications", notifications);
+        return model;
     }
 
     /**
@@ -232,18 +228,14 @@ public class EnrollmentController extends BaseController {
             method = RequestMethod.GET
     )
     public ModelAndView getHelp() throws PortalServiceException {
-        try {
-            // Get all help topics with help service
-            HelpSearchCriteria criteria = new HelpSearchCriteria();
-            criteria.setPageNumber(1);
-            criteria.setPageSize(-1);
-            SearchResult<HelpItem> result = helpService.search(criteria);
-            ModelAndView model = new ModelAndView("admin/help");
-            model.addObject("helpItems", result.getItems());
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        // Get all help topics with help service
+        HelpSearchCriteria criteria = new HelpSearchCriteria();
+        criteria.setPageNumber(1);
+        criteria.setPageSize(-1);
+        SearchResult<HelpItem> result = helpService.search(criteria);
+        ModelAndView model = new ModelAndView("admin/help");
+        model.addObject("helpItems", result.getItems());
+        return model;
     }
 
     /**
@@ -263,14 +255,10 @@ public class EnrollmentController extends BaseController {
     public ModelAndView getHelpItem(
             @RequestParam("helpItemId") long id
     ) throws PortalServiceException {
-        try {
-            HelpItem helpItem = helpService.get(id);
-            ModelAndView model = new ModelAndView("admin/help_detail");
-            model.addObject("helpItem", helpItem);
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        HelpItem helpItem = helpService.get(id);
+        ModelAndView model = new ModelAndView("admin/help_detail");
+        model.addObject("helpItem", helpItem);
+        return model;
     }
 
     /**

@@ -86,20 +86,16 @@ public class HelpController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/searchHelp", method = RequestMethod.GET)
     public ModelAndView view() throws PortalServiceException {
-        try {
-            // Package a ProviderSearchCriteria with first page of size 10 sorted by last update date column
-            HelpSearchCriteria criteria = new HelpSearchCriteria();
-            criteria.setPageNumber(1);
-            criteria.setPageSize(-1);
+        // Package a ProviderSearchCriteria with first page of size 10 sorted by last update date column
+        HelpSearchCriteria criteria = new HelpSearchCriteria();
+        criteria.setPageNumber(1);
+        criteria.setPageSize(-1);
 
-            SearchResult<HelpItem> result = helpService.search(criteria);
-            ModelAndView model = new ModelAndView("admin/service_admin_help_items");
-            model.addObject("helpItems", result.getItems());
+        SearchResult<HelpItem> result = helpService.search(criteria);
+        ModelAndView model = new ModelAndView("admin/service_admin_help_items");
+        model.addObject("helpItems", result.getItems());
 
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -116,15 +112,11 @@ public class HelpController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/searchHelp", method = RequestMethod.POST)
     public ModelAndView search(@ModelAttribute("criteria") HelpSearchCriteria criteria) throws PortalServiceException {
-        try {
-            List<HelpItem> helpItems = helpService.search(criteria).getItems();
-            ModelAndView model = new ModelAndView("admin/service_admin_help_items");
-            model.addObject("helpItems", helpItems);
+        List<HelpItem> helpItems = helpService.search(criteria).getItems();
+        ModelAndView model = new ModelAndView("admin/service_admin_help_items");
+        model.addObject("helpItems", helpItems);
 
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -141,15 +133,11 @@ public class HelpController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/getHelpItem", method = RequestMethod.GET)
     public ModelAndView get(@RequestParam("helpItemId") long helpItemId) throws PortalServiceException {
-        try {
-            HelpItem helpItem = helpService.get(helpItemId);
-            ModelAndView model = new ModelAndView("admin/service_admin_view_help_item");
-            model.addObject("helpItem", helpItem);
+        HelpItem helpItem = helpService.get(helpItemId);
+        ModelAndView model = new ModelAndView("admin/service_admin_view_help_item");
+        model.addObject("helpItem", helpItem);
 
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -166,18 +154,14 @@ public class HelpController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/editHelpItem", method = RequestMethod.GET)
     public ModelAndView beginEdit(@RequestParam("helpItemId") long helpItemId) throws PortalServiceException {
-        try {
-            ModelAndView model = new ModelAndView("admin/service_admin_edit_help_item");
-            if (helpItemId == 0) {
-                model.addObject("helpItem", new HelpItem());
-            } else {
-                HelpItem helpItem = helpService.get(helpItemId);
-                model.addObject("helpItem", helpItem);
-            }
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
+        ModelAndView model = new ModelAndView("admin/service_admin_edit_help_item");
+        if (helpItemId == 0) {
+            model.addObject("helpItem", new HelpItem());
+        } else {
+            HelpItem helpItem = helpService.get(helpItemId);
+            model.addObject("helpItem", helpItem);
         }
+        return model;
     }
 
     /**
@@ -196,17 +180,13 @@ public class HelpController extends BaseServiceAdminController {
     @RequestMapping(value = "/admin/createHelpItem", method = RequestMethod.POST)
     public ModelAndView create(@ModelAttribute("helpItem") HelpItem helpItem, HttpServletRequest request)
         throws PortalServiceException {
-        try {
-            helpService.create(helpItem);
-            helpItem = helpService.get(helpItem.getId());
+        helpService.create(helpItem);
+        helpItem = helpService.get(helpItem.getId());
 
-            ModelAndView model = new ModelAndView("admin/service_admin_view_help_item");
-            model.addObject("helpItem", helpItem);
+        ModelAndView model = new ModelAndView("admin/service_admin_view_help_item");
+        model.addObject("helpItem", helpItem);
 
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -225,18 +205,13 @@ public class HelpController extends BaseServiceAdminController {
     @RequestMapping(value = "/admin/updateHelpItem", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("helpItem") HelpItem helpItem, HttpServletRequest request)
         throws PortalServiceException {
+        helpService.update(helpItem);
+        helpItem = helpService.get(helpItem.getId());
 
-        try {
-            helpService.update(helpItem);
-            helpItem = helpService.get(helpItem.getId());
+        ModelAndView model = new ModelAndView("service_admin_view_help_item");
+        model.addObject("helpItem", helpItem);
 
-            ModelAndView model = new ModelAndView("service_admin_view_help_item");
-            model.addObject("helpItem", helpItem);
-
-            return model;
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -253,13 +228,8 @@ public class HelpController extends BaseServiceAdminController {
     @ResponseBody
     public String delete(@RequestParam("helpItemId") long helpItemId, HttpServletRequest request)
         throws PortalServiceException {
-
-        try {
-            helpService.delete(helpItemId);
-            return "success";
-        } catch (PortalServiceException e) {
-            throw e;
-        }
+        helpService.delete(helpItemId);
+        return "success";
     }
 
     /**

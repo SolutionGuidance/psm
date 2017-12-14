@@ -2194,12 +2194,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 throw new PortalServiceException("No such profile.");
             }
 
-            // check if anyone has a pending submission for the same profile
-            ProviderSearchCriteria criteria = new ProviderSearchCriteria();
-            criteria.setProfileId(profileId);
-            criteria.setStatuses(Arrays.asList(ViewStatics.PENDING_STATUS));
-            SearchResult<UserRequest> results = searchTickets(getSystemUser(), criteria);
-            if (results.getTotal() > 0) {
+            if (profileHasPendingSubmission(profileId)) {
                 return Validity.SUPERSEDED;
             }
 
@@ -2212,6 +2207,28 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
         // new enrollments are always valid for submission
         return Validity.VALID;
+    }
+
+    private boolean profileHasPendingSubmission(long profileId) {
+        String query = "SELECT count(*) " +
+                "FROM ProviderProfile p, " +
+                "Enrollment t " +
+                "LEFT JOIN t.status ts, " +
+                "Entity e " +
+                "WHERE p.ticketId = t.ticketId " +
+                "AND e.ticketId = p.ticketId " +
+                "AND p.profileId = e.profileId " +
+                "AND p.ticketId > 0 " +
+                "AND e.profileId = :profileId " +
+                "AND ts.description = :enrollmentStatus";
+
+        int pendingSubmissions = getEm()
+                .createQuery(query, Number.class)
+                .setParameter("profileId", profileId)
+                .setParameter("enrollmentStatus", ViewStatics.PENDING_STATUS)
+                .getSingleResult()
+                .intValue();
+        return pendingSubmissions > 0;
     }
 
     @Override

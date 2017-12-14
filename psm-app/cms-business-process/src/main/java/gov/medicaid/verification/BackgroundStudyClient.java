@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -45,8 +45,7 @@ import static java.util.logging.Level.INFO;
  * @version 1.0
  */
 public class BackgroundStudyClient extends BaseSOAPClient {
-    private static final Logger LOGGER =
-            Logger.getLogger(BackgroundStudyClient.class.getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * Assigns the given values to the field with the same name.
@@ -101,10 +100,10 @@ public class BackgroundStudyClient extends BaseSOAPClient {
             r1.getColumnData().getNameValuePair().addAll(r2.getColumnData().getNameValuePair());
             result.setRawResponse(null); // not needed now that we have transformed it
 
-            if (LOGGER.isLoggable(INFO)) {
+            if (logger.isLoggable(INFO)) {
                 sw = new StringWriter();
                 m.marshal(result, sw);
-                LOGGER.info(sw.toString()); // finally! an XML we can actually process!
+                logger.info(sw.toString()); // finally! an XML we can actually process!
             }
         }
 

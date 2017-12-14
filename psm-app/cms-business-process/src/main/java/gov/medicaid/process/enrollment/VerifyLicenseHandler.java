@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -56,8 +56,7 @@ import java.util.logging.Logger;
  * @since External Sources Integration Assembly II
  */
 public class VerifyLicenseHandler extends GenericHandler {
-    private static final Logger LOGGER =
-            Logger.getLogger(VerifyLicenseHandler.class.getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * Executes verification of licenses and facility credentials.
@@ -71,7 +70,7 @@ public class VerifyLicenseHandler extends GenericHandler {
      * @param manager the work item manager
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
-        LOGGER.info("Verifying license and certifications.");
+        logger.info("Verifying license and certifications.");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
 
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
@@ -88,7 +87,7 @@ public class VerifyLicenseHandler extends GenericHandler {
             LicenseLookupConfiguration lookup = config.get(licenseType.getLicenseType());
 
             if ("Y".equals(lookup.getLookupSupported())) {
-                LOGGER.info("Verifying license type " + licenseType.getLicenseType());
+                logger.info("Verifying license type " + licenseType.getLicenseType());
 
                 ScreeningResultType licenseResult = new ScreeningResultType();
                 licenseResult.setScreeningType("LICENSE VERIFICATION");
@@ -96,7 +95,7 @@ public class VerifyLicenseHandler extends GenericHandler {
                 licenseResult.setStatus(XMLUtility.newStatus("SUCCESS"));
                 results.getScreeningResult().add(licenseResult);
             } else {
-                LOGGER.info("License " + licenseType.getLicenseType()
+                logger.info("License " + licenseType.getLicenseType()
                     + " does not support automatic verification");
             }
         }
@@ -149,33 +148,33 @@ public class VerifyLicenseHandler extends GenericHandler {
             results = client.verify(provider, licenseType);
             SearchResultType externalResults = results.getSearchResults();
             if (externalResults != null && !externalResults.getSearchResultItem().isEmpty()) {
-                LOGGER.info("External service returned results, resolving exact match.");
+                logger.info("External service returned results, resolving exact match.");
                 // multiple records, resolve any "REAL" match
                 MatchStatus matchStatus = lookup.getMatcher().match(provider, licenseType, results);
                 if (matchStatus == MatchStatus.EXACT_MATCH) {
                     licenseType.setVerified("Y");
                     populateStatus(licenseType, results.getSearchResults());
-                    LOGGER.info("Resolving to an exact match.");
+                    logger.info("Resolving to an exact match.");
                 } else {
                     licenseType.setVerified("N");
-                    LOGGER.info("Cannot resolve exact match : " + matchStatus);
+                    logger.info("Cannot resolve exact match : " + matchStatus);
                 }
             } else {
-                LOGGER.info("External service returned no results.");
+                logger.info("External service returned no results.");
                 licenseType.setVerified("N");
             }
         } catch (JAXBException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new LicenseVerificationSearchResultType();
             results.setLicenseObjectId(licenseType.getObjectId());
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (IOException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new LicenseVerificationSearchResultType();
             results.setLicenseObjectId(licenseType.getObjectId());
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (TransformerException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new LicenseVerificationSearchResultType();
             results.setLicenseObjectId(licenseType.getObjectId());
             results.setStatus(XMLUtility.newStatus("ERROR"));
@@ -192,7 +191,7 @@ public class VerifyLicenseHandler extends GenericHandler {
     private void populateStatus(LicenseType licenseType, SearchResultType searchResults) {
         List<SearchResultItemType> items = searchResults.getSearchResultItem();
         if (items.size() > 1) {
-            LOGGER.info("Cannot set license status because multiple results are present.");
+            logger.info("Cannot set license status because multiple results are present.");
             return;
         }
         for (SearchResultItemType searchResultItemType : items) {
@@ -200,7 +199,7 @@ public class VerifyLicenseHandler extends GenericHandler {
             List<NameValuePairType> nameValuePair = cols.getNameValuePair();
             for (NameValuePairType col : nameValuePair) {
                 if (col.getName().equals("License Status")) {
-                    LOGGER.info("Setting license status to: " + col.getValue());
+                    logger.info("Setting license status to: " + col.getValue());
                     licenseType.setStatus(col.getValue());
                     break;
                 }

@@ -76,7 +76,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.URI;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -92,8 +91,7 @@ import static java.util.logging.Level.SEVERE;
 @Local(BusinessProcessService.class)
 @TransactionManagement(TransactionManagementType.BEAN)
 public class BusinessProcessServiceBean extends BaseService implements BusinessProcessService {
-    private static final Logger LOGGER =
-            Logger.getLogger(BusinessProcessServiceBean.class.getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * See https://issues.jboss.org/browse/JBPM-3791
@@ -201,7 +199,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
                 try {
                     ksession.dispose();
                 } catch (Throwable t) {
-                    LOGGER.log(SEVERE, "Could not close session.", t);
+                    logger.log(SEVERE, "Could not close session.", t);
                 }
             }
         }
@@ -238,7 +236,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             try {
                 ksession.dispose();
             } catch (Throwable t) {
-                LOGGER.log(SEVERE, "Could not close session.", t);
+                logger.log(SEVERE, "Could not close session.", t);
             }
         }
     }
@@ -370,7 +368,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             try {
                 ksession.dispose();
             } catch (Throwable t) {
-                LOGGER.log(SEVERE, "Could not close session.", t);
+                logger.log(SEVERE, "Could not close session.", t);
             }
             client.dispose();
         }

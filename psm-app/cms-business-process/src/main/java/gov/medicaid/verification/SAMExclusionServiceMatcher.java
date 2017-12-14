@@ -25,13 +25,12 @@ import java.util.logging.Logger;
 
 /**
  * Uses a web service call to filter multiple search results into an exact match.
- * 
+ *
  * @author cyberjag
  * @version 1.0
  */
 public class SAMExclusionServiceMatcher extends BaseSOAPClient implements ResultMatchResolver {
-    private static final Logger LOGGER =
-            Logger.getLogger(SAMExclusionServiceMatcher.class.getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * Assigns the given values to the field with the same name.
@@ -42,7 +41,7 @@ public class SAMExclusionServiceMatcher extends BaseSOAPClient implements Result
 
     /**
      * Performs SAM exclusion check, it is carried out in two steps, search and verification.
-     * 
+     *
      * @param provider
      *            the provider
      * @param name
@@ -76,7 +75,7 @@ public class SAMExclusionServiceMatcher extends BaseSOAPClient implements Result
 
     /**
      * This handles resolving specific matches from the external search results.
-     * 
+     *
      * @param provider
      *            the applicant
      * @param object
@@ -108,11 +107,11 @@ public class SAMExclusionServiceMatcher extends BaseSOAPClient implements Result
                             exactMatch = searchResultItemType;
                         }
                     } catch (JAXBException e) {
-                        LOGGER.severe(e.toString());
+                        logger.severe(e.toString());
                     } catch (IOException e) {
-                        LOGGER.severe(e.toString());
+                        logger.severe(e.toString());
                     } catch (TransformerException e) {
-                        LOGGER.severe(e.toString());
+                        logger.severe(e.toString());
                     }
                     break;
                 }

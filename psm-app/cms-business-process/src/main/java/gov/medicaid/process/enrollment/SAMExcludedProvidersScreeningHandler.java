@@ -24,24 +24,23 @@ import java.util.logging.Logger;
 
 /**
  * This checks the excluded providers from the SAM website.
- * 
+ *
  * @author cyberjag
  * @version 1.0
  */
 public class SAMExcludedProvidersScreeningHandler extends GenericHandler {
-    private static final Logger LOGGER =
-            Logger.getLogger(SAMExcludedProvidersScreeningHandler.class.getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * SAM exclusion screening.
-     * 
+     *
      * @param item
      *            the work item to abort
      * @param manager
      *            the work item manager
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
-        LOGGER.info("Checking SAM provider exclusion.");
+        logger.info("Checking SAM provider exclusion.");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
 
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
@@ -70,15 +69,15 @@ public class SAMExcludedProvidersScreeningHandler extends GenericHandler {
             screeningResultType.setStatus(XMLUtility.newStatus("SUCCESS"));
             screeningResultType.setSAMExclusionVerificationResult(results.getSearchResults());
         } catch (TransformerException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (JAXBException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (IOException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         }

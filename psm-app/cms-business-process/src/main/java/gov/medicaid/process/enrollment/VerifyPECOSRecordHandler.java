@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -44,8 +44,7 @@ import java.util.logging.Logger;
  * @since External Sources Integration Assembly II
  */
 public class VerifyPECOSRecordHandler extends GenericHandler {
-    private static final Logger LOGGER =
-            Logger.getLogger(VerifyPECOSRecordHandler.class.getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * Checks the PECOS service for the NPI of the provider.
@@ -54,7 +53,7 @@ public class VerifyPECOSRecordHandler extends GenericHandler {
      * @param manager the work item manager
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
-        LOGGER.info("Verifying NPI in PECOS...");
+        logger.info("Verifying NPI in PECOS...");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
         ApplicantInformationType applicant = provider.getApplicantInformation();
@@ -87,15 +86,15 @@ public class VerifyPECOSRecordHandler extends GenericHandler {
             }
             screeningResultType.setSearchResult(matchResults);
         } catch (JAXBException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (IOException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (TransformerException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         }

@@ -103,7 +103,7 @@
               </div>
               <div class="buttonBox">
                 <a href="${ctx}/provider/search/approved?statuses=Approved&showFilterPanel=true" class="greyBtn"><span class="btR"><span class="btM"><span class="text">Cancel</span></span></span></a>
-                <a href="javascript:;" onclick="submitCosForm();" class="greyBtn"><span class="btR"><span class="btM"><span class="text">Save</span></span></span></a>
+                <button class="greyBtn submitCosFormBtn" type="submit">Save</button>
               </div>
             </form>
           </div>

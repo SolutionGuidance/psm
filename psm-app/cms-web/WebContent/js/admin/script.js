@@ -1096,6 +1096,22 @@ $(document).ready(function () {
     }
   });
 
+  // Submit COS Form
+  $('.submitCosFormBtn').click(function submitCosForm (event) {
+    event.preventDefault();
+    // validate
+    if ($('#startDate').val().trim().length == 0) {
+      $('#startDate').addClass('errorInput');
+      alert('Start Date is required');
+      return false;
+    }
+    if ($('#cosSelect').val() == null || $('#cosSelect').val().length == 0) {
+      alert('Please select at least one COS');
+      return false;
+    }
+    submitFormById('cosForm');
+  });
+
   /* START OF SERVICE AGENT SCRIPT ------------------------------------------------ */
 
   /*
@@ -1685,22 +1701,6 @@ function renewSelections(url) {
       }
     });
   }
-}
-
-function submitCosForm() {
-  // validate
-  if ($('#startDate').val().trim().length == 0) {
-    $('#startDate').addClass('errorInput');
-    alert('Start Date is required');
-    return false;
-  }
-
-  if ($('#cosSelect').val() == null || $('#cosSelect').val().length == 0) {
-    alert('Please select at least one COS');
-    return false;
-  }
-
-  submitFormById('cosForm');
 }
 
 function copyCOS(id) {

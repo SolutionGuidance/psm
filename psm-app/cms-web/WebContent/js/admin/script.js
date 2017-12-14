@@ -355,7 +355,9 @@ $(document).ready(function () {
           }
         }
     });
-  $(".saveProviderTypeBtn").click(function () {
+  $(".saveProviderTypeBtn").click(function (event) {
+    event.preventDefault();
+
     if ($("#addTypeRadio1").is(":checked")) {
       $("#paymentRequiredField").val("true");
     } else {
@@ -1580,9 +1582,6 @@ $(document).ready(function () {
   }
 
   /* END OF SERVICE AGENT SCRIPT -------------------------------------------------- */
-  $('#saveUserBtn').click(function () {
-    $('#userForm').submit();
-  });
 
   $("#helpTopicForm").validate({
         rules: {
@@ -1597,9 +1596,6 @@ $(document).ready(function () {
 
         }
       });
-  $(".saveHelpTopicBtn").click(function () {
-    $("#helpTopicForm").submit();
-  });
 
   $("#agreementDocumentForm").validate({
         rules: {
@@ -1614,10 +1610,6 @@ $(document).ready(function () {
 
         }
       });
-
-  $(".saveAgreementDocumentBtn").click(function () {
-    $("#agreementDocumentForm").submit();
-  });
 
   $('.deleteHelpTopicBtn').live('click', function () {
     loadModal('#deleteHelpTopicModal');

@@ -23,4 +23,12 @@ public class DashboardPage extends PageObject {
         click(this, $(".logoutButton"));
     }
 
+    public void clickMyProfile() {
+        click(this, $("#my_profile_tab"));
+    }
+
+    public void checkOnDashboard() {
+        assertThat(getTitle()).isEqualTo("Dashboard");
+    }
+    
 }

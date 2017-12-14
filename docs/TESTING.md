@@ -39,6 +39,10 @@ buttons in the `ui` subdirectory.
 See [PR #348](https://github.com/SolutionGuidance/psm/pull/348) for an
 example of adding a new Selenium test.
 
+You can check the results of these tests by running:
+
+    $ chromium integration-tests/build/reports/tests/test/index.html
+
 ### Running Browser Tests
 
 #### With SauceLabs

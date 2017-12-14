@@ -544,7 +544,8 @@ $(document).ready(function () {
         });
   });
 
-  $('.saveScheduleBtn').live('click', function () {
+  $('.saveScheduleBtn').click(function (event) {
+    event.preventDefault();
     var upcomingScreeningDateDatePart = $("#upcomingScreeningDateDatePart").val();
     var upcomingScreeningDateHourPart = $("#upcomingScreeningDateHourPart").val();
     var upcomingScreeningDateMinutePart = $("#upcomingScreeningDateMinutePart").val();

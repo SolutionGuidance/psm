@@ -78,8 +78,8 @@
                     <div class="br"></div>
                   </div>
                   <div class="buttons">
-                    <a href="${ctx}/admin/getScreeningSchedule" class="greyBtn canceleScheduleBtn"><span class="btR"><span class="btM">Cancel</span></span></a>
-                    <button class="greyBtn saveScheduleBtn">Save</button>
+                    <a href="${ctx}/admin/getScreeningSchedule" class="greyBtn"><span class="btR"><span class="btM">Cancel</span></span></a>
+                    <button class="greyBtn saveScheduleBtn" type="submit">Save</button>
                   </div>
                 </div>
               </form:form>

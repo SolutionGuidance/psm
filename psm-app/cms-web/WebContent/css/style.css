@@ -786,7 +786,8 @@ input.date{
   float:left;
   margin-left: 5%;
 }
-.loginPanel  a{
+.loginPanel  a,
+#btnLogin {
   float:right;
   margin-right:18%;
 }
@@ -847,6 +848,19 @@ a.purpleBtn:hover span.btM{
   background-position:left -75px;
 }
 
+
+button.purpleBtn {
+  float:left;
+  background: #0f4d88;
+  border-radius:5px;
+  padding: 1px 16px;
+  line-height:25px;
+  cursor:pointer;
+  font-size:12px;
+  color:#fff;
+  text-shadow:0 1px 0 #000;
+}
+
 a.greyBtn{
   float:left;
   background:url(../i/grey-btn.png) no-repeat left top;
@@ -884,6 +898,19 @@ a.greyBtn img{
   float:left;
   margin:5px 5px 5px 0;
 }
+
+button.greyBtn {
+  float:left;
+  background: #e8e8e8;
+  border-radius:5px;
+  padding: 1px 16px;
+  line-height:25px;
+  cursor:pointer;
+  font-size:12px;
+  color:#064265;
+  text-shadow:0 1px 0 #fff;
+}
+
 a.blueBtn{
   float:left;
   background:url(../i/blue-btn.png) no-repeat left top;

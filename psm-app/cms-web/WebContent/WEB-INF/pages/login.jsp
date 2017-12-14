@@ -58,11 +58,7 @@
                 <a href="<c:url value="/forgotpassword" />">Forgot Password?</a>
               </div>
               <div class="buttons">
-                <a href="javascript:;" id="btnLogin" class="purpleBtn">
-                  <span class="btR">
-                    <span class="btM">Login</span>
-                  </span>
-                </a>
+                <button id="btnLogin" class="purpleBtn" type="submit">Login</button>
                 <a href="<c:url value="/accounts/new" />" class="">Register New Account</a>
               </div>
 

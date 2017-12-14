@@ -46,5 +46,5 @@
 </div>
 <div class="buttons">
     <a href="${ctx}/admin/viewProviderTypes" class="greyBtn"><span class="btR"><span class="btM">Cancel</span></span></a>
-    <a href="javascript:;" class="saveProviderTypeBtn greyBtn"><span class="btR"><span class="btM">Save</span></span></a>
+    <button class="saveProviderTypeBtn greyBtn" type="submit">Save</button>
 </div>

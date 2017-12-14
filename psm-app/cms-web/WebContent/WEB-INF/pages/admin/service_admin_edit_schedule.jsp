@@ -79,7 +79,7 @@
                   </div>
                   <div class="buttons">
                     <a href="${ctx}/admin/getScreeningSchedule" class="greyBtn canceleScheduleBtn"><span class="btR"><span class="btM">Cancel</span></span></a>
-                    <a href="javascript:;" class="greyBtn saveScheduleBtn"><span class="btR"><span class="btM">Save</span></span></a>
+                    <button class="greyBtn saveScheduleBtn">Save</button>
                   </div>
                 </div>
               </form:form>

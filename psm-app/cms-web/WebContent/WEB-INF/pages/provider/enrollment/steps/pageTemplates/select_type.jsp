@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <div class="tabSection">
-  <form action="" id="enrollmentForm" method="post">
+  <form action="<c:url value="/provider/enrollment/steps/next" />"
+        id="enrollmentForm"
+        method="post">
     <sec:csrfInput />
     <%@include file="/WEB-INF/pages/provider/enrollment/steps/errors.jsp" %>
 
@@ -18,8 +20,7 @@
 
     <div class="buttonBox">
       <input type="hidden" name="pageName" value="${pageName}"/>
-      <c:url var="nextPageUrl" value="/provider/enrollment/steps/next" />
-      <a class="nextBtn greyBtn" href="javascript:submitFormById('enrollmentForm', '${nextPageUrl}')"><span class="btR"><span class="btM"><span class="icon">Next</span></span></span></a>
+      <button type="submit" class="nextBtn greyBtn"><span class="icon">Next</span></button>
     </div>
   </form>
 </div>

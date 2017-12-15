@@ -9,7 +9,10 @@
 </div>
 <!-- /.requiredInfo -->
 
-<form action="" id="enrollmentForm" method="post" enctype="multipart/form-data">
+<form action="<c:url value="/provider/enrollment/page" />"
+      id="enrollmentForm"
+      method="post"
+      enctype="multipart/form-data">
   <sec:csrfInput />
   <!-- /.errorInfo -->
   <%@include file="/WEB-INF/pages/provider/enrollment/steps/errors.jsp" %>
@@ -24,19 +27,23 @@
 
   <div class="buttonBox">
     <input type="hidden" name="pageName" value="${pageName}"/>
-    <c:url var="saveUrl" value="/provider/enrollment/save" />
-    <c:url var="submitUrl" value="/provider/enrollment/submit" />
-    <c:url var="nextPageUrl" value="/provider/enrollment/steps/next" />
-    <c:url var="prevPageUrl" value="/provider/enrollment/steps/prev" />
 
-    <a href="javascript:submitFormById('enrollmentForm', '${prevPageUrl}')" class="greyBtn prevBtn"><span class="btR"><span class="btM"><span class="icon">Previous</span></span></span></a>
+    <button type="submit" class="greyBtn prevBtn" name="previous">
+      <span class="icon">Previous</span>
+    </button>
     <c:if test="${not isInSubmissionPage}">
-      <a class="nextBtn greyBtn" href="javascript:submitFormById('enrollmentForm', '${nextPageUrl}')"><span class="btR"><span class="btM"><span class="icon">Next</span></span></span></a>
+      <button type="submit" class="nextBtn greyBtn" name="next">
+        <span class="icon">Next</span>
+      </button>
     </c:if>
     <c:if test="${isInSubmissionPage}">
-      <a href="javascript:submitFormById('enrollmentForm', '${submitUrl}')" class="purpleBtn"><span class="btR"><span class="btM">Submit Enrollment</span></span></a>
+      <button type="submit" class="purpleBtn" name="submit">
+        Submit Enrollment
+      </button>
     </c:if>
-    <a href="javascript:submitFormById('enrollmentForm', '${saveUrl}')" class="greyBtn"><span class="btR"><span class="btM">Save as Draft</span></span></a>
+    <button type="submit" class="greyBtn" name="save">
+      Save as Draft
+    </button>
   </div>
   <!-- /.buttonBox -->
 </form>

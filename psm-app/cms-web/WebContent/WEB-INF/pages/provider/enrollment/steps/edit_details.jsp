@@ -31,7 +31,10 @@
 
           <div class="tabSection">
 
-            <form action="<c:url value="/provider/enrollment/steps/rebind" />" id="changeProviderTypeForm" method="post" enctype="multipart/form-data">
+            <form action="<c:url value="/provider/enrollment/steps/rebind" />"
+                id="changeProviderTypeForm"
+                method="post"
+                enctype="multipart/form-data">
               <sec:csrfInput />
               <c:if test="${isReopened}">
                 <div class="detailPanel" style="width: 940px;">
@@ -100,6 +103,13 @@
             <%@include file="/WEB-INF/pages/provider/enrollment/steps/errors.jsp" %>
 
             <!-- /.detailPanel -->
+            <form action="<c:url value="/provider/enrollment/page" />"
+                  id="enrollmentForm"
+                  method="post"
+                  enctype="multipart/form-data">
+              <sec:csrfInput />
+              <input type="hidden" name="pageName" value="${pageName}"/>
+
             <div class="tabHead" style="width: 958px;">
               <div class="tabR">
                 <div class="tabM">
@@ -145,9 +155,7 @@
               <!-- /.requiredInfo -->
 
               <div class="editTabWrapper">
-                <form action="" id="enrollmentForm" method="post" enctype="multipart/form-data">
-                  <sec:csrfInput />
-                  <input type="hidden" name="pageName" value="${pageName}"/>
+
                   <c:choose>
                     <c:when test="${viewModel.currentTab eq 'Notes'}">
                       <%@include file="/WEB-INF/pages/provider/notes.jsp" %>
@@ -162,7 +170,6 @@
                       </c:forEach>
                     </c:otherwise>
                   </c:choose>
-                </form>
                 <div class="br"></div>
                 <div class="bl"></div>
               </div>
@@ -171,59 +178,44 @@
                 <c:when test="${viewModel.currentTab eq 'Notes'}">
                   <div class="buttonBox">
                     <c:url var="cancelUrl" value="/provider/search/pending?statuses=Pending&showFilterPanel=true"/>
-                    <c:url var="submitUrl" value="/provider/enrollment/saveNote"/>
                     <a class="greyBtn" href="${cancelUrl}">
                       <span class="btR">
                         <span class="btM">Cancel</span>
                       </span>
                     </a>
-                    <a href="javascript:submitFormById('enrollmentForm', '${submitUrl}')" class="purpleBtn">
-                      <span class="btR">
-                        <span class="btM">Save Note</span>
-                      </span>
-                    </a>
+                    <button class="purpleBtn" type="submit" name="saveNote">
+                      Save Note
+                    </button>
                   </div>
                 </c:when>
                 <c:when test="${isReopened}">
                   <div class="buttonBox">
-                    <c:url var="resubmitUrl" value="/provider/enrollment/resubmitWithChanges"/>
                     <c:url var="cancelUrl" value="/provider/search/pending?statuses=Pending&showFilterPanel=true"/>
-
                     <a class="greyBtn" href="${cancelUrl}">
                       <span class="btR">
                         <span class="btM">Cancel</span>
                       </span>
                     </a>
-                    <a href="javascript:submitFormById('enrollmentForm', '${resubmitUrl}')" class="purpleBtn">
-                      <span class="btR">
-                        <span class="btM">Re-Submit Enrollment</span>
-                      </span>
-                    </a>
+                    <button class="purpleBtn" type="submit" name="resubmitWithChanges" />
+                      Re-Submit Enrollment
+                    </button>
                   </div>
                 </c:when>
                 <c:otherwise>
                   <div class="buttonBox">
                     <input type="hidden" name="pageName" value="${pageName}"/>
-                    <c:url var="saveUrl" value="/provider/enrollment/save"/>
-                    <c:url var="submitUrl" value="/provider/enrollment/submit"/>
                     <c:url var="cancelUrl" value="/provider/dashboard/drafts"/>
-                    <c:url var="prevPageUrl" value="/provider/enrollment/steps/prev"/>
-
                     <a class="greyBtn" href="${cancelUrl}">
                       <span class="btR">
                         <span class="btM">Cancel</span>
                       </span>
                     </a>
-                    <a href="javascript:submitFormById('enrollmentForm', '${submitUrl}')" class="purpleBtn">
-                      <span class="btR">
-                        <span class="btM">Submit Enrollment</span>
-                      </span>
-                    </a>
-                    <a href="javascript:submitFormById('enrollmentForm', '${saveUrl}')" class="greyBtn">
-                      <span class="btR">
-                        <span class="btM">Save as Draft</span>
-                      </span>
-                    </a>
+                    <button class="purpleBtn" type="submit" name="submit">
+                      Submit Enrollment
+                    </button>
+                    <button class="greyBtn" type="submit" name="save">
+                      Save as Draft
+                    </button>
                   </div>
                 </c:otherwise>
               </c:choose>

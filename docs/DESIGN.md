@@ -196,4 +196,80 @@ The PSM has four types of users, each with their own permission level:
 
     - View own enrollments
     - Create and edit enrollments
- 
+
+
+ ## TBD: Screening vs. Management
+
+_Note: the following is one possible way for the PSM to handle screening
+and management.  It is included here as a start for discussion, not as a
+conclusive decision._
+
+The PSM is a screening module, meaning that it focuses on determining
+whether providers are eligible to participate in Medicaid.  However, the
+information that providers enter into the PSM is subsequently used by
+the state to manage those providers, and by the providers to manage
+their own enrollment in Medicaid and other state programs.  For this
+reason, screening and management modules can be difficult to
+disentangle.  A provider should have one front page to use to both apply
+for enrollment (be screened) and manage their enrollment.
+
+One approach is to present these two tasks through the same portal for
+the provider, but to separate them from a technical perspective.  To do
+this, the screening application would essentially just be a form that
+takes information from a provider, runs automated checks on it, allows
+an administrator to review the information, and returns a status of
+either "enrolled" or "not enrolled."  The screening module would send
+the bundle of entered data to the management module, which would use the
+same SSO solution, so that from the provider's perspective the two
+modules feel like part of the same application.
+
+The homepage for providers could look something like this:
+
+```
+------------------------------------------------------
+|                                         | Logout | |
+|                                                    |
+| +-----------------+    +------------------------+  |
+| |  Click here to  |    |     Click here to      |  |
+| | apply to enroll |    | manage your enrollment |  |
+| +-----------------+    +------------------------+  |
+|                                                    |
+|                                                    |
+|                                                    |
+|                                                    |
+------------------------------------------------------
+```
+
+"Apply to enroll" would be the screening module, and "manage your
+enrollment" would be the management module.  The latter would include
+"update your information," "renew your enrollment," and "terminate your
+enrollment."  In a fully-fledged management module, providers would also
+be able to see and track the status of their claims in that area.  It
+might be worth adding another button to the homepage for a separate
+billing module.
+
+```
+------------------------------------------------------
+|                                         | Logout | |
+|                                                    |
+| +-----------------+    +------------------------+  |
+| |  Click here to  |    |     Click here to      |  |
+| | apply to enroll |    | manage your enrollment |  |
+| +-----------------+    +------------------------+  |
+|                                                    |
+| +-------------------+                              |
+| | Track your claims |                              |
+| +-------------------+                              |
+------------------------------------------------------
+```
+
+For state reviewers/administrators, there'd be two kinds of action:
+reviewing the information provided for screening purposes and
+reviewing/paying claims.  Their portal would reflect these two kinds of
+task.  When a provider updates information or renews or terminates their
+enrollment, that new set of information would go into the "screening"
+queue for state reviewers.  The management module would need to have
+some way of bundling that information up and sending it back to the
+screening module, perhaps with some metadata about what changed,
+e.g. "the only piece of information that changed is the address."
+

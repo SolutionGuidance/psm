@@ -1394,10 +1394,6 @@ $(document).ready(function () {
         return false;
       });
 
-    $('.editAccountSaveBtn').live('click', function () {
-        $('#updateProfile').submit();
-      });
-
     $('#filterBtn, .advancedSearchBtn').live('click', function () {
         $('#searchUserAccountsForm, #advancedSearch').submit();
         return false;

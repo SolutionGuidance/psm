@@ -90,7 +90,7 @@
                 <h:handlebars template="includes/logo" context="${pageContext}"/>
               </div>
               <!-- /.mainNav -->
-              <form id="loginForm" action="<c:url value='login'/>" method="post">
+              <form id="loginForm" action="<c:url value='/login'/>" method="post">
                 <sec:csrfInput />
                 <div class="loginPanel">
                   <h:handlebars template="includes/flash" context="${pageContext}"/>

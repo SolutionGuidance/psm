@@ -95,7 +95,7 @@
               </div>
               <div class="clearFixed"></div>
               <div class="buttons">
-                <button class="purpleBtn advancedSearchBtn" type="submit"><span class="icon">Search</span><span class="arrow"></span></button>
+                <button class="purpleBtn" type="submit"><span class="icon">Search</span><span class="arrow"></span></button>
               </div>
             </form>
             <!-- /.tabSection -->

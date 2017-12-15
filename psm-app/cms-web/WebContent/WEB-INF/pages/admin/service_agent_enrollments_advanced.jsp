@@ -115,7 +115,7 @@
             </div>
             <div class="clearFixed"></div>
             <div class="buttons">
-              <a id="showSearchEnrollmentsResultBtn" href="javascript:;" class="purpleBtn advancedSearchBtn"><span class="btR"><span class="btM"><span class="icon">Search</span><span class="arrow"></span></span></span></a>
+              <a id="showSearchEnrollmentsResultBtn" href="javascript:;" class="purpleBtn"><span class="btR"><span class="btM"><span class="icon">Search</span><span class="arrow"></span></span></span></a>
             </div>
           </div>
           <!-- /.tabSection -->

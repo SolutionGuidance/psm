@@ -71,7 +71,7 @@
                         <c:when test="${helpItem.id==0}"><a href="${ctx}/admin/searchHelp" class="greyBtn"><span class="btR"><span class="btM">Cancel</span></span></a></c:when>
                         <c:otherwise><a href="${ctx}/admin/getHelpItem?helpItemId=${helpItem.id}" class="greyBtn"><span class="btR"><span class="btM">Cancel</span></span></a></c:otherwise>
                         </c:choose>
-                        <button class="saveHelpTopicBtn greyBtn" type="submit">Save</button>
+                        <button class="greyBtn" type="submit">Save</button>
                       </div>
                   </div>
                 </div>

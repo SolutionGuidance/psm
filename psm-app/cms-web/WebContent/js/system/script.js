@@ -1117,11 +1117,6 @@ $(document).ready(function () {
     $('#changeScreenSchedulePanel').show();
   });
 
-  $('.canceleScheduleBtn,.saveScheduleBtn').live('click', function () {
-    $('#changeScreenSchedulePanel').hide();
-    $('#screenSchedulePanel').show();
-  });
-
   $('.addHelpTopicBtn').live('click', function () {
     $('#helpTopicsPanel').hide();
     $('#viewHelpTopicPanel').hide();

@@ -1393,9 +1393,9 @@ $(document).ready(function () {
         $('#searchUserAccountsForm, #advancedSearch').submit();
         return false;
       });
-
-    $('#filterBtn, .advancedSearchBtn').live('click', function () {
-        $('#searchUserAccountsForm, #advancedSearch').submit();
+ 
+    $('.advancedSearchBtn').click(function () {
+        $('#advancedSearch').submit();
         return false;
       });
 

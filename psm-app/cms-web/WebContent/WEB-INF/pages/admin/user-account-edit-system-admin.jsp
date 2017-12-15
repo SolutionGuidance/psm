@@ -64,11 +64,19 @@
             <c:otherwise><c:url value='/system/user/new?roleName=${role }' var='updateURL' /></c:otherwise>
           </c:choose>
           <div class="tabSection">
-            <div class="detailPanel">
-              <form:form commandName="user">
-                <form:errors path="*" cssClass="error" ></form:errors>
-                </form:form>
-                <form:form cssClass="section" id="updateProfile" action="${updateURL }" modelAttribute="user">
+            <form:form commandName="user" action="${updateURL}" modelAttribute="user">
+              <spring:hasBindErrors name="user">
+                <div class="errorInfo" style="display: block;">
+                  <h3>Please correct the following errors:</h3>
+                  <form:errors path="*"></form:errors>
+                  <div class="tl"></div>
+                  <div class="tr"></div>
+                  <div class="bl"></div>
+                  <div class="br"></div>
+                </div>
+              </spring:hasBindErrors>
+              <div class="detailPanel">
+                <div class="section" id="updateProfile">
                   <input type="hidden" name="status" value="ACTIVE" />
                   <form:hidden path="userId"/>
                   <div class="wholeCol">
@@ -118,7 +126,7 @@
                       </form:select>
                     </div>
                   </div>
-                </form:form>
+                </div>
                 <!-- /.section -->
                 <div class="tl"></div>
                 <div class="tr"></div>
@@ -127,12 +135,12 @@
               </div>
               <div class="buttonBox">
                 <a href="<c:url value='/system/user/list' />" class="greyBtn"><span class="btR"><span   class="btM">Cancel</span></span></a>
-                <button class="purpleBtn editAccountSaveBtn" type="submit">Save</button>
+                <button class="purpleBtn" type="submit">Save</button>
               </div>
               <!-- /.buttonBox -->
-            </div>
-            <!-- /.tabSection -->
+            </form:form>
           </div>
+          <!-- /.tabSection -->
         </div>
       </div>
       <!-- /#mainContent -->

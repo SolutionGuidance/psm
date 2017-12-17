@@ -39,8 +39,8 @@ public class EnrollmentSteps {
             LocalDate.now().minusWeeks(30);
     private static final LocalDate LICENSE_RENEWAL_DATE =
             LocalDate.now().plusWeeks(30);
-    private static final String LICENSE_ISSUING_STATE_FULL = "Alaska";
-    private static final String LICENSE_ISSUING_STATE_ABBR = "AK";
+    private static final String LICENSE_ISSUING_STATE_FULL = "Minnesota";
+    private static final String LICENSE_ISSUING_STATE_ABBR = "MN";
 
     private static final String PRIVATE_PRACTICE_NAME = "My Private Practice";
     private static final String PRACTICE_GROUP_NPI = "1111111112";

@@ -94,7 +94,7 @@
               </div>
               <div class="clearFixed"></div>
               <div class="buttons">
-                  <a href="javascript:;" class="purpleBtn advancedSearchBtn"><span class="btR"><span class="btM"><span class="icon">Search</span><span class="arrow"></span></span></span></a>
+                <button class="purpleBtn" type="submit"><span class="icon">Search</span><span class="arrow"></span></button>
               </div>
           </form:form>
         <!-- /.tabSection -->

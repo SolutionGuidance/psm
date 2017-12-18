@@ -1024,10 +1024,6 @@ $(document).ready(function () {
     window.location.href = 'enrollment-service-agent.html';
   });
 
-  $('.advancedSearchBtn').live('click', function () {
-    $('#searchResultsSection').show();
-  });
-
   if ($.browser.msie && ($.browser.version == "7.0")) {
     $('#createEnrollment input[type="radio"],#advancedSearch input[type="checkbox"]').css('margin', '5px 3px auto 3px');
     $('.helpSection .row li').css('width', $('.helpSection .row ul').width() / 3);
@@ -1390,11 +1386,6 @@ $(document).ready(function () {
 
         $("#sortColumn").val(newSortColumn);
         setSearchConditions();
-        $('#searchUserAccountsForm, #advancedSearch').submit();
-        return false;
-      });
-
-    $('#filterBtn, .advancedSearchBtn').live('click', function () {
         $('#searchUserAccountsForm, #advancedSearch').submit();
         return false;
       });

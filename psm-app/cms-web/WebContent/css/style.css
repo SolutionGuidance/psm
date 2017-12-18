@@ -5,9 +5,9 @@ body {
   font-size:12px;
 }
 
-a{
+a {
   text-decoration:underline;
-  color:#1AABFF;
+  color: #0071b3;
 }
 a:hover{
   text-decoration:none;
@@ -35,7 +35,7 @@ input,select,textarea{
   width:85px;
 }
 #header {
-  background: #033a6e;
+  background: #0d4478;
   border-bottom: 2px solid #d5e2e5;
   height: 33px;
   line-height: 33px;
@@ -53,8 +53,8 @@ input,select,textarea{
   text-align:right;
   float:right;
 }
-#header .userSection a{
-  color:#1aabff;
+#header .userSection a {
+  color: #43baff;
   font-weight:bold;
   margin:0 4px;
 }
@@ -64,7 +64,7 @@ input,select,textarea{
 .logoutButton {
   background: none!important;
   border: none;
-  color: #1aabff;
+  color: #43baff;
   cursor: pointer;
   font: inherit;
   padding: 0!important;
@@ -178,8 +178,7 @@ input,select,textarea{
   margin:8px 0;
   float:left;
 }
-.breadCrumb a{
-  color:#1aabff;
+.breadCrumb a {
   background: url("../i/crumbs-arrow.gif") no-repeat scroll right center transparent;
   display: inline-block;
   float: left;
@@ -506,9 +505,6 @@ input.date{
 }
 .generalTable tr td.alignCenter{
   text-align:center;
-}
-.generalTable tr td a{
-  color:#1aabff;
 }
 .generalTable .sep{
   color:#999999;
@@ -2840,8 +2836,7 @@ a.searchBtn span.btM{
   padding-top:25px;
 }
 .editInfo,
-.editInfo:visited{
-  color:#1aabff;
+.editInfo:visited {
   font-size:12px;
   float:right;
   display:inline-block;

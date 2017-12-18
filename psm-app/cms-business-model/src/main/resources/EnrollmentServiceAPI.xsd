@@ -97,18 +97,6 @@
             </sequence>
         </complexType>
     </element>
-
-
-    <element name="SaveTicketRequest">
-        <complexType>
-            <sequence>
-                <element name="username" maxOccurs="1" minOccurs="1" type="string" />
-                <element name="systemId" maxOccurs="1" minOccurs="1" type="string" />
-                <element name="npi" maxOccurs="1" minOccurs="0" type="string" />
-                <element name="Enrollment" type="Q1:EnrollmentType" maxOccurs="1" minOccurs="1"></element>
-            </sequence>
-        </complexType>
-    </element>
     
     <element name="SaveTicketResponse">
         <complexType>

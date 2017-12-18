@@ -506,8 +506,8 @@ input.date{
 .generalTable tr td.alignCenter{
   text-align:center;
 }
-.generalTable .sep{
-  color:#999999;
+.generalTable .sep {
+  color: #6e6e6e;
   margin:0 5px;
 }
 .red{

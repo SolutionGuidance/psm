@@ -20,7 +20,7 @@
             <h:handlebars template="includes/logo" context="${pageContext}"/>
           </div>
 
-          <form id="loginForm" action="<c:url value='login'/>" method="post">
+          <form id="loginForm" action="<c:url value='/login'/>" method="post">
             <sec:csrfInput />
             <div class="loginPanel">
               <p>

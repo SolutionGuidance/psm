@@ -20,7 +20,6 @@
                     <div class="middle">
                         <a href="javascript:;" class="closeModal"></a>
                         <h2>Delete User Account</h2>
-
                     </div>
                 </div>
             </div>

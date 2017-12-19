@@ -21,13 +21,13 @@
             <input class="showHidePanel" ${formValue eq 'Y' ? 'checked' : ''} type="checkbox" name="${formName}" value="Y" />This clinic is a Community Health Board
         </span>
     </div>
-    
+
     <div class="section line hiddenSection" style="display: ${formValue eq 'Y' ? 'block' : 'none'};">
         <div class="">
             <div class="row requireField">
                 <label>Please upload a copy of contract with DHS<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-    
+
                 <c:set var="formName" value="_30_dhsContract"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <c:if test="${not empty formValue}">
@@ -41,7 +41,7 @@
         </div>
         <div class="clearFixed"></div>
     </div>
-    
+
     <!-- /.section -->
     <div class="tl"></div>
     <div class="tr"></div>

@@ -19,12 +19,12 @@
         <c:set var="formName" value="_20_objectId_${status.index - 1}"></c:set>
         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
         <input type="hidden" class="objectIdInput" name="${formName}" value="${formValue}"/>
-    
+
         <div class="">
             <div class="row requireField">
                 <label>NPI<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_20_npi_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="npiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
@@ -36,7 +36,7 @@
             <div class="row requireField">
                 <label>Pay-to Provider Name<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_20_name_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
@@ -44,7 +44,7 @@
             <div class="row requireField">
                 <label>Contact Name<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_20_contactName_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="contactNameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
@@ -112,12 +112,12 @@
         <c:set var="formName" value="_20_objectId_${status.index - 1}"></c:set>
         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
         <input type="hidden" class="objectIdInput" name="${formName}" value="${formValue}"/>
-    
+
         <div class="">
             <div class="row requireField">
                 <label>NPI<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_20_npi_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="npiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
@@ -129,7 +129,7 @@
             <div class="row requireField">
                 <label>Pay-to Provider Name<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_20_name_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
@@ -137,7 +137,7 @@
             <div class="row requireField">
                 <label>Contact Name<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_20_contactName_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="contactNameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>

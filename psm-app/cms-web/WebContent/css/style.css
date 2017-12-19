@@ -4305,7 +4305,8 @@ input.passwordNormalInput{
   position: absolute;
   top: 0;
   right: 0;
-
+  border: none;
+  cursor: pointer;
 }
 .memberInfoPanel .section .leftCol, .memberInfoPanel .section .rightCol{
   display: inline;

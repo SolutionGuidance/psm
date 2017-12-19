@@ -47,5 +47,5 @@
     <div class="tr"></div>
     <div class="bl"></div>
     <div class="br"></div>
-    <a href="javascript:" class="closeSection"></a>
+    <button class="closeSection" title="Close" aria-label="Close" type="button"></button>
 </div>

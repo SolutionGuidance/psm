@@ -3308,6 +3308,8 @@ a.searchBtn span.btM{
   overflow:hidden;
   margin-top:15px;
   background:url(../i/modal-close.png) no-repeat 0 0;
+  border: none;
+  cursor: pointer;
 }
 
 #new-modal .inner .modal-title .closeModal:hover{

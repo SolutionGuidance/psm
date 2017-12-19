@@ -90,7 +90,7 @@ $(document).ready(function () {
   //			$('#practiceLookupModal .tableContainer').show();
   //			addressPositionModal();
   //		});
-  $('#practiceLookupModal a.closeModal').click(function () {
+  $('#practiceLookupModal .closeModal').click(function () {
     $('#practiceLookupModal .tableContainer').hide();
   });
 

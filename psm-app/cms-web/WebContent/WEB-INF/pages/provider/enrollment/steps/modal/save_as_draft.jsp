@@ -11,7 +11,7 @@
         <div class="modal-title">
             <div class="right">
                 <div class="middle">
-                    <a href="javascript:;" class="closeModal"></a> 
+                    <button class="closeModal" title="Close" aria-label="Close"></button>
                     <h2>Save as a Draft</h2>
                 </div>
             </div>

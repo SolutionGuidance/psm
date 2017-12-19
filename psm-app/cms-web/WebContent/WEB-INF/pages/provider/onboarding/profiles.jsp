@@ -30,9 +30,9 @@
           <h:handlebars template="includes/flash" context="${pageContext}"/>
 
           <div class="dashboardPanel">
-            <div class="tableData">
-              <form id="importProfilesForm" action="<c:url value="/provider/onboarding/list" />" method="post">
-                <sec:csrfInput />
+            <form id="importProfilesForm" action="<c:url value="/provider/onboarding/list" />" method="post">
+              <sec:csrfInput />
+              <div class="tableData">
                 <div class="tableTitle">
                   <h2>Profiles</h2>
                 </div>
@@ -78,48 +78,44 @@
                 <div class="clearFixed"></div>
                 <div class="tl"></div>
                 <div class="tr"></div>
-              </form>
-            </div>
-            <!-- /.tableData -->
-            <div class="sideBar">
-              <div class="notificationsPanel panel">
-                <div class="panelHeader">
-                  <h2>Help</h2>
-                </div>
-                <div class="panelSection">
-                  <ul>
-                    <li>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-                <div class="tl"></div>
-                <div class="tr"></div>
               </div>
-            </div>
-            <!-- /.sideBar -->
+              <!-- /.tableData -->
+              <div class="sideBar">
+                <div class="notificationsPanel panel">
+                  <div class="panelHeader">
+                    <h2>Help</h2>
+                  </div>
+                  <div class="panelSection">
+                    <ul>
+                      <li>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                          dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="tl"></div>
+                  <div class="tr"></div>
+                </div>
+              </div>
+              <!-- /.sideBar -->
 
-            <div class="tableDataButtons buttonBox">
-              <a href="<c:url value="/provider/dashboard/setup" />" class="greyBtn">
-                <span class="btR">
-                  <span class="btM">Cancel</span>
-                </span>
-              </a>
-              <c:if test="${not empty profiles}">
-                <a href="javascript:submitFormById('importProfilesForm');" class="purpleBtn">
+              <div class="tableDataButtons buttonBox">
+                <a href="<c:url value="/provider/dashboard/setup" />" class="greyBtn">
                   <span class="btR">
-                    <span class="btM">Import Selected</span>
+                    <span class="btM">Cancel</span>
                   </span>
                 </a>
-              </c:if>
-              <c:if test="${empty profiles}">
-                <h:create-enrollment-button cssClass="purpleBtn"/>
-              </c:if>
-            </div>
-            <!-- /.tableDataButtons -->
+                <c:if test="${not empty profiles}">
+                  <button class="purpleBtn" type="submit">Import Selected</button>
+                </c:if>
+                <c:if test="${empty profiles}">
+                  <h:create-enrollment-button cssClass="purpleBtn"/>
+                </c:if>
+              </div>
+              <!-- /.tableDataButtons -->
+            </form>
           </div>
           <!-- /.dashboardPanel -->
         </div>

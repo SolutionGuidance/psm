@@ -116,11 +116,7 @@
                     <span class="btM">Cancel</span>
                   </span>
                 </a>
-                <a href="javascript:submitFormById('registrationform');" class="purpleBtn">
-                  <span class="btR">
-                    <span class="btM">Register</span>
-                  </span>
-                </a>
+                <button class="purpleBtn" type="submit">Register</button>
               </div>
               <!-- /.buttonBox -->
             </form:form>

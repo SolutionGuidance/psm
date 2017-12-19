@@ -145,11 +145,7 @@
                       </div>
                     </div>
                   </div>
-                  <a href="javascript:submitFormById('paginationForm');" class="purpleBtn">
-                    <span class="btR">
-                      <span class="btM">Filter</span>
-                    </span>
-                  </a>
+                  <button class="purpleBtn" type="submit">Filter</button>
                 </div>
               </form:form>
               <!-- /.filterPanel -->

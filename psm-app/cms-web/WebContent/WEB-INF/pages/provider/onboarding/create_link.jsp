@@ -86,11 +86,7 @@
                         <span class="btM">Cancel</span>
                       </span>
                     </a>
-                    <a href="javascript:submitFormById('accountLinkForm');" class="purpleBtn">
-                      <span class="btR">
-                        <span class="btM">Get Profiles</span>
-                      </span>
-                    </a>
+                    <button class="purpleBtn" type="submit">Get Profiles</button>
                   </div>
                 </div>
                 <!-- /.section -->

@@ -3372,7 +3372,8 @@ a.searchBtn span.btM{
   padding-bottom:15px;
   text-align:center;
 }
-#new-modal .inner .buttonArea a{
+#new-modal .inner .buttonArea a,
+#new-modal .inner .buttonArea button {
   float:none;
   display:inline-block;
 }

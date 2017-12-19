@@ -24,10 +24,10 @@
     <div class="modal-content">
       <div class="right">
         <div class="middle">
-          <div class="searchRow">
-            <c:url var="lookupUrl" value="/provider/enrollment/lookup" />
-            <form action="${lookupUrl}" id="practiceLookupForm">
-              <sec:csrfInput />
+          <c:url var="lookupUrl" value="/provider/enrollment/lookup" />
+          <form action="${lookupUrl}" id="practiceLookupForm">
+            <sec:csrfInput />
+            <div class="searchRow">
               <span>
                 <label>Practice Name:</label>
                 <input type="hidden" name="agency" value="false"/>
@@ -50,11 +50,11 @@
                 <input type="text" class="normalInput inputS zipInputFor" name="zip"/>
               </span>
               <div class="clear"></div>
-            </form>
-          </div>
-          <div class="buttonArea">
-            <a href="javascript:performPracticeLookup();" class="purpleBtn searchBtn"><span class="btR"><span class="btM"><span class="icon">Search</span></span></span></a>
-          </div>
+            </div>
+            <div class="buttonArea">
+              <button class="purpleBtn searchBtn performPracticeLookupBtn" type="submit"><span class="icon">Search</span></button>
+            </div>
+          </form>
           <div class="tableContainer hide">
             <p><strong id="practiceLookupMatches">5 matching practices found:</strong></p>
             <table cellpadding="0" cellspacing="0" class="generalTable tablesorter" id="draftTable">

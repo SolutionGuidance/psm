@@ -16,7 +16,7 @@
         <form:hidden path="pageNumber" />
         <form:hidden path="sortColumn" />
         <form:hidden path="ascending" />
-        
+
         <div class="leftCol">
             <div class="row">
                 <label>NPI/UMPI</label>
@@ -82,6 +82,6 @@
             </div>
         </div>
     </div>
-    <a href="javascript:submitFormById('paginationForm');" class="purpleBtn"><span class="btR"><span class="btM">Filter</span></span></a>
+    <button class="purpleBtn" type="submit">Filter</button>
 </div>
 </form:form>

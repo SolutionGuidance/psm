@@ -5,7 +5,7 @@ $(document).ready(function () {
       quickSearchInput = '';
     }
 
-    window.location.href = $(this).attr("href") + "?npi=" + quickSearchInput;
+    window.location.href = ctx + "/provider/search/quick?npi=" + quickSearchInput;
     return false;
   });
 

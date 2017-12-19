@@ -155,10 +155,14 @@ input,select,textarea{
   background:url(../i/input-container-bg.png) no-repeat right center;
   margin:8px;
 }
-.mainNav .searchWidget .inputContainer a{
-  background:url(../i/icon-search.png) no-repeat right center;
+.mainNav .searchWidget .inputContainer .search {
+  background: url("../i/icon-search.png") no-repeat right center;
+  float: right;
+  margin-right: 5px;
   width:15px;
   height:26px;
+  border: none;
+  cursor: pointer;
 }
 .mainNav .searchWidget .inputContainer input{
   width:185px;

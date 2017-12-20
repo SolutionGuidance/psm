@@ -53,3 +53,6 @@ psm-app/integration-tests/target
 
 # User-specific configuration for serenity. 
 psm-app/integration-tests/serenity.properties
+
+# Generated LEIE API homepage
+etl/leie/leie/api.html

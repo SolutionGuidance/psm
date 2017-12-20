@@ -23,24 +23,23 @@ import java.util.logging.Logger;
 
 /**
  * This verifies that the NPI provided is avaliable on lookup site.
- * 
+ *
  * @author cyberjag
  * @version 1.0
  */
 public class NPILookupHandler extends GenericHandler {
-    private static final Logger LOGGER =
-            Logger.getLogger(NPILookupHandler.class.getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * Checks the NPI Lookup Service.
-     * 
+     *
      * @param item
      *            the work item to abort
      * @param manager
      *            the work item manager
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
-        LOGGER.info("Verifying NPI...");
+        logger.info("Verifying NPI...");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
         ApplicantInformationType applicant = provider.getApplicantInformation();
@@ -69,15 +68,15 @@ public class NPILookupHandler extends GenericHandler {
             }
             screeningResultType.setSearchResult(results.getSearchResults());
         } catch (JAXBException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (IOException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (TransformerException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         }

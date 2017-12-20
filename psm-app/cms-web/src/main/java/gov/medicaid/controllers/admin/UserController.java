@@ -21,7 +21,6 @@ import gov.medicaid.entities.CMSUser;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
-import gov.medicaid.services.util.LogUtil;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -82,20 +81,12 @@ public class UserController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/ops/getUser", method = RequestMethod.GET)
     public ModelAndView get() throws PortalServiceException {
-        String signature = "UserController#get(long userId)";
-        LogUtil.traceEntry(getLog(), signature, null, null);
+        String userId = ControllerHelper.getCurrentUser().getUserId();
+        CMSUser user = registrationService.findByUserId(userId);
+        ModelAndView model = new ModelAndView("admin/service_admin_view_user_profile");
+        model.addObject("user", user);
 
-        try {
-            String userId = ControllerHelper.getCurrentUser().getUserId();
-            CMSUser user = registrationService.findByUserId(userId);
-            ModelAndView model = new ModelAndView("admin/service_admin_view_user_profile");
-            model.addObject("user", user);
-
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -110,20 +101,12 @@ public class UserController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/ops/beginEditUser", method = RequestMethod.GET)
     public ModelAndView beginEdit() throws PortalServiceException {
-        String signature = "UserController#beginEdit(long userId)";
-        LogUtil.traceEntry(getLog(), signature, null, null);
+        String userId = ControllerHelper.getCurrentUser().getUserId();
+        CMSUser user = registrationService.findByUserId(userId);
+        ModelAndView model = new ModelAndView("admin/service_admin_edit_user_profile");
+        model.addObject("user", user);
 
-        try {
-            String userId = ControllerHelper.getCurrentUser().getUserId();
-            CMSUser user = registrationService.findByUserId(userId);
-            ModelAndView model = new ModelAndView("admin/service_admin_edit_user_profile");
-            model.addObject("user", user);
-
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -142,24 +125,16 @@ public class UserController extends BaseServiceAdminController {
     @RequestMapping(value = "/ops/updateUser", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("user") CMSUser user, HttpServletRequest request)
         throws PortalServiceException {
-        String signature = "UserController#edit(User user)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"user"}, new Object[] {user});
-
-        try {
-            CMSUser currentUser = ControllerHelper.getCurrentUser();
-            if (!currentUser.getUserId().equals(user.getUserId())) {
-                throw new PortalServiceException("Invalid navigation path.");
-            }
-            user.concatPhone();
-            registrationService.updateUserProfile(currentUser.getUserId(), user);
-            ModelAndView model = new ModelAndView("admin/service_admin_view_user_profile");
-            model.addObject("user", user);
-
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
+        CMSUser currentUser = ControllerHelper.getCurrentUser();
+        if (!currentUser.getUserId().equals(user.getUserId())) {
+            throw new PortalServiceException("Invalid navigation path.");
         }
+        user.concatPhone();
+        registrationService.updateUserProfile(currentUser.getUserId(), user);
+        ModelAndView model = new ModelAndView("admin/service_admin_view_user_profile");
+        model.addObject("user", user);
+
+        return model;
     }
 
     /**

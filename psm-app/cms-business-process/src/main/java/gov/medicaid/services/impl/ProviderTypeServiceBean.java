@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ import gov.medicaid.entities.SearchResult;
 import gov.medicaid.services.EntityNotFoundException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderTypeService;
-import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
 
 import javax.ejb.Local;
@@ -71,9 +70,6 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public String create(ProviderType providerType) throws PortalServiceException {
-        String signature = "ProviderTypeDAOBean#create(ProviderType providerType)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"providerType"}, new Object[] {providerType});
-
         if (providerType == null) {
             throw new IllegalArgumentException("Argument 'providerType' cannot be null.");
         }
@@ -83,9 +79,8 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
                 providerType.setCode(generateCode(getLookupService().findAllLookups(ProviderType.class)));
             }
             getEm().persist(providerType);
-            return LogUtil.traceExit(getLog(), signature, providerType.getCode());
+            return providerType.getCode();
         } catch (PersistenceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw new PortalServiceException("Could not database complete operation.", e);
         }
     }
@@ -131,9 +126,6 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void update(ProviderType providerType) throws PortalServiceException {
-        String signature = "ProviderTypeDAOBean#update(ProviderType providerType)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"providerType"}, new Object[] {providerType});
-
         if (providerType == null) {
             throw new IllegalArgumentException("Argument 'providerType' cannot be null.");
         }
@@ -144,9 +136,7 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
                 throw new EntityNotFoundException("No such entity in the database.");
             }
             getEm().merge(providerType);
-            LogUtil.traceExit(getLog(), signature, null);
         } catch (PersistenceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw new PortalServiceException("Could not database complete operation.", e);
         }
     }
@@ -161,18 +151,14 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
      */
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public ProviderType get(String id) throws PortalServiceException {
-        String signature = "ProviderTypeDAOBean#get(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"id"}, new Object[] {id});
-
         try {
             EntityGraph graph = getEm().getEntityGraph(
                     "ProviderType with AgreementDocuments"
             );
             Map<String, Object> hints = new HashMap<>();
             hints.put("javax.persistence.loadgraph", graph);
-            return LogUtil.traceExit(getLog(), signature, getEm().find(ProviderType.class, id, hints));
+            return getEm().find(ProviderType.class, id, hints);
         } catch (PersistenceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw new PortalServiceException("Could not database complete operation.", e);
         }
     }
@@ -185,16 +171,12 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void delete(long id) throws PortalServiceException {
-        String signature = "ProviderTypeDAOBean#delete(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"id"}, new Object[] {id});
-
         try {
             ProviderType obj = getEm().find(ProviderType.class, id);
             if (obj == null) {
                 throw new EntityNotFoundException("No such entity in the database.");
             }
             getEm().remove(obj);
-            LogUtil.traceExit(getLog(), signature, null);
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);
         }
@@ -214,9 +196,6 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
     @SuppressWarnings("unchecked")
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public SearchResult<ProviderType> search(ProviderTypeSearchCriteria criteria) throws PortalServiceException {
-        String signature = "ProviderTypeDAOBean#search(ProviderTypeSearchCriteria criteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"criteria"}, new Object[] {criteria});
-
         if (criteria == null) {
             throw new IllegalArgumentException("criteria cannot be null.");
         }
@@ -248,7 +227,7 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
         }
 
         results.setItems(items.getResultList());
-        return LogUtil.traceExit(getLog(), signature, results);
+        return results;
     }
 
     /**

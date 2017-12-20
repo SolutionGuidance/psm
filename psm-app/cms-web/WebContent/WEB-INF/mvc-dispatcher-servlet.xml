@@ -36,12 +36,6 @@
     </mvc:interceptor>
   </mvc:interceptors>
 
-  <bean id="log4jLogFactory"
-        class="com.topcoder.util.log.log4j.Log4jLogFactory"/>
-  <bean id="Log" factory-bean="log4jLogFactory" factory-method="createLog">
-    <constructor-arg type="java.lang.String" value="cms-web"/>
-  </bean>
-
   <bean id="RegistrationService"
         class="org.springframework.jndi.JndiObjectFactoryBean">
     <property name="jndiName">
@@ -110,7 +104,6 @@
   <bean id="BaseController"
         class="gov.medicaid.controllers.BaseController"
         abstract="true">
-    <property name="log" ref="Log"/>
   </bean>
 
   <bean id="SelfRegistrationController"
@@ -236,7 +229,6 @@
   <bean id="BaseServiceAdminController"
         class="gov.medicaid.controllers.admin.BaseServiceAdminController"
         abstract="true">
-    <property name="log" ref="Log"/>
   </bean>
   <bean id="AgreementDocumentController"
         class="gov.medicaid.controllers.admin.AgreementDocumentController"
@@ -289,7 +281,6 @@
   <bean id="BaseSystemAdminController"
         class="gov.medicaid.controllers.admin.BaseSystemAdminController"
         abstract="true">
-    <property name="log" ref="Log"/>
     <property name="registrationService" ref="RegistrationService"/>
     <property name="lookupService" ref="LookupService"/>
   </bean>

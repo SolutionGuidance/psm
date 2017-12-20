@@ -28,7 +28,6 @@ import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderTypeService;
-import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
 
 import java.util.ArrayList;
@@ -117,24 +116,16 @@ public class ProviderTypeController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/viewProviderTypes", method = RequestMethod.GET)
     public ModelAndView view() throws PortalServiceException {
-        String signature = "ProviderTypeController#view()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
+        ProviderTypeSearchCriteria criteria = new ProviderTypeSearchCriteria();
+        criteria.setPageNumber(1);
+        criteria.setPageSize(10);
+        criteria.setSortColumn("description");
 
-        try {
-            ProviderTypeSearchCriteria criteria = new ProviderTypeSearchCriteria();
-            criteria.setPageNumber(1);
-            criteria.setPageSize(10);
-            criteria.setSortColumn("description");
-
-            SearchResult<ProviderType> result = providerTypeService.search(criteria);
-            ModelAndView model = new ModelAndView("admin/service_admin_provider_types");
-            model.addObject("providerTypesSearchResult", result);
-            model.addObject("searchCriteria", criteria);
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
-        }
+        SearchResult<ProviderType> result = providerTypeService.search(criteria);
+        ModelAndView model = new ModelAndView("admin/service_admin_provider_types");
+        model.addObject("providerTypesSearchResult", result);
+        model.addObject("searchCriteria", criteria);
+        return model;
     }
 
     /**
@@ -150,19 +141,11 @@ public class ProviderTypeController extends BaseServiceAdminController {
     @RequestMapping(value = "/admin/viewProviderTypes", method = RequestMethod.POST)
     public ModelAndView search(@ModelAttribute("criteria") ProviderTypeSearchCriteria criteria)
         throws PortalServiceException {
-        String signature = "ProviderTypeController#search(ProviderTypeSearchCriteria criteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"criteria"}, new Object[] {criteria});
-
-        try {
-            SearchResult<ProviderType> result = providerTypeService.search(criteria);
-            ModelAndView model = new ModelAndView("admin/service_admin_provider_types");
-            model.addObject("providerTypesSearchResult", result);
-            model.addObject("searchCriteria", criteria);
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
-        }
+        SearchResult<ProviderType> result = providerTypeService.search(criteria);
+        ModelAndView model = new ModelAndView("admin/service_admin_provider_types");
+        model.addObject("providerTypesSearchResult", result);
+        model.addObject("searchCriteria", criteria);
+        return model;
     }
 
    /**
@@ -177,19 +160,11 @@ public class ProviderTypeController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/getProviderType", method = RequestMethod.GET)
     public ModelAndView get(@RequestParam("providerTypeId") String providerTypeId) throws PortalServiceException {
-        String signature = "ProviderTypeController#get(long providerTypeId)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"providerTypeId"}, new Object[] {providerTypeId});
-
-        try {
-            ProviderType providerType = providerTypeService.get(providerTypeId);
-            ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
-            model.addObject("providerType", providerType);
-            model.addObject("agreements", providerType.getAgreementDocuments());
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
-        }
+        ProviderType providerType = providerTypeService.get(providerTypeId);
+        ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
+        model.addObject("providerType", providerType);
+        model.addObject("agreements", providerType.getAgreementDocuments());
+        return model;
     }
 
     /**
@@ -203,33 +178,25 @@ public class ProviderTypeController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/beginCreateProviderType", method = RequestMethod.GET)
     public ModelAndView beginCreate() throws PortalServiceException {
-        String signature = "ProviderTypeController#beginCreate()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
+        // Retrieve agreements
+        AgreementDocumentSearchCriteria criteria = new AgreementDocumentSearchCriteria();
+        criteria.setPageNumber(1);
+        criteria.setPageSize(-1);
+        criteria.setType(AgreementDocumentType.AGREEMENT);
 
-        try {
-            // Retrieve agreements
-            AgreementDocumentSearchCriteria criteria = new AgreementDocumentSearchCriteria();
-            criteria.setPageNumber(1);
-            criteria.setPageSize(-1);
-            criteria.setType(AgreementDocumentType.AGREEMENT);
+        List<AgreementDocument> agreements = agreementDocumentService.search(criteria).getItems();
+        // Retrieve addendums
+        criteria = new AgreementDocumentSearchCriteria();
+        criteria.setPageNumber(1);
+        criteria.setPageSize(-1);
+        criteria.setType(AgreementDocumentType.ADDENDUM);
 
-            List<AgreementDocument> agreements = agreementDocumentService.search(criteria).getItems();
-            // Retrieve addendums
-            criteria = new AgreementDocumentSearchCriteria();
-            criteria.setPageNumber(1);
-            criteria.setPageSize(-1);
-            criteria.setType(AgreementDocumentType.ADDENDUM);
-
-            List<AgreementDocument> addendums = agreementDocumentService.search(criteria).getItems();
-            ModelAndView model = new ModelAndView("admin/service_admin_create_provider_type");
-            model.addObject("agreements", agreements);
-            model.addObject("addendums", addendums);
-            model.addObject("providerType", new ProviderType());
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
-        }
+        List<AgreementDocument> addendums = agreementDocumentService.search(criteria).getItems();
+        ModelAndView model = new ModelAndView("admin/service_admin_create_provider_type");
+        model.addObject("agreements", agreements);
+        model.addObject("addendums", addendums);
+        model.addObject("providerType", new ProviderType());
+        return model;
     }
 
     /**
@@ -244,37 +211,29 @@ public class ProviderTypeController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/beginEditProviderType", method = RequestMethod.GET)
     public ModelAndView beginEdit(@RequestParam("providerTypeId") String providerTypeId) throws PortalServiceException {
-        String signature = "ProviderTypeController#beginEdit(long providerTypeId)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"providerTypeId"}, new Object[] {providerTypeId});
+        ProviderType providerType = providerTypeService.get(providerTypeId);
 
-        try {
-            ProviderType providerType = providerTypeService.get(providerTypeId);
+        // Retrieve agreements
+        AgreementDocumentSearchCriteria criteria = new AgreementDocumentSearchCriteria();
+        criteria.setPageNumber(1);
+        criteria.setPageSize(-1);
+        List<AgreementDocument> agreements = agreementDocumentService.search(criteria).getItems();
+        List<AgreementDocument> remainingAgreements = new ArrayList<AgreementDocument>(agreements);
+        List<AgreementDocument> selectedAgreements = providerType.getAgreementDocuments();
 
-            // Retrieve agreements
-            AgreementDocumentSearchCriteria criteria = new AgreementDocumentSearchCriteria();
-            criteria.setPageNumber(1);
-            criteria.setPageSize(-1);
-            List<AgreementDocument> agreements = agreementDocumentService.search(criteria).getItems();
-            List<AgreementDocument> remainingAgreements = new ArrayList<AgreementDocument>(agreements);
-            List<AgreementDocument> selectedAgreements = providerType.getAgreementDocuments();
-
-            for (AgreementDocument agreement: agreements) {
-                for (AgreementDocument selectedAgreement: selectedAgreements) {
-                    if (selectedAgreement.getId() == agreement.getId()) {
-                        remainingAgreements.remove(agreement);
-                        break;
-                    }
+        for (AgreementDocument agreement: agreements) {
+            for (AgreementDocument selectedAgreement: selectedAgreements) {
+                if (selectedAgreement.getId() == agreement.getId()) {
+                    remainingAgreements.remove(agreement);
+                    break;
                 }
             }
-            ModelAndView model = new ModelAndView("admin/service_admin_edit_provider_type");
-            model.addObject("providerType", providerType);
-            model.addObject("selectedAgreements", selectedAgreements);
-            model.addObject("remainingAgreements", remainingAgreements);
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
         }
+        ModelAndView model = new ModelAndView("admin/service_admin_edit_provider_type");
+        model.addObject("providerType", providerType);
+        model.addObject("selectedAgreements", selectedAgreements);
+        model.addObject("remainingAgreements", remainingAgreements);
+        return model;
     }
 
     /**
@@ -291,35 +250,27 @@ public class ProviderTypeController extends BaseServiceAdminController {
     @RequestMapping(value = "/admin/createProviderType", method = RequestMethod.POST)
     public ModelAndView create(@ModelAttribute("providerType") ProviderType providerType, HttpServletRequest request)
         throws PortalServiceException {
-        String signature = "ProviderTypeController#create(ProviderType providerType)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"providerType"}, new Object[] {providerType});
+        boolean blank = Util.isBlank(providerType.getDescription());
+        boolean exists = getLookupService().findLookupByDescription(ProviderType.class, providerType.getDescription()) != null;
+        if (!blank && !exists) {
+            providerTypeService.create(providerType);
 
-        try {
-            boolean blank = Util.isBlank(providerType.getDescription());
-            boolean exists = getLookupService().findLookupByDescription(ProviderType.class, providerType.getDescription()) != null;
-            if (!blank && !exists) {
-                providerTypeService.create(providerType);
+            // Retrieve
+            providerType = providerTypeService.get(providerType.getCode());
 
-                // Retrieve
-                providerType = providerTypeService.get(providerType.getCode());
+            ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
+            model.addObject("providerType", providerType);
+            return model;
+        } else {
 
-                ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
-                model.addObject("providerType", providerType);
-                return LogUtil.traceExit(getLog(), signature, model);
-            } else {
-
-                ModelAndView mv = beginCreate();
-                if (blank) {
-                    ControllerHelper.addError("Please specify a provider type.");
-                } else if (exists) {
-                    ControllerHelper.addError("Specified provider type already exists.");
-                }
-                mv.addObject("providerType", providerType);
-                return LogUtil.traceExit(getLog(), signature, mv);
+            ModelAndView mv = beginCreate();
+            if (blank) {
+                ControllerHelper.addError("Please specify a provider type.");
+            } else if (exists) {
+                ControllerHelper.addError("Specified provider type already exists.");
             }
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
+            mv.addObject("providerType", providerType);
+            return mv;
         }
     }
 
@@ -337,25 +288,17 @@ public class ProviderTypeController extends BaseServiceAdminController {
     @RequestMapping(value = "/admin/updateProviderType", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("providerType") ProviderType providerType, HttpServletRequest request)
         throws PortalServiceException {
-        String signature = "ProviderTypeController#edit(ProviderType providerType)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"providerType"}, new Object[] {providerType});
+        // providerTypeService.update(providerType);
+        // Retrieve
+        providerType = providerTypeService.get(providerType.getCode());
+        long[] agreementIds = ServletRequestUtils.getLongParameters(request, "providerAgreements");
 
-        try {
-            // providerTypeService.update(providerType);
-            // Retrieve
-            providerType = providerTypeService.get(providerType.getCode());
-            long[] agreementIds = ServletRequestUtils.getLongParameters(request, "providerAgreements");
+        lookupService.updateProviderTypeAgreementSettings(providerType, agreementIds);
 
-            lookupService.updateProviderTypeAgreementSettings(providerType, agreementIds);
-
-            ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
-            model.addObject("providerType", providerType);
-            model.addObject("agreements", providerType.getAgreementDocuments());
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
-        }
+        ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
+        model.addObject("providerType", providerType);
+        model.addObject("agreements", providerType.getAgreementDocuments());
+        return model;
     }
 
     /**
@@ -372,18 +315,10 @@ public class ProviderTypeController extends BaseServiceAdminController {
     @ResponseBody
     public String delete(@RequestParam("providerTypeIds") long[] providerTypeIds, HttpServletRequest request)
         throws PortalServiceException {
-        String signature = "ProviderTypeController#delete(long[] providerTypeIds)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"providerTypeIds"}, new Object[] {providerTypeIds});
-
-        try {
-            for (long providerTypeId : providerTypeIds) {
-                providerTypeService.delete(providerTypeId);
-            }
-            return LogUtil.traceExit(getLog(), signature, "success");
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
+        for (long providerTypeId : providerTypeIds) {
+            providerTypeService.delete(providerTypeId);
         }
+        return "success";
     }
 
     /**

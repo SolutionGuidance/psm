@@ -41,8 +41,7 @@ import static java.util.logging.Level.WARNING;
  * This checks the excluded providers from the OIG LEIE.
  */
 public class ExcludedProvidersScreeningHandler extends GenericHandler {
-    private static final Logger LOGGER =
-            Logger.getLogger(ExcludedProvidersScreeningHandler.class.getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     private String baseUri;
     private FhirContext fhirContext;
@@ -57,7 +56,7 @@ public class ExcludedProvidersScreeningHandler extends GenericHandler {
     }
 
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
-        LOGGER.info("Checking provider exclusion.");
+        logger.info("Checking provider exclusion.");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
 
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
@@ -70,7 +69,7 @@ public class ExcludedProvidersScreeningHandler extends GenericHandler {
                 setResultNotExcluded(processModel);
             }
         } catch (RuntimeException e) {
-            LOGGER.log(WARNING, "Error checking provider against LEIE", e);
+            logger.log(WARNING, "Error checking provider against LEIE", e);
             setResultError(processModel);
         }
 

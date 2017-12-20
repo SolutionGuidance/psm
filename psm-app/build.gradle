@@ -42,7 +42,6 @@ ext.libs = [
        exclude group: 'org.hibernate'
        exclude group: 'org.hibernate.javax.persistence'
     },
-    log4j: 'log4j:log4j:1.2.16',
     spring_beans: "org.springframework:spring-beans:${spring_core_version}",
     spring_context: "org.springframework:spring-context:${spring_core_version}",
     spring_jdbc: "org.springframework:spring-jdbc:${spring_core_version}",
@@ -64,8 +63,6 @@ List runtime_libs = [
     'net.sourceforge.jexcelapi:jxl:2.6.10',
     'org.codehaus.jackson:jackson-mapper-asl:1.9.13',
     'org.codehaus.janino:janino:2.5.15',
-    'org.slf4j:slf4j-api:1.6.4',
-    'org.slf4j:slf4j-log4j12:1.6.4',
 ]
 
 allprojects {
@@ -168,7 +165,6 @@ project(':cms-web') {
     dependencies {
         providedCompile project(':services')
         providedCompile fileTree(dir: 'WebContent/WEB-INF/lib')
-        compile libs.log4j
         compile libs.spring_beans
         compile libs.spring_ldap
         compile libs.spring_security_acl
@@ -251,7 +247,6 @@ project(':cms-portal-services') {
         earlib libs.jasypt
         earlib libs.jbpm_human_task_core
         earlib libs.jbpm_persistence_jpa
-        earlib libs.log4j
         earlib libs.spring_beans
         earlib libs.spring_context
         earlib libs.spring_jdbc

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -46,8 +46,7 @@ import java.util.logging.Logger;
  * @since External Sources Integration Assembly II
  */
 public class VerifyBackgroundStudyHandler extends GenericHandler {
-    private static final Logger LOGGER =
-            Logger.getLogger(VerifyBackgroundStudyHandler.class.getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * Checks the NETStudy service for the background study id entered for agencies.
@@ -56,7 +55,7 @@ public class VerifyBackgroundStudyHandler extends GenericHandler {
      * @param manager the work item manager
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
-        LOGGER.info("Verifying Background study results...");
+        logger.info("Verifying Background study results...");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
         AgencyInformationType agency = provider.getAgencyInformation();
@@ -92,15 +91,15 @@ public class VerifyBackgroundStudyHandler extends GenericHandler {
             }
             screeningResultType.setSearchResult(matchResults);
         } catch (JAXBException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (IOException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         } catch (TransformerException e) {
-            LOGGER.severe(e.toString());
+            logger.severe(e.toString());
             results = new ExternalSourcesScreeningResultType();
             results.setStatus(XMLUtility.newStatus("ERROR"));
         }

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ import gov.medicaid.entities.SearchResult;
 import gov.medicaid.services.EntityNotFoundException;
 import gov.medicaid.services.HelpService;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
 
 import javax.ejb.Local;
@@ -67,9 +66,6 @@ public class HelpServiceBean extends BaseService implements HelpService {
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public long create(HelpItem help) throws PortalServiceException {
-        String signature = "HelpDAOBean#create(HelpItem help)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"help"}, new Object[]{help});
-
         if (help == null) {
             throw new IllegalArgumentException("argument 'help' cannot be null.");
         }
@@ -77,7 +73,7 @@ public class HelpServiceBean extends BaseService implements HelpService {
         try {
             help.setId(0);
             getEm().persist(help);
-            return LogUtil.traceExit(getLog(), signature, help.getId());
+            return help.getId();
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);
         }
@@ -93,8 +89,6 @@ public class HelpServiceBean extends BaseService implements HelpService {
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void update(HelpItem help) throws PortalServiceException {
-        String signature = "HelpDAOBean#update(HelpItem help)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"help"}, new Object[]{help});
 
         if (help == null) {
             throw new IllegalArgumentException("Argument 'help' cannot be null.");
@@ -106,7 +100,6 @@ public class HelpServiceBean extends BaseService implements HelpService {
                 throw new EntityNotFoundException("No such entity in the database.");
             }
             getEm().merge(help);
-            LogUtil.traceExit(getLog(), signature, null);
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);
         }
@@ -122,11 +115,8 @@ public class HelpServiceBean extends BaseService implements HelpService {
      */
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public HelpItem get(long id) throws PortalServiceException {
-        String signature = "HelpDAOBean#get(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{id});
-
         try {
-            return LogUtil.traceExit(getLog(), signature, getEm().find(HelpItem.class, id));
+            return getEm().find(HelpItem.class, id);
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);
         }
@@ -141,16 +131,12 @@ public class HelpServiceBean extends BaseService implements HelpService {
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void delete(long id) throws PortalServiceException {
-        String signature = "HelpDAOBean#delete(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"id"}, new Object[]{id});
-
         try {
             HelpItem item = getEm().find(HelpItem.class, id);
             if (item == null) {
                 throw new EntityNotFoundException("No such entity in the database.");
             }
             getEm().remove(item);
-            LogUtil.traceExit(getLog(), signature, null);
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);
         }
@@ -170,9 +156,6 @@ public class HelpServiceBean extends BaseService implements HelpService {
     @SuppressWarnings("unchecked")
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public SearchResult<HelpItem> search(HelpSearchCriteria criteria) throws PortalServiceException {
-        String signature = "HelpDAOBean#search(HelpSearchCriteria criteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[]{"criteria"}, new Object[]{criteria});
-
         if (criteria == null) {
             throw new IllegalArgumentException("criteria cannot be null.");
         }
@@ -204,7 +187,7 @@ public class HelpServiceBean extends BaseService implements HelpService {
         }
 
         results.setItems(items.getResultList());
-        return LogUtil.traceExit(getLog(), signature, results);
+        return results;
     }
 
 

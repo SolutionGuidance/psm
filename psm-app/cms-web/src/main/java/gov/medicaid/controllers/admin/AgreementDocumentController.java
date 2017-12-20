@@ -23,7 +23,6 @@ import gov.medicaid.entities.SearchResult;
 import gov.medicaid.services.AgreementDocumentService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.util.LogUtil;
 
 import java.security.Principal;
 
@@ -89,25 +88,17 @@ public class AgreementDocumentController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/viewAgreementDocuments", method = RequestMethod.GET)
     public ModelAndView view() throws PortalServiceException {
-        String signature = "AgreementDocumentController#view()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
+        AgreementDocumentSearchCriteria criteria = new AgreementDocumentSearchCriteria();
+        criteria.setPageNumber(1);
+        criteria.setPageSize(10);
+        criteria.setSortColumn("title");
+        criteria.setAscending(true);
 
-        try {
-            AgreementDocumentSearchCriteria criteria = new AgreementDocumentSearchCriteria();
-            criteria.setPageNumber(1);
-            criteria.setPageSize(10);
-            criteria.setSortColumn("title");
-            criteria.setAscending(true);
-
-            SearchResult<AgreementDocument> result = agreementDocumentService.search(criteria);
-            ModelAndView model = new ModelAndView("admin/service_admin_agreement_documents");
-            model.addObject("agreementDocumentsSearchResult", result);
-            model.addObject("searchCriteria", criteria);
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
-        }
+        SearchResult<AgreementDocument> result = agreementDocumentService.search(criteria);
+        ModelAndView model = new ModelAndView("admin/service_admin_agreement_documents");
+        model.addObject("agreementDocumentsSearchResult", result);
+        model.addObject("searchCriteria", criteria);
+        return model;
     }
 
     /**
@@ -125,19 +116,11 @@ public class AgreementDocumentController extends BaseServiceAdminController {
     @RequestMapping(value = "/admin/viewAgreementDocuments", method = RequestMethod.POST)
     public ModelAndView search(@ModelAttribute("criteria") AgreementDocumentSearchCriteria criteria)
         throws PortalServiceException {
-        String signature = "AgreementDocumentController#search(AgreementDocumentSearchCriteria criteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"criteria"}, new Object[] {criteria});
-
-        try {
-            SearchResult<AgreementDocument> result = agreementDocumentService.search(criteria);
-            ModelAndView model = new ModelAndView("admin/service_admin_agreement_documents");
-            model.addObject("agreementDocumentsSearchResult", result);
-            model.addObject("searchCriteria", criteria);
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
-        }
+        SearchResult<AgreementDocument> result = agreementDocumentService.search(criteria);
+        ModelAndView model = new ModelAndView("admin/service_admin_agreement_documents");
+        model.addObject("agreementDocumentsSearchResult", result);
+        model.addObject("searchCriteria", criteria);
+        return model;
     }
 
     /**
@@ -154,19 +137,11 @@ public class AgreementDocumentController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/getAgreementDocument", method = RequestMethod.GET)
     public ModelAndView get(@RequestParam("agreementId") long id) throws PortalServiceException {
-        String signature = "AgreementDocumentController#get(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"id"}, new Object[] {id});
+        AgreementDocument agreementDocument = agreementDocumentService.get(id);
+        ModelAndView model = new ModelAndView("admin/service_admin_view_agreement_document");
+        model.addObject("agreementDocument", agreementDocument);
 
-        try {
-            AgreementDocument agreementDocument = agreementDocumentService.get(id);
-            ModelAndView model = new ModelAndView("admin/service_admin_view_agreement_document");
-            model.addObject("agreementDocument", agreementDocument);
-
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -183,19 +158,11 @@ public class AgreementDocumentController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/provider/enrollment/agreement", method = RequestMethod.GET)
     public ModelAndView getAgreement(@RequestParam("id") long id) throws PortalServiceException {
-        String signature = "EnrollmentPageFlowController#getAgreement(long id)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"id"}, new Object[] {id});
+        AgreementDocument agreementDocument = agreementDocumentService.get(id);
+        ModelAndView model = new ModelAndView("provider/enrollment/view_agreement");
+        model.addObject("agreementDocument", agreementDocument);
 
-        try {
-            AgreementDocument agreementDocument = agreementDocumentService.get(id);
-            ModelAndView model = new ModelAndView("provider/enrollment/view_agreement");
-            model.addObject("agreementDocument", agreementDocument);
-
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -215,26 +182,16 @@ public class AgreementDocumentController extends BaseServiceAdminController {
     public ModelAndView beginEdit(@RequestParam("agreementId") long id,
         @RequestParam(value = "agreementDocumentType", required = false) AgreementDocumentType agreementDocumentType)
         throws PortalServiceException {
-        String signature = "AgreementDocumentController#beginEdit(long id, "
-            + "AgreementDocumentType agreementDocumentType)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"id", "agreementDocumentType"}, new Object[] {id,
-            agreementDocumentType});
-
-        try {
-            ModelAndView model = new ModelAndView("admin/service_admin_edit_agreement_document");
-            if (id == 0) {
-                AgreementDocument agreementDocument = new AgreementDocument();
-                agreementDocument.setType(agreementDocumentType == AgreementDocumentType.AGREEMENT ? "01" : "02");
-                model.addObject("agreementDocument", agreementDocument);
-            } else {
-                AgreementDocument agreementDocument = agreementDocumentService.get(id);
-                model.addObject("agreementDocument", agreementDocument);
-            }
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
+        ModelAndView model = new ModelAndView("admin/service_admin_edit_agreement_document");
+        if (id == 0) {
+            AgreementDocument agreementDocument = new AgreementDocument();
+            agreementDocument.setType(agreementDocumentType == AgreementDocumentType.AGREEMENT ? "01" : "02");
+            model.addObject("agreementDocument", agreementDocument);
+        } else {
+            AgreementDocument agreementDocument = agreementDocumentService.get(id);
+            model.addObject("agreementDocument", agreementDocument);
         }
+        return model;
     }
 
     /**
@@ -253,20 +210,12 @@ public class AgreementDocumentController extends BaseServiceAdminController {
     @RequestMapping(value = "/admin/createAgreementDocument", method = RequestMethod.POST)
     public ModelAndView create(@ModelAttribute("agreementDocument") AgreementDocument agreementDocument,
         HttpServletRequest request, Principal principal) throws PortalServiceException {
-        String signature = "AgreementDocumentController#create(AgreementDocument agreementDocument)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"agreementDocument"}, new Object[] {agreementDocument});
+        agreementDocument.setCreatedBy(principal.getName());
+        agreementDocumentService.create(agreementDocument);
+        ModelAndView model = new ModelAndView("admin/service_admin_view_agreement_document");
+        model.addObject("agreementDocument", agreementDocument);
 
-        try {
-            agreementDocument.setCreatedBy(principal.getName());
-            agreementDocumentService.create(agreementDocument);
-            ModelAndView model = new ModelAndView("admin/service_admin_view_agreement_document");
-            model.addObject("agreementDocument", agreementDocument);
-
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -285,20 +234,12 @@ public class AgreementDocumentController extends BaseServiceAdminController {
     @RequestMapping(value = "/admin/updateAgreementDocument", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("agreementDocument") AgreementDocument agreementDocument,
         HttpServletRequest request) throws PortalServiceException {
-        String signature = "AgreementDocumentController#edit(AgreementDocument agreementDocument)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"agreementDocument"}, new Object[] {agreementDocument});
+        agreementDocumentService.update(agreementDocument);
 
-        try {
-            agreementDocumentService.update(agreementDocument);
+        ModelAndView model = new ModelAndView("admin/service_admin_view_agreement_document");
+        model.addObject("agreementDocument", agreementDocument);
 
-            ModelAndView model = new ModelAndView("admin/service_admin_view_agreement_document");
-            model.addObject("agreementDocument", agreementDocument);
-
-            return LogUtil.traceExit(getLog(), signature, model);
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
-        }
+        return model;
     }
 
     /**
@@ -316,18 +257,10 @@ public class AgreementDocumentController extends BaseServiceAdminController {
     @ResponseBody
     public String delete(@RequestParam("agreementIds") long[] agreementIds, HttpServletRequest request)
         throws PortalServiceException {
-        String signature = "AgreementDocumentController#delete(long[] agreementIds)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"agreementIds"}, new Object[] {agreementIds});
-
-        try {
-            for (long agreementId : agreementIds) {
-                agreementDocumentService.delete(agreementId);
-            }
-            return LogUtil.traceExit(getLog(), signature, "success");
-        } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
-            throw e;
+        for (long agreementId : agreementIds) {
+            agreementDocumentService.delete(agreementId);
         }
+        return "success";
     }
 
     /**

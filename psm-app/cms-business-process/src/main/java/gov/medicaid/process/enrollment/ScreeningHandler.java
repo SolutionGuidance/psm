@@ -57,10 +57,7 @@ public class ScreeningHandler extends GenericHandler {
      */
     private final EntityManager entityManager;
 
-    /**
-     * The logger for this class.
-     */
-    private Logger logger = Logger.getLogger(ScreeningHandler.class.getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * The screening system user.

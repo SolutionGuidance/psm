@@ -24,7 +24,7 @@
                 <div class="middle">
                     <p>The enrollment has been saved as Draft.</p>
                     <div class="buttonArea">
-                        <a href="javascript:;" class="purpleBtn closeModal okBtn"><span class="btR"><span class="btM">OK</span></span></a>
+                        <a href="javascript:;" class="purpleBtn closeModal okBtn">OK</a>
                     </div>
                 </div>
             </div>

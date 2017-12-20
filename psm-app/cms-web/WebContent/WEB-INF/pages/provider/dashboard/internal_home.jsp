@@ -65,9 +65,7 @@
                     </p>
                     <div class="">
                       <a href="<c:url value="/provider/onboarding/link" />" class="purpleBtn">
-                        <span class="btR">
-                          <span class="btM">Get Profiles</span>
-                        </span>
+                        Get Profiles
                       </a>
                     </div>
                   </div>

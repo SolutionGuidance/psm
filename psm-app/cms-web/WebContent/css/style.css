@@ -339,20 +339,20 @@ input,select,textarea{
 .tabContent .pagination .pagiBox a.page, .tabContent .pagination .pagiBox a.prev, .tabContent .pagination .pagiBox a.next{
   float:left;
 }
-.tabContent .pagination .filterBtn .btM{
+.tabContent .pagination .filterBtn {
   width:68px;
 }
 .filterBtn.showFilter span.arrow{
   float:right;
   background:url(../i/icon-arrow-down.png) no-repeat right center;
   width:7px;
-  height:25px;
+  height:23px;
 }
 .filterBtn.hideFilter span.arrow{
   float:right;
   background:url(../i/icon-arrow-up.png) no-repeat right center;
   width:7px;
-  height:25px;
+  height:23px;
 }
 .tabContent .pagination .right .pagi{
   width:auto; /* was 143px */
@@ -437,8 +437,6 @@ input,select,textarea{
   float:right;
   margin-top:8px;
   margin-right:8px;
-}
-.filterPanel .purpleBtn .btM{
   padding:0 16px;
 }
 .normalInput{
@@ -799,8 +797,6 @@ input.date{
 }
 .loginPanel .buttons .purpleBtn{
   float:right;
-}
-.loginPanel .buttons .purpleBtn .btM{
   padding:0 20px;
 }
 #footer{
@@ -814,42 +810,7 @@ input.date{
   float:left;
 }
 /* buttons */
-a.purpleBtn{
-  float:left;
-  background:url(../i/purple-btn.png) no-repeat left top;
-  padding-left:4px;
-  height:25px;
-  line-height:25px;
-  cursor:pointer;
-  font-size:12px;
-  color:#fff;
-  text-shadow:0 1px 0 #000;
-  text-decoration:none;
-}
-a.purpleBtn span.btR{
-  float:left;
-  background:url(../i/purple-btn.png) no-repeat right -100px;
-  height:25px;
-  padding-right:4px;
-}
-a.purpleBtn span.btM{
-  float:left;
-  background:url(../i/purple-btn.png) repeat-x left -50px;
-  height:25px;
-  padding:0 12px;
-}
-a.purpleBtn:hover{
-  background-position:left -25px;
-}
-a.purpleBtn:hover span.btR{
-  background-position:right -125px;
-}
-a.purpleBtn:hover span.btM{
-  background-position:left -75px;
-}
-
-
-button.purpleBtn {
+.purpleBtn {
   float: left;
   background: linear-gradient(#175894, #0e477d);
   border-radius: 4px;
@@ -866,49 +827,14 @@ button.purpleBtn {
   border-right-color: #3b6389;
   border-left-color: #3b6389;
   border-bottom-color: #0f406a;
+  display: inline-block;
+  text-decoration: none;
 }
-button.purpleBtn:hover {
+.purpleBtn:hover {
   background: linear-gradient(#0e477d, #175894)
 }
 
-a.greyBtn{
-  float:left;
-  background:url(../i/grey-btn.png) no-repeat left top;
-  padding-left:4px;
-  height:25px;
-  line-height:25px;
-  cursor:pointer;
-  font-size:12px;
-  color:#064265;
-  text-decoration:none;
-  text-shadow:0 1px 0 #fff;
-}
-a.greyBtn span.btR{
-  float:left;
-  background:url(../i/grey-btn.png) no-repeat right -100px;
-  height:25px;
-  padding-right:4px;
-}
-a.greyBtn span.btM{
-  float:left;
-  background:url(../i/grey-btn.png) repeat-x left -50px;
-  height:25px;
-  padding:0 8px;
-}
-a.greyBtn:hover{
-  background-position:left -25px;
-}
-a.greyBtn:hover span.btR{
-  background-position:right -125px;
-}
-a.greyBtn:hover span.btM{
-  background-position:left -75px;
-}
-a.greyBtn img{
-  float:left;
-  margin:5px 5px 5px 0;
-}
-button.greyBtn {
+.greyBtn {
   float: left;
   background: linear-gradient(#fafafa, #d8d8d8);
   border-radius: 4px;
@@ -920,36 +846,14 @@ button.greyBtn {
   color: #064265;
   text-shadow: 0 1px 0 #fff;
   border: solid 1px #cdcdcd;
+  display: inline-block;
+  text-decoration: none;
 }
-button.greyBtn:hover {
+.greyBtn:hover {
   background: linear-gradient(#d8d8d8, #fafafa);
 }
 
-a.blueBtn{
-  float:left;
-  background:url(../i/blue-btn.png) no-repeat left top;
-  padding-left:4px;
-  height:25px;
-  text-decoration:none;
-  line-height:25px;
-  cursor:pointer;
-  font-size:12px;
-  color:#064265;
-  text-shadow:0 1px 0 #fff;
-}
-a.blueBtn span.btR{
-  float:left;
-  background:url(../i/blue-btn.png) no-repeat right -50px;
-  height:25px;
-  padding-right:4px;
-}
-a.blueBtn span.btM{
-  float:left;
-  background:url(../i/blue-btn.png) repeat-x left -25px;
-  height:25px;
-  padding:0 6px;
-}
-button.blueBtn {
+.blueBtn {
   float: left;
   background: #eff4f9;
   border: 1px solid #b9d0e5;
@@ -960,6 +864,8 @@ button.blueBtn {
   cursor: pointer;
   color: #064265;
   font-size: 12px;
+  display: inline-block;
+  text-decoration: none;
 }
 
 .ui-datepicker-trigger{
@@ -972,45 +878,7 @@ button.blueBtn {
 }
 
 /* new style */
-a.purpleSmallBtn{
-  float:left;
-  background:url(../i/purple-small-btn.png) no-repeat left top;
-  padding-left:4px;
-  height:21px;
-  line-height:21px;
-  cursor:pointer;
-  font-size:12px;
-  color:#fff;
-  text-shadow:0 1px 0 #000;
-  text-decoration:none;
-}
-
-a.purpleSmallBtn span.btR{
-  float:left;
-  background:url(../i/purple-small-btn.png) no-repeat right -84px;
-  height:21px;
-  padding-right:4px;
-}
-
-a.purpleSmallBtn span.btM{
-  float:left;
-  background:url(../i/purple-small-btn.png) repeat-x left -42px;
-  height:21px;
-  padding:0 4px;
-}
-
-a.purpleSmallBtn:hover{
-  background-position:left -21px;
-}
-
-a.purpleSmallBtn:hover span.btR{
-  background-position:right -105px;
-}
-
-a.purpleSmallBtn:hover span.btM{
-  background-position:left -63px;
-}
-button.purpleSmallBtn {
+.purpleSmallBtn {
   float: left;
   background: linear-gradient(#175894, #0e477d);
   border-radius: 4px;
@@ -1027,8 +895,10 @@ button.purpleSmallBtn {
   border-right-color: #3b6389;
   border-left-color: #3b6389;
   border-bottom-color: #0f406a;
+  display: inline-block;
+  text-decoration: none;
 }
-button.purpleSmallBtn:hover {
+.purpleSmallBtn:hover {
   background: linear-gradient(#0e477d, #175894)
 }
 
@@ -1068,6 +938,7 @@ button.purpleSmallBtn:hover {
   float:right;
   display:inline;
   margin:0 0 0 7px;
+  padding:0 10px;
 }
 
 .buttonBox .purpleBtn{
@@ -1082,10 +953,6 @@ button.purpleSmallBtn:hover {
   float:left;
   display:inline;
   margin:0 7px 0 0;
-}
-
-.buttonBox .greyBtn .btM{
-  padding:0 10px;
 }
 
 .buttonBox .greyBtn .icon{
@@ -1447,9 +1314,6 @@ button.purpleSmallBtn:hover {
   float:right;
   display:inline;
   margin:6px 6px 0 0;
-}
-
-.practicePanel .tableHeader .purpleSmallBtn span{
   margin:0;
 }
 
@@ -2644,9 +2508,6 @@ button.purpleSmallBtn:hover {
   width:auto;
   float:right;
   display:inline;
-}
-
-#advancedSearch .buttons a span.btM{
   padding:0 23px;
 }
 
@@ -2854,8 +2715,6 @@ span.label, span.label strong {
   float:right;
   margin-top:8px;
   margin-right:8px;
-}
-.searchPanel .purpleBtn .btM{
   padding:0 16px;
 }
 .advanceSearchPage{
@@ -2865,7 +2724,7 @@ span.label, span.label strong {
 .searchDetailPanel{
   margin-top:10px;
 }
-a.searchBtn span.btM{
+a.searchBtn {
   padding:0 20px;
 }
 .searchBtn .icon{
@@ -3217,7 +3076,7 @@ a.searchBtn span.btM{
   background-color:#ffffff;
 }
 
-#modal .modalBody .buttons a .btM{
+#modal .modalBody .buttons a {
   width:78px;
   text-align:center;
 }
@@ -3425,7 +3284,7 @@ a.searchBtn span.btM{
   float:none;
   display:inline-block;
 }
-a.okBtn span.btM{
+a.okBtn {
   padding:0 43px;
 }
 #new-modal #practiceLookupModal .modal-title .middle{
@@ -3515,7 +3374,7 @@ a.okBtn span.btM{
   float:right;
   margin-left:6px;
 }
-#new-modal #printModal .modal-title a .btM{
+#new-modal #printModal .modal-title a {
   width:63px;
   padding:0;
   text-align:center;
@@ -3524,7 +3383,7 @@ a.okBtn span.btM{
   float: left;
   margin: 6px 0px 5px 9px;
 }
-#new-modal #printModal .modal-title a.greyBtn img{
+#new-modal #printModal .modal-title .greyBtn img{
   margin-top: 7px;
 }
 #new-modal #printModal .modal-content{
@@ -3613,7 +3472,7 @@ a.okBtn span.btM{
   float:right;
   margin-left:6px;
 }
-#new-modal .definitionsModal .modal-title a .btM{
+#new-modal .definitionsModal .modal-title a {
   width:63px;
   padding:0;
   text-align:center;
@@ -3622,7 +3481,7 @@ a.okBtn span.btM{
   float: left;
   margin: 6px 0px 5px 9px;
 }
-#new-modal .definitionsModal .modal-title a.greyBtn img{
+#new-modal .definitionsModal .modal-title .greyBtn img{
   margin-top: 7px;
 }
 #new-modal .definitionsModal .modal-content{
@@ -3719,9 +3578,6 @@ a.okBtn span.btM{
   float:right;
   margin:7px 8px 0 0;
 }
-.contentT .tableHeader .purpleBtnR span{
-  margin-left:0;
-}
 
 .width940{
   width:940px;
@@ -3783,7 +3639,7 @@ a.okBtn span.btM{
 ,#deleteAgreementModal .buttons .deleteOKBtn {
   margin:0 10px 0 170px;
 }
-#editModal .modalBody .buttons .saveBtn .btM{
+#editModal .modalBody .buttons .saveBtn {
   width:auto;
 }
 /*rejectModal*/
@@ -3927,8 +3783,6 @@ input.text{
   float:right;
   margin-right:10px;
   margin-top:5px;
-}
-.functionTab .sideBorder a .btM{
   width:100px;
   text-align:center;
 }
@@ -3999,8 +3853,6 @@ input.text{
 .functionTab .buttons a {
   float:right;
   margin-left:10px;
-}
-.functionTab .buttons a .btM{
   width:100px;
   text-align:center;
 }
@@ -4040,7 +3892,7 @@ input.text{
 #enrollmentSection #tabAgreement .pagination .right{
   width: 45%;
 }
-#viewAgreementPanel .printBtn .btM{
+#viewAgreementPanel .printBtn {
   width:auto;
 }
 
@@ -4201,8 +4053,7 @@ input.passwordNormalInput{
 }
 
 /* delete UserAccount Modal */
-#new-modal #deleteUserAccountModal .buttonArea .btM,
-#new-modal #deleteUserAccountModal .buttonArea .btM{
+#new-modal #deleteUserAccountModal .buttonArea {
   padding-left:33px;
   padding-right:34px;
 }
@@ -4416,7 +4267,7 @@ input.passwordNormalInput{
 .memberInfoPanel .section input.tinyInput{
   width: 32px !important;
 }
-.memberInfoPanel .section a.purpleBtn{
+.memberInfoPanel .section .purpleBtn{
   margin-top: 4px;
 }
 .memberInfoPanel .requiredInfo {

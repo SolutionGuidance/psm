@@ -101,8 +101,8 @@
                 <div class="container">
                   <textarea rows="6" cols="60" class="textarea">Write your note here...</textarea>
                   <div class="buttons">
-                    <a id="saveNote" href="javascript:;" class="purpleBtn saveBtn"><span class="btR"><span class="btM">Save</span></span></a>
-                    <a href="javascript:;" class="greyBtn closeModal"><span class="btR"><span class="btM">CANCEL</span></span></a>
+                    <a id="saveNote" href="javascript:;" class="purpleBtn saveBtn">Save</a>
+                    <a href="javascript:;" class="greyBtn closeModal">CANCEL</a>
                   </div>
                 </div>
               </div>
@@ -144,7 +144,7 @@
                       <a id="preNote" href="javascript:;">&laquo; Previous</a>
                       <a id="nextNote" href="javascript:;" class="nextLink">Next &raquo;</a>
                     </div>
-                    <a href="javascript:;" class="greyBtn closeModal"><span class="btR"><span class="btM">CANCEL</span></span></a>
+                    <a href="javascript:;" class="greyBtn closeModal">CANCEL</a>
                   </div>
                 </div>
               </div>

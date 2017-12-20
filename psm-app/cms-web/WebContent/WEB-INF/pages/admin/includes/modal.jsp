@@ -31,8 +31,8 @@
                     <div class="middle">
                         <p>Are you sure you want to delete <span class="deleteAccountSpan">this user account</span>?</p>
                         <div class="buttonArea">
-                            <a href="javascript:;" class="purpleBtn closeModal okBtn linkRight" id="deleteBtn"><span class="btR"><span class="btM">Yes, delete</span></span></a>
-                            <a href="javascript:;" class="greyBtn closeModal"><span class="btR"><span class="btM">No, retain <span class="deleteAccountSpan">this user account</span> and cancel deletion</span></span></a>
+                            <a href="javascript:;" class="purpleBtn closeModal okBtn linkRight" id="deleteBtn">Yes, delete</a>
+                            <a href="javascript:;" class="greyBtn closeModal">No, retain <span class="deleteAccountSpan">this user account</span> and cancel deletion</a>
                         </div>
                     </div>
                 </div>

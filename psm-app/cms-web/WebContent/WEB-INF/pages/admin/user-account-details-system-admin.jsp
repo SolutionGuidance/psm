@@ -31,8 +31,8 @@
           </div>
           <div class="head">
             <h1 class="text">User Account Details</h1>
-            <a href="javascript:;" class="greyBtn deleteUserAccountModalBtnSingle" rel="${user.userId}"><span class="btR"><span class="btM"><img src="${ctx}/i/icon-x-red.png" class="delIcon" alt=""/>Delete User Account</span></span></a>
-            <a href="<c:url value='/system/user/edit?role=${role}&userId=${user.userId}' />" class="purpleBtn"><span class="btR"><span class="btM">Edit User Account</span></span></a>
+            <a href="javascript:;" class="greyBtn deleteUserAccountModalBtnSingle" rel="${user.userId}"><img src="${ctx}/i/icon-x-red.png" class="delIcon" alt=""/>Delete User Account</a>
+            <a href="<c:url value='/system/user/edit?role=${role}&userId=${user.userId}' />" class="purpleBtn">Edit User Account</a>
           </div>
           <div class="tabSection" id="myProfile">
             <div class="detailPanel">

@@ -28,7 +28,7 @@
                 <c:set var="formName" value="_20_npi_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="npiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
-                <a href="javascript:;" class="purpleBtn NPISetupLookup"><span class="btR"><span class="btM"><span class="icon">NPI Lookup</span></span></span></a>
+                <a href="javascript:;" class="purpleBtn NPISetupLookup"><span class="icon">NPI Lookup</span></a>
                 <span class="errorMsg">No records found with NPI number <span></span></span>
             </div>
         </div>
@@ -121,7 +121,7 @@
                 <c:set var="formName" value="_20_npi_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="npiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
-                <a href="javascript:;" class="purpleBtn NPISetupLookup"><span class="btR"><span class="btM"><span class="icon">NPI Lookup</span></span></span></a>
+                <a href="javascript:;" class="purpleBtn NPISetupLookup"><span class="icon">NPI Lookup</span></a>
                 <span class="errorMsg">No records found with NPI number <span></span></span>
             </div>
         </div>

@@ -84,7 +84,7 @@
                   <label>Enrollment Number:</label>
                   <input id="enrollmentNumber" type="text" class="text" value="${invalidEnrollmentNumberValue}" />
                   <input type="hidden" id="invalidEnrollmentNumber" value="${invalidEnrollmentNumber}"/>
-                  <a id="queryEnrollmentStatus" href="javascript:;" class="purpleBtn"><span class="btR"><span class="btM">Query Status</span></span></a>
+                  <a id="queryEnrollmentStatus" href="javascript:;" class="purpleBtn">Query Status</a>
                 </div>
                 <div id="invalidEnrollmentNumberError" class="enrollmentNumberError hide">
                   <span class="red">Invalid 'Enrollment Number' ( not exist ).</span>

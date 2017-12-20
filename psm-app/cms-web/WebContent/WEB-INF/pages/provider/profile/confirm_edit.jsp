@@ -56,14 +56,10 @@
               </c:if>
 
               <a href="${reuseEditProfileLink}" class="purpleBtn">
-                <span class="btR">
-                  <span class="btM">Continue Editing</span>
-                </span>
+                Continue Editing
               </a>
               <a href="${newEditProfileLink}" class="purpleBtn">
-                <span class="btR">
-                  <span class="btM">Start A New Draft</span>
-                </span>
+                Start A New Draft
               </a>
 
               <div class="clearFixed"></div>

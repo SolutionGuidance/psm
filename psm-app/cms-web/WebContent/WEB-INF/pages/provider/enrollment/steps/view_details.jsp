@@ -28,20 +28,14 @@
           <div class="head">
             <h1>View Enrollment Details</h1>
             <a class="greyBtn" href="<c:url value="/provider/enrollment/export" />">
-              <span class="btR">
-                <span class="btM"><img alt="" src="<c:url value="/i/icon-pdf.png" />"/>Export to PDF</span>
-              </span>
+              <img alt="" src="<c:url value="/i/icon-pdf.png" />"/>Export to PDF
             </a>
             <a class="greyBtn printModalBtn" href="javascript:printThis();">
-              <span class="btR">
-                <span class="btM"><img alt="" src="<c:url value="/i/icon-print.png" />"/>Print</span>
-              </span>
+              <img alt="" src="<c:url value="/i/icon-print.png" />"/>Print
             </a>
             <c:if test="${showReviewLink}">
               <a class="greyBtn" href="<c:url value="/agent/enrollment/screeningReview?id=${enrollment.objectId}" />">
-                <span class="btR">
-                  <span class="btM">Review</span>
-                </span>
+                Review
               </a>
             </c:if>
           </div>

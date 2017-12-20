@@ -49,14 +49,14 @@
                 <div class="right">
                   <c:choose>
                   <c:when test="${searchCriteria.showFilterPanel}">
-                    <a href="javascript:;" class="blueBtn filterBtn hideFilter"><span class="btR"><span class="btM"><span class="text">Hide Filter</span><span class="arrow"></span></span></span></a>
+                    <a href="javascript:;" class="blueBtn filterBtn hideFilter"><span class="text">Hide Filter</span><span class="arrow"></span></a>
                   </c:when>
                   <c:otherwise>
-                    <a href="javascript:;" class="blueBtn filterBtn showFilter"><span class="btR"><span class="btM"><span class="text">Filter</span><span class="arrow"></span></span></span></a>
+                    <a href="javascript:;" class="blueBtn filterBtn showFilter"><span class="text">Filter</span><span class="arrow"></span></a>
                   </c:otherwise>
                   </c:choose>
                   <c:if test="${searchResult.total > 0}">
-                    <a href="javascript:;" class="greyBtn deleteProviderTypesBtn"><span class="btR"><span class="btM">Delete Selected Provider Types</span></span></a>
+                    <a href="javascript:;" class="greyBtn deleteProviderTypesBtn">Delete Selected Provider Types</a>
                   </c:if>
                 </div>
               </div>
@@ -72,7 +72,7 @@
                     </div>
                   </div>
                 </div>
-                <a id="searchProviderTypes" href="javascript:;" class="purpleBtn showFilter"><span class="btR"><span class="btM">Filter</span></span></a>
+                <a id="searchProviderTypes" href="javascript:;" class="purpleBtn showFilter">Filter</a>
               </div>
               <div class="clearFixed"></div>
               <c:choose>
@@ -185,8 +185,8 @@
                 <div class="container">
                   <p class="modal_title"></p>
                   <div class="buttons">
-                    <a href="javascript:;" class="purpleBtn saveBtn"><span class="btR"><span class="btM">Delete</span></span></a>
-                    <a href="javascript:;" class="greyBtn closeModal"><span class="btR"><span class="btM">Cancel</span></span></a>
+                    <a href="javascript:;" class="purpleBtn saveBtn">Delete</a>
+                    <a href="javascript:;" class="greyBtn closeModal">Cancel</a>
                   </div>
                 </div>
               </div>

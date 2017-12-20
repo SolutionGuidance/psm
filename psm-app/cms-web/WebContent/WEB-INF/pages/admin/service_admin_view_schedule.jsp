@@ -33,7 +33,7 @@
               <div id="screenSchedulePanel">
                 <div class="pagination">
                   <div class="right">
-                    <a class="purpleBtn changeScheduleBtn" href="${ctx}/admin/beginEditScreeningSchedule"><span class="btR"><span class="btM">Change Schedule</span></span></a>
+                    <a class="purpleBtn changeScheduleBtn" href="${ctx}/admin/beginEditScreeningSchedule">Change Schedule</a>
                   </div>
                 </div>
                 <!-- /.pagination -->

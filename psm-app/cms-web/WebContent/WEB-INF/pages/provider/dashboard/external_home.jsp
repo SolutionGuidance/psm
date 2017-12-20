@@ -34,9 +34,7 @@
                     </p>
                     <div class="">
                       <a href="<c:url value="/provider/onboarding/list" />" class="purpleBtn">
-                        <span class="btR">
-                          <span class="btM">Import Profile</span>
-                        </span>
+                        Import Profile
                       </a>
                     </div>
                   </div>

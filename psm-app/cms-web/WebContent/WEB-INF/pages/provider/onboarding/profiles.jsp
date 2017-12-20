@@ -103,9 +103,7 @@
 
               <div class="tableDataButtons buttonBox">
                 <a href="<c:url value="/provider/dashboard/setup" />" class="greyBtn">
-                  <span class="btR">
-                    <span class="btM">Cancel</span>
-                  </span>
+                  Cancel
                 </a>
                 <c:if test="${not empty profiles}">
                   <button class="purpleBtn" type="submit">Import Selected</button>

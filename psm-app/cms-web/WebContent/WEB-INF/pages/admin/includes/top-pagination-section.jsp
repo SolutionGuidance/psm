@@ -38,15 +38,15 @@
             <c:if test="${hasFilterPanel }">
                 <c:choose>
                     <c:when test="${criteria.showFilterPanel}">
-                        <a href="javascript:;" class="blueBtn filterBtn hideFilter"><span class="btR"><span class="btM"><span class="text">Hide Filter</span><span class="arrow"></span></span></span></a>
+                        <a href="javascript:;" class="blueBtn filterBtn hideFilter"><span class="text">Hide Filter</span><span class="arrow"></span></a>
                     </c:when>
                     <c:otherwise>
-                        <a href="javascript:;" class="blueBtn filterBtn showFilter"><span class="btR"><span class="btM"><span class="text">Filter</span><span class="arrow"></span></span></span></a>
+                        <a href="javascript:;" class="blueBtn filterBtn showFilter"><span class="text">Filter</span><span class="arrow"></span></a>
                     </c:otherwise>
                 </c:choose>
             </c:if>
             <c:if test="${results.total > 0}">
-                <a href="javascript:;" class="greyBtn deleteUserAccountModalBtn"><span class="btR"><span class="btM"><img src="${ctx}/i/icon-x-red.png" class="delIcon" alt=""/>Delete Selected Accounts</span></span></a>
+                <a href="javascript:;" class="greyBtn deleteUserAccountModalBtn"><img src="${ctx}/i/icon-x-red.png" class="delIcon" alt=""/>Delete Selected Accounts</a>
             </c:if>
         </div>
     </div>

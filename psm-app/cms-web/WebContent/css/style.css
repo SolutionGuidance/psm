@@ -850,15 +850,25 @@ a.purpleBtn:hover span.btM{
 
 
 button.purpleBtn {
-  float:left;
-  background: #0f4d88;
-  border-radius:5px;
-  padding: 1px 16px;
-  line-height:25px;
-  cursor:pointer;
-  font-size:12px;
-  color:#fff;
-  text-shadow:0 1px 0 #000;
+  float: left;
+  background: linear-gradient(#175894, #0e477d);
+  border-radius: 4px;
+  padding: 0px 11px;
+  line-height: 23px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  text-shadow: 0 1px 0 #000;
+  border-width: 1px;
+  border-style: solid;
+  border-top-color: #3b6389;
+  border-right-color: #3b6389;
+  border-left-color: #3b6389;
+  border-bottom-color: #0f406a;
+}
+button.purpleBtn:hover {
+  background: linear-gradient(#0e477d, #175894)
 }
 
 a.greyBtn{
@@ -898,17 +908,21 @@ a.greyBtn img{
   float:left;
   margin:5px 5px 5px 0;
 }
-
 button.greyBtn {
-  float:left;
-  background: #e8e8e8;
-  border-radius:5px;
-  padding: 1px 16px;
-  line-height:25px;
-  cursor:pointer;
-  font-size:12px;
-  color:#064265;
-  text-shadow:0 1px 0 #fff;
+  float: left;
+  background: linear-gradient(#fafafa, #d8d8d8);
+  border-radius: 4px;
+  padding: 0px 11px;
+  line-height: 23px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #064265;
+  text-shadow: 0 1px 0 #fff;
+  border: solid 1px #cdcdcd;
+}
+button.greyBtn:hover {
+  background: linear-gradient(#d8d8d8, #fafafa);
 }
 
 a.blueBtn{
@@ -934,6 +948,18 @@ a.blueBtn span.btM{
   background:url(../i/blue-btn.png) repeat-x left -25px;
   height:25px;
   padding:0 6px;
+}
+button.blueBtn {
+  float: left;
+  background: #eff4f9;
+  border: 1px solid #b9d0e5;
+  border-radius: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 23px;
+  padding: 0px 9px;
+  cursor: pointer;
+  color: #064265;
+  font-size: 12px;
 }
 
 .ui-datepicker-trigger{
@@ -983,6 +1009,27 @@ a.purpleSmallBtn:hover span.btR{
 
 a.purpleSmallBtn:hover span.btM{
   background-position:left -63px;
+}
+button.purpleSmallBtn {
+  float: left;
+  background: linear-gradient(#175894, #0e477d);
+  border-radius: 4px;
+  padding: 0px 7px;
+  line-height: 19px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  text-shadow: 0 1px 0 #000;
+  border-width: 1px;
+  border-style: solid;
+  border-top-color: #3b6389;
+  border-right-color: #3b6389;
+  border-left-color: #3b6389;
+  border-bottom-color: #0f406a;
+}
+button.purpleSmallBtn:hover {
+  background: linear-gradient(#0e477d, #175894)
 }
 
 /* firstRegistrant */

@@ -97,15 +97,7 @@
             </sequence>
         </complexType>
     </element>
-    
-    <element name="SaveTicketResponse">
-        <complexType>
-            <sequence>
-                <element name="ticketNumber" maxOccurs="1" minOccurs="1" type="long" />
-            </sequence>
-        </complexType>
-    </element>
-    
+
     <element name="GetLookupGroupsRequest">
         <complexType>
             <sequence>

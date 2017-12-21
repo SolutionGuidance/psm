@@ -77,7 +77,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -107,8 +106,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     /**
      * List of roles with full access to all profiles and tickets.
      */
-    private static final List<String> FULL_ACCESS = Collections.singletonList(
-            ViewStatics.ROLE_SERVICE_ADMINISTRATOR
+    private static final List<String> FULL_ACCESS = Arrays.asList(
+            ViewStatics.ROLE_SERVICE_ADMINISTRATOR,
+            ViewStatics.ROLE_SYSTEM_ADMINISTRATOR
     );
 
     /**

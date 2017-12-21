@@ -34,7 +34,7 @@
                 <div class="sideBorder">
                   <h3><c:out value="${agreementDocument.title}"/></h3>
                   <a href="${ctx}/admin/viewAgreementDocuments" class="closeViewAgreementBtn greyBtn">Close</a>
-                  <a href="javascript:window.print();" class="greyBtn printBtn"><img src="${ctx}/i/icon-print.png" alt="" />Print</a>
+                  <a href="javascript:window.print();" class="greyBtn printBtn iconPrint">Print</a>
                 </div>
                 <div class="newEnrollmentPanel">
                   <div class="section">

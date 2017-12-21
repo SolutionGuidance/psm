@@ -20,8 +20,8 @@
         <div class="contentWidth">
           <div class="head">
             <h1>View Enrollment Details</h1>
-            <a class="greyBtn" href="<c:url value="/provider/enrollment/export" />"><img alt="" src="<c:url value="/i/icon-pdf.png" />" />Export to PDF</a>
-            <a class="greyBtn" href="javascript:window.print();"><img alt="" src="<c:url value="/i/icon-print.png" />" />Print</a>
+            <a class="greyBtn iconPdf" href="<c:url value="/provider/enrollment/export" />">Export to PDF</a>
+            <a class="greyBtn iconPrint" href="javascript:window.print();">Print</a>
           </div>
           <div id="printModal" class="tabSection">
 

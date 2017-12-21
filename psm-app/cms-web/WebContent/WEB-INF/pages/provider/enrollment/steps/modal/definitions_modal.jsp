@@ -10,8 +10,7 @@
 <div class="inner">
 <!-- title -->
 <div class="modal-title">
-    <a href="javascript:;" class="greyBtn">
-      <img src="<c:url value="/i/icon-x.png" />" alt=""/>
+    <a href="javascript:;" class="greyBtn iconX">
       Close
     </a>
     <h3>Definitions</h3>

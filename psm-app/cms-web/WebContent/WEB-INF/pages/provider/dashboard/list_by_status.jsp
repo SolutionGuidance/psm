@@ -67,8 +67,8 @@
                     <span class="text">${param.filterViewState eq 'visible' ? 'Hide Filter' : 'Filter'}</span>
                     <span class="arrow"></span>
                   </a>
-                  <a href="javascript:submitFormById('paginationForm','${exportResultsURL}')" class="greyBtn">
-                    <img src="<c:url value="/i/icon-pdf.png" />" alt=""/>Export to PDF
+                  <a href="javascript:submitFormById('paginationForm','${exportResultsURL}')" class="greyBtn iconPdf">
+                    Export to PDF
                   </a>
                 </div>
               </div>
@@ -187,11 +187,11 @@
         <div class="inner">
           <!-- title -->
           <div class="modal-title">
-            <a href="javascript:;" class="greyBtn">
-              <img src="<c:url value="/i/icon-x.png" />" alt=""/>Close
+            <a href="javascript:;" class="greyBtn iconX">
+              Close
             </a>
-            <a href="javascript:;" class="purpleBtn printBtn">
-              <img src="<c:url value="/i/icon-print2.png" />" alt=""/>Print
+            <a href="javascript:;" class="purpleBtn printBtn iconPrintWhite">
+              Print
             </a>
             <h3>Print Preview</h3>
           </div>

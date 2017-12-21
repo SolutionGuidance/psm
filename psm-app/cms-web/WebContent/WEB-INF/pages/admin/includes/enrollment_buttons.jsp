@@ -15,8 +15,8 @@
             <a href="javascript:;" class="blueBtn filterBtn showFilter"><span class="text">Filter</span><span class="arrow"></span></a>
         </c:otherwise>
     </c:choose>
-    <a id="exportEnrollmentsToPDF" href="javascript:;" class="greyBtn"><img src="${ctx}/i/icon-pdf.png" alt=""/>Export to PDF</a>
-    <a id="printEnrollments" href="javascript:;" class="greyBtn"><img src="${ctx}/i/icon-print.png" alt=""/>Print</a>
+    <a id="exportEnrollmentsToPDF" href="javascript:;" class="greyBtn iconPdf">Export to PDF</a>
+    <a id="printEnrollments" href="javascript:;" class="greyBtn iconPrint">Print</a>
     <c:if test="${active_enrollment_tab=='approved'||active_enrollment_tab=='notes'}">
         <a href="javascript:renewSelections('${ctx}/provider/enrollment/bulkRenewTickets');" class="greyBtn">Renew Selected Enrollments</a>
     </c:if>

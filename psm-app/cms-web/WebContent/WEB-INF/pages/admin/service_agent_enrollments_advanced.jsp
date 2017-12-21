@@ -145,8 +145,8 @@
                 <div class="pagination">
                   <%@ include file="/WEB-INF/pages/admin/includes/page_left_navigation.jsp" %>
                   <div class="right">
-                    <a id="exportEnrollmentsToPDF" href="javascript:;" class="greyBtn"><img src="${ctx}/i/icon-pdf.png" alt=""/>Export to PDF</a>
-                    <a id="printEnrollments" href="javascript:;" class="greyBtn"><img src="${ctx}/i/icon-print.png" alt=""/>Print</a>
+                    <a id="exportEnrollmentsToPDF" href="javascript:;" class="greyBtn iconPdf">Export to PDF</a>
+                    <a id="printEnrollments" href="javascript:;" class="greyBtn iconPrint">Print</a>
                   </div>
                 </div>
                 <!-- /.pagination -->

@@ -46,7 +46,7 @@
                 </c:choose>
             </c:if>
             <c:if test="${results.total > 0}">
-                <a href="javascript:;" class="greyBtn deleteUserAccountModalBtn"><img src="${ctx}/i/icon-x-red.png" class="delIcon" alt=""/>Delete Selected Accounts</a>
+                <a href="javascript:;" class="greyBtn deleteUserAccountModalBtn iconXRed">Delete Selected Accounts</a>
             </c:if>
         </div>
     </div>

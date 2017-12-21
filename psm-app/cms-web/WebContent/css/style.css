@@ -902,6 +902,37 @@ input.date{
   background: linear-gradient(#0e477d, #175894)
 }
 
+.iconPrint::before {
+  content: url("../i/icon-print.png");
+  padding-right: 4px;
+  position: relative;
+  top: 1px;
+}
+.iconPrintWhite::before {
+  content: url("../i/icon-print-white.png");
+  padding-right: 6px;
+  position: relative;
+  top: 3px;
+}
+.iconPdf::before {
+  content: url("../i/icon-pdf.png");
+  padding-right: 4px;
+  position: relative;
+  top: 1px;
+}
+.iconX::before {
+  content: url("../i/icon-x.png");
+  padding-right: 5px;
+  position: relative;
+  top: 1px;
+}
+.iconXRed::before {
+  content: url("../i/icon-x-red.png");
+  padding-right: 4px;
+  position: relative;
+  top: 2px;
+}
+
 /* firstRegistrant */
 .firstRegistrant{
   line-height:30px;
@@ -3992,9 +4023,6 @@ form .error{
 
 /* START OF SYSTEM ADMIN STYLES ------------------------------------------------- */
 /* img select inputtype password system admin */
-img.delIcon{
-  padding-top:3px;
-}
 select.userRoleSelect{
   margin:0 0 0 7px;
   width:213px;

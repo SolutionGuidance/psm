@@ -16,8 +16,15 @@
 
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Date;
-import javax.persistence.*;
 
 /**
  * A person beneficial owner.

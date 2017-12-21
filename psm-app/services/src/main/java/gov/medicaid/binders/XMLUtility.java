@@ -49,7 +49,6 @@ import gov.medicaid.domain.model.SpecialtiesType;
 import gov.medicaid.domain.model.ValidationResultType;
 import gov.medicaid.domain.model.VerificationStatusType;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 

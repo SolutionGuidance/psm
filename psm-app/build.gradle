@@ -56,15 +56,6 @@ ext.libs = [
     velocity: 'org.apache.velocity:velocity:1.7',
 ]
 
-// These libraries were included in the original project, but it is unclear if they
-// are required.  We know for sure that SOME of them are loaded during runtime, but
-// need to spend some time investigating one by one.
-List runtime_libs = [
-    'net.sourceforge.jexcelapi:jxl:2.6.10',
-    'org.codehaus.jackson:jackson-mapper-asl:1.9.13',
-    'org.codehaus.janino:janino:2.5.15',
-]
-
 allprojects {
     apply plugin: 'checkstyle'
 
@@ -111,7 +102,6 @@ project(':services') {
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/codehaus/jackson')
-        runtime runtime_libs
     }
     sourceSets {
         main {
@@ -175,7 +165,6 @@ project(':cms-web') {
         compile libs.spring_webmvc
         runtime libs.handlebars
         runtime libs.handlebars_springmvc
-        runtime runtime_libs
     }
     webAppDirName = 'WebContent'
 
@@ -260,7 +249,6 @@ project(':cms-portal-services') {
         earlib libs.velocity
         earlib project(path: ':cms-business-model', configuration: 'archives')
         earlib project(path: ':services', configuration: 'archives')
-        earlib runtime_libs
    }
 
     ear {

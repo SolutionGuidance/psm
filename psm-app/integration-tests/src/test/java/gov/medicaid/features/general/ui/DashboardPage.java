@@ -19,4 +19,8 @@ public class DashboardPage extends PageObject {
         click(this, $(".nextBtn"));
     }
 
+    public void logout() {
+        click(this, $(".logoutButton"));
+    }
+
 }

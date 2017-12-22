@@ -3,6 +3,7 @@ package gov.medicaid.features.enrollment.steps;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import gov.medicaid.features.general.steps.GeneralSteps;
 import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
 import gov.medicaid.features.enrollment.ui.PersonalInfoPage;
 import net.thucydides.core.annotations.Steps;
@@ -16,13 +17,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ValidationStepDefinitions {
     @Steps
     EnrollmentSteps enrollmentSteps;
+    
+    @Steps
+    GeneralSteps generalSteps;
 
     private OrganizationInfoPage organizationInfoPage;
     private PersonalInfoPage personalInfoPage;
 
     @Given("^I have started an enrollment$")
     public void i_have_started_an_enrollment() {
-        enrollmentSteps.loginAsProvider();
+        generalSteps.loginAsProvider();
         enrollmentSteps.createEnrollment();
     }
 

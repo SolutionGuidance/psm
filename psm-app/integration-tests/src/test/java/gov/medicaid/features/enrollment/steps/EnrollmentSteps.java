@@ -71,14 +71,6 @@ public class EnrollmentSteps {
 
     private SimpleDateFormat formFieldDateFormat = new SimpleDateFormat("MMddyyyy");
 
-    @Step
-    public void loginAsProvider() {
-        loginPage.open();
-        loginPage.enterProviderCredentials();
-        loginPage.login();
-        loginPage.checkUserLoggedIn("p1");
-    }
-
     public void createEnrollment() {
         dashboardPage.clickOnNewEnrollment();
     }

@@ -89,7 +89,7 @@ After a PSM account is created:
    service administrator), and can change their own or others'
    usernames.
 
-Connecting PSM login to another authentication system
------------------------------------------------------
+Can I connect PSM login to another authentication system?
+---------------------------------------------------------
 
 This functionality is not yet implemented.

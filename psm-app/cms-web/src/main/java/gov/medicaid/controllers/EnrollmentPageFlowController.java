@@ -37,8 +37,6 @@ import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.RequestType;
 import gov.medicaid.domain.model.ResubmitTicketRequest;
 import gov.medicaid.domain.model.ResubmitTicketResponse;
-import gov.medicaid.domain.model.SaveTicketRequest;
-import gov.medicaid.domain.model.SaveTicketResponse;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.domain.model.SubmitTicketRequest;
@@ -1040,17 +1038,17 @@ public class EnrollmentPageFlowController extends BaseController {
         }
 
         if (errors.isEmpty()) {
-            SaveTicketRequest serviceRequest = new SaveTicketRequest();
             CMSPrincipal principal = ControllerHelper.getPrincipal();
-            serviceRequest.setSystemId(principal.getAuthenticatedBySystem().name());
-            serviceRequest.setUsername(principal.getUsername());
-            serviceRequest.setNpi(principal.getUser().getProxyForNPI());
-            serviceRequest.setEnrollment(enrollment);
-            SaveTicketResponse serviceResponse = enrollmentWebService.saveTicket(serviceRequest);
+            long enrollmentId = enrollmentWebService.saveTicket(
+                    principal.getUsername(),
+                    principal.getAuthenticatedBySystem().name(),
+                    principal.getUser().getProxyForNPI(),
+                    enrollment
+            );
 
             ControllerHelper.flashPopup("saveAsDraftModal");
             ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/view");
-            mv.addObject("id", serviceResponse.getTicketNumber());
+            mv.addObject("id", enrollmentId);
             status.setComplete();
             return mv;
         } else {

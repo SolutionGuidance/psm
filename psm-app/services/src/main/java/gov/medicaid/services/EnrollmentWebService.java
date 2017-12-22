@@ -16,6 +16,7 @@
 
 package gov.medicaid.services;
 
+import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.GetLookupGroupsRequest;
 import gov.medicaid.domain.model.GetLookupGroupsResponse;
 import gov.medicaid.domain.model.GetProfileDetailsRequest;
@@ -24,8 +25,6 @@ import gov.medicaid.domain.model.GetTicketDetailsRequest;
 import gov.medicaid.domain.model.GetTicketDetailsResponse;
 import gov.medicaid.domain.model.ResubmitTicketRequest;
 import gov.medicaid.domain.model.ResubmitTicketResponse;
-import gov.medicaid.domain.model.SaveTicketRequest;
-import gov.medicaid.domain.model.SaveTicketResponse;
 import gov.medicaid.domain.model.SubmitTicketRequest;
 import gov.medicaid.domain.model.SubmitTicketResponse;
 
@@ -57,11 +56,19 @@ public interface EnrollmentWebService {
     /**
      * Saves the ticket details.
      *
-     * @param request the service request
-     * @return the service response
+     * @param username   the username of the requesting user
+     * @param systemId   the system that authenticated the requesting user
+     * @param npi        the NPI for which this user is a proxy, if any
+     * @param enrollment the enrollment to save
+     * @return the enrollment (ticket) ID
      * @throws PortalServiceException for any errors encountered
      */
-    public SaveTicketResponse saveTicket(SaveTicketRequest request) throws PortalServiceException;
+    public long saveTicket(
+            String username,
+            String systemId,
+            String npi,
+            EnrollmentType enrollment
+    ) throws PortalServiceException;
 
     /**
      * Submits the given enrollment request.

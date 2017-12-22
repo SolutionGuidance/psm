@@ -31,8 +31,6 @@ import gov.medicaid.domain.model.LookupGroupNames;
 import gov.medicaid.domain.model.LookupTableEntry;
 import gov.medicaid.domain.model.ResubmitTicketRequest;
 import gov.medicaid.domain.model.ResubmitTicketResponse;
-import gov.medicaid.domain.model.SaveTicketRequest;
-import gov.medicaid.domain.model.SaveTicketResponse;
 import gov.medicaid.domain.model.SubmitTicketRequest;
 import gov.medicaid.domain.model.SubmitTicketResponse;
 import gov.medicaid.entities.CMSUser;
@@ -211,17 +209,21 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
     /**
      * Saves the ticket details.
      *
-     * @param request the service request
-     * @return the service response
+     * @param username   the username of the requesting user
+     * @param systemId   the system that authenticated the requesting user
+     * @param npi        the NPI for which this user is a proxy, if any
+     * @param enrollment the enrollment to save
+     * @return the enrollment (ticket) ID
      * @throws PortalServiceException for any errors encountered
      */
-    public SaveTicketResponse saveTicket(SaveTicketRequest request) throws PortalServiceException {
-        EnrollmentType enrollment = request.getEnrollment();
-        CMSUser user = findUser(request.getUsername(), request.getSystemId(), request.getNpi());
-        long ticketId = saveTicket(user, enrollment, true);
-        SaveTicketResponse response = new SaveTicketResponse();
-        response.setTicketNumber(ticketId);
-        return response;
+    public long saveTicket(
+            String username,
+            String systemId,
+            String npi,
+            EnrollmentType enrollment
+    ) throws PortalServiceException {
+        CMSUser user = findUser(username, systemId, npi);
+        return saveTicket(user, enrollment, true);
     }
 
     /**

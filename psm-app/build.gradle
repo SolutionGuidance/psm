@@ -162,9 +162,15 @@ project(':cms-business-process') {
 
 project(':cms-web') {
     apply plugin: 'war'
+
+    configurations {
+        userdocs
+    }
+
     dependencies {
         providedCompile project(':services')
         providedCompile fileTree(dir: 'WebContent/WEB-INF/lib')
+        userdocs project(path: ':userhelp', configuration: 'html')
         compile libs.spring_beans
         compile libs.spring_ldap
         compile libs.spring_security_acl
@@ -186,6 +192,12 @@ project(':cms-web') {
         configure(options) {
             noTimestamp true
             tags = ['endpoint:a:Endpoint:', 'verb:a:HTTP Verbs Allowed:']
+        }
+    }
+
+    war {
+        from(configurations.userdocs) {
+            into 'help'
         }
     }
 }
@@ -321,6 +333,10 @@ project(':integration-tests') {
 project(':userhelp') {
     apply plugin: BasePlugin
 
+    configurations {
+        html
+    }
+
     ['epub', 'html', 'latex',].each { name ->
         task(
             name,
@@ -353,6 +369,12 @@ project(':userhelp') {
     ) {
         sourceDirectory = 'source'
         builder = 'linkcheck'
+    }
+
+    artifacts {
+        html(html.outputDirectory) {
+            builtBy html
+        }
     }
 
     check.dependsOn linkcheck

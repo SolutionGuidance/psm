@@ -38,9 +38,9 @@ ext.libs = [
         exclude group: 'org.hibernate.javax.persistence'
     },
     jbpm_persistence_jpa: dependencies.create("org.jbpm:jbpm-persistence-jpa:${jbpm_version}") {
-       exclude group: 'javax.transaction'
-       exclude group: 'org.hibernate'
-       exclude group: 'org.hibernate.javax.persistence'
+        exclude group: 'javax.transaction'
+        exclude group: 'org.hibernate'
+        exclude group: 'org.hibernate.javax.persistence'
     },
     spring_beans: "org.springframework:spring-beans:${spring_core_version}",
     spring_context: "org.springframework:spring-context:${spring_core_version}",
@@ -180,13 +180,13 @@ project(':cms-web') {
     webAppDirName = 'WebContent'
 
     task apiDocs(type: Javadoc) {
-      source = sourceSets.main.allJava
-      classpath += configurations.compile
-      destinationDir = reporting.file('api-docs')
-      configure(options) {
-        noTimestamp true
-        tags = ['endpoint:a:Endpoint:', 'verb:a:HTTP Verbs Allowed:']
-      }
+        source = sourceSets.main.allJava
+        classpath += configurations.compile
+        destinationDir = reporting.file('api-docs')
+        configure(options) {
+            noTimestamp true
+            tags = ['endpoint:a:Endpoint:', 'verb:a:HTTP Verbs Allowed:']
+        }
     }
 }
 

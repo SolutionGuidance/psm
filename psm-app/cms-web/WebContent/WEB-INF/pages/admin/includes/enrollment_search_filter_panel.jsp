@@ -18,11 +18,11 @@
                 <label>Date Submitted</label>
                 <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
-                    <input id="submissionDateStartInput" value='<fmt:formatDate value="${searchCriteria.submissionDateStart}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
+                    <input id="submissionDateStartInput" title="Submission Date Start" value='<fmt:formatDate value="${searchCriteria.submissionDateStart}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
                 </span>
                 <span class="floatL"> - </span>
                 <span class="dateWrapper floatL">
-                    <input id="submissionDateEndInput"  value='<fmt:formatDate value="${searchCriteria.submissionDateEnd}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
+                    <input id="submissionDateEndInput" title="Submission Date End" value='<fmt:formatDate value="${searchCriteria.submissionDateEnd}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
                 </span>
             </div>
             <div class="row">

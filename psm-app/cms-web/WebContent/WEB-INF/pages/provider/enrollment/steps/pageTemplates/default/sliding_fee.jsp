@@ -28,7 +28,7 @@
                     </c:url>
                     <a href="${downloadLink}">Download</a>
                 </c:if>
-                <input type="file" class="fileUpload" name="${formName}" />
+                <input title="Sliding Fee Schedule" type="file" class="fileUpload" name="${formName}" />
             </div>
         </div>
         <div class="clearFixed"></div>

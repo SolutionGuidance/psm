@@ -73,11 +73,11 @@
                 <label>Status Date</label>
                 <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
-                    <form:input path="statusDateStart" cssClass="date" readonly=""/>
+                    <form:input title="Status Start" path="statusDateStart" cssClass="date" readonly=""/>
                 </span>
                 <span class="floatL"> - </span>
                 <span class="dateWrapper floatL">
-                    <form:input path="statusDateEnd" cssClass="date" readonly=""/>
+                    <form:input title="Status End" path="statusDateEnd" cssClass="date" readonly=""/>
                 </span>
             </div>
         </div>

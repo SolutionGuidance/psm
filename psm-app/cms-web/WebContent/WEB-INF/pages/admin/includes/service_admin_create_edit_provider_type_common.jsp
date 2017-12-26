@@ -29,11 +29,11 @@
                         </div>
                         <div class="col3">
                             <div class="row">
-                                <form:select path="agreement.id" items="${agreements}" itemLabel="title" itemValue="id">
+                                <form:select title="Agreement" path="agreement.id" items="${agreements}" itemLabel="title" itemValue="id">
                                 </form:select>
                             </div>
                             <div class="row">
-                                <form:select path="addendum.id" items="${addendums}" itemLabel="title" itemValue="id">
+                                <form:select title="Addendum" path="addendum.id" items="${addendums}" itemLabel="title" itemValue="id">
                                 </form:select>
                             </div>
                         </div>

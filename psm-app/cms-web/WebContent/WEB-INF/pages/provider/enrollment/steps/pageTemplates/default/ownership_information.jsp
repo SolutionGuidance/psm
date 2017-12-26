@@ -197,16 +197,16 @@
 
                 <c:set var="formName" value="_17_iboAddressLine1_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Home Residence Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
 
             <div class="row inlineBox addressline2">
                 <span class="label">(Practice location cannot be a<br />PO Box)</span>
                 <span class="floatL"><b>&nbsp;</b></span>
-                
+
                 <c:set var="formName" value="_17_iboAddressLine2_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Home Residence Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
             
             <div class="row inlineBox">
@@ -274,7 +274,7 @@
                 <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_17_iboOtherAddressLine1_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row inlineBox addressline2">
@@ -282,7 +282,7 @@
                 <span class="floatL"><b>&nbsp;</b></span>
                 <c:set var="formName" value="_17_iboOtherAddressLine2_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Other Provider Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>
@@ -418,7 +418,7 @@
 
                 <c:set var="formName" value="_17_cboAddressLine1_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Business Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
             
             <div class="row inlineBox addressline2">
@@ -426,7 +426,7 @@
                 <span class="floatL"><b>&nbsp;</b></span>
                 <c:set var="formName" value="_17_cboAddressLine2_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Business Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
             
             <div class="row inlineBox">
@@ -493,7 +493,7 @@
                 <span class="floatL"><b>:</b></span>
                  <c:set var="formName" value="_17_cboOtherAddressLine1_${status.index - 1}"></c:set>
                  <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row inlineBox addressline2">
@@ -501,7 +501,7 @@
                 <span class="floatL"><b>&nbsp;</b></span>
                  <c:set var="formName" value="_17_cboOtherAddressLine2_${status.index - 1}"></c:set>
                  <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Other Provider Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>
@@ -629,7 +629,7 @@
 
                 <c:set var="formName" value="_17_cboAddressLine1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Business Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
             
             <div class="row inlineBox addressline2">
@@ -637,7 +637,7 @@
                 <span class="floatL"><b>&nbsp;</b></span>
                 <c:set var="formName" value="_17_cboAddressLine2"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Business Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
             
             <div class="row inlineBox">
@@ -704,7 +704,7 @@
                 <span class="floatL"><b>:</b></span>
                  <c:set var="formName" value="_17_cboOtherAddressLine1"></c:set>
                  <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
                 <div class="clearFixed"></div>
             </div>
             
@@ -713,7 +713,7 @@
                 <span class="floatL"><b>&nbsp;</b></span>
                 <c:set var="formName" value="_17_cboOtherAddressLine2"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Other Provider Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
             
             <div class="row inlineBox">
@@ -878,7 +878,7 @@
 
                 <c:set var="formName" value="_17_iboAddressLine1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Home Residence Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
 
             <div class="row inlineBox addressline2">
@@ -886,7 +886,7 @@
                 <span class="floatL"><b>&nbsp;</b></span>
                 <c:set var="formName" value="_17_iboAddressLine2"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Home Residence Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
             
             <div class="row inlineBox">
@@ -953,7 +953,7 @@
                 <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_17_iboOtherAddressLine1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row inlineBox addressline2">
@@ -961,7 +961,7 @@
                 <span class="floatL"><b>&nbsp;</b></span>
                 <c:set var="formName" value="_17_iboOtherAddressLine2"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Other Provider Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>

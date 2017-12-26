@@ -114,7 +114,7 @@
                         <thead>
                           <tr>
                             <th class="alignCenter">
-                              <input type="checkbox" name="agreementType" class="selectAll"/>
+                              <input title="Select All" type="checkbox" name="agreementType" class="selectAll" />
                               <span class="sep"></span>
                             </th>
                             <th>

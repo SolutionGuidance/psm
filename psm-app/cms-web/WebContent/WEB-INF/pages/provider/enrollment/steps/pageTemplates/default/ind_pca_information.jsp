@@ -53,7 +53,7 @@
 
                 <c:set var="formName" value="_10_addressLine1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="wholeInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Address Line 1" class="wholeInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
             <div class="row inlineBox addressline2">
                 <span class="label">(Residential Address only - do not<br />enter a PO Box)</span>
@@ -61,9 +61,9 @@
 
                 <c:set var="formName" value="_10_addressLine2"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="wholeInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input type="text" title="Address Line 2" class="wholeInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
-            
+
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
@@ -95,7 +95,7 @@
                     </c:forEach>
                    </select>
             </div>
-                
+
             <div class="row">
                 <label>UMPI</label>
                 <span class="floatL"><b>:</b></span>
@@ -104,7 +104,7 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
             </div>
-            
+
             <div class="row requireField">
                 <label>Date of Birth<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
@@ -115,27 +115,27 @@
                     <input class="date" type="text" name="${formName}" value="${formValue}"/>
                 </span>
             </div>
-                
+
             <div class="row">
                 <label>Phone Number</label>
                 <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_10_phone1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                <input type="text" title="Area Code" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
                 <span class="sep">-</span>
                 <c:set var="formName" value="_10_phone2"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                <input type="text" title="Prefix" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
                 <span class="sep">-</span>
                 <c:set var="formName" value="_10_phone3"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="autotab smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
+                <input type="text" title="Line Number" class="autotab smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
                 <span class="sep"><strong>ext.</strong></span>
                 <c:set var="formName" value="_10_phone4"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                <input type="text" title="Phone Extension" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
             </div>
-            
+
             <div class="clearFixed"></div>
         </div>
     </div>

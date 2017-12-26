@@ -28,7 +28,7 @@
         <thead>
             <tr>
                 <th class="alignCenter">
-                    <input type="checkbox" name="providers" class="selectAll"/>
+                    <input type="checkbox" title="Select All" name="providers" class="selectAll"/>
                     <span class="sep"></span>
                 </th>
                 <%@ include file="/WEB-INF/pages/admin/includes/sortable-table-headers.jsp" %>
@@ -40,7 +40,7 @@
             <c:forEach var="item" items="${results.items}">
             <tr>
                 <td class="alignCenter">
-                <input type="checkbox" value="${item.userId}" name="providers"/>
+                <input type="checkbox" title="User ${item.userId}" value="${item.userId}" name="providers"/>
                 </td>
                 <td><a href="<c:url value='/system/user/details?role=${role}&userId=${item.userId}' />">${item.username}</a></td>
                 <td>${item.lastName}</td>

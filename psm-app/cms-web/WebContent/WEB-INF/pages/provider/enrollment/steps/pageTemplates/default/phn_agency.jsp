@@ -33,7 +33,7 @@
                                 <td>
                                     <c:set var="formName" value="_26_countyName"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="20"/>                                
+                                    <input type="text" title="County Name" class="normalInput" name="${formName}" value="${formValue}" maxlength="20"/>
                                 </td>
                             </tr>
                             <tr>
@@ -44,7 +44,7 @@
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_26_contractAttachment"></c:set>
-                                    <input type="file" class="fileUpload" name="${formName}" />
+                                    <input type="file" title="Contract File" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">

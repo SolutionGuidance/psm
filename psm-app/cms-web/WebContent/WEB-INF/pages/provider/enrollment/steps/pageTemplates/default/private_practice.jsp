@@ -79,14 +79,14 @@
 
                     <c:set var="formName" value="_05_addressLine1"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input ${disableLinkedFields} type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
+                    <input ${disableLinkedFields} type="text" title="Practice Address, Line 1" class="normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
                 </div>
                 <div class="row inlineBox addressline2">
                     <span class="label">(Practice location cannot be<br />a PO Box)</span>
                     <span class="floatL"><b>&nbsp;</b></span>
                     <c:set var="formName" value="_05_addressLine2"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input ${disableLinkedFields} type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
+                    <input ${disableLinkedFields} type="text" title="Practice Address, Line 2" class="normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
                 </div>
                 <div class="row inlineBox">
                     <span class="label">&nbsp;</span>
@@ -124,34 +124,34 @@
                     <span class="floatL"><b>:</b></span>
                     <c:set var="formName" value="_05_phone1"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input ${disableLinkedFields} type="text" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                    <input ${disableLinkedFields} type="text" title="Practice Phone Area Code" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
                     <span class="sep">-</span>
                     <c:set var="formName" value="_05_phone2"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input ${disableLinkedFields} type="text" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                    <input ${disableLinkedFields} type="text" title="Practice Phone Prefix" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
                     <span class="sep">-</span>
                     <c:set var="formName" value="_05_phone3"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input ${disableLinkedFields} type="text" class="autotab smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
+                    <input ${disableLinkedFields} type="text" title="Practice Phone Line Number" class="autotab smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
                     <span class="sep"><strong>ext.</strong></span>
                     <c:set var="formName" value="_05_phone4"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input ${disableLinkedFields} type="text" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                    <input ${disableLinkedFields} type="text" title="Practice Phone Extension" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
                 </div>
                 <div class="row">
                     <label>Practice Fax Number</label>
                     <span class="floatL"><b>:</b></span>
                     <c:set var="formName" value="_05_fax1"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input ${disableLinkedFields} type="text" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                    <input ${disableLinkedFields} type="text" title="Practice Fax Area Code" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
                     <span class="sep">-</span>
                     <c:set var="formName" value="_05_fax2"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input ${disableLinkedFields} type="text" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                    <input ${disableLinkedFields} type="text" title="Practice Fax Prefix" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
                     <span class="sep">-</span>
                     <c:set var="formName" value="_05_fax3"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input ${disableLinkedFields} type="text" class="autotab smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
+                    <input ${disableLinkedFields} type="text" title="Practice Fax Line Number" class="autotab smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
                 </div>
                 <div class="row reimbursementAddressRow">
                     <label>Billing Address<span class="required">*</span></label>
@@ -166,13 +166,13 @@
                         <div class="row addressline1">
                             <c:set var="formName" value="_05_billingAddressLine1"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${billingAddressMarkup} type="text" class="${disableBillingAddress ? 'disabled' : '' } addressInput normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
+                            <input ${billingAddressMarkup} type="text" title="Billing Address, Line 1" class="${disableBillingAddress ? 'disabled' : '' } addressInput normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
                         </div>
 
                         <div class="row addressline2">
                             <c:set var="formName" value="_05_billingAddressLine2"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${billingAddressMarkup} type="text" class="${disableBillingAddress ? 'disabled' : '' } addressInput normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
+                            <input ${billingAddressMarkup} type="text" title="Billing Address, Line 2" class="${disableBillingAddress ? 'disabled' : '' } addressInput normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
                         </div>
 
                         <div class="addreddWrapper">
@@ -189,6 +189,7 @@
                                     <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                                 </c:forEach>
                             </select>
+
                             <c:set var="formName" value="_05_billingZip"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <label class="smallLabel">ZIP Code<span class="required">*</span> : </label>
@@ -228,7 +229,7 @@
                     <span class="floatL">/</span>
                     <c:set var="formName" value="_05_fye2"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input ${disableLinkedFields} type="text" class="fiscalYearInput smallInput" name="${formName}" value="${formValue}" maxlength="2"/>
+                    <input ${disableLinkedFields} type="text" title="Fiscal End Day" class="fiscalYearInput smallInput" name="${formName}" value="${formValue}" maxlength="2"/>
                     <span class="shrtFldInfo">MM/DD</span>
                 </div>
                 <div class="row">

@@ -30,7 +30,7 @@
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_37_hcfaApproval"></c:set>
-                                    <input type="file" class="fileUpload" name="${formName}" />
+                                    <input type="file" title="Approval Letter File" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">
@@ -48,7 +48,7 @@
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_37_grantDocuments"></c:set>
-                                    <input type="file" class="fileUpload" name="${formName}" />
+                                    <input type="file" title="Grant Documents File" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">
@@ -69,7 +69,7 @@
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_37_statusContract"></c:set>
-                                    <input type="file" class="fileUpload" name="${formName}" />
+                                    <input type="file" title="Cover Page File" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">
@@ -79,7 +79,7 @@
                                     </c:if>
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td>
                                     <c:set var="formName" value="_37_qualificationType"></c:set>
@@ -88,7 +88,7 @@
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_37_indianHealthServiceContract"></c:set>
-                                    <input type="file" class="fileUpload" name="${formName}" />
+                                    <input type="file" title="Indian Health Service Contract File" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">

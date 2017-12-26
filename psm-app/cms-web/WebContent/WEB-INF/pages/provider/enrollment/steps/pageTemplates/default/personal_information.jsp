@@ -127,6 +127,7 @@
                 <input ${disableContact}
                     id="contactPhone1"
                     type="text"
+                    title="Contact Phone Area Code"
                     class="${disableContact} autotab smallInput"
                     name="${formName}"
                     value="${formValue}"
@@ -137,6 +138,7 @@
                 <input ${disableContact}
                     id="contactPhone2"
                     type="text"
+                    title="Contact Phone Prefix"
                     class="${disableContact}
                     autotab smallInput"
                     name="${formName}"
@@ -148,6 +150,7 @@
                 <input ${disableContact}
                     id="contactPhone3"
                     type="text"
+                    title="Contact Phone Line Number"
                     class="${disableContact} autotab smallInputP"
                     name="${formName}"
                     value="${formValue}"
@@ -158,6 +161,7 @@
                 <input ${disableContact}
                     id="contactPhone4"
                     type="text"
+                    title="Contact Phone Extension"
                     class="${disableContact} autotab smallInput"
                     name="${formName}"
                     value="${formValue}"

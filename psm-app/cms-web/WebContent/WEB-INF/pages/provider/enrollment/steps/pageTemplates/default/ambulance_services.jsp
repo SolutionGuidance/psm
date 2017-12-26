@@ -30,7 +30,7 @@
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_39_basicServices"></c:set>
-                                    <input type="file" class="fileUpload" name="${formName}" />
+                                    <input type="file" title="Basic Service Form" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">
@@ -48,7 +48,7 @@
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_39_advancedLifeSupport"></c:set>
-                                    <input type="file" class="fileUpload" name="${formName}" />
+                                    <input type="file" title="Advanced Life Support Form" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">
@@ -66,7 +66,7 @@
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_39_airTransport"></c:set>
-                                    <input type="file" class="fileUpload" name="${formName}" />
+                                    <input type="file" title="Air Transport with FAA Certification Form" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">

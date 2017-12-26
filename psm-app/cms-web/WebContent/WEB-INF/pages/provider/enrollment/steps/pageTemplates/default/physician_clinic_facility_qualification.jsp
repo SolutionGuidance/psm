@@ -26,15 +26,15 @@
                             <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/> Hospital Based Clinic Designation:  approval letter from CMS
                         </td>
                         <td>
-                   <c:set var="formName" value="_40_designationApproval"></c:set>
-                   <input type="file" class="fileUpload" name="${formName}" />
-                   <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                   <c:if test="${not empty formValue}">
-                       <c:url var="downloadLink" value="/provider/enrollment/attachment">
-                            <c:param name="id" value="${formValue}"></c:param>
-                       </c:url>
-                       <div><a href="${downloadLink}">Download</a></div>
-                   </c:if>
+                           <c:set var="formName" value="_40_designationApproval"></c:set>
+                           <input type="file" title="Approval Letter File" class="fileUpload" name="${formName}" />
+                           <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                           <c:if test="${not empty formValue}">
+                               <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                                    <c:param name="id" value="${formValue}"></c:param>
+                               </c:url>
+                               <div><a href="${downloadLink}">Download</a></div>
+                           </c:if>
                         </td>
                     </tr>
                     </tbody>

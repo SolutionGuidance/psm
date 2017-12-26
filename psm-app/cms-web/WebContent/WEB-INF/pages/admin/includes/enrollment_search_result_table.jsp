@@ -49,7 +49,7 @@
     <thead>
         <tr>
             <th class="alignCenter">
-                <input type="checkbox" id="enrollmentSelectAll" name="enrollmentRowCheckBox" class="selectAll"/>
+                <input type="checkbox" title="Select All Enrollments" id="enrollmentSelectAll" name="enrollmentRowCheckBox" class="selectAll"/>
                 <span class="sep"></span>
             </th>
             <c:set var="sortFieldOfEntity" value="2"/>
@@ -121,7 +121,7 @@
         <c:forEach var="item" items="${searchResult.items}">
             <tr>
                 <td class="alignCenter">
-                    <input type="checkbox" title="Enrollment ${item.ticketId}" class="enrollmentRowCheckBox" value="${item.ticketId}" title="${item.ticketId}"/>
+                    <input type="checkbox" title="Enrollment ${item.ticketId}" class="enrollmentRowCheckBox" value="${item.ticketId}" />
                 </td>
                 <td>
                     <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">${item.npi}</a>

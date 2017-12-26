@@ -98,13 +98,13 @@
                           <b>:</b>
                         </span>
                         <span class="dateWrapper floatL">
-                          <form:input path="createDateStart" cssClass="date" readonly=""/>
+                          <form:input title="Create Start" path="createDateStart" cssClass="date" readonly=""/>
                         </span>
                         <span class="floatL">
                           -
                         </span>
                         <span class="dateWrapper floatL">
-                          <form:input path="createDateEnd" cssClass="date" readonly=""/>
+                          <form:input title="Create End" path="createDateEnd" cssClass="date" readonly=""/>
                         </span>
                       </div>
                     </div>

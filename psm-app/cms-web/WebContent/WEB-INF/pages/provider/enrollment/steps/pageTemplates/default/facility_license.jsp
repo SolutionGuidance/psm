@@ -71,7 +71,7 @@
                 <tr>
                     <th class="firstTheader">#<span class="sep"></span></th>
                     <th class="alignCenter"><span class="multi">Type of License<br/>/Certification</span><span class="required">*</span><span class="sep"></span></th>
-                    <th class="alignCenter"><span class="multi">License/Certification</span><span class="required">*</span><span class="sep"></span></th>
+                    <th class="alignCenter"><span class="multi">License/Certification Number</span><span class="required">*</span><span class="sep"></span></th>
                     <th class="alignCenter"><span class="multi">Original Issue Date<br/> (MM/DD/YYYY)</span><span class="required">*</span><span class="sep"></span></th>
                     <th class="alignCenter"><span class="multi">Renewal End Date<br/> (MM/DD/YYYY)</span><span class="required">*</span><span class="sep"></span></th>
                     <th class="alignCenter">Issuing State<span class="required">*</span><span class="sep"></span></th>
@@ -83,11 +83,11 @@
             <c:set var="formName" value="_21_attachmentSize"></c:set>
             <c:forEach begin="1" end="${requestScope[formName]}" varStatus="status">
                 <tr>
-                    <td class="alignCenter">${status.count}</td>
+                    <td class="alignCenter">${status.index}</td>
                     <td>
                         <c:set var="formName" value="_21_licenseType_${status.index - 1}"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <select class="bigSelect medicareCheck" name="${formName}">
+                        <select title="Type of License (License ${status.index})" class="bigSelect medicareCheck" name="${formName}">
                             <option value="">Please select</option>
                             <c:forEach var="opt" items="${requestScope['_21_licenseTypes']}">
                                 <option ${formValue eq opt.description ? 'selected' : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
@@ -96,25 +96,25 @@
                     </td>
                     <c:set var="formName" value="_21_licenseNumber_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <td><input type="text" class="longInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
+                    <td><input type="text" title="License/Certification Number (License ${status.index})" class="longInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
                     <td class="dateCell">
                         <span class="dateWrapper">
                             <c:set var="formName" value="_21_originalIssueDate_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input class="date" type="text" name="${formName}" value="${formValue}"/>
+                            <input class="date" type="text" title="Original Issue Date (License ${status.index})" name="${formName}" value="${formValue}"/>
                         </span>
                     </td>
                     <td class="dateCell">
                         <span class="dateWrapper">
                             <c:set var="formName" value="_21_renewalDate_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input class="date" type="text"  name="${formName}" value="${formValue}"/>
+                            <input class="date" title="Renewal End Date (License ${status.index})" type="text"  name="${formName}" value="${formValue}"/>
                         </span>
                     </td>
                     <td>
                         <c:set var="formName" value="_21_issuingState_${status.index - 1}"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <select name="${formName}" class="licenseStates">
+                        <select title="Issuing State (License ${status.index})" name="${formName}" class="licenseStates">
                             <option value="">Please select</option>
                             <c:choose>
                                 <c:when test="${formValue == 'MEDICARE'}">
@@ -130,8 +130,8 @@
                     </td>
                     <td>
                         <c:set var="formName" value="_21_attachment_${status.index - 1}"></c:set>
-                        <input type="file" class="fileUpload" size="10" name="${formName}" />
-                        
+                        <input type="file" title="Copy of License (License ${status.index})" class="fileUpload" size="10" name="${formName}" />
+
                         <c:set var="formName" value="_21_filename_${status.index - 1}"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                         <c:if test="${not empty formValue}">
@@ -172,7 +172,7 @@
                 <td>
                     <c:set var="formName" value="_21_licenseType"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <select class="bigSelect medicareCheck" name="${formName}">
+                    <select title="Type of License" class="bigSelect medicareCheck" name="${formName}">
                         <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_21_licenseTypes']}">
                             <option value="${opt.description}"><c:out value="${opt.description}" /></option>
@@ -181,25 +181,25 @@
                 </td>
                 <c:set var="formName" value="_21_licenseNumber"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <td><input type="text" class="longInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
+                <td><input type="text" title="License/Certification Number" class="longInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
                 <td class="dateCell">
                     <span class="dateWrapper">
                         <c:set var="formName" value="_21_originalIssueDate"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input class="date" type="text" name="${formName}" value="${formValue}"/>
+                        <input class="date" title="Original Issue Date" type="text" name="${formName}" value="${formValue}"/>
                     </span>
                 </td>
                 <td class="dateCell">
                     <span class="dateWrapper">
                         <c:set var="formName" value="_21_renewalDate"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input class="date" type="text"  name="${formName}" value="${formValue}"/>
+                        <input type="text" title="Renewal End Date" class="date" name="${formName}" value="${formValue}"/>
                     </span>
                 </td>
                 <td>
                     <c:set var="formName" value="_21_issuingState"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <select name="${formName}" class="licenseStates">
+                    <select title="Issuing State" name="${formName}" class="licenseStates">
                         <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_99_states']}">
                             <option value="${opt.code}"><c:out value="${opt.description}" /></option>
@@ -208,7 +208,7 @@
                 </td>
                 <c:set var="formName" value="_21_attachment"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <td><input type="file" class="fileUpload" size="10" name="${formName}" /></td>
+                <td><input type="file" title="Copy of License" class="fileUpload" size="10" name="${formName}" /></td>
                 <td class="alignCenter"><a href="javascript:;" class="remove">REMOVE</a></td>
             </tr>
         </tbody>

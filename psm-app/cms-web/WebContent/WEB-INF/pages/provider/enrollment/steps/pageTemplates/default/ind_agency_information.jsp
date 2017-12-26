@@ -49,15 +49,15 @@
                 <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_11_fax1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                <input type="text" title="Fax Number Area Code" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
                 <span class="sep">-</span>
                 <c:set var="formName" value="_11_fax2"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                <input type="text" title="Fax Number Prefix" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
                 <span class="sep">-</span>
                 <c:set var="formName" value="_11_fax3"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="autotab smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
+                <input type="text" title="Fax Number Line Number" class="autotab smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
             </div>
 
             <div class="row">

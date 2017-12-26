@@ -44,7 +44,7 @@
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_36_countyContract"></c:set>
-                                    <input type="file" class="fileUpload" name="${formName}" />
+                                    <input title="County Contract" type="file" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">

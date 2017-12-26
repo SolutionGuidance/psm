@@ -16,18 +16,17 @@
     <div class="section">
         <div class="wholeCol organizationInfo">
             <div class="row requireField">
-                <label>Upload copy of contract<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_28_contractAttachment"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">Upload copy of contract<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
                 <c:if test="${not empty formValue}">
                     <c:url var="downloadLink" value="/provider/enrollment/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
                     </c:url>
                     <div><a href="${downloadLink}">Download</a></div>
                 </c:if>
-                <input type="file" class="fileUpload" name="${formName}" />
+                <input id="${formIdPrefix}_${formName}" type="file" class="fileUpload" name="${formName}" />
             </div>
             <div class="clearFixed"></div>
        </div>
@@ -44,46 +43,43 @@
     <div class="section">
         <div class="wholeCol organizationInfo">
             <div class="row requireField">
-                <label>Mental Health TCM Contract Cover Sheet (DHS-5638)</label>
-                <span class="floatL"><b>:</b></span>
-    
                 <c:set var="formName" value="_28_coverSheet1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">Mental Health TCM Contract Cover Sheet (DHS-5638)</label>
+                <span class="floatL"><b>:</b></span>
                 <c:if test="${not empty formValue}">
                     <c:url var="downloadLink" value="/provider/enrollment/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
                     </c:url>
                     <div><a href="${downloadLink}">Download</a></div>
                 </c:if>
-                <input type="file" class="fileUpload" name="${formName}" />
+                <input id="${formIdPrefix}_${formName}" type="file" class="fileUpload" name="${formName}" />
             </div>
             <div class="row requireField">
-                <label> Relocation Service Coordination TCM Contract Cover Sheet (DHS-5639)</label>
-                <span class="floatL"><b>:</b></span>
-    
                 <c:set var="formName" value="_28_coverSheet2"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">Relocation Service Coordination TCM Contract Cover Sheet (DHS-5639)</label>
+                <span class="floatL"><b>:</b></span>
                 <c:if test="${not empty formValue}">
                     <c:url var="downloadLink" value="/provider/enrollment/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
                     </c:url>
                     <div><a href="${downloadLink}">Download</a></div>
                 </c:if>
-                <input type="file" class="fileUpload" name="${formName}" />
+                <input id="${formIdPrefix}_${formName}" type="file" class="fileUpload" name="${formName}" />
             </div>
             <div class="row requireField">
-                <label> Child Welfare TCM Contract Cover Sheet (DHS-5702)</label>
-                <span class="floatL"><b>:</b></span>
-    
                 <c:set var="formName" value="_28_coverSheet3"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}"> Child Welfare TCM Contract Cover Sheet (DHS-5702)</label>
+                <span class="floatL"><b>:</b></span>
                 <c:if test="${not empty formValue}">
                     <c:url var="downloadLink" value="/provider/enrollment/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
                     </c:url>
                     <div><a href="${downloadLink}">Download</a></div>
                 </c:if>
-                <input type="file" class="fileUpload" name="${formName}" />
+                <input id="${formIdPrefix}_${formName}" type="file" class="fileUpload" name="${formName}" />
             </div>
             <div class="clearFixed"></div>
        </div>

@@ -41,8 +41,7 @@
                 <div class="section" id="updateProfile">
                   <div class="wholeCol">
                     <div class="row">
-                      <label>Username<span class="required">*</span>
-                      </label>
+                      <label for="forgotPasswordUsername">Username<span class="required">*</span></label>
                       <span class="floatL">
                         <b>:</b>
                       </span>
@@ -51,11 +50,10 @@
                       <spring:bind path="username">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
                       </spring:bind>
-                      <form:input path="username" cssClass="normalInput ${errorCls}"/>
+                      <form:input id="forgotPasswordUsername" path="username" cssClass="normalInput ${errorCls}"/>
                     </div>
                     <div class="row">
-                      <label>Email<span class="required">*</span>
-                      </label>
+                      <label for="forgotPasswordEmail">Email<span class="required">*</span></label>
                       <span class="floatL">
                         <b>:</b>
                       </span>
@@ -64,7 +62,7 @@
                       <spring:bind path="email">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
                       </spring:bind>
-                      <form:input path="email" cssClass="normalInput ${errorCls}"/>
+                      <form:input id="forgotPasswordEmail" path="email" cssClass="normalInput ${errorCls}"/>
                     </div>
                   </div>
                 </div>

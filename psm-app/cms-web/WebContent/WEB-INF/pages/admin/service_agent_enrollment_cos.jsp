@@ -75,19 +75,19 @@
                   <input type="hidden" id="prevCosEndDate" name="prevCosEndDate" value="" />
                   <div class="wholeCol">
                     <div class="row">
-                      <label>Start Date</label>
+                      <label for="enrollmentCosStartDate">Start Date</label>
                       <span class="floatL"><b>:</b></span>
-                      <span><input id="startDate" name="startDate" class="shortInput text mdate" value="" /></span>
+                      <span><input id="enrollmentCosStartDate" name="startDate" class="shortInput text mdate" value="" /></span>
                     </div>
                     <div class="row">
-                      <label>End Date</label>
+                      <label for="enrollmentCosEndDate">End Date</label>
                       <span class="floatL"><b>:</b></span>
-                      <span><input id="endDate" name="endDate" class="shortInput text mdate" value="" /></span>
+                      <span><input id="enrollmentCosEndDate" name="endDate" class="shortInput text mdate" value="" /></span>
                     </div>
                     <div class="row">
-                      <label>COS</label>
+                      <label for="enrollmentCosCosSelect">COS</label>
                       <span class="floatL"><b>:</b></span>
-                      <select id="cosSelect" name="cos" multiple="multiple" style="width:350px;" class="chzn-select">
+                      <select id="enrollmentCosCosSelect" name="cos" multiple="multiple" style="width:350px;" class="chzn-select">
                         <c:forEach var="code" items="${codes}">
                           <option value="${code.code}">${code.code}</option>
                         </c:forEach>

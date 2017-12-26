@@ -81,44 +81,44 @@
                   <form:hidden path="userId"/>
                   <div class="wholeCol">
                     <div class="row">
-                      <label>Username</label>
+                      <label for="newUsername">Username</label>
                       <span class="floatL"><b>:</b></span>
-                      <form:input cssClass="normalInput" path="username" />
+                      <form:input id="newUsername" cssClass="normalInput" path="username" />
                     </div>
                     <div class="row">
-                      <label>Password</label>
+                      <label for="newPassword">Password</label>
                       <span class="floatL"><b>:</b></span>
-                      <input type="password" class="passwordNormalInput" value="" name="password" />
+                      <input type="password" id="newPassword" class="passwordNormalInput" value="" name="password" />
                     </div>
                     <div class="row">
-                      <label>Confirm Password</label>
+                      <label for="newConfirmPassword">Confirm Password</label>
                       <span class="floatL"><b>:</b></span>
-                      <input type="password" class="passwordNormalInput" value="" name="password2"/>
+                      <input type="password" id="newConfirmPassword" class="passwordNormalInput" value="" name="password2"/>
                     </div>
                     <div class="row">
-                      <label>Last Name</label>
+                      <label for="lastName">Last Name</label>
                       <span class="floatL"><b>:</b></span>
-                      <form:input cssClass="normalInput" path="lastName" />
+                      <form:input id="lastName" cssClass="normalInput" path="lastName" />
                     </div>
                     <div class="row">
-                      <label>First Name</label>
+                      <label for="firstName">First Name</label>
                       <span class="floatL"><b>:</b></span>
-                      <form:input cssClass="normalInput" path="firstName" />
+                      <form:input id="firstName" cssClass="normalInput" path="firstName" />
                     </div>
                     <div class="row">
-                      <label>Middle Name</label>
+                      <label for="middleName">Middle Name</label>
                       <span class="floatL"><b>:</b></span>
-                      <form:input cssClass="normalInput" path="middleName" />
+                      <form:input id="middleName" cssClass="normalInput" path="middleName" />
                     </div>
                     <div class="row">
-                      <label>Email</label>
+                      <label for="email">Email</label>
                       <span class="floatL"><b>:</b></span>
-                      <form:input cssClass="normalInput" path="email" />
+                      <form:input id="email" cssClass="normalInput" path="email" />
                     </div>
                     <div class="row">
-                      <label>User Role</label>
+                      <label for="userRole">User Role</label>
                       <span class="floatL"><b>:</b></span>
-                      <form:select cssClass="userRoleSelect" path="role.description">
+                      <form:select id="userRole" cssClass="userRoleSelect" path="role.description">
                         <form:option value="" >Please Select</form:option>
                         <c:forEach items="${availableRoles }" var="r">
                           <form:option value="${r.description}" >${r.description}</form:option>

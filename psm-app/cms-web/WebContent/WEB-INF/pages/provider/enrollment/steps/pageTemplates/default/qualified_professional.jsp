@@ -21,12 +21,11 @@
     <div class="section">
         <div class="leftCol">
             <div class="row requireField">
-                <label>QP Type<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_29_qpType_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select name="${formName}">
+                <label for="${formIdPrefix}_${formName}">QP Type<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <select id="${formIdPrefix}_${formName}" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_29_qpTypes']}">
                        <option ${formValue == opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
@@ -34,32 +33,29 @@
                 </select>
             </div>
             <div class="row requireField">
-                <label>Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_29_name_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                <label for="${formIdPrefix}_${formName}">Name<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="row requireField">
-                <label>NPI</label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_29_npi_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
+                <label for="${formIdPrefix}_${formName}">NPI</label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
             </div>
             <div class="row requireField">
-                <label>Date of Employment<span class="required">*</span>
+                <c:set var="formName" value="_29_startDate_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">Date of Employment<span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
-                            <span class="dateWrapper floatL">
-
-                    <c:set var="formName" value="_29_startDate_${status.index - 1}"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input class="date" type="text" name="${formName}" value="${formValue}"/>
-                                    </span>
+                <span class="dateWrapper floatL">
+                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
+                </span>
             </div>
             <div class="clearFixed"></div>
         </div>
@@ -74,32 +70,31 @@
                     <div class="row mhpType hide">
                 </c:otherwise>
             </c:choose>
-                <label>MHP Type</label>
+                <c:set var="formName" value="_29_qpSubType_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">MHP Type</label>
                 <span class="floatL"><b>:</b></span>
                 <span class="floatL">
-                    <c:set var="formName" value="_29_qpSubType_${status.index - 1}"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="normalInput" name="${formName}" value="${formValue}"/>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}"/>
                 </span>
             </div>
             <div class="row requireField">
-                <label>Date of Birth<span class="required">*</span>
+                <c:set var="formName" value="_29_dob_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">Date of Birth<span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
-                            <span class="dateWrapper floatL">
-
-                    <c:set var="formName" value="_29_dob_${status.index - 1}"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input class="date" type="text" name="${formName}" value="${formValue}"/>
-                                    </span>
+                <span class="dateWrapper floatL">
+                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
+                </span>
             </div>
             <div class="row requireField">
-                <label class="">Social Security Number<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_29_ssn_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
+                <label for="${formIdPrefix}_${formName}">Social Security Number<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="9"/>
             </div>
             <div class="row requireField">
                 <label>
@@ -107,63 +102,64 @@
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" value="Y"/>
                     The affiliation has ended
-                    <span class="label">(MM/DD/YYYY)</span>
                 </label>
+
+                <c:set var="formName" value="_29_endDate_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">End Date (MM/DD/YYYY)</label>
                 <span class="floatL"><b>:</b></span>
-                            <span class="dateWrapper floatL">
-                    <c:set var="formName" value="_29_endDate_${status.index - 1}"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input class="date" type="text" name="${formName}" value="${formValue}"/>
-                                    </span>
+                <span class="dateWrapper floatL">
+                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
+                </span>
             </div>
             <div class="clearFixed"></div>
         </div>
         <div class="clear"></div>
 
-        <div class="">
+        <div>
             <div class="row addressline1">
-                <label>Residence Address</label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_29_addressLine1_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Residence Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <label for="${formIdPrefix}_${formName}">Residence Address</label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" title="Residence Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
 
             <div class="row inlineBox addressline2">
-                <span class="label">&nbsp;</span>
-                <span class="floatL"><b>&nbsp;</b></span>
-
                 <c:set var="formName" value="_29_addressLine2_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <span class="label">&nbsp;</span>
+                <span class="floatL"><b>&nbsp;</b></span>
                 <input type="text" title="Residence Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
 
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
-                <label class="cityLabel">City<span class="required">*</span> : </label>
-
                 <c:set var="formName" value="_29_city_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text"  class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
-                <label>State<span class="required">*</span> : </label>
+                <label for="${formIdPrefix}_${formName}" class="cityLabel">City<span class="required">*</span> : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
+
                 <c:set var="formName" value="_29_state_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="stateSelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">State<span class="required">*</span> : </label>
+                <select id="${formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
-                <label>ZIP Code<span class="required">*</span> : </label>
+
                 <c:set var="formName" value="_29_zip_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
-                <label>County : </label>
+                <label for="${formIdPrefix}_${formName}">ZIP Code<span class="required">*</span> : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
+
                 <c:set var="formName" value="_29_county_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="countySelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">County : </label>
+                <select id="${formIdPrefix}_${formName}" class="countySelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_counties']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
@@ -174,28 +170,26 @@
 
         <div class="leftCol">
             <div class="row requireField">
-                <label>BGS ID NUMBER<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_29_bgsNumber_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
+                <label for="${formIdPrefix}_${formName}">BGS ID NUMBER<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="clearFixed"></div>
         </div>
 
         <div class="rightCol">
             <div class="row requireField">
-                <label>BGS Clearance Date<span class="required">*</span>
+                <c:set var="formName" value="_29_bgsClearanceDate_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">BGS Clearance Date<span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
-                            <span class="dateWrapper floatL">
-
-                    <c:set var="formName" value="_29_bgsClearanceDate_${status.index - 1}"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input class="date" type="text" name="${formName}" value="${formValue}"/>
-            </span>
+                <span class="dateWrapper floatL">
+                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
+                </span>
             </div>
             <div class="clearFixed"></div>
         </div>
@@ -372,12 +366,11 @@
     <div class="section">
         <div class="leftCol">
             <div class="row requireField">
-                <label>QP Type<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_29_qpType"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select name="${formName}" class="qpTypeSelect">
+                <label for="${formIdPrefix}_${formName}">QP Type<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <select id="${formIdPrefix}_${formName}" name="${formName}" class="qpTypeSelect">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_29_qpTypes']}">
                        <option ${formValue == opt.description ? selectedMarkup : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
@@ -385,63 +378,59 @@
                 </select>
             </div>
             <div class="row requireField">
-                <label>Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_29_name"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                <label for="${formIdPrefix}_${formName}">Name<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="row requireField">
-                <label>NPI</label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_29_npi"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
+                <label for="${formIdPrefix}_${formName}">NPI</label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
             </div>
             <div class="row requireField">
-                <label>Date of Employment<span class="required">*</span>
+                <c:set var="formName" value="_29_startDate"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">Date of Employment<span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
-                            <span class="dateWrapper floatL">
-
-                    <c:set var="formName" value="_29_startDate"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input class="date" type="text" name="${formName}" value="${formValue}"/>
-                                    </span>
+                <span class="dateWrapper floatL">
+                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
+                </span>
             </div>
             <div class="clearFixed"></div>
         </div>
         <div class="rightCol">
             <div class="row mhpType hide">
-                <label>MHP Type</label>
+                <c:set var="formName" value="_29_qpSubType"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">MHP Type</label>
                 <span class="floatL"><b>:</b></span>
                 <span class="floatL">
-                    <c:set var="formName" value="_29_qpSubType"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="normalInput" name="${formName}" value="${formValue}"/>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}"/>
                 </span>
             </div>
             <div class="row requireField">
-                <label>Date of Birth<span class="required">*</span>
+                <c:set var="formName" value="_29_dob"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">Date of Birth<span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
-                            <span class="dateWrapper floatL">
-
-                    <c:set var="formName" value="_29_dob"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input class="date" type="text" name="${formName}" value="${formValue}"/>
-                                    </span>
+                <span class="dateWrapper floatL">
+                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
+                </span>
             </div>
             <div class="row requireField">
-                <label class="">Social Security Number<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_29_ssn"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
+                <label for="${formIdPrefix}_${formName}">Social Security Number<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
             </div>
             <div class="row requireField">
                 <label>
@@ -449,63 +438,63 @@
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" value="Y"/>
                     The affiliation has ended
-                    <span class="label">(MM/DD/YYYY)</span>
                 </label>
+                <c:set var="formName" value="_29_endDate"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}" class="label">Date Ended (MM/DD/YYYY)</label>
                 <span class="floatL"><b>:</b></span>
-                            <span class="dateWrapper floatL">
-                    <c:set var="formName" value="_29_endDate"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input class="date" type="text" name="${formName}" value="${formValue}"/>
-                                    </span>
+                <span class="dateWrapper floatL">
+                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
+                </span>
             </div>
             <div class="clearFixed"></div>
         </div>
         <div class="clear"></div>
 
-        <div class="">
+        <div>
             <div class="row addressline1">
-                <label>Residence Address</label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_29_addressLine1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input title="Residence Address, Line 1" type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <label for="${formIdPrefix}_${formName}">Residence Address</label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" title="Residence Address, Line 1" type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
 
             <div class="row inlineBox addressline2">
-                <span class="label">&nbsp;</span>
-                <span class="floatL"><b>&nbsp;</b></span>
-
                 <c:set var="formName" value="_29_addressLine2"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <span class="label">&nbsp;</span>
+                <span class="floatL"><b>&nbsp;</b></span>
                 <input title="Residence Address, Line 2" type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
 
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
-                <label class="cityLabel">City<span class="required">*</span> : </label>
-
                 <c:set var="formName" value="_29_city"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text"  class="cityInputFor" name="${formName}" value="${formValue}" maxlength="20"/>
-                <label>State<span class="required">*</span> : </label>
+                <label for="${formIdPrefix}_${formName}" class="cityLabel">City<span class="required">*</span> : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="cityInputFor" name="${formName}" value="${formValue}" maxlength="20"/>
+
                 <c:set var="formName" value="_29_state"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="stateSelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">State<span class="required">*</span> : </label>
+                <select id="${formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
-                <label>ZIP Code<span class="required">*</span> : </label>
+
                 <c:set var="formName" value="_29_zip"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
-                <label>County : </label>
+                <label for="${formIdPrefix}_${formName}">ZIP Code<span class="required">*</span> : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
+
                 <c:set var="formName" value="_29_county"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="countySelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">County : </label>
+                <select id="${formIdPrefix}_${formName}" class="countySelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_counties']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
@@ -516,28 +505,26 @@
 
         <div class="leftCol">
             <div class="row requireField">
-                <label>BGS ID NUMBER<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_29_bgsNumber"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
+                <label for="${formIdPrefix}_${formName}">BGS ID NUMBER<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="clearFixed"></div>
         </div>
 
         <div class="rightCol">
             <div class="row requireField">
-                <label>BGS Clearance Date<span class="required">*</span>
+                <c:set var="formName" value="_29_bgsClearanceDate"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">BGS Clearance Date<span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
-                            <span class="dateWrapper floatL">
-
-                    <c:set var="formName" value="_29_bgsClearanceDate"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input class="date" type="text" name="${formName}" value="${formValue}"/>
-            </span>
+                <span class="dateWrapper floatL">
+                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
+                </span>
             </div>
             <div class="clearFixed"></div>
         </div>
@@ -590,17 +577,17 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <td class="licenseNoInput"><input title="License/Certification Number" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
                 <td class="dateCell licenseDateInput">
+                    <c:set var="formName" value="_29_originalIssueDate"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <span class="dateWrapper">
-                        <c:set var="formName" value="_29_originalIssueDate"></c:set>
-                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input class="date" type="text" name="${formName}" value="${formValue}"/>
+                        <input title="Original Issue Date" class="date" type="text" name="${formName}" value="${formValue}"/>
                     </span>
                 </td>
                 <td class="dateCell licenseRenewalInput">
+                    <c:set var="formName" value="_29_renewalDate"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <span class="dateWrapper">
-                        <c:set var="formName" value="_29_renewalDate"></c:set>
-                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input class="date" type="text"  name="${formName}" value="${formValue}"/>
+                        <input title="Renewal End Date" class="date" type="text" name="${formName}" value="${formValue}"/>
                     </span>
                 </td>
                 <td class="licenseStateInput">

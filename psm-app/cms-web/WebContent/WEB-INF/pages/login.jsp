@@ -37,23 +37,23 @@
               </c:if>
 
               <div class="row">
-                <label class="label">Username:</label>
-                <input type="text" name="username" class="text" id="username" value="${LAST_USERNAME}" maxlength="50"/>
+                <label for="username" class="label">Username:</label>
+                <input id="username" name="username" type="text" class="text" value="${LAST_USERNAME}" maxlength="50"/>
               </div>
               <div class="row">
-                <label class="label">Password:</label>
-                <input type="password" name="password" id="password"/>
+                <label for="password" class="label">Password:</label>
+                <input id="password" type="password" name="password" />
               </div>
               <div class="row">
-                <label class="label">Domain:</label>
-                <select name="domain" onchange="disableElement('remember', this.value != 'CMS_ONLINE')">
+                <label for="domain" class="label">Domain:</label>
+                <select id="domain" name="domain" onchange="disableElement('remember', this.value != 'CMS_ONLINE')">
                   <option value="CMS_ONLINE" selected="selected">Online Portal</option>
                   <option value="MN_ITS">MN-ITS</option>
                 </select>
               </div>
               <div class="row">
                 <label class="label">&nbsp;</label>
-                <input type="checkbox" id="remember" name="keepUserSignedIn"/>
+                <input id="remember" type="checkbox" name="keepUserSignedIn"/>
                 <label for="remember">Remember Me</label>
                 <a href="<c:url value="/forgotpassword" />">Forgot Password?</a>
               </div>

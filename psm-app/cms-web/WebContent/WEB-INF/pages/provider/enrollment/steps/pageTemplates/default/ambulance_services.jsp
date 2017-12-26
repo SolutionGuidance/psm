@@ -26,7 +26,10 @@
                                 <td>
                                     <c:set var="formName" value="_39_basicServicesIndicator"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/> Basic Service 
+                                    <label class="checkboxLabel">
+                                      <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/>
+                                      Basic Service
+                                    </label>
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_39_basicServices"></c:set>
@@ -44,7 +47,10 @@
                                 <td>
                                     <c:set var="formName" value="_39_advancedLifeSupportIndicator"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/> Advanced Life Support 
+                                    <label class="checkboxLabel">
+                                      <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/>
+                                      Advanced Life Support
+                                    </label>
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_39_advancedLifeSupport"></c:set>
@@ -62,7 +68,10 @@
                                 <td>
                                     <c:set var="formName" value="_39_airTransportIndicator"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/> Air Transport with FAA Air Worthiness Certificate 
+                                    <label class="checkboxLabel">
+                                      <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/>
+                                      Air Transport with FAA Air Worthiness Certificate
+                                    </label>
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_39_airTransport"></c:set>

@@ -23,7 +23,10 @@
                         <td>
                             <c:set var="formName" value="_40_designationApprovalIndicator"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/> Hospital Based Clinic Designation:  approval letter from CMS
+                            <label class="checkboxLabel">
+                              <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/>
+                              Hospital Based Clinic Designation:  approval letter from CMS
+                            </label>
                         </td>
                         <td>
                            <c:set var="formName" value="_40_designationApproval"></c:set>

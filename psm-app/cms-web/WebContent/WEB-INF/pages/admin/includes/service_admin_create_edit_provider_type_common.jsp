@@ -9,9 +9,9 @@
 <div class="newEnrollmentPanel">
     <div class="section">
         <div class="wholeCol">
-            <label>Provider Type</label>
+            <label for="createEditProviderTypeProviderType">Provider Type</label>
             <span class="floatL"><b>:</b></span>
-            <form:input path="description" cssClass="text"/>
+            <form:input id="createEditProviderTypeProviderType" path="description" cssClass="text"/>
         </div>
         <div class="tableHeader"><span>Agreements and Addendums</span></div>
         <div class="wholeCol">
@@ -19,11 +19,11 @@
                 	<div class="row">
                         <div class="col2">
                             <div class="row">
-                                <form:checkbox path="hasAgreement" id="addTypeCheck56"/>
+                                <form:checkbox id="addTypeCheck56" path="hasAgreement"/>
                                 <label for="addTypeCheck56">Provider Agreement</label>
                             </div>
                             <div class="row">
-                                <form:checkbox path="hasAddendum" id="addTypeCheck57"/>
+                                <form:checkbox id="addTypeCheck57" path="hasAddendum"/>
                                 <label for="addTypeCheck57">Provider Agreement Addendum</label>
                             </div>
                         </div>

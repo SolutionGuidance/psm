@@ -17,9 +17,9 @@
     <div class="section">
         <div class="">
             <div class="row requireField">
-                <label>&nbsp;</label>
                 <c:set var="formName" value="_32_articlesOfIncorporation"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label>&nbsp;</label>
                 <c:if test="${not empty formValue}">
                     <c:url var="downloadLink" value="/provider/enrollment/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>

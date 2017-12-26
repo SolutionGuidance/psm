@@ -26,7 +26,10 @@
                                 <td>
                                     <c:set var="formName" value="_37_qualificationType"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <input type="radio" value="Approval Letter from Health Care Finance Administration (HCFA)" name="${formName}"  ${formValue eq 'Approval Letter from Health Care Finance Administration (HCFA)' ? 'checked' : ''}/> Approval Letter from Health Care Finance Administration (HCFA) 
+                                    <label class="radioLabel">
+                                      <input type="radio" value="Approval Letter from Health Care Finance Administration (HCFA)" name="${formName}"  ${formValue eq 'Approval Letter from Health Care Finance Administration (HCFA)' ? 'checked' : ''}/>
+                                      Approval Letter from Health Care Finance Administration (HCFA)
+                                    </label>
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_37_hcfaApproval"></c:set>
@@ -44,7 +47,10 @@
                                 <td>
                                     <c:set var="formName" value="_37_qualificationType"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <input type="radio" value="Copies of the 330 Grant documents" name="${formName}"  ${formValue eq 'Copies of the 330 Grant documents' ? 'checked' : ''}/> Copies of the 330 Grant documents 
+                                    <label class="radioLabel">
+                                      <input type="radio" value="Copies of the 330 Grant documents" name="${formName}"  ${formValue eq 'Copies of the 330 Grant documents' ? 'checked' : ''}/>
+                                      Copies of the 330 Grant documents
+                                    </label>
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_37_grantDocuments"></c:set>
@@ -65,7 +71,10 @@
                                 <td>
                                     <c:set var="formName" value="_37_qualificationType"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <input type="radio" value="Cover page of Public Law 93-638 status contract" name="${formName}"  ${formValue eq 'Cover page of Public Law 93-638 status contract' ? 'checked' : ''}/> Cover page of Public Law 93-638 status contract 
+                                    <label class="radioLabel">
+                                      <input type="radio" value="Cover page of Public Law 93-638 status contract" name="${formName}"  ${formValue eq 'Cover page of Public Law 93-638 status contract' ? 'checked' : ''}/>
+                                      Cover page of Public Law 93-638 status contract
+                                    </label>
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_37_statusContract"></c:set>
@@ -84,7 +93,10 @@
                                 <td>
                                     <c:set var="formName" value="_37_qualificationType"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <input type="radio" value="Compact with the Indian Health Service" name="${formName}"  ${formValue eq 'Compact with the Indian Health Service' ? 'checked' : ''}/> Compact with the Indian Health Service 
+                                    <label class="radioLabel">
+                                      <input type="radio" value="Compact with the Indian Health Service" name="${formName}"  ${formValue eq 'Compact with the Indian Health Service' ? 'checked' : ''}/>
+                                      Compact with the Indian Health Service
+                                    </label>
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_37_indianHealthServiceContract"></c:set>

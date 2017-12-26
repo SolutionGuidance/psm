@@ -17,7 +17,7 @@
     <div class="section">
         <div class="">
             <div class="row requireField">
-                <label class="mediumLbl">Please upload a copy of cover sheet with contract summary <span class="required">*</span></label>
+                <label for="coverSheet_${formName}" class="mediumLbl">Please upload a copy of cover sheet with contract summary <span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
 
                 <c:set var="formName" value="_31_countyContract"></c:set>
@@ -28,7 +28,7 @@
                     </c:url>
                     <a href="${downloadLink}">Download</a>
                 </c:if>
-                <input type="file" class="fileUpload" name="${formName}" />
+                <input id="coverSheet_${formName}" type="file" class="fileUpload" name="${formName}" />
             </div>
         </div>
         <div class="clearFixed"></div>

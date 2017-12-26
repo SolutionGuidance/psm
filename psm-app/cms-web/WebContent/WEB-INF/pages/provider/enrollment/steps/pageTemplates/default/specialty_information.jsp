@@ -62,17 +62,17 @@
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <td><input title="License/Certification Number" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
                     <td class="dateCell">
+                        <c:set var="formName" value="_09_originalIssueDate_${status.index - 1}"></c:set>
+                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                         <span class="dateWrapper">
-                            <c:set var="formName" value="_09_originalIssueDate_${status.index - 1}"></c:set>
-                            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input class="date" type="text" name="${formName}" value="${formValue}"/>
+                            <input title="Original Issue Date" class="date" type="text" name="${formName}" value="${formValue}"/>
                         </span>
                     </td>
                     <td class="dateCell">
+                        <c:set var="formName" value="_09_renewalDate_${status.index - 1}"></c:set>
+                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                         <span class="dateWrapper">
-                            <c:set var="formName" value="_09_renewalDate_${status.index - 1}"></c:set>
-                            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input class="date" type="text"  name="${formName}" value="${formValue}"/>
+                            <input title="Renewal End Date" class="date" type="text" name="${formName}" value="${formValue}"/>
                         </span>
                     </td>
                     <td>
@@ -122,17 +122,17 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <td><input title="License/Certification Number" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
                 <td class="dateCell">
+                    <c:set var="formName" value="_09_originalIssueDate"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <span class="dateWrapper">
-                        <c:set var="formName" value="_09_originalIssueDate"></c:set>
-                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input class="date" type="text" name="${formName}" value="${formValue}"/>
+                        <input title="Original Issue Date" class="date" type="text" name="${formName}" value="${formValue}"/>
                     </span>
                 </td>
                 <td class="dateCell">
+                    <c:set var="formName" value="_09_renewalDate"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <span class="dateWrapper">
-                        <c:set var="formName" value="_09_renewalDate"></c:set>
-                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input class="date" type="text"  name="${formName}" value="${formValue}"/>
+                        <input title="Renewal End Date" class="date" type="text" name="${formName}" value="${formValue}"/>
                     </span>
                 </td>
                 <td>

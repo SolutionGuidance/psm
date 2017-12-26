@@ -25,16 +25,16 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <div class="rowWrapper">
                     <div class="row">
-                        <input ${disableLinkedFields} type="radio" value="PATIENT_ACCOUNT_OR_OWN_REFERENCE_ORDER" name="${formName}" ${formValue eq 'PATIENT_ACCOUNT_OR_OWN_REFERENCE_ORDER' ? 'checked' : ''}/>
-                        <span>Patient Account or Own Reference Number Order</span>
+                        <input id="${formIdPrefix}_${formName}_patient" ${disableLinkedFields} type="radio" value="PATIENT_ACCOUNT_OR_OWN_REFERENCE_ORDER" name="${formName}" ${formValue eq 'PATIENT_ACCOUNT_OR_OWN_REFERENCE_ORDER' ? 'checked' : ''}/>
+                        <label for="${formIdPrefix}_${formName}_patient">Patient Account or Own Reference Number Order</label>
                     </div>
                     <div class="row">
-                        <input ${disableLinkedFields} type="radio" value="DHS_TRANSACTION_CONTROL_ORDER" name="${formName}"  ${formValue eq 'DHS_TRANSACTION_CONTROL_ORDER' ? 'checked' : ''}/>
-                        <span>DHS Transaction Control Number Order</span>
+                        <input id="${formIdPrefix}_${formName}_dhs" ${disableLinkedFields} type="radio" value="DHS_TRANSACTION_CONTROL_ORDER" name="${formName}"  ${formValue eq 'DHS_TRANSACTION_CONTROL_ORDER' ? 'checked' : ''}/>
+                        <label for="${formIdPrefix}_${formName}_dhs">DHS Transaction Control Number Order</label>
                     </div>
                     <div class="row">
-                        <input ${disableLinkedFields} type="radio" value="RECIPIENT_MHCP_ID_NUMBER_ORDER" name="${formName}"  ${formValue eq 'RECIPIENT_MHCP_ID_NUMBER_ORDER' ? 'checked' : ''}/>
-                        <span>Recipient MHCP ID Number Order</span>
+                        <input id="${formIdPrefix}_${formName}_mhcp" ${disableLinkedFields} type="radio" value="RECIPIENT_MHCP_ID_NUMBER_ORDER" name="${formName}"  ${formValue eq 'RECIPIENT_MHCP_ID_NUMBER_ORDER' ? 'checked' : ''}/>
+                        <label for="${formIdPrefix}_${formName}_mhcp">Recipient MHCP ID Number Order</label>
                     </div>
                 </div>
             </div>

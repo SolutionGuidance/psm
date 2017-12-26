@@ -28,7 +28,10 @@
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <c:set var="checkedName" value="_21_category_selected_${status.index - 1}"></c:set>
                             <c:set var="checkedValue" value="${requestScope[checkedName]}"></c:set>
-                            <input type="checkbox" name="_21_serviceCategory" ${checkedValue eq 'Y' ? 'checked' : ''} value="${formValue}"/> ${formValue}
+                            <label class="checkboxLabel">
+                              <input type="checkbox" name="_21_serviceCategory" ${checkedValue eq 'Y' ? 'checked' : ''} value="${formValue}"/>
+                              ${formValue}
+                            </label>
                         </li>
                         </c:forEach>
                    </ul>

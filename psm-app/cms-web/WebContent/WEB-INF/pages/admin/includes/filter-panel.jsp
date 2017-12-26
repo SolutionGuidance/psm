@@ -15,26 +15,26 @@
     <div class="floatW">
         <div class="leftCol">
             <div class="row">
-                <label>Username</label>
+                <label for="filterPanelUsername">Username</label>
                 <span class="floatL"><b>:</b></span>
-                <form:input cssClass="normalInput" path="username" />
+                <form:input id="filterPanelUsername" cssClass="normalInput" path="username" />
             </div>
             <div class="row">
-                <label>Email</label>
+                <label for="filterPanelEmail">Email</label>
                 <span class="floatL"><b>:</b></span>
-                <form:input cssClass="normalInput" path="email"/>
+                <form:input id="filterPanelEmail" cssClass="normalInput" path="email"/>
             </div>
         </div>
         <div class="rightCol">
             <div class="row">
-                <label>Last Name</label>
+                <label for="filterPanelLastName">Last Name</label>
                 <span class="floatL"><b>:</b></span>
-                <form:input cssClass="normalInput" path="lastName" />
+                <form:input id="filterPanelLastName" cssClass="normalInput" path="lastName" />
             </div>
             <div class="row">
-                <label>First Name</label>
+                <label for="filterPanelFirstName">First Name</label>
                 <span class="floatL"><b>:</b></span>
-                <form:input cssClass="normalInput" path="firstName" />
+                <form:input id="filterPanelFirstName" cssClass="normalInput" path="firstName" />
             </div>
         </div>
     </div>

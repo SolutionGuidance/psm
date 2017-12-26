@@ -10,9 +10,9 @@
     <div class="floatW">
         <div class="leftCol">
             <div class="row">
-                <label>NPI/UMPI</label>
+                <label for="enrollmentSearchFilterNpiInput">NPI/UMPI</label>
                 <span class="floatL"><b>:</b></span>
-                <input id="npiInput" type="text" class="normalInput" value="${searchCriteria.npi}"/>
+                <input id="enrollmentSearchFilterNpiInput" type="text" class="normalInput" value="${searchCriteria.npi}"/>
             </div>
             <div class="row">
                 <label>Date Submitted</label>
@@ -26,9 +26,9 @@
                 </span>
             </div>
             <div class="row">
-                <label>Provider Type</label>
+                <label for="enrollmentSearchFilterProviderTypeInput">Provider Type</label>
                 <span class="floatL"><b>:</b></span>
-                <select id="providerTypeInput" class="longSelect">
+                <select id="enrollmentSearchFilterProviderTypeInput" class="longSelect">
                     <option value="">All</option>
                     <c:forEach var="item" items="${providerTypesLookup}">
                         <option <c:if test="${item.description == searchCriteria.providerType}">selected="selected"</c:if> value="${item.description}">${item.description}</option>
@@ -38,14 +38,14 @@
         </div>
         <div class="rightCol">
             <div class="row">
-                <label>Provider Name</label>
+                <label for="enrollmentSearchFilterProviderNameInput">Provider Name</label>
                 <span class="floatL"><b>:</b></span>
-                <input id="providerNameInput" value="${searchCriteria.providerName}" type="text" class="normalInput"/>
+                <input id="enrollmentSearchFilterProviderNameInput" value="${searchCriteria.providerName}" type="text" class="normalInput"/>
             </div>
             <div class="row">
-                <label>Request Type</label>
+                <label for="enrollmentSearchFilterRequestTypeInput">Request Type</label>
                 <span class="floatL"><b>:</b></span>
-                <select id="requestTypeInput" class="longSelect">
+                <select id="enrollmentSearchFilterRequestTypeInput" class="longSelect">
                     <option value="">All</option>
                     <c:forEach var="item" items="${requestTypesLookup}">
                         <option <c:forEach var="selectedItem" items="${searchCriteria.requestTypes}"><c:if test="${item.description == selectedItem}">selected="selected"</c:if></c:forEach> value="${item.description}">${item.description}</option>
@@ -53,9 +53,9 @@
                 </select>
             </div>
             <div class="row">
-                <label>Risk Level</label>
+                <label for="enrollmentSearchFilterRiskLevelInput">Risk Level</label>
                 <span class="floatL"><b>:</b></span>
-                <select id="riskLevelInput" class="longSelect">
+                <select id="enrollmentSearchFilterRiskLevelInput" class="longSelect">
                     <option value="">All</option>
                     <c:forEach var="item" items="${riskLevelsLookup}">
                         <option <c:forEach var="selectedItem" items="${searchCriteria.riskLevels}"><c:if test="${item.description == selectedItem}">selected="selected"</c:if></c:forEach> value="${item.description}">${item.description}</option>

@@ -20,11 +20,10 @@
 
         <div class="leftCol">
             <div class="row requireField">
-                <label>Entity Type<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-                
                 <c:set var="formName" value="_17_entityType"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="entityType">Entity Type<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
                 <select id="entityType" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${entityStructureTypes}">
@@ -36,11 +35,11 @@
         </div>
         <div class="rightCol">
             <div class="row">
-                <label class="">Specify Type</label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_17_entityDescription"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput ${formValue eq 'Other' ? '' : 'disabled'}" ${formValue eq 'Other' ? '' : disabledMarkup} name="${formName}" value="${formValue}" maxlength="100"/>
+                <label for="${formIdPrefix}_${formName}">Specify Type</label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="normalInput ${formValue eq 'Other' ? '' : 'disabled'}" ${formValue eq 'Other' ? '' : disabledMarkup} name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="clearFixed"></div>
         </div>
@@ -76,13 +75,11 @@
     <div class="section line">
         <div class="">
             <div class="row requireField">
-                <label>Type<span class="required">*</span><span><a href="javascript:" class="definition">?</a></span></label>
-                <span class="floatL"><b>:</b></span>
-                
                 <c:set var="formName" value="_17_iboType_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-
-                <select class="ownershipType" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">Type<span class="required">*</span><span><a href="javascript:" class="definition">?</a></span></label>
+                <span class="floatL"><b>:</b></span>
+                <select id="${formIdPrefix}_${formName}" class="ownershipType" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${beneficialOwnerTypes}">
                         <c:if test="${opt.ownerType ne 'O'}">
@@ -90,34 +87,31 @@
                         </c:if>
                     </c:forEach>
                 </select>
-                
+
                 <div class="subType subcontractor">
-                    <label class="">Name Subcontractor</label>
-                    <span class="floatL"><b>:</b></span>
-                    
                     <c:set var="formName" value="_17_iboSubcontractorName_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    
-                    <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                    <label for="${formIdPrefix}_${formName}">Name Subcontractor</label>
+                    <span class="floatL"><b>:</b></span>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
                     <div class="clear"></div>
                 </div>
                 <div class="subType owner">
-                    <label class="">List % of Ownership Interest
+                    <c:set var="formName" value="_17_iboPercentOwnership_${status.index - 1}"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <label for="${formIdPrefix}_${formName}">List % of Ownership Interest
                         <span class="label">if 5% or more</span>
                     </label>
                     <span class="floatL"><b>:</b></span>
-                    
-                    <c:set var="formName" value="_17_iboPercentOwnership_${status.index - 1}"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
                     <div class="clear"></div>
                 </div>
                 <div class="subType other">
-                    <label class="">Other</label>
-                    <span class="floatL"><b>:</b></span>
                     <c:set var="formName" value="_17_iboOtherType_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                    <label for="${formIdPrefix}_${formName}">Other</label>
+                    <span class="floatL"><b>:</b></span>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
                     <div class="clear"></div>
                 </div>
             </div>
@@ -126,63 +120,63 @@
         <div class="clearFixed"></div>
         <div class="leftCol">
             <div class="row requireField">
-                <label>First Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_17_iboFirstName_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
+                <label for="${formIdPrefix}_${formName}">First Name<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row">
-                <label>Middle Name</label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_17_iboMiddleName_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
+                <label for="${formIdPrefix}_${formName}">Middle Name</label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row requireField">
-                <label>Last Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_17_iboLastName_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
+                <label for="${formIdPrefix}_${formName}">Last Name<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row requireField">
-                <label class="">Social Security Number<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_17_iboSSN_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
+                <label for="${formIdPrefix}_${formName}">Social Security Number<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
             </div>
             <div class="clearFixed"></div>
         </div>
         <div class="rightCol">
             <div class="row requireField">
-                <label>Date of Birth<span class="required">*</span>
-                    <span class="label">(MM/DD/YYYY)</span>
-                </label>
-                <span class="floatL"><b>:</b></span>
-                                    <span class="dateWrapper floatL">
                 <c:set var="formName" value="_17_iboDOB_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                        <input class="date" type="text" name="${formName}" value="${formValue}"/>
-                                    </span>
-            </div>
-            <div class="row requireField">
-                <label>Hire Date<span class="required">*</span>
+                <label for="${formIdPrefix}_${formName}">Date of Birth<span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
-                <c:set var="formName" value="_17_iboHireDate_${status.index - 1}"></c:set>
-                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <span class="dateWrapper floatL">
-                                        <input class="date" type="text" name="${formName}" value="${formValue}"/>
-                                    </span>
+                <span class="dateWrapper floatL">
+                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
+                </span>
             </div>
             <div class="row requireField">
-                <label class="multiLine">Relationship to any other listed person</label>
+                <c:set var="formName" value="_17_iboHireDate_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">Hire Date<span class="required">*</span>
+                    <span class="label">(MM/DD/YYYY)</span>
+                </label>
                 <span class="floatL"><b>:</b></span>
+                <span class="dateWrapper floatL">
+                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
+                </span>
+            </div>
+            <div class="row requireField">
                 <c:set var="formName" value="_17_iboRelationship_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label class="multiLine">Relationship to any other listed person</label>
+                <span class="floatL"><b>:</b></span>
                 <label class="inline"><input type="radio" ${formValue eq 'Spouse' ? 'checked' : ''} name="${formName}" value="Spouse"/>Spouse</label>
                 <label class="inline"><input type="radio" ${formValue eq 'Child' ? 'checked' : ''} name="${formName}" value="Child"/>Child</label>
                 <label class="inline"><input type="radio" ${formValue eq 'Parent' ? 'checked' : ''} name="${formName}" value="Parent"/>Parent</label>
@@ -192,48 +186,48 @@
         </div>
         <div class="">
             <div class="row requiredField addressline1">
-                <label>Home Residence Address<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_17_iboAddressLine1_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Home Residence Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <label for="${formIdPrefix}_${formName}">Home Residence Address<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" title="Home Residence Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
 
             <div class="row inlineBox addressline2">
-                <span class="label">(Practice location cannot be a<br />PO Box)</span>
-                <span class="floatL"><b>&nbsp;</b></span>
-
                 <c:set var="formName" value="_17_iboAddressLine2_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <span class="label">(Practice location cannot be a<br />PO Box)</span>
+                <span class="floatL"><b>&nbsp;</b></span>
                 <input type="text" title="Home Residence Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
-            
+
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
-                <label class="cityLabel">City : </label>
-
                 <c:set var="formName" value="_17_iboCity_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text"  class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
-                <label>State : </label>
+                <label for="${formIdPrefix}_${formName}" class="cityLabel">City : </label>
+                <input id="${formIdPrefix}_${formName}" type="text"  class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
+
                 <c:set var="formName" value="_17_iboState_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="stateSelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">State : </label>
+                <select id="${formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
-                <label>ZIP Code : </label>
+
                 <c:set var="formName" value="_17_iboZip_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
-                <label>County : </label>
+                <label for="${formIdPrefix}_${formName}">ZIP Code : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
+
                 <c:set var="formName" value="_17_iboCounty_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="countySelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">County : </label>
+                <select id="${formIdPrefix}_${formName}" class="countySelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_counties']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
@@ -245,76 +239,78 @@
         <span class="control">
             <c:set var="formName" value="_17_iboOtherInterestInd_${status.index - 1}"></c:set>
             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-            <input class="showHidePanel" value="Y" type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" />This person/business has an ownership or control interest in another Medicaid disclosing entity, or an entity that does not participate in Medicaid but is required to disclose ownership and control interest because of participation in any Title V, XVIII, or XX programs.
+            <input id="${formIdPrefix}_${formName}" class="showHidePanel" value="Y" type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" /><label for="${formIdPrefix}_${formName}">This person/business has an ownership or control interest in another Medicaid disclosing entity, or an entity that does not participate in Medicaid but is required to disclose ownership and control interest because of participation in any Title V, XVIII, or XX programs.</label>
         </span>
     </div>
     <!-- /.section -->
 
 
     <div class="section line hiddenSection" style="display: ${formValue eq 'Y' ? 'block' : 'none'};">
-        <div class="">
+        <div>
             <div class="row requireField">
-                <label class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
+                <c:set var="formName" value="_17_iboOtherInterestName_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <span class="floatL inputCnt">
-                    <c:set var="formName" value="_17_iboOtherInterestName_${status.index - 1}"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
                     <span class="label">(Taxpayer name of FEIN or on W-9 from IRS)</span>
                 </span>
-                <label class="inlineLabel">% of Ownership Interest<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
+
                 <c:set var="formName" value="_17_iboOtherInterestPct_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="wholeInput smallInput" name="${formName}" value="${formValue}" maxlength="6"/>
+                <label for="${formIdPrefix}_${formName}" class="inlineLabel">% of Ownership Interest<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput smallInput" name="${formName}" value="${formValue}" maxlength="6"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row requireField addressline1">
-                <label class="">Address of Other Provider<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_17_iboOtherAddressLine1_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <label for="${formIdPrefix}_${formName}">Address of Other Provider<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row inlineBox addressline2">
-                <span class="label">&nbsp;</span>
-                <span class="floatL"><b>&nbsp;</b></span>
                 <c:set var="formName" value="_17_iboOtherAddressLine2_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <span class="label">&nbsp;</span>
+                <span class="floatL"><b>&nbsp;</b></span>
                 <input type="text" title="Other Provider Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
-                <label class="cityLabel">City : </label>
-                 <c:set var="formName" value="_17_iboOtherCity_${status.index - 1}"></c:set>
-                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
-                <label>County/Indian Reservation:</label>
-                 <c:set var="formName" value="_17_iboOtherCounty_${status.index - 1}"></c:set>
-                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="countySelectFor" name="${formName}">
+                <c:set var="formName" value="_17_iboOtherCity_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}" class="cityLabel">City : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
+
+                <c:set var="formName" value="_17_iboOtherCounty_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">County/Indian Reservation:</label>
+                <select id="${formIdPrefix}_${formName}" class="countySelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_counties']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
-                <label>State : </label>
-                
+
                 <c:set var="formName" value="_17_iboOtherState_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="stateSelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">State : </label>
+                <select id="${formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
-                
+
                 <c:set var="formName" value="_17_iboOtherZip_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label>ZIP Code : </label>
-                <input type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
+                <label for="${formIdPrefix}_${formName}">ZIP Code : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
             </div>
         </div>
         <div class="clearFixed"></div>
@@ -347,13 +343,11 @@
     <div class="section line">
         <div class="">
             <div class="row requireField">
-                <label>Type<span class="required">*</span><span><a href="javascript:" class="definition">?</a></span></label>
-                <span class="floatL"><b>:</b></span>
-                
                 <c:set var="formName" value="_17_cboType_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-
-                <select class="businessOwnershipType" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">Type<span class="required">*</span><span><a href="javascript:" class="definition">?</a></span></label>
+                <span class="floatL"><b>:</b></span>
+                <select id="${formIdPrefix}_${formName}" class="businessOwnershipType" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${beneficialOwnerTypes}">
                         <c:if test="${opt.ownerType ne 'P'}">
@@ -361,34 +355,31 @@
                         </c:if>
                     </c:forEach>
                 </select>
-                
+
                 <div class="subType subcontractor">
-                    <label class="">Name Subcontractor</label>
-                    <span class="floatL"><b>:</b></span>
-                    
                     <c:set var="formName" value="_17_cboSubcontractorName_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    
-                    <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                    <label for="${formIdPrefix}_${formName}">Name Subcontractor</label>
+                    <span class="floatL"><b>:</b></span>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
                     <div class="clear"></div>
                 </div>
                 <div class="subType owner">
-                    <label class="">List % of Ownership Interest
+                    <c:set var="formName" value="_17_cboPercentOwnership_${status.index - 1}"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <label for="${formIdPrefix}_${formName}">List % of Ownership Interest
                         <span class="label">if 5% or more</span>
                     </label>
                     <span class="floatL"><b>:</b></span>
-                    
-                    <c:set var="formName" value="_17_cboPercentOwnership_${status.index - 1}"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
                     <div class="clear"></div>
                 </div>
                 <div class="subType other">
-                    <label class="">Other</label>
-                    <span class="floatL"><b>:</b></span>
                     <c:set var="formName" value="_17_cboOtherType_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                    <label for="${formIdPrefix}_${formName}">Other</label>
+                    <span class="floatL"><b>:</b></span>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
                     <div class="clear"></div>
                 </div>
             </div>
@@ -397,63 +388,65 @@
         <div class="clearFixed"></div>
         <div class="">
             <div class="row requireField">
-                <label class="">Full Legal Name<span class="required">*</span></label>
+                <c:set var="formName" value="_17_cboLegalName_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">Full Legal Name<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <span class="floatL inputCnt">
-                    <c:set var="formName" value="_17_cboLegalName_${status.index - 1}"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
                     <span class="label">(Taxpayer name of FEIN or on W-9 from IRS)</span>
                 </span>
-                <label class="inlineLabel">FEIN<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
+
                 <c:set var="formName" value="_17_cboFEIN_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="wholeInput smallInput feinMasked" name="${formName}" value="${formValue}" maxlength="10"/>
+                <label for="${formIdPrefix}_${formName}" class="inlineLabel">FEIN<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput smallInput feinMasked" name="${formName}" value="${formValue}" maxlength="10"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row requiredField addressline1">
-                <label>Business Address<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_17_cboAddressLine1_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Business Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <label for="${formIdPrefix}_${formName}">Business Address<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" title="Business Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
-            
+
             <div class="row inlineBox addressline2">
-                <span class="label">&nbsp;</span>
-                <span class="floatL"><b>&nbsp;</b></span>
                 <c:set var="formName" value="_17_cboAddressLine2_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <span class="label">&nbsp;</span>
+                <span class="floatL"><b>&nbsp;</b></span>
                 <input type="text" title="Business Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
-            
+
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
-                <label class="cityLabel">City : </label>
-
                 <c:set var="formName" value="_17_cboCity_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text"  class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
-                <label>State : </label>
+                <label for="${formIdPrefix}_${formName}" class="cityLabel">City : </label>
+                <input id="${formIdPrefix}_${formName}" type="text"  class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
+
                 <c:set var="formName" value="_17_cboState_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="stateSelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">State : </label>
+                <select id="${formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
-                <label>ZIP Code : </label>
+
                 <c:set var="formName" value="_17_cboZip_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
-                <label>County : </label>
+                <label for="${formIdPrefix}_${formName}">ZIP Code : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
+
                 <c:set var="formName" value="_17_cboCounty_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="countySelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">County : </label>
+                <select id="${formIdPrefix}_${formName}" class="countySelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_counties']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
@@ -465,75 +458,77 @@
         <span class="control">
             <c:set var="formName" value="_17_cboOtherInterestInd_${status.index - 1}"></c:set>
             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-            <input class="showHidePanel" value="Y" type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" />This person/business has an ownership or control interest in another Medicaid disclosing entity, or an entity that does not participate in Medicaid but is required to disclose ownership and control interest because of participation in any Title V, XVIII, or XX programs.
+            <input id="${formIdPrefix}_${formName}" class="showHidePanel" value="Y" type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" /><label for="${formIdPrefix}_${formName}">This person/business has an ownership or control interest in another Medicaid disclosing entity, or an entity that does not participate in Medicaid but is required to disclose ownership and control interest because of participation in any Title V, XVIII, or XX programs.</label>
         </span>
     </div>
     <!-- /.section -->
 
     <div class="section line hiddenSection" style="display: ${formValue eq 'Y' ? 'block' : 'none'};">
-        <div class="">
+        <div>
             <div class="row requireField">
-                <label class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
+                <c:set var="formName" value="_17_cboOtherInterestName_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <span class="floatL inputCnt">
-                    <c:set var="formName" value="_17_cboOtherInterestName_${status.index - 1}"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
                     <span class="label">(Taxpayer name of FEIN or on W-9 from IRS)</span>
                 </span>
-                <label class="inlineLabel">% of Ownership Interest<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
+
                 <c:set var="formName" value="_17_cboOtherInterestPct_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="wholeInput smallInput" name="${formName}" value="${formValue}" maxlength="6"/>
+                <label for="${formIdPrefix}_${formName}" class="inlineLabel">% of Ownership Interest<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput smallInput" name="${formName}" value="${formValue}" maxlength="6"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row requireField addressline1">
-                <label class="">Address of Other Provider<span class="required">*</span></label>
+                <c:set var="formName" value="_17_cboOtherAddressLine1_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">Address of Other Provider<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                 <c:set var="formName" value="_17_cboOtherAddressLine1_${status.index - 1}"></c:set>
-                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input id="${formIdPrefix}_${formName}" type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row inlineBox addressline2">
+                <c:set var="formName" value="_17_cboOtherAddressLine2_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
-                 <c:set var="formName" value="_17_cboOtherAddressLine2_${status.index - 1}"></c:set>
-                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" title="Other Provider Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
             <div class="row inlineBox">
+                <c:set var="formName" value="_17_cboOtherCity_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
-                <label class="cityLabel">City : </label>
-                 <c:set var="formName" value="_17_cboOtherCity_${status.index - 1}"></c:set>
-                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
-                <label>County/Indian Reservation:</label>
-                 <c:set var="formName" value="_17_cboOtherCounty_${status.index - 1}"></c:set>
-                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="countySelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}" class="cityLabel">City : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
+
+                <c:set var="formName" value="_17_cboOtherCounty_${status.index - 1}"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">County/Indian Reservation:</label>
+                <select id="${formIdPrefix}_${formName}" class="countySelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_counties']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
-                <label>State : </label>
-                
+
                 <c:set var="formName" value="_17_cboOtherState_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="stateSelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">State : </label>
+                <select id="${formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
-                
+
                 <c:set var="formName" value="_17_cboOtherZip_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label>ZIP Code : </label>
-                <input type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
+                <label for="${formIdPrefix}_${formName}">ZIP Code : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
             </div>
         </div>
         <div class="clearFixed"></div>
@@ -558,13 +553,11 @@
     <div class="section line">
         <div>
             <div class="row requireField">
-                <label>Type<span class="required">*</span><span><a href="javascript:" class="definition">?</a></span></label>
-                <span class="floatL"><b>:</b></span>
-                
                 <c:set var="formName" value="_17_cboType"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-
-                <select class="businessOwnershipType" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">Type<span class="required">*</span><span><a href="javascript:" class="definition">?</a></span></label>
+                <span class="floatL"><b>:</b></span>
+                <select id="${formIdPrefix}_${formName}" class="businessOwnershipType" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${beneficialOwnerTypes}">
                        <c:if test="${opt.ownerType ne 'P'}">
@@ -572,99 +565,98 @@
                        </c:if>
                     </c:forEach>
                 </select>
-                
+
                 <div class="subType subcontractor">
-                    <label class="">Name Subcontractor</label>
-                    <span class="floatL"><b>:</b></span>
-                    
                     <c:set var="formName" value="_17_cboSubcontractorName"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    
-                    <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                    <label for="${formIdPrefix}_${formName}">Name Subcontractor</label>
+                    <span class="floatL"><b>:</b></span>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
                     <div class="clear"></div>
                 </div>
                 <div class="subType owner">
-                    <label class="">List % of Ownership Interest
+                    <c:set var="formName" value="_17_cboPercentOwnership"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <label for="${formIdPrefix}_${formName}">List % of Ownership Interest
                         <span class="label">if 5% or more</span>
                     </label>
                     <span class="floatL"><b>:</b></span>
-                    
-                    <c:set var="formName" value="_17_cboPercentOwnership"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
                     <div class="clear"></div>
                 </div>
                 <div class="subType other">
-                    <label class="">Other</label>
-                    <span class="floatL"><b>:</b></span>
                     <c:set var="formName" value="_17_cboOtherType"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                    <label for="${formIdPrefix}_${formName}">Other</label>
+                    <span class="floatL"><b>:</b></span>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
                     <div class="clear"></div>
                 </div>
             </div>
             <div class="clearFixed"></div>
         </div>
         <div class="clearFixed"></div>
-        <div class="">
+        <div>
             <div class="row requireField">
-                <label class="">Full Legal Name<span class="required">*</span></label>
+                <c:set var="formName" value="_17_cboLegalName"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">Full Legal Name<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <span class="floatL inputCnt">
-                    <c:set var="formName" value="_17_cboLegalName"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
                     <span class="label">(Taxpayer name of FEIN or on W-9 from IRS)</span>
                 </span>
-                <label class="inlineLabel">FEIN<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
+
                 <c:set var="formName" value="_17_cboFEIN"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="wholeInput smallInput feinMasked" name="${formName}" value="${formValue}" maxlength="10"/>
+                <label for="${formIdPrefix}_${formName}" class="inlineLabel">FEIN<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput smallInput feinMasked" name="${formName}" value="${formValue}" maxlength="7"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row requiredField addressline1">
-                <label>Business Address<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_17_cboAddressLine1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Business Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <label for="${formIdPrefix}_${formName}">Business Address<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" title="Business Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
-            
+
             <div class="row inlineBox addressline2">
-                <span class="label">&nbsp;</span>
-                <span class="floatL"><b>&nbsp;</b></span>
                 <c:set var="formName" value="_17_cboAddressLine2"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <span class="label">&nbsp;</span>
+                <span class="floatL"><b>&nbsp;</b></span>
                 <input type="text" title="Business Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
-            
+
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
-                <label class="cityLabel">City : </label>
-
                 <c:set var="formName" value="_17_cboCity"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text"  class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
-                <label>State : </label>
+                <label for="${formIdPrefix}_${formName}" class="cityLabel">City : </label>
+                <input id="${formIdPrefix}_${formName}" type="text"  class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
+
                 <c:set var="formName" value="_17_cboState"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="stateSelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">State : </label>
+                <select id="${formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
-                <label>ZIP Code : </label>
+
                 <c:set var="formName" value="_17_cboZip"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
-                <label>County : </label>
+                <label for="${formIdPrefix}_${formName}">ZIP Code : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
+
                 <c:set var="formName" value="_17_cboCounty"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="countySelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">County : </label>
+                <select id="${formIdPrefix}_${formName}" class="countySelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_counties']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
@@ -676,77 +668,79 @@
         <span class="control">
             <c:set var="formName" value="_17_cboOtherInterestInd"></c:set>
             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-            <input class="showHidePanel" value="Y" type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" />This person/business has an ownership or control interest in another Medicaid disclosing entity, or an entity that does not participate in Medicaid but is required to disclose ownership and control interest because of participation in any Title V, XVIII, or XX programs.
+            <input id="${formIdPrefix}_${formName}" class="showHidePanel" value="Y" type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" /><label for="${formIdPrefix}_${formName}">This person/business has an ownership or control interest in another Medicaid disclosing entity, or an entity that does not participate in Medicaid but is required to disclose ownership and control interest because of participation in any Title V, XVIII, or XX programs.</label>
         </span>
     </div>
     <!-- /.section -->
 
     <div class="section line hiddenSection" style="display: ${formValue eq 'Y' ? 'block' : 'none'};">
-        <div class="">
+        <div>
             <div class="row requireField">
-                <label class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
+                <c:set var="formName" value="_17_cboOtherInterestName"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <span class="floatL inputCnt">
-                    <c:set var="formName" value="_17_cboOtherInterestName"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
                     <span class="label">(Taxpayer name of FEIN or on W-9 from IRS)</span>
                 </span>
-                <label class="inlineLabel">% of Ownership Interest<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
+
                 <c:set var="formName" value="_17_cboOtherInterestPct"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="wholeInput smallInput" name="${formName}" value="${formValue}" maxlength="6"/>
+                <label for="${formIdPrefix}_${formName}"class="inlineLabel">% of Ownership Interest<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput smallInput" name="${formName}" value="${formValue}" maxlength="6"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row requireField addressline1">
-                <label class="">Address of Other Provider<span class="required">*</span></label>
+                <c:set var="formName" value="_17_cboOtherAddressLine1"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">Address of Other Provider<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                 <c:set var="formName" value="_17_cboOtherAddressLine1"></c:set>
-                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <input id="${formIdPrefix}_${formName}" type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
                 <div class="clearFixed"></div>
             </div>
-            
+
             <div class="row inlineBox addressline2">
-                <span class="label">&nbsp;</span>
-                <span class="floatL"><b>&nbsp;</b></span>
                 <c:set var="formName" value="_17_cboOtherAddressLine2"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <span class="label">&nbsp;</span>
+                <span class="floatL"><b>&nbsp;</b></span>
                 <input type="text" title="Other Provider Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
-            
+
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
-                <label class="cityLabel">City : </label>
-                 <c:set var="formName" value="_17_cboOtherCity"></c:set>
-                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
-                <label>County/Indian Reservation:</label>
-                 <c:set var="formName" value="_17_cboOtherCounty"></c:set>
-                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="countySelectFor" name="${formName}">
+                <c:set var="formName" value="_17_cboOtherCity"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}" class="cityLabel">City : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
+
+                <c:set var="formName" value="_17_cboOtherCounty"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">County/Indian Reservation:</label>
+                <select id="${formIdPrefix}_${formName}" class="countySelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_counties']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
-                <label>State : </label>
-                
+
                 <c:set var="formName" value="_17_cboOtherState"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="stateSelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">State : </label>
+                <select id="${formIdPrefix}_${formName}"class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
-                
+
                 <c:set var="formName" value="_17_cboOtherZip"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label>ZIP Code : </label>
-                <input type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
+                <label for="${formIdPrefix}_${formName}">ZIP Code : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
             </div>
         </div>
         <div class="clearFixed"></div>
@@ -757,13 +751,11 @@
     <div class="section line">
         <div>
             <div class="row requireField">
-                <label>Type<span class="required">*</span><span><a href="javascript:" class="definition">?</a></span></label>
-                <span class="floatL"><b>:</b></span>
-                
                 <c:set var="formName" value="_17_iboType"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-
-                <select class="ownershipType" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">Type<span class="required">*</span><span><a href="javascript:" class="definition">?</a></span></label>
+                <span class="floatL"><b>:</b></span>
+                <select id="${formIdPrefix}_${formName}" class="ownershipType" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${beneficialOwnerTypes}">
                        <c:if test="${opt.ownerType ne 'O'}">
@@ -771,34 +763,31 @@
                        </c:if>
                     </c:forEach>
                 </select>
-                
+
                 <div class="subType subcontractor">
-                    <label class="">Name Subcontractor</label>
-                    <span class="floatL"><b>:</b></span>
-                    
                     <c:set var="formName" value="_17_iboSubcontractorName"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    
-                    <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                    <label for="${formIdPrefix}_${formName}">Name Subcontractor</label>
+                    <span class="floatL"><b>:</b></span>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
                     <div class="clear"></div>
                 </div>
                 <div class="subType owner">
-                    <label class="">List % of Ownership Interest
+                    <c:set var="formName" value="_17_iboPercentOwnership"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <label for="${formIdPrefix}_${formName}">List % of Ownership Interest
                         <span class="label">if 5% or more</span>
                     </label>
                     <span class="floatL"><b>:</b></span>
-                    
-                    <c:set var="formName" value="_17_iboPercentOwnership"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
                     <div class="clear"></div>
                 </div>
                 <div class="subType other">
-                    <label class="">Other</label>
-                    <span class="floatL"><b>:</b></span>
                     <c:set var="formName" value="_17_iboOtherType"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                    <label for="${formIdPrefix}_${formName}">Other</label>
+                    <span class="floatL"><b>:</b></span>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
                     <div class="clear"></div>
                 </div>
             </div>
@@ -807,63 +796,63 @@
         <div class="clearFixed"></div>
         <div class="leftCol">
             <div class="row requireField">
-                <label>First Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_17_iboFirstName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
+                <label for="${formIdPrefix}_${formName}">First Name<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row">
-                <label>Middle Name</label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_17_iboMiddleName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
+                <label for="${formIdPrefix}_${formName}">Middle Name</label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row requireField">
-                <label>Last Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_17_iboLastName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
+                <label for="${formIdPrefix}_${formName}">Last Name<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row requireField">
-                <label class="">Social Security Number<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_17_iboSSN"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
+                <label for="${formIdPrefix}_${formName}">Social Security Number<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
             </div>
             <div class="clearFixed"></div>
         </div>
         <div class="rightCol">
             <div class="row requireField">
-                <label>Date of Birth<span class="required">*</span>
-                    <span class="label">(MM/DD/YYYY)</span>
-                </label>
-                <span class="floatL"><b>:</b></span>
-                                    <span class="dateWrapper floatL">
                 <c:set var="formName" value="_17_iboDOB"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                        <input class="date" type="text" name="${formName}" value="${formValue}"/>
-                                    </span>
-            </div>
-            <div class="row requireField">
-                <label>Hire Date<span class="required">*</span>
+                <label for="${formIdPrefix}_${formName}">Date of Birth<span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
-                <c:set var="formName" value="_17_iboHireDate"></c:set>
-                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <span class="dateWrapper floatL">
-                                        <input class="date" type="text" name="${formName}" value="${formValue}"/>
-                                    </span>
+                <span class="dateWrapper floatL">
+                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
+                </span>
             </div>
             <div class="row requireField">
-                <label class="multiLine">Relationship to any other listed person</label>
+                <c:set var="formName" value="_17_iboHireDate"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">Hire Date<span class="required">*</span>
+                    <span class="label">(MM/DD/YYYY)</span>
+                </label>
                 <span class="floatL"><b>:</b></span>
+                <span class="dateWrapper floatL">
+                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
+                </span>
+            </div>
+            <div class="row requireField">
                 <c:set var="formName" value="_17_iboRelationship"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label class="multiLine">Relationship to any other listed person</label>
+                <span class="floatL"><b>:</b></span>
                 <label class="inline"><input type="radio" ${formValue eq 'Spouse' ? 'checked' : ''} name="${formName}" value="Spouse"/>Spouse</label>
                 <label class="inline"><input type="radio" ${formValue eq 'Child' ? 'checked' : ''} name="${formName}" value="Child"/>Child</label>
                 <label class="inline"><input type="radio" ${formValue eq 'Parent' ? 'checked' : ''} name="${formName}" value="Parent"/>Parent</label>
@@ -873,47 +862,48 @@
         </div>
         <div class="">
             <div class="row requiredField addressline1">
-                <label>Home Residence Address<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-
                 <c:set var="formName" value="_17_iboAddressLine1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Home Residence Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <label for="${formIdPrefix}_${formName}">Home Residence Address<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" title="Home Residence Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
 
             <div class="row inlineBox addressline2">
-                <span class="label">(Practice location cannot be a<br />PO Box)</span>
-                <span class="floatL"><b>&nbsp;</b></span>
                 <c:set var="formName" value="_17_iboAddressLine2"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <span class="label">(Practice location cannot be a<br />PO Box)</span>
+                <span class="floatL"><b>&nbsp;</b></span>
                 <input type="text" title="Home Residence Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
-            
+
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
-                <label class="cityLabel">City : </label>
-
                 <c:set var="formName" value="_17_iboCity"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text"  class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
-                <label>State : </label>
+                <label for="${formIdPrefix}_${formName}" class="cityLabel">City : </label>
+                <input id="${formIdPrefix}_${formName}" type="text"  class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
+
                 <c:set var="formName" value="_17_iboState"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="stateSelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">State : </label>
+                <select id="${formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
-                <label>ZIP Code : </label>
+
                 <c:set var="formName" value="_17_iboZip"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
-                <label>County : </label>
+                <label for="${formIdPrefix}_${formName}">ZIP Code : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
+
                 <c:set var="formName" value="_17_iboCounty"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="countySelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">County : </label>
+                <select id="${formIdPrefix}_${formName}" class="countySelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_counties']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
@@ -925,75 +915,77 @@
         <span class="control">
             <c:set var="formName" value="_17_iboOtherInterestInd"></c:set>
             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-            <input class="showHidePanel" type="checkbox" name="${formName}" />This person/business has an ownership or control interest in another Medicaid disclosing entity, or an entity that does not participate in Medicaid but is required to disclose ownership and control interest because of participation in any Title V, XVIII, or XX programs.
+            <input id="${formIdPrefix}_${formName}" class="showHidePanel" type="checkbox" name="${formName}" /><label for="${formIdPrefix}_${formName}">This person/business has an ownership or control interest in another Medicaid disclosing entity, or an entity that does not participate in Medicaid but is required to disclose ownership and control interest because of participation in any Title V, XVIII, or XX programs.</label>
         </span>
     </div>
     <!-- /.section -->
 
 
     <div class="section line hiddenSection">
-
-        <div class="">
+        <div>
             <div class="row requireField">
-                <label class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
+                <c:set var="formName" value="_17_iboOtherInterestName"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <span class="floatL inputCnt">
-                    <c:set var="formName" value="_17_iboOtherInterestName"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
+                    <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
                     <span class="label">(Taxpayer name of FEIN or on W-9 from IRS)</span>
                 </span>
+
+                <!-- TODO: Issue #564: Why doesn't this field have a name? -->
                 <label class="inlineLabel">% of Ownership Interest<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <input type="text" class="wholeInput smallInput" maxlength="6"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row requireField addressline1">
-                <label class="">Address of Other Provider<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_17_iboOtherAddressLine1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
+                <label for="${formIdPrefix}_${formName}">Address of Other Provider<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row inlineBox addressline2">
-                <span class="label">&nbsp;</span>
-                <span class="floatL"><b>&nbsp;</b></span>
                 <c:set var="formName" value="_17_iboOtherAddressLine2"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <span class="label">&nbsp;</span>
+                <span class="floatL"><b>&nbsp;</b></span>
                 <input type="text" title="Other Provider Address, Line 2" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
-                <label class="cityLabel">City : </label>
-                 <c:set var="formName" value="_17_iboOtherCity"></c:set>
-                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
-                <label>County/Indian Reservation:</label>
-                 <c:set var="formName" value="_17_iboOtherCounty"></c:set>
-                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="countySelectFor" name="${formName}">
+                <c:set var="formName" value="_17_iboOtherCity"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}" class="cityLabel">City : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
+
+                <c:set var="formName" value="_17_iboOtherCounty"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">County/Indian Reservation:</label>
+                <select id="${formIdPrefix}_${formName}" class="countySelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_counties']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
-                <label>State : </label>
-                
+
                 <c:set var="formName" value="_17_iboOtherState"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <select class="stateSelectFor" name="${formName}">
+                <label for="${formIdPrefix}_${formName}">State : </label>
+                <select id="${formIdPrefix}_${formName}"class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">
                         <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
                     </c:forEach>
                 </select>
-                
+
                 <c:set var="formName" value="_17_iboOtherZip"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label>ZIP Code : </label>
-                <input type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
+                <label for="${formIdPrefix}_${formName}">ZIP Code : </label>
+                <input id="${formIdPrefix}_${formName}" type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
             </div>
         </div>
         <div class="clearFixed"></div>

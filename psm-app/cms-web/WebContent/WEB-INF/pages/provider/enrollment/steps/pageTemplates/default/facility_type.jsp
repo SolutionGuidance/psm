@@ -26,21 +26,30 @@
                                 <td>
                                     <c:set var="formName" value="_36_facilityType"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <input type="radio" value="A Community Mental Health Center" name="${formName}"  ${formValue eq 'A Community Mental Health Center' ? 'checked' : ''}/> A Community Mental Health Center
+                                    <label class="radioLabel">
+                                      <input type="radio" value="A Community Mental Health Center" name="${formName}"  ${formValue eq 'A Community Mental Health Center' ? 'checked' : ''}/>
+                                      A Community Mental Health Center
+                                    </label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <c:set var="formName" value="_36_facilityType"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <input type="radio" value="An outpatient Hospital" name="${formName}"  ${formValue eq 'An outpatient Hospital' ? 'checked' : ''}/> An outpatient Hospital
+                                    <label class="radioLabel">
+                                      <input type="radio" value="An outpatient Hospital" name="${formName}"  ${formValue eq 'An outpatient Hospital' ? 'checked' : ''}/>
+                                      An outpatient Hospital
+                                    </label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <c:set var="formName" value="_36_facilityType"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <input type="radio" value="A county contracted provider" name="${formName}"  ${formValue eq 'A county contracted provider' ? 'checked' : ''}/> Others, please upload a county contract 
+                                    <label class="radioLabel">
+                                      <input type="radio" value="A county contracted provider" name="${formName}"  ${formValue eq 'A county contracted provider' ? 'checked' : ''}/>
+                                      Others, please upload a county contract
+                                    </label>
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_36_countyContract"></c:set>

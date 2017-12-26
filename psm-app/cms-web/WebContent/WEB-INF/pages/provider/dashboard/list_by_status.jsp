@@ -86,11 +86,11 @@
 
                     <div class="leftCol">
                       <div class="row">
-                        <label>NPI/UMPI</label>
+                        <label for="listByStatusNpi">NPI/UMPI</label>
                         <span class="floatL">
                           <b>:</b>
                         </span>
-                        <form:input path="npi" cssClass="normalInput"/>
+                        <form:input id="listByStatusNpi" path="npi" cssClass="normalInput"/>
                       </div>
                       <div class="row">
                         <label>Date Created</label>
@@ -110,11 +110,11 @@
                     </div>
                     <div class="rightCol">
                       <div class="row">
-                        <label>Request Type</label>
+                        <label for="listByStatusRequestTypes">Request Type</label>
                         <span class="floatL">
                           <b>:</b>
                         </span>
-                        <form:select path="requestTypes" cssClass="longSelect" multiple="false">
+                        <form:select id="listByStatusRequestTypes" path="requestTypes" cssClass="longSelect" multiple="false">
                           <form:option value="">All</form:option>
                           <form:option value="Enrollment">Enrollment</form:option>
                           <form:option value="Renewal">Renewal</form:option>
@@ -128,13 +128,13 @@
                           <b>:</b>
                         </span>
                         <span class="dateWrapper floatL">
-                          <form:input path="statusDateStart" cssClass="date" readonly=""/>
+                          <form:input title="Status Start" path="statusDateStart" cssClass="date" readonly=""/>
                         </span>
                         <span class="floatL">
                           -
                         </span>
                         <span class="dateWrapper floatL">
-                          <form:input path="statusDateEnd" cssClass="date" readonly=""/>
+                          <form:input title="Status End" path="statusDateEnd" cssClass="date" readonly=""/>
                         </span>
                       </div>
                     </div>

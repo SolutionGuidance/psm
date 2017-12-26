@@ -44,7 +44,7 @@
                 <div class="floatW">
                   <div class="leftCol">
                     <div class="row">
-                      <label>NPI/UMPI</label>
+                      <label for="npiInput">NPI/UMPI</label>
                       <span class="floatL"><b>:</b></span>
                       <input id="npiInput" type="text" class="normalInput" value="${searchCriteria.npi}"/>
                     </div>
@@ -60,7 +60,7 @@
                       </span>
                     </div>
                     <div class="row">
-                      <label>Provider Type</label>
+                      <label for="providerTypeInput">Provider Type</label>
                       <span class="floatL"><b>:</b></span>
                       <select id="providerTypeInput" class="longSelect">
                         <option value="">All</option>
@@ -70,14 +70,14 @@
                       </select>
                     </div>
                     <div class="row">
-                      <label>Provider Name</label>
+                      <label for="providerNameInput">Provider Name</label>
                       <span class="floatL"><b>:</b></span>
                       <input id="providerNameInput" value="${searchCriteria.providerName}" type="text" class="normalInput"/>
                     </div>
                   </div>
                   <div class="rightCol">
                     <div class="row">
-                      <label>Request Type</label>
+                      <label for="requestTypeInput">Request Type</label>
                       <span class="floatL"><b>:</b></span>
                       <select id="requestTypeInput" class="longSelect">
                         <option value="">All</option>
@@ -87,7 +87,7 @@
                       </select>
                     </div>
                     <div class="row">
-                      <label>Status</label>
+                      <label for="enrollmentStatusesInput">Status</label>
                       <span class="floatL"><b>:</b></span>
                       <select id="enrollmentStatusesInput" class="longSelect">
                         <option value="">All</option>
@@ -97,7 +97,7 @@
                       </select>
                     </div>
                     <div class="row">
-                      <label>Risk Level</label>
+                      <label for="riskLevelInput">Risk Level</label>
                       <span class="floatL"><b>:</b></span>
                       <select id="riskLevelInput" class="longSelect">
                         <option value="">All</option>

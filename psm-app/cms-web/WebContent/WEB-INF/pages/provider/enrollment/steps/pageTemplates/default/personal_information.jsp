@@ -7,6 +7,8 @@
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<c:set var="formIdPrefix" value="personal_information"></c:set>
+
 <%-- BUGR-9673 (optional NPI for some provider types) --%>
 <c:set var="requireNPI" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Personal Information Form'].settings['requireNPI']}"></c:set>
 

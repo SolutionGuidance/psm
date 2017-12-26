@@ -8,6 +8,7 @@
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@taglib prefix="cms" uri="CMSTags"  %>
+<c:set var="formIdPrefix" value="qualified_professional"></c:set>
 
 <input type="hidden" name="formNames" value="<%= ViewStatics.QUALIFIED_PROFESSIONAL_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />

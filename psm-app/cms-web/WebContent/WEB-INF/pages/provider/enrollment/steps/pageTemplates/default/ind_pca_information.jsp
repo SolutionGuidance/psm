@@ -7,6 +7,7 @@
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<c:set var="formIdPrefix" value="ind_pca_information"></c:set>
 
 <div class="practicePanel">
     <div>

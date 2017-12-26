@@ -7,6 +7,8 @@
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<c:set var="formIdPrefix" value="organization_disclosure"></c:set>
+
 <input type="hidden" name="formNames" value="<%= ViewStatics.ORGANIZATION_DISCLOSURE_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 

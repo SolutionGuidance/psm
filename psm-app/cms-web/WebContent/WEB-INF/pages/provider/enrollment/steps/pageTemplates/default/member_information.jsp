@@ -7,6 +7,8 @@
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<c:set var="formIdPrefix" value="member_information"></c:set>
+
 <input type="hidden" name="formNames" value="<%= ViewStatics.MEMBER_INFO_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 <c:set var="askBGSInfo" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Member Information Form'].settings['askBGSInfo']}"></c:set>

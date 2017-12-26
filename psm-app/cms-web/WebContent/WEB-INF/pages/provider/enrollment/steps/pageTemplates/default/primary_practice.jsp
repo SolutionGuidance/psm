@@ -8,6 +8,7 @@
 <%@page import="gov.medicaid.binders.ProviderTypeFormBinder"%>
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<c:set var="formIdPrefix" value="primary_practice"></c:set>
 
 <c:if test="${requestScope['_06_bound'] eq 'Y'}">
 <!-- /.radioPanel -->

@@ -7,6 +7,8 @@
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<c:set var="formIdPrefix" value="ownership_information"></c:set>
+
 <input type="hidden" name="formNames" value="<%= ViewStatics.OWNERSHIP_INFO_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 <c:set var="disabledMarkup" value='disabled="disabled"' />

@@ -7,6 +7,7 @@
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<c:set var="formIdPrefix" value="organization_information"></c:set>
 
 <c:set var="askEffectiveDate" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['askEffectiveDate']}"></c:set>
 <c:set var="askFiscalYear" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['askFiscalYear']}"></c:set>

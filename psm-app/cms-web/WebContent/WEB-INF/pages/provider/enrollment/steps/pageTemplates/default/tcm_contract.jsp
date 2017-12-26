@@ -7,6 +7,7 @@
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<c:set var="formIdPrefix" value="tcm_contract"></c:set>
 
 <input type="hidden" name="formNames" value="<%= ViewStatics.TCM_CONTRACT_FORM %>">
 <div class="newEnrollmentPanel practicePanel">

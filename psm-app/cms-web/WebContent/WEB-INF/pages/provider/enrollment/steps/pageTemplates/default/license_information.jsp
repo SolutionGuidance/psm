@@ -9,6 +9,7 @@
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@taglib prefix="cms" uri="CMSTags"  %>
+<c:set var="formIdPrefix" value="license_information"></c:set>
 
 <c:set var="hideRenewalDate" value="${viewModel.tabModels['Personal Information'].formSettings['Personal Information Form'].settings['hideRenewalDate']}"></c:set>
 <c:set var="hideLicenseNumber" value="${viewModel.tabModels['Personal Information'].formSettings['Personal Information Form'].settings['hideLicenseNumber']}"></c:set>

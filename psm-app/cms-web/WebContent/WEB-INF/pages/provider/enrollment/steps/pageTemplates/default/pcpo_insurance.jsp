@@ -7,6 +7,8 @@
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<c:set var="formIdPrefix" value="pcpo_insurance"></c:set>
+
 <input type="hidden" name="formNames" value="<%= ViewStatics.PCPO_INSURANCE_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 

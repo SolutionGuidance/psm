@@ -8,7 +8,7 @@
 <%@page import="gov.medicaid.binders.ProviderTypeFormBinder"%>
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<%@taglib prefix="cms" uri="CMSTags"  %> 
+<%@taglib prefix="cms" uri="CMSTags"  %>
 
 <c:set var="showCategories" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Facility License Form'].settings['showCategories']}"></c:set>
 <input type="hidden" name="formNames" value="<%= ViewStatics.FACILITY_LICENSE_FORM %>">
@@ -54,7 +54,7 @@
             <div class="tableHeader topHeader"><span>Facility Licenses/Certifications</span></div>
             <div class="clearFixed"></div>
         </c:if>
-    
+
         <div class="addPracticeLocations">
             <table cellpadding="0" cellspacing="0" class="generalTable facility" id="tableFacilityLicense">
                 <colgroup>

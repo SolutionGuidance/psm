@@ -554,7 +554,7 @@
 <div class="hide">
 <div id="corpOwnerTemplate" class="corpOwner">
     <div class="section line">
-        <div class="">
+        <div>
             <div class="row requireField">
                 <label>Type<span class="required">*</span><span><a href="javascript:" class="definition">?</a></span></label>
                 <span class="floatL"><b>:</b></span>
@@ -753,7 +753,7 @@
 
 <div id="ownerTemplate" class="personOwner">
     <div class="section line">
-        <div class="">
+        <div>
             <div class="row requireField">
                 <label>Type<span class="required">*</span><span><a href="javascript:" class="definition">?</a></span></label>
                 <span class="floatL"><b>:</b></span>

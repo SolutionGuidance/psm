@@ -25,7 +25,7 @@
             <th class="tablesorter-header ${sortDirCls}"><div class="tablesorter-header-inner"><a href="javascript:changeSort(4);"><span>Request Type</span><span class="${criteria.sortColumn eq '4' ? 'sort' : 'nosort'}"></span></a><span class="sep"></span></div></th>
             <th class="tablesorter-header ${sortDirCls}"><div class="tablesorter-header-inner"><a href="javascript:changeSort(6);"><span>Status Date</span><span class="${criteria.sortColumn eq '6' ? 'sort' : 'nosort'}"></span></a><span class="sep"></span></div></th>
             <th class="alignCenter" ><div class="tablesorter-header-inner">Action</div></th>
-        </tr>                                        
+        </tr>
     </thead>
     <tbody>
         <c:forEach var="item" items="${results.items}" varStatus="status">
@@ -57,6 +57,6 @@
                     <a href="${exportTicketLink}">Export to PDF</a>
                 </td>
             </tr>
-        </c:forEach>    
+        </c:forEach>
     </tbody>
 </table>

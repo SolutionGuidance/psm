@@ -30,7 +30,7 @@
                         <th>License/Certification #<span class="required">*</span><span class="sep"></span></th>
                     </c:otherwise>
                 </c:choose>
-                
+
                 <th>Original Issue Date<span class="required">*</span><span class="sep"></span></th>
                 <c:choose>
                      <c:when test="${hideRenewalDate}">

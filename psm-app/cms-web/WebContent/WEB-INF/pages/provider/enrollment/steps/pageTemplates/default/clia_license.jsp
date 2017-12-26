@@ -17,7 +17,7 @@
         <div class="requiredInfo">
             If the organization is providing laboratory services, identify your CLIA Number(s). You must enclose a copy of current certificate(s).
         </div>
-        
+
         <div class="addPracticeLocations">
             <table cellpadding="0" cellspacing="0" class="generalTable facility" id="tableCLIA">
                 <colgroup>

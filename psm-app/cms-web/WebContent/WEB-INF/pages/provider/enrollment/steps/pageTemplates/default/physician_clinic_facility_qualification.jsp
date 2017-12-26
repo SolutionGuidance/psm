@@ -14,7 +14,7 @@
     <div class="tableHeader topHeader"><span>Facility Qualification</span></div>
     <div class="clearFixed"></div>
     <div class="section">
-        <div class="">
+        <div>
             <div class="row">
                 <table>
                     <tbody>

@@ -279,7 +279,7 @@
                         <input type="text" class="fiscalYearInput smallInput" name="${formName}" value="${formValue}" maxlength="2"/>
                         <span class="shrtFldInfo">MM/DD</span>
                     </div>
-                    
+
                     <div class="row">
                         <label>Office Phone Number<span class="required">*</span></label>
                         <span class="floatL"><b>:</b></span>
@@ -299,7 +299,7 @@
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                         <input type="text" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
                     </div>
-                    
+
                     <div class="row">
                         <label>Office Fax Number</label>
                         <span class="floatL"><b>:</b></span>
@@ -315,7 +315,7 @@
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                         <input type="text" class="autotab smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
                     </div>
-                    
+
                     <div class="row requireField">
                         <label>Requested Enrollment Date<span class="required">*</span></label>
                         <span class="floatL"><b>:</b></span>
@@ -326,7 +326,7 @@
                             <input class="date" type="text" name="${formName}" value="${formValue}"/>
                         </span>
                     </div>
-                    
+
               </c:when>
               <c:when test="${useEDILayout}">
                       <c:if test="${showInitialChoices}">
@@ -687,7 +687,7 @@
 
               </c:otherwise>
           </c:choose>
-            
+
             <div class="clearFixed"></div>
         </div>
 
@@ -776,7 +776,7 @@
                         </select>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <c:set var="disableLinkedFields" value=""></c:set>
                     <c:set var="linkedFieldClass" value=""></c:set>

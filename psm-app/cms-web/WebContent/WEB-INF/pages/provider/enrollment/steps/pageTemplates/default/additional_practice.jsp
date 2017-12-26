@@ -11,7 +11,7 @@
 
 <div class="practicePanel">
     <input type="hidden" name="formNames" value="<%= ViewStatics.ADDITIONAL_PRACTICE_FORM %>">
-    
+
     <div class="tableHeader otherTableHeader">
         <span>Additional Practice Locations</span>
         <a href="javascript:openPracticeLookup(false, false);" class="purpleSmallBtn practiceLookupModalBtn">Practice Lookup</a>

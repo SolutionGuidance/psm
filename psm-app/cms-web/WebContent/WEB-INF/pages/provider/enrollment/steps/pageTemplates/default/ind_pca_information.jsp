@@ -40,7 +40,7 @@
             <div class="row requireField">
                 <label>Social Security Number<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-    
+
                 <c:set var="formName" value="_10_ssn"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="normalInput ssnMasked" name="${formName}" value="${formValue}" maxlength="11"/>
@@ -98,7 +98,7 @@
             <div class="row">
                 <label>UMPI</label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_10_umpi"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
@@ -108,7 +108,7 @@
                 <label>Date of Birth<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
-    
+
                     <c:set var="formName" value="_10_dob"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input class="date" type="text" name="${formName}" value="${formValue}"/>
@@ -155,7 +155,7 @@
                 <c:set var="formName" value="_10_adultInd"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="radio" value="Y" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}><label class="span">Yes</label>
-                <input type="radio" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}><label class="span">No</label>            
+                <input type="radio" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}><label class="span">No</label>
             </div>
         </div>
         <div class="clearFixed"></div>

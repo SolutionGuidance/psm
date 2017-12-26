@@ -14,7 +14,7 @@
     <div class="tableHeader topHeader"><span>PHN Agency must be a county or have a contract with a county</span></div>
     <div class="clearFixed"></div>
     <div class="section">
-        <div class="">
+        <div>
             <div class="row">
                 <div class="rowWrapper">
                     <div class="row">

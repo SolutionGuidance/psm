@@ -183,7 +183,9 @@ project(':cms-web') {
       source = sourceSets.main.allJava
       classpath += configurations.compile
       destinationDir = reporting.file('api-docs')
-      options.optionFiles << file('javadoc.options')
+      configure(options) {
+        tags = ['endpoint:a:Endpoint:', 'verb:a:HTTP Verbs Allowed:']
+      }
     }
 }
 

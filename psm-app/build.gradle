@@ -184,6 +184,7 @@ project(':cms-web') {
       classpath += configurations.compile
       destinationDir = reporting.file('api-docs')
       configure(options) {
+        noTimestamp true
         tags = ['endpoint:a:Endpoint:', 'verb:a:HTTP Verbs Allowed:']
       }
     }

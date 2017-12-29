@@ -78,7 +78,7 @@ public class CMSConfigurator {
 
         if (globalSettings == null) {
             synchronized (CMSConfigurator.class) {
-                globalSettings = Util.newEncryptionEnabledProps();
+                globalSettings = new Properties();
                 try {
                     globalSettings.load(stream);
                 } catch (IOException e) {

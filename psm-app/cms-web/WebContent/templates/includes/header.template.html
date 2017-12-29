@@ -2,7 +2,7 @@
   <div class="contentWidth">
     <div class="userSection">
       Welcome, <strong>{{principalUser.username}}</strong>
-      | <a href="javascript:;">Help</a>
+      | <a href="{{ctx}}/help/index.html">Help</a>
       | <form action="{{ctx}}/logout" method="post" class="logoutForm">
           <input type="submit" class="logoutButton" value="Logout"/>
           <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}"/>

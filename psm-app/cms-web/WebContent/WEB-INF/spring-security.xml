@@ -11,6 +11,7 @@
     http://www.springframework.org/schema/context/spring-context-4.3.xsd">
   <s:http pattern="/css/**" security="none"/>
   <s:http pattern="/js/**" security="none"/>
+  <s:http pattern="/help/**" security="none"/>
   <s:http pattern="/i/**" security="none"/>
 
   <s:http entry-point-ref="authenticationProcessingFilterEntryPoint"

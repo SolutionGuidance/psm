@@ -182,17 +182,6 @@ public class Util {
     }
 
     /**
-     * Left pads the given value with the given character to a specific width.
-     * @param value the value to be padded
-     * @param i the width expected
-     * @param c the padding character
-     * @return the padded string
-     */
-    public static String pad(String value, int i, char c) {
-        return String.format("%" + i + "s", value).replace(' ', c);
-    }
-
-    /**
      * Hashes the given string using the given salt value.
      * @param value the value to be hashed
      * @param salt the salt for the hash

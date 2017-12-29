@@ -87,20 +87,6 @@ public class Util {
     }
 
     /**
-     * Replace page and query string.
-     *
-     * @param original the original url
-     * @param lastPart the last part to use
-     * @return the original url up to the last / appended with the given last part
-     */
-    public static String replaceLastURLPart(String original, String lastPart) {
-        StringBuffer sb = new StringBuffer();
-        sb.append(original.substring(0, original.lastIndexOf("/") + 1));
-        sb.append(lastPart);
-        return sb.toString();
-    }
-
-    /**
      * Checks if the given value contains only digits.
      *
      * @param value the value to check

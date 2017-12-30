@@ -101,7 +101,6 @@ project(':services') {
         compile project(path: ':cms-business-model', configuration: 'archives')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
-        compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/codehaus/jackson')
     }
     sourceSets {
         main {
@@ -134,7 +133,6 @@ project(':cms-business-process') {
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
-        compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/codehaus/jackson')
         runtime libs.jbpm_persistence_jpa
     }
 

@@ -38,14 +38,12 @@ don't have hard rules about such things, and documentation changes
 usually don't need to sit as long as functional changes, but figure a
 business day or two for an average patch to get discussed.
 
-As to when to merge, that's a judgment call.  Usually
-[Cecilia](https://github.com/cecilia-donnelly),
-[James](https://github.com/jvasile) or
-[Karl](https://github.com/kfogel) pulls the trigger, but that isn't to
-say others shouldn't feel free to push the merge button if the
-conversation around a change has concluded.  If you're unsure, ask!
-"Is this ready to merge?" is often a useful next step in the
-conversation.
+As to when to merge, that's a judgment call.  Usually once an "approved"
+review goes through, and there aren't any more changes requested, then
+the author of the PR will merge it (if they have access to push to
+master).  Generally, wait to merge until the conversation around a
+change has concluded.  If you're unsure, ask!  "Is this ready to merge?"
+is often a useful next step in the conversation.
 
 If your PR fixes a bug or adds a feature, please write a test to go with
 the change (see [TESTING.md](https://github.com/SolutionGuidance/psm/blob/master/docs/TESTING.md) for details on our testing
@@ -54,6 +52,13 @@ test, please use a Given-When-Then description like [this
 one](https://github.com/SolutionGuidance/psm/blob/master/psm-app/cms-web/src/main/test/resources/features/enrollment/create_enrollment.feature)
 or describe in your PR message how reviewers should test that your
 change works as expected.  
+
+### Document as you go
+
+If you introduce a new framework or dependency, add the necessary
+information to [INSTALL.md](INSTALL.md) and the other documentation.  In
+particular, if you add a new input to or output from the PSM, document
+it in the Interface Control Document, [ICD.md](docs/ICD.md).
 
 ### The "Obvious Fix" rule: committing some minor changes directly to 'master'
 

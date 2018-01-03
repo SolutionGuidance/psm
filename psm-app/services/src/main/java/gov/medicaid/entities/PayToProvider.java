@@ -16,6 +16,14 @@
 
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -24,9 +32,6 @@ import java.util.Date;
  * @author TCSASSEMBLER
  * @version 1.0
  */
-import javax.persistence.*;
-import java.io.Serializable;
-
 @javax.persistence.Entity
 @Table(name = "pay_to_providers")
 public class PayToProvider implements Serializable {

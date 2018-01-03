@@ -16,14 +16,19 @@
 
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 /**
  * A corporate beneficial owner.
  *
  * @author TCSASSEMBLER
  * @version 1.0
  */
-import javax.persistence.*;
-
 @javax.persistence.Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)

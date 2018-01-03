@@ -19,7 +19,6 @@ package gov.medicaid.controllers;
 import java.util.logging.Logger;
 import gov.medicaid.controllers.validators.StrictCustomDateEditor;
 import gov.medicaid.interceptors.HandlebarsInterceptor;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;

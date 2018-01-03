@@ -16,16 +16,11 @@
 
 package gov.medicaid.controllers;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
 import javax.servlet.http.HttpSession;
 
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.interceptors.FlashMessageInterceptor;
 import gov.medicaid.security.CMSPrincipal;
-
-import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;

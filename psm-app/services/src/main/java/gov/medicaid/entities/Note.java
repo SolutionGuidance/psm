@@ -16,11 +16,13 @@
 
 package gov.medicaid.entities;
 
-import java.util.Date;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 
 @javax.persistence.Entity
 @Table(name = "notes")

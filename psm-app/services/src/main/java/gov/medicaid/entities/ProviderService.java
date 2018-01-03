@@ -1,14 +1,20 @@
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import java.io.Serializable;
+
 /**
  * Represents services allowed for the given provider.
  *
  * @author TCSASSEMBLER
  * @version 1.0
  */
-
-import javax.persistence.*;
-import java.io.Serializable;
 
 @javax.persistence.Entity
 @Table(name = "provider_services")

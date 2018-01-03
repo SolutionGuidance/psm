@@ -18,9 +18,7 @@ package gov.medicaid.controllers.admin;
 
 import gov.medicaid.controllers.ControllerHelper;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.services.PortalServiceConfigurationException;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;

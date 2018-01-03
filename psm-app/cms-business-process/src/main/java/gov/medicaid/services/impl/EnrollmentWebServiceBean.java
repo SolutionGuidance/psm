@@ -17,7 +17,6 @@
 package gov.medicaid.services.impl;
 
 import gov.medicaid.binders.BinderUtils;
-import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.ApplicantType;
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.GetLookupGroupsRequest;

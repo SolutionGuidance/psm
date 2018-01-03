@@ -22,6 +22,7 @@
       <property name="tokens" value="PACKAGE_DEF, IMPORT, CLASS_DEF, INTERFACE_DEF, ENUM_DEF, STATIC_INIT, INSTANCE_INIT, METHOD_DEF, CTOR_DEF"/>
     </module>
     <module name="LeftCurly"/>
+    <module name="NeedBraces"/>
     <module name="RightCurly">
       <property name="id" value="RightCurlySame"/>
       <property name="tokens" value="LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_DO"/>
@@ -34,5 +35,8 @@
     <module name="AvoidStarImport"/>
     <module name="IllegalImport"/>
     <module name="UnusedImports"/>
+    <module name="OneStatementPerLine"/>
+    <module name="PackageDeclaration"/>
+    <module name="StringLiteralEquality"/>
   </module>
 </module>

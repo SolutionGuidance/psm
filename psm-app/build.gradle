@@ -30,7 +30,6 @@ ext.libs = [
     hapi_fhir_structures: "ca.uhn.hapi.fhir:hapi-fhir-structures-dstu3:${hapi_fhir_version}",
     handlebars: 'com.github.jknack:handlebars:4.0.6',
     handlebars_springmvc: 'com.github.jknack:handlebars-springmvc:4.0.6',
-    itext: 'com.lowagie:itext:2.1.7',
     jasypt: 'org.jasypt:jasypt:1.9.0',
     jbpm_human_task_core: dependencies.create("org.jbpm:jbpm-human-task-core:${jbpm_version}") {
         exclude group: 'javax.transaction'
@@ -42,6 +41,7 @@ ext.libs = [
         exclude group: 'org.hibernate'
         exclude group: 'org.hibernate.javax.persistence'
     },
+    openpdf: 'com.github.librepdf:openpdf:1.0.5',
     spring_beans: "org.springframework:spring-beans:${spring_core_version}",
     spring_context: "org.springframework:spring-context:${spring_core_version}",
     spring_jdbc: "org.springframework:spring-jdbc:${spring_core_version}",
@@ -102,9 +102,9 @@ project(':services') {
         compile libs.commons_codec
         compile libs.commons_lang
         compile libs.commons_lang3
-        compile libs.itext
         compile libs.jasypt
         compile libs.jbpm_human_task_core
+        compile libs.openpdf
         compile libs.velocity
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar')
         compile project(path: ':cms-business-model', configuration: 'archives')
@@ -137,8 +137,8 @@ project(':cms-business-process') {
         compile libs.commons_lang3
         compile libs.hapi_fhir
         compile libs.hapi_fhir_structures
-        compile libs.itext
         compile libs.jbpm_human_task_core
+        compile libs.openpdf
         compile libs.spring_security_core
         compile libs.velocity
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar')
@@ -258,10 +258,10 @@ project(':cms-portal-services') {
         earlib libs.commons_lang3
         earlib libs.hapi_fhir
         earlib libs.hapi_fhir_structures
-        earlib libs.itext
         earlib libs.jasypt
         earlib libs.jbpm_human_task_core
         earlib libs.jbpm_persistence_jpa
+        earlib libs.openpdf
         earlib libs.spring_beans
         earlib libs.spring_context
         earlib libs.spring_jdbc

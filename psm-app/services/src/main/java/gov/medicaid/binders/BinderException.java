@@ -16,15 +16,13 @@
 
 package gov.medicaid.binders;
 
-import com.topcoder.util.errorhandling.BaseCriticalException;
-
 /**
  * Exception for invalid data formats.
  *
  * @author TCSASSEMBLER
  * @version 1.0
  */
-public class BinderException extends BaseCriticalException {
+public class BinderException extends Exception {
 
     /**
      * Cause of the bind exception.

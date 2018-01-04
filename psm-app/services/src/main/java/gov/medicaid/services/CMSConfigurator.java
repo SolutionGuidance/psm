@@ -354,15 +354,6 @@ public class CMSConfigurator {
     }
 
     /**
-     * Gets the configured pdf files folder
-     *
-     * @return the pdf files folder
-     */
-    public String getExportPDFFolder() {
-        return globalSettings.getProperty("export.pdf.folder");
-    }
-
-    /**
      * The allowed referrer domain for MN logins.
      * @return the configured domain
      */

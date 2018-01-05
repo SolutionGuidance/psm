@@ -24,7 +24,6 @@ ext.libs = [
     commons_codec: 'commons-codec:commons-codec:1.11',
     commons_fileupload: 'commons-fileupload:commons-fileupload:1.3.3',
     commons_io: 'commons-io:commons-io:2.6',
-    commons_lang: 'commons-lang:commons-lang:2.6',
     commons_lang3: 'org.apache.commons:commons-lang3:3.7',
     hapi_fhir: "ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:${hapi_fhir_version}",
     hapi_fhir_structures: "ca.uhn.hapi.fhir:hapi-fhir-structures-dstu3:${hapi_fhir_version}",
@@ -51,6 +50,7 @@ ext.libs = [
     spring_security_core: "org.springframework.security:spring-security-core:${spring_security_version}",
     spring_security_ldap: "org.springframework.security:spring-security-ldap:${spring_security_version}",
     spring_security_taglibs: "org.springframework.security:spring-security-taglibs:${spring_security_version}",
+    spring_web: "org.springframework:spring-web:${spring_core_version}",
     spring_webmvc: "org.springframework:spring-webmvc:${spring_core_version}",
     velocity: 'org.apache.velocity:velocity:1.7',
 ]
@@ -90,10 +90,10 @@ project(':services') {
 
     dependencies {
         compile libs.commons_codec
-        compile libs.commons_lang
         compile libs.commons_lang3
         compile libs.jbpm_human_task_core
         compile libs.openpdf
+        compile libs.spring_web
         compile libs.velocity
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar')
         compile project(path: ':cms-business-model', configuration: 'archives')
@@ -120,7 +120,6 @@ project(':cms-business-process') {
         compile project(path: ':cms-business-model', configuration: 'archives')
         compile libs.commons_codec
         compile libs.commons_io
-        compile libs.commons_lang
         compile libs.commons_lang3
         compile libs.hapi_fhir
         compile libs.hapi_fhir_structures
@@ -164,6 +163,7 @@ project(':cms-web') {
         compile libs.spring_security_config
         compile libs.spring_security_ldap
         compile libs.spring_security_taglibs
+        compile libs.spring_web
         compile libs.spring_webmvc
         runtime libs.handlebars
         runtime libs.handlebars_springmvc
@@ -239,7 +239,6 @@ project(':cms-portal-services') {
         earlib libs.commons_codec
         earlib libs.commons_fileupload
         earlib libs.commons_io
-        earlib libs.commons_lang
         earlib libs.commons_lang3
         earlib libs.hapi_fhir
         earlib libs.hapi_fhir_structures

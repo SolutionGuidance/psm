@@ -35,7 +35,7 @@ import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.ProviderEnrollmentService;
-import org.apache.commons.lang.StringEscapeUtils;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
@@ -190,7 +190,7 @@ public abstract class BaseFormBinder implements FormBinder {
      * @param value the value to be set
      */
     protected void attr(Map<String, Object> mv, String key, String value) {
-        mv.put(name(key), StringEscapeUtils.escapeHtml(value));
+        mv.put(name(key), HtmlUtils.htmlEscape(value));
     }
 
     /**
@@ -217,7 +217,7 @@ public abstract class BaseFormBinder implements FormBinder {
      * @param value the value to be set
      */
     protected void attr(Map<String, Object> mv, String key, int idx, String value) {
-        mv.put(name(key, idx), StringEscapeUtils.escapeHtml(value));
+        mv.put(name(key, idx), HtmlUtils.htmlEscape(value));
     }
 
     /**

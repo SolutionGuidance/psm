@@ -7,7 +7,7 @@ package gov.medicaid.controllers;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.util.Util;
-import org.apache.commons.lang.StringEscapeUtils;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -57,7 +57,7 @@ public class FullnameTag extends SimpleTagSupport {
             JspWriter out = pageContext.getOut();
             try {
                 if (Util.isNotBlank(user.getFirstName())) {
-                    out.println(StringEscapeUtils.escapeHtml(
+                    out.println(HtmlUtils.htmlEscape(
                             user.getFirstName() + " " + user.getLastName())
                     );
                 } else {

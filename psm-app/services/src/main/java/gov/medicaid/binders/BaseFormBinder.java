@@ -16,6 +16,8 @@
 
 package gov.medicaid.binders;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
 import gov.medicaid.domain.model.AddressType;
 import gov.medicaid.domain.model.ApplicantType;
 import gov.medicaid.domain.model.EnrollmentType;
@@ -33,19 +35,14 @@ import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.ProviderEnrollmentService;
+import org.apache.commons.lang.StringEscapeUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang.StringEscapeUtils;
-
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
 
 /**
  * Base class for the form binders.

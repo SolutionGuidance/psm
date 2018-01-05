@@ -52,7 +52,7 @@ ext.libs = [
     spring_security_ldap: "org.springframework.security:spring-security-ldap:${spring_security_version}",
     spring_security_taglibs: "org.springframework.security:spring-security-taglibs:${spring_security_version}",
     spring_webmvc: "org.springframework:spring-webmvc:${spring_core_version}",
-    velocity: 'org.apache.velocity:velocity:1.7',
+    velocity: 'org.apache.velocity:velocity-engine-core:2.0',
 ]
 
 allprojects {

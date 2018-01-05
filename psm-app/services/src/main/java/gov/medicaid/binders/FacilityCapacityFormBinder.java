@@ -24,14 +24,12 @@ import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormError;
+import org.apache.commons.lang.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang.StringUtils;
 
 /**
  * This binder handles the organization disclosure.

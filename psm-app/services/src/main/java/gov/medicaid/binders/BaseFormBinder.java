@@ -164,8 +164,8 @@ public abstract class BaseFormBinder implements FormBinder {
 
     /**
      * Retrieves the indexed name of the parameter.
+     *
      * @param key the base name
-     * @param idx the parameter index
      * @return the generated key
      */
     protected String name(String key) {

@@ -7,8 +7,7 @@ package gov.medicaid.controllers;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.util.Util;
-
-import java.io.IOException;
+import org.apache.commons.lang.StringEscapeUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -16,8 +15,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
-
-import org.apache.commons.lang.StringEscapeUtils;
+import java.io.IOException;
 
 /**
  * This tag library will print the full name of the user given the id.

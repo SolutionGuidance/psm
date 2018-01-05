@@ -31,7 +31,7 @@ public class FullnameTag extends SimpleTagSupport {
      * The entity manager to use when getting the user information.
      */
     private final EntityManager em;
-    
+
     /**
      * Creates a new instance.
      */
@@ -39,12 +39,12 @@ public class FullnameTag extends SimpleTagSupport {
         CMSConfigurator config = new CMSConfigurator();
         em = config.getPortalEntityManager();
     }
-    
+
     /**
      * The user id to be retrieved.
      */
     private String userId;
-    
+
     /**
      * Prints the full name of the user with the provided id.
      */
@@ -55,22 +55,25 @@ public class FullnameTag extends SimpleTagSupport {
             query.setParameter("userId", userId);
             CMSUser user = (CMSUser) query.getSingleResult();
 
-            PageContext pageContext = (PageContext) getJspContext(); 
-            JspWriter out = pageContext.getOut(); 
+            PageContext pageContext = (PageContext) getJspContext();
+            JspWriter out = pageContext.getOut();
             try {
                 if (Util.isNotBlank(user.getFirstName())) {
-                    out.println(StringEscapeUtils.escapeHtml(user.getFirstName() + " " + user.getLastName()));
+                    out.println(StringEscapeUtils.escapeHtml(
+                            user.getFirstName() + " " + user.getLastName())
+                    );
                 } else {
                     out.println(userId);
                 }
-            } catch (Exception e) { 
-                // Ignore. 
-            } 
+            } catch (Exception e) {
+                // Ignore.
+            }
         }
     }
 
     /**
      * Gets the value of the field <code>userId</code>.
+     *
      * @return the userId
      */
     public String getUserId() {
@@ -79,6 +82,7 @@ public class FullnameTag extends SimpleTagSupport {
 
     /**
      * Sets the value of the field <code>userId</code>.
+     *
      * @param userId the userId to set
      */
     public void setUserId(String userId) {

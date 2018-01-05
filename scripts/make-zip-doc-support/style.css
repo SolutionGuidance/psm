@@ -1,0 +1,143 @@
+/*
+ * style.css
+ * ~~~~~~~~~
+ *
+ * Derived from Sphinx stylesheet -- basic theme.
+ *
+ * :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+ * :license: BSD, see LICENSE for details.
+ *
+ */
+
+/* -- main layout ----------------------------------------------------------- */
+
+img {
+    border: 0;
+    max-width: 100%;
+}
+
+
+/* -- page layout ----------------------------------------------------------- */
+
+body {
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva',
+                 'Verdana', sans-serif;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    line-height: 150%;
+    text-align: inherit;
+    background-color: white;
+    background-image: url(background_b01.png);
+    color: black;
+    padding: 10;
+    border-right: 1px solid #336699;
+    border-left: 1px solid #336699;
+
+    margin: 0px 40px 0px 40px;
+}
+
+div.footer {
+    background-color: white;
+    color: #336699;
+    padding: 3px 8px 3px 0;
+    clear: both;
+    font-size: 0.8em;
+    text-align: right;
+    border-bottom: 1px solid #336699;
+
+    -moz-box-shadow: 2px 2px 5px #000;
+    -webkit-box-shadow: 2px 2px 5px #000;
+}
+
+div.footer a {
+    color: #336699;
+    text-decoration: underline;
+}
+
+/* -- body styles ----------------------------------------------------------- */
+
+p {
+    margin: 0.8em 0 0.5em 0;
+}
+
+a {
+    color: #336699;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #336699;
+    text-decoration: underline;
+}
+
+div.body a {
+    text-decoration: underline;
+}
+
+h1, h2, h3 {
+    color: #336699;
+}
+
+h1 {
+    margin: 0;
+    padding: 0.7em 0 0.3em 0;
+    font-size: 1.5em;
+}
+
+h2 {
+    margin: 1.3em 0 0.2em 0;
+    font-size: 1.35em;
+    padding-bottom: .5em;
+    border-bottom: 1px solid #336699;
+}
+
+h3 {
+    margin: 1em 0 -0.3em 0;
+    font-size: 1.2em;
+    padding-bottom: .3em;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+/* WIDE DESKTOP STYLE */
+@media only screen and (min-width: 1176px) {
+body {
+    margin: 0 40px 0 40px;
+}
+}
+
+/* TABLET STYLE */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+body {
+    margin: 0 40px 0 40px;
+}
+}
+
+/* MOBILE LAYOUT (PORTRAIT/320px) */
+@media only screen and (max-width: 767px) {
+body {
+    margin: 0;
+}
+div.bodywrapper {
+    margin: 0;
+    width: 100%;
+    border: none;
+}
+div.sphinxsidebar {
+    display: none;
+}
+}
+
+/* MOBILE LAYOUT (LANDSCAPE/480px) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+body {
+    margin: 0 20px 0 20px;
+}
+}
+
+/* RETINA OVERRIDES */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-device-pixel-ratio: 2) {
+}
+
+/* -- end ------------------------------------------------------------------- */

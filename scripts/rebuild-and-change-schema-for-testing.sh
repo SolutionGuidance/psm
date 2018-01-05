@@ -21,7 +21,7 @@ then
 else
     set -e
     cd ../psm-app
-    ./gradlew cms-portal-services:build
+    ./gradlew clean cms-portal-services:build
     cd ..
     echo "Re-seeding database"
     cat scripts/drop-contents-of-db-for-testing.sql \

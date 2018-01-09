@@ -7,8 +7,7 @@ package gov.medicaid.controllers;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.util.Util;
-
-import java.io.IOException;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -16,8 +15,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
-
-import org.apache.commons.lang.StringEscapeUtils;
+import java.io.IOException;
 
 /**
  * This tag library will print the full name of the user given the id.
@@ -31,7 +29,7 @@ public class FullnameTag extends SimpleTagSupport {
      * The entity manager to use when getting the user information.
      */
     private final EntityManager em;
-    
+
     /**
      * Creates a new instance.
      */
@@ -39,12 +37,12 @@ public class FullnameTag extends SimpleTagSupport {
         CMSConfigurator config = new CMSConfigurator();
         em = config.getPortalEntityManager();
     }
-    
+
     /**
      * The user id to be retrieved.
      */
     private String userId;
-    
+
     /**
      * Prints the full name of the user with the provided id.
      */
@@ -55,22 +53,25 @@ public class FullnameTag extends SimpleTagSupport {
             query.setParameter("userId", userId);
             CMSUser user = (CMSUser) query.getSingleResult();
 
-            PageContext pageContext = (PageContext) getJspContext(); 
-            JspWriter out = pageContext.getOut(); 
+            PageContext pageContext = (PageContext) getJspContext();
+            JspWriter out = pageContext.getOut();
             try {
                 if (Util.isNotBlank(user.getFirstName())) {
-                    out.println(StringEscapeUtils.escapeHtml(user.getFirstName() + " " + user.getLastName()));
+                    out.println(HtmlUtils.htmlEscape(
+                            user.getFirstName() + " " + user.getLastName())
+                    );
                 } else {
                     out.println(userId);
                 }
-            } catch (Exception e) { 
-                // Ignore. 
-            } 
+            } catch (Exception e) {
+                // Ignore.
+            }
         }
     }
 
     /**
      * Gets the value of the field <code>userId</code>.
+     *
      * @return the userId
      */
     public String getUserId() {
@@ -79,6 +80,7 @@ public class FullnameTag extends SimpleTagSupport {
 
     /**
      * Sets the value of the field <code>userId</code>.
+     *
      * @param userId the userId to set
      */
     public void setUserId(String userId) {

@@ -16,6 +16,8 @@
 
 package gov.medicaid.binders;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
 import gov.medicaid.domain.model.AddressType;
 import gov.medicaid.domain.model.ApplicantType;
 import gov.medicaid.domain.model.EnrollmentType;
@@ -33,19 +35,14 @@ import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.ProviderEnrollmentService;
+import org.springframework.web.util.HtmlUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang.StringEscapeUtils;
-
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
 
 /**
  * Base class for the form binders.
@@ -167,8 +164,8 @@ public abstract class BaseFormBinder implements FormBinder {
 
     /**
      * Retrieves the indexed name of the parameter.
+     *
      * @param key the base name
-     * @param idx the parameter index
      * @return the generated key
      */
     protected String name(String key) {
@@ -193,7 +190,7 @@ public abstract class BaseFormBinder implements FormBinder {
      * @param value the value to be set
      */
     protected void attr(Map<String, Object> mv, String key, String value) {
-        mv.put(name(key), StringEscapeUtils.escapeHtml(value));
+        mv.put(name(key), HtmlUtils.htmlEscape(value));
     }
 
     /**
@@ -220,7 +217,7 @@ public abstract class BaseFormBinder implements FormBinder {
      * @param value the value to be set
      */
     protected void attr(Map<String, Object> mv, String key, int idx, String value) {
-        mv.put(name(key, idx), StringEscapeUtils.escapeHtml(value));
+        mv.put(name(key, idx), HtmlUtils.htmlEscape(value));
     }
 
     /**

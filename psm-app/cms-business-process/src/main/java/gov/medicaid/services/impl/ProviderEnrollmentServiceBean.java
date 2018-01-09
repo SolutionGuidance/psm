@@ -57,7 +57,7 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.Util;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -839,7 +839,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             SystemId sourceSystem,
             ProviderProfile profile
     ) throws PortalServiceException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("Profile import is not yet supported.");
     }
 
     /**

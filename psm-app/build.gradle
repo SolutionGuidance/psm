@@ -56,7 +56,12 @@ ext.libs = [
 ]
 
 ext.provided_libs = [
+    ejb_api: 'javax.ejb:javax.ejb-api:3.2',
     hibernate_core: 'org.hibernate:hibernate-core:5.0.10.Final',
+    hibernate_jpa: 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final',
+    jsp_api: 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.0',
+    servlet_api: 'javax.servlet:javax.servlet-api:3.1.0',
+    validation_api: 'javax.validation:validation-api:1.1.0.Final',
 ]
 
 allprojects {
@@ -77,6 +82,10 @@ allprojects {
 ].each { name ->
     project(":$name") {
         apply plugin: 'groovy'
+
+        configurations {
+            testCompile.extendsFrom compileOnly
+        }
 
         repositories {
             mavenCentral()
@@ -101,8 +110,10 @@ project(':services') {
         compile libs.velocity
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar')
         compile project(path: ':cms-business-model', configuration: 'archives')
-        compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
+        compileOnly provided_libs.ejb_api
         compileOnly provided_libs.hibernate_core
+        compileOnly provided_libs.hibernate_jpa
+        compileOnly provided_libs.servlet_api
     }
     sourceSets {
         main {
@@ -132,8 +143,9 @@ project(':cms-business-process') {
         compile libs.spring_security_core
         compile libs.velocity
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar')
-        compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
+        compileOnly provided_libs.ejb_api
         compileOnly provided_libs.hibernate_core
+        compileOnly provided_libs.servlet_api
         runtime libs.jbpm_persistence_jpa
     }
 
@@ -169,6 +181,10 @@ project(':cms-web') {
         compile libs.spring_security_taglibs
         compile libs.spring_web
         compile libs.spring_webmvc
+        compileOnly provided_libs.hibernate_jpa
+        compileOnly provided_libs.jsp_api
+        compileOnly provided_libs.servlet_api
+        compileOnly provided_libs.validation_api
         runtime libs.handlebars
         runtime libs.handlebars_springmvc
     }

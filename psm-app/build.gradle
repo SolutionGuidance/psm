@@ -55,6 +55,10 @@ ext.libs = [
     velocity: 'org.apache.velocity:velocity-engine-core:2.0',
 ]
 
+ext.provided_libs = [
+    hibernate_core: 'org.hibernate:hibernate-core:5.0.10.Final',
+]
+
 allprojects {
     apply plugin: 'checkstyle'
 
@@ -98,7 +102,7 @@ project(':services') {
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar')
         compile project(path: ':cms-business-model', configuration: 'archives')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
-        compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
+        compileOnly provided_libs.hibernate_core
     }
     sourceSets {
         main {
@@ -129,7 +133,7 @@ project(':cms-business-process') {
         compile libs.velocity
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
-        compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
+        compileOnly provided_libs.hibernate_core
         runtime libs.jbpm_persistence_jpa
     }
 

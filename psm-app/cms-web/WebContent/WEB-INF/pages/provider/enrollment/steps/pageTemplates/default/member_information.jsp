@@ -21,12 +21,12 @@
         <c:set var="formName" value="_16_objectId_${status.index - 1}"></c:set>
         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
         <input type="hidden" name="${formName}" value="${formValue}"/>
-    
+
         <div class="">
             <div class="row requireField">
                 <label>NPI/UMPI<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_16_npi_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="umpiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
@@ -47,7 +47,7 @@
             <div class="row requireField">
                 <label>Individual Provider Type<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_16_providerType_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <select name="${formName}">
@@ -70,7 +70,7 @@
                 </label>
                 <span class="floatL"><b>:</b></span>
                             <span class="dateWrapper floatL">
-                            
+
                     <c:set var="formName" value="_16_dob_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input class="date" type="text" name="${formName}" value="${formValue}"/>
@@ -136,7 +136,7 @@
     <div class="tr"></div>
     <div class="bl"></div>
     <div class="br"></div>
-    <a href="javascript:" class="closeSection"></a>
+    <button class="closeSection" title="Close" aria-label="Close" type="button"></button>
 </div>
 </c:forEach>
 </div>
@@ -147,12 +147,12 @@
         <c:set var="formName" value="_16_objectId"></c:set>
         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
         <input type="hidden" name="${formName}" value="${formValue}"/>
-    
+
         <div class="">
             <div class="row requireField">
                 <label>NPI/UMPI<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_16_npi"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="umpiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
@@ -173,7 +173,7 @@
             <div class="row requireField">
                 <label>Individual Provider Type<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_16_providerType"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <select name="${formName}">
@@ -196,7 +196,7 @@
                 </label>
                 <span class="floatL"><b>:</b></span>
                             <span class="dateWrapper floatL">
-                            
+
                     <c:set var="formName" value="_16_dob"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input class="date" type="text" name="${formName}" value="${formValue}"/>
@@ -262,7 +262,7 @@
     <div class="tr"></div>
     <div class="bl"></div>
     <div class="br"></div>
-    <a href="javascript:" class="closeSection"></a>
+    <button class="closeSection" title="Close" aria-label="Close" type="button"></button>
 </div>
 
 <c:url var="lookupUrl" value="/provider/enrollment/lookupProvider" />

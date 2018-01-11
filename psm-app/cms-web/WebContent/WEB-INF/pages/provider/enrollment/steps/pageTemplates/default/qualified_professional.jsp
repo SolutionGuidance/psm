@@ -7,7 +7,7 @@
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<%@taglib prefix="cms" uri="CMSTags"  %> 
+<%@taglib prefix="cms" uri="CMSTags"  %>
 
 <input type="hidden" name="formNames" value="<%= ViewStatics.QUALIFIED_PROFESSIONAL_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
@@ -22,7 +22,7 @@
             <div class="row requireField">
                 <label>QP Type<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_29_qpType_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <select name="${formName}">
@@ -35,7 +35,7 @@
             <div class="row requireField">
                 <label>Name<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_29_name_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
@@ -43,7 +43,7 @@
             <div class="row requireField">
                 <label>NPI</label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_29_npi_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
@@ -54,7 +54,7 @@
                 </label>
                 <span class="floatL"><b>:</b></span>
                             <span class="dateWrapper floatL">
-                            
+
                     <c:set var="formName" value="_29_startDate_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input class="date" type="text" name="${formName}" value="${formValue}"/>
@@ -87,7 +87,7 @@
                 </label>
                 <span class="floatL"><b>:</b></span>
                             <span class="dateWrapper floatL">
-                            
+
                     <c:set var="formName" value="_29_dob_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input class="date" type="text" name="${formName}" value="${formValue}"/>
@@ -118,7 +118,7 @@
             <div class="clearFixed"></div>
         </div>
         <div class="clear"></div>
-        
+
         <div class="">
             <div class="row addressline1">
                 <label>Residence Address</label>
@@ -128,7 +128,7 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
-            
+
             <div class="row inlineBox addressline2">
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
@@ -137,7 +137,7 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
-            
+
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
@@ -170,12 +170,12 @@
                 </select>
             </div>
         </div>
-        
+
         <div class="leftCol">
             <div class="row requireField">
                 <label>BGS ID NUMBER<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_29_bgsNumber_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
@@ -190,7 +190,7 @@
                 </label>
                 <span class="floatL"><b>:</b></span>
                             <span class="dateWrapper floatL">
-                            
+
                     <c:set var="formName" value="_29_bgsClearanceDate_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input class="date" type="text" name="${formName}" value="${formValue}"/>
@@ -200,7 +200,7 @@
         </div>
         <div class="clearFixed"></div>
     </div>
-    
+
     <div class="tableData">
     <table cellpadding="0" cellspacing="0" class="generalTable fixedWidthTable">
         <colgroup>
@@ -248,7 +248,7 @@
                 <td class="licenseCopyInput">
                     <c:set var="formName" value="_29_attachment_${status.index - 1}_${licenseRow.index - 1}"></c:set>
                     <input type="file" class="fileUpload" size="10" name="${formName}" />
-                    
+
                     <c:set var="formName" value="_29_filename_${status.index - 1}_${licenseRow.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <c:if test="${not empty formValue}">
@@ -350,13 +350,13 @@
         </table>
         </div>
     <div class="clearFixed"></div>
-    
+
     <!-- /.section -->
     <div class="tl"></div>
     <div class="tr"></div>
     <div class="bl"></div>
     <div class="br"></div>
-    <a href="javascript:" class="closeSection"></a>
+    <button class="closeSection" title="Close" aria-label="Close" type="button"></button>
 </div>
 </c:forEach>
 </div>
@@ -373,7 +373,7 @@
             <div class="row requireField">
                 <label>QP Type<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_29_qpType"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <select name="${formName}" class="qpTypeSelect">
@@ -386,7 +386,7 @@
             <div class="row requireField">
                 <label>Name<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_29_name"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
@@ -394,7 +394,7 @@
             <div class="row requireField">
                 <label>NPI</label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_29_npi"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
@@ -405,7 +405,7 @@
                 </label>
                 <span class="floatL"><b>:</b></span>
                             <span class="dateWrapper floatL">
-                            
+
                     <c:set var="formName" value="_29_startDate"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input class="date" type="text" name="${formName}" value="${formValue}"/>
@@ -429,7 +429,7 @@
                 </label>
                 <span class="floatL"><b>:</b></span>
                             <span class="dateWrapper floatL">
-                            
+
                     <c:set var="formName" value="_29_dob"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input class="date" type="text" name="${formName}" value="${formValue}"/>
@@ -460,7 +460,7 @@
             <div class="clearFixed"></div>
         </div>
         <div class="clear"></div>
-        
+
         <div class="">
             <div class="row addressline1">
                 <label>Residence Address</label>
@@ -470,7 +470,7 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
-            
+
             <div class="row inlineBox addressline2">
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
@@ -479,7 +479,7 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
-            
+
             <div class="row inlineBox">
                 <span class="label">&nbsp;</span>
                 <span class="floatL"><b>&nbsp;</b></span>
@@ -512,12 +512,12 @@
                 </select>
             </div>
         </div>
-        
+
         <div class="leftCol">
             <div class="row requireField">
                 <label>BGS ID NUMBER<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
-                
+
                 <c:set var="formName" value="_29_bgsNumber"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
@@ -532,7 +532,7 @@
                 </label>
                 <span class="floatL"><b>:</b></span>
                             <span class="dateWrapper floatL">
-                            
+
                     <c:set var="formName" value="_29_bgsClearanceDate"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input class="date" type="text" name="${formName}" value="${formValue}"/>
@@ -542,7 +542,7 @@
         </div>
         <div class="clearFixed"></div>
     </div>
-    
+
     <div class="tableData">
     <table cellpadding="0" cellspacing="0" class="generalTable">
         <thead>
@@ -572,7 +572,7 @@
                 <td class="licenseCopyInput">
                     <c:set var="formName" value="_29_attachment"></c:set>
                     <input type="file" class="fileUpload" size="10" name="${formName}" />
-                    
+
                     <c:set var="formName" value="_29_filename"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <c:if test="${not empty formValue}">
@@ -623,7 +623,7 @@
                 <td class="licenseCopyInput">
                     <c:set var="formName" value="_29_attachment"></c:set>
                     <input type="file" class="fileUpload" size="10" name="${formName}" />
-                    
+
                     <c:set var="formName" value="_29_filename"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <c:if test="${not empty formValue}">
@@ -671,13 +671,13 @@
         </table>
         </div>
     <div class="clearFixed"></div>
-    
+
     <!-- /.section -->
     <div class="tl"></div>
     <div class="tr"></div>
     <div class="bl"></div>
     <div class="br"></div>
-    <a href="javascript:" class="closeSection"></a>
+    <button class="closeSection" title="Close" aria-label="Close" type="button"></button>
 </div>
 </div>
 

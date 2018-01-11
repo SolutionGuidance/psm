@@ -6,27 +6,26 @@
  --%>
 <!-- /#saveAsDraftModal-->
 <div id="staleTicket" class="outLay">
-    <div class="inner"> 
+    <div class="inner">
         <!-- title -->
         <div class="modal-title">
             <div class="right">
                 <div class="middle">
-                    <a href="javascript:;" class="closeModal"></a> 
+                    <button class="closeModal" title="Close" aria-label="Close"></button>
                     <h2>ERROR</h2>
-                    
                 </div>
             </div>
         </div>
-        <!-- End .modal-title --> 
+        <!-- End .modal-title -->
 
         <!-- content -->
         <div class="modal-content">
             <div class="right">
                 <div class="middle">
-                    <p>The referenced profile has been modified by another user or system and this may not be showing the latest data. 
+                    <p>The referenced profile has been modified by another user or system and this may not be showing the latest data.
                     Submission will not be allowed. Please create a new request using the latest profile information.</p>
-                    <div class="buttonArea"> 
-                        <a href="javascript:;" class="purpleBtn closeModal okBtn"><span class="btR"><span class="btM">OK</span></span></a> 
+                    <div class="buttonArea">
+                        <a href="javascript:;" class="purpleBtn closeModal okBtn"><span class="btR"><span class="btM">OK</span></span></a>
                     </div>
                 </div>
             </div>

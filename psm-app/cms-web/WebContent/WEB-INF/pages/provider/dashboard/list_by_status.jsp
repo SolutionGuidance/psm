@@ -64,17 +64,11 @@
                 </div>
                 <div class="right">
                   <a href="javascript:;" class="blueBtn filterBtn ${param.filterViewState eq 'visible' ? 'hideFilter' : 'showFilter'}">
-                    <span class="btR">
-                      <span class="btM">
-                        <span class="text">${param.filterViewState eq 'visible' ? 'Hide Filter' : 'Filter'}</span>
-                        <span class="arrow"></span>
-                      </span>
-                    </span>
+                    <span class="text">${param.filterViewState eq 'visible' ? 'Hide Filter' : 'Filter'}</span>
+                    <span class="arrow"></span>
                   </a>
-                  <a href="javascript:submitFormById('paginationForm','${exportResultsURL}')" class="greyBtn">
-                    <span class="btR">
-                      <span class="btM"><img src="<c:url value="/i/icon-pdf.png" />" alt=""/>Export to PDF</span>
-                    </span>
+                  <a href="javascript:submitFormById('paginationForm','${exportResultsURL}')" class="greyBtn iconPdf">
+                    Export to PDF
                   </a>
                 </div>
               </div>
@@ -193,15 +187,11 @@
         <div class="inner">
           <!-- title -->
           <div class="modal-title">
-            <a href="javascript:;" class="greyBtn">
-              <span class="btR">
-                <span class="btM"><img src="<c:url value="/i/icon-x.png" />" alt=""/>Close</span>
-              </span>
+            <a href="javascript:;" class="greyBtn iconX">
+              Close
             </a>
-            <a href="javascript:;" class="purpleBtn printBtn">
-              <span class="btR">
-                <span class="btM"><img src="<c:url value="/i/icon-print2.png" />" alt=""/>Print</span>
-              </span>
+            <a href="javascript:;" class="purpleBtn printBtn iconPrintWhite">
+              Print
             </a>
             <h3>Print Preview</h3>
           </div>

@@ -41,7 +41,7 @@
     <div id="privatePractice">
         <div class="tableHeader otherTableHeader">
             <span>Private Practice or Primary Office Location Information</span>
-            <a href="javascript:openPracticeLookup(true, true);" class="purpleSmallBtn practiceLookupModalBtn"><span class="btR"><span class="btM">Practice Lookup</span></span></a>
+            <a href="javascript:openPracticeLookup(true, true);" class="purpleSmallBtn practiceLookupModalBtn">Practice Lookup</a>
         </div>
         <!-- /.tableHeader -->
         <div class="section">

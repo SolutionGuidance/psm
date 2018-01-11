@@ -47,8 +47,8 @@
 
                 <div class="pagination">
                   <div class="right">
-                    <a href="${ctx}/admin/editAgreementDocument?agreementId=0&agreementDocumentType=ADDENDUM" class="purpleBtn addAgreementBtn"><span class="btR"><span class="btM">Add Agreement Addendum</span></span></a>
-                    <a href="${ctx}/admin/editAgreementDocument?agreementId=0&agreementDocumentType=AGREEMENT" class="purpleBtn addAgreementBtn"><span class="btR"><span class="btM">Add Agreement</span></span></a>
+                    <a href="${ctx}/admin/editAgreementDocument?agreementId=0&agreementDocumentType=ADDENDUM" class="purpleBtn addAgreementBtn">Add Agreement Addendum</a>
+                    <a href="${ctx}/admin/editAgreementDocument?agreementId=0&agreementDocumentType=AGREEMENT" class="purpleBtn addAgreementBtn">Add Agreement</a>
                   </div>
                 </div>
                 <div class="pagination">
@@ -56,14 +56,14 @@
                   <div class="right">
                     <c:choose>
                     <c:when test="${searchCriteria.showFilterPanel}">
-                      <a href="javascript:;" class="blueBtn filterBtn hideFilter"><span class="btR"><span class="btM"><span class="text">Hide Filter</span><span class="arrow"></span></span></span></a>
+                      <a href="javascript:;" class="blueBtn filterBtn hideFilter"><span class="text">Hide Filter</span><span class="arrow"></span></a>
                     </c:when>
                     <c:otherwise>
-                      <a href="javascript:;" class="blueBtn filterBtn showFilter"><span class="btR"><span class="btM"><span class="text">Filter</span><span class="arrow"></span></span></span></a>
+                      <a href="javascript:;" class="blueBtn filterBtn showFilter"><span class="text">Filter</span><span class="arrow"></span></a>
                     </c:otherwise>
                     </c:choose>
                     <c:if test="${searchResult.total > 0}">
-                      <a href="javascript:;" class="greyBtn deleteAgreementDocumentsBtn"><span class="btR"><span class="btM">Delete Selected Agreement</span></span></a>
+                      <a href="javascript:;" class="greyBtn deleteAgreementDocumentsBtn">Delete Selected Agreement</a>
                     </c:if>
                   </div>
                 </div>
@@ -90,7 +90,7 @@
                       </div>
                     </div>
                   </div>
-                  <a id="searchAgreementDocuments" href="javascript:;" class="purpleBtn showFilter"><span class="btR"><span class="btM">Filter</span></span></a>
+                  <a id="searchAgreementDocuments" href="javascript:;" class="purpleBtn showFilter">Filter</a>
                 </div>
                 <!-- /.filterPanel -->
                 <div class="clearFixed"></div>
@@ -225,8 +225,8 @@
                 <div class="container">
                   <p class="modal_title"></p>
                   <div class="buttons">
-                    <a href="javascript:;" class="purpleBtn deleteOKBtn"><span class="btR"><span class="btM">Delete</span></span></a>
-                    <a href="javascript:;" class="greyBtn closeModal"><span class="btR"><span class="btM">Cancel</span></span></a>
+                    <a href="javascript:;" class="purpleBtn deleteOKBtn">Delete</a>
+                    <a href="javascript:;" class="greyBtn closeModal">Cancel</a>
                   </div>
                 </div>
               </div>

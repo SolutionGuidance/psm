@@ -11,7 +11,7 @@
 <div class="practicePanel">
     <div class="tableHeader otherTableHeader">
         <span>Group Affiliation Information</span>
-        <a href="javascript:openAgencyLookup(true);" class="purpleSmallBtn practiceLookupModalBtn"><span class="btR"><span class="btM">Agency Lookup</span></span></a>
+        <a href="javascript:openAgencyLookup(true);" class="purpleSmallBtn practiceLookupModalBtn">Agency Lookup</a>
     </div>
 
     <div>

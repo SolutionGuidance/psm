@@ -67,7 +67,7 @@
                     <div class="br"></div>
                   </div>
                   <div class="buttons">
-                    <a href="${ctx}/admin/viewAgreementDocuments" class="cancelAddAgreementBtn greyBtn"><span class="btR"><span class="btM">Cancel</span></span></a>
+                    <a href="${ctx}/admin/viewAgreementDocuments" class="cancelAddAgreementBtn greyBtn">Cancel</a>
                     <button class="greyBtn" type="submit">Save</button>
                   </div>
                 </div>

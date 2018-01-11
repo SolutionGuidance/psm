@@ -34,8 +34,8 @@
                 <div>
                   <div class="sideBorder">
                     <h3><c:out value="${helpItem.title}"/></h3>
-                    <a href="javascript:;" class="deleteHelpTopicBtn greyBtn"><span class="btR"><span class="btM">Delete</span></span></a>
-                    <a href="${ctx}/admin/editHelpItem?helpItemId=${helpItem.id}" class="editHelpTopicBtn purpleBtn"><span class="btR"><span class="btM">Edit</span></span></a>
+                    <a href="javascript:;" class="deleteHelpTopicBtn greyBtn">Delete</a>
+                    <a href="${ctx}/admin/editHelpItem?helpItemId=${helpItem.id}" class="editHelpTopicBtn purpleBtn">Edit</a>
                   </div>
                   <div class="newEnrollmentPanel">
                     <div class="section">
@@ -47,7 +47,7 @@
                     <div class="br"></div>
                   </div>
                   <div class="buttons">
-                    <a href="${ctx}/admin/searchHelp" class="greyBtn"><span class="btR"><span class="btM">Back</span></span></a>
+                    <a href="${ctx}/admin/searchHelp" class="greyBtn">Back</a>
                   </div>
                 </div>
                 <!-- /#viewHelpTopicPanel -->
@@ -83,8 +83,8 @@
                 <div class="container">
                   <p>Are you sure you want to delete "<c:out value='${helpItem.title}'/>""?</p>
                   <div class="buttons">
-                    <a href="javascript:;" rel="${ctx}/admin/deleteHelpItem?helpItemId=${helpItem.id}" class="purpleBtn deleteOKBtn"><span class="btR"><span class="btM">Delete</span></span></a>
-                    <a href="javascript:;" class="greyBtn closeModal cancelBtn"><span class="btR"><span class="btM">Cancel</span></span></a>
+                    <a href="javascript:;" rel="${ctx}/admin/deleteHelpItem?helpItemId=${helpItem.id}" class="purpleBtn deleteOKBtn">Delete</a>
+                    <a href="javascript:;" class="greyBtn closeModal cancelBtn">Cancel</a>
                   </div>
                 </div>
               </div>

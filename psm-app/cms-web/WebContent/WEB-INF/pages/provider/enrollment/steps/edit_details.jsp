@@ -179,9 +179,7 @@
                   <div class="buttonBox">
                     <c:url var="cancelUrl" value="/provider/search/pending?statuses=Pending&showFilterPanel=true"/>
                     <a class="greyBtn" href="${cancelUrl}">
-                      <span class="btR">
-                        <span class="btM">Cancel</span>
-                      </span>
+                      Cancel
                     </a>
                     <button class="purpleBtn" type="submit" name="saveNote">
                       Save Note
@@ -192,9 +190,7 @@
                   <div class="buttonBox">
                     <c:url var="cancelUrl" value="/provider/search/pending?statuses=Pending&showFilterPanel=true"/>
                     <a class="greyBtn" href="${cancelUrl}">
-                      <span class="btR">
-                        <span class="btM">Cancel</span>
-                      </span>
+                      Cancel
                     </a>
                     <button class="purpleBtn" type="submit" name="resubmitWithChanges" />
                       Re-Submit Enrollment
@@ -206,9 +202,7 @@
                     <input type="hidden" name="pageName" value="${pageName}"/>
                     <c:url var="cancelUrl" value="/provider/dashboard/drafts"/>
                     <a class="greyBtn" href="${cancelUrl}">
-                      <span class="btR">
-                        <span class="btM">Cancel</span>
-                      </span>
+                      Cancel
                     </a>
                     <button class="purpleBtn" type="submit" name="submit">
                       Submit Enrollment

@@ -82,9 +82,7 @@
                   </div>
                   <div class="buttonBox">
                     <a href="<c:url value="/provider/dashboard/setup" />" class="greyBtn">
-                      <span class="btR">
-                        <span class="btM">Cancel</span>
-                      </span>
+                      Cancel
                     </a>
                     <button class="purpleBtn" type="submit">Get Profiles</button>
                   </div>

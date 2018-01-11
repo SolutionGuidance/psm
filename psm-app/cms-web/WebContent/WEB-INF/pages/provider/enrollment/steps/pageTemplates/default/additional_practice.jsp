@@ -14,7 +14,7 @@
     
     <div class="tableHeader otherTableHeader">
         <span>Additional Practice Locations</span>
-        <a href="javascript:openPracticeLookup(false, false);" class="purpleSmallBtn practiceLookupModalBtn"><span class="btR"><span class="btM">Practice Lookup</span></span></a>
+        <a href="javascript:openPracticeLookup(false, false);" class="purpleSmallBtn practiceLookupModalBtn">Practice Lookup</a>
     </div>
     <!-- /.tableHeader -->
     <div class="addPracticeLocations">

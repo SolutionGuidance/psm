@@ -25,7 +25,7 @@
                     <p>The referenced profile has been modified by another user or system and this may not be showing the latest data.
                     Submission will not be allowed. Please create a new request using the latest profile information.</p>
                     <div class="buttonArea">
-                        <a href="javascript:;" class="purpleBtn closeModal okBtn"><span class="btR"><span class="btM">OK</span></span></a>
+                        <a href="javascript:;" class="purpleBtn closeModal okBtn">OK</a>
                     </div>
                 </div>
             </div>

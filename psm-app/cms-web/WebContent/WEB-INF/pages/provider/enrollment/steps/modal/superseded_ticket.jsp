@@ -24,7 +24,7 @@
                 <div class="middle">
                     <p>There is a pending request for the same profile. Submission will not be allowed unless the other request is denied.</p>
                     <div class="buttonArea">
-                        <a href="javascript:;" class="purpleBtn closeModal okBtn"><span class="btR"><span class="btM">OK</span></span></a>
+                        <a href="javascript:;" class="purpleBtn closeModal okBtn">OK</a>
                     </div>
                 </div>
             </div>

@@ -10,9 +10,9 @@
 <div class="inner">
 <!-- title -->
 <div class="modal-title">
-    <a href="javascript:;" class="greyBtn"><span class="btR"><span class="btM"><img src="<c:url value="/i/icon-x.png" />"
-                                                                                    alt=""/>Close</span></span></a>
-
+    <a href="javascript:;" class="greyBtn iconX">
+      Close
+    </a>
     <h3>Definitions</h3>
 </div>
 <!-- End .modal-title -->

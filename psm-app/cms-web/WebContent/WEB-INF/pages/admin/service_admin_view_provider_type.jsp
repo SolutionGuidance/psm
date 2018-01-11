@@ -33,14 +33,14 @@
               <div id="viewProviderPanel">
                 <div class="sideBorder">
                   <h3>Provider Type Details</h3>
-                  <a href="${ctx}/admin/viewProviderTypes" class="greyBtn"><span class="btR"><span class="btM">Back</span></span></a>
+                  <a href="${ctx}/admin/viewProviderTypes" class="greyBtn">Back</a>
                   <c:choose>
-                  <c:when test="${providerType.canDelete}"><a href="javascript:;" rel="${providerType.code}" class="greyBtn deleteProviderTypesOnViewBtn"><span class="btR"><span class="btM">Delete</span></span></a></c:when>
+                  <c:when test="${providerType.canDelete}"><a href="javascript:;" rel="${providerType.code}" class="greyBtn deleteProviderTypesOnViewBtn">Delete</a></c:when>
                   <c:otherwise>
-                  <a href="javascript:;"  style="text-decoration: none;color: gray;cursor: default;" class="greyBtn disabledBtn"><span class="btR"><span class="btM">Delete</span></span></a>
+                  <a href="javascript:;"  style="text-decoration: none;color: gray;cursor: default;" class="greyBtn disabledBtn">Delete</a>
                   </c:otherwise>
                   </c:choose>
-                  <a href="${ctx}/admin/beginEditProviderType?providerTypeId=${providerType.code}" class="purpleBtn editProviderLink"><span class="btR"><span class="btM">Edit</span></span></a>
+                  <a href="${ctx}/admin/beginEditProviderType?providerTypeId=${providerType.code}" class="purpleBtn editProviderLink">Edit</a>
                 </div>
                 <div class="newEnrollmentPanel">
                   <div class="section">
@@ -99,8 +99,8 @@
                 <div class="container">
                   <p class="modal_title">Are you sure you want to delete the selected provider type?</p>
                   <div class="buttons">
-                    <a href="javascript:;" rel="${ctx}/admin/deleteProviderTypes?providerTypeIds=${providerType.code}" class="purpleBtn deleteOKBtn"><span class="btR"><span class="btM">Delete</span></span></a>
-                    <a href="javascript:;" class="greyBtn closeModal"><span class="btR"><span class="btM">Cancel</span></span></a>
+                    <a href="javascript:;" rel="${ctx}/admin/deleteProviderTypes?providerTypeIds=${providerType.code}" class="purpleBtn deleteOKBtn">Delete</a>
+                    <a href="javascript:;" class="greyBtn closeModal">Cancel</a>
                   </div>
                 </div>
               </div>

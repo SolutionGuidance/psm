@@ -42,7 +42,7 @@
     <div id="primaryOffice">
         <div class="tableHeader otherTableHeader">
             <span>Primary Office Location Information</span>
-            <a href="javascript:openPracticeLookup(true, false);" class="purpleSmallBtn practiceLookupModalBtn"><span class="btR"><span class="btM">Practice Lookup</span></span></a>
+            <a href="javascript:openPracticeLookup(true, false);" class="purpleSmallBtn practiceLookupModalBtn">Practice Lookup</a>
         </div>
         <!-- /.tableHeader -->
         <div class="section">

@@ -115,7 +115,7 @@
             </div>
             <div class="clearFixed"></div>
             <div class="buttons">
-              <a id="showSearchEnrollmentsResultBtn" href="javascript:;" class="purpleBtn"><span class="btR"><span class="btM"><span class="icon">Search</span><span class="arrow"></span></span></span></a>
+              <a id="showSearchEnrollmentsResultBtn" href="javascript:;" class="purpleBtn"><span class="icon">Search</span><span class="arrow"></span></a>
             </div>
           </div>
           <!-- /.tabSection -->
@@ -145,8 +145,8 @@
                 <div class="pagination">
                   <%@ include file="/WEB-INF/pages/admin/includes/page_left_navigation.jsp" %>
                   <div class="right">
-                    <a id="exportEnrollmentsToPDF" href="javascript:;" class="greyBtn"><span class="btR"><span class="btM"><img src="${ctx}/i/icon-pdf.png" alt=""/>Export to PDF</span></span></a>
-                    <a id="printEnrollments" href="javascript:;" class="greyBtn"><span class="btR"><span class="btM"><img src="${ctx}/i/icon-print.png" alt=""/>Print</span></span></a>
+                    <a id="exportEnrollmentsToPDF" href="javascript:;" class="greyBtn iconPdf">Export to PDF</a>
+                    <a id="printEnrollments" href="javascript:;" class="greyBtn iconPrint">Print</a>
                   </div>
                 </div>
                 <!-- /.pagination -->

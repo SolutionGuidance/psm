@@ -33,8 +33,8 @@
               <div id="viewAgreementPanel">
                 <div class="sideBorder">
                   <h3><c:out value="${agreementDocument.title}"/></h3>
-                  <a href="${ctx}/admin/viewAgreementDocuments" class="closeViewAgreementBtn greyBtn"><span class="btR"><span class="btM">Close</span></span></a>
-                  <a href="javascript:window.print();" class="greyBtn printBtn"><span class="btR"><span class="btM"><img src="${ctx}/i/icon-print.png" alt="" />Print</span></span></a>
+                  <a href="${ctx}/admin/viewAgreementDocuments" class="closeViewAgreementBtn greyBtn">Close</a>
+                  <a href="javascript:window.print();" class="greyBtn printBtn iconPrint">Print</a>
                 </div>
                 <div class="newEnrollmentPanel">
                   <div class="section">

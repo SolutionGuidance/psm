@@ -83,8 +83,8 @@
             </table>
             <div class="clear"></div>
             <div class="buttonArea">
-              <a href="javascript:copySelectedPracticeData();" class="purpleBtn copySelectedPracticeDataBtn"><span class="btR"><span class="btM">Copy Selected Practice Data</span></span></a>
-              <a href="javascript:;" class="greyBtn closeModal"><span class="btR"><span class="btM">Cancel</span></span></a>
+              <a href="javascript:copySelectedPracticeData();" class="purpleBtn copySelectedPracticeDataBtn">Copy Selected Practice Data</a>
+              <a href="javascript:;" class="greyBtn closeModal">Cancel</a>
             </div>
           </div>
         </div>

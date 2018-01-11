@@ -64,7 +64,7 @@
             </div>
         </div>
     </div>
-    <a id="showSearchEnrollmentsResultBtn" href="javascript:;" class="purpleBtn showResultBtn"><span class="btR"><span class="btM">Filter</span></span></a>
+    <a id="showSearchEnrollmentsResultBtn" href="javascript:;" class="purpleBtn showResultBtn">Filter</a>
 </div>
 <div class="clearFixed"></div>
 <div class="tabCorner hide">

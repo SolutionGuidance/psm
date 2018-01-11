@@ -5,5 +5,5 @@
     class="${cssClass}"
     id="createNewEnrollment"
     >
-  <span class="btR"><span class="btM">Create New Enrollment</span></span>
+  Create New Enrollment
 </a>

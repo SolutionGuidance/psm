@@ -39,12 +39,8 @@
               </div>
               <div class="right">
                 <a href="javascript:;" class="blueBtn filterBtn ${param.filterViewState eq 'visible' ? 'hideFilter' : 'showFilter'}">
-                  <span class="btR">
-                    <span class="btM">
-                      <span class="text">${param.filterViewState eq 'visible' ? 'Hide Filter' : 'Filter'}</span>
-                      <span class="arrow"></span>
-                    </span>
-                  </span>
+                  <span class="text">${param.filterViewState eq 'visible' ? 'Hide Filter' : 'Filter'}</span>
+                  <span class="arrow"></span>
                 </a>
               </div>
             </div>

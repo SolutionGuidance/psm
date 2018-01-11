@@ -60,9 +60,9 @@
                       </div>
                       <div class="buttonBox">
                         <c:if test="${loop.last}">
-                          <a href="javascript:;" onclick="copyCOS(${cos.id});" class="greyBtn"><span class="btR"><span class="btM"><span class="text">Clone</span></span></span></a>
+                          <a href="javascript:;" onclick="copyCOS(${cos.id});" class="greyBtn"><span class="text">Clone</span></a>
                         </c:if>
-                        <a href="javascript:;" onclick="deleteCOS(${cos.id}, ${profile.profileId});" class="greyBtn"><span class="btR"><span class="btM"><span class="text">Delete</span></span></span></a>
+                        <a href="javascript:;" onclick="deleteCOS(${cos.id}, ${profile.profileId});" class="greyBtn"><span class="text">Delete</span></a>
                       </div>
                     </div>
                   </div>
@@ -102,7 +102,7 @@
                 <div class="br"></div>
               </div>
               <div class="buttonBox">
-                <a href="${ctx}/provider/search/approved?statuses=Approved&showFilterPanel=true" class="greyBtn"><span class="btR"><span class="btM"><span class="text">Cancel</span></span></span></a>
+                <a href="${ctx}/provider/search/approved?statuses=Approved&showFilterPanel=true" class="greyBtn"><span class="text">Cancel</span></a>
                 <button class="greyBtn submitCosFormBtn" type="submit">Save</button>
               </div>
             </form>

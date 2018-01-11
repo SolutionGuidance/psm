@@ -33,7 +33,7 @@
               <div id="helpTopicsPanel">
                 <div class="pagination">
                   <div class="right">
-                    <a href="${ctx}/admin/editHelpItem?helpItemId=0" class="purpleBtn"><span class="btR"><span class="btM">Add Help Topic</span></span></a>
+                    <a href="${ctx}/admin/editHelpItem?helpItemId=0" class="purpleBtn">Add Help Topic</a>
                   </div>
                 </div>
                 <div class="helpSection">

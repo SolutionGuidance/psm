@@ -53,7 +53,7 @@
                   <c:otherwise>" href="<c:url value='/system/user/search?role=System Administrator' />"</c:otherwise>
                   </c:choose>
                   ><span class="aR"><span class="aM">System Administrators</span></span></a>
-                  <a class="purpleBtn" href="<c:url value='/system/user/new?role=${role}' />"><span class="btR"><span class="btM">Create New User Account</span></span></a>
+                  <a class="purpleBtn" href="<c:url value='/system/user/new?role=${role}' />">Create New User Account</a>
                 </div>
               </div>
             </div>

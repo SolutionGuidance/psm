@@ -93,7 +93,7 @@
                     <c:if test="${isInternalUser}">
                       <li>
                         <p>
-                          <a href="<c:url value="/provider/profile/reset" />">Change Password</a>
+                          <a href="<c:url value="/provider/profile/reset" />" id="change_password_link">Change Password</a>
                           <br/>
                           Set a new password for your online account
                         </p>

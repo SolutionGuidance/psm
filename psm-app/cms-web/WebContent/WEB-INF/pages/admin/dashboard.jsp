@@ -50,7 +50,7 @@
                       <th class="alignCenter">Provider Name<span class="sep"></span></th>
                       <th class="alignCenter">Request Type<span class="sep"></span></th>
                       <th class="alignCenter">Date<span class="sep"></span></th>
-                      <th class="alignCenter">Action<span class="sep"></span></th>
+                      <th class="alignCenter">Status<span class="sep"></span></th>
                     </tr>
                   </thead>
                   <tbody>

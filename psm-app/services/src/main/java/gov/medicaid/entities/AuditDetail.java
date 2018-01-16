@@ -21,7 +21,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  * Audit record details.
@@ -43,8 +42,10 @@ public class AuditDetail {
     /**
      * The header record id.
      */
-    @NotNull
-    @Column(name = "audit_record_id")
+    @Column(
+            name = "audit_record_id",
+            nullable = false
+    )
     private long auditRecordId;
 
     /**

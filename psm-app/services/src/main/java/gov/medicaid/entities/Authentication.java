@@ -16,9 +16,9 @@
 
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -36,7 +36,7 @@ public class Authentication implements Serializable {
     /**
      * The hashed password.
      */
-    @NotNull
+    @Column(nullable = false)
     private String password;
 
     /**

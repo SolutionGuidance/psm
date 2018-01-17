@@ -30,8 +30,6 @@
 
   <itemDefinition id="_18-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
 
-  <itemDefinition id="_20-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
-
   <itemDefinition id="_21-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
 
   <itemDefinition id="_25-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
@@ -255,14 +253,6 @@
     <endEvent id="_19" name="End" >
         <terminateEventDefinition />
     </endEvent>
-    <task id="_20" name="Send Mailbox Account Request" tns:taskName="Send Mailbox Account Request" >
-      <ioSpecification>
-        <inputSet>
-        </inputSet>
-        <outputSet>
-        </outputSet>
-      </ioSpecification>
-    </task>
     <task id="_21" name="Accept Application" tns:taskName="Accept Application" >
       <ioSpecification>
         <dataInput id="_21_modelInput" name="model" />
@@ -359,8 +349,6 @@
     <exclusiveGateway id="_40" name="Done with Background Check" gatewayDirection="Converging" />
     <exclusiveGateway id="_41" name="Is SIRS Needed?" gatewayDirection="Diverging" />
     <exclusiveGateway id="_43" name="Done With SIRS" gatewayDirection="Converging" />
-    <exclusiveGateway id="_44" name="Is Mailbox Needed?" gatewayDirection="Diverging" />
-    <exclusiveGateway id="_45" name="Done with Mailbox" gatewayDirection="Converging" />
     <exclusiveGateway id="_46" name="Is Background Check Needed?" gatewayDirection="Diverging" />
     <task id="_47" name="Get Enrollment History" tns:taskName="Get Enrollment History" >
       <ioSpecification>
@@ -464,9 +452,6 @@
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "REJECTED".equals(model.getEnrollmentStatus().getStatus());</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="_18-_19" sourceRef="_18" targetRef="_19" />
-    <sequenceFlow id="_44-_20" sourceRef="_44" targetRef="_20" name="required" tns:priority="1" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "Y".equals(model.getPostSubmissionInformation().getRequiresMailbox());</conditionExpression>
-    </sequenceFlow>
     <sequenceFlow id="_24-_21" sourceRef="_24" targetRef="_21" />
     <sequenceFlow id="_21-_22" sourceRef="_21" targetRef="_22" />
     <sequenceFlow id="_32-_23" sourceRef="_32" targetRef="_23" name="passed" tns:priority="1" >
@@ -474,7 +459,6 @@
     </sequenceFlow>
     <sequenceFlow id="_43-_24" sourceRef="_43" targetRef="_24" />
     <sequenceFlow id="_40-_24" sourceRef="_40" targetRef="_24" />
-    <sequenceFlow id="_45-_24" sourceRef="_45" targetRef="_24" />
     <sequenceFlow id="_46-_25" sourceRef="_46" targetRef="_25" name="required" tns:priority="1" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "Y".equals(model.getPostSubmissionInformation().getRequiresBackgroundCheck());</conditionExpression>
     </sequenceFlow>
@@ -512,13 +496,6 @@
     <sequenceFlow id="_26-_43" sourceRef="_26" targetRef="_43" />
     <sequenceFlow id="_41-_43" sourceRef="_41" targetRef="_43" tns:priority="2" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return true;</conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="_23-_44" sourceRef="_23" targetRef="_44" tns:priority="1" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.jboss.org/drools/rule" >eval(true)</conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="_20-_45" sourceRef="_20" targetRef="_45" />
-    <sequenceFlow id="_44-_45" sourceRef="_44" targetRef="_45" tns:priority="2" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.jboss.org/drools/rule" >eval(true)</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="_23-_46" sourceRef="_23" targetRef="_46" tns:priority="1" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return true;</conditionExpression>
@@ -581,9 +558,6 @@
       <bpmndi:BPMNShape bpmnElement="_19" >
         <dc:Bounds x="1440" y="136" width="48" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_20" >
-        <dc:Bounds x="1683" y="314" width="175" height="40" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_21" >
         <dc:Bounds x="2052" y="263" width="185" height="48" />
       </bpmndi:BPMNShape>
@@ -628,12 +602,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_43" >
         <dc:Bounds x="1890" y="172" width="48" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_44" >
-        <dc:Bounds x="1602" y="344" width="48" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_45" >
-        <dc:Bounds x="1890" y="344" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_46" >
         <dc:Bounds x="1602" y="263" width="48" height="48" />
@@ -705,10 +673,6 @@
         <di:waypoint x="1338" y="160" />
         <di:waypoint x="1464" y="160" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_44-_20" >
-        <di:waypoint x="1626" y="368" />
-        <di:waypoint x="1770" y="334" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_24-_21" >
         <di:waypoint x="1995" y="287" />
         <di:waypoint x="2144" y="287" />
@@ -727,10 +691,6 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_40-_24" >
         <di:waypoint x="1914" y="287" />
-        <di:waypoint x="1995" y="287" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_45-_24" >
-        <di:waypoint x="1914" y="368" />
         <di:waypoint x="1995" y="287" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_46-_25" >
@@ -812,18 +772,6 @@
       <bpmndi:BPMNEdge bpmnElement="_41-_43" >
         <di:waypoint x="1626" y="196" />
         <di:waypoint x="1914" y="196" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_23-_44" >
-        <di:waypoint x="1545" y="287" />
-        <di:waypoint x="1626" y="368" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_20-_45" >
-        <di:waypoint x="1770" y="334" />
-        <di:waypoint x="1914" y="368" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_44-_45" >
-        <di:waypoint x="1626" y="368" />
-        <di:waypoint x="1914" y="368" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_23-_46" >
         <di:waypoint x="1545" y="287" />

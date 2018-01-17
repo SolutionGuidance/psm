@@ -377,23 +377,6 @@ salience 10
 
 end
 
-rule 'A Mailbox Account Is Requested For All Applicants'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-    when
-        $postSubmission: PostSubmissionInformationType(requiresMailbox != "Y")
-    then
-        modify($postSubmission) {
-            setRequiresMailbox("Y")
-        };
-
-end
-
 rule 'Set license verification status based on the current status of all licenses.'
 dialect 'mvel'
 /*

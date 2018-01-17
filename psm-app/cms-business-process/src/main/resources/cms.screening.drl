@@ -13,7 +13,7 @@ dialect 'mvel'
  */
     when
         not ErrorReporter()
-        $validation: ValidationResultType() 
+        $validation: ValidationResultType()
     then
         insert(new ErrorReporter($validation));
 
@@ -30,7 +30,7 @@ dialect 'mvel'
 salience 100
     when
         $provider: ProviderInformationType( )
-        not AcceptedAgreementsType() from $provider.acceptedAgreements; 
+        not AcceptedAgreementsType() from $provider.acceptedAgreements;
     then
         $provider.setAcceptedAgreements(new AcceptedAgreementsType());
         update($provider);
@@ -48,7 +48,7 @@ dialect 'mvel'
 salience 100
     when
         $provider: ProviderInformationType( )
-        not AttachedDocumentsType( ) from $provider.attachedDocuments; 
+        not AttachedDocumentsType( ) from $provider.attachedDocuments;
     then
         $provider.setAttachedDocuments(new AttachedDocumentsType());
         update($provider);
@@ -66,7 +66,7 @@ dialect 'mvel'
 salience 100
     when
         $provider: ProviderInformationType()
-        not LicenseInformationType() from $provider.licenseInformation; 
+        not LicenseInformationType() from $provider.licenseInformation;
     then
         $provider.setLicenseInformation(new LicenseInformationType());
         update($provider);
@@ -79,9 +79,9 @@ rule 'Provider Agreement (DHS-4138) Is Required'
 dialect 'mvel'
     when
         $provider: ProviderInformationType()
-        $acceptedAgreements: AcceptedAgreementsType( ) from $provider.acceptedAgreements; 
-        not ProviderAgreementType(acceptedDate != null, agreementDocumentTitle == DocumentNames.PROVIDER_AGREEMENT_DHS_4138.value()) from $acceptedAgreements.providerAgreement; 
-        $report: ErrorReporter() 
+        $acceptedAgreements: AcceptedAgreementsType( ) from $provider.acceptedAgreements;
+        not ProviderAgreementType(acceptedDate != null, agreementDocumentTitle == DocumentNames.PROVIDER_AGREEMENT_DHS_4138.value()) from $acceptedAgreements.providerAgreement;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/AcceptedAgreements",
@@ -102,9 +102,9 @@ dialect 'mvel'
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.AUDIOLOGIST.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        not LicenseType(issuingState == "MN", attachmentObjectId != null, licenseType == "Audiologist License") from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        not LicenseType(issuingState == "MN", attachmentObjectId != null, licenseType == "Audiologist License") from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -124,9 +124,9 @@ dialect 'mvel'
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.AUDIOLOGIST.value())
-        $licenseInformation: LicenseInformationType(additionalServiceCategoryRequest contains ServiceCategoryNames.HEARING_AIDS.value()) from $provider.licenseInformation; 
-        not LicenseType(issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.HEARING_AID_DISPENSER.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType(additionalServiceCategoryRequest contains ServiceCategoryNames.HEARING_AIDS.value()) from $provider.licenseInformation;
+        not LicenseType(issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.HEARING_AID_DISPENSER.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -147,7 +147,7 @@ dialect 'mvel'
     when
         $provider: ProviderInformationType(providerType == ProviderType.AUDIOLOGIST.value() || providerType == ProviderType.HEARING_AID_DISPENSER.value())
         PracticeInformationType(groupNPI != null, FEIN != null) from $provider.practiceInformation
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/PracticeInformation/FEIN",
@@ -168,8 +168,8 @@ dialect 'mvel'
     when
         $provider: ProviderInformationType()
         LicenseInformationType($tribalCode : tribalCode, tribalCode != null) from $provider.licenseInformation;
-        not LookupEntry(code == $tribalCode, type == "TribalCode") 
-        $report: ErrorReporter() 
+        not LookupEntry(code == $tribalCode, type == "TribalCode")
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation/TribalCode",
@@ -190,8 +190,8 @@ dialect 'mvel'
 activation-group "traditional-midwife-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_PROFESSIONAL_MIDWIFE.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType(issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.TRADITIONAL_MIDWIFE.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType(issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.TRADITIONAL_MIDWIFE.value()) from $licenseInformation.license;
     then
 
 end
@@ -207,8 +207,8 @@ dialect 'mvel'
 activation-group "traditional-midwife-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_PROFESSIONAL_MIDWIFE.value())
-        $licenseInformation: LicenseInformationType(worksOnReservation == "Y", tribalCode != null) from $provider.licenseInformation; 
-        LicenseType(issuingState != "MN", attachmentObjectId != null, licenseType == LicenseNames.TRADITIONAL_MIDWIFE.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType(worksOnReservation == "Y", tribalCode != null) from $provider.licenseInformation;
+        LicenseType(issuingState != "MN", attachmentObjectId != null, licenseType == LicenseNames.TRADITIONAL_MIDWIFE.value()) from $licenseInformation.license;
     then
 
 end
@@ -225,7 +225,7 @@ salience -10
 activation-group "traditional-midwife-license-activation"
     when
         ProviderInformationType(providerType == ProviderType.CERTIFIED_PROFESSIONAL_MIDWIFE.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -245,9 +245,9 @@ dialect 'mvel'
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        not LicenseType(issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.MN_SCU_CERTIFICATION.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        not LicenseType(issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.MN_SCU_CERTIFICATION.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -267,9 +267,9 @@ dialect 'mvel'
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value())
-        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments; 
-        not DocumentType(objectId != null, name == DocumentNames.MHCP_APPLICANT_ASSURANCE_STATEMENT_COMMUNITY_HEALTH_WORKERS_DHS_5308.value()) from $attachedDocuments.attachment; 
-        $report: ErrorReporter() 
+        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments;
+        not DocumentType(objectId != null, name == DocumentNames.MHCP_APPLICANT_ASSURANCE_STATEMENT_COMMUNITY_HEALTH_WORKERS_DHS_5308.value()) from $attachedDocuments.attachment;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/AttachedDocuments",
@@ -289,10 +289,10 @@ dialect 'mvel'
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType($licenseNumber : licenseNumber, issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.MN_SCU_CERTIFICATION.value()) from $licenseInformation.license; 
-        not LookupEntry(code == $licenseNumber, type == "ApprovedMnSCU") 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType($licenseNumber : licenseNumber, issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.MN_SCU_CERTIFICATION.value()) from $licenseInformation.license;
+        not LookupEntry(code == $licenseNumber, type == "ApprovedMnSCU")
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -316,7 +316,7 @@ salience 20
         ProviderInformationType(applicantType == ApplicantType.INDIVIDUAL, providerType != ProviderType.PHYSICAL_THERAPIST.value())
     then
         modify($enrollment) {
-            setRiskLevel(RiskLevelType.LIMITED) 
+            setRiskLevel(RiskLevelType.LIMITED)
         };
 
 end
@@ -335,7 +335,7 @@ salience 10
         $postSubmission: PostSubmissionInformationType(requiresBackgroundCheck != "Y")
     then
         modify($postSubmission) {
-            setRequiresBackgroundCheck("Y") 
+            setRequiresBackgroundCheck("Y")
         };
 end
 
@@ -353,7 +353,7 @@ salience 10
         $postSubmission: PostSubmissionInformationType(requiresSIRS != "Y")
     then
         modify($postSubmission) {
-            setRequiresSIRS("Y") 
+            setRequiresSIRS("Y")
         };
 
 end
@@ -372,7 +372,7 @@ salience 10
         $postSubmission: PostSubmissionInformationType(requiresSIRS != "Y")
     then
         modify($postSubmission) {
-            setRequiresSIRS("Y") 
+            setRequiresSIRS("Y")
         };
 
 end
@@ -389,7 +389,7 @@ dialect 'mvel'
         $postSubmission: PostSubmissionInformationType(requiresMailbox != "Y")
     then
         modify($postSubmission) {
-            setRequiresMailbox("Y") 
+            setRequiresMailbox("Y")
         };
 
 end
@@ -404,12 +404,12 @@ dialect 'mvel'
  */
     when
         $provider: ProviderInformationType()
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
         not LicenseType(verified != "Y") from $licenseInformation.license;
         $verification : VerificationStatusType(licenses != "Y")
     then
         modify($verification) {
-            setLicenses("Y") 
+            setLicenses("Y")
         };
 
 end
@@ -426,7 +426,7 @@ salience -10
 
     when
         VerificationStatusType(licenses != "Y")
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -449,7 +449,7 @@ dialect 'mvel'
         $applicantInformation: ApplicantInformationType( ) from $provider.applicantInformation
         IndividualApplicantType(socialSecurityNumber != null) from $applicantInformation.personalInformation
         VerificationStatusType(socialSecurityNumber != "Y")
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/ApplicationInformationType/PersonalInformation/SocialSecurityNumber",
@@ -469,7 +469,7 @@ dialect 'mvel'
  */
     when
         VerificationStatusType(nonExclusion != "Y")
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/ApplicationInformationType",
@@ -491,7 +491,7 @@ activation-group "check-npi-only-once"
     when
         ProviderInformationType(NPI != null)
         VerificationStatusType(NPI != "Y")
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/NPI",
@@ -510,9 +510,9 @@ dialect 'mvel'
  */
     when
         $provider: ProviderInformationType(providerType in (ProviderType.CLINICAL_NURSE_SPECIALIST.value(), ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value()))
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        not LicenseType(licenseType == LicenseNames.REGISTERED_NURSE.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        not LicenseType(licenseType == LicenseNames.REGISTERED_NURSE.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -534,7 +534,7 @@ activation-group "registered-nurse-license-activation"
     when
         $provider: ProviderInformationType(providerType in (ProviderType.CLINICAL_NURSE_SPECIALIST.value(), ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value()))
         $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation;
-        LicenseType(attachmentObjectId != null, licenseType == LicenseNames.REGISTERED_NURSE.value()) from $licenseInformation.license; 
+        LicenseType(attachmentObjectId != null, licenseType == LicenseNames.REGISTERED_NURSE.value()) from $licenseInformation.license;
     then
 
 end
@@ -545,8 +545,8 @@ activation-group "registered-nurse-license-activation"
     when
         $provider: ProviderInformationType(providerType in (ProviderType.CLINICAL_NURSE_SPECIALIST.value(), ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value()))
         $licenseInformation: LicenseInformationType() from $provider.licenseInformation;
-        LicenseType($issuingState: issuingState, issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.REGISTERED_NURSE.value()) from $licenseInformation.license; 
-        not LookupEntry(type == "NLCState", code == $issuingState ) 
+        LicenseType($issuingState: issuingState, issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.REGISTERED_NURSE.value()) from $licenseInformation.license;
+        not LookupEntry(type == "NLCState", code == $issuingState )
     then
 
 end
@@ -563,13 +563,13 @@ activation-group "registered-nurse-license-activation"
     when
         $provider: ProviderInformationType(providerType in (ProviderType.CLINICAL_NURSE_SPECIALIST.value(), ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value()))
         $licenseInformation: LicenseInformationType() from $provider.licenseInformation;
-        LicenseType($issuingState: issuingState, issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.REGISTERED_NURSE.value()) from $licenseInformation.license; 
+        LicenseType($issuingState: issuingState, issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.REGISTERED_NURSE.value()) from $licenseInformation.license;
         $applicant: ApplicantInformationType(  ) from $provider.applicantInformation
         $individual: IndividualApplicantType(  ) from $applicant.personalInformation
         $contact: ContactInformationType(  ) from $individual.contactInformation
         AddressType($stateOfResidence: state) from $contact.address
         LookupEntry(type == "NLCState", code == $issuingState)
-        LookupEntry(type == "NLCState", code == $stateOfResidence) 
+        LookupEntry(type == "NLCState", code == $stateOfResidence)
     then
 
 end
@@ -586,9 +586,9 @@ salience -10
 activation-group "registered-nurse-license-activation"
     when
         $provider: ProviderInformationType()
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType(attachmentObjectId != null, licenseType == LicenseNames.REGISTERED_NURSE.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType(attachmentObjectId != null, licenseType == LicenseNames.REGISTERED_NURSE.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -609,9 +609,9 @@ dialect 'mvel'
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.CLINICAL_NURSE_SPECIALIST.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        not LicenseType(issuingState == "XX", licenseType == LicenseNames.CLINICAL_NURSE_SPECIALIST.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        not LicenseType(issuingState == "XX", licenseType == LicenseNames.CLINICAL_NURSE_SPECIALIST.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -631,9 +631,9 @@ dialect 'mvel'
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        not LicenseType(issuingState == "XX", licenseType == LicenseNames.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        not LicenseType(issuingState == "XX", licenseType == LicenseNames.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -653,9 +653,9 @@ dialect 'mvel'
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.CHIROPRACTOR.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        not LicenseType(issuingState == "MN", licenseType == LicenseNames.CHIROPRACTIC_EXAMINER.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        not LicenseType(issuingState == "MN", licenseType == LicenseNames.CHIROPRACTIC_EXAMINER.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -675,9 +675,9 @@ dialect 'mvel'
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.PODIATRIST.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        not LicenseType(issuingState == "MN", licenseType == LicenseNames.PODIATRIST_LICENSE.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        not LicenseType(issuingState == "MN", licenseType == LicenseNames.PODIATRIST_LICENSE.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -699,7 +699,7 @@ activation-group "marriage-and-family-therapy-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_MARRIAGE_AND_FAMILY_THERAPIST.value())
         $licenseInformation: LicenseInformationType() from $provider.licenseInformation;
-        LicenseType($issuingState: issuingState, issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.MARRIAGE_AND_FAMILY_THERAPIST.value()) from $licenseInformation.license; 
+        LicenseType($issuingState: issuingState, issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.MARRIAGE_AND_FAMILY_THERAPIST.value()) from $licenseInformation.license;
     then
 
 end
@@ -754,7 +754,7 @@ salience -10
 activation-group "marriage-and-family-therapy-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_MARRIAGE_AND_FAMILY_THERAPIST.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -782,7 +782,7 @@ dialect 'mvel'
         $columns: PropertyListType(  ) from $row.columnData
         exists NameValuePairType(name == "ProviderType", value == ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value() || value == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value()) from $columns.nameValuePair
         exists NameValuePairType(name == "Status", value == "Active") from $columns.nameValuePair
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -803,8 +803,8 @@ dialect 'mvel'
 activation-group "professional-clinical-counserlor-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType(issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.PROFESSIONAL_CLINICAL_COUNSELOR.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType(issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.PROFESSIONAL_CLINICAL_COUNSELOR.value()) from $licenseInformation.license;
     then
 
 end
@@ -820,8 +820,8 @@ dialect 'mvel'
 activation-group "professional-clinical-counserlor-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType(issuingState == "VA", attachmentObjectId != null, licenseType == LicenseNames.PROFESSIONAL_CLINICAL_COUNSELOR.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType(issuingState == "VA", attachmentObjectId != null, licenseType == LicenseNames.PROFESSIONAL_CLINICAL_COUNSELOR.value()) from $licenseInformation.license;
     then
 
 end
@@ -837,8 +837,8 @@ dialect 'mvel'
 activation-group "professional-clinical-counserlor-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value())
-        $licenseInformation: LicenseInformationType(worksOnReservation == "Y", tribalCode != null) from $provider.licenseInformation; 
-        LicenseType(attachmentObjectId != null, licenseType == LicenseNames.PROFESSIONAL_CLINICAL_COUNSELOR.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType(worksOnReservation == "Y", tribalCode != null) from $provider.licenseInformation;
+        LicenseType(attachmentObjectId != null, licenseType == LicenseNames.PROFESSIONAL_CLINICAL_COUNSELOR.value()) from $licenseInformation.license;
     then
 
 end
@@ -855,7 +855,7 @@ salience -10
 activation-group "professional-clinical-counserlor-license-activation"
     when
         ProviderInformationType(providerType == ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -877,8 +877,8 @@ activation-group "professional-clinical-counserlor-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value())
         $licenseInformation: LicenseInformationType() from $provider.licenseInformation
-        LicenseType(issuingState == "ND", attachmentObjectId != null, licenseType == LicenseNames.PROFESSIONAL_CLINICAL_COUNSELOR.value()) from $licenseInformation.license 
-        $report: ErrorReporter() 
+        LicenseType(issuingState == "ND", attachmentObjectId != null, licenseType == LicenseNames.PROFESSIONAL_CLINICAL_COUNSELOR.value()) from $licenseInformation.license
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -900,7 +900,7 @@ activation-group "physician-license-or-equivalent-is-required"
 salience -10
     when
         $provider: ProviderInformationType(providerType == ProviderType.PHYSICIAN.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -957,7 +957,7 @@ dialect 'mvel'
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation
         $licenseType: LicenseType(specialtyType: specialtyType) from $licenseInformation.license
         not SpecialtiesType(specialtyName contains specialtyType ) from $provider.specialties
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1013,7 +1013,7 @@ activation-group "psychologist-license-or-equivalent-is-required"
 salience -10
     when
         ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1034,8 +1034,8 @@ dialect 'mvel'
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
         $licenseInformation: LicenseInformationType() from $provider.licenseInformation
-        not LicenseType(issuingState == "MN", licenseType == LicenseNames.MDH_PSYCHOLOGIST_REGISTRATION.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        not LicenseType(issuingState == "MN", licenseType == LicenseNames.MDH_PSYCHOLOGIST_REGISTRATION.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1058,7 +1058,7 @@ salience -10
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
         SpecialtiesType(specialtyName contains SpecialtyNames.NEUROPSYCHOLOGY.value()) from $provider.specialties
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1080,7 +1080,7 @@ activation-group "psychologist-neuropsychology-supporting-document-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
         $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments
-        DocumentType(objectId != null, name == DocumentNames.DIPLOMA_FROM_AMERICAN_BOARD_OF_CLINICAL_NEUROPSYCHOLOGY_ABCN.value()) from $attachedDocuments.attachment; 
+        DocumentType(objectId != null, name == DocumentNames.DIPLOMA_FROM_AMERICAN_BOARD_OF_CLINICAL_NEUROPSYCHOLOGY_ABCN.value()) from $attachedDocuments.attachment;
     then
 
 end
@@ -1097,7 +1097,7 @@ activation-group "psychologist-neuropsychology-supporting-document-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
         $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments
-        DocumentType(objectId != null, name == DocumentNames.DIPLOMA_FROM_AMERICA_BOARD_OF_PROFESSIONAL_NEUROPSYCHOLOGY_ABPN.value()) from $attachedDocuments.attachment; 
+        DocumentType(objectId != null, name == DocumentNames.DIPLOMA_FROM_AMERICA_BOARD_OF_PROFESSIONAL_NEUROPSYCHOLOGY_ABPN.value()) from $attachedDocuments.attachment;
     then
 
 end
@@ -1113,8 +1113,8 @@ dialect 'mvel'
 activation-group "psychologist-neuropsychology-supporting-document-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
-        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments 
-        DocumentType(objectId != null, name == DocumentNames.DIPLOMA_FROM_AMERICAN_ACADEMY_OF_PEDIATRIC_NEUROPSYCHOLOGY_AAPN.value()) from $attachedDocuments.attachment; 
+        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments
+        DocumentType(objectId != null, name == DocumentNames.DIPLOMA_FROM_AMERICAN_ACADEMY_OF_PEDIATRIC_NEUROPSYCHOLOGY_AAPN.value()) from $attachedDocuments.attachment;
     then
 
 end
@@ -1131,7 +1131,7 @@ activation-group "psychologist-neuropsychology-supporting-document-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
         $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments
-        DocumentType(objectId != null, name == DocumentNames.PROOF_OF_COMPLETED_INTERNSHIP_OR_ITS_EQUIVALENT_IN_A_CLINICALLY_RELEVANT_AREA_OF_PROFESSIONAL_PSYCHOLOGY.value()) from $attachedDocuments.attachment; 
+        DocumentType(objectId != null, name == DocumentNames.PROOF_OF_COMPLETED_INTERNSHIP_OR_ITS_EQUIVALENT_IN_A_CLINICALLY_RELEVANT_AREA_OF_PROFESSIONAL_PSYCHOLOGY.value()) from $attachedDocuments.attachment;
         DocumentType(objectId != null, name == DocumentNames.PROOF_OF_EQUIVALENT_OF_TWO_FULL_TIME_YEARS_OF_EXPERIENCE_AND_SPECIALIZE_TRAINING_AT_LEAST_ONE_WHICH_IS_AT_THE_POST_DOCTORAL_LEVEL_IN_THE_STUDY_AND_PRACTICE_OF_CLINICAL_NEUROPSYCHOLOGY_AND_RELATED_NEUROSCIENCES_SUPERVISED_BY_A_CLINICAL_NEUROPSYCHOLOGIST.PROOF_OF_COMPLETED_INTERNSHIP_OR_ITS_EQUIVALENT_IN_A_CLINICALLY_RELEVANT_AREA_OF_PROFESSIONAL_PSYCHOLOGY.value()) from $attachedDocuments.attachment;
         $applicant: ApplicantInformationType(  ) from $provider.applicantInformation
         IndividualApplicantType(highestDegreeEarned == "DOCTORATE") from $applicant.personalInformation
@@ -1172,7 +1172,7 @@ activation-group "psychologist-neuropsychology-supporting-document-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
         $licenseInformation: LicenseInformationType() from $provider.licenseInformation
-        LicenseType(issuingState != "MN", specialtyType == SpecialtyNames.NEUROPSYCHOLOGY.value()) from $licenseInformation.license; 
+        LicenseType(issuingState != "MN", specialtyType == SpecialtyNames.NEUROPSYCHOLOGY.value()) from $licenseInformation.license;
     then
 
 end
@@ -1181,7 +1181,7 @@ rule 'Acupuncturist Also Licensed As Chiropractors should be enrolled as chiropr
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -1194,7 +1194,7 @@ dialect 'mvel'
         $columns: PropertyListType(  ) from $row.columnData
         exists NameValuePairType(name == "ProviderType", value == ProviderType.CHIROPRACTOR.value()) from $columns.nameValuePair
         exists NameValuePairType(name == "Status", value == "Active") from $columns.nameValuePair
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1208,7 +1208,7 @@ rule 'Acupuncturist License or Equivalent is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -1216,7 +1216,7 @@ activation-group "acupuncturist-license-or-equivalent-is-required"
 salience -10
     when
         $provider: ProviderInformationType(providerType == ProviderType.ACUPUNCTURIST.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1230,16 +1230,16 @@ rule 'Certification from NBCOT is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.OCCUPATIONAL_THERAPIST.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        not LicenseType(issuingState == "XX", licenseType == LicenseNames.NBCOT_CERTIFICATION.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        not LicenseType(issuingState == "XX", licenseType == LicenseNames.NBCOT_CERTIFICATION.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1253,7 +1253,7 @@ rule 'Clinical Social Worker License Or Equivalent Is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -1261,7 +1261,7 @@ activation-group "clinical-social-worker-license-or-equivalent-is-required"
 salience -10
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1275,16 +1275,16 @@ rule 'Collaborative Practice Dental Hygienist Assurance Statement is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.ALLIED_DENTAL_PROFESSIONAL.value())
-        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments; 
-        not DocumentType(objectId != null, name == DocumentNames.COLLABORATIVE_PRACTICE_DENTAL_HYGIENIST_ASSURANCE_STATEMENT.value()) from $attachedDocuments.attachment; 
-        $report: ErrorReporter() 
+        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments;
+        not DocumentType(objectId != null, name == DocumentNames.COLLABORATIVE_PRACTICE_DENTAL_HYGIENIST_ASSURANCE_STATEMENT.value()) from $attachedDocuments.attachment;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/AttachedDocuments",
@@ -1298,16 +1298,16 @@ rule 'Copy of Collaborative Agreement that meets MN requirements Is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.ALLIED_DENTAL_PROFESSIONAL.value())
-        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments; 
-        not DocumentType(objectId != null, name == DocumentNames.COPY_OF_COLLABORATIVE_AGREEMENT.value()) from $attachedDocuments.attachment; 
-        $report: ErrorReporter() 
+        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments;
+        not DocumentType(objectId != null, name == DocumentNames.COPY_OF_COLLABORATIVE_AGREEMENT.value()) from $attachedDocuments.attachment;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/AttachedDocuments",
@@ -1321,7 +1321,7 @@ rule 'Copy Of Hearing Instrument Dispenser Certificate Or Equivalent Is Required
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -1329,7 +1329,7 @@ salience -10
 activation-group "hearing-instrument-dispenser-certificate-or-equivalent-is-required"
     when
         ProviderInformationType(providerType == ProviderType.HEARING_AID_DISPENSER.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1343,16 +1343,16 @@ rule 'Copy of License of Dentist who signed Collaborative Agreement Is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.ALLIED_DENTAL_PROFESSIONAL.value())
-        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments; 
-        not DocumentType(objectId != null, name == DocumentNames.COPY_OF_LICENSE_OF_DENTIST_WHO_SIGNED_COLLABORATIVE_AGREEMENT.value()) from $attachedDocuments.attachment; 
-        $report: ErrorReporter() 
+        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments;
+        not DocumentType(objectId != null, name == DocumentNames.COPY_OF_LICENSE_OF_DENTIST_WHO_SIGNED_COLLABORATIVE_AGREEMENT.value()) from $attachedDocuments.attachment;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/AttachedDocuments",
@@ -1366,15 +1366,15 @@ rule 'Copy Of Masters Degree In A Related Field Is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value())
-        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments; 
-        not DocumentType(objectId != null, name == DocumentNames.COPY_OF_HIGHEST_DEGREE_EARNED.value()) from $attachedDocuments.attachment; 
-        $report: ErrorReporter() 
+        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments;
+        not DocumentType(objectId != null, name == DocumentNames.COPY_OF_HIGHEST_DEGREE_EARNED.value()) from $attachedDocuments.attachment;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/AttachedDocuments",
@@ -1388,15 +1388,15 @@ rule 'Copy Of Masters Degree In Social Work Is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
-        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments; 
-        not DocumentType(objectId != null, name == DocumentNames.COPY_OF_HIGHEST_DEGREE_EARNED.value()) from $attachedDocuments.attachment; 
-        $report: ErrorReporter() 
+        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments;
+        not DocumentType(objectId != null, name == DocumentNames.COPY_OF_HIGHEST_DEGREE_EARNED.value()) from $attachedDocuments.attachment;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/AttachedDocuments",
@@ -1410,7 +1410,7 @@ rule 'Dental Hygienist License or Equivalent is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
@@ -1419,7 +1419,7 @@ activation-group "dental-hygienist-license-or-equivalent-is-required"
 salience -10
     when
         $provider: ProviderInformationType(providerType == ProviderType.ALLIED_DENTAL_PROFESSIONAL.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1433,15 +1433,15 @@ rule 'Dental License From MN Is Accepted'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 activation-group "dental-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.DENTIST.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType(issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.DENTAL.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType(issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.DENTAL.value()) from $licenseInformation.license;
     then
 
 end
@@ -1450,7 +1450,7 @@ rule 'Dental License Or Equivalent Is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -1458,7 +1458,7 @@ salience -10
 activation-group "dental-license-or-equivalent-is-required"
     when
         ProviderInformationType(providerType == ProviderType.DENTIST.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1472,15 +1472,15 @@ rule 'DHS-6095 Is Required For CPRP'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value())
-        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments; 
-        not DocumentType(objectId != null, name == DocumentNames.CERTIFIED_MENTAL_HEALTH_REHABILITATION_PROFESSIONAL_ASSURANCE_STATEMENT.value()) from $attachedDocuments.attachment; 
-        $report: ErrorReporter() 
+        $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments;
+        not DocumentType(objectId != null, name == DocumentNames.CERTIFIED_MENTAL_HEALTH_REHABILITATION_PROFESSIONAL_ASSURANCE_STATEMENT.value()) from $attachedDocuments.attachment;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/AttachedDocuments",
@@ -1494,7 +1494,7 @@ rule 'Dietician Or Nutritionist License Is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -1502,7 +1502,7 @@ activation-group "dietician-or-nutritionist-license-or-equivalent-is-required"
 salience -10
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_DIETICIAN_OR_LICENSED_NUTRITIONIST.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1516,7 +1516,7 @@ rule 'Dietician, Nutritionist License From The State Of Practice Is Accepted'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -1525,7 +1525,7 @@ activation-group "dietician-or-nutritionist-license-or-equivalent-is-required"
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_DIETICIAN_OR_LICENSED_NUTRITIONIST.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
         AddressType($practiceState : state) from $provider.practiceInformation.contactInformation.address
-        LicenseType(issuingState == $practiceState, licenseType == LicenseNames.DIETICIAN_OR_NUTRITIONIST.value()) from $licenseInformation.license; 
+        LicenseType(issuingState == $practiceState, licenseType == LicenseNames.DIETICIAN_OR_NUTRITIONIST.value()) from $licenseInformation.license;
     then
 
 end
@@ -1534,7 +1534,7 @@ rule 'HAD Certificate From State Of Practice Is Accepted'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -1543,7 +1543,7 @@ activation-group "hearing-instrument-dispenser-certificate-or-equivalent-is-requ
         $provider: ProviderInformationType(providerType == ProviderType.HEARING_AID_DISPENSER.value())
         AddressType($practiceState : state ) from $provider.practiceInformation.contactInformation.address
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation
-        LicenseType(issuingState == $practiceState, attachmentObjectId != null, licenseType == LicenseNames.HEARING_AID_DISPENSER.value()) from $licenseInformation.license; 
+        LicenseType(issuingState == $practiceState, attachmentObjectId != null, licenseType == LicenseNames.HEARING_AID_DISPENSER.value()) from $licenseInformation.license;
     then
 
 end
@@ -1552,15 +1552,15 @@ rule 'IA Independent Social Worker License Is Acceptable'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 activation-group "clinical-social-worker-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType(issuingState == "IA", licenseType == LicenseNames.CLINICAL_SOCIAL_WORKER.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType(issuingState == "IA", licenseType == LicenseNames.CLINICAL_SOCIAL_WORKER.value()) from $licenseInformation.license;
     then
 
 end
@@ -1569,7 +1569,7 @@ rule 'If Practice is in WI, Audiologist Certificate from WI Is Acceptable'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -1578,7 +1578,7 @@ activation-group "hearing-instrument-dispenser-certificate-or-equivalent-is-requ
         $provider: ProviderInformationType(providerType == ProviderType.HEARING_AID_DISPENSER.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
         AddressType($practiceState : state, state == "WI") from $provider.practiceInformation.contactInformation.address
-        LicenseType(issuingState == $practiceState, attachmentObjectId != null, licenseType == LicenseNames.AUDIOLOGIST.value()) from $licenseInformation.license; 
+        LicenseType(issuingState == $practiceState, attachmentObjectId != null, licenseType == LicenseNames.AUDIOLOGIST.value()) from $licenseInformation.license;
     then
 
 
@@ -1588,15 +1588,15 @@ rule 'LICSW With Dual License To Offer MFT Service Must Also Present An MFT Lice
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
-        $licenseInformation: LicenseInformationType(additionalServiceCategoryRequest contains ServiceCategoryNames.MARRIAGE_AND_FAMILY_THERAPY.value()) from $provider.licenseInformation; 
-        not LicenseType(issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.MARRIAGE_AND_FAMILY_THERAPIST.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType(additionalServiceCategoryRequest contains ServiceCategoryNames.MARRIAGE_AND_FAMILY_THERAPY.value()) from $provider.licenseInformation;
+        not LicenseType(issuingState == "MN", attachmentObjectId != null, licenseType == LicenseNames.MARRIAGE_AND_FAMILY_THERAPIST.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1610,7 +1610,7 @@ rule 'MN Acupuncturist License is Accepted'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
@@ -1618,8 +1618,8 @@ dialect 'mvel'
 activation-group "acupuncturist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.ACUPUNCTURIST.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType(issuingState == "MN", licenseType == LicenseNames.ACUPUNCTURIST.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType(issuingState == "MN", licenseType == LicenseNames.ACUPUNCTURIST.value()) from $licenseInformation.license;
     then
 
 end
@@ -1628,7 +1628,7 @@ rule 'MN Dental Hygienist License is Accepted'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
@@ -1636,8 +1636,8 @@ dialect 'mvel'
 activation-group "dental-hygienist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.ALLIED_DENTAL_PROFESSIONAL.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType(issuingState == "MN", licenseType == LicenseNames.DENTAL_HYGIENIST.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType(issuingState == "MN", licenseType == LicenseNames.DENTAL_HYGIENIST.value()) from $licenseInformation.license;
     then
 
 end
@@ -1646,16 +1646,16 @@ rule 'MN Department of Health Certification As Speech Pathologist Is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.SPEECH_LANGUAGE_PATHOLOGIST.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        not LicenseType(issuingState == "MN", licenseType == LicenseNames.SPEECH_LANGUAGE_PATHOLOGIST.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        not LicenseType(issuingState == "MN", licenseType == LicenseNames.SPEECH_LANGUAGE_PATHOLOGIST.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1669,15 +1669,15 @@ rule 'MN Independent Clinical Social Worker License Is Acceptable'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 activation-group "clinical-social-worker-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType(issuingState == "MN", licenseType == LicenseNames.CLINICAL_SOCIAL_WORKER.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType(issuingState == "MN", licenseType == LicenseNames.CLINICAL_SOCIAL_WORKER.value()) from $licenseInformation.license;
     then
 
 end
@@ -1686,7 +1686,7 @@ rule 'MN Physical Therapist License is Accepted'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
@@ -1694,8 +1694,8 @@ dialect 'mvel'
 activation-group "physical-therapist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.PHYSICAL_THERAPIST.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType(issuingState == "MN", licenseType == LicenseNames.PHYSICAL_THERAPIST.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType(issuingState == "MN", licenseType == LicenseNames.PHYSICAL_THERAPIST.value()) from $licenseInformation.license;
     then
 
 end
@@ -1704,7 +1704,7 @@ rule 'MN Physician Assistant License is Accepted'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
@@ -1712,8 +1712,8 @@ dialect 'mvel'
 activation-group "physician-assistant-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.PHYSICIAN_ASSISTANT.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType(issuingState == "MN", licenseType == LicenseNames.PHYSICIAN_ASSISTANT.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType(issuingState == "MN", licenseType == LicenseNames.PHYSICIAN_ASSISTANT.value()) from $licenseInformation.license;
     then
 
 end
@@ -1722,15 +1722,15 @@ rule 'ND Independent Clinical Social Worker License Is Acceptable'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 activation-group "clinical-social-worker-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType(issuingState == "ND", licenseType == LicenseNames.CLINICAL_SOCIAL_WORKER.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType(issuingState == "ND", licenseType == LicenseNames.CLINICAL_SOCIAL_WORKER.value()) from $licenseInformation.license;
     then
 
 end
@@ -1739,15 +1739,15 @@ rule 'Nurse Midwife Specialty Certification Is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.NURSE_MIDWIFE.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        not LicenseType(issuingState == "XX", licenseType == LicenseNames.PROFESSIONAL_MIDWIFE_CERTIFICATION.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        not LicenseType(issuingState == "XX", licenseType == LicenseNames.PROFESSIONAL_MIDWIFE_CERTIFICATION.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1761,16 +1761,16 @@ rule 'Nurse Practitioner Certificate Is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.NURSE_PRACTITIONER.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        not LicenseType(issuingState == "XX", licenseType == LicenseNames.NURSE_PRACTITIONER.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        not LicenseType(issuingState == "XX", licenseType == LicenseNames.NURSE_PRACTITIONER.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1784,16 +1784,16 @@ rule 'Occupational Therapist License Is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
  */
     when
         $provider: ProviderInformationType(providerType == ProviderType.OCCUPATIONAL_THERAPIST.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        not LicenseType(issuingState == "MN", licenseType == LicenseNames.OCCUPATIONAL_THERAPY.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        not LicenseType(issuingState == "MN", licenseType == LicenseNames.OCCUPATIONAL_THERAPY.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1807,14 +1807,14 @@ rule 'Only OT in private practice are eligible for MHCP enrollment'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
  */
     when
         $provider: ProviderInformationType(maintainsOwnPrivatePractice != "Y", providerType == ProviderType.OCCUPATIONAL_THERAPIST.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1828,14 +1828,14 @@ rule 'Only PT in private practice are eligible for MHCP enrollment'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
  */
     when
         $provider: ProviderInformationType(maintainsOwnPrivatePractice != "Y", providerType == ProviderType.PHYSICAL_THERAPIST.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1849,7 +1849,7 @@ rule 'Optometrist License From the State Of Practice Is Accepted'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -1858,7 +1858,7 @@ activation-group "optometrist-or-equivalent-is-required"
         $provider: ProviderInformationType(providerType == ProviderType.OPTOMETRIST.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
         AddressType($practiceState : state) from $provider.practiceInformation.contactInformation.address
-        LicenseType(issuingState == $practiceState, licenseType == LicenseNames.OPTOMETRIST.value()) from $licenseInformation.license; 
+        LicenseType(issuingState == $practiceState, licenseType == LicenseNames.OPTOMETRIST.value()) from $licenseInformation.license;
     then
 
 end
@@ -1867,7 +1867,7 @@ rule 'Optometrist License Or Equivalent Is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
@@ -1875,7 +1875,7 @@ activation-group "optometrist-or-equivalent-is-required"
 salience -10
     when
         $provider: ProviderInformationType(providerType == ProviderType.OPTOMETRIST.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1889,16 +1889,16 @@ rule 'Oral Surgeon Certificate Is Required If Selected Specialty Includes Oral S
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
     when
         $provider: ProviderInformationType(  providerType == ProviderType.DENTIST.value())
         SpecialtiesType(specialtyName contains SpecialtyNames.ORAL_SURGERY.value()) from $provider.specialties
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        not LicenseType(specialtyType == SpecialtyNames.ORAL_SURGERY.value()) from $licenseInformation.license; 
-        $report: ErrorReporter() 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        not LicenseType(specialtyType == SpecialtyNames.ORAL_SURGERY.value()) from $licenseInformation.license;
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -1912,16 +1912,16 @@ rule 'Out Of State Optometrist License Is Acceptable If Working On A Reserverati
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 activation-group "optometrist-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.OPTOMETRIST.value())
-        $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation; 
+        $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation;
         AddressType($practiceState : state) from $provider.practiceInformation.contactInformation.address
-        LicenseType(issuingState != $practiceState, licenseType == LicenseNames.OPTOMETRIST.value()) from $licenseInformation.license; 
+        LicenseType(issuingState != $practiceState, licenseType == LicenseNames.OPTOMETRIST.value()) from $licenseInformation.license;
     then
 
 end
@@ -1930,7 +1930,7 @@ rule 'Out of State Acupuncturist License Is Accepted If Working On A Reservation
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
@@ -1938,8 +1938,8 @@ dialect 'mvel'
 activation-group "acupuncturist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.ACUPUNCTURIST.value())
-        $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation; 
-        LicenseType(issuingState != "MN", licenseType == LicenseNames.ACUPUNCTURIST.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation;
+        LicenseType(issuingState != "MN", licenseType == LicenseNames.ACUPUNCTURIST.value()) from $licenseInformation.license;
     then
 
 end
@@ -1948,7 +1948,7 @@ rule 'Out of State Dental Hygienist License Is Accepted If Working On A Reservat
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
@@ -1956,8 +1956,8 @@ dialect 'mvel'
 activation-group "dental-hygienist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.ALLIED_DENTAL_PROFESSIONAL.value())
-        $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation; 
-        LicenseType(issuingState != "MN", licenseType == LicenseNames.DENTAL_HYGIENIST.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation;
+        LicenseType(issuingState != "MN", licenseType == LicenseNames.DENTAL_HYGIENIST.value()) from $licenseInformation.license;
     then
 
 end
@@ -1966,15 +1966,15 @@ rule 'Out of State Dental License is Accepted If Working On A Reservation'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 activation-group "dental-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.DENTIST.value())
-        $licenseInformation: LicenseInformationType(worksOnReservation == "Y", tribalCode != null) from $provider.licenseInformation; 
-        LicenseType(issuingState != "MN", attachmentObjectId != null, licenseType == LicenseNames.DENTAL.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType(worksOnReservation == "Y", tribalCode != null) from $provider.licenseInformation;
+        LicenseType(issuingState != "MN", attachmentObjectId != null, licenseType == LicenseNames.DENTAL.value()) from $licenseInformation.license;
     then
 
 end
@@ -1983,16 +1983,16 @@ rule 'Out Of State Dietician, Nutritionist License Is Acceptable If Working On A
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 activation-group "dietician-or-nutritionist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_DIETICIAN_OR_LICENSED_NUTRITIONIST.value())
-        $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation; 
+        $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation;
         AddressType($practiceState : state) from $provider.practiceInformation.contactInformation.address
-        LicenseType(issuingState != $practiceState, licenseType == LicenseNames.DIETICIAN_OR_NUTRITIONIST.value()) from $licenseInformation.license; 
+        LicenseType(issuingState != $practiceState, licenseType == LicenseNames.DIETICIAN_OR_NUTRITIONIST.value()) from $licenseInformation.license;
     then
 
 end
@@ -2001,15 +2001,15 @@ rule 'Out of State HAD License Is Acceptable If Working On A Reservation'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 activation-group "hearing-instrument-dispenser-certificate-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.HEARING_AID_DISPENSER.value())
-        $licenseInformation: LicenseInformationType(worksOnReservation == "Y", tribalCode != null) from $provider.licenseInformation; 
-        LicenseType(issuingState != "MN", attachmentObjectId != null, licenseType == LicenseNames.HEARING_AID_DISPENSER.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType(worksOnReservation == "Y", tribalCode != null) from $provider.licenseInformation;
+        LicenseType(issuingState != "MN", attachmentObjectId != null, licenseType == LicenseNames.HEARING_AID_DISPENSER.value()) from $licenseInformation.license;
     then
 
 end
@@ -2018,15 +2018,15 @@ rule 'Out Of State ICSW License Is Acceptable If Working On A Reserveration'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 activation-group "clinical-social-worker-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
-        $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation; 
-        LicenseType(issuingState != "MN", licenseType == LicenseNames.CLINICAL_SOCIAL_WORKER.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation;
+        LicenseType(issuingState != "MN", licenseType == LicenseNames.CLINICAL_SOCIAL_WORKER.value()) from $licenseInformation.license;
     then
 
 end
@@ -2035,15 +2035,15 @@ rule 'Out of State Physical Therapist License Is Accepted If Working On A Reserv
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 activation-group "physical-therapist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.PHYSICAL_THERAPIST.value())
-        $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation; 
-        LicenseType(issuingState != "MN", licenseType == LicenseNames.PHYSICAL_THERAPIST.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation;
+        LicenseType(issuingState != "MN", licenseType == LicenseNames.PHYSICAL_THERAPIST.value()) from $licenseInformation.license;
     then
 
 end
@@ -2052,7 +2052,7 @@ rule 'Out of State Physician License Is Accepted If Working On A Reservation'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
@@ -2060,8 +2060,8 @@ dialect 'mvel'
 activation-group "physician-assistant-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.PHYSICIAN_ASSISTANT.value())
-        $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation; 
-        LicenseType(issuingState != "MN", licenseType == LicenseNames.PHYSICIAN_ASSISTANT.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType(tribalCode != null, worksOnReservation == "Y") from $provider.licenseInformation;
+        LicenseType(issuingState != "MN", licenseType == LicenseNames.PHYSICIAN_ASSISTANT.value()) from $licenseInformation.license;
     then
 
 end
@@ -2071,7 +2071,7 @@ dialect 'mvel'
 salience 20
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
@@ -2081,7 +2081,7 @@ salience 20
         ProviderInformationType(providerType == ProviderType.PHYSICAL_THERAPIST.value())
     then
         modify($enrollment) {
-            setRiskLevel(RiskLevelType.MODERATE) 
+            setRiskLevel(RiskLevelType.MODERATE)
         };
 
 end
@@ -2090,7 +2090,7 @@ rule 'Physical Therapist License or Equivalent is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
@@ -2099,7 +2099,7 @@ activation-group "physical-therapist-license-or-equivalent-is-required"
 salience -10
     when
         $provider: ProviderInformationType(providerType == ProviderType.PHYSICAL_THERAPIST.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -2113,7 +2113,7 @@ rule 'Physician Assistant License or Equivalent is Required'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Provider Enrollment Drools Front End Validation Part 3
@@ -2122,7 +2122,7 @@ activation-group "physician-assistant-license-or-equivalent-is-required"
 salience -10
     when
         $provider: ProviderInformationType(providerType == ProviderType.PHYSICIAN_ASSISTANT.value())
-        $report: ErrorReporter() 
+        $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/LicenseInformation",
@@ -2136,15 +2136,15 @@ rule 'Psychosocial Rehabilitation Practitioner Certificate Is Accepted'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 activation-group "national-certification-is-required-for-cprp"
     when
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value())
-        $licenseInformation: LicenseInformationType() from $provider.licenseInformation; 
-        LicenseType(issuingState == "XX", attachmentObjectId != null, licenseType == LicenseNames.PSYCHOSOCIAL_REHABILITATION_PRACTITIONER.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType() from $provider.licenseInformation;
+        LicenseType(issuingState == "XX", attachmentObjectId != null, licenseType == LicenseNames.PSYCHOSOCIAL_REHABILITATION_PRACTITIONER.value()) from $licenseInformation.license;
     then
 
 end
@@ -2153,15 +2153,15 @@ rule 'Rehabilitation Counselor Certificate Is Accepted'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 activation-group "national-certification-is-required-for-cprp"
     when
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value())
-        $licenseInformation: LicenseInformationType() from $provider.licenseInformation; 
-        LicenseType(issuingState == "XX", attachmentObjectId != null, licenseType == LicenseNames.REHABILITATION_COUNSELOR.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType() from $provider.licenseInformation;
+        LicenseType(issuingState == "XX", attachmentObjectId != null, licenseType == LicenseNames.REHABILITATION_COUNSELOR.value()) from $licenseInformation.license;
     then
 
 end
@@ -2170,15 +2170,15 @@ rule 'SD Clinical Social Worker License Is Acceptable'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 activation-group "clinical-social-worker-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType(issuingState == "SD", licenseType == LicenseNames.CLINICAL_SOCIAL_WORKER.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType(issuingState == "SD", licenseType == LicenseNames.CLINICAL_SOCIAL_WORKER.value()) from $licenseInformation.license;
     then
 
 end
@@ -2187,15 +2187,15 @@ rule 'WI Clinical Social Worker License Is Acceptable'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
 activation-group "clinical-social-worker-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation; 
-        LicenseType(issuingState == "WI", licenseType == LicenseNames.CLINICAL_SOCIAL_WORKER.value()) from $licenseInformation.license; 
+        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
+        LicenseType(issuingState == "WI", licenseType == LicenseNames.CLINICAL_SOCIAL_WORKER.value()) from $licenseInformation.license;
     then
 
 end
@@ -2208,7 +2208,7 @@ dialect 'mvel'
 salience 20
     when
         $enrollment: EnrollmentInformationType(riskLevel == null)
-        ProviderInformationType(applicantType == ApplicantType.ORGANIZATION, providerType 
+        ProviderInformationType(applicantType == ApplicantType.ORGANIZATION, providerType
         not in (
         	ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value(),
         	ProviderType.REHABILITATION_AGENCY.value(),
@@ -2221,7 +2221,7 @@ salience 20
         ))
     then
         modify($enrollment) {
-            setRiskLevel(RiskLevelType.LIMITED) 
+            setRiskLevel(RiskLevelType.LIMITED)
         };
 end
 
@@ -2230,7 +2230,7 @@ dialect 'mvel'
 salience 20
     when
         $enrollment: EnrollmentInformationType(riskLevel == null)
-        ProviderInformationType(providerType 
+        ProviderInformationType(providerType
         in (
         	ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value(),
         	ProviderType.INDEPENDENT_DIAGNOSTIC_TESTING_FACILITY.value(),
@@ -2240,7 +2240,7 @@ salience 20
         ))
     then
         modify($enrollment) {
-            setRiskLevel(RiskLevelType.MODERATE) 
+            setRiskLevel(RiskLevelType.MODERATE)
         };
 end
 
@@ -2252,7 +2252,7 @@ salience 20
         ProviderInformationType(providerType in (ProviderType.HOME_HEALTH_AGENCY.value(),ProviderType.DURABLE_MEDICAL_EQUIPMENT.value()))
     then
         modify($enrollment) {
-            setRiskLevel(RiskLevelType.MODERATE) 
+            setRiskLevel(RiskLevelType.MODERATE)
         };
 end
 
@@ -2264,7 +2264,7 @@ salience 20
         ProviderInformationType(providerType in (ProviderType.HOME_HEALTH_AGENCY.value(),ProviderType.DURABLE_MEDICAL_EQUIPMENT.value()))
     then
         modify($enrollment) {
-            setRiskLevel(RiskLevelType.HIGH) 
+            setRiskLevel(RiskLevelType.HIGH)
         };
 end
 
@@ -2278,7 +2278,7 @@ salience 20
         LicenseType( licenseType == LicenseNames.CORF_CERTIFICATION.value() )  from $licenseList
     then
         modify($enrollment) {
-            setRiskLevel(RiskLevelType.MODERATE) 
+            setRiskLevel(RiskLevelType.MODERATE)
         };
 end
 
@@ -2292,6 +2292,6 @@ salience 20
         not LicenseType( licenseType == LicenseNames.CORF_CERTIFICATION.value() )  from $licenseList
     then
         modify($enrollment) {
-            setRiskLevel(RiskLevelType.LIMITED) 
+            setRiskLevel(RiskLevelType.LIMITED)
         };
 end

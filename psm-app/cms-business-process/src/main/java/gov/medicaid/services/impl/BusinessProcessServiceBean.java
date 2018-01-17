@@ -143,7 +143,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
 
         handlers.put("PreProcess", new PreProcessHandler());
         handlers.put("Validate", new ValidationHandler());
-        handlers.put("Data Transformation", new SystemOutWorkItemHandler());
         handlers.put("Reject Application", new RejectedHandler());
         handlers.put("Get Enrollment History", new EnrollmentHistoryHandler());
         handlers.put("Verify SSN", new VerifySSNHandler());

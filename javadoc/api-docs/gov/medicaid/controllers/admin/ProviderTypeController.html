@@ -171,22 +171,22 @@ extends <a href="../../../../gov/medicaid/controllers/admin/BaseServiceAdminCont
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>org.springframework.web.servlet.ModelAndView</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../gov/medicaid/controllers/admin/ProviderTypeController.html#create-gov.medicaid.entities.ProviderType-javax.servlet.http.HttpServletRequest-">create</a></span>(gov.medicaid.entities.ProviderType&nbsp;providerType,
-      javax.servlet.http.HttpServletRequest&nbsp;request)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../gov/medicaid/controllers/admin/ProviderTypeController.html#create-gov.medicaid.entities.ProviderType-HttpServletRequest-">create</a></span>(gov.medicaid.entities.ProviderType&nbsp;providerType,
+      HttpServletRequest&nbsp;request)</code>
 <div class="block">This action will create the entity.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../gov/medicaid/controllers/admin/ProviderTypeController.html#delete-long:A-javax.servlet.http.HttpServletRequest-">delete</a></span>(long[]&nbsp;providerTypeIds,
-      javax.servlet.http.HttpServletRequest&nbsp;request)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../gov/medicaid/controllers/admin/ProviderTypeController.html#delete-long:A-HttpServletRequest-">delete</a></span>(long[]&nbsp;providerTypeIds,
+      HttpServletRequest&nbsp;request)</code>
 <div class="block">This action will delete the entities with the given IDs from the single view.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>org.springframework.web.servlet.ModelAndView</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../gov/medicaid/controllers/admin/ProviderTypeController.html#edit-gov.medicaid.entities.ProviderType-javax.servlet.http.HttpServletRequest-">edit</a></span>(gov.medicaid.entities.ProviderType&nbsp;providerType,
-    javax.servlet.http.HttpServletRequest&nbsp;request)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../gov/medicaid/controllers/admin/ProviderTypeController.html#edit-gov.medicaid.entities.ProviderType-HttpServletRequest-">edit</a></span>(gov.medicaid.entities.ProviderType&nbsp;providerType,
+    HttpServletRequest&nbsp;request)</code>
 <div class="block">This action will save the entity.</div>
 </td>
 </tr>
@@ -256,7 +256,7 @@ extends <a href="../../../../gov/medicaid/controllers/admin/BaseServiceAdminCont
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;gov.medicaid.controllers.admin.<a href="../../../../gov/medicaid/controllers/admin/BaseServiceAdminController.html" title="class in gov.medicaid.controllers.admin">BaseServiceAdminController</a></h3>
-<code><a href="../../../../gov/medicaid/controllers/admin/BaseServiceAdminController.html#getLogger--">getLogger</a>, <a href="../../../../gov/medicaid/controllers/admin/BaseServiceAdminController.html#getUserName-javax.servlet.http.HttpServletRequest-">getUserName</a></code></li>
+<code><a href="../../../../gov/medicaid/controllers/admin/BaseServiceAdminController.html#getLogger--">getLogger</a>, <a href="../../../../gov/medicaid/controllers/admin/BaseServiceAdminController.html#getUserName-HttpServletRequest-">getUserName</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -443,7 +443,7 @@ public&nbsp;org.springframework.web.servlet.ModelAndView&nbsp;beginEdit(@Request
 </dl>
 </li>
 </ul>
-<a name="create-gov.medicaid.entities.ProviderType-javax.servlet.http.HttpServletRequest-">
+<a name="create-gov.medicaid.entities.ProviderType-HttpServletRequest-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -453,7 +453,7 @@ public&nbsp;org.springframework.web.servlet.ModelAndView&nbsp;beginEdit(@Request
                 method=POST)
 public&nbsp;org.springframework.web.servlet.ModelAndView&nbsp;create(@ModelAttribute(value="providerType")
                                                                                                                                            gov.medicaid.entities.ProviderType&nbsp;providerType,
-                                                                                                                                           javax.servlet.http.HttpServletRequest&nbsp;request)
+                                                                                                                                           HttpServletRequest&nbsp;request)
                                                                                                                                     throws gov.medicaid.services.PortalServiceException</pre>
 <div class="block">This action will create the entity.</div>
 <dl>
@@ -472,7 +472,7 @@ public&nbsp;org.springframework.web.servlet.ModelAndView&nbsp;create(@ModelAttri
 </dl>
 </li>
 </ul>
-<a name="edit-gov.medicaid.entities.ProviderType-javax.servlet.http.HttpServletRequest-">
+<a name="edit-gov.medicaid.entities.ProviderType-HttpServletRequest-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -482,7 +482,7 @@ public&nbsp;org.springframework.web.servlet.ModelAndView&nbsp;create(@ModelAttri
                 method=POST)
 public&nbsp;org.springframework.web.servlet.ModelAndView&nbsp;edit(@ModelAttribute(value="providerType")
                                                                                                                                          gov.medicaid.entities.ProviderType&nbsp;providerType,
-                                                                                                                                         javax.servlet.http.HttpServletRequest&nbsp;request)
+                                                                                                                                         HttpServletRequest&nbsp;request)
                                                                                                                                   throws gov.medicaid.services.PortalServiceException</pre>
 <div class="block">This action will save the entity.</div>
 <dl>
@@ -501,7 +501,7 @@ public&nbsp;org.springframework.web.servlet.ModelAndView&nbsp;edit(@ModelAttribu
 </dl>
 </li>
 </ul>
-<a name="delete-long:A-javax.servlet.http.HttpServletRequest-">
+<a name="delete-long:A-HttpServletRequest-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -512,7 +512,7 @@ public&nbsp;org.springframework.web.servlet.ModelAndView&nbsp;edit(@ModelAttribu
  @ResponseBody
 public&nbsp;java.lang.String&nbsp;delete(@RequestParam(value="providerTypeIds")
                                                                                                                               long[]&nbsp;providerTypeIds,
-                                                                                                                              javax.servlet.http.HttpServletRequest&nbsp;request)
+                                                                                                                              HttpServletRequest&nbsp;request)
                                                                                                                        throws gov.medicaid.services.PortalServiceException</pre>
 <div class="block">This action will delete the entities with the given IDs from the single view.</div>
 <dl>

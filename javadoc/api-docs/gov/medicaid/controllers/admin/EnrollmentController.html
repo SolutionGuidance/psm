@@ -200,8 +200,8 @@ extends <a href="../../../../gov/medicaid/controllers/BaseController.html" title
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../gov/medicaid/controllers/admin/EnrollmentController.html#exportBatch-gov.medicaid.entities.ProviderSearchCriteria-javax.servlet.http.HttpServletResponse-">exportBatch</a></span>(gov.medicaid.entities.ProviderSearchCriteria&nbsp;criteria,
-           javax.servlet.http.HttpServletResponse&nbsp;response)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../gov/medicaid/controllers/admin/EnrollmentController.html#exportBatch-gov.medicaid.entities.ProviderSearchCriteria-HttpServletResponse-">exportBatch</a></span>(gov.medicaid.entities.ProviderSearchCriteria&nbsp;criteria,
+           HttpServletResponse&nbsp;response)</code>
 <div class="block">This action will search for profile enrollments.</div>
 </td>
 </tr>
@@ -286,9 +286,9 @@ extends <a href="../../../../gov/medicaid/controllers/BaseController.html" title
 </tr>
 <tr id="i18" class="altColor">
 <td class="colFirst"><code>org.springframework.web.servlet.ModelAndView</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../gov/medicaid/controllers/admin/EnrollmentController.html#search-gov.medicaid.entities.ProviderSearchCriteria-java.lang.String-javax.servlet.http.HttpServletResponse-">search</a></span>(gov.medicaid.entities.ProviderSearchCriteria&nbsp;criteria,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../gov/medicaid/controllers/admin/EnrollmentController.html#search-gov.medicaid.entities.ProviderSearchCriteria-java.lang.String-HttpServletResponse-">search</a></span>(gov.medicaid.entities.ProviderSearchCriteria&nbsp;criteria,
       java.lang.String&nbsp;view,
-      javax.servlet.http.HttpServletResponse&nbsp;response)</code>
+      HttpServletResponse&nbsp;response)</code>
 <div class="block">This action will search for profile enrollments.</div>
 </td>
 </tr>
@@ -362,7 +362,7 @@ extends <a href="../../../../gov/medicaid/controllers/BaseController.html" title
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;gov.medicaid.controllers.<a href="../../../../gov/medicaid/controllers/BaseController.html" title="class in gov.medicaid.controllers">BaseController</a></h3>
-<code><a href="../../../../gov/medicaid/controllers/BaseController.html#getLogger--">getLogger</a>, <a href="../../../../gov/medicaid/controllers/BaseController.html#handleError-javax.servlet.http.HttpServletRequest-java.lang.Exception-">handleError</a>, <a href="../../../../gov/medicaid/controllers/BaseController.html#nocache-javax.servlet.http.HttpServletResponse-">nocache</a></code></li>
+<code><a href="../../../../gov/medicaid/controllers/BaseController.html#getLogger--">getLogger</a>, <a href="../../../../gov/medicaid/controllers/BaseController.html#handleError-HttpServletRequest-java.lang.Exception-">handleError</a>, <a href="../../../../gov/medicaid/controllers/BaseController.html#nocache-HttpServletResponse-">nocache</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -609,7 +609,7 @@ public&nbsp;org.springframework.web.servlet.ModelAndView&nbsp;viewScreeningLog(@
 </dl>
 </li>
 </ul>
-<a name="exportBatch-gov.medicaid.entities.ProviderSearchCriteria-javax.servlet.http.HttpServletResponse-">
+<a name="exportBatch-gov.medicaid.entities.ProviderSearchCriteria-HttpServletResponse-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -618,7 +618,7 @@ public&nbsp;org.springframework.web.servlet.ModelAndView&nbsp;viewScreeningLog(@
 <pre>@RequestMapping(value={"/agent/enrollment/exportBatch","/provider/search/exportBatch"})
 public&nbsp;void&nbsp;exportBatch(@ModelAttribute(value="criteria")
                                                                                                                 gov.medicaid.entities.ProviderSearchCriteria&nbsp;criteria,
-                                                                                                                javax.servlet.http.HttpServletResponse&nbsp;response)
+                                                                                                                HttpServletResponse&nbsp;response)
                                                                                                          throws gov.medicaid.services.PortalServiceException,
                                                                                                                 java.io.IOException</pre>
 <div class="block">This action will search for profile enrollments.</div>
@@ -634,7 +634,7 @@ public&nbsp;void&nbsp;exportBatch(@ModelAttribute(value="criteria")
 </dl>
 </li>
 </ul>
-<a name="search-gov.medicaid.entities.ProviderSearchCriteria-java.lang.String-javax.servlet.http.HttpServletResponse-">
+<a name="search-gov.medicaid.entities.ProviderSearchCriteria-java.lang.String-HttpServletResponse-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -645,7 +645,7 @@ public&nbsp;org.springframework.web.servlet.ModelAndView&nbsp;search(@ModelAttri
                                                                                                                                                 gov.medicaid.entities.ProviderSearchCriteria&nbsp;criteria,
                                                                                                                                                 @PathVariable(value="view")
                                                                                                                                                 java.lang.String&nbsp;view,
-                                                                                                                                                javax.servlet.http.HttpServletResponse&nbsp;response)
+                                                                                                                                                HttpServletResponse&nbsp;response)
                                                                                                                                          throws gov.medicaid.services.PortalServiceException</pre>
 <div class="block">This action will search for profile enrollments.</div>
 <dl>

@@ -3,10 +3,12 @@ administrators or our build systems.
 
 * `rhel-install.sh` is an automated script Red Hat sysadmins can use
   to install the PSM.
-* `push-javadoc-to-gh-pages.sh` lets a developer build our automated
-  API documentation using Javadoc and push it to the `gh-pages`
-  branch, which updates [our GitHub Pages
-  site](https://solutionguidance.github.io/psm/javadoc/api-docs/).
+* `push-docs-to-gh-pages.sh` is a script for PSM developers to
+  manually run. It builds fresh versions of the user documentation in
+  HTML, PDF, and ePub, and a fresh version of the API documentation
+  using Javadoc, and pushes those to the `gh-pages` branch, which
+  updates [our GitHub Pages
+  site](https://SolutionGuidance.github.io/psm/javadoc/api-docs/).
 * `drools-microservice.sh` sets up a copy of jBPM and Guvnor on a
   standalone server, which the core application can then be configured
   to communicate with.

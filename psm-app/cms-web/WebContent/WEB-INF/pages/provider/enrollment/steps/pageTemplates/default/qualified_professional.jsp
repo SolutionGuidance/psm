@@ -98,7 +98,7 @@
                 <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_29_ssn_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="9"/>
+                <input type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
             </div>
             <div class="row requireField">
                 <label>

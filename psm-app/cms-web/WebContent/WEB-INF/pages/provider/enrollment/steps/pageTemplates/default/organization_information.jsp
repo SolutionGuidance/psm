@@ -98,7 +98,7 @@
                         
                         <c:set var="formName" value="_15_fein"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input type="text" class="normalInput feinMasked" id="fein" name="${formName}" value="${formValue}" maxlength="7"/>
+                        <input type="text" class="normalInput feinMasked" id="fein" name="${formName}" value="${formValue}" maxlength="10"/>
                     </div>
 
                     <div class="row requireField">
@@ -246,7 +246,7 @@
                         
                         <c:set var="formName" value="_15_fein"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input type="text" class="normalInput feinMasked" id="fein" name="${formName}" value="${formValue}" maxlength="7"/>
+                        <input type="text" class="normalInput feinMasked" id="fein" name="${formName}" value="${formValue}" maxlength="10"/>
                     </div>
 
                     <div class="row requireField">
@@ -373,7 +373,7 @@
 
                         <c:set var="formName" value="_15_fein"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input type="text" class="normalInput feinMasked" id="fein" name="${formName}" value="${formValue}" maxlength="7"/>
+                        <input type="text" class="normalInput feinMasked" id="fein" name="${formName}" value="${formValue}" maxlength="10"/>
                     </div>
 
                     <div class="row">
@@ -658,7 +658,7 @@
 
                     <c:set var="formName" value="_15_fein"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="text" class="normalInput feinMasked" id="fein" name="${formName}" value="${formValue}" maxlength="7"/>
+                    <input type="text" class="normalInput feinMasked" id="fein" name="${formName}" value="${formValue}" maxlength="10"/>
                 </div>
 
                 <div class="row">

@@ -165,12 +165,14 @@ project(':cms-web') {
     apply plugin: 'war'
 
     configurations {
+        frontend
         userdocs
     }
 
     dependencies {
         providedCompile project(':services')
         providedCompile fileTree(dir: 'WebContent/WEB-INF/lib')
+        frontend project(path: ':frontend', configuration: 'javascript')
         userdocs project(path: ':userhelp', configuration: 'html')
         compile libs.spring_beans
         compile libs.spring_ldap
@@ -204,6 +206,9 @@ project(':cms-web') {
     war {
         from(configurations.userdocs) {
             into 'help'
+        }
+        from(configurations.frontend) {
+            into 'js'
         }
     }
 }
@@ -283,6 +288,18 @@ project(':cms-portal-services') {
 
     ear {
         appDirName 'EarContent'
+    }
+}
+
+project(':frontend') {
+    apply plugin: BasePlugin
+
+    configurations {
+        javascript
+    }
+
+    artifacts {
+        javascript file('src/main/js')
     }
 }
 

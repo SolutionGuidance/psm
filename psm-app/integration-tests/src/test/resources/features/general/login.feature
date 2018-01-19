@@ -7,4 +7,3 @@ Feature: Log into the Application as Provider
     And I enter my username and password
     When I click on Login
     Then I should see my dashboard page
-

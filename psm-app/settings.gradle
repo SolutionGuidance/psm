@@ -1,3 +1,7 @@
-include 'services', 'cms-business-process', 'cms-web', 'cms-business-model', 'cms-portal-services'
-include 'integration-tests', 'userhelp'
-
+include 'cms-business-model'
+include 'cms-business-process'
+include 'cms-portal-services'
+include 'cms-web'
+include 'integration-tests'
+include 'services'
+include 'userhelp'

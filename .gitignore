@@ -56,3 +56,6 @@ psm-app/integration-tests/serenity.properties
 
 # Generated LEIE API homepage
 etl/leie/leie/api.html
+
+# NPM-installed dependencies
+node_modules/

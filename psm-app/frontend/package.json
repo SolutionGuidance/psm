@@ -1,0 +1,6 @@
+{
+  "name": "psm-frontend",
+  "description": "The JavaScript of the Provider Screening Module",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/SolutionGuidance/psm"
+}

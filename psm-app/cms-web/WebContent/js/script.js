@@ -196,7 +196,6 @@ $(document).ready(function () {
   $("input.npiMasked").mask("9999999999");
   $("input.umpiMasked").mask("**********");
   $("input.feinMasked").mask("99-9999999");
-  $("input.eftMasked").mask("9999999999-999");
   $("input.taxIdMasked").mask("9999999");
   $("input.countyMask").mask("999");
   $("input.fiscalMonthInput, input.fiscalYearInput").mask("99");

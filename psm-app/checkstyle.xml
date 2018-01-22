@@ -7,6 +7,7 @@
     <property name="file" value="checkstyle_suppressions.xml"/>
   </module>
   <module name="FileTabCharacter"/>
+  <module name="NewlineAtEndOfFile"/>
   <module name="TreeWalker">
     <module name="EmptyForInitializerPad"/>
     <module name="EmptyForIteratorPad"/>

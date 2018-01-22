@@ -26,15 +26,15 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
-@javax.persistence.Entity 
+@javax.persistence.Entity
 @Table(name = "screening_schedules")
 public class ScreeningSchedule implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "screening_schedule_id")
     private long id;
-    
-    /* 
+
+    /*
      * Next screening date.
      */
     @Column(name = "upcoming_screening_date")

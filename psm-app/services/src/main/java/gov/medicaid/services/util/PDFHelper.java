@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ public class PDFHelper {
         header.setColspan(colspan);
         return header;
     }
-    
+
     /**
      * Sets the given table to take an entire page with.
      *
@@ -56,7 +56,7 @@ public class PDFHelper {
         table.setTotalWidth(72 * 7);
         table.setLockedWidth(true);
     }
-    
+
     /**
      * Retrieves the namespaced attribute.
      *

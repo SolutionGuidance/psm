@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * This class is used to perform manual verification.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  * @since Medicaid Provider Screening Portal - Service Agent Controllers
@@ -71,7 +71,7 @@ public class ApprovalDTO {
 
     /**
      * Gets the value of the field <code>verifiedLicenses</code>.
-     * 
+     *
      * @return the verifiedLicenses
      */
     public List<String> getVerifiedLicenses() {
@@ -80,7 +80,7 @@ public class ApprovalDTO {
 
     /**
      * Sets the value of the field <code>verifiedLicenses</code>.
-     * 
+     *
      * @param verifiedLicenses
      *            the verifiedLicenses to set
      */
@@ -90,7 +90,7 @@ public class ApprovalDTO {
 
     /**
      * Gets the value of the field <code>npiVerified</code>.
-     * 
+     *
      * @return the npiVerified
      */
     public String getNpiVerified() {
@@ -99,7 +99,7 @@ public class ApprovalDTO {
 
     /**
      * Sets the value of the field <code>npiVerified</code>.
-     * 
+     *
      * @param npiVerified
      *            the npiVerified to set
      */
@@ -109,7 +109,7 @@ public class ApprovalDTO {
 
     /**
      * Gets the value of the field <code>ssnVerified</code>.
-     * 
+     *
      * @return the ssnVerified
      */
     public String getSsnVerified() {
@@ -118,7 +118,7 @@ public class ApprovalDTO {
 
     /**
      * Sets the value of the field <code>ssnVerified</code>.
-     * 
+     *
      * @param ssnVerified
      *            the ssnVerified to set
      */
@@ -128,7 +128,7 @@ public class ApprovalDTO {
 
     /**
      * Gets the value of the field <code>nonExclusionVerified</code>.
-     * 
+     *
      * @return the nonExclusionVerified
      */
     public String getNonExclusionVerified() {
@@ -137,7 +137,7 @@ public class ApprovalDTO {
 
     /**
      * Sets the value of the field <code>nonExclusionVerified</code>.
-     * 
+     *
      * @param nonExclusionVerified
      *            the nonExclusionVerified to set
      */
@@ -147,7 +147,7 @@ public class ApprovalDTO {
 
     /**
      * Gets the value of the field <code>bgsVerified</code>.
-     * 
+     *
      * @return the bgsVerified
      */
     public String getBgsVerified() {
@@ -156,7 +156,7 @@ public class ApprovalDTO {
 
     /**
      * Sets the value of the field <code>bgsVerified</code>.
-     * 
+     *
      * @param bgsVerified
      *            the bgsVerified to set
      */
@@ -166,7 +166,7 @@ public class ApprovalDTO {
 
     /**
      * Gets the <code>npiLookupVerified</code>.
-     * 
+     *
      * @return the npiLookupVerified
      */
     public String getNpiLookupVerified() {
@@ -175,7 +175,7 @@ public class ApprovalDTO {
 
     /**
      * Sets the <code>npiLookupVerified</code>.
-     * 
+     *
      * @param npiLookupVerified
      *            the npiLookupVerified to set
      */
@@ -185,7 +185,7 @@ public class ApprovalDTO {
 
     /**
      * Gets the <code>nonSAMExclusionVerified</code>.
-     * 
+     *
      * @return the nonSAMExclusionVerified
      */
     public String getNonSAMExclusionVerified() {
@@ -194,7 +194,7 @@ public class ApprovalDTO {
 
     /**
      * Sets the <code>nonSAMExclusionVerified</code>.
-     * 
+     *
      * @param nonSAMExclusionVerified
      *            the nonSAMExclusionVerified to set
      */

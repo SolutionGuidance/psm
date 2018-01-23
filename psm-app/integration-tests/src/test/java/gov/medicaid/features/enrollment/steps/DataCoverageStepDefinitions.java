@@ -13,7 +13,7 @@ import java.io.IOException;
 public class DataCoverageStepDefinitions {
     @Steps
     EnrollmentSteps enrollmentSteps;
-    
+
     @Steps
     GeneralSteps generalSteps;
 

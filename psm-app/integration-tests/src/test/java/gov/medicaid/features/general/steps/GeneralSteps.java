@@ -7,7 +7,7 @@ import net.thucydides.core.annotations.Step;
 
 @SuppressWarnings("unused")
 public class GeneralSteps {
-    
+
     private DashboardPage dashboardPage;
     private LoginPage loginPage;
     private MyProfilePage profilePage;
@@ -19,7 +19,7 @@ public class GeneralSteps {
         loginPage.login();
         loginPage.checkUserLoggedIn("p1");
     }
-    
+
     @Step
     public void checkOnDashboard() {
         dashboardPage.checkOnDashboard();

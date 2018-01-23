@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ValidationStepDefinitions {
     @Steps
     EnrollmentSteps enrollmentSteps;
-    
+
     @Steps
     GeneralSteps generalSteps;
 

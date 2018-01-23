@@ -30,5 +30,5 @@ public class DashboardPage extends PageObject {
     public void checkOnDashboard() {
         assertThat(getTitle()).isEqualTo("Dashboard");
     }
-    
+
 }

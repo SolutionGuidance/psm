@@ -23,7 +23,7 @@ import javax.xml.transform.TransformerException;
 
 /**
  * Used to lookup NPI.
- * 
+ *
  * @author cyberjag
  * @version 1.0
  */
@@ -38,7 +38,7 @@ public class NPILookupClient extends BaseSOAPClient {
 
     /**
      * Performs NPI number Lookup.
-     * 
+     *
      * @param provider
      *            the provider
      * @return the screening results

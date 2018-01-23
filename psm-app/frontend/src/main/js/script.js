@@ -707,13 +707,13 @@ $(document).ready(function () {
   // Same As Above
   $('.reimbursementAddressRow .checkbox').live('click', function () {
     if ($(this).attr('checked')) {
-        $(this).parents('.reimbursementAddressRow').find('input:text, select').each(function () {
-            $(this).val('').addClass("disabled").prop("disabled", true);
-        });
+      $(this).parents('.reimbursementAddressRow').find('input:text, select').each(function () {
+        $(this).val('').addClass("disabled").prop("disabled", true);
+      });
     } else {
-        $(this).parents('.reimbursementAddressRow').find('input:text, select').each(function () {
-            $(this).val('').removeClass("disabled").prop('disabled', false);
-        });
+      $(this).parents('.reimbursementAddressRow').find('input:text, select').each(function () {
+        $(this).val('').removeClass("disabled").prop('disabled', false);
+      });
     }
   });
 
@@ -932,7 +932,7 @@ $(document).ready(function () {
     });
 
   // Practice Lookup
-  $('.performPracticeLookupBtn').click(function performPracticeLookup (event) {
+  $('.performPracticeLookupBtn').click(function performPracticeLookup(event) {
     event.preventDefault();
 
     var $form = $("#practiceLookupForm");
@@ -956,7 +956,6 @@ $(document).ready(function () {
     $('#practiceLookupModal .tableContainer').show();
     repositionModal();
   });
-
 
   /* START OF SERVICE AGENT SCRIPT ------------------------------------------------ */
 
@@ -2178,7 +2177,7 @@ function postJson(settings) {
   $.extend(settings, {
     type: "post",
     dataType: "json",
-    beforeSend: function(xhr) {
+    beforeSend: function (xhr) {
       xhr.setRequestHeader(header, token);
     },
   })

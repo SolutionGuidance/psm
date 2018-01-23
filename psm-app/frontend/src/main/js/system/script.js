@@ -1336,7 +1336,7 @@ function deleteUserAccounts(userIds, toUserAccounts) {
 }
 
 function setSearchConditions() {
-  if ((typeof searchedResult != 'undefined') && (searchedResult)) {
+  if (('undefined' != typeof searchedResult) && (searchedResult)) {
     $('#initSearchBox').val(true);
     $('#searchUserAccountsForm input[name="and"]').val(false);
     $('#searchUserAccountsForm input[name="firstName"]').val(searchFirstName);

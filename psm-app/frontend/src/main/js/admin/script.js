@@ -1097,18 +1097,21 @@ $(document).ready(function () {
   });
 
   // Submit COS Form
-  $('.submitCosFormBtn').click(function submitCosForm (event) {
+  $('.submitCosFormBtn').click(function submitCosForm(event) {
     event.preventDefault();
+
     // validate
     if ($('#startDate').val().trim().length == 0) {
       $('#startDate').addClass('errorInput');
       alert('Start Date is required');
       return false;
     }
+
     if ($('#cosSelect').val() == null || $('#cosSelect').val().length == 0) {
       alert('Please select at least one COS');
       return false;
     }
+
     submitFormById('cosForm');
   });
 
@@ -1689,9 +1692,11 @@ function renewSelections(url) {
       traditional: true,
       type: "POST",
       dataType: "json",
-      beforeSend: function(xhr) {
+
+      beforeSend: function (xhr) {
         xhr.setRequestHeader(header, token);
       },
+
       success: function (data) {
         alert(data.message);
       }

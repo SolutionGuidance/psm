@@ -41,7 +41,7 @@ public interface AgreementDocumentService {
      * @throws IllegalArgumentException If agreement document is null
      * @throws PortalServiceException If there are any errors during the execution of this method
      */
-    public long create(AgreementDocument agreementDocument)
+    long create(AgreementDocument agreementDocument)
         throws PortalServiceException;
 
     /**
@@ -52,7 +52,7 @@ public interface AgreementDocumentService {
      * @throws IllegalArgumentException If agreement document is null
      * @throws PortalServiceException If there are any errors during the execution of this method
      */
-    public void update(AgreementDocument agreementDocument)
+    void update(AgreementDocument agreementDocument)
         throws PortalServiceException;
 
     /**
@@ -64,7 +64,7 @@ public interface AgreementDocumentService {
      *
      * @throws PortalServiceException If there are any errors during the execution of this method
      */
-    public AgreementDocument get(long agreementDocumentId)
+    AgreementDocument get(long agreementDocumentId)
         throws PortalServiceException;
 
     /**
@@ -74,7 +74,7 @@ public interface AgreementDocumentService {
      *
      * @throws PortalServiceException If there are any errors during the execution of this method
      */
-    public void delete(long agreementDocumentId) throws PortalServiceException;
+    void delete(long agreementDocumentId) throws PortalServiceException;
 
     /**
      * This method gets all the agreement documents that meet the search criteria. If none available, the
@@ -88,6 +88,6 @@ public interface AgreementDocumentService {
      *  or if criteria.pageSize is less than 1 unless criteria.pageNumber is less than 0
      * @throws PortalServiceException If an error occurs while performing the operation
      */
-    public SearchResult<AgreementDocument> search(AgreementDocumentSearchCriteria criteria)
+    SearchResult<AgreementDocument> search(AgreementDocumentSearchCriteria criteria)
         throws PortalServiceException;
 }

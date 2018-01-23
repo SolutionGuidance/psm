@@ -38,6 +38,9 @@ public interface ResultMatchResolver {
      * @param results the external search results
      * @return the match status
      */
-    public MatchStatus match(ProviderInformationType provider, Object object,
-        ExternalSourcesScreeningResultType results);
+    MatchStatus match(
+            ProviderInformationType provider,
+            Object object,
+            ExternalSourcesScreeningResultType results
+    );
 }

@@ -53,7 +53,7 @@ public enum SystemId {
      * Creates a new instance with the given value.
      * @param value the value to be assigned
      */
-    private SystemId(String value) {
+    SystemId(String value) {
         this.value = value;
     }
 

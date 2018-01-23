@@ -42,7 +42,9 @@ public interface EnrollmentWebService {
      * @return the service response
      * @throws PortalServiceException for any errors encountered
      */
-    public GetLookupGroupsResponse getLookupGroups(GetLookupGroupsRequest request) throws PortalServiceException;
+    GetLookupGroupsResponse getLookupGroups(
+            GetLookupGroupsRequest request
+    ) throws PortalServiceException;
 
     /**
      * Retrieves the ticket details.
@@ -51,7 +53,9 @@ public interface EnrollmentWebService {
      * @return the service response
      * @throws PortalServiceException for any errors encountered
      */
-    public GetTicketDetailsResponse getTicketDetails(GetTicketDetailsRequest request) throws PortalServiceException;
+    GetTicketDetailsResponse getTicketDetails(
+            GetTicketDetailsRequest request
+    ) throws PortalServiceException;
 
     /**
      * Saves the ticket details.
@@ -63,7 +67,7 @@ public interface EnrollmentWebService {
      * @return the enrollment (ticket) ID
      * @throws PortalServiceException for any errors encountered
      */
-    public long saveTicket(
+    long saveTicket(
             String username,
             String systemId,
             String npi,
@@ -77,7 +81,9 @@ public interface EnrollmentWebService {
      * @return the service response
      * @throws PortalServiceException for any errors encountered
      */
-    public SubmitTicketResponse submitEnrollment(SubmitTicketRequest request) throws PortalServiceException;
+    SubmitTicketResponse submitEnrollment(
+            SubmitTicketRequest request
+    ) throws PortalServiceException;
 
     /**
      * Retrieves the profile details.
@@ -86,7 +92,9 @@ public interface EnrollmentWebService {
      * @return the service response
      * @throws PortalServiceException for any errors encountered
      */
-    public GetProfileDetailsResponse getProfile(GetProfileDetailsRequest request) throws PortalServiceException;
+    GetProfileDetailsResponse getProfile(
+            GetProfileDetailsRequest request
+    ) throws PortalServiceException;
 
     /**
      * Resubmits the given enrollment request.
@@ -95,5 +103,7 @@ public interface EnrollmentWebService {
      * @return the service response
      * @throws PortalServiceException for any errors encountered
      */
-    public ResubmitTicketResponse resubmitEnrollment(ResubmitTicketRequest serviceRequest) throws PortalServiceException;
+    ResubmitTicketResponse resubmitEnrollment(
+            ResubmitTicketRequest serviceRequest
+    ) throws PortalServiceException;
 }

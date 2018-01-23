@@ -82,10 +82,10 @@ public interface BusinessProcessService {
      * @throws Exception for any errors encountered
      */
     void completeReview(
-            final long taskId,
+            long taskId,
             String username,
             List<String> roles,
-            final ProviderInformationType updates,
+            ProviderInformationType updates,
             boolean reject,
             String comment
     ) throws Exception;

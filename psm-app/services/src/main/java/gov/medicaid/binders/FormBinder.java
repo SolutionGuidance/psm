@@ -83,8 +83,7 @@ public interface FormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment);
-
+    void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment);
 
     /**
      * Renders the PDF representation of the form.

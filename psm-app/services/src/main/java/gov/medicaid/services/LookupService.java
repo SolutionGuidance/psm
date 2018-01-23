@@ -43,7 +43,7 @@ public interface LookupService {
      *            individual or organizations
      * @return the filtered provider types
      */
-    public List<ProviderType> getProviderTypes(ApplicantType applicantType);
+    List<ProviderType> getProviderTypes(ApplicantType applicantType);
 
     /**
      * Finds a ProviderType by its description, and eager-load
@@ -119,7 +119,7 @@ public interface LookupService {
      *            the return type
      * @return the matched lookups
      */
-    public <T extends LookupEntity> List<T> findAllLookups(Class<T> cls);
+    <T extends LookupEntity> List<T> findAllLookups(Class<T> cls);
 
     /**
      * Retrieves all the owner types allowed for the given structure.
@@ -128,7 +128,7 @@ public interface LookupService {
      *            the corporate structure types
      * @return the matched lookups
      */
-    public List<BeneficialOwnerType> findBeneficialOwnerTypes(String entityType);
+    List<BeneficialOwnerType> findBeneficialOwnerTypes(String entityType);
 
     /**
      * Updates the ProviderTypeSettings for agreements.
@@ -136,5 +136,8 @@ public interface LookupService {
      * @param providerType providerType
      * @param agreementIds agreement ids
      */
-    public void updateProviderTypeAgreementSettings(ProviderType providerType, long[] agreementIds);
+    void updateProviderTypeAgreementSettings(
+            ProviderType providerType,
+            long[] agreementIds
+    );
 }

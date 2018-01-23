@@ -72,8 +72,11 @@ public interface RegistrationService {
      * @throws PortalServiceException for any errors encountered, or if any field is considered invalid by the
      *             underlying implementations
      */
-    public String registerExternalUser(SystemId systemId, String username, CMSUser registrant)
-        throws PortalServiceException;
+    String registerExternalUser(
+            SystemId systemId,
+            String username,
+            CMSUser registrant
+    ) throws PortalServiceException;
 
     /**
      * Suspends the given user.

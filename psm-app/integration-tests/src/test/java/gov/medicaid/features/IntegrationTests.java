@@ -40,18 +40,18 @@ public class IntegrationTests {
 
     public static void testAccessibility(PageObject pageObject) {
 
-        // Temporarily hard-coded URL, needs work
-        URL axeCoreUrl = null;
-        try {
-            axeCoreUrl = new URL("http://localhost:8080/cms/js/node_modules/axe-core/axe.min.js");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
         WebDriver driver = pageObject.getDriver();
 
+        URL axeCoreUrl;
+        try {
+            URL currentUrl = new URL(driver.getCurrentUrl());
+            axeCoreUrl = new URL(currentUrl, "/cms/js/axe.min.js");
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+
         JSONObject responseJSON = new AXE.Builder(driver, axeCoreUrl)
-                .options("{ runOnly: { type: \"tag\", values: [\"wcag2aa\"] } }")
+                .options("{ runOnly: { type: \"tag\", values: [\"wcag2a\", \"wcag2aa\"] } }")
                 .analyze();
 
         JSONArray violations = responseJSON.getJSONArray("violations");

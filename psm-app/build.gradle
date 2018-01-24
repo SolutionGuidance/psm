@@ -313,6 +313,9 @@ project(':frontend') {
 
     artifacts {
         javascript file('src/main/js')
+        javascript(file('node_modules/axe-core/axe.min.js')) {
+            builtBy npmInstall
+        }
     }
 }
 

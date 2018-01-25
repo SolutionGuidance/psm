@@ -38,11 +38,11 @@
 <form:form id="exportForm"
   action="${ctx}/provider/search/exportBatch"
   modelAttribute="searchCriteria"
-  method="post">
+  method="get">
 </form:form>
 <form:form id="printForm"
   action="${ctx}/provider/search/print?print=yes"
   target="_blank"
   modelAttribute="searchCriteria"
-  method="post">
+  method="get">
 </form:form>

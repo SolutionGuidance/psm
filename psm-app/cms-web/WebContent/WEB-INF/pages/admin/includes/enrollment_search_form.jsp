@@ -6,7 +6,10 @@
   - Description: it is used to build the enrollment search form.
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
-<form:form id="searchForm" action="${enrollmentSearchFormAction}" modelAttribute="searchCriteria" method="get">
+<form:form id="searchForm"
+  action="${enrollmentSearchFormAction}"
+  modelAttribute="searchCriteria"
+  method="get">
     <form:hidden cssClass="searchFormPageSize" id="searchFormPageSize" path="pageSize" />
     <form:hidden cssClass="searchFormPageNumber" id="searchFormPageNumber" path="pageNumber" />
     <form:hidden id="searchFormSortColumn" path="sortColumn" />
@@ -32,7 +35,14 @@
         <input class="enrollmentStatusValue" type="hidden" name="statuses[${status.index}]" value="${item}"/>
     </c:forEach>
 </form:form>
-<form:form id="exportForm" action="${ctx}/provider/search/exportBatch" modelAttribute="searchCriteria" method="post">
+<form:form id="exportForm"
+  action="${ctx}/provider/search/exportBatch"
+  modelAttribute="searchCriteria"
+  method="post">
 </form:form>
-<form:form id="printForm" action="${ctx}/provider/search/print?print=yes" target="_blank" modelAttribute="searchCriteria" method="post">
+<form:form id="printForm"
+  action="${ctx}/provider/search/print?print=yes"
+  target="_blank"
+  modelAttribute="searchCriteria"
+  method="post">
 </form:form>

@@ -12,22 +12,22 @@
     <form:hidden id="searchFormSortColumn" path="sortColumn" />
     <form:hidden id="searchFormAscending" path="ascending" />
     <form:hidden id="searchFormShowFilterPanel" path="showFilterPanel" />
-    
+
     <form:hidden id="enrollmentNumberSearchField" path="enrollmentNumber" />
     <form:hidden id="npiSearchField" path="npi" />
     <form:hidden id="providerTypeSearchField" path="providerType" />
     <form:hidden id="providerNameSearchField" path="providerName" />
     <form:hidden id="submissionDateStartSearchField" path="submissionDateStart" />
     <form:hidden id="submissionDateEndSearchField" path="submissionDateEnd" />
-    
+
     <c:forEach varStatus="status" var="item" items="${searchCriteria.riskLevels}">
         <input class="riskLevelValue" type="hidden" name="riskLevels[${status.index}]" value="${item}"/>
     </c:forEach>
-    
+
     <c:forEach varStatus="status" var="item" items="${searchCriteria.requestTypes}">
         <input class="requestTypeValue" type="hidden" name="requestTypes[${status.index}]" value="${item}"/>
     </c:forEach>
-    
+
     <c:forEach varStatus="status" var="item" items="${searchCriteria.statuses}">
         <input class="enrollmentStatusValue" type="hidden" name="statuses[${status.index}]" value="${item}"/>
     </c:forEach>

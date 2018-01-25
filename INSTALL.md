@@ -443,8 +443,60 @@ set in the `session-timeout` variable in
 
 ## Continuous Deployment
 
-This project leverages Travis to power Continuous Deployment.  To set
-up a CD server, follow these steps:
+### Jenkins
+
+This project uses Jenkins for continuous integration. We have it configured to
+do several things on new pull requests:
+
+- build the project
+- build the docs
+- run the unit tests
+- run the integration tests
+- check the code style against our style guide
+
+In order to configure another Jenkins server that does these tasks, follow the
+appropriate documentation on the [Jenkins web site](https://jenkins.io/), and
+then install the following plugins:
+
+- [Checkstyle Plugin](https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin)
+- [GitHub pull request builder plugin](https://wiki.jenkins.io/display/JENKINS/GitHub+pull+request+builder+plugin)
+- [Gradle Plugin](https://wiki.jenkins.io/display/JENKINS/Gradle+Plugin)
+
+You will need a [GitHub personal access
+token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
+to have Jenkins mark the results of its builds in GitHub. The token should have
+the `repo:status`, `admin:repo_hook`, and `repo_deployment` permission scopes.
+
+Each task is a freestyle project, triggered by the GitHub pull request plugin.
+
+- build: runs the `cms-portal-services:build` gradle target
+- docs: runs the following gradle targets:
+  - `cms-web:apiDocs`
+  - `userhelp:epub`
+  - `userhelp:html`
+  - `userhelp:latex`
+  - `userhelp:pdf`
+- unit tests: runs the following gradle targets, and collect JUnit reports:
+  - `cms-business-model:test`
+  - `cms-business-process:test`
+  - `cms-portal-services:test`
+  - `cms-web:test`
+  - `services:test`
+- integration tests: runs the `cms-portal-services:build` gradle target,
+  deploys the result to a local WildFly application server, runs the
+  `integration-tests:test` target, and collects the JUnit reports. See also
+  `docs/TESTING.md` for more on running the integration tests, and the
+  installation instructions (in this document) for configuring a WildFly
+  application server.
+- checkstyle: runs the following gradle targets, and collects the Checkstyle
+  reports:
+  - `checkstyleMain`
+  - `checkstyleTest`
+
+### Travis
+
+This project also leverages Travis to power Continuous Deployment, although we
+are transitioning away from it.  To set up a CD server, follow these steps:
 
 1. Create a fresh RHEL instance
 2. Run the `scripts/rhel-install.sh` script
@@ -454,7 +506,7 @@ and `~/CD_HOSTKEY.env`
 NOTE: these values are sensitive. The "Display value in build log" setting
 should be turned off.
 
-### Travis Environment Variables
+#### Travis Environment Variables
 
 - CD_USER: `travis`
 - CD_SERVER: `{Your Server's IP or Hostname}`

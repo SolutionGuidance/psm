@@ -7,6 +7,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.github.jacobono:gradle-jaxb-plugin:1.3.6'
+        classpath 'com.moowork.gradle:gradle-node-plugin:1.2.0'
         classpath 'kr.motd.gradle:sphinx-gradle-plugin:1.0.5'
         classpath 'net.serenity-bdd:serenity-gradle-plugin:1.4.0'
     }
@@ -165,12 +166,14 @@ project(':cms-web') {
     apply plugin: 'war'
 
     configurations {
+        frontend
         userdocs
     }
 
     dependencies {
         providedCompile project(':services')
         providedCompile fileTree(dir: 'WebContent/WEB-INF/lib')
+        frontend project(path: ':frontend', configuration: 'javascript')
         userdocs project(path: ':userhelp', configuration: 'html')
         compile libs.spring_beans
         compile libs.spring_ldap
@@ -204,6 +207,9 @@ project(':cms-web') {
     war {
         from(configurations.userdocs) {
             into 'help'
+        }
+        from(configurations.frontend) {
+            into 'js'
         }
     }
 }
@@ -283,6 +289,30 @@ project(':cms-portal-services') {
 
     ear {
         appDirName 'EarContent'
+    }
+}
+
+project(':frontend') {
+    apply plugin: BasePlugin
+    apply plugin: 'com.moowork.node'
+
+    configurations {
+        javascript
+    }
+
+    node {
+        version = '8.9.4'
+        npmVersion = '5.6.0'
+        download = true
+    }
+
+    assemble {
+        dependsOn npmInstall
+    }
+
+    artifacts {
+        javascript file('src/main/js')
+        javascript file('src/vendor/js')
     }
 }
 

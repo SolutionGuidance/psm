@@ -3,6 +3,7 @@ package gov.medicaid.features.general.ui;
 import net.thucydides.core.pages.PageObject;
 import net.thucydides.core.annotations.DefaultUrl;
 
+import static gov.medicaid.features.IntegrationTests.testAccessibility;
 import static gov.medicaid.features.IntegrationTests.click;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,5 +26,9 @@ public class LoginPage extends PageObject {
 
     public void checkUserLoggedOut() {
         assertThat(getTitle()).contains("Login");
+    }
+
+    public void checkAccessibility() {
+        testAccessibility(this);
     }
 }

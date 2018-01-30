@@ -345,6 +345,7 @@ project(':integration-tests') {
     }
 
     test {
+        systemProperty 'cucumber.options', System.properties.get('cucumber.options')
 
         // Run sauce labs if it is configured
         if(System.getenv("SAUCE_USERNAME") != null) {

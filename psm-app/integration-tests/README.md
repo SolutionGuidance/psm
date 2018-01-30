@@ -35,11 +35,29 @@ For Linux distros you will also need to install `libgconf-2-4`.
 # Running the tests
 To run the tests run:
 
-    $ ./gradlew test aggregate
+    $ ./gradlew integration-tests:test integration-tests:aggregate
 
 This command will run the tests and put the generated dashboard into
 `target/site/serenity`.
 
+If you only want to run some of the tests, you can specify a regular expression
+to match against the name of the tests:
+
+    $ ./gradlew "-Dcucumber.options=--name 'Completes an application'" \
+        integration-tests:test integration-tests:aggregate
+
+This specific example is also useful to create a sample pending enrollment
+application, so that you can explore the admin interface without going through
+the enrollment application process manually.
+
+You can also specify a set of tags to match:
+
+    $ ./gradlew "-Dcucumber.options=--tags @psm-FR-2.9" \
+        integration-tests:test integration-tests:aggregate
+
+See also the [Cucumber documentation on running from the command
+line](https://cucumber.io/docs/reference/jvm#running) for other options you can
+pass along through gradle via the `-Dcucumber.options=...` interface.
 
 # Other browser configurations
 There are many different options for running the serenity tests. Finding the

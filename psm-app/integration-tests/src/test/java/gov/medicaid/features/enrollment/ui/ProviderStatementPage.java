@@ -1,35 +1,32 @@
 package gov.medicaid.features.enrollment.ui;
 
-import net.thucydides.core.pages.PageObject;
+import gov.medicaid.features.PsmPage;
 
 import java.time.LocalDate;
 
-import static gov.medicaid.features.IntegrationTests.click;
-import static gov.medicaid.features.IntegrationTests.DATE_FORMATTER;
-
-public class ProviderStatementPage extends PageObject {
+public class ProviderStatementPage extends PsmPage {
     public void checkNoCriminalConviction() {
-        click(this, $("[name=_08_criminalConvictionInd][value='N']"));
+        click($("[name=_08_criminalConvictionInd][value='N']"));
     }
 
     public void checkNoCivilPenalty() {
-        click(this, $("[name=_08_civilPenaltyInd][value='N']"));
+        click($("[name=_08_civilPenaltyInd][value='N']"));
     }
 
     public void checkNoPreviousExclusion() {
-        click(this, $("[name=_08_previousExclusionInd][value='N']"));
+        click($("[name=_08_previousExclusionInd][value='N']"));
     }
 
     public void checkYesCriminalConviction() {
-        click(this, $("[name=_08_criminalConvictionInd][value='Y']"));
+        click($("[name=_08_criminalConvictionInd][value='Y']"));
     }
 
     public void checkYesCivilPenalty() {
-        click(this, $("[name=_08_civilPenaltyInd][value='Y']"));
+        click($("[name=_08_civilPenaltyInd][value='Y']"));
     }
 
     public void checkYesPreviousExclusion() {
-        click(this, $("[name=_08_previousExclusionInd][value='Y']"));
+        click($("[name=_08_previousExclusionInd][value='Y']"));
     }
 
     public void enterProviderName(String providerName) {
@@ -46,6 +43,6 @@ public class ProviderStatementPage extends PageObject {
     }
 
     public void clickSubmitButton() {
-        click(this, $(".buttonBox > .purpleBtn"));
+        click($(".buttonBox > .purpleBtn"));
     }
 }

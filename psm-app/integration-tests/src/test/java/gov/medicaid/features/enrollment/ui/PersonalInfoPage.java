@@ -1,11 +1,9 @@
 package gov.medicaid.features.enrollment.ui;
 
-import net.thucydides.core.pages.PageObject;
+import gov.medicaid.features.PsmPage;
 
 import java.time.LocalDate;
 
-import static gov.medicaid.features.IntegrationTests.click;
-import static gov.medicaid.features.IntegrationTests.format;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -13,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * provider enrollment. This page is reached by logging in, creating an
  * enrollment, and selecting an individual provider type.
  */
-public class PersonalInfoPage extends PageObject {
+public class PersonalInfoPage extends PsmPage {
     private static final String PROVIDER_TOO_YOUNG_ERROR_MESSAGE =
             "Provider age should be 18 or above during enrollment.";
 
@@ -46,11 +44,11 @@ public class PersonalInfoPage extends PageObject {
     }
 
     public void checkSameAsAbove() {
-        click(this, $("#sameAsAbove"));
+        click($("#sameAsAbove"));
     }
 
     public void clickNext() {
-        click(this, $(".nextBtn"));
+        click($(".nextBtn"));
     }
 
     public void checkForTooYoungError() throws Exception {

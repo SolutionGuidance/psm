@@ -1,7 +1,5 @@
 package gov.medicaid.features.enrollment.ui;
 
-import static gov.medicaid.features.IntegrationTests.click;
-
 /**
  * Created by ben on 8/22/17.
  */
@@ -11,7 +9,7 @@ public class OwnershipInfoPage extends EnrollmentPage {
     }
 
     public void addOwnership() {
-        click(this, $("#addOwnership"));
+        click($("#addOwnership"));
     }
 
     public void selectOwnershipType(String ownershipType) {
@@ -63,7 +61,7 @@ public class OwnershipInfoPage extends EnrollmentPage {
     }
 
     public void clickDisclosure() {
-        click(this, $("[name='_17_iboOtherInterestInd_0']"));
+        click($("[name='_17_iboOtherInterestInd_0']"));
     }
 
     public void setControlOwnershipOtherLegalName(String legalName) {

@@ -1,29 +1,27 @@
 package gov.medicaid.features.enrollment.ui;
 
-import net.thucydides.core.pages.PageObject;
+import gov.medicaid.features.PsmPage;
 
 import java.time.LocalDate;
 
-import static gov.medicaid.features.IntegrationTests.click;
-import static gov.medicaid.features.IntegrationTests.format;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PracticeInfoPage extends PageObject {
+public class PracticeInfoPage extends PsmPage {
     public void checkNoPrivatePractice() {
-        click(this, $("[name=_04_maintainsOwnPrivatePractice][value=N]"));
+        click($("[name=_04_maintainsOwnPrivatePractice][value=N]"));
         assertThat($("#privatePracitce > div").getText().contains("Private Practice"));
     }
 
     public void checkYesPrivatePractice() {
-        click(this, $("[name=_04_maintainsOwnPrivatePractice][value=Y]"));
+        click($("[name=_04_maintainsOwnPrivatePractice][value=Y]"));
     }
 
     public void checkNoGroupPractice() {
-        click(this, $("[name=_04_employedOrContractedByGroup][value=N]"));
+        click($("[name=_04_employedOrContractedByGroup][value=N]"));
     }
 
     public void checkYesGroupPractice() {
-        click(this, $("[name=_04_employedOrContractedByGroup][value=Y]"));
+        click($("[name=_04_employedOrContractedByGroup][value=Y]"));
     }
 
     public void enterPracticeName(String practiceName) {
@@ -71,7 +69,7 @@ public class PracticeInfoPage extends PageObject {
     }
 
     public void clickSameAsAbove() {
-        click(this, $("[name=_05_billingSameAsPrimary]"));
+        click($("[name=_05_billingSameAsPrimary]"));
     }
 
     public void enterFein(String fein) {
@@ -91,14 +89,14 @@ public class PracticeInfoPage extends PageObject {
     }
 
     public void checkYesEftAccepted() {
-        click(this, $("[name=_05_eftAccepted]"));
+        click($("[name=_05_eftAccepted]"));
     }
 
     public void checkFirstRemittanceSequence() {
-        click(this, $("input[value='PATIENT_ACCOUNT_OR_OWN_REFERENCE_ORDER'"));
+        click($("input[value='PATIENT_ACCOUNT_OR_OWN_REFERENCE_ORDER'"));
     }
 
     public void clickNext() {
-        click(this, $(".nextBtn"));
+        click($(".nextBtn"));
     }
 }

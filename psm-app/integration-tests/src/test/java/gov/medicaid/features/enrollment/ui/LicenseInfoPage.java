@@ -1,6 +1,6 @@
 package gov.medicaid.features.enrollment.ui;
 
-import net.thucydides.core.pages.PageObject;
+import gov.medicaid.features.PsmPage;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -8,17 +8,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 
-import static gov.medicaid.features.IntegrationTests.click;
-import static gov.medicaid.features.IntegrationTests.format;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LicenseInfoPage extends PageObject {
+public class LicenseInfoPage extends PsmPage {
     public void clickNo() {
-        click(this, $("input[value='N'"));
+        click($("input[value='N'"));
     }
 
     public void addLicense() {
-        click(this, $("#addLicense"));
+        click($("#addLicense"));
     }
 
     public void addLicenseType(String licenseType) {
@@ -56,7 +54,7 @@ public class LicenseInfoPage extends PageObject {
     }
 
     public void clickNext() {
-        click(this, $(".nextBtn"));
+        click($(".nextBtn"));
         assertThat(getTitle()).contains("Practice Information");
     }
 }

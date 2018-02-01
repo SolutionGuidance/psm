@@ -43,7 +43,7 @@ public interface EventService {
      * @throws IllegalArgumentException If event is null
      * @throws PortalServiceException If there are any errors during the execution of this method
      */
-    public long create(Event event) throws PortalServiceException;
+    long create(Event event) throws PortalServiceException;
 
     /**
      * This method gets the latest events.
@@ -52,5 +52,5 @@ public interface EventService {
      *
      * @throws PortalServiceException If there are any errors during the execution of this method
      */
-    public List<Event> getLatest() throws PortalServiceException;
+    List<Event> getLatest() throws PortalServiceException;
 }

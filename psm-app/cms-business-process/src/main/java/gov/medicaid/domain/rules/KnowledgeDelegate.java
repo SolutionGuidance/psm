@@ -37,28 +37,31 @@ public interface KnowledgeDelegate {
      *
      * @return the session created
      */
-    public abstract StatefulKnowledgeSession newWorkflowSession(EntityManagerFactory entityManagerFactory, UserTransaction utx);
+    StatefulKnowledgeSession newWorkflowSession(
+            EntityManagerFactory entityManagerFactory,
+            UserTransaction utx
+    );
 
     /**
      * Creates a new validation session.
      *
      * @return a new screening knowledge session
      */
-    public abstract StatefulKnowledgeSession newScreeningValidationSession();
+    StatefulKnowledgeSession newScreeningValidationSession();
 
     /**
      * Creates a new session for configuring external sources.
      *
      * @return a new session.
      */
-    public abstract StatefulKnowledgeSession newExternalSourcesConfigSession();
+    StatefulKnowledgeSession newExternalSourcesConfigSession();
 
     /**
      * Creates a new session for running frontend validation.
      *
      * @return a new session.
      */
-    public abstract StatefulKnowledgeSession newValidationSession();
+    StatefulKnowledgeSession newValidationSession();
 
     /**
      * Reloads a persisted session
@@ -67,6 +70,9 @@ public interface KnowledgeDelegate {
      * @param utx the user transaction to be used
      * @return the loaded session
      */
-    public StatefulKnowledgeSession reloadWorkflowSession(int sessionId, EntityManagerFactory factory, UserTransaction utx);
-
+    StatefulKnowledgeSession reloadWorkflowSession(
+            int sessionId,
+            EntityManagerFactory factory,
+            UserTransaction utx
+    );
 }

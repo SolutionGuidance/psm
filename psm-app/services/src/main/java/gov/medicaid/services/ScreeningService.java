@@ -41,7 +41,7 @@ public interface ScreeningService {
      * @param userId - the user ID
      * @throws PortalServiceException - If there are any errors during the execution of this method
      */
-    public void performScreening(long userId) throws PortalServiceException;
+    void performScreening(long userId) throws PortalServiceException;
 
     /**
      * This method performs the screening by ID.
@@ -49,7 +49,7 @@ public interface ScreeningService {
      * @param enrollmentId - the enrollment ID
      * @throws PortalServiceException - If there are any errors during the execution of this method
      */
-    public void performScreeningById(long enrollmentId) throws PortalServiceException;
+    void performScreeningById(long enrollmentId) throws PortalServiceException;
 
     /**
      * This method schedules the medicaid program data change.
@@ -57,7 +57,7 @@ public interface ScreeningService {
      * @param time - the time
      * @throws PortalServiceException - If there are any errors during the execution of this method
      */
-    public void scheduleMediCareProgramDataChange(int time) throws PortalServiceException;
+    void scheduleMediCareProgramDataChange(int time) throws PortalServiceException;
 
     /**
      * This method schedules a revalidation.
@@ -66,7 +66,7 @@ public interface ScreeningService {
      * @param userId - the user ID
      * @throws PortalServiceException - If there are any errors during the execution of this method
      */
-    public void scheduleRevalidation(int time, long userId) throws PortalServiceException;
+    void scheduleRevalidation(int time, long userId) throws PortalServiceException;
 
     /**
      * This method schedules a screening.
@@ -74,7 +74,7 @@ public interface ScreeningService {
      * @param time - the time
      * @throws PortalServiceException - If there are any errors during the execution of this method
      */
-    public void scheduleScreening(int time) throws PortalServiceException;
+    void scheduleScreening(int time) throws PortalServiceException;
 
     /**
      * This method gets the screening schedule.
@@ -82,7 +82,7 @@ public interface ScreeningService {
      * @return the screening schedule
      * @throws PortalServiceException - If there are any errors during the execution of this method
      */
-    public ScreeningSchedule getScreeningSchedule() throws PortalServiceException;
+    ScreeningSchedule getScreeningSchedule() throws PortalServiceException;
 
     /**
      * This method saves the screening schedule.
@@ -92,7 +92,9 @@ public interface ScreeningService {
      * @throws IllegalArgumentException - If screeningSchedule is null
      * @throws PortalServiceException - If there are any errors during the execution of this method
      */
-    public void saveScreeningSchedule(ScreeningSchedule screeningSchedule) throws PortalServiceException;
+    void saveScreeningSchedule(
+            ScreeningSchedule screeningSchedule
+    ) throws PortalServiceException;
 
     /**
      * Schedules screening for the given ticket.
@@ -100,5 +102,5 @@ public interface ScreeningService {
      * @param date the schedule date.
      * @throws PortalServiceException - If there are any errors during the execution of this method
      */
-    public void scheduleScreening(long id, Date date) throws PortalServiceException;
+    void scheduleScreening(long id, Date date) throws PortalServiceException;
 }

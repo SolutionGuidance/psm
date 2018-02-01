@@ -38,6 +38,7 @@
       <property name="option" value="alone"/>
       <property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT, INSTANCE_INIT"/>
     </module>
+    <module name="RedundantModifier"/>
     <module name="AvoidStarImport"/>
     <module name="IllegalImport"/>
     <module name="UnusedImports"/>

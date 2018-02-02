@@ -17,17 +17,11 @@
 package gov.medicaid.services.impl;
 
 import gov.medicaid.binders.BinderUtils;
-import gov.medicaid.domain.model.ApplicantType;
 import gov.medicaid.domain.model.EnrollmentType;
-import gov.medicaid.domain.model.GetLookupGroupsRequest;
-import gov.medicaid.domain.model.GetLookupGroupsResponse;
 import gov.medicaid.domain.model.GetProfileDetailsRequest;
 import gov.medicaid.domain.model.GetProfileDetailsResponse;
 import gov.medicaid.domain.model.GetTicketDetailsRequest;
 import gov.medicaid.domain.model.GetTicketDetailsResponse;
-import gov.medicaid.domain.model.LookupGroup;
-import gov.medicaid.domain.model.LookupGroupNames;
-import gov.medicaid.domain.model.LookupTableEntry;
 import gov.medicaid.domain.model.ResubmitTicketRequest;
 import gov.medicaid.domain.model.ResubmitTicketResponse;
 import gov.medicaid.domain.model.SubmitTicketRequest;
@@ -35,9 +29,7 @@ import gov.medicaid.domain.model.SubmitTicketResponse;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.ExternalAccountLink;
-import gov.medicaid.entities.LookupEntity;
 import gov.medicaid.entities.ProviderProfile;
-import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.RoleView;
 import gov.medicaid.entities.SystemId;
 import gov.medicaid.entities.Validity;
@@ -50,12 +42,6 @@ import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.Util;
 import gov.medicaid.services.util.XMLAdapter;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -115,79 +101,6 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
         if (providerEnrollmentService == null) {
             throw new PortalServiceConfigurationException("providerEnrollmentService must be configured.");
         }
-    }
-
-    /**
-     * Retrieves the lookup groups.
-     *
-     * @param request the service request
-     * @return the service response
-     */
-    public GetLookupGroupsResponse getLookupGroups(GetLookupGroupsRequest request) {
-        GetLookupGroupsResponse response = new GetLookupGroupsResponse();
-        List<LookupGroupNames> types = request.getGroupType();
-        for (LookupGroupNames lookupGroup : types) {
-            List<LookupGroup> results = response.getLookupGroup();
-            results.add(findLookups(lookupGroup));
-        }
-        return response;
-    }
-
-    /**
-     * Finds the lookup group members.
-     * @param groupType the lookup group type.
-     * @return the lookup group
-     */
-    private LookupGroup findLookups(LookupGroupNames groupType) {
-        LookupGroup group = new LookupGroup();
-        group.setGroupType(groupType);
-        List<ProviderType> providerTypes = null;
-        switch (groupType) {
-        case INDIVIDUAL_PROVIDER_TYPES:
-            providerTypes = sortCollection(getLookupService().getProviderTypes(ApplicantType.INDIVIDUAL));
-            break;
-        case ORGANIZATION_PROVIDER_TYPES:
-            providerTypes = sortCollection(getLookupService().getProviderTypes(ApplicantType.ORGANIZATION));
-            break;
-        default:
-            providerTypes = getLookupService().getAllProviderTypes();
-            break;
-        }
-        group.getLookupTableEntry().addAll(mapLookupEntity(providerTypes));
-        return group;
-    }
-
-    /**
-     * Sorts the displayed provider types (PESP-252_
-     * @param providerTypes the provider types to sort
-     * @return the sorted types
-     */
-    private List<ProviderType> sortCollection(List<ProviderType> providerTypes) {
-        List<ProviderType> sortedList = new ArrayList<ProviderType>(providerTypes);
-        Collections.sort(sortedList, new Comparator<ProviderType>() {
-            @Override
-            public int compare(ProviderType o1, ProviderType o2) {
-                return o1.getDescription().compareTo(o2.getDescription());
-            }
-        });
-        return sortedList;
-    }
-
-    /**
-     * Maps the given list by lookup code.
-     *
-     * @param resultList the list to map
-     * @return the mapped list
-     */
-    private Collection<? extends LookupTableEntry> mapLookupEntity(List<? extends LookupEntity> resultList) {
-        Collection<LookupTableEntry> list = new ArrayList<LookupTableEntry>();
-        for (LookupEntity lookupEntity : resultList) {
-            LookupTableEntry entry = new LookupTableEntry();
-            entry.setCode(lookupEntity.getCode());
-            entry.setDescription(lookupEntity.getDescription());
-            list.add(entry);
-        }
-        return list;
     }
 
     /**

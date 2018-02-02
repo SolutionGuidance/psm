@@ -17,8 +17,6 @@
 package gov.medicaid.services;
 
 import gov.medicaid.domain.model.EnrollmentType;
-import gov.medicaid.domain.model.GetLookupGroupsRequest;
-import gov.medicaid.domain.model.GetLookupGroupsResponse;
 import gov.medicaid.domain.model.GetProfileDetailsRequest;
 import gov.medicaid.domain.model.GetProfileDetailsResponse;
 import gov.medicaid.domain.model.GetTicketDetailsRequest;
@@ -34,18 +32,6 @@ import gov.medicaid.domain.model.SubmitTicketResponse;
  * @version 1.0
  */
 public interface EnrollmentWebService {
-
-    /**
-     * Retrieves the lookup groups.
-     *
-     * @param request the service request
-     * @return the service response
-     * @throws PortalServiceException for any errors encountered
-     */
-    GetLookupGroupsResponse getLookupGroups(
-            GetLookupGroupsRequest request
-    ) throws PortalServiceException;
-
     /**
      * Retrieves the ticket details.
      *

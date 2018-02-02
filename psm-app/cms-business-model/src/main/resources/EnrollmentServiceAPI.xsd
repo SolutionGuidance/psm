@@ -98,44 +98,6 @@
         </complexType>
     </element>
 
-    <element name="GetLookupGroupsRequest">
-        <complexType>
-            <sequence>
-                <element name="groupType" maxOccurs="unbounded" minOccurs="0" type="tns:LookupGroupNames" />
-            </sequence>
-        </complexType>
-    </element>
-
-    <element name="GetLookupGroupsResponse">
-        <complexType>
-            <sequence>
-                <element name="LookupGroup" maxOccurs="unbounded" minOccurs="0" type="tns:LookupGroup" />
-            </sequence>
-        </complexType>
-    </element>
-
-    <complexType name="LookupGroup">
-        <sequence>
-            <element name="groupType" minOccurs="1" maxOccurs="1" type="tns:LookupGroupNames" />
-            <element name="LookupTableEntry" maxOccurs="unbounded" minOccurs="0" type="tns:LookupTableEntry" />
-        </sequence>
-    </complexType>
-
-    <complexType name="LookupTableEntry">
-        <sequence>
-	        <element name="code" type="string" />
-	        <element name="description" type="string" />
-        </sequence>
-    </complexType>
-    
-    <simpleType name="LookupGroupNames">
-        <restriction base="string">
-            <enumeration value="All Provider Types"></enumeration>
-            <enumeration value="Individual Provider Types"></enumeration>
-            <enumeration value="Organization Provider Types"></enumeration>
-        </restriction>
-    </simpleType>
-    
 	<simpleType name="UISection">
 		<restriction base="string">
 			<enumeration value="Provider Type Page"></enumeration>

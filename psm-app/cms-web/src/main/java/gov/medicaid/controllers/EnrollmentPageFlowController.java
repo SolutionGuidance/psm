@@ -29,7 +29,6 @@ import gov.medicaid.domain.model.DocumentType;
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.GetProfileDetailsRequest;
 import gov.medicaid.domain.model.GetProfileDetailsResponse;
-import gov.medicaid.domain.model.GetTicketDetailsResponse;
 import gov.medicaid.domain.model.IndividualApplicantType;
 import gov.medicaid.domain.model.OperationStatusType;
 import gov.medicaid.domain.model.ProviderInformationType;
@@ -884,15 +883,12 @@ public class EnrollmentPageFlowController extends BaseController {
             long ticketId
     ) throws PortalServiceException {
         CMSPrincipal principal = ControllerHelper.getPrincipal();
-        GetTicketDetailsResponse response = enrollmentWebService.getTicketDetails(
+        return enrollmentWebService.getTicketDetails(
                 principal.getUsername(),
                 principal.getAuthenticatedBySystem().name(),
                 principal.getUser().getProxyForNPI(),
                 ticketId
         );
-
-        EnrollmentType enrollment = response.getEnrollment();
-        return enrollment;
     }
 
     /**

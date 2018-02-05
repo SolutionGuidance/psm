@@ -239,7 +239,12 @@
         <span class="control">
             <c:set var="formName" value="_17_iboOtherInterestInd_${status.index - 1}"></c:set>
             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-            <input id="${formIdPrefix}_${formName}" class="showHidePanel" value="Y" type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" /><label for="${formIdPrefix}_${formName}">This person/business has an ownership or control interest in another Medicaid disclosing entity, or an entity that does not participate in Medicaid but is required to disclose ownership and control interest because of participation in any Title V, XVIII, or XX programs.</label>
+            <label class="checkboxLabel">
+              <input class="showHidePanel" value="Y" type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" />
+              This person/business has an ownership or control interest in another Medicaid disclosing entity, or an
+              entity that does not participate in Medicaid but is required to disclose ownership and control interest
+              because of participation in any Title V, XVIII, or XX programs.
+            </label>
         </span>
     </div>
     <!-- /.section -->
@@ -458,7 +463,12 @@
         <span class="control">
             <c:set var="formName" value="_17_cboOtherInterestInd_${status.index - 1}"></c:set>
             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-            <input id="${formIdPrefix}_${formName}" class="showHidePanel" value="Y" type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" /><label for="${formIdPrefix}_${formName}">This person/business has an ownership or control interest in another Medicaid disclosing entity, or an entity that does not participate in Medicaid but is required to disclose ownership and control interest because of participation in any Title V, XVIII, or XX programs.</label>
+            <label class="checkboxLabel">
+              <input class="showHidePanel" value="Y" type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" />
+              This person/business has an ownership or control interest in another Medicaid disclosing entity, or an
+              entity that does not participate in Medicaid but is required to disclose ownership and control interest
+              because of participation in any Title V, XVIII, or XX programs.
+            </label>
         </span>
     </div>
     <!-- /.section -->
@@ -668,7 +678,12 @@
         <span class="control">
             <c:set var="formName" value="_17_cboOtherInterestInd"></c:set>
             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-            <input id="${formIdPrefix}_${formName}" class="showHidePanel" value="Y" type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" /><label for="${formIdPrefix}_${formName}">This person/business has an ownership or control interest in another Medicaid disclosing entity, or an entity that does not participate in Medicaid but is required to disclose ownership and control interest because of participation in any Title V, XVIII, or XX programs.</label>
+            <label class="checkboxLabel">
+              <input class="showHidePanel" value="Y" type="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}" />
+              This person/business has an ownership or control interest in another Medicaid disclosing entity, or an
+              entity that does not participate in Medicaid but is required to disclose ownership and control interest
+              because of participation in any Title V, XVIII, or XX programs.
+            </label>
         </span>
     </div>
     <!-- /.section -->
@@ -915,7 +930,12 @@
         <span class="control">
             <c:set var="formName" value="_17_iboOtherInterestInd"></c:set>
             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-            <input id="${formIdPrefix}_${formName}" class="showHidePanel" type="checkbox" name="${formName}" /><label for="${formIdPrefix}_${formName}">This person/business has an ownership or control interest in another Medicaid disclosing entity, or an entity that does not participate in Medicaid but is required to disclose ownership and control interest because of participation in any Title V, XVIII, or XX programs.</label>
+            <label class="checkboxLabel">
+              <input class="showHidePanel" type="checkbox" name="${formName}" />
+              This person/business has an ownership or control interest in another Medicaid disclosing entity, or an
+              entity that does not participate in Medicaid but is required to disclose ownership and control interest
+              because of participation in any Title V, XVIII, or XX programs.
+            </label>
         </span>
     </div>
     <!-- /.section -->

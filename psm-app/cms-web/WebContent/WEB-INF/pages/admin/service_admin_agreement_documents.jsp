@@ -73,14 +73,14 @@
                   <div class="floatW">
                     <div class="leftCol">
                       <div class="row">
-                        <label>Title</label>
+                        <label for="agreementDocumentTitleFilterText">Title</label>
                         <span class="floatL"><b>:</b></span>
                         <input id="agreementDocumentTitleFilterText" value="${searchCriteria.title}" type="text" class="normalInput"/>
                       </div>
                     </div>
                     <div class="rightCol">
                       <div class="row">
-                        <label>Agreement Type</label>
+                        <label for="agreementDocumentTypeFilterText">Agreement Type</label>
                         <span class="floatL"><b>:</b></span>
                         <select id="agreementDocumentTypeFilterText">
                           <option value="">---SELECT---</option>
@@ -114,7 +114,7 @@
                         <thead>
                           <tr>
                             <th class="alignCenter">
-                              <input type="checkbox" name="agreementType" class="selectAll"/>
+                              <input title="Select All" type="checkbox" name="agreementType" class="selectAll" />
                               <span class="sep"></span>
                             </th>
                             <th>
@@ -164,10 +164,10 @@
                           <c:forEach var="item" items="${searchResult.items}">
                             <tr>
                               <td class="alignCenter">
-                                <input <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="agreementDocumentCheckBox" value="${item.id}" type="checkbox" name="agreementType"/>
+                                <input id="agreement_type_${item.id}" <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="agreementDocumentCheckBox" value="${item.id}" type="checkbox" name="agreementType"/>
                               </td>
                               <td><a href="${ctx}/admin/getAgreementDocument?agreementId=${item.id}" class="viewAgreementLink">${item.title}</a></td>
-                              <td>${item.type}</td>
+                              <td><label for="agreement_type_${item.id}">${item.type}</label></td>
                               <td class="alignCenter"><a href="${ctx}/admin/editAgreementDocument?agreementId=${item.id}" class="editAgreementLink">Edit</a>
                                 <span class="sep">|</span>
                                 <c:choose>

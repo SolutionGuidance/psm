@@ -56,7 +56,7 @@
                       </form:select>
                     </div>
                     <div class="row">
-                      <label>Account Id</label>
+                      <label for="createLinkAccountId">Account Id</label>
                       <span class="floatL">
                         <b>:</b>
                       </span>
@@ -65,10 +65,10 @@
                       <spring:bind path="accountId">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
                       </spring:bind>
-                      <form:input path="accountId" cssClass="normalInput ${errorCls}"/>
+                      <form:input id="createLinkAccountId" path="accountId" cssClass="normalInput ${errorCls}"/>
                     </div>
                     <div class="row">
-                      <label>Password</label>
+                      <label for="createLinkPassword">Password</label>
                       <span class="floatL">
                         <b>:</b>
                       </span>
@@ -77,7 +77,7 @@
                       <spring:bind path="password">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
                       </spring:bind>
-                      <form:password path="password" cssClass="passwordNormalInput ${errorCls}"/>
+                      <form:password id="createLinkPassword" path="password" cssClass="passwordNormalInput ${errorCls}"/>
                     </div>
                   </div>
                   <div class="buttonBox">

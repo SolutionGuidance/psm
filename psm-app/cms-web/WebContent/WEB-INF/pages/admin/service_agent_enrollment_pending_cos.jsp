@@ -75,17 +75,17 @@
                   <input type="hidden" id="prevCosEndDate" name="prevCosEndDate" value="" />
                   <div class="wholeCol">
                     <div class="row">
-                      <label>Start Date</label>
+                      <label for="startDate">Start Date</label>
                       <span class="floatL"><b>:</b></span>
                       <span><input id="startDate" name="startDate" class="shortInput text mdate" value="" /></span>
                     </div>
                     <div class="row">
-                      <label>End Date</label>
+                      <label for="endDate">End Date</label>
                       <span class="floatL"><b>:</b></span>
                       <span><input id="endDate" name="endDate" class="shortInput text mdate" value="" /></span>
                     </div>
                     <div class="row">
-                      <label>COS</label>
+                      <label for="cosSelect">COS</label>
                       <span class="floatL"><b>:</b></span>
                       <select id="cosSelect" name="cos" multiple="multiple" style="width:350px;" class="chzn-select">
                         <c:forEach var="code" items="${codes}">

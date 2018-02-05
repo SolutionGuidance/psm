@@ -7,6 +7,7 @@
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<c:set var="formIdPrefix" value="organization_statement"></c:set>
 
 <div class="providerPanel">
     <input type="hidden" name="formNames" value="<%= ViewStatics.ORGANIZATION_STATEMENT_FORM %>">
@@ -25,38 +26,42 @@
                     of participation as a Medicaid provider.
                 </p>
             </div>
-            
+
             <c:set var="formName" value="_19_renewalBlankInit"></c:set>
             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
             <input type="hidden" name="${formName}" value="${formValue}" />
-            
+
             <div class="row">
-                <label>Provider Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_19_name"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
+                <label for="${formIdPrefix}_${formName}">Provider Name<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row titleRow">
-                <label>Provider Title<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_19_title"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
+                <label for="${formIdPrefix}_${formName}">Provider Title<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+                <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <c:set var="formName" value="_19_requiredAgreementsSize"></c:set>
             <c:forEach begin="1" end="${requestScope[formName]}" varStatus="status">
                 <div class="checkRow">
                     <c:set var="formName" value="_19_accepted_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input type="checkbox" value="" class="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}"/>
+                    <label class="checkboxLabel">
+                      <input type="checkbox" value="" class="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}"/>
+                      I have read and agree to the terms of the
+                      <a href="${viewDocumentUrl}" target="_blank">${documentName}</a>
+                    </label>
+
                     <c:set var="formName" value="_19_documentId_${status.index - 1}"></c:set>
                     <c:set var="documentId" value="${requestScope[formName]}"></c:set>
                     <input type="hidden" value="${documentId}" name="${formName}"/>
                     <c:set var="formName" value="_19_documentName_${status.index - 1}"></c:set>
                     <c:set var="documentName" value="${requestScope[formName]}"></c:set>
                     <c:url var="viewDocumentUrl" value="/provider/enrollment/agreement"><c:param name="id" value="${documentId}"></c:param></c:url>
-                    <span>I have read and agree to the terms of the</span><a href="${viewDocumentUrl}" target="_blank">${documentName}</a>
                     <c:set var="formName" value="_19_updatedVersion_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <c:if test="${formValue eq 'Y'}"><span>(Updated)</span></c:if>
@@ -66,12 +71,12 @@
         </div>
         <div class="bottomSection">
             <div class="row">
-                <label>Date<span class="required">*</span></label>
+                <c:set var="formName" value="_19_date"></c:set>
+                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label for="${formIdPrefix}_${formName}">Date<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper">
-                    <c:set var="formName" value="_19_date"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <input class="date" type="text" name="${formName}" value="${formValue}"/>
+                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
                 </span>
             </div>
             <div class="clearFixed"></div>

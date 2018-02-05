@@ -19,13 +19,13 @@
     <thead>
         <c:set var="sortDirCls" value="${criteria.ascending ? 'tablesorter-headerSortDown' : 'tablesorter-headerSortUp' }"></c:set>
         <tr class="tablesorter-header">
-            <th class="alignCenter"><div class="tablesorter-header-inner"><input type="checkbox" class="selectAll" name="providerIds"><span class="sep"></span></div></th>        
+            <th class="alignCenter"><div class="tablesorter-header-inner"><input type="checkbox" title="Select All" class="selectAll" name="providerIds"><span class="sep"></span></div></th>
             <th class="tablesorter-header ${sortDirCls}"><div class="tablesorter-header-inner"><a href="javascript:changeSort(2);"><span>NPI/UMPI</span><span class="${criteria.sortColumn eq '2' ? 'sort' : 'nosort'}"></span></a><span class="sep"></span></div></th>
             <th class="tablesorter-header ${sortDirCls}"><div class="tablesorter-header-inner"><a href="javascript:changeSort(10);"><span>Date Created</span><span class="${criteria.sortColumn eq '10' ? 'sort' : 'nosort'}"></span></a><span class="sep"></span></div></th>
             <th class="tablesorter-header ${sortDirCls}"><div class="tablesorter-header-inner"><a href="javascript:changeSort(4);"><span>Request Type</span><span class="${criteria.sortColumn eq '4' ? 'sort' : 'nosort'}"></span></a><span class="sep"></span></div></th>
             <th class="tablesorter-header ${sortDirCls}"><div class="tablesorter-header-inner"><a href="javascript:changeSort(6);"><span>Status Date</span><span class="${criteria.sortColumn eq '6' ? 'sort' : 'nosort'}"></span></a><span class="sep"></span></div></th>
             <th class="alignCenter" ><div class="tablesorter-header-inner">Action</div></th>
-        </tr>                                        
+        </tr>
     </thead>
     <tbody>
         <c:forEach var="item" items="${results.items}" varStatus="status">
@@ -43,7 +43,7 @@
 
             <tr class="${status.index % 2 == 0 ? 'even' : 'odd'}">
                 <td class="alignCenter">
-                    <input type="checkbox" name="providerIds" value="${item.ticketId}"/>
+                    <input type="checkbox" title="Provider ${item.ticketId}" name="providerIds" value="${item.ticketId}"/>
                 </td>
                 <td><a href="${viewTicketLink}"><c:out value="${item.npi}" /></a></td>
                 <td><fmt:formatDate value="${item.createDate}" pattern="MM/dd/yyyy"/></td>
@@ -57,6 +57,6 @@
                     <a href="${exportTicketLink}">Export to PDF</a>
                 </td>
             </tr>
-        </c:forEach>    
+        </c:forEach>
     </tbody>
 </table>

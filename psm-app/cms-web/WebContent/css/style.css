@@ -4956,3 +4956,9 @@ select.stateSelect, select.stateSelectFor {
 .legacyInfo {
   color: red;
 }
+
+.checkboxLabel,
+.radioLabel {
+  width: auto !important;
+  float: none !important;
+}

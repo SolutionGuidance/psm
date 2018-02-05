@@ -17,21 +17,21 @@
     <div class="section">
         <div class="">
             <div class="row requireField">
-                <label>&nbsp;</label>
                 <c:set var="formName" value="_32_articlesOfIncorporation"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                <label>&nbsp;</label>
                 <c:if test="${not empty formValue}">
                     <c:url var="downloadLink" value="/provider/enrollment/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
                     </c:url>
                     <a href="${downloadLink}">Download</a>
                 </c:if>
-                <input type="file" class="fileUpload" name="${formName}" />
+                <input type="file" title="Article of Incorporation" class="fileUpload" name="${formName}" />
             </div>
         </div>
         <div class="clearFixed"></div>
     </div>
-    
+
     <!-- /.section -->
     <div class="tl"></div>
     <div class="tr"></div>

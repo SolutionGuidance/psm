@@ -61,7 +61,7 @@
                     <c:forEach var="profile" items="${profiles}">
                       <tr>
                         <td class="alignCenter">
-                          <input type="checkbox" name="profileIds" value="${profile.profileId}"/>
+                          <input title="${profile.profileId}" type="checkbox" name="profileIds" value="${profile.profileId}"/>
                         </td>
                         <td><c:out value="${profile.entity.npi}"/></td>
                         <td><c:out value="${profile.entity.providerType.description}"/></td>

@@ -17,7 +17,7 @@
     <div class="section">
         <div class="">
             <div class="row requireField">
-                <label class="mediumLbl">Please upload a copy of application*</label>
+                <label for="applicationFileUpload" class="mediumLbl">Please upload a copy of application*</label>
                 <c:set var="formName" value="_35_application"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <c:if test="${not empty formValue}">
@@ -26,12 +26,12 @@
                     </c:url>
                     <a href="${downloadLink}">Download</a>
                 </c:if>
-                <input type="file" class="fileUpload" name="${formName}" />
+                <input id="applicationFileUpload" type="file" class="fileUpload" name="${formName}" />
             </div>
         </div>
         <div class="clearFixed"></div>
     </div>
-    
+
     <!-- /.section -->
     <div class="tl"></div>
     <div class="tr"></div>

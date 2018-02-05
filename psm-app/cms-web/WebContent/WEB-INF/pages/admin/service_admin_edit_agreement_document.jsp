@@ -52,9 +52,9 @@
                     <div class="section">
                       <div class="wholeCol">
                         <div class="row">
-                          <label for="editAgreementDocumentAgreementTitle">Agreement Title</label>
+                          <label>Agreement Title</label>
                           <span class="floatL"><b>:</b></span>
-                          <form:input id="editAgreementDocumentAgreementTitle" path="title" cssClass="text longInput"/>
+                          <form:input path="title" cssClass="text longInput"/>
                         </div>
                         <div class="row">
                           <label>Content</label>

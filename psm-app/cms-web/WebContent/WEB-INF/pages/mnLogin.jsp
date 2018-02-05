@@ -40,24 +40,24 @@
               </c:if>
 
               <div class="row">
-                <label for="mnLoginUserNPI" class="label">NPI (user)</label>
-                <input id="mnLoginUserNPI" type="text" name="userNPI" class="text"/>
+                <label class="label">NPI (user)</label>
+                <input type="text" name="userNPI" class="text" id="userNPI"/>
               </div>
               <div class="row">
-                <label for="mnLoginProfileNPI" class="label">NPI (profile)</label>
-                <input id="mnLoginProfileNPI" type="text" name="profileNPI" class="text"/>
+                <label class="label">NPI (profile)</label>
+                <input type="text" name="profileNPI" class="text" id="profileNPI"/>
               </div>
 
               <p>
                 The next two tokens should match the configured values EXACTLY
               </p>
               <div class="row">
-                <label for="mnLoginToken" class="label">Token</label>
-                <input id="mnLoginToken" type="text" name="token" class="text" value="providerenrollment"/>
+                <label class="label">Token</label>
+                <input type="text" name="token" class="text" id="token" value="providerenrollment"/>
               </div>
               <div class="row">
-                <label for="mnLoginReferrer" class="label">Referrer</label>
-                <input id="mnLoginReferrer" type="text" name="referrer" class="text" value="localhost"/>
+                <label class="label">Referrer</label>
+                <input type="text" name="referrer" class="text" id="referrer" value="localhost"/>
               </div>
               <div class="buttons">
                 <button id="btnLogin" class="purpleBtn" type="submit">Login</button>

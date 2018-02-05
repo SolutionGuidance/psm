@@ -17,7 +17,7 @@
                     Displaying <strong>${(currentPageNumber-1)*results.pageSize+1}</strong> - <strong>
                     ${results.pageSize == -1 ? results.total : currentPageNumber*results.pageSize>results.total?results.total:currentPageNumber*results.pageSize}
                     </strong> of <strong>${total}</strong> User Accounts | Show:
-                    <select title="Shown Accounts">
+                    <select>
                         <option value="10" <c:if test="${results.pageSize eq 10}">selected="selected"</c:if>>10</option>
                         <option value="25" <c:if test="${results.pageSize eq 25}">selected="selected"</c:if>>25</option>
                         <option value="50" <c:if test="${results.pageSize eq 50}">selected="selected"</c:if>>50</option>

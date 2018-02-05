@@ -18,17 +18,14 @@
         <span class="control">
             <c:set var="formName" value="_30_chbIndicator"></c:set>
             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-            <label class="checkboxLabel">
-              <input class="showHidePanel" ${formValue eq 'Y' ? 'checked' : ''} type="checkbox" name="${formName}" value="Y" />
-              This clinic is a Community Health Board
-            </label>
+            <input class="showHidePanel" ${formValue eq 'Y' ? 'checked' : ''} type="checkbox" name="${formName}" value="Y" />This clinic is a Community Health Board
         </span>
     </div>
 
     <div class="section line hiddenSection" style="display: ${formValue eq 'Y' ? 'block' : 'none'};">
         <div class="">
             <div class="row requireField">
-                <label for="dhsContract">Please upload a copy of contract with DHS<span class="required">*</span></label>
+                <label>Please upload a copy of contract with DHS<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
 
                 <c:set var="formName" value="_30_dhsContract"></c:set>
@@ -39,7 +36,7 @@
                     </c:url>
                     <div><a href="${downloadLink}">Download</a></div>
                 </c:if>
-                <input id="dhsContract" type="file" class="fileUpload" name="${formName}" />
+                <input type="file" class="fileUpload" name="${formName}" />
             </div>
         </div>
         <div class="clearFixed"></div>

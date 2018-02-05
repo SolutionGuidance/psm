@@ -26,14 +26,11 @@
                                 <td>
                                     <c:set var="formName" value="_37_qualificationType"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <label class="radioLabel">
-                                      <input type="radio" value="Approval Letter from Health Care Finance Administration (HCFA)" name="${formName}"  ${formValue eq 'Approval Letter from Health Care Finance Administration (HCFA)' ? 'checked' : ''}/>
-                                      Approval Letter from Health Care Finance Administration (HCFA)
-                                    </label>
+                                    <input type="radio" value="Approval Letter from Health Care Finance Administration (HCFA)" name="${formName}"  ${formValue eq 'Approval Letter from Health Care Finance Administration (HCFA)' ? 'checked' : ''}/> Approval Letter from Health Care Finance Administration (HCFA) 
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_37_hcfaApproval"></c:set>
-                                    <input type="file" title="Approval Letter File" class="fileUpload" name="${formName}" />
+                                    <input type="file" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">
@@ -47,14 +44,11 @@
                                 <td>
                                     <c:set var="formName" value="_37_qualificationType"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <label class="radioLabel">
-                                      <input type="radio" value="Copies of the 330 Grant documents" name="${formName}"  ${formValue eq 'Copies of the 330 Grant documents' ? 'checked' : ''}/>
-                                      Copies of the 330 Grant documents
-                                    </label>
+                                    <input type="radio" value="Copies of the 330 Grant documents" name="${formName}"  ${formValue eq 'Copies of the 330 Grant documents' ? 'checked' : ''}/> Copies of the 330 Grant documents 
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_37_grantDocuments"></c:set>
-                                    <input type="file" title="Grant Documents File" class="fileUpload" name="${formName}" />
+                                    <input type="file" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">
@@ -71,14 +65,11 @@
                                 <td>
                                     <c:set var="formName" value="_37_qualificationType"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <label class="radioLabel">
-                                      <input type="radio" value="Cover page of Public Law 93-638 status contract" name="${formName}"  ${formValue eq 'Cover page of Public Law 93-638 status contract' ? 'checked' : ''}/>
-                                      Cover page of Public Law 93-638 status contract
-                                    </label>
+                                    <input type="radio" value="Cover page of Public Law 93-638 status contract" name="${formName}"  ${formValue eq 'Cover page of Public Law 93-638 status contract' ? 'checked' : ''}/> Cover page of Public Law 93-638 status contract 
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_37_statusContract"></c:set>
-                                    <input type="file" title="Cover Page File" class="fileUpload" name="${formName}" />
+                                    <input type="file" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">
@@ -88,19 +79,16 @@
                                     </c:if>
                                 </td>
                             </tr>
-
+                            
                             <tr>
                                 <td>
                                     <c:set var="formName" value="_37_qualificationType"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <label class="radioLabel">
-                                      <input type="radio" value="Compact with the Indian Health Service" name="${formName}"  ${formValue eq 'Compact with the Indian Health Service' ? 'checked' : ''}/>
-                                      Compact with the Indian Health Service
-                                    </label>
+                                    <input type="radio" value="Compact with the Indian Health Service" name="${formName}"  ${formValue eq 'Compact with the Indian Health Service' ? 'checked' : ''}/> Compact with the Indian Health Service 
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_37_indianHealthServiceContract"></c:set>
-                                    <input type="file" title="Indian Health Service Contract File" class="fileUpload" name="${formName}" />
+                                    <input type="file" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">
@@ -110,7 +98,7 @@
                                     </c:if>
                                 </td>
                             </tr>
-
+                            
                             </tbody>
                         </table>
                     </div>

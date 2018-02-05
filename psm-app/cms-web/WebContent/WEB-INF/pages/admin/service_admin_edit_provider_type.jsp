@@ -37,9 +37,9 @@
                   <div class="newEnrollmentPanel jerrish">
                     <div class="section">
                       <div class="wholeCol">
-                        <label for="editProviderTypeProviderType">Provider Type</label>
+                        <label>Provider Type</label>
                         <span class="floatL"><b>:</b></span>
-                        <form:input id="editProviderTypeProviderType" path="description" cssClass="text"/>
+                        <form:input path="description" cssClass="text"/>
                       </div>
                       <div class="tableHeader"><span>Agreements and Addendums</span></div>
                       <div class="wholeCol">
@@ -48,14 +48,14 @@
                             <div class="col2">
                               <c:forEach var="doc" items="${selectedAgreements}">
                                 <div class="row">
-                                  <input id="selected_provider_agreement_${doc.id}" type="checkbox" name="providerAgreements" checked="checked" value="${doc.id}"/>
-                                  <label for="selected_provider_agreement_${doc.id}">${doc.title}</label>
+                                  <input type="checkbox" name="providerAgreements" checked="checked" value="${doc.id}"/>
+                                  <label for="addTypeCheck56">${doc.title}</label>
                                 </div>
                               </c:forEach>
                               <c:forEach var="doc" items="${remainingAgreements}">
                                 <div class="row">
-                                  <input id="remaining_provider_agreement_${doc.id}" type="checkbox" name="providerAgreements" value="${doc.id}"/>
-                                  <label for="remaining_provider_agreement_${doc.id}">${doc.title}</label>
+                                  <input type="checkbox" name="providerAgreements" value="${doc.id}"/>
+                                  <label for="addTypeCheck56">${doc.title}</label>
                                 </div>
                               </c:forEach>
                             </div>

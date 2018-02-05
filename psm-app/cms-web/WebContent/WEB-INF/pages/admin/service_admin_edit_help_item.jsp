@@ -52,14 +52,14 @@
                         <div class="section">
                           <div class="wholeCol">
                             <div class="row">
-                              <label for="editHelpItemTopicTitle">Topic Title</label>
+                              <label>Topic Title</label>
                               <span class="floatL"><b>:</b></span>
-                              <form:input id="editHelpItemTopicTitle path="title" cssClass="text longInput"/>
+                              <form:input path="title" cssClass="text longInput"/>
                             </div>
                             <div class="row">
-                              <label for="editHelpItemTopicTitle">Content</label>
+                              <label>Content</label>
                               <span class="floatL"><b>:</b></span>
-                              <form:textarea id="editHelpItemTopicTitle" path="description" rows="20" cols="50" cssClass="longTextArea text"/>
+                              <form:textarea path="description" rows="20" cols="50" cssClass="longTextArea text"/>
                             </div>
                           </div>
                         </div>

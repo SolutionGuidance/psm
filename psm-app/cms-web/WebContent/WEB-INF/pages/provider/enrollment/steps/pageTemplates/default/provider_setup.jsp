@@ -7,8 +7,6 @@
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<c:set var="formIdPrefix" value="provider_setup"></c:set>
-
 <input type="hidden" name="formNames" value="<%= ViewStatics.PROVIDER_SETUP_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 
@@ -24,40 +22,46 @@
 
         <div class="">
             <div class="row requireField">
+                <label>NPI<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+
                 <c:set var="formName" value="_20_npi_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">NPI<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-                <input id="${formIdPrefix}_${formName}" type="text" class="npiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
+                <input type="text" class="npiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
                 <a href="javascript:;" class="purpleBtn NPISetupLookup"><span class="icon">NPI Lookup</span></a>
                 <span class="errorMsg">No records found with NPI number <span></span></span>
             </div>
         </div>
         <div class="leftCol">
             <div class="row requireField">
+                <label>Pay-to Provider Name<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+
                 <c:set var="formName" value="_20_name_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Pay-to Provider Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-                <input id="${formIdPrefix}_${formName}" type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="row requireField">
+                <label>Contact Name<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+
                 <c:set var="formName" value="_20_contactName_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Contact Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-                <input id="${formIdPrefix}_${formName}" type="text" class="contactNameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                <input type="text" class="contactNameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="clearFixed"></div>
         </div>
         <div class="rightCol">
+            <!--<div class="row ">-->
+                <!--<label class="">&nbsp;</label>-->
+            <!--</div>-->
             <div class="row requireField">
-                <c:set var="formName" value="_20_effectiveDate_${status.index - 1}"></c:set>
-                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Effective Date<span class="required">*</span></label>
+                <label class="">Effective Date<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
-                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
+                    <c:set var="formName" value="_20_effectiveDate_${status.index - 1}"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <input class="date" type="text" name="${formName}" value="${formValue}"/>
                 </span>
             </div>
             <div class="row requireField">
@@ -65,19 +69,19 @@
                 <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_20_phone1_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Phone Number Area Code" class="phone1Input tinyInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                <input type="text" class="phone1Input tinyInput" name="${formName}" value="${formValue}" maxlength="3"/>
                 <span class="sep">-</span>
                 <c:set var="formName" value="_20_phone2_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Phone Number Prefix" class="phone2Input tinyInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                <input type="text" class="phone2Input tinyInput" name="${formName}" value="${formValue}" maxlength="3"/>
                 <span class="sep">-</span>
                 <c:set var="formName" value="_20_phone3_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Phone Number Line Number" class="phone3Input smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
+                <input type="text" class="phone3Input smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
                 <span class="sep"><strong>ext.</strong></span>
                 <c:set var="formName" value="_20_phone4_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Phone Number Extension" class="phone4Input tinyInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                <input type="text" class="phone4Input tinyInput" name="${formName}" value="${formValue}" maxlength="3"/>
             </div>
             <div class="row requireField">
                 <label class="multiLine">Choose One<span class="required">*</span></label>
@@ -111,40 +115,46 @@
 
         <div class="">
             <div class="row requireField">
+                <label>NPI<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+
                 <c:set var="formName" value="_20_npi_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">NPI<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-                <input id="${formIdPrefix}_${formName}" type="text" class="npiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
+                <input type="text" class="npiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
                 <a href="javascript:;" class="purpleBtn NPISetupLookup"><span class="icon">NPI Lookup</span></a>
                 <span class="errorMsg">No records found with NPI number <span></span></span>
             </div>
         </div>
         <div class="leftCol">
             <div class="row requireField">
+                <label>Pay-to Provider Name<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+
                 <c:set var="formName" value="_20_name_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Pay-to Provider Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-                <input id="${formIdPrefix}_${formName}" type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                <input type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="row requireField">
+                <label>Contact Name<span class="required">*</span></label>
+                <span class="floatL"><b>:</b></span>
+
                 <c:set var="formName" value="_20_contactName_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Contact Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
-                <input id="${formIdPrefix}_${formName}" type="text" class="contactNameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
+                <input type="text" class="contactNameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="clearFixed"></div>
         </div>
         <div class="rightCol">
+            <!--<div class="row ">-->
+                <!--<label class="">&nbsp;</label>-->
+            <!--</div>-->
             <div class="row requireField">
-                <c:set var="formName" value="_20_startDate_${status.index - 1}"></c:set>
-                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Effective Date<span class="required">*</span></label>
+                <label class="">Effective Date<span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
-                    <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
+                    <c:set var="formName" value="_20_startDate_${status.index - 1}"></c:set>
+                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                    <input class="date" type="text" name="${formName}" value="${formValue}"/>
                 </span>
             </div>
             <div class="row requireField">
@@ -152,19 +162,19 @@
                 <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_20_phone1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Phone Number Area Code" class="phone1Input tinyInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                <input type="text" class="phone1Input tinyInput" name="${formName}" value="${formValue}" maxlength="3"/>
                 <span class="sep">-</span>
                 <c:set var="formName" value="_20_phone2"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Phone Number Prefix" class="phone2Input tinyInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                <input type="text" class="phone2Input tinyInput" name="${formName}" value="${formValue}" maxlength="3"/>
                 <span class="sep">-</span>
                 <c:set var="formName" value="_20_phone3"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Phone Number Line Number" class="phone3Input smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
+                <input type="text" class="phone3Input smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
                 <span class="sep"><strong>ext.</strong></span>
                 <c:set var="formName" value="_20_phone4"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <input type="text" title="Phone Number Extension" class="phone4Input tinyInput" name="${formName}" value="${formValue}" maxlength="3"/>
+                <input type="text" class="phone4Input tinyInput" name="${formName}" value="${formValue}" maxlength="3"/>
             </div>
             <div class="row requireField">
                 <label class="multiLine">Choose One<span class="required">*</span></label>

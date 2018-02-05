@@ -44,22 +44,22 @@
                     <td>
                         <c:set var="formName" value="_38_title18BedCount"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input type="text" title="Skilled Nursing Facility (Title 18) Bed Count" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
+                        <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
                     </td>
                     <td>
                         <c:set var="formName" value="_38_title19BedCount"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input type="text" title="Nursing Facility (Title 19) Bed Count" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
+                        <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
                     </td>
                     <td>
                         <c:set var="formName" value="_38_dualCertBedCount"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input type="text" title="Dual Certified Facility (Title 18/19) Bed Count" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
+                        <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
                     </td>
                     <td>
                         <c:set var="formName" value="_38_icfBedCount"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input type="text" title="ICF/DD Bed Count" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
+                        <input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
                     </td>
                 </tr>
                 </tbody>

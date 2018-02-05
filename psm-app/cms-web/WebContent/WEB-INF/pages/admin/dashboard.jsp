@@ -81,8 +81,8 @@
                   <h2>Query Enrollment Status</h2>
                 </div>
                 <div class="panelSection">
-                  <label for="dashboardEnrollmentNumber">Enrollment Number:</label>
-                  <input id="dashboardEnrollmentNumber" type="text" class="text" value="${invalidEnrollmentNumberValue}" />
+                  <label>Enrollment Number:</label>
+                  <input id="enrollmentNumber" type="text" class="text" value="${invalidEnrollmentNumberValue}" />
                   <input type="hidden" id="invalidEnrollmentNumber" value="${invalidEnrollmentNumber}"/>
                   <a id="queryEnrollmentStatus" href="javascript:;" class="purpleBtn">Query Status</a>
                 </div>

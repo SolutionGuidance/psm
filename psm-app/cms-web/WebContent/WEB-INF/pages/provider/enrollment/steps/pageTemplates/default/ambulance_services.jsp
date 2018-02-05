@@ -26,14 +26,11 @@
                                 <td>
                                     <c:set var="formName" value="_39_basicServicesIndicator"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <label class="checkboxLabel">
-                                      <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/>
-                                      Basic Service
-                                    </label>
+                                    <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/> Basic Service 
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_39_basicServices"></c:set>
-                                    <input type="file" title="Basic Service Form" class="fileUpload" name="${formName}" />
+                                    <input type="file" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">
@@ -47,14 +44,11 @@
                                 <td>
                                     <c:set var="formName" value="_39_advancedLifeSupportIndicator"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <label class="checkboxLabel">
-                                      <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/>
-                                      Advanced Life Support
-                                    </label>
+                                    <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/> Advanced Life Support 
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_39_advancedLifeSupport"></c:set>
-                                    <input type="file" title="Advanced Life Support Form" class="fileUpload" name="${formName}" />
+                                    <input type="file" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">
@@ -68,14 +62,11 @@
                                 <td>
                                     <c:set var="formName" value="_39_airTransportIndicator"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <label class="checkboxLabel">
-                                      <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/>
-                                      Air Transport with FAA Air Worthiness Certificate
-                                    </label>
+                                    <input type="checkbox" value="Y" name="${formName}"  ${formValue eq 'Y' ? 'checked' : ''}/> Air Transport with FAA Air Worthiness Certificate 
                                 </td>
                                 <td>
                                     <c:set var="formName" value="_39_airTransport"></c:set>
-                                    <input type="file" title="Air Transport with FAA Certification Form" class="fileUpload" name="${formName}" />
+                                    <input type="file" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
                                         <c:url var="downloadLink" value="/provider/enrollment/attachment">
@@ -85,7 +76,7 @@
                                     </c:if>
                                 </td>
                             </tr>
-
+                            
                             </tbody>
                         </table>
                     </div>

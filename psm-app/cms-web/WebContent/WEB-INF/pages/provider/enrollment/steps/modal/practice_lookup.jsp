@@ -29,25 +29,25 @@
             <sec:csrfInput />
             <div class="searchRow">
               <span>
-                <label for="practiceLookupPracticeName">Practice Name:</label>
+                <label>Practice Name:</label>
                 <input type="hidden" name="agency" value="false"/>
-                <input id="practiceLookupPracticeName" type="text" class="normalInput inputL" name="name"/>
+                <input type="text" class="normalInput inputL" name="name"/>
               </span>
               <span>
-                <label for="practiceLookupNpi">NPI / UMPI:</label>
-                <input id="practiceLookupNpi" type="text" class="normalInput inputL" name="npi"/>
+                <label>NPI / UMPI:</label>
+                <input type="text" class="normalInput inputL" name="npi"/>
               </span>
               <span>
-                <label for="practiceLookupCity">City:</label>
-                <input id="practiceLookupCity" type="text" class="normalInput inputM" name="city"/>
+                <label>City:</label>
+                <input type="text" class="normalInput inputM" name="city"/>
               </span>
               <span>
-                <label for="practiceLookupState">State:</label>
-                <input id="practiceLookupState" type="text" class="normalInput inputM" name="state"/>
+                <label>State:</label>
+                <input type="text" class="normalInput inputM" name="state"/>
               </span>
               <span class="last">
-                <label for="practiceLookupZip">Zip:</label>
-                <input id="practiceLookupZip" type="text" class="normalInput inputS zipInputFor" name="zip"/>
+                <label>Zip:</label>
+                <input type="text" class="normalInput inputS zipInputFor" name="zip"/>
               </span>
               <div class="clear"></div>
             </div>

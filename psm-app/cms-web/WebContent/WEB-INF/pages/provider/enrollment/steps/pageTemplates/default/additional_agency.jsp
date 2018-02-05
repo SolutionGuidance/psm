@@ -11,7 +11,7 @@
 
 <div class="practicePanel">
     <input type="hidden" name="formNames" value="<%= ViewStatics.ADDITIONAL_AGENCY_FORM %>">
-
+    
     <div class="tableHeader otherTableHeader">
         <span>Group Affiliation Information</span>
         <a href="javascript:openAgencyLookup(false, false);" class="purpleSmallBtn practiceLookupModalBtn">Agency Lookup</a>
@@ -58,22 +58,22 @@
                         <td>
                             <c:set var="formName" value="_12_name_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} title="${formName} Agency Name"  type="text" class="long250Input" name="${formName}" value="${formValue}" maxlength="100"/>
+                            <input ${disableLinkedFields} type="text" class="long250Input" name="${formName}" value="${formValue}" maxlength="100"/>
                         </td>
                         <td>
                             <c:set var="formName" value="_12_npi_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} title="${formName} Agency NPI"  type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}"  maxlength="10"/>
+                            <input ${disableLinkedFields} type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}"  maxlength="10"/>
                         </td>
                         <td>
                             <c:set var="formName" value="_12_studyId_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} title="${formName} Study ID"  type="text" class="normalInput" name="${formName}" value="${formValue}"  maxlength="100"/>
+                            <input ${disableLinkedFields} type="text" class="normalInput" name="${formName}" value="${formValue}"  maxlength="100"/>
                         </td>
                         <td>
                             <c:set var="formName" value="_12_clearanceDate_${status.index - 1}"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input ${disableLinkedFields} title="${formName} Clearance Date" type="text" class="date" name="${formName}" value="${formValue}"  maxlength="10"/>
+                            <input ${disableLinkedFields} type="text" class="date" name="${formName}" value="${formValue}"  maxlength="10"/>
                         </td>
                         <td class="alignCenter"><a href="javascript:;" class="remove">REMOVE</a></td>
                     </tr>
@@ -100,10 +100,10 @@
                 <td class="alignCenter"><span>1</span>
                     <input type="hidden" name="_12_objectId" value=""><input type="hidden" name="_12_objectIdHash" value="">
                 </td>
-                <td><input title="Agency Name" type="text" class="long250Input" maxlength="100"/></td>
-                <td><input title="Agency NPI" type="text" class="normalInput" maxlength="10" /></td>
-                <td><input title="Study ID" type="text" class="normalInput" maxlength="100" /></td>
-                <td><input title="Clearance Date" type="text" class="date" maxlength="10" /></td>
+                <td><input type="text" class="long250Input" maxlength="100"/></td>
+                <td><input type="text" class="normalInput" maxlength="10" /></td>
+                <td><input type="text" class="normalInput" maxlength="100" /></td>
+                <td><input type="text" class="date" maxlength="10" /></td>
                 <td class="alignCenter"><a href="javascript:;" class="remove">REMOVE</a></td>
             </tr>
         </tbody>

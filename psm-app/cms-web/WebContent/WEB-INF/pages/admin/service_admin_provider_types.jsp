@@ -66,7 +66,7 @@
                 <div class="floatW">
                   <div class="leftCol">
                     <div class="row">
-                      <label for="providerTypeFilterText">Provider Type</label>
+                      <label>Provider Type</label>
                       <span class="floatL"><b>:</b></span>
                       <input id="providerTypeFilterText" type="text" class="normalInput" value="${searchCriteria.typeName}"/>
                     </div>
@@ -95,7 +95,7 @@
                       <thead>
                         <tr>
                           <th class="alignCenter">
-                            <input type="checkbox" name="providerType" title="Select All" class="selectAll"/>
+                            <input type="checkbox" name="providerType" class="selectAll"/>
                             <span class="sep"></span>
                           </th>
                           <th>
@@ -125,9 +125,9 @@
                         <c:forEach var="item" items="${searchResult.items}">
                           <tr>
                             <td class="alignCenter">
-                              <input id="providerType_${item.code}" <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="providerTypeCheckBox" value="${item.code}" type="checkbox" name="providerType"/>
+                              <input <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="providerTypeCheckBox" value="${item.code}" type="checkbox" name="providerType"/>
                             </td>
-                            <td><label for="providerType_${item.code}">${item.description}</label></td>
+                            <td>${item.description}</td>
                             <td class="alignCenter"><a href="${ctx}/admin/getProviderType?providerTypeId=${item.code}" class="viewProviderLink">View</a><span class="sep">|</span><a href="${ctx}/admin/beginEditProviderType?providerTypeId=${item.code}" class="editProviderLink">Edit</a>
                               <span class="sep">|</span>
                               <c:choose>

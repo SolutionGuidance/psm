@@ -86,11 +86,11 @@
 
                     <div class="leftCol">
                       <div class="row">
-                        <label for="listByStatusNpi">NPI/UMPI</label>
+                        <label>NPI/UMPI</label>
                         <span class="floatL">
                           <b>:</b>
                         </span>
-                        <form:input id="listByStatusNpi" path="npi" cssClass="normalInput"/>
+                        <form:input path="npi" cssClass="normalInput"/>
                       </div>
                       <div class="row">
                         <label>Date Created</label>
@@ -98,23 +98,23 @@
                           <b>:</b>
                         </span>
                         <span class="dateWrapper floatL">
-                          <form:input title="Create Start" path="createDateStart" cssClass="date" readonly=""/>
+                          <form:input path="createDateStart" cssClass="date" readonly=""/>
                         </span>
                         <span class="floatL">
                           -
                         </span>
                         <span class="dateWrapper floatL">
-                          <form:input title="Create End" path="createDateEnd" cssClass="date" readonly=""/>
+                          <form:input path="createDateEnd" cssClass="date" readonly=""/>
                         </span>
                       </div>
                     </div>
                     <div class="rightCol">
                       <div class="row">
-                        <label for="listByStatusRequestTypes">Request Type</label>
+                        <label>Request Type</label>
                         <span class="floatL">
                           <b>:</b>
                         </span>
-                        <form:select id="listByStatusRequestTypes" path="requestTypes" cssClass="longSelect" multiple="false">
+                        <form:select path="requestTypes" cssClass="longSelect" multiple="false">
                           <form:option value="">All</form:option>
                           <form:option value="Enrollment">Enrollment</form:option>
                           <form:option value="Renewal">Renewal</form:option>
@@ -128,13 +128,13 @@
                           <b>:</b>
                         </span>
                         <span class="dateWrapper floatL">
-                          <form:input title="Status Start" path="statusDateStart" cssClass="date" readonly=""/>
+                          <form:input path="statusDateStart" cssClass="date" readonly=""/>
                         </span>
                         <span class="floatL">
                           -
                         </span>
                         <span class="dateWrapper floatL">
-                          <form:input title="Status End" path="statusDateEnd" cssClass="date" readonly=""/>
+                          <form:input path="statusDateEnd" cssClass="date" readonly=""/>
                         </span>
                       </div>
                     </div>

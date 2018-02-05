@@ -8,8 +8,7 @@
 <%@page import="gov.medicaid.binders.ProviderTypeFormBinder"%>
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<%@taglib prefix="cms" uri="CMSTags"  %>
-<c:set var="formIdPrefix" value="tribal_information"></c:set>
+<%@taglib prefix="cms" uri="CMSTags"  %> 
 
 
 <div class="radioPanel">
@@ -64,7 +63,7 @@
                 <td>
                     <c:set var="formName" value="_13_tribalCode_0"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <select title="Reservation" class="bigSelect" name="${formName}">
+                    <select class="bigSelect" name="${formName}">
                         <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_13_tribalCodes']}">
                             <option ${formValue eq opt.description ? 'selected' : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
@@ -73,7 +72,7 @@
                 </td>
                 <td>
                     <c:set var="formName" value="_13_attachment_0"></c:set>
-                    <input title="Upload License/Certification" type="file" class="fileUpload" size="10" name="${formName}" />
+                    <input type="file" class="fileUpload" size="10" name="${formName}" />
 
                     <c:set var="formName" value="_13_filename_0"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -89,25 +88,25 @@
                 </td>
                 <c:set var="formName" value="_13_licenseNumber_0"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <td><input title="License/Certification Number" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
+                <td><input type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
                 <td class="dateCell">
-                    <c:set var="formName" value="_13_originalIssueDate_0"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <span class="dateWrapper">
-                        <input title="Original Issue Date" class="date" type="text" name="${formName}" value="${formValue}"/>
+                        <c:set var="formName" value="_13_originalIssueDate_0"></c:set>
+                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                        <input class="date" type="text" name="${formName}" value="${formValue}"/>
                     </span>
                 </td>
                 <td class="dateCell">
-                    <c:set var="formName" value="_13_renewalDate_0"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <span class="dateWrapper">
-                        <input title="Renewal End Date" class="date" type="text"  name="${formName}" value="${formValue}"/>
+                        <c:set var="formName" value="_13_renewalDate_0"></c:set>
+                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
+                        <input class="date" type="text"  name="${formName}" value="${formValue}"/>
                     </span>
                 </td>
                 <td>
                     <c:set var="formName" value="_13_issuingState_0"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <select title="Issuing State" name="${formName}">
+                    <select name="${formName}">
                         <option value="">Please select</option>
                            <c:forEach var="opt" items="${requestScope['_13_issuingStates']}">
                                <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>

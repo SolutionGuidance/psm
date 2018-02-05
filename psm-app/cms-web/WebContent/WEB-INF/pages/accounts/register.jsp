@@ -39,7 +39,8 @@
                 <div class="section" id="updateProfile">
                   <div class="wholeCol">
                     <div class="row">
-                      <label for="registerUsername">Username<span class="required">*</span></label>
+                      <label>Username<span class="required">*</span>
+                      </label>
                       <span class="floatL">
                         <b>:</b>
                       </span>
@@ -48,10 +49,11 @@
                       <spring:bind path="username">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
                       </spring:bind>
-                      <form:input id="registerUsername" path="username" cssClass="normalInput ${errorCls}"/>
+                      <form:input path="username" cssClass="normalInput ${errorCls}"/>
                     </div>
                     <div class="row">
-                      <label for="registerLastName">Last Name<span class="required">*</span></label>
+                      <label>Last Name<span class="required">*</span>
+                      </label>
                       <span class="floatL">
                         <b>:</b>
                       </span>
@@ -60,10 +62,11 @@
                       <spring:bind path="lastName">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
                       </spring:bind>
-                      <form:input id="registerLastName" path="lastName" cssClass="normalInput ${errorCls}"/>
+                      <form:input path="lastName" cssClass="normalInput ${errorCls}"/>
                     </div>
                     <div class="row">
-                      <label for="registerFirstName">First Name<span class="required">*</span></label>
+                      <label>First Name<span class="required">*</span>
+                      </label>
                       <span class="floatL">
                         <b>:</b>
                       </span>
@@ -72,10 +75,10 @@
                       <spring:bind path="firstName">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
                       </spring:bind>
-                      <form:input id="registerFirstname" path="firstName" cssClass="normalInput ${errorCls}"/>
+                      <form:input path="firstName" cssClass="normalInput ${errorCls}"/>
                     </div>
                     <div class="row">
-                      <label for="registerMiddleName">Middle Name</label>
+                      <label>Middle Name</label>
                       <span class="floatL">
                         <b>:</b>
                       </span>
@@ -84,10 +87,11 @@
                       <spring:bind path="middleName">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
                       </spring:bind>
-                      <form:input id="registerMiddleName" path="middleName" cssClass="normalInput ${errorCls}"/>
+                      <form:input path="middleName" cssClass="normalInput ${errorCls}"/>
                     </div>
                     <div class="row">
-                      <label for="registerEmail">Email<span class="required">*</span></label>
+                      <label>Email<span class="required">*</span>
+                      </label>
                       <span class="floatL">
                         <b>:</b>
                       </span>
@@ -96,7 +100,7 @@
                       <spring:bind path="email">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
                       </spring:bind>
-                      <form:input id="registerEmail" path="email" cssClass="normalInput ${errorCls}"/>
+                      <form:input path="email" cssClass="normalInput ${errorCls}"/>
                     </div>
                   </div>
                 </div>

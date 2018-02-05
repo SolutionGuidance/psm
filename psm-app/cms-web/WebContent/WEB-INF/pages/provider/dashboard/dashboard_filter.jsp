@@ -19,14 +19,14 @@
 
         <div class="leftCol">
             <div class="row">
-                <label for="dashboardFilterNpi">NPI/UMPI</label>
+                <label>NPI/UMPI</label>
                 <span class="floatL"><b>:</b></span>
-                <form:input id="dashboardFilterNpi" path="npi" cssClass="normalInput"/>
+                <form:input path="npi" cssClass="normalInput"/>
             </div>
             <div class="row">
-                <label for="dashboardFilterRequestTypes">Request Type</label>
+                <label>Request Type</label>
                 <span class="floatL"><b>:</b></span>
-                <form:select id="dashboardFilterRequestTypes" path="requestTypes" cssClass="longSelect" multiple="false">
+                <form:select path="requestTypes" cssClass="longSelect" multiple="false">
                     <form:option value="">All</form:option>
                     <form:option value="Enrollment">Enrollment</form:option>
                     <form:option value="Renewal">Renewal</form:option>
@@ -38,19 +38,19 @@
                 <label>Date Submitted</label>
                 <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
-                    <form:input title="Submission Start" path="submissionDateStart" cssClass="date" readonly=""/>
+                    <form:input path="submissionDateStart" cssClass="date" readonly=""/>
                 </span>
                 <span class="floatL"> - </span>
                 <span class="dateWrapper floatL">
-                    <form:input title="Submission End" path="submissionDateEnd" cssClass="date" readonly=""/>
+                    <form:input path="submissionDateEnd" cssClass="date" readonly=""/>
                 </span>
             </div>
         </div>
         <div class="rightCol">
             <div class="row">
-                <label for="dashboardFilterStatuses">Status</label>
+                <label>Status</label>
                 <span class="floatL"><b>:</b></span>
-                <form:select id="dashboardFilterStatuses" path="statuses" cssClass="longSelect" multiple="false">
+                <form:select path="statuses" cssClass="longSelect" multiple="false">
                     <form:option value="">All</form:option>
                     <form:option value="Draft">Draft</form:option>
                     <form:option value="Pending">Pending</form:option>
@@ -59,9 +59,9 @@
                 </form:select>
             </div>
             <div class="row">
-                <label for="dashboardFilterRiskLevel">Risk Level</label>
+                <label>Risk Level</label>
                 <span class="floatL"><b>:</b></span>
-                <form:select id="dashboardFilterRiskLevel" path="riskLevel" cssClass="longSelect">
+                <form:select path="riskLevel" cssClass="longSelect">
                     <form:option value="">All</form:option>
                     <form:option value="NULL">Not screened yet</form:option>
                     <form:option value="Low">Low</form:option>
@@ -73,11 +73,11 @@
                 <label>Status Date</label>
                 <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
-                    <form:input title="Status Start" path="statusDateStart" cssClass="date" readonly=""/>
+                    <form:input path="statusDateStart" cssClass="date" readonly=""/>
                 </span>
                 <span class="floatL"> - </span>
                 <span class="dateWrapper floatL">
-                    <form:input title="Status End" path="statusDateEnd" cssClass="date" readonly=""/>
+                    <form:input path="statusDateEnd" cssClass="date" readonly=""/>
                 </span>
             </div>
         </div>

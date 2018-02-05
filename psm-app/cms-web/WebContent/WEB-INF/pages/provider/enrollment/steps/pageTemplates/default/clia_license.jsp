@@ -17,7 +17,7 @@
         <div class="requiredInfo">
             If the organization is providing laboratory services, identify your CLIA Number(s). You must enclose a copy of current certificate(s).
         </div>
-
+        
         <div class="addPracticeLocations">
             <table cellpadding="0" cellspacing="0" class="generalTable facility" id="tableCLIA">
                 <colgroup>
@@ -41,11 +41,11 @@
                     <td class="alignCenter">${status.count}</td>
                     <c:set var="formName" value="_22_licenseNumber_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <td><input type="text" title="CLIA Number" class="longInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
+                    <td><input type="text" class="longInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
                     <td>
                         <c:set var="formName" value="_22_attachment_${status.index - 1}"></c:set>
-                        <input type="file" title="Certification" class="fileUpload" size="10" name="${formName}" />
-
+                        <input type="file" class="fileUpload" size="10" name="${formName}" />
+                        
                         <c:set var="formName" value="_22_filename_${status.index - 1}"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                         <c:if test="${not empty formValue}">
@@ -85,10 +85,10 @@
                 <td class="alignCenter">1</td>
                 <c:set var="formName" value="_22_licenseNumber"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <td><input type="text" title="CLIA Number" class="longInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
+                <td><input type="text" class="longInput" name="${formName}" value="${formValue}" maxlength="45"/></td>
                 <c:set var="formName" value="_22_attachment"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <td><input type="file" title="Certification" class="fileUpload" size="10" name="${formName}" /></td>
+                <td><input type="file" class="fileUpload" size="10" name="${formName}" /></td>
                 <td class="alignCenter"><a href="javascript:;" class="remove">REMOVE</a></td>
             </tr>
         </tbody>

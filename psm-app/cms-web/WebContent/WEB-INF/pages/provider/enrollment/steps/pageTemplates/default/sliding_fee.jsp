@@ -7,8 +7,6 @@
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<c:set var="formIdPrefix" value="sliding_fee"></c:set>
-
 <input type="hidden" name="formNames" value="<%= ViewStatics.SLIDING_FEE_SCHEDULE_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 
@@ -28,12 +26,12 @@
                     </c:url>
                     <a href="${downloadLink}">Download</a>
                 </c:if>
-                <input title="Sliding Fee Schedule" type="file" class="fileUpload" name="${formName}" />
+                <input type="file" class="fileUpload" name="${formName}" />
             </div>
         </div>
         <div class="clearFixed"></div>
     </div>
-
+    
     <!-- /.section -->
     <div class="tl"></div>
     <div class="tr"></div>

@@ -9,7 +9,6 @@
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 <c:set value="false" var="isUpdateUser"></c:set>
 <c:set value="false" var="hasArrow"></c:set>
-<c:set var="formIdPrefix" value="advanced_search_system_admin"></c:set>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
@@ -37,28 +36,28 @@
                 <div class="section">
                   <div class="leftCol">
                     <div class="row">
-                      <label for="${formIdPrefix}_username">Username</label>
+                      <label>Username</label>
                       <span class="floatL"><b>:</b></span>
-                      <input id="${formIdPrefix}_username" type="text" class="normalInput" name="username"/>
+                      <input type="text" class="normalInput" name="username"/>
                     </div>
                     <div class="row">
-                      <label for="${formIdPrefix}_last_name">Last Name</label>
+                      <label>Last Name</label>
                       <span class="floatL"><b>:</b></span>
-                      <input id="${formIdPrefix}_last_name" type="text" class="normalInput" name="lastName"/>
+                      <input type="text" class="normalInput" name="lastName"/>
                     </div>
                     <div class="row">
-                      <label for="${formIdPrefix}">First Name</label>
+                      <label>First Name</label>
                       <span class="floatL"><b>:</b></span>
-                      <input id="${formIdPrefix}_first_name" type="text" class="normalInput" name="firstName"/>
+                      <input type="text" class="normalInput" name="firstName"/>
                     </div>
                   </div>
                   <!-- /.leftCol -->
                   <div class="rightCol">
                     <div class="row checkRow">
-                      <label for="${formIdPrefix}_email">Email</label>
+                      <label>Email</label>
                       <span class="floatL"><b>:</b></span>
                       <div class="checkWrapper">
-                        <input id="${formIdPrefix}_email" type="text" class="normalInput" name="email"/>
+                        <input type="text" class="normalInput" name="email"/>
                       </div>
                     </div>
                     <div class="row checkRow">
@@ -66,17 +65,17 @@
                       <span class="floatL"><b>:</b></span>
                       <div class="checkMain">
                         <div class="checkWrapper">
-                          <input id="${formIdPrefix}_role_all" type="checkbox" id="requestType" class="checkAll" />
-                          <label for="${formIdPrefix}_role_all" class="minWidth">All</label>
-                          <input id="${formIdPrefix}_role_service_agent" type="checkbox" name="roles" value="Service Agent" />
-                          <label for="${formIdPrefix}_role_service_agent" class="label">Service Agent</label>
-                          <input id="${formIdPrefix}_role_system_administrator" type="checkbox" name="roles" value="System Administrator" />
-                          <label for="${formIdPrefix}_role_system_administrator" class="label">System Administrator</label>
+                          <input type="checkbox" id="requestType" class="checkAll" />
+                          <span class="minWidth">All</span>
+                          <input type="checkbox" name="roles" value="Service Agent" />
+                          <span class="label">Service Agent</span>
+                          <input type="checkbox" name="roles" value="System Administrator" />
+                          <span class="label">System Administrator</span>
                           <div class="clearFixed"></div>
-                          <input id="${formIdPrefix}_role_provider" type="checkbox" name="roles" value="Provider" />
-                          <label for="${formIdPrefix}_role_provider" class="minWidth">Provider</label>
-                          <input id="${formIdPrefix}_service_administrator" type="checkbox" name="roles" value="Service Administrator" />
-                          <label for="${formIdPrefix}_service_administrator" class="label">Service Administrator</label>
+                          <input type="checkbox" name="roles" value="Provider" />
+                          <span class="minWidth">Provider</span>
+                          <input type="checkbox" name="roles" value="Service Administrator" />
+                          <span class="label">Service Administrator</span>
                         </div>
                       </div>
                     </div>

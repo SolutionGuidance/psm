@@ -62,7 +62,6 @@
                           <td>
                             <input
                               type="checkbox"
-                              title="NPI Lookup Verified"
                               name="npiLookupVerified"
                               value="Y"
                               ${verification.NPILookup eq 'Y' ? 'checked' : ''}
@@ -85,7 +84,6 @@
                           <td>
                             <input
                               type="checkbox"
-                              title="SSN Verified"
                               name="ssnVerified"
                               value="Y"
                               ${verification.socialSecurityNumber eq 'Y' ? 'checked' : ''}
@@ -108,7 +106,6 @@
                           <td>
                             <input
                               type="checkbox"
-                              title="NPI Verified"
                               name="npiVerified"
                               value="Y"
                               ${verification.NPI eq 'Y' ? 'checked' : ''}
@@ -132,7 +129,6 @@
                             <td>
                               <input
                                 type="checkbox"
-                                title="BGS Verified"
                                 name="bgsVerified"
                                 value="Y"
                                 ${verification.netStudy eq 'Y' ? 'checked' : ''}
@@ -156,7 +152,6 @@
                         <td>
                           <input
                             type="checkbox"
-                            title="Non-exclusion Verified"
                             name="nonExclusionVerified"
                             value="Y"
                             ${verification.nonExclusion eq 'Y' ? 'checked' : ''}
@@ -179,7 +174,6 @@
                         <td>
                           <input
                             type="checkbox"
-                            title="Non-SAM-Exclusion Verified"
                             name="nonSAMExclusionVerified"
                             value="Y"
                             ${verification.SAMNonExclusion eq 'Y' ? 'checked' : ''}
@@ -225,7 +219,6 @@
                           <td>
                             <input
                               type="checkbox"
-                              title="License Number ${license.licenseNumber} Verified"
                               name="verifiedLicenses"
                               value="${license.attachmentObjectId}"
                               ${license.verified eq 'Y' ? 'checked' : ''}

@@ -4,6 +4,11 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/SolutionGuidance/psm",
   "dependencies": {
-    "axe-core": "^2.6.1"
+    "axe-core": "^2.6.1",
+    "jscs": "^3.0.7"
+  },
+  "scripts": {
+    "lint": "jscs src/main/js",
+    "lint-ci": "mkdir -p build/reports/checkstyle/ && jscs --reporter=checkstyle src/main/js > build/reports/checkstyle/main.xml"
   }
 }

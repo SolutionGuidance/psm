@@ -19,8 +19,6 @@ package gov.medicaid.services;
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.GetProfileDetailsRequest;
 import gov.medicaid.domain.model.GetProfileDetailsResponse;
-import gov.medicaid.domain.model.GetTicketDetailsRequest;
-import gov.medicaid.domain.model.GetTicketDetailsResponse;
 import gov.medicaid.domain.model.ResubmitTicketRequest;
 import gov.medicaid.domain.model.ResubmitTicketResponse;
 import gov.medicaid.domain.model.SubmitTicketRequest;
@@ -35,12 +33,18 @@ public interface EnrollmentWebService {
     /**
      * Retrieves the ticket details.
      *
-     * @param request the service request
-     * @return the service response
+     * @param username     the username of the requesting user
+     * @param systemId     the system that authenticated the requesting user
+     * @param npi          the NPI for which this user is a proxy, if any
+     * @param enrollmentId the ID of the enrollment (ticket)
+     * @return the enrollment (ticket)
      * @throws PortalServiceException for any errors encountered
      */
-    GetTicketDetailsResponse getTicketDetails(
-            GetTicketDetailsRequest request
+    EnrollmentType getTicketDetails(
+            String username,
+            String systemId,
+            String npi,
+            long enrollmentId
     ) throws PortalServiceException;
 
     /**

@@ -1,19 +1,16 @@
 package gov.medicaid.features.enrollment.ui;
 
+import gov.medicaid.features.PsmPage;
 import net.serenitybdd.core.annotations.findby.By;
-import net.thucydides.core.pages.PageObject;
 
 import java.time.LocalDate;
-
-import static gov.medicaid.features.IntegrationTests.click;
-import static gov.medicaid.features.IntegrationTests.DATE_FORMATTER;
 
 /**
  * PageObject to interact with the "Personal Info" step of an individual
  * provider enrollment. This page is reached by logging in, creating an
  * enrollment, and selecting an individual provider type.
  */
-public class IndividualSummaryPage extends PageObject {
+public class IndividualSummaryPage extends PsmPage {
     private static final String FIRST_LICENSE_ROW_SELECTOR =
             "#licenseTable > tbody > tr:nth-child(1)";
     private static final String PRACTICE_ADDRESS_SELECTOR = ".h-adr.practice";
@@ -176,7 +173,7 @@ public class IndividualSummaryPage extends PageObject {
     }
 
     public void clickNext() {
-        click(this, $(".nextBtn"));
+        click($(".nextBtn"));
     }
 
     private String textOf(String xpathOrCssSelector) {

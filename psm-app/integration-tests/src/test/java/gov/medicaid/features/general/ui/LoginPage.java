@@ -1,14 +1,12 @@
 package gov.medicaid.features.general.ui;
 
-import net.thucydides.core.pages.PageObject;
+import gov.medicaid.features.PsmPage;
 import net.thucydides.core.annotations.DefaultUrl;
 
-import static gov.medicaid.features.IntegrationTests.testAccessibility;
-import static gov.medicaid.features.IntegrationTests.click;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DefaultUrl("http://localhost:8080/cms")
-public class LoginPage extends PageObject {
+public class LoginPage extends PsmPage {
 
     public void enterProviderCredentials() {
         $("#username").sendKeys("p1");
@@ -16,7 +14,7 @@ public class LoginPage extends PageObject {
     }
 
     public void login() {
-        click(this, $("#btnLogin"));
+        click($("#btnLogin"));
     }
 
     public void checkUserLoggedIn(String username) {
@@ -26,9 +24,5 @@ public class LoginPage extends PageObject {
 
     public void checkUserLoggedOut() {
         assertThat(getTitle()).contains("Login");
-    }
-
-    public void checkAccessibility() {
-        testAccessibility(this);
     }
 }

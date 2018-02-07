@@ -1,10 +1,10 @@
 package gov.medicaid.features.general.ui;
 
-import net.thucydides.core.pages.PageObject;
+import gov.medicaid.features.PsmPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MyProfilePage extends PageObject {
+public class MyProfilePage extends PsmPage {
 
     public void checkChangePassword() {
         String changeLinkText = $("#change_password_link").getText();

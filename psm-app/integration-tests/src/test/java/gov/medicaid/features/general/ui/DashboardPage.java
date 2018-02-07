@@ -1,13 +1,12 @@
 package gov.medicaid.features.general.ui;
 
-import net.thucydides.core.pages.PageObject;
+import gov.medicaid.features.PsmPage;
 
-import static gov.medicaid.features.IntegrationTests.click;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DashboardPage extends PageObject {
+public class DashboardPage extends PsmPage {
     public void clickOnNewEnrollment() {
-        click(this, $("#createNewEnrollment"));
+        click($("#createNewEnrollment"));
         assertThat(getTitle()).isEqualTo("Provider Type Page");
     }
 
@@ -16,15 +15,15 @@ public class DashboardPage extends PageObject {
     }
 
     public void clickNext() {
-        click(this, $(".nextBtn"));
+        click($(".nextBtn"));
     }
 
     public void logout() {
-        click(this, $(".logoutButton"));
+        click($(".logoutButton"));
     }
 
     public void clickMyProfile() {
-        click(this, $("#my_profile_tab"));
+        click($("#my_profile_tab"));
     }
 
     public void checkOnDashboard() {

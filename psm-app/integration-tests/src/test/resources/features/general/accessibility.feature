@@ -6,7 +6,6 @@ Feature: Accessibility Checks
     Given I have the application open in my browser
     Then I should have no accessibility issues
 
-  @ignore
   Scenario: Dashboard Page
     Given I am logged in
     And I am on the dashboard page

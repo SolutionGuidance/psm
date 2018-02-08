@@ -20,14 +20,6 @@
 	    </complexType>
     </element>
 
-    <element name="GetProfileDetailsResponse">
-        <complexType>
-            <sequence>
-                <element name="Enrollment" maxOccurs="1" minOccurs="1" type="Q1:EnrollmentType" />
-            </sequence>
-        </complexType>
-    </element>
-
     <element name="SubmitTicketRequest">
         <complexType>
             <sequence>

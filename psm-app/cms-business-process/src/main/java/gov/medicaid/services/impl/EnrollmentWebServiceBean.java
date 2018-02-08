@@ -18,7 +18,6 @@ package gov.medicaid.services.impl;
 
 import gov.medicaid.binders.BinderUtils;
 import gov.medicaid.domain.model.EnrollmentType;
-import gov.medicaid.domain.model.GetProfileDetailsResponse;
 import gov.medicaid.domain.model.SubmitTicketRequest;
 import gov.medicaid.domain.model.SubmitTicketResponse;
 import gov.medicaid.entities.CMSUser;
@@ -247,13 +246,12 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
     }
 
     @Override
-    public GetProfileDetailsResponse getProfile(
+    public EnrollmentType getProfile(
             String username,
             String systemId,
             String npi,
             long profileId
     ) throws PortalServiceException {
-        GetProfileDetailsResponse response = new GetProfileDetailsResponse();
         CMSUser user = findUser(username, systemId, npi);
         ProviderProfile profile = providerEnrollmentService.getProviderDetails(
                 user,
@@ -261,8 +259,7 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
         );
         Enrollment wrapper = new Enrollment();
         wrapper.setDetails(profile);
-        response.setEnrollment(XMLAdapter.toXML(wrapper));
-        return response;
+        return XMLAdapter.toXML(wrapper);
     }
 
     @Override

@@ -10,4 +10,8 @@ public class MyProfilePage extends PsmPage {
         String changeLinkText = $("#change_password_link").getText();
         assertThat(changeLinkText).contains("Change Password");
     }
+
+    public void clickChangePassword() {
+        click($("#change_password_link"));
+    }
 }

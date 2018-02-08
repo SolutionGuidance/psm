@@ -46,4 +46,9 @@ public class GeneralSteps {
     public void seeUpdatePassword() {
         updatePasswordPage.checkUpdatePassword();
     }
+
+    @Step
+    public void openUpdatePasswordPage() {
+        updatePasswordPage.open();
+    }
 }

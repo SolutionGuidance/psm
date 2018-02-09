@@ -33,7 +33,6 @@ import gov.medicaid.domain.model.IndividualApplicantType;
 import gov.medicaid.domain.model.OperationStatusType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.RequestType;
-import gov.medicaid.domain.model.ResubmitTicketResponse;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.domain.model.SubmitTicketRequest;
@@ -1146,7 +1145,7 @@ public class EnrollmentPageFlowController extends BaseController {
         List<FormError> errors = validate(enrollment, pageName, formNames);
         if (errors.isEmpty()) {
             CMSPrincipal principal = ControllerHelper.getPrincipal();
-            ResubmitTicketResponse serviceResponse = enrollmentWebService.resubmitEnrollment(
+            String resubmissionStatus = enrollmentWebService.resubmitEnrollment(
                     principal.getUsername(),
                     principal.getAuthenticatedBySystem().name(),
                     principal.getUser().getProxyForNPI(),
@@ -1155,8 +1154,8 @@ public class EnrollmentPageFlowController extends BaseController {
 
             ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/view");
             status.setComplete();
-            if (!"SUCCESS".equals(serviceResponse.getStatus())) {
-                if (Validity.SUPERSEDED.name().equals(serviceResponse.getStatus())) {
+            if (!"SUCCESS".equals(resubmissionStatus)) {
+                if (Validity.SUPERSEDED.name().equals(resubmissionStatus)) {
                     ControllerHelper.popup("supersededTicket");
                     return showPage(enrollment.getProgressPage(), enrollment);
                 } else {

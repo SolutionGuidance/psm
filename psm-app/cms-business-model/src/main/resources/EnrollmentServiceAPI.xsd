@@ -59,14 +59,6 @@
         </complexType>
     </element>
 
-    <element name="ResubmitTicketResponse">
-        <complexType>
-            <sequence>
-                <element name="status" maxOccurs="1" minOccurs="1" type="string" />
-            </sequence>
-        </complexType>
-    </element>
-
 	<simpleType name="UISection">
 		<restriction base="string">
 			<enumeration value="Provider Type Page"></enumeration>

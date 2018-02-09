@@ -20,7 +20,6 @@ import gov.medicaid.binders.BinderUtils;
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.GetProfileDetailsRequest;
 import gov.medicaid.domain.model.GetProfileDetailsResponse;
-import gov.medicaid.domain.model.ResubmitTicketRequest;
 import gov.medicaid.domain.model.ResubmitTicketResponse;
 import gov.medicaid.domain.model.SubmitTicketRequest;
 import gov.medicaid.domain.model.SubmitTicketResponse;
@@ -268,11 +267,15 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
 
     @Override
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED) // allow SAVE even if SUBMIT fails
-    public ResubmitTicketResponse resubmitEnrollment(ResubmitTicketRequest request) throws PortalServiceException {
-        EnrollmentType enrollment = request.getEnrollment();
-        CMSUser user = findUser(request.getUsername(), request.getSystemId(), request.getNpi());
+    public ResubmitTicketResponse resubmitEnrollment(
+            String username,
+            String systemId,
+            String npi,
+            EnrollmentType enrollment
+    ) throws PortalServiceException {
+        CMSUser user = findUser(username, systemId, npi);
 
-        long ticketId = BinderUtils.getAsLong(request.getTicketId());
+        long ticketId = BinderUtils.getAsLong(enrollment.getObjectId());
         long profileId = BinderUtils.getAsLong(enrollment.getProviderInformation().getObjectId());
         Validity validity = providerEnrollmentService.getSubmissionValidity(ticketId, profileId);
 

@@ -33,7 +33,6 @@ import gov.medicaid.domain.model.IndividualApplicantType;
 import gov.medicaid.domain.model.OperationStatusType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.RequestType;
-import gov.medicaid.domain.model.ResubmitTicketRequest;
 import gov.medicaid.domain.model.ResubmitTicketResponse;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
@@ -1146,14 +1145,13 @@ public class EnrollmentPageFlowController extends BaseController {
 
         List<FormError> errors = validate(enrollment, pageName, formNames);
         if (errors.isEmpty()) {
-            ResubmitTicketRequest serviceRequest = new ResubmitTicketRequest();
             CMSPrincipal principal = ControllerHelper.getPrincipal();
-            serviceRequest.setSystemId(principal.getAuthenticatedBySystem().name());
-            serviceRequest.setUsername(principal.getUsername());
-            serviceRequest.setNpi(principal.getUser().getProxyForNPI());
-            serviceRequest.setTicketId(enrollment.getObjectId());
-            serviceRequest.setEnrollment(enrollment);
-            ResubmitTicketResponse serviceResponse = enrollmentWebService.resubmitEnrollment(serviceRequest);
+            ResubmitTicketResponse serviceResponse = enrollmentWebService.resubmitEnrollment(
+                    principal.getUsername(),
+                    principal.getAuthenticatedBySystem().name(),
+                    principal.getUser().getProxyForNPI(),
+                    enrollment
+            );
 
             ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/view");
             status.setComplete();

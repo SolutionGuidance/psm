@@ -8,9 +8,9 @@ Scenario: Change Password Option
   When I click on My Profile
   Then I should see the Change Password link
 
-@ignore
-Scenario: Visit Change Provider Page
-  Given I am on the My Profile page
+Scenario: Visit Update Password Page
+  Given I am logged in
+  And I click on My Profile
   When I click on Change Password
   Then I should see the Update Password page
 

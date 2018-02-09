@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
-  <c:set var="title" value="Link Account"/>
+  <c:set var="title" value="Update Password"/>
   <h:handlebars template="includes/html_head" context="${pageContext}"/>
   <body>
     <div id="wrapper">
@@ -44,7 +44,7 @@
                 <div id="updateProfile" class="section">
                   <div class="wholeCol">
                     <div class="row">
-                      <label>Old Password</label>
+                      <label for="oldPassword">Old Password</label>
                       <span class="floatL">
                         <b>:</b>
                       </span>
@@ -56,7 +56,7 @@
                       <form:password path="oldPassword" cssClass="passwordNormalInput ${errorCls}"/>
                     </div>
                     <div class="row">
-                      <label>New Password</label>
+                      <label for="password">New Password</label>
                       <span class="floatL">
                         <b>:</b>
                       </span>
@@ -68,7 +68,7 @@
                       <form:password path="password" cssClass="passwordNormalInput ${errorCls}"/>
                     </div>
                     <div class="row">
-                      <label>Confirm New Password</label>
+                      <label for="confirmPassword">Confirm New Password</label>
                       <span class="floatL">
                         <b>:</b>
                       </span>

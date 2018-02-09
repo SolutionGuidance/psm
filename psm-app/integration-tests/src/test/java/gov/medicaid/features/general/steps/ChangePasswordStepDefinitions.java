@@ -24,4 +24,20 @@ public class ChangePasswordStepDefinitions {
     public void i_should_see_change_password()  {
         generalSteps.seeChangePassword();
     }
+
+    @When("^I click on Change Password$")
+    public void i_click_on_change_password() {
+        generalSteps.clickChangePassword();
+    }
+
+    @Then("^I should see the Update Password page$")
+    public void i_should_see_the_update_password_page() {
+        generalSteps.seeUpdatePassword();
+    }
+
+    @Given("^I am on the Update Password page$")
+    public void i_am_on_the_update_password_page() {
+        generalSteps.loginAsProvider();
+        generalSteps.openUpdatePasswordPage();
+    }
 }

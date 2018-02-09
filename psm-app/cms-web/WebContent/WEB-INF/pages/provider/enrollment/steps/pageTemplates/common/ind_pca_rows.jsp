@@ -24,10 +24,10 @@
     <span>
         <c:if test="${not empty requestScope['_10_addressLine1']}"><c:out value="${requestScope['_10_addressLine1']}" /><br /></c:if>
         <c:out value="${requestScope['_10_addressLine2']}" /><br />
-        <c:set var="city" value="${requestScope['_10_city']}" /><c:out value="${city}" /> 
+        <c:set var="city" value="${requestScope['_10_city']}" /><c:out value="${city}" />
         <c:set var="state" value="${requestScope['_10_state']}" /><c:if test="${not empty state}">,</c:if>${state}
-        <c:set var="zip" value="${requestScope['_10_zip']}" /><c:if test="${not empty zip}">,</c:if>${zip} 
-        <c:set var="county" value="${requestScope['_10_county']}" /><c:if test="${not empty county}">,</c:if>${county} 
+        <c:set var="zip" value="${requestScope['_10_zip']}" /><c:if test="${not empty zip}">,</c:if>${zip}
+        <c:set var="county" value="${requestScope['_10_county']}" /><c:if test="${not empty county}">,</c:if>${county}
     </span>
 </div>
 
@@ -57,5 +57,5 @@
     <span><c:choose>
         <c:when test="${requestScope['_10_adultInd'] eq 'Y'}">Yes</c:when>
         <c:when test="${requestScope['_10_adultInd'] eq 'N'}">No</c:when>
-    </c:choose></span>            
+    </c:choose></span>
 </div>

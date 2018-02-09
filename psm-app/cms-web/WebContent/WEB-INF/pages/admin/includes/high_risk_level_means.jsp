@@ -5,7 +5,7 @@
   -
   - Description: it is used to render the high risk level.
 --%>
-<!-- 
+<!--
      Commenting this alert out for now, as per
      github.com/SolutionGuidance/psm/issues/53.
      We can put it back when a) we know how to
@@ -18,7 +18,7 @@
      TODO: Also, there's code duplication
      between this snippet and a block in
      ../../provider/dashboard/list.jsp (look
-     for a comment similar to this one).  
+     for a comment similar to this one).
 -->
 <!--
 <div class="row infoRow">

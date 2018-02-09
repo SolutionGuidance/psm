@@ -5,12 +5,12 @@
 </div>
 
 <div class="section orgDisclosureRd">
-    
+
     <div class="eightytwenty">
         <div class="row">
             <h3>Has any person having an ownership or control interest ever:</h3>
         </div>
-    
+
         <div class="row">
             <label>Been convicted of a criminal offense related to that person's involvement in any program under Medicare, Medicaid, Title XX, or Title XXI in Minnesota or any other state or jurisdiction since the inception of these programs?</label>
             <span class="floatL"><b>:</b></span>
@@ -29,11 +29,11 @@
             <c:if test="${requestScope['_18_empPreviousExclusionInd'] eq 'Y'}"><span>Yes</span></c:if>
             <c:if test="${requestScope['_18_empPreviousExclusionInd'] eq 'N'}"><span>No</span></c:if>
         </div>
-        
+
         <div class="row">
             <h3>Has any managing employee or agent ever:</h3>
         </div>
-    
+
         <div class="row">
             <label>Been convicted of a criminal offense related to that person's involvement in any program under Medicare, Medicaid, Title XX, or Title XXI in Minnesota or any other state or jurisdiction since the inception of these programs?</label>
             <span class="floatL"><b>:</b></span>
@@ -54,5 +54,5 @@
         </div>
         <div class="clearFixed"></div>
     </div>
-</div>        
+</div>
 </c:if>

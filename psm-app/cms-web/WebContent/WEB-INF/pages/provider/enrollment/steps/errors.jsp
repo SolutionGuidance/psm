@@ -9,7 +9,7 @@
 <c:if test="${not empty requestScope['flash_error']}">
     <div class="errorInfo formErrorMarker" style="display: block;">
         <h3>Unable to process request because one or more values could not be recognized:</h3>
-        <p class="bindingError"><c:out value="${requestScope['flash_error']}"></c:out></p>        
+        <p class="bindingError"><c:out value="${requestScope['flash_error']}"></c:out></p>
         <div class="tl"></div>
         <div class="tr"></div>
         <div class="bl"></div>

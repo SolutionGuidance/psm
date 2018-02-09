@@ -8,7 +8,7 @@
         <col width="930"/>
     </colgroup>
     <tbody>
-    
+
     <c:set var="formName" value="_17_personOwnersSize"></c:set>
     <c:forEach begin="1" end="${requestScope[formName]}" varStatus="status">
     <tr>
@@ -44,13 +44,13 @@
                             <c:set var="formName" value="_17_iboAddressLine1_${status.index - 1}"></c:set><c:if test="${not empty requestScope[formName]}"><c:out value="${requestScope[formName]}"><br /></c:out></c:if>
                             <c:set var="formName" value="_17_iboAddressLine2_${status.index - 1}"></c:set>${requestScope[formName]}<br />
                             <c:set var="formName" value="_17_iboCity_${status.index - 1}"></c:set>
-                            <c:set var="city" value="${requestScope[formName]}"></c:set>${city} 
+                            <c:set var="city" value="${requestScope[formName]}"></c:set>${city}
                             <c:set var="formName" value="_17_iboState_${status.index - 1}"></c:set>
                             <c:set var="state" value="${requestScope[formName]}"></c:set><c:if test="${not empty state}">,</c:if>${state}
                             <c:set var="formName" value="_17_iboZip_${status.index - 1}"></c:set>
-                            <c:set var="zip" value="${requestScope[formName]}"></c:set><c:if test="${not empty zip}">,</c:if>${zip} 
+                            <c:set var="zip" value="${requestScope[formName]}"></c:set><c:if test="${not empty zip}">,</c:if>${zip}
                             <c:set var="formName" value="_17_iboCounty_${status.index - 1}"></c:set>
-                            <c:set var="county" value="${requestScope[formName]}"></c:set><c:if test="${not empty county}">,</c:if>${county} 
+                            <c:set var="county" value="${requestScope[formName]}"></c:set><c:if test="${not empty county}">,</c:if>${county}
                         </span>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
         </td>
     </tr>
     </c:forEach>
-    
+
     <c:set var="formName" value="_17_corpOwnersSize"></c:set>
     <c:forEach begin="1" end="${requestScope[formName]}" varStatus="status">
     <tr class="last">
@@ -113,13 +113,13 @@
                             <c:set var="formName" value="_17_cboAddressLine1_${status.index - 1}"></c:set><c:if test="${not empty requestScope[formName]}"><c:out value="${requestScope[formName]}"><br /></c:out></c:if>
                             <c:set var="formName" value="_17_cboAddressLine2_${status.index - 1}"></c:set>${requestScope[formName]}<br />
                             <c:set var="formName" value="_17_cboCity_${status.index - 1}"></c:set>
-                            <c:set var="city" value="${requestScope[formName]}"></c:set>${city} 
+                            <c:set var="city" value="${requestScope[formName]}"></c:set>${city}
                             <c:set var="formName" value="_17_cboState_${status.index - 1}"></c:set>
                             <c:set var="state" value="${requestScope[formName]}"></c:set><c:if test="${not empty state}">,</c:if>${state}
                             <c:set var="formName" value="_17_cboZip_${status.index - 1}"></c:set>
-                            <c:set var="zip" value="${requestScope[formName]}"></c:set><c:if test="${not empty zip}">,</c:if>${zip} 
+                            <c:set var="zip" value="${requestScope[formName]}"></c:set><c:if test="${not empty zip}">,</c:if>${zip}
                             <c:set var="formName" value="_17_cboCounty_${status.index - 1}"></c:set>
-                            <c:set var="county" value="${requestScope[formName]}"></c:set><c:if test="${not empty county}">,</c:if>${county} 
+                            <c:set var="county" value="${requestScope[formName]}"></c:set><c:if test="${not empty county}">,</c:if>${county}
                         </span>
                     </div>
                 </div>

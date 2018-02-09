@@ -85,7 +85,7 @@
                 </span>
             </div>
         </div>
-        
+
         <div class="leftCol">
             <div class="row requireField">
                 <label>BGS ID NUMBER<span class="required">*</span></label>

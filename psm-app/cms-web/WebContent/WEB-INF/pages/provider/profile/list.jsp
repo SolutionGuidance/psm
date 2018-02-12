@@ -85,7 +85,7 @@
                   <ul>
                     <li>
                       <p>
-                        <a href="<c:url value="/provider/dashboard/setup" />">Account Setup</a>
+                        <a class="accountSetupLink" href="<c:url value="/provider/dashboard/setup" />">Account Setup</a>
                         <br/>
                         Create new or import existing profiles
                       </p>

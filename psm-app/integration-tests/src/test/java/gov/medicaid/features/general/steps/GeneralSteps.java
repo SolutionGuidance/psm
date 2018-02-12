@@ -63,4 +63,10 @@ public class GeneralSteps {
     public void openUpdatePasswordPage() {
         updatePasswordPage.open();
     }
+
+    @Step
+    public void navigateToAccountSetupPage() {
+        clickMyProfile();
+        profilePage.click$(".accountSetupLink");
+    }
 }

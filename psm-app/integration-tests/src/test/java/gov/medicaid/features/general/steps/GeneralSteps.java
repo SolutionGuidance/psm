@@ -3,6 +3,7 @@ package gov.medicaid.features.general.steps;
 import gov.medicaid.features.general.ui.AccountSetupPage;
 import gov.medicaid.features.general.ui.DashboardDraftPage;
 import gov.medicaid.features.general.ui.DashboardPage;
+import gov.medicaid.features.general.ui.DashboardPendingPage;
 import gov.medicaid.features.general.ui.ForgotPasswordPage;
 import gov.medicaid.features.general.ui.LoginPage;
 import gov.medicaid.features.general.ui.MyProfilePage;
@@ -18,6 +19,7 @@ public class GeneralSteps {
     private ForgotPasswordPage forgotPasswordPage;
     private DashboardPage dashboardPage;
     private DashboardDraftPage dashboardDraftPage;
+    private DashboardPendingPage dashboardPendingPage;
     private MyProfilePage profilePage;
     private AccountSetupPage accountSetupPage;
     private UpdatePasswordPage updatePasswordPage;
@@ -53,6 +55,16 @@ public class GeneralSteps {
     @Step
     public void clickDashboardDraftPageFilterButton() {
         dashboardDraftPage.clickFilterButton();
+    }
+
+    @Step
+    public void openDashboardPendingPage() {
+        dashboardPendingPage.open();
+    }
+
+    @Step
+    public void clickDashboardPendingPageFilterButton() {
+        dashboardPendingPage.clickFilterButton();
     }
 
     @Step

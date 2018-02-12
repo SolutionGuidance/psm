@@ -1,5 +1,6 @@
 package gov.medicaid.features.general.steps;
 
+import gov.medicaid.features.general.ui.AccountSetupPage;
 import gov.medicaid.features.general.ui.DashboardPage;
 import gov.medicaid.features.general.ui.ForgotPasswordPage;
 import gov.medicaid.features.general.ui.LoginPage;
@@ -16,6 +17,7 @@ public class GeneralSteps {
     private ForgotPasswordPage forgotPasswordPage;
     private DashboardPage dashboardPage;
     private MyProfilePage profilePage;
+    private AccountSetupPage accountSetupPage;
     private UpdatePasswordPage updatePasswordPage;
 
     @Step
@@ -64,5 +66,10 @@ public class GeneralSteps {
     @Step
     public void openUpdatePasswordPage() {
         updatePasswordPage.open();
+    }
+
+    @Step
+    public void openAccountSetupPage() {
+        accountSetupPage.open();
     }
 }

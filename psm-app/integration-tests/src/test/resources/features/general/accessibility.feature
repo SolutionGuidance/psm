@@ -27,3 +27,7 @@ Feature: Accessibility Checks
   Scenario: Update Password Page
     Given I am on the Update Password page
     Then I should have no accessibility issues
+
+  Scenario: Account Setup Page
+    Given I am on the Account Setup page
+    Then I should have no accessibility issues

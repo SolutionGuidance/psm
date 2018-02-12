@@ -10,14 +10,17 @@ public class ChangePasswordStepDefinitions {
     @Steps
     GeneralSteps generalSteps;
 
+    @Steps
+    DashboardSteps dashboardSteps;
+
     @Given("^I am on the dashboard page$")
     public void check_dashboard_page() {
-        generalSteps.checkOnDashboard();
+        dashboardSteps.checkOnDashboard();
     }
 
     @When("^I click on My Profile$")
     public void i_click_on_my_profile()  {
-        generalSteps.clickMyProfile();
+        dashboardSteps.clickMyProfile();
     }
 
     @Then("^I should see the Change Password link$")

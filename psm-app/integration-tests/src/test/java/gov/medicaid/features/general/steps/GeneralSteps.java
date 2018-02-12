@@ -1,11 +1,6 @@
 package gov.medicaid.features.general.steps;
 
 import gov.medicaid.features.general.ui.AccountSetupPage;
-import gov.medicaid.features.general.ui.DashboardApprovedPage;
-import gov.medicaid.features.general.ui.DashboardDeniedPage;
-import gov.medicaid.features.general.ui.DashboardDraftPage;
-import gov.medicaid.features.general.ui.DashboardPage;
-import gov.medicaid.features.general.ui.DashboardPendingPage;
 import gov.medicaid.features.general.ui.ForgotPasswordPage;
 import gov.medicaid.features.general.ui.LoginPage;
 import gov.medicaid.features.general.ui.MyProfilePage;
@@ -19,11 +14,6 @@ public class GeneralSteps {
     private LoginPage loginPage;
     private RegisterNewAccountPage registerNewAccountPage;
     private ForgotPasswordPage forgotPasswordPage;
-    private DashboardPage dashboardPage;
-    private DashboardDraftPage dashboardDraftPage;
-    private DashboardPendingPage dashboardPendingPage;
-    private DashboardApprovedPage dashboardApprovedPage;
-    private DashboardDeniedPage dashboardDeniedPage;
     private MyProfilePage profilePage;
     private AccountSetupPage accountSetupPage;
     private UpdatePasswordPage updatePasswordPage;
@@ -44,56 +34,6 @@ public class GeneralSteps {
         loginPage.enterProviderCredentials();
         loginPage.login();
         loginPage.checkUserLoggedIn("p1");
-    }
-
-    @Step
-    public void checkOnDashboard() {
-        dashboardPage.checkOnDashboard();
-    }
-
-    @Step
-    public void openDashboardDraftPage() {
-        dashboardDraftPage.open();
-    }
-
-    @Step
-    public void clickDashboardDraftPageFilterButton() {
-        dashboardDraftPage.clickFilterButton();
-    }
-
-    @Step
-    public void openDashboardPendingPage() {
-        dashboardPendingPage.open();
-    }
-
-    @Step
-    public void clickDashboardPendingPageFilterButton() {
-        dashboardPendingPage.clickFilterButton();
-    }
-
-    @Step
-    public void openDashboardApprovedPage() {
-        dashboardApprovedPage.open();
-    }
-
-    @Step
-    public void clickDashboardApprovedPageFilterButton() {
-        dashboardApprovedPage.clickFilterButton();
-    }
-
-    @Step
-    public void openDashboardDeniedPage() {
-        dashboardDeniedPage.open();
-    }
-
-    @Step
-    public void clickDashboardDeniedPageFilterButton() {
-        dashboardDeniedPage.clickFilterButton();
-    }
-
-    @Step
-    public void clickMyProfile()  {
-        dashboardPage.clickMyProfile();
     }
 
     @Step

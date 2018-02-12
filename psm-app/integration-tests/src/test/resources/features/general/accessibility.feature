@@ -19,6 +19,11 @@ Feature: Accessibility Checks
     And I am on the dashboard page
     Then I should have no accessibility issues
 
+  Scenario: Dashboard Draft Page
+    Given I am on the Dashboard Draft page
+    When I open the filter panel on the Dashboard Draft page
+    Then I should have no accessibility issues
+
   Scenario: My Profile Page
     Given I am logged in
     When I click on My Profile

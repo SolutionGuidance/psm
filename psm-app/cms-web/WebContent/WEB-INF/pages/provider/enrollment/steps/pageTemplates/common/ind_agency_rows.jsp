@@ -41,14 +41,14 @@
     <span><c:choose>
         <c:when test="${requestScope['_11_continuousEmployment'] eq 'Y'}">Yes</c:when>
         <c:when test="${requestScope['_11_continuousEmployment'] eq 'N'}">No</c:when>
-    </c:choose></span>            
+    </c:choose></span>
 </div>
 <div class="row">
-    <label> You have the option to affiliate/enroll the individual PCA  with other agencies you own without completing another 
+    <label> You have the option to affiliate/enroll the individual PCA  with other agencies you own without completing another
             application and agreement. Do you want to affiliate this individual PCA with any other agency(ies) you own?</label>
     <span class="floatL"><b>&nbsp;</b></span>
     <span><c:choose>
         <c:when test="${requestScope['_11_additionalAgency'] eq 'Y'}">Yes</c:when>
         <c:when test="${requestScope['_11_additionalAgency'] eq 'N'}">No</c:when>
-    </c:choose></span>            
+    </c:choose></span>
 </div>

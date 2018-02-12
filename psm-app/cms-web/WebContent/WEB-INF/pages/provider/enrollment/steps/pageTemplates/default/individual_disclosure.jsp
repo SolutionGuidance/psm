@@ -162,7 +162,7 @@
                     value="${formValue}"
                     maxlength="45"/>
             </div>
-            
+
             <c:set var="formName"
                 value="_08_renewalBlankInit"></c:set>
             <c:set var="formValue"
@@ -171,7 +171,7 @@
                 type="hidden"
                 name="${formName}"
                 value="${formValue}" />
-            
+
             <c:set var="formName"
                 value="_08_requiredAgreementsSize"></c:set>
             <c:forEach

@@ -8,10 +8,10 @@
     <div class="bottomPanel">
         <div class="row">
             <p>
-                I certify that the information provided on this form is accurate, complete and truthful. 
-                I will notify MHCP Provider Enrollment of any changes to this information. I acknowledge 
-                that any misrepresentations in the information submitted to MHCP, including false claims, 
-                statements, documents, or concealment of a material fact, may be cause for denial or termination 
+                I certify that the information provided on this form is accurate, complete and truthful.
+                I will notify MHCP Provider Enrollment of any changes to this information. I acknowledge
+                that any misrepresentations in the information submitted to MHCP, including false claims,
+                statements, documents, or concealment of a material fact, may be cause for denial or termination
                 of participation as a Medicaid provider.
             </p>
         </div>

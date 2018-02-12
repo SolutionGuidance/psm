@@ -30,9 +30,9 @@
         <c:if test="${not viewModel.individual}">
             <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/view_organization_disclosure.jsp" %>
         </c:if>
-    
+
     </c:when>
     <c:otherwise>
         <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/view_default.jsp" %>
     </c:otherwise>
-</c:choose>                    
+</c:choose>

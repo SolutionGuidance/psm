@@ -22,7 +22,7 @@
         <div class="clear"></div>
     </div>
     </c:if>
-    
+
     <c:if test="${requestScope['_10_bound'] eq 'Y'}">
     <div class="tabSection">
         <div class="tabHead" style="width: 888px;">
@@ -36,7 +36,7 @@
         <div class="tabContent">
             <div class="tableContainer">
                 <div class="bottomPanel">
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/ind_pca_rows.jsp" %>                    
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/ind_pca_rows.jsp" %>
                 </div>
             </div>
             <!-- /.tableContainer -->
@@ -46,7 +46,7 @@
     </div>
     </c:if>
     <!-- /#tabSection -->
-        
+
     <c:if test="${requestScope['_08_bound'] eq 'Y'}">
     <div class="tabSection">
         <div class="tabHead" style="width: 888px;">
@@ -89,11 +89,11 @@
         </div>
         <!-- /#tabSection -->
         <div class="clear"></div>
-        
+
     </div>
     </c:if>
     <!-- /#tabSection -->
-    
+
     <c:if test="${requestScope['_03_bound'] eq 'Y'}">
         <div class="tabSection">
         <div class="tabHead" style="width: 888px;">
@@ -116,7 +116,7 @@
     </div>
     </c:if>
     <!-- /#tabSection -->
-    
+
     <c:if test="${requestScope['_09_bound'] eq 'Y'}">
         <div class="tabSection">
         <div class="tabHead" style="width: 888px;">
@@ -138,7 +138,7 @@
     </div>
     </c:if>
     <!-- /#tabSection -->
-        
+
     <c:if test="${requestScope['_04_bound'] eq 'Y' or requestScope['_05_bound'] eq 'Y' or requestScope['_06_bound'] eq 'Y'}">
         <div class="tabSection">
         <div class="tabHead" style="width: 888px;">
@@ -174,9 +174,9 @@
         <!-- /#tabSection -->
         <div class="clear"></div>
     </div>
-    </c:if>    
+    </c:if>
     <!-- /#tabSection -->
-    
+
     <c:if test="${requestScope['_07_bound'] eq 'Y'}">
     <div class="tabSection tabContentP">
         <div class="tabHead" style="width: 888px;">
@@ -190,18 +190,18 @@
         <div class="tabContent">
             <div class="tableContainer">
                 <div class="topPanel">
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/additional_practice.jsp" %>                    
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/additional_practice.jsp" %>
                 </div>
             </div>
             <!-- /.tableContainer -->
         </div>
         <!-- /#tabSection -->
         <div class="clear"></div>
-        
+
     </div>
     <!-- /#tabSection -->
     </c:if>
-    
+
     <c:if test="${requestScope['_02_bound'] eq 'Y'}">
     <div class="tabSection">
         <div class="tabHead" style="width: 888px;">
@@ -217,14 +217,14 @@
                 <div class="topPanel">
 	                <div class="leftCol">
                         <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/contact_info.jsp" %>
-                    </div>                
+                    </div>
                 </div>
             </div>
             <!-- /.tableContainer -->
         </div>
         <!-- /#tabSection -->
         <div class="clear"></div>
-        
+
     </div>
     <!-- /#tabSection -->
     </c:if>
@@ -242,7 +242,7 @@
         <div class="tabContent">
             <div class="tableContainer">
                 <div class="bottomPanel">
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/ind_agency_rows.jsp" %>                    
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/ind_agency_rows.jsp" %>
                 </div>
             </div>
             <!-- /.tableContainer -->
@@ -252,7 +252,7 @@
     </div>
     </c:if>
     <!-- /#tabSection -->
-    
+
     <c:if test="${requestScope['_12_bound'] eq 'Y'}">
     <div class="tabSection tabContentP">
         <div class="tabHead" style="width: 888px;">
@@ -266,7 +266,7 @@
         <div class="tabContent">
             <div class="tableContainer">
                 <div class="topPanel">
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/additional_agency.jsp" %>                    
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/additional_agency.jsp" %>
                 </div>
             </div>
             <!-- /.tableContainer -->
@@ -276,8 +276,8 @@
     </div>
     </c:if>
     <!-- /#tabSection -->
-    
-    
+
+
     <c:if test="${requestScope['_08_bound'] eq 'Y'}">
     <div class="tabSection">
         <div class="tabHead" style="width: 888px;">
@@ -316,7 +316,7 @@
         </div>
         <!-- /#tabSection -->
         <div class="clear"></div>
-        
+
     </div>
     </c:if>
 
@@ -333,8 +333,8 @@
         <div class="tabContent">
             <div class="tableContainer">
                 <div class="topPanel">
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/organization_information.jsp" %>                    
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/pca_billing.jsp" %>                    
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/organization_information.jsp" %>
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/pca_billing.jsp" %>
                 </div>
             </div>
             <!-- /.tableContainer -->
@@ -344,7 +344,7 @@
     </div>
     </c:if>
     <!-- /#tabSection -->
-    
+
     <c:if test="${requestScope['_21_bound'] eq 'Y' or requestScope['_30_bound'] eq 'Y' or requestScope['_34_bound'] eq 'Y'}">
     <div class="tabSection">
         <div class="tabHead" style="width: 888px;">
@@ -358,13 +358,13 @@
         <div class="tabContent">
             <div class="tableContainer">
                 <div class="topPanel">
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/ctcc_credentials.jsp" %>                    
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/facility_license.jsp" %>                    
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/clia_license.jsp" %>                    
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/phn_agency.jsp" %>                    
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/facility_capacity.jsp" %>                    
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/facility_contracts.jsp" %>                    
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/facility_eligibility.jsp" %>                    
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/ctcc_credentials.jsp" %>
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/facility_license.jsp" %>
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/clia_license.jsp" %>
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/phn_agency.jsp" %>
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/facility_capacity.jsp" %>
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/facility_contracts.jsp" %>
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/facility_eligibility.jsp" %>
                 </div>
             </div>
             <!-- /.tableContainer -->
@@ -388,7 +388,7 @@
         <div class="tabContent">
             <div class="tableContainer">
                 <div class="topPanel">
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/qualified_professional.jsp" %>                    
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/qualified_professional.jsp" %>
                 </div>
             </div>
             <!-- /.tableContainer -->
@@ -399,7 +399,7 @@
     </c:if>
     <!-- /#tabSection -->
 
-    
+
     <c:if test="${requestScope['_16_bound'] eq 'Y'}">
     <div class="tabSection">
         <div class="tabHead" style="width: 888px;">
@@ -413,7 +413,7 @@
         <div class="tabContent">
             <div class="tableContainer">
                 <div class="topPanel">
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/member_information.jsp" %>                    
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/member_information.jsp" %>
                 </div>
             </div>
             <!-- /.tableContainer -->
@@ -423,7 +423,7 @@
     </div>
     </c:if>
     <!-- /#tabSection -->
-    
+
     <c:if test="${requestScope['_17_bound'] eq 'Y'}">
     <div class="tabSection">
         <div class="tabHead" style="width: 888px;">
@@ -437,7 +437,7 @@
         <div class="tabContent">
             <div class="tableContainer">
                 <div class="topPanel">
-                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/ownership_information.jsp" %>                    
+                    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/ownership_information.jsp" %>
                 </div>
             </div>
             <!-- /.tableContainer -->
@@ -447,6 +447,6 @@
     </div>
     </c:if>
     <!-- /#tabSection -->
-    
+
     <div class="clear"></div>
-</div>    
+</div>

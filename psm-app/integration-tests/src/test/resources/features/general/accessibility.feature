@@ -6,6 +6,10 @@ Feature: Accessibility Checks
     Given I have the application open in my browser
     Then I should have no accessibility issues
 
+  Scenario: Forgot Password Page
+    Given I am on the Forgot Password page
+    Then I should have no accessibility issues
+
   Scenario: Dashboard Page
     Given I am logged in
     And I am on the dashboard page

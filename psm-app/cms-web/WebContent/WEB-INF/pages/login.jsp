@@ -55,7 +55,7 @@
                 <label class="label">&nbsp;</label>
                 <input id="remember" type="checkbox" name="keepUserSignedIn"/>
                 <label for="remember">Remember Me</label>
-                <a href="<c:url value="/forgotpassword" />">Forgot Password?</a>
+                <a class="forgotPasswordLink" href="<c:url value="/forgotpassword" />">Forgot Password?</a>
               </div>
               <div class="buttons">
                 <button id="btnLogin" class="purpleBtn" type="submit">Login</button>

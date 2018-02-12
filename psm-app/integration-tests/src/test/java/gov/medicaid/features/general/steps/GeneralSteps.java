@@ -9,10 +9,16 @@ import net.thucydides.core.annotations.Step;
 @SuppressWarnings("unused")
 public class GeneralSteps {
 
-    private DashboardPage dashboardPage;
     private LoginPage loginPage;
+    private DashboardPage dashboardPage;
     private MyProfilePage profilePage;
     private UpdatePasswordPage updatePasswordPage;
+
+    @Step
+    public void navigateToForgotPasswordPage() {
+        loginPage.open();
+        loginPage.click$(".forgotPasswordLink");
+    }
 
     @Step
     public void loginAsProvider() {

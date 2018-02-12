@@ -41,4 +41,15 @@ public class DashboardStepDefinitions {
     public void i_open_the_filter_panel_on_the_dashboard_approved_page() {
         generalSteps.clickDashboardApprovedPageFilterButton();
     }
+
+    @Given("^I am on the Dashboard Denied page$")
+    public void i_am_on_the_dashboard_denied_page() {
+        generalSteps.loginAsProvider();
+        generalSteps.openDashboardDeniedPage();
+    }
+
+    @When("^I open the filter panel on the Dashboard Denied page")
+    public void i_open_the_filter_panel_on_the_dashboard_denied_page() {
+        generalSteps.clickDashboardDeniedPageFilterButton();
+    }
 }

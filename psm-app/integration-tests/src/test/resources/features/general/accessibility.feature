@@ -34,6 +34,11 @@ Feature: Accessibility Checks
     When I open the filter panel on the Dashboard Approved page
     Then I should have no accessibility issues
 
+  Scenario: Dashboard Denied Page
+    Given I am on the Dashboard Denied page
+    When I open the filter panel on the Dashboard Denied page
+    Then I should have no accessibility issues
+
   Scenario: My Profile Page
     Given I am logged in
     When I click on My Profile

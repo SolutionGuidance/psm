@@ -97,4 +97,9 @@ public class GeneralSteps {
         clickMyProfile();
         profilePage.click$(".accountSetupLink");
     }
+
+    @Step
+    public void navigateToAdvancedSearchPage() {
+        dashboardPage.click$(".advancedSearchLink");
+    }
 }

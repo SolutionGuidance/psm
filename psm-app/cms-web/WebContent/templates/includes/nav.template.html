@@ -34,7 +34,7 @@
 
       {{#if systemPage}}
         <div class="searchWidget">
-          <a href="{{ctx}}/system/advanced-search-system-admin">Advanced Search</a>
+          <a class="advancedSearchLink" href="{{ctx}}/system/advanced-search-system-admin">Advanced Search</a>
           <form id="searchBoxForm" class="inputContainer" action="{{ctx}}/system/user/search?role=Provider"  method="post">
             <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}"/>
             <button class="search searchBox" title="Search" aria-label="Search" type="submit"></button>
@@ -51,7 +51,7 @@
         </div>
       {{else}}
         <div class="searchWidget">
-          <a href="{{ctx}}/provider/search/advanced">Advanced Search</a>
+          <a class="advancedSearchLink" href="{{ctx}}/provider/search/advanced">Advanced Search</a>
           <div class="inputContainer">
             <button id="enrollmentQuickSearch" class="search" title="Search" aria-label="Search"></button>
             <input id="quickSearchInput" type="text" class="hint" value="{{#if param.npi }} {{param.npi}} {{else}} Search Keyword {{/if}}" title="Search Keyword" />

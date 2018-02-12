@@ -51,3 +51,7 @@ Feature: Accessibility Checks
   Scenario: Account Setup Page
     Given I am on the Account Setup page
     Then I should have no accessibility issues
+
+  Scenario: Advanced Search Page
+    Given I am on the Advanced Search page
+    Then I should have no accessibility issues

@@ -988,7 +988,6 @@ CREATE TABLE entities(
   legacy_indicator CHARACTER VARYING(1),
   legacy_id TEXT,
   npi TEXT,
-  npi_verified CHARACTER VARYING(1),
   npi_lookup_verified CHARACTER VARYING(1),
   nonexclusion_verified CHARACTER VARYING(1),
   provider_type_code CHARACTER VARYING(2)

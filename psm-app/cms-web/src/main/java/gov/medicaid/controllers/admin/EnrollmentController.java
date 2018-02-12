@@ -786,10 +786,6 @@ public class EnrollmentController extends BaseController {
             status.setSAMNonExclusion("Y");
         }
 
-        if ("Y".equals(dto.getNpiVerified())) {
-            status.setNPI("Y");
-        }
-
         if ("Y".equals(dto.getNpiLookupVerified())) {
             status.setNPILookup("Y");
         }

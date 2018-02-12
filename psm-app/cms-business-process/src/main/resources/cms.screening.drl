@@ -406,27 +406,6 @@ dialect 'mvel'
 
 end
 
-rule 'NPI Must Be Verified'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-activation-group "check-npi-only-once"
-    when
-        ProviderInformationType(NPI != null)
-        VerificationStatusType(NPI != "Y")
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/NPI",
-            "00002",
-            "NPI Must Be Verified."
-        );
-end
-
 rule 'Registered Nurse Certificate Is Required'
 dialect 'mvel'
 /*

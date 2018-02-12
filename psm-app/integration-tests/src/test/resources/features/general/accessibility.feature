@@ -6,6 +6,10 @@ Feature: Accessibility Checks
     Given I have the application open in my browser
     Then I should have no accessibility issues
 
+  Scenario: Register New Account Page
+    Given I am on the Register New Account page
+    Then I should have no accessibility issues
+
   Scenario: Forgot Password Page
     Given I am on the Forgot Password page
     Then I should have no accessibility issues

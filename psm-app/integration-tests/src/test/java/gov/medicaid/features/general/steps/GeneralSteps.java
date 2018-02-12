@@ -4,6 +4,7 @@ import gov.medicaid.features.general.ui.DashboardPage;
 import gov.medicaid.features.general.ui.ForgotPasswordPage;
 import gov.medicaid.features.general.ui.LoginPage;
 import gov.medicaid.features.general.ui.MyProfilePage;
+import gov.medicaid.features.general.ui.RegisterNewAccountPage;
 import gov.medicaid.features.general.ui.UpdatePasswordPage;
 import net.thucydides.core.annotations.Step;
 
@@ -11,10 +12,16 @@ import net.thucydides.core.annotations.Step;
 public class GeneralSteps {
 
     private LoginPage loginPage;
+    private RegisterNewAccountPage registerNewAccountPage;
     private ForgotPasswordPage forgotPasswordPage;
     private DashboardPage dashboardPage;
     private MyProfilePage profilePage;
     private UpdatePasswordPage updatePasswordPage;
+
+    @Step
+    public void openRegisterNewAccountPage() {
+        registerNewAccountPage.open();
+    }
 
     @Step
     public void openForgotPasswordPage() {

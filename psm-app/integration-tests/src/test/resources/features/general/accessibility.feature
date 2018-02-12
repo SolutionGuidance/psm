@@ -29,6 +29,11 @@ Feature: Accessibility Checks
     When I open the filter panel on the Dashboard Pending page
     Then I should have no accessibility issues
 
+  Scenario: Dashboard Approved Page
+    Given I am on the Dashboard Approved page
+    When I open the filter panel on the Dashboard Approved page
+    Then I should have no accessibility issues
+
   Scenario: My Profile Page
     Given I am logged in
     When I click on My Profile

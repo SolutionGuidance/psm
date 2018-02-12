@@ -30,4 +30,15 @@ public class DashboardStepDefinitions {
     public void i_open_the_filter_panel_on_the_dashboard_pending_page() {
         generalSteps.clickDashboardPendingPageFilterButton();
     }
+
+    @Given("^I am on the Dashboard Approved page$")
+    public void i_am_on_the_dashboard_approved_page() {
+        generalSteps.loginAsProvider();
+        generalSteps.openDashboardApprovedPage();
+    }
+
+    @When("^I open the filter panel on the Dashboard Approved page")
+    public void i_open_the_filter_panel_on_the_dashboard_approved_page() {
+        generalSteps.clickDashboardApprovedPageFilterButton();
+    }
 }

@@ -37,15 +37,15 @@
               </c:if>
 
               <div class="row">
-                <label for="username" class="label">Username:</label>
+                <label for="username" class="label">Username</label>
                 <input id="username" name="username" type="text" class="text" value="${LAST_USERNAME}" maxlength="50"/>
               </div>
               <div class="row">
-                <label for="password" class="label">Password:</label>
+                <label for="password" class="label">Password</label>
                 <input id="password" type="password" name="password" />
               </div>
               <div class="row">
-                <label for="domain" class="label">Domain:</label>
+                <label for="domain" class="label">Domain</label>
                 <select id="domain" name="domain" onchange="disableElement('remember', this.value != 'CMS_ONLINE')">
                   <option value="CMS_ONLINE" selected="selected">Online Portal</option>
                   <option value="MN_ITS">MN-ITS</option>

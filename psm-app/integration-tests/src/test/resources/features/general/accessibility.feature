@@ -16,7 +16,7 @@ Feature: Accessibility Checks
 
   Scenario: Dashboard Page
     Given I am logged in
-    And I am on the dashboard page
+    When I open the filter panel on the Dashboard page
     Then I should have no accessibility issues
 
   Scenario: Dashboard Draft Page

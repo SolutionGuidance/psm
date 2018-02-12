@@ -22,7 +22,12 @@ public class DashboardSteps {
     }
 
     @Step
-    public void clickMyProfile()  {
+    public void clickDashboardPageFilterButton() {
+        dashboardPage.clickFilterButton();
+    }
+
+    @Step
+    public void clickMyProfile() {
         dashboardPage.clickMyProfile();
     }
 

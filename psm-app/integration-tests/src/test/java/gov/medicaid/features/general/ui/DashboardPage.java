@@ -26,6 +26,10 @@ public class DashboardPage extends PsmPage {
         click($("#my_profile_tab"));
     }
 
+    public void clickFilterButton() {
+        click($(".filterBtn"));
+    }
+
     public void checkOnDashboard() {
         assertThat(getTitle()).isEqualTo("Dashboard");
     }

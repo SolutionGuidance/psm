@@ -40,6 +40,34 @@ public class GeneralSteps {
     }
 
     @Step
+    public void navigateToDashboardDraftPage() {
+        dashboardPage.click$(".enrollmentsLink");
+    }
+
+    @Step
+    public void navigateToDashboardPendingPage() {
+        navigateToDashboardDraftPage();
+        dashboardPage.click$(".pendingTab");
+    }
+
+    @Step
+    public void navigateToDashboardApprovedPage() {
+        navigateToDashboardDraftPage();
+        dashboardPage.click$(".approvedTab");
+    }
+
+    @Step
+    public void navigateToDashboardDeniedPage() {
+        navigateToDashboardDraftPage();
+        dashboardPage.click$(".deniedTab");
+    }
+
+    @Step
+    public void openFilterPanel() {
+        dashboardPage.click$(".filterBtn");
+    }
+
+    @Step
     public void clickMyProfile()  {
         dashboardPage.clickMyProfile();
     }

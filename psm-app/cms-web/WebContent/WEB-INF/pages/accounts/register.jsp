@@ -72,7 +72,7 @@
                       <spring:bind path="firstName">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
                       </spring:bind>
-                      <form:input id="registerFirstname" path="firstName" cssClass="normalInput ${errorCls}"/>
+                      <form:input id="registerFirstName" path="firstName" cssClass="normalInput ${errorCls}"/>
                     </div>
                     <div class="row">
                       <label for="registerMiddleName">Middle Name</label>

@@ -15,6 +15,12 @@ public class GeneralSteps {
     private UpdatePasswordPage updatePasswordPage;
 
     @Step
+    public void navigateToRegisterNewAccountPage() {
+        loginPage.open();
+        loginPage.click$(".registerNewAccountLink");
+    }
+
+    @Step
     public void navigateToForgotPasswordPage() {
         loginPage.open();
         loginPage.click$(".forgotPasswordLink");

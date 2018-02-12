@@ -129,7 +129,7 @@
                   </div>
                   <div class="buttons">
                     <button id="btnLogin" class="purpleBtn" type="submit">Login</button>
-                    <a href="<c:url value="/accounts/new" />" class="">Register New Account</a>
+                    <a class="registerNewAccountLink" href="<c:url value="/accounts/new" />">Register New Account</a>
                   </div>
 
                   <div class="tl"></div>

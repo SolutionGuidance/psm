@@ -1,6 +1,7 @@
 package gov.medicaid.features.general.steps;
 
 import gov.medicaid.features.general.ui.DashboardPage;
+import gov.medicaid.features.general.ui.ForgotPasswordPage;
 import gov.medicaid.features.general.ui.LoginPage;
 import gov.medicaid.features.general.ui.MyProfilePage;
 import gov.medicaid.features.general.ui.UpdatePasswordPage;
@@ -9,10 +10,16 @@ import net.thucydides.core.annotations.Step;
 @SuppressWarnings("unused")
 public class GeneralSteps {
 
-    private DashboardPage dashboardPage;
     private LoginPage loginPage;
+    private ForgotPasswordPage forgotPasswordPage;
+    private DashboardPage dashboardPage;
     private MyProfilePage profilePage;
     private UpdatePasswordPage updatePasswordPage;
+
+    @Step
+    public void openForgotPasswordPage() {
+        forgotPasswordPage.open();
+    }
 
     @Step
     public void loginAsProvider() {

@@ -1,10 +1,5 @@
 <%--
- Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
-
- @author TCSASSEMBLER
- @version 1.0
-
- The filter panel jsp page.
+  The filter panel for the system admin login > User Accounts pages (Providers, Service Agents, etc.).
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 <c:set var="cssClz" value="filterPanel show" />
@@ -16,24 +11,20 @@
         <div class="leftCol">
             <div class="row">
                 <label for="filterPanelUsername">Username</label>
-                <span class="floatL"><b>:</b></span>
                 <form:input id="filterPanelUsername" cssClass="normalInput" path="username" />
             </div>
             <div class="row">
                 <label for="filterPanelEmail">Email</label>
-                <span class="floatL"><b>:</b></span>
                 <form:input id="filterPanelEmail" cssClass="normalInput" path="email"/>
             </div>
         </div>
         <div class="rightCol">
             <div class="row">
                 <label for="filterPanelLastName">Last Name</label>
-                <span class="floatL"><b>:</b></span>
                 <form:input id="filterPanelLastName" cssClass="normalInput" path="lastName" />
             </div>
             <div class="row">
                 <label for="filterPanelFirstName">First Name</label>
-                <span class="floatL"><b>:</b></span>
                 <form:input id="filterPanelFirstName" cssClass="normalInput" path="firstName" />
             </div>
         </div>

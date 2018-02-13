@@ -1,9 +1,5 @@
 <%--
-  - Author: TCSASSEMBLER
-  - Version: 1.0
-  - Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
-  -
-  - Description: it is used to render the enrollment search filter panel section.
+  The filter panel for: admin user login > Enrollments > Draft (Pending, Approved, Denied, etc.) pages.
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
 <div id="enrollmentFilterPanel" <c:choose><c:when test="${searchCriteria.showFilterPanel}">style="display: block"</c:when><c:otherwise>style="display: none"</c:otherwise></c:choose> class="filterPanel">
@@ -11,12 +7,10 @@
         <div class="leftCol">
             <div class="row">
                 <label for="enrollmentSearchFilterNpiInput">NPI/UMPI</label>
-                <span class="floatL"><b>:</b></span>
                 <input id="enrollmentSearchFilterNpiInput" type="text" class="normalInput" value="${searchCriteria.npi}"/>
             </div>
             <div class="row">
                 <label>Date Submitted</label>
-                <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
                     <input id="submissionDateStartInput" title="Submission Date Start" value='<fmt:formatDate value="${searchCriteria.submissionDateStart}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
                 </span>
@@ -27,7 +21,6 @@
             </div>
             <div class="row">
                 <label for="enrollmentSearchFilterProviderTypeInput">Provider Type</label>
-                <span class="floatL"><b>:</b></span>
                 <select id="enrollmentSearchFilterProviderTypeInput" class="longSelect">
                     <option value="">All</option>
                     <c:forEach var="item" items="${providerTypesLookup}">
@@ -39,12 +32,10 @@
         <div class="rightCol">
             <div class="row">
                 <label for="enrollmentSearchFilterProviderNameInput">Provider Name</label>
-                <span class="floatL"><b>:</b></span>
                 <input id="enrollmentSearchFilterProviderNameInput" value="${searchCriteria.providerName}" type="text" class="normalInput"/>
             </div>
             <div class="row">
                 <label for="enrollmentSearchFilterRequestTypeInput">Request Type</label>
-                <span class="floatL"><b>:</b></span>
                 <select id="enrollmentSearchFilterRequestTypeInput" class="longSelect">
                     <option value="">All</option>
                     <c:forEach var="item" items="${requestTypesLookup}">
@@ -54,7 +45,6 @@
             </div>
             <div class="row">
                 <label for="enrollmentSearchFilterRiskLevelInput">Risk Level</label>
-                <span class="floatL"><b>:</b></span>
                 <select id="enrollmentSearchFilterRiskLevelInput" class="longSelect">
                     <option value="">All</option>
                     <c:forEach var="item" items="${riskLevelsLookup}">

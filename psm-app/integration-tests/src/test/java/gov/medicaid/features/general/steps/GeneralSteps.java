@@ -88,8 +88,9 @@ public class GeneralSteps {
     }
 
     @Step
-    public void openUpdatePasswordPage() {
-        updatePasswordPage.open();
+    public void navigateToUpdatePasswordPage() {
+        clickMyProfile();
+        profilePage.click$("#change_password_link");
     }
 
     @Step

@@ -331,7 +331,7 @@
 </div>
 
 <div class="tableBottom">
-    <a href="javascript:;" id="addOwnership">+ Add Another Individual Person Ownership or Control Interest</a>
+    <a href="javascript:;" id="addIndividualOwnership">+ Add Another Individual Person Ownership or Control Interest</a>
 </div>
 
 

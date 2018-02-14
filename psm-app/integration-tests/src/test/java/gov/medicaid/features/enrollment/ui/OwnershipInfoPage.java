@@ -9,7 +9,7 @@ public class OwnershipInfoPage extends EnrollmentPage {
     }
 
     public void addIndividualOwnership() {
-        click($("#addOwnership"));
+        click($("#addIndividualOwnership"));
     }
 
     public void addBusinessOwnership() {

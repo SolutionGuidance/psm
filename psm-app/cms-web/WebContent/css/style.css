@@ -4323,7 +4323,7 @@ input.passwordNormalInput{
   padding-left: 30px;
   padding-top: 0;
 }
-#addMember, #addOwnership, #addBusinessOwnership{
+#addMember, #addIndividualOwnership, #addBusinessOwnership{
   display: inline-block;
   line-height: 20px;
   padding-bottom: 5px;

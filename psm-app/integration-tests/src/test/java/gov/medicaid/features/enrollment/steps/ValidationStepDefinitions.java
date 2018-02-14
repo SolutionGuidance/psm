@@ -71,4 +71,9 @@ public class ValidationStepDefinitions {
     public void i_should_get_a_provider_too_young_error() throws Exception {
         enrollmentSteps.checkForTooYoungError();
     }
+
+    @Then("^I should get a renewal date error$")
+    public void should_get_a_renewal_date_error() throws Exception {
+        enrollmentSteps.checkForRenewalDateError();
+    }
 }

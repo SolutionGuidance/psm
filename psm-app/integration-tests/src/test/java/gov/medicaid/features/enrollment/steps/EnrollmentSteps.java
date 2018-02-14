@@ -33,10 +33,12 @@ public class EnrollmentSteps {
             LocalDate.of(1970, 1, 1);
     private static final String EMAIL = "p1@example.com";
 
-    private static final String LICENSE_TYPE = "Speech Language Pathologist";
+    private static String licenseType;
     private static final String LICENSE_NUMBER = "1";
     private static final LocalDate LICENSE_ISSUE_DATE =
             LocalDate.now().minusWeeks(30);
+    private static final LocalDate BEFORE_LICENSE_ISSUE_DATE =
+            LICENSE_ISSUE_DATE.minusDays(1);
     private static final LocalDate LICENSE_RENEWAL_DATE =
             LocalDate.now().plusWeeks(30);
     private static final String LICENSE_ISSUING_STATE_FULL = "Minnesota";
@@ -76,12 +78,14 @@ public class EnrollmentSteps {
     }
 
     public void selectOrganizationalProviderType() {
-        selectProviderTypePage.selectProviderType("Dental Clinic");
+        selectProviderTypePage.selectProviderType("Head Start");
+        licenseType = "Head Start Agency Certification";
         selectProviderTypePage.clickNext();
     }
 
     public void selectIndividualProviderType() {
         selectProviderTypePage.selectProviderType("Speech Language Pathologist");
+        licenseType = "Speech Language Pathologist";
         selectProviderTypePage.clickNext();
     }
 
@@ -101,6 +105,12 @@ public class EnrollmentSteps {
     void advanceFromIndividualPersonalInfoToLicenseInfo() {
         personalInfoPage.clickNext();
         assertThat(personalInfoPage.getTitle()).contains("License Information");
+    }
+
+    @Step
+    void advanceFromOrganizationInfoToLicenseInfo() {
+        organizationInfoPage.clickNext();
+        assertThat(organizationInfoPage.getTitle()).contains("Facility Credentials");
     }
 
     public void enterOrganizationInfo() {
@@ -146,17 +156,32 @@ public class EnrollmentSteps {
     }
 
     @Step
+    public void checkForRenewalDateError() throws Exception {
+        licenseInfoPage.checkForRenewalDateError();
+    }
+
+    @Step
     public void enterNotAProviderAtPublicHealthServiceIndianHospital() {
         licenseInfoPage.clickNo();
     }
 
     @Step
-    public void enterIndividualLicenseInfo() {
+    public void enterLicenseInfo() {
         licenseInfoPage.addLicense();
-        licenseInfoPage.addLicenseType(LICENSE_TYPE);
+        licenseInfoPage.addLicenseType(licenseType);
         licenseInfoPage.enterLicenseNumber(LICENSE_NUMBER);
         licenseInfoPage.enterIssueDate(LICENSE_ISSUE_DATE);
         licenseInfoPage.enterRenewalDate(LICENSE_RENEWAL_DATE);
+        licenseInfoPage.enterIssueState(LICENSE_ISSUING_STATE_FULL);
+    }
+
+    @Step
+    public void enterLicenseInfoWithRenewalDateBeforeIssueDate() {
+        licenseInfoPage.addLicense();
+        licenseInfoPage.addLicenseType(licenseType);
+        licenseInfoPage.enterLicenseNumber(LICENSE_NUMBER);
+        licenseInfoPage.enterIssueDate(LICENSE_ISSUE_DATE);
+        licenseInfoPage.enterRenewalDate(BEFORE_LICENSE_ISSUE_DATE);
         licenseInfoPage.enterIssueState(LICENSE_ISSUING_STATE_FULL);
     }
 
@@ -221,7 +246,7 @@ public class EnrollmentSteps {
         assertThat(individualSummaryPage.isProviderAtPublicHealthServiceIndianHospital())
                 .isFalse();
         assertThat(individualSummaryPage.getFirstLicenseType())
-                .isEqualToIgnoringWhitespace(LICENSE_TYPE);
+                .isEqualToIgnoringWhitespace(licenseType);
         assertThat(individualSummaryPage.getFirstLicenseNumber())
                 .isEqualToIgnoringWhitespace(LICENSE_NUMBER);
         assertThat(individualSummaryPage.getFirstLicenseOriginalIssueDate())

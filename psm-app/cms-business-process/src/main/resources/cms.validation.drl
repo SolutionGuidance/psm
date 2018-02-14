@@ -6090,22 +6090,23 @@ dialect 'mvel'
 
 end
 
-rule 'Facility License Renewal Date Cannot Be Before 01-01-1900'
+rule 'Facility License Renewal Date Cannot Be Before Original Issue Date'
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
         $provider: ProviderInformationType(facilityCredentials != null)
         $credentials: FacilityCredentialsType($licenseList : license) from $provider.facilityCredentials
-        $license: LicenseType($renewalDate: renewalDate, renewalDate != null) from $licenseList
-        eval($renewalDate.before(getEarliestAcceptableDate()))
+        $license: LicenseType($renewalDate: renewalDate, renewalDate != null,
+            $originalIssueDate: originalIssueDate, originalIssueDate != null) from $licenseList
+        eval($renewalDate.before($originalIssueDate))
         $report: ErrorReporter()
     then
         int index = $licenseList.indexOf($license);
         $report.addError(
             "/ProviderInformation/FacilityCredentials/License[" + index+ "]/RenewalDate",
             "00001",
-            "Facility license renewal date cannot be earlier than 01/01/1900."
+            "Facility License Renewal Date cannot be earlier than Original Issue Date."
         );
 
 end
@@ -7603,21 +7604,22 @@ dialect 'mvel'
 
 end
 
-rule 'License Renewal Date Cannot Be Before 01-01-1900'
+rule 'License Renewal Date Cannot Be Before Original Issue Date'
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType()
         LicenseInformationType( $licenses: license ) from $provider.licenseInformation
-        $license: LicenseType($renewalDate : renewalDate, renewalDate != null) from $licenses
-        eval($renewalDate.before(getEarliestAcceptableDate()))
+        $license: LicenseType($renewalDate : renewalDate, renewalDate != null,
+            $originalIssueDate: originalIssueDate, originalIssueDate != null) from $licenses
+        eval($renewalDate.before($originalIssueDate))
         $report: ErrorReporter()
     then
         int index = $licenses.indexOf($license);
         $report.addError(
             "/ProviderInformation/LicenseInformation/License["+ index+ "]/RenewalDate",
             "00001",
-            "Renewal End Date cannot be earlier than 01/01/1900."
+            "Renewal End Date cannot be earlier than Original Issue Date."
         );
 end
 
@@ -11810,14 +11812,15 @@ rule 'QP License Original Issue Date Cannot Be Before 01-01-1900'
         );
 end
 
-rule 'QP License Renewal Date Cannot Be Before 01-01-1900'
+rule 'QP License Renewal Date Cannot Be Before Original Issue Date'
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
         QualifiedProfessionalsType($qpList : qualifiedProfessional) from $provider.qualifiedProfessionals
         $qp: QualifiedProfessionalType($licenseList: license) from $qpList
-        $license: LicenseType($renewalDate : renewalDate, renewalDate != null) from $licenseList
-        eval($renewalDate.before(getEarliestAcceptableDate()))
+        $license: LicenseType($renewalDate : renewalDate, renewalDate != null,
+            $originalIssueDate: originalIssueDate, originalIssueDate != null) from $licenseList
+        eval($renewalDate.before($originalIssueDate))
         $report: ErrorReporter()
     then
         int index = $qpList.indexOf($qp);
@@ -11825,7 +11828,7 @@ rule 'QP License Renewal Date Cannot Be Before 01-01-1900'
         $report.addError(
             "/ProviderInformation/QualifiedProfessionals/QualifiedProfessional[" + index + "]/License["+ index2+ "]/RenewalDate",
             "00001",
-            "QP license renewal date cannot be earlier than 01/01/1900."
+            "QP License Renewal Date cannot be earlier than Original Issue Date."
         );
 end
 

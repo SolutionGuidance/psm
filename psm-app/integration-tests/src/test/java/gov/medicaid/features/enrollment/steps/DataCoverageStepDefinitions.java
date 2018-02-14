@@ -21,15 +21,30 @@ public class DataCoverageStepDefinitions {
 
     @Given("I am on the individual provider license info page")
     public void enter_individual_provider_license_info_page() {
-        navigateToLicensePage();
+        navigateToIndividualProviderLicensePage();
     }
 
-    private void navigateToLicensePage() {
+    @Given("^I am on the organizational provider license info page$")
+    public void enter_organizational_provider_license_info_page() {
+        navigateToOrganizationalProviderLicensePage();
+    }
+
+    private void navigateToIndividualProviderLicensePage() {
         generalSteps.loginAsProvider();
         enrollmentSteps.createEnrollment();
         enrollmentSteps.selectIndividualProviderType();
         enrollmentSteps.enterIndividualPersonalInfo();
         enrollmentSteps.advanceFromIndividualPersonalInfoToLicenseInfo();
+        enrollmentSteps.enterNotAProviderAtPublicHealthServiceIndianHospital();
+    }
+
+    private void navigateToOrganizationalProviderLicensePage() {
+        generalSteps.loginAsProvider();
+        enrollmentSteps.createEnrollment();
+        enrollmentSteps.selectOrganizationalProviderType();
+        enrollmentSteps.enterOrganizationInfo();
+        enrollmentSteps.enterContactInfo();
+        enrollmentSteps.advanceFromOrganizationInfoToLicenseInfo();
     }
 
     @Given("^I am on the individual provider practice info page$")
@@ -38,9 +53,9 @@ public class DataCoverageStepDefinitions {
     }
 
     private void navigateToProviderPracticePage() throws IOException {
-        navigateToLicensePage();
+        navigateToIndividualProviderLicensePage();
         enrollmentSteps.enterNotAProviderAtPublicHealthServiceIndianHospital();
-        enrollmentSteps.enterIndividualLicenseInfo();
+        enrollmentSteps.enterLicenseInfo();
         enrollmentSteps.uploadLicense();
         enrollmentSteps.advanceFromIndividualLicenseInfoToPracticeInfo();
     }
@@ -55,8 +70,12 @@ public class DataCoverageStepDefinitions {
 
     @When("^I enter valid license information$")
     public void enter_valid_license_information() {
-        enrollmentSteps.enterNotAProviderAtPublicHealthServiceIndianHospital();
-        enrollmentSteps.enterIndividualLicenseInfo();
+        enrollmentSteps.enterLicenseInfo();
+    }
+
+    @When("^I enter license info where renewal date is before issue date$")
+    public void enter_license_info_where_renewal_date_is_before_issue_date() {
+        enrollmentSteps.enterLicenseInfoWithRenewalDateBeforeIssueDate();
     }
 
     @When("^I upload a valid license$")

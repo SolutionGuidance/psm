@@ -1,5 +1,5 @@
 @accessibility
-Feature: Accessibility Checks
+Feature: General Accessibility Checks
   Users wish to access accessible pages
 
   Scenario: Login Page

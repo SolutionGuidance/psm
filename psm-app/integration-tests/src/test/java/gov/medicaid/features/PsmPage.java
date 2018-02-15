@@ -29,6 +29,10 @@ public class PsmPage extends PageObject {
         clickOn(target);
     }
 
+    public void click$(String selector) {
+        click($(selector));
+    }
+
     public void checkAccessibility() {
         WebDriver driver = getDriver();
 

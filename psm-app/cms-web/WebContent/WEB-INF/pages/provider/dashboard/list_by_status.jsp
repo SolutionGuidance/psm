@@ -32,22 +32,22 @@
                 <div class="tabM">
                   <a class="tab ${statusFilter eq 'Draft' ? 'active' : ''}" href="<c:url value="/provider/dashboard/drafts" />">
                     <span class="aR">
-                      <span class="aM">Draft</span>
+                      <span class="draftTab aM">Draft</span>
                     </span>
                   </a>
                   <a class="tab ${statusFilter eq 'Pending' ? 'active' : ''}" href="<c:url value="/provider/dashboard/pending" />">
                     <span class="aR">
-                      <span class="aM">Pending</span>
+                      <span class="pendingTab aM">Pending</span>
                     </span>
                   </a>
                   <a class="tab ${statusFilter eq 'Approved' ? 'active' : ''}" href="<c:url value="/provider/dashboard/approved" />">
                     <span class="aR">
-                      <span class="aM">Approved</span>
+                      <span class="approvedTab aM">Approved</span>
                     </span>
                   </a>
                   <a class="tab ${statusFilter eq 'Rejected' ? 'active' : ''}" href="<c:url value="/provider/dashboard/rejected" />">
                     <span class="aR">
-                      <span class="aM">Denied</span>
+                      <span class="deniedTab aM">Denied</span>
                     </span>
                   </a>
                   <h:create-enrollment-button cssClass="purpleBtn"/>

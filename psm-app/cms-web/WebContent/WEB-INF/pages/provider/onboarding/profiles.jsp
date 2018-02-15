@@ -20,7 +20,7 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <a href="<c:url value="/provider/dashboard/setup" />">Account Setup</a>
+            <a class="accountSetupLink" href="<c:url value="/provider/dashboard/setup" />">Account Setup</a>
             <span class="text">Import Profiles</span>
           </div>
           <div class="head">

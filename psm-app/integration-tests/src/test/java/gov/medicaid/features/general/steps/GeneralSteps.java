@@ -9,10 +9,22 @@ import net.thucydides.core.annotations.Step;
 @SuppressWarnings("unused")
 public class GeneralSteps {
 
-    private DashboardPage dashboardPage;
     private LoginPage loginPage;
+    private DashboardPage dashboardPage;
     private MyProfilePage profilePage;
     private UpdatePasswordPage updatePasswordPage;
+
+    @Step
+    public void navigateToRegisterNewAccountPage() {
+        loginPage.open();
+        loginPage.click$(".registerNewAccountLink");
+    }
+
+    @Step
+    public void navigateToForgotPasswordPage() {
+        loginPage.open();
+        loginPage.click$(".forgotPasswordLink");
+    }
 
     @Step
     public void loginAsProvider() {
@@ -25,6 +37,34 @@ public class GeneralSteps {
     @Step
     public void checkOnDashboard() {
         dashboardPage.checkOnDashboard();
+    }
+
+    @Step
+    public void navigateToDashboardDraftPage() {
+        dashboardPage.click$(".enrollmentsLink");
+    }
+
+    @Step
+    public void navigateToDashboardPendingPage() {
+        navigateToDashboardDraftPage();
+        dashboardPage.click$(".pendingTab");
+    }
+
+    @Step
+    public void navigateToDashboardApprovedPage() {
+        navigateToDashboardDraftPage();
+        dashboardPage.click$(".approvedTab");
+    }
+
+    @Step
+    public void navigateToDashboardDeniedPage() {
+        navigateToDashboardDraftPage();
+        dashboardPage.click$(".deniedTab");
+    }
+
+    @Step
+    public void openFilterPanel() {
+        dashboardPage.click$(".filterBtn");
     }
 
     @Step
@@ -48,7 +88,19 @@ public class GeneralSteps {
     }
 
     @Step
-    public void openUpdatePasswordPage() {
-        updatePasswordPage.open();
+    public void navigateToUpdatePasswordPage() {
+        clickMyProfile();
+        profilePage.click$("#change_password_link");
+    }
+
+    @Step
+    public void navigateToAccountSetupPage() {
+        clickMyProfile();
+        profilePage.click$(".accountSetupLink");
+    }
+
+    @Step
+    public void navigateToAdvancedSearchPage() {
+        dashboardPage.click$(".advancedSearchLink");
     }
 }

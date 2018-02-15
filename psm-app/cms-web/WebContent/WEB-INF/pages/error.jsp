@@ -125,11 +125,11 @@
                     <label class="label">&nbsp;</label>
                     <input id="remember" type="checkbox" name="keepUserSignedIn"/>
                     <label for="remember">Remember Me</label>
-                    <a href="<c:url value="/forgotpassword" />">Forgot Password?</a>
+                    <a class="forgotPasswordLink" href="<c:url value="/forgotpassword" />">Forgot Password?</a>
                   </div>
                   <div class="buttons">
                     <button id="btnLogin" class="purpleBtn" type="submit">Login</button>
-                    <a href="<c:url value="/accounts/new" />" class="">Register New Account</a>
+                    <a class="registerNewAccountLink" href="<c:url value="/accounts/new" />">Register New Account</a>
                   </div>
 
                   <div class="tl"></div>

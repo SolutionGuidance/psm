@@ -4,8 +4,11 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import gov.medicaid.features.enrollment.ui.EnrollmentPage;
+import gov.medicaid.features.enrollment.ui.LicenseInfoPage;
 import gov.medicaid.features.enrollment.ui.OwnershipInfoPage;
 import net.thucydides.core.annotations.Steps;
+
+import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,12 +19,16 @@ public class EnrollmentStepDefinitions {
 
     private EnrollmentPage enrollmentPage;
     private OwnershipInfoPage ownershipInfoPage;
+    private LicenseInfoPage licenseInfoPage;
 
     @Given("^I am entering ownership information$")
-    public void i_am_entering_ownership_information() {
+    public void i_am_entering_ownership_information() throws IOException {
         enrollmentSteps.selectOrganizationalProviderType();
         enrollmentSteps.enterOrganizationInfo();
         enrollmentSteps.enterContactInfo();
+        enrollmentPage.clickNext();
+        enrollmentSteps.enterLicenseInfo();
+        enrollmentSteps.uploadLicense();
         enrollmentPage.clickNext();
         enrollmentSteps.enterIndividualMember();
         enrollmentPage.clickNext();
@@ -63,6 +70,11 @@ public class EnrollmentStepDefinitions {
         ownershipInfoPage.setNoToAllDisclosures();
         ownershipInfoPage.clickNext();
 
+    }
+
+    @When("^I click 'next' on the license info page$")
+    public void i_click_next_on_the_license_info_page() {
+        licenseInfoPage.clickNext();
     }
 
     @Then("^the city should be accepted$")

@@ -253,7 +253,17 @@ public class EnrollmentSteps {
     }
 
     @Step
-    void setNoToAllDisclosures(){
+    void addIndividualOwnership() {
+        ownershipInfoPage.addIndividualOwnership();
+    }
+
+    @Step
+    void addBusinessOwnership() {
+        ownershipInfoPage.addBusinessOwnership();
+    }
+
+    @Step
+    void setNoToAllDisclosures() {
         ownershipInfoPage.setNoToAllDisclosures();
     }
 

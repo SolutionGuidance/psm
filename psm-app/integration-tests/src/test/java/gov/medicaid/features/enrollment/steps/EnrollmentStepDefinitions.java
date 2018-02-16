@@ -74,10 +74,14 @@ public class EnrollmentStepDefinitions {
         enrollmentPage.clickNext();
     }
 
-    @When("^I open individual and business owner panels$")
-    public void i_open_individual_and_business_owner_panels() {
-        ownershipInfoPage.addIndividualOwnership();
-        ownershipInfoPage.addBusinessOwnership();
+    @When("^I open the individual owner panel$")
+    public void i_open_the_individual_owner_panels() {
+        enrollmentSteps.addIndividualOwnership();
+    }
+
+    @When("^I open the business owner panel$")
+    public void i_open_the_business_owner_panel() {
+        enrollmentSteps.addBusinessOwnership();
     }
 
     @When("^I am on the summary page$")

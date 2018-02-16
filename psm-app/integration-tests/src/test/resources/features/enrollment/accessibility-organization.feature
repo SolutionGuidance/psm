@@ -32,7 +32,9 @@ Feature: Organization Enrollment Steps Accessibility Checks
   Scenario: Ownership Info Page
     Given I have started an enrollment
     When I am on the ownership info page
-    And I open individual and business owner panels
+    And I open the individual owner panel
+    And I open the business owner panel
+    And I have indicated that the owner has an interest in another Medicaid disclosing entity
     Then I should have no accessibility issues
 
   Scenario: Summary Page

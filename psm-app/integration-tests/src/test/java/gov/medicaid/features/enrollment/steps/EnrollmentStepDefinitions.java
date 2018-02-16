@@ -46,7 +46,7 @@ public class EnrollmentStepDefinitions {
         i_am_on_the_organization_page();
         enrollmentSteps.enterOrganizationInfo();
         enrollmentSteps.enterContactInfo();
-        enrollmentPage.clickNext();
+        enrollmentSteps.advanceFromOrganizationInfoToLicenseInfo();
     }
 
     @When("^I open the add a license panel$")
@@ -59,7 +59,7 @@ public class EnrollmentStepDefinitions {
         i_am_on_the_facility_credentials_page();
         enrollmentSteps.enterLicenseInfo();
         enrollmentSteps.uploadLicense();
-        enrollmentPage.clickNext();
+        enrollmentSteps.advanceFromOrganizationLicenseInfoToIndividualMemberInfo();
     }
 
     @When("^I open an individual member panel")
@@ -71,7 +71,7 @@ public class EnrollmentStepDefinitions {
     public void i_am_on_the_ownership_info_page() throws IOException {
         i_am_on_the_individual_member_info_page();
         enrollmentSteps.enterIndividualMember();
-        enrollmentPage.clickNext();
+        enrollmentSteps.advanceFromOrganizationIndividualMemberInfoToOwnershipInfo();
     }
 
     @When("^I open the individual owner panel$")
@@ -89,13 +89,13 @@ public class EnrollmentStepDefinitions {
         i_am_on_the_ownership_info_page();
         enrollmentSteps.enterOrganizationOwnershipInfo();
         enrollmentSteps.setNoToAllDisclosures();
-        ownershipInfoPage.clickNext();
+        enrollmentSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
     }
 
     @When("^I am on the provider statement page$")
     public void i_am_on_the_provider_statement_page() throws IOException {
         i_am_on_the_summary_page();
-        enrollmentPage.clickNext();
+        enrollmentSteps.advanceFromOrganizationSummaryToProviderStatementPage();
     }
 
     @When("^I am entering ownership information$")

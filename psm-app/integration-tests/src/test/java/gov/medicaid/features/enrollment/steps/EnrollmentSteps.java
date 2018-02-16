@@ -5,6 +5,7 @@ import gov.medicaid.features.enrollment.ui.IndividualInfoPage;
 import gov.medicaid.features.enrollment.ui.IndividualSummaryPage;
 import gov.medicaid.features.enrollment.ui.LicenseInfoPage;
 import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
+import gov.medicaid.features.enrollment.ui.OrganizationSummaryPage;
 import gov.medicaid.features.enrollment.ui.OwnershipInfoPage;
 import gov.medicaid.features.enrollment.ui.PersonalInfoPage;
 import gov.medicaid.features.enrollment.ui.PracticeInfoPage;
@@ -70,6 +71,7 @@ public class EnrollmentSteps {
     private PracticeInfoPage practiceInfoPage;
     private OwnershipInfoPage ownershipInfoPage;
     private IndividualSummaryPage individualSummaryPage;
+    private OrganizationSummaryPage organizationSummaryPage;
     private ProviderStatementPage providerStatementPage;
     private EnrollmentDetailsPage enrollmentDetailsPage;
 
@@ -208,6 +210,12 @@ public class EnrollmentSteps {
     }
 
     @Step
+    void advanceFromOrganizationLicenseInfoToIndividualMemberInfo() {
+        licenseInfoPage.clickNext();
+        assertThat(licenseInfoPage.getTitle()).contains("Member Information");
+    }
+
+    @Step
     void enterIndividualPrivatePracticeInfo() {
         practiceInfoPage.checkYesPrivatePractice();
         practiceInfoPage.checkNoGroupPractice();
@@ -250,6 +258,12 @@ public class EnrollmentSteps {
     void advanceFromIndividualPracticeInfoToSummaryPage() {
         practiceInfoPage.clickNext();
         assertThat(individualSummaryPage.getTitle()).contains("Summary Information");
+    }
+
+    @Step
+    void advanceFromOrganizationIndividualMemberInfoToOwnershipInfo() {
+        individualInfoPage.clickNext();
+        assertThat(ownershipInfoPage.getTitle()).contains("Ownership Information");
     }
 
     @Step
@@ -338,8 +352,19 @@ public class EnrollmentSteps {
     }
 
     @Step
+    void advanceFromOrganizationOwnershipInfoToSummaryPage() {
+        ownershipInfoPage.clickNext();
+        assertThat(organizationSummaryPage.getTitle()).contains("Summary Information");
+    }
+
+    @Step
     void advanceFromIndividualSummaryToProviderStatementPage() {
         individualSummaryPage.clickNext();
+    }
+
+    @Step
+    void advanceFromOrganizationSummaryToProviderStatementPage() {
+        organizationSummaryPage.clickNext();
     }
 
     @Step

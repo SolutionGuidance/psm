@@ -8,14 +8,14 @@ Feature: Organization Enrollment Steps Accessibility Checks
 
   # fails with color contrast issue
   @ignore
-  Scenario: 1. Organization Info Page
+  Scenario: Organization Info Page
     Given I have started an enrollment
     When I am on the organization page
     Then I should have no accessibility issues
 
   # fails with duplicate IDs and inputs without labels/titles
   @ignore
-  Scenario: 2. Individual Member Info Page
+  Scenario: Individual Member Info Page
     Given I have started an enrollment
     When I am on the individual member info page
     When I open an individual member panel
@@ -23,18 +23,18 @@ Feature: Organization Enrollment Steps Accessibility Checks
 
   # fails with duplicate IDs and inputs without labels/titles
   @ignore
-  Scenario: 3. Ownership Info Page
+  Scenario: Ownership Info Page
     Given I have started an enrollment
     When I am on the ownership info page
     And I open individual and business owner panels
     Then I should have no accessibility issues
 
-  Scenario: 4. Summary Page
+  Scenario: Summary Page
     Given I have started an enrollment
     When I am on the summary page
     Then I should have no accessibility issues
 
-  Scenario: 5. Provider Statement Page
+  Scenario: Provider Statement Page
     Given I have started an enrollment
     When I am on the provider statement page
     Then I should have no accessibility issues

@@ -21,17 +21,17 @@ public class EnrollmentStepDefinitions {
     private OwnershipInfoPage ownershipInfoPage;
     private LicenseInfoPage licenseInfoPage;
 
-    @When("^I move to the facility credentials page$")
-    public void i_move_to_the_facility_credentials_page() {
+    @When("^I am on the facility credentials page$")
+    public void i_am_on_the_facility_credentials_page() {
         enrollmentSteps.selectOrganizationalProviderType();
         enrollmentSteps.enterOrganizationInfo();
         enrollmentSteps.enterContactInfo();
         enrollmentPage.clickNext();
     }
 
-    @When("^I move to the individual member info page$")
-    public void i_move_to_the_individual_member_info_page() throws IOException {
-        i_move_to_the_facility_credentials_page();
+    @When("^I am on the individual member info page$")
+    public void i_am_on_the_individual_member_info_page() throws IOException {
+        i_am_on_the_facility_credentials_page();
         enrollmentSteps.enterLicenseInfo();
         enrollmentSteps.uploadLicense();
         enrollmentPage.clickNext();
@@ -42,9 +42,9 @@ public class EnrollmentStepDefinitions {
         enrollmentSteps.openIndividualMemberPanel();
     }
 
-    @When("^I move to the ownership info page$")
-    public void i_move_to_the_ownership_info_page() throws IOException {
-        i_move_to_the_individual_member_info_page();
+    @When("^I am on the ownership info page$")
+    public void i_am_on_the_ownership_info_page() throws IOException {
+        i_am_on_the_individual_member_info_page();
         enrollmentSteps.enterIndividualMember();
         enrollmentPage.clickNext();
     }
@@ -55,23 +55,23 @@ public class EnrollmentStepDefinitions {
         ownershipInfoPage.addBusinessOwnership();
     }
 
-    @When("^I move to the summary page$")
-    public void i_move_to_the_summary_page() throws IOException {
-        i_move_to_the_ownership_info_page();
+    @When("^I am on the summary page$")
+    public void i_am_on_the_summary_page() throws IOException {
+        i_am_on_the_ownership_info_page();
         enrollmentSteps.enterOrganizationOwnershipInfo();
         enrollmentSteps.setNoToAllDisclosures();
         ownershipInfoPage.clickNext();
     }
 
-    @When("^I move to the provider statement page$")
-    public void i_move_to_the_provider_statement_page() throws IOException {
-        i_move_to_the_summary_page();
+    @When("^I am on the provider statement page$")
+    public void i_am_on_the_provider_statement_page() throws IOException {
+        i_am_on_the_summary_page();
         enrollmentPage.clickNext();
     }
 
     @When("^I am entering ownership information$")
     public void i_am_entering_ownership_information() throws IOException {
-        i_move_to_the_ownership_info_page();
+        i_am_on_the_ownership_info_page();
         enrollmentSteps.enterOrganizationOwnershipInfo();
     }
 

@@ -10,14 +10,14 @@ Feature: Organization Enrollment Steps Accessibility Checks
   @ignore
   Scenario: 1. Organization Info Page
     Given I have started an enrollment
-    When I move to the organization page
+    When I am on the organization page
     Then I should have no accessibility issues
 
   # fails with duplicate IDs and inputs without labels/titles
   @ignore
   Scenario: 2. Individual Member Info Page
     Given I have started an enrollment
-    When I move to the individual member info page
+    When I am on the individual member info page
     When I open an individual member panel
     Then I should have no accessibility issues
 
@@ -25,16 +25,16 @@ Feature: Organization Enrollment Steps Accessibility Checks
   @ignore
   Scenario: 3. Ownership Info Page
     Given I have started an enrollment
-    When I move to the ownership info page
+    When I am on the ownership info page
     And I open individual and business owner panels
     Then I should have no accessibility issues
 
   Scenario: 4. Summary Page
     Given I have started an enrollment
-    When I move to the summary page
+    When I am on the summary page
     Then I should have no accessibility issues
 
   Scenario: 5. Provider Statement Page
     Given I have started an enrollment
-    When I move to the provider statement page
+    When I am on the provider statement page
     Then I should have no accessibility issues

@@ -6,6 +6,7 @@ import cucumber.api.java.en.When;
 import gov.medicaid.features.enrollment.ui.EnrollmentPage;
 import gov.medicaid.features.enrollment.ui.LicenseInfoPage;
 import gov.medicaid.features.enrollment.ui.OwnershipInfoPage;
+import gov.medicaid.features.general.steps.GeneralSteps;
 import net.thucydides.core.annotations.Steps;
 
 import java.io.IOException;
@@ -16,14 +17,33 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class EnrollmentStepDefinitions {
     @Steps
     EnrollmentSteps enrollmentSteps;
+    @Steps
+    GeneralSteps generalSteps;
 
     private EnrollmentPage enrollmentPage;
     private OwnershipInfoPage ownershipInfoPage;
     private LicenseInfoPage licenseInfoPage;
 
+    @Given("^I have started an enrollment$")
+    public void i_have_started_an_enrollment() {
+        generalSteps.loginAsProvider();
+        enrollmentSteps.createEnrollment();
+    }
+
+    @Given("^I am on the organization page$")
+    public void i_am_on_the_organization_page() {
+        enrollmentSteps.selectOrganizationalProviderType();
+    }
+
+    @Given("^I am on the personal info page$")
+    public void i_am_on_the_personal_info_page() {
+        i_have_started_an_enrollment();
+        enrollmentSteps.selectIndividualProviderType();
+    }
+
     @When("^I am on the facility credentials page$")
     public void i_am_on_the_facility_credentials_page() {
-        enrollmentSteps.selectOrganizationalProviderType();
+        i_am_on_the_organization_page();
         enrollmentSteps.enterOrganizationInfo();
         enrollmentSteps.enterContactInfo();
         enrollmentPage.clickNext();

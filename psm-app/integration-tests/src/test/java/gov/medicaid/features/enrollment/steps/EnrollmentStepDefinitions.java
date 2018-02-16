@@ -49,6 +49,11 @@ public class EnrollmentStepDefinitions {
         enrollmentPage.clickNext();
     }
 
+    @When("^I open the add a license panel$")
+    public void i_open_the_add_a_license_panel() {
+        enrollmentSteps.clickAddLicense();
+    }
+
     @When("^I am on the individual member info page$")
     public void i_am_on_the_individual_member_info_page() throws IOException {
         i_am_on_the_facility_credentials_page();

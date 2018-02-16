@@ -11,6 +11,14 @@ Feature: Organization Enrollment Steps Accessibility Checks
     When I am on the organization page
     Then I should have no accessibility issues
 
+  # fails with inputs without labels/titles
+  @ignore
+  Scenario: Facility Credentials Page
+    Given I have started an enrollment
+    When I am on the facility credentials page
+    And I open the add a license panel
+    Then I should have no accessibility issues
+
   # fails with duplicate IDs and inputs without labels/titles
   @ignore
   Scenario: Individual Member Info Page

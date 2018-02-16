@@ -115,6 +115,11 @@ public class EnrollmentSteps {
         assertThat(organizationInfoPage.getTitle()).contains("Facility Credentials");
     }
 
+    @Step
+    void clickAddLicense() {
+        licenseInfoPage.addLicense();
+    }
+
     public void enterOrganizationInfo() {
         organizationInfoPage.setNPI("1234567893");
         organizationInfoPage.setEffectiveDate(generateEffectiveDate());

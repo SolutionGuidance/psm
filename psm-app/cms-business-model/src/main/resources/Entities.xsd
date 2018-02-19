@@ -803,7 +803,6 @@
       <element name="NonExclusion" type="string"/>
       <element name="SAMNonExclusion" type="string"/>
       <element name="PECOS" type="string"/>
-      <element name="NetStudy" type="string"/>
     </sequence>
   </complexType>
   <complexType name="SpecialtiesType">

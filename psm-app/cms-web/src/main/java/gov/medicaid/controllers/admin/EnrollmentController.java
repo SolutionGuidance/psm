@@ -798,10 +798,6 @@ public class EnrollmentController extends BaseController {
             status.setSocialSecurityNumber("Y");
         }
 
-        if ("Y".equals(dto.getBgsVerified())) {
-            status.setNetStudy("Y");
-        }
-
         return provider;
     }
 

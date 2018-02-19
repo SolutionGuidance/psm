@@ -191,21 +191,4 @@
             </sequence>
         </complexType>
     </element>
-    
-    <element name="NETStudyVerificationRequest">
-        <complexType>
-            <sequence>
-                <element name="ProviderInformation" type="Q2:ProviderInformationType" maxOccurs="1" minOccurs="1"></element>
-            </sequence>
-        </complexType>
-    </element>
-    
-    <element name="NETStudyVerificationResponse">
-        <complexType>
-            <sequence>
-                <element name="Output" type="Q2:ExternalSourcesScreeningResultType"></element>
-                <element name="RawResponse" type="string"></element>
-            </sequence>
-        </complexType>
-    </element>
 </schema>

@@ -115,31 +115,6 @@
                               />
                           </td>
                       </tr>
-                      <c:if test="${not empty model.enrollment.providerInformation.agencyInformation.backgroundStudyId}">
-                        <tr>
-                          <td>NET STUDY ID VERIFICATION</td>
-                          <td>${model.enrollment.providerInformation.agencyInformation.backgroundStudyId}</td>
-                          <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=NET STUDY ID VERIFICATION&id=${id}" target="_blank">
-                              <c:choose>
-                              <c:when test="${empty verification.netStudy}">
-                                Not performed
-                              </c:when>
-                              <c:otherwise>
-                                View results
-                              </c:otherwise>
-                              </c:choose>
-                            </a></td>
-                            <td>
-                              <input
-                                type="checkbox"
-                                title="BGS Verified"
-                                name="bgsVerified"
-                                value="Y"
-                                ${verification.netStudy eq 'Y' ? 'checked' : ''}
-                                />
-                            </td>
-                        </tr>
-                      </c:if>
                       <tr>
                         <td>EXCLUDED PROVIDER VERIFICATION IN OIG (checked means not in exclusion list)</td>
                         <td></td>

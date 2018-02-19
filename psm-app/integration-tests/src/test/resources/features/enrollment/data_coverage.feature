@@ -44,19 +44,22 @@ Feature: Data Coverage Checks
 
   @psm-FR-2.4
   Scenario: Accepts license
-    Given I am on the individual provider license info page
+    Given I have started an enrollment
+    And I am on the individual provider license info page
     When I enter valid license information
     And I upload a valid license
     Then the license is accepted
 
   Scenario: Accepts practice information
-    Given I am on the individual provider practice info page
+    Given I have started an enrollment
+    And I am on the individual provider practice info page
     When I enter a valid private practice
     Then the practice information is accepted
     And the summary page shows expected information
 
   Scenario: Completes an application
-    Given I am on the individual provider statement page
+    Given I have started an enrollment
+    And I am on the individual provider statement page
     When I enter my provider statement
     And I submit the enrollment
     Then the enrollment is successfully submitted

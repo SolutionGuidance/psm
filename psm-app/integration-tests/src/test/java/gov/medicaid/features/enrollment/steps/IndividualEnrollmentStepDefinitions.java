@@ -1,6 +1,5 @@
 package gov.medicaid.features.enrollment.steps;
 
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import gov.medicaid.features.general.steps.GeneralSteps;
 import net.thucydides.core.annotations.Steps;
@@ -20,36 +19,26 @@ public class IndividualEnrollmentStepDefinitions {
         enrollmentSteps.selectIndividualProviderType();
     }
 
-    @Given("I am on the individual provider license info page")
-    public void enter_individual_provider_license_info_page() {
-        navigateToIndividualProviderLicensePage();
-    }
-
-    private void navigateToIndividualProviderLicensePage() {
-        generalSteps.loginAsProvider();
-        enrollmentSteps.createEnrollment();
-        enrollmentSteps.selectIndividualProviderType();
+    @When("I am on the individual provider license info page")
+    public void i_am_on_the_individual_provider_license_info_page() {
+        i_am_on_the_personal_info_page();
         enrollmentSteps.enterIndividualPersonalInfo();
         enrollmentSteps.advanceFromIndividualPersonalInfoToLicenseInfo();
         enrollmentSteps.enterNotAProviderAtPublicHealthServiceIndianHospital();
     }
 
-    @Given("^I am on the individual provider practice info page$")
-    public void enter_individual_provider_practice_info_page() throws IOException {
-        navigateToProviderPracticePage();
-    }
-
-    private void navigateToProviderPracticePage() throws IOException {
-        navigateToIndividualProviderLicensePage();
+    @When("^I am on the individual provider practice info page$")
+    public void i_am_on_the_individual_provider_practice_info_page() throws IOException {
+        i_am_on_the_individual_provider_license_info_page();
         enrollmentSteps.enterNotAProviderAtPublicHealthServiceIndianHospital();
         enrollmentSteps.enterLicenseInfo();
         enrollmentSteps.uploadLicense();
         enrollmentSteps.advanceFromIndividualLicenseInfoToPracticeInfo();
     }
 
-    @Given("^I am on the individual provider statement page$")
-    public void enter_individual_provider_statement_page() throws IOException {
-        navigateToProviderPracticePage();
+    @When("^I am on the individual provider statement page$")
+    public void i_am_on_the_individual_provider_statement_page() throws IOException {
+        i_am_on_the_individual_provider_practice_info_page();
         enrollmentSteps.enterIndividualPrivatePracticeInfo();
         enrollmentSteps.advanceFromIndividualPracticeInfoToSummaryPage();
         enrollmentSteps.advanceFromIndividualSummaryToProviderStatementPage();

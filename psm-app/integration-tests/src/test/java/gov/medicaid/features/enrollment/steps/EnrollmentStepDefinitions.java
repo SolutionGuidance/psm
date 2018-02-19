@@ -30,7 +30,7 @@ public class EnrollmentStepDefinitions {
         enrollmentSteps.createEnrollment();
     }
 
-    @Given("^I am on the organization page$")
+    @When("^I am on the organization page$")
     public void i_am_on_the_organization_page() {
         enrollmentSteps.selectOrganizationalProviderType();
     }

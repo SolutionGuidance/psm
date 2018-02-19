@@ -19,7 +19,8 @@ Feature: Form and Field Validations
 
   @issue_352
   Scenario: Validate individual provider license renewal date
-    Given I am on the individual provider license info page
+    Given I have started an enrollment
+    And I am on the individual provider license info page
     When I enter license info where renewal date is before issue date
     And I click 'next' on the license info page
     Then I should get a renewal date error

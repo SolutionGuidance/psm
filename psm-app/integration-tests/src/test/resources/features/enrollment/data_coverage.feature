@@ -17,13 +17,13 @@ Feature: Data Coverage Checks
   @psm-FR-2.9
   Scenario: Captures Contact Info for Individual
     Given I have started an enrollment
-    When  I move to the personal info page
+    When I am on the personal info page
     Then I should be asked to enter Applicant Name, Contact Person
 
   @psm-FR-2.9
   Scenario: Captures Phone number and Medicaid number for Individual
     Given I have started an enrollment
-    When  I move to the personal info page
+    When I am on the personal info page
     Then I should be asked to enter Contact phone, Medicaid number
 
   @issue-362
@@ -37,7 +37,8 @@ Feature: Data Coverage Checks
 
   @psm-FR-2.6
   Scenario: Accepts valid individual provider personal information
-    Given I am on the personal info page
+    Given I have started an enrollment
+    When I am on the personal info page
     When I enter valid personal information
     Then I can move on from the personal info page with no errors
 

@@ -11,7 +11,8 @@ Feature: Form and Field Validations
     Then It should be rejected
 
   Scenario: Validate minimum age
-    Given I am on the personal info page
+    Given I have started an enrollment
+    And I am on the personal info page
     When I enter a date of birth less than eighteen years ago
     And I click 'next' on the personal info page
     Then I should get a provider too young error

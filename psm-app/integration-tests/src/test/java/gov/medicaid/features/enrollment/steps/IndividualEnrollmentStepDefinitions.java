@@ -15,8 +15,8 @@ public class IndividualEnrollmentStepDefinitions {
     @Steps
     GeneralSteps generalSteps;
 
-    @When("^I move to the personal info page$")
-    public void i_move_to_the_personal_info_page() {
+    @When("^I am on the personal info page$")
+    public void i_am_on_the_personal_info_page() {
         enrollmentSteps.selectIndividualProviderType();
     }
 

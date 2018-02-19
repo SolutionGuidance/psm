@@ -35,12 +35,6 @@ public class EnrollmentStepDefinitions {
         enrollmentSteps.selectOrganizationalProviderType();
     }
 
-    @Given("^I am on the personal info page$")
-    public void i_am_on_the_personal_info_page() {
-        i_have_started_an_enrollment();
-        enrollmentSteps.selectIndividualProviderType();
-    }
-
     @When("^I am on the facility credentials page$")
     public void i_am_on_the_facility_credentials_page() {
         i_am_on_the_organization_page();

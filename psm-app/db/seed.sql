@@ -818,7 +818,8 @@ INSERT INTO agreement_documents (
   created_at
 ) VALUES
   (1, '01', 'Agreement (1)', 0, 'This is the content of the agreement.', 'system', NOW()),
-  (2, '02', 'Addendum (2)', 0, 'This is the content of the addendum.', 'system', NOW());
+  (2, '02', 'Addendum (2)', 0, 'This is the content of the addendum.', 'system', NOW()),
+  (3, '01', 'Child And Teen Checkup Agreement (DHS-4646)', 0, 'This is a required document.', 'system', NOW());
 
 CREATE TABLE contacts(
   contact_id BIGINT PRIMARY KEY,
@@ -859,7 +860,8 @@ INSERT INTO provider_type_agreement_documents (
   provider_type_code,
   agreement_document_id
 ) VALUES
-  ('18', 1);
+  ('18', 1),
+  ('54', 3);
 
 CREATE TABLE provider_type_license_types(
   provider_type_code CHARACTER VARYING(2)

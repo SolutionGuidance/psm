@@ -25,7 +25,8 @@ Feature: Form and Field Validations
 
   @issue_352
   Scenario: Validate organizational provider license renewal date
-    Given I am on the organizational provider license info page
+    Given I have started an enrollment
+    When I am on the facility credentials page
     When I enter license info where renewal date is before issue date
     And I click 'next' on the license info page
     Then I should get a renewal date error

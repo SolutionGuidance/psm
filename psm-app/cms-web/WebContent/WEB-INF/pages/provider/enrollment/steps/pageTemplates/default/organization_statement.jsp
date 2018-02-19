@@ -53,18 +53,19 @@
                     <label class="checkboxLabel">
                       <input type="checkbox" value="" class="checkbox" ${formValue eq 'Y' ? 'checked' : ''} name="${formName}"/>
                       I have read and agree to the terms of the
+                      <c:set var="formName" value="_19_documentId_${status.index - 1}"/>
+                      <c:set var="documentId" value="${requestScope[formName]}"/>
+                      <input type="hidden" value="${documentId}" name="${formName}"/>
+                      <c:set var="formName" value="_19_documentName_${status.index - 1}"/>
+                      <c:set var="documentName" value="${requestScope[formName]}"/>
+                      <c:url var="viewDocumentUrl" value="/provider/enrollment/agreement">
+                        <c:param name="id" value="${documentId}"/>
+                      </c:url>
                       <a href="${viewDocumentUrl}" target="_blank">${documentName}</a>
+                      <c:set var="formName" value="_19_updatedVersion_${status.index - 1}"/>
+                      <c:set var="formValue" value="${requestScope[formName]}"/>
+                      <c:if test="${formValue eq 'Y'}">(Updated)</c:if>
                     </label>
-
-                    <c:set var="formName" value="_19_documentId_${status.index - 1}"></c:set>
-                    <c:set var="documentId" value="${requestScope[formName]}"></c:set>
-                    <input type="hidden" value="${documentId}" name="${formName}"/>
-                    <c:set var="formName" value="_19_documentName_${status.index - 1}"></c:set>
-                    <c:set var="documentName" value="${requestScope[formName]}"></c:set>
-                    <c:url var="viewDocumentUrl" value="/provider/enrollment/agreement"><c:param name="id" value="${documentId}"></c:param></c:url>
-                    <c:set var="formName" value="_19_updatedVersion_${status.index - 1}"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <c:if test="${formValue eq 'Y'}"><span>(Updated)</span></c:if>
                 </div>
             </c:forEach>
             <div class="clearFixed"></div>

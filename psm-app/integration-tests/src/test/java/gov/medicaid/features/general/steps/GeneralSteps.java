@@ -63,8 +63,16 @@ public class GeneralSteps {
     }
 
     @Step
+    public void navigateToNotesPage() {
+        navigateToDraftPage();
+        dashboardPage.click$(".notesTab");
+    }
+
+    @Step
     public void openFilterPanel() {
-        dashboardPage.click$(".filterBtn");
+        if (dashboardPage.$(".filterBtn").getText().equals("Filter")) {
+            dashboardPage.click$(".filterBtn");
+        }
     }
 
     @Step

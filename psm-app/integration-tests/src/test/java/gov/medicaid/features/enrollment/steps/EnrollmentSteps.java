@@ -174,8 +174,8 @@ public class EnrollmentSteps {
     }
 
     @Step
-    public void enterNotAProviderAtPublicHealthServiceIndianHospital() {
-        licenseInfoPage.clickNo();
+    public void inputProviderAtPublicHealthServiceIndianHospital(boolean checkYes) {
+        licenseInfoPage.checkProviderAtPublicHealthServiceIndianHospital(checkYes);
     }
 
     @Step

@@ -46,6 +46,7 @@ Feature: Data Coverage Checks
   Scenario: Accepts license
     Given I have started an enrollment
     And I am on the individual provider license info page
+    And I indicate I am not a provider at a Public Health Service Indian Hospital
     When I enter valid license information
     And I upload a valid license
     Then the license is accepted

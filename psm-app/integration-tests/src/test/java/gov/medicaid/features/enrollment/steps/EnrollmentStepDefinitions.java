@@ -43,8 +43,8 @@ public class EnrollmentStepDefinitions {
         enrollmentSteps.advanceFromOrganizationInfoToLicenseInfo();
     }
 
-    @When("^I open the add a license panel$")
-    public void i_open_the_add_a_license_panel() {
+    @When("^I open an add a license panel$")
+    public void i_open_an_add_a_license_panel() {
         enrollmentSteps.clickAddLicense();
     }
 

@@ -17,12 +17,13 @@ public class PracticeInfoPage extends PsmPage {
         }
     }
 
-    public void checkNoGroupPractice() {
-        click($("[name=_04_employedOrContractedByGroup][value=N]"));
-    }
-
-    public void checkYesGroupPractice() {
-        click($("[name=_04_employedOrContractedByGroup][value=Y]"));
+    public void checkGroupPractice(boolean isGroupPractice) {
+        if (isGroupPractice) {
+            click$("[name=_04_employedOrContractedByGroup][value=Y]");
+            assertThat($(".additionalPracticeLocations").getText().contains("Additional Practice Locations"));
+        } else {
+            click$("[name=_04_employedOrContractedByGroup][value=N]");
+        }
     }
 
     public void enterPracticeName(String practiceName) {
@@ -95,6 +96,10 @@ public class PracticeInfoPage extends PsmPage {
 
     public void checkFirstRemittanceSequence() {
         click($("input[value='PATIENT_ACCOUNT_OR_OWN_REFERENCE_ORDER'"));
+    }
+
+    public void clickAddPracticeLocation() {
+        click$("#addPractice");
     }
 
     public void clickNext() {

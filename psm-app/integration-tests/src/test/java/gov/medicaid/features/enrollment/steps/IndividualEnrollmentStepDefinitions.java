@@ -55,6 +55,16 @@ public class IndividualEnrollmentStepDefinitions {
         enrollmentSteps.indicateMaintainOwnPrivatePractice(false);
     }
 
+    @When("^I indicate I am employed or independently contracted by a group practice$")
+    public void i_indicate_i_am_employed_or_independently_contracted_by_a_group_practice() {
+        enrollmentSteps.indicateGroupPractice(true);
+    }
+
+    @When("^I start to add a practice location$")
+    public void i_start_to_add_a_practice_location() {
+        enrollmentSteps.clickAddPracticeLocation();
+    }
+
     @When("^I am on the individual provider statement page$")
     public void i_am_on_the_individual_provider_statement_page() throws IOException {
         i_am_on_the_individual_provider_practice_info_page();

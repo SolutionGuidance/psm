@@ -22,3 +22,14 @@ Feature: Individual Enrollment Steps Accessibility Checks
     And I am on the individual provider practice info page
     When I indicate I maintain my own private practice
     Then I should have no accessibility issues
+
+  # fails: additional practice location 'effective date' input needs a label or title
+  @ignore
+  Scenario: Practice Info Page (Group Practice)
+    Given I have started an enrollment
+    And I am on the individual provider practice info page
+    And I indicate I do not maintain my own private practice
+    And I indicate I am employed or independently contracted by a group practice
+    And I start to add a practice location
+    And I start to add a practice location
+    Then I should have no accessibility issues

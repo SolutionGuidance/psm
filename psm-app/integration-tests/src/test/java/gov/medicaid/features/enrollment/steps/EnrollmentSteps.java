@@ -221,9 +221,19 @@ public class EnrollmentSteps {
     }
 
     @Step
+    public void indicateGroupPractice(boolean isGroupPractice) {
+        practiceInfoPage.checkGroupPractice(isGroupPractice);
+    }
+
+    @Step
+    public void clickAddPracticeLocation() {
+        practiceInfoPage.clickAddPracticeLocation();
+    }
+
+    @Step
     void enterIndividualPrivatePracticeInfo() {
         practiceInfoPage.checkPrivatePractice(true);
-        practiceInfoPage.checkNoGroupPractice();
+        practiceInfoPage.checkGroupPractice(false);
         practiceInfoPage.enterPracticeName(PRIVATE_PRACTICE_NAME);
         practiceInfoPage.enterGroupNPI(PRACTICE_GROUP_NPI);
         practiceInfoPage.enterEffectiveDate(PRACTICE_EFFECTIVE_DATE);

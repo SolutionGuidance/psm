@@ -86,8 +86,8 @@ public class EnrollmentStepDefinitions {
         enrollmentSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
     }
 
-    @When("^I am on the provider statement page$")
-    public void i_am_on_the_provider_statement_page() throws IOException {
+    @When("^I am on the organization provider statement page$")
+    public void i_am_on_the_organization_provider_statement_page() throws IOException {
         i_am_on_the_organization_summary_page();
         enrollmentSteps.advanceFromOrganizationSummaryToProviderStatementPage();
     }

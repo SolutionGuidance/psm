@@ -39,3 +39,10 @@ Feature: Individual Enrollment Steps Accessibility Checks
     Given I have started an enrollment
     When I am on the individual summary page
     Then I should have no accessibility issues
+
+  # fails: form input elements missing labels or titles
+  @ignore
+  Scenario: Individual Provider Statement Page
+    Given I have started an enrollment
+    And I am on the individual provider statement page
+    Then I should have no accessibility issues

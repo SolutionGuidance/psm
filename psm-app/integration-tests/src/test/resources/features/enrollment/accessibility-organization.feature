@@ -42,7 +42,7 @@ Feature: Organization Enrollment Steps Accessibility Checks
     When I am on the organization summary page
     Then I should have no accessibility issues
 
-  Scenario: Provider Statement Page
+  Scenario: Organization Provider Statement Page
     Given I have started an enrollment
-    When I am on the provider statement page
+    When I am on the organization provider statement page
     Then I should have no accessibility issues

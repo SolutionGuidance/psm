@@ -65,6 +65,11 @@ public class IndividualEnrollmentStepDefinitions {
         enrollmentSteps.clickAddPracticeLocation();
     }
 
+    @When("^I open the practice lookup modal$")
+    public void i_open_the_practice_lookup_modal() {
+        enrollmentSteps.openPracticeLookupModal();
+    }
+
     @When("^I am on the individual provider statement page$")
     public void i_am_on_the_individual_provider_statement_page() throws IOException {
         i_am_on_the_individual_provider_practice_info_page();

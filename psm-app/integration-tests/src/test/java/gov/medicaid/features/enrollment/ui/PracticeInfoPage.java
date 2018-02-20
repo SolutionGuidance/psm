@@ -26,6 +26,11 @@ public class PracticeInfoPage extends PsmPage {
         }
     }
 
+    public void clickPracticeLookupButton() {
+        click$(".practiceLookupModalBtn");
+        assertThat($(".practiceLookupModalTitle").getText().contains("Find Practice Data in Existing Record"));
+    }
+
     public void enterPracticeName(String practiceName) {
         $("[name=_05_name]").type(practiceName);
     }

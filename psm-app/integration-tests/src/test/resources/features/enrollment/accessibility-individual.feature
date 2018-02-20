@@ -21,6 +21,7 @@ Feature: Individual Enrollment Steps Accessibility Checks
     Given I have started an enrollment
     And I am on the individual provider practice info page
     When I indicate I maintain my own private practice
+    And I open the practice lookup modal
     Then I should have no accessibility issues
 
   # fails: additional practice location 'effective date' input needs a label or title

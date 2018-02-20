@@ -231,6 +231,11 @@ public class EnrollmentSteps {
     }
 
     @Step
+    public void openPracticeLookupModal() {
+        practiceInfoPage.clickPracticeLookupButton();
+    }
+
+    @Step
     void enterIndividualPrivatePracticeInfo() {
         practiceInfoPage.checkPrivatePractice(true);
         practiceInfoPage.checkGroupPractice(false);

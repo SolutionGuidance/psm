@@ -78,8 +78,8 @@ public class EnrollmentStepDefinitions {
         enrollmentSteps.addBusinessOwnership();
     }
 
-    @When("^I am on the summary page$")
-    public void i_am_on_the_summary_page() throws IOException {
+    @When("^I am on the organization summary page$")
+    public void i_am_on_the_organization_summary_page() throws IOException {
         i_am_on_the_ownership_info_page();
         enrollmentSteps.enterOrganizationOwnershipInfo();
         enrollmentSteps.setNoToAllDisclosures();
@@ -88,7 +88,7 @@ public class EnrollmentStepDefinitions {
 
     @When("^I am on the provider statement page$")
     public void i_am_on_the_provider_statement_page() throws IOException {
-        i_am_on_the_summary_page();
+        i_am_on_the_organization_summary_page();
         enrollmentSteps.advanceFromOrganizationSummaryToProviderStatementPage();
     }
 

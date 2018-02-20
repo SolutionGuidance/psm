@@ -34,3 +34,8 @@ Feature: Individual Enrollment Steps Accessibility Checks
     And I start to add a practice location
     And I start to add a practice location
     Then I should have no accessibility issues
+
+  Scenario: Individual Summary Page
+    Given I have started an enrollment
+    When I am on the individual summary page
+    Then I should have no accessibility issues

@@ -70,11 +70,16 @@ public class IndividualEnrollmentStepDefinitions {
         enrollmentSteps.openPracticeLookupModal();
     }
 
-    @When("^I am on the individual provider statement page$")
-    public void i_am_on_the_individual_provider_statement_page() throws IOException {
+    @When("^I am on the individual summary page$")
+    public void i_am_on_the_individual_summary_page() throws IOException {
         i_am_on_the_individual_provider_practice_info_page();
         enrollmentSteps.enterIndividualPrivatePracticeInfo();
         enrollmentSteps.advanceFromIndividualPracticeInfoToSummaryPage();
+    }
+
+    @When("^I am on the individual provider statement page$")
+    public void i_am_on_the_individual_provider_statement_page() throws IOException {
+        i_am_on_the_individual_summary_page();
         enrollmentSteps.advanceFromIndividualSummaryToProviderStatementPage();
     }
 }

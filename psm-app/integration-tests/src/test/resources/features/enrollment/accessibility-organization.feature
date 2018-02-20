@@ -37,9 +37,9 @@ Feature: Organization Enrollment Steps Accessibility Checks
     And I have indicated that the owner has an interest in another Medicaid disclosing entity
     Then I should have no accessibility issues
 
-  Scenario: Summary Page
+  Scenario: Organization Summary Page
     Given I have started an enrollment
-    When I am on the summary page
+    When I am on the organization summary page
     Then I should have no accessibility issues
 
   Scenario: Provider Statement Page

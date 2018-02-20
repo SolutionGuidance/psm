@@ -288,6 +288,11 @@ public class EnrollmentSteps {
     }
 
     @Step
+    void clickPrintButton() {
+        individualSummaryPage.clickPrintButton();
+    }
+
+    @Step
     void advanceFromOrganizationIndividualMemberInfoToOwnershipInfo() {
         individualInfoPage.clickNext();
         assertThat(ownershipInfoPage.getTitle()).contains("Ownership Information");

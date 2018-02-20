@@ -172,6 +172,10 @@ public class IndividualSummaryPage extends PsmPage {
         return textOf("#remittanceSequence");
     }
 
+    public void clickPrintButton() {
+        click$(".printModalBtn");
+    }
+
     public void clickNext() {
         click($(".nextBtn"));
     }

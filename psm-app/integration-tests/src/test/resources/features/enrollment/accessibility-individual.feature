@@ -41,6 +41,14 @@ Feature: Individual Enrollment Steps Accessibility Checks
     And I save as draft
     Then I should have no accessibility issues
 
+  # fails: duplicated IDs
+  @ignore
+  Scenario: Individual Print Modal
+      Given I have started an enrollment
+      When I am on the individual summary page
+      And I start to print
+      Then I should have no accessibility issues
+
   # fails: form input elements missing labels or titles
   @ignore
   Scenario: Individual Provider Statement Page

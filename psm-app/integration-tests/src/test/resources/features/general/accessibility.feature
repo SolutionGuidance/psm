@@ -16,40 +16,40 @@ Feature: General Accessibility Checks
 
   # issue #672
   @ignore
-  Scenario: Dashboard Page
+  Scenario: Provider Dashboard Page
     Given I am logged in as a provider
     When I open the filter panel
     Then I should have no accessibility issues
 
   # issue #672
   @ignore
-  Scenario: Dashboard Draft Page
+  Scenario: Provider Draft Page
     Given I am logged in as a provider
-    And I am on the Dashboard Draft page
+    And I am on the Draft page
     When I open the filter panel
     Then I should have no accessibility issues
 
   # issue #672
   @ignore
-  Scenario: Dashboard Pending Page
+  Scenario: Provider Pending Page
     Given I am logged in as a provider
-    And I am on the Dashboard Pending page
+    And I am on the Pending page
     When I open the filter panel
     Then I should have no accessibility issues
 
   # issue #672
   @ignore
-  Scenario: Dashboard Approved Page
+  Scenario: Provider Approved Page
     Given I am logged in as a provider
-    And I am on the Dashboard Approved page
+    And I am on the Approved page
     When I open the filter panel
     Then I should have no accessibility issues
 
   # issue #672
   @ignore
-  Scenario: Dashboard Denied Page
+  Scenario: Provider Denied Page
     Given I am logged in as a provider
-    And I am on the Dashboard Denied page
+    And I am on the Denied page
     When I open the filter panel
     Then I should have no accessibility issues
 

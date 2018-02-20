@@ -30,24 +30,28 @@
             <div class="tabHead">
               <div class="tabR">
                 <div class="tabM">
-                  <a class="tab ${statusFilter eq 'Draft' ? 'active' : ''}" href="<c:url value="/provider/dashboard/drafts" />">
+                  <a class="tab draftTab ${statusFilter eq 'Draft' ? 'active' : ''}"
+                    href="<c:url value="/provider/dashboard/drafts" />">
                     <span class="aR">
-                      <span class="draftTab aM">Draft</span>
+                      <span class="aM">Draft</span>
                     </span>
                   </a>
-                  <a class="tab ${statusFilter eq 'Pending' ? 'active' : ''}" href="<c:url value="/provider/dashboard/pending" />">
+                  <a class="tab pendingTab ${statusFilter eq 'Pending' ? 'active' : ''}"
+                    href="<c:url value="/provider/dashboard/pending" />">
                     <span class="aR">
-                      <span class="pendingTab aM">Pending</span>
+                      <span class="aM">Pending</span>
                     </span>
                   </a>
-                  <a class="tab ${statusFilter eq 'Approved' ? 'active' : ''}" href="<c:url value="/provider/dashboard/approved" />">
+                  <a class="tab approvedTab ${statusFilter eq 'Approved' ? 'active' : ''}"
+                    href="<c:url value="/provider/dashboard/approved" />">
                     <span class="aR">
-                      <span class="approvedTab aM">Approved</span>
+                      <span class="aM">Approved</span>
                     </span>
                   </a>
-                  <a class="tab ${statusFilter eq 'Rejected' ? 'active' : ''}" href="<c:url value="/provider/dashboard/rejected" />">
+                  <a class="tab deniedTab ${statusFilter eq 'Rejected' ? 'active' : ''}"
+                    href="<c:url value="/provider/dashboard/rejected" />">
                     <span class="aR">
-                      <span class="deniedTab aM">Denied</span>
+                      <span class="aM">Denied</span>
                     </span>
                   </a>
                   <h:create-enrollment-button cssClass="purpleBtn"/>

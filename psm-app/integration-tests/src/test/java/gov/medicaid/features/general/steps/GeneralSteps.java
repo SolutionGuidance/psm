@@ -40,25 +40,25 @@ public class GeneralSteps {
     }
 
     @Step
-    public void navigateToDashboardDraftPage() {
+    public void navigateToDraftPage() {
         dashboardPage.click$(".enrollmentsLink");
     }
 
     @Step
-    public void navigateToDashboardPendingPage() {
-        navigateToDashboardDraftPage();
+    public void navigateToPendingPage() {
+        navigateToDraftPage();
         dashboardPage.click$(".pendingTab");
     }
 
     @Step
-    public void navigateToDashboardApprovedPage() {
-        navigateToDashboardDraftPage();
+    public void navigateToApprovedPage() {
+        navigateToDraftPage();
         dashboardPage.click$(".approvedTab");
     }
 
     @Step
-    public void navigateToDashboardDeniedPage() {
-        navigateToDashboardDraftPage();
+    public void navigateToDeniedPage() {
+        navigateToDraftPage();
         dashboardPage.click$(".deniedTab");
     }
 

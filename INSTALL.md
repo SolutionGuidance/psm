@@ -493,6 +493,22 @@ Each task is a freestyle project, triggered by the GitHub pull request plugin.
   - `checkstyleMain`
   - `checkstyleTest`
 
+Currently, for security reasons, we do not run Jenkins on PRs that
+originate outside this repository.  To run the tests on PRs from
+external contributors, type "Jenkins, test this please." in the PR.
+That phrase is magic, but only when written by someone with the correct
+access in Jenkins.  To give a new GitHub username this power in Jenkins,
+add it to the admin list for the desired builds.  For each build:
+
+1. Click "Configure"
+2. Scroll to "Admin list"
+3. Add the GitHub username to the "admin list" textarea
+
+After those steps, the person with that GitHub username will be able to
+tell Jenkins to test an outside PR.  Note that doing this causes Jenkins
+to run code, so if you have this power please read such contributions
+carefully.
+
 ### Travis
 
 This project also leverages Travis to power Continuous Deployment, although we

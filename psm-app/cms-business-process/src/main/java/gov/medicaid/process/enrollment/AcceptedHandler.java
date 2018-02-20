@@ -16,14 +16,17 @@
 
 package gov.medicaid.process.enrollment;
 
+import java.util.Collections;
 import java.util.Date;
 
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.EnrollmentProcess;
 import gov.medicaid.entities.CMSUser;
+import gov.medicaid.entities.EmailTemplate;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Event;
 import gov.medicaid.services.CMSConfigurator;
+import gov.medicaid.services.NotificationService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.XMLAdapter;
@@ -48,6 +51,11 @@ public class AcceptedHandler extends GenericHandler {
     private final ProviderEnrollmentService providerService;
 
     /**
+     * Notification service.
+     */
+    private final NotificationService notificationService;
+
+    /**
      * Entity manager.
      */
     private final EntityManager entityManager;
@@ -59,6 +67,7 @@ public class AcceptedHandler extends GenericHandler {
         CMSConfigurator config = new CMSConfigurator();
         this.providerService = config.getEnrollmentService();
         this.entityManager = config.getPortalEntityManager();
+        this.notificationService = config.getNotificationService();
     }
 
     /**
@@ -96,6 +105,8 @@ public class AcceptedHandler extends GenericHandler {
 
             item.getResults().put("model", model);
             manager.completeWorkItem(item.getId(), item.getResults());
+            
+            notificationService.sendNotification(model.getEnrollment(), NotificationService.EnrollmentStatus.APPROVED);
 
             // Issue #215 - add hook for approval
         } catch (PortalServiceException e) {

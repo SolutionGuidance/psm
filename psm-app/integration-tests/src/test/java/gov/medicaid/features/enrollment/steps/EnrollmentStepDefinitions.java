@@ -92,6 +92,17 @@ public class EnrollmentStepDefinitions {
         enrollmentSteps.advanceFromOrganizationSummaryToProviderStatementPage();
     }
 
+    @When("^I enter my provider statement$")
+    public void i_enter_my_provider_statement() {
+        enrollmentSteps.checkNoOnProviderDisclosureQuestions();
+        enrollmentSteps.signAndDateProviderStatement();
+    }
+
+    @When("^I submit the enrollment$")
+    public void i_submit_the_enrollment() {
+        enrollmentSteps.submitEnrollment();
+    }
+
     @When("^I am entering ownership information$")
     public void i_am_entering_ownership_information() throws IOException {
         i_am_on_the_ownership_info_page();

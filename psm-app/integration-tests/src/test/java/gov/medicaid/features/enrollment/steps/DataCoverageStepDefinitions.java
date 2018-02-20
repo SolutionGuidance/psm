@@ -38,17 +38,6 @@ public class DataCoverageStepDefinitions {
         enrollmentSteps.enterIndividualPrivatePracticeInfo();
     }
 
-    @When("^I enter my provider statement$")
-    public void enter_provider_statement() {
-        enrollmentSteps.checkNoOnProviderDisclosureQuestions();
-        enrollmentSteps.signAndDateProviderStatement();
-    }
-
-    @When("^I submit the enrollment$")
-    public void submit_enrollment() {
-        enrollmentSteps.submitEnrollment();
-    }
-
     @Then("^I should be asked to enter Applicant Name, Contact Person, Contact phone$")
     public void i_should_be_asked_to_enter_Applicant_Name_Contact_Person_Contact_phone() {
         organizationInfoPage.verifyApplicantNameAccepted();

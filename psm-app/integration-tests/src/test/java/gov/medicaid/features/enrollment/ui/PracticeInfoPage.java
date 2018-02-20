@@ -7,13 +7,14 @@ import java.time.LocalDate;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PracticeInfoPage extends PsmPage {
-    public void checkNoPrivatePractice() {
-        click($("[name=_04_maintainsOwnPrivatePractice][value=N]"));
-        assertThat($("#privatePracitce > div").getText().contains("Private Practice"));
-    }
 
-    public void checkYesPrivatePractice() {
-        click($("[name=_04_maintainsOwnPrivatePractice][value=Y]"));
+    public void checkPrivatePractice(boolean isPrivatePractice) {
+        if (isPrivatePractice) {
+            click$("[name=_04_maintainsOwnPrivatePractice][value=Y]");
+            assertThat($("#privatePractice > div").getText().contains("Private Practice"));
+        } else {
+            click$("[name=_04_maintainsOwnPrivatePractice][value=N]");
+        }
     }
 
     public void checkNoGroupPractice() {

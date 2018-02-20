@@ -216,8 +216,13 @@ public class EnrollmentSteps {
     }
 
     @Step
+    public void indicateMaintainOwnPrivatePractice(boolean isPrivatePractice) {
+        practiceInfoPage.checkPrivatePractice(isPrivatePractice);
+    }
+
+    @Step
     void enterIndividualPrivatePracticeInfo() {
-        practiceInfoPage.checkYesPrivatePractice();
+        practiceInfoPage.checkPrivatePractice(true);
         practiceInfoPage.checkNoGroupPractice();
         practiceInfoPage.enterPracticeName(PRIVATE_PRACTICE_NAME);
         practiceInfoPage.enterGroupNPI(PRACTICE_GROUP_NPI);

@@ -45,6 +45,16 @@ public class IndividualEnrollmentStepDefinitions {
         enrollmentSteps.advanceFromIndividualLicenseInfoToPracticeInfo();
     }
 
+    @When("^I indicate I maintain my own private practice$")
+    public void i_indicate_i_maintain_my_own_private_practice() {
+        enrollmentSteps.indicateMaintainOwnPrivatePractice(true);
+    }
+
+    @When("^I indicate I do not maintain my own private practice$")
+    public void i_indicate_i_do_not_maintain_my_own_private_practice() {
+        enrollmentSteps.indicateMaintainOwnPrivatePractice(false);
+    }
+
     @When("^I am on the individual provider statement page$")
     public void i_am_on_the_individual_provider_statement_page() throws IOException {
         i_am_on_the_individual_provider_practice_info_page();

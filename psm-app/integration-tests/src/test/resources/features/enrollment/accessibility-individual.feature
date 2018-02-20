@@ -38,6 +38,7 @@ Feature: Individual Enrollment Steps Accessibility Checks
   Scenario: Individual Summary Page
     Given I have started an enrollment
     When I am on the individual summary page
+    And I save as draft
     Then I should have no accessibility issues
 
   # fails: form input elements missing labels or titles

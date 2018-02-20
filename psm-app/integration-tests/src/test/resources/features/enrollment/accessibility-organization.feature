@@ -40,6 +40,7 @@ Feature: Organization Enrollment Steps Accessibility Checks
   Scenario: Organization Summary Page
     Given I have started an enrollment
     When I am on the organization summary page
+    And I save as draft
     Then I should have no accessibility issues
 
   Scenario: Organization Provider Statement Page

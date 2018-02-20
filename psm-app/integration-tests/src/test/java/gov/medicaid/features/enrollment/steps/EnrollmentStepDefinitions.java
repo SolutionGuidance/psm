@@ -86,6 +86,11 @@ public class EnrollmentStepDefinitions {
         enrollmentSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
     }
 
+    @When("^I save as draft$")
+    public void i_save_as_draft() {
+        enrollmentSteps.clickSaveAsDraft();
+    }
+
     @When("^I am on the organization provider statement page$")
     public void i_am_on_the_organization_provider_statement_page() throws IOException {
         i_am_on_the_organization_summary_page();

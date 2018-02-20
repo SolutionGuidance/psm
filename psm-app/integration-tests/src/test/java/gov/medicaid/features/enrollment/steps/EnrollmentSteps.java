@@ -1,6 +1,7 @@
 package gov.medicaid.features.enrollment.steps;
 
 import gov.medicaid.features.enrollment.ui.EnrollmentDetailsPage;
+import gov.medicaid.features.enrollment.ui.EnrollmentPage;
 import gov.medicaid.features.enrollment.ui.IndividualInfoPage;
 import gov.medicaid.features.enrollment.ui.IndividualSummaryPage;
 import gov.medicaid.features.enrollment.ui.LicenseInfoPage;
@@ -63,6 +64,7 @@ public class EnrollmentSteps {
 
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
+    private EnrollmentPage enrollmentPage;
     private SelectProviderTypePage selectProviderTypePage;
     private OrganizationInfoPage organizationInfoPage;
     private IndividualInfoPage individualInfoPage;
@@ -278,6 +280,11 @@ public class EnrollmentSteps {
     void advanceFromIndividualPracticeInfoToSummaryPage() {
         practiceInfoPage.clickNext();
         assertThat(individualSummaryPage.getTitle()).contains("Summary Information");
+    }
+
+    @Step
+    void clickSaveAsDraft() {
+        enrollmentPage.clickSaveAsDraft();
     }
 
     @Step

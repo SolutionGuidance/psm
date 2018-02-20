@@ -10,7 +10,6 @@ public class AdvancedSearchStepDefinitions {
 
     @Given("^I am on the Advanced Search page$")
     public void i_am_on_the_advanced_search_page() {
-        generalSteps.loginAsProvider();
         generalSteps.navigateToAdvancedSearchPage();
     }
 }

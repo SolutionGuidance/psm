@@ -16,13 +16,9 @@ public class LogoutStepDefinitions {
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
 
-    @Given("I am logged in$")
-    public void enter_dashboard_page() {
-        loginAsProvider();
-    }
-
-    private void loginAsProvider() {
-        generalSteps.loginAsProvider();
+    @Given("I am logged in as a provider$")
+    public void i_am_logged_in_as_a_provider() {
+        generalSteps.login("p1", "p1");
     }
 
     @When("^I click on Logout$")

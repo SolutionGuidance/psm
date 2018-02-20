@@ -27,11 +27,11 @@ public class GeneralSteps {
     }
 
     @Step
-    public void loginAsProvider() {
+    public void login(String username, String password) {
         loginPage.open();
-        loginPage.enterProviderCredentials();
+        loginPage.enterCredentials(username, password);
         loginPage.login();
-        loginPage.checkUserLoggedIn("p1");
+        loginPage.checkUserLoggedIn(username);
     }
 
     @Step

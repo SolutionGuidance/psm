@@ -72,4 +72,10 @@ public class AdminStepDefinitions {
         i_am_on_the_view_enrollment_organization_info_page();
         generalSteps.clickLinkAssertTitle(".ownerShip", "Ownership Information");
     }
+
+    @When("^I am on the View Enrollment Provider Statement page$")
+    public void i_am_on_the_view_enrollment_provider_statement_page() {
+        i_am_on_the_view_enrollment_organization_info_page();
+        generalSteps.clickLinkAssertTitle(".provider", "Provider Statement");
+    }
 }

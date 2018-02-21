@@ -1862,7 +1862,7 @@ $(document).ready(function () {
   }
 
   /*add ownership*/
-  $('#addOwnership').live('click', function () {
+  $('#addIndividualOwnership').live('click', function () {
     var html = $('#ownerTemplate').clone();
     html.attr('id', '');
     html.find('[type=text]').val('');

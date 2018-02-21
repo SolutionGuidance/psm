@@ -5,6 +5,8 @@ import gov.medicaid.features.enrollment.ui.IndividualInfoPage;
 import gov.medicaid.features.enrollment.ui.IndividualSummaryPage;
 import gov.medicaid.features.enrollment.ui.LicenseInfoPage;
 import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
+import gov.medicaid.features.enrollment.ui.OrganizationSummaryPage;
+import gov.medicaid.features.enrollment.ui.OwnershipInfoPage;
 import gov.medicaid.features.enrollment.ui.PersonalInfoPage;
 import gov.medicaid.features.enrollment.ui.PracticeInfoPage;
 import gov.medicaid.features.enrollment.ui.ProviderStatementPage;
@@ -67,7 +69,9 @@ public class EnrollmentSteps {
     private PersonalInfoPage personalInfoPage;
     private LicenseInfoPage licenseInfoPage;
     private PracticeInfoPage practiceInfoPage;
+    private OwnershipInfoPage ownershipInfoPage;
     private IndividualSummaryPage individualSummaryPage;
+    private OrganizationSummaryPage organizationSummaryPage;
     private ProviderStatementPage providerStatementPage;
     private EnrollmentDetailsPage enrollmentDetailsPage;
 
@@ -113,6 +117,11 @@ public class EnrollmentSteps {
         assertThat(organizationInfoPage.getTitle()).contains("Facility Credentials");
     }
 
+    @Step
+    void clickAddLicense() {
+        licenseInfoPage.addLicense();
+    }
+
     public void enterOrganizationInfo() {
         organizationInfoPage.setNPI("1234567893");
         organizationInfoPage.setEffectiveDate(generateEffectiveDate());
@@ -138,6 +147,10 @@ public class EnrollmentSteps {
         cal.add(Calendar.DAY_OF_YEAR, -6);
         String dateStr = formFieldDateFormat.format(cal.getTime());
         return dateStr;
+    }
+
+    public void openIndividualMemberPanel() {
+        individualInfoPage.enterIndividualMember();
     }
 
     public void enterIndividualMember() {
@@ -197,6 +210,12 @@ public class EnrollmentSteps {
     }
 
     @Step
+    void advanceFromOrganizationLicenseInfoToIndividualMemberInfo() {
+        licenseInfoPage.clickNext();
+        assertThat(licenseInfoPage.getTitle()).contains("Member Information");
+    }
+
+    @Step
     void enterIndividualPrivatePracticeInfo() {
         practiceInfoPage.checkYesPrivatePractice();
         practiceInfoPage.checkNoGroupPractice();
@@ -218,9 +237,48 @@ public class EnrollmentSteps {
     }
 
     @Step
+    public void enterOrganizationOwnershipInfo() {
+        ownershipInfoPage.selectEntityType("Sole Proprietorship");
+        ownershipInfoPage.addIndividualOwnership();
+        ownershipInfoPage.selectOwnershipType("Managing Employee");
+        ownershipInfoPage.setOwnershipFirstName("First");
+        ownershipInfoPage.setOwnershipMiddleName("Middle");
+        ownershipInfoPage.setOwnershipLastName("Last");
+        ownershipInfoPage.setOwnershipSoSec("123456789");
+        ownershipInfoPage.setOwnershipAddr1("OwnerAddr1");
+        ownershipInfoPage.setOwnershipDOB("01011970");
+        ownershipInfoPage.setOwnershipHireDate("01012000");
+        ownershipInfoPage.setOwnershipCity("Ownertown");
+        ownershipInfoPage.selectOwnershipState("Texas");
+        ownershipInfoPage.setOwnershipZip("77706");
+        ownershipInfoPage.selectOwnershipCounty("Beltrami");
+    }
+
+    @Step
     void advanceFromIndividualPracticeInfoToSummaryPage() {
         practiceInfoPage.clickNext();
         assertThat(individualSummaryPage.getTitle()).contains("Summary Information");
+    }
+
+    @Step
+    void advanceFromOrganizationIndividualMemberInfoToOwnershipInfo() {
+        individualInfoPage.clickNext();
+        assertThat(ownershipInfoPage.getTitle()).contains("Ownership Information");
+    }
+
+    @Step
+    void addIndividualOwnership() {
+        ownershipInfoPage.addIndividualOwnership();
+    }
+
+    @Step
+    void addBusinessOwnership() {
+        ownershipInfoPage.addBusinessOwnership();
+    }
+
+    @Step
+    void setNoToAllDisclosures() {
+        ownershipInfoPage.setNoToAllDisclosures();
     }
 
     @Step
@@ -294,8 +352,19 @@ public class EnrollmentSteps {
     }
 
     @Step
+    void advanceFromOrganizationOwnershipInfoToSummaryPage() {
+        ownershipInfoPage.clickNext();
+        assertThat(organizationSummaryPage.getTitle()).contains("Summary Information");
+    }
+
+    @Step
     void advanceFromIndividualSummaryToProviderStatementPage() {
         individualSummaryPage.clickNext();
+    }
+
+    @Step
+    void advanceFromOrganizationSummaryToProviderStatementPage() {
+        organizationSummaryPage.clickNext();
     }
 
     @Step

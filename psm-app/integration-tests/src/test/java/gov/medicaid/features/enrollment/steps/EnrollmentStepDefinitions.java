@@ -6,6 +6,7 @@ import cucumber.api.java.en.When;
 import gov.medicaid.features.enrollment.ui.EnrollmentPage;
 import gov.medicaid.features.enrollment.ui.LicenseInfoPage;
 import gov.medicaid.features.enrollment.ui.OwnershipInfoPage;
+import gov.medicaid.features.general.steps.GeneralSteps;
 import net.thucydides.core.annotations.Steps;
 
 import java.io.IOException;
@@ -16,37 +17,91 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class EnrollmentStepDefinitions {
     @Steps
     EnrollmentSteps enrollmentSteps;
+    @Steps
+    GeneralSteps generalSteps;
 
     private EnrollmentPage enrollmentPage;
     private OwnershipInfoPage ownershipInfoPage;
     private LicenseInfoPage licenseInfoPage;
 
-    @Given("^I am entering ownership information$")
-    public void i_am_entering_ownership_information() throws IOException {
+    @Given("^I have started an enrollment$")
+    public void i_have_started_an_enrollment() {
+        generalSteps.loginAsProvider();
+        enrollmentSteps.createEnrollment();
+    }
+
+    @Given("^I am on the organization page$")
+    public void i_am_on_the_organization_page() {
         enrollmentSteps.selectOrganizationalProviderType();
+    }
+
+    @Given("^I am on the personal info page$")
+    public void i_am_on_the_personal_info_page() {
+        i_have_started_an_enrollment();
+        enrollmentSteps.selectIndividualProviderType();
+    }
+
+    @When("^I am on the facility credentials page$")
+    public void i_am_on_the_facility_credentials_page() {
+        i_am_on_the_organization_page();
         enrollmentSteps.enterOrganizationInfo();
         enrollmentSteps.enterContactInfo();
-        enrollmentPage.clickNext();
+        enrollmentSteps.advanceFromOrganizationInfoToLicenseInfo();
+    }
+
+    @When("^I open the add a license panel$")
+    public void i_open_the_add_a_license_panel() {
+        enrollmentSteps.clickAddLicense();
+    }
+
+    @When("^I am on the individual member info page$")
+    public void i_am_on_the_individual_member_info_page() throws IOException {
+        i_am_on_the_facility_credentials_page();
         enrollmentSteps.enterLicenseInfo();
         enrollmentSteps.uploadLicense();
-        enrollmentPage.clickNext();
-        enrollmentSteps.enterIndividualMember();
-        enrollmentPage.clickNext();
+        enrollmentSteps.advanceFromOrganizationLicenseInfoToIndividualMemberInfo();
+    }
 
-        ownershipInfoPage.selectEntityType("Sole Proprietorship");
-        ownershipInfoPage.addOwnership();
-        ownershipInfoPage.selectOwnershipType("Managing Employee");
-        ownershipInfoPage.setOwnershipFirstName("First");
-        ownershipInfoPage.setOwnershipMiddleName("Middle");
-        ownershipInfoPage.setOwnershipLastName("Last");
-        ownershipInfoPage.setOwnershipSoSec("123456789");
-        ownershipInfoPage.setOwnershipAddr1("OwnerAddr1");
-        ownershipInfoPage.setOwnershipDOB("01011970");
-        ownershipInfoPage.setOwnershipHireDate("01012000");
-        ownershipInfoPage.setOwnershipCity("Ownertown");
-        ownershipInfoPage.selectOwnershipState("Texas");
-        ownershipInfoPage.setOwnershipZip("77706");
-        ownershipInfoPage.selectOwnershipCounty("Beltrami");
+    @When("^I open an individual member panel")
+    public void i_open_an_individual_member_panel() {
+        enrollmentSteps.openIndividualMemberPanel();
+    }
+
+    @When("^I am on the ownership info page$")
+    public void i_am_on_the_ownership_info_page() throws IOException {
+        i_am_on_the_individual_member_info_page();
+        enrollmentSteps.enterIndividualMember();
+        enrollmentSteps.advanceFromOrganizationIndividualMemberInfoToOwnershipInfo();
+    }
+
+    @When("^I open the individual owner panel$")
+    public void i_open_the_individual_owner_panels() {
+        enrollmentSteps.addIndividualOwnership();
+    }
+
+    @When("^I open the business owner panel$")
+    public void i_open_the_business_owner_panel() {
+        enrollmentSteps.addBusinessOwnership();
+    }
+
+    @When("^I am on the summary page$")
+    public void i_am_on_the_summary_page() throws IOException {
+        i_am_on_the_ownership_info_page();
+        enrollmentSteps.enterOrganizationOwnershipInfo();
+        enrollmentSteps.setNoToAllDisclosures();
+        enrollmentSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
+    }
+
+    @When("^I am on the provider statement page$")
+    public void i_am_on_the_provider_statement_page() throws IOException {
+        i_am_on_the_summary_page();
+        enrollmentSteps.advanceFromOrganizationSummaryToProviderStatementPage();
+    }
+
+    @When("^I am entering ownership information$")
+    public void i_am_entering_ownership_information() throws IOException {
+        i_am_on_the_ownership_info_page();
+        enrollmentSteps.enterOrganizationOwnershipInfo();
     }
 
     @Given("^I have indicated that the owner has an interest in another Medicaid disclosing entity$")
@@ -69,7 +124,6 @@ public class EnrollmentStepDefinitions {
     public void i_click_next_on_the_Ownership_Info_Page() {
         ownershipInfoPage.setNoToAllDisclosures();
         ownershipInfoPage.clickNext();
-
     }
 
     @When("^I click 'next' on the license info page$")

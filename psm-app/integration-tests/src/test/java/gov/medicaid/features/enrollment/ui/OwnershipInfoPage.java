@@ -8,8 +8,12 @@ public class OwnershipInfoPage extends EnrollmentPage {
         $("#entityType").selectByVisibleText(entityType);
     }
 
-    public void addOwnership() {
-        click($("#addOwnership"));
+    public void addIndividualOwnership() {
+        click($("#addIndividualOwnership"));
+    }
+
+    public void addBusinessOwnership() {
+        click($("#addBusinessOwnership"));
     }
 
     public void selectOwnershipType(String ownershipType) {

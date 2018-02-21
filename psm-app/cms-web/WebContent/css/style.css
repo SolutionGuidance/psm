@@ -1388,7 +1388,7 @@ input.date{
   width:20%;
   float:left;
   display:inline;
-  color:#999999;
+  color:#737373;
   line-height:14px;
 }
 
@@ -4323,7 +4323,7 @@ input.passwordNormalInput{
   padding-left: 30px;
   padding-top: 0;
 }
-#addMember, #addOwnership, #addBusinessOwnership{
+#addMember, #addIndividualOwnership, #addBusinessOwnership{
   display: inline-block;
   line-height: 20px;
   padding-bottom: 5px;

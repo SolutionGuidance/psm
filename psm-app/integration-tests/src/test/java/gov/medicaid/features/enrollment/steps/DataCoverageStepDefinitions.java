@@ -83,11 +83,6 @@ public class DataCoverageStepDefinitions {
         enrollmentSteps.uploadLicense();
     }
 
-    @When("^I move to the organization page$")
-    public void i_move_to_the_organization_page() {
-        enrollmentSteps.selectOrganizationalProviderType();
-    }
-
     @When("^I enter a valid private practice$")
     public void enter_valid_private_practice_information() {
         enrollmentSteps.enterIndividualPrivatePracticeInfo();

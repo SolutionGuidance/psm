@@ -52,3 +52,10 @@ Feature: General Accessibility Checks for Admins
     Given I am logged in as an admin
     And I am on the Review Enrollment page
     Then I should have no accessibility issues
+
+  # fails: page is opened in a separate tab
+  @ignore
+  Scenario: Admin Screening Log Page
+    Given I am logged in as an admin
+    And I am on the Screening Log page
+    Then I should have no accessibility issues

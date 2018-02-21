@@ -34,4 +34,11 @@ public class AdminStepDefinitions {
         generalSteps.navigateToPendingPage();
         generalSteps.clickLinkAssertTitle(".reviewLink", "Review Enrollment");
     }
+
+    @When("^I am on the Screening Log page$")
+    public void i_am_on_the_screening_log_page() {
+        i_am_on_the_review_enrollment_page();
+        // assert fails because the page is opened in a separate tab
+        generalSteps.clickLinkAssertTitle(".autoScreeningResultLink", "Screening Log");
+    }
 }

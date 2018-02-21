@@ -66,4 +66,10 @@ public class AdminStepDefinitions {
         i_am_on_the_view_enrollment_organization_info_page();
         generalSteps.clickLinkAssertTitle(".practice", "Member Information");
     }
+
+    @When("^I am on the View Enrollment Ownership Info page$")
+    public void i_am_on_the_view_enrollment_ownership_info_page() {
+        i_am_on_the_view_enrollment_organization_info_page();
+        generalSteps.clickLinkAssertTitle(".ownerShip", "Ownership Information");
+    }
 }

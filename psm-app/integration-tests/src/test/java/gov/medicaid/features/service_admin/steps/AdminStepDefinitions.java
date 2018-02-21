@@ -18,6 +18,11 @@ public class AdminStepDefinitions {
         generalSteps.login("admin", "admin");
     }
 
+    @When("^I open the Write Note modal$")
+    public void i_open_the_write_note_modal() {
+        adminSteps.openWriteNoteModal();
+    }
+
     @When("^I am on the COS page$")
     public void i_am_on_the_cos_page() {
         generalSteps.navigateToDraftPage();

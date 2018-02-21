@@ -38,6 +38,7 @@ Feature: General Accessibility Checks for Admins
     Given I am logged in as an admin
     And I am on the Notes page
     And I open the filter panel
+    And I open the Write Note modal
     Then I should have no accessibility issues
 
   # fails: COS input field needs label or title

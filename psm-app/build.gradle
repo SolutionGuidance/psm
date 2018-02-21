@@ -351,21 +351,6 @@ project(':integration-tests') {
 
     test {
         systemProperty 'cucumber.options', System.properties.get('cucumber.options')
-
-        // Run sauce labs if it is configured
-        if(System.getenv("SAUCE_USERNAME") != null) {
-            // TODO: Platform, driver, and version can be env configurable
-            systemProperty "webdriver.driver",  "chrome"
-            systemProperty "saucelabs.url", "https://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.saucelabs.com:443/wd/hub"
-            systemProperty "saucelabs.target.platform", "MAC" // See: https://github.com/SeleniumHQ/selenium/blob/master/java/client/src/org/openqa/selenium/Platform.java
-            systemProperty "saucelabs.driver.version", "60"
-            systemProperty "saucelabs.access.key", System.getenv("SAUCE_ACCESS_KEY")
-            systemProperty "saucelabs.user.id", System.getenv("SAUCE_USERNAME")
-
-            if(System.getenv("TRAVIS_JOB_NUMBER") != null) {
-                systemProperty "saucelabs.tunnel-identifier", System.getenv("TRAVIS_JOB_NUMBER")
-            }
-        }
     }
 }
 

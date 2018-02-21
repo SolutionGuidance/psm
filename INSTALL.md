@@ -27,7 +27,6 @@
 - **[Production Deployment](#production-deployment)**
     - [NGINX](#nginx)
     - [Continuous Deployment](#continuous-deployment)
-        - [Travis Environment Variables](#travis-environment-variables)
 
 # Background and Current Deployment Status
 
@@ -508,25 +507,3 @@ After those steps, the person with that GitHub username will be able to
 tell Jenkins to test an outside PR.  Note that doing this causes Jenkins
 to run code, so if you have this power please read such contributions
 carefully.
-
-### Travis
-
-This project also leverages Travis to power Continuous Deployment, although we
-are transitioning away from it.  To set up a CD server, follow these steps:
-
-1. Create a fresh RHEL instance
-2. Run the `scripts/rhel-install.sh` script
-3. This will generate two files of importance on the server: `~/CD_KEY.env`
-and `~/CD_HOSTKEY.env`
-4. Create and fill the necessary environment variables via the Travis UI.
-NOTE: these values are sensitive. The "Display value in build log" setting
-should be turned off.
-
-#### Travis Environment Variables
-
-- CD_USER: `travis`
-- CD_SERVER: `{Your Server's IP or Hostname}`
-- CD_KEY: `"{Contents of CD_KEY.env}"` <-- NOTE: the wrapping quotes must
-be included
-- CD_HOSTKEY: `"{Contents of CD_HOSTKEY.env}"` <-- NOTE: the wrapping
-quotes must be included

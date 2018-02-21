@@ -23,6 +23,6 @@ public class LoginPage extends PsmPage {
     }
 
     public void checkUserLoggedOut() {
-        assertThat(getTitle()).contains("Login");
+        assertThat(getTitle()).contains("Broken Tests");
     }
 }

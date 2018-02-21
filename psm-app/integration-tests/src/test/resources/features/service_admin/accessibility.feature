@@ -47,3 +47,8 @@ Feature: General Accessibility Checks for Admins
     Given I am logged in as an admin
     And I am on the COS page
     Then I should have no accessibility issues
+
+  Scenario: Admin Review Enrollment Page
+    Given I am logged in as an admin
+    And I am on the Review Enrollment page
+    Then I should have no accessibility issues

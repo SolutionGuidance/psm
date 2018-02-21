@@ -2129,7 +2129,7 @@ input.date{
   padding:0 0 0 25px;
   font-size:12px;
   line-height:16px;
-  color:#f00;
+  color:#900;
   background-image:url(../i/icon-error.png);
   background-repeat:no-repeat;
   background-position:0 0;
@@ -2139,7 +2139,7 @@ input.date{
   margin:0 0 0 25px;
   font-size:12px;
   line-height:18px;
-  color: #c00;
+  color: #900;
 }
 
 .errorInput{

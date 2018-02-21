@@ -231,7 +231,7 @@
               <span class="sep">|</span>
               <c:forEach var="task" items="${tasks}">
                 <c:if test="${task.processInstanceId == item.processInstanceId}">
-                    <a href="${ctx}/agent/enrollment/screeningReview?id=${item.ticketId}">
+                    <a class="reviewLink" href="${ctx}/agent/enrollment/screeningReview?id=${item.ticketId}">
                       Review
                     </a>
                     <span class="sep">|</span>

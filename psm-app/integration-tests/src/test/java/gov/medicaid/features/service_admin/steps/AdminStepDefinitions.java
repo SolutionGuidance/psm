@@ -28,4 +28,10 @@ public class AdminStepDefinitions {
         generalSteps.navigateToDraftPage();
         generalSteps.clickLinkAssertTitle(".cosLink", "Category of Service");
     }
+
+    @When("^I am on the Review Enrollment page$")
+    public void i_am_on_the_review_enrollment_page() {
+        generalSteps.navigateToPendingPage();
+        generalSteps.clickLinkAssertTitle(".reviewLink", "Review Enrollment");
+    }
 }

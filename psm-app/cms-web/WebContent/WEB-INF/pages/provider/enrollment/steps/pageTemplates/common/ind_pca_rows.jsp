@@ -1,9 +1,4 @@
 <div class="row">
-    <label>Last Name</label>
-    <span class="floatL"><b>:</b></span>
-    <span>${requestScope['_10_lastName']}</span>
-</div>
-<div class="row">
     <label>First Name</label>
     <span class="floatL"><b>:</b></span>
     <span>${requestScope['_10_firstName']}</span>
@@ -12,6 +7,11 @@
     <label>Middle Name</label>
     <span class="floatL"><b>:</b></span>
     <span>${requestScope['_10_middleName']}</span>
+</div>
+<div class="row">
+    <label>Last Name</label>
+    <span class="floatL"><b>:</b></span>
+    <span>${requestScope['_10_lastName']}</span>
 </div>
 <div class="row">
     <label>Social Security Number</label>

@@ -29,6 +29,13 @@ public class AdminStepDefinitions {
         generalSteps.clickLinkAssertTitle(".cosLink", "Category of Service");
     }
 
+    @When("^I am on the Print Enrollment page$")
+    public void i_am_on_the_print_enrollment_page() {
+        generalSteps.navigateToDraftPage();
+        // assert fails because print page is opened in a new window
+        generalSteps.clickLinkAssertTitle(".printEnrollment", "View Enrollment");
+    }
+
     @When("^I am on the Review Enrollment page$")
     public void i_am_on_the_review_enrollment_page() {
         generalSteps.navigateToPendingPage();

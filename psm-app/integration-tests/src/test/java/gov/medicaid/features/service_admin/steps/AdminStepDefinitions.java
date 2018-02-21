@@ -48,4 +48,10 @@ public class AdminStepDefinitions {
         // assert fails because the page is opened in a separate tab
         generalSteps.clickLinkAssertTitle(".autoScreeningResultLink", "Screening Log");
     }
+
+    @When("^I am on the View Enrollment Organization Info page$")
+    public void i_am_on_the_view_enrollment_organization_info_page() {
+        generalSteps.navigateToPendingPage();
+        adminSteps.advanceFromPendingPageToViewOrganizationInfoPage();
+    }
 }

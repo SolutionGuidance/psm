@@ -217,7 +217,7 @@
         <td class="alignCenter nopad">
           <c:choose>
             <c:when test="${fn:toLowerCase(item.status)=='pending'}">
-              <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
                 View
               </a>
               <span class="sep">|</span>
@@ -249,7 +249,7 @@
               <span class="sep">|</span>
             </c:when>
             <c:when test="${fn:toLowerCase(item.status)=='approved'}">
-              <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
                 View
               </a>
               <span class="sep">|</span>
@@ -267,7 +267,7 @@
               <span class="sep">|</span>
             </c:when>
             <c:otherwise>
-              <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
                 View
               </a>
               <span class="sep">|</span>

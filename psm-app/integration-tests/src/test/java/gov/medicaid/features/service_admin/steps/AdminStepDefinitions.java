@@ -54,4 +54,10 @@ public class AdminStepDefinitions {
         generalSteps.navigateToPendingPage();
         adminSteps.advanceFromPendingPageToViewOrganizationInfoPage();
     }
+
+    @When("^I am on the View Enrollment Facility Credentials page$")
+    public void i_am_on_the_view_enrollment_facility_credentials_page() {
+        i_am_on_the_view_enrollment_organization_info_page();
+        generalSteps.clickLinkAssertTitle(".license", "Facility Credentials");
+    }
 }

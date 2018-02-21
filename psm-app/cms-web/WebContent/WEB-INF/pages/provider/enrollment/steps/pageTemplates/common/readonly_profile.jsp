@@ -5,11 +5,16 @@
             <c:forEach var="tabName" items="${viewModel.tabNames}" varStatus="status">
                 <c:if test="${tabName ne 'Summary Information'}">
                     <c:set var="tabLabel" value=""></c:set>
+                    <c:set var="tabCls" value=""></c:set>
                     <c:set var="tabActiveCls" value=""></c:set>
                     <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/tab_name_mapping.jsp" %>
                     <c:if test="${viewModel.currentTab eq tabName}"><c:set var="tabActiveCls" value="active"></c:set></c:if>
                     <c:url var="tabLink" value="/provider/enrollment/jump"><c:param name="page" value="${tabName}"></c:param></c:url>
-                    <a href="${tabLink}" class="tab ${tabActiveCls}"><span class="aR"><span class="aM">${tabLabel}</span></span></a>
+                    <a href="${tabLink}" class="tab ${tabCls} ${tabActiveCls}">
+                      <span class="aR">
+                        <span class="aM">${tabLabel}</span>
+                      </span>
+                    </a>
                 </c:if>
             </c:forEach>
         </div>

@@ -116,6 +116,7 @@
                   <c:forEach var="tabName" items="${viewModel.tabNames}" varStatus="status">
                     <c:if test="${tabName ne 'Summary Information'}">
                       <c:set var="tabLabel" value=""></c:set>
+                      <c:set var="tabCls" value=""></c:set>
                       <c:set var="tabActiveCls" value=""></c:set>
                       <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/tab_name_mapping.jsp" %>
                       <c:if test="${viewModel.currentTab eq tabName}">
@@ -124,7 +125,8 @@
                       <c:url var="tabLink" value="/provider/enrollment/jump">
                         <c:param name="page" value="${tabName}"></c:param>
                       </c:url>
-                      <a href="javascript:submitFormById('enrollmentForm', '${tabLink}')" class="tab ${tabActiveCls}">
+                      <a href="javascript:submitFormById('enrollmentForm', '${tabLink}')"
+                        class="tab ${tabCls} ${tabActiveCls}">
                         <span class="aR">
                           <span class="aM">${tabLabel}</span>
                         </span>
@@ -138,7 +140,8 @@
                   <c:url var="tabLink" value="/provider/enrollment/jump">
                     <c:param name="page" value="Notes"></c:param>
                   </c:url>
-                  <a href="javascript:submitFormById('enrollmentForm', '${tabLink}')" class="tab ${tabActiveCls}">
+                  <a href="javascript:submitFormById('enrollmentForm', '${tabLink}')"
+                    class="tab notesTab ${tabActiveCls}">
                     <span class="aR">
                       <span class="aM">Notes</span>
                     </span>

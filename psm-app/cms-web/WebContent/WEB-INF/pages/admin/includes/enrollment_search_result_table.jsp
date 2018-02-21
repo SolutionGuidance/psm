@@ -225,7 +225,7 @@
                 Edit
               </a>
               <span class="sep">|</span>
-              <a href="${ctx}/agent/enrollment/pendingcos?id=${item.ticketId}">
+              <a class="cosLink" href="${ctx}/agent/enrollment/pendingcos?id=${item.ticketId}">
                 COS
               </a>
               <span class="sep">|</span>
@@ -243,7 +243,7 @@
                 Edit
               </a>
               <span class="sep">|</span>
-              <a href="${ctx}/agent/enrollment/pendingcos?id=${item.ticketId}">
+              <a class="cosLink" href="${ctx}/agent/enrollment/pendingcos?id=${item.ticketId}">
                 COS
               </a>
               <span class="sep">|</span>
@@ -257,7 +257,7 @@
                 Edit
               </a>
               <span class="sep">|</span>
-              <a href="${ctx}/agent/enrollment/cos?id=${item.profileReferenceId}">
+              <a class="cosLink" href="${ctx}/agent/enrollment/cos?id=${item.profileReferenceId}">
                 COS
               </a>
               <span class="sep">|</span>

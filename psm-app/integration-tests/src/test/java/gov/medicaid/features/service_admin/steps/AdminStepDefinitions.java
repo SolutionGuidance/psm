@@ -60,4 +60,10 @@ public class AdminStepDefinitions {
         i_am_on_the_view_enrollment_organization_info_page();
         generalSteps.clickLinkAssertTitle(".license", "Facility Credentials");
     }
+
+    @When("^I am on the View Enrollment Individual Member Info page$")
+    public void i_am_on_the_view_enrollment_individual_member_info_page() {
+        i_am_on_the_view_enrollment_organization_info_page();
+        generalSteps.clickLinkAssertTitle(".practice", "Member Information");
+    }
 }

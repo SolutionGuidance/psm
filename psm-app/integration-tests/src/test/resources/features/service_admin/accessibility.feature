@@ -76,3 +76,8 @@ Feature: General Accessibility Checks for Admins
     Given I am logged in as an admin
     And I am on the View Enrollment Facility Credentials page
     Then I should have no accessibility issues
+
+  Scenario: Admin View Enrollment Individual Member Info Page
+    Given I am logged in as an admin
+    And I am on the View Enrollment Individual Member Info page
+    Then I should have no accessibility issues

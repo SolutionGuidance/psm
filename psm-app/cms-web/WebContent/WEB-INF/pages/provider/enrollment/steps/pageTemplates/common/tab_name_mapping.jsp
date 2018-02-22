@@ -1,11 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <c:choose>
     <c:when test="${tabName eq 'Personal Information'}">
-        <c:set var="tabCls" value="presonal"></c:set>
+        <c:set var="tabCls" value="personal"></c:set>
         <c:set var="tabLabel" value="Personal Info"></c:set>
     </c:when>
     <c:when test="${tabName eq 'Individual PCA Information'}">
-        <c:set var="tabCls" value="presonal"></c:set>
+        <c:set var="tabCls" value="personal"></c:set>
         <c:set var="tabLabel" value="Individual PCA Info"></c:set>
     </c:when>
     <c:when test="${tabName eq 'License Information'}">
@@ -33,7 +33,7 @@
         <c:set var="tabLabel" value="Provider Statement"></c:set>
     </c:when>
     <c:when test="${tabName eq 'Organization Information'}">
-        <c:set var="tabCls" value="presonal"></c:set>
+        <c:set var="tabCls" value="personal"></c:set>
         <c:set var="tabLabel" value="Organization Info"></c:set>
     </c:when>
     <c:when test="${tabName eq 'Provider Setup'}">
@@ -53,7 +53,7 @@
         <c:set var="tabLabel" value="Qualified Professional"></c:set>
     </c:when>
     <c:when test="${tabName eq 'Ownership Information'}">
-        <c:set var="tabCls" value="ownerShip"></c:set>
+        <c:set var="tabCls" value="ownership"></c:set>
         <c:set var="tabLabel" value="Ownership Info"></c:set>
     </c:when>
     <c:when test="${tabName eq 'Notes'}">

@@ -29,7 +29,7 @@
             </c:choose>
             <c:if test="${viewModel.currentTab eq tabName}"><c:set var="tabActiveCls" value="active"></c:set></c:if>
             <c:if test="${viewModel.currentTab eq tabName and status.last}"><c:set var="isInSubmissionPage" value="${true}"></c:set></c:if>
-            <li class="${status.first ? 'firstSetp' : ''} ${status.last ? 'lastSetp' : ''} ${tabCls} ${tabActiveCls}">
+            <li class="${status.first ? 'firstStep' : ''} ${status.last ? 'lastStep' : ''} ${tabCls} ${tabActiveCls}">
                <span><strong>${status.count}. ${tabLabel}</strong></span>
             </li>
         </c:forEach>

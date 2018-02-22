@@ -1029,13 +1029,13 @@ input.date{
   display:block;
 }
 
-.stepWidget li.firstSetp span{
+.stepWidget li.firstStep span{
   background-image:url(../i/step-normal-left.png);
   background-repeat:no-repeat;
   background-position:0 0;
 }
 
-.stepWidget li.lastSetp span{
+.stepWidget li.lastStep span{
   background-image:url(../i/step-normal-right.png);
   background-repeat:no-repeat;
   background-position:right 0;
@@ -1057,7 +1057,7 @@ input.date{
   white-space: nowrap;
 }
 
-.stepWidget li.lastSetp span strong{
+.stepWidget li.lastStep span strong{
   background-image:none;
 }
 
@@ -1066,11 +1066,11 @@ input.date{
   background-image:url(../i/step-active.png);
 }
 
-.stepWidget li.firstSetp.active span{
+.stepWidget li.firstStep.active span{
   background-image:url(../i/step-active-left.png);
 }
 
-.stepWidget li.lastSetp.active span{
+.stepWidget li.lastStep.active span{
   background-image:url(../i/step-active-right.png);
 }
 
@@ -1080,7 +1080,7 @@ input.date{
   background-image:url(../i/step-active-arrow.png);
 }
 
-.stepWidget li.lastSetp.active span strong{
+.stepWidget li.lastStep.active span strong{
   background-image:none;
 }
 
@@ -1089,7 +1089,7 @@ input.date{
   background-image:url(../i/step-prev-active.png);
 }
 
-.stepWidget li.firstSetp.activePrev span{
+.stepWidget li.firstStep.activePrev span{
   background-image:url(../i/step-active-prev-left.png);
 }
 
@@ -1104,7 +1104,7 @@ input.date{
   background-image:url(../i/step-prev-active.png);
 }
 
-.stepWidget li.firstSetp.activeNear span{
+.stepWidget li.firstStep.activeNear span{
   background-image:url(../i/step-active-prev-left.png);
 }
 

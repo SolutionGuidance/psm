@@ -247,13 +247,7 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
         }
     }
 
-    /**
-     * Retrieves the profile details.
-     *
-     * @param request the service request
-     * @return the service response
-     * @throws PortalServiceException for any errors encountered
-     */
+    @Override
     public GetProfileDetailsResponse getProfile(GetProfileDetailsRequest request) throws PortalServiceException {
         GetProfileDetailsResponse response = new GetProfileDetailsResponse();
         CMSUser user = findUser(request.getUsername(), request.getSystemId(), request.getNpi());

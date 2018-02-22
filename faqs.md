@@ -43,16 +43,18 @@ care for Medicaid patients.
 
 ## Where did the Provider Screening Module project come from?
 
-The Provider Screening Module started as part of a crowd-sourced challenge back in 2012.  The
-resulting implementation was evaluated by Minnesota and South Carolina, but it was not
-integrated into their systems.  From 2016 to 2017, CMS, with help from MITRE and SGC, resumed
-the project, performed a gap analysis on the existing implementation and developed a minimum 
-viable pilot.
+The Provider Screening Module started as part of a crowd-sourced challenge through 
+[Topcoder](https://www.topcoder.com/) back in 2012.  The resulting implementation was evaluated 
+by Minnesota and South Carolina, but was not adopted.  From 2016 to 2017, the 
+[Centers for Medicare and Medicaid Services (CMS)](https://www.cms.gov), with help from 
+[MITRE](https://www.mitre.org) and [Solution Guidance Corporation](http://www.solutionguidance.com), 
+resumed the project, performed a gap analysis on the existing implementation and developed a 
+minimum viable pilot.
 
 ## How can I contribute to the Provider Screening Module?
 
 There are a few ways you can contribute to the Provider Screening Module:
 
-- Email general questions or comments to our [discussion list](mailto:info@projectpoplin.org)
-- Submit a [pull request via Github](https://github.com/SolutionGuidance/psm/pulls)
+- Email general questions or comments to our [discussion list](mailto:psm-dev@googlegroups.com)
+- Submit a [pull request via GitHub](https://github.com/SolutionGuidance/psm/pulls)
 {% include get_started.html %}

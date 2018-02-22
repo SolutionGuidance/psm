@@ -172,7 +172,7 @@
                                 <span class="sep">|</span>
                                 <c:choose>
                                 <c:when test="${item.canDelete}"><a rel="${item.id}" href="javascript:;" class="deleteAgreementDocumentBtn">Delete</a></c:when>
-                                <c:otherwise><a style="text-decoration: none;color: gray" href="javascript:;" class="disabledBtn">Delete</a></c:otherwise>
+                                <c:otherwise><a href="javascript:;" class="disabledBtn">Delete</a></c:otherwise>
                                 </c:choose>
                               </td>
                             </tr>

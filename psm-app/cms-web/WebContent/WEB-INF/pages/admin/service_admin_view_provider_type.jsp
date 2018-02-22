@@ -37,7 +37,7 @@
                   <c:choose>
                   <c:when test="${providerType.canDelete}"><a href="javascript:;" rel="${providerType.code}" class="greyBtn deleteProviderTypesOnViewBtn">Delete</a></c:when>
                   <c:otherwise>
-                  <a href="javascript:;"  style="text-decoration: none;color: gray;cursor: default;" class="greyBtn disabledBtn">Delete</a>
+                  <a href="javascript:;" class="greyBtn disabledBtn">Delete</a>
                   </c:otherwise>
                   </c:choose>
                   <a href="${ctx}/admin/beginEditProviderType?providerTypeId=${providerType.code}" class="purpleBtn editProviderLink">Edit</a>

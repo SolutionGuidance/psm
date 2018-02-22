@@ -12,6 +12,11 @@ Feature: Admin Functions Tab Pages
     And I am on the Functions View Provider Type page
     Then I should have no accessibility issues
 
+  Scenario: Admin Functions Edit Provider Type Page
+    Given I am logged in as an admin
+    And I am on the Functions Edit Provider Type page
+    Then I should have no accessibility issues
+
   Scenario: Admin Functions Screening Schedules Page
     Given I am logged in as an admin
     And I am on the Functions Screening Schedules page

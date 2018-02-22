@@ -23,6 +23,12 @@ public class FunctionsStepDefinitions {
         generalSteps.clickLinkAssertTitle(".viewProviderLink", "View Provider Type - Functions (Service Admin)");
     }
 
+    @When("^I am on the Functions Edit Provider Type page$")
+    public void i_am_on_the_functions_edit_provider_type_page() {
+        i_am_on_the_functions_provider_types_page();
+        generalSteps.clickLinkAssertTitle(".editProviderLink", "Edit Provider Type - Functions (Service Admin)");
+    }
+
     @When("^I am on the Functions Screening Schedules page$")
     public void i_am_on_the_functions_screening_schedules_page() {
         i_am_on_the_functions_provider_types_page();

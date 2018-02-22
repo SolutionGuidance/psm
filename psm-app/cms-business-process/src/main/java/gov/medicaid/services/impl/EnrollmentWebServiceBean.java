@@ -20,8 +20,6 @@ import gov.medicaid.binders.BinderUtils;
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.GetProfileDetailsRequest;
 import gov.medicaid.domain.model.GetProfileDetailsResponse;
-import gov.medicaid.domain.model.ResubmitTicketRequest;
-import gov.medicaid.domain.model.ResubmitTicketResponse;
 import gov.medicaid.domain.model.SubmitTicketRequest;
 import gov.medicaid.domain.model.SubmitTicketResponse;
 import gov.medicaid.entities.CMSUser;
@@ -268,15 +266,18 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
 
     @Override
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED) // allow SAVE even if SUBMIT fails
-    public ResubmitTicketResponse resubmitEnrollment(ResubmitTicketRequest request) throws PortalServiceException {
-        EnrollmentType enrollment = request.getEnrollment();
-        CMSUser user = findUser(request.getUsername(), request.getSystemId(), request.getNpi());
+    public String resubmitEnrollment(
+            String username,
+            String systemId,
+            String npi,
+            EnrollmentType enrollment
+    ) throws PortalServiceException {
+        CMSUser user = findUser(username, systemId, npi);
 
-        long ticketId = BinderUtils.getAsLong(request.getTicketId());
+        long ticketId = BinderUtils.getAsLong(enrollment.getObjectId());
         long profileId = BinderUtils.getAsLong(enrollment.getProviderInformation().getObjectId());
         Validity validity = providerEnrollmentService.getSubmissionValidity(ticketId, profileId);
 
-        ResubmitTicketResponse response = new ResubmitTicketResponse();
         if (validity == Validity.VALID) {
             try {
                 saveTicket(user, enrollment, false); // retain status
@@ -286,12 +287,9 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
             } catch (Exception e) {
                 throw new PortalServiceException("Resubmit failed.", e);
             }
-            response.setStatus("SUCCESS");
-            return response;
+            return "SUCCESS";
         } else {
-            response.setStatus(validity.name());
-            return response;
+            return validity.name();
         }
     }
-
 }

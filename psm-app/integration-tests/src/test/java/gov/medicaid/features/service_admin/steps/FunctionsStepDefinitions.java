@@ -16,4 +16,10 @@ public class FunctionsStepDefinitions {
     public void i_am_on_the_functions_provider_types_page() {
         generalSteps.clickLinkAssertTitle(".functionsLink", "Provider Types - Functions (Service Admin)");
     }
+
+    @When("^I am on the Functions Screening Schedules page$")
+    public void i_am_on_the_functions_screening_schedules_page() {
+        i_am_on_the_functions_provider_types_page();
+        generalSteps.clickLinkAssertTitle(".screeningSchedulesTab", "Screening Schedules - Functions (Service Admin)");
+    }
 }

@@ -28,4 +28,10 @@ public class FunctionsStepDefinitions {
         i_am_on_the_functions_provider_types_page();
         generalSteps.clickLinkAssertTitle(".helpTopicsTab", "Help Topics - Functions (Service Admin)");
     }
+
+    @When("^I am on the Functions Agreements and Addendums page$")
+    public void i_am_on_the_functions_agreements_and_addendums_page() {
+        i_am_on_the_functions_provider_types_page();
+        generalSteps.clickLinkAssertTitle(".agreementsAddendumsTab", "Agreements & Addendums - Functions (Service Admin)");
+    }
 }

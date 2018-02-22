@@ -45,7 +45,9 @@ $on-laptop:        800px;
     }
 }
 
-
+#main {
+	text-align: center;
+}
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
@@ -54,3 +56,4 @@ $on-laptop:        800px;
         "syntax-highlighting",
         "theme"
 ;
+

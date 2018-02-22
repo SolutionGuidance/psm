@@ -39,7 +39,7 @@
               </div>
               <c:choose>
               <c:when test="${empty profiles}">
-                <div style="color: red" class="noData">No matched data found.</div>
+                <div class="noData">No matched data found.</div>
               </c:when>
               <c:otherwise>
                 <table cellpadding="0" cellspacing="0" class="generalTable fixedWidthTable">
@@ -103,7 +103,7 @@
                 <div class="panelSection">
                   <c:choose>
                   <c:when test="${empty notifications}">
-                    <div style="color: red" class="noData">No matched data found.</div>
+                    <div class="noData">No matched data found.</div>
                   </c:when>
                   <c:otherwise>
                     <ul>

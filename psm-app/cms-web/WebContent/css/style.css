@@ -513,7 +513,7 @@ input.date{
   margin:0 5px;
 }
 .red{
-  color:#ff1010;
+  color: #d00;
 }
 .tabContent .tabFoot{
   background:url(../i/tab-bottom.png) no-repeat left top;
@@ -3660,9 +3660,6 @@ a.okBtn {
   padding:20px 0 30px 0;
   text-align:center;
 }
-.red{
-  color: red;
-}
 #approveModal .buttons .saveBtn,#rejectOKModal .buttons .saveBtn,#screenModal .buttons .saveBtn{
   margin:0 10px 0 210px;
 }
@@ -3986,6 +3983,7 @@ input.text{
 }
 .noData{
   padding: 3px;
+  color: #d00;
 }
 .disabledBtn{
   color: gray;
@@ -4014,7 +4012,7 @@ input.text{
   width: 110px;
 }
 form .error{
-  color: red;
+  color: #d00;
 }
 
 /* END OF SERVICE ADMIN STYLES -------------------------------------------------- */
@@ -4954,7 +4952,7 @@ select.stateSelect, select.stateSelectFor {
 }
 
 .legacyInfo {
-  color: red;
+  color: #d00;
 }
 
 .checkboxLabel,

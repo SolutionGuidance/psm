@@ -81,7 +81,7 @@
                   <div class="tableContainer"></div>
                   <div class="tabFoot">
                     <div class="tabR">
-                      <div class="tabM" style="color: red">
+                      <div class="tabM red">
                         No matched data found.
                       </div>
                     </div>

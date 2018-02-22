@@ -35,6 +35,12 @@ public class FunctionsStepDefinitions {
         generalSteps.clickLinkAssertTitle(".screeningSchedulesTab", "Screening Schedules - Functions (Service Admin)");
     }
 
+    @When("^I am on the Functions Edit Screening Schedule page$")
+    public void i_am_on_the_functions_edit_screening_schedule_page() {
+        i_am_on_the_functions_screening_schedules_page();
+        generalSteps.clickLinkAssertTitle(".changeScheduleBtn", "Edit Screening Schedule - Functions (Service Admin)");
+    }
+
     @When("^I am on the Functions Help Topics page$")
     public void i_am_on_the_functions_help_topics_page() {
         i_am_on_the_functions_provider_types_page();

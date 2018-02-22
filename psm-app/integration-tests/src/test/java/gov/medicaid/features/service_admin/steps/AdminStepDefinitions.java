@@ -48,34 +48,4 @@ public class AdminStepDefinitions {
         // assert fails because the page is opened in a separate tab
         generalSteps.clickLinkAssertTitle(".autoScreeningResultLink", "Screening Log");
     }
-
-    @When("^I am on the View Enrollment Organization Info page$")
-    public void i_am_on_the_view_enrollment_organization_info_page() {
-        generalSteps.navigateToPendingPage();
-        adminSteps.advanceFromPendingPageToViewOrganizationInfoPage();
-    }
-
-    @When("^I am on the View Enrollment Facility Credentials page$")
-    public void i_am_on_the_view_enrollment_facility_credentials_page() {
-        i_am_on_the_view_enrollment_organization_info_page();
-        generalSteps.clickLinkAssertTitle(".license", "Facility Credentials");
-    }
-
-    @When("^I am on the View Enrollment Individual Member Info page$")
-    public void i_am_on_the_view_enrollment_individual_member_info_page() {
-        i_am_on_the_view_enrollment_organization_info_page();
-        generalSteps.clickLinkAssertTitle(".practice", "Member Information");
-    }
-
-    @When("^I am on the View Enrollment Ownership Info page$")
-    public void i_am_on_the_view_enrollment_ownership_info_page() {
-        i_am_on_the_view_enrollment_organization_info_page();
-        generalSteps.clickLinkAssertTitle(".ownerShip", "Ownership Information");
-    }
-
-    @When("^I am on the View Enrollment Provider Statement page$")
-    public void i_am_on_the_view_enrollment_provider_statement_page() {
-        i_am_on_the_view_enrollment_organization_info_page();
-        generalSteps.clickLinkAssertTitle(".provider", "Provider Statement");
-    }
 }

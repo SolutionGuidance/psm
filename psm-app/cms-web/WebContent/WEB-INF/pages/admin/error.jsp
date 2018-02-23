@@ -25,7 +25,7 @@
           </div>
           <div class="clearFixed"></div>
           <div class="dashboardPanel">
-            <p style="color: red">This is a generic error page. If you are seeing this, the PSM controller
+            <p class="red">This is a generic error page. If you are seeing this, the PSM controller
             experienced an error while processing this request. The detailed error message will be present
             in the log files for debugging purposes.</p>
           </div>

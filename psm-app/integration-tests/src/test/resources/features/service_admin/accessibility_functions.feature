@@ -50,3 +50,8 @@ Feature: Admin Functions Tab Pages
     Given I am logged in as an admin
     And I am on the Functions Edit Agreement Document page
     Then I should have no accessibility issues
+
+  Scenario: Admin Functions View Agreement Document Page
+    Given I am logged in as an admin
+    And I am on the Functions View Agreement Document page
+    Then I should have no accessibility issues

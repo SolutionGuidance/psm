@@ -36,3 +36,10 @@ Feature: Admin Functions Tab Pages
     Given I am logged in as an admin
     And I am on the Functions Agreements and Addendums page
     Then I should have no accessibility issues
+
+  # fails: iframe elements need a title attribute
+  @ignore
+  Scenario: Admin Functions Edit Agreement Document Page
+    Given I am logged in as an admin
+    And I am on the Functions Edit Agreement Document page
+    Then I should have no accessibility issues

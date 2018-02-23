@@ -52,4 +52,10 @@ public class FunctionsStepDefinitions {
         i_am_on_the_functions_provider_types_page();
         generalSteps.clickLinkAssertTitle(".agreementsAddendumsTab", "Agreements & Addendums - Functions (Service Admin)");
     }
+
+    @When("^I am on the Functions Edit Agreement Document page$")
+    public void i_am_on_the_functions_edit_agreement_document_page() {
+        i_am_on_the_functions_agreements_and_addendums_page();
+        generalSteps.clickLinkAssertTitle(".editAgreementLink", "Edit Agreement Document - Functions (Service Admin)");
+    }
 }

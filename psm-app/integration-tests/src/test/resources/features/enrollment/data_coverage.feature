@@ -61,6 +61,6 @@ Feature: Data Coverage Checks
   Scenario: Completes an application
     Given I have started an enrollment
     And I am on the individual provider statement page
-    When I enter my provider statement
+    When I enter my individual provider statement
     And I submit the enrollment
     Then the enrollment is successfully submitted

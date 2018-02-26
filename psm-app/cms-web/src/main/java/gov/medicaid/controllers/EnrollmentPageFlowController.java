@@ -27,8 +27,6 @@ import gov.medicaid.domain.model.AttachedDocumentsType;
 import gov.medicaid.domain.model.ContactInformationType;
 import gov.medicaid.domain.model.DocumentType;
 import gov.medicaid.domain.model.EnrollmentType;
-import gov.medicaid.domain.model.GetProfileDetailsRequest;
-import gov.medicaid.domain.model.GetProfileDetailsResponse;
 import gov.medicaid.domain.model.IndividualApplicantType;
 import gov.medicaid.domain.model.OperationStatusType;
 import gov.medicaid.domain.model.ProviderInformationType;
@@ -423,15 +421,14 @@ public class EnrollmentPageFlowController extends BaseController {
             @RequestParam("id") long profileId,
             Model model
     ) throws PortalServiceException {
-        GetProfileDetailsRequest request = new GetProfileDetailsRequest();
         CMSPrincipal principal = ControllerHelper.getPrincipal();
-        request.setSystemId(principal.getAuthenticatedBySystem().name());
-        request.setUsername(principal.getUsername());
-        request.setNpi(principal.getUser().getProxyForNPI());
-        request.setProfileId(profileId);
-        GetProfileDetailsResponse response = enrollmentWebService.getProfile(request);
+        EnrollmentType enrollment = enrollmentWebService.getProfile(
+                principal.getUsername(),
+                principal.getAuthenticatedBySystem().name(),
+                principal.getUser().getProxyForNPI(),
+                profileId
+        );
 
-        EnrollmentType enrollment = response.getEnrollment();
         model.addAttribute("enrollment", enrollment);
         return showPage(null, enrollment);
     }

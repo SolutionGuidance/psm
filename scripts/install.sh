@@ -39,27 +39,6 @@ function seed_db {
 	echo Point your browser at http://localhost:8080/cms to see it working.
 }
 
-function setup_travis {
-	# Set up CD user
-	grep -q "^travis:" /etc/group || sudo useradd travis
-
-	# Create a key that Travis can use to login as the user
-	[[ -e CD_KEY.env ]] || ssh-keygen -t rsa -N "" -f CD_KEY.env
-	[[ -d /home/travis ]] || sudo mkdir -p /home/travis
-	sudo chown -R travis:travis /home/travis
-	sudo -u travis mkdir -p -m 700 /home/travis/.ssh
-	#sudo -u travis touch /home/travis/.ssh/authorized_keys
-	sudo -u travis cp CD_KEY.env.pub /home/travis/.ssh/authorized_keys
-	sudo -u travis chmod 600 /home/travis/.ssh/authorized_keys
-
-	# Set up the wildfly password in an expected location for CD
-	echo "$pword" | sudo tee /home/travis/pass.txt > /dev/null
-	sudo chown travis:travis /home/travis/pass.txt
-
-	# Set up additional travis env variables
-	install /etc/ssh/ssh_host_rsa_key.pub ~/CD_HOSTKEY.env
-}
-
 function start_jboss {
 	./wildfly-10.1.0.Final/bin/standalone.sh \
 		-c standalone-full.xml \
@@ -226,4 +205,3 @@ cd ../../
 ${JBOSS_CLI} --connect \
 			 --command="deploy --force psm/psm-app/cms-portal-services/build/libs/cms-portal-services.ear"
 seed_db
-setup_travis

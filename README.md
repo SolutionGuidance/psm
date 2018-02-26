@@ -1,8 +1,6 @@
 Provider Screening Module for Medicare/Medicaid Provider Enrollment
 ===================================================================
 
-Current build status:  ![Build status](https://travis-ci.org/SolutionGuidance/psm.svg?branch=master)
-
 Contents:
 
 1. **[Introduction and Current Status](#section-1-introduction-and-current-status)**

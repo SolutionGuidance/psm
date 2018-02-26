@@ -27,7 +27,6 @@
 - **[Production Deployment](#production-deployment)**
     - [NGINX](#nginx)
     - [Continuous Deployment](#continuous-deployment)
-        - [Travis Environment Variables](#travis-environment-variables)
 
 # Background and Current Deployment Status
 
@@ -441,18 +440,11 @@ Note: This section will grow as we describe more configurable options.
 set in the `session-timeout` variable in
 `psm-app/cms-web/WebContent/WEB-INF/web.xml`.
 
-## Continuous Deployment
+## Continuous Deployment and Continuous Integration
 
 ### Jenkins
 
-This project uses Jenkins for continuous integration. We have it configured to
-do several things on new pull requests:
-
-- build the project
-- build the docs
-- run the unit tests
-- run the integration tests
-- check the code style against our style guide
+This project uses Jenkins for continuous deployment and continuous integration.
 
 In order to configure another Jenkins server that does these tasks, follow the
 appropriate documentation on the [Jenkins web site](https://jenkins.io/), and
@@ -467,10 +459,20 @@ token](https://help.github.com/articles/creating-a-personal-access-token-for-the
 to have Jenkins mark the results of its builds in GitHub. The token should have
 the `repo:status`, `admin:repo_hook`, and `repo_deployment` permission scopes.
 
+### Continuous Integration
+
+We have configured Jenkins to do several things on new pull requests:
+
+- build the project
+- build the docs
+- run the unit tests
+- run the integration tests
+- check the code style against our style guide
+
 Each task is a freestyle project, triggered by the GitHub pull request plugin.
 
 - build: runs the `cms-portal-services:build` gradle target
-- docs: runs the following gradle targets:
+- docs: runs the following gradle targets, and collect Javadocs:
   - `cms-web:apiDocs`
   - `userhelp:epub`
   - `userhelp:html`
@@ -509,24 +511,10 @@ tell Jenkins to test an outside PR.  Note that doing this causes Jenkins
 to run code, so if you have this power please read such contributions
 carefully.
 
-### Travis
+### Continuous Deployment
 
-This project also leverages Travis to power Continuous Deployment, although we
-are transitioning away from it.  To set up a CD server, follow these steps:
-
-1. Create a fresh RHEL instance
-2. Run the `scripts/rhel-install.sh` script
-3. This will generate two files of importance on the server: `~/CD_KEY.env`
-and `~/CD_HOSTKEY.env`
-4. Create and fill the necessary environment variables via the Travis UI.
-NOTE: these values are sensitive. The "Display value in build log" setting
-should be turned off.
-
-#### Travis Environment Variables
-
-- CD_USER: `travis`
-- CD_SERVER: `{Your Server's IP or Hostname}`
-- CD_KEY: `"{Contents of CD_KEY.env}"` <-- NOTE: the wrapping quotes must
-be included
-- CD_HOSTKEY: `"{Contents of CD_HOSTKEY.env}"` <-- NOTE: the wrapping
-quotes must be included
+We have configured Jenkins to keep [our testing
+site](http://testing.psm.solutionguidance.com:8080/cms/) up to date with the
+`master` branch. There is a Jenkins job that will build the project, copy it to
+the testing server, and deploy it to the WildFly instance there. It uses
+`scripts/deploy-ci.sh` and `scripts/deploy-server.sh` to do so.

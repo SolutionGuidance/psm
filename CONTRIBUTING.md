@@ -17,8 +17,8 @@ This repository has a home on
 Please submit changes via pull request, even if you have direct commit
 access to the repository.  The PR process allows us to get additional
 eyes on change proposals, and ensures that your changed code [builds
-cleanly via Travis CI's automated Gradle
-build](https://travis-ci.org/SolutionGuidance/psm).  We have caught
+cleanly via Jenkin's automated
+builds](https://ci.psm.solutionguidance.com/). We have caught
 issues at this stage in even simple patches.
 
 As you work on your branch, try to test it locally to ensure that it

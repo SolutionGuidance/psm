@@ -1,20 +1,27 @@
 <%--
     JSP Fragment for provider status list results table.
-
-    @author j3_guile
-    @version 1.0
  --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<table cellpadding="0" cellspacing="0" class="generalTable table-sort">
+<c:choose>
+  <c:when test="${statusFilter ne 'Draft'}">
+    <table cellpadding="0" cellspacing="0" class="generalTable table-sort">
+  </c:when>
+  <c:otherwise>
+    <table cellpadding="0" cellspacing="0" class="generalTable" id="draftTable">
+  </c:otherwise>
+</c:choose>
+
     <colgroup>
         <col width="30"/>
         <col width="145"/>
         <col width="145"/>
         <col width="155"/>
         <col width="150"/>
-        <col width="150"/>
+        <c:if test="${statusFilter != 'Draft'}">
+          <col width="150"/>
+        </c:if>
         <col width="185"/>
     </colgroup>
     <thead>
@@ -24,7 +31,11 @@
             <th class="tablesorter-header ${sortDirCls}"><div class="tablesorter-header-inner"><a href="javascript:changeSort(2);"><span>NPI/UMPI</span><span class="${criteria.sortColumn eq '2' ? 'sort' : 'nosort'}"></span></a><span class="sep"></span></div></th>
             <th class="tablesorter-header ${sortDirCls}"><div class="tablesorter-header-inner"><a href="javascript:changeSort(10);"><span>Date Created</span><span class="${criteria.sortColumn eq '10' ? 'sort' : 'nosort'}"></span></a><span class="sep"></span></div></th>
             <th class="tablesorter-header ${sortDirCls}"><div class="tablesorter-header-inner"><a href="javascript:changeSort(4);"><span>Request Type</span><span class="${criteria.sortColumn eq '4' ? 'sort' : 'nosort'}"></span></a><span class="sep"></span></div></th>
-            <th class="tablesorter-header ${sortDirCls}"><div class="tablesorter-header-inner"><a href="javascript:changeSort(11);"><span>Risk Level</span><span class="${criteria.sortColumn eq '11' ? 'sort' : 'nosort'}"></span></a><span class="sep"></span></div></th>
+
+            <c:if test="${statusFilter != 'Draft'}">
+              <th class="tablesorter-header ${sortDirCls}"><div class="tablesorter-header-inner"><a href="javascript:changeSort(11);"><span>Risk Level</span><span class="${criteria.sortColumn eq '11' ? 'sort' : 'nosort'}"></span></a><span class="sep"></span></div></th>
+            </c:if>
+
             <th class="tablesorter-header ${sortDirCls}"><div class="tablesorter-header-inner"><a href="javascript:changeSort(6);"><span>Status Date</span><span class="${criteria.sortColumn eq '6' ? 'sort' : 'nosort'}"></span></a><span class="sep"></span></div></th>
             <th class="alignCenter" ><div class="tablesorter-header-inner">Action</div></th>
         </tr>
@@ -50,7 +61,11 @@
                 <td><a href="${viewTicketLink}"><c:out value="${item.npi}" /></a></td>
                 <td><fmt:formatDate value="${item.createDate}" pattern="MM/dd/yyyy"/></td>
                 <td><c:out value="${item.requestType}" /></td>
-                <td class="${riskCls}"><c:out value="${item.riskLevel}" /></td>
+
+                <c:if test="${statusFilter != 'Draft'}">
+                  <td class="${riskCls}"><c:out value="${item.riskLevel}" /></td>
+                </c:if>
+
                 <td><fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy"/></td>
                 <td class="alignCenter">
                     <c:if test="${item.status eq 'Draft'}">

@@ -144,10 +144,7 @@
               </form:form>
               <!-- /.filterPanel -->
               <div class="tableContainer">
-                <c:choose>
-                  <c:when test="${statusFilter eq 'Draft'}"><%@include file="drafts_table.jsp" %></c:when>
-                  <c:otherwise><%@include file="status_results_table.jsp" %></c:otherwise>
-                </c:choose>
+                <%@include file="status_results_table.jsp" %>
               </div>
               <!-- /.tableContainer -->
               <div class="tabFoot">

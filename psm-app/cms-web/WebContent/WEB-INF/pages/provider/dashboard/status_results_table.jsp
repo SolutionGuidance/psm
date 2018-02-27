@@ -15,14 +15,14 @@
 
     <colgroup>
         <col width="30"/>
-        <col width="145"/>
-        <col width="145"/>
-        <col width="155"/>
+        <col width="140"/>
+        <col width="140"/>
         <col width="150"/>
+        <col width="145"/>
         <c:if test="${statusFilter != 'Draft'}">
-          <col width="150"/>
+          <col width="145"/>
         </c:if>
-        <col width="185"/>
+        <col width="210"/>
     </colgroup>
     <thead>
         <c:set var="sortDirCls" value="${criteria.ascending ? 'tablesorter-headerSortDown' : 'tablesorter-headerSortUp' }"></c:set>
@@ -58,7 +58,9 @@
 	            <td class="alignCenter">
 	                <input type="checkbox" title="Provider ${item.ticketId}" name="providerIds" value="${item.ticketId}"/>
 	            </td>
-                <td><a href="${viewTicketLink}"><c:out value="${item.npi}" /></a></td>
+                <td>
+                  <c:out value="${item.npi}" />
+                </td>
                 <td><fmt:formatDate value="${item.createDate}" pattern="MM/dd/yyyy"/></td>
                 <td><c:out value="${item.requestType}" /></td>
 
@@ -68,11 +70,26 @@
 
                 <td><fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy"/></td>
                 <td class="alignCenter">
-                    <c:if test="${item.status eq 'Draft'}">
-                        <a href="${viewTicketLink}" class="">Edit</a><span class="sep">|</span>
-                    </c:if>
-                    <a href="${previewTicketLink}" class="printModalBtn printMe">Print</a><span class="sep">|</span>
-                    <a href="${exportTicketLink}">Export to PDF</a>
+                  <c:choose>
+                    <c:when test="${item.status eq 'Draft'}">
+                      <a href="${viewTicketLink}">
+                        Edit
+                      </a>
+                    </c:when>
+                    <c:otherwise>
+                      <a href="${viewTicketLink}">
+                        View
+                      </a>
+                    </c:otherwise>
+                  </c:choose>
+                  <span class="sep">|</span>
+                  <a href="${previewTicketLink}" class="printModalBtn printMe">
+                    Print
+                  </a>
+                  <span class="sep">|</span>
+                  <a href="${exportTicketLink}">
+                    Export to PDF
+                  </a>
                 </td>
             </tr>
         </c:forEach>

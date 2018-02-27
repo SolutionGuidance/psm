@@ -44,13 +44,36 @@
             <c:set var="riskCls" value="${item.riskLevel eq 'High' ? 'red' : item.riskLevel eq 'Limited' ? 'green' : ''}"></c:set>
 
             <tr>
-                <td class="primary"><a href="${viewTicketLink}"><c:out value="${item.npi}" /></a></td>
+                <td class="primary">
+                  <c:out value="${item.npi}" />
+                </td>
                 <td><fmt:formatDate value="${item.submissionDate}" pattern="MM/dd/yyyy"/></td>
                 <td><c:out value="${item.requestType}" /></td>
                 <td class="${statusCls}"><c:out value="${item.status eq 'Rejected' ? 'Denied' : item.status}" /></td>
                 <td class="${riskCls}"><c:out value="${item.riskLevel}" /></td>
                 <td><fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy"/></td>
-                <td class="alignCenter"><c:if test="${item.status eq 'Draft'}"><a href="${viewTicketLink}" class="">Edit</a><span class="sep">|</span></c:if><a href="${previewTicketLink}" class="printModalBtn printMe">Print</a><span class="sep">|</span><a href="${exportTicketLink}">Export to PDF</a></td>
+                <td class="alignCenter">
+                  <c:choose>
+                    <c:when test="${item.status eq 'Draft'}">
+                      <a href="${viewTicketLink}">
+                        Edit
+                      </a>
+                    </c:when>
+                    <c:otherwise>
+                      <a href="${viewTicketLink}">
+                        View
+                      </a>
+                    </c:otherwise>
+                  </c:choose>
+                  <span class="sep">|</span>
+                  <a href="${previewTicketLink}" class="printModalBtn printMe">
+                    Print
+                  </a>
+                  <span class="sep">|</span>
+                  <a href="${exportTicketLink}">
+                    Export to PDF
+                  </a>
+                </td>
             </tr>
         </c:forEach>
     </tbody>

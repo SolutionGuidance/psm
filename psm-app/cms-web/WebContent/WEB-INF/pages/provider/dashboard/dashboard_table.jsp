@@ -23,7 +23,7 @@
         <div class="tablesorter-header-inner">
           <a href="javascript:changeSort(2);">
             NPI/UMPI
-            <span class="${criteria.sortColumn eq '2' ? 'sort' : 'nosort'}"></span>
+            <span class="${criteria.sortColumn == '2' ? 'sort' : 'nosort'}"></span>
           </a>
           <span class="sep"></span>
         </div>
@@ -32,7 +32,7 @@
         <div class="tablesorter-header-inner">
           <a href="javascript:changeSort(3);">
             Date Submitted
-            <span class="${criteria.sortColumn eq '3' ? 'sort' : 'nosort'}"></span>
+            <span class="${criteria.sortColumn == '3' ? 'sort' : 'nosort'}"></span>
           </a>
           <span class="sep"></span>
         </div>
@@ -41,7 +41,7 @@
         <div class="tablesorter-header-inner">
           <a href="javascript:changeSort(4);">
             Request Type
-            <span class="${criteria.sortColumn eq '4' ? 'sort' : 'nosort'}"></span>
+            <span class="${criteria.sortColumn == '4' ? 'sort' : 'nosort'}"></span>
           </a>
           <span class="sep"></span>
         </div>
@@ -50,7 +50,7 @@
         <div class="tablesorter-header-inner">
           <a href="javascript:changeSort(5);">
             Status
-            <span class="${criteria.sortColumn eq '5' ? 'sort' : 'nosort'}"></span>
+            <span class="${criteria.sortColumn == '5' ? 'sort' : 'nosort'}"></span>
           </a>
           <span class="sep"></span>
         </div>
@@ -59,7 +59,7 @@
         <div class="tablesorter-header-inner">
           <a href="javascript:changeSort(11);">
             Risk Level
-            <span class="${criteria.sortColumn eq '11' ? 'sort' : 'nosort'}"></span>
+            <span class="${criteria.sortColumn == '11' ? 'sort' : 'nosort'}"></span>
           </a>
           <span class="sep"></span>
         </div>
@@ -68,7 +68,7 @@
         <div class="tablesorter-header-inner">
           <a href="javascript:changeSort(6);">
             Status Date
-            <span class="${criteria.sortColumn eq '6' ? 'sort' : 'nosort'}"></span>
+            <span class="${criteria.sortColumn == '6' ? 'sort' : 'nosort'}"></span>
           </a><span class="sep"></span>
         </div>
       </th>
@@ -89,8 +89,8 @@
       <c:url var="exportTicketLink" value="/provider/enrollment/exportTicket">
         <c:param name="id" value="${item.ticketId}" />
       </c:url>
-      <c:set var="statusCls" value="${item.status eq 'Rejected' ? 'red' : item.status eq 'Approved' ? 'green' : ''}" />
-      <c:set var="riskCls" value="${item.riskLevel eq 'High' ? 'red' : item.riskLevel eq 'Limited' ? 'green' : ''}" />
+      <c:set var="statusCls" value="${item.status == 'Rejected' ? 'red' : item.status == 'Approved' ? 'green' : ''}" />
+      <c:set var="riskCls" value="${item.riskLevel == 'High' ? 'red' : item.riskLevel == 'Limited' ? 'green' : ''}" />
 
       <tr>
         <td class="primary">
@@ -103,7 +103,7 @@
           <c:out value="${item.requestType}" />
         </td>
         <td class="${statusCls}">
-          <c:out value="${item.status eq 'Rejected' ? 'Denied' : item.status}" />
+          <c:out value="${item.status == 'Rejected' ? 'Denied' : item.status}" />
         </td>
         <td class="${riskCls}">
           <c:out value="${item.riskLevel}" />
@@ -113,7 +113,7 @@
         </td>
         <td class="alignCenter">
           <c:choose>
-            <c:when test="${item.status eq 'Draft'}">
+            <c:when test="${item.status == 'Draft'}">
               <a href="${viewTicketLink}">
                 Edit
               </a>

@@ -8,9 +8,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DefaultUrl("http://localhost:8080/cms")
 public class LoginPage extends PsmPage {
 
-    public void enterProviderCredentials() {
-        $("#username").sendKeys("p1");
-        $("#password").sendKeys("p1");
+    public void enterCredentials(String username, String password) {
+        $("#username").sendKeys(username);
+        $("#password").sendKeys(password);
     }
 
     public void login() {

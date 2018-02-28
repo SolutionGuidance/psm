@@ -10,7 +10,6 @@ public class AccountSetupStepDefinitions {
 
     @Given("^I am on the Account Setup page$")
     public void i_am_on_the_account_setup_page() {
-        generalSteps.loginAsProvider();
         generalSteps.navigateToAccountSetupPage();
     }
 }

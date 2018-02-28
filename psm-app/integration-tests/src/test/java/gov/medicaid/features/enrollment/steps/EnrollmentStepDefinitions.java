@@ -26,7 +26,7 @@ public class EnrollmentStepDefinitions {
 
     @Given("^I have started an enrollment$")
     public void i_have_started_an_enrollment() {
-        generalSteps.loginAsProvider();
+        generalSteps.login("p1", "p1");
         enrollmentSteps.createEnrollment();
     }
 

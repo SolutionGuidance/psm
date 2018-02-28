@@ -37,7 +37,6 @@ public class ChangePasswordStepDefinitions {
 
     @Given("^I am on the Update Password page$")
     public void i_am_on_the_update_password_page() {
-        generalSteps.loginAsProvider();
         generalSteps.navigateToUpdatePasswordPage();
     }
 }

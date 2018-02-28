@@ -17,7 +17,7 @@ public class LoginStepDefinitions {
 
     @Given("^I enter my username and password$")
     public void i_enter_my_username_and_password()  {
-        loginPage.enterProviderCredentials();
+        loginPage.enterCredentials("p1", "p1");
     }
 
     @When("^I click on Login$")

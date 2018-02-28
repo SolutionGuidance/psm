@@ -27,11 +27,11 @@ public class GeneralSteps {
     }
 
     @Step
-    public void loginAsProvider() {
+    public void login(String username, String password) {
         loginPage.open();
-        loginPage.enterProviderCredentials();
+        loginPage.enterCredentials(username, password);
         loginPage.login();
-        loginPage.checkUserLoggedIn("p1");
+        loginPage.checkUserLoggedIn(username);
     }
 
     @Step
@@ -40,31 +40,39 @@ public class GeneralSteps {
     }
 
     @Step
-    public void navigateToDashboardDraftPage() {
+    public void navigateToDraftPage() {
         dashboardPage.click$(".enrollmentsLink");
     }
 
     @Step
-    public void navigateToDashboardPendingPage() {
-        navigateToDashboardDraftPage();
+    public void navigateToPendingPage() {
+        navigateToDraftPage();
         dashboardPage.click$(".pendingTab");
     }
 
     @Step
-    public void navigateToDashboardApprovedPage() {
-        navigateToDashboardDraftPage();
+    public void navigateToApprovedPage() {
+        navigateToDraftPage();
         dashboardPage.click$(".approvedTab");
     }
 
     @Step
-    public void navigateToDashboardDeniedPage() {
-        navigateToDashboardDraftPage();
+    public void navigateToDeniedPage() {
+        navigateToDraftPage();
         dashboardPage.click$(".deniedTab");
     }
 
     @Step
+    public void navigateToNotesPage() {
+        navigateToDraftPage();
+        dashboardPage.click$(".notesTab");
+    }
+
+    @Step
     public void openFilterPanel() {
-        dashboardPage.click$(".filterBtn");
+        if (dashboardPage.$(".filterBtn").getText().equals("Filter")) {
+            dashboardPage.click$(".filterBtn");
+        }
     }
 
     @Step

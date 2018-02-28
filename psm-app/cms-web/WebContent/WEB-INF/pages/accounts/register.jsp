@@ -50,18 +50,7 @@
                       </spring:bind>
                       <form:input id="registerUsername" path="username" cssClass="normalInput ${errorCls}"/>
                     </div>
-                    <div class="row">
-                      <label for="registerLastName">Last Name<span class="required">*</span></label>
-                      <span class="floatL">
-                        <b>:</b>
-                      </span>
 
-                      <c:set var="errorCls" value=""/>
-                      <spring:bind path="lastName">
-                        <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
-                      </spring:bind>
-                      <form:input id="registerLastName" path="lastName" cssClass="normalInput ${errorCls}"/>
-                    </div>
                     <div class="row">
                       <label for="registerFirstName">First Name<span class="required">*</span></label>
                       <span class="floatL">
@@ -85,6 +74,19 @@
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
                       </spring:bind>
                       <form:input id="registerMiddleName" path="middleName" cssClass="normalInput ${errorCls}"/>
+                    </div>
+                    
+                    <div class="row">
+                      <label for="registerLastName">Last Name<span class="required">*</span></label>
+                      <span class="floatL">
+                        <b>:</b>
+                      </span>
+
+                      <c:set var="errorCls" value=""/>
+                      <spring:bind path="lastName">
+                        <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
+                      </spring:bind>
+                      <form:input id="registerLastName" path="lastName" cssClass="normalInput ${errorCls}"/>
                     </div>
                     <div class="row">
                       <label for="registerEmail">Email<span class="required">*</span></label>

@@ -49,11 +49,6 @@
                     <span>********</span>
                   </div>
                   <div class="row">
-                    <label>Last Name</label>
-                    <span class="floatL"><b>:</b></span>
-                    <span>${user.lastName}</span>
-                  </div>
-                  <div class="row">
                     <label>First Name</label>
                     <span class="floatL"><b>:</b></span>
                     <span>${user.firstName}</span>
@@ -62,6 +57,11 @@
                     <label>Middle Name</label>
                     <span class="floatL"><b>:</b></span>
                     <span>${user.middleName}</span>
+                  </div>
+                  <div class="row">
+                    <label>Last Name</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${user.lastName}</span>
                   </div>
                   <div class="row">
                     <label>Email</label>

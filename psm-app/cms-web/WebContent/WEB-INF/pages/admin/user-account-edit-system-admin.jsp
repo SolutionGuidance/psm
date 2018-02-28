@@ -96,11 +96,6 @@
                       <input type="password" id="newConfirmPassword" class="passwordNormalInput" value="" name="password2"/>
                     </div>
                     <div class="row">
-                      <label for="lastName">Last Name</label>
-                      <span class="floatL"><b>:</b></span>
-                      <form:input id="lastName" cssClass="normalInput" path="lastName" />
-                    </div>
-                    <div class="row">
                       <label for="firstName">First Name</label>
                       <span class="floatL"><b>:</b></span>
                       <form:input id="firstName" cssClass="normalInput" path="firstName" />
@@ -109,6 +104,11 @@
                       <label for="middleName">Middle Name</label>
                       <span class="floatL"><b>:</b></span>
                       <form:input id="middleName" cssClass="normalInput" path="middleName" />
+                    </div>
+                    <div class="row">
+                      <label for="lastName">Last Name</label>
+                      <span class="floatL"><b>:</b></span>
+                      <form:input id="lastName" cssClass="normalInput" path="lastName" />
                     </div>
                     <div class="row">
                       <label for="email">Email</label>

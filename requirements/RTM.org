@@ -3,6 +3,10 @@
 
 Note: some of these requirements were "hidden" in the RTM.  
 
+Linking to issues will be done with a colon after the requirements
+number, followed by a list of issue numbers (without #) separated by
+comma and space.
+
 * psm-FR-1.1
 "The PSM shall accept a form that shows a tax ID number and legal name
 for each provider (ex forms: CP 575 or 147C letter;941 Employers'

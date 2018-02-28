@@ -4783,7 +4783,7 @@ p.confirm {
 }
 
 .practicePanel span.fldInfo {
-  color: #999999;
+  color: #737373;
   display: inline;
   float: left;
   line-height: 14px;
@@ -4791,7 +4791,7 @@ p.confirm {
 }
 
 .practicePanel span.shrtFldInfo {
-  color: #999999;
+  color: #737373;
   display: inline;
   float: left;
 }

@@ -11,6 +11,10 @@ public class EnrollmentPage extends PsmPage {
         click($(".nextBtn"));
     }
 
+    public void clickSaveAsDraft() {
+        click$("[name='save']");
+    }
+
     void setNoForRadioButton(String name) {
         List<WebElement> buttons = getDriver().findElements(By.cssSelector("[name='" + name + "']"));
         click(buttons.get(1));

@@ -17,13 +17,13 @@ Feature: Data Coverage Checks
   @psm-FR-2.9
   Scenario: Captures Contact Info for Individual
     Given I have started an enrollment
-    When  I move to the personal info page
+    When I am on the personal info page
     Then I should be asked to enter Applicant Name, Contact Person
 
   @psm-FR-2.9
   Scenario: Captures Phone number and Medicaid number for Individual
     Given I have started an enrollment
-    When  I move to the personal info page
+    When I am on the personal info page
     Then I should be asked to enter Contact phone, Medicaid number
 
   @issue-362
@@ -37,25 +37,30 @@ Feature: Data Coverage Checks
 
   @psm-FR-2.6
   Scenario: Accepts valid individual provider personal information
-    Given I am on the personal info page
+    Given I have started an enrollment
+    When I am on the personal info page
     When I enter valid personal information
     Then I can move on from the personal info page with no errors
 
   @psm-FR-2.4
   Scenario: Accepts license
-    Given I am on the individual provider license info page
+    Given I have started an enrollment
+    And I am on the individual provider license info page
+    And I indicate I am not a provider at a Public Health Service Indian Hospital
     When I enter valid license information
     And I upload a valid license
     Then the license is accepted
 
   Scenario: Accepts practice information
-    Given I am on the individual provider practice info page
+    Given I have started an enrollment
+    And I am on the individual provider practice info page
     When I enter a valid private practice
     Then the practice information is accepted
     And the summary page shows expected information
 
   Scenario: Completes an application
-    Given I am on the individual provider statement page
+    Given I have started an enrollment
+    And I am on the individual provider statement page
     When I enter my provider statement
     And I submit the enrollment
     Then the enrollment is successfully submitted

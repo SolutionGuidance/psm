@@ -11,21 +11,25 @@ Feature: Form and Field Validations
     Then It should be rejected
 
   Scenario: Validate minimum age
-    Given I am on the personal info page
+    Given I have started an enrollment
+    And I am on the personal info page
     When I enter a date of birth less than eighteen years ago
     And I click 'next' on the personal info page
     Then I should get a provider too young error
 
   @issue_352
   Scenario: Validate individual provider license renewal date
-    Given I am on the individual provider license info page
+    Given I have started an enrollment
+    And I am on the individual provider license info page
+    And I indicate I am not a provider at a Public Health Service Indian Hospital
     When I enter license info where renewal date is before issue date
     And I click 'next' on the license info page
     Then I should get a renewal date error
 
   @issue_352
   Scenario: Validate organizational provider license renewal date
-    Given I am on the organizational provider license info page
+    Given I have started an enrollment
+    When I am on the facility credentials page
     When I enter license info where renewal date is before issue date
     And I click 'next' on the license info page
     Then I should get a renewal date error

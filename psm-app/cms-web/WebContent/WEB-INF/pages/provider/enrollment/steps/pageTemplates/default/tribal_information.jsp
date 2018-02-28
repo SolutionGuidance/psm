@@ -51,7 +51,7 @@
     <table cellpadding="0" cellspacing="0" class="generalTable">
         <thead>
             <tr>
-                <th>Reservation<span class="required">*</span><span class="sep"></span></th>
+                <th class="reservationTableHeader">Reservation<span class="required">*</span><span class="sep"></span></th>
                 <th>Upload License/Certification<span class="required">*</span><span class="sep"></span></th>
                 <th>License/Certification #<span class="required">*</span><span class="sep"></span></th>
                 <th>Original Issue Date<span class="required">*</span><span class="sep"></span></th>

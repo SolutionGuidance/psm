@@ -1,6 +1,7 @@
 package gov.medicaid.features.enrollment.steps;
 
 import gov.medicaid.features.enrollment.ui.EnrollmentDetailsPage;
+import gov.medicaid.features.enrollment.ui.EnrollmentPage;
 import gov.medicaid.features.enrollment.ui.IndividualInfoPage;
 import gov.medicaid.features.enrollment.ui.IndividualSummaryPage;
 import gov.medicaid.features.enrollment.ui.LicenseInfoPage;
@@ -63,6 +64,7 @@ public class EnrollmentSteps {
 
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
+    private EnrollmentPage enrollmentPage;
     private SelectProviderTypePage selectProviderTypePage;
     private OrganizationInfoPage organizationInfoPage;
     private IndividualInfoPage individualInfoPage;
@@ -174,8 +176,8 @@ public class EnrollmentSteps {
     }
 
     @Step
-    public void enterNotAProviderAtPublicHealthServiceIndianHospital() {
-        licenseInfoPage.clickNo();
+    public void inputProviderAtPublicHealthServiceIndianHospital(boolean checkYes) {
+        licenseInfoPage.checkProviderAtPublicHealthServiceIndianHospital(checkYes);
     }
 
     @Step
@@ -216,9 +218,29 @@ public class EnrollmentSteps {
     }
 
     @Step
+    public void indicateMaintainOwnPrivatePractice(boolean isPrivatePractice) {
+        practiceInfoPage.checkPrivatePractice(isPrivatePractice);
+    }
+
+    @Step
+    public void indicateGroupPractice(boolean isGroupPractice) {
+        practiceInfoPage.checkGroupPractice(isGroupPractice);
+    }
+
+    @Step
+    public void clickAddPracticeLocation() {
+        practiceInfoPage.clickAddPracticeLocation();
+    }
+
+    @Step
+    public void openPracticeLookupModal() {
+        practiceInfoPage.clickPracticeLookupButton();
+    }
+
+    @Step
     void enterIndividualPrivatePracticeInfo() {
-        practiceInfoPage.checkYesPrivatePractice();
-        practiceInfoPage.checkNoGroupPractice();
+        practiceInfoPage.checkPrivatePractice(true);
+        practiceInfoPage.checkGroupPractice(false);
         practiceInfoPage.enterPracticeName(PRIVATE_PRACTICE_NAME);
         practiceInfoPage.enterGroupNPI(PRACTICE_GROUP_NPI);
         practiceInfoPage.enterEffectiveDate(PRACTICE_EFFECTIVE_DATE);
@@ -258,6 +280,16 @@ public class EnrollmentSteps {
     void advanceFromIndividualPracticeInfoToSummaryPage() {
         practiceInfoPage.clickNext();
         assertThat(individualSummaryPage.getTitle()).contains("Summary Information");
+    }
+
+    @Step
+    void clickSaveAsDraft() {
+        enrollmentPage.clickSaveAsDraft();
+    }
+
+    @Step
+    void clickPrintButton() {
+        individualSummaryPage.clickPrintButton();
     }
 
     @Step

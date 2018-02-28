@@ -14,8 +14,13 @@ public class LicenseInfoPage extends PsmPage {
     private static final String RENEWAL_DATE_ERROR_MESSAGE =
             "cannot be earlier than Original Issue Date";
 
-    public void clickNo() {
-        click($("input[value='N'"));
+    public void checkProviderAtPublicHealthServiceIndianHospital(boolean checkYes) {
+        if (checkYes) {
+            click$("input[value='Y'");
+            assertThat($(".reservationTableHeader").getText().contains("Reservation"));
+        } else {
+            click$("input[value='N'");
+        }
     }
 
     public void addLicense() {

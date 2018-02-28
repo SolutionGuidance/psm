@@ -14,7 +14,7 @@
       <div class="right">
         <div class="middle">
           <button class="closeModal" title="Close" aria-label="Close"></button>
-          <h2>Find Practice Data in Existing Record</h2>
+          <h2 class="practiceLookupModalTitle">Find Practice Data in Existing Record</h2>
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ Feature: Organization Enrollment Steps Accessibility Checks
   Scenario: Facility Credentials Page
     Given I have started an enrollment
     When I am on the facility credentials page
-    And I open the add a license panel
+    And I open an add a license panel
     Then I should have no accessibility issues
 
   # fails with duplicate IDs and inputs without labels/titles
@@ -37,12 +37,13 @@ Feature: Organization Enrollment Steps Accessibility Checks
     And I have indicated that the owner has an interest in another Medicaid disclosing entity
     Then I should have no accessibility issues
 
-  Scenario: Summary Page
+  Scenario: Organization Summary Page
     Given I have started an enrollment
-    When I am on the summary page
+    When I am on the organization summary page
+    And I save as draft
     Then I should have no accessibility issues
 
-  Scenario: Provider Statement Page
+  Scenario: Organization Provider Statement Page
     Given I have started an enrollment
-    When I am on the provider statement page
+    When I am on the organization provider statement page
     Then I should have no accessibility issues

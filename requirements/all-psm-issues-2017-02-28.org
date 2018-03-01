@@ -4222,13 +4222,13 @@ We include the initial description below, but not all subsequent comments.
 
   Where lists of US states appear in the app, should the list include US territories?
 
-* TODO [[https://github.com/solutionguidance/psm/issues/61][ 61]]   (open): Make list of counties configurable
+* DONE [[https://github.com/solutionguidance/psm/issues/61][ 61]]   (open): Make list of counties configurable
 
   Each state that deploys this app will (likely) include a list of its counties in a dropdown menu.  This list of counties should be configurable by an app user or loaded from a file when an instance of the PSM is initiated for the state.  
   
   Currently, @jasonaowen suspects that the code is set up so that *all* counties across states would appear in the dropdown, which is of course not desired.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/57][ 57]]   (open): Improve database schema
+* STARTED [[https://github.com/solutionguidance/psm/issues/57][ 57]]   (open): Improve database schema
 
   The way the database is structured is not always obvious or intuitive to me. Track such problems here.
 
@@ -4238,7 +4238,7 @@ We include the initial description below, but not all subsequent comments.
   
   Would it be worth setting up an .editorconfig so we could prevent the need for future whitespace-only commits?
 
-* TODO [[https://github.com/solutionguidance/psm/issues/53][ 53]] (closed): Conditionalize alert about high-risk providers.
+* DONE [[https://github.com/solutionguidance/psm/issues/53][ 53]] (closed): Conditionalize alert about high-risk providers.
 
   The red-alert notice about "High" risk level at the bottom of this screen is not currently useful, and is not even conditionalized on the presence of any high-risk providers in the list being displayed above the alert:
   
@@ -4274,7 +4274,7 @@ We include the initial description below, but not all subsequent comments.
 
   GitHub has a wiki.  We don't use it, but the link is there in case somebody wants to contribute.  I'm inclined to disable it because we are not going to garden the wiki.  I'd rather see changes go in to the md files in the repo.  There is a cost, of course, which is that we close off an avenue of participation from people who aren't git-savvy.  Still, I move we disable the wiki and direct those people to the mailing list.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/41][ 41]]   (open): Fix or remove provider type creation/deletion
+* STARTED [[https://github.com/solutionguidance/psm/issues/41][ 41]]   (open): Fix or remove provider type creation/deletion
 
   If you log in as a service admin, there is a button to `Add Provider Type`. Clicking on it produces a stack trace, because several attributes of provider types were removed in 8b28ccfd75bd3b37f6fd93bdcd31e24174633ee2 in response to [#34 Edit Provider Type to add required additional documentation- Service Admin](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/issues/34) and [#90 Accepting Provider Agreement](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/issues/90).
   
@@ -4286,7 +4286,7 @@ We include the initial description below, but not all subsequent comments.
   
   ![provider types](https://cloud.githubusercontent.com/assets/1494855/26410646/e85e7dbe-4071-11e7-925e-e2d9123fc6b5.png)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/39][ 39]]   (open): Make state-specific auth configurable
+* STARTED [[https://github.com/solutionguidance/psm/issues/39][ 39]]   (open): Make state-specific auth configurable
 
   Currently, the login page has a drop-down menu for "Domain."  One of the options is "MN-ITS," which presumably refers to Minnesota's Information Technology Services.  The "MN-ITS" shows up elsewhere in the code, too.  
   
@@ -4360,7 +4360,7 @@ We include the initial description below, but not all subsequent comments.
   
   See [the wip-hibernate branch](https://github.com/OpenTechStrategies/psm/tree/wip-hibernate) for progress on this issue.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/35][ 35]] (closed): Deploy external sources app on Wildfly
+* DONE [[https://github.com/solutionguidance/psm/issues/35][ 35]] (closed): Deploy external sources app on Wildfly
 
   Get the `ext-sources-app` part of the repository running on Wildfly.  This will probably involve some of the same work as #2.
 
@@ -4376,7 +4376,7 @@ We include the initial description below, but not all subsequent comments.
   - [ ] password complexity policy
   - [ ] two-factor authentication
 
-* TODO [[https://github.com/solutionguidance/psm/issues/33][ 33]]   (open): Complete or remove the ability to suspend user accounts
+* DONE [[https://github.com/solutionguidance/psm/issues/33][ 33]]   (open): Complete or remove the ability to suspend user accounts
 
   There is an attribute of a user, `status`, which can be either `ACTIVE` or `DISABLED`. New users default to `ACTIVE`, there is no UI that I can find that allows the status to be altered, and AFAICT nothing ever reads this value.
   
@@ -4390,7 +4390,7 @@ We include the initial description below, but not all subsequent comments.
   
   Either figure out (and document!) why we have both, or remove user IDs in favor of usernames.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/31][ 31]] (closed): PostgreSQL jar hash error
+* STARTED [[https://github.com/solutionguidance/psm/issues/31][ 31]] (closed): PostgreSQL jar hash error
 
   I've deployed `postgresql-42.1.1.jar` to my local Wildfly server.  Each time I start that server, I get the error: 
   
@@ -4408,7 +4408,7 @@ We include the initial description below, but not all subsequent comments.
   
   For context, this documentation will help us determine which APIs are already here and which will we'll need to create.  There are other projects running concurrently with this one (e.g., a reference architecture project), which need to have an overview of what's already included in the PSM.  If we can point to code, that's also helpful for them -- the documentation of how to use the APIs doesn't need to be complete right away.
   
-* TODO [[https://github.com/solutionguidance/psm/issues/29][ 29]]   (open): Document how to edit list of provider types
+* STARTED [[https://github.com/solutionguidance/psm/issues/29][ 29]]   (open): Document how to edit list of provider types
 
   Each state has a different list of provider types.  We need to document how to edit the type list that is displayed by the PSM, and move toward making that list configurable.  
 
@@ -4420,7 +4420,7 @@ We include the initial description below, but not all subsequent comments.
 
   Other people have worked on the Provider Screening Module. We should review their changes and, if they are useful to our efforts, bring them in.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/21][ 21]] (closed): Confirm which data handling standards we need to comply with
+* DONE [[https://github.com/solutionguidance/psm/issues/21][ 21]] (closed): Confirm which data handling standards we need to comply with
 
   If we are going to get set up as a data wrangler of various data sources, I want to be able to check that we are following any MITA or CMS standards that are appropriate for handling provider info. I presume that *provider* info could not possibly constitute sensitive PII but I would like to double-check this!
   
@@ -4441,7 +4441,7 @@ We include the initial description below, but not all subsequent comments.
   - [ ] Add to list of administrators of https://groups.google.com/d/forum/psm-dev
   - [ ] Add to list at `code_of_conduct.md`
 
-* TODO [[https://github.com/solutionguidance/psm/issues/17][ 17]] (closed): Choose first federal data source
+* DONE [[https://github.com/solutionguidance/psm/issues/17][ 17]] (closed): Choose first federal data source
 
   A few considerations when choosing the first federal data source to connect to:
   
@@ -4481,7 +4481,7 @@ We include the initial description below, but not all subsequent comments.
   
   Ideally, make these places configurable, so that at some point in the future the platform could be changed through configuration settings.  At present, mark them for that future configurability work.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/11][ 11]] (closed): Separate ext-srcs from main application
+* DONE [[https://github.com/solutionguidance/psm/issues/11][ 11]] (closed): Separate ext-srcs from main application
 
   The original authors intended the `ext-srcs` app to function as a separate application.  It has an API that is called by the core PSM app.  In the code's current state, the two apps aren't fully separated.  Their implementation is still closely coupled.  In the future, these might be disentangled.
   
@@ -4495,9 +4495,13 @@ We include the initial description below, but not all subsequent comments.
   
   Instead, I should receive a 404 Not Found (not a 403 Forbidden, as that reveals that the enrollment URL is otherwise valid).
 
-* TODO [[https://github.com/solutionguidance/psm/issues/9][  9]]   (open): Abstract risk-scoring functionality behind a formal service definition.
+* DONE [[https://github.com/solutionguidance/psm/issues/9][  9]]   (open): Abstract risk-scoring functionality behind a formal service definition.
 
-  If the risk-scoring were abstracted behind a service definition, then the PSM would be able to more easily swap different risk-scoring approaches in and out.  It's not clear how much this abstraction already exists in the code, but based on earlier examination I believe it is not completely abstracted.
+  If the risk-scoring were abstracted behind a service definition, then
+  the PSM would be able to more easily swap different risk-scoring
+  approaches in and out.  It's not clear how much this abstraction
+  already exists in the code, but based on earlier examination I believe
+  it is not completely abstracted.
 
 * TODO [[https://github.com/solutionguidance/psm/issues/8][  8]]   (open): Reduce code duplication
 
@@ -4545,7 +4549,7 @@ We include the initial description below, but not all subsequent comments.
 
   The changes on the `local-deployment` branch can just go to `master` now, and `local-deployment` can be archived.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/3][  3]] (closed): Determine Oracle-specificity / PostgreSQL-compatibility of existing SQL.
+* DONE [[https://github.com/solutionguidance/psm/issues/3][  3]] (closed): Determine Oracle-specificity / PostgreSQL-compatibility of existing SQL.
 
   Let's determine what (if anything) needs to be done to make the SQL PostgreSQL-compatible.  We might want to start by getting our past research on the status of the PSM's SQL out here into public view.
 
@@ -4553,7 +4557,7 @@ We include the initial description below, but not all subsequent comments.
 
   Run in an open source application server, defaulting to WildFly (formerly JBoss), with no dependency on IBM WebSphere.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/1][  1]] (closed): Support PostgreSQL or other open source database.
+* DONE [[https://github.com/solutionguidance/psm/issues/1][  1]] (closed): Support PostgreSQL or other open source database.
 
   Make the PSM usable with an open source database, defaulting to PostgreSQL, with no dependency on Oracle.
 

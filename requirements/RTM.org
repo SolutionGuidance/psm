@@ -227,7 +227,7 @@ typical for a web based system";
 * psm-FR-3.16
 "The PSM shall provide comprehensive verification of all (verifiable)
 data fields for all providers enrolled";
-* psm-FR-3.17:
+* psm-FR-3.17: 113*, 125*, 165, 
 "The PSM shall improve efficiency of the Screening Solution in terms of
 cost and schedule to actually implement ";
 * psm-FR-3.18
@@ -295,12 +295,12 @@ terminating enrollment.";
 * psm-FR-5.4
 "The PSM shall require PC Plus providers to give 90 days notice before
 terminating enrollment.";
-* psm-FR-5.5: 41*, 
+* psm-FR-5.5: 41*, 79*, 
 "The PSM shall maintain the capability to limit billing and providers to
 certain benefit plans, services, by procedure codes, ranges of procedure
 codes, member age or by provider type(s) or as otherwise directed by the
 State.";
-* psm-FR-5.6
+* psm-FR-5.6: 127*, 
 "The PSM shall require revalidation period to be configurable.";
 * psm-FR-5.7
 "PSM shall terminate enrollment if revalidation is not completed.  ";
@@ -339,7 +339,7 @@ information has not changed.";
 "The PSM shall provide an input to document the nature for the type of
 screening/monitoring event, the score, and the agencies decision for
 each provider.";
-* psm-FR-7.1
+* psm-FR-7.1: 155, 159, 195
 "The PSM shall provide per-field instructions on the application
 screen.";
 * psm-FR-7.2: 29*, 
@@ -348,7 +348,7 @@ application via a Help link.";
 * psm-FR-7.3
 "The PSM shall not send re-screening results to admin for review if
 provider information has not changed.";
-* psm-FR-7.4
+* psm-FR-7.4: 161, 167
 "The PSM shall provide a screen to verify entered information.";
 * psm-FR-7.5
 "The PSM shall allow applicant to edit entered information.";
@@ -384,7 +384,7 @@ providers as specified by the State.";
 * psm-FR-8.4
 "The PSM shall produce notices to applicants of pending status,
 approval, or rejection of their applications.";
-* psm-FR-8.5
+* psm-FR-8.5: 185
 "The PSM shall add a attestation, using configurable link or text, to
 the reading and understanding of the required state Medicaid agency
 materials prior to enrollment.  ";
@@ -399,7 +399,7 @@ federal guidelines (42 CFR 431.105)";
 * psm-FR-9.4
 "The PSM shall verify provider eligibility in support of other system
 processes, i.e. payment of claims.";
-* psm-FR-9.5: 1, 3, 35
+* psm-FR-9.5: 1, 3, 35, 87, 147
 "The PSM shall ensure proprietary interfaces and protocols between
 modules are not used.";
 * psm-FR-10.1
@@ -407,7 +407,7 @@ modules are not used.";
 http://www.wpc-edi.com/codes/taxonomy";
 * psm-II-1.1
 "The PSM shall use a mix of manual and automated business processes.";
-* psm-II-2.1: 31*,
+* psm-II-2.1: 31*, 91*
 "The PSM shall perform advanced information monitoring and routes system
 alerts and alarms to communities of interest when the system detects
 unusual conditions."; 
@@ -450,13 +450,13 @@ Human Services (HHS) applications and intrastate agencies.";
 * psm-II-4.2
 "The PSM shall document all interfaces in an Interface Control Document
 (ICD), along with how those interfaces are maintained.";
-* psm-II-4.3
+* psm-II-4.3: 157*, 
 "Loosely coupled APIs - The PSM module dependencies shall be minimized
 to the greatest extent possible.";
 * psm-II-4.4
 "Clearly documented - The PSM shall provide detailed API documentation
 provided for every API. ";
-* psm-SA-3.1: 57*, 
+* psm-SA-3.1: 57*, 101*, 103*, 139*, 
 "The PSM shall support the architecture adopted to preserve the ability
 to efficiently, effectively, and appropriately exchange data with other
 participants in the health and human services enterprise."; 
@@ -480,16 +480,16 @@ COMMENT: "This is requested by Anshuman during the 8/10/17 PSM status
 meeting"
 * psm-AD-2.5
 "To the greatest extent possible, the PSM shall be browser agnostic. ";
-* psm-AD-5.4: 33, 
+* psm-AD-5.4: 33, 149, 171, 175
 "The PSM shall support a user security profile that controls user access
 rights to data categories and system functions.";
-* psm-AD-5.11:
+* psm-AD-5.11: 181, 
 "The PSM shall have standard Access Control specifications to include:
 (i) Assigning a unique name and/or number for identifying and tracking
 user identity. (Required) (iii) Implementing electronic procedures that
 terminate an electronic session after a predetermined time of
 inactivity. (Addressable) ";
-* psm-AD-5.12: 39*,
+* psm-AD-5.12: 39*, 149, 
 "The PSM shall support roles and responsibilities of individuals that
 are separated through assigned information access authorization as
 necessary to prevent malevolent activity.";
@@ -515,11 +515,17 @@ been established.";
 retained.";
 * psm-PH-1.4
 "The PSM shall verify that all dates are valid and reasonable.";
-* psm-IP-1.1
+* psm-IP-1.1: 5, 45, 73*, 111, 129*, 189
 "The PSM shall have a open source repository organized to be accessible
 to outside contributors."
-* psm-IP-2.1
+* psm-IP-1.2: 189
+"The PSM shall include and undergo automated testing at regular
+intervals, through continuous integration and deployment processes."
+* psm-IP-2.1: 39, 51*, 79*, 177*, 
 "The PSM shall be configurable where feasible."
-* psm-IP-3.1
+* psm-IP-3.1: 65, 163*
 "The PSM shall be accessible in compliance with Section 508 of the
 Rehabilitation Act."
+* psm-IP-3.2: 169, 
+"The PSM's user interface shall be as simple and quickly comprehensible
+as possible."

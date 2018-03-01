@@ -11,6 +11,9 @@ Issue assignments that are uncertain are indicated with an asterisk
 after the issue number, like 31*.  In the issues list, these are marked
 as "STARTED."
 
+Requirements items that don't yet appear in RTM.xlsx are denoted with
+"psm-IP-x.x" (IP for In Progress).
+
 * psm-FR-1.1
 "The PSM shall accept a form that shows a tax ID number and legal name
 for each provider (ex forms: CP 575 or 147C letter;941 Employers'
@@ -512,3 +515,11 @@ been established.";
 retained.";
 * psm-PH-1.4
 "The PSM shall verify that all dates are valid and reasonable.";
+* psm-IP-1.1
+"The PSM shall have a open source repository organized to be accessible
+to outside contributors."
+* psm-IP-2.1
+"The PSM shall be configurable where feasible."
+* psm-IP-3.1
+"The PSM shall be accessible in compliance with Section 508 of the
+Rehabilitation Act."

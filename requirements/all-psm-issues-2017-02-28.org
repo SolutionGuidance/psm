@@ -5,7 +5,7 @@ req(s), please flip "TODO" -> "DONE".
 
 We include the initial description below, but not all subsequent comments.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/692][692]]   (open): Action column may wrap to two lines
+* DONE [[https://github.com/solutionguidance/psm/issues/692][692]]   (open): Action column may wrap to two lines
 
   On service admin "Pending", "Approved", and "Notes" pages content in the action column wraps to two lines:
   
@@ -41,7 +41,7 @@ We include the initial description below, but not all subsequent comments.
   
   ![screenshot from 2018-02-19 14-10-51](https://user-images.githubusercontent.com/1497818/36395427-c3793484-157e-11e8-9d2a-129366c64469.png)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/672][672]]   (open): Empty link text for providers with no NPI
+* DONE [[https://github.com/solutionguidance/psm/issues/672][672]]   (open): Empty link text for providers with no NPI
 
   Some provider types, such as Personal Care Assistants, do not have an NPI. After creating such an enrollment, the dashboard and enrollments pages render that enrollment with an empty link to the enrollment:
   
@@ -51,7 +51,7 @@ We include the initial description below, but not all subsequent comments.
   
   We previously addressed a similar case in #573 by making the NPI plain text and moving the link to view the application to the literal string "View", alongside (in that case) "Edit" and "Renew"; in this case it would be next to "Print" and "Export to PDF".
 
-* TODO [[https://github.com/solutionguidance/psm/issues/668][668]]   (open): Rearrange the provider dashboard pages
+* DONE [[https://github.com/solutionguidance/psm/issues/668][668]]   (open): Rearrange the provider dashboard pages
 
   The provider "Dashboard > Dashboard" and "Enrollments > Dashboard" pages are very similar, so similar that it's odd to have them in separate tabs in the main navigation bar (as "Dashboard" and "Enrollments").  Some reworking seems in order.
   
@@ -63,7 +63,7 @@ We include the initial description below, but not all subsequent comments.
   
   ![screenshot-2018-2-12-provider-enrollments](https://user-images.githubusercontent.com/1091693/36164950-fed47556-10bb-11e8-9991-01a949f49a8f.png)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/666][666]]   (open): Trading Partner Type is not recognized
+* DONE [[https://github.com/solutionguidance/psm/issues/666][666]]   (open): Trading Partner Type is not recognized
 
   @jcunard ran into this issue and I was able to reproduce it.
   
@@ -129,7 +129,7 @@ We include the initial description below, but not all subsequent comments.
   
   @notpace, @dhill, tagging you so you can easily follow this issue.  Can you link to the SHR spec you showed in our call?  Is it [this](http://standardhealthrecord.org/fhir/StructureDefinition-shr-entity-Practitioner.html)?
 
-* TODO [[https://github.com/solutionguidance/psm/issues/638][638]]   (open): Add automated cross-browser testing
+* DONE [[https://github.com/solutionguidance/psm/issues/638][638]]   (open): Add automated cross-browser testing
 
   Pursuant to #298, and spurred by #635: we need to test in more than one browser.  Presumably we can run the same Selenium tests with different browser drivers.  Our switch to Jenkins (#629) may even make this easier.
 
@@ -159,7 +159,7 @@ We include the initial description below, but not all subsequent comments.
   
   I'm sure there are others -- please add them here.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/626][626]]   (open): Manage JavaScript dependencies and modernize build
+* DONE [[https://github.com/solutionguidance/psm/issues/626][626]]   (open): Manage JavaScript dependencies and modernize build
 
   Currently, we have several vendored JavaScript dependencies:
   
@@ -196,7 +196,7 @@ We include the initial description below, but not all subsequent comments.
   - how will we discuss individual members of organizational providers?
   
     
-* TODO [[https://github.com/solutionguidance/psm/issues/622][622]]   (open): Prevent issues from browsers caching outdated CSS
+* DONE [[https://github.com/solutionguidance/psm/issues/622][622]]   (open): Prevent issues from browsers caching outdated CSS
 
   Recently we made some CSS changes that resulted in the PSM's logout button not working for users that had an older version of the site cached in their browsers.
   
@@ -216,7 +216,7 @@ We include the initial description below, but not all subsequent comments.
   
   I'm not sure how often we'll be changing images / CSS, so it's not obvious to me that addressing this is a high priority (for now).  Recording for prioritization down the line.
     
-* TODO [[https://github.com/solutionguidance/psm/issues/620][620]]   (open): Cannot delete additional practice location
+* DONE [[https://github.com/solutionguidance/psm/issues/620][620]]   (open): Cannot delete additional practice location
 
   If there are two or more additional practice locations, a red x icon shows up to the right of each so that you can delete them. However, if you have only one, you cannot delete it - apparently because it wants to always shows an empty additional practice location.
   
@@ -236,11 +236,11 @@ We include the initial description below, but not all subsequent comments.
   4. Filled-out date: ![4](https://user-images.githubusercontent.com/1494855/34534971-56a8737a-f08e-11e7-8a7f-25a5e09493f1.png)
   5. Error: ![5](https://user-images.githubusercontent.com/1494855/34534972-56b9e5b0-f08e-11e7-9355-e1453e79680f.png)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/618][618]]   (open): Enter key does not submit quick search form
+* DONE [[https://github.com/solutionguidance/psm/issues/618][618]]   (open): Enter key does not submit quick search form
 
   If I log in as a provider, click on the quick search text input box, type in a search term, and hit enter, I expect the form to submit and show me the results of the search. Instead, hitting the enter key has no effect, and I have to click on the magnifying glass icon to conduct the search.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/616][616]]   (open): Remove or update DEPENDENCIES.md
+* DONE [[https://github.com/solutionguidance/psm/issues/616][616]]   (open): Remove or update DEPENDENCIES.md
 
   As part of #147 Review licenses of dependencies, we created [DEPENDENCIES.md](https://github.com/SolutionGuidance/psm/blob/1f4e258ab9297b2d3a8f58d61941194d3afe0ae5/docs/DEPENDENCIES.md). At the time, all of our dependencies were vendored (checked in to source control), and we needed to research their origins to make sure we were compliant with their licenses.
   
@@ -248,7 +248,7 @@ We include the initial description below, but not all subsequent comments.
   
   I suggest that we delete this file. At this point (or in the very near future), we should be able to use a Gradle plugin to generate a report like this, if we still need it. If we don't still need it, we can simply delete it and be done.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/614][614]]   (open): Encrypt secret configuration options at rest
+* DONE [[https://github.com/solutionguidance/psm/issues/614][614]]   (open): Encrypt secret configuration options at rest
 
   The PSM has several configuration options specified in [`cms.properties`](https://github.com/SolutionGuidance/psm/blob/master/psm-app/services/src/main/resources/cms.properties). We expect that some of them will contain secrets:
   
@@ -271,7 +271,7 @@ We include the initial description below, but not all subsequent comments.
   
   @jasonaowen points to this [reference article](http://oli.jp/2009/html5-structure4/).
   
-* TODO [[https://github.com/solutionguidance/psm/issues/612][612]]   (open): Enrollment search has broken placeholder text
+* DONE [[https://github.com/solutionguidance/psm/issues/612][612]]   (open): Enrollment search has broken placeholder text
 
   The enrollment quick search bar has placeholder text ("Search Keyword"), but clicking on it leaves that placeholder text behind.
   
@@ -286,7 +286,7 @@ We include the initial description below, but not all subsequent comments.
   
   I suggest that we customize a Sphinx theme for the userhelp that we employ when we use Gradle to build the HTML docs *as part of the application*, and that within that theme, in navigation bars, we include relative hyperlinks for one hierarchical level up (thus, the homepage of the app).
 
-* TODO [[https://github.com/solutionguidance/psm/issues/604][604]]   (open): Serenity tests failing - page title mismatch?
+* DONE [[https://github.com/solutionguidance/psm/issues/604][604]]   (open): Serenity tests failing - page title mismatch?
 
   When I run `./gradlew test aggregate` on master, I get several failures, e.g.,
   
@@ -304,7 +304,7 @@ We include the initial description below, but not all subsequent comments.
   
   This is happening whether or not I have created a draft enrollment as a provider - although if I start with a fresh database then instead of "Dashboard" the page title is "Welcome".
 
-* TODO [[https://github.com/solutionguidance/psm/issues/600][600]]   (open): Automate release process with checklist & cron job/bot
+* DONE [[https://github.com/solutionguidance/psm/issues/600][600]]   (open): Automate release process with checklist & cron job/bot
 
   We should automate more of our release process.
   
@@ -320,7 +320,7 @@ We include the initial description below, but not all subsequent comments.
 
   As mentioned in #546, some parts of our code use user roles intended for end users.  The internals of the software should not depend on some kind of end user existing (in this case, the `system` user) with certain permissions.  @jasonaowen began removing this with #575, and has found some other places where this needs to be updated.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/596][596]]   (open): Reduce use of JAXB class generation
+* DONE [[https://github.com/solutionguidance/psm/issues/596][596]]   (open): Reduce use of JAXB class generation
 
   We use [JAXB](https://en.wikipedia.org/wiki/Java_Architecture_for_XML_Binding) in the PSM mainly to serialize to and deserialize from XML for working with JBPM and Drools. We store XML versions of to-be-processed and currently-being-processed enrollments in JBPM's tables, and when it calls back into our code, we deserialize it, do some things, and then re-serialize it.
   
@@ -334,17 +334,17 @@ We include the initial description below, but not all subsequent comments.
   
   Remove these complicating classes as and when we can.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/588][588]] (closed): Stop memory leak leading to Wildfly Out of Memory errors
+* DONE [[https://github.com/solutionguidance/psm/issues/588][588]] (closed): Stop memory leak leading to Wildfly Out of Memory errors
 
   When developers are working locally, they frequently redeploy the PSM many times in the course of a work session.  Their local Wildfly session eventually throws an Out Of Memory error, which means they need to halt work, kill Wildfly, and restart it.  We should find out why Wildfly gradually runs out of memory on repeated deployments, and fix this problem.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/586][586]]   (open): System admin filter box hidden after filtering
+* DONE [[https://github.com/solutionguidance/psm/issues/586][586]]   (open): System admin filter box hidden after filtering
 
   As a system admin, if I filter the list of users, I expect the applied filter to be shown alongside the filtered list, and I expect the `Hide Filter` / `Filter` button to work the same as on the non-filtered list:
   
   ![filter](https://user-images.githubusercontent.com/1494855/34121056-c86df9da-e3f5-11e7-8737-6be4a66ae3e3.gif)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/582][582]]   (open): Replace deprecated jQuery `.live(events, handler)` in JS code
+* DONE [[https://github.com/solutionguidance/psm/issues/582][582]]   (open): Replace deprecated jQuery `.live(events, handler)` in JS code
 
   As @jasonaowen notes:
   
@@ -352,7 +352,7 @@ We include the initial description below, but not all subsequent comments.
   
   We should replace occurrences of `.live(events, handler)` in our JS code with non-deprecated methods.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/572][572]]   (open): Review screening rules
+* DONE [[https://github.com/solutionguidance/psm/issues/572][572]]   (open): Review screening rules
 
   We have a requirement that
   
@@ -382,7 +382,7 @@ We include the initial description below, but not all subsequent comments.
   
   These were lost by accident as [part of our transition to Handlebars](https://github.com/solutionguidance/psm/pull/538#discussion_r156232946). We should restore them, or if they don't matter, remove them entirely.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/566][566]] (closed): Invalid CSRF token for 'PDF export' and 'Print' buttons
+* DONE [[https://github.com/solutionguidance/psm/issues/566][566]] (closed): Invalid CSRF token for 'PDF export' and 'Print' buttons
 
   I got the following error by:
    - logging in as a provider (p1)
@@ -399,7 +399,7 @@ We include the initial description below, but not all subsequent comments.
 
   Right now some files (e.g. `pca_billing.jsp`) have all caps labels; I imagine that a screen reader would dictate this letter by letter (as though it were an acronym).  If we want the labels to render all caps we should use the css `text-transform: upper` feature instead of having the content itself be all caps.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/564][564]]   (open): Ownership Information Percentage of Ownership Interest...
+* DONE [[https://github.com/solutionguidance/psm/issues/564][564]]   (open): Ownership Information Percentage of Ownership Interest...
 
   In `cms_web/WebContent/WEB-INF/pages/provider/enrollment/steps/pageTemplate/default/ownership_information.jsp` around line 936 (give or take a few) there is a form field labeled `% of Ownership Interest`
   
@@ -419,7 +419,7 @@ We include the initial description below, but not all subsequent comments.
   
   I'll be turning a conversation I had with @jasonaowen today into a prose document, to be used in conjunction with an architecture diagram such as https://github.com/solutionguidance/psm/blob/master/team-notes/psm-architecture-for-stakeholders.odg , to help a developer understand code execution and data flow during the course of 1-2 common use cases.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/556][556]] (closed): Drop Down Menu Issue
+* DONE [[https://github.com/solutionguidance/psm/issues/556][556]] (closed): Drop Down Menu Issue
 
   Hello,
   
@@ -441,7 +441,7 @@ We include the initial description below, but not all subsequent comments.
   
   We should disable the Serenity tests when the encrypted variables are unavailable, so that pull requests from external repos have a chance at passing.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/554][554]] (closed): Give form input elements a name for accessibility
+* DONE [[https://github.com/solutionguidance/psm/issues/554][554]] (closed): Give form input elements a name for accessibility
 
   Part of issue #510 , we should make sure each form input element has a name for accessibility.  Here is the relevant HTML_CodeSniffer error:
   > This text input element does not have a name available to an accessibility API. Valid names are: label element, title attribute, aria-label attribute, aria-labelledby attribute.
@@ -458,13 +458,13 @@ We include the initial description below, but not all subsequent comments.
   > Suggested Techniques:
   > [F68](http://www.w3.org/TR/WCAG20-TECHS/F68)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/553][553]] (closed): Use accessible submit buttons on all forms
+* DONE [[https://github.com/solutionguidance/psm/issues/553][553]] (closed): Use accessible submit buttons on all forms
 
   As part of Issue #510, and related to issue #65, we should use accessible submit buttons for forms.
   
   The HTML CodeSniffer error: "This form does not contain a submit button, which creates issues for those who cannot submit the form using the keyboard. Submit buttons are INPUT elements with type attribute "submit" or "image", or BUTTON elements with type "submit" or omitted/invalid."
 
-* TODO [[https://github.com/solutionguidance/psm/issues/546][546]] (closed): Post processing fails on submitted enrollment applications
+* DONE [[https://github.com/solutionguidance/psm/issues/546][546]] (closed): Post processing fails on submitted enrollment applications
 
   When a user submits an enrollment, several post-processing steps happen, including the LEIE check. These steps are failing on master, and an exception is logged in the WildFly logs (below). The application never receives a risk level, and cannot be resubmitted by an admin.
   
@@ -873,7 +873,7 @@ We include the initial description below, but not all subsequent comments.
   
   On the other hand, build \#1196 succeeded and appears to have run the Sauce Lab tests correctly.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/528][528]]   (open): Potential misuse of the PSM by an agent
+* DONE [[https://github.com/solutionguidance/psm/issues/528][528]]   (open): Potential misuse of the PSM by an agent
 
   We've been discussing the agent/provider permissions divide in #10, and someone brought up a possible problem with allowing an agent unlimited access to a provider's account:
   
@@ -899,7 +899,7 @@ We include the initial description below, but not all subsequent comments.
   
   I've logged in as a service admin. I can use the checkbox at the top of this column to select all the agreements and addenda, but the checkboxes for individual rows are grayed out. This means that, from this screen, I can't select an individual agreement or subset of agreements to delete.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/520][520]]   (open): Upgrade to WildFly 11
+* DONE [[https://github.com/solutionguidance/psm/issues/520][520]]   (open): Upgrade to WildFly 11
 
   Last week, [WildFly 11 was released](http://wildfly.org/news/2017/10/23/WildFly11-Final-Released/). We should:
   
@@ -913,7 +913,7 @@ We include the initial description below, but not all subsequent comments.
 
   See [this comment](https://github.com/OpenTechStrategies/psm/pull/505#issuecomment-340824438) in #505.  Sometimes, an error on the forgot password form persists when it shouldn't, meaning that it turns up on the login screen incorrectly.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/518][518]]   (open): Implement accessibility checking in CI
+* DONE [[https://github.com/solutionguidance/psm/issues/518][518]]   (open): Implement accessibility checking in CI
 
   Integrate automated checking of errors in WCAG Level A and Level AA standards in our continuous integration. This will probably require wiring something into Serenity/Selenium so that the tool can simulate logging in, filling in forms, and navigating; automated accessibility (a11y) tools often look for elements within the rendered HTML and the CSS/JS. [axe-core](https://github.com/dequelabs/axe-core) and [pa11y-ci](https://github.com/pa11y/pa11y-ci) seem promising.
   
@@ -935,7 +935,7 @@ We include the initial description below, but not all subsequent comments.
   Suggested Techniques:
   [H57](http://www.w3.org/TR/WCAG20-TECHS/H57)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/516][516]] (closed): duplicate ID for Next button on Summary Information page during enrollment
+* DONE [[https://github.com/solutionguidance/psm/issues/516][516]] (closed): duplicate ID for Next button on Summary Information page during enrollment
 
   `pa11y` tells me that we're breaking WCAG2AA.Principle4.Guideline4_1.4_1_1.F77: Duplicate id attribute value `nextBtn` found on the web page. This is because we show a "Next" button before and after the summary display.
   
@@ -947,7 +947,7 @@ We include the initial description below, but not all subsequent comments.
   
   I see that we also have two "Previous" elements for the user to select, but that those don't use an `id` which is, I presume, why the accessibility checker doesn't complain.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/514][514]] (closed): fix color contrast in headers and footers for accessibility
+* DONE [[https://github.com/solutionguidance/psm/issues/514][514]] (closed): fix color contrast in headers and footers for accessibility
 
   From HTML CodeSniffer/`pa11y`, we have a few color contrast issues with headers, footers, etc. Example:
   
@@ -967,7 +967,7 @@ We include the initial description below, but not all subsequent comments.
   
   > If this is a data table, ensure row and column headers are identified using `th` elements.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/512][512]]   (open): Logically nest header elements
+* DONE [[https://github.com/solutionguidance/psm/issues/512][512]]   (open): Logically nest header elements
 
   In a few places our header nesting is wrong, causing accessibility issues (which `pa11y` calls out as `Section508.D.HeadingOrder`). Examples where an `h3` should be an `h2`:
   
@@ -984,7 +984,7 @@ We include the initial description below, but not all subsequent comments.
   <form id=\"paginationForm\" action=\"/cms/provider/dashboard/list/filter\" method=\"get\">\n<div class=\"filterPanel\" style...</form>
   ~~~
 
-* TODO [[https://github.com/solutionguidance/psm/issues/510][510]]   (open): Improve keyboard navigation for forms & elements
+* DONE [[https://github.com/solutionguidance/psm/issues/510][510]]   (open): Improve keyboard navigation for forms & elements
 
   We should ensure that our forms can be navigated using the keyboard and other accessibility tools. In `pa11y` this is `Section508.N.KeyboardNav` ("When electronic forms are designed to be completed on-line, the form shall allow people using assistive technology to access the information, field elements, and functionality required for completion and submission of the form, including all directions and cues."). In HTML CodeSniffer:
   
@@ -1011,7 +1011,7 @@ We include the initial description below, but not all subsequent comments.
   
   [Here is a guide to writing good alt text](https://denise.dreamwidth.org/2013/01/31/writing-alt-text.html).
 
-* TODO [[https://github.com/solutionguidance/psm/issues/508][508]] (closed): Provide descriptive labels/instructions for user input in forms
+* DONE [[https://github.com/solutionguidance/psm/issues/508][508]] (closed): Provide descriptive labels/instructions for user input in forms
 
   We need to provide descriptive labels or instructions (including for required fields) for user input in forms. In `pa11y` this is `Section508.N.Labels`. Examples where we are currently not doing this:
   
@@ -1033,7 +1033,7 @@ We include the initial description below, but not all subsequent comments.
   
   This messes with screenreaders.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/504][504]] (closed): Stack trace when mail server unavailable
+* DONE [[https://github.com/solutionguidance/psm/issues/504][504]] (closed): Stack trace when mail server unavailable
 
   If you try to use the "Forgot Password" feature when you don't have a mail server running, you should get an error. Instead, we currently show a stack trace, starting with
   
@@ -1043,7 +1043,7 @@ We include the initial description below, but not all subsequent comments.
 
    For a logged-in service admin, the header menu should always include "Functions."  That item disappears when the admin navigates to My Profile.  Hat tip once again to @jcunard, [on the list](https://groups.google.com/forum/#!topic/psm-dev/q-XGEsndkhA).
 
-* TODO [[https://github.com/solutionguidance/psm/issues/498][498]]   (open): Providers can edit submitted enrollments
+* DONE [[https://github.com/solutionguidance/psm/issues/498][498]]   (open): Providers can edit submitted enrollments
 
   If a provider searches for their submitted enrollment (e.g., one with a "Pending" status) in simple or advanced search, it will show up in results.  The results include an "Action" column, like the Dashboard, and one of the possible actions is "Edit."  This allows providers to edit a submitted enrollment.  We have been clear that providers are **not** able to edit a submitted enrollment, and @chj124's comments have confirmed that.
   
@@ -1057,7 +1057,7 @@ We include the initial description below, but not all subsequent comments.
   
   See @jcunard's [post to the list](https://groups.google.com/forum/#!topic/psm-dev/q-XGEsndkhA) for related screenshots.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/496][496]] (closed): Simple search (field in upper right) fails to find results
+* DONE [[https://github.com/solutionguidance/psm/issues/496][496]] (closed): Simple search (field in upper right) fails to find results
 
   As a service admin, I used the simple search field to search for a substring of a provider name ("DME") on my local copy.  The provider "DME Test" had submitted two enrollments, and the provider "DME" had submitted one as well, so I would expect one or more of those to turn up in search results.  None did.  Similarly, @jcunard mentioned [on the list](https://groups.google.com/forum/#!topic/psm-dev/q-XGEsndkhA) that the search failed to find her user profile.
 
@@ -1065,7 +1065,7 @@ We include the initial description below, but not all subsequent comments.
 
   We have this little snippet used in a bunch of our scripts that downloads and verifies the integrity of third party resources.  We should source it from a single location rather than copying it everywhere.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/486][486]]   (open): Limit number of providers of a given type
+* DONE [[https://github.com/solutionguidance/psm/issues/486][486]]   (open): Limit number of providers of a given type
 
   @chj124 [mentioned](https://github.com/OpenTechStrategies/psm/issues/10#issuecomment-337301827):
   
@@ -1083,13 +1083,13 @@ We include the initial description below, but not all subsequent comments.
 
   As @chj124 has pointed out, users of the PSM are *applying* to enroll in Medicaid (or some other program, in the future).  So, it would be better to use the term "application" than "enrollment" for the form the provider is filling out.  To update this term everywhere would mean a big code change which we aren't in a position to make right now (I don't think).  I am going to try to keep this distinction in mind going forward, especially as the PSM begins to incorporate more of the management side tasks.  One of those will be enrolling providers in the program *after* their application has been reviewed.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/482][482]] (closed): Central documentation site should refer to how it's generated.
+* DONE [[https://github.com/solutionguidance/psm/issues/482][482]] (closed): Central documentation site should refer to how it's generated.
 
   We now have auto-built documentation at https://opentechstrategies.github.io/psm/, coming (I think) from the `gh-pages` branch in this repository.  Still, that doc site should point to some documentation about how the site itself is built, so that if people want to contribute to it, they can.
   
   This is discussed more starting [here](https://chat.opentechstrategies.com/#narrow/stream/Provider.20Screening/subject/user.20documentation/near/784).
 
-* TODO [[https://github.com/solutionguidance/psm/issues/476][476]]   (open): CSV export (including sanitization)
+* DONE [[https://github.com/solutionguidance/psm/issues/476][476]]   (open): CSV export (including sanitization)
 
   The PSM will offer CSV export of certain kinds of data (probably lists of providers and enrollments) for use by service administrators.
   
@@ -1097,7 +1097,7 @@ We include the initial description below, but not all subsequent comments.
   > E.g., if I wanted to hack into staff computers at a state medicaid agency, I'd register as a provider, fill in the form fields with some CSV injection data, and wait until they export it.
   > One thing we can do is detect whether people are filling in fields with suspicious data that only makes sense for a CSV-injection attack. Like if your clinic address begins with "=", you know?
 
-* TODO [[https://github.com/solutionguidance/psm/issues/472][472]]   (open): INSTALL.md improvements based on Paul Morris' notes
+* DONE [[https://github.com/solutionguidance/psm/issues/472][472]]   (open): INSTALL.md improvements based on Paul Morris' notes
 
   Below are notes I took while installing the PSM based on INSTALL.md.  I tried to make a note every time I was confused about something, if even just a little bit.  So not all of these items need to lead to edits, but they're all here for completeness.
   
@@ -1274,18 +1274,17 @@ We include the initial description below, but not all subsequent comments.
   /home/paul/ots/psm/psm-app/cms-web/src/main/java/gov/medicaid/controllers/EnrollmentPageFlowController.java:784: warning - @param argument "entity" is not a parameter name.
   3 warnings
 
-* TODO [[https://github.com/solutionguidance/psm/issues/468][468]] (closed): Ensure that we are using Hibernate everywhere
+* DONE [[https://github.com/solutionguidance/psm/issues/468][468]] (closed): Ensure that we are using Hibernate everywhere
 
   "The solution, in order to protect the database from SQL injection attacks, shall access the database from the application through a standard database abstraction layer."
   
   This should be a quick one -- just check that we're not making any raw SQL calls in the codebase and are using Hibernate throughout.  If we are making any direct SQL calls, replace them with a safer method.
   
-  
-* TODO [[https://github.com/solutionguidance/psm/issues/467][467]]   (open): Improve ADA compliance
+* DONE [[https://github.com/solutionguidance/psm/issues/467][467]]   (open): Improve ADA compliance
 
   This is a placeholder that will get more content after we complete #415 and know what our first steps toward improvement are.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/466][466]] (closed): Document application architecture and interfaces
+* DONE [[https://github.com/solutionguidance/psm/issues/466][466]] (closed): Document application architecture and interfaces
 
   - psm-II-4.2 The PSM shall document all interfaces in an Interface Control Document (ICD), along with how those interfaces are maintained.
   - psm-SA-4.3 The PSM design documents shall utilize a widely supported modeling language (e.g., UML, BPMN).
@@ -1296,7 +1295,7 @@ We include the initial description below, but not all subsequent comments.
   
   I'm grouping these together for now, but we can certainly split them into different issues as needed.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/465][465]] (closed): Use FIPS-approved encryption
+* DONE [[https://github.com/solutionguidance/psm/issues/465][465]] (closed): Use FIPS-approved encryption
 
   "The PSM shall use only FIPS Pub 140-2-approved (or higher) encryption algorithms."  and "The Contractor's data encryption solution shall meet Federal Information Processing Standard (FIPS) 140-2 and at a minimum use AES 128 encryption."
   
@@ -1310,7 +1309,7 @@ We include the initial description below, but not all subsequent comments.
   
   This requires fiddling with the [LaTeX styling](http://www.sphinx-doc.org/en/stable/latex.html).
 
-* TODO [[https://github.com/solutionguidance/psm/issues/458][458]] (closed): bundle user & developer docs for psm-dev
+* DONE [[https://github.com/solutionguidance/psm/issues/458][458]] (closed): bundle user & developer docs for psm-dev
 
   To do:
   
@@ -1320,7 +1319,7 @@ We include the initial description below, but not all subsequent comments.
   - [x] Note down steps to achieving the above outcome
   - [x] On Friday, September 29, send the zipped archive to the psm-dev mailing list
 
-* TODO [[https://github.com/solutionguidance/psm/issues/456][456]]   (open): Use consistent code style
+* DONE [[https://github.com/solutionguidance/psm/issues/456][456]]   (open): Use consistent code style
 
   Having a consistent code style to our project makes old code easier to change and new code easier to add. As [Nicholas C. Zakas writes](https://www.smashingmagazine.com/2012/10/why-coding-style-matters/):
   
@@ -1338,13 +1337,13 @@ We include the initial description below, but not all subsequent comments.
   
   ![screenshot from 2017-09-27 12-02-45](https://user-images.githubusercontent.com/1497818/30927096-e813768e-a37c-11e7-9be5-86f67ba03f1e.png)
   
-* TODO [[https://github.com/solutionguidance/psm/issues/454][454]]   (open): License renewal end date grayed out for PCA
+* DONE [[https://github.com/solutionguidance/psm/issues/454][454]]   (open): License renewal end date grayed out for PCA
 
   On the License screen for Personal Care Assistants, the "Renewal End Date" is marked as required with a red star, but the field is grayed out.  It isn't really required (users can continue the enrollment without filling it in), so we should either allow users to enter information or remove the field.  
   
   ![screenshot from 2017-09-27 12-00-00](https://user-images.githubusercontent.com/1497818/30926838-0ff1bba8-a37c-11e7-95cd-3f55014105d6.png)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/452][452]]   (open): Activate push-javadoc-to-gh-pages.sh earlier in Travis build
+* DONE [[https://github.com/solutionguidance/psm/issues/452][452]]   (open): Activate push-javadoc-to-gh-pages.sh earlier in Travis build
 
   A few weeks ago, after we merged 1fcb87f1eaa587324d7a232c8542b1c843390b74 , our Javadoc syndication to GitHub Pages broke - https://github.com/OpenTechStrategies/psm/tree/fix-gh-pages has an attempted fix.
   
@@ -1352,11 +1351,11 @@ We include the initial description below, but not all subsequent comments.
   
   More urgent than #255.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/446][446]] (closed): Write API specification for LEIE API
+* DONE [[https://github.com/solutionguidance/psm/issues/446][446]] (closed): Write API specification for LEIE API
 
   Create API documentation that defines the LEIE API's endpoints and how to call it, similar to the docs written for our internal APIs as part of #30.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/440][440]]   (open): Rename "same as above"
+* DONE [[https://github.com/solutionguidance/psm/issues/440][440]]   (open): Rename "same as above"
 
   In #435, we added a contact phone number to the "contact information" area on the "Personal Information" page (for individual enrollments).  Currently, the checkbox there says "Same as Above."  This is fine, except that there is no phone number on this page.  There *is* a phone number on the "Practice Information" page.  @jasonaowen and I had [a conversation](https://github.com/OpenTechStrategies/psm/pull/435#discussion_r140080484) about this in the PR, and then in IRC I said "I just worry that "separate contact person" suggests that they should *check* the checkbox to have one of those.  So, we could do that, but then we should reverse the enabled/disabled effect on the fields, right?" and Jason agreed.
   
@@ -1376,11 +1375,11 @@ We include the initial description below, but not all subsequent comments.
   
   I don't *think* this is a duplicate of #395.  To me, this is a clarification of one part of #395, which we're going to complete first.  Happy to move this over there, though, if others think that makes more sense.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/438][438]] (closed): Add monitoring to demo instances
+* DONE [[https://github.com/solutionguidance/psm/issues/438][438]] (closed): Add monitoring to demo instances
 
   Because of the Wildfly Out of Memory problem mentioned in #421, our running servers occasionally crash without warning.  Something like [UptimeRobot](https://uptimerobot.com/) might work to alert us about this, or, as @jvasile suggested, we might set up a more advanced monitoring system with our Selenium tests.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/432][432]]   (open): Admin changes to contact information are lost
+* DONE [[https://github.com/solutionguidance/psm/issues/432][432]]   (open): Admin changes to contact information are lost
 
   As an admin, if I edit a pending enrollment to change the contact info, these changes are not persisted.
   
@@ -1512,7 +1511,7 @@ We include the initial description below, but not all subsequent comments.
   java.lang.Thread.run(Thread.java:748)
   ```
 
-* TODO [[https://github.com/solutionguidance/psm/issues/426][426]]   (open): Support batch submission to create/renew several providers' enrollments
+* DONE [[https://github.com/solutionguidance/psm/issues/426][426]]   (open): Support batch submission to create/renew several providers' enrollments
 
   A service agent at an insurance company might want to create or renew several similar enrollments at once. It would be nice if the PSM had a way to support that kind of batch enrollment.
   
@@ -1540,7 +1539,7 @@ We include the initial description below, but not all subsequent comments.
   
   > That doesn't answer your specific question, but suggests that this will need to be configurable.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/424][424]]   (open): Clarify provider users versus members in group enrollments
+* DONE [[https://github.com/solutionguidance/psm/issues/424][424]]   (open): Clarify provider users versus members in group enrollments
 
   In [a review comment](https://github.com/OpenTechStrategies/psm/pull/382#discussion_r135879333) about group providers adding or removing members from their enrollments, @kfogel was concerned. The relevant part of the documentation:
   
@@ -1562,7 +1561,7 @@ We include the initial description below, but not all subsequent comments.
   
   > Reading these answers really brings home to me how high-priority it is that we fix this distinction between draft and submitted enrollments, to the extent we can.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/422][422]]   (open): Review documentation to add relevant contextual help links
+* DONE [[https://github.com/solutionguidance/psm/issues/422][422]]   (open): Review documentation to add relevant contextual help links
 
   Per https://github.com/OpenTechStrategies/psm/pull/382#discussion_r135878148 by @kfogel:
   
@@ -1572,7 +1571,7 @@ We include the initial description below, but not all subsequent comments.
 
   We've had a problem with Wildfly running out of memory when we deploy multiple times to a running instance (whether that be locally or on remote servers).  This has now affected the continuous deployment at least once, requiring a manual restart of Wildfly on that server.  As a stopgap, we should add a restart of Wildfly to that CD script.  In the longer term -- why is this happening?  Is this a known Wildfly bug?  What can we do to fix or avoid it?
 
-* TODO [[https://github.com/solutionguidance/psm/issues/420][420]]   (open): Adding space after username during registration makes login impossible
+* DONE [[https://github.com/solutionguidance/psm/issues/420][420]]   (open): Adding space after username during registration makes login impossible
 
   To reproduce:
   
@@ -1603,7 +1602,7 @@ We include the initial description below, but not all subsequent comments.
   
   More testing to come.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/416][416]]   (open): Let user update license/certification or contact info for existing enrollment
+* DONE [[https://github.com/solutionguidance/psm/issues/416][416]]   (open): Let user update license/certification or contact info for existing enrollment
 
   Currently, once an enrollment has been approved, providers, service agents, and service admins cannot change the license and certification information or the contact information for an enrollment. We should let them do that.
   
@@ -1613,7 +1612,7 @@ We include the initial description below, but not all subsequent comments.
 
   In what ways is the PSM currently not compliant with [Section 508](https://www.ada.gov/508/)?  What would we need to do to become compliant?  Is this related to #238?
 
-* TODO [[https://github.com/solutionguidance/psm/issues/414][414]] (closed): Create and/or document session lock after a given period of inactivity
+* DONE [[https://github.com/solutionguidance/psm/issues/414][414]] (closed): Create and/or document session lock after a given period of inactivity
 
   After `n` minutes of inactivity (with configurable `n`), lock the logged-in user's session and require them to re-log-in.  Logging in should take them back to the page they were on.
   
@@ -1633,7 +1632,7 @@ We include the initial description below, but not all subsequent comments.
   
   I'll tag this as a question for states.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/412][412]] (closed): Verify that we accept EIN *or* SSN
+* DONE [[https://github.com/solutionguidance/psm/issues/412][412]] (closed): Verify that we accept EIN *or* SSN
 
   Group practitioners should be identified by EIN and individuals should be identified by SSN.  I believe this is already the case, but we should verify that it works in all cases.  Our requirements point out that some group practices may bill individually, in which case we should identify the providers by SSN.  
 
@@ -1643,7 +1642,7 @@ We include the initial description below, but not all subsequent comments.
   
   We should *not* be accepting information like bank routing numbers or account numbers.  That will be the provider management module's responsibility.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/408][408]]   (open): Provider name change feature
+* DONE [[https://github.com/solutionguidance/psm/issues/408][408]]   (open): Provider name change feature
 
   A provider should be able to change their name in the PSM, and preferably, to have that name change propagate across all their enrollments.
 
@@ -1653,7 +1652,7 @@ We include the initial description below, but not all subsequent comments.
   
   This may be more of a provider management module feature.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/406][406]]   (open): Suggest software for viewing filetypes
+* DONE [[https://github.com/solutionguidance/psm/issues/406][406]]   (open): Suggest software for viewing filetypes
 
   In user help documentation, use something like [the list of document viewers on this page](https://www.fbo.gov/index?s=opportunity&mode=form&id=fbc47c90f4347f601c2d96f44c8b0e21&tab=core&_cview=1) as guidance for the service admin when viewing a license or certification.
 
@@ -1661,7 +1660,7 @@ We include the initial description below, but not all subsequent comments.
 
   In enrollment steps that include the user choosing whether the provider is an individual/private or group practice difference, link to/reuse the user help documentation distinguishing between a private practice and a group practice.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/404][404]]   (open): Make configurable page of advice from states to providers
+* DONE [[https://github.com/solutionguidance/psm/issues/404][404]]   (open): Make configurable page of advice from states to providers
 
   In our user documentation regarding new enrollments, we want to answer the question:
   
@@ -1687,7 +1686,7 @@ We include the initial description below, but not all subsequent comments.
   
   @kfogel [pointed out](https://github.com/OpenTechStrategies/psm/pull/382#discussion_r135871331) that many users will think in terms of "applying" and creating an "application" rather than creating an "enrollment". What language should we use, and should we use different language for providers than for other types of users?
 
-* TODO [[https://github.com/solutionguidance/psm/issues/398][398]]   (open): Spike: user roles research
+* DONE [[https://github.com/solutionguidance/psm/issues/398][398]]   (open): Spike: user roles research
 
   What should each user role be able to do?
   
@@ -1695,7 +1694,7 @@ We include the initial description below, but not all subsequent comments.
   
   Related: #326.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/396][396]]   (open): Decide whether to repair or delete help topics system
+* DONE [[https://github.com/solutionguidance/psm/issues/396][396]]   (open): Decide whether to repair or delete help topics system
 
   Per @jasonaowen in https://github.com/OpenTechStrategies/psm/issues/195#issuecomment-314795045 , we need to decide whether to repair and use, or delete, the help topics system.
   
@@ -1717,7 +1716,7 @@ We include the initial description below, but not all subsequent comments.
   - [ ] offers basic information about what the project is, who it's for, and who's working on it
   - [x] explains how it is generated, per #482
 
-* TODO [[https://github.com/solutionguidance/psm/issues/394][394]]   (open): Systematize and advertise online PSM community of practice
+* DONE [[https://github.com/solutionguidance/psm/issues/394][394]]   (open): Systematize and advertise online PSM community of practice
 
   We need PSM users to have a living community of practice to ask for help and clarification, and to make suggestions for improvements.
   
@@ -1725,7 +1724,7 @@ We include the initial description below, but not all subsequent comments.
   
   The psm-dev mailing list and the #opentechstrategies IRC channel on Freenode, at least for now, comprise our community of practice. In the longer run, we might want to point people to StackOverflow (or run our own site using one of the FLOSS clones of StackOverflow/StackExchange) to provide a richer community of practice.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/392][392]] (closed): Upgrade iText to a version >5, or use OpenPDF
+* DONE [[https://github.com/solutionguidance/psm/issues/392][392]] (closed): Upgrade iText to a version >5, or use OpenPDF
 
   Older versions of iText have [license issues](https://developers.itextpdf.com/question/versions-older-than-5) (thanks for finding this out, @jasonaowen).  Currently we use iText version 2.1.7, which requires us to purchase a license to avoid possible problems.
   
@@ -1733,13 +1732,13 @@ We include the initial description below, but not all subsequent comments.
   
   @jasonaowen, can you add a comment describing how we're using iText?
 
-* TODO [[https://github.com/solutionguidance/psm/issues/389][389]]   (open): configurable contact page for reaching state Medicaid office
+* DONE [[https://github.com/solutionguidance/psm/issues/389][389]]   (open): configurable contact page for reaching state Medicaid office
 
   [From](https://github.com/OpenTechStrategies/psm/pull/382#discussion_r135869007) @kfogel, regarding a "Please speak with the state Medicaid office" instruction in the user documentation:
   
   > Can we file an issue associated with this last sentence, about having a configurable contact page for reaching the state Medicaid office? E.g., psm.example.com/contact or something like that, which is configured differently for each state or territory where the PSM is installed. Then this text could link to that page.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/386][386]] (closed): Document connecting to a separate rules server
+* DONE [[https://github.com/solutionguidance/psm/issues/386][386]] (closed): Document connecting to a separate rules server
 
   This work began in #274, but I think we need an addition to INSTALL.md that fully describes how to connect to the rules server and import the PSM's rules into it.  If not in INSTALL, then maybe in a separate doc in the `docs` directory (linked from INSTALL).
   
@@ -1757,11 +1756,11 @@ We include the initial description below, but not all subsequent comments.
 
   We should use something like https://github.com/mikanbako/sphinx-gradle-plugin to wire the Sphinx build step into our Gradle build process.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/378][378]]   (open): Autofill provider information from PECOS
+* DONE [[https://github.com/solutionguidance/psm/issues/378][378]]   (open): Autofill provider information from PECOS
 
   @jvasile points out that when a provider enters their NPI, we can query PECOS for their address and other information, and autofill the form with that.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/376][376]]   (open): Remove right-justified colons between labels and fields on forms
+* DONE [[https://github.com/solutionguidance/psm/issues/376][376]]   (open): Remove right-justified colons between labels and fields on forms
 
   On forms like the provider enrollment form, the colons on the labels are right-justified and it looks disconnected.
   
@@ -1771,13 +1770,13 @@ We include the initial description below, but not all subsequent comments.
 
   If we're going to ask for first, middle, and last names on the /cms/accounts/new page, we should put the fields in that order.  Right now it's last, first, middle, which... [derp](http://www.woodweb.com/knowledge_base_images/bah/metric-versus-imperial_02.png).
 
-* TODO [[https://github.com/solutionguidance/psm/issues/374][374]]   (open): generate & display user-readable credits page
+* DONE [[https://github.com/solutionguidance/psm/issues/374][374]]   (open): generate & display user-readable credits page
 
   From @jvasile on #357:
   
   > License info in License.md is appropriate but we might at some point also consider having it in the front end. It's not a license requirement, but I've always thought that the attribution clause should result in something end-user visible in stuff like this. Maybe a late-stage clean up step would take the license.md file and generate a "Thanks" page. That's a future todo...
 
-* TODO [[https://github.com/solutionguidance/psm/issues/370][370]]   (open): Problem running with Docker
+* DONE [[https://github.com/solutionguidance/psm/issues/370][370]]   (open): Problem running with Docker
 
   Followed the instructions in the [Docker directory](https://github.com/OpenTechStrategies/psm/tree/master/docker), but I can't seem t access the web app. Note - I'm running Docker on Mac (Sierra).
   
@@ -1785,7 +1784,7 @@ We include the initial description below, but not all subsequent comments.
   
   Thanks!
 
-* TODO [[https://github.com/solutionguidance/psm/issues/369][369]]   (open): Validate SSN
+* DONE [[https://github.com/solutionguidance/psm/issues/369][369]]   (open): Validate SSN
 
   We don't currently validate the SSN on form fill-in.  This is convenient for testing, but we should do simple validation to ensure that the SSN entered is in a valid range.  This is a separate check from looking in the DMF or at https://www.ssa.gov/employer/ssnv.htm.  We should look in those places too during the external data sources phase.
   
@@ -1793,7 +1792,7 @@ We include the initial description below, but not all subsequent comments.
   
   If we want a properly structured ssn that isn't from one of those area ranges, we could use 078-05-1120 or 219-09-9999, which don't belong to anybody. See https://www.ssa.gov/history/ssn/misused.html.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/362][362]] (closed): Individual Beneficial Owner City Field Doesn't Pick up Entered Value
+* DONE [[https://github.com/solutionguidance/psm/issues/362][362]] (closed): Individual Beneficial Owner City Field Doesn't Pick up Entered Value
 
   # Problem
   When enrolling an organizational provider users are asked to provide information on the organization's beneficial owners. One field, the owner's city ignores entered data on the first submit. After showing an error page and users re-enter the city it is accepted.
@@ -1811,7 +1810,7 @@ We include the initial description below, but not all subsequent comments.
   - Fix the field naming
   - Verify that the form accepts the city on the first try.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/360][360]]   (open): Save subcontractor name
+* DONE [[https://github.com/solutionguidance/psm/issues/360][360]]   (open): Save subcontractor name
 
   The flow for organizational provider types includes a page for "Business Ownership or Control Interest."  If you choose "Subcontractor" in the "Type" dropdown then a "Name Subcontractor" label and input field appear.  This is all fine, but if you then choose "Save as Draft," the subcontractor name is not saved.  It also does not appear on the summary page.
   
@@ -1826,7 +1825,7 @@ We include the initial description below, but not all subsequent comments.
   
   (Followup to #311 and #329.)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/356][356]]   (open): Admin interface should show source of external data
+* DONE [[https://github.com/solutionguidance/psm/issues/356][356]]   (open): Admin interface should show source of external data
 
   When we list somebody as excluded (or not), we are either hitting our own database or an external database.  State admin users would find it useful to know the ultimate source of data and we should give an indication of it.  In the LEIE context, maybe that means linking to a record on the LEIE site or pointing people at the LEIE search page.  Either way, if we exclude people, they might legitimately ask "Why?" and we need a better answer than "the computer said so".
 
@@ -1836,7 +1835,7 @@ We include the initial description below, but not all subsequent comments.
   
   (This was previously a comment on #345.)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/354][354]]   (open): Redesign Enrollment Review page
+* DONE [[https://github.com/solutionguidance/psm/issues/354][354]]   (open): Redesign Enrollment Review page
 
   There is a lot of information an admin needs to see on the review page, and we should consider redesigning it to better present that information. Here's an example of the current page:
   
@@ -1850,21 +1849,21 @@ We include the initial description below, but not all subsequent comments.
   
   Right now, we're trying to fit most of that information into a two-state checkbox and a link, which is not great.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/352][352]] (closed): Renewal Date earlier than Original Issue Date
+* DONE [[https://github.com/solutionguidance/psm/issues/352][352]] (closed): Renewal Date earlier than Original Issue Date
 
   On the license information page, I noticed that the renewal date could be before the original issue date. Additionally, I noticed that the renewal date could be a date in the past. 
 
-* TODO [[https://github.com/solutionguidance/psm/issues/351][351]] (closed): Make summary page table more accessible for testing
+* DONE [[https://github.com/solutionguidance/psm/issues/351][351]] (closed): Make summary page table more accessible for testing
 
   Right now, I'm comparing the summary page table with the user input table for the tests. I found the summary page table elements, but I found them using relatively long jquery that seems susceptible to not working if changes are made to the site. I currently use $(".wholeCol > div:nth-child(12) > label).getText() to find an element. I think it'd be really helpful if the elements had IDs to make them easier to find!
 
-* TODO [[https://github.com/solutionguidance/psm/issues/350][350]] (closed): broken link in README
+* DONE [[https://github.com/solutionguidance/psm/issues/350][350]] (closed): broken link in README
 
   hi, here's the broken link:
   
   http://www.topcoder.com/cms/medicaid-enrollment-portal/
   
-* TODO [[https://github.com/solutionguidance/psm/issues/349][349]]   (open): Consider future federal/external data sources
+* DONE [[https://github.com/solutionguidance/psm/issues/349][349]]   (open): Consider future federal/external data sources
 
   This issue is to capture possible future federal or other external data sources the PSM might usefully integrate with.
   
@@ -1879,7 +1878,7 @@ We include the initial description below, but not all subsequent comments.
   
   Add this field to the ~individual and~ organizational info page~s~ in the enrollment workflow and update the serenity tests to confirm.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/346][346]] (closed): Capture contact phone # for individual provider enrollments
+* DONE [[https://github.com/solutionguidance/psm/issues/346][346]] (closed): Capture contact phone # for individual provider enrollments
 
   # Problem
   Requirement psm-2.9 states that the application must accept a contact phone number. There is no 
@@ -1897,7 +1896,7 @@ We include the initial description below, but not all subsequent comments.
   # Approach 
   Assign each row in the requirements spreadsheet a unique Identifier.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/342][342]]   (open): DBA is required field
+* DONE [[https://github.com/solutionguidance/psm/issues/342][342]]   (open): DBA is required field
 
   When signing up a new organizational provider as a Durable Medical Equipment provider, the "Doing Business As" field is required.  It shouldn't be.
 
@@ -1907,11 +1906,11 @@ We include the initial description below, but not all subsequent comments.
   
   (Once this is implemented, it should be documented in `psm-app/docs/userhelp/source/service-admin-help.rst` .)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/340][340]] (closed): "System error" on creating user (though creation succeeds)
+* DONE [[https://github.com/solutionguidance/psm/issues/340][340]] (closed): "System error" on creating user (though creation succeeds)
 
   When I'm logged in as the `system` user and create a new provider-type user, I get a "System Error" page after hitting "Save."  The new user is, however, created correctly.  I think this is a regression -- at one point I believe creating users brought us to some kind of success page.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/338][338]]   (open): Improve user help documentation
+* DONE [[https://github.com/solutionguidance/psm/issues/338][338]]   (open): Improve user help documentation
 
   For all users:
   
@@ -1948,7 +1947,7 @@ We include the initial description below, but not all subsequent comments.
 
   Missing the correct type of license in the License Type dropdown.  See #307, #293, #233.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/336][336]]   (open): Can't paste into NPI field
+* DONE [[https://github.com/solutionguidance/psm/issues/336][336]]   (open): Can't paste into NPI field
 
   What it says on the TIN.  We shouldn't be forcing users to memorize their NPIs, especially since leaving the input with a half-entered NPI means the app deletes the already-entered information (we shouldn't do that, either).
 
@@ -1978,7 +1977,7 @@ We include the initial description below, but not all subsequent comments.
   
   ![view-enrollment-details](https://user-images.githubusercontent.com/842790/28938137-1b1a0f7c-785b-11e7-9ca8-5cb8aae3a325.png)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/328][328]]   (open): Validate fields on loss of focus instead of on submission
+* DONE [[https://github.com/solutionguidance/psm/issues/328][328]]   (open): Validate fields on loss of focus instead of on submission
 
   From @kfogel in #325:
   
@@ -1994,7 +1993,7 @@ We include the initial description below, but not all subsequent comments.
   
   Also, we'll need to think about a flexible data retention framework that can accommodate states' different data retention policies.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/326][326]]   (open): Improve user role names and explanations
+* DONE [[https://github.com/solutionguidance/psm/issues/326][326]]   (open): Improve user role names and explanations
 
   @jasonaowen and I just discussed [a review note](https://github.com/OpenTechStrategies/psm/pull/311#discussion_r130903066) by @cecilia-donnelly about user role names:
   
@@ -2017,7 +2016,7 @@ We include the initial description below, but not all subsequent comments.
   
   We should probably rig this to actually display the county name, not a numeric county code like "40".
 
-* TODO [[https://github.com/solutionguidance/psm/issues/320][320]]   (open): LEIE and documentation-building dependency management
+* DONE [[https://github.com/solutionguidance/psm/issues/320][320]]   (open): LEIE and documentation-building dependency management
 
   In PR #317, I proposed using `requirements.txt` to pin dependencies. I don't have as complete an understanding of Python packaging as others on this team, and pinning has trade-offs which we should agree on.
   
@@ -2039,7 +2038,7 @@ We include the initial description below, but not all subsequent comments.
   
   The UI here is not super great in my opinion -- the header "License Information" probably ought to be visually separated from the Provider Information section so it's clearer that the "View" link (circled) refers to a license/certification.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/312][312]]   (open): Set up a pull request template
+* DONE [[https://github.com/solutionguidance/psm/issues/312][312]]   (open): Set up a pull request template
 
   As we get closer to production, and have more functionality documented, we should be more mindful of the changes we make.
   
@@ -2055,7 +2054,7 @@ We include the initial description below, but not all subsequent comments.
 
   The county field will not accept letters, only numbers.  It appears to expect the code / ID of the county.  Really, this should be a dropdown as in #283.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/308][308]] (closed): Ownership information checkbox autofills improperly
+* DONE [[https://github.com/solutionguidance/psm/issues/308][308]] (closed): Ownership information checkbox autofills improperly
 
   Some organizational provider types (e.g. Durable Medical Equipment), have an "Ownership Information" page.  On that page, when a user fills in an individual provider, there is a checkbox with the label "This person/business has an ownership or control interest in another Medicaid disclosing entity, or an entity that does not participate in Medicaid but is required to disclose ownership and control interest because of participation in any Title V, XVIII, or XX programs."  When I did *not* check that checkbox and hit "Next," the following happened:
   
@@ -2079,7 +2078,7 @@ We include the initial description below, but not all subsequent comments.
   
   Should we remove this privilege?
 
-* TODO [[https://github.com/solutionguidance/psm/issues/304][304]] (closed): Teach Travis to Deploy application to container and run integration tests
+* DONE [[https://github.com/solutionguidance/psm/issues/304][304]] (closed): Teach Travis to Deploy application to container and run integration tests
 
   # Problem
   As part of PR #279 we need to be able to run the full suite of Serenity tests against a freshly deployed
@@ -2126,7 +2125,7 @@ We include the initial description below, but not all subsequent comments.
   
   
    
-* TODO [[https://github.com/solutionguidance/psm/issues/301][301]]   (open): When service admin edits pending enrollment, PSM inappropriately checks provider statement date
+* DONE [[https://github.com/solutionguidance/psm/issues/301][301]]   (open): When service admin edits pending enrollment, PSM inappropriately checks provider statement date
 
   To reproduce:
   
@@ -2150,7 +2149,7 @@ We include the initial description below, but not all subsequent comments.
   
   This is inappropriate; we shouldn't be asking the service administrator to change the date that the provider attested to the accuracy of their submission.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/300][300]]   (open): Set guidelines for copyright headers
+* DONE [[https://github.com/solutionguidance/psm/issues/300][300]]   (open): Set guidelines for copyright headers
 
   Source code that we create as part of this project should have a license header. What should that header be? How should we treat existing code?
   
@@ -2166,7 +2165,7 @@ We include the initial description below, but not all subsequent comments.
   
   See also #293.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/298][298]]   (open): Specify OSes and browsers we support
+* DONE [[https://github.com/solutionguidance/psm/issues/298][298]]   (open): Specify OSes and browsers we support
 
   Issues like #265 will be easier if we know which browsers & versions we commit to supporting.
 
@@ -2174,7 +2173,7 @@ We include the initial description below, but not all subsequent comments.
 
   Our sample data appears to have no issuing board(s) for the Certified Nurse Midwife subspecialty, so Nurse Midwifes cannot complete the enrollment process.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/292][292]] (closed): Label all required fields
+* DONE [[https://github.com/solutionguidance/psm/issues/292][292]] (closed): Label all required fields
 
   We have some related requirements about required fields:
   
@@ -2185,7 +2184,7 @@ We include the initial description below, but not all subsequent comments.
   
   In most places, we have red asterisks to indicate required fields, meeting the first requirement (though we need a thorough review to make sure that *all* required fields are so indicated).  The auto-rejection and submission-prevention items work in the cases I've reviewed -- a Selenium test to spot-check those would be helpful.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/291][291]] (closed): Verify that initial requirements are met
+* DONE [[https://github.com/solutionguidance/psm/issues/291][291]] (closed): Verify that initial requirements are met
 
   - [x] The PSM shall ensure that tax ID number is 9 digits
   - [x] The PSM shall allow applicant to upload attachments to support the application.
@@ -2200,11 +2199,11 @@ We include the initial description below, but not all subsequent comments.
   
   I believe that these requirements are met with the current state of the PSM.  Some of them can be verified manually, while others should be tested with Selenium.  If any of them are not met, please open an issue to fix them.  (If it's better to separate these into individual issues we can do that too.)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/290][290]] (closed): Add 4 extra digits to zipcode field(s)
+* DONE [[https://github.com/solutionguidance/psm/issues/290][290]] (closed): Add 4 extra digits to zipcode field(s)
 
   Wherever a form asks for a zipcode, add space for the 4 additional digits.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/289][289]] (closed): Use LEIE API to automatically screen providers
+* DONE [[https://github.com/solutionguidance/psm/issues/289][289]] (closed): Use LEIE API to automatically screen providers
 
   @jvasile has added a draft API to the LEIE data he's pulled in via ETL, as described in #224.  Per conversation in #17, this LEIE data corresponds to the "EXCLUDED PROVIDER VERIFICATION IN OIG (checked means not in exclusion list)" checkbox on the admin review screen:
   
@@ -2218,13 +2217,13 @@ We include the initial description below, but not all subsequent comments.
 
   See the attachment provided in issue #282 -- it's all there.  Filing this as a separate issue because it's a different kind of problem from the outright bugs otherwise described in that attachment.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/282][282]] (closed): Address entry / preservation problems for Additional Practice Location.
+* DONE [[https://github.com/solutionguidance/psm/issues/282][282]] (closed): Address entry / preservation problems for Additional Practice Location.
 
   As reported by Judy Cunard in [this post](https://groups.google.com/d/msg/psm-dev/CoynozmCWfI/3f2zy6gABwAJ), there are some bugs with the address fields on the Additional Practice Location page.  The bugs involve preservation of information & positioning across backwards and forwards page changes, as well as the fact that County is not a drop-down menu (which is now separate bug #283).  Judy provided a narrative reproduction recipe in an attachment; that document is attached here as well.
   
   [PSM Scenario Screen Shots 06302017.docx](https://github.com/OpenTechStrategies/psm/files/1160829/PSM.Scenario.Screen.Shots.06302017.docx)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/280][280]] (closed): Tell developers how to automatedly create enrollments with sample data
+* DONE [[https://github.com/solutionguidance/psm/issues/280][280]] (closed): Tell developers how to automatedly create enrollments with sample data
 
   When we're reviewing PRs (or demoing the system), it would be useful to be able to create sample enrollments without going through the entire workflow in the interface.  
   
@@ -2240,17 +2239,17 @@ We include the initial description below, but not all subsequent comments.
   >jasonaowen: ideally just a few insert statements
   >cdonnelly: so a diff is a great idea
 
-* TODO [[https://github.com/solutionguidance/psm/issues/274][274]] (closed): Give administrators UI to edit rules
+* DONE [[https://github.com/solutionguidance/psm/issues/274][274]] (closed): Give administrators UI to edit rules
 
   Each state will have different requirements around provider enrollments: things like what credentials are acceptable, what screening needs to take place, and so on. We are using a rules engine to manage all that, but our current workflow for changing those rules is not very user-friendly.
   
   Present a UI to administrators to allow them to edit those rules at runtime.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/273][273]]   (open): PECOS data ETL
+* DONE [[https://github.com/solutionguidance/psm/issues/273][273]]   (open): PECOS data ETL
 
   We need PECOS data.  There's some at https://data.cms.gov/Medicare-Enrollment/Order-and-Referring/qcn7-gc3g and there's an API.  We shouldn't ETL this data.  We should query the outside database using the interface they provide.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/266][266]]   (open): Publish Output from Serenity Tests
+* DONE [[https://github.com/solutionguidance/psm/issues/266][266]]   (open): Publish Output from Serenity Tests
 
   # Problem
   The travis serenity test runs the freshly built application through a series of tests. The output of this 
@@ -2272,7 +2271,7 @@ We include the initial description below, but not all subsequent comments.
   
   Some thought needs to be given to purging old runs from the bucket so that it doesn't grow unbounded.
   
-* TODO [[https://github.com/solutionguidance/psm/issues/265][265]] (closed): Set up first example of embedded help
+* DONE [[https://github.com/solutionguidance/psm/issues/265][265]] (closed): Set up first example of embedded help
 
   @brainwane discussed the need for embedded (tooltip-type) help in #195.
   
@@ -2285,7 +2284,7 @@ We include the initial description below, but not all subsequent comments.
   1. Should we use a framework like the RTD one Sumana mentioned?  If so, which one?  We'd like to reuse text in the tooltips and standalone documentation, and keep them up to date with each other.
   2. Create a tooltip for a field.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/263][263]]   (open): Change default file upload size in cms.properties
+* DONE [[https://github.com/solutionguidance/psm/issues/263][263]]   (open): Change default file upload size in cms.properties
 
   When entering an enrollment as an Audiologist provider on the sandbox, I entered a large .xcf file as the License.  It was 2.8 MB.  I wasn't able to trigger the error locally, and it appears to be an nginx problem:
   
@@ -2293,17 +2292,17 @@ We include the initial description below, but not all subsequent comments.
   
   I'm not sure how big the uploaded file needs to be to get this error.  We should set a sensible limit on file upload size, and give a more attractive error to users if they exceed it.  The error should show up on the same page, and allow them to choose a different file.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/262][262]] (closed): Research spike: Drools & business rules interface
+* DONE [[https://github.com/solutionguidance/psm/issues/262][262]] (closed): Research spike: Drools & business rules interface
 
   We need to get a better handle on the Drools interface for the PSM. Right now the only way to edit the validation and screening rules is for a programmer to edit `cms.validation.drl` and `cms.screening.drl` in `psm-app/cms-business-process/src/main/resources/`. We need to make it so service admins can change enrollment assessment rules/workflow without having to be programmers. James & Jason have looked a little bit at this, but we need a better sense of what it is we're aiming for when we make it configurable. What should the interface be, allow, do?
   
   This issue is for me to document the current state of affairs and propose aspirations for the business rules interface for the MVP.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/261][261]]   (open): Facility credentials not shown at review time
+* DONE [[https://github.com/solutionguidance/psm/issues/261][261]]   (open): Facility credentials not shown at review time
 
   Some of the organization provider types, such as County Contracted Mental Health Rehab, require documents such as licenses to practice or agreements with the state or county. The enrollment process accepts these uploads, but they are not shown to the admin while reviewing an enrollment, and the UI does not ask or allow the admin to verify the documents.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/260][260]]   (open): Community Mental Health Center requires assurance statement
+* DONE [[https://github.com/solutionguidance/psm/issues/260][260]]   (open): Community Mental Health Center requires assurance statement
 
   There appears to be a drools rule that requires an agreement to be agreed to, but we have no data for that agreement:
   
@@ -2341,7 +2340,7 @@ We include the initial description below, but not all subsequent comments.
   
   Putting this here so we can merge #249 but still pursue improvements per #30.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/254][254]]   (open): Allow database schema changes without losing data
+* DONE [[https://github.com/solutionguidance/psm/issues/254][254]]   (open): Allow database schema changes without losing data
 
   As we develop the application, we will need to continue to change the database schema. So far, those changes have been part of making the application deployable at all, with the change from Oracle to PostgreSQL (#1) and the change from WebSphere to WildFly (#2). Under those circumstances, and with only developers practically able to deploy the application, it was fine to completely drop and recreate the database on every change.
   
@@ -2349,7 +2348,7 @@ We include the initial description below, but not all subsequent comments.
   
   This will also help us with continuous deployment (#222), as a sandbox that gets wiped multiple times per day (with every merge to master) could be frustrating to use.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/252][252]]   (open): Consider building and/or privately caching dependencies instead of downloading from third-party servers.
+* DONE [[https://github.com/solutionguidance/psm/issues/252][252]]   (open): Consider building and/or privately caching dependencies instead of downloading from third-party servers.
 
   Right now the PSM build process downloads various third-party dependency .jar files from upstream sources.  This is standard behavior for stuff in the Maven package tree (at least as far as I understand it -- it's sort of like npm), and for WildFly itself.
   
@@ -2484,11 +2483,11 @@ We include the initial description below, but not all subsequent comments.
       
       jasonaowen: kfogel: right
 
-* TODO [[https://github.com/solutionguidance/psm/issues/250][250]]   (open): Show indication of when sandbox was last updated
+* DONE [[https://github.com/solutionguidance/psm/issues/250][250]]   (open): Show indication of when sandbox was last updated
 
   @jcunard points out that we should show a message on the sandbox showing when it was last updated.  This will be less important once we have continuous deployment (#222) set up, but for now it will help testers know when the sandbox has changed and is ready for them to take a fresh look.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/248][248]] (closed): Make the "Create New Enrollment" Button on the Welcome Page Testable
+* DONE [[https://github.com/solutionguidance/psm/issues/248][248]] (closed): Make the "Create New Enrollment" Button on the Welcome Page Testable
 
   # Problem
   For Selenium tests, elements on the page should be easily selectable via JQuery paths. The "Create New Enrollment" button on the welcome page doesn't have an id and shares the same path with the "Get Profiles" Button.
@@ -2496,11 +2495,11 @@ We include the initial description below, but not all subsequent comments.
   # Solution
   Give both buttons unique IDs and update the Selenium tests to use them
   
-* TODO [[https://github.com/solutionguidance/psm/issues/242][242]] (closed): Move to Debian stretch
+* DONE [[https://github.com/solutionguidance/psm/issues/242][242]] (closed): Move to Debian stretch
 
   We currently run on and recommend Debian jessie (Debian 8), the old stable. [On June 17th, 2017, Debian released Debian 9.0; stretch is the new stable](https://www.debian.org/releases/stable/). The PSM should probably run on 9.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/238][238]]   (open): Templatize UI
+* DONE [[https://github.com/solutionguidance/psm/issues/238][238]]   (open): Templatize UI
 
   We've done some UI templating already, in #173 and #202.  Ultimately, we want to understand the current UI-generation system and possibly update it.  So, this issue is in two parts:
   
@@ -2508,7 +2507,7 @@ We include the initial description below, but not all subsequent comments.
   
   2. Are there "cross-platform templating solutions"?  i.e., can we use a template that can be generated by Java and Python code?  For example, if we ever want to put a web interface on the [ETL process](https://github.com/OpenTechStrategies/psm/tree/master/etl), which is being done with Python, it should use the same templates that we use for the main app, even though that's written in Java.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/236][236]]   (open): Import information from different systems
+* DONE [[https://github.com/solutionguidance/psm/issues/236][236]]   (open): Import information from different systems
 
   Build an API to absorb data from other systems.  Each state will have a different system managing providers, and we may need to take in information about those providers for re-screening purposes.  This may be related to #211 and particularly [this comment](https://github.com/OpenTechStrategies/psm/pull/211#issuecomment-312308886).
 
@@ -2524,7 +2523,7 @@ We include the initial description below, but not all subsequent comments.
 
   @jasonaowen added a new gradle task to build the API documentation that @brainwane wrote.  We should add a note to the README (or INSTALL) about how to use it.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/224][224]] (closed): Add an API to ETL results
+* DONE [[https://github.com/solutionguidance/psm/issues/224][224]] (closed): Add an API to ETL results
 
   Anything we pull in via ETL should be available MMIS-wide via a RESTful API.  For now, we need to make it available to the rest of the module so that the exclusions list is consulted automatically when a new enrollment is submitted.  The first pass at this will likely not include auth, but down the road we may want to use OAuth 2.
 
@@ -2532,7 +2531,7 @@ We include the initial description below, but not all subsequent comments.
 
   Once the TAC has a defined API endpoint to receive information about providers, add a hook to send provider info to that endpoint.  When we receive information from a provider and their enrollment is submitted, send the directory-relevant information to the TAC's endpoint.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/222][222]] (closed): Set up continuous deployment
+* DONE [[https://github.com/solutionguidance/psm/issues/222][222]] (closed): Set up continuous deployment
 
   Now that we have Travis set up for CI, we should take the next step and automate deployments to a testing server.  This will allow us to always do manual testing against the most up-to-date code, without needing to constantly refresh our local instances.
 
@@ -2540,7 +2539,7 @@ We include the initial description below, but not all subsequent comments.
 
   Per `DEPENDENCIES.md`, we're currently using Spring 3.0.5, which was released 2010-10-20. If we're going to continue to use the 3.x series, we should upgrade to 3.2.18 -- see, for instance, [this post](https://spring.io/blog/2016/12/22/cve-2016-9879-spring-security-3-2-10-4-1-4-4-2-1-released) about a vulnerability that a later version of the Spring Framework addresses.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/218][218]] (closed): Write first integration/UI test
+* DONE [[https://github.com/solutionguidance/psm/issues/218][218]] (closed): Write first integration/UI test
 
   Our first set of tests will exercise the module's core workflows, like creating a new enrollment and reviewing an enrollment.  The goal is to have broad coverage before going deeper into specific classes.
   
@@ -2554,7 +2553,7 @@ We include the initial description below, but not all subsequent comments.
   
   Another example of this is: what happens when an enrollment is approved? States might want the provider automatically added to an external database, or an approval notice printed.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/214][214]]   (open): Remove TopCoder-specific jarfiles
+* DONE [[https://github.com/solutionguidance/psm/issues/214][214]]   (open): Remove TopCoder-specific jarfiles
 
   Replace the TopCoder-specific jarfiles mentioned in https://github.com/OpenTechStrategies/psm/pull/200/commits/6cb1ad7f8bb8f5bc3ccc6b13149cc0796e438894 with other libraries that serve the same purpose. 
 
@@ -2652,7 +2651,7 @@ We include the initial description below, but not all subsequent comments.
   
   I was able to reproduce this on the SGC WebSphere/Oracle instance.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/210][210]] (closed): Disable Gradle Daemon for Travis Build
+* DONE [[https://github.com/solutionguidance/psm/issues/210][210]] (closed): Disable Gradle Daemon for Travis Build
 
   Arising from #207 
   
@@ -2663,13 +2662,13 @@ We include the initial description below, but not all subsequent comments.
   - [ ] disable the daemon for travis builds
   - [ ] change the cache directory to be the entire $HOME/.gradle
    
-* TODO [[https://github.com/solutionguidance/psm/issues/208][208]]   (open): PayToProvider may be unused
+* DONE [[https://github.com/solutionguidance/psm/issues/208][208]]   (open): PayToProvider may be unused
 
   Investigate how the class `PayToProvider` is used, if there is missing data that would enable it, why it was created, and if it is still useful. Either add data/code/documentation to enable it, or delete it.
   
   Discovered in PR #201.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/206][206]] (closed): Teach Travis to cache the maven repository
+* DONE [[https://github.com/solutionguidance/psm/issues/206][206]] (closed): Teach Travis to cache the maven repository
 
   # Problem
   The travis build relies on downloading the entire set of dependant jars from MavenCentral each time it builds. We have seen numerous cases where this fails due to an intermittent networking issue.
@@ -2687,7 +2686,7 @@ We include the initial description below, but not all subsequent comments.
   
   Find out the purpose of the `data_load` subproject, determine whether we still need it, and if so, what needs to be done to make it work correctly.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/204][204]] (closed): Spike: Research Test Frameworks
+* DONE [[https://github.com/solutionguidance/psm/issues/204][204]] (closed): Spike: Research Test Frameworks
 
   # Problem
   As development continues on PSM we need automated testing tools to validate code quality.
@@ -2714,12 +2713,12 @@ We include the initial description below, but not all subsequent comments.
   
   The standalone prose tutorials will be substantially the same for all installations across the US, and should be stored and maintained in the core Git repository and distributed as part of the live help system. We should also provide a standalone copy of the stock standalone prose tutorials on its web site, ensuring that there is a version accessible to the general public (without requiring a login).
 
-* TODO [[https://github.com/solutionguidance/psm/issues/194][194]]   (open): provide user feedback form that sends user feedback to PSM development team
+* DONE [[https://github.com/solutionguidance/psm/issues/194][194]]   (open): provide user feedback form that sends user feedback to PSM development team
 
   We should incorporate functionality into the PSM that makes it quick for any user to send us feedback about a particular page, embedding privacy-compliant, PII-sanitized metadata about the user’s workflow and location.
   PSM developers should regularly review these customer support requests, which will include annotations, requests for improvement, and comments.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/192][192]]   (open): Require certain file type for uploaded licenses
+* DONE [[https://github.com/solutionguidance/psm/issues/192][192]]   (open): Require certain file type for uploaded licenses
 
   @jcunard asks [on the list](https://groups.google.com/forum/#!topic/psm-dev/Yt6o8cWyINo):
   >The module let me upload a .png doc as evidence of licensure and it was accepted. Is there a way for the module to ensure that an actual copy of a license is being uploaded? Are you anticipating that states will require a certain file type? 
@@ -2735,7 +2734,7 @@ We include the initial description below, but not all subsequent comments.
   
   Another issue would be how to deploy the docker compose environment upon build. The natural solution would be a Kubernetes cluster.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/188][188]] (closed): Add checkstyle plugin to Gradle Build
+* DONE [[https://github.com/solutionguidance/psm/issues/188][188]] (closed): Add checkstyle plugin to Gradle Build
 
   # Problem
   We need to enforce coding standards and best practice on all assets in this project, but there is a significant base of code already in the repo.
@@ -2746,14 +2745,12 @@ We include the initial description below, but not all subsequent comments.
   - [ ] Create a filter to allow checkstyle to pass all of the existing code, but require developers to 
   include checks in any file that is touched during the project
 
-* TODO [[https://github.com/solutionguidance/psm/issues/186][186]] (closed): change capabilities in README to given-when-then format
-
-
+* DONE [[https://github.com/solutionguidance/psm/issues/186][186]] (closed): change capabilities in README to given-when-then format
 * DONE [[https://github.com/solutionguidance/psm/issues/185][185]]   (open): Include agreements and addenda on Provider Statement
 
   For a completed enrollment, it would be nice if the Provider Statement included the text of any agreement(s) and any addendum/addenda that the provider agreed to.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/184][184]] (closed): data loss: PSM does not save profile phone number
+* DONE [[https://github.com/solutionguidance/psm/issues/184][184]] (closed): data loss: PSM does not save profile phone number
 
   1) I'm logged in as a service agent or service administrator. I update my own profile at http://localhost:8080/cms/ops/getUser to add a phone number; when I view my profile, the phone number is missing.
   
@@ -2773,7 +2770,7 @@ We include the initial description below, but not all subsequent comments.
   
   Could be related to or part of #166.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/176][176]] (closed): Registration confirmation page needs contact link, APPNAME substitution
+* DONE [[https://github.com/solutionguidance/psm/issues/176][176]] (closed): Registration confirmation page needs contact link, APPNAME substitution
 
   After a user self-registers, the confirmation message on, for instance, http://localhost:8080/cms/accounts/confirm?id=brtest&token=TcRPiZrwtSfeVNBVfGaxYnX77d0%3D is:
   
@@ -2787,11 +2784,11 @@ We include the initial description below, but not all subsequent comments.
 
   I'm logged in as a system administrator user. When I'm creating a new user account, I'm asked for a password and I'm asked to confirm that password. The application is not checking whether it's the same string; the user's created using the Password field even if the two fields do not match.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/174][174]]   (open): search for user accounts doesn't retrieve results consistently
+* DONE [[https://github.com/solutionguidance/psm/issues/174][174]]   (open): search for user accounts doesn't retrieve results consistently
 
   When I'm logged in as a system administrator user, when I'm viewing user accounts if I use the "search keyword" (not the advanced search) and search for a name that's in the list of user accounts, sometimes I get "No user account is found". I think one problem is that it's doing a case-sensitive search, but even that doesn't always explain the lack of results. Also, the title bar says "Advanced Search" even if I've used the keyword search.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/172][172]] (closed): cannot create a help topic
+* DONE [[https://github.com/solutionguidance/psm/issues/172][172]] (closed): cannot create a help topic
 
   When I am logged in as a service administrator, if I try to create a Help topic and hit the save button, I get a stacktrace error:
   
@@ -3288,7 +3285,7 @@ We include the initial description below, but not all subsequent comments.
   	... 173 more
   ~~~
 
-* TODO [[https://github.com/solutionguidance/psm/issues/170][170]] (closed): empty screening schedule should trigger nudges to service administrator
+* DONE [[https://github.com/solutionguidance/psm/issues/170][170]] (closed): empty screening schedule should trigger nudges to service administrator
 
   When I'm logged in as a service administrator and go to the screening schedule
   
@@ -3314,7 +3311,7 @@ We include the initial description below, but not all subsequent comments.
   
   ![functions-twice](https://user-images.githubusercontent.com/842790/27243986-8a5e621c-52b2-11e7-9426-aa00bc3981f0.png)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/168][168]]   (open): Don't display # field or empty Specialty field in PDF export of enrollment
+* DONE [[https://github.com/solutionguidance/psm/issues/168][168]]   (open): Don't display # field or empty Specialty field in PDF export of enrollment
 
   I'm logged in as a provider and I've submitted an enrollment as an acupuncturist (which does not allow me to submit a specialty). I go to view my enrollment details (on http://localhost:8080/cms/provider/enrollment/jump?page=Provider+Statement ) and export the PDF.
   
@@ -3328,7 +3325,7 @@ We include the initial description below, but not all subsequent comments.
   
   "Remittance Sequence: PATIENT_ACCOUNT_OR_OWN_REFERENCE_ORDER "
 
-* TODO [[https://github.com/solutionguidance/psm/issues/166][166]]   (open): Review license names, rules, and seed data to find mismatches
+* DONE [[https://github.com/solutionguidance/psm/issues/166][166]]   (open): Review license names, rules, and seed data to find mismatches
 
   Find out whether there are other cases where rules mandate that XML matches seed data _and_ those two things do not match.  As an example, look at the bug fixed by PR #151.  
 
@@ -3344,7 +3341,7 @@ We include the initial description below, but not all subsequent comments.
   
   I'm using Firefox 45.9.0 on Debian.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/162][162]]   (open): Provider enrollment: "Provider Statement" UI improvements
+* DONE [[https://github.com/solutionguidance/psm/issues/162][162]]   (open): Provider enrollment: "Provider Statement" UI improvements
 
   On step 5. ("Provider Statement") of the provider enrollment process:
   
@@ -3358,7 +3355,7 @@ We include the initial description below, but not all subsequent comments.
   
   ![view-enrollment-details](https://user-images.githubusercontent.com/842790/27238476-031b9fb6-529b-11e7-8b58-644affcab2a0.png)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/160][160]] (closed): Research available workflows
+* DONE [[https://github.com/solutionguidance/psm/issues/160][160]] (closed): Research available workflows
 
   Find out what workflows are available in the application, and which ones should be available based on the documentation we have.
   
@@ -3374,7 +3371,7 @@ We include the initial description below, but not all subsequent comments.
   
   ![practice-information-commas](https://user-images.githubusercontent.com/842790/27238167-e0765632-5299-11e7-843f-b10fd9da57ec.png)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/158][158]]   (open): "No file selected" is confusing when a file is uploaded
+* DONE [[https://github.com/solutionguidance/psm/issues/158][158]]   (open): "No file selected" is confusing when a file is uploaded
 
   If a provider has uploaded a license/certification file, the "no file selected" display next to the "Browse..." button is confusing.
   
@@ -3399,7 +3396,7 @@ We include the initial description below, but not all subsequent comments.
 
   Review the versions we're using of the libraries that we depend on.  Find those that are no longer supported and/or need security upgrades.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/156][156]]   (open): Provider enrollment: hard to see red asterisks on blue background
+* DONE [[https://github.com/solutionguidance/psm/issues/156][156]]   (open): Provider enrollment: hard to see red asterisks on blue background
 
   When a provider is performing a new enrollment, in step 2 (license info), it's hard to see the red asterisks (indicating that at least one license or certification is required), because they're small and on the blue background of the column headers.
 
@@ -3407,11 +3404,11 @@ We include the initial description below, but not all subsequent comments.
 
   When a provider is performing a new enrollment, in step 2 (license info), the link to add a first license/certification should say "+ Add a License/Certification", not "+ Add Another License/Certification".
 
-* TODO [[https://github.com/solutionguidance/psm/issues/154][154]] (closed): "Help" link does not display help
+* DONE [[https://github.com/solutionguidance/psm/issues/154][154]] (closed): "Help" link does not display help
 
   The top of every page in the PSM includes a "Help" link (`<a href="javascript:;">Help</a>`). Clicking it has no effect.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/152][152]] (closed): unescaped template on provider dashboard
+* DONE [[https://github.com/solutionguidance/psm/issues/152][152]] (closed): unescaped template on provider dashboard
 
   Line 88 of `psm-app/cms-web/WebContent/WEB-INF/pages/provider/dashboard/list.jsp` isn't escaped properly. I think the presence of `<` inside a `<!-- -->` block is messing stuff up.
   
@@ -3428,7 +3425,7 @@ We include the initial description below, but not all subsequent comments.
   ~~~
   ![unescaped-template](https://user-images.githubusercontent.com/842790/27235911-c3fa429c-5290-11e7-92f7-d736084b49f9.png)
 
-* TODO [[https://github.com/solutionguidance/psm/issues/150][150]] (closed): Spike - research CI environments
+* DONE [[https://github.com/solutionguidance/psm/issues/150][150]] (closed): Spike - research CI environments
 
   # Problem
   We need an environment that will eventually allow us to
@@ -3463,7 +3460,7 @@ We include the initial description below, but not all subsequent comments.
   
   _Note: because the PSM is not being used in production by anyone (as far as we know), we decided to track this as a public GitHub issue. But, had the PSM been further along, the issue would be handled confidentially, per #92._
 
-* TODO [[https://github.com/solutionguidance/psm/issues/148][148]] (closed): Make Master Deployable
+* DONE [[https://github.com/solutionguidance/psm/issues/148][148]] (closed): Make Master Deployable
 
   # Problem
   The Application requires some tables to be autocreated to be able to come up. We are able to bring it up by setting the auto create tag in the persistence.xml, bringing up the app, switching back, and then running seed.sql.
@@ -3480,7 +3477,7 @@ We include the initial description below, but not all subsequent comments.
 
   Check that the libraries we're using (currently in `.jar` files in this repository, soon from the Maven repo or another source) are open source and compatible with Apache 2.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/146][146]] (closed): Dentist or physician requires a specialty, but no specialties appear
+* DONE [[https://github.com/solutionguidance/psm/issues/146][146]] (closed): Dentist or physician requires a specialty, but no specialties appear
 
   When enrolling as a physician or as a dentist, the application requires a specialty type to be entered:
   
@@ -3490,7 +3487,7 @@ We include the initial description below, but not all subsequent comments.
   
   [Copying and adding to the issue that @cecilia-donnelly originally filed at NASA-Tournament-Lab/coeci-cms-mpsp#139 .]
 
-* STARTED [[https://github.com/solutionguidance/psm/issues/139][139]]   (open): Split BeneficialOwnership subclasses into their own Tables
+* DONE [[https://github.com/solutionguidance/psm/issues/139][139]]   (open): Split BeneficialOwnership subclasses into their own Tables
 
   BeneficialOwnership entity has two subclasses, PersonBeneficialOwner and OrganizationBeneficialOwner.
   
@@ -3500,7 +3497,7 @@ We include the initial description below, but not all subsequent comments.
   
   Progress on #36 and comments from PR #133 
 
-* STARTED [[https://github.com/solutionguidance/psm/issues/129][129]] (closed): investigate why JDBC installation sometimes gives "is not a valid node type name" error
+* DONE [[https://github.com/solutionguidance/psm/issues/129][129]] (closed): investigate why JDBC installation sometimes gives "is not a valid node type name" error
 
   Per [conversation](https://github.com/OpenTechStrategies/psm/pull/102#discussion_r121033116) on [a change](https://github.com/OpenTechStrategies/psm/pull/102#discussion_r121519190) in #102 -- 
   
@@ -3524,7 +3521,7 @@ We include the initial description below, but not all subsequent comments.
   
   This will become clearer once we are able to submit an enrollment, at which point we'll see if we get an error.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/124][124]]   (open): Add Postgres TCP connection configuration to INSTALL.md
+* DONE [[https://github.com/solutionguidance/psm/issues/124][124]]   (open): Add Postgres TCP connection configuration to INSTALL.md
 
   From IRC:
   
@@ -3545,25 +3542,25 @@ We include the initial description below, but not all subsequent comments.
 
   Per conversation with James just now: for now, put a nice note at the top of `INSTALL.md`, suggesting that the user will have a better time on a Debian-based Linux but that we also support RPM-based distributions.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/108][108]]   (open): Remove "Lorem Ipsum" text wherever possible.
+* DONE [[https://github.com/solutionguidance/psm/issues/108][108]]   (open): Remove "Lorem Ipsum" text wherever possible.
 
   Making this a separate issue (disentangling from issue #51).
   
   Branch [51-remove-lorem-ipsum](https://github.com/opentechstrategies/psm/tree/51-remove-lorem-ipsum) has progress so far.  I think that branch is out-of-date now anyway, especially after the issue #53 changes were merged in PR #54.  So I'll make a new branch, basing its name on this new issue number, port over anything from the original branch that needs to be ported over, and create a PR from there.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/106][106]] (closed): Broken link on Section 4 of the main page
+* DONE [[https://github.com/solutionguidance/psm/issues/106][106]] (closed): Broken link on Section 4 of the main page
 
   The following ext-sourcex-app link in section 4 gets you to a 404 error message:
   
   The ext-sources-app subdirectory holds the source code to the semi-separate middleware application that provides a service wrapper around external data sources, thereby offering the PSM a consistent API to those services.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/104][104]]   (open): Encrypt social security numbers at rest
+* DONE [[https://github.com/solutionguidance/psm/issues/104][104]]   (open): Encrypt social security numbers at rest
 
   We need to deal with social security numbers as part of the initial and periodic screening process, which implies that we need to store social security numbers. Currently, there is a field on `Person` named `ssn`, and it is stored in the database.
   
   We should encrypt SSNs at rest, and ensure that access to them is limited and audited.
 
-* STARTED [[https://github.com/solutionguidance/psm/issues/103][103]] (closed): OwnershipType Entity may be Obsolete
+* DONE [[https://github.com/solutionguidance/psm/issues/103][103]] (closed): OwnershipType Entity may be Obsolete
 
   I don't see an entry for OwnershipType in Medicade.hbm.xml and don't see any data for it in mpse_clean.sql
   
@@ -3576,19 +3573,19 @@ We include the initial description below, but not all subsequent comments.
   
   Can we delete this class?
 
-* STARTED [[https://github.com/solutionguidance/psm/issues/101][101]] (closed): License Status has an apparently unused property called 'Date'
+* DONE [[https://github.com/solutionguidance/psm/issues/101][101]] (closed): License Status has an apparently unused property called 'Date'
 
   While converting LicenseStatus to H5 I saw that it has a property called Date which does not seem to be referenced anywhere.
   
   I made the column in seed.sql nullable and carrying on. This should be investigated and perhaps dropped.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/92][ 92]]   (open): Need a mechanism for receiving security vulnerability bug reports.
+* DONE [[https://github.com/solutionguidance/psm/issues/92][ 92]]   (open): Need a mechanism for receiving security vulnerability bug reports.
 
   The PSM, like most projects, needs a way to [receive bug reports about security vulnerabilities confidentially](http://producingoss.com/en/publicity.html#security-receiving).  Having people file such bug reports in the public tracker is no good -- that's just a 0-day generator :-).
   
   It can be a secure web form, an email address with a published GPG key, whatever.  Just something that lets a designated security team get the information and decide what to do with it before showing anything in public.
 
-* STARTED [[https://github.com/solutionguidance/psm/issues/91][ 91]]   (open): Fix "failed to lazily initialize" warnings in server log
+* DONE [[https://github.com/solutionguidance/psm/issues/91][ 91]]   (open): Fix "failed to lazily initialize" warnings in server log
 
   The changes in PR #86 cause warnings to show up in the server log, like:
   
@@ -3598,7 +3595,7 @@ We include the initial description below, but not all subsequent comments.
   
   Make these warnings go away. Ideally we could figure out how to serialize only as much of the object as is initialized; less ideal would be to only serialize the non-optional parts, regardless of whether they're loaded; alternatively, we could decide that this kind of performance logging is better done by another method (a library? something built into the application server? a service like new relic?), and replace the logging framework entirely.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/88][ 88]] (closed): Make Service Assurance Types less MN-specific
+* DONE [[https://github.com/solutionguidance/psm/issues/88][ 88]] (closed): Make Service Assurance Types less MN-specific
 
   The service assurance stuff seems super specific to MN.  At some point we need to figure out whether that is generalizable structure or should be removed entirely.
 
@@ -4168,7 +4165,7 @@ We include the initial description below, but not all subsequent comments.
   
   ~~~
 
-* STARTED [[https://github.com/solutionguidance/psm/issues/79][ 79]] (closed): Deduplicate drools rules / database entries
+* DONE [[https://github.com/solutionguidance/psm/issues/79][ 79]] (closed): Deduplicate drools rules / database entries
 
   Drools is used to enforce rules like "you can't create an acupuncture enrollment without an acupuncture license". The UI asks the database what `LicenseType`s (like an acupuncture license) are associated with a `ProviderType` (like an acupuncturist), and allows uploading of associated licenses. This means that the same information - "acupuncturists require an acupuncture license" - lives in two places (at least in the simple case - there may be more complicated rules).
   
@@ -4176,11 +4173,11 @@ We include the initial description below, but not all subsequent comments.
   
   We should look more closely at the validation rules and see if we can move them to the database.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/78][ 78]]   (open): upstream: follow up on WildFly package integrity
+* DONE [[https://github.com/solutionguidance/psm/issues/78][ 78]]   (open): upstream: follow up on WildFly package integrity
 
   In `INSTALL.md` we advise people to download WildFly from the WildFly site and install it. It'd be better if we could also tell them to check for package integrity via a cryptographic signature. Thus: comment on [the relevant issues.jboss.org bug](https://issues.jboss.org/browse/WFLY-2979) to ask for cryptographic signatures to assure WildFly package integrity. It's an older bug, but [WildFly's new progress on CI](http://wildfly.org/news/2017/05/05/WildFly-CI/) implies that they might be more able to work on the release management issue now than when it was filed.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/74][ 74]]   (open): Remove or generify MN Tax ID form field
+* DONE [[https://github.com/solutionguidance/psm/issues/74][ 74]]   (open): Remove or generify MN Tax ID form field
 
   When you fill out an enrollment, the form on the first page includes a field labeled "MN Tax ID".
   
@@ -4197,7 +4194,7 @@ We include the initial description below, but not all subsequent comments.
   5. See:
   ![mn tax id](https://cloud.githubusercontent.com/assets/1494855/26741550/c89a3062-47a7-11e7-9387-c9729943c519.png)
    
-* STARTED [[https://github.com/solutionguidance/psm/issues/73][ 73]]   (open): Docker compose error on deployment of core app
+* DONE [[https://github.com/solutionguidance/psm/issues/73][ 73]]   (open): Docker compose error on deployment of core app
 
   After running `sudo docker-compose -p psm up --build` on master at 6481aadb10896bbe1acfb276c7ae9160108aae23, I get the following error (among many other log messages):
   
@@ -4218,7 +4215,7 @@ We include the initial description below, but not all subsequent comments.
   
   The situation described in issue #40, in which hitting Enter was made to work on the login page through JavaScript associated with an `<a>` element rather than through a proper HTML form button, may affect other pages on the site -- and this method of form submission may have accessibility implications.  Filing this issue so we don't forget to look into this.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/62][ 62]]   (open): Include territories in list of states?
+* DONE [[https://github.com/solutionguidance/psm/issues/62][ 62]]   (open): Include territories in list of states?
 
   Where lists of US states appear in the app, should the list include US territories?
 
@@ -4232,7 +4229,7 @@ We include the initial description below, but not all subsequent comments.
 
   The way the database is structured is not always obvious or intuitive to me. Track such problems here.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/56][ 56]] (closed): Create an .editorconfig
+* DONE [[https://github.com/solutionguidance/psm/issues/56][ 56]] (closed): Create an .editorconfig
 
   #42 has a few folks who contributed and we already have some whitespace conflicts (mix of tabs and spaces).
   
@@ -4264,7 +4261,7 @@ We include the initial description below, but not all subsequent comments.
   
   Commenting it out will also solve one of the "Lorem Ipsum" instances we need to clean up for issue #51.
 
-* STARTED [[https://github.com/solutionguidance/psm/issues/51][ 51]] (closed): Presentability: use generic PSM logo
+* DONE [[https://github.com/solutionguidance/psm/issues/51][ 51]] (closed): Presentability: use generic PSM logo
 
   The PSM should have a generic (non-state-specific) logo for dev/demo sandboxes, etc.
   
@@ -4292,7 +4289,7 @@ We include the initial description below, but not all subsequent comments.
   
   Edit this so that the state IT domain name and settings can be configured, to make it simple to set up the PSM in more than one state.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/36][ 36]] (closed): Use Hibernate 5, instead of 4
+* DONE [[https://github.com/solutionguidance/psm/issues/36][ 36]] (closed): Use Hibernate 5, instead of 4
 
   The PSM had been using Hibernate 4.  Wildfly 10, our application server (see #2), ships with Hibernate 5.  Upgrade the code to work with the new version of Hibernate.
   
@@ -4364,7 +4361,7 @@ We include the initial description below, but not all subsequent comments.
 
   Get the `ext-sources-app` part of the repository running on Wildfly.  This will probably involve some of the same work as #2.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/34][ 34]]   (open): Improve password handling
+* DONE [[https://github.com/solutionguidance/psm/issues/34][ 34]]   (open): Improve password handling
 
   There are some best practices around passwords that we should handle. See, for example, 
   - https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet
@@ -4382,7 +4379,7 @@ We include the initial description below, but not all subsequent comments.
   
   Why is it here? Do we still want it? Either fully implement the ability to suspend an account, or remove the dead code and unused database column.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/32][ 32]]   (open): Understand or remove user IDs
+* DONE [[https://github.com/solutionguidance/psm/issues/32][ 32]]   (open): Understand or remove user IDs
 
   Users have both a self-selected or assigned username and a system-generated user ID. Why do we have both? They are both (conceptually) primary keys.
   
@@ -4402,7 +4399,7 @@ We include the initial description below, but not all subsequent comments.
   
   Leaving an issue here for our records in case this continues to be a problem.  It's not a blocker, just a minor annoyance.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/30][ 30]] (closed): List and document APIs
+* DONE [[https://github.com/solutionguidance/psm/issues/30][ 30]] (closed): List and document APIs
 
   Document what APIs this module has -- there's an internal division between the external sources and the psm-app proper.  What external-facing APIs are there?
   
@@ -4412,11 +4409,11 @@ We include the initial description below, but not all subsequent comments.
 
   Each state has a different list of provider types.  We need to document how to edit the type list that is displayed by the PSM, and move toward making that list configurable.  
 
-* TODO [[https://github.com/solutionguidance/psm/issues/28][ 28]]   (open): Document production deployments
+* DONE [[https://github.com/solutionguidance/psm/issues/28][ 28]]   (open): Document production deployments
 
   Work with an operations engineer from a pilot state to determine what level of documentation around deployments is useful. Over-documenting a process they are familiar with is extra work for us to create and maintain, and for new users to read; under-documenting a process they're not that familiar with adds potentially blocking friction to deployment.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/26][ 26]]   (open): Review forks and include relevant changes
+* DONE [[https://github.com/solutionguidance/psm/issues/26][ 26]]   (open): Review forks and include relevant changes
 
   Other people have worked on the Provider Screening Module. We should review their changes and, if they are useful to our efforts, bring them in.
 
@@ -4434,7 +4431,7 @@ We include the initial description below, but not all subsequent comments.
   
   Relates to #10.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/19][ 19]]   (open): Create new maintainer checklist
+* DONE [[https://github.com/solutionguidance/psm/issues/19][ 19]]   (open): Create new maintainer checklist
 
   We ought to have a checklist for new repository maintainers. It would include, for instance,
   
@@ -4462,7 +4459,7 @@ We include the initial description below, but not all subsequent comments.
   PECOS doesn't have an API yet, and at least some states still do manual lookups.  A monthly extract may be available.
   
   
-* TODO [[https://github.com/solutionguidance/psm/issues/16][ 16]] (closed): Manage sets of dependencies via Gradle or another tool
+* DONE [[https://github.com/solutionguidance/psm/issues/16][ 16]] (closed): Manage sets of dependencies via Gradle or another tool
 
   @jasonaowen [writes](https://groups.google.com/d/msg/psm-dev/nzC3pP1XMFg/MOCUKnkhBAAJ):
   
@@ -4475,7 +4472,7 @@ We include the initial description below, but not all subsequent comments.
   
   The exact approach will be fleshed out as we go.  This issue is for discussion and capturing progress. 
 
-* TODO [[https://github.com/solutionguidance/psm/issues/12][ 12]] (closed): Find WebSphere and Oracle dependencies in codebase
+* DONE [[https://github.com/solutionguidance/psm/issues/12][ 12]] (closed): Find WebSphere and Oracle dependencies in codebase
 
   As part of #2, find any places where the code would need to be changed for the migrations to Wildfly and Postgres.
   
@@ -4487,7 +4484,7 @@ We include the initial description below, but not all subsequent comments.
   
   If they are separated to the point where they can be deployed separately, then the `ext-srcs` app could be used to wrap external data sources for other applications, not just the PSM.  At that point, `ext-srcs` should be moved to its own repository.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/10][ 10]]   (open): Clarify user roles / permissions
+* DONE [[https://github.com/solutionguidance/psm/issues/10][ 10]]   (open): Clarify user roles / permissions
 
   As a system administrator, I should only be able to work with user accounts; everything else should be unavailable.
   
@@ -4503,7 +4500,7 @@ We include the initial description below, but not all subsequent comments.
   already exists in the code, but based on earlier examination I believe
   it is not completely abstracted.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/8][  8]]   (open): Reduce code duplication
+* DONE [[https://github.com/solutionguidance/psm/issues/8][  8]]   (open): Reduce code duplication
 
   There are some instances where the code does not follow DRY practices.
   
@@ -4529,13 +4526,13 @@ We include the initial description below, but not all subsequent comments.
   Note also that this doesn't even touch on the fact that (on master) we have both `pesp-jboss/cms-external-sources/services/src/main/java/gov/medicaid/screening/dao/impl/PodiatricMedicineLicenseDAOBean.java` and 
   `pesp-was8.5-ext-srcs/services/src/main/java/gov/medicaid/screening/dao/impl/PodiatricMedicineLicenseDAOBean.java`, which are the exact same file.
   
-* TODO [[https://github.com/solutionguidance/psm/issues/7][  7]] (closed): Automate PSM deployment
+* DONE [[https://github.com/solutionguidance/psm/issues/7][  7]] (closed): Automate PSM deployment
 
   Write a script that allows us to deploy a new instance of the PSM automatically.  There's been some discussion of using [Fabric](http://www.fabfile.org/) for this.
   
   Later, we'll likely put this in a cron job so that some of our public-facing instances can be destroyed and re-deployed nightly.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/6][  6]] (closed): Draft intake policy for 3rd-party code
+* DONE [[https://github.com/solutionguidance/psm/issues/6][  6]] (closed): Draft intake policy for 3rd-party code
 
   Create a policy for determining whether a given library can be used in this project and is compliant with our license.
 
@@ -4545,7 +4542,7 @@ We include the initial description below, but not all subsequent comments.
   
   This process has been begun in [INSTALL.md](https://github.com/OpenTechStrategies/psm/blob/master/INSTALL.md).
 
-* TODO [[https://github.com/solutionguidance/psm/issues/4][  4]] (closed): Merge old 'local-deployment' branch into master.
+* DONE [[https://github.com/solutionguidance/psm/issues/4][  4]] (closed): Merge old 'local-deployment' branch into master.
 
   The changes on the `local-deployment` branch can just go to `master` now, and `local-deployment` can be archived.
 
@@ -4553,7 +4550,7 @@ We include the initial description below, but not all subsequent comments.
 
   Let's determine what (if anything) needs to be done to make the SQL PostgreSQL-compatible.  We might want to start by getting our past research on the status of the PSM's SQL out here into public view.
 
-* TODO [[https://github.com/solutionguidance/psm/issues/2][  2]] (closed): Run in WildFly (JBoss) or other open source application server.
+* DONE [[https://github.com/solutionguidance/psm/issues/2][  2]] (closed): Run in WildFly (JBoss) or other open source application server.
 
   Run in an open source application server, defaulting to WildFly (formerly JBoss), with no dependency on IBM WebSphere.
 

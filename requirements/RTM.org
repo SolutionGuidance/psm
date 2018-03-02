@@ -25,7 +25,7 @@ structured?  Does this include info regarding whether the provider is
 private vs non-profit, a public entity, state government agency?
 Yes. data field entity type under ownership tab, user can specify all
 these provider business types."
-* psm-FR-1.2
+* psm-FR-1.2: 412, 291
 "The PSM shall ensure that tax ID number is 9 digits";
 * psm-FR-1.3
 "The PSM shall screen providers for managed care plans."; 
@@ -33,7 +33,7 @@ these provider business types."
 COMMENT: "Is this based on Final Managed Care Rules and 21st Century
 Cures Act?  Need to check with LA to verify this is the same
 requirement"
-* psm-FR-1.4
+* psm-FR-1.4: 412
 "The PSM shall have the capability to identify providers by Employer
 identification number unless the provider is in solo practice or the
 provider is not in solo practice but billing is by the individual
@@ -42,23 +42,23 @@ providers by social security number.";
 * psm-FR-1.5
 "The PSM shall have the capability to escalate the intensity of
 screening for providers that are flagged as higher risk.";
-* psm-FR-1.6
+* psm-FR-1.6: 412
 "The PSM shall collect and store standardized W-9 information that
 reflects the owner of the EIN and the Doing Business As (DBA) name.  ";
-* psm-FR-2.1
+* psm-FR-2.1: 290
 "The PSM shall have the option of zipcode + 4 for all address fields";
 * psm-FR-2.2
 "The PSM shall allow multiple locations for the provider.";
 * psm-FR-2.3
 "The PSM shall associate multiple Medicare IDs with the same provider,
 if the provider has multiple locations.";
-* psm-FR-2.4
+* psm-FR-2.4: 291, 263, 158
 "The PSM shall allow applicant to upload attachments to support the
 application.";
-* psm-FR-2.5
+* psm-FR-2.5: 292, 291
 "The PSM shall indicate what kinds of documents/attachments are required
 by provider type.";
-* psm-FR-2.6: 61, 
+* psm-FR-2.6: 61, 342, 292, 62
 "The PSM shall require the following fields: Provider Name, Business
 Phone, Provider Street Address, City, State, Zip Code, County, SSN, Date
 of Birth, License Number, IRS Payee Name, DBA Name, Payee Address, Payee
@@ -69,19 +69,19 @@ COMMENT: "Will the PSM identify whether the provider is a rendering
 (eligible to directly bill) or an ordering/referring/prescribing
 (eligible to enroll but not directly bill state Medicaid agency)?  Not
 currently plan for PSM functionality"
-* psm-FR-2.7
+* psm-FR-2.7: 666*, 146
 "The PSM shall accept the following fields: Practice Type, Specialties
 (1 or more), NPI, HIPAA Taxonomy Codes, CLIA number, DHSS certification,
 Optical and Audiology y/n, Collaborative Practice Agreement y/n, RHC
 y/n, Medicare Provider Number, Case Mgmt y/n, Rural Health Rate";
-* psm-FR-2.8
+* psm-FR-2.8: 564, 292
 "The PSM shall require the following fields: Contact email, Merger y/n,
 Owner/board names and addresses, Care settings, DEA controlled
 substances certification y/n, DEA revocation y/n"; 
 
 COMMENT: "Dos this include SSN for owners and others with >5% ownership?
 Yes!"
-* psm-FR-2.9
+* psm-FR-2.9: 346, 291
 "The PSM shall accept the following fields: Applicant Name, Contact
 Person, Contact phone, Medicaid number"; 
 
@@ -122,7 +122,7 @@ accepted/processed electronically?  Will PSM ask if provider owes state
 Medicaid agency monies that have not been paid and collect those monies
 or arrange for repayment at time of enrollment?  No, not currently a PSM
 function."
-* psm-FR-2.16
+* psm-FR-2.16: 620, 420, 416, 408
 "The PSM shall accept, validate, and process transactions or user
 entries to update and maintain provider information.";
 * psm-FR-2.17
@@ -132,11 +132,11 @@ numbers.";
 "The PSM shall have the capability to ensure that providers that have a
 history of fraud are flagged with a higher risk level at the time of
 screening";
-* psm-FR-2.19
+* psm-FR-2.19: 528, 166
 "The PSM shall have the capability to capture critical attributes
 including licensing information, financial data, and any other data
 attributes which could impact a risk level.";
-* psm-FR-2.20
+* psm-FR-2.20: 454, 192, 166
 "The PSM shall collect and maintain licensure information to include at
 a minimum, licensing state, license number, licensure begin and end
 dates.  ";
@@ -150,10 +150,10 @@ at the time of screening.";
 * psm-FR-3.3
 "The PSM shall flag and route records for action if multiple internal
 state assigned provider numbers are associated with a single provider.";
-* psm-FR-3.4: 9, 53
+* psm-FR-3.4: 9, 53, 291
 "The PSM shall separate providers into risk categories limited,
 moderate, and high based on provider type, as established by CMS.";
-* psm-FR-3.5: 17, 
+* psm-FR-3.5: 17, 454, 289, 192
 "The PSM shall screen limited-risk providers by verifying that the
 provider or supplier meets all applicable federal regulations and state
 requirements for the provider or supplier type, conducting license
@@ -212,44 +212,44 @@ so that they can go through revalidation.";
 * psm-FR-3.12
 "The PSM shall automatically reject applications that do not include all
 mandatory information.";
-* psm-FR-3.13: 17, 
+* psm-FR-3.13: 17, 546*, 446, 416, 356, 349, 289, 273, 166
 "The PSM shall have the capability to track and support the screening of
 applications (and ongoing provider updates) for National Provider
 Identifier (NPIs), State licenses, Specialty Board certification as
 appropriate, review team visits when necessary, and any other State
 and/or Federal Requirement.";
-* psm-FR-3.14: 17, 
+* psm-FR-3.14: 17, 192
 "The PSM shall cross-reference license and sanction information with
 other state or federal agencies.";
-* psm-FR-3.15
+* psm-FR-3.15: 378
 "The PSM shall have the turnaround time for performing automated checks
 typical for a web based system";
-* psm-FR-3.16
+* psm-FR-3.16: 420, 369, 336, 328, 192
 "The PSM shall provide comprehensive verification of all (verifiable)
 data fields for all providers enrolled";
 * psm-FR-3.17: 113*, 125*, 165, 
 "The PSM shall improve efficiency of the Screening Solution in terms of
 cost and schedule to actually implement ";
-* psm-FR-3.18
+* psm-FR-3.18: 528
 "The PSM shall Improve effectiveness of the risk-screening model in
 detecting fraud based issues";
-* psm-FR-3.19
+* psm-FR-3.19: 528
 "The PSM shall Improve technical soundness of risk-scoring in flagging
 potential fraudulent patterns and tendencies";
-* psm-FR-3.20
+* psm-FR-3.20: 160
 "The PSM shall define a common workflow for collecting enrollment
 information of individual providers";
-* psm-FR-3.21
+* psm-FR-3.21: 600
 "The PSM shall save administrative/infrastructure cost by providing a
 multi-tenant provider screening solution";
-* psm-FR-3.22
+* psm-FR-3.22: 454
 "The PSM shall reduce the time needed by providers to submit new/renewal
 application information and resolve discrepancies.";
-* psm-FR-3.23: 11, 
+* psm-FR-3.23: 11, 546, 378
 "The PSM shall reduce processing and transaction time for submitting and
 receiving queries to authoritative data sources regarding provider
 credentials and sanctions.";
-* psm-FR-3.24
+* psm-FR-3.24: 336
 "The PSM shall validate, and/or verify that all data items that contain
 self-checking digits (e.g., National Provider Identifier) passes a
 specified check-digit test. ";
@@ -258,7 +258,7 @@ specified check-digit test. ";
 clients/patients, including ""Other.""";
 * psm-FR-4.2
 "The PSM shall allow applicants to choose multiple care settings.";
-* psm-FR-4.3
+* psm-FR-4.3: 620, 564, 416, 412, 408
 "The PSM shall allow providers to update information and initiate
 re-screening process (e.g., in the following situations: name change,
 change of ownership/operator - whether or not it is the same practice
@@ -295,7 +295,7 @@ terminating enrollment.";
 * psm-FR-5.4
 "The PSM shall require PC Plus providers to give 90 days notice before
 terminating enrollment.";
-* psm-FR-5.5: 41*, 79*, 
+* psm-FR-5.5: 41*, 79, 
 "The PSM shall maintain the capability to limit billing and providers to
 certain benefit plans, services, by procedure codes, ranges of procedure
 codes, member age or by provider type(s) or as otherwise directed by the
@@ -307,7 +307,7 @@ State.";
 * psm-FR-5.8
 "The PSM shall capture a termination reason code that is provided by the
 State";
-* psm-FR-6.1
+* psm-FR-6.1: 476
 "The PSM shall download all monitoring risk scores for each month as a
 CSV";
 * psm-FR-6.2
@@ -319,7 +319,7 @@ data, for a time period specified by the state.";
 * psm-FR-6.4
 "The PSM shall remember previous rejected providers and reasons for
 rejection corresponding form fields";
-* psm-FR-6.5
+* psm-FR-6.5: 476
 "The PSM shall, to extent permitted by law, make screening data
 available for analytics and other reporting purposes."; 
 
@@ -332,17 +332,17 @@ are you interested in?"
 * psm-FR-6.6
 "The PSM shall keep a record of the date of each screening/monitoring
 event, the score, and the agencies decision for each provider.";
-* psm-FR-6.7
+* psm-FR-6.7: 289
 "The PSM shall store monthly audit record for a provider even if their
 information has not changed.";
 * psm-FR-6.8
 "The PSM shall provide an input to document the nature for the type of
 screening/monitoring event, the score, and the agencies decision for
 each provider.";
-* psm-FR-7.1: 155, 159, 195
+* psm-FR-7.1: 155, 159, 195, 458, 424, 422, 406, 396, 356, 265
 "The PSM shall provide per-field instructions on the application
 screen.";
-* psm-FR-7.2: 29*, 
+* psm-FR-7.2: 29*, 458, 424, 404, 396, 389, 338, 298, 172, 154
 "The PSM shall provide detailed instructions for completing the
 application via a Help link.";
 * psm-FR-7.3
@@ -350,23 +350,23 @@ application via a Help link.";
 provider information has not changed.";
 * psm-FR-7.4: 161, 167
 "The PSM shall provide a screen to verify entered information.";
-* psm-FR-7.5
+* psm-FR-7.5: 432, 291
 "The PSM shall allow applicant to edit entered information.";
-* psm-FR-7.6
+* psm-FR-7.6: 566, 291, 168
 "The PSM shall allow applicant to print application for their records.";
-* psm-FR-7.7
+* psm-FR-7.7: 291
 "The PSM shall allow applicant to save a partial application as a
 draft.";
-* psm-FR-7.8
+* psm-FR-7.8: 292
 "The PSM shall indicate which fields are required.";
-* psm-FR-7.9
+* psm-FR-7.9: 291
 "The PSM shall prevent application submission if required fields are
 empty.";
 * psm-FR-7.10
 "The PSM shall show integrated history of a provider record -- allow
 users to scroll back in history to see changes over time without needing
 to navigate to separate files.";
-* psm-FR-7.11
+* psm-FR-7.11: 420, 378, 291
 "The PSM shall validate entered information as provider fills out
 application (not at the end of the process).";
 * psm-FR-7.12
@@ -388,7 +388,7 @@ approval, or rejection of their applications.";
 "The PSM shall add a attestation, using configurable link or text, to
 the reading and understanding of the required state Medicaid agency
 materials prior to enrollment.  ";
-* psm-FR-9.1
+* psm-FR-9.1: 672, 260, 79
 "The PSM shall integrate provider-type business rules described in the
 Enrollment Information Guide into the system.";
 * psm-FR-9.2
@@ -399,7 +399,7 @@ federal guidelines (42 CFR 431.105)";
 * psm-FR-9.4
 "The PSM shall verify provider eligibility in support of other system
 processes, i.e. payment of claims.";
-* psm-FR-9.5: 1, 3, 35, 87, 147
+* psm-FR-9.5: 1, 3, 35, 87, 147, 2
 "The PSM shall ensure proprietary interfaces and protocols between
 modules are not used.";
 * psm-FR-10.1
@@ -407,27 +407,27 @@ modules are not used.";
 http://www.wpc-edi.com/codes/taxonomy";
 * psm-II-1.1
 "The PSM shall use a mix of manual and automated business processes.";
-* psm-II-2.1: 31*, 91*
+* psm-II-2.1: 31*, 91, 88
 "The PSM shall perform advanced information monitoring and routes system
 alerts and alarms to communities of interest when the system detects
 unusual conditions."; 
 
 COMMENT: "Log file and screen alert to the operator (e.g. lost
 connectivity to external system/database)"
-* psm-II-2.2: 21,
+* psm-II-2.2: 21, 236, 224
 "The PSM shall use a standards for message format to ensure
 interoperability (e.g. XML JSON)";
-* psm-II-2.3: 21, 
+* psm-II-2.3: 21, 236, 224
 "Transport interoperability - The PSM shall comply with standard data
 transfer protocols as applicable to health IT systems, their constituent
 elements/modules, and services"; 
 
 COMMENT: "Currently using FHIR protocol "
-* psm-II-2.4: 21, 
+* psm-II-2.4: 21, 236, 224
 "Syntactic interoperability - The PSM shall comply with national
 standards for data message formatting, as applicable to health IT
 systems, their constituent elements/modules, and services ";
-* psm-II-2.5
+* psm-II-2.5: 236
 "Semantic interoperability - The PSM shall use standardized code sets to
 enable the processing and interpretation of received data as applicable
 to health IT systems."; 
@@ -443,61 +443,61 @@ delivery (without duplicates) and support for non-deliverable
 messages."; 
 
 COMMENT: "Evidence: documentation for ESB integration"
-* psm-II-4.1
+* psm-II-4.1: 236, 224
 "The PSM shall use RESTful and/or SOAP-based web services for seamless
 coordination and integration with other U.S. Department of Health &
 Human Services (HHS) applications and intrastate agencies.";
-* psm-II-4.2
+* psm-II-4.2: 466, 30
 "The PSM shall document all interfaces in an Interface Control Document
 (ICD), along with how those interfaces are maintained.";
 * psm-II-4.3: 157*, 
 "Loosely coupled APIs - The PSM module dependencies shall be minimized
 to the greatest extent possible.";
-* psm-II-4.4
+* psm-II-4.4: 466, 446*, 30
 "Clearly documented - The PSM shall provide detailed API documentation
 provided for every API. ";
-* psm-SA-3.1: 57*, 101*, 103*, 139*, 
+* psm-SA-3.1: 57*, 139*, 466
 "The PSM shall support the architecture adopted to preserve the ability
 to efficiently, effectively, and appropriately exchange data with other
 participants in the health and human services enterprise."; 
 
 COMMENT: "Satified with the API requirements"
-* psm-SA-4.3
+* psm-SA-4.3: 466
 "The PSM design documents shall utilize a widely supported modeling
 language (e.g., UML, BPMN).";
-* psm-IA-4.1
+* psm-IA-4.1: 466
 "The PSM shall support a Logical Data Model (LDM) in the identification
 of data classes, attributes, relationships, standards, and code sets for
 intrastate exchange.";
-* psm-IU-3.1
+* psm-IU-3.1: 572, 386, 274, 262, 260, 79
 "The PSM of shall use standardized business rules definitions that
 reside in a separate application or rules engine.";
-* psm-IU-4.3
+* psm-IU-4.3: 466
 "The PSM shall provide an architecture diagram depicting how it is
 technically structured."; 
 
 COMMENT: "This is requested by Anshuman during the 8/10/17 PSM status
 meeting"
-* psm-AD-2.5
+* psm-AD-2.5: 638, 298
 "To the greatest extent possible, the PSM shall be browser agnostic. ";
-* psm-AD-5.4: 33, 149, 171, 175
+* psm-AD-5.4: 33, 149, 171, 175, 10, 398, 326
 "The PSM shall support a user security profile that controls user access
 rights to data categories and system functions.";
-* psm-AD-5.11: 181, 
+* psm-AD-5.11: 181, 414, 32
 "The PSM shall have standard Access Control specifications to include:
 (i) Assigning a unique name and/or number for identifying and tracking
 user identity. (Required) (iii) Implementing electronic procedures that
 terminate an electronic session after a predetermined time of
 inactivity. (Addressable) ";
-* psm-AD-5.12: 39*, 149, 
+* psm-AD-5.12: 39*, 149, 528, 10, 398, 326
 "The PSM shall support roles and responsibilities of individuals that
 are separated through assigned information access authorization as
 necessary to prevent malevolent activity.";
-* psm-AD-5.15
+* psm-AD-5.15: 414
 "After 15 minutes of inactivity, the PSM shall initiate a session lock;
 the session lock should remain in place until the user reestablishes
 access using established identification and authentication procedures.";
-* psm-AD-5.17
+* psm-AD-5.17: 614, 465, 104, 34
 "The PSM shall use only FIPS Pub 140-2-approved (or higher) encryption
 algorithms.";
 * psm-PH-1.1
@@ -513,19 +513,37 @@ been established.";
 * psm-PH-1.3
 "The PSM shall verify that all data necessary for legal requirements are
 retained.";
-* psm-PH-1.4
+* psm-PH-1.4: 352
 "The PSM shall verify that all dates are valid and reasonable.";
-* psm-IP-1.1: 5, 45, 73*, 111, 129*, 189
-"The PSM shall have a open source repository organized to be accessible
-to outside contributors."
-* psm-IP-1.2: 189
+* psm-IP-1.1: 5, 45, 111, 189, 482, 458, 456, 351, 350, 312, 300, 280, 254, 186, 56, 51, 19, 6
+"The PSM shall have an open source repository and source code base
+organized to be welcoming to outside contributors."
+* psm-IP-1.2: 189, 638, 604, 518, 438, 351, 304, 266, 250, 222, 218, 210, 206, 204, 194, 150
 "The PSM shall include and undergo automated testing at regular
-intervals, through continuous integration and deployment processes."
-* psm-IP-2.1: 39, 51*, 79*, 177*, 
+intervals, through continuous integration and deployment processes.
+The PSM shall also undergo manual testing and QA as needed."
+* psm-IP-1.3: 16, 626, 616, 582, 520, 392, 320, 252, 242, 214, 78, 36, 12, 2
+"The PSM shall use modern source code dependency management techniques, and shall use up-to-date versions of upstream third-party dependencies."
+* psm-IP-1.4: 600, 472, 458, 452, 386, 370, 280, 254, 248, 188, 148, 129, 124, 73, 28, 7
+"The PSM shall use documented build, test, release, and installation processes that are automated as much as possible, for both development and production use."
+* psm-IP-1.5: 596, 468, 208, 139, 103, 101, 26, 12, 8, 4
+"The PSM shall use D.R.Y. coding principles to avoid unnecessary complexity, inflexibility, redundancy, and denormalization in the source code and database schemas."
+* psm-IP-1.6: 588
+"The PSM shall use system resources efficiently and in proportion to operational demands and data size."
+* psm-IP-2.1: 39, 79*, 177*, 386
 "The PSM shall be configurable where feasible."
-* psm-IP-3.1: 65, 163*
+* psm-IP-2.3: 92, 498, 476, 468, 34
+"The PSM shall be secure from unauthorized access or use, and shall sanitize inputs and outputs where possible so as to avoid compromising itself or other systems."
+* psm-IP-3.1: 65, 163*, 554, 553, 510, 518, 467, 516, 514, 512, 508
 "The PSM shall be accessible in compliance with Section 508 of the
 Rehabilitation Act."
-* psm-IP-3.2: 169, 
-"The PSM's user interface shall be as simple and quickly comprehensible
-as possible."
+* psm-IP-3.2: 169, 692, 672*, 668, 622, 618, 612, 586, 566, 556, 546, 504, 454, 440, 432, 396, 378, 376, 362, 360, 354, 340, 336, 328, 308, 301, 282, 261, 238, 184, 176, 162, 158, 156, 154, 152, 108, 106, 74, 34
+"The PSM's user interface shall be as simple, comprehensible, navigable, reliable, robust in the face of error, and responsive as possible."
+* psm-IP-3.3: 612, 496, 174
+"The PSM shall support searching and pattern-matching based on all fields accepted as input (and based on all reasonable combinations of such fields)."
+* psm-IP-3.4: 486
+"The PSM shall have the ability to enforce limits on the number of providers of a given type enrolled simultaneously."
+* psm-IP-3.5: 170
+"The PSM shall support admin-configurable automated re-screening.  C.f. psm-FR-7.3."
+* psm-IP-3.6: 426, 394, 374, 349
+FOR FUTURE FEATURES -- bucket for things not required for 1.0 (though some of them might be nice to have, like #394 and #374)

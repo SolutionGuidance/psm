@@ -6,7 +6,7 @@ buildscript {
         maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
-        classpath 'com.github.jacobono:gradle-jaxb-plugin:1.3.6'
+        classpath 'gradle.plugin.org.openrepose:gradle-jaxb-plugin:2.4.1'
         classpath 'com.moowork.gradle:gradle-node-plugin:1.2.0'
         classpath 'kr.motd.gradle:sphinx-gradle-plugin:1.0.5'
         classpath 'net.serenity-bdd:serenity-gradle-plugin:1.4.0'
@@ -216,7 +216,7 @@ project(':cms-web') {
 }
 
 project(':cms-business-model') {
-    apply plugin: 'com.github.jacobono.jaxb'
+    apply plugin: 'org.openrepose.gradle.plugins.jaxb'
     apply plugin: 'java'
     sourceCompatibility = 1.6
     targetCompatibility = 1.6
@@ -224,9 +224,9 @@ project(':cms-business-model') {
     System.setProperty('javax.xml.accessExternalSchema', 'file')
 
     dependencies {
-         jaxb 'org.glassfish.jaxb:jaxb-xjc:2.2.11'
-         jaxb 'org.glassfish.jaxb:jaxb-runtime:2.2.11'
-         jaxb 'javax.xml.bind:jaxb-api:2.2.11'
+        jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
+        jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'
+        jaxb 'javax.xml.bind:jaxb-api:2.2.7'
     }
 
     sourceSets {
@@ -243,8 +243,8 @@ project(':cms-business-model') {
         }
     }
     jaxb {
-        xsdDir = 'cms-business-model/src/main/resources'
-        bindingsDir = 'cms-business-model/src/main/resources'
+        xsdDir = 'src/main/resources'
+        bindingsDir = 'src/main/resources'
         bindings = ['jaxb-bindings.xjb']
         xjc {
             producesDir = 'src/main/generated'

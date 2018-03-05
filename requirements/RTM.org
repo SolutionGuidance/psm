@@ -674,7 +674,7 @@ ISSUES: 486
 "The PSM shall have the ability to enforce limits on the number of providers of a given type enrolled simultaneously."
 * psm-IP-3.5
 ISSUES: 170
-"The PSM shall support admin-configurable automated re-screening.  C.f. psm-FR-7.3.
+"The PSM shall support admin-configurable automated re-screening.  C.f. psm-FR-7.3."
 * psm-IP-3.6
 ISSUES: 528, 497, 331, 425
 "The PSM shall support provider agents (a.k.a. service agents a.k.a. non-provider users) who act on a provider's behalf and whose authorization may be a subset of that provider's."

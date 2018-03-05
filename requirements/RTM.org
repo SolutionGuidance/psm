@@ -46,7 +46,7 @@ screening for providers that are flagged as higher risk.";
 * psm-FR-1.6
 ISSUES: 412
 "The PSM shall collect and store standardized W-9 information that
-reflects the owner of the EIN and the Doing Business As (DBA) name.  ";
+reflects the owner of the EIN and the Doing Business As (DBA) name.";
 * psm-FR-2.1
 ISSUES: 290
 "The PSM shall have the option of zipcode + 4 for all address fields";
@@ -161,7 +161,7 @@ attributes which could impact a risk level.";
 ISSUES: 454, 192, 166
 "The PSM shall collect and maintain licensure information to include at
 a minimum, licensing state, license number, licensure begin and end
-dates.  ";
+dates.";
 * psm-FR-3.1
 ISSUES: 695
 "The PSM shall provide a rejection reason if an application is
@@ -298,7 +298,7 @@ credentials and sanctions.";
 ISSUES: 336
 "The PSM shall validate, and/or verify that all data items that contain
 self-checking digits (e.g., National Provider Identifier) passes a
-specified check-digit test. ";
+specified check-digit test.";
 * psm-FR-4.1
 ISSUES: 695
 "The PSM shall show a list of settings in which a provider might see
@@ -315,7 +315,7 @@ location, address change, Federal Tax Identification Number change at
 same practice location, change from Social Security Number to Federal
 Tax Identification Number at same practice location, change from Federal
 Tax Identification Number to Social Security Number at same
-practice location, payment name or address change, and additional
+practice location, payment name or address change, and additional
 service location)";
 * psm-FR-4.4
 ISSUES: 695
@@ -324,7 +324,7 @@ moderate- and high-risk provider types.";
 * psm-FR-4.5
 ISSUES: 695
 "The PSM shall support the Extract, Transform and Load (ETL) processes
-from real-time  web services or batch processes.";
+from real-time web services or batch processes.";
 * psm-FR-5.1
 ISSUES: 695
 "The PSM shall issue Medicaid provider ID number to each approved

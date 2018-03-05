@@ -1958,8 +1958,16 @@ $(document).ready(function () {
   });
 
   /*show NPI definition modal*/
-  $('a.NPIdefinition').live('click', function () {
-    addressLoadModal('#NPIdefinitionModal');
+  $('a.NPIdefinition').click(function () {
+    addressLoadModal('#modal-what-is-an-npi');
+    $.get(
+      ctx + "/help/enrollment.html",
+      populateUserHelpModal.bind(
+        undefined,
+        "modal-what-is-an-npi",
+        "what-is-an-npi"
+      )
+    );
   });
 
   //$('.inline input[type=radio]').removeAttr('checked');

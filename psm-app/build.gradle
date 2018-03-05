@@ -9,7 +9,9 @@ buildscript {
         classpath 'gradle.plugin.org.openrepose:gradle-jaxb-plugin:2.4.1'
         classpath 'com.moowork.gradle:gradle-node-plugin:1.2.0'
         classpath 'kr.motd.gradle:sphinx-gradle-plugin:1.0.5'
-        classpath 'net.serenity-bdd:serenity-gradle-plugin:1.4.0'
+        classpath ('net.serenity-bdd:serenity-gradle-plugin:1.8.20') {
+            exclude group: 'com.google.inject', module:'guice'
+        }
     }
 }
 

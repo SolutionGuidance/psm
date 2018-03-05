@@ -7,10 +7,6 @@ Linking to issues will be done with a colon after the requirements
 number, followed by a list of issue numbers (without #) separated by
 comma and space.
 
-Issue assignments that are uncertain are indicated with an asterisk
-after the issue number, like 31*.  In the issues list, these are marked
-as "STARTED."
-
 Requirements items that don't yet appear in RTM.xlsx are denoted with
 "psm-IP-x.x" (IP for In Progress).
 
@@ -69,7 +65,7 @@ COMMENT: "Will the PSM identify whether the provider is a rendering
 (eligible to directly bill) or an ordering/referring/prescribing
 (eligible to enroll but not directly bill state Medicaid agency)?  Not
 currently plan for PSM functionality"
-* psm-FR-2.7: 666*, 146, 307, 299, 293, 259, 233
+* psm-FR-2.7: 146, 307, 299, 293, 259, 233
 "The PSM shall accept the following fields: Practice Type, Specialties
 (1 or more), NPI, HIPAA Taxonomy Codes, CLIA number, DHSS certification,
 Optical and Audiology y/n, Collaborative Practice Agreement y/n, RHC
@@ -212,7 +208,7 @@ so that they can go through revalidation.";
 * psm-FR-3.12
 "The PSM shall automatically reject applications that do not include all
 mandatory information.";
-* psm-FR-3.13: 17, 546*, 446, 416, 356, 349, 289, 273, 166, 177
+* psm-FR-3.13: 17, 546, 446, 416, 356, 349, 289, 273, 166, 177
 "The PSM shall have the capability to track and support the screening of
 applications (and ongoing provider updates) for National Provider
 Identifier (NPIs), State licenses, Specialty Board certification as
@@ -342,7 +338,7 @@ each provider.";
 * psm-FR-7.1: 155, 159, 195, 458, 424, 422, 406, 396, 356, 265, 405
 "The PSM shall provide per-field instructions on the application
 screen.";
-* psm-FR-7.2: 29*, 458, 424, 404, 396, 389, 338, 298, 172, 154, 681, 607, 459, 439, 405, 395, 359
+* psm-FR-7.2: 458, 424, 404, 396, 389, 338, 298, 172, 154, 681, 607, 459, 439, 405, 395, 359
 "The PSM shall provide detailed instructions for completing the
 application via a Help link.";
 * psm-FR-7.3
@@ -388,7 +384,7 @@ approval, or rejection of their applications.";
 "The PSM shall add a attestation, using configurable link or text, to
 the reading and understanding of the required state Medicaid agency
 materials prior to enrollment.  ";
-* psm-FR-9.1: 672, 260, 79
+* psm-FR-9.1: 672, 260, 79, 666
 "The PSM shall integrate provider-type business rules described in the
 Enrollment Information Guide into the system.";
 * psm-FR-9.2
@@ -407,7 +403,7 @@ modules are not used.";
 http://www.wpc-edi.com/codes/taxonomy";
 * psm-II-1.1
 "The PSM shall use a mix of manual and automated business processes.";
-* psm-II-2.1: 31*, 91, 88
+* psm-II-2.1: 91, 88
 "The PSM shall perform advanced information monitoring and routes system
 alerts and alarms to communities of interest when the system detects
 unusual conditions."; 
@@ -453,10 +449,10 @@ Human Services (HHS) applications and intrastate agencies.";
 * psm-II-4.3
 "Loosely coupled APIs - The PSM module dependencies shall be minimized
 to the greatest extent possible.";
-* psm-II-4.4: 466, 446*, 30
+* psm-II-4.4: 466, 446, 30
 "Clearly documented - The PSM shall provide detailed API documentation
 provided for every API. ";
-* psm-SA-3.1: 57*, 139*, 466
+* psm-SA-3.1: 466
 "The PSM shall support the architecture adopted to preserve the ability
 to efficiently, effectively, and appropriately exchange data with other
 participants in the health and human services enterprise."; 
@@ -469,7 +465,7 @@ language (e.g., UML, BPMN).";
 "The PSM shall support a Logical Data Model (LDM) in the identification
 of data classes, attributes, relationships, standards, and code sets for
 intrastate exchange.";
-* psm-IU-3.1: 572, 386, 274, 262, 260, 79, 571
+* psm-IU-3.1: 572, 386, 274, 262, 260, 79, 571, 546
 "The PSM of shall use standardized business rules definitions that
 reside in a separate application or rules engine.";
 * psm-IU-4.3: 466
@@ -489,7 +485,7 @@ rights to data categories and system functions.";
 user identity. (Required) (iii) Implementing electronic procedures that
 terminate an electronic session after a predetermined time of
 inactivity. (Addressable) ";
-* psm-AD-5.12: 39*, 149, 528, 10, 398, 326, 599, 523, 305
+* psm-AD-5.12: 39, 149, 528, 10, 398, 326, 599, 523, 305
 "The PSM shall support roles and responsibilities of individuals that
 are separated through assigned information access authorization as
 necessary to prevent malevolent activity.";
@@ -526,18 +522,18 @@ The PSM shall also undergo manual testing and QA as needed."
 "The PSM shall use modern source code dependency management techniques, and shall use up-to-date versions of upstream third-party dependencies."
 * psm-IP-1.4: 600, 472, 458, 452, 386, 370, 280, 254, 248, 188, 148, 129, 124, 73, 28, 7, 421, 381, 229
 "The PSM shall use documented build, test, release, and installation processes that are automated as much as possible, for both development and production use."
-* psm-IP-1.5: 596, 468, 208, 139, 103, 101, 26, 12, 8, 4, 653, 613, 495, 485, 399, 343, 205, 125, 57
+* psm-IP-1.5: 596, 468, 208, 139, 103, 101, 26, 12, 8, 4, 653, 613, 495, 485, 399, 343, 205, 125, 57, 79
 "The PSM shall use D.R.Y. coding principles to avoid unnecessary complexity, inflexibility, redundancy, and denormalization in the source code and database schemas, and to use precise terminology in data structures and operations."
 * psm-IP-1.6: 588
 "The PSM shall use system resources efficiently and in proportion to operational demands and data size."
-* psm-IP-2.1: 39, 79*, 177, 386, 655, 571, 425, 215, 41, 29
+* psm-IP-2.1: 39, 177, 386, 655, 571, 425, 215, 41, 29
 "The PSM shall be configurable where feasible."
 * psm-IP-2.3: 92, 498, 476, 468, 34, 523
 "The PSM shall be secure from unauthorized access or use, and shall sanitize inputs and outputs where possible so as to avoid compromising itself or other systems."
-* psm-IP-3.1: 65, 554, 553, 510, 518, 467, 516, 514, 512, 508, 687, 613, 565, 517, 513, 511, 509, 507, 415
+* psm-IP-3.1: 65, 554, 553, 510, 518, 467, 516, 514, 512, 508, 687, 613, 565, 517, 513, 511, 509, 507, 415, 672
 "The PSM shall be accessible in compliance with Section 508 of the
 Rehabilitation Act."
-* psm-IP-3.2: 169, 692, 672*, 668, 622, 618, 612, 586, 566, 556, 546, 504, 454, 440, 432, 396, 378, 376, 362, 360, 354, 340, 336, 328, 308, 301, 282, 261, 238, 184, 176, 162, 158, 156, 154, 152, 108, 106, 74, 34, 659, 653, 619, 569, 539, 521, 519, 499, 455, 431, 419, 399, 375, 337, 335, 321, 319, 309, 283, 213, 163
+* psm-IP-3.2: 169, 692, 672, 668, 622, 618, 612, 586, 566, 556, 546, 504, 454, 440, 432, 396, 378, 376, 362, 360, 354, 340, 336, 328, 308, 301, 282, 261, 238, 184, 176, 162, 158, 156, 154, 152, 108, 106, 74, 34, 659, 653, 619, 569, 539, 521, 519, 499, 455, 431, 419, 399, 375, 337, 335, 321, 319, 309, 283, 213, 163
 "The PSM's user interface shall be as simple, comprehensible, navigable, reliable, robust in the face of error, and responsive as possible."
 * psm-IP-3.3: 612, 496, 174, 691
 "The PSM shall support searching and pattern-matching based on all fields accepted as input (and based on all reasonable combinations of such fields)."

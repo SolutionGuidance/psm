@@ -247,7 +247,7 @@ ISSUES: 695
 "The PSM shall automatically reject applications that do not include all
 mandatory information.";
 * psm-FR-3.13
-ISSUES: 17, 546, 446, 416, 356, 349, 289, 273, 166, 177
+ISSUES: 17, 546, 446, 416, 356, 349, 289, 273, 166, 177, 349
 "The PSM shall have the capability to track and support the screening of
 applications (and ongoing provider updates) for National Provider
 Identifier (NPIs), State licenses, Specialty Board certification as
@@ -322,7 +322,7 @@ ISSUES: 695
 "The PSM shall provide space for results of on-site visits, for
 moderate- and high-risk provider types.";
 * psm-FR-4.5
-ISSUES: 695
+ISSUES: 695, 426
 "The PSM shall support the Extract, Transform and Load (ETL) processes
 from real-time web services or batch processes.";
 * psm-FR-5.1
@@ -411,7 +411,7 @@ ISSUES: 155, 159, 195, 458, 424, 422, 406, 396, 356, 265, 405
 "The PSM shall provide per-field instructions on the application
 screen.";
 * psm-FR-7.2
-ISSUES: 458, 424, 404, 396, 389, 338, 298, 172, 154, 681, 607, 459, 439, 405, 395, 359
+ISSUES: 458, 424, 404, 396, 389, 338, 298, 172, 154, 681, 607, 459, 439, 405, 395, 359, 394
 "The PSM shall provide detailed instructions for completing the
 application via a Help link.";
 * psm-FR-7.3
@@ -633,7 +633,7 @@ retained.";
 ISSUES: 352
 "The PSM shall verify that all dates are valid and reasonable.";
 * psm-IP-1.1
-ISSUES: 5, 45, 111, 189, 482, 458, 456, 351, 350, 312, 300, 280, 254, 186, 56, 51, 19, 6, 563, 559, 395, 343, 255
+ISSUES: 5, 45, 111, 189, 482, 458, 456, 351, 350, 312, 300, 280, 254, 186, 56, 51, 19, 6, 563, 559, 395, 343, 255, 374
 "The PSM shall have an open source repository and source code base
 organized to be welcoming to outside contributors."
 * psm-IP-1.2
@@ -678,6 +678,3 @@ ISSUES: 170
 * psm-IP-4.8
 ISSUES: 528, 497, 331, 425
 "The PSM shall support provider agents (a.k.a. service agents a.k.a. non-provider users) who act on a provider's behalf and whose authorization may be a subset of that provider's."
-* psm-IP-3.7
-ISSUES: 426, 394, 374, 349
-FOR FUTURE FEATURES -- bucket for things not required for 1.0 (though some of them might be nice to have, like #394 and #374)

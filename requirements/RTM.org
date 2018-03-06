@@ -632,25 +632,25 @@ retained.";
 * psm-PH-1.4
 ISSUES: 352
 "The PSM shall verify that all dates are valid and reasonable.";
-* psm-IP-1.1
+* psm-SQ-1.1
 ISSUES: 5, 45, 111, 189, 482, 458, 456, 351, 350, 312, 300, 280, 254, 186, 56, 51, 19, 6, 563, 559, 395, 343, 255, 374
 "The PSM shall have an open source repository and source code base
 organized to be welcoming to outside contributors."
-* psm-IP-1.2
+* psm-SQ-1.2
 ISSUES: 189, 638, 604, 518, 438, 351, 304, 266, 250, 222, 218, 210, 206, 204, 194, 150, 687, 647, 629, 555, 533, 333
 "The PSM shall include and undergo automated testing at regular
 intervals, through continuous integration and deployment processes.
 The PSM shall also undergo manual testing and QA as needed."
-* psm-IP-1.3
+* psm-SQ-1.3
 ISSUES: 16, 626, 616, 582, 520, 392, 320, 252, 242, 214, 78, 36, 12, 2, 385, 219, 157, 113, 31
 "The PSM shall use modern source code dependency management techniques, and shall use up-to-date versions of upstream third-party dependencies."
-* psm-IP-1.4
+* psm-SQ-1.4
 ISSUES: 600, 472, 458, 452, 386, 370, 280, 254, 248, 188, 148, 129, 124, 73, 28, 7, 421, 381, 229
 "The PSM shall use documented build, test, release, and installation processes that are automated as much as possible, for both development and production use."
-* psm-IP-1.5
+* psm-SQ-1.5
 ISSUES: 596, 468, 208, 139, 103, 101, 26, 12, 8, 4, 653, 613, 495, 485, 399, 343, 205, 125, 57, 79
 "The PSM shall use D.R.Y. coding principles to avoid unnecessary complexity, inflexibility, redundancy, and denormalization in the source code and database schemas, and to use precise terminology in data structures and operations."
-* psm-IP-1.6
+* psm-SQ-1.6
 ISSUES: 588
 "The PSM shall use system resources efficiently and in proportion to operational demands and data size."
 * psm-II-4.5
@@ -675,6 +675,6 @@ ISSUES: 486
 * psm-FR-4.7
 ISSUES: 170
 "The PSM shall support admin-configurable automated re-screening.  C.f. psm-FR-7.3."
-* psm-IP-4.8
+* psm-FR-4.8
 ISSUES: 528, 497, 331, 425
 "The PSM shall support provider agents (a.k.a. service agents a.k.a. non-provider users) who act on a provider's behalf and whose authorization may be a subset of that provider's."

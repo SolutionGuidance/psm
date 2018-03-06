@@ -91,16 +91,10 @@
                     <div class="leftCol">
                       <div class="row">
                         <label for="listByStatusNpi">NPI/UMPI</label>
-                        <span class="floatL">
-                          <b>:</b>
-                        </span>
                         <form:input id="listByStatusNpi" path="npi" cssClass="normalInput"/>
                       </div>
                       <div class="row">
                         <label>Date Created</label>
-                        <span class="floatL">
-                          <b>:</b>
-                        </span>
                         <span class="dateWrapper floatL">
                           <form:input title="Create Start" path="createDateStart" cssClass="date" readonly=""/>
                         </span>
@@ -115,9 +109,6 @@
                     <div class="rightCol">
                       <div class="row">
                         <label for="listByStatusRequestTypes">Request Type</label>
-                        <span class="floatL">
-                          <b>:</b>
-                        </span>
                         <form:select id="listByStatusRequestTypes" path="requestTypes" cssClass="longSelect" multiple="false">
                           <form:option value="">All</form:option>
                           <form:option value="Enrollment">Enrollment</form:option>
@@ -128,9 +119,6 @@
                       </div>
                       <div class="row">
                         <label>Status Date</label>
-                        <span class="floatL">
-                          <b>:</b>
-                        </span>
                         <span class="dateWrapper floatL">
                           <form:input title="Status Start" path="statusDateStart" cssClass="date" readonly=""/>
                         </span>

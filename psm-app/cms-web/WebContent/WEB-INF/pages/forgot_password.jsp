@@ -42,10 +42,6 @@
                   <div class="wholeCol">
                     <div class="row">
                       <label for="forgotPasswordUsername">Username<span class="required">*</span></label>
-                      <span class="floatL">
-                        <b>:</b>
-                      </span>
-
                       <c:set var="errorCls" value=""/>
                       <spring:bind path="username">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
@@ -54,10 +50,6 @@
                     </div>
                     <div class="row">
                       <label for="forgotPasswordEmail">Email<span class="required">*</span></label>
-                      <span class="floatL">
-                        <b>:</b>
-                      </span>
-
                       <c:set var="errorCls" value=""/>
                       <spring:bind path="email">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>

@@ -1,9 +1,6 @@
 <%--
-    JSP Fragment for provider dashboard filter.
-
-    @author j3_guile
-    @version 1.0
- --%>
+  The filter panel for the provider login > Dashboard page.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -20,12 +17,10 @@
         <div class="leftCol">
             <div class="row">
                 <label for="dashboardFilterNpi">NPI/UMPI</label>
-                <span class="floatL"><b>:</b></span>
                 <form:input id="dashboardFilterNpi" path="npi" cssClass="normalInput"/>
             </div>
             <div class="row">
                 <label for="dashboardFilterRequestTypes">Request Type</label>
-                <span class="floatL"><b>:</b></span>
                 <form:select id="dashboardFilterRequestTypes" path="requestTypes" cssClass="longSelect" multiple="false">
                     <form:option value="">All</form:option>
                     <form:option value="Enrollment">Enrollment</form:option>
@@ -36,7 +31,6 @@
             </div>
             <div class="row">
                 <label>Date Submitted</label>
-                <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
                     <form:input title="Submission Start" path="submissionDateStart" cssClass="date" readonly=""/>
                 </span>
@@ -49,7 +43,6 @@
         <div class="rightCol">
             <div class="row">
                 <label for="dashboardFilterStatuses">Status</label>
-                <span class="floatL"><b>:</b></span>
                 <form:select id="dashboardFilterStatuses" path="statuses" cssClass="longSelect" multiple="false">
                     <form:option value="">All</form:option>
                     <form:option value="Draft">Draft</form:option>
@@ -60,7 +53,6 @@
             </div>
             <div class="row">
                 <label for="dashboardFilterRiskLevel">Risk Level</label>
-                <span class="floatL"><b>:</b></span>
                 <form:select id="dashboardFilterRiskLevel" path="riskLevel" cssClass="longSelect">
                     <form:option value="">All</form:option>
                     <form:option value="NULL">Not screened yet</form:option>
@@ -71,7 +63,6 @@
             </div>
             <div class="row">
                 <label>Status Date</label>
-                <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
                     <form:input title="Status Start" path="statusDateStart" cssClass="date" readonly=""/>
                 </span>

@@ -8,7 +8,7 @@
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
-  <c:set var="title" value="Enrollment"/>
+  <c:set var="title" value="Review Enrollment"/>
   <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
@@ -49,7 +49,9 @@
                       <tr>
                         <td>NPI LOOKUP</td>
                         <td>${model.enrollment.providerInformation.NPI}</td>
-                        <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=NPI LOOKUP&id=${id}" target="_blank">
+                        <td><a class="autoScreeningResultLink"
+                              href="${ctx}/agent/enrollment/autoScreeningResult?type=NPI LOOKUP&id=${id}"
+                              target="_blank">
                             <c:choose>
                             <c:when test="${empty verification.NPILookup}">
                               Not performed
@@ -72,7 +74,9 @@
                       <tr>
                         <td>SSN DMF VERIFICATION</td>
                         <td>${model.enrollment.providerInformation.applicantInformation.personalInformation.socialSecurityNumber}</td>
-                        <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=SSN DMF VERIFICATION&id=${id}" target="_blank">
+                        <td><a class="autoScreeningResultLink"
+                              href="${ctx}/agent/enrollment/autoScreeningResult?type=SSN DMF VERIFICATION&id=${id}"
+                              target="_blank">
                             <c:choose>
                             <c:when test="${empty verification.socialSecurityNumber}">
                               Not performed
@@ -95,7 +99,9 @@
                       <tr>
                         <td>NPI PECOS VERIFICATION</td>
                         <td>${model.enrollment.providerInformation.NPI}</td>
-                        <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=NPI PECOS VERIFICATION&id=${id}" target="_blank">
+                        <td><a class="autoScreeningResultLink"
+                              href="${ctx}/agent/enrollment/autoScreeningResult?type=NPI PECOS VERIFICATION&id=${id}"
+                              target="_blank">
                             <c:choose>
                             <c:when test="${empty verification.NPI}">
                               Not performed
@@ -118,7 +124,9 @@
                       <tr>
                         <td>EXCLUDED PROVIDER VERIFICATION IN OIG (checked means not in exclusion list)</td>
                         <td></td>
-                        <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=EXCLUDED PROVIDERS&id=${id}" target="_blank">
+                        <td><a class="autoScreeningResultLink"
+                              href="${ctx}/agent/enrollment/autoScreeningResult?type=EXCLUDED PROVIDERS&id=${id}"
+                              target="_blank">
                           <c:choose>
                           <c:when test="${empty verification.nonExclusion}">
                             Not performed
@@ -141,7 +149,9 @@
                       <tr>
                         <td>EXCLUDED PROVIDER VERIFICATION IN SAM (checked means not in exclusion list)</td>
                         <td></td>
-                        <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=SAM EXCLUDED PROVIDERS&id=${id}" target="_blank">
+                        <td><a class="autoScreeningResultLink"
+                              href="${ctx}/agent/enrollment/autoScreeningResult?type=SAM EXCLUDED PROVIDERS&id=${id}"
+                              target="_blank">
                           <c:choose>
                           <c:when test="${empty verification.SAMNonExclusion}">
                             Not performed
@@ -187,7 +197,9 @@
                             <a href="${downloadLink}">View</a>
 
                           </td>
-                          <td><a href="${ctx}/agent/enrollment/autoScreeningResult?type=LICENSE VERIFICATION&id=${id}&licenseId=${license.objectId}" target="_blank">
+                          <td><a class="autoScreeningResultLink"
+                                href="${ctx}/agent/enrollment/autoScreeningResult?type=LICENSE VERIFICATION&id=${id}&licenseId=${license.objectId}"
+                                target="_blank">
                             <c:choose>
                             <c:when test="${empty license.verified}">
                               Not performed

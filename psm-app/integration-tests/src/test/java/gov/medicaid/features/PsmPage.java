@@ -4,6 +4,7 @@ import com.deque.axe.AXE;
 import net.thucydides.core.pages.PageObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -31,6 +32,12 @@ public class PsmPage extends PageObject {
 
     public void click$(String selector) {
         click($(selector));
+    }
+
+    public WebElement getTableRowForProviderType(String providerType) {
+        WebElement td = $("//td[contains(text(),'" + providerType + "')]");
+        WebElement row = td.findElement(By.xpath(".."));
+        return row;
     }
 
     public void checkAccessibility() {

@@ -266,7 +266,7 @@ $(document).ready(function () {
   });
 
   //new script
-  $('.stepWidget .lastSetp').css('width', $('.stepWidget').width() - $('.stepWidget .presonal').width() - $('.stepWidget .license').width() - $('.stepWidget .practice').width() - $('.stepWidget .payment').width() - $('.stepWidget .summary').width() - 2);
+  $('.stepWidget .lastStep').css('width', $('.stepWidget').width() - $('.stepWidget .personal').width() - $('.stepWidget .license').width() - $('.stepWidget .practice').width() - $('.stepWidget .payment').width() - $('.stepWidget .summary').width() - 2);
 
   //Save As Above
   $('#sameAsAbove').live('click', function () {

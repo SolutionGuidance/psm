@@ -30,16 +30,16 @@ public class ProviderStatementPage extends PsmPage {
     }
 
     public void enterProviderName(String providerName) {
-        $("[name=_08_name]").type(providerName);
+        $("[name=_08_name], [name=_19_name]").type(providerName);
     }
 
     public void enterProviderTitle(String providerTitle) {
-        $("[name=_08_title]").type(providerTitle);
+        $("[name=_08_title], [name=_19_title]").type(providerTitle);
     }
 
     public void enterValidDate() {
         String currentDate = LocalDate.now().format(DATE_FORMATTER);
-        $("[name=_08_date]").type(currentDate);
+        $("[name=_08_date], [name=_19_date]").type(currentDate);
     }
 
     public void clickSubmitButton() {

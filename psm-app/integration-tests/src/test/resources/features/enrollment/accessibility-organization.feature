@@ -47,3 +47,10 @@ Feature: Organization Enrollment Steps Accessibility Checks
     Given I have started an enrollment
     When I am on the organization provider statement page
     Then I should have no accessibility issues
+
+  Scenario: Organization Submit Enrollment Modal
+    Given I have started an enrollment
+    And I am on the organization provider statement page
+    When I enter my organization provider statement
+    And I submit the enrollment
+    Then I should have no accessibility issues

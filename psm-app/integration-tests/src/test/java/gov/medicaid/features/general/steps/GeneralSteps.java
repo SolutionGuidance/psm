@@ -1,18 +1,28 @@
 package gov.medicaid.features.general.steps;
 
+import gov.medicaid.features.PsmPage;
 import gov.medicaid.features.general.ui.DashboardPage;
 import gov.medicaid.features.general.ui.LoginPage;
 import gov.medicaid.features.general.ui.MyProfilePage;
 import gov.medicaid.features.general.ui.UpdatePasswordPage;
 import net.thucydides.core.annotations.Step;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SuppressWarnings("unused")
 public class GeneralSteps {
 
+    private PsmPage psmPage;
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
     private MyProfilePage profilePage;
     private UpdatePasswordPage updatePasswordPage;
+
+    @Step
+    public void clickLinkAssertTitle(String selector, String title) {
+        psmPage.click$(selector);
+        assertThat(psmPage.getTitle()).contains(title);
+    }
 
     @Step
     public void navigateToRegisterNewAccountPage() {

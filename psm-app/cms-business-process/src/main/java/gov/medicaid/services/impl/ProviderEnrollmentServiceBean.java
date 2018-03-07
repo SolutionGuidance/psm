@@ -407,22 +407,27 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         return saveTicket(user, ticket, true);
     }
 
-    /**
-     * Retrieves the ticket details (full).
-     *
-     * @param user     the user getting the ticket.
-     * @param ticketId the ticket to get the details for
-     * @return the complete ticket and provider profile
-     * @throws PortalServiceException for any errors encountered
-     */
     @Override
     public Enrollment getTicketDetails(
             CMSUser user,
             long ticketId
     ) throws PortalServiceException {
         checkTicketEntitlement(user, ticketId);
+
         Enrollment ticket = getEm().find(Enrollment.class, ticketId);
-        ticket.setDetails(getProviderDetailsByTicket(ticketId, true).clone());
+        if (ticket == null) {
+            return null;
+        }
+
+        ProviderProfile providerProfile = getProviderDetailsByTicket(
+                ticketId,
+                true
+        );
+        if (providerProfile == null) {
+            return null;
+        }
+
+        ticket.setDetails(providerProfile);
         return ticket;
     }
 

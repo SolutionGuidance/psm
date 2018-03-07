@@ -27,7 +27,8 @@ ext.libs = [
     commons_fileupload: 'commons-fileupload:commons-fileupload:1.3.3',
     commons_io: 'commons-io:commons-io:2.6',
     commons_lang3: 'org.apache.commons:commons-lang3:3.7',
-    hapi_fhir: "ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:${hapi_fhir_version}",
+    hapi_fhir_client: "ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:${hapi_fhir_version}",
+    hapi_fhir_server: "ca.uhn.hapi.fhir:hapi-fhir-server:${hapi_fhir_version}",
     hapi_fhir_structures: "ca.uhn.hapi.fhir:hapi-fhir-structures-dstu3:${hapi_fhir_version}",
     handlebars: 'com.github.jknack:handlebars:4.0.6',
     handlebars_springmvc: 'com.github.jknack:handlebars-springmvc:4.0.6',
@@ -138,7 +139,7 @@ project(':cms-business-process') {
         compile libs.commons_codec
         compile libs.commons_io
         compile libs.commons_lang3
-        compile libs.hapi_fhir
+        compile libs.hapi_fhir_client
         compile libs.hapi_fhir_structures
         compile libs.jbpm_human_task_core
         compile libs.openpdf
@@ -176,6 +177,8 @@ project(':cms-web') {
         providedCompile fileTree(dir: 'WebContent/WEB-INF/lib')
         frontend project(path: ':frontend', configuration: 'javascript')
         userdocs project(path: ':userhelp', configuration: 'html')
+        compile libs.hapi_fhir_server
+        compile libs.hapi_fhir_structures
         compile libs.spring_beans
         compile libs.spring_ldap
         compile libs.spring_security_acl
@@ -268,7 +271,8 @@ project(':cms-portal-services') {
         earlib libs.commons_fileupload
         earlib libs.commons_io
         earlib libs.commons_lang3
-        earlib libs.hapi_fhir
+        earlib libs.hapi_fhir_client
+        earlib libs.hapi_fhir_server
         earlib libs.hapi_fhir_structures
         earlib libs.jbpm_human_task_core
         earlib libs.jbpm_persistence_jpa

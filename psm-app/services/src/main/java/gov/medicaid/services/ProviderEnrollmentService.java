@@ -194,7 +194,7 @@ public interface ProviderEnrollmentService {
      *
      * @param user     the user getting the ticket.
      * @param ticketId the ticket to get the details for
-     * @return the complete ticket and provider profile
+     * @return the complete ticket and provider profile, or null if not found
      * @throws PortalServiceException for any errors encountered
      */
     Enrollment getTicketDetails(

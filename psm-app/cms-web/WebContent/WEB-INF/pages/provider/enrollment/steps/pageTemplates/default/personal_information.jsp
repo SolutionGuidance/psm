@@ -19,60 +19,62 @@
             <div class="row requireField">
                 <c:set var="formName" value="_02_firstName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="firstName">First Name</label>
-                <span class="floatL"><b>:</b></span>
+                <label for="firstName">
+                  First Name
+                  <span class="required">*</span>
+                </label>
                 <input type="text" class="normalInput" id="firstName" name="${formName}" value="${formValue}" maxlength="45"/>
-                <span class="required">*</span>
             </div>
             <div class="row">
                 <c:set var="formName" value="_02_middleName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="middleName">Middle Name</label>
-                <span class="floatL"><b>:</b></span>
                 <input type="text" class="normalInput" id="middleName" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row requireField">
                 <c:set var="formName" value="_02_lastName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Last Name</label>
-                <span class="floatL"><b>:</b></span>
+                <label for="${formIdPrefix}_${formName}">
+                  Last Name
+                  <span class="required">*</span>
+                </label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
-                <span class="required">*</span>
             </div>
             <div class="row requireField">
                 <%-- BUGR-9673 (optional NPI for some provider types) --%>
                 <c:set var="formName" value="_02_npi"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}"><abbr title="National Provider Identifier">NPI</abbr>
-                       <span><a href="javascript:" class="NPIdefinition">?</a></span>
+                <label for="${formIdPrefix}_${formName}">
+                  <abbr title="National Provider Identifier">NPI</abbr>
+                  <span class="required">${requireNPI ? '*' : ''}</span>
+                  <span><a href="javascript:" class="NPIdefinition">?</a></span>
                 </label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
-                <span class="required">${requireNPI ? '*' : ''}</span>
             </div>
             <div class="row requireField">
                 <c:set var="formName" value="_02_ssn"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Social Security Number</label>
-                <span class="floatL"><b>:</b></span>
+                <label for="${formIdPrefix}_${formName}">
+                  Social Security Number
+                  <span class="required">*</span>
+                </label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
-                <span class="required">*</span>
             </div>
             <div class="row requireField">
                 <c:set var="formName" value="_02_dob"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Date of Birth</label>
-                <span class="floatL"><b>:</b></span>
+                <label for="${formIdPrefix}_${formName}">
+                  Date of Birth
+                  <span class="required">*</span>
+                </label>
                 <span class="dateWrapper floatL">
                     <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}" maxlength="10"/>
-                    <span class="required">*</span>
                 </span>
             </div>
             <div class="row">
                 <c:set var="formName" value="_02_email"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="emailAddress">Email Address</label>
-                <span class="floatL"><b>:</b></span>
                 <input id="emailAddress" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="50"/>
             </div>
             <div class="clearFixed"></div>
@@ -97,23 +99,22 @@
             <div class="row requireField">
                 <c:set var="formName" value="_02_contactName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="contactName">Contact Name</label>
-                <span class="floatL"><b>:</b></span>
+                <label for="contactName">
+                  Contact Name
+                  <span class="required">*</span>
+                </label>
                 <input id="contactName" ${disableContact} type="text" class="${disableContact} normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
-                <span class="required">*</span>
             </div>
             <div class="row">
                 <c:set var="formName" value="_02_contactEmail"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="contactEmail">Contact Email Address</label>
-                <span class="floatL"><b>:</b></span>
                 <input id="contactEmail" ${disableContact} type="text" class="${disableContact} normalInput" name="${formName}" value="${formValue}" maxlength="50"/>
             </div>
             <div class="row">
                 <c:set var="formName" value="_02_contactPhone1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label>Contact Phone Number</label>
-                <span class="floatL"><b>:</b></span>
                 <input ${disableContact}
                     id="contactPhone1"
                     type="text"

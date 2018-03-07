@@ -9,7 +9,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
-  <c:set var="title" value="Functions (Service Admin)"/>
+  <c:set var="title" value="Agreements & Addendums - Functions (Service Admin)"/>
   <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
@@ -172,7 +172,7 @@
                                 <span class="sep">|</span>
                                 <c:choose>
                                 <c:when test="${item.canDelete}"><a rel="${item.id}" href="javascript:;" class="deleteAgreementDocumentBtn">Delete</a></c:when>
-                                <c:otherwise><a style="text-decoration: none;color: gray" href="javascript:;" class="disabledBtn">Delete</a></c:otherwise>
+                                <c:otherwise><a href="javascript:;" class="disabledBtn">Delete</a></c:otherwise>
                                 </c:choose>
                               </td>
                             </tr>

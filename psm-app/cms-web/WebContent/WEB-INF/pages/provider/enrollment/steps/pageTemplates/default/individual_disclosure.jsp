@@ -134,7 +134,6 @@
             <div class="row">
                 <label>Provider Name<span
                     class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName"
                     value="_08_name"></c:set>
                 <c:set var="formValue"
@@ -149,8 +148,6 @@
             <div class="row titleRow">
                 <label>Provider Title<span
                     class="required">*</span></label>
-                <span
-                    class="floatL"><b>:</b></span>
                 <c:set var="formName"
                     value="_08_title"></c:set>
                 <c:set var="formValue"
@@ -220,7 +217,6 @@
             <div class="row">
                 <label>Date<span
                     class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper">
                     <c:set var="formName"
                         value="_08_date"></c:set>

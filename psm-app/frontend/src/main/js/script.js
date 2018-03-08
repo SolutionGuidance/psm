@@ -1952,8 +1952,8 @@ $(document).ready(function () {
     $(html).attr('alt', '').attr('title', '');
   });
 
-  /*show definitions modal*/
-  $('a.definition').live('click', function () {
+  /*show ownership type definitions modal*/
+  $('a.ownershipTypeDefinition').click(function () {
     addressLoadModal('#definitionsModal');
   });
 

@@ -80,7 +80,7 @@
                 <label for="${formIdPrefix}_${formName}">
                   Type
                   <span class="required">*</span>
-                  <a href="javascript:" class="definition">?</a>
+                  <a href="javascript:" class="userHelpLink ownershipTypeDefinition">?</a>
                 </label>
                 <span class="floatL"><b>:</b></span>
                 <select id="${formIdPrefix}_${formName}" class="ownershipType" name="${formName}">
@@ -357,7 +357,7 @@
                 <label for="${formIdPrefix}_${formName}">
                   Type
                   <span class="required">*</span>
-                  <a href="javascript:" class="definition">?</a>
+                  <a href="javascript:" class="userHelpLink ownershipTypeDefinition">?</a>
                 </label>
                 <span class="floatL"><b>:</b></span>
                 <select id="${formIdPrefix}_${formName}" class="businessOwnershipType" name="${formName}">
@@ -576,7 +576,7 @@
                 <label for="${formIdPrefix}_${formName}">
                   Type
                   <span class="required">*</span>
-                  <a href="javascript:" class="definition">?</a>
+                  <a href="javascript:" class="userHelpLink ownershipTypeDefinition">?</a>
                 </label>
                 <span class="floatL"><b>:</b></span>
                 <select id="${formIdPrefix}_${formName}" class="businessOwnershipType" name="${formName}">
@@ -783,7 +783,7 @@
                 <label for="${formIdPrefix}_${formName}">
                   Type
                   <span class="required">*</span>
-                  <a href="javascript:" class="definition">?</a>
+                  <a href="javascript:" class="userHelpLink ownershipTypeDefinition">?</a>
                 </label>
                 <span class="floatL"><b>:</b></span>
                 <select id="${formIdPrefix}_${formName}" class="ownershipType" name="${formName}">

@@ -39,7 +39,11 @@
                     <div class="row requireField">
                         <c:set var="formName" value="_15_npi"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <label for="${formIdPrefix}_${formName}">NPI<span class="required">*</span></label>
+                        <label for="${formIdPrefix}_${formName}">
+                          <abbr title="National Provider Identifier">NPI</abbr>
+                          <span class="required">*</span>
+                          <a href="javascript:" class="userHelpLink NPIdefinition">?</a>
+                        </label>
                         <span class="floatL"><b>:</b></span>
                         <input id="{formIdPrefix}_${formName}" type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
                     </div>
@@ -180,7 +184,11 @@
                     <div class="row requireField">
                         <c:set var="formName" value="_15_npi"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <label for="{formIdPrefix}_${formName}">NPI<span class="required">*</span></label>
+                        <label for="{formIdPrefix}_${formName}">
+                          <abbr title="National Provider Identifier">NPI</abbr>
+                          <span class="required">*</span>
+                          <a href="javascript:" class="userHelpLink NPIdefinition">?</a>
+                        </label>
                         <span class="floatL"><b>:</b></span>
                         <input id="{formIdPrefix}_${formName}" type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
                     </div>
@@ -528,7 +536,11 @@
                         <c:otherwise>
                             <c:set var="formName" value="_15_npi"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <label for="{formIdPrefix}_${formName}">NPI <c:if test="${requireNPI}"><span class="required">*</span></c:if></label>
+                            <label for="{formIdPrefix}_${formName}">
+                              <abbr title="National Provider Identifier">NPI</abbr>
+                              <c:if test="${requireNPI}"><span class="required">*</span></c:if>
+                              <a href="javascript:" class="userHelpLink NPIdefinition">?</a>
+                            </label>
                             <span class="floatL"><b>:</b></span>
                             <input id="{formIdPrefix}_${formName}" type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
                         </c:otherwise>

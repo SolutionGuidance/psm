@@ -1,6 +1,84 @@
    Scripts for live demonstrations of the PSM to various audiences.
    ================================================================
 
+* For state call [2018-03-08 Thu]
+  - Kate from LA DOH
+
+  - As always, I need to remind you all that this software is in
+    progress and we know it has bugs.  I hope not to find any in this
+    demo, but if we do try not to be too alarmed. :)
+
+
+  - Log in as "provider1"
+  - Discuss the dashboard
+    - Our test provider is fairly unusual, in that they have submitted
+      many different applications with different NPIs.  This is unlikely
+      to happen in real life, but makes them useful for our purposes.
+    - Can see "status" of different applications
+    - Risk level is assigned after they're submitted, based on the
+      provider type of the application
+      - Later we expect to do more sophisticated risk scoring, based on
+        history of fraud, etc.  Right now this is based on CMS' risk
+        levels for different provider types.  As you know, risk score
+        has implications for the level of screening that an applicant
+        needs to go through.
+
+  - Some of the a11y (section 508) changes that are visible to us are
+    the changes to contrast in the menu headers
+
+  - Enrollments tab
+    - See the status of different applications as they move through the process
+  - Nurse Practitioner enrollment (1234567893)
+    - Take us back through the forms to the beginning
+    - This is an individual provider type, so the forms are relatively
+      simple
+      - name, NPI, etc
+      - Change DOB to be 2005 and see the error
+      - Can upload license file
+    - Note practice lookup / connection to another practice
+    - At the end of the form, attest that they haven't broken any laws,
+      sign electronically, and submit (but I'm not actually going to do
+      that)
+  - DME (1111111112)
+    - Jump straight to organizational information page
+    - I wanted to show an application for an entity with multiple owners
+      because I know this is sometimes an area of concern for states
+    - Note that you can enter multiple individual and organizational
+      owners, managers, and subcontractors
+    - I'm not going to click through it all, but there are similar
+      summary and signing pages for this version of the application
+
+  - Pause for questions before I move on to the state reviewer side of
+    the application.
+
+  - As admin
+    - So now we're a person on the state side, looking at the entered
+      applications in order to review them
+    - Again we have a dashboard
+    - You can see the two draft enrollments that we just worked on:
+      nurse practitioner and durable medical equipment
+    - Point out the search (still in progress)
+    - Navigate to "enrollments"
+      - draft might be useful in case someone calls in and says they're
+        confused, you can look at their form and help them see what's
+        going wrong
+      - Pending
+        - Cecilia Test -- review
+        - Talk through the errors at the top of the screen
+          - 
+        - Click through to LEIE result
+          - This is really cool!  What we're doing here is pulling in
+            the LEIE and automatically looking for this provider in the
+            list of excluded providers based on their NPI.  In the
+            future we expect to do more sophisticated searching and
+            pattern-matching, but for now we can check whether a given
+            NPI has been excluded without needing a person to manually
+            look.  This is the goal for all of these federal databases.
+
+        - Possibly show the license by showing in folder?  (Maybe not,
+          because it might be wonky with the screenshare)
+          - 
+
 * For MESC 2017  (`wip-leie` branch as of 7 August 2017)
 
   Use demo.psm.solutionguidance.com or a local copy.

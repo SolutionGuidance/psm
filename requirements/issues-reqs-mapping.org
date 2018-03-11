@@ -3,6 +3,11 @@ convenient format for scanning issues so we can associate them with
 RTM requirement IDs.  Once an issue is assigned to the appropriate
 req(s), please flip "TODO" -> "DONE".
 
+NOTE (2018-03-11): This mapping will need to be be redone to take
+hidden-RTM-rows.org into account.  However, many (most?) of the reqs
+assignments here are probably correct, so the second pass should be
+faster than the first.
+
 We include the initial description below, but not all subsequent comments.
 
 * DONE [[https://github.com/solutionguidance/psm/issues/692][692]]   (open): Action column may wrap to two lines

@@ -1,0 +1,30 @@
+The columns across *.csv are all the same:
+
+  1: Requirement ID Number
+  2: Requirement Category
+  3: Requirement Statement
+  4: Priority
+  5: Rank
+  6: Source
+  7: Source Document
+  8: Release
+  9: Design Reference
+ 10: Acceptance Test Reference
+ 11: Comment
+
+We used CSVkit (https://csvkit.readthedocs.io/en/1.0.3/) to get them:
+
+  $ git clone https://github.com/wireservice/csvkit
+  $ cd csvkit
+  $ python3 -m venv env
+  $ source env/bin/activate
+  (env)$ pip3 install .
+  (env)$ cd wherever_the_csv_files_are
+  (env)$ csvcut -n reqs-fr.csv
+
+To verify that all the CSV files have the same columns, we made sure
+the second command below gives no output:
+
+  (env)$ for name in reqs-??.csv; do csvcut -n "${name}" > "${name}".cols; done
+  (env)$ for name in *.cols; do diff -u reqs-fr.csv.cols "${name}"; done
+  (env)$ rm *.cols

@@ -1,0 +1,23 @@
+Requirement ID Number,Requirement Category,Requirement Statement,Priority,Rank,Source,Source Document,Release,Design Reference,Acceptance Test Reference,Comment
+,1.  IA Component Name:  Conceptual Data Model (CDM),,,,,,,,,
+psm-IA-1.1,,The PSM shall demonstrate adoption of a CDM that depicts the business area high-level data and general relationships for intrastate exchange.,,,IA.CDM.1,,Beta,,,Evidence: CDM documentation
+psm-IA-1.2,,The PSM shall identify relationships between the PSM and other key entities in the Medicaid enterprise.,,,IA.CDM.2,,Post R1,,,
+,2.  IA Component Name:  Data Management Strategy (DMS),,,,,,,,,
+psm-IA-2.1,,"The PSM shall demonstrate the adoption of an intrastate metadata repository and contribute to the agency definition of the data entities, attributes, data models, and relationships sufficiently to convey the overall meaning and use of Medicaid data and information.",,,IA.DMS.2,,Release 1,,,
+psm-IA-2.2,,"The PSM shall update all historical claim data, recipient enrollment, provider enrollment, and other primary reference data on a scheduled basis.",,,IA.DMS.5,,Alpha,,,
+,3.  IA Component Name:  Data Standards (DS),,,,,,,,,
+psm-IA-3.1,,"The PSM shall, at a minimum, support transfer of provider screening data to and from MMIS and other entities.",,,IA.DS.10,,Beta,,,
+psm-IA-3.2,,"The PSM shall support consumption of data in multiple formats from many sources, such as vital statistics, MCO encounter data, benefit manager encounter data (pharmacy, dental, mental health), waiver program data, and census bureau.",1,High ,IA.DS.11,,MVP - Sept,,,Evidence: demonstrated by interfacing with LEIE data
+psm-IA-3.3,,"The PSM shall require, capture, and maintain the 10-digit national provider identifier.",1,Low,IA.DS.13,,MVP - Sept,,,
+psm-IA-3.4,,The PSM shall accept the national provider identifier in all standard electronic transactions mandated under HIPAA.,,,IA.DS.14,,Post R1,,,N/A
+psm-IA-3.5,,The PSM shall interface with the National Plan and Provider Enumerator System (NPPES) to verify the NPI of provider applicants.,,,IA.DS.15,,Beta,,,
+psm-IA-3.6,,The PSM shall not allow atypical providers to be assigned numbers that duplicate any number assigned by the NPPES.,,,IA.DS.16,,Alpha,,,
+psm-IA-3.7,,"The PSM shall provide the ability to link and de-link to other Medicaid provider IDs for the same provider, (e.g., numbers used before the NPI was established, erroneously issued prior numbers, multiple NPIs for different subparts, etc.). Captures/crosswalks subpart NPIs used by Medicare (but not Medicaid) to facilitate coordination of benefits (COB) claims processing.",,,IA.DS.17,,Post R1,,,
+psm-IA-3.8,,The PSM shall be capable of or support the production of a random sample of data that would be needed for audit purposes based on the state-established selection criteria. ,,,IA.DS.18, ,Post R1,,,
+psm-IA-3.9,,The PSM shall comply with the SMA's standardized structure and vocabulary data for automated electronic intrastate interchanges and interoperability.,,,IA.DS.9,,Alpha,,,
+,4.  IA Component Name:  Logical Data Model (LDM),,,,,,,,,
+psm-IA-4.1,,"The PSM shall support a  Logical Data Model (LDM) in the  identification of data classes, attributes, relationships, standards, and code sets for intrastate exchange.",,,IA.LDM.5,,MVP - Dec,,,
+psm-IA-4.2,,"The PSM shall maintain providers' data (e.g., links from providers to other entities, such as groups, managed care organizations, chains, networks, ownerships, and partnerships).",,,IA.LDM.6,,Alpha,,,
+psm-IA-4.3,,The PSM shall verify that all fields defined as numeric contain only numeric data.,4,Medium,TA.SP.1, ,MVP - Sept,,,
+psm-IA-4.4,,The PSM shall verify that all fields defined as alphabetic contain only alphabetic data.,4,Medium,TA.SP.2,,MVP - Sept,,,
+,,,,,,How do PSM interface to NPI?,,,,

@@ -1,0 +1,14 @@
+Requirement ID Number,Requirement Category,Requirement Statement,Priority,Rank,Source,Source Document,Release,Design Reference,Acceptance Test Reference,Comment
+,1.  S&C:  Business Results Condition,,,,,,,,,
+psm-SA-1.1,,"The PSM shall accommodate customer preferences for communications by email, text, mobile devices, or phones.",,,S&C.BRC.5,,Post R1,,,
+,2.  S&C:  Industry Standards Condition,,,,,,,,,
+psm-SA-2.1,,The PSM shall comply with standards and protocols adopted by the Secretary under sections 1104 and 1561 of the Affordable Care Act. ,,,S&C.ISC.6,,Release 1,,,N/A - 1104 and 1561 are for individuals and not providers
+,3.  S&C:  Interoperability Condition,,,,,,,,,
+psm-SA-3.1,,"The PSM shall support the architecture adopted to preserve the ability to efficiently, effectively, and appropriately exchange data with other participants in the health and human services enterprise.",,,S&C.IC.6,,MVP - Dec,,,Satified with the API requirements
+,4.  S&C:  Modularity Standard,,,,,,,,,
+psm-SA-4.0,,The PSM shall use regionally standardized business rule definitions in both human and machine-readable formats.,,,S&C.MS.10,,,,,No in the pre-cert check list but PSM will do this
+psm-SA-4.1,,The PSM shall contain modules that can be interchanged without major system design.,2,Medium,S&C.MS.14,,MVP - Sept,,,Evidence: have an architecture diagram showing rules engine is an separate component
+psm-SA-4.2,,The PSM shall use an intrastate rules engine separate from core programming with established interstate standardized business rules definitions.,2,Medium,S&C.MS.16,,MVP - Sept,,,Evidence: have an architecture diagram showing rules engine is an separate component
+psm-SA-4.3,,"The PSM design documents shall utilize a widely supported modeling language (e.g., UML, BPMN).",,,S&C.MS.18,,MVP - Dec,,,
+psm-SA-4.4,,The PSM shall support open standards between key interfaces have been considered for all and chosen where feasible.,1,Medium,S&C.MS.2,,MVP - Sept,,,
+psm-SA-4.5,,The PSM shall support Modularity verification through extensive testing that demonstrates compliance with  chosen interface standards and specifications.,,,S&C.MS.4,,Release 1,,,

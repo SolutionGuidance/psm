@@ -1,5 +1,40 @@
 # Requirements
 
+What's here:
+
+* RTM.xlsx
+  Requirements Traceability Matrix: master spreadsheet of all requirements.
+
+* RTM.org
+  An initial export to Org Mode format (but missing some hidden rows).
+
+* hidden-RTM-rows.org
+  The remainder of the Org Mode export (see above).
+  This should probably be unified into RTM.org soon.
+  Here's how you know that this file and RTM.org have different reqs:
+
+          $ grep -E "^\* psm-" hidden-RTM-rows.org | cut -c 3- > hidden-reqs
+          $ grep -E "^\* psm-" RTM.org | cut -c 3- > non-hidden-reqs
+          $ sort hidden-reqs > h.tmp; mv h.tmp hidden-reqs
+          $ sort non-hidden-reqs > n.tmp; mv n.tmp non-hidden-reqs
+          $ comm -1 -2 hidden-reqs non-hidden-reqs 
+          $ diff -u hidden-reqs non-hidden-reqs 
+          $ rm hidden-reqs non-hidden-reqs 
+
+* issues-reqs-mapping.org
+  The master mapping between issues and requirements.
+  Once completed, the mapping is uploaded into the PSM 
+  issue tracker using ots-tools/github-tools/gh-sak.
+
+* csv-exports/*.csv
+  CSV files for each reqs category (FR, II, IA, etc).
+  (Karl's using these to build some helper tools for the mapping work.)
+
+* csv-exports/columns.txt
+  Lists the columns (which are the same across all the CSV files).
+
+## Sources of requirements
+
 Requirements documents related to the PSM that have been shared with the
 project by various states and agencies.
 

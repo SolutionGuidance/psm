@@ -14,7 +14,7 @@
 "The PSM shall conform to usability and design standards set by the state. This includes aesthetics, consistency in the user interface, and visual quality of the interfaces."
 
 Comment: "N/A"
-* "psm-AD-2.4"
+* psm-AD-2.4
 "The PSM shall fully comply with section 508 accessibility." 
 * psm-AD-3.1
 "The PSM shall support retrieval and presentation of data associated with geographic indicators such as state, county, and zip code." 
@@ -65,8 +65,6 @@ COMMENT: "N/A"
 "The PSM shall support the state policy to disable account due to invalid login attempts." 
 * psm-AD-5.16
 "The PSM shall enforce a sufficient level of authentication / identification against fraudulent transmission and imitative communications deceptions by validating the transmission, message, station or individual." 
-* psm-AD-5.18
-"The PSM shall be secure from unauthorized access or use, and shall sanitize inputs and outputs where possible so as to avoid compromising itself or other systems." 
 * psm-IA-1.1
 "The PSM shall demonstrate adoption of a CDM that depicts the business area high-level data and general relationships for intrastate exchange." 
 

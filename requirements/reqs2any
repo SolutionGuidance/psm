@@ -24,7 +24,8 @@ Usage:
   $ reqs2any [ --output=OUTPUT_FORMAT ] CSV_FILE
 
 Convert a single CVS file of requirements to OUTPUT_FORMAT, which
-defaults to "elisp".
+defaults to "elisp".  (WIP: The "elisp" output format is not
+implemented yet, so for now just print a human-readable listing.)
 """
 
 import csv
@@ -162,9 +163,23 @@ def main():
 
     headers = next(csv_reader)
 
+    current_category = None
     for row in csv_reader:
-        # TODO: DTRT with the category-only rows.
-        reqs.append(Requirement(family, *row))
+        if row[1] != "":    # this is a category row
+            if row[0] != "":
+                sys.stderr.write("WARNING: category '%s' and req '%s' in same row\n"
+                                 % (row[1], row[0]))
+            current_category = family + " " + row[1]
+        elif row[0] != "":  # this is a requirement row
+            if current_category is not None:
+                row[1] = current_category
+            else:
+                sys.stderr.write("WARNING: requirement '%s' has no category\n"
+                                 % (row[0]))
+            reqs.append(Requirement(family, *row))
+        else:
+            sys.stderr.write("WARNING: not really sure what this row is:\n")
+            sys.stderr.write("%s\n" % Requirement(family, row))
 
     for req in reqs:
         print("%s" % req)

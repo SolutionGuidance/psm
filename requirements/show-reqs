@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for family in fr ii sc ia iu ad sq ph; do
+  ./reqs2any csv-exports/reqs-${family}.csv
+done

@@ -152,11 +152,15 @@ You should:
 -  Make sure your NPI number, address, and other details in the
    application are correct
 
--  Check the `NPPES (National Plan and Provider Enumeration System)
-   website <https://nppes.cms.hhs.gov/>`__ to ensure your NPI status is
-   active
+-  Check the |nppes_link| (link opens in a new tab) to ensure your NPI
+   status is active
 
 -  Check the state Medicaid provider guidelines
+
+.. |nppes_link| raw:: html
+
+   <a href="https://nppes.cms.hhs.gov" target="_blank">NPPES (the National Plan
+   and Provider Enumeration System) website</a>
 
 What is the difference between a private practice and a group practice?
 -----------------------------------------------------------------------

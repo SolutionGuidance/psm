@@ -452,13 +452,13 @@ to the greatest extent possible.";
 * psm-II-4.4
 "Clearly documented - The PSM shall provide detailed API documentation
 provided for every API. ";
-* psm-SA-3.1
+* psm-SC-3.1
 "The PSM shall support the architecture adopted to preserve the ability
 to efficiently, effectively, and appropriately exchange data with other
 participants in the health and human services enterprise."; 
 
 COMMENT: "Satified with the API requirements"
-* psm-SA-4.3
+* psm-SC-4.3
 "The PSM design documents shall utilize a widely supported modeling
 language (e.g., UML, BPMN).";
 * psm-IA-4.1

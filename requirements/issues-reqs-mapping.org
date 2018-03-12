@@ -1292,9 +1292,9 @@ We include the initial description below, but not all subsequent comments.
 * DONE [[https://github.com/solutionguidance/psm/issues/466][466]] (closed): Document application architecture and interfaces
 
   - psm-II-4.2 The PSM shall document all interfaces in an Interface Control Document (ICD), along with how those interfaces are maintained.
-  - psm-SA-4.3 The PSM design documents shall utilize a widely supported modeling language (e.g., UML, BPMN).
+  - psm-SC-4.3 The PSM design documents shall utilize a widely supported modeling language (e.g., UML, BPMN).
   - psm-IU-4.3 The PSM shall provide an architecture diagram depicting how it is technically structured.
-  - psm-SA-3.1 The PSM shall support the architecture adopted to preserve the ability to efficiently, effectively, and appropriately exchange data with other participants in the health and human services enterprise.
+  - psm-SC-3.1 The PSM shall support the architecture adopted to preserve the ability to efficiently, effectively, and appropriately exchange data with other participants in the health and human services enterprise.
   - psm-IA-4.1 The PSM shall support a  Logical Data Model (LDM) in the  identification of data classes, attributes, relationships, standards, and code sets for intrastate exchange.
   
   

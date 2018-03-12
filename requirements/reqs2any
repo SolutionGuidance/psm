@@ -1,0 +1,175 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+# Convert PSM requirements from CSV to some other format
+#
+# Copyright (C) 2018 Open Tech Strategies, LLC
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+__doc__ = """\
+Usage:
+
+  $ reqs2any [ --output=OUTPUT_FORMAT ] CSV_FILE
+
+Convert a single CVS file of requirements to OUTPUT_FORMAT, which
+defaults to "elisp".
+"""
+
+import csv
+import getopt, sys
+import re
+
+
+class Requirement():
+    """Class representing one requirement.
+    FAMILY is a two-letter string indicating the requirements family,
+    for example "FR", "IA", etc.  Every other parameter corresponds
+    self-explanatorily to CSV field."""
+
+    req_family_re = re.compile("psm-([A-Z][A-Z])-[0-9.]+")
+
+    def __init__(self,               
+                 family,
+                 #                     # ----------------------------
+                 #                     #         Header name
+                 #                     # ----------------------------
+                 req_id,               # "Requirement ID Number"
+                 category,             # "Requirement Category"
+                 description,          # "Requirement Statement"
+                 priority,             # "Priority"
+                 rank,                 # "Rank"
+                 source,               # "Source"
+                 source_doc,           # "Source Document"
+                 release,              # "Release"
+                 design_ref,           # "Design Reference"
+                 acceptance_test_ref,  # "Acceptance Test Reference"
+                 comment               # "Comment"
+                 ):
+        self.family              = family
+        self.req_id              = req_id
+        self.category            = category
+        self.description         = description
+        self.priority            = priority
+        self.rank                = rank
+        self.source              = source
+        self.source_doc          = source_doc
+        self.release             = release
+        self.design_ref          = design_ref
+        self.acceptance_test_ref = acceptance_test_ref
+        self.comment             = comment
+
+        # Sanity check
+        m = self.req_family_re.match(self.req_id)
+        if m is None:
+            sys.stderr.write("WARNING: No requirement family found for "
+                             "\"%s\"\n" % self.req_id)
+        elif m.group(1) != family:
+            sys.stderr.write("WARNING: family \"%s\" does not match req "
+                             "\"%s\"\n" % (family, self.req_id))
+
+    def __str__(self):
+        # We don't include self.family because it's implicit in self.req_id.
+        return """\
+        Requirement ID Number:     "%s"
+        Requirement Category:      "%s"
+        Requirement Statement:     "%s"
+        Priority:                  "%s"
+        Rank:                      "%s"
+        Source:                    "%s"
+        Source Document:           "%s"
+        Release:                   "%s"
+        Design Reference:          "%s"
+        Acceptance Test Reference: "%s"
+        Comment:                   "%s"\n""" \
+            % (self.req_id,
+               self.category,
+               self.description,
+               self.priority,
+               self.rank,
+               self.source,
+               self.source_doc,
+               self.release,
+               self.design_ref,
+               self.acceptance_test_ref,
+               self.comment)
+
+
+def main():
+    """Create wiki pages from a supplied CSV."""
+    csv_file = None
+    csv_reader = None
+    output_format = None
+    reqs = []
+    family = None # two-letter requirements family code, e.g, "FR", "IA", etc
+
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], 'h?q', 
+                                   ["help", "usage", "output="])
+    except getopt.GetoptError as err:
+        sys.stderr.write("ERROR: '%s'\n" % err)
+        usage(errout=True)
+        sys.exit(2)
+
+    for o, a in opts:
+        if o in ("-h", "-?", "--help", "--usage",):
+            print("%s" % __doc__)
+            sys.exit(0)
+        elif o in ("--output",):
+            output_format = a
+        else:
+            sys.stderr.write("ERROR: unrecognized option '%s'\n" % o)
+            sys.exit(1)
+
+    if output_format is None:
+        output_format = "elisp"
+    elif output_format != "elisp":
+        sys.stderr.write("ERROR: unrecognized output format '%s'\n"
+                         % output_format)
+        sys.exit(1)
+
+    if len(args) == 1:
+        csv_file = args[0]
+        m = re.match(".*reqs-([a-z][a-z])\.csv", csv_file)
+        if m is None:
+            sys.stderr.write("ERROR: unable to identify requirement family "
+                             "from \"%s\"\n" % csv_file)
+            sys.exit(1)
+        family = m.group(1).upper()
+    elif len(args) < 1:
+        sys.stderr.write("ERROR: CSV input file required\n")
+        sys.stderr.write("\n")
+        sys.stderr.write("%s" % __doc__)
+        sys.exit(1)
+    else:
+        sys.stderr.write("ERROR: too many CSV input files specified\n")
+        sys.stderr.write("\n")
+        sys.stderr.write("%s" % __doc__)
+        sys.exit(1)
+
+    csv_reader = csv.reader(open(csv_file), delimiter=',', quotechar='"')
+
+    headers = next(csv_reader)
+
+    for row in csv_reader:
+        # TODO: DTRT with the category-only rows.
+        reqs.append(Requirement(family, *row))
+
+    for req in reqs:
+        print("%s" % req)
+        print("===================================")
+
+
+if __name__ == '__main__':
+    main()

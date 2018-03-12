@@ -20,4 +20,3 @@ psm-IA-4.1,,"The PSM shall support a  Logical Data Model (LDM) in the  identific
 psm-IA-4.2,,"The PSM shall maintain providers' data (e.g., links from providers to other entities, such as groups, managed care organizations, chains, networks, ownerships, and partnerships).",,,IA.LDM.6,,Alpha,,,
 psm-IA-4.3,,The PSM shall verify that all fields defined as numeric contain only numeric data.,4,Medium,TA.SP.1, ,MVP - Sept,,,
 psm-IA-4.4,,The PSM shall verify that all fields defined as alphabetic contain only alphabetic data.,4,Medium,TA.SP.2,,MVP - Sept,,,
-,,,,,,How do PSM interface to NPI?,,,,

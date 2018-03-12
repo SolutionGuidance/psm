@@ -1106,8 +1106,8 @@
     },
     {
         "issue":         466,
-        "add-labels":    ["Z-REQ-PSM-IA-4.1", "Z-REQ-PSM-II-4.2", "Z-REQ-PSM-II-4.4", "Z-REQ-PSM-IU-4.3", "Z-REQ-PSM-SA-3.1", "Z-REQ-PSM-SA-4.3"],
-        "remove-labels": ["REQ-PSM-IA-4.1", "REQ-PSM-II-4.2", "REQ-PSM-II-4.4", "REQ-PSM-IU-4.3", "REQ-PSM-SA-3.1", "REQ-PSM-SA-4.3"]
+        "add-labels":    ["Z-REQ-PSM-IA-4.1", "Z-REQ-PSM-II-4.2", "Z-REQ-PSM-II-4.4", "Z-REQ-PSM-IU-4.3", "Z-REQ-PSM-SC-3.1", "Z-REQ-PSM-SC-4.3"],
+        "remove-labels": ["REQ-PSM-IA-4.1", "REQ-PSM-II-4.2", "REQ-PSM-II-4.4", "REQ-PSM-IU-4.3", "REQ-PSM-SC-3.1", "REQ-PSM-SC-4.3"]
     },
     {
         "issue":         467,
@@ -1296,8 +1296,8 @@
     },
     {
         "issue":         563,
-        "add-labels":    ["Z-REQ-PSM-SA-4.3", "Z-REQ-PSM-SQ-1.1"],
-        "remove-labels": ["REQ-PSM-SA-4.3", "REQ-PSM-SQ-1.1"]
+        "add-labels":    ["Z-REQ-PSM-SC-4.3", "Z-REQ-PSM-SQ-1.1"],
+        "remove-labels": ["REQ-PSM-SC-4.3", "REQ-PSM-SQ-1.1"]
     },
     {
         "issue":         564,

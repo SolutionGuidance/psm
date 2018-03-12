@@ -23,9 +23,8 @@ Usage:
 
   $ reqs2any [ --output=OUTPUT_FORMAT ] CSV_FILE
 
-Convert a single CVS file of requirements to OUTPUT_FORMAT, which
-defaults to "elisp".  (WIP: The "elisp" output format is not
-implemented yet, so for now just print a human-readable listing.)
+Convert a single CVS file of requirements to OUTPUT_FORMAT.  The two
+supported output formats so far are "human" (the default) and "elisp".
 """
 
 import csv
@@ -94,17 +93,17 @@ class Requirement():
         Design Reference:          "%s"
         Acceptance Test Reference: "%s"
         Comment:                   "%s"\n""" \
-            % (self.req_id,
-               self.category,
-               self.description,
-               self.priority,
-               self.rank,
-               self.source,
-               self.source_doc,
-               self.release,
-               self.design_ref,
-               self.acceptance_test_ref,
-               self.comment)
+            % (self.req_id.replace('"', '\\"'),
+               self.category.replace('"', '\\"'),
+               self.description.replace('"', '\\"'),
+               self.priority.replace('"', '\\"'),
+               self.rank.replace('"', '\\"'),
+               self.source.replace('"', '\\"'),
+               self.source_doc.replace('"', '\\"'),
+               self.release.replace('"', '\\"'),
+               self.design_ref.replace('"', '\\"'),
+               self.acceptance_test_ref.replace('"', '\\"'),
+               self.comment.replace('"', '\\"'))
 
 
 def main():
@@ -134,8 +133,9 @@ def main():
             sys.exit(1)
 
     if output_format is None:
-        output_format = "elisp"
-    elif output_format != "elisp":
+        output_format = "human"
+
+    if not (output_format in ("human","elisp",)):
         sys.stderr.write("ERROR: unrecognized output format '%s'\n"
                          % output_format)
         sys.exit(1)
@@ -179,11 +179,22 @@ def main():
             reqs.append(Requirement(family, *row))
         else:
             sys.stderr.write("WARNING: not really sure what this row is:\n")
-            sys.stderr.write("%s\n" % Requirement(family, row))
+            sys.stderr.write("%s\n" % Requirement(family, *row))
 
     for req in reqs:
-        print("%s" % req)
-        print("===================================")
+        if output_format == "human":
+            print("%s" % req)
+            print("===================================")
+        elif output_format == "elisp":
+            # For now we only need a few fields.
+            print("  ((id \"%s\")\n   (category \"%s\")\n"
+                  "   (description \"%s\")\n   (comment \"%s\"))"
+                  % (req.req_id, req.category, req.description, req.comment))
+        else:
+            sys.stderr.write("ERROR: unknown output format '%s' "
+                             "should have been caught earlier\n"
+                             % output_format)
+            sys.exit(1)
 
 
 if __name__ == '__main__':

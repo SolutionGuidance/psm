@@ -1,5 +1,20 @@
 #!/bin/sh
 
+OUTPUT_FORMAT="${1}"
+
+if [ "${1}" != "human" -a "${1}" != "elisp" ]; then
+  echo 'Must pass "human" or "elisp" argument to indicate output format.'
+  exit 1
+fi
+
+if [ "${OUTPUT_FORMAT}" = "elisp" ]; then 
+  echo "'("
+fi
+
 for family in fr ii sc ia iu ad sq ph; do
-  ./reqs2any csv-exports/reqs-${family}.csv
+  ./reqs2any --output="${OUTPUT_FORMAT}" csv-exports/reqs-${family}.csv
 done
+
+if [ "${OUTPUT_FORMAT}" = "elisp" ]; then 
+  echo ")"
+fi

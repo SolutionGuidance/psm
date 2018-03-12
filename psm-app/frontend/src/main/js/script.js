@@ -1998,6 +1998,18 @@ $(document).ready(function () {
     'what-is-an-npi'
   );
 
+  addUserHelpClickHandler(
+    'a.maintainOwnPrivatePractice',
+    '/help/enrollment.html',
+    'do-i-maintain-my-own-private-practice'
+  );
+
+  addUserHelpClickHandler(
+    'a.employedByGroupPractice',
+    '/help/enrollment.html',
+    'am-i-employed-and-or-independently-contracted-by-a-group-practice'
+  );
+
   //$('.inline input[type=radio]').removeAttr('checked');
   //    $('.inline input[name=civilMoney]').click(function(){
   //        if($(this).val()=="yes"){

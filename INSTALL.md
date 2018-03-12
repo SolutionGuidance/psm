@@ -1,11 +1,9 @@
        Installation instructions for the Provider Screening Module
        ===========================================================
 
-***NOTE: 2017-10-09: These developer installation instructions are a
-   work in progress.  We welcome suggestions on improving them. We do
-   not yet have a production deployment guide, and will seek out
-   conversation with operations engineers in state IT departments to
-   help us develop that guide later in 2017. ***
+***NOTE: These developer installation instructions are a work in 
+progress. We welcome suggestions on improving them. A production 
+deployment guide will be part of our 1.0 release. ***
 
 **Contents**
 

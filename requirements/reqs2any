@@ -189,7 +189,10 @@ def main():
             # For now we only need a few fields.
             print("  ((id \"%s\")\n   (category \"%s\")\n"
                   "   (description \"%s\")\n   (comment \"%s\"))"
-                  % (req.req_id, req.category, req.description, req.comment))
+                  % (req.req_id.replace('"', '\\"'),
+                     req.category.replace('"', '\\"'),
+                     req.description.replace('"', '\\"'),
+                     req.comment.replace('"', '\\"')))
         else:
             sys.stderr.write("ERROR: unknown output format '%s' "
                              "should have been caught earlier\n"

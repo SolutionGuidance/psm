@@ -8,7 +8,7 @@ if [ "${1}" != "human" -a "${1}" != "elisp" ]; then
 fi
 
 if [ "${OUTPUT_FORMAT}" = "elisp" ]; then 
-  echo "'("
+  echo "("
 fi
 
 for family in fr ii sc ia iu ad sq ph; do

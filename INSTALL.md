@@ -282,6 +282,15 @@ $ sudo -u postgres createuser --pwprompt psm
 $ sudo -u postgres createdb --owner=psm psm
 ```
 
+If you get an error saying `role "postgres" does not exist`, this is likely due 
+to Mac OS X not assigning "postgres" as a superuser. You will need to access 
+your postgres database to find the superuser name and substitute it into the scripts.
+
+```ShellSession
+$ sudo -u {superuser name} createuser --pwprompt psm
+$ sudo -u {superuser name} createdb --owner=psm psm
+```
+
 After creating the databases, add the data sources to the application
 server. In the first line of the command below, replace `VERSION` with
 the version of the PostgreSQL JDBC driver you downloaded and `PWORD`

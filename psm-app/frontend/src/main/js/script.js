@@ -71,6 +71,33 @@ $(document).ready(function () {
   //        addressLoadModal('#printModal');
   //    });
 
+  /**
+  * Populates a user help modal with content.  With the first two
+  * arguments bound (using '.bind'), this is used as the callback
+  * function for AJAX calls that fetch a user help page.  It extracts
+  * the relevant content from the help page and adds it to the modal.
+  *
+  * @param modalId {string} - ID of the target modal.
+  * @param helpItemId {string} - ID of the source help item.
+  * @param helpPageString {string} - HTML of the help page.
+  */
+  populateUserHelpModal = function(modalId, helpItemId, helpPageString) {
+    var parser = new DOMParser();
+    var helpPage = parser.parseFromString(helpPageString, "text/html");
+
+    var helpItem = helpPage.getElementById(helpItemId);
+    var helpTitle = helpItem.querySelector("h2");
+
+    var modal = document.getElementById(modalId);
+    var modalTitle = modal.querySelector(".userHelpModalTitle");
+    var modalBody = modal.querySelector(".userHelpModalBody");
+
+    modalTitle.innerHTML = helpTitle.firstChild.textContent;
+
+    helpItem.removeChild(helpTitle);
+    modalBody.innerHTML = helpItem.innerHTML;
+  };
+
   $('.printMe').click(function () {
     printThis($(this).attr("href"));
     return false;
@@ -1931,8 +1958,16 @@ $(document).ready(function () {
   });
 
   /*show NPI definition modal*/
-  $('a.NPIdefinition').live('click', function () {
-    addressLoadModal('#NPIdefinitionModal');
+  $('a.NPIdefinition').click(function () {
+    addressLoadModal('#modal-what-is-an-npi');
+    $.get(
+      ctx + "/help/enrollment.html",
+      populateUserHelpModal.bind(
+        undefined,
+        "modal-what-is-an-npi",
+        "what-is-an-npi"
+      )
+    );
   });
 
   //$('.inline input[type=radio]').removeAttr('checked');

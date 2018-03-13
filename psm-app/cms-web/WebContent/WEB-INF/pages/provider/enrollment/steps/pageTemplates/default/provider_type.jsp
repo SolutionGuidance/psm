@@ -16,9 +16,6 @@
     <c:set var="formName" value="_01_providerType"></c:set>
     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
     <label for="${formIdPrefix}_${formName}">Provider Type</label>
-    <span class="floatL">
-      <b>:</b>
-    </span>
     <select id="${formIdPrefix}_${formName}" name="${formName}">
       <option value="">Please select</option>
       <c:if test="${empty individualProviderTypes or

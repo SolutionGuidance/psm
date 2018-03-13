@@ -1,9 +1,14 @@
 package gov.medicaid.api;
 
 import ca.uhn.fhir.rest.annotation.IdParam;
+import ca.uhn.fhir.rest.annotation.OptionalParam;
 import ca.uhn.fhir.rest.annotation.Read;
 import ca.uhn.fhir.rest.annotation.Search;
+import ca.uhn.fhir.rest.param.StringOrListParam;
+import ca.uhn.fhir.rest.param.StringParam;
 import ca.uhn.fhir.rest.server.IResourceProvider;
+import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException;
+import gov.medicaid.api.transformers.EnrollmentStatusToPsmName;
 import gov.medicaid.api.transformers.EnrollmentToFhir;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
@@ -18,6 +23,7 @@ import org.hl7.fhir.dstu3.model.Task;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class TaskResourceProvider implements IResourceProvider {
@@ -40,8 +46,20 @@ public class TaskResourceProvider implements IResourceProvider {
     }
 
     @Search
-    public List<Task> findAll() throws PortalServiceException {
+    public List<Task> search(
+            @OptionalParam(name = "npi") String npi,
+            @OptionalParam(name = "status") StringOrListParam statuses,
+            @OptionalParam(name = "providerType") String providerType,
+            @OptionalParam(name = "name") String name
+    ) throws PortalServiceException {
+        validateNpi(npi);
+
         ProviderSearchCriteria criteria = new ProviderSearchCriteria();
+        criteria.setNpi(npi);
+        criteria.setStatuses(fhirStatusesToPsmStatusList(statuses));
+        criteria.setProviderType(providerType);
+        criteria.setProviderName(name);
+
         SearchResult<UserRequest> results = providerEnrollmentService.searchTickets(
                 systemUser,
                 criteria
@@ -51,6 +69,32 @@ public class TaskResourceProvider implements IResourceProvider {
                 .stream()
                 .map(result -> enrollmentIdToTask(result.getTicketId()))
                 .collect(Collectors.toList());
+    }
+
+    private void validateNpi(String npi) {
+        if (npi == null) {
+            return;
+        }
+        if (npi.matches("[0-9]{10}")) {
+            return;
+        }
+
+        throw new InvalidRequestException(
+                "An NPI must be 10 digits."
+        );
+    }
+
+    private List<String> fhirStatusesToPsmStatusList(StringOrListParam listParam) {
+        if (listParam == null) {
+            return null;
+        } else {
+            return listParam.getValuesAsQueryTokens()
+                    .stream()
+                    .map(StringParam::getValue)
+                    .map(new EnrollmentStatusToPsmName())
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+        }
     }
 
     private Task enrollmentIdToTask(long enrollmentId) {

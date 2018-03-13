@@ -77,7 +77,11 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_iboType_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Type<span class="required">*</span><span><a href="javascript:" class="definition">?</a></span></label>
+                <label for="${formIdPrefix}_${formName}">
+                  Type
+                  <span class="required">*</span>
+                  <a href="javascript:" class="userHelpLink ownershipTypeDefinition">?</a>
+                </label>
                 <span class="floatL"><b>:</b></span>
                 <select id="${formIdPrefix}_${formName}" class="ownershipType" name="${formName}">
                     <option value="">Please select</option>
@@ -350,7 +354,11 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_cboType_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Type<span class="required">*</span><span><a href="javascript:" class="definition">?</a></span></label>
+                <label for="${formIdPrefix}_${formName}">
+                  Type
+                  <span class="required">*</span>
+                  <a href="javascript:" class="userHelpLink ownershipTypeDefinition">?</a>
+                </label>
                 <span class="floatL"><b>:</b></span>
                 <select id="${formIdPrefix}_${formName}" class="businessOwnershipType" name="${formName}">
                     <option value="">Please select</option>
@@ -565,7 +573,11 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_cboType"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Type<span class="required">*</span><span><a href="javascript:" class="definition">?</a></span></label>
+                <label for="${formIdPrefix}_${formName}">
+                  Type
+                  <span class="required">*</span>
+                  <a href="javascript:" class="userHelpLink ownershipTypeDefinition">?</a>
+                </label>
                 <span class="floatL"><b>:</b></span>
                 <select id="${formIdPrefix}_${formName}" class="businessOwnershipType" name="${formName}">
                     <option value="">Please select</option>
@@ -768,7 +780,11 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_iboType"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Type<span class="required">*</span><span><a href="javascript:" class="definition">?</a></span></label>
+                <label for="${formIdPrefix}_${formName}">
+                  Type
+                  <span class="required">*</span>
+                  <a href="javascript:" class="userHelpLink ownershipTypeDefinition">?</a>
+                </label>
                 <span class="floatL"><b>:</b></span>
                 <select id="${formIdPrefix}_${formName}" class="ownershipType" name="${formName}">
                     <option value="">Please select</option>

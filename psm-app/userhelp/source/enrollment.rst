@@ -31,7 +31,8 @@ An application includes:
 What is an NPI?
 ---------------
 An *NPI* is a National Provider Identifier number.
-You can search NPIs or register for an NPI at |nppes_link| (link opens in a new tab).
+You can search for an NPI, register for an NPI, and check whether an NPI's
+status is active at |nppes_link| (link opens in a new tab).
 
 .. |nppes_link| raw:: html
 

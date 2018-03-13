@@ -47,7 +47,7 @@
                 <label for="${formIdPrefix}_${formName}">
                   <abbr title="National Provider Identifier">NPI</abbr>
                   <span class="required">${requireNPI ? '*' : ''}</span>
-                  <span><a href="javascript:" class="NPIdefinition">?</a></span>
+                  <a href="javascript:" class="userHelpLink NPIdefinition">?</a>
                 </label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
             </div>

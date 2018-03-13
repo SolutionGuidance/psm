@@ -4334,7 +4334,7 @@ input.passwordNormalInput{
   padding-bottom: 10px;
 }
 
-a.definition{
+.userHelpLink {
   padding-left: 5px;
   cursor: help;
 }

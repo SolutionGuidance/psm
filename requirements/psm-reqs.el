@@ -31,7 +31,13 @@ For example, if point is in the string \"psm-FR-5.2\",
 then display (using as little screen space as possible)
 details about that requirement."
   (interactive)
-  (let* ((req-name (thing-at-point 'symbol t))
+  (let* ((req-name (let ((raw (thing-at-point 'symbol t)))
+                     (when (>= (length raw) 8)
+                       ;; If we have "psm-fr-5.2", convert
+                       ;; it to "psm-FR-5.2".
+                       (aset raw 4 (upcase (aref raw 4)))
+                       (aset raw 5 (upcase (aref raw 5)))
+                       raw)))
          (req      (cl-some (lambda (candidate)
                               (when (string-equal 
                                      req-name (cadr (assq 'id candidate)))

@@ -189,7 +189,7 @@ def main():
             # Every req has at least these fields.
             print("  ((id \"%s\")\n"
                   "   (category \"%s\")\n"
-                  "   (description \"%s\")\n"
+                  "   (description \"%s\")"
                   % (req.req_id.replace('"', '\\"'),
                      req.category.replace('"', '\\"'),
                      req.description.replace('"', '\\"')))

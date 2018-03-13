@@ -2,7 +2,6 @@ package gov.medicaid.api.transformers;
 
 import gov.medicaid.entities.Enrollment;
 import org.hl7.fhir.dstu3.model.DomainResource;
-import org.hl7.fhir.dstu3.model.Identifier;
 import org.hl7.fhir.dstu3.model.Reference;
 import org.hl7.fhir.dstu3.model.Task;
 
@@ -16,7 +15,7 @@ public class EnrollmentToFhir implements Function<Enrollment, Task> {
         );
 
         Task task = new Task();
-        task.addIdentifier(getIdentifier(enrollment));
+        task.setId(Long.toString(enrollment.getTicketId()));
         task.setStatus(
                 new EnrollmentStatusToFhir().apply(enrollment.getStatus())
         );
@@ -30,10 +29,5 @@ public class EnrollmentToFhir implements Function<Enrollment, Task> {
         task.addContained(requester);
 
         return task;
-    }
-
-    private Identifier getIdentifier(Enrollment enrollment) {
-        return new Identifier()
-                .setValue(Long.toString(enrollment.getTicketId()));
     }
 }

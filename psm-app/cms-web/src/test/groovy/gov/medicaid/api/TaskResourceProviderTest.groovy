@@ -64,7 +64,7 @@ class TaskResourceProviderTest extends Specification {
 
         then:
         result instanceof Task
-        result.identifier.size() == 1
-        result.identifier.first().value == Long.toString(ticketId)
+        result.hasId()
+        result.getId() == Long.toString(ticketId)
     }
 }

@@ -152,33 +152,34 @@ You should:
 -  Make sure your NPI number, address, and other details in the
    application are correct
 
--  Check the `NPPES (National Plan and Provider Enumeration System)
-   website <https://nppes.cms.hhs.gov/>`__ to ensure your NPI status is
-   active
+-  Check the |nppes_link| (link opens in a new tab) to ensure your NPI
+   status is active
 
 -  Check the state Medicaid provider guidelines
 
-What is the difference between a private practice and a group practice?
------------------------------------------------------------------------
+.. |nppes_link| raw:: html
 
-On the "Practice Info" page of the enrollment process for individual
-providers, the site asks you:
+   <a href="https://nppes.cms.hhs.gov" target="_blank">NPPES (the National Plan
+   and Provider Enumeration System) website</a>
 
-    Do you maintain your own private practice?
+Do I maintain my own private practice?
+--------------------------------------
 
-If you have an Entity Type 1 (Individual) NPI number, say "yes". `The
-Center for Medicare and Medicaid Services website has more guidance on
-your NPI
+If you have an Individual NPI number (Entity Type 1) then you maintain
+your own private practice and should answer "yes" for this question.
+`The Center for Medicare and Medicaid Services website has more guidance
+on your NPI
 number. <https://questions.cms.gov/faq.php?id=5005&rtopic=1851&rsubtopic=8605>`__
 
-    Are you employed and/or independently contracted by a group
-    practice?
+Am I employed and/or independently contracted by a group practice?
+------------------------------------------------------------------
 
 If you are employed and/or independently contracted by an organization
-health care provider that has an Entity Type 2 (Organization) NPI
-number, say "yes". `The CMS website has more information on Type 2 NPI
-numbers and what kinds of business structures should have
-them <https://questions.cms.gov/faq.php?id=5005&faqId=1965>`__.
+health care provider that has an Organization NPI number (Entity Type 2),
+then you should answer "yes" for this question.
+`The Center for Medicare and Medicaid Services website has more
+information on Type 2 NPI numbers and what kinds of business structures
+should have them <https://questions.cms.gov/faq.php?id=5005&faqId=1965>`__.
 
 Can I create multiple enrollments for one person (e.g., if a person is licensed as two or more kinds of provider)?
 ------------------------------------------------------------------------------------------------------------------

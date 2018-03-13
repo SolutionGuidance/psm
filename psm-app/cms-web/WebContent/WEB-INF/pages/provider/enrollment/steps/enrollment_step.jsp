@@ -91,9 +91,9 @@
       <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/print_modal.jsp" %>
       <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/definitions_modal.jsp" %>
 
-      <c:set var="userHelpModalId" value="modal-what-is-an-npi"/>
+      <c:set var="userHelpModalId" value="user-help-modal"/>
       <h:handlebars template="includes/userhelp/user_help_modal" context="${pageContext}" />
-      <!-- /#saveAsDraftModal-->
+
     </div>
     <c:if test="${not empty requestScope['flash_popup']}">
       <input type="hidden" id="flashPopUp" value="${requestScope['flash_popup']}"/>

@@ -14,7 +14,10 @@
     <div class="section">
         <input type="hidden" name="formNames" value="<%= ViewStatics.PRACTICE_TYPE_FORM %>">
         <div id="RadioWrapper" class="row">
-            <label>Do you maintain your own private practice?</label>
+            <label>
+              Do you maintain your own private practice?
+              <a href="javascript:" class="userHelpLink maintainOwnPrivatePractice">?</a>
+            </label>
             <div>
                 <c:set var="formName" value="_04_maintainsOwnPrivatePractice"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -30,7 +33,10 @@
             </div>
         </div>
         <div id="switchRadioWrapper" class="row">
-            <label>Are you employed and/or independently contracted by a group practice?</label>
+            <label>
+              Are you employed and/or independently contracted by a group practice?
+              <a href="javascript:" class="userHelpLink employedByGroupPractice">?</a>
+            </label>
             <div>
                 <c:set var="formName" value="_04_employedOrContractedByGroup"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>

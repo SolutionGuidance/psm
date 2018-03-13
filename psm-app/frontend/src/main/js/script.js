@@ -72,6 +72,18 @@ $(document).ready(function () {
   //    });
 
   /**
+  * Clears and resets the contents of the user help modal
+  * (before it gets populated with results of AJAX call).
+  */
+  resetUserHelpModal = function(modalSelector) {
+    var modal = document.querySelector(modalSelector);
+    var modalTitle = modal.querySelector('.userHelpModalTitle');
+    var modalBody = modal.querySelector('.userHelpModalBody');
+    modalTitle.innerHTML = '';
+    modalBody.innerHTML = 'Loading...';
+  }
+
+  /**
   * Populates a user help modal with content.  With the first two
   * arguments bound (using '.bind'), this is used as the callback
   * function for AJAX calls that fetch a user help page.  It extracts
@@ -1957,18 +1969,46 @@ $(document).ready(function () {
     addressLoadModal('#definitionsModal');
   });
 
-  /*show NPI definition modal*/
-  $('a.NPIdefinition').click(function () {
-    addressLoadModal('#modal-what-is-an-npi');
-    $.get(
-      ctx + "/help/enrollment.html",
-      populateUserHelpModal.bind(
-        undefined,
-        "modal-what-is-an-npi",
-        "what-is-an-npi"
-      )
-    );
-  });
+
+  /**
+  * Add a click handler function to a user help modal link.
+  *
+  * @param helpLinkSelector {string} - Selector for the help link.
+  * @param helpDocsPath {string} - Path to the help doc html file.
+  * @param helpItemId {string} - ID of the source help item.
+  */
+  addUserHelpClickHandler = function(helpLinkSelector, helpDocsPath, helpItemId) {
+    $(helpLinkSelector).click(function () {
+      resetUserHelpModal('#user-help-modal');
+      addressLoadModal('#user-help-modal');
+      $.get(
+        ctx + helpDocsPath,
+        populateUserHelpModal.bind(
+          undefined,
+          'user-help-modal',
+          helpItemId
+        )
+      );
+    });
+  };
+
+  addUserHelpClickHandler(
+    'a.NPIdefinition',
+    '/help/enrollment.html',
+    'what-is-an-npi'
+  );
+
+  addUserHelpClickHandler(
+    'a.maintainOwnPrivatePractice',
+    '/help/enrollment.html',
+    'do-i-maintain-my-own-private-practice'
+  );
+
+  addUserHelpClickHandler(
+    'a.employedByGroupPractice',
+    '/help/enrollment.html',
+    'am-i-employed-and-or-independently-contracted-by-a-group-practice'
+  );
 
   //$('.inline input[type=radio]').removeAttr('checked');
   //    $('.inline input[name=civilMoney]').click(function(){

@@ -102,4 +102,4 @@ the requirement (e.g., source, release, etc)."
       (display-buffer buf
                       '(display-buffer-at-bottom 
                         . ((window-height 
-                            . shrink-window-if-larger-than-buffer)))))))
+                            . fit-window-to-buffer)))))))

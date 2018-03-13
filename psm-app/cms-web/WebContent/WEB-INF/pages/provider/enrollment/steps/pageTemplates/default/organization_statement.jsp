@@ -35,14 +35,12 @@
                 <c:set var="formName" value="_19_name"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Provider Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row titleRow">
                 <c:set var="formName" value="_19_title"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Provider Title<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <c:set var="formName" value="_19_requiredAgreementsSize"></c:set>
@@ -75,7 +73,6 @@
                 <c:set var="formName" value="_19_date"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Date<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper">
                     <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
                 </span>

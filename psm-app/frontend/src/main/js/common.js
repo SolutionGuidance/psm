@@ -108,7 +108,7 @@ $(document).ready(function () {
     });
   };
 
-  $(".closeModal, #new-modal #printModal .modal-title a.greyBtn, #new-modal .definitionsModal .modal-title a.greyBtn")
+  $(".closeModal, .modalCloseButton, #new-modal #printModal .modal-title a.greyBtn")
     .click(addresscloseModal);
 
 });

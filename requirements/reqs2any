@@ -186,13 +186,27 @@ def main():
             print("%s" % req)
             print("===================================")
         elif output_format == "elisp":
-            # For now we only need a few fields.
-            print("  ((id \"%s\")\n   (category \"%s\")\n"
-                  "   (description \"%s\")\n   (comment \"%s\"))"
+            # Every req has at least these fields.
+            print("  ((id \"%s\")\n"
+                  "   (category \"%s\")\n"
+                  "   (description \"%s\")\n"
                   % (req.req_id.replace('"', '\\"'),
                      req.category.replace('"', '\\"'),
-                     req.description.replace('"', '\\"'),
-                     req.comment.replace('"', '\\"')))
+                     req.description.replace('"', '\\"')))
+            # Each of these fields is optional
+            for elisp_symbol, req_field in (
+                    ("comment", req.comment,),
+                    ("priority", req.priority,),
+                    ("rank", req.rank,),
+                    ("source", req.source,),
+                    ("source-doc", req.source_doc,),
+                    ("release", req.release,),
+                    ("design-ref", req.design_ref,),
+                    ("acceptance-test-ref", req.acceptance_test_ref,),):
+                if (req_field is not None) and (req_field != ""):
+                    print("   (%s \"%s\")" % (elisp_symbol, req_field))
+            # Close out this req's sublist.
+            print("  )")
         else:
             sys.stderr.write("ERROR: unknown output format '%s' "
                              "should have been caught earlier\n"

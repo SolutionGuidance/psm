@@ -5,6 +5,8 @@ import gov.medicaid.entities.Enrollment
 import gov.medicaid.entities.Organization
 import gov.medicaid.entities.ProviderProfile
 import gov.medicaid.entities.ProviderType
+import gov.medicaid.entities.SearchResult
+import gov.medicaid.entities.UserRequest
 import gov.medicaid.services.ProviderEnrollmentService
 import org.hl7.fhir.dstu3.model.IdType
 import org.hl7.fhir.dstu3.model.Task
@@ -51,13 +53,7 @@ class TaskResourceProviderTest extends Specification {
 
     def "GetResourceById returns Task for valid enrollment ID"() {
         given:
-        Enrollment enrollment = new Enrollment()
-        enrollment.ticketId = 123
-        enrollment.details = new ProviderProfile()
-        enrollment.details.entity = new Organization()
-        enrollment.details.entity.providerType = new ProviderType()
-
-        mockEnrollmentService.getTicketDetails(_, ticketId) >> enrollment
+        mockEnrollmentService.getTicketDetails(_, ticketId) >> createEnrollment()
 
         when:
         def result = provider.getResourceById(id)
@@ -66,5 +62,57 @@ class TaskResourceProviderTest extends Specification {
         result instanceof Task
         result.hasId()
         result.getId() == Long.toString(ticketId)
+    }
+
+    def "Find all with no applications returns empty list"() {
+        given:
+        def searchResults = new SearchResult<UserRequest>()
+        searchResults.items = []
+        mockEnrollmentService.searchTickets(_, _) >> searchResults
+
+        when:
+        def result = provider.findAll()
+
+        then:
+        result.size() == 0
+    }
+
+    def "Find all with one application returns a list with that application"() {
+        given:
+        def searchResults = new SearchResult<UserRequest>()
+        def userRequest = new UserRequest(
+                123,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                0,
+                0
+        )
+        searchResults.items = [userRequest]
+        mockEnrollmentService.searchTickets(_, _) >> searchResults
+        mockEnrollmentService.getTicketDetails(_, ticketId) >> createEnrollment()
+
+        when:
+        def result = provider.findAll()
+
+        then:
+        result.size() == 1
+        result.first().getId() == Long.toString(ticketId)
+    }
+
+    private static Enrollment createEnrollment() {
+        Enrollment enrollment = new Enrollment()
+        enrollment.ticketId = 123
+        enrollment.details = new ProviderProfile()
+        enrollment.details.entity = new Organization()
+        enrollment.details.entity.providerType = new ProviderType()
+        return enrollment
     }
 }

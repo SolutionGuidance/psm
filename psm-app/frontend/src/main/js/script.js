@@ -12,7 +12,7 @@ $(document).ready(function () {
   /*new js*/
 
   //	$('.printModalBtn').click(function(){
-  //		addresscloseModal();
+  //		addressCloseModal();
   //        addressLoadModal('#printModal');
   //    });
 
@@ -28,7 +28,7 @@ $(document).ready(function () {
     });
 
   //	$('.practiceLookupModalBtn').click(function(){
-  //		addresscloseModal();
+  //		addressCloseModal();
   //		addressLoadModal('#practiceLookupModal');
   //	});
   //		$('#practiceLookupModal .searchBtn').click(function(){
@@ -49,21 +49,21 @@ $(document).ready(function () {
       $('#tabLicense .editContent').hide();
       $('#tabLicense .plainInformation').show();
       $('#tabLicense .editInfo').show();
-      addresscloseModal();
+      addressCloseModal();
     });
 
   $('#saveAsDraftModalPersonal .editToPlain').click(function () {
       $('#tabPersonal .editContent').hide();
       $('#tabPersonal .plainInformation').show();
       $('#tabPersonal .editInfo').show();
-      addresscloseModal();
+      addressCloseModal();
     });
 
   $('#saveAsDraftModalPractice .editToPlain').click(function () {
       $('#tabPractice .editContent').hide();
       $('#tabPractice .plainInformation').show();
       $('#tabPractice .editInfo').show();
-      addresscloseModal();
+      addressCloseModal();
     });
 
   $(window).resize(function () {
@@ -1464,16 +1464,16 @@ $(document).ready(function () {
 
         stripTable();
         update();
-        addresscloseModal();
+        addressCloseModal();
       });
 
-      addresscloseModal();
+      addressCloseModal();
       addressLoadModal('#deleteUserAccountModal');
     }
   });
 
   $(".deleteUserAccountModalBtnSingle").click(function () {
-      addresscloseModal();
+      addressCloseModal();
       addressLoadModal('#deleteUserAccountModal');
       $("a#deleteBtn").unbind();
     })
@@ -1484,10 +1484,10 @@ $(document).ready(function () {
         tr.remove();
         stripTable();
         update();
-        addresscloseModal();
+        addressCloseModal();
       });
 
-      addresscloseModal();
+      addressCloseModal();
       addressLoadModal('#deleteUserAccountModal');
     });
 
@@ -1970,7 +1970,7 @@ $(document).ready(function () {
   })
 
   $('#flashPopUp').each(function () {
-    addresscloseModal();
+    addressCloseModal();
     addressLoadModal('#' + $(this).val());
   });
 

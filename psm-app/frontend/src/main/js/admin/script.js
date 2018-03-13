@@ -566,7 +566,7 @@ $(document).ready(function () {
   /*new js*/
 
   $('.printModalBtn').click(function () {
-      addresscloseModal();
+      addressCloseModal();
       addressLoadModal('#printModal');
     });
 

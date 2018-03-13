@@ -10,7 +10,7 @@ $(document).ready(function () {
   /*new js*/
 
   $('.printModalBtn').click(function () {
-      addresscloseModal();
+      addressCloseModal();
       addressLoadModal('#printModal');
     });
 
@@ -21,7 +21,7 @@ $(document).ready(function () {
   });
 
   $('.practiceLookupModalBtn').click(function () {
-    addresscloseModal();
+    addressCloseModal();
     addressLoadModal('#practiceLookupModal');
   });
 
@@ -44,21 +44,21 @@ $(document).ready(function () {
     $('#tabLicense .editContent').hide();
     $('#tabLicense .plainInformation').show();
     $('#tabLicense .editInfo').show();
-    addresscloseModal();
+    addressCloseModal();
   });
 
   $('#saveAsDraftModalPersonal .editToPlain').click(function () {
     $('#tabPersonal .editContent').hide();
     $('#tabPersonal .plainInformation').show();
     $('#tabPersonal .editInfo').show();
-    addresscloseModal();
+    addressCloseModal();
   });
 
   $('#saveAsDraftModalPractice .editToPlain').click(function () {
     $('#tabPractice .editContent').hide();
     $('#tabPractice .plainInformation').show();
     $('#tabPractice .editInfo').show();
-    addresscloseModal();
+    addressCloseModal();
   });
 
   $(window).resize(function () {
@@ -1143,10 +1143,10 @@ $(document).ready(function () {
             });
 
             deleteUserAccounts(userIds, false);
-            addresscloseModal();
+            addressCloseModal();
           });
 
-        addresscloseModal();
+        addressCloseModal();
         $('.deleteAccountSpan').html('the selected user account');
         if (table.find("tbody").find("input:checkbox:checked").length > 1) {
           $('.deleteAccountSpan').html('the selected user accounts');
@@ -1159,7 +1159,7 @@ $(document).ready(function () {
 
   $(".deleteUserAccountModalBtnSingle").click(function () {
     var userId = $(this).attr('rel');
-    addresscloseModal();
+    addressCloseModal();
     $('.deleteAccountSpan').html('this user account');
     deleteSeletedFlag = false;
     $("a#deleteBtn").unbind().bind("click", function () {
@@ -1168,7 +1168,7 @@ $(document).ready(function () {
               }
 
               deleteUserAccounts([userId], true);
-              addresscloseModal();
+              addressCloseModal();
             });
 
     addressLoadModal('#deleteUserAccountModal');
@@ -1182,10 +1182,10 @@ $(document).ready(function () {
             }
 
             deleteUserAccounts([$('input[type="checkbox"]', tr).val()], false);
-            addresscloseModal();
+            addressCloseModal();
           });
 
-    addresscloseModal();
+    addressCloseModal();
     $('.deleteAccountSpan').html('this user account');
     deleteSeletedFlag = false;
     addressLoadModal('#deleteUserAccountModal');

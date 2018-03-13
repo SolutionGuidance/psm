@@ -42,7 +42,7 @@ $(document).ready(function () {
     addressPositionModal();
   }
 
-  addresscloseModal = function () {
+  addressCloseModal = function () {
     $('#modalBackground').hide();
     $('#new-modal>div').hide();
   }
@@ -109,15 +109,15 @@ $(document).ready(function () {
   };
 
   $(".closeModal, .modalCloseButton, #new-modal #printModal .modal-title a.greyBtn")
-    .click(addresscloseModal);
+    .click(addressCloseModal);
 
   $(".submitEnrollmentModalBtn").click(function () {
-    addresscloseModal();
+    addressCloseModal();
     addressLoadModal('#submitEnrollmentModal');
   });
 
   $(".saveAsDraftModalBtn").click(function () {
-    addresscloseModal();
+    addressCloseModal();
     addressLoadModal('#saveAsDraftModal');
   });
 

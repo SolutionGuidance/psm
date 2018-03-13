@@ -8,51 +8,6 @@
  */
 $(document).ready(function () {
   /*new js*/
-  $('.searchPanel input[type="checkbox"]').css("border", "none").css("background", "none").css("position", "relative").css('top', "-1px");
-  addressPositionModal = function () {
-    var wWidth  = window.innerWidth;
-    var wHeight = window.innerHeight;
-
-    if (wWidth == undefined) {
-      wWidth  = document.documentElement.clientWidth;
-      wHeight = document.documentElement.clientHeight;
-    }
-
-    var boxLeft = parseInt((wWidth / 2) - ($("#new-modal").width() / 2));
-    //var boxTop  = parseInt((wHeight / 2) - ( $("#new-modal").height() / 2 ));
-
-    // position modal
-    $("#new-modal").css({
-      'margin': 120 + 'px auto 0 ' + boxLeft + 'px'
-    });
-
-    $("#modalBackground").css("opacity", "0.8");
-
-    if ($("body").height() > $("#modalBackground").height()) {
-      $("#modalBackground").css("height", $("body").height() + "px");
-    }
-
-    if ($('#new-modal').height() > $("#modalBackground").height()) {
-      $("#modalBackground").css("height", $('#new-modal').height() + 120 + "px");
-    }
-
-    window.scrollTo(0, 0);
-  };
-
-  addressLoadModal = function (itemId) {
-        $('#modalBackground').show();
-        $(itemId).show();
-        addressPositionModal();
-      }
-
-  addresscloseModal = function () {
-        $('#modalBackground').hide();
-        $('#new-modal>div').hide();
-      }
-
-  $(".closeModal,#new-modal #printModal .modal-title a.greyBtn").click(function () {
-    addresscloseModal();
-  });
 
   $(".submitEnrollmentModalBtn").click(function () {
       addresscloseModal();

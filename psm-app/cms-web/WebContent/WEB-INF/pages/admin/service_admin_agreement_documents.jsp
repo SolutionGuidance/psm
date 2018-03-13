@@ -47,8 +47,14 @@
 
                 <div class="pagination">
                   <div class="right">
-                    <a href="${ctx}/admin/editAgreementDocument?agreementId=0&agreementDocumentType=ADDENDUM" class="purpleBtn addAgreementBtn">Add Agreement Addendum</a>
-                    <a href="${ctx}/admin/editAgreementDocument?agreementId=0&agreementDocumentType=AGREEMENT" class="purpleBtn addAgreementBtn">Add Agreement</a>
+                    <a href="${ctx}/admin/editAgreementDocument?agreementId=0&agreementDocumentType=AGREEMENT"
+                      class="purpleBtn addAgreementBtn">
+                      Add Agreement
+                    </a>
+                    <a href="${ctx}/admin/editAgreementDocument?agreementId=0&agreementDocumentType=ADDENDUM"
+                      class="purpleBtn addAgreementBtn">
+                      Add Addendum
+                    </a>
                   </div>
                 </div>
                 <div class="pagination">

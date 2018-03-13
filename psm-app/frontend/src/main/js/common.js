@@ -111,4 +111,14 @@ $(document).ready(function () {
   $(".closeModal, .modalCloseButton, #new-modal #printModal .modal-title a.greyBtn")
     .click(addresscloseModal);
 
+  $(".submitEnrollmentModalBtn").click(function () {
+    addresscloseModal();
+    addressLoadModal('#submitEnrollmentModal');
+  });
+
+  $(".saveAsDraftModalBtn").click(function () {
+    addresscloseModal();
+    addressLoadModal('#saveAsDraftModal');
+  });
+
 });

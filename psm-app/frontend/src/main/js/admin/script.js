@@ -565,16 +565,6 @@ $(document).ready(function () {
 
   /*new js*/
 
-  $(".submitEnrollmentModalBtn").click(function () {
-      addresscloseModal();
-      addressLoadModal('#submitEnrollmentModal');
-    });
-
-  $(".saveAsDraftModalBtn").click(function () {
-      addresscloseModal();
-      addressLoadModal('#saveAsDraftModal');
-    });
-
   $('.printModalBtn').click(function () {
       addresscloseModal();
       addressLoadModal('#printModal');

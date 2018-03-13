@@ -55,6 +55,7 @@
                       class="purpleBtn addAgreementBtn">
                       Add Addendum
                     </a>
+                    <a href="javascript:" class="userHelpLink agreementsAddendumsHelpLink">?</a>
                   </div>
                 </div>
                 <div class="pagination">
@@ -285,6 +286,12 @@
         </div>
         <!-- /.modalFooter -->
       </div>
+
+      <div id="new-modal">
+        <c:set var="userHelpModalId" value="user-help-modal"/>
+        <h:handlebars template="includes/userhelp/user_help_modal" context="${pageContext}" />
+      </div>
+
     </div>
   </body>
 </html>

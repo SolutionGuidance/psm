@@ -580,6 +580,12 @@ $(document).ready(function () {
       addressLoadModal('#printModal');
     });
 
+  addUserHelpClickHandler(
+    'a.agreementsAddendumsHelpLink',
+    '/help/service-admin-help.html',
+    'what-s-the-difference-between-an-agreement-and-an-addendum'
+  );
+
   $('.editInfo').click(function () {
     $(this).parents('.tabContent').find('.editInfo').hide();
     $(this).parents('.tabContent').find('.plainInformation').hide();

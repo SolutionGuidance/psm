@@ -1,8 +1,8 @@
        Installation instructions for the Provider Screening Module
        ===========================================================
 
-***NOTE: These developer installation instructions are a work in 
-progress. We welcome suggestions on improving them. A production 
+***NOTE: These developer installation instructions are a work in
+progress. We welcome suggestions on improving them. A production
 deployment guide will be part of our 1.0 release. ***
 
 **Contents**
@@ -282,8 +282,8 @@ $ sudo -u postgres createuser --pwprompt psm
 $ sudo -u postgres createdb --owner=psm psm
 ```
 
-If you get an error saying `role "postgres" does not exist`, this is likely due 
-to Mac OS X not assigning "postgres" as a superuser. You will need to access 
+If you get an error saying `role "postgres" does not exist`, this is likely due
+to Mac OS X not assigning "postgres" as a superuser. You will need to access
 your postgres database to find the superuser name and substitute it into the scripts.
 
 ```ShellSession

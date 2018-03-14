@@ -60,40 +60,62 @@ $(document).ready(function () {
   }
 
   /**
-  * Populates a user help modal with content.  With the first two
+  * Populates a user help modal with content.  With the first three
   * arguments bound (using '.bind'), this is used as the callback
   * function for AJAX calls that fetch a user help page.  It extracts
   * the relevant content from the help page and adds it to the modal.
   *
   * @param modalId {string} - ID of the target modal.
-  * @param helpItemId {string} - ID of the source help item.
+  * @param helpItemIds {array of strings} - IDs of the source help items.
+  * @param title {string or undefined} - modal title to use with multiple help items.
   * @param helpPageString {string} - HTML of the help page.
   */
-  populateUserHelpModal = function (modalId, helpItemId, helpPageString) {
+  populateUserHelpModal = function (modalId, helpItemIds, title, helpPageString) {
     var parser = new DOMParser();
     var helpPage = parser.parseFromString(helpPageString, "text/html");
-
-    var helpItem = helpPage.getElementById(helpItemId);
-    var helpTitle = helpItem.querySelector("h2");
 
     var modal = document.getElementById(modalId);
     var modalTitle = modal.querySelector(".userHelpModalTitle");
     var modalBody = modal.querySelector(".userHelpModalBody");
 
-    modalTitle.innerHTML = helpTitle.firstChild.textContent;
+    if (title) {
+      modalTitle.innerHTML = title;
+      // Remove "Loading..." or other text from modal body.
+      modalBody.innerHTML = "";
 
-    helpItem.removeChild(helpTitle);
-    modalBody.innerHTML = helpItem.innerHTML;
+      helpItemIds.forEach(function (helpItemId) {
+        var helpItem = helpPage.getElementById(helpItemId);
+
+        // Remove the permalink anchor tag from the help title.
+        var helpTitle = helpItem.querySelector("h2");
+        helpTitle.innerHTML = helpTitle.firstChild.textContent;
+
+        while (helpItem.firstChild) {
+          modalBody.appendChild(helpItem.firstChild);
+        }
+      });
+
+    } else {
+      var helpItem = helpPage.getElementById(helpItemIds[0]);
+      var helpTitle = helpItem.querySelector("h2");
+
+      modalTitle.innerHTML = helpTitle.firstChild.textContent;
+
+      helpItem.removeChild(helpTitle);
+      modalBody.innerHTML = helpItem.innerHTML;
+    }
   };
 
   /**
   * Add a click handler function to a user help modal link.
+  * Title is optional; is absent (undefined) to show a single help item.
   *
   * @param helpLinkSelector {string} - Selector for the help link.
   * @param helpDocsPath {string} - Path to the help doc html file.
-  * @param helpItemId {string} - ID of the source help item.
+  * @param helpItemIds {array of strings} - IDs of the source help items.
+  * @param title {string or undefined} - Title to use with multiple help items.
   */
-  addUserHelpClickHandler = function (helpLinkSelector, helpDocsPath, helpItemId) {
+  addUserHelpClickHandler = function (helpLinkSelector, helpDocsPath, helpItemIds, title) {
     $(helpLinkSelector).click(function () {
       resetUserHelpModal('#user-help-modal');
       addressLoadModal('#user-help-modal');
@@ -102,7 +124,8 @@ $(document).ready(function () {
         populateUserHelpModal.bind(
           undefined,
           'user-help-modal',
-          helpItemId
+          helpItemIds,
+          title
         )
       );
     });

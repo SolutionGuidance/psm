@@ -1,5 +1,6 @@
 package gov.medicaid.api
 
+import gov.medicaid.entities.CMSUser
 import gov.medicaid.entities.Enrollment
 import gov.medicaid.entities.Organization
 import gov.medicaid.entities.ProviderProfile
@@ -27,8 +28,8 @@ class TaskResourceProviderTest extends Specification {
 
         then:
         1 * mockEnrollmentService.getTicketDetails(
-                {it.role.description == "System Administrator"},
-                _
+                { it.role.description == "System Administrator" } as CMSUser,
+                _ as Long
         )
     }
 

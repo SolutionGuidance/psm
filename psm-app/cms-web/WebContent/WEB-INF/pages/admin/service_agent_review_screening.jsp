@@ -224,6 +224,42 @@
                       </tbody>
                     </table>
                   </c:if>
+
+                  <c:if test="${not empty model.enrollment.providerInformation.facilityCredentials.signedContract}">
+                    <div class="tableHeader"><span>Facility Credentials</span></div>
+                    <div class="clearFixed"></div>
+                    <table class="generalTable">
+                      <thead>
+                        <tr>
+                          <th>Type<span class="sep"></span></th>
+                          <th>Begin<span class="sep"></span></th>
+                          <th>End<span class="sep"></span></th>
+                          <th>Attachment<span class="sep"></span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <c:forEach var="contract" items="${model.enrollment.providerInformation.facilityCredentials.signedContract}">
+                          <tr>
+                            <td>${contract.name}</td>
+                            <td>
+                              <fmt:formatDate pattern="MM/dd/yyyy"
+                                              value="${contract.beginDate.time}"/>
+                            </td>
+                            <td>
+                              <fmt:formatDate pattern="MM/dd/yyyy"
+                                              value="${contract.endDate.time}"/>
+                            </td>
+                            <td>
+                              <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                                <c:param name="id" value="${contract.copyAttachmentId}"></c:param>
+                              </c:url>
+                              <a href="${downloadLink}">View</a>
+                            </td>
+                          </tr>
+                        </c:forEach>
+                      </tbody>
+                    </table>
+                  </c:if>
                   <div class="row"></div>
                 </div>
 

@@ -1,8 +1,8 @@
        Installation instructions for the Provider Screening Module
        ===========================================================
 
-***NOTE: These developer installation instructions are a work in 
-progress. We welcome suggestions on improving them. A production 
+***NOTE: These developer installation instructions are a work in
+progress. We welcome suggestions on improving them. A production
 deployment guide will be part of our 1.0 release. ***
 
 **Contents**
@@ -282,8 +282,8 @@ $ sudo -u postgres createuser --pwprompt psm
 $ sudo -u postgres createdb --owner=psm psm
 ```
 
-If you get an error saying `role "postgres" does not exist`, this is likely due 
-to Mac OS X not assigning "postgres" as a superuser. You will need to access 
+If you get an error saying `role "postgres" does not exist`, this is likely due
+to Mac OS X not assigning "postgres" as a superuser. You will need to access
 your postgres database to find the superuser name and substitute it into the scripts.
 
 ```ShellSession
@@ -460,11 +460,24 @@ then install the following plugins:
 - [Checkstyle Plugin](https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin)
 - [GitHub pull request builder plugin](https://wiki.jenkins.io/display/JENKINS/GitHub+pull+request+builder+plugin)
 - [Gradle Plugin](https://wiki.jenkins.io/display/JENKINS/Gradle+Plugin)
+- [HTML Publisher Plugin](https://wiki.jenkins.io/display/JENKINS/HTML+Publisher+Plugin)
 
 You will need a [GitHub personal access
 token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
 to have Jenkins mark the results of its builds in GitHub. The token should have
 the `repo:status`, `admin:repo_hook`, and `repo_deployment` permission scopes.
+
+Publishing the Serenity test reports uses the HTML Publisher Plugin. As the
+reports use JavaScript, the
+[default](https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy)
+[content security policy](https://content-security-policy.com/) needs to be
+reconfigured to the value `sandbox allow-scripts allow-same-origin`. We did so
+by editing `/etc/default/jenkins` and adding the following argument to the
+`JAVA_ARGS` variable:
+
+```
+-Dhudson.model.DirectoryBrowserSupport.CSP=\"sandbox allow-scripts allow-same-origin
+```
 
 ### Continuous Integration
 
@@ -493,10 +506,10 @@ Each task is a freestyle project, triggered by the GitHub pull request plugin.
   - `services:test`
 - integration tests: runs the `cms-portal-services:build` gradle target,
   deploys the result to a local WildFly application server, runs the
-  `integration-tests:test` target, and collects the JUnit reports. See also
-  `docs/TESTING.md` for more on running the integration tests, and the
-  installation instructions (in this document) for configuring a WildFly
-  application server.
+  `integration-tests:test` and `integration-tests:aggregate` targets, and
+  collects the JUnit and Serenity test reports. See also `docs/TESTING.md` for
+  more on running the integration tests, and the installation instructions (in
+  this document) for configuring a WildFly application server.
 - checkstyle: runs the following gradle targets, and collects the Checkstyle
   reports:
   - `checkstyleMain`

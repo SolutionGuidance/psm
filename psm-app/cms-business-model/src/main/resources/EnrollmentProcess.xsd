@@ -22,7 +22,6 @@
 				<element name="EnrollmentStatus" type="cms:EnrollmentStatusType"></element>
 				<element name="EnrollmentStatusHistory" type="cms:EnrollmentStatusHistoryType"></element>
 				<element name="PostSubmissionInformation" type="cms:PostSubmissionInformationType"></element>
-				<element name="PreApprovalQuestions" type="string"></element>
 				<element name="ProcessResults" type="tns:ProcessResultsType"></element>
 				<element name="ProcessAudit" type="tns:ProcessAuditType"></element>
 			</sequence>

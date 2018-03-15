@@ -43,7 +43,6 @@ public class XMLSerializingEnrollmentProcess extends EnrollmentProcess implement
             setEnrollmentStatus(result.getEnrollmentStatus());
             setEnrollmentStatusHistory(result.getEnrollmentStatusHistory());
             setPostSubmissionInformation(result.getPostSubmissionInformation());
-            setPreApprovalQuestions(result.getPreApprovalQuestions());
             setProcessAudit(result.getProcessAudit());
             setProcessResults(result.getProcessResults());
 

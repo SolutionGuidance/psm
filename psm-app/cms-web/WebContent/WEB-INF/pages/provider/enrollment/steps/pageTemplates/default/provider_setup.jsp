@@ -27,7 +27,6 @@
                 <c:set var="formName" value="_20_npi_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">NPI<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="npiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
                 <a href="javascript:;" class="purpleBtn NPISetupLookup"><span class="icon">NPI Lookup</span></a>
                 <span class="errorMsg">No records found with NPI number <span></span></span>
@@ -38,14 +37,12 @@
                 <c:set var="formName" value="_20_name_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Pay-to Provider Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="row requireField">
                 <c:set var="formName" value="_20_contactName_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Contact Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="contactNameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="clearFixed"></div>
@@ -55,14 +52,12 @@
                 <c:set var="formName" value="_20_effectiveDate_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Effective Date<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
                     <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
                 </span>
             </div>
             <div class="row requireField">
                 <label>Phone Number<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_20_phone1_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" title="Phone Number Area Code" class="phone1Input tinyInput" name="${formName}" value="${formValue}" maxlength="3"/>
@@ -81,7 +76,6 @@
             </div>
             <div class="row requireField">
                 <label class="multiLine">Choose One<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_20_type_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label class="inline"><input type="radio" ${formValue eq 'Claim' ? 'checked' : ''} name="${formName}" value="Claim"/>Claim</label>
@@ -114,7 +108,6 @@
                 <c:set var="formName" value="_20_npi_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">NPI<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="npiMasked smallInput" name="${formName}" value="${formValue}" maxlength="10"/>
                 <a href="javascript:;" class="purpleBtn NPISetupLookup"><span class="icon">NPI Lookup</span></a>
                 <span class="errorMsg">No records found with NPI number <span></span></span>
@@ -125,14 +118,12 @@
                 <c:set var="formName" value="_20_name_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Pay-to Provider Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="row requireField">
                 <c:set var="formName" value="_20_contactName_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Contact Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="contactNameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="clearFixed"></div>
@@ -142,14 +133,12 @@
                 <c:set var="formName" value="_20_startDate_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Effective Date<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
                     <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
                 </span>
             </div>
             <div class="row requireField">
                 <label>Phone Number<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_20_phone1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" title="Phone Number Area Code" class="phone1Input tinyInput" name="${formName}" value="${formValue}" maxlength="3"/>
@@ -168,7 +157,6 @@
             </div>
             <div class="row requireField">
                 <label class="multiLine">Choose One<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_20_iboRelationship_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label class="inline"><input type="radio" ${formValue eq 'Claim' ? 'checked' : ''} name="${formName}" value="Claim"/>Claim</label>

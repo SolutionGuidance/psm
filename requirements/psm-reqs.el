@@ -38,18 +38,24 @@ the requirement (e.g., source, release, etc)."
                           (len (length raw)))
                      (when (< len 10)
                        (error "'%s' is too short to be a PSM req ID" raw))
-                     (save-match-data
-                       (if (string-match "psm-[A-Z][A-Z]-[0-9]+\\.[0-9]+" raw)
-                           ;; The regexp above doesn't begin with "^" nor
-                           ;; end with "$" because `thing-at-point' may
-                           ;; include leading or trailing garbage.  E.g., in
-                           ;; "psm-FR-1.1, psm-FR-1.2, psm-FR-1.3", calling
-                           ;; with point on either of the first two would
-                           ;; include the trailing comma.  Here we strip 
-                           ;; off stuff that isn't part of the ID.
-                           (setq raw (match-string 0 raw))
-                         (error "'%s' doesn't look like a PSM req ID" raw)))
-                     ;; Convert, e.g., "psm-fr-5.2" to "psm-FR-5.2".
+                     (let ((case-fold-search t))
+                       (save-match-data
+                         (if (string-match "psm-[A-Z][A-Z]-[0-9]+\\.[0-9]+" raw)
+                             ;; The regexp above doesn't begin with "^" nor
+                             ;; end with "$" because `thing-at-point' may
+                             ;; include leading or trailing garbage.  E.g., in
+                             ;; "psm-FR-1.1, psm-FR-1.2, psm-FR-1.3", calling
+                             ;; with point on either of the first two would
+                             ;; include the trailing comma.  Here we strip 
+                             ;; off stuff that isn't part of the ID.
+                             (setq raw (match-string 0 raw))
+                           (error "'%s' doesn't look like a PSM req ID" raw))))
+                     ;; Ensure that the "psm" is lower case and the two-letter
+                     ;; subcode is upper case.  For example, this would convert
+                     ;; "PSM-fr-5.2" to "psm-FR-5.2".
+                     (aset raw 0 (downcase (aref raw 0)))
+                     (aset raw 1 (downcase (aref raw 1)))
+                     (aset raw 2 (downcase (aref raw 2)))
                      (aset raw 4 (upcase (aref raw 4)))
                      (aset raw 5 (upcase (aref raw 5)))
                      raw))

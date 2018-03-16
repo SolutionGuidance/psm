@@ -489,6 +489,7 @@ inactivity. (Addressable) ";
 "The PSM shall support roles and responsibilities of individuals that
 are separated through assigned information access authorization as
 necessary to prevent malevolent activity.";
+C.f. psm-AD-5.2, 
 * psm-AD-5.15
 "After 15 minutes of inactivity, the PSM shall initiate a session lock;
 the session lock should remain in place until the user reestablishes
@@ -530,9 +531,11 @@ The PSM shall also undergo manual testing and QA as needed."
 "The PSM shall be configurable where feasible."
 * psm-AD-5.18
 "The PSM shall be secure from unauthorized access or use, and shall sanitize inputs and outputs where possible so as to avoid compromising itself or other systems."
+C.f. psm-AD-5.1
 * psm-FR-10.2
 "The PSM shall be accessible in compliance with Section 508 of the
 Rehabilitation Act."
+C.f. psm-AD-2.1, psm-AD-2.2
 * psm-FR-7.14
 "The PSM's user interface shall be as simple, comprehensible, navigable, reliable, robust in the face of error, and responsive as possible."
 * psm-FR-7.13

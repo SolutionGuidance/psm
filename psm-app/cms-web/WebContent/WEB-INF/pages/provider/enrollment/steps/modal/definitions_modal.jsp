@@ -10,7 +10,7 @@
 <div class="inner">
 <!-- title -->
 <div class="modal-title">
-    <a href="javascript:;" class="greyBtn iconX">
+    <a href="javascript:;" class="greyBtn iconX modalCloseButton">
       Close
     </a>
     <h3>Definitions</h3>

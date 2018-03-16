@@ -47,8 +47,15 @@
 
                 <div class="pagination">
                   <div class="right">
-                    <a href="${ctx}/admin/editAgreementDocument?agreementId=0&agreementDocumentType=ADDENDUM" class="purpleBtn addAgreementBtn">Add Agreement Addendum</a>
-                    <a href="${ctx}/admin/editAgreementDocument?agreementId=0&agreementDocumentType=AGREEMENT" class="purpleBtn addAgreementBtn">Add Agreement</a>
+                    <a href="${ctx}/admin/editAgreementDocument?agreementId=0&agreementDocumentType=AGREEMENT"
+                      class="purpleBtn addAgreementBtn">
+                      Add Agreement
+                    </a>
+                    <a href="${ctx}/admin/editAgreementDocument?agreementId=0&agreementDocumentType=ADDENDUM"
+                      class="purpleBtn addAgreementBtn">
+                      Add Addendum
+                    </a>
+                    <a href="javascript:" class="userHelpLink agreementsAddendumsHelpLink">?</a>
                   </div>
                 </div>
                 <div class="pagination">
@@ -279,6 +286,12 @@
         </div>
         <!-- /.modalFooter -->
       </div>
+
+      <div id="new-modal">
+        <c:set var="userHelpModalId" value="user-help-modal"/>
+        <h:handlebars template="includes/userhelp/user_help_modal" context="${pageContext}" />
+      </div>
+
     </div>
   </body>
 </html>

@@ -3305,6 +3305,10 @@ a.searchBtn {
   font-size:14px;
 
 }
+#new-modal .userHelpModalBody p {
+  text-align: left;
+  margin: 0.8em 0 0.5em 0;
+}
 #new-modal .inner .buttonArea{
   padding-top:35px;
   padding-bottom:15px;

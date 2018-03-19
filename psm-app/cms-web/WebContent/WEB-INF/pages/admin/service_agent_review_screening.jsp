@@ -174,54 +174,92 @@
                     </tbody>
                   </table>
 
-                  <div class="tableHeader"><span>License Information</span></div>
-                  <div class="clearFixed"></div>
-                  <table class="generalTable">
-                    <thead>
-                      <tr>
-                        <th>Type<span class="sep"></span></th>
-                        <th>Number<span class="sep"></span></th>
-                        <th>Auto Screening<span class="sep"></span></th>
-                        <th>Verified</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <c:forEach var="license" items="${model.enrollment.providerInformation.licenseInformation.license}">
+                  <c:if test="${not empty model.enrollment.providerInformation.licenseInformation.license}">
+                    <div class="tableHeader"><span>License Information</span></div>
+                    <div class="clearFixed"></div>
+                    <table class="generalTable">
+                      <thead>
                         <tr>
-                          <td>${license.licenseType}${license.specialtyType}</td>
-                          <td>${license.licenseNumber}
-
-                            <c:url var="downloadLink" value="/provider/enrollment/attachment">
-                            <c:param name="id" value="${license.attachmentObjectId}"></c:param>
-                            </c:url>
-                            <a href="${downloadLink}">View</a>
-
-                          </td>
-                          <td><a class="autoScreeningResultLink"
-                                href="${ctx}/agent/enrollment/autoScreeningResult?type=LICENSE VERIFICATION&id=${id}&licenseId=${license.objectId}"
-                                target="_blank">
-                            <c:choose>
-                            <c:when test="${empty license.verified}">
-                              Not performed
-                            </c:when>
-                            <c:otherwise>
-                              View results
-                            </c:otherwise>
-                            </c:choose>
-                          </a></td>
-                          <td>
-                            <input
-                              type="checkbox"
-                              title="License Number ${license.licenseNumber} Verified"
-                              name="verifiedLicenses"
-                              value="${license.attachmentObjectId}"
-                              ${license.verified eq 'Y' ? 'checked' : ''}
-                              />
-                          </td>
+                          <th>Type<span class="sep"></span></th>
+                          <th>Number<span class="sep"></span></th>
+                          <th>Auto Screening<span class="sep"></span></th>
+                          <th>Verified</th>
                         </tr>
-                      </c:forEach>
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        <c:forEach var="license" items="${model.enrollment.providerInformation.licenseInformation.license}">
+                          <tr>
+                            <td>${license.licenseType}${license.specialtyType}</td>
+                            <td>${license.licenseNumber}
+
+                              <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                              <c:param name="id" value="${license.attachmentObjectId}"></c:param>
+                              </c:url>
+                              <a href="${downloadLink}">View</a>
+
+                            </td>
+                            <td><a class="autoScreeningResultLink"
+                                  href="${ctx}/agent/enrollment/autoScreeningResult?type=LICENSE VERIFICATION&id=${id}&licenseId=${license.objectId}"
+                                  target="_blank">
+                              <c:choose>
+                              <c:when test="${empty license.verified}">
+                                Not performed
+                              </c:when>
+                              <c:otherwise>
+                                View results
+                              </c:otherwise>
+                              </c:choose>
+                            </a></td>
+                            <td>
+                              <input
+                                type="checkbox"
+                                title="License Number ${license.licenseNumber} Verified"
+                                name="verifiedLicenses"
+                                value="${license.attachmentObjectId}"
+                                ${license.verified eq 'Y' ? 'checked' : ''}
+                                />
+                            </td>
+                          </tr>
+                        </c:forEach>
+                      </tbody>
+                    </table>
+                  </c:if>
+
+                  <c:if test="${not empty model.enrollment.providerInformation.facilityCredentials.signedContract}">
+                    <div class="tableHeader"><span>Facility Credentials</span></div>
+                    <div class="clearFixed"></div>
+                    <table class="generalTable">
+                      <thead>
+                        <tr>
+                          <th>Type<span class="sep"></span></th>
+                          <th>Begin<span class="sep"></span></th>
+                          <th>End<span class="sep"></span></th>
+                          <th>Attachment<span class="sep"></span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <c:forEach var="contract" items="${model.enrollment.providerInformation.facilityCredentials.signedContract}">
+                          <tr>
+                            <td>${contract.name}</td>
+                            <td>
+                              <fmt:formatDate pattern="MM/dd/yyyy"
+                                              value="${contract.beginDate.time}"/>
+                            </td>
+                            <td>
+                              <fmt:formatDate pattern="MM/dd/yyyy"
+                                              value="${contract.endDate.time}"/>
+                            </td>
+                            <td>
+                              <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                                <c:param name="id" value="${contract.copyAttachmentId}"></c:param>
+                              </c:url>
+                              <a href="${downloadLink}">View</a>
+                            </td>
+                          </tr>
+                        </c:forEach>
+                      </tbody>
+                    </table>
+                  </c:if>
                   <div class="row"></div>
                 </div>
 

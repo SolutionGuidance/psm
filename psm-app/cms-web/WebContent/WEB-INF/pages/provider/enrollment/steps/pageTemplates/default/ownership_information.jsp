@@ -37,7 +37,15 @@
                 <c:set var="formName" value="_17_entityDescription"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Specify Type</label>
-                <input id="${formIdPrefix}_${formName}" type="text" class="normalInput ${formValue eq 'Other' ? '' : 'disabled'}" ${formValue eq 'Other' ? '' : disabledMarkup} name="${formName}" value="${formValue}" maxlength="100"/>
+                <input
+                  id="${formIdPrefix}_${formName}"
+                  type="text"
+                  class="normalInput ${formValue eq 'Other' ? '' : 'disabled'}"
+                  ${formValue eq 'Other' ? '' : disabledMarkup}
+                  name="${formName}"
+                  value="${formValue}"
+                  maxlength="100"
+                />
             </div>
             <div class="clearFixed"></div>
         </div>

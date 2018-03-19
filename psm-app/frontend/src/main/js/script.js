@@ -1719,13 +1719,20 @@ $(document).ready(function () {
     performSetupLookup($(this));
   });
 
-  /*entity type change function*/
-  //$('input[name="_17_entityDescription"]').attr('disabled','disabled').addClass('disabled').siblings('label').addClass('disabled');
+  /* entity type change function */
   $('#entityType').change(function () {
     if ($(this).val() == 'Other') {
-      $('input[name="_17_entityDescription"]').removeAttr('disabled').removeClass('disabled').siblings('label').removeClass('disabled');
+      $('input[name="_17_entityDescription"]')
+        .removeAttr('disabled')
+        .removeClass('disabled')
+        .siblings('label')
+        .removeClass('disabled');
     } else {
-      $('input[name="_17_entityDescription"]').attr('disabled', 'disabled').addClass('disabled').siblings('label').addClass('disabled');
+      $('input[name="_17_entityDescription"]')
+        .attr('disabled', 'disabled')
+        .addClass('disabled')
+        .siblings('label')
+        .addClass('disabled');
     }
 
     updateBeneficialOwnerTypes($(this).val());

@@ -1724,15 +1724,15 @@ $(document).ready(function () {
     if ($(this).val() == 'Other') {
       $('input[name="_17_entityDescription"]')
         .removeAttr('disabled')
-        .removeClass('disabled')
+        .removeClass('hidden disabled')
         .siblings('label')
-        .removeClass('disabled');
+        .removeClass('hidden disabled');
     } else {
       $('input[name="_17_entityDescription"]')
         .attr('disabled', 'disabled')
-        .addClass('disabled')
+        .addClass('hidden disabled')
         .siblings('label')
-        .addClass('disabled');
+        .addClass('hidden disabled');
     }
 
     updateBeneficialOwnerTypes($(this).val());

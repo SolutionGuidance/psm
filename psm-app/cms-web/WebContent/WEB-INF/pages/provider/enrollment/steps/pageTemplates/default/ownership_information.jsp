@@ -36,12 +36,19 @@
             <div class="row">
                 <c:set var="formName" value="_17_entityDescription"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Specify Type</label>
+                <c:set var="formNameEntityType" value="_17_entityType"></c:set>
+                <c:set var="formValueEntityType" value="${requestScope[formNameEntityType]}"></c:set>
+                <label
+                  for="${formIdPrefix}_${formName}"
+                  class="${formValueEntityType == 'Other' ? '' : 'hidden disabled'}"
+                >
+                  Specify Other Entity Type
+                </label>
                 <input
                   id="${formIdPrefix}_${formName}"
                   type="text"
-                  class="normalInput ${formValue eq 'Other' ? '' : 'disabled'}"
-                  ${formValue eq 'Other' ? '' : disabledMarkup}
+                  class="normalInput ${formValueEntityType == 'Other' ? '' : 'hidden disabled'}"
+                  ${formValueEntityType == 'Other' ? '' : disabledMarkup}
                   name="${formName}"
                   value="${formValue}"
                   maxlength="100"

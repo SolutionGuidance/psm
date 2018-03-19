@@ -4152,6 +4152,10 @@ input.passwordNormalInput{
   background-image: none !important;
 }
 
+.hidden {
+  display:none !important;
+}
+
 .alternateTable td{
   line-height: 18px;
 }

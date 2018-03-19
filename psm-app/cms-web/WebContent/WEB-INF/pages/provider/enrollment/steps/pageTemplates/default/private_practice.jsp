@@ -204,7 +204,9 @@
                 <div class="row">
                     <c:set var="formName" value="_05_fein"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}">FEIN</label>
+                    <label for="${formIdPrefix}_${formName}">
+                      <abbr title="Federal Employer Identification Number">FEIN</abbr>
+                    </label>
                     <input id="${formIdPrefix}_${formName}" ${disableLinkedFields} type="text" class="normalInput feinMasked" name="${formName}" value="${formValue}" maxlength="10"/>
                 </div>
                 <div class="row">

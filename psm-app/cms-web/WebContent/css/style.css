@@ -4347,6 +4347,10 @@ input.passwordNormalInput{
   cursor: help;
 }
 
+.generalTable th .actionColumnHelpLink {
+  color: #1AABFF;
+}
+
 /*definition modal style*/
 #new-modal .definitionsModal.definitions .modal-title h3{
   background: none;

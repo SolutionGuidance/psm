@@ -86,6 +86,7 @@
       <th class="alignCenter" >
         <div class="tablesorter-header-inner">
           Action
+          <a href="javascript:" class="userHelpLink actionColumnHelpLink">?</a>
         </div>
       </th>
     </tr>

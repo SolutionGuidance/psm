@@ -1893,6 +1893,18 @@ $(document).ready(function () {
     ['am-i-employed-and-or-independently-contracted-by-a-group-practice']
   );
 
+  addUserHelpClickHandler(
+    'a.actionColumnHelpLink',
+    '/help/enrollment.html',
+    [
+      'why-can-i-edit-some-enrollments-but-not-others',
+      'can-i-change-something-in-a-pending-enrollment-after-i-submit-it',
+      'how-can-i-update-an-existing-organizational-enrollment-to-add-a-new-provider-e-g-if-a-clinic-hires-a-new-physician',
+      'how-can-i-update-an-existing-organizational-enrollment-to-remove-a-provider-e-g-if-a-physician-retires-from-a-clinic'
+    ],
+    "Questions About Editing an Enrollment"
+  );
+
   //$('.inline input[type=radio]').removeAttr('checked');
   //    $('.inline input[name=civilMoney]').click(function(){
   //        if($(this).val()=="yes"){

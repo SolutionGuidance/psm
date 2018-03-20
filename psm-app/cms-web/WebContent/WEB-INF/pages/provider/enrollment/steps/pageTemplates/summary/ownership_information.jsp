@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 
 <c:if test="${requestScope['_17_bound'] eq 'Y'}">
 <table class="memberInfo">
@@ -40,18 +41,20 @@
                     <div class="row">
                         <label>Home Residence Address</label>
                         <span class="floatL"><b>:</b></span>
-                        <span>
-                            <c:set var="formName" value="_17_iboAddressLine1_${status.index - 1}"></c:set><c:if test="${not empty requestScope[formName]}"><c:out value="${requestScope[formName]}"><br /></c:out></c:if>
-                            <c:set var="formName" value="_17_iboAddressLine2_${status.index - 1}"></c:set>${requestScope[formName]}<br />
-                            <c:set var="formName" value="_17_iboCity_${status.index - 1}"></c:set>
-                            <c:set var="city" value="${requestScope[formName]}"></c:set>${city}
-                            <c:set var="formName" value="_17_iboState_${status.index - 1}"></c:set>
-                            <c:set var="state" value="${requestScope[formName]}"></c:set><c:if test="${not empty state}">,</c:if>${state}
-                            <c:set var="formName" value="_17_iboZip_${status.index - 1}"></c:set>
-                            <c:set var="zip" value="${requestScope[formName]}"></c:set><c:if test="${not empty zip}">,</c:if>${zip}
-                            <c:set var="formName" value="_17_iboCounty_${status.index - 1}"></c:set>
-                            <c:set var="county" value="${requestScope[formName]}"></c:set><c:if test="${not empty county}">,</c:if>${county}
-                        </span>
+
+                        <c:set var="streetAddress" value="_17_iboAddressLine1_${status.index - 1}" />
+                        <c:set var="extendedAddress" value="_17_iboAddressLine2_${status.index - 1}" />
+                        <c:set var="city" value="_17_iboCity_${status.index - 1}" />
+                        <c:set var="state" value="_17_iboState_${status.index - 1}" />
+                        <c:set var="postalCode" value="_17_iboZip_${status.index - 1}" />
+                        <c:set var="county" value="_17_iboCounty_${status.index - 1}" />
+                        <h:address name="home"
+                            streetAddress="${requestScope[streetAddress]}"
+                            extendedAddress="${requestScope[extendedAddress]}"
+                            city="${requestScope[city]}"
+                            state="${requestScope[state]}"
+                            postalCode="${requestScope[postalCode]}"
+                            county="${requestScope[county]}" />
                     </div>
                 </div>
                 <div class="rightCol">
@@ -109,18 +112,20 @@
                     <div class="row">
                         <label>Business Address</label>
                         <span class="floatL"><b>:</b></span>
-                        <span>
-                            <c:set var="formName" value="_17_cboAddressLine1_${status.index - 1}"></c:set><c:if test="${not empty requestScope[formName]}"><c:out value="${requestScope[formName]}"><br /></c:out></c:if>
-                            <c:set var="formName" value="_17_cboAddressLine2_${status.index - 1}"></c:set>${requestScope[formName]}<br />
-                            <c:set var="formName" value="_17_cboCity_${status.index - 1}"></c:set>
-                            <c:set var="city" value="${requestScope[formName]}"></c:set>${city}
-                            <c:set var="formName" value="_17_cboState_${status.index - 1}"></c:set>
-                            <c:set var="state" value="${requestScope[formName]}"></c:set><c:if test="${not empty state}">,</c:if>${state}
-                            <c:set var="formName" value="_17_cboZip_${status.index - 1}"></c:set>
-                            <c:set var="zip" value="${requestScope[formName]}"></c:set><c:if test="${not empty zip}">,</c:if>${zip}
-                            <c:set var="formName" value="_17_cboCounty_${status.index - 1}"></c:set>
-                            <c:set var="county" value="${requestScope[formName]}"></c:set><c:if test="${not empty county}">,</c:if>${county}
-                        </span>
+
+                        <c:set var="streetAddress" value="_17_cboAddressLine1_${status.index - 1}" />
+                        <c:set var="extendedAddress" value="_17_cboAddressLine2_${status.index - 1}" />
+                        <c:set var="city" value="_17_cboCity_${status.index - 1}" />
+                        <c:set var="state" value="_17_cboState_${status.index - 1}" />
+                        <c:set var="postalCode" value="_17_cboZip_${status.index - 1}" />
+                        <c:set var="county" value="_17_cboCounty_${status.index - 1}" />
+                        <h:address name="business"
+                            streetAddress="${requestScope[streetAddress]}"
+                            extendedAddress="${requestScope[extendedAddress]}"
+                            city="${requestScope[city]}"
+                            state="${requestScope[state]}"
+                            postalCode="${requestScope[postalCode]}"
+                            county="${requestScope[county]}" />
                     </div>
                 </div>
                 <div class="rightCol">

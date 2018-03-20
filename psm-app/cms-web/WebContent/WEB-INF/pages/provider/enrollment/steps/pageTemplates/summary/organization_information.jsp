@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
+
 <c:if test="${requestScope['_15_bound'] eq 'Y'}">
 <c:set var="askEffectiveDate" value="${viewModel.tabModels['Organization Information'].formSettings['Organization Information Form'].settings['askEffectiveDate']}"></c:set>
 <c:set var="askFiscalYear" value="${viewModel.tabModels['Organization Information'].formSettings['Organization Information Form'].settings['askFiscalYear']}"></c:set>
@@ -253,14 +255,13 @@
                 <div class="row">
                     <label>Practice Address</label>
                     <span class="floatL"><b>:</b></span>
-                    <span>
-                        <c:if test="${not empty requestScope['_15_addressLine1']}"><c:out value="${requestScope['_15_addressLine1']}" /><br /></c:if>
-                        <c:out value="${requestScope['_15_addressLine2']}" /><br />
-                        <c:set var="city" value="${requestScope['_15_city']}" /><c:out value="${city}" />
-                        <c:set var="state" value="${requestScope['_15_state']}" /><c:if test="${not empty state}">,</c:if>${state}
-                        <c:set var="zip" value="${requestScope['_15_zip']}" /><c:if test="${not empty zip}">,</c:if>${zip}
-                        <c:set var="county" value="${requestScope['_15_county']}" /><c:if test="${not empty county}">,</c:if>${county}
-                    </span>
+                    <h:address name="practice"
+                        streetAddress="${requestScope['_15_addressLine1']}"
+                        extendedAddress="${requestScope['_15_addressLine2']}"
+                        city="${requestScope['_15_city']}"
+                        state="${requestScope['_15_state']}"
+                        postalCode="${requestScope['_15_zip']}"
+                        county="${requestScope['_15_county']}" />
                 </div>
                 <div class="row">
                     <label>Office Phone Number</label>

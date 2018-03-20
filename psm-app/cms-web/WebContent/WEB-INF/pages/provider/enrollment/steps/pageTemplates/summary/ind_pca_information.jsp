@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <c:if test="${requestScope['_10_bound'] eq 'Y'}">
     <div class="practiceSection">
         <div class="wholeCol">

@@ -1877,10 +1877,11 @@ $(document).ready(function () {
     $(html).attr('alt', '').attr('title', '');
   });
 
-  /*show ownership type definitions modal*/
-  $('a.ownershipTypeDefinition').click(function () {
-    addressLoadModal('#definitionsModal');
-  });
+  addUserHelpClickHandler(
+    'a.ownershipTypeDefinition',
+    '/help/enrollment.html',
+    ['what-are-the-types-for-individual-person-s-ownership-or-control-interest']
+  );
 
   addUserHelpClickHandler(
     'a.NPIdefinition',

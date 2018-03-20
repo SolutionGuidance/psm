@@ -188,6 +188,68 @@ then you should answer "yes" for this question.
 information on Type 2 NPI numbers and what kinds of business structures
 should have them <https://questions.cms.gov/faq.php?id=5005&faqId=1965>`__.
 
+
+What are the types for "Individual Person(s) Ownership or Control Interest"?
+----------------------------------------------------------------------------
+
+**Agent** - anyone who has been delegated the authority to obligate or
+act on behalf of the provider.
+
+**Managing Employee** - someone who exercises operational or managerial
+control over, or who directly or indirectly conducts or manages the day-to-day
+operations of an institution, organization, agency or school, such as a general
+manager, business manager, administrator, director.
+
+**Owner - 5% or more of Ownership Interest** - any person, business or
+organization to which any one or more of the following apply:
+
+* Direct ownership of 5% or more in the disclosing entity.
+
+* Indirect ownership interest equal to 5% or more in a disclosing entity
+  (meaning ownership in another entity that has an ownership interest in the
+  disclosing entity). Determine the amount of indirect ownership interest by
+  multiplying the percentages of ownership in each entity. For example, if A owns
+  10% of the stock in a corporation which owns 80% of the stock of the disclosing
+  entity, A's interest equals an 8% indirect ownership interest in the disclosing
+  entity and must be reported. Conversely, if B owns 80% of the stock of a
+  corporation which owns 5% of the stock of the disclosing entity, B's interest
+  equals a 4% indirect ownership interest in the disclosing entity and need not
+  be reported.
+
+* A combination of direct and indirect ownership interest equal to 5% or more
+  in the disclosing entity.
+
+* Owns an interest of 5% or more in any mortgage, deed of trust, note or other
+  obligation secured by the disclosing entity if that interest equals at least 5%
+  of the value of the property or assets of the disclosing entity. Determine the
+  percentage of ownership, mortgage, deed of trust, note, or other obligation by
+  multiplying the percentage of interest owned in the obligation by the
+  percentage of the disclosing entity's assets used to secure the obligation.
+  For example: If A owns 10% of a note secured by 60% of the provider's assets,
+  A's interest in the provider's assets equals 6% and must be reported. If B owns
+  40% of a note secured by 10% of the provider's assets, B's interest in the
+  provider's assets equals 4% and need not be reported.
+
+* Is an officer or director of a disclosing entity that is organized as a
+  corporation (for profit or non-profit).
+
+* Is a partner in a disclosing entity that is organized as a partnership.
+
+**Subcontractor** - an individual, agency, or organization to which a
+disclosing entity has contracted or delegated some of its management functions
+or responsibilities of providing medical care to its patients.
+
+What do "Title V", "Title XX", etc. refer to?
+---------------------------------------------
+
+**Title V** - Maternal and Child Health Services Block Grant.
+
+**Title XVIII** - Health Insurance for the Aged and Disabled (Medicare).
+
+**Title XX** - Block Grants to States for Social Services and Elder Justice.
+
+**Title XXI** - State Children's Health Insurance Program.
+
 Can I create multiple enrollments for one person (e.g., if a person is licensed as two or more kinds of provider)?
 ------------------------------------------------------------------------------------------------------------------
 

@@ -89,7 +89,6 @@
       <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/superseded_ticket.jsp" %>
       <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/submit_enrollment.jsp" %>
       <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/print_modal.jsp" %>
-      <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/definitions_modal.jsp" %>
 
       <c:set var="userHelpModalId" value="user-help-modal"/>
       <h:handlebars template="includes/userhelp/user_help_modal" context="${pageContext}" />

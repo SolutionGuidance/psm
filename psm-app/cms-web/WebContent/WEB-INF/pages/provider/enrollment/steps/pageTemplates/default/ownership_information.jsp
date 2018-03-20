@@ -246,7 +246,11 @@
                 <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
                 <span class="floatL inputCnt">
                     <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
-                    <span class="label">(Taxpayer name of FEIN or on W-9 from IRS)</span>
+                    <span class="label">
+                      (Taxpayer name of
+                      <abbr title="Federal Employer Identification Number">FEIN</abbr>
+                      or on W-9 from IRS)
+                    </span>
                 </span>
 
                 <c:set var="formName" value="_17_iboOtherInterestPct_${status.index - 1}"></c:set>
@@ -381,12 +385,19 @@
                 <label for="${formIdPrefix}_${formName}">Full Legal Name<span class="required">*</span></label>
                 <span class="floatL inputCnt">
                     <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
-                    <span class="label">(Taxpayer name of FEIN or on W-9 from IRS)</span>
+                    <span class="label">
+                      (Taxpayer name of
+                      <abbr title="Federal Employer Identification Number">FEIN</abbr>
+                      or on W-9 from IRS)
+                    </span>
                 </span>
 
                 <c:set var="formName" value="_17_cboFEIN_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}" class="inlineLabel">FEIN<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}" class="inlineLabel">
+                  <abbr title="Federal Employer Identification Number">FEIN</abbr>
+                  <span class="required">*</span>
+                </label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput smallInput feinMasked" name="${formName}" value="${formValue}" maxlength="10"/>
                 <div class="clearFixed"></div>
             </div>
@@ -459,7 +470,11 @@
                 <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
                 <span class="floatL inputCnt">
                     <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
-                    <span class="label">(Taxpayer name of FEIN or on W-9 from IRS)</span>
+                    <span class="label">
+                      (Taxpayer name of
+                      <abbr title="Federal Employer Identification Number">FEIN</abbr>
+                      or on W-9 from IRS)
+                    </span>
                 </span>
 
                 <c:set var="formName" value="_17_cboOtherInterestPct_${status.index - 1}"></c:set>
@@ -586,12 +601,19 @@
                 <label for="${formIdPrefix}_${formName}">Full Legal Name<span class="required">*</span></label>
                 <span class="floatL inputCnt">
                     <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
-                    <span class="label">(Taxpayer name of FEIN or on W-9 from IRS)</span>
+                    <span class="label">
+                      (Taxpayer name of
+                      <abbr title="Federal Employer Identification Number">FEIN</abbr>
+                      or on W-9 from IRS)
+                    </span>
                 </span>
 
                 <c:set var="formName" value="_17_cboFEIN"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}" class="inlineLabel">FEIN<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}" class="inlineLabel">
+                  <abbr title="Federal Employer Identification Number">FEIN</abbr>
+                  <span class="required">*</span>
+                </label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput smallInput feinMasked" name="${formName}" value="${formValue}" maxlength="7"/>
                 <div class="clearFixed"></div>
             </div>
@@ -664,7 +686,11 @@
                 <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
                 <span class="floatL inputCnt">
                     <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
-                    <span class="label">(Taxpayer name of FEIN or on W-9 from IRS)</span>
+                    <span class="label">
+                      (Taxpayer name of
+                      <abbr title="Federal Employer Identification Number">FEIN</abbr>
+                      or on W-9 from IRS)
+                    </span>
                 </span>
 
                 <c:set var="formName" value="_17_cboOtherInterestPct"></c:set>
@@ -902,7 +928,11 @@
                 <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
                 <span class="floatL inputCnt">
                     <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
-                    <span class="label">(Taxpayer name of FEIN or on W-9 from IRS)</span>
+                    <span class="label">
+                      (Taxpayer name of
+                      <abbr title="Federal Employer Identification Number">FEIN</abbr>
+                      or on W-9 from IRS)
+                    </span>
                 </span>
 
                 <!-- TODO: Issue #564: Why doesn't this field have a name? -->

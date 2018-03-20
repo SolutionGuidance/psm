@@ -60,7 +60,9 @@
     </c:if>
 </div>
 <div class="row">
-    <label>FEIN</label>
+    <label>
+      <abbr title="Federal Employer Identification Number">FEIN</abbr>
+    </label>
     <span class="floatL"><b>:</b></span>
     <span id="fein">${requestScope['_05_fein']}</span>
 </div>

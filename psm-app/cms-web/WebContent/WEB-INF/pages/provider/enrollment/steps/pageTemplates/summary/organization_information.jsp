@@ -36,7 +36,10 @@
                 </span>
             </div>
             <div class="row">
-                <label>Federal Employer ID (FEIN)</label>
+                <label>
+                  Federal Employer ID
+                  (<abbr title="Federal Employer Identification Number">FEIN</abbr>)
+                </label>
                 <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_fein']}</span>
             </div>
@@ -105,7 +108,10 @@
                 <span>${requestScope['_15_orgCountyName']}</span>
             </div>
             <div class="row">
-                <label>Federal Employer ID (FEIN)</label>
+                <label>
+                  Federal Employer ID
+                  (<abbr title="Federal Employer Identification Number">FEIN</abbr>)
+                </label>
                 <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_fein']}</span>
             </div>
@@ -162,9 +168,12 @@
                     <span>${requestScope['_15_name']}</span>
                 </div>
                 <div class="row">
-                    <label>Federal Employer ID (FEIN)</label>
-                    <span class="floatL"><b>:</b></span>
-                    <span>${requestScope['_15_fein']}</span>
+                  <label>
+                    Federal Employer ID
+                    (<abbr title="Federal Employer Identification Number">FEIN</abbr>)
+                  </label>
+                  <span class="floatL"><b>:</b></span>
+                  <span>${requestScope['_15_fein']}</span>
                 </div>
                 <div class="row">
                     <label>MN Tax Id</label>
@@ -271,9 +280,12 @@
                     </span>
                 </div>
                 <div class="row">
-                    <label>Federal Employer ID (FEIN)</label>
-                    <span class="floatL"><b>:</b></span>
-                    <span>${requestScope['_15_fein']}</span>
+                  <label>
+                    Federal Employer ID
+                    (<abbr title="Federal Employer Identification Number">FEIN</abbr>)
+                  </label>
+                  <span class="floatL"><b>:</b></span>
+                  <span>${requestScope['_15_fein']}</span>
                 </div>
                 <c:if test="${askFiscalYear}">
                     <div class="row">

@@ -125,7 +125,9 @@
                 </div>
                 <div class="rightCol">
                     <div class="row">
-                        <label>FEIN</label>
+                        <label>
+                          <abbr title="Federal Employer Identification Number">FEIN</abbr>
+                        </label>
                         <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_17_cboFEIN_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>

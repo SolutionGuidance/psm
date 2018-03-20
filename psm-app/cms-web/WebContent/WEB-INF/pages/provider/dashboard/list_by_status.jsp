@@ -191,6 +191,10 @@
         </div>
       </div>
       <!-- /#printModal-->
+
+      <c:set var="userHelpModalId" value="user-help-modal"/>
+      <h:handlebars template="includes/userhelp/user_help_modal" context="${pageContext}" />
+
     </div>
   </body>
 </html>

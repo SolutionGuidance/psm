@@ -124,6 +124,13 @@ Right now that's not something the PSM can do, but `it'll be possible in
 a future
 version. <https://github.com/SolutionGuidance/psm/issues/401>`__
 
+Why can I edit some enrollments but not others?
+-----------------------------------------------
+
+You can only edit an enrollment if its status is still "Draft"
+(it hasn't been submitted yet).  If its status is "Pending",
+"Approved", or "Denied" then you can view but not edit it.
+
 Can I change something in a pending enrollment after I submit it?
 -----------------------------------------------------------------
 

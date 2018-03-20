@@ -573,7 +573,7 @@ $(document).ready(function () {
   addUserHelpClickHandler(
     'a.agreementsAddendumsHelpLink',
     '/help/service-admin-help.html',
-    'what-s-the-difference-between-an-agreement-and-an-addendum'
+    ['what-s-the-difference-between-an-agreement-and-an-addendum']
   );
 
   $('.editInfo').click(function () {

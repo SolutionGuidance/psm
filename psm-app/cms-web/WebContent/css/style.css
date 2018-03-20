@@ -3303,7 +3303,11 @@ a.searchBtn {
 #new-modal p{
   text-align:center;
   font-size:14px;
-
+}
+#new-modal .userHelpModalBody h2 {
+  /* 13px x 115.4% = 15px */
+  font-size: 115.4%;
+  margin: 1.5rem 0 0.5rem;
 }
 #new-modal .userHelpModalBody p {
   text-align: left;
@@ -4341,6 +4345,10 @@ input.passwordNormalInput{
 .userHelpLink {
   padding-left: 5px;
   cursor: help;
+}
+
+.generalTable th .actionColumnHelpLink {
+  color: #1AABFF;
 }
 
 /*definition modal style*/

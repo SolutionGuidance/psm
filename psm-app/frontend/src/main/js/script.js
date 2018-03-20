@@ -1719,13 +1719,20 @@ $(document).ready(function () {
     performSetupLookup($(this));
   });
 
-  /*entity type change function*/
-  //$('input[name="_17_entityDescription"]').attr('disabled','disabled').addClass('disabled').siblings('label').addClass('disabled');
+  /* entity type change function */
   $('#entityType').change(function () {
     if ($(this).val() == 'Other') {
-      $('input[name="_17_entityDescription"]').removeAttr('disabled').removeClass('disabled').siblings('label').removeClass('disabled');
+      $('input[name="_17_entityDescription"]')
+        .removeAttr('disabled')
+        .removeClass('hidden disabled')
+        .siblings('label')
+        .removeClass('hidden disabled');
     } else {
-      $('input[name="_17_entityDescription"]').attr('disabled', 'disabled').addClass('disabled').siblings('label').addClass('disabled');
+      $('input[name="_17_entityDescription"]')
+        .attr('disabled', 'disabled')
+        .addClass('hidden disabled')
+        .siblings('label')
+        .addClass('hidden disabled');
     }
 
     updateBeneficialOwnerTypes($(this).val());
@@ -1736,7 +1743,7 @@ $(document).ready(function () {
     $(this).siblings('.subType').hide();
     if ($(this).val() == 'Other') {
       $(this).siblings('.other').show();
-    } else if ($(this).val() == 'Owner - 5% or more') {
+    } else if ($(this).val() == 'Owner - 5% or more of Ownership Interest') {
       $(this).siblings('.owner').show();
     } else if ($(this).val() == 'Subcontractor') {
       $(this).siblings('.subcontractor').show();

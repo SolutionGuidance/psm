@@ -1905,6 +1905,16 @@ $(document).ready(function () {
     "Questions About Editing an Enrollment"
   );
 
+  addUserHelpClickHandler(
+    'a.providerTypeHelpLink',
+    '/help/enrollment.html',
+    [
+      'how-do-i-input-an-enrollment-for-an-organization-with-several-individual-providers-e-g-a-clinic-employing-several-physicians',
+      'what-do-i-do-if-none-of-the-provider-types-seem-to-describe-what-i-do-what-this-provider-does'
+    ],
+    'Questions About Selecting a Provider Type'
+  );
+
   //$('.inline input[type=radio]').removeAttr('checked');
   //    $('.inline input[name=civilMoney]').click(function(){
   //        if($(this).val()=="yes"){

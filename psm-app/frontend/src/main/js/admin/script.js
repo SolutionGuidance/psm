@@ -1582,7 +1582,7 @@ $(document).ready(function () {
 
   $('.chzn-select').chosen();
 
-  $("input.mdate").mask("99/99/9999");
+  $("input.mdate").mask("00/00/0000");
 
   /* END OF SERVICE ADMIN SCRIPT -------------------------------------------------- */
 

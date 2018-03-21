@@ -69,8 +69,7 @@ class EnrollmentToFhirTest extends Specification {
         def result = transformer.apply(enrollment)
 
         then:
-        result.hasIdentifier()
-        result.identifier.size() == 1
-        result.identifier.first().value == "123"
+        result.hasId()
+        result.getId() == "123"
     }
 }

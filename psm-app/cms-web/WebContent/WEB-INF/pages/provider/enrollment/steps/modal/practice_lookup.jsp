@@ -57,7 +57,7 @@
           </form>
           <div class="tableContainer hide">
             <p><strong id="practiceLookupMatches">5 matching practices found:</strong></p>
-            <table cellpadding="0" cellspacing="0" class="generalTable tablesorter" id="draftTable">
+            <table class="generalTable tablesorter" id="draftTable">
               <colgroup>
                 <col width="30" />
                 <col width="125" />

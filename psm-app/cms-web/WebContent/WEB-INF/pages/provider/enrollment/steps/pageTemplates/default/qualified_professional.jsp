@@ -197,7 +197,7 @@
     </div>
 
     <div class="tableData">
-    <table cellpadding="0" cellspacing="0" class="generalTable fixedWidthTable">
+    <table class="generalTable fixedWidthTable">
         <colgroup>
             <col width="30">
             <col width="183">
@@ -532,7 +532,7 @@
     </div>
 
     <div class="tableData">
-    <table cellpadding="0" cellspacing="0" class="generalTable">
+    <table class="generalTable">
         <thead>
             <tr>
                 <th class="alignCenter">#<span class="sep"></span></th>

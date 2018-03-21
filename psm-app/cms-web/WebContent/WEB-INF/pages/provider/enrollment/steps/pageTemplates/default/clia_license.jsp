@@ -19,7 +19,7 @@
         </div>
 
         <div class="addPracticeLocations">
-            <table cellpadding="0" cellspacing="0" class="generalTable facility" id="tableCLIA">
+            <table class="generalTable facility" id="tableCLIA">
                 <colgroup>
                     <col width="20"/>
                     <col width="150"/>

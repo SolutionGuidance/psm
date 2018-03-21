@@ -18,7 +18,7 @@
     </div>
     <!-- /.tableHeader -->
     <div class="addPracticeLocations">
-        <table cellpadding="0" cellspacing="0" class="generalTable" id="tableAgency">
+        <table class="generalTable" id="tableAgency">
             <colgroup>
                 <col width="22" />
                 <col width="276" />

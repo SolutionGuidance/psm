@@ -16,7 +16,7 @@
 </c:when>
 <c:otherwise>
 <div class="tableContainer">
-    <table cellpadding="0" cellspacing="0" class="generalTable">
+    <table class="generalTable">
         <colgroup>
             <col width="30"/>
             <col width="145"/>

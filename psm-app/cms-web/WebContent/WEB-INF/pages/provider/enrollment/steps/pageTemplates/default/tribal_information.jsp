@@ -48,7 +48,7 @@
 
 <div class="tableData" id="tableLicense3" style="display: ${formValue eq 'Y' ? 'block' : 'none'};">
 
-    <table cellpadding="0" cellspacing="0" class="generalTable">
+    <table class="generalTable">
         <thead>
             <tr>
                 <th class="reservationTableHeader">Reservation<span class="required">*</span><span class="sep"></span></th>

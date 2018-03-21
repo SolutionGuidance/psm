@@ -7,8 +7,9 @@ Feature: Form and Field Validations
   Scenario: Validate Tax ID Number
     Given I have started an enrollment
     And I am on the organization page
-    When when I enter an 8 digit FEIN
-    Then It should be rejected
+    And I enter an 8 digit FEIN
+    When I click 'next' on the organization info page
+    Then I should get an FEIN error
 
   Scenario: Validate minimum age
     Given I have started an enrollment

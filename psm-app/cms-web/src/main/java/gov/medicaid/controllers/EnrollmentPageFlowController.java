@@ -40,6 +40,7 @@ import gov.medicaid.entities.BeneficialOwnerType;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.CountyType;
 import gov.medicaid.entities.Document;
+import gov.medicaid.entities.EmailTemplate;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Note;
 import gov.medicaid.entities.PracticeLookup;
@@ -59,6 +60,7 @@ import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.EnrollmentWebService;
 import gov.medicaid.services.ExportService;
 import gov.medicaid.services.LookupService;
+import gov.medicaid.services.NotificationService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.PortalServiceRuntimeException;
@@ -129,7 +131,12 @@ public class EnrollmentPageFlowController extends BaseController {
      * Provider enrollment service.
      */
     private ProviderEnrollmentService enrollmentService;
-
+    
+    /**
+     * Notification service.
+     */
+    private NotificationService notificationService;
+    
     /**
      * Used for exporting PDFs.
      */
@@ -185,6 +192,9 @@ public class EnrollmentPageFlowController extends BaseController {
         }
         if (exportService == null) {
             throw new PortalServiceConfigurationException("exportService is not configured correctly.");
+        }
+        if (notificationService == null) {
+          throw new PortalServiceConfigurationException("notificationService is not configured correctly.");
         }
 
         CMSConfigurator config = new CMSConfigurator();
@@ -1100,6 +1110,8 @@ public class EnrollmentPageFlowController extends BaseController {
                 mv.addObject("id", serviceResponse.getTicketNumber());
                 ControllerHelper.flashPopup("submitEnrollmentModal");
 
+                notificationService.sendNotification(enrollment, NotificationService.EnrollmentStatus.PENDING);
+                
                 // Issue #215 - add hook for successful submission
 
                 return mv;
@@ -1163,6 +1175,8 @@ public class EnrollmentPageFlowController extends BaseController {
                 mv.addObject("id", enrollment.getObjectId());
                 ControllerHelper.flashPopup("submitEnrollmentModal");
 
+                notificationService.sendNotification(enrollment, NotificationService.EnrollmentStatus.MODIFIED);
+                
                 // Issue #215 - add hook for successful resubmission
 
                 return mv;
@@ -1677,5 +1691,9 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     public void setLookupService(LookupService lookupService) {
         this.lookupService = lookupService;
+    }
+    
+    public void setNotificationService(NotificationService notificationService) {
+        this.notificationService = notificationService;
     }
 }

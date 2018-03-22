@@ -16,22 +16,25 @@
 
 package gov.medicaid.process.enrollment;
 
+import java.util.Collections;
 import java.util.Date;
-
-import gov.medicaid.binders.XMLUtility;
-import gov.medicaid.domain.model.EnrollmentProcess;
-import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.Event;
-import gov.medicaid.services.CMSConfigurator;
-import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
+
+import gov.medicaid.binders.XMLUtility;
+import gov.medicaid.domain.model.EnrollmentProcess;
+import gov.medicaid.entities.CMSUser;
+import gov.medicaid.entities.EmailTemplate;
+import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Event;
+import gov.medicaid.services.CMSConfigurator;
+import gov.medicaid.services.NotificationService;
+import gov.medicaid.services.PortalServiceException;
+import gov.medicaid.services.ProviderEnrollmentService;
 
 /**
  * This initializes the application model.
@@ -45,6 +48,11 @@ public class RejectedHandler extends GenericHandler {
      * Provider service.
      */
     private final ProviderEnrollmentService providerService;
+    
+    /**
+     * Notification service.
+     */
+    private final NotificationService notificationService;
 
     /**
      * Entity manager.
@@ -58,6 +66,7 @@ public class RejectedHandler extends GenericHandler {
         CMSConfigurator config = new CMSConfigurator();
         this.providerService = config.getEnrollmentService();
         this.entityManager = config.getPortalEntityManager();
+        this.notificationService = config.getNotificationService();
     }
 
     /**
@@ -95,6 +104,8 @@ public class RejectedHandler extends GenericHandler {
             item.getResults().put("model", model);
             manager.completeWorkItem(item.getId(), item.getResults());
 
+            notificationService.sendNotification(model.getEnrollment(), NotificationService.EnrollmentStatus.REJECTED);
+            
             // Issue #215 - add hook for rejection
         } catch (PortalServiceException e) {
             XMLUtility.moveToStatus(model, actorId, "ERROR", "Reject process failed to completed.");

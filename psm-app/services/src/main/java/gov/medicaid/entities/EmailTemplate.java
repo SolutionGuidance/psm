@@ -42,6 +42,66 @@ public enum EmailTemplate {
     /**
      * Email template for "forgot password" reset.
      */
-    FORGOT_PASSWORD
+    FORGOT_PASSWORD,
+    
+    /**
+     * Email template for pending enrollment sent to an indivudal provider.
+     */
+    PENDING_ENROLLMENT_INDIVIDUAL,
+    
+    /**
+     * Email template for pending enrollment sent to an organizational provider.
+     */
+    PENDING_ENROLLMENT_ORGANIZATION,
+    
+    /**
+     * Email template for pending enrollment sent to a service admin or agent.
+     */
+    PENDING_ENROLLMENT_ADMIN,
+    
+    /**
+     * Email template for modified enrollment sent to an indivudal provider.
+     */
+    MODIFIED_ENROLLMENT_INDIVIDUAL,
+    
+    /**
+     * Email template for v enrollment sent to an organizational provider.
+     */
+    MODIFIED_ENROLLMENT_ORGANIZATION,
+    
+    /**
+     * Email template for modified enrollment sent to a service admin or agent.
+     */
+    MODIFIED_ENROLLMENT_ADMIN,
+    
+    /**
+     * Email template for approved enrollment sent to an indivudal provider.
+     */
+    APPROVED_ENROLLMENT_INDIVIDUAL,
+    
+    /**
+     * Email template for approved enrollment sent to an organizational provider.
+     */
+    APPROVED_ENROLLMENT_ORGANIZATION,
+    
+    /**
+     * Email template for approved enrollment sent to a service admin or agent.
+     */
+    APPROVED_ENROLLMENT_ADMIN,
+    
+    /**
+     * Email template for rejected enrollment sent to an indivudal provider.
+     */
+    REJECTED_ENROLLMENT_INDIVIDUAL,
+    
+    /**
+     * Email template for rejected enrollment sent to an organizational provider.
+     */
+    REJECTED_ENROLLMENT_ORGANIZATION,
+    
+    /**
+     * Email template for rejected enrollment sent to a service admin or agent.
+     */
+    REJECTED_ENROLLMENT_ADMIN,
 
 }

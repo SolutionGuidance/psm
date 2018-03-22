@@ -159,6 +159,10 @@ public class CMSConfigurator {
         return (PresentationService) fromContext("jndi.PresentationService", false);
     }
 
+    public NotificationService getNotificationService() {
+      return (NotificationService) fromContext("jndi.NotificationService", false);
+    }
+    
     /**
      * Retrieves the binder registry.
      *

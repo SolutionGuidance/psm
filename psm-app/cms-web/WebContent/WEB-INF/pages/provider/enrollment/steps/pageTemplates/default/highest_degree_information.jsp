@@ -54,7 +54,7 @@
                     <input
                       id="copyOfDegree_${formName}"
                       type="file"
-                      class="fileUpload"
+                      class="fileUpload newEnrollmentPanelButton"
                       size="10"
                       name="${formName}"
                     />

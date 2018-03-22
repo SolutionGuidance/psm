@@ -1225,6 +1225,10 @@ input.date{
   padding:0;
 }
 
+.newEnrollmentPanelButton {
+  margin-left: 7px;
+}
+
 /* tableData */
 .tableData{
   width:100%;

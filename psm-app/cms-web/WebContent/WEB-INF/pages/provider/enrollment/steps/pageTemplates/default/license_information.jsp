@@ -1,7 +1,8 @@
-<%@page import="gov.medicaid.binders.ProviderTypeFormBinder"%>
-<%@page import="gov.medicaid.entities.dto.ViewStatics"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<%@taglib prefix="cms" uri="CMSTags"  %>
+<%@ page import="gov.medicaid.binders.ProviderTypeFormBinder"%>
+<%@ page import="gov.medicaid.entities.dto.ViewStatics"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
+
 <c:set var="formIdPrefix" value="license_information"></c:set>
 
 <c:set var="hideRenewalDate" value="${viewModel.tabModels['Personal Information'].formSettings['Personal Information Form'].settings['hideRenewalDate']}"></c:set>
@@ -58,20 +59,15 @@
                         </c:if>
                     </td>
                     <td>
-                        <c:set var="formName" value="_03_attachment_${status.index - 1}"></c:set>
-                        <input type="file" title="Upload License/Certification (License ${status.index})" class="fileUpload" size="10" name="${formName}" />
-
-                        <c:set var="formName" value="_03_filename_${status.index - 1}"></c:set>
-                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <c:if test="${not empty formValue}">
-                            <c:set var="formName" value="_03_attachmentId_${status.index - 1}"></c:set>
-                            <c:url var="downloadLink" value="/provider/enrollment/attachment">
-                                 <c:param name="id" value="${requestScope[formName]}"></c:param>
-                            </c:url>
-                            <div><a href="${downloadLink}"><cms:truncate text="${formValue}" /></a></div>
-                            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <input type="hidden" name="${formName}" value="${formValue}"/>
-                        </c:if>
+                        <c:set var="formName" value="_03_attachment_${status.index - 1}" />
+                        <c:set var="filenameKey" value="_03_filename_${status.index - 1}" />
+                        <c:set var="attachmentIdName" value="_03_attachmentId_${status.index - 1}" />
+                        <h:attachment
+                            name="${formName}"
+                            title="Upload License/Certification (License ${status.index})"
+                            attachmentId="${requestScope[attachmentIdName]}"
+                            attachmentIdName="${attachmentIdName}"
+                            filename="${requestScope[filenameKey]}" />
                     </td>
                     <c:choose>
                         <c:when test="${hideLicenseNumber}">
@@ -147,7 +143,11 @@
                 </td>
                 <c:set var="formName" value="_03_attachment"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <td><input type="file" title="Upload License/Certification" class="fileUpload" size="10" name="${formName}" /></td>
+                <td>
+                  <h:attachment
+                      name="_03_attachment"
+                      title="Upload License/Certification" />
+                </td>
                 <c:choose>
                         <c:when test="${hideLicenseNumber}">
                             <td width="0"></td>

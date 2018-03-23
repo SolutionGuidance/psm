@@ -1271,8 +1271,9 @@ input.date{
   background:url(../i/input-bg.png) repeat-x left top #fffffe;
 }
 
-.tableData table input.fileUpload{
-  width:160px;
+input.fileUpload{
+    width:160px;
+    color: transparent;
 }
 
 .tableData table input.date{
@@ -4214,9 +4215,6 @@ input.passwordNormalInput{
   float: left;
   width: 13px;
   height: 13px;
-}
-.facility td input[type=file]{
-  width: 200px !important;
 }
 .alternateTable td:first-child span{
   line-height: 13px;

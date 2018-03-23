@@ -1,5 +1,7 @@
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
+
 <c:set var="formIdPrefix" value="phn_agency"></c:set>
 
 <input type="hidden" name="formNames" value="<%= ViewStatics.PHN_AGENCY_FORM %>">
@@ -42,15 +44,13 @@
                                     </label>
                                 </td>
                                 <td>
-                                    <c:set var="formName" value="_26_contractAttachment"></c:set>
-                                    <input type="file" title="Contract File" class="fileUpload" name="${formName}" />
-                                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <c:if test="${not empty formValue}">
-                                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
-                                             <c:param name="id" value="${formValue}"></c:param>
-                                        </c:url>
-                                        <div><a href="${downloadLink}">Download</a></div>
-                                    </c:if>
+                                    <c:set var="formName" value="_26_contractAttachment" />
+                                    <h:attachment
+                                        name="${formName}"
+                                        title="Contract File"
+                                        attachmentId="${requestScope[formName]}"
+                                        attachmentIdName="_26_contractAttachmentId"
+                                        filename="Download" />
                                 </td>
                             </tr>
                             </tbody>

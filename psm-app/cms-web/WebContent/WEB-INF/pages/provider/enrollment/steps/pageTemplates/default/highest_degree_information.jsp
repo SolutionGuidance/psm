@@ -31,7 +31,6 @@
                 <c:set var="formName" value="_14_highestDegreeEarned"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="highestDegree_${formName}" >Highest Degree Earned<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <select id="highestDegree_${formName}" class="bigSelect" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_14_degreeTypes']}">
@@ -43,7 +42,6 @@
                 <c:set var="formName" value="_14_degreeAwardDate"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="degreeAwardDate_${formName}">Degree Award Date<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
                     <input id="degreeAwardDate_${formName}" class="date" type="text" name="${formName}" value="${formValue}" maxlength="10"/>
                 </span>
@@ -53,7 +51,13 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="copyOfDegree_${formName}">Copy of Highest Degree Earned</label>
                 <span class="floatL">
-                    <input id="copyOfDegree_${formName}" type="file" class="fileUpload" size="10" name="${formName}" />
+                    <input
+                      id="copyOfDegree_${formName}"
+                      type="file"
+                      class="fileUpload newEnrollmentPanelButton"
+                      size="10"
+                      name="${formName}"
+                    />
 
                     <c:if test="${not empty formValue}">
                         <c:url var="downloadLink" value="/provider/enrollment/attachment">

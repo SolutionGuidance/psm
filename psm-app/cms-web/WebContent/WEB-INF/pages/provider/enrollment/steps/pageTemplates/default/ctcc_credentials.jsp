@@ -29,7 +29,6 @@
         <div class="">
             <div class="row requireField">
                 <label for="dhsContract">Please upload a copy of contract with DHS<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
 
                 <c:set var="formName" value="_30_dhsContract"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>

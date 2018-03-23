@@ -18,7 +18,6 @@
         <div class="">
             <div class="row requireField">
                 <label for="coverSheet_${formName}" class="mediumLbl">Please upload a copy of cover sheet with contract summary <span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
 
                 <c:set var="formName" value="_31_countyContract"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>

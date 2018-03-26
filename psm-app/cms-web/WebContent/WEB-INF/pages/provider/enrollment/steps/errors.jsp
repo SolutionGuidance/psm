@@ -1,10 +1,3 @@
-<%--
-    JSP Fragment for provider type selection form.
-
-    @author j3_guile
-    @version 1.0
- --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <c:if test="${not empty requestScope['flash_error']}">
     <div class="errorInfo formErrorMarker" style="display: block;">

@@ -42,6 +42,22 @@ public enum EmailTemplate {
     /**
      * Email template for "forgot password" reset.
      */
-    FORGOT_PASSWORD
+    FORGOT_PASSWORD,
 
+    /**
+     * Email template for pending enrollment.
+     */
+    PENDING_ENROLLMENT,
+
+    /**
+     * Email template for modified enrollment.
+     */
+    MODIFIED_ENROLLMENT,
+
+    /**
+     * Email template for approved enrollment.
+     */
+    APPROVED_ENROLLMENT,
+
+    REJECTED_ENROLLMENT
 }

@@ -61,12 +61,6 @@ public abstract class BeneficialOwner implements Serializable {
     private String typeDescription;
 
     /**
-     * If type is sub contractor, specify name.
-     */
-    @Column(name = "subcontractor_name")
-    private String subcontractorName;
-
-    /**
      * If type is owner, specify ownership percent.
      */
     @Column(name = "own_interest_pct")
@@ -126,14 +120,6 @@ public abstract class BeneficialOwner implements Serializable {
 
     public void setTypeDescription(String typeDescription) {
         this.typeDescription = typeDescription;
-    }
-
-    public String getSubcontractorName() {
-        return subcontractorName;
-    }
-
-    public void setSubcontractorName(String subcontractorName) {
-        this.subcontractorName = subcontractorName;
     }
 
     public BigDecimal getOwnershipInterest() {

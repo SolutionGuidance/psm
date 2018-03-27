@@ -13093,57 +13093,6 @@ dialect 'mvel'
 
 end
 
-rule 'Subcontractor Name Is Required If Beneficial Owner Type Is Subcontractor'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
-        IsOrganization($provider : provider)
-        OwnershipInformationType($ownerList: beneficialOwner) from $provider.ownershipInformation
-        $owner: BeneficialOwnerType(beneficialOwnerType == "Subcontractor", subcontractorName == null || subcontractorName matches "^[\\s]*$") from $ownerList
-        $report: ErrorReporter()
-    then
-        int index = $ownerList.indexOf($owner);
-        $report.addError(
-            "/ProviderInformation/OwnershipInformation/BeneficialOwner[" + index + "]/SubcontractorName",
-            "00001",
-            "Subcontractor name is required."
-        );
-
-end
-
-rule 'Subcontractor Name Maximum Length Check'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
-        IsOrganization($provider : provider)
-        OwnershipInformationType($ownerList: beneficialOwner) from $provider.ownershipInformation
-        $owner: BeneficialOwnerType(subcontractorName != null, subcontractorName not matches "^.{0,100}$") from $ownerList
-        $report: ErrorReporter()
-    then
-        int index = $ownerList.indexOf($owner);
-        $report.addError(
-            "/ProviderInformation/OwnershipInformation/BeneficialOwner[" + index + "]/SubcontractorName",
-            "00001",
-            "Subcontractor name length cannot exceed 100 characters."
-        );
-
-end
-
-
 rule 'TaxPayer Name Is Required For PCPO'
 dialect 'mvel'
 /*

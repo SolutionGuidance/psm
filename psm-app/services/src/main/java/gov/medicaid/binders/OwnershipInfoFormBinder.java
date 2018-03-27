@@ -91,7 +91,6 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
             bo.setPersonInd("Y");
             bo.setBeneficialOwnerType(param(request, "iboType", i));
             bo.setOtherBeneficialOwnerDescription(param(request, "iboOtherType", i));
-            bo.setSubcontractorName(param(request, "iboSubcontractorName", i));
             bo.setPercentOwnership(BinderUtils.getAsDouble(param(request, "iboPercentOwnership", i)));
 
             PersonType person = new PersonType();
@@ -139,7 +138,6 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
             bo.setPersonInd("N");
             bo.setBeneficialOwnerType(param(request, "cboType", i));
             bo.setOtherBeneficialOwnerDescription(param(request, "cboOtherType", i));
-            bo.setSubcontractorName(param(request, "cboSubcontractorName", i));
             bo.setPercentOwnership(BinderUtils.getAsDouble(param(request, "cboPercentOwnership", i)));
 
             OrganizationType org = new OrganizationType();
@@ -207,7 +205,6 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
             if ("Y".equals(personInd)) {
                 attr(mv, "iboType", personIndex, bo.getBeneficialOwnerType());
                 attr(mv, "iboOtherType", personIndex, bo.getOtherBeneficialOwnerDescription());
-                attr(mv, "iboSubcontractorName", personIndex, bo.getSubcontractorName());
                 if (bo.getPercentOwnership() != null) {
                     attr(mv, "iboPercentOwnership", personIndex, bo.getPercentOwnership().toString());
                 }
@@ -244,7 +241,6 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
             } else {
                 attr(mv, "cboType", corpIndex, bo.getBeneficialOwnerType());
                 attr(mv, "cboOtherType", personIndex, bo.getOtherBeneficialOwnerDescription());
-                attr(mv, "cboSubcontractorName", personIndex, bo.getSubcontractorName());
                 if (bo.getPercentOwnership() != null) {
                     attr(mv, "cboPercentOwnership", personIndex, bo.getPercentOwnership().toString());
                 }
@@ -508,7 +504,6 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
             hbOwner.setType(getLookupService().findLookupByDescription(gov.medicaid.entities.BeneficialOwnerType.class,
                 owner.getBeneficialOwnerType()));
             hbOwner.setTypeDescription(owner.getOtherBeneficialOwnerDescription());
-            hbOwner.setSubcontractorName(owner.getSubcontractorName());
             if (owner.getPercentOwnership() != null) {
                 hbOwner.setOwnershipInterest(BigDecimal.valueOf(owner.getPercentOwnership()));
             }
@@ -554,7 +549,6 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
                 if (owner.getType() != null) {
                     bo.setBeneficialOwnerType(owner.getType().getDescription());
                 }
-                bo.setSubcontractorName(owner.getSubcontractorName());
                 if (owner.getOwnershipInterest() != null) {
                     bo.setPercentOwnership(owner.getOwnershipInterest().doubleValue());
                 }

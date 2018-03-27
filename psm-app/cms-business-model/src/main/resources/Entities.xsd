@@ -969,7 +969,6 @@
       <element name="PersonInd" type="string" maxOccurs="1" minOccurs="1"/>
       <element name="BeneficialOwnerType" type="string" maxOccurs="1" minOccurs="0"/>
       <element name="OtherBeneficialOwnerDescription" type="string" maxOccurs="1" minOccurs="0"/>
-      <element name="SubcontractorName" type="string" maxOccurs="1" minOccurs="0"/>
       <element name="PercentOwnership" type="double" maxOccurs="1" minOccurs="0"/>
       <element name="PersonInformation" type="tns:PersonType" maxOccurs="1" minOccurs="0"/>
       <element name="EntityInformation" type="tns:OrganizationType" maxOccurs="1" minOccurs="0"/>

@@ -1135,7 +1135,6 @@ CREATE TABLE beneficial_owner (
   ben_type_cd               CHARACTER VARYING(2)
     REFERENCES beneficial_owner_types (code),
   oth_type_desc             TEXT,
-  subcontractor_name        TEXT,
   own_interest_pct          FLOAT,
   address_id                BIGINT
     REFERENCES addresses (address_id),

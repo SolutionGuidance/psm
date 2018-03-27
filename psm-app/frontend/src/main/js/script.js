@@ -1745,8 +1745,6 @@ $(document).ready(function () {
       $(this).siblings('.other').show();
     } else if ($(this).val() == 'Owner - 5% or more of Ownership Interest') {
       $(this).siblings('.owner').show();
-    } else if ($(this).val() == 'Subcontractor') {
-      $(this).siblings('.subcontractor').show();
     }
 
   }).trigger('change');
@@ -1756,34 +1754,33 @@ $(document).ready(function () {
     $('.personOwnersTable .personOwner').each(function (index) {
       var $i = $(this);
       $i.find('select:eq(0)').attr("name", "_17_iboType_" + index);
-      $i.find('input:eq(0)').attr("name", "_17_iboSubcontractorName_" + index);
-      $i.find('input:eq(1)').attr("name", "_17_iboPercentOwnership_" + index);
-      $i.find('input:eq(2)').attr("name", "_17_iboOtherType_" + index);
-      $i.find('input:eq(3)').attr("name", "_17_iboFirstName_" + index);
-      $i.find('input:eq(4)').attr("name", "_17_iboMiddleName_" + index);
-      $i.find('input:eq(5)').attr("name", "_17_iboLastName_" + index);
-      $i.find('input:eq(6)').attr("name", "_17_iboSSN_" + index);
-      $i.find('input:eq(7)').attr("name", "_17_iboDOB_" + index);
-      $i.find('input:eq(8)').attr("name", "_17_iboHireDate_" + index);
+      $i.find('input:eq(0)').attr("name", "_17_iboPercentOwnership_" + index);
+      $i.find('input:eq(1)').attr("name", "_17_iboOtherType_" + index);
+      $i.find('input:eq(2)').attr("name", "_17_iboFirstName_" + index);
+      $i.find('input:eq(3)').attr("name", "_17_iboMiddleName_" + index);
+      $i.find('input:eq(4)').attr("name", "_17_iboLastName_" + index);
+      $i.find('input:eq(5)').attr("name", "_17_iboSSN_" + index);
+      $i.find('input:eq(6)').attr("name", "_17_iboDOB_" + index);
+      $i.find('input:eq(7)').attr("name", "_17_iboHireDate_" + index);
+      $i.find('input:eq(8)').attr("name", "_17_iboRelationship_" + index);
       $i.find('input:eq(9)').attr("name", "_17_iboRelationship_" + index);
       $i.find('input:eq(10)').attr("name", "_17_iboRelationship_" + index);
       $i.find('input:eq(11)').attr("name", "_17_iboRelationship_" + index);
-      $i.find('input:eq(12)').attr("name", "_17_iboRelationship_" + index);
-      $i.find('input:eq(13)').attr("name", "_17_iboAddressLine1_" + index);
-      $i.find('input:eq(14)').attr("name", "_17_iboAddressLine2_" + index);
-      $i.find('input:eq(15)').attr("name", "_17_iboCity_" + index);
+      $i.find('input:eq(12)').attr("name", "_17_iboAddressLine1_" + index);
+      $i.find('input:eq(13)').attr("name", "_17_iboAddressLine2_" + index);
+      $i.find('input:eq(14)').attr("name", "_17_iboCity_" + index);
       $i.find('select:eq(1)').attr("name", "_17_iboState_" + index);
-      $i.find('input:eq(16)').attr("name", "_17_iboZip_" + index);
+      $i.find('input:eq(15)').attr("name", "_17_iboZip_" + index);
       $i.find('select:eq(2)').attr("name", "_17_iboCounty_" + index);
-      $i.find('input:eq(17)').attr("name", "_17_iboOtherInterestInd_" + index);
-      $i.find('input:eq(18)').attr("name", "_17_iboOtherInterestName_" + index);
-      $i.find('input:eq(19)').attr("name", "_17_iboOtherInterestPct_" + index);
-      $i.find('input:eq(20)').attr("name", "_17_iboOtherAddressLine1_" + index);
-      $i.find('input:eq(21)').attr("name", "_17_iboOtherAddressLine2_" + index);
-      $i.find('input:eq(22)').attr("name", "_17_iboOtherCity_" + index);
+      $i.find('input:eq(16)').attr("name", "_17_iboOtherInterestInd_" + index);
+      $i.find('input:eq(17)').attr("name", "_17_iboOtherInterestName_" + index);
+      $i.find('input:eq(18)').attr("name", "_17_iboOtherInterestPct_" + index);
+      $i.find('input:eq(19)').attr("name", "_17_iboOtherAddressLine1_" + index);
+      $i.find('input:eq(20)').attr("name", "_17_iboOtherAddressLine2_" + index);
+      $i.find('input:eq(21)').attr("name", "_17_iboOtherCity_" + index);
       $i.find('select:eq(3)').attr("name", "_17_iboOtherCounty" + index);
       $i.find('select:eq(4)').attr("name", "_17_iboOtherState_" + index);
-      $i.find('input:eq(23)').attr("name", "_17_iboOtherZip_" + index);
+      $i.find('input:eq(22)').attr("name", "_17_iboOtherZip_" + index);
     });
   }
 
@@ -1792,24 +1789,23 @@ $(document).ready(function () {
     $('.corpOwnersTable .corpOwner').each(function (index) {
       var $i = $(this);
       $i.find('select:eq(0)').attr("name", "_17_cboType_" + index);
-      $i.find('input:eq(0)').attr("name", "_17_cboSubcontractorName_" + index);
-      $i.find('input:eq(1)').attr("name", "_17_cboPercentOwnership_" + index);
-      $i.find('input:eq(2)').attr("name", "_17_cboOtherType_" + index);
-      $i.find('input:eq(3)').attr("name", "_17_cboLegalName_" + index);
-      $i.find('input:eq(4)').attr("name", "_17_cboFEIN_" + index);
-      $i.find('input:eq(5)').attr("name", "_17_cboAddressLine1_" + index);
-      $i.find('input:eq(6)').attr("name", "_17_cboAddressLine2_" + index);
-      $i.find('input:eq(7)').attr("name", "_17_cboCity_" + index);
+      $i.find('input:eq(0)').attr("name", "_17_cboPercentOwnership_" + index);
+      $i.find('input:eq(1)').attr("name", "_17_cboOtherType_" + index);
+      $i.find('input:eq(2)').attr("name", "_17_cboLegalName_" + index);
+      $i.find('input:eq(3)').attr("name", "_17_cboFEIN_" + index);
+      $i.find('input:eq(4)').attr("name", "_17_cboAddressLine1_" + index);
+      $i.find('input:eq(5)').attr("name", "_17_cboAddressLine2_" + index);
+      $i.find('input:eq(6)').attr("name", "_17_cboCity_" + index);
       $i.find('select:eq(1)').attr("name", "_17_cboState_" + index);
-      $i.find('input:eq(8)').attr("name", "_17_cboZip_" + index);
-      $i.find('input:eq(9)').attr("name", "_17_cboCounty_" + index);
-      $i.find('input:eq(10)').attr("name", "_17_cboOtherInterestInd_" + index);
-      $i.find('input:eq(11)').attr("name", "_17_cboOtherInterestName_" + index);
-      $i.find('input:eq(12)').attr("name", "_17_cboOtherAddressLine1_" + index);
-      $i.find('input:eq(13)').attr("name", "_17_cboOtherAddressLine2_" + index);
-      $i.find('input:eq(14)').attr("name", "_17_cboOtherCity_" + index);
+      $i.find('input:eq(7)').attr("name", "_17_cboZip_" + index);
+      $i.find('input:eq(8)').attr("name", "_17_cboCounty_" + index);
+      $i.find('input:eq(9)').attr("name", "_17_cboOtherInterestInd_" + index);
+      $i.find('input:eq(10)').attr("name", "_17_cboOtherInterestName_" + index);
+      $i.find('input:eq(11)').attr("name", "_17_cboOtherAddressLine1_" + index);
+      $i.find('input:eq(12)').attr("name", "_17_cboOtherAddressLine2_" + index);
+      $i.find('input:eq(13)').attr("name", "_17_cboOtherCity_" + index);
       $i.find('select:eq(2)').attr("name", "_17_cboOtherState_" + index);
-      $i.find('input:eq(15)').attr("name", "_17_cboOtherZip_" + index);
+      $i.find('input:eq(14)').attr("name", "_17_cboOtherZip_" + index);
     });
   }
 

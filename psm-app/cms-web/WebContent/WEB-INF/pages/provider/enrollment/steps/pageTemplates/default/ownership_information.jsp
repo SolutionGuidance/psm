@@ -104,13 +104,6 @@
                     </c:forEach>
                 </select>
 
-                <div class="subType subcontractor">
-                    <c:set var="formName" value="_17_iboSubcontractorName_${status.index - 1}"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}">Name Subcontractor</label>
-                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
-                    <div class="clear"></div>
-                </div>
                 <div class="subType owner">
                     <c:set var="formName" value="_17_iboPercentOwnership_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -366,13 +359,6 @@
                     </c:forEach>
                 </select>
 
-                <div class="subType subcontractor">
-                    <c:set var="formName" value="_17_cboSubcontractorName_${status.index - 1}"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}">Name Subcontractor</label>
-                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
-                    <div class="clear"></div>
-                </div>
                 <div class="subType owner">
                     <c:set var="formName" value="_17_cboPercentOwnership_${status.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -582,13 +568,6 @@
                     </c:forEach>
                 </select>
 
-                <div class="subType subcontractor">
-                    <c:set var="formName" value="_17_cboSubcontractorName"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}">Name Subcontractor</label>
-                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
-                    <div class="clear"></div>
-                </div>
                 <div class="subType owner">
                     <c:set var="formName" value="_17_cboPercentOwnership"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -786,13 +765,6 @@
                     </c:forEach>
                 </select>
 
-                <div class="subType subcontractor">
-                    <c:set var="formName" value="_17_iboSubcontractorName"></c:set>
-                    <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}">Name Subcontractor</label>
-                    <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
-                    <div class="clear"></div>
-                </div>
                 <div class="subType owner">
                     <c:set var="formName" value="_17_iboPercentOwnership"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>

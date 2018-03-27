@@ -43,6 +43,7 @@ import gov.medicaid.process.enrollment.VerifyLicenseHandler;
 import gov.medicaid.process.enrollment.VerifySSNHandler;
 import gov.medicaid.services.BusinessProcessService;
 import gov.medicaid.services.CMSConfigurator;
+import gov.medicaid.services.NotificationService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.XMLAdapter;
@@ -121,6 +122,12 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     private EntityManagerFactory emf;
 
     /**
+     * Notification service used for sending emails.
+     */
+    @EJB
+    private NotificationService notificationService;
+
+    /**
      * Empty constructor.
      */
     public BusinessProcessServiceBean() {
@@ -152,7 +159,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         handlers.put("Send Mailbox Account Request", new SystemOutWorkItemHandler());
         handlers.put("Background Check", new SystemOutWorkItemHandler());
         handlers.put("SIRS", new SystemOutWorkItemHandler());
-        handlers.put("Accept Application", new AcceptedHandler());
+        handlers.put("Accept Application", new AcceptedHandler(notificationService));
 
         if (providerService == null) {
             providerService = config.getEnrollmentService();

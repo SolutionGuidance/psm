@@ -139,6 +139,7 @@
     <property name="enrollmentService" ref="ProviderEnrollmentService"/>
     <property name="exportService" ref="ExportService"/>
     <property name="lookupService" ref="LookupService"/>
+    <property name="notificationService" ref="NotificationService"/>
   </bean>
 
   <bean id="ProviderDashboardController"

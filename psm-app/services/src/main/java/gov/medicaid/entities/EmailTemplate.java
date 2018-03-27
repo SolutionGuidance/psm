@@ -25,39 +25,22 @@ package gov.medicaid.entities;
 public enum EmailTemplate {
 
     /**
-     * Email template for new registrations.
+     * Password Templates
      */
-    NEW_REGISTRATION,
-
-    /**
-     * Email template for new registrations.
-     */
-    NEW_REGISTRATION_BY_ADMIN,
-
-    /**
-     * Email template for logged in user initiated password change.
-     */
+    FORGOT_PASSWORD,
     UPDATE_PASSWORD,
 
     /**
-     * Email template for "forgot password" reset.
+     * Registration Templates
      */
-    FORGOT_PASSWORD,
+    NEW_REGISTRATION,
+    NEW_REGISTRATION_BY_ADMIN,
 
     /**
-     * Email template for pending enrollment.
-     */
-    PENDING_ENROLLMENT,
-
-    /**
-     * Email template for modified enrollment.
-     */
-    MODIFIED_ENROLLMENT,
-
-    /**
-     * Email template for approved enrollment.
+     * Enrollment Templates
      */
     APPROVED_ENROLLMENT,
-
+    MODIFIED_ENROLLMENT,
+    PENDING_ENROLLMENT,
     REJECTED_ENROLLMENT
 }

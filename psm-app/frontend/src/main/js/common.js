@@ -98,6 +98,22 @@ function populateUserHelpModal(modalId, helpItemIds, title, helpPageString) {
   }
 };
 
+function setFileUploadClickHandler() {
+  $(".fileUploadLabel input")
+    .off()
+    .on('change', function (event) {
+      var filename = event.target.files[0].name;
+
+      var wrapper = $(event.target).closest('.fileUploadWrapper');
+      wrapper
+        .find('.fileUploadButton')
+        .text('Replace...');
+      wrapper
+        .find('.previousFile')
+        .text(filename);
+    });
+}
+
 /**
 * Add a click handler function to a user help modal link, and remove any
 * existing click handler. Title is optional; is absent (undefined) to show a
@@ -152,4 +168,5 @@ $(document).ready(function() {
     addressLoadModal('#saveAsDraftModal');
   });
 
+  setFileUploadClickHandler();
 });

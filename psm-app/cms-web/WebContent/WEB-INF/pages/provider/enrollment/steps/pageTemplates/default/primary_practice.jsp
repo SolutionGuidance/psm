@@ -50,7 +50,11 @@
                 <div class="row">
                     <c:set var="formName" value="_06_npi"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}">Group NPI / UMPI<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_${formName}">
+                      Group NPI/UMPI
+                      <span class="required">*</span>
+                      <a href="javascript:;" class="userHelpLink NPIdefinition">?</a>
+                    </label>
                     <input id="${formIdPrefix}_${formName}" ${disableLinkedFields} type="text" class="npiMasked normalInput" name="${formName}" value="${formValue}" maxlength="10"/>
                     <input id="unlinkPracticeButton" type="button" value="Remove Reference" onclick="unlinkPractice('_06_')" style="display: ${isLinked ? 'inline' : 'none'}"/>
                 </div>

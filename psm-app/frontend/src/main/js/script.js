@@ -1,3 +1,10 @@
+var addNpiUserHelpClickHandler = addUserHelpClickHandler.bind(
+  undefined,
+  'a.NPIdefinition',
+  '/help/enrollment.html',
+  ['what-is-an-npi']
+);
+
 $(document).ready(function () {
   $("#enrollmentQuickSearch").click(function () {
     var quickSearchInput = $.trim($("#quickSearchInput").val());
@@ -1611,7 +1618,7 @@ $(document).ready(function () {
     reindexSetup();
   });
 
-  $('#addMember').live('click', function () {
+  $('#addMember').click(function () {
     var html = $('#memberPanelTemplate').clone();
     html.attr('id', '');
     html.find('[type=text]').val('');
@@ -1623,6 +1630,7 @@ $(document).ready(function () {
     $(html).find('input.npiMasked').mask("9999999999");
     $(html).find("input.umpiMasked").mask("**********");
     $(html).find('input.ssnMasked').mask("999-99-9999");
+    addNpiUserHelpClickHandler();
     reindexMembers();
   });
 
@@ -1879,11 +1887,7 @@ $(document).ready(function () {
     ['what-are-the-types-for-individual-person-s-ownership-or-control-interest']
   );
 
-  addUserHelpClickHandler(
-    'a.NPIdefinition',
-    '/help/enrollment.html',
-    ['what-is-an-npi']
-  );
+  addNpiUserHelpClickHandler();
 
   addUserHelpClickHandler(
     'a.maintainOwnPrivatePractice',

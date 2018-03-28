@@ -1,3 +1,30 @@
+/**
+* Add a click handler function to a user help modal link.
+* Title is optional; is absent (undefined) to show a single help item.
+*
+* @param helpLinkSelector {string} - Selector for the help link.
+* @param helpDocsPath {string} - Path to the help doc html file.
+* @param helpItemIds {array of strings} - IDs of the source help items.
+* @param title {string or undefined} - Title to use with multiple help items.
+*/
+function addUserHelpClickHandler(helpLinkSelector, helpDocsPath, helpItemIds, title) {
+  $(helpLinkSelector)
+    .off("click")
+    .click(function userHelpClickHandler() {
+      resetUserHelpModal('#user-help-modal');
+      addressLoadModal('#user-help-modal');
+      $.get(
+        ctx + helpDocsPath,
+        populateUserHelpModal.bind(
+          undefined,
+          'user-help-modal',
+          helpItemIds,
+          title
+        )
+      );
+    });
+};
+
 $(document).ready(function () {
 
   $('.searchPanel input[type="checkbox"]')
@@ -104,31 +131,6 @@ $(document).ready(function () {
       helpItem.removeChild(helpTitle);
       modalBody.innerHTML = helpItem.innerHTML;
     }
-  };
-
-  /**
-  * Add a click handler function to a user help modal link.
-  * Title is optional; is absent (undefined) to show a single help item.
-  *
-  * @param helpLinkSelector {string} - Selector for the help link.
-  * @param helpDocsPath {string} - Path to the help doc html file.
-  * @param helpItemIds {array of strings} - IDs of the source help items.
-  * @param title {string or undefined} - Title to use with multiple help items.
-  */
-  addUserHelpClickHandler = function (helpLinkSelector, helpDocsPath, helpItemIds, title) {
-    $(helpLinkSelector).click(function () {
-      resetUserHelpModal('#user-help-modal');
-      addressLoadModal('#user-help-modal');
-      $.get(
-        ctx + helpDocsPath,
-        populateUserHelpModal.bind(
-          undefined,
-          'user-help-modal',
-          helpItemIds,
-          title
-        )
-      );
-    });
   };
 
   $(".closeModal, .modalCloseButton, #new-modal #printModal .modal-title a.greyBtn")

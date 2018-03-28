@@ -57,6 +57,13 @@
     </property>
   </bean>
 
+  <bean id="NotificationService"
+        class="org.springframework.jndi.JndiObjectFactoryBean">
+    <property name="jndiName">
+      <value>${jndi.NotificationService}</value>
+    </property>
+  </bean>
+
   <bean id="BusinessProcessService"
         class="org.springframework.jndi.JndiObjectFactoryBean">
     <property name="jndiName">
@@ -132,6 +139,7 @@
     <property name="enrollmentService" ref="ProviderEnrollmentService"/>
     <property name="exportService" ref="ExportService"/>
     <property name="lookupService" ref="LookupService"/>
+    <property name="notificationService" ref="NotificationService"/>
   </bean>
 
   <bean id="ProviderDashboardController"

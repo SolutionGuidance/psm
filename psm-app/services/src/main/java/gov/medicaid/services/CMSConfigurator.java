@@ -23,9 +23,6 @@ import gov.medicaid.entities.EmailTemplate;
 import gov.medicaid.entities.Role;
 import gov.medicaid.entities.SystemId;
 import gov.medicaid.services.util.Util;
-import org.apache.velocity.app.VelocityEngine;
-import org.apache.velocity.runtime.RuntimeConstants;
-import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -303,19 +300,6 @@ public class CMSConfigurator {
             portalEntityManager = emf.createEntityManager();
         }
         return portalEntityManager;
-    }
-
-    /**
-     * Creates the velocity engine for templating functions.
-     * @return the velocity engine
-     */
-    public VelocityEngine getVelocityEngine() {
-        VelocityEngine velocityEngine = new VelocityEngine();
-        velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
-        velocityEngine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
-
-        velocityEngine.init();
-        return velocityEngine;
     }
 
     /**

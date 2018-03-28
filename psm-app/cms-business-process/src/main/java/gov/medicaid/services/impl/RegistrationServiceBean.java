@@ -29,14 +29,13 @@ import gov.medicaid.entities.SystemId;
 import gov.medicaid.entities.UserSearchCriteria;
 import gov.medicaid.entities.UserStatus;
 import gov.medicaid.entities.dto.ViewStatics;
-import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.EntityNotFoundException;
+import gov.medicaid.services.NotificationService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.Util;
 
-import java.io.StringWriter;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -45,7 +44,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -53,17 +51,8 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
-import javax.mail.Message.RecipientType;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
-
-import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
 
 import com.topcoder.util.keygenerator.random.RandomStringGenerator;
 
@@ -100,21 +89,10 @@ public class RegistrationServiceBean extends BaseService implements Registration
     private IdentityProviderDAO identityProvider;
 
     /**
-     * Represents the velocity engine, it is initialized during post construct and never modified after.
+     * Notification service used for sending emails.
      */
-    private VelocityEngine velocityEngine;
-
-    /**
-     * CMS Configuration object.
-     */
-    private CMSConfigurator config;
-
-    /**
-     * Represents the mail session. It is injected by the container it is used in the business methods. It may have any
-     * value, fully mutable, but not expected to change after dependency injection
-     */
-    @Resource(mappedName = "java:/Mail")
-    private Session session;
+    @EJB
+    private NotificationService notificationService;
 
     /**
      * Password generator.
@@ -206,7 +184,7 @@ public class RegistrationServiceBean extends BaseService implements Registration
         vars.put("registrant", registrant);
         vars.put("password", password);
 
-        sendNotification(registrant.getEmail(), EmailTemplate.NEW_REGISTRATION, vars);
+        notificationService.sendNotification(registrant.getEmail(), EmailTemplate.NEW_REGISTRATION, vars);
         return userId;
     }
 
@@ -485,37 +463,6 @@ public class RegistrationServiceBean extends BaseService implements Registration
     }
 
     /**
-     * Sends email notifications.
-     *
-     * @param email the recipient
-     * @param emailType the name of the template to be used
-     * @param vars the substitution variables to put in the templating context
-     * @throws PortalServiceException for any errors encountered
-     */
-    private void sendNotification(String email, EmailTemplate emailType, Map<String, Object> vars)
-        throws PortalServiceException {
-        MimeMessage message = new MimeMessage(session);
-
-        try {
-            message.setRecipient(RecipientType.TO, new InternetAddress(email));
-            message.setSubject(config.getEmailSubject(emailType));
-
-            Template template = velocityEngine.getTemplate(config.getEmailTemplateFile(emailType));
-            StringWriter writer = new StringWriter();
-            VelocityContext velocityContext = new VelocityContext();
-            for (Map.Entry<String, Object> entry : vars.entrySet()) {
-                velocityContext.put(entry.getKey(), entry.getValue());
-            }
-            template.merge(velocityContext, writer);
-            message.setText(writer.toString());
-
-            Transport.send(message);
-        } catch (Exception e) {
-            throw new PortalServiceException("Error while sending notification.", e);
-        }
-    }
-
-    /**
      * Change the status of the user.
      *
      * @param principal the user performing the action
@@ -564,25 +511,10 @@ public class RegistrationServiceBean extends BaseService implements Registration
     @PostConstruct
     public void init() {
         super.init();
-        if (session == null) {
-            throw new PortalServiceConfigurationException("session must be configured.");
-        }
 
         if (identityProvider == null) {
             throw new PortalServiceConfigurationException("identityProvider must be configured.");
         }
-
-        config = new CMSConfigurator();
-        velocityEngine = config.getVelocityEngine();
-    }
-
-    /**
-     * Sets the value of the field <code>session</code>.
-     *
-     * @param session the session to set
-     */
-    public void setSession(Session session) {
-        this.session = session;
     }
 
     /**
@@ -599,7 +531,7 @@ public class RegistrationServiceBean extends BaseService implements Registration
             identityProvider.resetPassword(user.getUsername(), password);
             HashMap<String, Object> vars = new HashMap<String, Object>();
             vars.put("user", user);
-            sendNotification(user.getEmail(), EmailTemplate.UPDATE_PASSWORD, vars);
+            notificationService.sendNotification(user.getEmail(), EmailTemplate.UPDATE_PASSWORD, vars);
             return true;
         }
         return false;
@@ -625,7 +557,7 @@ public class RegistrationServiceBean extends BaseService implements Registration
         Map<String, Object> vars = new HashMap<String, Object>();
         vars.put("user", user);
         vars.put("password", password);
-        sendNotification(user.getEmail(), EmailTemplate.FORGOT_PASSWORD, vars);
+        notificationService.sendNotification(user.getEmail(), EmailTemplate.FORGOT_PASSWORD, vars);
         return true;
     }
 
@@ -854,7 +786,7 @@ public class RegistrationServiceBean extends BaseService implements Registration
         vars.put("admin", actor);
         vars.put("registrant", registrant);
         vars.put("password", password);
-        sendNotification(registrant.getEmail(), EmailTemplate.NEW_REGISTRATION_BY_ADMIN, vars);
+        notificationService.sendNotification(registrant.getEmail(), EmailTemplate.NEW_REGISTRATION_BY_ADMIN, vars);
         return userId;
     }
 
@@ -873,7 +805,7 @@ public class RegistrationServiceBean extends BaseService implements Registration
             Map<String, Object> vars = new HashMap<String, Object>();
             vars.put("user", registrant);
             identityProvider.resetPassword(registrant.getUsername(), password);
-            sendNotification(registrant.getEmail(), EmailTemplate.UPDATE_PASSWORD, vars);
+            notificationService.sendNotification(registrant.getEmail(), EmailTemplate.UPDATE_PASSWORD, vars);
         }
         return registrant.getUserId();
     }

@@ -21,14 +21,13 @@
 <div class="row address">
     <label>Residential Address</label>
     <span class="floatL"><b>:</b></span>
-    <span>
-        <c:if test="${not empty requestScope['_10_addressLine1']}"><c:out value="${requestScope['_10_addressLine1']}" /><br /></c:if>
-        <c:out value="${requestScope['_10_addressLine2']}" /><br />
-        <c:set var="city" value="${requestScope['_10_city']}" /><c:out value="${city}" />
-        <c:set var="state" value="${requestScope['_10_state']}" /><c:if test="${not empty state}">,</c:if>${state}
-        <c:set var="zip" value="${requestScope['_10_zip']}" /><c:if test="${not empty zip}">,</c:if>${zip}
-        <c:set var="county" value="${requestScope['_10_county']}" /><c:if test="${not empty county}">,</c:if>${county}
-    </span>
+    <h:address name="residential"
+        streetAddress="${requestScope['_10_addressLine1']}"
+        extendedAddress="${requestScope['_10_addressLine2']}"
+        city="${requestScope['_10_city']}"
+        state="${requestScope['_10_state']}"
+        postalCode="${requestScope['_10_zip']}"
+        county="${requestScope['_10_county']}" />
 </div>
 
 <div class="row">

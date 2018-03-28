@@ -64,25 +64,20 @@
             <div class="row">
                 <label>Home Residence Address</label>
                 <span class="floatL"><b>:</b></span>
-                <span class="address">
-                    <c:set var="formName" value="_29_addressLine2_${status.index - 1}"></c:set>
-                     ${requestScope[formName]}<br />
-                    <c:set var="formName" value="_29_city_${status.index - 1}"></c:set>
-                    <c:set var="city" value="${requestScope[formName]}"></c:set>
-                    ${city}
-                    <c:set var="formName" value="_29_state_${status.index - 1}"></c:set>
-                    <c:set var="state" value="${requestScope[formName]}"></c:set>
-                    <c:if test="${not empty state}">,</c:if>
-                    ${state}
-                    <c:set var="formName" value="_29_zip_${status.index - 1}"></c:set>
-                    <c:set var="zip" value="${requestScope[formName]}"></c:set>
-                    <c:if test="${not empty zip}">,</c:if>
-                    ${zip}
-                    <c:set var="formName" value="_29_county_${status.index - 1}"></c:set>
-                    <c:set var="county" value="${requestScope[formName]}"></c:set>
-                    <c:if test="${not empty county}">,</c:if>
-                    ${county}
-                </span>
+
+                <c:set var="streetAddress" value="_29_addressLine1_${status.index - 1}" />
+                <c:set var="extendedAddress" value="_29_addressLine2_${status.index - 1}" />
+                <c:set var="city" value="_29_city_${status.index - 1}" />
+                <c:set var="state" value="_29_state_${status.index - 1}" />
+                <c:set var="postalCode" value="_29_zip_${status.index - 1}" />
+                <c:set var="county" value="_29_county_${status.index - 1}" />
+                <h:address name="home"
+                    streetAddress="${requestScope[streetAddress]}"
+                    extendedAddress="${requestScope[extendedAddress]}"
+                    city="${requestScope[city]}"
+                    state="${requestScope[state]}"
+                    postalCode="${requestScope[postalCode]}"
+                    county="${requestScope[county]}" />
             </div>
         </div>
 

@@ -53,7 +53,7 @@ public class OrganizationInfoPage extends EnrollmentPage {
     }
 
     public void setEffectiveDate(String effectiveDate) {
-        $("[name='_15_effectiveDate']").type(effectiveDate);
+        sendKeysIndividually("[name='_15_effectiveDate']", effectiveDate);
     }
 
     public void setDoingBusinessAs(String dba) {

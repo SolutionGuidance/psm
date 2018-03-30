@@ -41,11 +41,11 @@ public class OwnershipInfoPage extends EnrollmentPage {
     }
 
     public void setOwnershipDOB(String dob) {
-        $("[name='_17_iboDOB_0']").type(dob);
+        sendKeysIndividually("[name='_17_iboDOB_0']", dob);
     }
 
     public void setOwnershipHireDate(String hireDate) {
-        $("[name='_17_iboHireDate_0']").type(hireDate);
+        sendKeysIndividually("[name='_17_iboHireDate_0']", hireDate);
     }
 
     public void setOwnershipCity(String city) {

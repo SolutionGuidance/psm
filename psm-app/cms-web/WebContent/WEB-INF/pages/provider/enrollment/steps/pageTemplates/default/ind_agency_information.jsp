@@ -29,7 +29,11 @@
             <div class="row">
                 <c:set var="formName" value="_11_npi"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="agencyNpiUmpi">Agency NPI/UMPI<span class="required">*</span></label>
+                <label for="agencyNpiUmpi">
+                  Agency NPI/UMPI
+                  <span class="required">*</span>
+                  <a href="javascript:;" class="userHelpLink NPIdefinition">?</a>
+                </label>
                 <span class="floatL"><b>:</b></span>
                 <input type="text" class="npiMasked normalInput" id="agencyNpiUmpi" name="${formName}" value="${formValue}" maxlength="10"/>
             </div>

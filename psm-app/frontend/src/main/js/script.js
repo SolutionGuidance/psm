@@ -1,4 +1,4 @@
-var addNpiUserHelpClickHandler = addUserHelpClickHandler.bind(
+var setNpiUserHelpClickHandler = setUserHelpClickHandler.bind(
   undefined,
   'a.NPIdefinition',
   '/help/enrollment.html',
@@ -1630,7 +1630,7 @@ $(document).ready(function () {
     $(html).find('input.npiMasked').mask("9999999999");
     $(html).find("input.umpiMasked").mask("**********");
     $(html).find('input.ssnMasked').mask("999-99-9999");
-    addNpiUserHelpClickHandler();
+    setNpiUserHelpClickHandler();
     reindexMembers();
   });
 
@@ -1881,27 +1881,27 @@ $(document).ready(function () {
     $(html).attr('alt', '').attr('title', '');
   });
 
-  addUserHelpClickHandler(
+  setUserHelpClickHandler(
     'a.ownershipTypeDefinition',
     '/help/enrollment.html',
     ['what-are-the-types-for-individual-person-s-ownership-or-control-interest']
   );
 
-  addNpiUserHelpClickHandler();
+  setNpiUserHelpClickHandler();
 
-  addUserHelpClickHandler(
+  setUserHelpClickHandler(
     'a.maintainOwnPrivatePractice',
     '/help/enrollment.html',
     ['do-i-maintain-my-own-private-practice']
   );
 
-  addUserHelpClickHandler(
+  setUserHelpClickHandler(
     'a.employedByGroupPractice',
     '/help/enrollment.html',
     ['am-i-employed-and-or-independently-contracted-by-a-group-practice']
   );
 
-  addUserHelpClickHandler(
+  setUserHelpClickHandler(
     'a.actionColumnHelpLink',
     '/help/enrollment.html',
     [
@@ -1913,7 +1913,7 @@ $(document).ready(function () {
     "Questions About Editing an Enrollment"
   );
 
-  addUserHelpClickHandler(
+  setUserHelpClickHandler(
     'a.providerTypeHelpLink',
     '/help/enrollment.html',
     [

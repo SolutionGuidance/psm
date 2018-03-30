@@ -99,15 +99,16 @@ function populateUserHelpModal(modalId, helpItemIds, title, helpPageString) {
 };
 
 /**
-* Add a click handler function to a user help modal link.
-* Title is optional; is absent (undefined) to show a single help item.
+* Add a click handler function to a user help modal link, and remove any
+* existing click handler. Title is optional; is absent (undefined) to show a
+* single help item.
 *
 * @param helpLinkSelector {string} - Selector for the help link.
 * @param helpDocsPath {string} - Path to the help doc html file.
 * @param helpItemIds {array of strings} - IDs of the source help items.
 * @param title {string or undefined} - Title to use with multiple help items.
 */
-function addUserHelpClickHandler(
+function setUserHelpClickHandler(
     helpLinkSelector,
     helpDocsPath,
     helpItemIds,

@@ -570,7 +570,7 @@ $(document).ready(function () {
       addressLoadModal('#printModal');
     });
 
-  addUserHelpClickHandler(
+  setUserHelpClickHandler(
     'a.agreementsAddendumsHelpLink',
     '/help/service-admin-help.html',
     ['what-s-the-difference-between-an-agreement-and-an-addendum']

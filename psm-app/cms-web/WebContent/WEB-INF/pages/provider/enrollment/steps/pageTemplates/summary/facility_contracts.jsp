@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <c:if test="${requestScope['_34_bound'] eq 'Y'}">
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<table cellpadding="0" cellspacing="0" class="generalTable noInput">
+<table class="generalTable noInput">
     <colgroup>
         <col width="284"/>
         <col width="128"/>

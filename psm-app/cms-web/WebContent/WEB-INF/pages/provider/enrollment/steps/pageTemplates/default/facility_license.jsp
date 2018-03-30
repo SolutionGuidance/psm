@@ -52,7 +52,7 @@
         </c:if>
 
         <div class="addPracticeLocations">
-            <table cellpadding="0" cellspacing="0" class="generalTable facility" id="tableFacilityLicense">
+            <table class="generalTable facility" id="tableFacilityLicense">
                 <colgroup>
                     <col width="20"/>
                     <col width="130"/>

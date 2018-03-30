@@ -7,7 +7,7 @@
 <div class="tableData" id="tableLicense2">
     <input type="hidden" name="formNames" value="<%= ViewStatics.SPECIALTY_INFO_FORM %>">
 
-    <table cellpadding="0" cellspacing="0" class="generalTable">
+    <table class="generalTable">
         <thead>
             <tr>
                 <th class="alignCenter">#<span class="sep"></span></th>

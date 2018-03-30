@@ -1,44 +1,44 @@
 {{!-- Common HTML head element declarations. --}}
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta charset="utf-8">
   <meta name="_csrf" content="{{csrf.token}}"/>
   <meta name="_csrf_header" content="{{csrf.headerName}}"/>
 
   <title>{{title}}</title>
-  <link rel="stylesheet" href="{{ctx}}/css/reset.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="{{ctx}}/css/style.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="{{ctx}}/css/jquery.ui.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="{{ctx}}/css/reset.css" media="all" />
+  <link rel="stylesheet" href="{{ctx}}/css/style.css" media="all" />
+  <link rel="stylesheet" href="{{ctx}}/css/jquery.ui.css" media="all" />
   {{#if adminPage}}
-    <link rel="stylesheet" href="{{ctx}}/js/chosen/chosen.css" type="text/css" media="all"/>
-    <link rel="stylesheet" href="{{ctx}}/js/jwysiwyg/jquery.wysiwyg.css" type="text/css"/>
+    <link rel="stylesheet" href="{{ctx}}/js/chosen/chosen.css" media="all"/>
+    <link rel="stylesheet" href="{{ctx}}/js/jwysiwyg/jquery.wysiwyg.css"/>
   {{else if systemPage}}
-    <link rel="stylesheet" href="{{ctx}}/js/chosen/chosen.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="{{ctx}}/js/chosen/chosen.css" media="all"/>
   {{/if}}
-  <script src="{{ctx}}/js/jquery-1.7.1.min.js" type="text/javascript"></script>
-  <script src="{{ctx}}/js/jquery.tablesorter.min.js" type="text/javascript"></script>
-  <script src="{{ctx}}/js/jquery.tablesorter.widgets.js" type="text/javascript"></script>
-  <script src="{{ctx}}/js/jquery.ui.core.js" type="text/javascript"></script>
-  <script src="{{ctx}}/js/jquery.ui.widget.js" type="text/javascript"></script>
-  <script src="{{ctx}}/js/jquery.ui.datepicker.js" type="text/javascript"></script>
+  <script src="{{ctx}}/js/jquery-1.7.1.min.js"></script>
+  <script src="{{ctx}}/js/jquery.tablesorter.min.js"></script>
+  <script src="{{ctx}}/js/jquery.tablesorter.widgets.js"></script>
+  <script src="{{ctx}}/js/jquery.ui.core.js"></script>
+  <script src="{{ctx}}/js/jquery.ui.widget.js"></script>
+  <script src="{{ctx}}/js/jquery.ui.datepicker.js"></script>
   {{#if adminPage}}
-    <script src="{{ctx}}/js/jquery.tinyscrollbar.min.js" type="text/javascript"></script>
-    <script src="{{ctx}}/js/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="{{ctx}}/js/chosen/chosen.jquery.min.js" type="text/javascript"></script>
-    <script src="{{ctx}}/js/jquery.maskedinput.min.js" type="text/javascript"></script>
-    <script src="{{ctx}}/js/jwysiwyg/jquery.wysiwyg.js" type="text/javascript"></script>
-    <script src="{{ctx}}/js/jwysiwyg/jquery.wysiwyg.js" type="text/javascript"></script>
-    <script src="{{ctx}}/js/jwysiwyg/controls/wysiwyg.image.js" type="text/javascript"></script>
-    <script src="{{ctx}}/js/jwysiwyg/controls/wysiwyg.link.js" type="text/javascript" ></script>
-    <script src="{{ctx}}/js/jwysiwyg/controls/wysiwyg.table.js" type="text/javascript" ></script>
+    <script src="{{ctx}}/js/jquery.tinyscrollbar.min.js"></script>
+    <script src="{{ctx}}/js/jquery.validate.min.js"></script>
+    <script src="{{ctx}}/js/chosen/chosen.jquery.min.js"></script>
+    <script src="{{ctx}}/js/jquery.maskedinput.min.js"></script>
+    <script src="{{ctx}}/js/jwysiwyg/jquery.wysiwyg.js"></script>
+    <script src="{{ctx}}/js/jwysiwyg/jquery.wysiwyg.js"></script>
+    <script src="{{ctx}}/js/jwysiwyg/controls/wysiwyg.image.js"></script>
+    <script src="{{ctx}}/js/jwysiwyg/controls/wysiwyg.link.js" ></script>
+    <script src="{{ctx}}/js/jwysiwyg/controls/wysiwyg.table.js" ></script>
   {{else if systemPage}}
-    <script src="{{ctx}}/js/chosen/chosen.jquery.min.js" type="text/javascript"></script>
-    <script src="{{ctx}}/js/jquery.maskedinput.min.js" type="text/javascript"></script>
+    <script src="{{ctx}}/js/chosen/chosen.jquery.min.js"></script>
+    <script src="{{ctx}}/js/jquery.maskedinput.min.js"></script>
   {{else}}
-    <script src="{{ctx}}/js/jquery.maskedinput.min.js" type="text/javascript"></script>
-    <script src="{{ctx}}/js/jquery.compare.js" type="text/javascript"></script>
+    <script src="{{ctx}}/js/jquery.maskedinput.min.js"></script>
+    <script src="{{ctx}}/js/jquery.compare.js"></script>
   {{/if}}
 
-  <script type="text/javascript">
+  <script>
     var ctx = "{{ctx}}";
     {{#if systemPage}}
       var roles = "{{role}}";
@@ -47,13 +47,13 @@
     {{/if}}
   </script>
 
-  <script src="{{ctx}}/js/common.js" type="text/javascript"></script>
+  <script src="{{ctx}}/js/common.js"></script>
 
   {{#if adminPage}}
-    <script src="{{ctx}}/js/admin/script.js" type="text/javascript"></script>
+    <script src="{{ctx}}/js/admin/script.js"></script>
   {{else if systemPage}}
-    <script src="{{ctx}}/js/system/script.js" type="text/javascript"></script>
+    <script src="{{ctx}}/js/system/script.js"></script>
   {{else}}
-    <script src="{{ctx}}/js/script.js" type="text/javascript"></script>
+    <script src="{{ctx}}/js/script.js"></script>
   {{/if}}
 </head>

@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<table cellpadding="0" cellspacing="0" class="generalTable dashboardTable fixedWidthTable">
+<table class="generalTable dashboardTable fixedWidthTable">
 
   <colgroup>
     <col width="125"/>

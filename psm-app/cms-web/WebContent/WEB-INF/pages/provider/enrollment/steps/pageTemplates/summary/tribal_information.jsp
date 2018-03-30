@@ -16,7 +16,7 @@
 </div>
 
 <c:if test="${requestScope['_13_worksOnReservation'] eq 'Y'}">
-<table cellpadding="0" cellspacing="0" class="generalTable noInput">
+<table class="generalTable noInput">
     <colgroup>
         <col width="28"/>
         <col width="180"/>

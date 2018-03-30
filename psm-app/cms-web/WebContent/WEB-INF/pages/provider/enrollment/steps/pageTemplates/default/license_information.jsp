@@ -11,7 +11,7 @@
 <div class="tableData" id="tableLicense">
     <input type="hidden" name="formNames" value="<%= ViewStatics.LICENSE_INFO_FORM %>">
 
-    <table cellpadding="0" cellspacing="0" class="generalTable licenseInformationTable">
+    <table class="generalTable licenseInformationTable">
         <thead>
             <tr>
                 <th class="alignCenter">#<span class="sep"></span></th>

@@ -656,7 +656,7 @@
             <span>Do not list additional practice location addresses here. If there are multiple clinic locations, each one must be enrolled separately,</span>
         </div>
         <div class="addPracticeLocations">
-        <table cellpadding="0" cellspacing="0" class="generalTable alternateTable" id="tablePractice">
+        <table class="generalTable alternateTable" id="tablePractice">
             <colgroup>
                 <col width="115"/>
                 <col width="142"/>

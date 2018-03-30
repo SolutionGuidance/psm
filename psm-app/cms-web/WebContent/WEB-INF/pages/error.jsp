@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -7,7 +7,7 @@
 <%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 <c:choose>
   <c:when test="${principalUser ne null}">
-    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+    <html lang="en-US">
       <c:set var="title" value="Server Error"/>
       <h:handlebars template="includes/html_head" context="${pageContext}"/>
       <body>
@@ -65,7 +65,7 @@
   </c:when>
   <c:otherwise>
     <%@page import="org.springframework.security.web.WebAttributes"%>
-    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+    <html lang="en-US">
       <c:set var="title" value="Login"/>
       <c:set var="ctx" value="${pageContext.request.contextPath}"/>
       <h:handlebars template="includes/html_head" context="${pageContext}"/>

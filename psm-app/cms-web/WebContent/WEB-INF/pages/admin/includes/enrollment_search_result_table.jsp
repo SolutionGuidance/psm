@@ -8,8 +8,6 @@
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
 <table
   id="${searchTableId}"
-  cellpadding="0"
-  cellspacing="0"
   class="generalTable fixedWidthTable ${active_enrollment_tab eq 'notes' ? 'table-enrollment-notes-sort' : ''}"
   >
   <colgroup>

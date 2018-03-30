@@ -26,7 +26,7 @@
         <c:otherwise>
         <div class="tableContainer">
           <div class="tableMain">
-            <table cellpadding="0" cellspacing="0" class="generalTable" id="userAccountResultsTable">
+            <table class="generalTable" id="userAccountResultsTable">
                 <colgroup>
                     <col width="35"/>
                     <col width="125"/>

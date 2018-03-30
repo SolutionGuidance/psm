@@ -60,8 +60,8 @@ public class OrganizationInfoPage extends EnrollmentPage {
         $("#name").sendKeys(dba);
     }
 
-    public void setLegalName(String legalNamne) {
-        $("#legalName").sendKeys(legalNamne);
+    public void setLegalName(String legalName) {
+        $("#legalName").sendKeys(legalName);
     }
 
     public void setCity(String city) {

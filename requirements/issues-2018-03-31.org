@@ -206,6 +206,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/695][695]] (closed): Base issue for requirements that don't (yet) have issue tickets.
 
   Some of the PSM's [requirements](https://github.com/SolutionGuidance/psm/tree/master/requirements) don't (yet) have any corresponding issues associated with them.  This might be for one of several reasons:
@@ -220,43 +224,206 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-1.1
+     The PSM shall accept a form that shows a tax ID number and legal
+     name for each provider (ex forms: CP 575 or 147C letter; 941
+     Employers' Quarterly Federal Tax Return; 8109 Tax Coupon; or
+     letter from IRS with the Federal Tax Identification Number and
+     legal name).
+     <<< FR 1.  Capability to conduct identity verification >>>
+
    - Z-REQ-PSM-FR-1.3
+     The PSM shall screen providers for managed care plans.
+     <<< FR 1.  Capability to conduct identity verification >>>
+
    - Z-REQ-PSM-FR-1.5
+     The PSM shall have the capability to escalate the intensity of
+     screening for providers that are flagged as higher risk.
+     <<< FR 1.  Capability to conduct identity verification >>>
+
    - Z-REQ-PSM-FR-10.1
+     The PSM shall validate HIPAA Taxonomy codes against
+     http://www.wpc-edi.com/codes/taxonomy
+     <<< FR 10. Compliance >>>
+
    - Z-REQ-PSM-FR-2.10
+     The PSM shall notify managed care plans when a provider becomes
+     eligible (has been screened) and/or allow a managed care plan to
+     check a provider's eligibility.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-2.11
+     The PSM shall detect and ask specific questions of
+     bordering-state providers.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-2.12
+     The PSM shall share NPI between individual providers, for group
+     practices.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-2.13
+     The PSM shall limit enrollment to providers in the following
+     categories: (1) in-state, (2) out-of-state in-network, (3) within
+     a defined "border" region of neighboring states.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-2.14
+     The PSM shall use consistent provider naming conventions to
+     differentiate between first names, last names, and business or
+     corporate names and to allow flexible searches based on the
+     provider name.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-2.17
+     The PSM shall maintain providers’ drug enforcement administration
+     (DEA) numbers.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-2.3
+     The PSM shall associate multiple Medicare IDs with the same
+     provider, if the provider has multiple locations.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-3.1
+     The PSM shall provide a rejection reason if an application is
+     rejected.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.10
+     The PSM shall send letter confirming enrollment.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.11
+     The PSM shall notify providers 90 days before their enrollment
+     expires, so that they can go through revalidation.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.12
+     The PSM shall automatically reject applications that do not
+     include all mandatory information.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.3
+     The PSM shall flag and route records for action if multiple
+     internal state assigned provider numbers are associated with a
+     single provider.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.6
+     The PSM shall conduct a fingerprint-based criminal background
+     check for high-risk provider types.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.8
+     The PSM shall compare monitoring statistics (e.g. license
+     expirations that were not caught within a month, total number of
+     sanctions) from one month to the next.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.9
+     The PSM shall have the capability to create a learning system to
+     ensure that observed negative trends factor back into screening
+     rules so as to flag suspicious enrollments early in the screening
+     process, ensuring the ability to detect and reduce/eliminate the
+     incidence of false positives.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-4.1
+     The PSM shall show a list of settings in which a provider might
+     see clients/patients, including "Other."
+     <<< FR 4.  Configurable Setting >>>
+
    - Z-REQ-PSM-FR-4.2
+     The PSM shall allow applicants to choose multiple care settings.
+     <<< FR 4.  Configurable Setting >>>
+
    - Z-REQ-PSM-FR-4.4
+     The PSM shall provide space for results of on-site visits, for
+     moderate- and high-risk provider types.
+     <<< FR 4.  Configurable Setting >>>
+
    - Z-REQ-PSM-FR-4.5
+     The PSM shall support the Extract, Transform and Load (ETL)
+     processes from real-time  web services or batch processes.
+     <<< FR 4.  Configurable Setting >>>
+
    - Z-REQ-PSM-FR-5.1
+     The PSM shall issue Medicaid provider ID number to each approved
+     provider.
+     <<< FR 5. Manage Enrollment >>>
+
    - Z-REQ-PSM-FR-6.2
+     The PSM shall maintain date-specific provider enrollment and
+     demographic data.
+     <<< FR 6. Retention, Reporting and Auditing >>>
+
    - Z-REQ-PSM-FR-6.3
+     The PSM shall maintain an audit trail of all updates to the
+     provider data, for a time period specified by the state.
+     <<< FR 6. Retention, Reporting and Auditing >>>
+
    - Z-REQ-PSM-FR-6.4
+     The PSM shall remember previous rejected providers and reasons
+     for rejection corresponding form fields
+     <<< FR 6. Retention, Reporting and Auditing >>>
+
    - Z-REQ-PSM-FR-6.8
+     The PSM shall provide an input to document the nature for the
+     type of screening/monitoring event, the score, and the agencies
+     decision for each provider.
+     <<< FR 6. Retention, Reporting and Auditing >>>
+
    - Z-REQ-PSM-FR-7.12
+     The PSM shall provide a configurable time frame for a "stale"
+     enrollment draft application.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.3
+     The PSM shall not send re-screening results to admin for review
+     if provider information has not changed.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-8.3
+     The PSM shall support automated criminal background checks for
+     all providers as specified by the State.
+     <<< FR 8.  Manage Provider Communication >>>
+
    - Z-REQ-PSM-FR-8.4
+     The PSM shall produce notices to applicants of pending status,
+     approval, or rejection of their applications.
+     <<< FR 8.  Manage Provider Communication >>>
+
    - Z-REQ-PSM-FR-9.2
+     The PSM shall integrate records with MO HealthNet.
+     <<< FR 9.  Meets architecture guideline >>>
+
    - Z-REQ-PSM-FR-9.3
+     The PSM shall support a provider appeals process in compliance
+     with federal guidelines (42 CFR 431.105)
+     <<< FR 9.  Meets architecture guideline >>>
+
    - Z-REQ-PSM-II-1.1
+     The PSM shall use a mix of manual and automated business
+     processes.
+     <<< II 1.  Technical Service Classification:  Business Process Management >>>
+
    - Z-REQ-PSM-II-3.1
+     The PSM shall adopt MITA-recommended ESB, automated arrangement,
+     coordination, and management of system.
+     <<< II 3.  Technical Service Classification:  Service Oriented Architecture >>>
+
    - Z-REQ-PSM-II-3.2
+     The PSM shall conduct reliable messaging, including guaranteed
+     message delivery (without duplicates) and support for
+     non-deliverable messages.
+     <<< II 3.  Technical Service Classification:  Service Oriented Architecture >>>
+
    - Z-REQ-PSM-II-4.3
+     Loosely coupled APIs - 
+The PSM module dependencies shall be minimized to the greatest extent
+possible.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
 * [[https://github.com/solutionguidance/psm/issues/692][692]]   (open): Action column may wrap to two lines
 
   On service admin "Pending", "Approved", and "Notes" pages content in the action column wraps to two lines:
@@ -269,6 +436,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/691][691]] (closed): Search results offers admin options to providers
 
   When logged in as a provider, in the results on the 'advanced search' or 'quick search' pages there are:
@@ -279,6 +451,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.13
+     The PSM shall support searching and pattern-matching based on all
+     fields accepted as input (and based on all reasonable
+     combinations of such fields).
+     <<< FR 7. Usability >>>
+
    - duplicate
 * [[https://github.com/solutionguidance/psm/issues/687][687]]   (open): Advanced Search page a11y test failures
 
@@ -286,7 +463,17 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/681][681]]   (open): Rename built user docs to "user help" or "user FAQ"
 
   Per @jcunard's suggestion, change the title of the documentation from "user manual" to "user help" or "user FAQs."  This should be simple to do in `conf.py`.
@@ -295,6 +482,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/675][675]]   (open): Legal name cannot exceed 35 characters
 
   Is this a limitation we want to have?  It seems unnecessary to me.
@@ -303,8 +494,20 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.16
+     The PSM shall accept, validate, and process transactions or user
+     entries to update and maintain provider information.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-3.16
+     The PSM shall provide comprehensive verification of all
+     (verifiable) data fields for all providers enrolled
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-7.11
+     The PSM shall validate entered information as provider fills out
+     application (not at the end of the process).
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/672][672]]   (open): Empty link text for providers with no NPI
 
   Some provider types, such as Personal Care Assistants, do not have an NPI. After creating such an enrollment, the dashboard and enrollments pages render that enrollment with an empty link to the enrollment:
@@ -317,8 +520,21 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-9.1
+     The PSM shall integrate provider-type business rules described in
+     the Enrollment Information Guide into the system.
+     <<< FR 9.  Meets architecture guideline >>>
+
    - accessibility
    - bug
    - ux
@@ -336,6 +552,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/666][666]]   (open): Trading Partner Type is not recognized
 
   @jcunard ran into this issue and I was able to reproduce it.
@@ -348,6 +569,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-9.1
+     The PSM shall integrate provider-type business rules described in
+     the Enrollment Information Guide into the system.
+     <<< FR 9.  Meets architecture guideline >>>
+
 * [[https://github.com/solutionguidance/psm/issues/659][659]]   (open): Add provider type to provider dashboard table
 
   Currently, the provider dashboard shows enrollments with little to differentiate them (especially if they all have the same NPI):
@@ -358,6 +583,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/655][655]]   (open): Remove or generify UMPI field
 
   UMPI stands for "Unique Minnesota Provider Identifier", and is one of several MN-specific customizations (see also #74, #571).
@@ -374,6 +604,9 @@
 
 ** LABELS
    - Z-REQ-PSM-II-4.5
+     The PSM shall be configurable where feasible.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
    - state-question
 * [[https://github.com/solutionguidance/psm/issues/653][653]]   (open): Remove styles from labels
 
@@ -385,7 +618,18 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/647][647]] (closed): Fix Serenity test reports
 
   Our integration tests produce JUnit test reports, but the Serenity Gradle plugin provides a `aggregate` target that collects the screenshots Serenity captures during the tests and builds some HTML around them. These Serenity test reports stopped working at some point - they now always say 0 tests.
@@ -396,6 +640,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/641][641]] (closed): Create API that returns a list of approved and/or rejected providers
 
   See the [proposed APIs for Poplin](https://github.com/SolutionGuidance/psm/blob/master/docs/Poplin-API-proposals.md).  The first section, call it "Phase 1a," includes:
@@ -416,6 +666,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-9.4
+     The PSM shall verify provider eligibility in support of other
+     system processes, i.e. payment of claims.
+     <<< FR 9.  Meets architecture guideline >>>
+
    - backend
    - enhancement
 * [[https://github.com/solutionguidance/psm/issues/638][638]]   (open): Add automated cross-browser testing
@@ -424,7 +678,17 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-2.5
+     To the greatest extent possible, the PSM shall be browser
+     agnostic.
+     <<< AD 2.  Technical Service Classification:  Client Support >>>
+
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - enhancement
 * [[https://github.com/solutionguidance/psm/issues/635][635]] (closed): FEIN validation error in Internet Explorer
 
@@ -440,7 +704,14 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-1.2
+     The PSM shall ensure that tax ID number is 9 digits
+     <<< FR 1.  Capability to conduct identity verification >>>
+
    - Z-REQ-PSM-FR-3.16
+     The PSM shall provide comprehensive verification of all
+     (verifiable) data fields for all providers enrolled
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
 * [[https://github.com/solutionguidance/psm/issues/629][629]] (closed): Use Jenkins for continuous integration
 
   We've been discussing when to move away from Travis for a while, for the following reasons:
@@ -457,6 +728,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/626][626]]   (open): Manage JavaScript dependencies and modernize build
 
   Currently, we have several vendored JavaScript dependencies:
@@ -485,6 +762,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - in progress
    - infra
    - tech-debt
@@ -502,6 +784,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-9.4
+     The PSM shall verify provider eligibility in support of other
+     system processes, i.e. payment of claims.
+     <<< FR 9.  Meets architecture guideline >>>
+
    - enhancement
 * [[https://github.com/solutionguidance/psm/issues/622][622]]   (open): Prevent issues from browsers caching outdated CSS
 
@@ -526,6 +812,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/620][620]]   (open): Cannot delete additional practice location
 
   If there are two or more additional practice locations, a red x icon shows up to the right of each so that you can delete them. However, if you have only one, you cannot delete it - apparently because it wants to always shows an empty additional practice location.
@@ -538,7 +829,22 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.16
+     The PSM shall accept, validate, and process transactions or user
+     entries to update and maintain provider information.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-4.3
+     The PSM shall allow providers to update information and initiate
+     re-screening process (e.g., in the following situations: name
+     change, change of ownership/operator - whether or not it is the
+     same practice location, address change, Federal Tax
+     Identification Number change at same practice location, change
+     from Social Security Number to Federal Tax Identification Number
+     at same practice location, change from Federal Tax Identification
+     Number to Social Security Number at same practice location,
+     payment name or address change, and additional service location)
+     <<< FR 4.  Configurable Setting >>>
+
    - ux
 * [[https://github.com/solutionguidance/psm/issues/619][619]]   (open): Adding additional practice locations by lookup fails
 
@@ -552,6 +858,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
 * [[https://github.com/solutionguidance/psm/issues/618][618]]   (open): Enter key does not submit quick search form
 
@@ -559,6 +870,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - ux
 * [[https://github.com/solutionguidance/psm/issues/616][616]]   (open): Remove or update DEPENDENCIES.md
 
@@ -570,6 +886,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/614][614]]   (open): Encrypt secret configuration options at rest
 
   The PSM has several configuration options specified in [`cms.properties`](https://github.com/SolutionGuidance/psm/blob/master/psm-app/services/src/main/resources/cms.properties). We expect that some of them will contain secrets:
@@ -589,6 +910,10 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.17
+     The PSM shall use only FIPS Pub 140-2-approved (or higher)
+     encryption algorithms.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - security
    - state-question
 * [[https://github.com/solutionguidance/psm/issues/613][613]] (closed): Use HTML5 instead of XHTML
@@ -600,7 +925,17 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/612][612]]   (open): Enrollment search has broken placeholder text
 
@@ -613,7 +948,17 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.13
+     The PSM shall support searching and pattern-matching based on all
+     fields accepted as input (and based on all reasonable
+     combinations of such fields).
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
    - quick-fix
    - ux
@@ -625,6 +970,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - docs
 * [[https://github.com/solutionguidance/psm/issues/604][604]]   (open): Serenity tests failing - page title mismatch?
 
@@ -646,6 +995,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/600][600]]   (open): Automate release process with checklist & cron job/bot
 
   We should automate more of our release process.
@@ -660,7 +1015,16 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.21
+     The PSM shall save administrative/infrastructure cost by
+     providing a multi-tenant provider screening solution
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - docs
    - infra
 * [[https://github.com/solutionguidance/psm/issues/599][599]]   (open): Stop checking for access permissions for system-internal lookups
@@ -669,6 +1033,11 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.12
+     The PSM shall support roles and responsibilities of individuals
+     that are separated through assigned information access
+     authorization as necessary to prevent malevolent activity.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
 * [[https://github.com/solutionguidance/psm/issues/596][596]]   (open): Reduce use of JAXB class generation
 
   We use [JAXB](https://en.wikipedia.org/wiki/Java_Architecture_for_XML_Binding) in the PSM mainly to serialize to and deserialize from XML for working with JBPM and Drools. We store XML versions of to-be-processed and currently-being-processed enrollments in JBPM's tables, and when it calls back into our code, we deserialize it, do some things, and then re-serialize it.
@@ -685,6 +1054,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - backend
    - in progress
    - tech-debt
@@ -694,6 +1069,10 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.6
+     The PSM shall use system resources efficiently and in proportion
+     to operational demands and data size.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
 * [[https://github.com/solutionguidance/psm/issues/586][586]]   (open): System admin filter box hidden after filtering
 
@@ -703,6 +1082,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
    - ux
 * [[https://github.com/solutionguidance/psm/issues/582][582]]   (open): Replace deprecated jQuery `.live(events, handler)` in JS code
@@ -715,6 +1099,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/572][572]]   (open): Review screening rules
 
   We have a requirement that
@@ -733,6 +1122,10 @@
 
 ** LABELS
    - Z-REQ-PSM-IU-3.1
+     The PSM of shall use standardized business rules definitions that
+     reside in a separate application or rules engine.
+     <<< IU 3.  Technical Service Classification:  Decision Management >>>
+
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/571][571]]   (open): Remove MN-specific rules
 
@@ -742,7 +1135,14 @@
 
 ** LABELS
    - Z-REQ-PSM-II-4.5
+     The PSM shall be configurable where feasible.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
    - Z-REQ-PSM-IU-3.1
+     The PSM of shall use standardized business rules definitions that
+     reside in a separate application or rules engine.
+     <<< IU 3.  Technical Service Classification:  Decision Management >>>
+
 * [[https://github.com/solutionguidance/psm/issues/569][569]]   (open): Missing "current tab" indicator on several pages
 
   The PSM used to show which tab the current page was on in its navigation bar. See, for example, the small black down arrow under "My Profile" on the service admin's profile page - the only place they still work:
@@ -753,6 +1153,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
    - tech-debt
    - ux
@@ -771,7 +1176,16 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.6
+     The PSM shall allow applicant to print application for their
+     records.
+     <<< FR 7. Usability >>>
+
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/565][565]]   (open): Convert all caps labels to css
 
@@ -779,6 +1193,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - tech-debt
    - ux
 * [[https://github.com/solutionguidance/psm/issues/564][564]]   (open): Ownership Information Percentage of Ownership Interest...
@@ -793,7 +1211,23 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.8
+     The PSM shall require the following fields: Contact email, Merger
+     y/n, Owner/board names and addresses, Care settings, DEA
+     controlled substances certification y/n, DEA revocation y/n
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-4.3
+     The PSM shall allow providers to update information and initiate
+     re-screening process (e.g., in the following situations: name
+     change, change of ownership/operator - whether or not it is the
+     same practice location, address change, Federal Tax
+     Identification Number change at same practice location, change
+     from Social Security Number to Federal Tax Identification Number
+     at same practice location, change from Federal Tax Identification
+     Number to Social Security Number at same practice location,
+     payment name or address change, and additional service location)
+     <<< FR 4.  Configurable Setting >>>
+
    - accessibility
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/563][563]]   (open): Write submodule READMEs
@@ -802,7 +1236,15 @@
 
 ** LABELS
    - Z-REQ-PSM-SC-4.3
+     The PSM design documents shall utilize a widely supported
+     modeling language (e.g., UML, BPMN).
+     <<< SC 4.  S&C:  Modularity Standard >>>
+
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - docs
 * [[https://github.com/solutionguidance/psm/issues/559][559]]   (open): Write sample prose description of code/data flow for 1-2 common PSM use cases
 
@@ -812,6 +1254,10 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/556][556]] (closed): Drop Down Menu Issue
 
   Hello,
@@ -829,6 +1275,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/555][555]] (closed): Do not run Serenity tests on external PRs
 
   We run our Serenity/Selenium tests with the help of Sauce Labs. Using their service requires account information, which we encode in [Travis secured environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings). [The Travis docs say](https://docs.travis-ci.com/user/pull-requests/#Pull-Requests-and-Security-Restrictions)
@@ -839,6 +1290,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
 * [[https://github.com/solutionguidance/psm/issues/554][554]] (closed): Give form input elements a name for accessibility
 
@@ -859,6 +1316,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - accessibility
 * [[https://github.com/solutionguidance/psm/issues/553][553]] (closed): Use accessible submit buttons on all forms
 
@@ -868,6 +1329,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - accessibility
 * [[https://github.com/solutionguidance/psm/issues/546][546]] (closed): Post processing fails on submitted enrollment applications
 
@@ -1252,9 +1717,30 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.13
+     The PSM shall have the capability to track and support the
+     screening of applications (and ongoing provider updates) for
+     National Provider Identifier (NPIs), State licenses, Specialty
+     Board certification as appropriate, review team visits when
+     necessary, and any other State and/or Federal Requirement.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.23
+     The PSM shall reduce processing and transaction time for
+     submitting and receiving queries to authoritative data sources
+     regarding provider credentials and sanctions.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-IU-3.1
+     The PSM of shall use standardized business rules definitions that
+     reside in a separate application or rules engine.
+     <<< IU 3.  Technical Service Classification:  Decision Management >>>
+
    - backend
    - bug
 * [[https://github.com/solutionguidance/psm/issues/539][539]] (closed): Admin dashboard menu has "action" instead of "status"
@@ -1263,6 +1749,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - quick-fix
    - ux
 * [[https://github.com/solutionguidance/psm/issues/533][533]] (closed): Travis/Sauce Labs disconnection problem?
@@ -1291,6 +1782,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
 * [[https://github.com/solutionguidance/psm/issues/528][528]]   (open): Potential misuse of the PSM by an agent
 
@@ -1306,10 +1803,33 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.12
+     The PSM shall support roles and responsibilities of individuals
+     that are separated through assigned information access
+     authorization as necessary to prevent malevolent activity.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - Z-REQ-PSM-FR-2.19
+     The PSM shall have the capability to capture critical attributes
+     including licensing information, financial data, and any other
+     data attributes which could impact a risk level.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-3.18
+     The PSM shall Improve effectiveness of the risk-screening model
+     in detecting fraud based issues
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.19
+     The PSM shall Improve technical soundness of risk-scoring in
+     flagging potential fraudulent patterns and tendencies
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-4.8
+     The PSM shall support provider agents (a.k.a. service agents
+     a.k.a. non-provider users) who act on a provider's behalf and
+     whose authorization may be a subset of that provider's.
+     <<< FR 4.  Configurable Setting >>>
+
    - security
 * [[https://github.com/solutionguidance/psm/issues/523][523]]   (open): Lock down ops dashboard
 
@@ -1321,7 +1841,17 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.12
+     The PSM shall support roles and responsibilities of individuals
+     that are separated through assigned information access
+     authorization as necessary to prevent malevolent activity.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - Z-REQ-PSM-AD-5.18
+     The PSM shall be secure from unauthorized access or use, and
+     shall sanitize inputs and outputs where possible so as to avoid
+     compromising itself or other systems.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - security
 * [[https://github.com/solutionguidance/psm/issues/521][521]]   (open): agreement and addendum interface: can't select items using checkboxes
 
@@ -1331,6 +1861,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
    - ux
 * [[https://github.com/solutionguidance/psm/issues/520][520]]   (open): Upgrade to WildFly 11
@@ -1345,6 +1880,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
    - task
 * [[https://github.com/solutionguidance/psm/issues/519][519]] (closed): Error shows up/persists inconsistently
@@ -1353,6 +1893,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
    - task
    - ux
@@ -1364,7 +1909,17 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - accessibility
    - infra
    - task
@@ -1386,6 +1941,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - accessibility
    - quick-fix
    - ux
@@ -1403,6 +1962,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - accessibility
    - ux
 * [[https://github.com/solutionguidance/psm/issues/514][514]] (closed): fix color contrast in headers and footers for accessibility
@@ -1422,6 +1985,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - accessibility
    - ux
 * [[https://github.com/solutionguidance/psm/issues/513][513]]   (open): ensure screenreaders can see headers on tables
@@ -1432,6 +1999,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - accessibility
    - ux
 * [[https://github.com/solutionguidance/psm/issues/512][512]]   (open): Logically nest header elements
@@ -1443,6 +2014,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - accessibility
    - ux
 * [[https://github.com/solutionguidance/psm/issues/511][511]]   (open): Describe form input error to user in text
@@ -1457,6 +2032,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - accessibility
    - ux
 * [[https://github.com/solutionguidance/psm/issues/510][510]]   (open): Improve keyboard navigation for forms & elements
@@ -1482,6 +2061,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - accessibility
    - ux
 * [[https://github.com/solutionguidance/psm/issues/509][509]] (closed): Improve accessibility (e.g. alt text) for images
@@ -1492,6 +2075,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - accessibility
    - ux
 * [[https://github.com/solutionguidance/psm/issues/508][508]] (closed): Provide descriptive labels/instructions for user input in forms
@@ -1506,6 +2093,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - accessibility
    - ux
 * [[https://github.com/solutionguidance/psm/issues/507][507]] (closed): Fix anchors that have no link content
@@ -1522,6 +2113,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - accessibility
    - ux
 * [[https://github.com/solutionguidance/psm/issues/504][504]] (closed): Stack trace when mail server unavailable
@@ -1532,6 +2127,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - backend
    - bug
 * [[https://github.com/solutionguidance/psm/issues/499][499]] (closed): Header bug: Functions tab disappears on My Profile tab
@@ -1540,6 +2140,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
    - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/498][498]]   (open): Providers can edit submitted enrollments
@@ -1552,6 +2157,11 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.18
+     The PSM shall be secure from unauthorized access or use, and
+     shall sanitize inputs and outputs where possible so as to avoid
+     compromising itself or other systems.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - backend
    - question
    - security
@@ -1563,6 +2173,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-4.8
+     The PSM shall support provider agents (a.k.a. service agents
+     a.k.a. non-provider users) who act on a provider's behalf and
+     whose authorization may be a subset of that provider's.
+     <<< FR 4.  Configurable Setting >>>
+
    - backend
    - enhancement
    - security
@@ -1573,6 +2188,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.13
+     The PSM shall support searching and pattern-matching based on all
+     fields accepted as input (and based on all reasonable
+     combinations of such fields).
+     <<< FR 7. Usability >>>
+
    - bug
 * [[https://github.com/solutionguidance/psm/issues/495][495]]   (open): DRY the download and sha script
 
@@ -1580,6 +2200,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/486][486]]   (open): Limit number of providers of a given type
@@ -1598,6 +2224,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-4.6
+     The PSM shall have the ability to enforce limits on the number of
+     providers of a given type enrolled simultaneously.
+     <<< FR 4.  Configurable Setting >>>
+
    - backend
    - enhancement
    - task
@@ -1608,6 +2238,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/482][482]] (closed): Central documentation site should refer to how it's generated.
 
@@ -1617,6 +2253,10 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - docs
    - enhancement
    - quick-fix
@@ -1630,8 +2270,21 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.18
+     The PSM shall be secure from unauthorized access or use, and
+     shall sanitize inputs and outputs where possible so as to avoid
+     compromising itself or other systems.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - Z-REQ-PSM-FR-6.1
+     The PSM shall download all monitoring risk scores for each month
+     as a CSV
+     <<< FR 6. Retention, Reporting and Auditing >>>
+
    - Z-REQ-PSM-FR-6.5
+     The PSM shall, to extent permitted by law, make screening data
+     available for analytics and other reporting purposes.
+     <<< FR 6. Retention, Reporting and Auditing >>>
+
    - enhancement
    - security
 * [[https://github.com/solutionguidance/psm/issues/472][472]]   (open): INSTALL.md improvements based on Paul Morris' notes
@@ -1813,6 +2466,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - docs
 * [[https://github.com/solutionguidance/psm/issues/468][468]] (closed): Ensure that we are using Hibernate everywhere
 
@@ -1824,7 +2482,18 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.18
+     The PSM shall be secure from unauthorized access or use, and
+     shall sanitize inputs and outputs where possible so as to avoid
+     compromising itself or other systems.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - backend
    - quick-fix
    - security
@@ -1835,6 +2504,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - accessibility
 * [[https://github.com/solutionguidance/psm/issues/466][466]] (closed): Document application architecture and interfaces
 
@@ -1849,11 +2522,39 @@
 
 ** LABELS
    - Z-REQ-PSM-IA-4.1
+     The PSM shall support a Logical Data Model (LDM) in the
+     identification of data classes, attributes, relationships,
+     standards, and code sets for intrastate exchange.
+     <<< IA 4.  IA Component Name:  Logical Data Model (LDM) >>>
+
    - Z-REQ-PSM-II-4.2
+     The PSM shall document all interfaces in an Interface Control
+     Document (ICD), along with how those interfaces are maintained.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
    - Z-REQ-PSM-II-4.4
+     Clearly documented - 
+The PSM shall provide detailed API documentation provided for every
+API.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
    - Z-REQ-PSM-IU-4.3
+     The PSM shall provide an architecture diagram depicting how it is
+     technically structured.
+     <<< IU 4.  Technical Service Classification:  Logging >>>
+
    - Z-REQ-PSM-SC-3.1
+     The PSM shall support the architecture adopted to preserve the
+     ability to efficiently, effectively, and appropriately exchange
+     data with other participants in the health and human services
+     enterprise.
+     <<< SC 3.  S&C:  Interoperability Condition >>>
+
    - Z-REQ-PSM-SC-4.3
+     The PSM design documents shall utilize a widely supported
+     modeling language (e.g., UML, BPMN).
+     <<< SC 4.  S&C:  Modularity Standard >>>
+
    - docs
 * [[https://github.com/solutionguidance/psm/issues/465][465]] (closed): Use FIPS-approved encryption
 
@@ -1863,6 +2564,10 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.17
+     The PSM shall use only FIPS Pub 140-2-approved (or higher)
+     encryption algorithms.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - backend
    - security
 * [[https://github.com/solutionguidance/psm/issues/459][459]]   (open): configure LaTeX footer for generated PDF
@@ -1875,6 +2580,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - docs
    - help wanted
 * [[https://github.com/solutionguidance/psm/issues/458][458]] (closed): bundle user & developer docs for psm-dev
@@ -1889,9 +2598,26 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.1
+     The PSM shall provide per-field instructions on the application
+     screen.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - docs
    - task
 * [[https://github.com/solutionguidance/psm/issues/456][456]]   (open): Use consistent code style
@@ -1904,6 +2630,10 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - docs
    - task
    - tech-debt
@@ -1920,6 +2650,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
    - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/454][454]]   (open): License renewal end date grayed out for PCA
@@ -1930,9 +2665,34 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.20
+     The PSM shall collect and maintain licensure information to
+     include at a minimum, licensing state, license number, licensure
+     begin and end dates.  
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-3.22
+     The PSM shall reduce the time needed by providers to submit
+     new/renewal application information and resolve discrepancies.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.5
+     The PSM shall screen limited-risk providers by verifying that the
+     provider or supplier meets all applicable federal regulations and
+     state requirements for the provider or supplier type, conducting
+     license verifications, including licensure verifications across
+     state lines for physicians, non-physician practitioners,
+     providers and suppliers, and conducting database checks on a
+     pre-and post-enrollment basis to ensure that providers and
+     suppliers continue to meet the enrollment criteria for their
+     provider/supplier type.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/452][452]]   (open): Activate push-javadoc-to-gh-pages.sh earlier in Travis build
 
@@ -1944,6 +2704,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/446][446]] (closed): Write API specification for LEIE API
@@ -1952,7 +2717,19 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.13
+     The PSM shall have the capability to track and support the
+     screening of applications (and ongoing provider updates) for
+     National Provider Identifier (NPIs), State licenses, Specialty
+     Board certification as appropriate, review team visits when
+     necessary, and any other State and/or Federal Requirement.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-II-4.4
+     Clearly documented - 
+The PSM shall provide detailed API documentation provided for every
+API.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
    - docs
    - infra
 * [[https://github.com/solutionguidance/psm/issues/440][440]]   (open): Rename "same as above"
@@ -1963,6 +2740,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
    - ux
 * [[https://github.com/solutionguidance/psm/issues/439][439]] (closed): Auto-update standalone user docs website and PDF
@@ -1981,6 +2763,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - docs
 * [[https://github.com/solutionguidance/psm/issues/438][438]] (closed): Add monitoring to demo instances
 
@@ -1988,6 +2774,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
 * [[https://github.com/solutionguidance/psm/issues/432][432]]   (open): Admin changes to contact information are lost
 
@@ -2007,7 +2799,15 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.5
+     The PSM shall allow applicant to edit entered information.
+     <<< FR 7. Usability >>>
+
    - backend
    - bug
 * [[https://github.com/solutionguidance/psm/issues/431][431]] (closed): Expired session doesn't redirect to login from "profile" page
@@ -2129,6 +2929,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - backend
    - bug
    - task
@@ -2140,6 +2945,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-4.5
+     The PSM shall support the Extract, Transform and Load (ETL)
+     processes from real-time  web services or batch processes.
+     <<< FR 4.  Configurable Setting >>>
+
    - backend
    - enhancement
 * [[https://github.com/solutionguidance/psm/issues/425][425]]   (open): Per-state configuration allowing/prohibiting e-signatures & proxy signatures
@@ -2166,7 +2975,15 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-4.8
+     The PSM shall support provider agents (a.k.a. service agents
+     a.k.a. non-provider users) who act on a provider's behalf and
+     whose authorization may be a subset of that provider's.
+     <<< FR 4.  Configurable Setting >>>
+
    - Z-REQ-PSM-II-4.5
+     The PSM shall be configurable where feasible.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
    - enhancement
    - state-question
 * [[https://github.com/solutionguidance/psm/issues/424][424]]   (open): Clarify provider users versus members in group enrollments
@@ -2187,7 +3004,15 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.1
+     The PSM shall provide per-field instructions on the application
+     screen.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - question
    - state-question
 * [[https://github.com/solutionguidance/psm/issues/423][423]]   (open): Clarify workflow around draft and submitted enrollments
@@ -2198,6 +3023,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.7
+     The PSM shall allow applicant to save a partial application as a
+     draft.
+     <<< FR 7. Usability >>>
+
    - backend
    - question
 * [[https://github.com/solutionguidance/psm/issues/422][422]]   (open): Review documentation to add relevant contextual help links
@@ -2208,6 +3037,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.1
+     The PSM shall provide per-field instructions on the application
+     screen.
+     <<< FR 7. Usability >>>
+
    - docs
    - help wanted
    - review
@@ -2218,6 +3051,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/420][420]]   (open): Adding space after username during registration makes login impossible
@@ -2231,8 +3069,20 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.16
+     The PSM shall accept, validate, and process transactions or user
+     entries to update and maintain provider information.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-3.16
+     The PSM shall provide comprehensive verification of all
+     (verifiable) data fields for all providers enrolled
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-7.11
+     The PSM shall validate entered information as provider fills out
+     application (not at the end of the process).
+     <<< FR 7. Usability >>>
+
    - backend
    - bug
 * [[https://github.com/solutionguidance/psm/issues/419][419]]   (open): Error when a provider submits an enrollment
@@ -2243,6 +3093,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - backend
    - bug
 * [[https://github.com/solutionguidance/psm/issues/417][417]]   (open): Missing address data in PDF export
@@ -2263,6 +3118,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.6
+     The PSM shall allow applicant to print application for their
+     records.
+     <<< FR 7. Usability >>>
+
    - backend
    - bug
 * [[https://github.com/solutionguidance/psm/issues/416][416]]   (open): Let user update license/certification or contact info for existing enrollment
@@ -2273,8 +3132,30 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.16
+     The PSM shall accept, validate, and process transactions or user
+     entries to update and maintain provider information.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-3.13
+     The PSM shall have the capability to track and support the
+     screening of applications (and ongoing provider updates) for
+     National Provider Identifier (NPIs), State licenses, Specialty
+     Board certification as appropriate, review team visits when
+     necessary, and any other State and/or Federal Requirement.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-4.3
+     The PSM shall allow providers to update information and initiate
+     re-screening process (e.g., in the following situations: name
+     change, change of ownership/operator - whether or not it is the
+     same practice location, address change, Federal Tax
+     Identification Number change at same practice location, change
+     from Social Security Number to Federal Tax Identification Number
+     at same practice location, change from Federal Tax Identification
+     Number to Social Security Number at same practice location,
+     payment name or address change, and additional service location)
+     <<< FR 4.  Configurable Setting >>>
+
    - backend
    - enhancement
 * [[https://github.com/solutionguidance/psm/issues/415][415]] (closed): Research Section 508 (accessibility) compliance
@@ -2283,6 +3164,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - task
 * [[https://github.com/solutionguidance/psm/issues/414][414]] (closed): Create and/or document session lock after a given period of inactivity
 
@@ -2294,7 +3179,21 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.11
+     The PSM shall  have standard Access Control specifications to include:
+(i) Assigning a unique name and/or number for identifying and tracking
+user identity. (Required) (iii) Implementing electronic procedures
+that terminate an electronic session after a predetermined time of
+inactivity. (Addressable)
+
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - Z-REQ-PSM-AD-5.15
+     After 15 minutes of inactivity, the PSM shall initiate a session
+     lock; the session lock should remain in place until the user
+     reestablishes access using established identification and
+     authentication procedures.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - security
 * [[https://github.com/solutionguidance/psm/issues/413][413]]   (open): Allow providers to have multiple locations?
 
@@ -2310,6 +3209,9 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.2
+     The PSM shall allow multiple locations for the provider.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - backend
    - question
    - state-question
@@ -2320,9 +3222,35 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-1.2
+     The PSM shall ensure that tax ID number is 9 digits
+     <<< FR 1.  Capability to conduct identity verification >>>
+
    - Z-REQ-PSM-FR-1.4
+     The PSM shall have the capability to identify providers by
+     Employer identification number unless the provider is in solo
+     practice or the provider is not in solo practice but billing is
+     by the individual practitioner in which case the PSM shall have
+     the capability to identify providers by social security number.
+     <<< FR 1.  Capability to conduct identity verification >>>
+
    - Z-REQ-PSM-FR-1.6
+     The PSM shall collect and store standardized W-9 information that
+     reflects the owner of the EIN and the Doing Business As (DBA)
+     name.  
+     <<< FR 1.  Capability to conduct identity verification >>>
+
    - Z-REQ-PSM-FR-4.3
+     The PSM shall allow providers to update information and initiate
+     re-screening process (e.g., in the following situations: name
+     change, change of ownership/operator - whether or not it is the
+     same practice location, address change, Federal Tax
+     Identification Number change at same practice location, change
+     from Social Security Number to Federal Tax Identification Number
+     at same practice location, change from Federal Tax Identification
+     Number to Social Security Number at same practice location,
+     payment name or address change, and additional service location)
+     <<< FR 4.  Configurable Setting >>>
+
    - question
    - ux
 * [[https://github.com/solutionguidance/psm/issues/411][411]] (closed): Add a "do you accept EFT" checkbox
@@ -2333,6 +3261,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.15
+     The PSM shall maintain a flag for providers who are eligible to
+     use electronic funds transfer (EFT) and electronic claims
+     submission.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - enhancement
    - ux
 * [[https://github.com/solutionguidance/psm/issues/408][408]]   (open): Provider name change feature
@@ -2341,7 +3274,22 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.16
+     The PSM shall accept, validate, and process transactions or user
+     entries to update and maintain provider information.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-4.3
+     The PSM shall allow providers to update information and initiate
+     re-screening process (e.g., in the following situations: name
+     change, change of ownership/operator - whether or not it is the
+     same practice location, address change, Federal Tax
+     Identification Number change at same practice location, change
+     from Social Security Number to Federal Tax Identification Number
+     at same practice location, change from Federal Tax Identification
+     Number to Social Security Number at same practice location,
+     payment name or address change, and additional service location)
+     <<< FR 4.  Configurable Setting >>>
+
    - backend
    - enhancement
 * [[https://github.com/solutionguidance/psm/issues/407][407]]   (open): Enrollment termination feature
@@ -2352,10 +3300,29 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-5.2
+     The PSM shall allow providers to terminate their enrollment on a
+     specified date.
+     <<< FR 5. Manage Enrollment >>>
+
    - Z-REQ-PSM-FR-5.3
+     The PSM shall require providers to give 30 days notice before
+     terminating enrollment.
+     <<< FR 5. Manage Enrollment >>>
+
    - Z-REQ-PSM-FR-5.4
+     The PSM shall require PC Plus providers to give 90 days notice
+     before terminating enrollment.
+     <<< FR 5. Manage Enrollment >>>
+
    - Z-REQ-PSM-FR-5.7
+     PSM shall terminate enrollment if revalidation is not completed.
+     <<< FR 5. Manage Enrollment >>>
+
    - Z-REQ-PSM-FR-5.8
+     The PSM shall capture a termination reason code that is provided
+     by the State
+     <<< FR 5. Manage Enrollment >>>
+
    - backend
    - enhancement
    - ux
@@ -2365,6 +3332,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.1
+     The PSM shall provide per-field instructions on the application
+     screen.
+     <<< FR 7. Usability >>>
+
    - docs
 * [[https://github.com/solutionguidance/psm/issues/405][405]] (closed): Add contextual help for private versus group practice
 
@@ -2372,7 +3343,15 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.1
+     The PSM shall provide per-field instructions on the application
+     screen.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - docs
 * [[https://github.com/solutionguidance/psm/issues/404][404]]   (open): Make configurable page of advice from states to providers
 
@@ -2386,6 +3365,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - backend
    - docs
    - enhancement
@@ -2396,6 +3379,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.22
+     The PSM shall reduce the time needed by providers to submit
+     new/renewal application information and resolve discrepancies.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - backend
    - enhancement
    - task
@@ -2414,7 +3401,18 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - question
    - state-question
 * [[https://github.com/solutionguidance/psm/issues/398][398]]   (open): Spike: user roles research
@@ -2427,7 +3425,16 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.12
+     The PSM shall support roles and responsibilities of individuals
+     that are separated through assigned information access
+     authorization as necessary to prevent malevolent activity.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - Z-REQ-PSM-AD-5.4
+     The PSM shall support a user security profile that controls user
+     access rights to data categories and system functions.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - question
    - task
 * [[https://github.com/solutionguidance/psm/issues/396][396]] (closed): Decide whether to repair or delete help topics system
@@ -2444,8 +3451,21 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.1
+     The PSM shall provide per-field instructions on the application
+     screen.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - backend
    - docs
    - question
@@ -2463,7 +3483,15 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - docs
    - task
 * [[https://github.com/solutionguidance/psm/issues/394][394]]   (open): Systematize and advertise online PSM community of practice
@@ -2476,6 +3504,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - docs
    - task
 * [[https://github.com/solutionguidance/psm/issues/392][392]] (closed): Upgrade iText to a version >5, or use OpenPDF
@@ -2488,6 +3520,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/389][389]] (closed): configurable contact page for reaching state Medicaid office
 
@@ -2497,6 +3534,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - backend
    - docs
    - enhancement
@@ -2508,8 +3549,20 @@
 
 ** LABELS
    - Z-REQ-PSM-II-4.5
+     The PSM shall be configurable where feasible.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
    - Z-REQ-PSM-IU-3.1
+     The PSM of shall use standardized business rules definitions that
+     reside in a separate application or rules engine.
+     <<< IU 3.  Technical Service Classification:  Decision Management >>>
+
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/385][385]]   (open): Upgrade separate Drools server
 
   As discussed in #274, we initially set up a rules server with very old versions of things.  As @slifty wrote:
@@ -2520,6 +3573,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
    - task
 * [[https://github.com/solutionguidance/psm/issues/381][381]] (closed): Add user help documentation building to Gradle build
@@ -2528,15 +3586,38 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/378][378]]   (open): Autofill provider information from PECOS
 
   @jvasile points out that when a provider enters their NPI, we can query PECOS for their address and other information, and autofill the form with that.
 
 ** LABELS
    - Z-REQ-PSM-FR-3.15
+     The PSM shall have the turnaround time for performing automated
+     checks typical for a web based system
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.23
+     The PSM shall reduce processing and transaction time for
+     submitting and receiving queries to authoritative data sources
+     regarding provider credentials and sanctions.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-7.11
+     The PSM shall validate entered information as provider fills out
+     application (not at the end of the process).
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - enhancement
 * [[https://github.com/solutionguidance/psm/issues/376][376]]   (open): Remove right-justified colons between labels and fields on forms
 
@@ -2546,6 +3627,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - accessibility
    - in progress
    - quick-fix
@@ -2556,6 +3642,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - help wanted
    - quick-fix
    - ux
@@ -2567,6 +3658,10 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - docs
    - help wanted
 * [[https://github.com/solutionguidance/psm/issues/370][370]]   (open): Problem running with Docker
@@ -2579,6 +3674,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - bug
    - infra
 * [[https://github.com/solutionguidance/psm/issues/369][369]]   (open): Validate SSN
@@ -2591,6 +3691,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.16
+     The PSM shall provide comprehensive verification of all
+     (verifiable) data fields for all providers enrolled
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - enhancement
    - ux
 * [[https://github.com/solutionguidance/psm/issues/362][362]] (closed): Individual Beneficial Owner City Field Doesn't Pick up Entered Value
@@ -2613,6 +3717,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/360][360]] (closed): Save subcontractor name
 
   The flow for organizational provider types includes a page for "Business Ownership or Control Interest."  If you choose "Subcontractor" in the "Type" dropdown then a "Name Subcontractor" label and input field appear.  This is all fine, but if you then choose "Save as Draft," the subcontractor name is not saved.  It also does not appear on the summary page.
@@ -2621,6 +3730,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - backend
    - bug
    - quick-fix
@@ -2635,6 +3749,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - ux
 * [[https://github.com/solutionguidance/psm/issues/356][356]]   (open): Admin interface should show source of external data
 
@@ -2642,7 +3760,18 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.13
+     The PSM shall have the capability to track and support the
+     screening of applications (and ongoing provider updates) for
+     National Provider Identifier (NPIs), State licenses, Specialty
+     Board certification as appropriate, review team visits when
+     necessary, and any other State and/or Federal Requirement.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-7.1
+     The PSM shall provide per-field instructions on the application
+     screen.
+     <<< FR 7. Usability >>>
+
    - enhancement
 * [[https://github.com/solutionguidance/psm/issues/355][355]]   (open): Improve UI in screening log
 
@@ -2652,6 +3781,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-6.6
+     The PSM shall keep a record of the date of each
+     screening/monitoring event, the score, and the agencies decision
+     for each provider.
+     <<< FR 6. Retention, Reporting and Auditing >>>
+
    - quick-fix
    - ux
 * [[https://github.com/solutionguidance/psm/issues/354][354]]   (open): Redesign Enrollment Review page
@@ -2670,6 +3804,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - enhancement
    - ux
 * [[https://github.com/solutionguidance/psm/issues/352][352]] (closed): Renewal Date earlier than Original Issue Date
@@ -2678,6 +3817,9 @@
 
 ** LABELS
    - Z-REQ-PSM-PH-1.4
+     The PSM shall verify that all dates are valid and reasonable.
+     <<< PH 1.  CSF PH2: Provider claims are adjudicated accurately within established time parameters. >>>
+
    - backend
    - bug
    - quick-fix
@@ -2687,7 +3829,17 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/350][350]] (closed): broken link in README
 
@@ -2698,6 +3850,10 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/349][349]]   (open): Consider future federal/external data sources
 
   This issue is to capture possible future federal or other external data sources the PSM might usefully integrate with.
@@ -2708,6 +3864,13 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.13
+     The PSM shall have the capability to track and support the
+     screening of applications (and ongoing provider updates) for
+     National Provider Identifier (NPIs), State licenses, Specialty
+     Board certification as appropriate, review team visits when
+     necessary, and any other State and/or Federal Requirement.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - enhancement
    - question
    - task
@@ -2720,6 +3883,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.9
+     The PSM shall accept the following fields: Applicant Name,
+     Contact Person, Contact phone, Medicaid number
+     <<< FR 2.  Capability to build provider profile >>>
+
    - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/346][346]] (closed): Capture contact phone # for individual provider enrollments
 
@@ -2731,6 +3898,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.9
+     The PSM shall accept the following fields: Applicant Name,
+     Contact Person, Contact phone, Medicaid number
+     <<< FR 2.  Capability to build provider profile >>>
+
    - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/343][343]] (closed): Assign IDs to requirements
 
@@ -2744,13 +3915,30 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/342][342]]   (open): DBA is required field
 
   When signing up a new organizational provider as a Durable Medical Equipment provider, the "Doing Business As" field is required.  It shouldn't be.
 
 ** LABELS
    - Z-REQ-PSM-FR-2.6
+     The PSM shall require the following fields: Provider Name,
+     Business Phone, Provider Street Address, City, State, Zip Code,
+     County, SSN, Date of Birth, License Number, IRS Payee Name, DBA
+     Name, Payee Address, Payee City, Payee State, Payee Zip Code,
+     Payee Tax ID, Provider Email address
+     <<< FR 2.  Capability to build provider profile >>>
+
    - backend
    - bug
    - ux
@@ -2762,7 +3950,16 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-8.1
+     The PSM shall support communications to and from providers and
+     track and monitor responses to the communications.
+     <<< FR 8.  Manage Provider Communication >>>
+
    - Z-REQ-PSM-FR-8.2
+     The PSM shall generate information requests, correspondence, or
+     notifications based on the status of the application for
+     enrollment.
+     <<< FR 8.  Manage Provider Communication >>>
+
    - backend
    - enhancement
    - in progress
@@ -2773,6 +3970,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
 * [[https://github.com/solutionguidance/psm/issues/338][338]]   (open): Improve user help documentation
 
@@ -2809,6 +4011,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - docs
 * [[https://github.com/solutionguidance/psm/issues/337][337]] (closed): Can't enroll as a podiatrist
 
@@ -2816,6 +4022,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
 * [[https://github.com/solutionguidance/psm/issues/336][336]]   (open): Can't paste into NPI field
 
@@ -2823,8 +4034,22 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.16
+     The PSM shall provide comprehensive verification of all
+     (verifiable) data fields for all providers enrolled
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.24
+     The PSM shall validate, and/or verify that all data items that
+     contain self-checking digits (e.g., National Provider Identifier)
+     passes a specified check-digit test. 
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - enhancement
    - quick-fix
    - review
@@ -2838,8 +4063,23 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-6.6
+     The PSM shall keep a record of the date of each
+     screening/monitoring event, the score, and the agencies decision
+     for each provider.
+     <<< FR 6. Retention, Reporting and Auditing >>>
+
    - Z-REQ-PSM-FR-7.10
+     The PSM shall show integrated history of a provider record --
+     allow users to scroll back in history to see changes over time
+     without needing to navigate to separate files.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - enhancement
    - help wanted
    - ux
@@ -2856,6 +4096,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/331][331]]   (open): add username of submitter to enrollment details review screen
 
@@ -2867,6 +4113,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-4.8
+     The PSM shall support provider agents (a.k.a. service agents
+     a.k.a. non-provider users) who act on a provider's behalf and
+     whose authorization may be a subset of that provider's.
+     <<< FR 4.  Configurable Setting >>>
+
    - enhancement
    - ux
 * [[https://github.com/solutionguidance/psm/issues/328][328]]   (open): Validate fields on loss of focus instead of on submission
@@ -2881,7 +4132,16 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.16
+     The PSM shall provide comprehensive verification of all
+     (verifiable) data fields for all providers enrolled
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - next
    - task
    - ux
@@ -2893,8 +4153,24 @@
 
 ** LABELS
    - Z-REQ-PSM-PH-1.1
+     The PSM shall verify that required data items are present and
+     retained (See SMM 11375) including all data needed for State or
+     Federal reporting requirements.
+     <<< PH 1.  CSF PH2: Provider claims are adjudicated accurately within established time parameters. >>>
+
    - Z-REQ-PSM-PH-1.2
+     The PSM shall check Provider Screening Applications to ensure
+     that all required attachments, per the reference records or
+     edits, have been received and maintained for audit purposes or
+     have been submitted prior to the Provider Screening Applications
+     and a prior authorization has been established.
+     <<< PH 1.  CSF PH2: Provider claims are adjudicated accurately within established time parameters. >>>
+
    - Z-REQ-PSM-PH-1.3
+     The PSM shall verify that all data necessary for legal
+     requirements are retained.
+     <<< PH 1.  CSF PH2: Provider claims are adjudicated accurately within established time parameters. >>>
+
    - enhancement
    - infra
    - state-question
@@ -2914,7 +4190,16 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.12
+     The PSM shall support roles and responsibilities of individuals
+     that are separated through assigned information access
+     authorization as necessary to prevent malevolent activity.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - Z-REQ-PSM-AD-5.4
+     The PSM shall support a user security profile that controls user
+     access rights to data categories and system functions.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - state-question
 * [[https://github.com/solutionguidance/psm/issues/321][321]]   (open): Display name of county, not numeric code, as part of practice address
 
@@ -2928,6 +4213,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - quick-fix
    - state-question
 * [[https://github.com/solutionguidance/psm/issues/320][320]]   (open): LEIE and documentation-building dependency management
@@ -2948,6 +4238,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
    - task
 * [[https://github.com/solutionguidance/psm/issues/319][319]]   (open): clarify enrollment review screen
@@ -2958,6 +4253,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - ux
 * [[https://github.com/solutionguidance/psm/issues/312][312]]   (open): Set up a pull request template
 
@@ -2973,6 +4273,10 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - help wanted
    - infra
    - task
@@ -2982,6 +4286,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - backend
    - bug
    - quick-fix
@@ -2998,6 +4307,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
    - quick-fix
    - ux
@@ -3007,6 +4321,13 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.7
+     The PSM shall accept the following fields: Practice Type,
+     Specialties (1 or more), NPI, HIPAA Taxonomy Codes, CLIA number,
+     DHSS certification, Optical and Audiology y/n, Collaborative
+     Practice Agreement y/n, RHC y/n, Medicare Provider Number, Case
+     Mgmt y/n, Rural Health Rate
+     <<< FR 2.  Capability to build provider profile >>>
+
    - backend
    - bug
    - quick-fix
@@ -3022,6 +4343,11 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.12
+     The PSM shall support roles and responsibilities of individuals
+     that are separated through assigned information access
+     authorization as necessary to prevent malevolent activity.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - security
    - state-question
 * [[https://github.com/solutionguidance/psm/issues/304][304]] (closed): Teach Travis to Deploy application to container and run integration tests
@@ -3074,6 +4400,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
    - task
 * [[https://github.com/solutionguidance/psm/issues/301][301]]   (open): When service admin edits pending enrollment, PSM inappropriately checks provider statement date
@@ -3102,6 +4434,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - backend
    - bug
 * [[https://github.com/solutionguidance/psm/issues/300][300]]   (open): Set guidelines for copyright headers
@@ -3116,6 +4453,10 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - question
 * [[https://github.com/solutionguidance/psm/issues/299][299]] (closed): Podiatrist can't submit enrollment
 
@@ -3125,6 +4466,13 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.7
+     The PSM shall accept the following fields: Practice Type,
+     Specialties (1 or more), NPI, HIPAA Taxonomy Codes, CLIA number,
+     DHSS certification, Optical and Audiology y/n, Collaborative
+     Practice Agreement y/n, RHC y/n, Medicare Provider Number, Case
+     Mgmt y/n, Rural Health Rate
+     <<< FR 2.  Capability to build provider profile >>>
+
    - bug
 * [[https://github.com/solutionguidance/psm/issues/298][298]]   (open): Specify OSes and browsers we support
 
@@ -3132,7 +4480,15 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-2.5
+     To the greatest extent possible, the PSM shall be browser
+     agnostic.
+     <<< AD 2.  Technical Service Classification:  Client Support >>>
+
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - question
    - state-question
 * [[https://github.com/solutionguidance/psm/issues/293][293]]   (open): Nurse Midwife can't submit enrollment
@@ -3141,6 +4497,13 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.7
+     The PSM shall accept the following fields: Practice Type,
+     Specialties (1 or more), NPI, HIPAA Taxonomy Codes, CLIA number,
+     DHSS certification, Optical and Audiology y/n, Collaborative
+     Practice Agreement y/n, RHC y/n, Medicare Provider Number, Case
+     Mgmt y/n, Rural Health Rate
+     <<< FR 2.  Capability to build provider profile >>>
+
    - backend
    - bug
    - quick-fix
@@ -3157,9 +4520,28 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.5
+     The PSM shall indicate what kinds of documents/attachments are
+     required by provider type.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-2.6
+     The PSM shall require the following fields: Provider Name,
+     Business Phone, Provider Street Address, City, State, Zip Code,
+     County, SSN, Date of Birth, License Number, IRS Payee Name, DBA
+     Name, Payee Address, Payee City, Payee State, Payee Zip Code,
+     Payee Tax ID, Provider Email address
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-2.8
+     The PSM shall require the following fields: Contact email, Merger
+     y/n, Owner/board names and addresses, Care settings, DEA
+     controlled substances certification y/n, DEA revocation y/n
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-7.8
+     The PSM shall indicate which fields are required.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/291][291]] (closed): Verify that initial requirements are met
 
   - [x] The PSM shall ensure that tax ID number is 9 digits
@@ -3177,21 +4559,63 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-1.2
+     The PSM shall ensure that tax ID number is 9 digits
+     <<< FR 1.  Capability to conduct identity verification >>>
+
    - Z-REQ-PSM-FR-2.4
+     The PSM shall allow applicant to upload attachments to support
+     the application.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-2.5
+     The PSM shall indicate what kinds of documents/attachments are
+     required by provider type.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-2.9
+     The PSM shall accept the following fields: Applicant Name,
+     Contact Person, Contact phone, Medicaid number
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-3.4
+     The PSM shall separate providers into risk categories limited,
+     moderate, and high based on provider type, as established by CMS.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-7.11
+     The PSM shall validate entered information as provider fills out
+     application (not at the end of the process).
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.5
+     The PSM shall allow applicant to edit entered information.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.6
+     The PSM shall allow applicant to print application for their
+     records.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.7
+     The PSM shall allow applicant to save a partial application as a
+     draft.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.9
+     The PSM shall prevent application submission if required fields
+     are empty.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/290][290]] (closed): Add 4 extra digits to zipcode field(s)
 
   Wherever a form asks for a zipcode, add space for the 4 additional digits.
 
 ** LABELS
    - Z-REQ-PSM-FR-2.1
+     The PSM shall have the option of zipcode + 4 for all address
+     fields
+     <<< FR 2.  Capability to build provider profile >>>
+
    - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/289][289]] (closed): Use LEIE API to automatically screen providers
 
@@ -3206,14 +4630,41 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.13
+     The PSM shall have the capability to track and support the
+     screening of applications (and ongoing provider updates) for
+     National Provider Identifier (NPIs), State licenses, Specialty
+     Board certification as appropriate, review team visits when
+     necessary, and any other State and/or Federal Requirement.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.5
+     The PSM shall screen limited-risk providers by verifying that the
+     provider or supplier meets all applicable federal regulations and
+     state requirements for the provider or supplier type, conducting
+     license verifications, including licensure verifications across
+     state lines for physicians, non-physician practitioners,
+     providers and suppliers, and conducting database checks on a
+     pre-and post-enrollment basis to ensure that providers and
+     suppliers continue to meet the enrollment criteria for their
+     provider/supplier type.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-6.7
+     The PSM shall store monthly audit record for a provider even if
+     their information has not changed.
+     <<< FR 6. Retention, Reporting and Auditing >>>
+
 * [[https://github.com/solutionguidance/psm/issues/283][283]]   (open): County field should be a drop-down menu, on Additional Practice Location page.
 
   See the attachment provided in issue #282 -- it's all there.  Filing this as a separate issue because it's a different kind of problem from the outright bugs otherwise described in that attachment.
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - quick-fix
    - ux
 * [[https://github.com/solutionguidance/psm/issues/282][282]] (closed): Address entry / preservation problems for Additional Practice Location.
@@ -3224,6 +4675,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/280][280]] (closed): Tell developers how to automatedly create enrollments with sample data
 
@@ -3243,7 +4699,16 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - docs
    - infra
 * [[https://github.com/solutionguidance/psm/issues/274][274]] (closed): Give administrators UI to edit rules
@@ -3254,12 +4719,23 @@
 
 ** LABELS
    - Z-REQ-PSM-IU-3.1
+     The PSM of shall use standardized business rules definitions that
+     reside in a separate application or rules engine.
+     <<< IU 3.  Technical Service Classification:  Decision Management >>>
+
 * [[https://github.com/solutionguidance/psm/issues/273][273]]   (open): PECOS data ETL
 
   We need PECOS data.  There's some at https://data.cms.gov/Medicare-Enrollment/Order-and-Referring/qcn7-gc3g and there's an API.  We shouldn't ETL this data.  We should query the outside database using the interface they provide.
 
 ** LABELS
    - Z-REQ-PSM-FR-3.13
+     The PSM shall have the capability to track and support the
+     screening of applications (and ongoing provider updates) for
+     National Provider Identifier (NPIs), State licenses, Specialty
+     Board certification as appropriate, review team visits when
+     necessary, and any other State and/or Federal Requirement.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - enhancement
 * [[https://github.com/solutionguidance/psm/issues/266][266]] (closed): Publish Output from Serenity Tests
 
@@ -3286,6 +4762,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
    - task
 * [[https://github.com/solutionguidance/psm/issues/265][265]] (closed): Set up first example of embedded help
@@ -3303,6 +4785,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.1
+     The PSM shall provide per-field instructions on the application
+     screen.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/263][263]]   (open): Change default file upload size in cms.properties
 
   When entering an enrollment as an Audiologist provider on the sandbox, I entered a large .xcf file as the License.  It was 2.8 MB.  I wasn't able to trigger the error locally, and it appears to be an nginx problem:
@@ -3313,6 +4799,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.4
+     The PSM shall allow applicant to upload attachments to support
+     the application.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - backend
    - task
 * [[https://github.com/solutionguidance/psm/issues/262][262]] (closed): Research spike: Drools & business rules interface
@@ -3323,12 +4813,21 @@
 
 ** LABELS
    - Z-REQ-PSM-IU-3.1
+     The PSM of shall use standardized business rules definitions that
+     reside in a separate application or rules engine.
+     <<< IU 3.  Technical Service Classification:  Decision Management >>>
+
 * [[https://github.com/solutionguidance/psm/issues/261][261]] (closed): Facility credentials not shown at review time
 
   Some of the organization provider types, such as County Contracted Mental Health Rehab, require documents such as licenses to practice or agreements with the state or county. The enrollment process accepts these uploads, but they are not shown to the admin while reviewing an enrollment, and the UI does not ask or allow the admin to verify the documents.
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
    - in progress
    - ux
@@ -3344,7 +4843,15 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-9.1
+     The PSM shall integrate provider-type business rules described in
+     the Enrollment Information Guide into the system.
+     <<< FR 9.  Meets architecture guideline >>>
+
    - Z-REQ-PSM-IU-3.1
+     The PSM of shall use standardized business rules definitions that
+     reside in a separate application or rules engine.
+     <<< IU 3.  Technical Service Classification:  Decision Management >>>
+
    - backend
    - bug
    - quick-fix
@@ -3362,6 +4869,13 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.7
+     The PSM shall accept the following fields: Practice Type,
+     Specialties (1 or more), NPI, HIPAA Taxonomy Codes, CLIA number,
+     DHSS certification, Optical and Audiology y/n, Collaborative
+     Practice Agreement y/n, RHC y/n, Medicare Provider Number, Case
+     Mgmt y/n, Rural Health Rate
+     <<< FR 2.  Capability to build provider profile >>>
+
    - backend
    - bug
 * [[https://github.com/solutionguidance/psm/issues/255][255]] (closed): Polish & speed up Javadoc gh-pages publication
@@ -3382,6 +4896,10 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/254][254]]   (open): Allow database schema changes without losing data
 
@@ -3393,7 +4911,16 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - backend
    - enhancement
 * [[https://github.com/solutionguidance/psm/issues/252][252]]   (open): Consider building and/or privately caching dependencies instead of downloading from third-party servers.
@@ -3533,6 +5060,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
    - security
    - task
@@ -3542,6 +5074,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - backend
    - enhancement
 * [[https://github.com/solutionguidance/psm/issues/248][248]] (closed): Make the "Create New Enrollment" Button on the Welcome Page Testable
@@ -3555,6 +5093,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/242][242]] (closed): Move to Debian stretch
 
@@ -3562,6 +5105,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - task
 * [[https://github.com/solutionguidance/psm/issues/238][238]]   (open): Templatize UI
 
@@ -3573,6 +5121,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - task
    - ux
 * [[https://github.com/solutionguidance/psm/issues/236][236]]   (open): Import information from different systems
@@ -3581,10 +5134,37 @@
 
 ** LABELS
    - Z-REQ-PSM-II-2.2
+     The PSM shall use a standards for message format to ensure
+     interoperability (e.g. XML JSON)
+     <<< II 2.  Technical Service Classification:  Data Connectivity >>>
+
    - Z-REQ-PSM-II-2.3
+     Transport interoperability - 
+The PSM shall comply with standard data transfer protocols as
+applicable to health IT systems, their constituent elements/modules,
+and services
+     <<< II 2.  Technical Service Classification:  Data Connectivity >>>
+
    - Z-REQ-PSM-II-2.4
+     Syntactic interoperability - 
+The PSM shall comply with national standards for data message
+formatting, as applicable to health IT systems, their constituent
+elements/modules, and services
+     <<< II 2.  Technical Service Classification:  Data Connectivity >>>
+
    - Z-REQ-PSM-II-2.5
+     Semantic interoperability - 
+The PSM shall use standardized code sets to enable the processing and
+interpretation of received data as applicable to health IT systems.
+     <<< II 2.  Technical Service Classification:  Data Connectivity >>>
+
    - Z-REQ-PSM-II-4.1
+     The PSM shall use RESTful and/or SOAP-based web services for
+     seamless coordination and integration with other U.S. Department
+     of Health & Human Services (HHS) applications and intrastate
+     agencies.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
    - enhancement
    - infra
    - task
@@ -3598,6 +5178,13 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.7
+     The PSM shall accept the following fields: Practice Type,
+     Specialties (1 or more), NPI, HIPAA Taxonomy Codes, CLIA number,
+     DHSS certification, Optical and Audiology y/n, Collaborative
+     Practice Agreement y/n, RHC y/n, Medicare Provider Number, Case
+     Mgmt y/n, Rural Health Rate
+     <<< FR 2.  Capability to build provider profile >>>
+
    - backend
    - bug
    - quick-fix
@@ -3607,21 +5194,54 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/224][224]] (closed): Add an API to ETL results
 
   Anything we pull in via ETL should be available MMIS-wide via a RESTful API.  For now, we need to make it available to the rest of the module so that the exclusions list is consulted automatically when a new enrollment is submitted.  The first pass at this will likely not include auth, but down the road we may want to use OAuth 2.
 
 ** LABELS
    - Z-REQ-PSM-II-2.2
+     The PSM shall use a standards for message format to ensure
+     interoperability (e.g. XML JSON)
+     <<< II 2.  Technical Service Classification:  Data Connectivity >>>
+
    - Z-REQ-PSM-II-2.3
+     Transport interoperability - 
+The PSM shall comply with standard data transfer protocols as
+applicable to health IT systems, their constituent elements/modules,
+and services
+     <<< II 2.  Technical Service Classification:  Data Connectivity >>>
+
    - Z-REQ-PSM-II-2.4
+     Syntactic interoperability - 
+The PSM shall comply with national standards for data message
+formatting, as applicable to health IT systems, their constituent
+elements/modules, and services
+     <<< II 2.  Technical Service Classification:  Data Connectivity >>>
+
    - Z-REQ-PSM-II-4.1
+     The PSM shall use RESTful and/or SOAP-based web services for
+     seamless coordination and integration with other U.S. Department
+     of Health & Human Services (HHS) applications and intrastate
+     agencies.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
 * [[https://github.com/solutionguidance/psm/issues/223][223]]   (open): Send provider directory information to MITA TAC
 
   Once the TAC has a defined API endpoint to receive information about providers, add a hook to send provider info to that endpoint.  When we receive information from a provider and their enrollment is submitted, send the directory-relevant information to the TAC's endpoint.
 
 ** LABELS
    - Z-REQ-PSM-II-2.4
+     Syntactic interoperability - 
+The PSM shall comply with national standards for data message
+formatting, as applicable to health IT systems, their constituent
+elements/modules, and services
+     <<< II 2.  Technical Service Classification:  Data Connectivity >>>
+
    - enhancement
    - infra
 * [[https://github.com/solutionguidance/psm/issues/222][222]] (closed): Set up continuous deployment
@@ -3630,6 +5250,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - task
 * [[https://github.com/solutionguidance/psm/issues/219][219]] (closed): Upgrade Spring
 
@@ -3637,6 +5263,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - backend
    - security
 * [[https://github.com/solutionguidance/psm/issues/218][218]] (closed): Write first integration/UI test
@@ -3647,6 +5278,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/215][215]]   (open): Add extension points to allow per-state integration
 
   Different states have different workflow requirements. We need to develop something - a plugin system, a messaging system, webhooks, a way to load a jar at runtime, or whatever - to allow states to integrate at the points they're interested in.
@@ -3657,6 +5294,9 @@
 
 ** LABELS
    - Z-REQ-PSM-II-4.5
+     The PSM shall be configurable where feasible.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
    - enhancement
 * [[https://github.com/solutionguidance/psm/issues/214][214]]   (open): Remove TopCoder-specific jarfiles
 
@@ -3664,6 +5304,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/213][213]]   (open): Error on viewing notes while editing approved enrollment
 
@@ -3761,6 +5406,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - backend
    - bug
 * [[https://github.com/solutionguidance/psm/issues/210][210]] (closed): Disable Gradle Daemon for Travis Build
@@ -3777,6 +5427,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/208][208]]   (open): PayToProvider may be unused
 
   Investigate how the class `PayToProvider` is used, if there is missing data that would enable it, why it was created, and if it is still useful. Either add data/code/documentation to enable it, or delete it.
@@ -3785,6 +5441,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - backend
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/206][206]] (closed): Teach Travis to cache the maven repository
@@ -3801,6 +5463,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/205][205]] (closed): Investigate data_load subproject
 
   The `data_load` subproject has some similar classnames to the main `psm-app` project.  It came up in https://github.com/OpenTechStrategies/psm/pull/140#issuecomment-309120275, and may be implicated in the current error on creating new provider types.  (To reproduce: log in as an admin, click on "Functions," and click "Add Provider Type.")
@@ -3809,6 +5477,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/204][204]] (closed): Spike: Research Test Frameworks
 
   # Problem
@@ -3823,6 +5497,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/195][195]] (closed): Spike: research user documentation approaches
 
   We need user documentation that goes beyond just describing the system's capabilities. This issue is for a spike in which Sumana researches where & in what format(s) we should put that documentation within the application repo.
@@ -3840,6 +5520,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.1
+     The PSM shall provide per-field instructions on the application
+     screen.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/194][194]]   (open): provide user feedback form that sends user feedback to PSM development team
 
   We should incorporate functionality into the PSM that makes it quick for any user to send us feedback about a particular page, embedding privacy-compliant, PII-sanitized metadata about the user’s workflow and location.
@@ -3847,6 +5531,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - backend
    - enhancement
    - ux
@@ -3859,9 +5549,33 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.20
+     The PSM shall collect and maintain licensure information to
+     include at a minimum, licensing state, license number, licensure
+     begin and end dates.  
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-3.14
+     The PSM shall cross-reference license and sanction information
+     with other state or federal agencies.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.16
+     The PSM shall provide comprehensive verification of all
+     (verifiable) data fields for all providers enrolled
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.5
+     The PSM shall screen limited-risk providers by verifying that the
+     provider or supplier meets all applicable federal regulations and
+     state requirements for the provider or supplier type, conducting
+     license verifications, including licensure verifications across
+     state lines for physicians, non-physician practitioners,
+     providers and suppliers, and conducting database checks on a
+     pre-and post-enrollment basis to ensure that providers and
+     suppliers continue to meet the enrollment criteria for their
+     provider/supplier type.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - state-question
 * [[https://github.com/solutionguidance/psm/issues/189][189]] (closed): Auto-deploy EAR File Generated by Build
 
@@ -3874,7 +5588,17 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/188][188]] (closed): Add checkstyle plugin to Gradle Build
 
   # Problem
@@ -3888,18 +5612,32 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/186][186]] (closed): change capabilities in README to given-when-then format
 
 
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/185][185]]   (open): Include agreements and addenda on Provider Statement
 
   For a completed enrollment, it would be nice if the Provider Statement included the text of any agreement(s) and any addendum/addenda that the provider agreed to.
 
 ** LABELS
    - Z-REQ-PSM-FR-8.5
+     The PSM shall add a attestation, using configurable link or text,
+     to the reading and understanding of the required state Medicaid
+     agency materials prior to enrollment.
+     <<< FR 8.  Manage Provider Communication >>>
+
    - enhancement
    - ux
 * [[https://github.com/solutionguidance/psm/issues/184][184]] (closed): data loss: PSM does not save profile phone number
@@ -3910,6 +5648,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
    - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/181][181]]   (open): Provider cannot link profile with external auth
@@ -3922,6 +5665,14 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.11
+     The PSM shall  have standard Access Control specifications to include:
+(i) Assigning a unique name and/or number for identifying and tracking
+user identity. (Required) (iii) Implementing electronic procedures
+that terminate an electronic session after a predetermined time of
+inactivity. (Addressable)
+
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - bug
    - infra
    - task
@@ -3933,7 +5684,17 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.13
+     The PSM shall have the capability to track and support the
+     screening of applications (and ongoing provider updates) for
+     National Provider Identifier (NPIs), State licenses, Specialty
+     Board certification as appropriate, review team visits when
+     necessary, and any other State and/or Federal Requirement.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-II-4.5
+     The PSM shall be configurable where feasible.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
 * [[https://github.com/solutionguidance/psm/issues/176][176]] (closed): Registration confirmation page needs contact link, APPNAME substitution
 
   After a user self-registers, the confirmation message on, for instance, http://localhost:8080/cms/accounts/confirm?id=brtest&token=TcRPiZrwtSfeVNBVfGaxYnX77d0%3D is:
@@ -3946,6 +5707,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - quick-fix
    - ux
 * [[https://github.com/solutionguidance/psm/issues/175][175]] (closed): system administrator creating user: "confirm password" isn't checked
@@ -3954,6 +5720,10 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.4
+     The PSM shall support a user security profile that controls user
+     access rights to data categories and system functions.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - quick-fix
    - security
 * [[https://github.com/solutionguidance/psm/issues/174][174]]   (open): search for user accounts doesn't retrieve results consistently
@@ -3962,6 +5732,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.13
+     The PSM shall support searching and pattern-matching based on all
+     fields accepted as input (and based on all reasonable
+     combinations of such fields).
+     <<< FR 7. Usability >>>
+
    - backend
    - bug
 * [[https://github.com/solutionguidance/psm/issues/172][172]] (closed): cannot create a help topic
@@ -4059,6 +5834,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/171][171]] (closed): Service administrator cannot view or approve pending enrollments
 
   I'm logged in as a service administrator. On http://localhost:8080/cms/agent/enrollment/search/draft?statuses=Draft&showFilterPanel=true (clicking "Enrollments", or http://localhost:8080/cms/provider/dashboard/drafts , in the navbar), I get:
@@ -4465,6 +6244,10 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.4
+     The PSM shall support a user security profile that controls user
+     access rights to data categories and system functions.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
 * [[https://github.com/solutionguidance/psm/issues/170][170]] (closed): empty screening schedule should trigger nudges to service administrator
 
   When I'm logged in as a service administrator and go to the screening schedule
@@ -4479,6 +6262,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-4.7
+     The PSM shall support admin-configurable automated re-screening.
+     C.f. psm-FR-7.3.
+     <<< FR 4.  Configurable Setting >>>
+
 * [[https://github.com/solutionguidance/psm/issues/169][169]]   (open): Some headers/divs display twice
 
   After I log in as a service administrator, on a Functions page like http://localhost:8080/cms/admin/viewAgents , I see the word "Functions" twice between the "Dashboard | Enrollments | Functions | My Profile" navbar and the content area:
@@ -4495,6 +6282,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
    - ux
 * [[https://github.com/solutionguidance/psm/issues/168][168]]   (open): Don't display # field or empty Specialty field in PDF export of enrollment
@@ -4505,6 +6297,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.6
+     The PSM shall allow applicant to print application for their
+     records.
+     <<< FR 7. Usability >>>
+
    - backend
    - enhancement
    - quick-fix
@@ -4518,6 +6314,9 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.4
+     The PSM shall provide a screen to verify entered information.
+     <<< FR 7. Usability >>>
+
    - bug
    - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/166][166]]   (open): Review license names, rules, and seed data to find mismatches
@@ -4526,8 +6325,25 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.19
+     The PSM shall have the capability to capture critical attributes
+     including licensing information, financial data, and any other
+     data attributes which could impact a risk level.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-2.20
+     The PSM shall collect and maintain licensure information to
+     include at a minimum, licensing state, license number, licensure
+     begin and end dates.  
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-3.13
+     The PSM shall have the capability to track and support the
+     screening of applications (and ongoing provider updates) for
+     National Provider Identifier (NPIs), State licenses, Specialty
+     Board certification as appropriate, review team visits when
+     necessary, and any other State and/or Federal Requirement.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - backend
    - help wanted
    - task
@@ -4538,6 +6354,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.17
+     The PSM shall improve efficiency of the Screening Solution in
+     terms of cost and schedule to actually implement
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - backend
    - docs
    - tech-debt
@@ -4551,6 +6371,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - bug
    - quick-fix
    - ux
@@ -4564,6 +6389,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - quick-fix
    - ux
 * [[https://github.com/solutionguidance/psm/issues/161][161]]   (open): View Enrollment Details confirmation screen: contact name & email address are blank
@@ -4574,6 +6404,9 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.4
+     The PSM shall provide a screen to verify entered information.
+     <<< FR 7. Usability >>>
+
    - quick-fix
    - ux
 * [[https://github.com/solutionguidance/psm/issues/160][160]] (closed): Research available workflows
@@ -4584,6 +6417,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.20
+     The PSM shall define a common workflow for collecting enrollment
+     information of individual providers
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
 * [[https://github.com/solutionguidance/psm/issues/159][159]] (closed): Practice address displays punctuated improperly
 
   During provider enrollment, on the Step 4 ("Summary") screen, in the "practice information" confirmation display, the final line of the practice address displays as (example):
@@ -4596,6 +6433,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.1
+     The PSM shall provide per-field instructions on the application
+     screen.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/158][158]]   (open): "No file selected" is confusing when a file is uploaded
 
   If a provider has uploaded a license/certification file, the "no file selected" display next to the "Browse..." button is confusing.
@@ -4619,7 +6460,16 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.4
+     The PSM shall allow applicant to upload attachments to support
+     the application.
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - in progress
    - quick-fix
    - ux
@@ -4629,6 +6479,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - backend
    - infra
    - tech-debt
@@ -4638,6 +6493,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - quick-fix
    - ux
 * [[https://github.com/solutionguidance/psm/issues/155][155]]   (open): Tell user to add "a" (first), not "another" license/certification
@@ -4646,6 +6506,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.1
+     The PSM shall provide per-field instructions on the application
+     screen.
+     <<< FR 7. Usability >>>
+
    - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/154][154]] (closed): "Help" link does not display help
 
@@ -4653,7 +6517,16 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - Z-REQ-PSM-FR-7.2
+     The PSM shall provide detailed instructions for completing the
+     application via a Help link.
+     <<< FR 7. Usability >>>
+
    - bug
    - ux
 * [[https://github.com/solutionguidance/psm/issues/152][152]] (closed): unescaped template on provider dashboard
@@ -4675,6 +6548,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/150][150]] (closed): Spike - research CI environments
 
   # Problem
@@ -4694,6 +6572,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.2
+     The PSM shall include and undergo automated testing at regular
+     intervals, through continuous integration and deployment
+     processes.  The PSM shall also undergo manual testing and QA as
+     needed.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/149][149]] (closed): Service admin can edit/delete other users' accounts
 
   If I am logged in as a service admin, the list of Service Agents I see sometimes lets me see the list of all PSM users, and to edit or delete those user accounts. Also, there's a URL that I can get to that lets me edit the system administrator's account.
@@ -4714,7 +6598,16 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.12
+     The PSM shall support roles and responsibilities of individuals
+     that are separated through assigned information access
+     authorization as necessary to prevent malevolent activity.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - Z-REQ-PSM-AD-5.4
+     The PSM shall support a user security profile that controls user
+     access rights to data categories and system functions.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - backend
    - security
 * [[https://github.com/solutionguidance/psm/issues/148][148]] (closed): Make Master Deployable
@@ -4732,12 +6625,21 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/147][147]] (closed): Review licenses of dependencies
 
   Check that the libraries we're using (currently in `.jar` files in this repository, soon from the Maven repo or another source) are open source and compatible with Apache 2.
 
 ** LABELS
    - Z-REQ-PSM-FR-9.5
+     The PSM shall ensure proprietary interfaces and protocols between
+     modules are not used.
+     <<< FR 9.  Meets architecture guideline >>>
+
 * [[https://github.com/solutionguidance/psm/issues/146][146]] (closed): Dentist or physician requires a specialty, but no specialties appear
 
   When enrolling as a physician or as a dentist, the application requires a specialty type to be entered:
@@ -4750,6 +6652,13 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.7
+     The PSM shall accept the following fields: Practice Type,
+     Specialties (1 or more), NPI, HIPAA Taxonomy Codes, CLIA number,
+     DHSS certification, Optical and Audiology y/n, Collaborative
+     Practice Agreement y/n, RHC y/n, Medicare Provider Number, Case
+     Mgmt y/n, Rural Health Rate
+     <<< FR 2.  Capability to build provider profile >>>
+
 * [[https://github.com/solutionguidance/psm/issues/139][139]]   (open): Split BeneficialOwnership subclasses into their own Tables
 
   BeneficialOwnership entity has two subclasses, PersonBeneficialOwner and OrganizationBeneficialOwner.
@@ -4762,6 +6671,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - backend
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/129][129]] (closed): investigate why JDBC installation sometimes gives "is not a valid node type name" error
@@ -4776,6 +6691,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/127][127]]   (open): Implement screening schedules or remove UI
 
   In converting `ScreeningSchedule` to Hibernate 5 in #126, we learned that there is no functionality attached to the screening schedule: you can read and update the schedule in the admin UI, but there is nothing that ever reads the schedule or acts upon it.
@@ -4786,7 +6706,21 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.5
+     The PSM shall screen limited-risk providers by verifying that the
+     provider or supplier meets all applicable federal regulations and
+     state requirements for the provider or supplier type, conducting
+     license verifications, including licensure verifications across
+     state lines for physicians, non-physician practitioners,
+     providers and suppliers, and conducting database checks on a
+     pre-and post-enrollment basis to ensure that providers and
+     suppliers continue to meet the enrollment criteria for their
+     provider/supplier type.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-5.6
+     The PSM shall require revalidation period to be configurable.
+     <<< FR 5. Manage Enrollment >>>
+
    - backend
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/125][125]]   (open): saveEnrollmentDetails() function may need a rewrite
@@ -4797,6 +6731,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - backend
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/124][124]]   (open): Add Postgres TCP connection configuration to INSTALL.md
@@ -4812,6 +6752,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - docs
 * [[https://github.com/solutionguidance/psm/issues/113][113]] (closed): investigate Mailcatcher replacement
 
@@ -4821,12 +6766,21 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/111][111]] (closed): specify Linux distro preference in install instructions
 
   Per conversation with James just now: for now, put a nice note at the top of `INSTALL.md`, suggesting that the user will have a better time on a Debian-based Linux but that we also support RPM-based distributions.
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/108][108]]   (open): Remove "Lorem Ipsum" text wherever possible.
 
   Making this a separate issue (disentangling from issue #51).
@@ -4835,6 +6789,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - enhancement
    - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/106][106]] (closed): Broken link on Section 4 of the main page
@@ -4845,6 +6804,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/104][104]]   (open): Encrypt social security numbers at rest
 
   We need to deal with social security numbers as part of the initial and periodic screening process, which implies that we need to store social security numbers. Currently, there is a field on `Person` named `ssn`, and it is stored in the database.
@@ -4853,6 +6817,10 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.17
+     The PSM shall use only FIPS Pub 140-2-approved (or higher)
+     encryption algorithms.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - backend
    - security
 * [[https://github.com/solutionguidance/psm/issues/103][103]] (closed): OwnershipType Entity may be Obsolete
@@ -4870,6 +6838,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/101][101]] (closed): License Status has an apparently unused property called 'Date'
 
@@ -4879,6 +6853,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/92][ 92]]   (open): Need a mechanism for receiving security vulnerability bug reports.
 
   The PSM, like most projects, needs a way to [receive bug reports about security vulnerabilities confidentially](http://producingoss.com/en/publicity.html#security-receiving).  Having people file such bug reports in the public tracker is no good -- that's just a 0-day generator :-).
@@ -4887,6 +6867,11 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.18
+     The PSM shall be secure from unauthorized access or use, and
+     shall sanitize inputs and outputs where possible so as to avoid
+     compromising itself or other systems.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - infra
    - task
 * [[https://github.com/solutionguidance/psm/issues/91][ 91]]   (open): Fix "failed to lazily initialize" warnings in server log
@@ -4901,6 +6886,11 @@
 
 ** LABELS
    - Z-REQ-PSM-II-2.1
+     The PSM shall perform advanced information monitoring and routes
+     system alerts and alarms to communities of interest when the
+     system detects unusual conditions.
+     <<< II 2.  Technical Service Classification:  Data Connectivity >>>
+
    - backend
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/88][ 88]] (closed): Make Service Assurance Types less MN-specific
@@ -4909,6 +6899,11 @@
 
 ** LABELS
    - Z-REQ-PSM-II-2.1
+     The PSM shall perform advanced information monitoring and routes
+     system alerts and alarms to communities of interest when the
+     system detects unusual conditions.
+     <<< II 2.  Technical Service Classification:  Data Connectivity >>>
+
 * [[https://github.com/solutionguidance/psm/issues/87][ 87]] (closed): Crash/error upon logging in with service admin account
 
   I have a new, freshly setup instance of the PSM.
@@ -5477,6 +7472,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-9.5
+     The PSM shall ensure proprietary interfaces and protocols between
+     modules are not used.
+     <<< FR 9.  Meets architecture guideline >>>
+
 * [[https://github.com/solutionguidance/psm/issues/79][ 79]] (closed): Deduplicate drools rules / database entries
 
   Drools is used to enforce rules like "you can't create an acupuncture enrollment without an acupuncture license". The UI asks the database what `LicenseType`s (like an acupuncture license) are associated with a `ProviderType` (like an acupuncturist), and allows uploading of associated licenses. This means that the same information - "acupuncturists require an acupuncture license" - lives in two places (at least in the simple case - there may be more complicated rules).
@@ -5487,9 +7486,29 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-5.5
+     The PSM shall maintain the capability to limit billing and
+     providers to certain benefit plans, services, by procedure codes,
+     ranges of procedure codes, member age or by provider type(s) or
+     as otherwise directed by the State.
+     <<< FR 5. Manage Enrollment >>>
+
    - Z-REQ-PSM-FR-9.1
+     The PSM shall integrate provider-type business rules described in
+     the Enrollment Information Guide into the system.
+     <<< FR 9.  Meets architecture guideline >>>
+
    - Z-REQ-PSM-IU-3.1
+     The PSM of shall use standardized business rules definitions that
+     reside in a separate application or rules engine.
+     <<< IU 3.  Technical Service Classification:  Decision Management >>>
+
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/78][ 78]]   (open): upstream: follow up on WildFly package integrity
 
@@ -5497,6 +7516,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
    - security
    - task
@@ -5520,6 +7544,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - tech-debt
    - ux
 * [[https://github.com/solutionguidance/psm/issues/73][ 73]]   (open): Docker compose error on deployment of core app
@@ -5539,6 +7568,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
 * [[https://github.com/solutionguidance/psm/issues/65][ 65]] (closed): Reliance on JavaScript for form submission may affect many pages.
 
@@ -5548,6 +7582,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-10.2
+     The PSM shall be accessible in compliance with Section 508 of the
+     Rehabilitation Act.
+     <<< FR 10. Compliance >>>
+
    - accessibility
    - ux
 * [[https://github.com/solutionguidance/psm/issues/62][ 62]]   (open): Include territories in list of states?
@@ -5556,6 +7594,13 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.6
+     The PSM shall require the following fields: Provider Name,
+     Business Phone, Provider Street Address, City, State, Zip Code,
+     County, SSN, Date of Birth, License Number, IRS Payee Name, DBA
+     Name, Payee Address, Payee City, Payee State, Payee Zip Code,
+     Payee Tax ID, Provider Email address
+     <<< FR 2.  Capability to build provider profile >>>
+
    - question
    - ux
 * [[https://github.com/solutionguidance/psm/issues/61][ 61]]   (open): Make list of counties configurable
@@ -5566,6 +7611,13 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.6
+     The PSM shall require the following fields: Provider Name,
+     Business Phone, Provider Street Address, City, State, Zip Code,
+     County, SSN, Date of Birth, License Number, IRS Payee Name, DBA
+     Name, Payee Address, Payee City, Payee State, Payee Zip Code,
+     Payee Tax ID, Provider Email address
+     <<< FR 2.  Capability to build provider profile >>>
+
    - backend
    - task
    - ux
@@ -5575,6 +7627,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - backend
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/56][ 56]] (closed): Create an .editorconfig
@@ -5585,6 +7643,10 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/53][ 53]] (closed): Conditionalize alert about high-risk providers.
 
   The red-alert notice about "High" risk level at the bottom of this screen is not currently useful, and is not even conditionalized on the presence of any high-risk providers in the list being displayed above the alert:
@@ -5613,8 +7675,22 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.18
+     The PSM shall have the capability to ensure that providers that
+     have a history of fraud are flagged with a higher risk level at
+     the time of screening
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-3.2
+     The PSM shall have the capability to create a high-risk list to
+     ensure that providers that are suspected or known to be
+     fraudulent are flagged at the time of screening.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.4
+     The PSM shall separate providers into risk categories limited,
+     moderate, and high based on provider type, as established by CMS.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - task
 * [[https://github.com/solutionguidance/psm/issues/51][ 51]] (closed): Presentability: use generic PSM logo
 
@@ -5624,6 +7700,10 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - task
 * [[https://github.com/solutionguidance/psm/issues/45][ 45]] (closed): GitHub Wiki?
 
@@ -5631,6 +7711,10 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/41][ 41]]   (open): Fix or remove provider type creation/deletion
 
   If you log in as a service admin, there is a button to `Add Provider Type`. Clicking on it produces a stack trace, because several attributes of provider types were removed in 8b28ccfd75bd3b37f6fd93bdcd31e24174633ee2 in response to [#34 Edit Provider Type to add required additional documentation- Service Admin](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/issues/34) and [#90 Accepting Provider Agreement](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/issues/90).
@@ -5645,6 +7729,9 @@
 
 ** LABELS
    - Z-REQ-PSM-II-4.5
+     The PSM shall be configurable where feasible.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
    - backend
    - bug
    - docs
@@ -5659,7 +7746,15 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.12
+     The PSM shall support roles and responsibilities of individuals
+     that are separated through assigned information access
+     authorization as necessary to prevent malevolent activity.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - Z-REQ-PSM-II-4.5
+     The PSM shall be configurable where feasible.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
    - backend
    - bug
    - enhancement
@@ -5737,12 +7832,21 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/35][ 35]] (closed): Deploy external sources app on Wildfly
 
   Get the `ext-sources-app` part of the repository running on Wildfly.  This will probably involve some of the same work as #2.
 
 ** LABELS
    - Z-REQ-PSM-FR-9.5
+     The PSM shall ensure proprietary interfaces and protocols between
+     modules are not used.
+     <<< FR 9.  Meets architecture guideline >>>
+
 * [[https://github.com/solutionguidance/psm/issues/34][ 34]]   (open): Improve password handling
 
   There are some best practices around passwords that we should handle. See, for example, 
@@ -5757,8 +7861,22 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.17
+     The PSM shall use only FIPS Pub 140-2-approved (or higher)
+     encryption algorithms.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - Z-REQ-PSM-AD-5.18
+     The PSM shall be secure from unauthorized access or use, and
+     shall sanitize inputs and outputs where possible so as to avoid
+     compromising itself or other systems.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - Z-REQ-PSM-FR-7.14
+     The PSM's user interface shall be as simple, comprehensible,
+     navigable, reliable, robust in the face of error, and responsive
+     as possible.
+     <<< FR 7. Usability >>>
+
    - backend
    - security
    - state-question
@@ -5771,6 +7889,10 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.4
+     The PSM shall support a user security profile that controls user
+     access rights to data categories and system functions.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - backend
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/32][ 32]]   (open): Understand or remove user IDs
@@ -5783,6 +7905,14 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.11
+     The PSM shall  have standard Access Control specifications to include:
+(i) Assigning a unique name and/or number for identifying and tracking
+user identity. (Required) (iii) Implementing electronic procedures
+that terminate an electronic session after a predetermined time of
+inactivity. (Addressable)
+
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - backend
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/31][ 31]] (closed): PostgreSQL jar hash error
@@ -5799,6 +7929,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - bug
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/30][ 30]] (closed): List and document APIs
@@ -5810,13 +7945,25 @@
 
 ** LABELS
    - Z-REQ-PSM-II-4.2
+     The PSM shall document all interfaces in an Interface Control
+     Document (ICD), along with how those interfaces are maintained.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
    - Z-REQ-PSM-II-4.4
+     Clearly documented - 
+The PSM shall provide detailed API documentation provided for every
+API.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
 * [[https://github.com/solutionguidance/psm/issues/29][ 29]]   (open): Document how to edit list of provider types
 
   Each state has a different list of provider types.  We need to document how to edit the type list that is displayed by the PSM, and move toward making that list configurable.  
 
 ** LABELS
    - Z-REQ-PSM-II-4.5
+     The PSM shall be configurable where feasible.
+     <<< II 4.  Technical Service Classification:  System Extensibility >>>
+
    - docs
    - enhancement
 * [[https://github.com/solutionguidance/psm/issues/28][ 28]]   (open): Document production deployments
@@ -5825,6 +7972,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - state-question
 * [[https://github.com/solutionguidance/psm/issues/26][ 26]]   (open): Review forks and include relevant changes
 
@@ -5832,6 +7984,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - state-question
 * [[https://github.com/solutionguidance/psm/issues/21][ 21]] (closed): Confirm which data handling standards we need to comply with
 
@@ -5849,8 +8007,24 @@
 
 ** LABELS
    - Z-REQ-PSM-II-2.2
+     The PSM shall use a standards for message format to ensure
+     interoperability (e.g. XML JSON)
+     <<< II 2.  Technical Service Classification:  Data Connectivity >>>
+
    - Z-REQ-PSM-II-2.3
+     Transport interoperability - 
+The PSM shall comply with standard data transfer protocols as
+applicable to health IT systems, their constituent elements/modules,
+and services
+     <<< II 2.  Technical Service Classification:  Data Connectivity >>>
+
    - Z-REQ-PSM-II-2.4
+     Syntactic interoperability - 
+The PSM shall comply with national standards for data message
+formatting, as applicable to health IT systems, their constituent
+elements/modules, and services
+     <<< II 2.  Technical Service Classification:  Data Connectivity >>>
+
 * [[https://github.com/solutionguidance/psm/issues/19][ 19]]   (open): Create new maintainer checklist
 
   We ought to have a checklist for new repository maintainers. It would include, for instance,
@@ -5860,6 +8034,10 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - docs
 * [[https://github.com/solutionguidance/psm/issues/17][ 17]] (closed): Choose first federal data source
 
@@ -5885,9 +8063,48 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.13
+     The PSM shall have the capability to track and support the
+     screening of applications (and ongoing provider updates) for
+     National Provider Identifier (NPIs), State licenses, Specialty
+     Board certification as appropriate, review team visits when
+     necessary, and any other State and/or Federal Requirement.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.14
+     The PSM shall cross-reference license and sanction information
+     with other state or federal agencies.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.5
+     The PSM shall screen limited-risk providers by verifying that the
+     provider or supplier meets all applicable federal regulations and
+     state requirements for the provider or supplier type, conducting
+     license verifications, including licensure verifications across
+     state lines for physicians, non-physician practitioners,
+     providers and suppliers, and conducting database checks on a
+     pre-and post-enrollment basis to ensure that providers and
+     suppliers continue to meet the enrollment criteria for their
+     provider/supplier type.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.7
+     The PSM shall change a provider's risk level due to: imposition
+     of a payment suspension within the previous 10 years; termination
+     from billing Medicaid; exclusion by the OIG; revocation of
+     billing privileges by a Medicare contractor within the previous
+     10 years (and such provider/supplier is attempting to establish
+     additional Medicare billing privileges by enrolling as a new
+     provider or supplier or establish billing privileges for a new
+     practice location); exclusion from any federal health care
+     program; subject to any final adverse action (as defined in 42
+     CFR 424.502) within the past 10 years; instances in which CMS
+     lifts a temporary moratorium for a particular provider or
+     supplier type and a provider or supplier that was prevented from
+     enrolling based on the moratorium, applies for enrollment as a
+     Medicare provider or supplier at any time within 6 months from
+     the date the moratorium was lifted.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
 * [[https://github.com/solutionguidance/psm/issues/16][ 16]] (closed): Manage sets of dependencies via Gradle or another tool
 
   @jasonaowen [writes](https://groups.google.com/d/msg/psm-dev/nzC3pP1XMFg/MOCUKnkhBAAJ):
@@ -5903,6 +8120,11 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - infra
    - task
    - tech-debt
@@ -5914,7 +8136,18 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/11][ 11]] (closed): Separate ext-srcs from main application
 
   The original authors intended the `ext-srcs` app to function as a separate application.  It has an API that is called by the core PSM app.  In the code's current state, the two apps aren't fully separated.  Their implementation is still closely coupled.  In the future, these might be disentangled.
@@ -5923,6 +8156,11 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-3.23
+     The PSM shall reduce processing and transaction time for
+     submitting and receiving queries to authoritative data sources
+     regarding provider credentials and sanctions.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
 * [[https://github.com/solutionguidance/psm/issues/10][ 10]]   (open): Clarify user roles / permissions
 
   As a system administrator, I should only be able to work with user accounts; everything else should be unavailable.
@@ -5933,7 +8171,16 @@
 
 ** LABELS
    - Z-REQ-PSM-AD-5.12
+     The PSM shall support roles and responsibilities of individuals
+     that are separated through assigned information access
+     authorization as necessary to prevent malevolent activity.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - Z-REQ-PSM-AD-5.4
+     The PSM shall support a user security profile that controls user
+     access rights to data categories and system functions.
+     <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
+
    - bug
    - security
    - state-question
@@ -5943,9 +8190,40 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-2.18
+     The PSM shall have the capability to ensure that providers that
+     have a history of fraud are flagged with a higher risk level at
+     the time of screening
+     <<< FR 2.  Capability to build provider profile >>>
+
    - Z-REQ-PSM-FR-3.2
+     The PSM shall have the capability to create a high-risk list to
+     ensure that providers that are suspected or known to be
+     fraudulent are flagged at the time of screening.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.4
+     The PSM shall separate providers into risk categories limited,
+     moderate, and high based on provider type, as established by CMS.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - Z-REQ-PSM-FR-3.7
+     The PSM shall change a provider's risk level due to: imposition
+     of a payment suspension within the previous 10 years; termination
+     from billing Medicaid; exclusion by the OIG; revocation of
+     billing privileges by a Medicare contractor within the previous
+     10 years (and such provider/supplier is attempting to establish
+     additional Medicare billing privileges by enrolling as a new
+     provider or supplier or establish billing privileges for a new
+     practice location); exclusion from any federal health care
+     program; subject to any final adverse action (as defined in 42
+     CFR 424.502) within the past 10 years; instances in which CMS
+     lifts a temporary moratorium for a particular provider or
+     supplier type and a provider or supplier that was prevented from
+     enrolling based on the moratorium, applies for enrollment as a
+     Medicare provider or supplier at any time within 6 months from
+     the date the moratorium was lifted.
+     <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
+
    - enhancement
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/8][  8]]   (open): Reduce code duplication
@@ -5977,6 +8255,12 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - tech-debt
 * [[https://github.com/solutionguidance/psm/issues/7][  7]] (closed): Automate PSM deployment
 
@@ -5986,12 +8270,21 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.4
+     The PSM shall use documented build, test, release, and
+     installation processes that are automated as much as possible,
+     for both development and production use.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/6][  6]] (closed): Draft intake policy for 3rd-party code
 
   Create a policy for determining whether a given library can be used in this project and is compliant with our license.
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/5][  5]] (closed): Document dev/test deployments
 
   While completing #2, write clear directions about how to complete this process.  These instructions should include the exact shell commands used as often as possible, so that these can be converted to an automated process.  Documentation should also make note of the environment used for the installation.
@@ -6000,12 +8293,22 @@
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.1
+     The PSM shall have an open source repository and source code base
+     organized to be welcoming to outside contributors.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/4][  4]] (closed): Merge old 'local-deployment' branch into master.
 
   The changes on the `local-deployment` branch can just go to `master` now, and `local-deployment` can be archived.
 
 ** LABELS
    - Z-REQ-PSM-SQ-1.5
+     The PSM shall use D.R.Y. coding principles to avoid unnecessary
+     complexity, inflexibility, redundancy, and denormalization in the
+     source code and database schemas, and to use precise terminology
+     in data structures and operations.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
    - task
 * [[https://github.com/solutionguidance/psm/issues/3][  3]] (closed): Determine Oracle-specificity / PostgreSQL-compatibility of existing SQL.
 
@@ -6013,6 +8316,10 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-9.5
+     The PSM shall ensure proprietary interfaces and protocols between
+     modules are not used.
+     <<< FR 9.  Meets architecture guideline >>>
+
    - question
 * [[https://github.com/solutionguidance/psm/issues/2][  2]] (closed): Run in WildFly (JBoss) or other open source application server.
 
@@ -6020,10 +8327,23 @@
 
 ** LABELS
    - Z-REQ-PSM-FR-9.5
+     The PSM shall ensure proprietary interfaces and protocols between
+     modules are not used.
+     <<< FR 9.  Meets architecture guideline >>>
+
    - Z-REQ-PSM-SQ-1.3
+     The PSM shall use modern source code dependency management
+     techniques, and shall use up-to-date versions of upstream
+     third-party dependencies.
+     <<< SQ 1.  Software Quality and Maintainability >>>
+
 * [[https://github.com/solutionguidance/psm/issues/1][  1]] (closed): Support PostgreSQL or other open source database.
 
   Make the PSM usable with an open source database, defaulting to PostgreSQL, with no dependency on Oracle.
 
 ** LABELS
    - Z-REQ-PSM-FR-9.5
+     The PSM shall ensure proprietary interfaces and protocols between
+     modules are not used.
+     <<< FR 9.  Meets architecture guideline >>>
+

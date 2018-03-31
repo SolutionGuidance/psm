@@ -26,12 +26,14 @@ prompted for a file name."
       (kill-buffer (current-buffer)))))
 
 (defun psm-get-req (req-name)
-  "Return the req object for req identifier REQ-NAME, else nil."
-  (cl-some (lambda (candidate)
-             (when (string-equal 
-                    req-name (cadr (assq 'id candidate)))
-               candidate))
-           psm-reqs))
+  "Return the req object for req identifier REQ-NAME, else nil.
+REQ-NAME can be in non-canonical case."
+  (let ((req-name (psm-req-case-canonicalize-name req-name)))
+    (cl-some (lambda (candidate)
+               (when (string-equal 
+                      req-name (cadr (assq 'id candidate)))
+                 candidate))
+             psm-reqs)))
 
 (defun psm-req-case-canonicalize-name (req-name)
   "Return a case-canonicalized version of REQ-NAME."
@@ -74,8 +76,15 @@ prompted for a file name."
   "Insert a summary of REQ-NAME, preserving fill from bol to point."
   (let* ((req  (psm-get-req req-name))
          (desc (psm-req-get req 'description))
-         (cat  (psm-req-get req 'category)))
-    (insert desc)))
+         (cat  (psm-req-get req 'category))
+         (prefix (buffer-substring
+                  (point) (save-excursion (beginning-of-line) (point)))))
+      (insert desc "\n")
+      (let ((opoint (point-marker)))
+        (forward-line -1)
+        (fill-paragraph)
+        (goto-char opoint))
+      (insert prefix "<<< " cat " >>>\n")))
 
 (defun psm-show-req (&optional verbose)
   "Show information of the requirement point is currently in.

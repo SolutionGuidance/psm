@@ -5,12 +5,12 @@ What's here:
 * RTM.xlsx
   Requirements Traceability Matrix: master spreadsheet of all requirements.
 
-* RTM.org
-  An initial export to Org Mode format (but missing some hidden rows).
+* non-hidden-RTM-rows.org
+  An initial export to Org Mode format (but missing some hidden rows;
+  see below).
 
 * hidden-RTM-rows.org
   The remainder of the Org Mode export (see above).
-  This should probably be unified into RTM.org soon.
   Here's how you know that this file and RTM.org have different reqs:
 
           $ grep -E "^\* psm-" hidden-RTM-rows.org | cut -c 3- > hidden-reqs
@@ -21,10 +21,19 @@ What's here:
           $ diff -u hidden-reqs non-hidden-reqs 
           $ rm hidden-reqs non-hidden-reqs 
 
+* added-reqs.org
+  Requirements we created during the first issues/reqs sweep.
+  We didn't know about the hidden rows at the time, so some
+  of the newly created reqs turned out to be redundant with existing
+  reqs; there is more detail about this in the file.
+
+* issues-2018-03-31.org
+  An export of all issues and their labels, for a new reqs sweep.
+  The assignment of labels to issues happend by running
+  ots-tools/github-tools/gh-sak with labels-to-issues.json as input.
+
 * issues-reqs-mapping.org
   The master mapping between issues and requirements.
-  Once completed, the mapping is uploaded into the PSM 
-  issue tracker using ots-tools/github-tools/gh-sak.
 
 * csv-exports/*.csv
   CSV files for each reqs category (FR, II, IA, etc).
@@ -42,10 +51,7 @@ What's here:
 
 * psm-reqs.el
   Elisp for working with requirements in Emacs.  Start by invoking
-  `psm-load-reqs' on a file created by 'show-reqs elisp'.
-
-* issues-2018-03-31.org
-  An export of all issues and their labels, for a new reqs sweep.
+  `psm-load-reqs' on a file created by './show-reqs elisp'.
 
 ## Sources of requirements
 

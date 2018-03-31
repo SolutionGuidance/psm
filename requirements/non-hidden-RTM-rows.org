@@ -6,20 +6,21 @@ Note that this list does not include requirement rows that were
 included, but the repair process is easier if they're in a separate
 file, so see [[file:hidden-RTM-rows.org][hidden-RTM-rows.org]].
 
-The entire "psm-SQ-*" category is new, and has been added as a new
-sheet in RTM.xlsx.  There are also some newly-created requirements.
-See [[file:added-reqs.org][added-reqs.org]] for details about them -- the short story is: some
-of them will likely disappear soon because they are redundant with
-reqs that we discovered later when we un-hid some rows.  For now, they
-are all listed at the end, after the "SQ" set, even though in RTM.xlsx
-they have been added to appropriate sheets.
+The entire "psm-SQ-*" category is new (it has been added as a new
+sheet in RTM.xlsx) and there are also some newly-created requirements
+in existing categories.  See [[file:added-reqs.org][added-reqs.org]] for details.  The short
+story is: some of the new reqs will likely go away because they are
+redundant with reqs that we discovered later when we un-hid some rows.
+For now, they are all listed at the end, after the "SQ" set, even
+though in RTM.xlsx they have been added to appropriate sheets.
 
 Very likely this whole file will go away soon.  We can now use the
 [[file:show-reqs][show-reqs]] script in this directory to print out all the requirements
 whenever we need, as long as the CSV exports in csv-exports/ are
 up-to-date with RTM.xlsx.  So whatever unredundifiying we do, we
-should just do it in RTM.xlsx, export all the sheets to CSV, and
-then use the CSV files to get reqs in textual formats as needed.
+should just do it in RTM.xlsx (or whatever our master location for
+reqs is), export all the sheets to CSV, and then use the CSV files to
+port reqs to textual formats as needed.
 
 * psm-FR-1.1
 "The PSM shall accept a form that shows a tax ID number and legal name

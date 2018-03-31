@@ -1,3 +1,5 @@
+#+STARTUP: showeverything
+
 * [[https://github.com/solutionguidance/psm/issues/740][740]]   (open): Re-screen approved providers monthly
 
   >The PSM shall support admin-configurable automated re-screening.  C.f. psm-FR-7.3.

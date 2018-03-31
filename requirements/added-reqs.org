@@ -1,0 +1,50 @@
+#+STARTUP: showeverything
+
+This list shows the requirements we inserted into existing sheets.  
+
+We'd been adding requirements as we went, but this was before we knew
+about the hidden req rows, and some of the ones we added were
+redundant with ones we later discovered after un-hiding those rows.
+The un-redundification of those two sets still needs to be done.
+
+In commit 77c8619a8a, we gave all the newly added reqs the "SQ"
+("Software Quality") category, and then in commit 6b8b418c6c we moved
+*some* of those SQ items to other sheets, renaming them as we went.
+So a diff between 77c8619a8a and 6b8b418c6c shows all the new reqs
+that we caused to exist outside SQ, and some of those new reqs will
+need to go away, that is, be folded into an already-existing req that
+was hidden until recently.  (As a practical matter, taking that diff
+actually involved exporting each sheet to CSV, from the older revision
+and from the newer, and then comparing old to new sheet-by-sheet.)
+
+* psm-AD-5.18 (started as psm-SQ-2.3)
+  The PSM shall be secure from unauthorized access or use, and shall sanitize inputs and outputs where possible so as to avoid compromising itself or other systems.
+  SGC 2018-03-05, Release 1
+
+* psm-FR-4.6 (started as psm-SQ-3.4)
+  The PSM shall have the ability to enforce limits on the number of providers of a given type enrolled simultaneously.
+  SGC 2018-03-05, Release 1
+
+* psm-FR-4.7 (started as psm-SQ-3.5)
+  The PSM shall support admin-configurable automated re-screening.  C.f. psm-FR-7.3.
+  SGC 2018-03-05, Release 1
+
+* psm-FR-4.8 (started as psm-SQ-3.6)
+  The PSM shall support provider agents (a.k.a. service agents a.k.a. non-provider users) who act on a provider's behalf and whose authorization may be a subset of that provider's.
+  SGC 2018-03-05, Beta
+
+* psm-FR-7.13 (started as psm-SQ-3.3)
+  The PSM shall support searching and pattern-matching based on all fields accepted as input (and based on all reasonable combinations of such fields).
+  SGC 2018-03-05, 
+
+* psm-FR-7.14 (started as psm-SQ-3.2)
+  The PSM's user interface shall be as simple, comprehensible, navigable, reliable, robust in the face of error, and responsive as possible.
+  SGC 2018-03-05, Beta
+
+* psm-FR-10.2 (started as psm-SQ-3.1)
+  The PSM shall be accessible in compliance with Section 508 of the Rehabilitation Act.
+  SGC 2018-03-05, Beta
+
+* psm-II-4.5 (started as psm-SQ-2.1)
+  The PSM shall be configurable where feasible.
+  SGC 2018-03-05, Release 1

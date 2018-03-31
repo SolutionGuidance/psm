@@ -1,14 +1,25 @@
 "Requirement ID Number";"Requirement Statement";"Comment" 
 (CSV was exported with semi-colon separator, strings enclosed in quotes)
 
-Note: some of these requirements were "hidden" in the RTM.  
+Note that this list does not include requirement rows that were
+"hidden" in RTM.xlsx.  We later determined that the should be
+included, but the repair process is easier if they're in a separate
+file, so see [[file:hidden-RTM-rows.org][hidden-RTM-rows.org]].
 
-Linking to issues will be done with a colon after the requirements
-number, followed by a list of issue numbers (without #) separated by
-comma and space.
+The entire "psm-SQ-*" category is new, and has been added as a new
+sheet in RTM.xlsx.  There are also some newly-created requirements.
+See [[file:added-reqs.org][added-reqs.org]] for details about them -- the short story is: some
+of them will likely disappear soon because they are redundant with
+reqs that we discovered later when we un-hid some rows.  For now, they
+are all listed at the end, after the "SQ" set, even though in RTM.xlsx
+they have been added to appropriate sheets.
 
-Requirements items that don't yet appear in RTM.xlsx are denoted with
-"psm-IP-x.x" (IP for In Progress).
+Very likely this whole file will go away soon.  We can now use the
+[[file:show-reqs][show-reqs]] script in this directory to print out all the requirements
+whenever we need, as long as the CSV exports in csv-exports/ are
+up-to-date with RTM.xlsx.  So whatever unredundifiying we do, we
+should just do it in RTM.xlsx, export all the sheets to CSV, and
+then use the CSV files to get reqs in textual formats as needed.
 
 * psm-FR-1.1
 "The PSM shall accept a form that shows a tax ID number and legal name

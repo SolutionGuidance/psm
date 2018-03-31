@@ -33,6 +33,20 @@ What's here:
 * csv-exports/columns.txt
   Lists the columns (which are the same across all the CSV files).
 
+* reqs2any
+  A script that converts requirements from CSV to some other format.
+
+* show-reqs
+  A script that drives 'reqs2any' to produce either elisp output or
+  human-readable output (pass "elisp" or "human" as arg to choose).
+
+* psm-reqs.el
+  Elisp for working with requirements in Emacs.  Start by invoking
+  `psm-load-reqs' on a file created by 'show-reqs elisp'.
+
+* issues-2018-03-31.org
+  An export of all issues and their labels, for a new reqs sweep.
+
 ## Sources of requirements
 
 Requirements documents related to the PSM that have been shared with the

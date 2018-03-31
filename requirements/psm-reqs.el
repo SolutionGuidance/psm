@@ -25,6 +25,58 @@ prompted for a file name."
       (setq psm-reqs (read (current-buffer)))
       (kill-buffer (current-buffer)))))
 
+(defun psm-get-req (req-name)
+  "Return the req object for req identifier REQ-NAME, else nil."
+  (cl-some (lambda (candidate)
+             (when (string-equal 
+                    req-name (cadr (assq 'id candidate)))
+               candidate))
+           psm-reqs))
+
+(defun psm-req-case-canonicalize-name (req-name)
+  "Return a case-canonicalized version of REQ-NAME."
+  ;; Ensure that the "psm" is lower case and the two-letter
+  ;; subcode is upper case.  For example, this would convert
+  ;; "PSM-fr-5.2" to "psm-FR-5.2".
+  (let ((new-req-name (copy-sequence req-name)))
+    (aset new-req-name 0 (downcase (aref new-req-name 0)))
+    (aset new-req-name 1 (downcase (aref new-req-name 1)))
+    (aset new-req-name 2 (downcase (aref new-req-name 2)))
+    (aset new-req-name 4 (upcase (aref new-req-name 4)))
+    (aset new-req-name 5 (upcase (aref new-req-name 5)))
+    new-req-name))
+
+(defun psm-req-name-at-point ()
+  "Return the req name at point, in canonical case."
+  (let* ((raw (thing-at-point 'filename t))
+         (len (length raw)))
+    (when (< len 10)
+      (error "'%s' is too short to be a PSM req ID" raw))
+    (let ((case-fold-search t))
+      (save-match-data
+        (if (string-match "psm-[A-Z][A-Z]-[0-9]+\\.[0-9]+" raw)
+            ;; The regexp above doesn't begin with "^" nor
+            ;; end with "$" because `thing-at-point' may
+            ;; include leading or trailing garbage.  E.g., in
+            ;; "psm-FR-1.1, psm-FR-1.2, psm-FR-1.3", calling
+            ;; with point on either of the first two would
+            ;; include the trailing comma.  Here we strip 
+            ;; off stuff that isn't part of the ID.
+            (setq raw (match-string 0 raw))
+          (error "'%s' doesn't look like a PSM req ID" raw))))
+    (psm-req-case-canonicalize-name raw)))
+
+;; Went back and forth on using `cl-defstruct' for this.
+(defmacro psm-req-get (req field)
+  `(cadr (assq ,field ,req)))
+
+(defun psm-insert-req-summary (req-name)
+  "Insert a summary of REQ-NAME, preserving fill from bol to point."
+  (let* ((req  (psm-get-req req-name))
+         (desc (psm-req-get req 'description))
+         (cat  (psm-req-get req 'category)))
+    (insert desc)))
+
 (defun psm-show-req (&optional verbose)
   "Show information of the requirement point is currently in.
 For example, if point is in the string \"psm-FR-5.2\",
@@ -34,47 +86,19 @@ the requirement's name, category, description, and any comment.
 If prefix argument VERBOSE is non-nil, show all details about
 the requirement (e.g., source, release, etc)."
   (interactive "P")
-  (let* ((req-name (let* ((raw (thing-at-point 'filename t))
-                          (len (length raw)))
-                     (when (< len 10)
-                       (error "'%s' is too short to be a PSM req ID" raw))
-                     (let ((case-fold-search t))
-                       (save-match-data
-                         (if (string-match "psm-[A-Z][A-Z]-[0-9]+\\.[0-9]+" raw)
-                             ;; The regexp above doesn't begin with "^" nor
-                             ;; end with "$" because `thing-at-point' may
-                             ;; include leading or trailing garbage.  E.g., in
-                             ;; "psm-FR-1.1, psm-FR-1.2, psm-FR-1.3", calling
-                             ;; with point on either of the first two would
-                             ;; include the trailing comma.  Here we strip 
-                             ;; off stuff that isn't part of the ID.
-                             (setq raw (match-string 0 raw))
-                           (error "'%s' doesn't look like a PSM req ID" raw))))
-                     ;; Ensure that the "psm" is lower case and the two-letter
-                     ;; subcode is upper case.  For example, this would convert
-                     ;; "PSM-fr-5.2" to "psm-FR-5.2".
-                     (aset raw 0 (downcase (aref raw 0)))
-                     (aset raw 1 (downcase (aref raw 1)))
-                     (aset raw 2 (downcase (aref raw 2)))
-                     (aset raw 4 (upcase (aref raw 4)))
-                     (aset raw 5 (upcase (aref raw 5)))
-                     raw))
-         (req      (cl-some (lambda (candidate)
-                              (when (string-equal 
-                                     req-name (cadr (assq 'id candidate)))
-                                candidate))
-                            psm-reqs))
-         (req-id                   (cadr (assq 'id req)))
-         (req-description          (cadr (assq 'description req)))
-         (req-category             (cadr (assq 'category req)))
-         (req-comment              (cadr (assq 'comment req)))
-         (req-priority             (cadr (assq 'priority req)))
-         (req-rank                 (cadr (assq 'rank req)))
-         (req-source               (cadr (assq 'source req)))
-         (req-source-doc           (cadr (assq 'source-doc req)))
-         (req-release              (cadr (assq 'release req)))
-         (req-design-ref           (cadr (assq 'design-ref req)))
-         (req-acceptance-test-ref  (cadr (assq 'acceptance-test-ref req)))
+  (let* ((req-name                 (psm-req-name-at-point))
+         (req                      (psm-get-req req-name))
+         (req-id                   (psm-req-get req 'id))
+         (req-description          (psm-req-get req 'description))
+         (req-category             (psm-req-get req 'category))
+         (req-comment              (psm-req-get req 'comment))
+         (req-priority             (psm-req-get req 'priority))
+         (req-rank                 (psm-req-get req 'rank))
+         (req-source               (psm-req-get req 'source))
+         (req-source-doc           (psm-req-get req 'source-doc))
+         (req-release              (psm-req-get req 'release))
+         (req-design-ref           (psm-req-get req 'design-ref))
+         (req-acceptance-test-ref  (psm-req-get req 'acceptance-test-ref))
          (buf              (get-buffer-create "*PSM req*")))
     (save-excursion
       (set-buffer buf)

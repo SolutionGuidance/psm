@@ -801,7 +801,7 @@
   In each project/submodule within `psm-app` we ought to have a `README.md` file to help developers understand what each covers -- expanding a bit on the brief explanation in `docs/DESIGN.md` and the diagrams in `docs`.
 
 ** LABELS
-   - Z-REQ-PSM-SA-4.3
+   - Z-REQ-PSM-SC-4.3
    - Z-REQ-PSM-SQ-1.1
    - docs
 * [[https://github.com/solutionguidance/psm/issues/559][559]]   (open): Write sample prose description of code/data flow for 1-2 common PSM use cases
@@ -1852,8 +1852,8 @@
    - Z-REQ-PSM-II-4.2
    - Z-REQ-PSM-II-4.4
    - Z-REQ-PSM-IU-4.3
-   - Z-REQ-PSM-SA-3.1
-   - Z-REQ-PSM-SA-4.3
+   - Z-REQ-PSM-SC-3.1
+   - Z-REQ-PSM-SC-4.3
    - docs
 * [[https://github.com/solutionguidance/psm/issues/465][465]] (closed): Use FIPS-approved encryption
 

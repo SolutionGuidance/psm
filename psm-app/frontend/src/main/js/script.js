@@ -342,6 +342,8 @@ $(document).ready(function () {
         $(select).change();
       }
     });
+
+    setFileUploadClickHandler();
   });
 
   $('#addInService').live('click', function () {
@@ -396,6 +398,8 @@ $(document).ready(function () {
         $(select).change();
       }
     });
+
+    setFileUploadClickHandler();
   });
 
   $('#addCLIALicense').live('click', function () {

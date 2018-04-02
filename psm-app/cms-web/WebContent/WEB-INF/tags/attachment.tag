@@ -12,14 +12,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="cms" uri="CMSTags"  %>
 
-<input type="file"
-       title="${title}"
-       class="fileUpload"
-       size="10" name="${name}" />
-<c:if test="${not empty attachmentId}">
-    <c:url var="downloadLink" value="/provider/enrollment/attachment">
-         <c:param name="id" value="${attachmentId}"></c:param>
-    </c:url>
-    <div><a href="${downloadLink}"><cms:truncate text="${filename}" /></a></div>
-    <input type="hidden" name="${attachmentIdName}" value="${attachmentId}"/>
-</c:if>
+<span class="fileUploadWrapper">
+    <c:choose>
+        <c:when test="${empty attachmentId}">
+            <div class="previousFile"></div>
+            <label class="fileUploadLabel">
+                <span class="fileUploadButton greyBtn">Upload...</span>
+                <input type="file"
+                       title="${title}"
+                       class="hidden"
+                       name="${name}" />
+            </label>
+        </c:when>
+        <c:otherwise>
+            <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                 <c:param name="id" value="${attachmentId}"></c:param>
+            </c:url>
+            <div class="previousFile"><a href="${downloadLink}"><cms:truncate text="${filename}" /></a></div>
+            <input type="hidden" name="${attachmentIdName}" value="${attachmentId}"/>
+            <label class="fileUploadLabel">
+                <span class="fileUploadButton greyBtn">Replace...</span>
+                <input type="file"
+                       title="${title}"
+                       class="hidden"
+                       name="${name}" />
+            </label>
+        </c:otherwise>
+    </c:choose>
+</span>

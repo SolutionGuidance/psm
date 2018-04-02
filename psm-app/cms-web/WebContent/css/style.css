@@ -848,6 +848,7 @@ input.date{
   border: solid 1px #cdcdcd;
   display: inline-block;
   text-decoration: none;
+  white-space: nowrap;
 }
 .greyBtn:hover {
   background: linear-gradient(#d8d8d8, #fafafa);
@@ -4716,10 +4717,6 @@ input[type=checkbox]{
 }
 #printModal span.providerPic{
   padding: 0 10px;
-  display: block;
-}
-.addPracticeLocations .generalTable td span{
-  line-height: 17px;
   display: block;
 }
 

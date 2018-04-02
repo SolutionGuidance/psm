@@ -16,6 +16,7 @@
     <module name="NoLineWrap"/>
     <module name="NoWhitespaceBefore"/>
     <module name="ParenPad"/>
+    <module name="SingleSpaceSeparator"/>
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter"/>
     <module name="EmptyLineSeparator">

@@ -63,9 +63,9 @@ public class CustomAuthenticationProcessingFilter extends UsernamePasswordAuthen
         if (domain == null || "MN_ITS".equalsIgnoreCase(domain)) {
             domain = "MN_ITS";
             String token = request.getParameter("token");
-            String userNPI  = request.getParameter("userNPI");
-            String profileNPI  = request.getParameter("profileNPI");
-            String referrer  = request.getParameter("referrer");
+            String userNPI = request.getParameter("userNPI");
+            String profileNPI = request.getParameter("profileNPI");
+            String referrer = request.getParameter("referrer");
             authRequest = new DomainAuthenticationToken(userNPI, profileNPI, token, referrer, domain);
         } else {
             authRequest = new DomainAuthenticationToken(username, password, domain);

@@ -143,14 +143,14 @@ $(document).ready(function () {
   //		$(this).next('.ui-datepicker-trigger').click();
   //	});
 
-  $("input.date").mask("99/99/9999");
-  $("input.ssnMasked").mask("999-99-9999");
-  $("input.npiMasked").mask("9999999999");
-  $("input.umpiMasked").mask("**********");
-  $("input.feinMasked").mask("99-9999999");
-  $("input.taxIdMasked").mask("9999999");
-  $("input.countyMask").mask("999");
-  $("input.fiscalMonthInput, input.fiscalYearInput").mask("99");
+  $("input.date").mask("00/00/0000");
+  $("input.ssnMasked").mask("000-00-0000");
+  $("input.npiMasked").mask("0000000000");
+  $("input.umpiMasked").mask("AAAAAAAAAA");
+  $("input.feinMasked").mask("00-0000000");
+  $("input.taxIdMasked").mask("0000000");
+  $("input.countyMask").mask("000");
+  $("input.fiscalMonthInput, input.fiscalYearInput").mask("00");
 
   //	$('.ui-datepicker-trigger').attr('alt','').attr('title','');
 
@@ -316,7 +316,7 @@ $(document).ready(function () {
     $i.find('select').val('');
     $i.find('.dateWrapper').append('<input class="date" type="text" />');
     $('#tableLicense tbody').append($i);
-    $('#tableLicense input.date').mask("99/99/9999");
+    $('#tableLicense input.date').mask("00/00/0000");
     //		$('#tableLicense input.date').datepicker({
     //			dateFormat:"mm/dd/yy",
     //			showOn: "button",
@@ -350,7 +350,7 @@ $(document).ready(function () {
     var i = $('#inServiceTable .in-services').length;
     var $i = $('#tableInServiceTemplate .in-services').clone();
     $('#inServiceTable').append($i);
-    $('#inServiceTable input.date').mask("99/99/9999");
+    $('#inServiceTable input.date').mask("00/00/0000");
     $('#inServiceTable .remove').show();
     reindexInServiceTable();
   });
@@ -359,7 +359,7 @@ $(document).ready(function () {
     var i = $('#outServiceTable .out-services').length;
     var $i = $('#tableOutServiceTemplate .out-services').clone();
     $('#outServiceTable').append($i);
-    $('#outServiceTable input.date').mask("99/99/9999");
+    $('#outServiceTable input.date').mask("00/00/0000");
     $('#outServiceTable .remove').show();
     reindexOutServiceTable();
   });
@@ -371,7 +371,7 @@ $(document).ready(function () {
     $i.find('.dateWrapper').empty();
     $i.find('.dateWrapper').append('<input class="date" type="text" />');
     $('#tableFacilityLicense tbody').append($i);
-    $('#tableFacilityLicense input.date').mask("99/99/9999");
+    $('#tableFacilityLicense input.date').mask("00/00/0000");
     //
     //		$('#tableFacilityLicense input.date').datepicker({
     //			dateFormat:"mm/dd/yy",
@@ -543,7 +543,7 @@ $(document).ready(function () {
     $i.find('select').val('');
     $i.find('.dateWrapper').append('<input class="date" type="text" />');
     $('#tableLicense2 tbody').append($i);
-    $('#tableLicense2 input.date').mask("99/99/9999");
+    $('#tableLicense2 input.date').mask("00/00/0000");
     //		$('#tableLicense2 input.date').datepicker({
     //			dateFormat:"mm/dd/yy",
     //			showOn: "button",
@@ -686,9 +686,9 @@ $(document).ready(function () {
       $i.find('.dateWrapper').append('<input class="date" type="text" />');
       $i.find('input').val('');
       $('#tablePractice tbody').append($i);
-      $('#tablePractice input.date').mask("99/99/9999");
-      $('#tablePractice input.npiMasked').mask("9999999999");
-      $("#tablePractice input.umpiMasked").mask("**********");
+      $('#tablePractice input.date').mask("00/00/0000");
+      $('#tablePractice input.npiMasked').mask("0000000000");
+      $("#tablePractice input.umpiMasked").mask("AAAAAAAAAA");
       //		$('#tablePractice input.date').datepicker({
       //			dateFormat:"mm/dd/yy",
       //			showOn: "button",
@@ -746,7 +746,7 @@ $(document).ready(function () {
     $i.find('td:first span').html(i + 1);
     $i.find('input').val('');
     $('#tableAgency tbody').append($i);
-    $('#tableAgency input.date').mask("99/99/9999");
+    $('#tableAgency input.date').mask("00/00/0000");
     $('#tableAgency .remove').show();
     stripTable();
     reindexAdditionalAgencyTable();
@@ -1146,7 +1146,7 @@ $(document).ready(function () {
     $i.find('.dateWrapper:first').append('<input class="date" type="text"  value="01/01/2012" />');
     $i.find('.dateWrapper:last').append('<input class="date" type="text"  value="01/01/2013" />');
     $('#tableLicense tbody').append($i);
-    $('#tableLicense input.date').mask("99/99/9999");
+    $('#tableLicense input.date').mask("00/00/0000");
     //
     //		$('#tableLicense input.date').datepicker({
     //			dateFormat:"mm/dd/yy",
@@ -1594,7 +1594,7 @@ $(document).ready(function () {
     $i.find('select').removeClass('hide');
     $i.find('span.typeL').remove();
     $(this).parent().siblings('table').find('tbody').append($i);
-    $(this).parent().siblings('table').find('input.date').mask("99/99/9999");
+    $(this).parent().siblings('table').find('input.date').mask("00/00/0000");
     $(this).parent().siblings('table').find('.remove').show();
     stripTable();
   });
@@ -1616,9 +1616,9 @@ $(document).ready(function () {
     html.find('.dateWrapper').append('<input class="date" type="text" />');
 
     $('#setupTable').append(html);
-    $(html).find('input.date').mask("99/99/9999");
-    $(html).find('input.npiMasked').mask("9999999999");
-    $(html).find("input.umpiMasked").mask("**********");
+    $(html).find('input.date').mask("00/00/0000");
+    $(html).find('input.npiMasked').mask("0000000000");
+    $(html).find("input.umpiMasked").mask("AAAAAAAAAA");
     reindexSetup();
   });
 
@@ -1630,10 +1630,10 @@ $(document).ready(function () {
     html.find('.dateWrapper').empty();
     html.find('.dateWrapper').append('<input class="date" type="text" />');
     $('#membersTable').append(html);
-    $(html).find('input.date').mask("99/99/9999");
-    $(html).find('input.npiMasked').mask("9999999999");
-    $(html).find("input.umpiMasked").mask("**********");
-    $(html).find('input.ssnMasked').mask("999-99-9999");
+    $(html).find('input.date').mask("00/00/0000");
+    $(html).find('input.npiMasked').mask("0000000000");
+    $(html).find("input.umpiMasked").mask("AAAAAAAAAA");
+    $(html).find('input.ssnMasked').mask("000-00-0000");
     setNpiUserHelpClickHandler();
     reindexMembers();
   });
@@ -1832,9 +1832,9 @@ $(document).ready(function () {
     html.find('select').removeAttr('selected');
 
     $('.personOwnersTable').find('.section:last').after(html);
-    $(html).find('input.date').mask("99/99/9999");
-    $(html).find('input.npiMasked').mask("9999999999");
-    $(html).find('input.ssnMasked').mask("999-99-9999");
+    $(html).find('input.date').mask("00/00/0000");
+    $(html).find('input.npiMasked').mask("0000000000");
+    $(html).find('input.ssnMasked').mask("000-00-0000");
     reindexPersonOwners();
   });
 
@@ -1849,10 +1849,10 @@ $(document).ready(function () {
     html.find('select').removeAttr('selected');
 
     $('.corpOwnersTable').find('.section:last').after(html);
-    $(html).find('input.date').mask("99/99/9999");
-    $(html).find('input.npiMasked').mask("9999999999");
-    $(html).find('input.ssnMasked').mask("999-99-9999");
-    $(html).find("input.feinMasked").mask("99-9999999");
+    $(html).find('input.date').mask("00/00/0000");
+    $(html).find('input.npiMasked').mask("0000000000");
+    $(html).find('input.ssnMasked').mask("000-00-0000");
+    $(html).find("input.feinMasked").mask("00-0000000");
     reindexCorpOwners();
   });
 
@@ -1867,9 +1867,9 @@ $(document).ready(function () {
     html.find('select').removeAttr('selected');
 
     $(this).parent().before(html);
-    $(html).find('input.date').mask("99/99/9999");
-    $(html).find('input.npiMasked').mask("9999999999");
-    $(html).find('input.ssnMasked').mask("999-99-9999");
+    $(html).find('input.date').mask("00/00/0000");
+    $(html).find('input.npiMasked').mask("0000000000");
+    $(html).find('input.ssnMasked').mask("000-00-0000");
     //        $(html).find('input.date').datepicker({
     //            dateFormat:"mm/dd/yy",
     //            showOn: "button",
@@ -2634,9 +2634,9 @@ function createQPs() {
   html.find('.dateWrapper').append('<input class="date" type="text" />');
 
   $('#qpsTable').append(html);
-  $(html).find('input.date').mask("99/99/9999");
-  $(html).find('input.npiMasked').mask("9999999999");
-  $(html).find("input.umpiMasked").mask("**********");
-  $(html).find('input.ssnMasked').mask("999-99-9999");
+  $(html).find('input.date').mask("00/00/0000");
+  $(html).find('input.npiMasked').mask("0000000000");
+  $(html).find("input.umpiMasked").mask("AAAAAAAAAA");
+  $(html).find('input.ssnMasked').mask("000-00-0000");
   reindexQPs();
 }

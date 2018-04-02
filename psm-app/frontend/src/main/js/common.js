@@ -1,3 +1,24 @@
+/* Global settings for jQuery 'Mask' plugin, see:
+ * https://igorescobar.github.io/jQuery-Mask-Plugin/docs.html#global-options
+ * All settings are defaults except dataMask and watchInputs are set to false.
+ */
+$.jMaskGlobals = {
+  dataMask: false,
+  watchInputs: false,
+  maskElements: 'input,td,span,div',
+  dataMaskAttr: '*[data-mask]',
+  watchInterval: 300,
+  watchDataMask: false,
+  byPassKeys: [9, 16, 17, 18, 36, 37, 38, 39, 40, 91],
+  translation: {
+    '0': {pattern: /\d/},
+    '9': {pattern: /\d/, optional: true},
+    '#': {pattern: /\d/, recursive: true},
+    'A': {pattern: /[a-zA-Z0-9]/},
+    'S': {pattern: /[a-zA-Z]/}
+  }
+};
+
 function addressPositionModal() {
   var wWidth  = window.innerWidth;
   var wHeight = window.innerHeight;

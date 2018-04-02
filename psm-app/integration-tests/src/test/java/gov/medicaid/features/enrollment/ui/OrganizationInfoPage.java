@@ -2,13 +2,14 @@ package gov.medicaid.features.enrollment.ui;
 
 import cucumber.api.PendingException;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class OrganizationInfoPage extends EnrollmentPage {
+    private static final String ORGANIZATION_FEIN_ERROR_MESSAGE =
+            "Organization FEIN length must be 9 characters.";
+
     public void setFEIN(String feinValue) {
         $("#fein").typeAndTab(feinValue);
-    }
-
-    public String getFEINValue() {
-        return $("#fein").getValue();
     }
 
     public void verifyApplicantNameAccepted() {
@@ -52,15 +53,15 @@ public class OrganizationInfoPage extends EnrollmentPage {
     }
 
     public void setEffectiveDate(String effectiveDate) {
-        $("[name='_15_effectiveDate']").type(effectiveDate);
+        sendKeysIndividually("[name='_15_effectiveDate']", effectiveDate);
     }
 
     public void setDoingBusinessAs(String dba) {
         $("#name").sendKeys(dba);
     }
 
-    public void setLegalName(String legalNamne) {
-        $("#legalName").sendKeys(legalNamne);
+    public void setLegalName(String legalName) {
+        $("#legalName").sendKeys(legalName);
     }
 
     public void setCity(String city) {
@@ -93,5 +94,10 @@ public class OrganizationInfoPage extends EnrollmentPage {
 
     public void setContactPhone(String contactPhone) {
         $("[name='_15_contactPhone1']").sendKeys(contactPhone);
+    }
+
+    public void checkForFeinError() throws Exception {
+        assertThat($(".errorInfo > ._15_fein").getText())
+                .contains(ORGANIZATION_FEIN_ERROR_MESSAGE);
     }
 }

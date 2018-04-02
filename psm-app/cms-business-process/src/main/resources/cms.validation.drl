@@ -9233,7 +9233,7 @@ dialect 'mvel'
 
 end
 
-rule 'Organization FEIN Maximum Length Check'
+rule 'Organization FEIN Length Check'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -9251,7 +9251,7 @@ dialect 'mvel'
         $report.addError(
             "/ProviderInformation/ApplicantInformation/OrganizationInformation/FEIN",
             "00001",
-            "Organization FEIN length cannot exceed 9 characters."
+            "Organization FEIN length must be 9 characters."
         );
 end
 

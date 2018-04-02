@@ -23,10 +23,10 @@ public class IndividualInfoPage extends EnrollmentPage {
     }
 
     public void setIndividualHireDate(String hireDate) {
-        $("[name='_16_startDate_0'").type(hireDate);
+        sendKeysIndividually("[name='_16_startDate_0'", hireDate);
     }
 
     public void setIndividualOwnerDOB(String dob) {
-        $("[name='_16_dob_0']").type(dob);
+        sendKeysIndividually("[name='_16_dob_0']", dob);
     }
 }

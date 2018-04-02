@@ -323,6 +323,9 @@ project(':frontend') {
         javascript(file('node_modules/axe-core/axe.min.js')) {
             builtBy npmInstall
         }
+        javascript(file('node_modules/jquery-mask-plugin/dist/jquery.mask.min.js')) {
+            builtBy npmInstall
+        }
     }
 }
 

@@ -25,6 +25,17 @@ public class PsmPage extends PageObject {
         return date.format(DATE_FORMATTER);
     }
 
+    /**
+     * Used to avoid race conditions with the input mask library that lead to
+     * erroneous input, particularly with non-formatted String dates,
+     * e.g. "01012018" results in "01/01/0182" instead of "01/01/2018".
+     */
+    public void sendKeysIndividually(String selector, String input) {
+        for (int i = 0; i < input.length(); i++) {
+            $(selector).sendKeys(input.substring(i, i + 1));
+        }
+    }
+
     public void click(WebElement target) {
         evaluateJavascript("arguments[0].scrollIntoView()", target);
         clickOn(target);

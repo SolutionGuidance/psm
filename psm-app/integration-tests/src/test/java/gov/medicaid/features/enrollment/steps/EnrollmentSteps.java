@@ -176,6 +176,11 @@ public class EnrollmentSteps {
     }
 
     @Step
+    public void checkForFeinError() throws Exception {
+        organizationInfoPage.checkForFeinError();
+    }
+
+    @Step
     public void inputProviderAtPublicHealthServiceIndianHospital(boolean checkYes) {
         licenseInfoPage.checkProviderAtPublicHealthServiceIndianHospital(checkYes);
     }

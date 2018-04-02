@@ -19,6 +19,11 @@
     <module name="SingleSpaceSeparator"/>
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter"/>
+    <module name="WhitespaceAround">
+      <property name="allowEmptyConstructors" value="true"/>
+      <property name="allowEmptyMethods" value="true"/>
+      <property name="allowEmptyTypes" value="true"/>
+    </module>
     <module name="EmptyLineSeparator">
       <property name="allowMultipleEmptyLines" value="false"/>
       <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>

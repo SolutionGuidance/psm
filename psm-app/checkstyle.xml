@@ -17,6 +17,7 @@
     <module name="NoWhitespaceBefore"/>
     <module name="ParenPad"/>
     <module name="TypecastParenPad"/>
+    <module name="WhitespaceAfter"/>
     <module name="EmptyLineSeparator">
       <property name="allowMultipleEmptyLines" value="false"/>
       <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>

@@ -232,7 +232,7 @@ public class Exclusion extends Resource {
                 Pair.of("State", state),
                 Pair.of("Zip Code", zip),
                 Pair.of("Date of Birth", dateOfBirth),
-                Pair.of("Exclusion Date",exclusionDate),
+                Pair.of("Exclusion Date", exclusionDate),
                 Pair.of("Exclusion Type", exclusionType),
                 Pair.of("General", general),
                 Pair.of("Speciality", specialty),

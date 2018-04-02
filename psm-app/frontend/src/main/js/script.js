@@ -5,6 +5,13 @@ var setNpiUserHelpClickHandler = setUserHelpClickHandler.bind(
   ['what-is-an-npi']
 );
 
+var setIndividualOwnershipUserHelpClickHandler = setUserHelpClickHandler.bind(
+  undefined,
+  '.ownershipTypeDefinition',
+  '/help/enrollment.html',
+  ['what-are-the-types-for-individual-person-s-ownership-or-control-interest']
+);
+
 var setTitleVUserHelpClickHandler = setUserHelpClickHandler.bind(
   undefined,
   '.titleVHelpLink',
@@ -1838,6 +1845,7 @@ $(document).ready(function () {
     $(html).find('input.npiMasked').mask("9999999999");
     $(html).find('input.ssnMasked').mask("999-99-9999");
     reindexPersonOwners();
+    setIndividualOwnershipUserHelpClickHandler();
     setTitleVUserHelpClickHandler();
   });
 
@@ -1857,6 +1865,7 @@ $(document).ready(function () {
     $(html).find('input.ssnMasked').mask("999-99-9999");
     $(html).find("input.feinMasked").mask("99-9999999");
     reindexCorpOwners();
+    setIndividualOwnershipUserHelpClickHandler();
     setTitleVUserHelpClickHandler();
   });
 
@@ -1889,11 +1898,7 @@ $(document).ready(function () {
     $(html).attr('alt', '').attr('title', '');
   });
 
-  setUserHelpClickHandler(
-    'a.ownershipTypeDefinition',
-    '/help/enrollment.html',
-    ['what-are-the-types-for-individual-person-s-ownership-or-control-interest']
-  );
+  setIndividualOwnershipUserHelpClickHandler();
 
   setNpiUserHelpClickHandler();
 

@@ -1,6 +1,8 @@
 package gov.medicaid.services.impl;
 
 import java.io.StringWriter;
+
+import java.util.Date;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -20,6 +22,7 @@ import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
 import gov.medicaid.entities.EmailTemplate;
+import gov.medicaid.entities.SentNotification;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.NotificationService;
 import gov.medicaid.services.PortalServiceConfigurationException;
@@ -68,6 +71,52 @@ public class NotificationServiceBean extends BaseService implements Notification
         return velocityEngine;
     }
 
+    private String populateTemplate(
+        EmailTemplate emailType,
+        Map<String, Object> vars
+    ) {
+        Template template = velocityEngine.getTemplate(config.getEmailTemplateFile(emailType));
+        StringWriter writer = new StringWriter();
+        VelocityContext velocityContext = new VelocityContext();
+        for (Map.Entry<String, Object> entry : vars.entrySet()) {
+            velocityContext.put(entry.getKey(), entry.getValue());
+        }
+
+        template.merge(velocityContext, writer);
+        return writer.toString();
+    }
+
+    private void saveNotification(
+        String emailAddress,
+        EmailTemplate emailType,
+        Map<String, Object> vars
+    ) {
+        // TODO: We never want to store plaintext passwords
+        // The right way to do this would be to never email plaintext passwords.
+        // For now we are going to do this, which is not really appropriate since it
+        // relies on passwords being sent in a passwords variable to the template,
+        // and if the templates change the name of the password variable
+        // then this code will silently no longer have the intended effect.
+        //
+        // Sorry to the future, and to the children, but this feels like the best
+        // balance of "generic solution" and "not overengineered" outside of actually
+        // addressing the emailed passwords tech debt problem.
+        //
+        // Related Issue: https://github.com/SolutionGuidance/psm/issues/34
+        if (vars.containsKey("password")) {
+            vars.put("password", "********");
+        }
+
+        String emailContent = populateTemplate(emailType, vars);
+        SentNotification sentNotification = new SentNotification();
+        sentNotification.setNotificationType(emailType);
+        sentNotification.setSentTo(emailAddress);
+        sentNotification.setNotificationContent(emailContent);
+        sentNotification.setSentAt(new Date());
+        sentNotification.setNotificationId(0);
+        getEm().persist(sentNotification);
+    }
+
     @Override
     public void sendNotification(
         String emailAddress,
@@ -78,17 +127,9 @@ public class NotificationServiceBean extends BaseService implements Notification
       try {
           message.setRecipient(RecipientType.TO, new InternetAddress(emailAddress));
           message.setSubject(config.getEmailSubject(emailType));
+          message.setText(populateTemplate(emailType, vars));
 
-          Template template = velocityEngine.getTemplate(config.getEmailTemplateFile(emailType));
-          StringWriter writer = new StringWriter();
-          VelocityContext velocityContext = new VelocityContext();
-          for (Map.Entry<String, Object> entry : vars.entrySet()) {
-              velocityContext.put(entry.getKey(), entry.getValue());
-          }
-
-          template.merge(velocityContext, writer);
-          message.setText(writer.toString());
-
+          saveNotification(emailAddress, emailType, vars);
           Transport.send(message);
         } catch (Exception e) {
           throw new PortalServiceException("Error while sending notification.", e);

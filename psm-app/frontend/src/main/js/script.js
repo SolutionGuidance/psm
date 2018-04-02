@@ -5,6 +5,13 @@ var setNpiUserHelpClickHandler = setUserHelpClickHandler.bind(
   ['what-is-an-npi']
 );
 
+var setTitleVUserHelpClickHandler = setUserHelpClickHandler.bind(
+  undefined,
+  '.titleVHelpLink',
+  '/help/enrollment.html',
+  ['what-do-title-v-title-xx-etc-refer-to']
+);
+
 $(document).ready(function () {
   $("#enrollmentQuickSearch").click(function () {
     var quickSearchInput = $.trim($("#quickSearchInput").val());
@@ -1817,8 +1824,7 @@ $(document).ready(function () {
     });
   }
 
-  /*add ownership*/
-  $('#addIndividualOwnership').live('click', function () {
+  $('#addIndividualOwnership').click(function addIndividualOwnership() {
     var html = $('#ownerTemplate').clone();
     html.attr('id', '');
     html.find('[type=text]').val('');
@@ -1832,9 +1838,10 @@ $(document).ready(function () {
     $(html).find('input.npiMasked').mask("9999999999");
     $(html).find('input.ssnMasked').mask("999-99-9999");
     reindexPersonOwners();
+    setTitleVUserHelpClickHandler();
   });
 
-  $('#addBusinessOwnership').live('click', function () {
+  $('#addBusinessOwnership').click(function addBusinessOwnership() {
     var html = $('#corpOwnerTemplate').clone();
     html.attr('id', '');
     html.find('[type=text]').val('');
@@ -1850,6 +1857,7 @@ $(document).ready(function () {
     $(html).find('input.ssnMasked').mask("999-99-9999");
     $(html).find("input.feinMasked").mask("99-9999999");
     reindexCorpOwners();
+    setTitleVUserHelpClickHandler();
   });
 
   /*add ownership*/
@@ -1922,6 +1930,8 @@ $(document).ready(function () {
     ],
     'Questions About Selecting a Provider Type'
   );
+
+  setTitleVUserHelpClickHandler();
 
   //$('.inline input[type=radio]').removeAttr('checked');
   //    $('.inline input[name=civilMoney]').click(function(){

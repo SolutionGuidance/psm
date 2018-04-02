@@ -240,6 +240,7 @@
               This person/business has an ownership or control interest in another Medicaid disclosing entity, or an
               entity that does not participate in Medicaid but is required to disclose ownership and control interest
               because of participation in any Title V, XVIII, or XX programs.
+              <a href="javascript:;" class="userHelpLink titleVHelpLink">?</a>
             </label>
         </span>
     </div>
@@ -458,6 +459,7 @@
               This person/business has an ownership or control interest in another Medicaid disclosing entity, or an
               entity that does not participate in Medicaid but is required to disclose ownership and control interest
               because of participation in any Title V, XVIII, or XX programs.
+              <a href="javascript:;" class="userHelpLink titleVHelpLink">?</a>
             </label>
         </span>
     </div>
@@ -667,6 +669,7 @@
               This person/business has an ownership or control interest in another Medicaid disclosing entity, or an
               entity that does not participate in Medicaid but is required to disclose ownership and control interest
               because of participation in any Title V, XVIII, or XX programs.
+              <a href="javascript:;" class="userHelpLink titleVHelpLink">?</a>
             </label>
         </span>
     </div>
@@ -901,6 +904,7 @@
               This person/business has an ownership or control interest in another Medicaid disclosing entity, or an
               entity that does not participate in Medicaid but is required to disclose ownership and control interest
               because of participation in any Title V, XVIII, or XX programs.
+              <a href="javascript:;" class="userHelpLink titleVHelpLink">?</a>
             </label>
         </span>
     </div>

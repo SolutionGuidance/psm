@@ -175,10 +175,10 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
     private AddressType readAddress(HttpServletRequest request, String prefix, int i) {
         AddressType address = new AddressType();
         address.setAddressLine1(param(request, prefix + "AddressLine1", i));
-        address.setAddressLine2(param(request, prefix +  "AddressLine2", i));
-        address.setCity(param(request, prefix +  "City", i));
+        address.setAddressLine2(param(request, prefix + "AddressLine2", i));
+        address.setCity(param(request, prefix + "City", i));
         address.setState(param(request, prefix + "State", i));
-        address.setZipCode(param(request, prefix +  "Zip", i));
+        address.setZipCode(param(request, prefix + "Zip", i));
         address.setCounty(param(request, prefix + "County", i));
         return address;
     }

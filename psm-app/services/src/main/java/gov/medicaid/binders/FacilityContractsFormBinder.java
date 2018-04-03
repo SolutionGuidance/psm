@@ -59,9 +59,13 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
      */
     private static final String LICENSE_PATH = "/ProviderInformation/FacilityCredentials/SignedContract[";
 
-    private static final String[] ALL_CONTRACTS = new String[] {"Adult Rehabilitative Mental Health Services",
-        "Children's Therapeutic Services and Supports (CTSS)", "Adult Crisis Response Services - Crisis Assessment & Crisis Intervention",
-        "Adult Crisis Response Services - Crisis Stabilization", "Adult Crisis Response Services - Short-Term Residential",};
+    private static final String[] ALL_CONTRACTS = new String[]{
+            "Adult Rehabilitative Mental Health Services",
+            "Children's Therapeutic Services and Supports (CTSS)",
+            "Adult Crisis Response Services - Crisis Assessment & Crisis Intervention",
+            "Adult Crisis Response Services - Crisis Stabilization",
+            "Adult Crisis Response Services - Short-Term Residential",
+    };
 
     /**
      * Creates a new binder.

@@ -45,7 +45,7 @@ public class OwnershipInformation implements Serializable {
     /**
      * References the ticket for this request.
      */
-    @Column(name= "ticket_id")
+    @Column(name = "ticket_id")
     private long ticketId;
 
     /**

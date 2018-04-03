@@ -16,12 +16,12 @@ public class ChangePasswordStepDefinitions {
     }
 
     @When("^I click on My Profile$")
-    public void i_click_on_my_profile()  {
+    public void i_click_on_my_profile() {
         generalSteps.clickMyProfile();
     }
 
     @Then("^I should see the Change Password link$")
-    public void i_should_see_change_password()  {
+    public void i_should_see_change_password() {
         generalSteps.seeChangePassword();
     }
 

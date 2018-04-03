@@ -53,7 +53,7 @@ public class PersonBeneficialOwner extends BeneficialOwner {
     /**
      * Last name.
      */
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
 
     /**
@@ -65,7 +65,7 @@ public class PersonBeneficialOwner extends BeneficialOwner {
     /**
      * Date of birth.
      */
-    @Column(name="birth_dt")
+    @Column(name = "birth_dt")
     private Date dob;
 
     /**

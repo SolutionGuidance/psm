@@ -22,7 +22,7 @@ public class LogoutStepDefinitions {
     }
 
     @When("^I click on Logout$")
-    public void clickLogout()  {
+    public void clickLogout() {
         dashboardPage.logout();
     }
 

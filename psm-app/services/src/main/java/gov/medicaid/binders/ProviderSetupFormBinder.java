@@ -175,7 +175,7 @@ public class ProviderSetupFormBinder extends BaseFormBinder implements FormBinde
             if (path.endsWith("/Type")) {
                 return createError("type", index, message);
             } else if (path.endsWith("/PhoneNumber")) {
-                return createError(new String[]{"phone1","phone2","phone3", "phone4"}, index, message);
+                return createError(new String[]{"phone1", "phone2", "phone3", "phone4"}, index, message);
             } else if (path.endsWith("/Name")) {
                 return createError("name", index, message);
             } else if (path.endsWith("/EffectiveDate")) {

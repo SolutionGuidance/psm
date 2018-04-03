@@ -83,13 +83,13 @@ public class DefaultExternalAuthenticationProvider implements AuthenticationProv
     @PostConstruct
     public void init() {
         if (registrationService == null) {
-            throw new  PortalServiceConfigurationException("registrationService must be configured.");
+            throw new PortalServiceConfigurationException("registrationService must be configured.");
         }
         if (system == null) {
-            throw new  PortalServiceConfigurationException("system must be configured.");
+            throw new PortalServiceConfigurationException("system must be configured.");
         }
         if (partnerService == null) {
-            throw new  PortalServiceConfigurationException("partnerService must be configured.");
+            throw new PortalServiceConfigurationException("partnerService must be configured.");
         }
     }
 

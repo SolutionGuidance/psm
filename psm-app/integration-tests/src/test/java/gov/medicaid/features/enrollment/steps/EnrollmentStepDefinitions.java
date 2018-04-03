@@ -125,7 +125,7 @@ public class EnrollmentStepDefinitions {
     }
 
     @Given("^I have indicated that the owner has an interest in another Medicaid disclosing entity$")
-    public void i_have_indicated_that_the_owner_has_an_interest_in_another_Medicaid_disclosing_entity()  {
+    public void i_have_indicated_that_the_owner_has_an_interest_in_another_Medicaid_disclosing_entity() {
         ownershipInfoPage.clickDisclosure();
     }
 

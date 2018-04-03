@@ -11,22 +11,22 @@ public class LoginStepDefinitions {
     private LoginPage loginPage;
 
     @Given("^I have the application open in my browser$")
-    public void i_have_the_application_open_in_my_browser()  {
+    public void i_have_the_application_open_in_my_browser() {
         loginPage.open();
     }
 
     @Given("^I enter my username and password$")
-    public void i_enter_my_username_and_password()  {
+    public void i_enter_my_username_and_password() {
         loginPage.enterCredentials("p1", "p1");
     }
 
     @When("^I click on Login$")
-    public void i_click_on_Login()  {
+    public void i_click_on_Login() {
         loginPage.login();
     }
 
     @Then("^I should see my dashboard page$")
-    public void i_should_see_my_dashboard_page()  {
+    public void i_should_see_my_dashboard_page() {
         loginPage.checkUserLoggedIn("p1");
     }
 }

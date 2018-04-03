@@ -298,11 +298,20 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                 } else if (path.equals("/ProviderInformation/ApplicantInformation/OrganizationInformation/FEIN")) {
                     errors.add(createError("fein", ruleError.getMessage()));
                 } else if (path.equals("/ProviderInformation/ApplicantInformation/OrganizationInformation/ContactInformation/PhoneNumber")) {
-                    errors.add(createError(new String[]{"phone1","phone2","phone3","phone4"}, ruleError.getMessage()));
+                    errors.add(createError(
+                            new String[]{"phone1", "phone2", "phone3", "phone4"},
+                            ruleError.getMessage()
+                    ));
                 } else if (path.equals("/ProviderInformation/ApplicantInformation/OrganizationInformation/ContactInformation/FaxNumber")) {
-                    errors.add(createError(new String[]{"fax1","fax2","fax3"}, ruleError.getMessage()));
+                    errors.add(createError(
+                            new String[]{"fax1", "fax2", "fax3"},
+                            ruleError.getMessage()
+                    ));
                 } else if (path.equals("/ContactInformation/PhoneNumber")) {
-                    errors.add(createError(new String[]{"contactPhone1","contactPhone2","contactPhone3","contactPhone4"}, ruleError.getMessage()));
+                    errors.add(createError(
+                            new String[]{"contactPhone1", "contactPhone2", "contactPhone3", "contactPhone4"},
+                            ruleError.getMessage()
+                    ));
                 } else if (path.startsWith("/ProviderInformation/AlternateAddresses/Address")) {
                     Integer addressIndex = resolveIndex(path);
                     if (addressIndex != null) {

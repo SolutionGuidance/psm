@@ -161,7 +161,7 @@ public interface RegistrationService {
      * @return the matching users
      * @throws PortalServiceException for any errors encountered
      */
-    SearchResult<CMSUser> findUsersByCriteria(UserSearchCriteria criteria)  throws PortalServiceException;
+    SearchResult<CMSUser> findUsersByCriteria(UserSearchCriteria criteria) throws PortalServiceException;
 
     /**
      * Deletes the given users.

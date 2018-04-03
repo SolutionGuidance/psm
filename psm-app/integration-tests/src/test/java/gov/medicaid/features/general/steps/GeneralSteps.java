@@ -86,12 +86,12 @@ public class GeneralSteps {
     }
 
     @Step
-    public void clickMyProfile()  {
+    public void clickMyProfile() {
         dashboardPage.clickMyProfile();
     }
 
     @Step
-    public void seeChangePassword()  {
+    public void seeChangePassword() {
         profilePage.checkChangePassword();
     }
 

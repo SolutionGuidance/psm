@@ -621,7 +621,7 @@ public class RegistrationServiceBean extends BaseService implements Registration
      * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings("unchecked")
-    public SearchResult<CMSUser> findUsersByCriteria(UserSearchCriteria criteria)  throws PortalServiceException {
+    public SearchResult<CMSUser> findUsersByCriteria(UserSearchCriteria criteria) throws PortalServiceException {
         if (criteria == null) {
             throw new IllegalArgumentException("Criteria cannot be null.");
         }

@@ -479,7 +479,7 @@ possible.
 
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/681][681]]   (open): Rename built user docs to "user help" or "user FAQ"
 
   Per @jcunard's suggestion, change the title of the documentation from "user manual" to "user help" or "user FAQs."  This should be simple to do in `conf.py`.
@@ -546,7 +546,7 @@ possible.
    - ux
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/668][668]]   (open): Rearrange the provider dashboard pages
 
   The provider "Dashboard > Dashboard" and "Enrollments > Dashboard" pages are very similar, so similar that it's odd to have them in separate tabs in the main navigation bar (as "Dashboard" and "Enrollments").  Some reworking seems in order.
@@ -948,7 +948,7 @@ possible.
    - tech-debt
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/612][612]]   (open): Enrollment search has broken placeholder text
 
   The enrollment quick search bar has placeholder text ("Search Keyword"), but clicking on it leaves that placeholder text behind.
@@ -1216,7 +1216,7 @@ possible.
    - ux
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/564][564]]   (open): Ownership Information Percentage of Ownership Interest...
 
   In `cms_web/WebContent/WEB-INF/pages/provider/enrollment/steps/pageTemplate/default/ownership_information.jsp` around line 936 (give or take a few) there is a form field labeled `% of Ownership Interest`
@@ -1341,7 +1341,7 @@ possible.
    - accessibility
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/553][553]] (closed): Use accessible submit buttons on all forms
 
   As part of Issue #510, and related to issue #65, we should use accessible submit buttons for forms.
@@ -1357,7 +1357,7 @@ possible.
    - accessibility
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/546][546]] (closed): Post processing fails on submitted enrollment applications
 
   When a user submits an enrollment, several post-processing steps happen, including the LEIE check. These steps are failing on master, and an exception is logged in the WildFly logs (below). The application never receives a risk level, and cannot be resubmitted by an admin.
@@ -1949,7 +1949,7 @@ possible.
    - task
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/517][517]] (closed): Add language declaration to HTML header
 
   `pa11y` reminds us that, per `WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2`, The `html` element should have a `lang` or `xml:lang` attribute which describes the language of the document.
@@ -1977,7 +1977,7 @@ possible.
    - ux
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/516][516]] (closed): duplicate ID for Next button on Summary Information page during enrollment
 
   `pa11y` tells me that we're breaking WCAG2AA.Principle4.Guideline4_1.4_1_1.F77: Duplicate id attribute value `nextBtn` found on the web page. This is because we show a "Next" button before and after the summary display.
@@ -2000,7 +2000,7 @@ possible.
    - ux
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/514][514]] (closed): fix color contrast in headers and footers for accessibility
 
   From HTML CodeSniffer/`pa11y`, we have a few color contrast issues with headers, footers, etc. Example:
@@ -2026,7 +2026,7 @@ possible.
    - ux
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/513][513]]   (open): ensure screenreaders can see headers on tables
 
   For accessibility reasons, we should double-check that we comply with Section 508, clause G, Table Headers, when we use tables like `practiceLookupTableTemplate` and `tableLicenseTemplate`:
@@ -2043,7 +2043,7 @@ possible.
    - ux
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/512][512]]   (open): Logically nest header elements
 
   In a few places our header nesting is wrong, causing accessibility issues (which `pa11y` calls out as `Section508.D.HeadingOrder`). Examples where an `h3` should be an `h2`:
@@ -2061,7 +2061,7 @@ possible.
    - ux
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/511][511]]   (open): Describe form input error to user in text
 
   If an input error is automatically detected in this form, check that the item(s) in error are identified and the error(s) are described to the user in text. In `pa11y` this is `Section508.N.Errors`. Examples of our current noncompliance:
@@ -2082,7 +2082,7 @@ possible.
    - ux
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/510][510]]   (open): Improve keyboard navigation for forms & elements
 
   We should ensure that our forms can be navigated using the keyboard and other accessibility tools. In `pa11y` this is `Section508.N.KeyboardNav` ("When electronic forms are designed to be completed on-line, the form shall allow people using assistive technology to access the information, field elements, and functionality required for completion and submission of the form, including all directions and cues."). In HTML CodeSniffer:
@@ -2114,7 +2114,7 @@ possible.
    - ux
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/509][509]] (closed): Improve accessibility (e.g. alt text) for images
 
   To better serve people who use screenreaders, we should ensure that the `img` element's `alt` text serves the same purpose and presents the same information as the image. In `pa11y` this is `Section508.A.Img.GeneralAlt`. Examples where we currently do not comply with this (mostly with modal icons) are in comments below.
@@ -2131,7 +2131,7 @@ possible.
    - ux
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/508][508]] (closed): Provide descriptive labels/instructions for user input in forms
 
   We need to provide descriptive labels or instructions (including for required fields) for user input in forms. In `pa11y` this is `Section508.N.Labels`. Examples where we are currently not doing this:
@@ -2152,7 +2152,7 @@ possible.
    - ux
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/507][507]] (closed): Fix anchors that have no link content
 
   One of our Section 508 problems is anchors without link content. In `pa11y` this error is `Section508.L.NoContentAnchor`.
@@ -2175,7 +2175,7 @@ possible.
    - ux
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/504][504]] (closed): Stack trace when mail server unavailable
 
   If you try to use the "Forgot Password" feature when you don't have a mail server running, you should get an error. Instead, we currently show a stack trace, starting with
@@ -2571,7 +2571,7 @@ possible.
    - accessibility
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/466][466]] (closed): Document application architecture and interfaces
 
   - psm-II-4.2 The PSM shall document all interfaces in an Interface Control Document (ICD), along with how those interfaces are maintained.
@@ -3234,7 +3234,7 @@ API.
    - task
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/414][414]] (closed): Create and/or document session lock after a given period of inactivity
 
   After `n` minutes of inactivity (with configurable `n`), lock the logged-in user's session and require them to re-log-in.  Logging in should take them back to the page they were on.
@@ -7659,7 +7659,7 @@ inactivity. (Addressable)
    - ux
 ** LABEL CHANGES
    - fr-10.2
-   + ad-2.1
+   + ad-2.4
 * [[https://github.com/solutionguidance/psm/issues/62][ 62]]   (open): Include territories in list of states?
 
   Where lists of US states appear in the app, should the list include US territories?

@@ -27,6 +27,7 @@ import gov.medicaid.entities.ContactData;
 import gov.medicaid.entities.ContactInformation;
 import gov.medicaid.entities.DesignatedContact;
 import gov.medicaid.entities.Document;
+import gov.medicaid.entities.EmailTemplate;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentStatus;
 import gov.medicaid.entities.Entity;
@@ -53,12 +54,14 @@ import gov.medicaid.entities.SystemId;
 import gov.medicaid.entities.UserRequest;
 import gov.medicaid.entities.Validity;
 import gov.medicaid.entities.dto.ViewStatics;
+import gov.medicaid.services.NotificationService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.Util;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.NotImplementedException;
 
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -102,6 +105,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * Number of columns in the practice lookup results.
      */
     private static final int TICKET_COL_CNT = 11;
+
+    /**
+     * Notification service used for sending emails.
+     */
+    @EJB
+    private NotificationService notificationService;
 
     /**
      * List of roles with full access to all profiles and tickets.
@@ -160,10 +169,35 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             throw new PortalServiceException("Cannot change status because it is not in pending state.");
         }
 
+        CMSUser submittingUser = getUserByEnrollment(ticket);
+        Map<String, Object> vars = new HashMap<>();
+        String emailAddress = submittingUser.getEmail();
+        notificationService.sendNotification(emailAddress, EmailTemplate.REJECTED_ENROLLMENT, vars);
+
         ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.REJECTED_STATUS));
         ticket.setStatusNote(reason);
         ticket.setStatusDate(Calendar.getInstance().getTime());
         saveTicket(user, ticket, false);
+    }
+
+    /**
+     * Look up the user who submitted an enrollment
+     *
+     * TODO: this is not the appropriate location for this functionality
+     * If / when a refactor to how we do our models is done, this should
+     * live inside of the Enrollment model.
+     *
+     * @param  enrollment The enrollment object whose creator we want to look up
+     * @return            The CMS user object associated with the user who made the enrollment
+     */
+    private CMSUser getUserByEnrollment(Enrollment enrollment) {
+        return getEm().createQuery(
+            "FROM CMSUser where username = :username",
+            CMSUser.class
+        ).setParameter(
+            "username",
+            enrollment.getSubmittedBy()
+        ).getSingleResult();
     }
 
     /**

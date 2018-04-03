@@ -2,6 +2,11 @@
 
 What's here:
 
+* ForPaul.txt
+  An overview of what needs to happen in here, assuming one has the
+  background that Paul Morris already has, or assuming, more strongly,
+  that one is in fact Paul Morris.  Hi, Paul.
+
 * RTM.xlsx
   Requirements Traceability Matrix: master spreadsheet of all requirements.
 

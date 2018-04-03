@@ -1,0 +1,9 @@
+_site
+*.swp
+*.DS_Store
+.sass-cache/*
+/log
+/public
+/tmp
+.byebug_history
+.env-prod

@@ -143,6 +143,9 @@ you should talk with them before changing shared history.  We expect
 force-pushing to mostly occur in active PR branches.
 
 ### Commit Messages
+
+#### Follow Best Practices
+
 Please adhere
 to [these guidelines](https://chris.beams.io/posts/git-commit/) for
 each commit message.  The "Seven Rules" described in that post are:
@@ -163,6 +166,34 @@ right frame of mind to understand the code change.
 The reason for the short initial summary line is to support commands,
 such as `git show-branch`, that list changes by showing just the first
 line of each one's commit message.
+
+#### Reference Issues
+
+If the commit is related to one or more issues, please include both the issue
+number (as shown in the GitHub UI and URL) and the title of each issue near the
+end of the commit message (but before co-authors). We've been formatting these
+like so:
+
+```
+Issue #12 This is the title of a very long issue which needs to be
+          wrapped to avoid going over 72 characters
+Issue #34 Another, shorter, issue title
+```
+
+Including the issue number (with the `#` prefix) allows the GitHub UI to
+[automatically link the commit to the
+issue](https://help.github.com/articles/autolinked-references-and-urls/#issues-and-pull-requests),
+and including the issue title makes it easier to understand the context of a
+change without needing to go to the issue tracker.
+
+#### Credit Co-authors
+
+If you paired with someone on your change, or if you are incorporating the work
+of someone else in your commit, please give them due credit with
+`Co-authored-by` line(s) at the end of the commit message. See GitHub's user
+documentation on [Creating a commit with multiple
+authors](https://help.github.com/articles/creating-a-commit-with-multiple-authors/)
+for more details.
 
 ### Indentation and Whitespace
 

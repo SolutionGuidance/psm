@@ -5,6 +5,20 @@ var setNpiUserHelpClickHandler = setUserHelpClickHandler.bind(
   ['what-is-an-npi']
 );
 
+var setOwnershipTypeUserHelpClickHandler = setUserHelpClickHandler.bind(
+  undefined,
+  '.ownershipTypeDefinition',
+  '/help/enrollment.html',
+  ['what-are-the-types-for-ownership-or-control-interest']
+);
+
+var setTitleVUserHelpClickHandler = setUserHelpClickHandler.bind(
+  undefined,
+  '.titleVHelpLink',
+  '/help/enrollment.html',
+  ['what-do-title-v-title-xx-etc-refer-to']
+);
+
 $(document).ready(function () {
   $("#enrollmentQuickSearch").click(function () {
     var quickSearchInput = $.trim($("#quickSearchInput").val());
@@ -1821,8 +1835,7 @@ $(document).ready(function () {
     });
   }
 
-  /*add ownership*/
-  $('#addIndividualOwnership').live('click', function () {
+  $('#addIndividualOwnership').click(function addIndividualOwnership() {
     var html = $('#ownerTemplate').clone();
     html.attr('id', '');
     html.find('[type=text]').val('');
@@ -1836,9 +1849,11 @@ $(document).ready(function () {
     $(html).find('input.npiMasked').mask("0000000000");
     $(html).find('input.ssnMasked').mask("000-00-0000");
     reindexPersonOwners();
+    setOwnershipTypeUserHelpClickHandler();
+    setTitleVUserHelpClickHandler();
   });
 
-  $('#addBusinessOwnership').live('click', function () {
+  $('#addBusinessOwnership').click(function addBusinessOwnership() {
     var html = $('#corpOwnerTemplate').clone();
     html.attr('id', '');
     html.find('[type=text]').val('');
@@ -1854,6 +1869,8 @@ $(document).ready(function () {
     $(html).find('input.ssnMasked').mask("000-00-0000");
     $(html).find("input.feinMasked").mask("00-0000000");
     reindexCorpOwners();
+    setOwnershipTypeUserHelpClickHandler();
+    setTitleVUserHelpClickHandler();
   });
 
   /*add ownership*/
@@ -1885,11 +1902,7 @@ $(document).ready(function () {
     $(html).attr('alt', '').attr('title', '');
   });
 
-  setUserHelpClickHandler(
-    'a.ownershipTypeDefinition',
-    '/help/enrollment.html',
-    ['what-are-the-types-for-individual-person-s-ownership-or-control-interest']
-  );
+  setOwnershipTypeUserHelpClickHandler();
 
   setNpiUserHelpClickHandler();
 
@@ -1926,6 +1939,8 @@ $(document).ready(function () {
     ],
     'Questions About Selecting a Provider Type'
   );
+
+  setTitleVUserHelpClickHandler();
 
   //$('.inline input[type=radio]').removeAttr('checked');
   //    $('.inline input[name=civilMoney]').click(function(){

@@ -12,11 +12,14 @@
     <div class="clearFixed"></div>
     <div class="disclosure">
         <div class="row">
-            <label>Have you ever been convicted of a criminal offense related to
-                involvement in any program under Medicare, Medicaid, Title XX,
-                or Title XXI in Minnesota or any other state or jurisdiction
-                since the inception of these programs?<span
-                    class="required">*</span></label>
+            <label>
+              Have you ever been convicted of a criminal offense related to
+              involvement in any program under Medicare, Medicaid, Title XX,
+              or Title XXI in Minnesota or any other state or jurisdiction
+              since the inception of these programs?
+              <span class="required">*</span>
+              <a href="javascript:;" class="userHelpLink titleVHelpLink">?</a>
+            </label>
             <div>
                 <c:set var="formName"
                     value="_08_criminalConvictionInd"></c:set>
@@ -72,12 +75,15 @@
             </div>
         </div>
         <div class="row">
-            <label>Have you ever been excluded or terminated from participation
-                in Medicare, Medicaid, Children's Health Insurance Program
-                (CHIP),<br />
-                or the Title XXI services program in Minnesota or any other
-                state since the inception of these
-                programs?<span class="required">*</span></label>
+            <label>
+              Have you ever been excluded or terminated from participation
+              in Medicare, Medicaid, Children's Health Insurance Program
+              (CHIP),<br />
+              or the Title XXI services program in Minnesota or any other
+              state since the inception of these programs?
+              <span class="required">*</span>
+              <a href="javascript:;" class="userHelpLink titleVHelpLink">?</a>
+            </label>
             <div>
                 <c:set var="formName"
                     value="_08_previousExclusionInd"></c:set>

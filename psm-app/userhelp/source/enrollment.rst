@@ -189,8 +189,8 @@ information on Type 2 NPI numbers and what kinds of business structures
 should have them <https://questions.cms.gov/faq.php?id=5005&faqId=1965>`__.
 
 
-What are the types for "Individual Person(s) Ownership or Control Interest"?
-----------------------------------------------------------------------------
+What are the types for "Ownership or Control Interest"?
+-------------------------------------------------------
 
 **Agent** - anyone who has been delegated the authority to obligate or
 act on behalf of the provider.

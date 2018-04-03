@@ -21,7 +21,14 @@
             <div class="row">
                 <c:set var="formName" value="_18_empCriminalConvictionInd"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label class="longLbl">Been convicted of a criminal offense related to that person's involvement in any program under Medicare, Medicaid, Title XX, or Title XXI in Minnesota or any other state or jurisdiction since the inception of these programs? <span class="required">*</span></label>
+                <label class="longLbl">
+                  Been convicted of a criminal offense related to that person's
+                  involvement in any program under Medicare, Medicaid, Title XX,
+                  or Title XXI in Minnesota or any other state or jurisdiction
+                  since the inception of these programs?
+                  <span class="required">*</span>
+                  <a href="javascript:;" class="userHelpLink titleVHelpLink">?</a>
+                </label>
                 <label class="inline leftPadding"><input type="radio" value="Y" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''} />Yes</label>
                 <label class="inline leftPadding"><input type="radio" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''} />No</label>
 
@@ -64,7 +71,14 @@
             <div class="row">
                 <c:set var="formName" value="_18_criminalConvictionInd"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label class="longLbl">Been convicted of a criminal offense related to that person's involvement in any program under Medicare, Medicaid, Title XX, or Title XXI in Minnesota or any other state or jurisdiction since the inception of these programs?  <span class="required">*</span></label>
+                <label class="longLbl">
+                  Been convicted of a criminal offense related to that person's
+                  involvement in any program under Medicare, Medicaid, Title XX,
+                  or Title XXI in Minnesota or any other state or jurisdiction
+                  since the inception of these programs?
+                  <span class="required">*</span>
+                  <a href="javascript:;" class="userHelpLink titleVHelpLink">?</a>
+                </label>
                 <label class="inline leftPadding"><input type="radio" value="Y" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''} />Yes</label>
                 <label class="inline leftPadding"><input type="radio" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''} />No</label>
                 <div class="clear"></div>

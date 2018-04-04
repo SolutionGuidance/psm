@@ -36,11 +36,29 @@ REQ-NAME can be in non-canonical case."
              psm-reqs)))
 
 (defun psm-req-case-canonicalize-name (req-name)
-  "Return a case-canonicalized version of REQ-NAME."
-  ;; Ensure that the "psm" is lower case and the two-letter
-  ;; subcode is upper case.  For example, this would convert
-  ;; "PSM-fr-5.2" to "psm-FR-5.2".
+  "Return a canonicalized version of REQ-NAME.
+Canonicalized means ensuring that the \"psm-\" prefix
+is on the front and is lower-case, and that the
+two-letter subcode is upper case.  For example, this
+would convert \"PSM-fr-5.2\" to \"psm-FR-5.2\", and
+would convert \"fr-5.2\" to \"psm-FR-5.2\"."
   (let ((new-req-name (copy-sequence req-name)))
+    (save-match-data
+      ;; I wish Elisp had `starts-with'.  There's
+      ;; `bash-completion-starts-with', in the emacs-bash-completion
+      ;; project, and its implementation is very simple:
+      ;; 
+      ;;   (defun bash-completion-starts-with (str prefix)
+      ;;     "Return t if STR starts with PREFIX."
+      ;;     (let ((prefix-len (length prefix))
+      ;;   	(str-len (length str)))
+      ;;       (and
+      ;;        (>= str-len prefix-len)
+      ;;        (string= (substring str 0 prefix-len) prefix))))
+      ;;
+      ;; But this is not the place, and now is not the time.
+      (when (not (string-match "^psm-" new-req-name))
+        (setq new-req-name (concat "psm-" new-req-name))))
     (aset new-req-name 0 (downcase (aref new-req-name 0)))
     (aset new-req-name 1 (downcase (aref new-req-name 1)))
     (aset new-req-name 2 (downcase (aref new-req-name 2)))
@@ -49,14 +67,15 @@ REQ-NAME can be in non-canonical case."
     new-req-name))
 
 (defun psm-req-name-at-point ()
-  "Return the req name at point, in canonical case."
+  "Return the req name at point, canonicalized.
+The req name may have the \"psm-\" prefix but does not require it."
   (let* ((raw (thing-at-point 'filename t))
          (len (length raw)))
-    (when (< len 10)
+    (when (< len 6)
       (error "'%s' is too short to be a PSM req ID" raw))
     (let ((case-fold-search t))
       (save-match-data
-        (if (string-match "psm-[A-Z][A-Z]-[0-9]+\\.[0-9]+" raw)
+        (if (string-match "\\(psm-\\)?[A-Z][A-Z]-[0-9]+\\.[0-9]+" raw)
             ;; The regexp above doesn't begin with "^" nor
             ;; end with "$" because `thing-at-point' may
             ;; include leading or trailing garbage.  E.g., in

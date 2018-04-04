@@ -5742,6 +5742,11 @@ inactivity. (Addressable)
    - bug
    - infra
    - task
+** LABEL CHANGES
+   - ad-5.11
+   + ad-5.2
+   + ad-5.7
+   + ad-5.16
 * [[https://github.com/solutionguidance/psm/issues/177][177]] (closed): Personal Care Assistant Enrollment Application has no issuing states
 
   As I tried to enroll as a provider in the type "Personal Care Assistant" I was stymied at step 2 (Training) while trying to add a license/certification, because the dropdown list of issuing states was empty.
@@ -5792,6 +5797,8 @@ inactivity. (Addressable)
 
    - quick-fix
    - security
+** LABEL CHANGES
+   + ad-5.3
 * [[https://github.com/solutionguidance/psm/issues/174][174]]   (open): search for user accounts doesn't retrieve results consistently
 
   When I'm logged in as a system administrator user, when I'm viewing user accounts if I use the "search keyword" (not the advanced search) and search for a name that's in the list of user accounts, sometimes I get "No user account is found". I think one problem is that it's doing a case-sensitive search, but even that doesn't always explain the lack of results. Also, the title bar says "Advanced Search" even if I've used the keyword search.

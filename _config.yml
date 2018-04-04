@@ -14,7 +14,6 @@ description: > # this means to ignore newlines until "baseurl:"
   modern, modular Medicaid IT system.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://providerscreeningmodule.org" # the base hostname & protocol for your site
-twitter_username: project_psm
 
 # Build settings
 markdown: kramdown

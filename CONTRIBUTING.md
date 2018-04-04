@@ -142,6 +142,18 @@ automatically.  If you're working with someone else on a shared branch
 you should talk with them before changing shared history.  We expect
 force-pushing to mostly occur in active PR branches.
 
+### Refactoring
+
+While you are making a change, you may see some tech debt changes that
+could be made.  A good start is to always run `./gradlew checkstyleMain
+checkstyleTest` on your branch before you open a PR.  Fixing any style
+problems locally will save your reviewers time and attention.
+
+Other things to look out for:
+
+- Use injection (not config) to initialize services
+- Remove unneeded comments
+
 ### Commit Messages
 
 #### Follow Best Practices
@@ -197,7 +209,7 @@ for more details.
 
 ### Indentation and Whitespace
 
-Please uses spaces, never tabs.  Indent Java code by 4 spaces per
+Please use spaces, never tabs.  Indent Java code by 4 spaces per
 level, XML by 2 spaces per level, and avoid trailing whitespaces.  The
 file [.editorconfig](.editorconfig), in the repository's root
 directory, encodes these formatting conventions in a way that most

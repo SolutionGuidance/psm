@@ -1,0 +1,83 @@
+// Homepage
+.jumbotron {
+  img {
+    text-align: center;
+    margin: 5% auto;
+    display: block;
+  }
+}
+.home h1 {
+  margin-top: 2em;
+}
+.definition {
+  border-left: 3px solid;
+  padding-left: 1em;
+  margin: 0 0.8em;
+}
+.block-container-3 {
+  margin: 1em 0;
+  overflow: hidden;
+  a {
+    display: inline-block;
+    width: 31%;
+    margin: 1%;
+    border: 2px solid;
+    padding: 3% 0;
+    float: left;
+    text-align: center;
+    font-size: 1.2em;
+    background: white;
+    &:hover {
+      text-decoration: none;
+      color: $brand-color-bright;
+    }
+    .fa {
+      font-size: 5em;
+      margin-bottom: 10px;
+    }
+    @include media-query($on-palm) {
+      width: 97%;
+    }
+  }
+}
+.block-container-4 {
+  margin: 1em 0;
+  overflow: hidden;
+  a {
+    display: inline-block;
+    width: 22%;
+    margin: 1%;
+    border: 2px solid;
+    padding: 2% 0;
+    float: left;
+    text-align: center;
+    font-size: 1em;
+    background: white;
+    &:hover {
+      text-decoration: none;
+      color: $brand-color-bright;
+    }
+    .fa {
+      font-size: 3em;
+      margin-bottom: 5px;
+    }
+    @include media-query($on-laptop) {
+      width: 45%;
+    }
+    @include media-query($on-palm) {
+      width: 98%;
+    }
+  }
+}
+
+// Contact
+
+// Developers
+.tech_logos li {
+  display: inline-block;
+  list-style: none;
+  padding: 1%;
+}
+.tech_logos img {
+  height: 100px;
+}

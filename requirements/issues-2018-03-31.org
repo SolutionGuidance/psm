@@ -4967,6 +4967,8 @@ inactivity. (Addressable)
      <<< SQ 1.  Software Quality and Maintainability >>>
 
    - tech-debt
+** LABEL CHANGES
+   + sq-1.6
 * [[https://github.com/solutionguidance/psm/issues/254][254]]   (open): Allow database schema changes without losing data
 
   As we develop the application, we will need to continue to change the database schema. So far, those changes have been part of making the application deployable at all, with the change from Oracle to PostgreSQL (#1) and the change from WebSphere to WildFly (#2). Under those circumstances, and with only developers practically able to deploy the application, it was fine to completely drop and recreate the database on every change.
@@ -4989,6 +4991,8 @@ inactivity. (Addressable)
 
    - backend
    - enhancement
+** LABEL CHANGES
+   + ia-4.2
 * [[https://github.com/solutionguidance/psm/issues/252][252]]   (open): Consider building and/or privately caching dependencies instead of downloading from third-party servers.
 
   Right now the PSM build process downloads various third-party dependency .jar files from upstream sources.  This is standard behavior for stuff in the Maven package tree (at least as far as I understand it -- it's sort of like npm), and for WildFly itself.
@@ -5148,6 +5152,8 @@ inactivity. (Addressable)
 
    - backend
    - enhancement
+** LABEL CHANGES
+   + sq-1.1
 * [[https://github.com/solutionguidance/psm/issues/248][248]] (closed): Make the "Create New Enrollment" Button on the Welcome Page Testable
 
   # Problem
@@ -5165,6 +5171,8 @@ inactivity. (Addressable)
      <<< SQ 1.  Software Quality and Maintainability >>>
 
    - quick-fix
+** LABEL CHANGES
+   + sq-1.2
 * [[https://github.com/solutionguidance/psm/issues/242][242]] (closed): Move to Debian stretch
 
   We currently run on and recommend Debian jessie (Debian 8), the old stable. [On June 17th, 2017, Debian released Debian 9.0; stretch is the new stable](https://www.debian.org/releases/stable/). The PSM should probably run on 9.
@@ -5194,6 +5202,9 @@ inactivity. (Addressable)
 
    - task
    - ux
+** LABEL CHANGES
+   + sa-4.1
+   + sq-1.5
 * [[https://github.com/solutionguidance/psm/issues/236][236]]   (open): Import information from different systems
 
   Build an API to absorb data from other systems.  Each state will have a different system managing providers, and we may need to take in information about those providers for re-screening purposes.  This may be related to #211 and particularly [this comment](https://github.com/OpenTechStrategies/psm/pull/211#issuecomment-312308886).
@@ -5234,6 +5245,12 @@ interpretation of received data as applicable to health IT systems.
    - enhancement
    - infra
    - task
+** LABEL CHANGES
+   + iu-2.2
+   + iu-2.3
+   + ia-1.2
+   + ia-3.1
+   + ia-3.9
 * [[https://github.com/solutionguidance/psm/issues/233][233]]   (open): cannot enroll as podiatrist
 
   I attempted to create a provider enrollment with the provider type being Podiatrist, and on the licensing/certification page, got this error, even though I'd uploaded an attachment for the license/certification and marked it as a license issued by Minnesota:
@@ -5254,6 +5271,8 @@ interpretation of received data as applicable to health IT systems.
    - backend
    - bug
    - quick-fix
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/229][229]] (closed): Document publishing API docs in README
 
   @jasonaowen added a new gradle task to build the API documentation that @brainwane wrote.  We should add a note to the README (or INSTALL) about how to use it.
@@ -5296,6 +5315,13 @@ elements/modules, and services
      agencies.
      <<< II 4.  Technical Service Classification:  System Extensibility >>>
 
+** LABEL CHANGES
+   + iu-2.2
+   + iu-2.3
+   + iu-4.2
+   + ia-1.2
+   + ia-3.1
+   + ia-3.9
 * [[https://github.com/solutionguidance/psm/issues/223][223]]   (open): Send provider directory information to MITA TAC
 
   Once the TAC has a defined API endpoint to receive information about providers, add a hook to send provider info to that endpoint.  When we receive information from a provider and their enrollment is submitted, send the directory-relevant information to the TAC's endpoint.
@@ -5310,6 +5336,14 @@ elements/modules, and services
 
    - enhancement
    - infra
+** LABEL CHANGES
+   + iu-2.2
+   + iu-2.3
+   + iu-4.2
+   + ia-1.2
+   + ia-2.1
+   + ia-3.1
+   + ia-3.9
 * [[https://github.com/solutionguidance/psm/issues/222][222]] (closed): Set up continuous deployment
 
   Now that we have Travis set up for CI, we should take the next step and automate deployments to a testing server.  This will allow us to always do manual testing against the most up-to-date code, without needing to constantly refresh our local instances.
@@ -5590,6 +5624,8 @@ elements/modules, and services
      screen.
      <<< FR 7. Usability >>>
 
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/194][194]]   (open): provide user feedback form that sends user feedback to PSM development team
 
   We should incorporate functionality into the PSM that makes it quick for any user to send us feedback about a particular page, embedding privacy-compliant, PII-sanitized metadata about the user’s workflow and location.
@@ -5606,6 +5642,8 @@ elements/modules, and services
    - backend
    - enhancement
    - ux
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/192][192]]   (open): Require certain file type for uploaded licenses
 
   @jcunard asks [on the list](https://groups.google.com/forum/#!topic/psm-dev/Yt6o8cWyINo):
@@ -5643,6 +5681,8 @@ elements/modules, and services
      <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
 
    - state-question
+** LABEL CHANGES
+   + ia-3.2
 * [[https://github.com/solutionguidance/psm/issues/189][189]] (closed): Auto-deploy EAR File Generated by Build
 
   # Problem
@@ -5706,6 +5746,8 @@ elements/modules, and services
 
    - enhancement
    - ux
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/184][184]] (closed): data loss: PSM does not save profile phone number
 
   1) I'm logged in as a service agent or service administrator. I update my own profile at http://localhost:8080/cms/ops/getUser to add a phone number; when I view my profile, the phone number is missing.

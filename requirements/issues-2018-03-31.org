@@ -4540,6 +4540,8 @@ inactivity. (Addressable)
      <<< FR 2.  Capability to build provider profile >>>
 
    - bug
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/298][298]]   (open): Specify OSes and browsers we support
 
   Issues like #265 will be easier if we know which browsers & versions we commit to supporting.
@@ -4573,6 +4575,8 @@ inactivity. (Addressable)
    - backend
    - bug
    - quick-fix
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/292][292]] (closed): Label all required fields
 
   We have some related requirements about required fields:
@@ -4719,6 +4723,13 @@ inactivity. (Addressable)
      The PSM shall store monthly audit record for a provider even if
      their information has not changed.
      <<< FR 6. Retention, Reporting and Auditing >>>
+** LABEL CHANGES
+      + iu-2.2
+      + iu-2.3
+      + ia-1.2
+      + ia-3.1
+      + ia-3.9
+      CHECK ME
 
 * [[https://github.com/solutionguidance/psm/issues/283][283]]   (open): County field should be a drop-down menu, on Additional Practice Location page.
 
@@ -4747,6 +4758,8 @@ inactivity. (Addressable)
      <<< FR 7. Usability >>>
 
    - quick-fix
+** LABEL CHANGES
+   + ia-4.2
 * [[https://github.com/solutionguidance/psm/issues/280][280]] (closed): Tell developers how to automatedly create enrollments with sample data
 
   When we're reviewing PRs (or demoing the system), it would be useful to be able to create sample enrollments without going through the entire workflow in the interface.  
@@ -4777,6 +4790,8 @@ inactivity. (Addressable)
 
    - docs
    - infra
+** LABEL CHANGES
+   + ia-3.8
 * [[https://github.com/solutionguidance/psm/issues/274][274]] (closed): Give administrators UI to edit rules
 
   Each state will have different requirements around provider enrollments: things like what credentials are acceptable, what screening needs to take place, and so on. We are using a rules engine to manage all that, but our current workflow for changing those rules is not very user-friendly.
@@ -4789,6 +4804,10 @@ inactivity. (Addressable)
      reside in a separate application or rules engine.
      <<< IU 3.  Technical Service Classification:  Decision Management >>>
 
+** LABEL CHANGES
+   + sa-4.0
+   + sa-4.2
+   + iu-3.2
 * [[https://github.com/solutionguidance/psm/issues/273][273]]   (open): PECOS data ETL
 
   We need PECOS data.  There's some at https://data.cms.gov/Medicare-Enrollment/Order-and-Referring/qcn7-gc3g and there's an API.  We shouldn't ETL this data.  We should query the outside database using the interface they provide.
@@ -4803,6 +4822,14 @@ inactivity. (Addressable)
      <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
 
    - enhancement
+** LABEL CHANGES
+   + iu-2.2
+   + iu-2.3
+   + iu-4.2
+   + ia-1.2
+   + ia-3.1
+   + ia-3.9
+   CHECK ME
 * [[https://github.com/solutionguidance/psm/issues/266][266]] (closed): Publish Output from Serenity Tests
 
   # Problem
@@ -4854,6 +4881,8 @@ inactivity. (Addressable)
      The PSM shall provide per-field instructions on the application
      screen.
      <<< FR 7. Usability >>>
+** LABEL CHANGES
+   + fr-7.14
 
 * [[https://github.com/solutionguidance/psm/issues/263][263]]   (open): Change default file upload size in cms.properties
 
@@ -4871,6 +4900,8 @@ inactivity. (Addressable)
 
    - backend
    - task
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/262][262]] (closed): Research spike: Drools & business rules interface
 
   We need to get a better handle on the Drools interface for the PSM. Right now the only way to edit the validation and screening rules is for a programmer to edit `cms.validation.drl` and `cms.screening.drl` in `psm-app/cms-business-process/src/main/resources/`. We need to make it so service admins can change enrollment assessment rules/workflow without having to be programmers. James & Jason have looked a little bit at this, but we need a better sense of what it is we're aiming for when we make it configurable. What should the interface be, allow, do?
@@ -4883,6 +4914,10 @@ inactivity. (Addressable)
      reside in a separate application or rules engine.
      <<< IU 3.  Technical Service Classification:  Decision Management >>>
 
+** LABEL CHANGES
+   + sa-4.0
+   + sa-4.2
+   + iu-3.2
 * [[https://github.com/solutionguidance/psm/issues/261][261]] (closed): Facility credentials not shown at review time
 
   Some of the organization provider types, such as County Contracted Mental Health Rehab, require documents such as licenses to practice or agreements with the state or county. The enrollment process accepts these uploads, but they are not shown to the admin while reviewing an enrollment, and the UI does not ask or allow the admin to verify the documents.
@@ -4921,6 +4956,10 @@ inactivity. (Addressable)
    - backend
    - bug
    - quick-fix
+** LABEL CHANGES
+   + sa-4.0
+   + sa-4.2
+   + iu-3.2
 * [[https://github.com/solutionguidance/psm/issues/259][259]]   (open): Community Mental Health Center refers to missing provider type 
 
   If you create an enrollment application with the Community Mental Health Center provider type, and try to add an individual member, you will likely get an error:
@@ -4944,6 +4983,8 @@ inactivity. (Addressable)
 
    - backend
    - bug
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/255][255]] (closed): Polish & speed up Javadoc gh-pages publication
 
   From @jasonaowen's comment on #249:

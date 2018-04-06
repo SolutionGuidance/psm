@@ -3503,6 +3503,9 @@ inactivity. (Addressable)
 
    - question
    - task
+** LABEL CHANGES
+   + ad-5.5
+   + ad-5.13
 * [[https://github.com/solutionguidance/psm/issues/396][396]] (closed): Decide whether to repair or delete help topics system
 
   Per @jasonaowen in https://github.com/OpenTechStrategies/psm/issues/195#issuecomment-314795045 , we need to decide whether to repair and use, or delete, the help topics system.
@@ -3537,6 +3540,8 @@ inactivity. (Addressable)
    - question
    - tech-debt
    - ux
+** LABEL CHANGES
+   + ii-4.5
 * [[https://github.com/solutionguidance/psm/issues/395][395]]   (open): Create standalone PSM brochure website
 
   Turn https://opentechstrategies.github.io/psm/ into a site that:
@@ -3607,6 +3612,9 @@ inactivity. (Addressable)
    - backend
    - docs
    - enhancement
+** LABEL CHANGES
+   + ii-4.5
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/386][386]] (closed): Document connecting to a separate rules server
 
   This work began in #274, but I think we need an addition to INSTALL.md that fully describes how to connect to the rules server and import the PSM's rules into it.  If not in INSTALL, then maybe in a separate doc in the `docs` directory (linked from INSTALL).
@@ -3629,6 +3637,8 @@ inactivity. (Addressable)
      for both development and production use.
      <<< SQ 1.  Software Quality and Maintainability >>>
 
+** LABEL CHANGES
+   + sa-4.2
 * [[https://github.com/solutionguidance/psm/issues/385][385]]   (open): Upgrade separate Drools server
 
   As discussed in #274, we initially set up a rules server with very old versions of things.  As @slifty wrote:
@@ -3685,6 +3695,8 @@ inactivity. (Addressable)
      <<< FR 7. Usability >>>
 
    - enhancement
+** LABEL CHANGES
+   + iu-2.2
 * [[https://github.com/solutionguidance/psm/issues/376][376]]   (open): Remove right-justified colons between labels and fields on forms
 
   On forms like the provider enrollment form, the colons on the labels are right-justified and it looks disconnected.
@@ -3763,6 +3775,8 @@ inactivity. (Addressable)
 
    - enhancement
    - ux
+** LABEL CHANGES
+   + ia-4.3
 * [[https://github.com/solutionguidance/psm/issues/362][362]] (closed): Individual Beneficial Owner City Field Doesn't Pick up Entered Value
 
   # Problem
@@ -3854,6 +3868,8 @@ inactivity. (Addressable)
 
    - quick-fix
    - ux
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/354][354]]   (open): Redesign Enrollment Review page
 
   There is a lot of information an admin needs to see on the review page, and we should consider redesigning it to better present that information. Here's an example of the current page:
@@ -3940,6 +3956,15 @@ inactivity. (Addressable)
    - enhancement
    - question
    - task
+** LABEL CHANGES
+   - fr-3.13
+   + iu-2.2
+   + iu-2.3
+   + ia-1.2
+   + ia-2.1
+   + ia-3.1
+   + ia-3.9
+   CHECK ME
 * [[https://github.com/solutionguidance/psm/issues/347][347]] (closed): Capture Medicaid Number for new Enrollments
 
   # Problem
@@ -4008,6 +4033,8 @@ inactivity. (Addressable)
    - backend
    - bug
    - ux
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/341][341]]   (open): Notify submitter & drafter via contact email when enrollment status changes
 
   We should send a provider an email notification when their enrollment status (pending, modified, approved, or rejected) changes.
@@ -4120,6 +4147,8 @@ inactivity. (Addressable)
    - quick-fix
    - review
    - ux
+** LABEL CHANGES
+   + ia-4.3
 * [[https://github.com/solutionguidance/psm/issues/335][335]]   (open): Show author and timestamp on enrollment notes
 
   As demonstrated in these screenshots, a service admin can write and view notes on enrollments. But the PSM doesn't show who wrote a note or when. It would help the admin better understand and interpret notes on enrollments if the PSM automatically included the note's author and timestamp for each note.
@@ -4149,6 +4178,9 @@ inactivity. (Addressable)
    - enhancement
    - help wanted
    - ux
+** LABEL CHANGES
+   + iu-4.1
+   + ad-5.8
 * [[https://github.com/solutionguidance/psm/issues/333][333]] (closed): Make the "Create New Enrollment" Button Testable
 
   # Problem
@@ -4211,6 +4243,9 @@ inactivity. (Addressable)
    - next
    - task
    - ux
+** LABEL CHANGES
+   + ia-4.3
+   + ia-4.4
 * [[https://github.com/solutionguidance/psm/issues/327][327]]   (open): consider retention policies/deleting and archiving provider accounts
 
   Providers will sometimes want to deactivate their PSM accounts, such as when they retire. They may think of this as deletion; for record-keeping posterity we should probably allow them to archive their accounts, moving them into a permanent dormant state.
@@ -4241,6 +4276,8 @@ inactivity. (Addressable)
    - infra
    - state-question
    - ux
+** LABEL CHANGES
+   + ia-4.2
 * [[https://github.com/solutionguidance/psm/issues/326][326]]   (open): Improve user role names and explanations
 
   @jasonaowen and I just discussed [a review note](https://github.com/OpenTechStrategies/psm/pull/311#discussion_r130903066) by @cecilia-donnelly about user role names:
@@ -4361,6 +4398,8 @@ inactivity. (Addressable)
    - bug
    - quick-fix
    - ux
+** LABEL CHANGES
+   + ia-4.4
 * [[https://github.com/solutionguidance/psm/issues/308][308]] (closed): Ownership information checkbox autofills improperly
 
   Some organizational provider types (e.g. Durable Medical Equipment), have an "Ownership Information" page.  On that page, when a user fills in an individual provider, there is a checkbox with the label "This person/business has an ownership or control interest in another Medicaid disclosing entity, or an entity that does not participate in Medicaid but is required to disclose ownership and control interest because of participation in any Title V, XVIII, or XX programs."  When I did *not* check that checkbox and hit "Next," the following happened:
@@ -4397,6 +4436,8 @@ inactivity. (Addressable)
    - backend
    - bug
    - quick-fix
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/305][305]]   (open): Should service admins be able to edit all aspects of a pending enrollment?
 
   Right now, a service administrator ("service admin") user can edit every part of a pending enrollment. (This includes provider/organization information (provider type, name, Social Security #, NPI, date of birth, email address, contact name and address), license info (PHS Indian Hospital info, licenses/certifications), and everything in the Practice Information and Provider Statement sections. (See #301 for a ramification of this last bit.)
@@ -4416,6 +4457,13 @@ inactivity. (Addressable)
 
    - security
    - state-question
+** LABEL CHANGES
+   + iu-4.1
+   + ia-4.2
+   + ad-5.8
+   + ad-5.9
+   + ad-5.13
+   + fr-4.8
 * [[https://github.com/solutionguidance/psm/issues/304][304]] (closed): Teach Travis to Deploy application to container and run integration tests
 
   # Problem

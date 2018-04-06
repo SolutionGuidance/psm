@@ -990,6 +990,8 @@ possible.
      <<< FR 7. Usability >>>
 
    - docs
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/604][604]]   (open): Serenity tests failing - page title mismatch?
 
   When I run `./gradlew test aggregate` on master, I get several failures, e.g.,
@@ -1142,6 +1144,9 @@ possible.
      <<< IU 3.  Technical Service Classification:  Decision Management >>>
 
    - tech-debt
+** LABEL CHANGES
+   + sa-4.0
+   + sa-4.2
 * [[https://github.com/solutionguidance/psm/issues/571][571]]   (open): Remove MN-specific rules
 
   Several of our Drools rules are Minnesota-specific, such as [requiring audiologists to be licensed in MN](https://github.com/solutionguidance/psm/blob/3ac7ba0b5b130b45bb5f30be14bb88cda414e551/psm-app/cms-business-process/src/main/resources/cms.screening.drl#L112) or [requiring a MN certificate of compliance for a children's mental health residential treatment facility](https://github.com/solutionguidance/psm/blob/12de0147519753a2891017518099a046292118f6/psm-app/cms-business-process/src/main/resources/cms.validation.drl#L3187).
@@ -1158,6 +1163,9 @@ possible.
      reside in a separate application or rules engine.
      <<< IU 3.  Technical Service Classification:  Decision Management >>>
 
+** LABEL CHANGES
+   + sa-4.0
+   + sa-4.2
 * [[https://github.com/solutionguidance/psm/issues/569][569]]   (open): Missing "current tab" indicator on several pages
 
   The PSM used to show which tab the current page was on in its navigation bar. See, for example, the small black down arrow under "My Profile" on the service admin's profile page - the only place they still work:
@@ -1202,6 +1210,8 @@ possible.
      <<< FR 7. Usability >>>
 
    - tech-debt
+** LABEL CHANGES
+   + ad-3.3
 * [[https://github.com/solutionguidance/psm/issues/565][565]]   (open): Convert all caps labels to css
 
   Right now some files (e.g. `pca_billing.jsp`) have all caps labels; I imagine that a screen reader would dictate this letter by letter (as though it were an acronym).  If we want the labels to render all caps we should use the css `text-transform: upper` feature instead of having the content itself be all caps.
@@ -1248,6 +1258,8 @@ possible.
 
    - accessibility
    - tech-debt
+** LABEL CHANGES
+   + ia-4.2
 * [[https://github.com/solutionguidance/psm/issues/563][563]]   (open): Write submodule READMEs
 
   In each project/submodule within `psm-app` we ought to have a `README.md` file to help developers understand what each covers -- expanding a bit on the brief explanation in `docs/DESIGN.md` and the diagrams in `docs`.

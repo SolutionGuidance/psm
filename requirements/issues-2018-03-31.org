@@ -1855,6 +1855,8 @@ possible.
      <<< FR 4.  Configurable Setting >>>
 
    - security
+** LABEL CHANGES
+   + ad-5.16
 * [[https://github.com/solutionguidance/psm/issues/523][523]]   (open): Lock down ops dashboard
 
   The operations dashboard, as seen when logging in as a service administrator (such as the default user `admin`), contains "recent events": enrollments that have been approved or denied.
@@ -1877,6 +1879,11 @@ possible.
      <<< AD 5.  Technical Service Classification:  Security and Privacy >>>
 
    - security
+** LABEL CHANGES
+   - ad-5.18
+   + ad-1.4
+   + ad-5.1
+   + ad-5.13
 * [[https://github.com/solutionguidance/psm/issues/521][521]]   (open): agreement and addendum interface: can't select items using checkboxes
 
   ![cannot-delete-agreements-addenda](https://user-images.githubusercontent.com/842790/32293845-d0761d06-bf1a-11e7-8fce-a40f809941a2.png)
@@ -2222,6 +2229,10 @@ possible.
    - backend
    - question
    - security
+** LABEL CHANGES
+   - ad-5.18
+   + ad-1.4
+   + ad-5.13
 * [[https://github.com/solutionguidance/psm/issues/497][497]]   (open): Allow non-provider users to update their own passwords
 
   Currently, on the "My Profile" page, only providers have the option to change their passwords.  Other users should also be able to do so.  This might be related to #34 and #10 -- that is, as we give different roles one framework of permissions we'll be able to give them all the ability to edit their own password.  Then it's just a matter of updating the UI.
@@ -2239,6 +2250,8 @@ possible.
    - enhancement
    - security
    - ux
+** LABEL CHANGES
+   + ad-5.3
 * [[https://github.com/solutionguidance/psm/issues/496][496]] (closed): Simple search (field in upper right) fails to find results
 
   As a service admin, I used the simple search field to search for a substring of a provider name ("DME") on my local copy.  The provider "DME Test" had submitted two enrollments, and the provider "DME" had submitted one as well, so I would expect one or more of those to turn up in search results.  None did.  Similarly, @jcunard mentioned [on the list](https://groups.google.com/forum/#!topic/psm-dev/q-XGEsndkhA) that the search failed to find her user profile.
@@ -2305,6 +2318,8 @@ possible.
      <<< SQ 1.  Software Quality and Maintainability >>>
 
    - tech-debt
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/482][482]] (closed): Central documentation site should refer to how it's generated.
 
   We now have auto-built documentation at https://opentechstrategies.github.io/psm/, coming (I think) from the `gh-pages` branch in this repository.  Still, that doc site should point to some documentation about how the site itself is built, so that if people want to contribute to it, they can.
@@ -2320,6 +2335,8 @@ possible.
    - docs
    - enhancement
    - quick-fix
+** LABEL CHANGES
+   + sq-1.4
 * [[https://github.com/solutionguidance/psm/issues/476][476]]   (open): CSV export (including sanitization)
 
   The PSM will offer CSV export of certain kinds of data (probably lists of providers and enrollments) for use by service administrators.
@@ -2347,6 +2364,10 @@ possible.
 
    - enhancement
    - security
+** LABEL CHANGES
+   + ad-3.3
+   + ad-3.4
+   + ad-5.1
 * [[https://github.com/solutionguidance/psm/issues/472][472]]   (open): INSTALL.md improvements based on Paul Morris' notes
 
   Below are notes I took while installing the PSM based on INSTALL.md.  I tried to make a note every time I was confused about something, if even just a little bit.  So not all of these items need to lead to edits, but they're all here for completeness.
@@ -2532,6 +2553,8 @@ possible.
      <<< SQ 1.  Software Quality and Maintainability >>>
 
    - docs
+** LABEL CHANGES
+   + sq-1.1
 * [[https://github.com/solutionguidance/psm/issues/468][468]] (closed): Ensure that we are using Hibernate everywhere
 
   "The solution, in order to protect the database from SQL injection attacks, shall access the database from the application through a standard database abstraction layer."
@@ -2558,6 +2581,14 @@ possible.
    - quick-fix
    - security
    - task
+** LABEL CHANGES
+   - ad-5.18
+   + ad-1.4
+   + ad-5.1
+   + ad-5.2
+   + ad-5.7
+   + ad-5.16
+   CHECK ME
 * [[https://github.com/solutionguidance/psm/issues/467][467]] (closed): Improve ADA compliance
 
   This is a placeholder that will get more content after we complete #415 and know what our first steps toward improvement are.
@@ -2831,6 +2862,8 @@ API.
      <<< FR 7. Usability >>>
 
    - docs
+** LABEL CHANGES
+   + sq-1.4
 * [[https://github.com/solutionguidance/psm/issues/438][438]] (closed): Add monitoring to demo instances
 
   Because of the Wildfly Out of Memory problem mentioned in #421, our running servers occasionally crash without warning.  Something like [UptimeRobot](https://uptimerobot.com/) might work to alert us about this, or, as @jvasile suggested, we might set up a more advanced monitoring system with our Selenium tests.
@@ -2844,6 +2877,9 @@ API.
      <<< SQ 1.  Software Quality and Maintainability >>>
 
    - infra
+** LABEL CHANGES
+   + ad-4.1
+   + ad-4.2
 * [[https://github.com/solutionguidance/psm/issues/432][432]]   (open): Admin changes to contact information are lost
 
   As an admin, if I edit a pending enrollment to change the contact info, these changes are not persisted.
@@ -2873,6 +2909,8 @@ API.
 
    - backend
    - bug
+** LABEL CHANGES
+   + ia-4.2
 * [[https://github.com/solutionguidance/psm/issues/431][431]] (closed): Expired session doesn't redirect to login from "profile" page
 
   To reproduce, log in to the PSM and navigate to the "My Profile" page.  Open another tab into the PSM and log out in that second tab.  Return to the first tab, the one open to "My Profile," and refresh.  Instead of redirecting to the login screen, the PSM gives a stacktrace (see below).
@@ -3014,6 +3052,8 @@ API.
 
    - backend
    - enhancement
+** LABEL CHANGES
+   + fr-2.16
 * [[https://github.com/solutionguidance/psm/issues/425][425]]   (open): Per-state configuration allowing/prohibiting e-signatures & proxy signatures
 
   From ["May service agents sign enrollments on providers' behalf?" on the psm-dev mailing list](https://groups.google.com/d/msg/psm-dev/I4cczE2CxVU/2MMs1b-9AgAJ). Excerpted:
@@ -3078,6 +3118,8 @@ API.
 
    - question
    - state-question
+** LABEL CHANGES
+   + fr-2.16
 * [[https://github.com/solutionguidance/psm/issues/423][423]]   (open): Clarify workflow around draft and submitted enrollments
 
   In commenting on `docs/userhelp/source/enrollment.rst `, specifically regarding whether a user can edit an enrollment to (for instance) remove a member from a group provider enrollment, @kfogel [said](https://github.com/OpenTechStrategies/psm/pull/382#discussion_r135879669):
@@ -3092,6 +3134,8 @@ API.
 
    - backend
    - question
+** LABEL CHANGES
+   + fr-2.16
 * [[https://github.com/solutionguidance/psm/issues/422][422]]   (open): Review documentation to add relevant contextual help links
 
   Per https://github.com/OpenTechStrategies/psm/pull/382#discussion_r135878148 by @kfogel:
@@ -3121,6 +3165,8 @@ API.
 
    - infra
    - tech-debt
+** LABEL CHANGES
+   + sq-1.6
 * [[https://github.com/solutionguidance/psm/issues/420][420]]   (open): Adding space after username during registration makes login impossible
 
   To reproduce:
@@ -3148,6 +3194,10 @@ API.
 
    - backend
    - bug
+** LABEL CHANGES
+   + ad-5.2
+   + ad-5.7
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/419][419]]   (open): Error when a provider submits an enrollment
 
   On at least one occasion, we ran into a bug where, when a provider user filled out an enrollment and hit "Submit," the enrollment was not submitted and the provider got a "Server Error" instead of the popup saying "The enrollment has been successfully submitted."  This happened with two different provider accounts.  The *admin* account, however, was able to submit the enrollments after logging in.
@@ -3187,6 +3237,9 @@ API.
 
    - backend
    - bug
+** LABEL CHANGES
+   - fr-7.6
+   + ad-3.3
 * [[https://github.com/solutionguidance/psm/issues/416][416]]   (open): Let user update license/certification or contact info for existing enrollment
 
   Currently, once an enrollment has been approved, providers, service agents, and service admins cannot change the license and certification information or the contact information for an enrollment. We should let them do that.
@@ -3439,6 +3492,8 @@ inactivity. (Addressable)
    - docs
    - enhancement
    - ux
+** LABEL CHANGES
+   + ii-4.5
 * [[https://github.com/solutionguidance/psm/issues/401][401]]   (open): Make enrollment renewals possible/easier
 
   From the requirements: _The PSM shall reduce the time needed by providers to submit new/renewal application information and resolve discrepancies._

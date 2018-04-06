@@ -27,7 +27,7 @@ single formerly-hidden req are nonetheless unused (and therefore
 redundant) after all, because the old hidden reqs provide complete
 coverage everywhere the new req had been used.  We'll see.
 
-* psm-AD-5.18 (related hidden reqs: psm-AD-5.5, psm-AD-1.4, psm-AD-5.13, psm-AD-5.1, psm-AD-5.2, psm-AD-5.3, psm-AD-5.5, psm-AD-5.7, psm-AD-5.13, psm-AD-5.14, psm-AD-5.16, psm-AD-5.16)
+* psm-AD-5.18 (related hidden reqs: psm-AD-5.5, psm-AD-1.4, psm-AD-5.13, psm-AD-5.1, psm-AD-5.2, psm-AD-5.3, psm-AD-5.5, psm-AD-5.7, psm-AD-5.13, psm-AD-5.14, psm-AD-5.16)
   The PSM shall be secure from unauthorized access or use, and shall sanitize inputs and outputs where possible so as to avoid compromising itself or other systems.
 
 * psm-FR-4.6 (related hidden reqs: none)

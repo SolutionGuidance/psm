@@ -10,6 +10,8 @@
   The way I understand this is that the PSM will re-run automated checks on all approved applications on a monthly basis (though we should make the exact period configurable in Drools).  Right now, the only automated check is the LEIE, but by the end of June we'll have another one.
   
   This is another item that we could use some more input about: how will users use this re-screening information?  What's an appropriate UI for this?  The CSV?  Notification emails about new exclusions sent to designated users?
+** LABEL CHANGES
+   + fr-4.7
 
 * [[https://github.com/solutionguidance/psm/issues/739][739]]   (open): Choose initial set of reports
 
@@ -28,10 +30,26 @@
   - Mean and median time from submission to review by month
   
   What are some others?
+** LABELS CHANGED
+   + ad-1.1
+   + ad-1.2
+   + ad-1.3
+   + ad-3.1
+   + ad-3.2
+   + ad-3.4
+   + ad-3.5
+   + ad-3.6
 
 * [[https://github.com/solutionguidance/psm/issues/738][738]]   (open): Choose second federal data source
 
   Following on from #17, we now need to choose our second federal data source.  This is most likely to be either PECOS or the Death Master File.
+** LABELS CHANGED
+   + ia-3.2
+   + iu-2.2
+   + iu-2.3
+   + ia-1.2
+   + ia-3.1
+   + ia-3.9
 
 * [[https://github.com/solutionguidance/psm/issues/734][734]]   (open): Moving backward in PHN enrollment loses county contract
 
@@ -54,6 +72,9 @@
   ![contract-missing](https://user-images.githubusercontent.com/1494855/37855466-ccd3d768-2ec5-11e8-8820-066b7ad7ed98.png)
   
   Related to issue #158.
+** LABEL CHANGES
+   + fr-7.14
+   + ia-4.2
 
 * [[https://github.com/solutionguidance/psm/issues/728][728]] (closed): Separate pages for provider and service admin search results
 
@@ -61,6 +82,9 @@
 
 ** LABELS
    - duplicate
+** LABEL CHANGES
+   + ad-1.4
+   + ad-5.13
 * [[https://github.com/solutionguidance/psm/issues/725][725]]   (open): Verify facility credentials
 
   In PR #719, we added facility credentials to the admin enrollment application review screen, but do not require admins to mark them as approved. In part, we decided on this because we're not clear on what exactly the behavior should be, and we didn't want to do too much work that might need to be undone.
@@ -83,6 +107,8 @@
   Rather than showing either an edit or a view link in the Actions column (depending on the status of an enrollment application), show both edit and view links for every row, but have one or the other 'greyed-out' and inactive depending on the status.  The idea is that this will be clearer for users.  One possibility would be to open the "Action" column help modal (that explains when you can edit vs just view enrollments) when users click on the inactive links.
   
   This issue was split off from PR #716.
+** LABEL CHANGES
+   + fr-7.14
 
 * [[https://github.com/solutionguidance/psm/issues/721][721]]   (open): Add reject notifications
 
@@ -97,6 +123,8 @@
   1) Whether both endpoints need to exist (removing any un-necessary code).
   2) Which endpoint is the correct one to call from the review interface.
   3) Where it would be appropriate to add the reject notification
+** LABEL CHANGES
+   + sq-1.5
 
 * [[https://github.com/solutionguidance/psm/issues/711][711]]   (open): Remove or complete Categories of Service (COS)
 
@@ -133,6 +161,9 @@
   Quick Search Results
   Advanced Search Results
   ```
+** LABEL CHANGES
+   + ad-2.4
+   + sq-1.2
 
 * [[https://github.com/solutionguidance/psm/issues/708][708]]   (open): Rendering issues in Facility Credentials screen
 
@@ -145,9 +176,13 @@
 ** LABELS
    - bug
    - ux
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/703][703]] (closed): Add writing PR descriptions to CONTRIBUTING.md
 
   Currently our CONTRIBUTING document does not cover writing good PR descriptions, although there are expectations about it.  It would be good to document our practice on this.
+** LABEL CHANGES
+   + sq-1.1
 
 * [[https://github.com/solutionguidance/psm/issues/701][701]]   (open): Can only save enrollment as draft once
 
@@ -188,9 +223,14 @@
 
 ** LABELS
    - bug
+** LABEL CHANGES
+   + fr-7.14
+   + fr-7.7
 * [[https://github.com/solutionguidance/psm/issues/700][700]]   (open): Accessibility of user help pages
 
   There's an accessibility issue on the user help pages.  The search form is missing a label/title. Possible fixes for that would be an upstream contribution to Sphinx or a local modification of the Sphinx theme we are using.
+** LABEL CHANGES
+   + ad-2.4
 
 * [[https://github.com/solutionguidance/psm/issues/699][699]]   (open): Remove help topics subsystem
 
@@ -209,6 +249,8 @@
      The PSM shall provide detailed instructions for completing the
      application via a Help link.
      <<< FR 7. Usability >>>
+** LABEL CHANGES
+   + sq-1.5
 
 * [[https://github.com/solutionguidance/psm/issues/695][695]] (closed): Base issue for requirements that don't (yet) have issue tickets.
 
@@ -460,6 +502,8 @@ possible.
 ** LABEL CHANGES
    - fr-7.13
    + iu-2.5
+   + ad-1.4
+   + ad-5.13
 * [[https://github.com/solutionguidance/psm/issues/687][687]]   (open): Advanced Search page a11y test failures
 
   @cecilia-donnelly [reported](https://github.com/SolutionGuidance/psm/pull/676#issuecomment-368163476) that the a11y test for the provider "Advanced Search" page was failing with "this form has no submit button".  @PaulMorris was not able to reproduce this.  The test is `@ignore`d temporarily until we can troubleshoot this further.
@@ -581,6 +625,8 @@ possible.
      The PSM shall integrate provider-type business rules described in
      the Enrollment Information Guide into the system.
      <<< FR 9.  Meets architecture guideline >>>
+** LABEL CHANGES
+   + fr-7.14
 
 * [[https://github.com/solutionguidance/psm/issues/659][659]]   (open): Add provider type to provider dashboard table
 
@@ -681,6 +727,12 @@ possible.
 
    - backend
    - enhancement
+** LABEL CHANGES
+   + iu-2.2
+   + iu-2.3
+   + ia-1.2
+   + ia-3.1
+   + ia-3.9
 * [[https://github.com/solutionguidance/psm/issues/638][638]]   (open): Add automated cross-browser testing
 
   Pursuant to #298, and spurred by #635: we need to test in more than one browser.  Presumably we can run the same Selenium tests with different browser drivers.  Our switch to Jenkins (#629) may even make this easier.
@@ -721,6 +773,8 @@ possible.
      (verifiable) data fields for all providers enrolled
      <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
 
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/629][629]] (closed): Use Jenkins for continuous integration
 
   We've been discussing when to move away from Travis for a while, for the following reasons:
@@ -798,6 +852,12 @@ possible.
      <<< FR 9.  Meets architecture guideline >>>
 
    - enhancement
+** LABEL CHANGES
+   + iu-2.2
+   + iu-2.3
+   + ia-1.2
+   + ia-3.1
+   + ia-3.9
 * [[https://github.com/solutionguidance/psm/issues/622][622]]   (open): Prevent issues from browsers caching outdated CSS
 
   Recently we made some CSS changes that resulted in the PSM's logout button not working for users that had an older version of the site cached in their browsers.
@@ -855,6 +915,8 @@ possible.
      <<< FR 4.  Configurable Setting >>>
 
    - ux
+** LABEL CHANGES
+   + fr-7.14
 * [[https://github.com/solutionguidance/psm/issues/619][619]]   (open): Adding additional practice locations by lookup fails
 
   The "Practice Lookup" button in the "Additional Practice Locations" form of the "Practice Info" step allows you to copy the information from an existing practice. However, the information is not properly saved; the effective date is initially empty, and even if you fill it in its value is ignored and marked as missing; additionally, the first line of the practice address is deleted and marked as missing, as well.
@@ -885,6 +947,8 @@ possible.
      <<< FR 7. Usability >>>
 
    - ux
+** LABEL CHANGES
+   + iu-2.5
 * [[https://github.com/solutionguidance/psm/issues/616][616]]   (open): Remove or update DEPENDENCIES.md
 
   As part of #147 Review licenses of dependencies, we created [DEPENDENCIES.md](https://github.com/SolutionGuidance/psm/blob/1f4e258ab9297b2d3a8f58d61941194d3afe0ae5/docs/DEPENDENCIES.md). At the time, all of our dependencies were vendored (checked in to source control), and we needed to research their origins to make sure we were compliant with their licenses.
@@ -925,6 +989,10 @@ possible.
 
    - security
    - state-question
+** LABEL CHANGES
+   + ad-1.4
+   + ad-5.1
+   + ad-5.13
 * [[https://github.com/solutionguidance/psm/issues/613][613]] (closed): Use HTML5 instead of XHTML
 
   Using HTML5 will allow us to use built-in placeholder text (c.f. #612) and other modern features.  We can add more advantages to this issue as we come across them -- there may be some changes related to the accessibility work, as well.

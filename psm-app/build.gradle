@@ -359,7 +359,16 @@ project(':integration-tests') {
     }
 
     test {
+        // Always run the integration tests when asked to
+        outputs.upToDateWhen { false }
+
+        // Allow command-line options to be passed into Cucumber by calling
+        // gradle with an argument like -Dcucumber.options=...
         systemProperty 'cucumber.options', System.properties.get('cucumber.options')
+
+        // Allow Serenity test aggregation (`:aggregate` target) to run even if
+        // the integration tests fail
+        gradle.startParameter.continueOnFailure = true
     }
 }
 

@@ -20,9 +20,9 @@ edit to fit your needs. Make a copy of `serenity.properties.template` as
 `serenity.properties` and edit the latter file.
 
 The most straightforward browser configuration is Chrome with the chromedriver.
-It can be run in GUI mode so you can follow along with the tests, or headless
-for more efficient test runs. Instructions for other configurations are provided
-further down in this README.
+It will run in GUI mode by default so you can follow along with the tests, and
+can be configured to run headless for more efficient test runs. Instructions
+for other configurations are provided further down in this README.
 
 To use Chrome you can just switch the commented `webdriver.driver` properties in
 `serenity.properties`. You need to download a copy of
@@ -64,6 +64,17 @@ There are many different options for running the serenity tests. Finding the
 correct configuration for each browser and operating system can be a challenge.
 The following sections document what works.
 
+## Chromium
+
+The webdriver for Chromium is packaged on Debian as
+[chromium-driver](https://packages.debian.org/stretch/chromium-driver) and on
+Ubuntu as
+[chromium-chromedriver](https://packages.ubuntu.com/xenial/chromium-chromedriver).
+`apt install` the appropriate package, and update `serenity.properties` to
+specify the Chrome driver and the location of the driver
+(`/usr/bin/chromedriver` on Debian, or `/usr/lib/chromium-browser/chromedriver`
+on Ubuntu).
+
 ## Headless Chrome & Firefox
 
 For testing the system in a continuous integration environment it is
@@ -89,17 +100,6 @@ environment variable to be set called `XVFB_DISPLAY`. Set it to `:10` before
 starting the gradle task like so:
 
     $ env XVFB_DISPLAY=":10" ./gradlew test aggregate
-
-## Interactive Chrome on Linux
-On Linux, the only way we've found to force an interactive Chrome session is
-to delete [the line in `build.gradle` in the test settings
-for
-`integration-tests`](https://github.com/SolutionGuidance/psm/blob/master/psm-app/build.gradle#L264):
-
-`environment "DISPLAY", System.getenv('XVFB_DISPLAY')`
-
-Delete this line and re-run the tests. You should see Chrome pop up on your
-screen and run through the tests.
 
 ## Firefox
 Selenium can only interact with specific versions of Firefox. The current version

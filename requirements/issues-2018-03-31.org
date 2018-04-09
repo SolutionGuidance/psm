@@ -663,6 +663,8 @@ possible.
      <<< II 4.  Technical Service Classification:  System Extensibility >>>
 
    - state-question
+** LABEL CHANGES
+   + sq-1.5
 * [[https://github.com/solutionguidance/psm/issues/653][653]]   (open): Remove styles from labels
 
   In general, styles should not be attached directly to the `label` element.  In the course of updating and merging #583, we found a specific problem caused by the `label` styling.  Labels are all being floated left, meaning that in some cases, the newly added labels are appearing to the left of the radio buttons.  
@@ -1016,7 +1018,9 @@ possible.
    - tech-debt
 ** LABEL CHANGES
    - fr-10.2
+   - sq-1.5
    + ad-2.4
+   + sq-1.3
 * [[https://github.com/solutionguidance/psm/issues/612][612]]   (open): Enrollment search has broken placeholder text
 
   The enrollment quick search bar has placeholder text ("Search Keyword"), but clicking on it leaves that placeholder text behind.
@@ -2794,6 +2798,8 @@ API.
 
    - docs
    - task
+** LABEL CHANGES
+   + sq-1.1
 * [[https://github.com/solutionguidance/psm/issues/456][456]]   (open): Use consistent code style
 
   Having a consistent code style to our project makes old code easier to change and new code easier to add. As [Nicholas C. Zakas writes](https://www.smashingmagazine.com/2012/10/why-coding-style-matters/):
@@ -3536,6 +3542,8 @@ inactivity. (Addressable)
      <<< FR 7. Usability >>>
 
    - docs
+** LABEL CHANGES
+   + fr-7.15
 * [[https://github.com/solutionguidance/psm/issues/405][405]] (closed): Add contextual help for private versus group practice
 
   In enrollment steps that include the user choosing whether the provider is an individual/private or group practice difference, link to/reuse the user help documentation distinguishing between a private practice and a group practice.

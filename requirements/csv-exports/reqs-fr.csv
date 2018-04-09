@@ -106,6 +106,7 @@ psm-FR-7.11,,The PSM shall validate entered information as provider fills out ap
 psm-FR-7.12,,"The PSM shall provide a configurable time frame for a ""stale"" enrollment draft application. ",,,WV,,Beta,,,
 psm-FR-7.13,,The PSM shall support searching and pattern-matching based on all fields accepted as input (and based on all reasonable combinations of such fields).,,,SGC 2018-03-05,,,,,
 psm-FR-7.14,,"The PSM's user interface shall be as simple, comprehensible, navigable, reliable, robust in the face of error, and responsive as possible.",,,SGC 2018-03-05,,Beta,,,
+psm-FR-7.15,,The PSM shall provide instructions for using the application as an administrator via a help link or similar feature.,,,,,,,,
 ,8.  Manage Provider Communication,,,,,,,,,
 psm-FR-8.1,,The PSM shall support communications to and from providers and track and monitor responses to the communications.,,,"Pre-certification
 PM.PR1.5",pre-certification-requirements.md,Beta,,,

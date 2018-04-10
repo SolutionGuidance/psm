@@ -45,9 +45,6 @@
                   <div class="wholeCol">
                     <div class="row">
                       <label for="oldPassword">Old Password</label>
-                      <span class="floatL">
-                        <b>:</b>
-                      </span>
 
                       <c:set var="errorCls" value=""/>
                       <spring:bind path="oldPassword">
@@ -57,9 +54,6 @@
                     </div>
                     <div class="row">
                       <label for="password">New Password</label>
-                      <span class="floatL">
-                        <b>:</b>
-                      </span>
 
                       <c:set var="errorCls" value=""/>
                       <spring:bind path="password">
@@ -69,9 +63,6 @@
                     </div>
                     <div class="row">
                       <label for="confirmPassword">Confirm New Password</label>
-                      <span class="floatL">
-                        <b>:</b>
-                      </span>
 
                       <c:set var="errorCls" value=""/>
                       <spring:bind path="confirmPassword">

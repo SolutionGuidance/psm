@@ -51,7 +51,6 @@ import org.drools.SystemEventListenerFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.process.ProcessInstance;
 import org.drools.runtime.process.WorkItemHandler;
-import org.jbpm.process.instance.impl.demo.SystemOutWorkItemHandler;
 import org.jbpm.task.AccessType;
 import org.jbpm.task.Content;
 import org.jbpm.task.Task;
@@ -155,7 +154,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         handlers.put("Check Excluded Provider List in SAM", new SAMExcludedProvidersScreeningHandler());
         handlers.put("Auto Disqualification", new DisqualificationHandler());
         handlers.put("Auto Screening", new ScreeningHandler());
-        handlers.put("Background Check", new SystemOutWorkItemHandler());
         handlers.put("Accept Application", new AcceptedHandler(notificationService));
 
         if (providerService == null) {

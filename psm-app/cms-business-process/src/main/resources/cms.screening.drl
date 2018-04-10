@@ -321,24 +321,6 @@ salience 20
 
 end
 
-rule 'High Risk Level Applicants Require Background Checks'
-dialect 'mvel'
-salience 10
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-    when
-        EnrollmentInformationType(riskLevel == RiskLevelType.HIGH)
-        $postSubmission: PostSubmissionInformationType(requiresBackgroundCheck != "Y")
-    then
-        modify($postSubmission) {
-            setRequiresBackgroundCheck("Y")
-        };
-end
-
 rule 'Set license verification status based on the current status of all licenses.'
 dialect 'mvel'
 /*

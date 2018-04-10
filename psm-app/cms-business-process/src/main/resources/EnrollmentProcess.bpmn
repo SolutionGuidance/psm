@@ -32,8 +32,6 @@
 
   <itemDefinition id="_21-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
 
-  <itemDefinition id="_25-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
-
   <itemDefinition id="_31-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
 
   <itemDefinition id="_34-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
@@ -272,16 +270,6 @@
     <endEvent id="_22" name="End" >
         <terminateEventDefinition />
     </endEvent>
-    <inclusiveGateway id="_23" name="Determine External Systems" gatewayDirection="Diverging" />
-    <parallelGateway id="_24" name="Done with External System" gatewayDirection="Converging" />
-    <task id="_25" name="Background Check" tns:taskName="Background Check" >
-      <ioSpecification>
-        <inputSet>
-        </inputSet>
-        <outputSet>
-        </outputSet>
-      </ioSpecification>
-    </task>
     <parallelGateway id="_27" name="Verification Completed" gatewayDirection="Converging" />
     <task id="_31" name="Auto Screening" tns:taskName="Auto Screening" >
       <extensionElements>
@@ -326,8 +314,6 @@
         <targetRef>_34_modelInput</targetRef>
       </dataInputAssociation>
     </task>
-    <exclusiveGateway id="_40" name="Done with Background Check" gatewayDirection="Converging" />
-    <exclusiveGateway id="_46" name="Is Background Check Needed?" gatewayDirection="Diverging" />
     <task id="_47" name="Get Enrollment History" tns:taskName="Get Enrollment History" >
       <ioSpecification>
         <dataInput id="_47_modelInput" name="model" />
@@ -430,15 +416,10 @@
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "REJECTED".equals(model.getEnrollmentStatus().getStatus());</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="_18-_19" sourceRef="_18" targetRef="_19" />
-    <sequenceFlow id="_24-_21" sourceRef="_24" targetRef="_21" />
-    <sequenceFlow id="_21-_22" sourceRef="_21" targetRef="_22" />
-    <sequenceFlow id="_32-_23" sourceRef="_32" targetRef="_23" name="passed" tns:priority="1" >
+    <sequenceFlow id="_32-_21" sourceRef="_32" targetRef="_21" name="passed" tns:priority="1" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "SUCCESS".equals(model.getProcessResults().getScreeningResults().getAutomaticScreeningStatus().getStatus().getStatusCode());</conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="_40-_24" sourceRef="_40" targetRef="_24" />
-    <sequenceFlow id="_46-_25" sourceRef="_46" targetRef="_25" name="required" tns:priority="1" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "Y".equals(model.getPostSubmissionInformation().getRequiresBackgroundCheck());</conditionExpression>
-    </sequenceFlow>
+    <sequenceFlow id="_21-_22" sourceRef="_21" targetRef="_22" />
     <sequenceFlow id="_8-_27" sourceRef="_8" targetRef="_27" />
     <sequenceFlow id="_10-_27" sourceRef="_10" targetRef="_27" />
     <sequenceFlow id="_34-_27" sourceRef="_34" targetRef="_27" />
@@ -455,13 +436,6 @@
     </sequenceFlow>
     <sequenceFlow id="_7-_34" sourceRef="_7" targetRef="_34" name="success" tns:priority="1" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "SUCCESS".equals(model.getProcessResults().getValidationResult().getStatus().getStatusCode());</conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="_46-_40" sourceRef="_46" targetRef="_40" tns:priority="2" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.jboss.org/drools/rule" >eval(true)</conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="_25-_40" sourceRef="_25" targetRef="_40" />
-    <sequenceFlow id="_23-_46" sourceRef="_23" targetRef="_46" tns:priority="1" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return true;</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="_7-_47" sourceRef="_7" targetRef="_47" name="success" tns:priority="1" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "SUCCESS".equals(model.getProcessResults().getValidationResult().getStatus().getStatusCode());</conditionExpression>
@@ -522,19 +496,10 @@
         <dc:Bounds x="1440" y="136" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_21" >
-        <dc:Bounds x="2052" y="263" width="185" height="48" />
+        <dc:Bounds x="1543" y="263" width="185" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_22" >
-        <dc:Bounds x="2269" y="263" width="48" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_23" >
-        <dc:Bounds x="1521" y="263" width="48" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_24" >
-        <dc:Bounds x="1971" y="263" width="48" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_25" >
-        <dc:Bounds x="1683" y="223" width="175" height="38" />
+        <dc:Bounds x="1760" y="263" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_27" >
         <dc:Bounds x="685" y="263" width="48" height="48" />
@@ -550,12 +515,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_34" >
         <dc:Bounds x="441" y="344" width="212" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_40" >
-        <dc:Bounds x="1890" y="263" width="48" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_46" >
-        <dc:Bounds x="1602" y="263" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_47" >
         <dc:Bounds x="441" y="426" width="212" height="48" />
@@ -624,25 +583,13 @@
         <di:waypoint x="1338" y="160" />
         <di:waypoint x="1464" y="160" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_24-_21" >
-        <di:waypoint x="1995" y="287" />
-        <di:waypoint x="2144" y="287" />
+      <bpmndi:BPMNEdge bpmnElement="_32-_21" >
+        <di:waypoint x="1464" y="287" />
+        <di:waypoint x="1635" y="287" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_21-_22" >
-        <di:waypoint x="2144" y="287" />
-        <di:waypoint x="2293" y="287" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_32-_23" >
-        <di:waypoint x="1464" y="287" />
-        <di:waypoint x="1545" y="287" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_40-_24" >
-        <di:waypoint x="1914" y="287" />
-        <di:waypoint x="1995" y="287" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_46-_25" >
-        <di:waypoint x="1626" y="287" />
-        <di:waypoint x="1770" y="242" />
+        <di:waypoint x="1635" y="287" />
+        <di:waypoint x="1784" y="287" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_8-_27" >
         <di:waypoint x="547" y="123" />
@@ -688,18 +635,6 @@
         <di:waypoint x="384" y="245" />
         <di:waypoint x="547" y="369" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_46-_40" >
-        <di:waypoint x="1626" y="287" />
-        <di:waypoint x="1914" y="287" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_25-_40" >
-        <di:waypoint x="1770" y="242" />
-        <di:waypoint x="1914" y="287" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_23-_46" >
-        <di:waypoint x="1545" y="287" />
-        <di:waypoint x="1626" y="287" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_7-_47" >
         <di:waypoint x="384" y="245" />
         <di:waypoint x="547" y="450" />
@@ -722,7 +657,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_7-_52" >
         <di:waypoint x="384" y="245" />
-        <di:waypoint x="555" y="614" />
+        <di:waypoint x="554" y="614" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

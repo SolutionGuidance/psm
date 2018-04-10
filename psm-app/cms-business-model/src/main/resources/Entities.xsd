@@ -324,7 +324,6 @@
       <element name="BRDR" type="string"/>
       <element name="MajorPrograms" type="tns:MajorProgramsType"/>
       <element name="CategoriesOfService" type="tns:CategoriesOfServiceType"/>
-      <element name="RequiresBackgroundCheck" type="string"/>
     </sequence>
   </complexType>
   <complexType name="PaymentInformationType">

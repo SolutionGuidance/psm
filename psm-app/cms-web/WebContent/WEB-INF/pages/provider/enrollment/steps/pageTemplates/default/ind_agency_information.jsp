@@ -16,14 +16,12 @@
                 <c:set var="formName" value="_11_name"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Agency Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="row requireField">
                 <c:set var="formName" value="_11_agencyId"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="agencyId">Agency Id<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input type="text" class="normalInput" id="agencyId" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="row">
@@ -34,13 +32,11 @@
                   <span class="required">*</span>
                   <a href="javascript:;" class="userHelpLink NPIdefinition">?</a>
                 </label>
-                <span class="floatL"><b>:</b></span>
                 <input type="text" class="npiMasked normalInput" id="agencyNpiUmpi" name="${formName}" value="${formValue}" maxlength="10"/>
             </div>
 
             <div class="row">
                 <label>Fax Number<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_11_fax1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <input type="text" title="Fax Number Area Code" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
@@ -58,7 +54,6 @@
                 <c:set var="formName" value="_11_contactName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="contactName">Agency Contact Name<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input type="text" class="normalInput" id="contactName" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
 
@@ -66,7 +61,6 @@
                 <c:set var="formName" value="_11_bgsId"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="bgsId">Background Study ID<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input type="text" class="normalInput" id="bgsId" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
 
@@ -74,7 +68,6 @@
                 <c:set var="formName" value="_11_clearanceDate"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Clearance Date<span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
             </div>
 

@@ -156,7 +156,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         handlers.put("Auto Disqualification", new DisqualificationHandler());
         handlers.put("Auto Screening", new ScreeningHandler());
         handlers.put("Background Check", new SystemOutWorkItemHandler());
-        handlers.put("SIRS", new SystemOutWorkItemHandler());
         handlers.put("Accept Application", new AcceptedHandler(notificationService));
 
         if (providerService == null) {

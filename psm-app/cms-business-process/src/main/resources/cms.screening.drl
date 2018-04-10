@@ -339,44 +339,6 @@ salience 10
         };
 end
 
-rule 'High Risk Level Applicants Require SIRS Processing'
-dialect 'mvel'
-salience 10
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-    when
-        EnrollmentInformationType(riskLevel == RiskLevelType.HIGH)
-        $postSubmission: PostSubmissionInformationType(requiresSIRS != "Y")
-    then
-        modify($postSubmission) {
-            setRequiresSIRS("Y")
-        };
-
-end
-
-rule 'Moderate Risk Level Applicants Require SIRS Processing'
-dialect 'mvel'
-salience 10
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-    when
-        EnrollmentInformationType(riskLevel == RiskLevelType.MODERATE)
-        $postSubmission: PostSubmissionInformationType(requiresSIRS != "Y")
-    then
-        modify($postSubmission) {
-            setRequiresSIRS("Y")
-        };
-
-end
-
 rule 'Set license verification status based on the current status of all licenses.'
 dialect 'mvel'
 /*

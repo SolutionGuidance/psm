@@ -39,12 +39,10 @@ public class XMLSerializingEnrollmentProcess extends EnrollmentProcess implement
             EnrollmentProcess result = (EnrollmentProcess) um.unmarshal(new StringReader((String) input.readObject()));
 
             setSessionId(result.getSessionId());
-            setAssessedFees(result.getAssessedFees());
             setEnrollment(result.getEnrollment());
             setEnrollmentStatus(result.getEnrollmentStatus());
             setEnrollmentStatusHistory(result.getEnrollmentStatusHistory());
             setPostSubmissionInformation(result.getPostSubmissionInformation());
-            setPreApprovalQuestions(result.getPreApprovalQuestions());
             setProcessAudit(result.getProcessAudit());
             setProcessResults(result.getProcessResults());
 

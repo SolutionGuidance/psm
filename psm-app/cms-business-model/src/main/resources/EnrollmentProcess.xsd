@@ -22,8 +22,6 @@
 				<element name="EnrollmentStatus" type="cms:EnrollmentStatusType"></element>
 				<element name="EnrollmentStatusHistory" type="cms:EnrollmentStatusHistoryType"></element>
 				<element name="PostSubmissionInformation" type="cms:PostSubmissionInformationType"></element>
-				<element name="PreApprovalQuestions" type="string"></element>
-				<element name="AssessedFees" type="tns:AssessedFeesType"></element>
 				<element name="ProcessResults" type="tns:ProcessResultsType"></element>
 				<element name="ProcessAudit" type="tns:ProcessAuditType"></element>
 			</sequence>
@@ -43,15 +41,6 @@
 				</sequence>
 			</extension>
 		</complexContent>
-	</complexType>
-
-	<complexType name="AssessedFeesType">
-		<annotation>
-			<documentation xml:lang="en">All fees assessed by the business rules.</documentation>
-		</annotation>
-		<sequence>
-			<element name="PaymentInformation" type="cms:PaymentInformationType"></element>
-		</sequence>
 	</complexType>
 
 	<complexType name="EditHistoryType">

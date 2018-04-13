@@ -4914,10 +4914,10 @@ inactivity. (Addressable)
      their information has not changed.
      <<< FR 6. Retention, Reporting and Auditing >>>
 ** LABEL CHANGES
-      + iu-2.2
-      + iu-2.3
-      + ia-1.2
-      CHECKED (removed "+ ia-3.1"; removed "+ ia-3.9")
+   + iu-2.2
+   + iu-2.3
+   + ia-1.2
+   CHECKED (removed "+ ia-3.1"; removed "+ ia-3.9")
 
 * [[https://github.com/solutionguidance/psm/issues/283][283]]   (open): County field should be a drop-down menu, on Additional Practice Location page.
 
@@ -6869,10 +6869,10 @@ inactivity. (Addressable)
      The PSM shall provide per-field instructions on the application
      screen.
      <<< FR 7. Usability >>>
+   - quick-fix
 
 ** LABEL CHANGES
    + fr-7.14
-   - quick-fix
 * [[https://github.com/solutionguidance/psm/issues/154][154]] (closed): "Help" link does not display help
 
   The top of every page in the PSM includes a "Help" link (`<a href="javascript:;">Help</a>`). Clicking it has no effect.

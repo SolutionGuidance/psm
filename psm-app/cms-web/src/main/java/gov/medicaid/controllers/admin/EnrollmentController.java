@@ -388,8 +388,6 @@ public class EnrollmentController extends BaseController {
                                         .equals(licenseId)) {
                                     output = screeningResultType.getLicenseVerificationResult().getSearchResults();
                                 }
-                            } else if ("SAM EXCLUDED PROVIDERS".equals(type)) {
-                                output = screeningResultType.getSAMExclusionVerificationResult();
                             } else {
                                 output = screeningResultType.getSearchResult();
                             }
@@ -781,9 +779,6 @@ public class EnrollmentController extends BaseController {
         VerificationStatusType status = provider.getVerificationStatus();
         if ("Y".equals(dto.getNonExclusionVerified())) { // modify only if set to Y
             status.setNonExclusion("Y");
-        }
-        if ("Y".equals(dto.getNonExclusionVerified())) { // modify only if set to Y
-            status.setSAMNonExclusion("Y");
         }
 
         if ("Y".equals(dto.getNpiLookupVerified())) {

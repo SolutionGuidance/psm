@@ -36,7 +36,6 @@ import gov.medicaid.process.enrollment.ExcludedProvidersScreeningHandler;
 import gov.medicaid.process.enrollment.NPILookupHandler;
 import gov.medicaid.process.enrollment.PreProcessHandler;
 import gov.medicaid.process.enrollment.RejectedHandler;
-import gov.medicaid.process.enrollment.SAMExcludedProvidersScreeningHandler;
 import gov.medicaid.process.enrollment.ScreeningHandler;
 import gov.medicaid.process.enrollment.ValidationHandler;
 import gov.medicaid.process.enrollment.VerifyLicenseHandler;
@@ -151,7 +150,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
                 "Check Excluded Provider List in OIG",
                 new ExcludedProvidersScreeningHandler(config.getLeieApiBaseUrl())
         );
-        handlers.put("Check Excluded Provider List in SAM", new SAMExcludedProvidersScreeningHandler());
         handlers.put("Auto Disqualification", new DisqualificationHandler());
         handlers.put("Auto Screening", new ScreeningHandler());
         handlers.put("Accept Application", new AcceptedHandler(notificationService));

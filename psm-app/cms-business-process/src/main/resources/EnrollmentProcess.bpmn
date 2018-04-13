@@ -42,8 +42,6 @@
 
   <itemDefinition id="_51-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
 
-  <itemDefinition id="_52-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
-
   <process processType="Private" isExecutable="true" id="gov.medicaid.process.enrollment" name="CMS Enrollment Process" tns:packageName="gov.medicaid.process.enrollment" tns:version="1.0" >
 
     <extensionElements>
@@ -372,26 +370,6 @@
         <targetRef>_51_modelInput</targetRef>
       </dataInputAssociation>
     </task>
-    <task id="_52" name="Check Excluded Provider List in SAM" tns:taskName="Check Excluded Provider List in SAM" >
-      <ioSpecification>
-        <dataInput id="_52_modelInput" name="model" />
-        <dataOutput id="_52_modelOutput" name="model" />
-        <inputSet>
-          <dataInputRefs>_52_modelInput</dataInputRefs>
-        </inputSet>
-        <outputSet>
-          <dataOutputRefs>_52_modelOutput</dataOutputRefs>
-        </outputSet>
-      </ioSpecification>
-      <dataInputAssociation>
-        <sourceRef>model</sourceRef>
-        <targetRef>_52_modelInput</targetRef>
-      </dataInputAssociation>
-      <dataOutputAssociation>
-        <sourceRef>_52_modelOutput</sourceRef>
-        <targetRef>model</targetRef>
-      </dataOutputAssociation>
-    </task>
 
     <!-- connections -->
     <sequenceFlow id="_9-_2" sourceRef="_9" targetRef="_2" />
@@ -425,7 +403,6 @@
     <sequenceFlow id="_34-_27" sourceRef="_34" targetRef="_27" />
     <sequenceFlow id="_47-_27" sourceRef="_47" targetRef="_27" />
     <sequenceFlow id="_51-_27" sourceRef="_51" targetRef="_27" />
-    <sequenceFlow id="_52-_27" sourceRef="_52" targetRef="_27" />
     <sequenceFlow id="_17-_31" sourceRef="_17" targetRef="_31" name="accepted" tns:priority="1" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return !"REJECTED".equals(model.getEnrollmentStatus().getStatus());</conditionExpression>
     </sequenceFlow>
@@ -446,9 +423,6 @@
     <sequenceFlow id="_48-_49" sourceRef="_48" targetRef="_49" />
     <sequenceFlow id="_33-_50" sourceRef="_33" targetRef="_50" />
     <sequenceFlow id="_7-_51" sourceRef="_7" targetRef="_51" name="success" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "SUCCESS".equals(model.getProcessResults().getValidationResult().getStatus().getStatusCode());</conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="_7-_52" sourceRef="_7" targetRef="_52" name="success" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "SUCCESS".equals(model.getProcessResults().getValidationResult().getStatus().getStatusCode());</conditionExpression>
     </sequenceFlow>
 
@@ -531,9 +505,6 @@
       <bpmndi:BPMNShape bpmnElement="_51" >
         <dc:Bounds x="446" y="511" width="203" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_52" >
-        <dc:Bounds x="441" y="590" width="226" height="48" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_9-_2" >
         <di:waypoint x="547" y="41" />
         <di:waypoint x="709" y="41" />
@@ -611,10 +582,6 @@
         <di:waypoint x="547" y="535" />
         <di:waypoint x="709" y="287" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_52-_27" >
-        <di:waypoint x="554" y="614" />
-        <di:waypoint x="709" y="287" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_17-_31" >
         <di:waypoint x="1211" y="236" />
         <di:waypoint x="1338" y="238" />
@@ -654,10 +621,6 @@
       <bpmndi:BPMNEdge bpmnElement="_7-_51" >
         <di:waypoint x="384" y="245" />
         <di:waypoint x="547" y="535" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_7-_52" >
-        <di:waypoint x="384" y="245" />
-        <di:waypoint x="554" y="614" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

@@ -429,7 +429,6 @@
       <choice>
         <element name="LicenseVerificationResult" type="tns:LicenseVerificationSearchResultType" maxOccurs="1" minOccurs="0"/>
         <element name="ExclusionVerificationResult" type="tns:SearchResultType" maxOccurs="1" minOccurs="0"/>
-        <element name="SAMExclusionVerificationResult" type="tns:SearchResultType" maxOccurs="1" minOccurs="0"/>
         <element name="SearchResult" type="tns:SearchResultType" maxOccurs="1" minOccurs="0"/>
       </choice>
     </sequence>
@@ -797,7 +796,6 @@
       <element name="NPILookup" type="string"/>
       <element name="Licenses" type="string"/>
       <element name="NonExclusion" type="string"/>
-      <element name="SAMNonExclusion" type="string"/>
     </sequence>
   </complexType>
   <complexType name="SpecialtiesType">

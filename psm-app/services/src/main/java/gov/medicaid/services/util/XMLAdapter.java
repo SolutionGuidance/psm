@@ -168,7 +168,6 @@ public final class XMLAdapter {
                 verification.setSocialSecurityNumber(person.getSsnVerifiedInd());
             }
 
-            verification.setNPILookup(profile.getEntity().getNpiLookupVerifiedInd());
             verification.setNonExclusion(profile.getEntity().getNonExclusionVerifiedInd());
         }
 
@@ -263,7 +262,6 @@ public final class XMLAdapter {
                 person.setSsnVerifiedInd(verification.getSocialSecurityNumber());
             }
 
-            entity.setNpiLookupVerifiedInd(verification.getNPILookup());
             entity.setNonExclusionVerifiedInd(verification.getNonExclusion());
         }
         return ticket;

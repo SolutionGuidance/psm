@@ -793,7 +793,6 @@
   <complexType name="VerificationStatusType">
     <sequence>
       <element name="SocialSecurityNumber" type="string"/>
-      <element name="NPILookup" type="string"/>
       <element name="Licenses" type="string"/>
       <element name="NonExclusion" type="string"/>
     </sequence>

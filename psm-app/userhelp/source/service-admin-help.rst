@@ -24,10 +24,6 @@ yourself and manually verify that piece of the enrollment, click the
 
 Check the Provider Information:
 
--  Is this person's National Provider Identifier accurate and valid, as
-   listed in `the National Plan and Provider Enumeration System
-   registry <https://npiregistry.cms.hhs.gov/>`__? If not, you should
-   reject the enrollment.
 -  Is this person in the `Social Security Administration's Death Master
    File <https://www.ssa.gov/dataexchange/request_dmf.html>`__ (`how to
    access <https://classic.ntis.gov/products/ssa-dmf/>`__)? If so, SSA

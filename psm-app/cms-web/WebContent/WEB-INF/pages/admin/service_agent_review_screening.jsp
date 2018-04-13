@@ -47,31 +47,6 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>NPI LOOKUP</td>
-                        <td>${model.enrollment.providerInformation.NPI}</td>
-                        <td><a class="autoScreeningResultLink"
-                              href="${ctx}/agent/enrollment/autoScreeningResult?type=NPI LOOKUP&id=${id}"
-                              target="_blank">
-                            <c:choose>
-                            <c:when test="${empty verification.NPILookup}">
-                              Not performed
-                            </c:when>
-                            <c:otherwise>
-                              View results
-                            </c:otherwise>
-                            </c:choose>
-                          </a></td>
-                          <td>
-                            <input
-                              type="checkbox"
-                              title="NPI Lookup Verified"
-                              name="npiLookupVerified"
-                              value="Y"
-                              ${verification.NPILookup eq 'Y' ? 'checked' : ''}
-                              />
-                          </td>
-                      </tr>
-                      <tr>
                         <td>SSN DMF VERIFICATION</td>
                         <td>${model.enrollment.providerInformation.applicantInformation.personalInformation.socialSecurityNumber}</td>
                         <td><a class="autoScreeningResultLink"

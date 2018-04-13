@@ -30,7 +30,7 @@
   - Mean and median time from submission to review by month
   
   What are some others?
-** LABELS CHANGED
+** LABEL CHANGES
    + ad-1.1
    + ad-1.2
    + ad-1.3
@@ -43,7 +43,7 @@
 * [[https://github.com/solutionguidance/psm/issues/738][738]]   (open): Choose second federal data source
 
   Following on from #17, we now need to choose our second federal data source.  This is most likely to be either PECOS or the Death Master File.
-** LABELS CHANGED
+** LABEL CHANGES
    + ia-3.2
    + iu-2.2
    + iu-2.3
@@ -6793,7 +6793,7 @@ inactivity. (Addressable)
      The PSM shall provide per-field instructions on the application
      screen.
      <<< FR 7. Usability >>>
-** LABELS CHANGED
+** LABEL CHANGES
    - fr-7.1
    + fr-7.14
 
@@ -6939,7 +6939,7 @@ inactivity. (Addressable)
      processes.  The PSM shall also undergo manual testing and QA as
      needed.
      <<< SQ 1.  Software Quality and Maintainability >>>
-** LABELS CHANGED
+** LABEL CHANGES
    + sa-4.5
 
 * [[https://github.com/solutionguidance/psm/issues/149][149]] (closed): Service admin can edit/delete other users' accounts
@@ -6974,7 +6974,7 @@ inactivity. (Addressable)
 
    - backend
    - security
-** LABELS CHANGED
+** LABEL CHANGES
    + ad-5.13
 * [[https://github.com/solutionguidance/psm/issues/148][148]] (closed): Make Master Deployable
 
@@ -7850,7 +7850,7 @@ inactivity. (Addressable)
      The PSM shall ensure proprietary interfaces and protocols between
      modules are not used.
      <<< FR 9.  Meets architecture guideline >>>
-** LABELS CHANGED
+** LABEL CHANGES
    - fr-9.5
    + sq-1.3
 
@@ -7888,7 +7888,7 @@ inactivity. (Addressable)
      <<< SQ 1.  Software Quality and Maintainability >>>
 
    - tech-debt
-** LABELS CHANGED
+** LABEL CHANGES
    + sa-4.0
    + sa-4.2
    + iu-3.2
@@ -7988,7 +7988,7 @@ inactivity. (Addressable)
 
    - question
    - ux
-** LABELS CHANGED
+** LABEL CHANGES
    + ad-3.1
 * [[https://github.com/solutionguidance/psm/issues/61][ 61]]   (open): Make list of counties configurable
 
@@ -8008,7 +8008,7 @@ inactivity. (Addressable)
    - backend
    - task
    - ux
-** LABELS CHANGED
+** LABEL CHANGES
    + ii-4.5
    + ad-3.1
 * [[https://github.com/solutionguidance/psm/issues/57][ 57]]   (open): Improve database schema
@@ -8025,7 +8025,7 @@ inactivity. (Addressable)
 
    - backend
    - tech-debt
-** LABELS CHANGED
+** LABEL CHANGES
    + ia-1.1
    + ia-4.2
 * [[https://github.com/solutionguidance/psm/issues/56][ 56]] (closed): Create an .editorconfig
@@ -8274,7 +8274,7 @@ inactivity. (Addressable)
    - security
    - state-question
    - tech-debt
-** LABELS CHANGED
+** LABEL CHANGES
    + ad-5.3
    + ad-5.16
 * [[https://github.com/solutionguidance/psm/issues/33][ 33]]   (open): Complete or remove the ability to suspend user accounts
@@ -8291,7 +8291,7 @@ inactivity. (Addressable)
 
    - backend
    - tech-debt
-** LABELS CHANGED
+** LABEL CHANGES
    + ad-5.14
 * [[https://github.com/solutionguidance/psm/issues/32][ 32]]   (open): Understand or remove user IDs
 
@@ -8364,7 +8364,7 @@ API.
 
    - docs
    - enhancement
-** LABELS CHANGED
+** LABEL CHANGES
    + sq-1.1
    + ii-4.4
 * [[https://github.com/solutionguidance/psm/issues/28][ 28]]   (open): Document production deployments
@@ -8425,7 +8425,7 @@ The PSM shall comply with national standards for data message
 formatting, as applicable to health IT systems, their constituent
 elements/modules, and services
      <<< II 2.  Technical Service Classification:  Data Connectivity >>>
-** LABELS CHANGED
+** LABEL CHANGES
    + iu-2.2
    + ia-3.9
    + ia-4.2
@@ -8510,7 +8510,7 @@ elements/modules, and services
      the date the moratorium was lifted.
      <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
 
-** LABELS CHANGED
+** LABEL CHANGES
    + ia-3.2
 * [[https://github.com/solutionguidance/psm/issues/16][ 16]] (closed): Manage sets of dependencies via Gradle or another tool
 
@@ -8554,7 +8554,7 @@ elements/modules, and services
      source code and database schemas, and to use precise terminology
      in data structures and operations.
      <<< SQ 1.  Software Quality and Maintainability >>>
-** LABELS CHANGED
+** LABEL CHANGES
    + sa-4.1
 
 * [[https://github.com/solutionguidance/psm/issues/11][ 11]] (closed): Separate ext-srcs from main application
@@ -8570,7 +8570,7 @@ elements/modules, and services
      regarding provider credentials and sanctions.
      <<< FR 3.  Enable the SMA to provide accurate, streamlined, automated determination of provider eligibility, appeal and revalidation >>>
 
-** LABELS CHANGED
+** LABEL CHANGES
    + sa-4.1
    + iu-1.1
 * [[https://github.com/solutionguidance/psm/issues/10][ 10]]   (open): Clarify user roles / permissions
@@ -8596,7 +8596,7 @@ elements/modules, and services
    - bug
    - security
    - state-question
-** LABELS CHANGED
+** LABEL CHANGES
    + ad-1.4
    + ad-5.1
    + ad-5.13
@@ -8702,7 +8702,7 @@ elements/modules, and services
      The PSM shall have an open source repository and source code base
      organized to be welcoming to outside contributors.
      <<< SQ 1.  Software Quality and Maintainability >>>
-** LABELS CHANGED
+** LABEL CHANGES
    + sq-1.3
 
 * [[https://github.com/solutionguidance/psm/issues/5][  5]] (closed): Document dev/test deployments

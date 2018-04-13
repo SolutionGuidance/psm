@@ -146,31 +146,6 @@
                             />
                         </td>
                       </tr>
-                      <tr>
-                        <td>EXCLUDED PROVIDER VERIFICATION IN SAM (checked means not in exclusion list)</td>
-                        <td></td>
-                        <td><a class="autoScreeningResultLink"
-                              href="${ctx}/agent/enrollment/autoScreeningResult?type=SAM EXCLUDED PROVIDERS&id=${id}"
-                              target="_blank">
-                          <c:choose>
-                          <c:when test="${empty verification.SAMNonExclusion}">
-                            Not performed
-                          </c:when>
-                          <c:otherwise>
-                            View results
-                          </c:otherwise>
-                          </c:choose>
-                        </a></td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            title="Non-SAM-Exclusion Verified"
-                            name="nonSAMExclusionVerified"
-                            value="Y"
-                            ${verification.SAMNonExclusion eq 'Y' ? 'checked' : ''}
-                            />
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
 

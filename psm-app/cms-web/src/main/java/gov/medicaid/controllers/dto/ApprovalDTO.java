@@ -53,11 +53,6 @@ public class ApprovalDTO {
     private String nonExclusionVerified;
 
     /**
-     * If Y, user has verified that user is not in the exclusion list from SAM.
-     */
-    private String nonSAMExclusionVerified;
-
-    /**
      * Empty constructor.
      */
     public ApprovalDTO() {
@@ -157,24 +152,5 @@ public class ApprovalDTO {
      */
     public void setNpiLookupVerified(String npiLookupVerified) {
         this.npiLookupVerified = npiLookupVerified;
-    }
-
-    /**
-     * Gets the <code>nonSAMExclusionVerified</code>.
-     *
-     * @return the nonSAMExclusionVerified
-     */
-    public String getNonSAMExclusionVerified() {
-        return nonSAMExclusionVerified;
-    }
-
-    /**
-     * Sets the <code>nonSAMExclusionVerified</code>.
-     *
-     * @param nonSAMExclusionVerified
-     *            the nonSAMExclusionVerified to set
-     */
-    public void setNonSAMExclusionVerified(String nonSAMExclusionVerified) {
-        this.nonSAMExclusionVerified = nonSAMExclusionVerified;
     }
 }

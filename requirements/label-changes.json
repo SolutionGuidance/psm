@@ -1,0 +1,610 @@
+[
+    {
+        "issue": 5,
+        "add-labels": ["Z-REQ-PSM-SQ-1.4"]
+    },
+    {
+        "issue": 6,
+        "add-labels": ["Z-REQ-PSM-SQ-1.3"]
+    },
+    {
+        "issue": 9,
+        "add-labels": ["Z-REQ-PSM-SA-4.1"]
+    },
+    {
+        "issue": 10,
+        "add-labels": ["Z-REQ-PSM-AD-1.4", "Z-REQ-PSM-AD-5.1", "Z-REQ-PSM-AD-5.13"]
+    },
+    {
+        "issue": 11,
+        "add-labels": ["Z-REQ-PSM-SA-4.1", "Z-REQ-PSM-IU-1.1"]
+    },
+    {
+        "issue": 12,
+        "add-labels": ["Z-REQ-PSM-SA-4.1"]
+    },
+    {
+        "issue": 17,
+        "add-labels": ["Z-REQ-PSM-IA-3.2"]
+    },
+    {
+        "issue": 21,
+        "add-labels": ["Z-REQ-PSM-IU-2.2", "Z-REQ-PSM-IA-3.9", "Z-REQ-PSM-IA-4.2"]
+    },
+    {
+        "issue": 29,
+        "add-labels": ["Z-REQ-PSM-SQ-1.1", "Z-REQ-PSM-II-4.4"]
+    },
+    {
+        "issue": 33,
+        "add-labels": ["Z-REQ-PSM-AD-5.14"]
+    },
+    {
+        "issue": 34,
+        "add-labels": ["Z-REQ-PSM-AD-5.3", "Z-REQ-PSM-AD-5.16"]
+    },
+    {
+        "issue": 57,
+        "add-labels": ["Z-REQ-PSM-IA-1.1", "Z-REQ-PSM-IA-4.2"]
+    },
+    {
+        "issue": 61,
+        "add-labels": ["Z-REQ-PSM-II-4.5", "Z-REQ-PSM-AD-3.1"]
+    },
+    {
+        "issue": 62,
+        "add-labels": ["Z-REQ-PSM-AD-3.1"]
+    },
+    {
+        "issue": 65,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 79,
+        "add-labels": ["Z-REQ-PSM-SA-4.0", "Z-REQ-PSM-SA-4.2", "Z-REQ-PSM-IU-3.2"]
+    },
+    {
+        "issue": 87,
+        "remove-labels": ["Z-REQ-PSM-FR-9.5"],
+        "add-labels": ["Z-REQ-PSM-SQ-1.3"]
+    },
+    {
+        "issue": 92,
+        "add-labels": ["Z-REQ-PSM-SQ-1.1"]
+    },
+    {
+        "issue": 104,
+        "add-labels": ["Z-REQ-PSM-IA-4.2", "Z-REQ-PSM-AD-5.1"]
+    },
+    {
+        "issue": 127,
+        "add-labels": ["Z-REQ-PSM-FR-4.7"]
+    },
+    {
+        "issue": 146,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 149,
+        "add-labels": ["Z-REQ-PSM-AD-5.13"]
+    },
+    {
+        "issue": 150,
+        "add-labels": ["Z-REQ-PSM-SA-4.5"]
+    },
+    {
+        "issue": 155,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 159,
+        "remove-labels": ["Z-REQ-PSM-FR-7.1"],
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 161,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 165,
+        "remove-labels": ["Z-REQ-PSM-FR-3.17"],
+        "add-labels": ["Z-REQ-PSM-SQ-1.5"]
+    },
+    {
+        "issue": 167,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 168,
+        "add-labels": ["Z-REQ-PSM-AD-3.3"]
+    },
+    {
+        "issue": 171,
+        "add-labels": ["Z-REQ-PSM-AD-5.13"]
+    },
+    {
+        "issue": 172,
+        "add-labels": ["Z-REQ-PSM-II-4.5"]
+    },
+    {
+        "issue": 174,
+        "remove-labels": ["Z-REQ-PSM-FR-7.13"],
+        "add-labels": ["Z-REQ-PSM-IU-2.5"]
+    },
+    {
+        "issue": 175,
+        "add-labels": ["Z-REQ-PSM-AD-5.3"]
+    },
+    {
+        "issue": 181,
+        "remove-labels": ["Z-REQ-PSM-AD-5.11"],
+        "add-labels": ["Z-REQ-PSM-AD-5.2", "Z-REQ-PSM-AD-5.7", "Z-REQ-PSM-AD-5.16"]
+    },
+    {
+        "issue": 185,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 192,
+        "add-labels": ["Z-REQ-PSM-IA-3.2"]
+    },
+    {
+        "issue": 194,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 195,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 223,
+        "add-labels": ["Z-REQ-PSM-IU-2.2", "Z-REQ-PSM-IU-2.3", "Z-REQ-PSM-IU-4.2", "Z-REQ-PSM-IA-3.1", "Z-REQ-PSM-IA-3.9"]
+    },
+    {
+        "issue": 224,
+        "add-labels": ["Z-REQ-PSM-IU-2.2", "Z-REQ-PSM-IU-2.3", "Z-REQ-PSM-IU-4.2", "Z-REQ-PSM-IA-1.2", "Z-REQ-PSM-IA-3.1", "Z-REQ-PSM-IA-3.9"]
+    },
+    {
+        "issue": 233,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 236,
+        "add-labels": ["Z-REQ-PSM-IU-2.2", "Z-REQ-PSM-IU-2.3", "Z-REQ-PSM-IA-1.2", "Z-REQ-PSM-IA-3.1", "Z-REQ-PSM-IA-3.9"]
+    },
+    {
+        "issue": 238,
+        "add-labels": ["Z-REQ-PSM-SA-4.1", "Z-REQ-PSM-SQ-1.5"]
+    },
+    {
+        "issue": 248,
+        "add-labels": ["Z-REQ-PSM-SQ-1.2"]
+    },
+    {
+        "issue": 250,
+        "add-labels": ["Z-REQ-PSM-SQ-1.1"]
+    },
+    {
+        "issue": 254,
+        "add-labels": ["Z-REQ-PSM-IA-4.2"]
+    },
+    {
+        "issue": 255,
+        "add-labels": ["Z-REQ-PSM-SQ-1.6"]
+    },
+    {
+        "issue": 259,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 260,
+        "add-labels": ["Z-REQ-PSM-SA-4.0", "Z-REQ-PSM-SA-4.2", "Z-REQ-PSM-IU-3.2"]
+    },
+    {
+        "issue": 262,
+        "add-labels": ["Z-REQ-PSM-SA-4.0", "Z-REQ-PSM-SA-4.2", "Z-REQ-PSM-IU-3.2"]
+    },
+    {
+        "issue": 263,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 265,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 273,
+        "add-labels": ["Z-REQ-PSM-IU-2.2", "Z-REQ-PSM-IU-2.3"]
+    },
+    {
+        "issue": 274,
+        "add-labels": ["Z-REQ-PSM-SA-4.0", "Z-REQ-PSM-SA-4.2", "Z-REQ-PSM-IU-3.2"]
+    },
+    {
+        "issue": 280,
+        "add-labels": ["Z-REQ-PSM-IA-3.8"]
+    },
+    {
+        "issue": 282,
+        "add-labels": ["Z-REQ-PSM-IA-4.2"]
+    },
+    {
+        "issue": 289,
+        "add-labels": ["Z-REQ-PSM-IU-2.2", "Z-REQ-PSM-IU-2.3", "Z-REQ-PSM-IA-1.2"]
+    },
+    {
+        "issue": 293,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 299,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 305,
+        "add-labels": ["Z-REQ-PSM-IU-4.1", "Z-REQ-PSM-IA-4.2", "Z-REQ-PSM-AD-5.8", "Z-REQ-PSM-AD-5.9", "Z-REQ-PSM-AD-5.13", "Z-REQ-PSM-FR-4.8"]
+    },
+    {
+        "issue": 307,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 309,
+        "add-labels": ["Z-REQ-PSM-IA-4.4"]
+    },
+    {
+        "issue": 327,
+        "add-labels": ["Z-REQ-PSM-IA-4.2"]
+    },
+    {
+        "issue": 328,
+        "add-labels": ["Z-REQ-PSM-IA-4.3", "Z-REQ-PSM-IA-4.4"]
+    },
+    {
+        "issue": 335,
+        "add-labels": ["Z-REQ-PSM-IU-4.1", "Z-REQ-PSM-AD-5.8"]
+    },
+    {
+        "issue": 336,
+        "add-labels": ["Z-REQ-PSM-IA-4.3"]
+    },
+    {
+        "issue": 342,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 349,
+        "remove-labels": ["Z-REQ-PSM-FR-3.13"],
+        "add-labels": ["Z-REQ-PSM-IU-2.2", "Z-REQ-PSM-IU-2.3", "Z-REQ-PSM-IA-1.2", "Z-REQ-PSM-IA-2.1", "Z-REQ-PSM-IA-3.9"]
+    },
+    {
+        "issue": 355,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 369,
+        "add-labels": ["Z-REQ-PSM-IA-4.3"]
+    },
+    {
+        "issue": 378,
+        "add-labels": ["Z-REQ-PSM-IU-2.2"]
+    },
+    {
+        "issue": 386,
+        "add-labels": ["Z-REQ-PSM-SA-4.2"]
+    },
+    {
+        "issue": 389,
+        "add-labels": ["Z-REQ-PSM-II-4.5", "Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 396,
+        "add-labels": ["Z-REQ-PSM-II-4.5"]
+    },
+    {
+        "issue": 398,
+        "add-labels": ["Z-REQ-PSM-AD-5.5", "Z-REQ-PSM-AD-5.13"]
+    },
+    {
+        "issue": 404,
+        "add-labels": ["Z-REQ-PSM-II-4.5"]
+    },
+    {
+        "issue": 406,
+        "add-labels": ["Z-REQ-PSM-FR-7.15"]
+    },
+    {
+        "issue": 415,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 417,
+        "remove-labels": ["Z-REQ-PSM-FR-7.6"],
+        "add-labels": ["Z-REQ-PSM-AD-3.3"]
+    },
+    {
+        "issue": 420,
+        "add-labels": ["Z-REQ-PSM-AD-5.2", "Z-REQ-PSM-AD-5.7", "Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 421,
+        "add-labels": ["Z-REQ-PSM-SQ-1.6"]
+    },
+    {
+        "issue": 423,
+        "add-labels": ["Z-REQ-PSM-FR-2.16"]
+    },
+    {
+        "issue": 424,
+        "add-labels": ["Z-REQ-PSM-FR-2.16"]
+    },
+    {
+        "issue": 426,
+        "add-labels": ["Z-REQ-PSM-FR-2.16"]
+    },
+    {
+        "issue": 432,
+        "add-labels": ["Z-REQ-PSM-IA-4.2"]
+    },
+    {
+        "issue": 438,
+        "add-labels": ["Z-REQ-PSM-AD-4.1", "Z-REQ-PSM-AD-4.2"]
+    },
+    {
+        "issue": 439,
+        "add-labels": ["Z-REQ-PSM-SQ-1.4"]
+    },
+    {
+        "issue": 458,
+        "add-labels": ["Z-REQ-PSM-SQ-1.1"]
+    },
+    {
+        "issue": 467,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 468,
+        "add-labels": ["Z-REQ-PSM-AD-1.4", "Z-REQ-PSM-AD-5.1", "Z-REQ-PSM-AD-5.2", "Z-REQ-PSM-AD-5.7", "Z-REQ-PSM-AD-5.16"]
+    },
+    {
+        "issue": 472,
+        "add-labels": ["Z-REQ-PSM-SQ-1.1"]
+    },
+    {
+        "issue": 476,
+        "add-labels": ["Z-REQ-PSM-AD-3.3", "Z-REQ-PSM-AD-3.4", "Z-REQ-PSM-AD-5.1"]
+    },
+    {
+        "issue": 482,
+        "add-labels": ["Z-REQ-PSM-SQ-1.4"]
+    },
+    {
+        "issue": 485,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 496,
+        "remove-labels": ["Z-REQ-PSM-FR-7.13"],
+        "add-labels": ["Z-REQ-PSM-IU-2.5"]
+    },
+    {
+        "issue": 497,
+        "add-labels": ["Z-REQ-PSM-AD-5.3"]
+    },
+    {
+        "issue": 498,
+        "remove-labels": ["Z-REQ-PSM-AD-5.18"],
+        "add-labels": ["Z-REQ-PSM-AD-1.4", "Z-REQ-PSM-AD-5.13"]
+    },
+    {
+        "issue": 507,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 508,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 509,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 510,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 511,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 512,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 513,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 514,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 516,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 517,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 518,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 523,
+        "remove-labels": ["Z-REQ-PSM-AD-5.18"],
+        "add-labels": ["Z-REQ-PSM-AD-1.4", "Z-REQ-PSM-AD-5.1", "Z-REQ-PSM-AD-5.13"]
+    },
+    {
+        "issue": 528,
+        "add-labels": ["Z-REQ-PSM-AD-5.16"]
+    },
+    {
+        "issue": 553,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 554,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 564,
+        "add-labels": ["Z-REQ-PSM-IA-4.2"]
+    },
+    {
+        "issue": 565,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 566,
+        "add-labels": ["Z-REQ-PSM-AD-3.3"]
+    },
+    {
+        "issue": 571,
+        "add-labels": ["Z-REQ-PSM-SA-4.0", "Z-REQ-PSM-SA-4.2"]
+    },
+    {
+        "issue": 572,
+        "add-labels": ["Z-REQ-PSM-SA-4.0", "Z-REQ-PSM-SA-4.2"]
+    },
+    {
+        "issue": 607,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 612,
+        "remove-labels": ["Z-REQ-PSM-FR-7.13"],
+        "add-labels": ["Z-REQ-PSM-IU-2.5"]
+    },
+    {
+        "issue": 613,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2", "Z-REQ-PSM-SQ-1.5"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4", "Z-REQ-PSM-SQ-1.3"]
+    },
+    {
+        "issue": 614,
+        "add-labels": ["Z-REQ-PSM-AD-1.4", "Z-REQ-PSM-AD-5.1", "Z-REQ-PSM-AD-5.13"]
+    },
+    {
+        "issue": 618,
+        "add-labels": ["Z-REQ-PSM-IU-2.5"]
+    },
+    {
+        "issue": 620,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 623,
+        "add-labels": ["Z-REQ-PSM-IU-2.2", "Z-REQ-PSM-IU-2.3", "Z-REQ-PSM-IA-1.2", "Z-REQ-PSM-IA-3.1", "Z-REQ-PSM-IA-3.9"]
+    },
+    {
+        "issue": 635,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 641,
+        "add-labels": ["Z-REQ-PSM-IU-2.2", "Z-REQ-PSM-IU-2.3", "Z-REQ-PSM-IA-1.2", "Z-REQ-PSM-IA-3.1", "Z-REQ-PSM-IA-3.9"]
+    },
+    {
+        "issue": 655,
+        "add-labels": ["Z-REQ-PSM-SQ-1.5"]
+    },
+    {
+        "issue": 666,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 672,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 687,
+        "remove-labels": ["Z-REQ-PSM-FR-10.2"],
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 691,
+        "remove-labels": ["Z-REQ-PSM-FR-7.13"],
+        "add-labels": ["Z-REQ-PSM-IU-2.5", "Z-REQ-PSM-AD-1.4", "Z-REQ-PSM-AD-5.13"]
+    },
+    {
+        "issue": 699,
+        "add-labels": ["Z-REQ-PSM-SQ-1.5"]
+    },
+    {
+        "issue": 700,
+        "add-labels": ["Z-REQ-PSM-AD-2.4"]
+    },
+    {
+        "issue": 701,
+        "add-labels": ["Z-REQ-PSM-FR-7.14", "Z-REQ-PSM-FR-7.7"]
+    },
+    {
+        "issue": 703,
+        "add-labels": ["Z-REQ-PSM-SQ-1.1"]
+    },
+    {
+        "issue": 708,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 709,
+        "add-labels": ["Z-REQ-PSM-AD-2.4", "Z-REQ-PSM-SQ-1.2"]
+    },
+    {
+        "issue": 721,
+        "add-labels": ["Z-REQ-PSM-SQ-1.5"]
+    },
+    {
+        "issue": 722,
+        "add-labels": ["Z-REQ-PSM-FR-7.14"]
+    },
+    {
+        "issue": 728,
+        "add-labels": ["Z-REQ-PSM-AD-1.4", "Z-REQ-PSM-AD-5.13"]
+    },
+    {
+        "issue": 734,
+        "add-labels": ["Z-REQ-PSM-FR-7.14", "Z-REQ-PSM-IA-4.2"]
+    },
+    {
+        "issue": 738,
+        "add-labels": ["Z-REQ-PSM-IA-3.2", "Z-REQ-PSM-IU-2.2", "Z-REQ-PSM-IU-2.3", "Z-REQ-PSM-IA-1.2", "Z-REQ-PSM-IA-3.1", "Z-REQ-PSM-IA-3.9"]
+    },
+    {
+        "issue": 739,
+        "add-labels": ["Z-REQ-PSM-AD-1.1", "Z-REQ-PSM-AD-1.2", "Z-REQ-PSM-AD-1.3", "Z-REQ-PSM-AD-3.1", "Z-REQ-PSM-AD-3.2", "Z-REQ-PSM-AD-3.4", "Z-REQ-PSM-AD-3.5", "Z-REQ-PSM-AD-3.6"]
+    },
+    {
+        "issue": 740,
+        "add-labels": ["Z-REQ-PSM-FR-4.7"]
+    },
+]

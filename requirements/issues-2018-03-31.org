@@ -2666,13 +2666,13 @@ possible.
    - security
    - task
 ** LABEL CHANGES
-   - ad-5.18
    + ad-1.4
    + ad-5.1
    + ad-5.2
    + ad-5.7
    + ad-5.16
-   CHECK ME
+   CHECKED (removed "- ad-5.18")
+
 * [[https://github.com/solutionguidance/psm/issues/467][467]] (closed): Improve ADA compliance
 
   This is a placeholder that will get more content after we complete #415 and know what our first steps toward improvement are.
@@ -4105,9 +4105,8 @@ inactivity. (Addressable)
    + iu-2.3
    + ia-1.2
    + ia-2.1
-   + ia-3.1
    + ia-3.9
-   CHECK ME
+   CHECKED (removed "+ ia-3.1")
 * [[https://github.com/solutionguidance/psm/issues/347][347]] (closed): Capture Medicaid Number for new Enrollments
 
   # Problem
@@ -4918,9 +4917,7 @@ inactivity. (Addressable)
       + iu-2.2
       + iu-2.3
       + ia-1.2
-      + ia-3.1
-      + ia-3.9
-      CHECK ME
+      CHECKED (removed "+ ia-3.1"; removed "+ ia-3.9")
 
 * [[https://github.com/solutionguidance/psm/issues/283][283]]   (open): County field should be a drop-down menu, on Additional Practice Location page.
 
@@ -5016,11 +5013,7 @@ inactivity. (Addressable)
 ** LABEL CHANGES
    + iu-2.2
    + iu-2.3
-   + iu-4.2
-   + ia-1.2
-   + ia-3.1
-   + ia-3.9
-   CHECK ME
+   CHECKED (removed "+ iu-4.2"; removed "+ ia-1.2"; removed "+ ia-3.1"; removed "ia-3.9")
 * [[https://github.com/solutionguidance/psm/issues/266][266]] (closed): Publish Output from Serenity Tests
 
   # Problem
@@ -5483,7 +5476,7 @@ interpretation of received data as applicable to health IT systems.
    + ia-1.2
    + ia-3.1
    + ia-3.9
-   CHECK ME
+   CHECKED
 * [[https://github.com/solutionguidance/psm/issues/233][233]]   (open): cannot enroll as podiatrist
 
   I attempted to create a provider enrollment with the provider type being Podiatrist, and on the licensing/certification page, got this error, even though I'd uploaded an attachment for the license/certification and marked it as a license issued by Minnesota:
@@ -5555,7 +5548,7 @@ elements/modules, and services
    + ia-1.2
    + ia-3.1
    + ia-3.9
-   CHECK ME
+   CHECKED
 * [[https://github.com/solutionguidance/psm/issues/223][223]]   (open): Send provider directory information to MITA TAC
 
   Once the TAC has a defined API endpoint to receive information about providers, add a hook to send provider info to that endpoint.  When we receive information from a provider and their enrollment is submitted, send the directory-relevant information to the TAC's endpoint.
@@ -5574,11 +5567,9 @@ elements/modules, and services
    + iu-2.2
    + iu-2.3
    + iu-4.2
-   + ia-1.2
-   + ia-2.1
    + ia-3.1
    + ia-3.9
-   CHECK ME
+   CHECKED (removed "+ ia-2.1"; removed "+ ia-1.2")
 * [[https://github.com/solutionguidance/psm/issues/222][222]] (closed): Set up continuous deployment
 
   Now that we have Travis set up for CI, we should take the next step and automate deployments to a testing server.  This will allow us to always do manual testing against the most up-to-date code, without needing to constantly refresh our local instances.

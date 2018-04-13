@@ -119,20 +119,4 @@
             </sequence>
         </complexType>
     </element>
-    
-    <element name="NPIVerificationRequest">
-        <complexType>
-            <sequence>
-                <element name="ProviderInformation" type="Q2:ProviderInformationType" maxOccurs="1" minOccurs="1"></element>
-            </sequence>
-        </complexType>
-    </element>
-    
-    <element name="NPIVerificationResponse">
-        <complexType>
-            <sequence>
-                <element name="Output" type="Q2:ExternalSourcesScreeningResultType"></element>
-            </sequence>
-        </complexType>
-    </element>
 </schema>

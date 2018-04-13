@@ -33,7 +33,6 @@ import gov.medicaid.process.enrollment.DisqualificationHandler;
 import gov.medicaid.process.enrollment.EnrollmentHistoryHandler;
 import gov.medicaid.process.enrollment.EnrollmentMonitor;
 import gov.medicaid.process.enrollment.ExcludedProvidersScreeningHandler;
-import gov.medicaid.process.enrollment.NPILookupHandler;
 import gov.medicaid.process.enrollment.PreProcessHandler;
 import gov.medicaid.process.enrollment.RejectedHandler;
 import gov.medicaid.process.enrollment.ScreeningHandler;
@@ -144,7 +143,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         handlers.put("Reject Application", new RejectedHandler());
         handlers.put("Get Enrollment History", new EnrollmentHistoryHandler());
         handlers.put("Verify SSN", new VerifySSNHandler());
-        handlers.put("NPI Lookup", new NPILookupHandler());
         handlers.put("Verify License or Certification", new VerifyLicenseHandler());
         handlers.put(
                 "Check Excluded Provider List in OIG",

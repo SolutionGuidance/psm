@@ -38,11 +38,6 @@ public class ApprovalDTO {
     private String npiVerified;
 
     /**
-     * If Y, user has verified the NPI Lookup.
-     */
-    private String npiLookupVerified;
-
-    /**
      * If Y, user has verified the SSN.
      */
     private String ssnVerified;
@@ -135,22 +130,4 @@ public class ApprovalDTO {
         this.nonExclusionVerified = nonExclusionVerified;
     }
 
-    /**
-     * Gets the <code>npiLookupVerified</code>.
-     *
-     * @return the npiLookupVerified
-     */
-    public String getNpiLookupVerified() {
-        return npiLookupVerified;
-    }
-
-    /**
-     * Sets the <code>npiLookupVerified</code>.
-     *
-     * @param npiLookupVerified
-     *            the npiLookupVerified to set
-     */
-    public void setNpiLookupVerified(String npiLookupVerified) {
-        this.npiLookupVerified = npiLookupVerified;
-    }
 }

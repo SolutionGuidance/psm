@@ -692,33 +692,6 @@ activation-group "marriage-and-family-therapy-license-activation"
 
 end
 
-rule 'MFT with existing registration as LPCC or LICSW should register as such As LPCC, LICSW'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-    when
-        ProviderInformationType(providerType == ProviderType.LICENSED_MARRIAGE_AND_FAMILY_THERAPIST.value())
-        $screening: ScreeningResultsType( )
-        $screeningResult: ScreeningResultType( screeningType == "ENROLLMENT HISTORY" ) from $screening.screeningResult
-        $searchResult: SearchResultType( ) from $screeningResult.searchResult
-        $row: SearchResultItemType(  ) from $searchResult.searchResultItem
-        $columns: PropertyListType(  ) from $row.columnData
-        exists NameValuePairType(name == "ProviderType", value == ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value() || value == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value()) from $columns.nameValuePair
-        exists NameValuePairType(name == "Status", value == "Active") from $columns.nameValuePair
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/LicenseInformation",
-            "00002",
-            "MFT with existing registration as LPCC or LICSW Should Register As LPCC/LICSW."
-        );
-
-end
-
 rule 'LPCC License From the MN is Provided'
 dialect 'mvel'
 /*
@@ -1066,27 +1039,6 @@ activation-group "psychologist-neuropsychology-supporting-document-is-required"
 
 end
 
-rule 'Been approved by the commissioner'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-activation-group "psychologist-neuropsychology-supporting-document-is-required"
-    when
-        $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
-        $screening: ScreeningResultsType( )
-        $screeningResult: ScreeningResultType( screeningType == "ENROLLMENT HISTORY" ) from $screening.screeningResult
-        $searchResult: SearchResultType( ) from $screeningResult.searchResult
-        $row: SearchResultItemType(  ) from $searchResult.searchResultItem
-        $columns: PropertyListType(  ) from $row.columnData
-        exists NameValuePairType(name == "SpecialtyType", value == SpecialtyNames.NEUROPSYCHOLOGY.value()) from $columns.nameValuePair
-    then
-
-end
-
 rule 'Been licensed or credentialed by another state board'
 dialect 'mvel'
 /*
@@ -1101,33 +1053,6 @@ activation-group "psychologist-neuropsychology-supporting-document-is-required"
         $licenseInformation: LicenseInformationType() from $provider.licenseInformation
         LicenseType(issuingState != "MN", specialtyType == SpecialtyNames.NEUROPSYCHOLOGY.value()) from $licenseInformation.license;
     then
-
-end
-
-rule 'Acupuncturist Also Licensed As Chiropractors should be enrolled as chiropractors'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-    when
-        ProviderInformationType(providerType == ProviderType.ACUPUNCTURIST.value())
-        $screening: ScreeningResultsType( )
-        $screeningResult: ScreeningResultType( screeningType == "ENROLLMENT HISTORY" ) from $screening.screeningResult
-        $searchResult: SearchResultType( ) from $screeningResult.searchResult
-        $row: SearchResultItemType(  ) from $searchResult.searchResultItem
-        $columns: PropertyListType(  ) from $row.columnData
-        exists NameValuePairType(name == "ProviderType", value == ProviderType.CHIROPRACTOR.value()) from $columns.nameValuePair
-        exists NameValuePairType(name == "Status", value == "Active") from $columns.nameValuePair
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/LicenseInformation",
-            "00002",
-            "Acupuncturist with existing license as a chiropractor should register as such."
-        );
 
 end
 

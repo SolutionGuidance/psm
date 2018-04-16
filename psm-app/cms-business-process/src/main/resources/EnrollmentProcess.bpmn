@@ -34,8 +34,6 @@
 
   <itemDefinition id="_31-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
 
-  <itemDefinition id="_34-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
-
   <itemDefinition id="_48-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
 
   <process processType="Private" isExecutable="true" id="gov.medicaid.process.enrollment" name="CMS Enrollment Process" tns:packageName="gov.medicaid.process.enrollment" tns:version="1.0" >
@@ -294,20 +292,6 @@
     </task>
     <exclusiveGateway id="_32" name="Re-Screening Completed" gatewayDirection="Diverging" />
     <exclusiveGateway id="_33" name="Initial Screening Completed" gatewayDirection="Converging" />
-    <task id="_34" name="Verify SSN" tns:taskName="Verify SSN" >
-      <ioSpecification>
-        <dataInput id="_34_modelInput" name="model" />
-        <inputSet>
-          <dataInputRefs>_34_modelInput</dataInputRefs>
-        </inputSet>
-        <outputSet>
-        </outputSet>
-      </ioSpecification>
-      <dataInputAssociation>
-        <sourceRef>model</sourceRef>
-        <targetRef>_34_modelInput</targetRef>
-      </dataInputAssociation>
-    </task>
     <task id="_48" name="Auto Disqualification" tns:taskName="Auto Disqualification" >
       <ioSpecification>
         <dataInput id="_48_modelInput" name="model" />
@@ -362,7 +346,6 @@
     <sequenceFlow id="_21-_22" sourceRef="_21" targetRef="_22" />
     <sequenceFlow id="_8-_27" sourceRef="_8" targetRef="_27" />
     <sequenceFlow id="_10-_27" sourceRef="_10" targetRef="_27" />
-    <sequenceFlow id="_34-_27" sourceRef="_34" targetRef="_27" />
     <sequenceFlow id="_17-_31" sourceRef="_17" targetRef="_31" name="accepted" tns:priority="1" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return !"REJECTED".equals(model.getEnrollmentStatus().getStatus());</conditionExpression>
     </sequenceFlow>
@@ -370,9 +353,6 @@
     <sequenceFlow id="_15-_33" sourceRef="_15" targetRef="_33" />
     <sequenceFlow id="_32-_33" sourceRef="_32" targetRef="_33" name="failed" tns:priority="2" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return !"SUCCESS".equals(model.getProcessResults().getScreeningResults().getAutomaticScreeningStatus().getStatus().getStatusCode());</conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="_7-_34" sourceRef="_7" targetRef="_34" name="success" tns:priority="1" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "SUCCESS".equals(model.getProcessResults().getValidationResult().getStatus().getStatusCode());</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="_50-_48" sourceRef="_50" targetRef="_48" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.jboss.org/drools/rule" >eval(true)</conditionExpression>
@@ -440,9 +420,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_33" >
         <dc:Bounds x="932" y="263" width="48" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_34" >
-        <dc:Bounds x="441" y="344" width="212" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_48" >
         <dc:Bounds x="883" y="40" width="145" height="48" />
@@ -518,10 +495,6 @@
         <di:waypoint x="547" y="205" />
         <di:waypoint x="709" y="287" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_34-_27" >
-        <di:waypoint x="547" y="369" />
-        <di:waypoint x="709" y="287" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_17-_31" >
         <di:waypoint x="1211" y="236" />
         <di:waypoint x="1338" y="238" />
@@ -537,10 +510,6 @@
       <bpmndi:BPMNEdge bpmnElement="_32-_33" >
         <di:waypoint x="1464" y="287" />
         <di:waypoint x="956" y="287" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_7-_34" >
-        <di:waypoint x="384" y="245" />
-        <di:waypoint x="547" y="369" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_50-_48" >
         <di:waypoint x="954" y="160" />

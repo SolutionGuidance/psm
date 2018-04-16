@@ -137,7 +137,6 @@
       <element name="HighestDegreeEarned" type="string"/>
       <element name="DegreeAwardDate" type="date"/>
       <element name="ContactInformation" type="tns:ContactInformationType"/>
-      <element name="SSNVerified" type="string"/>
       <element name="Enrolled" type="string"/>
     </sequence>
   </complexType>
@@ -792,7 +791,6 @@
   </simpleType>
   <complexType name="VerificationStatusType">
     <sequence>
-      <element name="SocialSecurityNumber" type="string"/>
       <element name="NPI" type="string"/>
       <element name="Licenses" type="string"/>
       <element name="NonExclusion" type="string"/>

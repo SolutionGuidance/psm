@@ -163,11 +163,6 @@ public final class XMLAdapter {
         provider.setVerificationStatus(verification);
         if (profile.getEntity() != null) {
             provider.setLegacyTransfer(profile.getEntity().getLegacyIndicator());
-            if (profile.getEntity() instanceof Person) {
-                Person person = (Person) profile.getEntity();
-                verification.setSocialSecurityNumber(person.getSsnVerifiedInd());
-            }
-
             verification.setNPI(profile.getEntity().getNpiVerifiedInd());
             verification.setNonExclusion(profile.getEntity().getNonExclusionVerifiedInd());
         }
@@ -258,11 +253,6 @@ public final class XMLAdapter {
             entity.setLegacyIndicator(provider.getLegacyTransfer());
         }
         if (verification != null && entity != null) {
-            if (entity instanceof Person) {
-                Person person = (Person) entity;
-                person.setSsnVerifiedInd(verification.getSocialSecurityNumber());
-            }
-
             entity.setNpiVerifiedInd(verification.getNPI());
             entity.setNonExclusionVerifiedInd(verification.getNonExclusion());
         }

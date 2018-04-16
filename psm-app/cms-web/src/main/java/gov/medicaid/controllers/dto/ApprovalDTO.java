@@ -38,11 +38,6 @@ public class ApprovalDTO {
     private String npiVerified;
 
     /**
-     * If Y, user has verified the SSN.
-     */
-    private String ssnVerified;
-
-    /**
      * If Y, user has verified that user is not in the exclusion list from OIG.
      */
     private String nonExclusionVerified;
@@ -90,25 +85,6 @@ public class ApprovalDTO {
      */
     public void setNpiVerified(String npiVerified) {
         this.npiVerified = npiVerified;
-    }
-
-    /**
-     * Gets the value of the field <code>ssnVerified</code>.
-     *
-     * @return the ssnVerified
-     */
-    public String getSsnVerified() {
-        return ssnVerified;
-    }
-
-    /**
-     * Sets the value of the field <code>ssnVerified</code>.
-     *
-     * @param ssnVerified
-     *            the ssnVerified to set
-     */
-    public void setSsnVerified(String ssnVerified) {
-        this.ssnVerified = ssnVerified;
     }
 
     /**

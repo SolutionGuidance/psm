@@ -27,12 +27,6 @@ import java.util.Date;
 public class Person extends Entity {
     private String ssn;
 
-    /**
-     * SSN Verification status.
-     */
-    @Column(name = "ssn_verified")
-    private String ssnVerifiedInd;
-
     @Column(name = "birth_date")
     private Date dob;
 
@@ -128,11 +122,4 @@ public class Person extends Entity {
         this.middleName = middleName;
     }
 
-    public String getSsnVerifiedInd() {
-        return ssnVerifiedInd;
-    }
-
-    public void setSsnVerifiedInd(String ssnVerifiedInd) {
-        this.ssnVerifiedInd = ssnVerifiedInd;
-    }
 }

@@ -363,29 +363,6 @@ salience -10
 
 end
 
-rule 'SSN Must Be Verified'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-    when
-        $provider: ProviderInformationType()
-        $applicantInformation: ApplicantInformationType( ) from $provider.applicantInformation
-        IndividualApplicantType(socialSecurityNumber != null) from $applicantInformation.personalInformation
-        VerificationStatusType(socialSecurityNumber != "Y")
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/ApplicationInformationType/PersonalInformation/SocialSecurityNumber",
-            "00002",
-            "SSN Must Be Verified."
-        );
-
-end
-
 rule 'Applicant Must Not Be In the Excluded Providers List'
 dialect 'mvel'
 /*

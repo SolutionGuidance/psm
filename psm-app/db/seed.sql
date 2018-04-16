@@ -1026,7 +1026,6 @@ CREATE TABLE people(
   last_name TEXT,
   suffix TEXT,
   ssn TEXT,
-  ssn_verified CHARACTER VARYING(1),
   birth_date DATE,
   degree_code CHARACTER VARYING(2)
     REFERENCES degrees(code),

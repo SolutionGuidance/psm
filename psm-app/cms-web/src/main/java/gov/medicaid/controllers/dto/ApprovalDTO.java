@@ -33,11 +33,6 @@ public class ApprovalDTO {
     private List<String> verifiedLicenses;
 
     /**
-     * If Y, user has verified the SSN.
-     */
-    private String ssnVerified;
-
-    /**
      * If Y, user has verified that user is not in the exclusion list from OIG.
      */
     private String nonExclusionVerified;
@@ -66,25 +61,6 @@ public class ApprovalDTO {
      */
     public void setVerifiedLicenses(List<String> verifiedLicenses) {
         this.verifiedLicenses = verifiedLicenses;
-    }
-
-    /**
-     * Gets the value of the field <code>ssnVerified</code>.
-     *
-     * @return the ssnVerified
-     */
-    public String getSsnVerified() {
-        return ssnVerified;
-    }
-
-    /**
-     * Sets the value of the field <code>ssnVerified</code>.
-     *
-     * @param ssnVerified
-     *            the ssnVerified to set
-     */
-    public void setSsnVerified(String ssnVerified) {
-        this.ssnVerified = ssnVerified;
     }
 
     /**

@@ -24,10 +24,6 @@ yourself and manually verify that piece of the enrollment, click the
 
 Check the Provider Information:
 
--  Is this person in the `Social Security Administration's Death Master
-   File <https://www.ssa.gov/dataexchange/request_dmf.html>`__ (`how to
-   access <https://classic.ntis.gov/products/ssa-dmf/>`__)? If so, SSA
-   lists them as dead, in which case you should reject the enrollment.
 -  Is this provider on the `List of Excluded Individuals and Entities
    provided by the Office of the Inspector General for the US Department
    of Health and Human

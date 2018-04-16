@@ -51,7 +51,6 @@ import org.drools.SystemEventListenerFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.process.ProcessInstance;
 import org.drools.runtime.process.WorkItemHandler;
-import org.jbpm.process.instance.impl.demo.SystemOutWorkItemHandler;
 import org.jbpm.task.AccessType;
 import org.jbpm.task.Content;
 import org.jbpm.task.Task;
@@ -143,7 +142,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
 
         handlers.put("PreProcess", new PreProcessHandler());
         handlers.put("Validate", new ValidationHandler());
-        handlers.put("Data Transformation", new SystemOutWorkItemHandler());
         handlers.put("Reject Application", new RejectedHandler());
         handlers.put("Get Enrollment History", new EnrollmentHistoryHandler());
         handlers.put("Verify SSN", new VerifySSNHandler());
@@ -156,9 +154,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         handlers.put("Check Excluded Provider List in SAM", new SAMExcludedProvidersScreeningHandler());
         handlers.put("Auto Disqualification", new DisqualificationHandler());
         handlers.put("Auto Screening", new ScreeningHandler());
-        handlers.put("Send Mailbox Account Request", new SystemOutWorkItemHandler());
-        handlers.put("Background Check", new SystemOutWorkItemHandler());
-        handlers.put("SIRS", new SystemOutWorkItemHandler());
         handlers.put("Accept Application", new AcceptedHandler(notificationService));
 
         if (providerService == null) {

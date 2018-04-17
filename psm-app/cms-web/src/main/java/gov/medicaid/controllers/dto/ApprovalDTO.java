@@ -33,11 +33,6 @@ public class ApprovalDTO {
     private List<String> verifiedLicenses;
 
     /**
-     * If Y, user has verified the PECOS NPI.
-     */
-    private String npiVerified;
-
-    /**
      * If Y, user has verified the NPI Lookup.
      */
     private String npiLookupVerified;
@@ -81,25 +76,6 @@ public class ApprovalDTO {
      */
     public void setVerifiedLicenses(List<String> verifiedLicenses) {
         this.verifiedLicenses = verifiedLicenses;
-    }
-
-    /**
-     * Gets the value of the field <code>npiVerified</code>.
-     *
-     * @return the npiVerified
-     */
-    public String getNpiVerified() {
-        return npiVerified;
-    }
-
-    /**
-     * Sets the value of the field <code>npiVerified</code>.
-     *
-     * @param npiVerified
-     *            the npiVerified to set
-     */
-    public void setNpiVerified(String npiVerified) {
-        this.npiVerified = npiVerified;
     }
 
     /**

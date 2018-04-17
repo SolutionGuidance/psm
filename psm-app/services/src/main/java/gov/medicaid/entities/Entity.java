@@ -81,12 +81,6 @@ public abstract class Entity implements Serializable {
     private String npi;
 
     /**
-     * NPI - PECOS.
-     */
-    @Column(name = "npi_verified")
-    private String npiVerifiedInd;
-
-    /**
      * NPI - NPILookup.
      */
     @Column(name = "npi_lookup_verified")
@@ -202,14 +196,6 @@ public abstract class Entity implements Serializable {
 
     public void setProviderType(ProviderType providerType) {
         this.providerType = providerType;
-    }
-
-    public String getNpiVerifiedInd() {
-        return npiVerifiedInd;
-    }
-
-    public void setNpiVerifiedInd(String npiVerifiedInd) {
-        this.npiVerifiedInd = npiVerifiedInd;
     }
 
     public String getNonExclusionVerifiedInd() {

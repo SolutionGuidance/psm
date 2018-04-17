@@ -97,31 +97,6 @@
                           </td>
                       </tr>
                       <tr>
-                        <td>NPI PECOS VERIFICATION</td>
-                        <td>${model.enrollment.providerInformation.NPI}</td>
-                        <td><a class="autoScreeningResultLink"
-                              href="${ctx}/agent/enrollment/autoScreeningResult?type=NPI PECOS VERIFICATION&id=${id}"
-                              target="_blank">
-                            <c:choose>
-                            <c:when test="${empty verification.NPI}">
-                              Not performed
-                            </c:when>
-                            <c:otherwise>
-                              View results
-                            </c:otherwise>
-                            </c:choose>
-                          </a></td>
-                          <td>
-                            <input
-                              type="checkbox"
-                              title="NPI Verified"
-                              name="npiVerified"
-                              value="Y"
-                              ${verification.NPI eq 'Y' ? 'checked' : ''}
-                              />
-                          </td>
-                      </tr>
-                      <tr>
                         <td>EXCLUDED PROVIDER VERIFICATION IN OIG (checked means not in exclusion list)</td>
                         <td></td>
                         <td><a class="autoScreeningResultLink"

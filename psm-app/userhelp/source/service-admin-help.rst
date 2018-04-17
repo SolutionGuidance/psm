@@ -32,10 +32,6 @@ Check the Provider Information:
    File <https://www.ssa.gov/dataexchange/request_dmf.html>`__ (`how to
    access <https://classic.ntis.gov/products/ssa-dmf/>`__)? If so, SSA
    lists them as dead, in which case you should reject the enrollment.
--  What does `PECOS (the federal Medicare Provider Enrollment, Chain,
-   and Ownership System) <https://pecos.cms.hhs.gov/>`__ say about the
-   provider's NPI? Is the Provider enrolled? If they are not, you should
-   reject the enrollment.
 -  Is this provider on the `List of Excluded Individuals and Entities
    provided by the Office of the Inspector General for the US Department
    of Health and Human

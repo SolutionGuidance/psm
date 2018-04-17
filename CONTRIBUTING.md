@@ -60,6 +60,20 @@ information to [INSTALL.md](INSTALL.md) and the other documentation.  In
 particular, if you add a new input to or output from the PSM, document
 it in the Interface Control Document, [ICD.md](docs/ICD.md).
 
+### Migrations
+
+If you make a change that requires a migration, please do the following:
+
+- perform migration manually on test server (for continuous deployment)
+- perform migration manually on demo server along with a code update
+- send an email to [psm-dev](https://groups.google.com/forum/#!forum/psm-dev) that looks something like [this one](https://groups.google.com/forum/#!topic/psm-dev/7tOwEaYc4nY)
+- Add the `migration` label to the pull request
+- Include manual migration instructions in the PR description
+
+After [#254](https://github.com/SolutionGuidance/psm/issues/254) is
+completed, this process will be less manual and this section will be
+updated.
+
 ### The "Obvious Fix" rule: committing some minor changes directly to 'master'
 
 Certain kinds of presumed-safe changes may be reviewed post-commit

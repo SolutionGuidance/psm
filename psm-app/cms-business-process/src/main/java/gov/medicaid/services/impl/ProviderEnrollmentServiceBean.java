@@ -17,6 +17,7 @@
 package gov.medicaid.services.impl;
 
 import gov.medicaid.binders.BinderUtils;
+import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.entities.AcceptedAgreements;
 import gov.medicaid.entities.Address;
 import gov.medicaid.entities.Affiliation;
@@ -59,6 +60,7 @@ import gov.medicaid.services.NotificationService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.Util;
+import gov.medicaid.services.util.XMLAdapter;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.NotImplementedException;
 
@@ -171,10 +173,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             throw new PortalServiceException("Cannot change status because it is not in pending state.");
         }
 
-        CMSUser submittingUser = ticket.getSubmittedBy();
-        Map<String, Object> vars = new HashMap<>();
-        String emailAddress = submittingUser.getEmail();
-        notificationService.sendNotification(emailAddress, EmailTemplate.REJECTED_ENROLLMENT, vars);
+        EnrollmentType enrollment = XMLAdapter.toXML(ticket);
+        notificationService.sendEnrollmentNotification(enrollment, EmailTemplate.REJECTED_ENROLLMENT);
 
         ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.REJECTED_STATUS));
         ticket.setStatusNote(reason);

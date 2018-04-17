@@ -3,6 +3,7 @@ package gov.medicaid.services.impl;
 import java.io.StringWriter;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -21,6 +22,7 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
+import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.entities.EmailTemplate;
 import gov.medicaid.entities.SentNotification;
 import gov.medicaid.services.CMSConfigurator;
@@ -134,5 +136,17 @@ public class NotificationServiceBean extends BaseService implements Notification
         } catch (Exception e) {
           throw new PortalServiceException("Error while sending notification.", e);
         }
+    }
+
+    @Override
+    public void sendEnrollmentNotification(
+        EnrollmentType enrollment,
+        EmailTemplate emailType
+    ) throws PortalServiceException {
+        Map<String, Object> vars = new HashMap<>();
+        String contact_name = enrollment.getContactInformation().getName();
+        vars.put("submitter", contact_name);
+        String emailAddress = enrollment.getContactInformation().getEmailAddress();
+        sendNotification(emailAddress, emailType, vars);
     }
 }

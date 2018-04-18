@@ -23,8 +23,6 @@ import gov.medicaid.controllers.dto.ApprovalDTO;
 import gov.medicaid.controllers.dto.StatusDTO;
 import gov.medicaid.domain.model.EnrollmentProcess;
 import gov.medicaid.domain.model.EnrollmentType;
-import gov.medicaid.domain.model.LicenseInformationType;
-import gov.medicaid.domain.model.LicenseType;
 import gov.medicaid.domain.model.ProcessResultsType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.ScreeningResultType;
@@ -358,8 +356,7 @@ public class EnrollmentController extends BaseController {
     @RequestMapping("/agent/enrollment/autoScreeningResult")
     public ModelAndView viewScreeningLog(
             @RequestParam("id") long id,
-            @RequestParam("type") String type,
-            @RequestParam(value = "licenseId", required = false) String licenseId
+            @RequestParam("type") String type
     ) throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
         Enrollment ticket = enrollmentService.getTicketDetails(user, id);
@@ -383,11 +380,6 @@ public class EnrollmentController extends BaseController {
                         if (screeningResultType.getScreeningType().equals(type)) {
                             if ("EXCLUDED PROVIDERS".equals(type)) {
                                 output = screeningResultType.getExclusionVerificationResult();
-                            } else if ("LICENSE VERIFICATION".equals(type)) {
-                                if (screeningResultType.getLicenseVerificationResult().getLicenseObjectId()
-                                        .equals(licenseId)) {
-                                    output = screeningResultType.getLicenseVerificationResult().getSearchResults();
-                                }
                             } else {
                                 output = screeningResultType.getSearchResult();
                             }
@@ -764,18 +756,6 @@ public class EnrollmentController extends BaseController {
 
         EnrollmentType enrollment = businessProcessService.getTaskModel(taskId).getEnrollment();
         ProviderInformationType provider = enrollment.getProviderInformation();
-        if (dto.getVerifiedLicenses() != null) {
-            List<String> verifiedLicenses = dto.getVerifiedLicenses();
-            LicenseInformationType licenseInformation = provider.getLicenseInformation();
-            for (String licenseId : verifiedLicenses) {
-                for (LicenseType license : licenseInformation.getLicense()) {
-                    if (licenseId.equals(license.getAttachmentObjectId())) {
-                        license.setVerified("Y");
-                    }
-                }
-            }
-        }
-
         VerificationStatusType status = provider.getVerificationStatus();
         if ("Y".equals(dto.getNonExclusionVerified())) { // modify only if set to Y
             status.setNonExclusion("Y");

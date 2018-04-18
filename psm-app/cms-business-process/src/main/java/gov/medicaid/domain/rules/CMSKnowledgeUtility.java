@@ -62,15 +62,6 @@ public class CMSKnowledgeUtility {
     }
 
     /**
-     * Creates a new session for configuring external sources.
-     *
-     * @return a new session.
-     */
-    public static StatefulKnowledgeSession newExternalSourcesConfigSession() {
-        return knowledge.newExternalSourcesConfigSession();
-    }
-
-    /**
      * Creates a new session for running frontend validation.
      *
      * @return a new session.

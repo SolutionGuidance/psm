@@ -16,8 +16,6 @@
 
 package gov.medicaid.controllers.dto;
 
-import java.util.List;
-
 /**
  * This class is used to perform manual verification.
  *
@@ -26,12 +24,6 @@ import java.util.List;
  * @since Medicaid Provider Screening Portal - Service Agent Controllers
  */
 public class ApprovalDTO {
-
-    /**
-     * License ids that the approver set to verified.
-     */
-    private List<String> verifiedLicenses;
-
     /**
      * If Y, user has verified that user is not in the exclusion list from OIG.
      */
@@ -42,25 +34,6 @@ public class ApprovalDTO {
      */
     public ApprovalDTO() {
 
-    }
-
-    /**
-     * Gets the value of the field <code>verifiedLicenses</code>.
-     *
-     * @return the verifiedLicenses
-     */
-    public List<String> getVerifiedLicenses() {
-        return verifiedLicenses;
-    }
-
-    /**
-     * Sets the value of the field <code>verifiedLicenses</code>.
-     *
-     * @param verifiedLicenses
-     *            the verifiedLicenses to set
-     */
-    public void setVerifiedLicenses(List<String> verifiedLicenses) {
-        this.verifiedLicenses = verifiedLicenses;
     }
 
     /**

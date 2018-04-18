@@ -36,7 +36,6 @@ import gov.medicaid.process.enrollment.PreProcessHandler;
 import gov.medicaid.process.enrollment.RejectedHandler;
 import gov.medicaid.process.enrollment.ScreeningHandler;
 import gov.medicaid.process.enrollment.ValidationHandler;
-import gov.medicaid.process.enrollment.VerifyLicenseHandler;
 import gov.medicaid.services.BusinessProcessService;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.NotificationService;
@@ -139,7 +138,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         handlers.put("PreProcess", new PreProcessHandler());
         handlers.put("Validate", new ValidationHandler());
         handlers.put("Reject Application", new RejectedHandler());
-        handlers.put("Verify License or Certification", new VerifyLicenseHandler());
         handlers.put(
                 "Check Excluded Provider List in OIG",
                 new ExcludedProvidersScreeningHandler(config.getLeieApiBaseUrl())

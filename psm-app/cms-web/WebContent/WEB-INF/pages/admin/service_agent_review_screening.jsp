@@ -82,42 +82,29 @@
                         <tr>
                           <th>Type<span class="sep"></span></th>
                           <th>Number<span class="sep"></span></th>
-                          <th>Auto Screening<span class="sep"></span></th>
-                          <th>Verified</th>
+                          <th>Original Issue Date<span class="sep"></span></th>
+                          <th>Renewal End Date<span class="sep"></span></th>
+                          <th>Attachment<span class="sep"></span></th>
                         </tr>
                       </thead>
                       <tbody>
                         <c:forEach var="license" items="${model.enrollment.providerInformation.licenseInformation.license}">
                           <tr>
                             <td>${license.licenseType}${license.specialtyType}</td>
-                            <td>${license.licenseNumber}
-
+                            <td>${license.licenseNumber}</td>
+                            <td>
+                              <fmt:formatDate pattern="MM/dd/yyyy"
+                                              value="${license.originalIssueDate.time}"/>
+                            </td>
+                            <td>
+                              <fmt:formatDate pattern="MM/dd/yyyy"
+                                              value="${license.renewalDate.time}"/>
+                            </td>
+                            <td>
                               <c:url var="downloadLink" value="/provider/enrollment/attachment">
-                              <c:param name="id" value="${license.attachmentObjectId}"></c:param>
+                                <c:param name="id" value="${license.attachmentObjectId}"></c:param>
                               </c:url>
                               <a href="${downloadLink}">View</a>
-
-                            </td>
-                            <td><a class="autoScreeningResultLink"
-                                  href="${ctx}/agent/enrollment/autoScreeningResult?type=LICENSE VERIFICATION&id=${id}&licenseId=${license.objectId}"
-                                  target="_blank">
-                              <c:choose>
-                              <c:when test="${empty license.verified}">
-                                Not performed
-                              </c:when>
-                              <c:otherwise>
-                                View results
-                              </c:otherwise>
-                              </c:choose>
-                            </a></td>
-                            <td>
-                              <input
-                                type="checkbox"
-                                title="License Number ${license.licenseNumber} Verified"
-                                name="verifiedLicenses"
-                                value="${license.attachmentObjectId}"
-                                ${license.verified eq 'Y' ? 'checked' : ''}
-                                />
                             </td>
                           </tr>
                         </c:forEach>

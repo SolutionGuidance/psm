@@ -39,10 +39,11 @@ public class DataCoverageStepDefinitions {
     }
 
     @Then("^I should be asked to enter Applicant Name, Contact Person, Contact phone$")
-    public void i_should_be_asked_to_enter_Applicant_Name_Contact_Person_Contact_phone() {
+    public void i_should_be_asked_to_enter_Applicant_Name_Contact_Person_Contact_phone_Contact_email() {
         organizationInfoPage.verifyApplicantNameAccepted();
         organizationInfoPage.verifyContactNameAccepted();
         organizationInfoPage.verifyContactPhoneAccepted();
+        organizationInfoPage.verifyContactEmailAccepted();
     }
 
     @Then("^I should be asked to enter Medicaid number$")

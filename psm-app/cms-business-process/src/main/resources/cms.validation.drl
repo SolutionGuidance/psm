@@ -5448,6 +5448,23 @@ dialect 'mvel'
         );
 end
 
+rule 'Enrollment Contact Email Address is Required'
+dialect 'mvel'
+    when
+        $enrollment: EnrollmentType()
+        ContactInformationType(emailAddress == null || emailAddress
+            matches "^[\\s]*$" ) from $enrollment.contactInformation 
+        $report: ErrorReporter()
+    then
+        $report.addError(
+            "/ContactInformation/EmailAddress",
+            "00001",
+            "Contact Email Address is required."
+        );
+
+end
+
+
 rule 'Enrollment Contact Email Address Format Check'
 dialect 'mvel'
 /*

@@ -36,6 +36,10 @@ public class OrganizationInfoPage extends EnrollmentPage {
         }
     }
 
+    public void verifyContactEmailAccepted() {
+        $("#contactEmail").sendKeys("contact_email");
+    }
+
     public void verifyMedicaidNumberAccepted() {
         throw new PendingException("Issue #347 - Capture Medicaid Number for new Enrollments");
     }
@@ -94,6 +98,10 @@ public class OrganizationInfoPage extends EnrollmentPage {
 
     public void setContactPhone(String contactPhone) {
         $("[name='_15_contactPhone1']").sendKeys(contactPhone);
+    }
+
+    public void setContactEmail(String contactEmail) {
+        $("[name='_15_contactEmail']").sendKeys(contactEmail);
     }
 
     public void checkForFeinError() throws Exception {

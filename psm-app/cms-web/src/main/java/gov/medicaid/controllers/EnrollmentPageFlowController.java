@@ -1302,19 +1302,10 @@ public class EnrollmentPageFlowController extends BaseController {
         mv.addObject("isReopened", reopened);
         if (requestType != null) { // imported data?x
             switch (requestType) {
-                case UPDATE:
-                    mv.addObject("isEditEnrollment", true);
-                    mv.addObject("isNewEnrollment", false);
-                    mv.addObject("isRenewalEnrollment", false);
-                    break;
                 case RENEWAL:
-                    mv.addObject("isEditEnrollment", false);
-                    mv.addObject("isNewEnrollment", false);
                     mv.addObject("isRenewalEnrollment", true);
                     break;
                 default:
-                    mv.addObject("isNewEnrollment", true);
-                    mv.addObject("isEditEnrollment", false);
                     mv.addObject("isRenewalEnrollment", false);
                     break;
             }

@@ -32,8 +32,6 @@
 
   <itemDefinition id="_31-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
 
-  <itemDefinition id="_48-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
-
   <process processType="Private" isExecutable="true" id="gov.medicaid.process.enrollment" name="CMS Enrollment Process" tns:packageName="gov.medicaid.process.enrollment" tns:version="1.0" >
 
     <extensionElements>
@@ -269,36 +267,10 @@
     </task>
     <exclusiveGateway id="_32" name="Re-Screening Completed" gatewayDirection="Diverging" />
     <exclusiveGateway id="_33" name="Initial Screening Completed" gatewayDirection="Converging" />
-    <task id="_48" name="Auto Disqualification" tns:taskName="Auto Disqualification" >
-      <ioSpecification>
-        <dataInput id="_48_modelInput" name="model" />
-        <dataOutput id="_48_modelOutput" name="model" />
-        <inputSet>
-          <dataInputRefs>_48_modelInput</dataInputRefs>
-        </inputSet>
-        <outputSet>
-          <dataOutputRefs>_48_modelOutput</dataOutputRefs>
-        </outputSet>
-      </ioSpecification>
-      <dataInputAssociation>
-        <sourceRef>model</sourceRef>
-        <targetRef>_48_modelInput</targetRef>
-      </dataInputAssociation>
-      <dataOutputAssociation>
-        <sourceRef>_48_modelOutput</sourceRef>
-        <targetRef>model</targetRef>
-      </dataOutputAssociation>
-    </task>
-    <endEvent id="_49" name="End" >
-        <terminateEventDefinition />
-    </endEvent>
-    <inclusiveGateway id="_50" name="Before Review" gatewayDirection="Diverging" />
 
     <!-- connections -->
     <sequenceFlow id="_9-_2" sourceRef="_9" targetRef="_2" />
-    <sequenceFlow id="_50-_3" sourceRef="_50" targetRef="_3" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.jboss.org/drools/rule" >eval(true)</conditionExpression>
-    </sequenceFlow>
+    <sequenceFlow id="_33-_3" sourceRef="_33" targetRef="_3" />
     <sequenceFlow id="_1-_5" sourceRef="_1" targetRef="_5" />
     <sequenceFlow id="_5-_6" sourceRef="_5" targetRef="_6" />
     <sequenceFlow id="_6-_7" sourceRef="_6" targetRef="_7" />
@@ -326,12 +298,6 @@
     <sequenceFlow id="_32-_33" sourceRef="_32" targetRef="_33" name="failed" tns:priority="2" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return !"SUCCESS".equals(model.getProcessResults().getScreeningResults().getAutomaticScreeningStatus().getStatus().getStatusCode());</conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="_50-_48" sourceRef="_50" targetRef="_48" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.jboss.org/drools/rule" >eval(true)</conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="_48-_49" sourceRef="_48" targetRef="_49" />
-    <sequenceFlow id="_33-_50" sourceRef="_33" targetRef="_50" />
-
   </process>
 
   <bpmndi:BPMNDiagram>
@@ -387,22 +353,12 @@
       <bpmndi:BPMNShape bpmnElement="_33" >
         <dc:Bounds x="932" y="263" width="48" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_48" >
-        <dc:Bounds x="883" y="40" width="145" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_49" >
-        <dc:Bounds x="1084" y="40" width="48" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_50" >
-        <dc:Bounds x="930" y="136" width="48" height="48" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_9-_2" >
         <di:waypoint x="547" y="41" />
         <di:waypoint x="709" y="41" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_50-_3" >
-        <di:waypoint x="954" y="160" />
-        <di:waypoint x="1083" y="160" />
+      <bpmndi:BPMNEdge bpmnElement="_33-_3" >
+        <di:waypoint x="956" y="287" />
         <di:waypoint x="1084" y="237" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_1-_5" >
@@ -464,18 +420,6 @@
       <bpmndi:BPMNEdge bpmnElement="_32-_33" >
         <di:waypoint x="1464" y="287" />
         <di:waypoint x="956" y="287" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_50-_48" >
-        <di:waypoint x="954" y="160" />
-        <di:waypoint x="955" y="64" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_48-_49" >
-        <di:waypoint x="955" y="64" />
-        <di:waypoint x="1108" y="64" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_33-_50" >
-        <di:waypoint x="956" y="287" />
-        <di:waypoint x="954" y="160" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

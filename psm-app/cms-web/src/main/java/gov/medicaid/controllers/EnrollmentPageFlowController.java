@@ -285,7 +285,6 @@ public class EnrollmentPageFlowController extends BaseController {
      * Starts the renewal process using an old ticket.
      *
      * @param ticketIds the profile(s) to renew
-     * @param model     the request model
      * @return the enrollment start page.
      * @endpoint "/provider/enrollment/bulkRenewTickets"
      * @verb POST
@@ -293,8 +292,7 @@ public class EnrollmentPageFlowController extends BaseController {
     @RequestMapping(value = "/bulkRenewTickets", method = RequestMethod.POST)
     @ResponseBody
     public StatusDTO bulkRenewTickets(
-            @RequestParam("ids") long[] ticketIds,
-            Model model
+            @RequestParam("ids") long[] ticketIds
     ) {
         Set<Long> profileIds = new HashSet<Long>();
         StatusDTO results = new StatusDTO();
@@ -559,7 +557,6 @@ public class EnrollmentPageFlowController extends BaseController {
      *
      * @param enrollment the current enrollment model
      * @param request    the request
-     * @param model      the request model
      * @return the next page, or the same page if there were errors
      * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/steps/rebind"
@@ -568,8 +565,7 @@ public class EnrollmentPageFlowController extends BaseController {
     @RequestMapping(value = "/steps/rebind", method = RequestMethod.POST)
     public ModelAndView rebind(
             @ModelAttribute("enrollment") EnrollmentType enrollment,
-            HttpServletRequest request,
-            Model model
+            HttpServletRequest request
     ) throws PortalServiceException {
         String pageName = request.getParameter("pageName");
         String[] formNames = request.getParameterValues("formNames");
@@ -629,7 +625,7 @@ public class EnrollmentPageFlowController extends BaseController {
         } else if (null != request.getParameter("save")) {
             return save(enrollment, request, status);
         } else if (null != request.getParameter("saveNote")) {
-            return saveNote(enrollment, request, status);
+            return saveNote(enrollment, request);
         } else if (null != request.getParameter("resubmitWithChanges")) {
             return resubmitWithChanges(enrollment, request, status);
         }
@@ -954,7 +950,6 @@ public class EnrollmentPageFlowController extends BaseController {
      *
      * @param enrollment the current enrollment model
      * @param request    the request
-     * @param status     the session status
      * @return the same page, with a success/error message
      * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/saveNote"
@@ -963,8 +958,7 @@ public class EnrollmentPageFlowController extends BaseController {
     @RequestMapping(value = "/saveNote", method = RequestMethod.POST)
     public ModelAndView saveNote(
             @ModelAttribute("enrollment") EnrollmentType enrollment,
-            HttpServletRequest request,
-            SessionStatus status
+            HttpServletRequest request
     ) throws PortalServiceException {
         CMSPrincipal principal = ControllerHelper.getPrincipal();
         String text = request.getParameter("noteText");
@@ -1288,7 +1282,7 @@ public class EnrollmentPageFlowController extends BaseController {
         enrollment.setProgressPage(pageName);
 
         ModelAndView mv = new ModelAndView();
-        mv.setViewName(determineViewName(pageName, enrollment));
+        mv.setViewName(determineViewName(enrollment));
 
         mv.addObject("errors", errors);
         mv.addObject("pageName", pageName);
@@ -1426,14 +1420,10 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Determines the JSP name for the given page.
      *
-     * @param pageName   the page name
      * @param enrollment the enrollment model
      * @return the jsp view for the page
      */
-    private String determineViewName(
-            String pageName,
-            EnrollmentType enrollment
-    ) {
+    private String determineViewName(EnrollmentType enrollment) {
         String status = enrollment.getStatus();
         if (enrollment.getRequestType() == null) {
             return "provider/enrollment/steps/view_profile_details";

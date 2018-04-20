@@ -38,7 +38,7 @@
           <form id="searchBoxForm" class="inputContainer" action="{{ctx}}/system/user/search?role=Provider"  method="post">
             <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}"/>
             <button class="search searchBox" title="Search" aria-label="Search" type="submit"></button>
-            <input type="text" class="hint" value="Search Keyword" title="Search Keyword" name="firstName" id="searchBoxFirstName"/>
+            <input type="text" placeholder="Search Keyword" name="firstName" id="searchBoxFirstName" />
             <input type="hidden" name="lastName" id="searchBoxLastName" />
             <input type="hidden" name="and" value="false" />
             <input type="hidden" name="searchBox" value="true" />
@@ -53,8 +53,10 @@
         <div class="searchWidget">
           <a class="advancedSearchLink" href="{{ctx}}/provider/search/advanced">Advanced Search</a>
           <div class="inputContainer">
-            <button id="enrollmentQuickSearch" class="search" title="Search" aria-label="Search"></button>
-            <input id="quickSearchInput" type="text" class="hint" value="{{#if param.npi }} {{param.npi}} {{else}} Search Keyword {{/if}}" title="Search Keyword" />
+            <form action="{{ctx}}/provider/search/quick" method="get">
+              <button class="search" title="Search" aria-label="Search"></button>
+              <input type="text" name="npi" placeholder="Search Keyword" value="{{#if param.npi }}{{param.npi}}{{/if}}" title="Search Keyword" />
+            </form>
           </div>
         </div>
       {{/if}}

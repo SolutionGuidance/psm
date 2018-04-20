@@ -105,16 +105,6 @@ $(document).ready(function () {
     return false;
   });
 
-  $("#enrollmentQuickSearch").click(function () {
-    var quickSearchInput = $.trim($("#quickSearchInput").val());
-    if (quickSearchInput == 'Search Keyword') {
-      quickSearchInput = '';
-    }
-
-    window.location.href = ctx + "/provider/search/quick?npi=" + quickSearchInput;
-    return false;
-  });
-
   $("#queryEnrollmentStatus").click(function () {
     var enrollmentNumber = $.trim($("#enrollmentNumber").val());
     if (enrollmentNumber == '') {
@@ -611,16 +601,6 @@ $(document).ready(function () {
     }
   });
   /*end new*/
-  $('.hint').focus(function () {
-    $(this).removeClass('hint');
-    if ($(this).val() == '' || $(this).val() == $(this).attr('title'))
-     $(this).val('')
-  }).blur(function () {
-    if ($(this).val() == '' || $(this).val() == $(this).attr('title')) {
-      $(this).addClass('hint');
-      $(this).val($(this).attr('title'));
-    }
-  });
 
   $('.tabHead,.tabFoot').each(function () {
     $(this).css('width', ($('.contentWidth').width() - 2) + 'px');

@@ -37,9 +37,6 @@ Check the Provider Information:
    of Health and Human
    Services <https://oig.hhs.gov/exclusions/exclusions_list.asp>`__? If
    so, you should reject the enrollment.
--  Does this provider have an active exclusion record in the `federal
-   System for Award Management <https://www.sam.gov/>`__? (Click "Search
-   Records".) If so, you should reject the enrollment.
 
 Check the License Information (more details below). Look at the files to
 see whether they are legitimate licenses or certifications, and (if

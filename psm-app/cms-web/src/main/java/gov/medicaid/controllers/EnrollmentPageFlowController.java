@@ -51,7 +51,6 @@ import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.StateType;
 import gov.medicaid.entities.Validity;
 import gov.medicaid.entities.dto.FormError;
-import gov.medicaid.entities.dto.MinimumLicenseRulesModel;
 import gov.medicaid.entities.dto.UITabModel;
 import gov.medicaid.entities.dto.ViewModel;
 import gov.medicaid.entities.dto.ViewStatics;
@@ -793,27 +792,6 @@ public class EnrollmentPageFlowController extends BaseController {
             @RequestParam("entityType") String entityType
     ) throws PortalServiceException {
         return lookupService.findBeneficialOwnerTypes(entityType);
-    }
-
-    /**
-     * Performs license type lookup.
-     *
-     * @return the lookup JSON
-     * @throws PortalServiceException for any errors encountered
-     * @endpoint "/provider/enrollment/lookupMinimumLicenses"
-     * @verb POST
-     */
-    @RequestMapping(value = "/lookupMinimumLicenses", method = RequestMethod.POST)
-    @ResponseBody
-    public MinimumLicenseRulesModel lookupMinimumLicenses(
-            @ModelAttribute("enrollment") EnrollmentType enrollment,
-            HttpServletRequest request,
-            Model model
-    ) throws PortalServiceException {
-
-        String[] formNames = request.getParameterValues("formNames");
-        bindRequest(formNames, enrollment, request);
-        return presentationService.getMinimumLicenseRules(enrollment);
     }
 
     /**

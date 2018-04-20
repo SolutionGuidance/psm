@@ -20,7 +20,6 @@ import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.ValidationResponse;
 import gov.medicaid.entities.ProviderProfile;
-import gov.medicaid.entities.dto.MinimumLicenseRulesModel;
 import gov.medicaid.entities.dto.ViewModel;
 
 import java.util.List;
@@ -60,11 +59,4 @@ public interface PresentationService {
      * @return the set of error messages found, empty if the ticket is valid
      */
     ValidationResponse checkForErrors(EnrollmentType enrollment, List<String> tabs);
-
-    /**
-     * This returns the minimum license rules for the given enrollment.
-     * @param enrollment the enrollment to check
-     * @return the minimum license rules
-     */
-    MinimumLicenseRulesModel getMinimumLicenseRules(EnrollmentType enrollment);
 }

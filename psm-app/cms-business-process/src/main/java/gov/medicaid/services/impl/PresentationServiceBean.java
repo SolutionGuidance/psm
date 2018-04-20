@@ -16,7 +16,6 @@
 
 package gov.medicaid.services.impl;
 
-import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.ApplicantType;
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.LicenseNames;
@@ -34,14 +33,12 @@ import gov.medicaid.domain.rules.inference.LookupEntry;
 import gov.medicaid.entities.License;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormSettings;
-import gov.medicaid.entities.dto.MinimumLicenseRulesModel;
 import gov.medicaid.entities.dto.UITabModel;
 import gov.medicaid.entities.dto.ViewModel;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.PresentationService;
 import gov.medicaid.services.util.Util;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -795,23 +792,4 @@ public class PresentationServiceBean extends BaseService implements Presentation
         }
     }
 
-    /**
-     * This returns the minimum license rules for the given enrollment.
-     *
-     * @param enrollment
-     *            the enrollment to check
-     * @return the minimum license rules
-     */
-    public MinimumLicenseRulesModel getMinimumLicenseRules(EnrollmentType enrollment) {
-        MinimumLicenseRulesModel model = new MinimumLicenseRulesModel();
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        gov.medicaid.entities.ProviderType pt = getLookupService().findLookupByDescription(
-                gov.medicaid.entities.ProviderType.class, provider.getProviderType());
-
-        model.setAllLicenses(new ArrayList<String>());
-        for (gov.medicaid.entities.LicenseType licenseType : pt.getLicenseTypes()) {
-            model.getAllLicenses().add(licenseType.getDescription());
-        }
-        return model;
-    }
 }

@@ -320,12 +320,15 @@ project(':frontend') {
     artifacts {
         javascript file('src/main/js')
         javascript file('src/vendor/js')
-        javascript(file('node_modules/axe-core/axe.min.js')) {
-            builtBy npmInstall
-        }
-        javascript(file('node_modules/jquery-mask-plugin/dist/jquery.mask.min.js')) {
-            builtBy npmInstall
-        }
+
+        // Files to include from npm-managed JavaScript dependencies
+        [
+            'axe-core/axe.min.js',
+            'jquery-mask-plugin/dist/jquery.mask.min.js',
+        ]
+            .collect { "node_modules/${it}" }
+            .collect { project.file(it) }
+            .each { javascript file: it, builtBy: npmInstall }
     }
 }
 

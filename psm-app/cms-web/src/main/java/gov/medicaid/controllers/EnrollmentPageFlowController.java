@@ -1176,8 +1176,7 @@ public class EnrollmentPageFlowController extends BaseController {
         List<String> pages = viewModel.getTabNames();
 
         String prevPage = ViewStatics.PROVIDER_TYPE_PAGE;
-        for (Iterator<String> iterator = pages.iterator(); iterator.hasNext();) {
-            String page = iterator.next();
+        for (String page : pages) {
             if (page.equals(pageName)) {
                 break;
             }

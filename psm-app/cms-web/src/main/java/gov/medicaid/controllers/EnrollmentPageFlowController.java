@@ -293,15 +293,15 @@ public class EnrollmentPageFlowController extends BaseController {
     public StatusDTO bulkRenewTickets(
             @RequestParam("ids") long[] ticketIds
     ) {
-        Set<Long> profileIds = new HashSet<Long>();
+        Set<Long> profileIds = new HashSet<>();
         StatusDTO results = new StatusDTO();
         try {
             CMSUser user = ControllerHelper.getCurrentUser();
-            List<String> supersededList = new ArrayList<String>();
-            List<String> successfulList = new ArrayList<String>();
-            List<String> failedList = new ArrayList<String>();
-            List<String> invalidTickets = new ArrayList<String>();
-            List<String> invalidDataTickets = new ArrayList<String>();
+            List<String> supersededList = new ArrayList<>();
+            List<String> successfulList = new ArrayList<>();
+            List<String> failedList = new ArrayList<>();
+            List<String> invalidTickets = new ArrayList<>();
+            List<String> invalidDataTickets = new ArrayList<>();
 
             for (long ticketId : ticketIds) {
                 Enrollment oldTicket = enrollmentService.getTicketDetails(user, ticketId);
@@ -925,7 +925,7 @@ public class EnrollmentPageFlowController extends BaseController {
         CMSPrincipal principal = ControllerHelper.getPrincipal();
         String text = request.getParameter("noteText");
 
-        ArrayList<FormError> errors = new ArrayList<FormError>();
+        List<FormError> errors = new ArrayList<>();
         if (Util.isBlank(text)) {
             FormError error = new FormError();
             error.setFieldId("noteText");
@@ -979,7 +979,7 @@ public class EnrollmentPageFlowController extends BaseController {
             return addErrorsToPage(inputPage, exceptions);
         }
 
-        List<FormError> errors = new ArrayList<FormError>();
+        List<FormError> errors = new ArrayList<>();
         // validate when saving the first page
         if (ViewStatics.INDIVIDUAL_PCA_INFORMATION.equals(pageName)
                 || ViewStatics.PERSONAL_INFORMATION.equals(pageName) || ViewStatics.ORGANIZATION_INFO.equals(pageName)) {
@@ -1055,7 +1055,7 @@ public class EnrollmentPageFlowController extends BaseController {
                 mv.addObject("id", serviceResponse.getTicketNumber());
                 ControllerHelper.flashPopup("submitEnrollmentModal");
 
-                Map<String, Object> vars = new HashMap<String, Object>();
+                Map<String, Object> vars = new HashMap<>();
                 String emailAddress = enrollment.getContactInformation().getEmailAddress();
                 notificationService.sendNotification(emailAddress, EmailTemplate.PENDING_ENROLLMENT, vars);
 
@@ -1118,7 +1118,7 @@ public class EnrollmentPageFlowController extends BaseController {
                 mv.addObject("id", enrollment.getObjectId());
                 ControllerHelper.flashPopup("submitEnrollmentModal");
 
-                Map<String, Object> vars = new HashMap<String, Object>();
+                Map<String, Object> vars = new HashMap<>();
                 String emailAddress = enrollment.getContactInformation().getEmailAddress();
                 notificationService.sendNotification(emailAddress, EmailTemplate.MODIFIED_ENROLLMENT, vars);
 
@@ -1271,7 +1271,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
         // ticket details
 
-        Map<String, Object> modelMap = new HashMap<String, Object>();
+        Map<String, Object> modelMap = new HashMap<>();
         Map<String, UITabModel> pageModels = viewModel.getTabModels();
 
         boolean readOnly = false;
@@ -1466,7 +1466,7 @@ public class EnrollmentPageFlowController extends BaseController {
             String pageName,
             String[] formNames
     ) throws PortalServiceException {
-        List<FormError> errors = new ArrayList<FormError>();
+        List<FormError> errors = new ArrayList<>();
         if (formNames != null) {
             ValidationResponse results = presentationService.checkForErrors(enrollment, Arrays.asList(pageName));
             for (String form : formNames) {
@@ -1503,7 +1503,7 @@ public class EnrollmentPageFlowController extends BaseController {
             HttpServletRequest request
     ) throws PortalServiceException {
 
-        List<BinderException> exceptions = new ArrayList<BinderException>();
+        List<BinderException> exceptions = new ArrayList<>();
 
         bindFiles(enrollment, request);
 

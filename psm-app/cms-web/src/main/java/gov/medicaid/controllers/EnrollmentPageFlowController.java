@@ -1493,8 +1493,6 @@ public class EnrollmentPageFlowController extends BaseController {
      * @param formNames  the forms submitted
      * @param enrollment the model to bind to
      * @param request    the request
-     * @throws BinderException        for binding errors due to invalid data
-     *                                type/formats
      * @throws PortalServiceException for any other errors encountered
      */
     private List<BinderException> bindRequest(

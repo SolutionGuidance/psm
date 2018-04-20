@@ -473,11 +473,7 @@ public class EnrollmentPageFlowController extends BaseController {
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
         if (!exceptions.isEmpty()) {
             ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
-            for (BinderException binderException : exceptions) {
-                ControllerHelper.addError(binderException.getMessage());
-                inputPage.addObject(binderException.getParameterKey(), binderException.getParameterValue());
-            }
-            return inputPage;
+            return addErrorsToPage(inputPage, exceptions);
         }
 
         return showPrevPage(pageName, enrollment);
@@ -505,11 +501,7 @@ public class EnrollmentPageFlowController extends BaseController {
         setPersonDefaults(enrollment);
         if (!exceptions.isEmpty()) {
             ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
-            for (BinderException binderException : exceptions) {
-                ControllerHelper.addError(binderException.getMessage());
-                inputPage.addObject(binderException.getParameterKey(), binderException.getParameterValue());
-            }
-            return inputPage;
+            return addErrorsToPage(inputPage, exceptions);
         }
 
         List<FormError> errors = validate(enrollment, pageName, formNames);
@@ -571,11 +563,7 @@ public class EnrollmentPageFlowController extends BaseController {
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
         if (!exceptions.isEmpty()) {
             ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
-            for (BinderException binderException : exceptions) {
-                ControllerHelper.addError(binderException.getMessage());
-                inputPage.addObject(binderException.getParameterKey(), binderException.getParameterValue());
-            }
-            return inputPage;
+            return addErrorsToPage(inputPage, exceptions);
         }
 
         // List<FormError> errors = validate(enrollment, pageName, formNames);
@@ -908,11 +896,7 @@ public class EnrollmentPageFlowController extends BaseController {
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
         if (!exceptions.isEmpty()) {
             ModelAndView inputPage = showPage(fromPage, enrollment, NO_ERRORS);
-            for (BinderException binderException : exceptions) {
-                ControllerHelper.addError(binderException.getMessage());
-                inputPage.addObject(binderException.getParameterKey(), binderException.getParameterValue());
-            }
-            return inputPage;
+            return addErrorsToPage(inputPage, exceptions);
         }
 
         List<FormError> errors = validate(enrollment, fromPage, formNames);
@@ -992,11 +976,7 @@ public class EnrollmentPageFlowController extends BaseController {
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
         if (!exceptions.isEmpty()) {
             ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
-            for (BinderException binderException : exceptions) {
-                ControllerHelper.addError(binderException.getMessage());
-                inputPage.addObject(binderException.getParameterKey(), binderException.getParameterValue());
-            }
-            return inputPage;
+            return addErrorsToPage(inputPage, exceptions);
         }
 
         List<FormError> errors = new ArrayList<FormError>();
@@ -1048,11 +1028,7 @@ public class EnrollmentPageFlowController extends BaseController {
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
         if (!exceptions.isEmpty()) {
             ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
-            for (BinderException binderException : exceptions) {
-                ControllerHelper.addError(binderException.getMessage());
-                inputPage.addObject(binderException.getParameterKey(), binderException.getParameterValue());
-            }
-            return inputPage;
+            return addErrorsToPage(inputPage, exceptions);
         }
 
         List<FormError> errors = validate(enrollment, pageName, formNames);
@@ -1115,11 +1091,7 @@ public class EnrollmentPageFlowController extends BaseController {
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
         if (!exceptions.isEmpty()) {
             ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
-            for (BinderException binderException : exceptions) {
-                ControllerHelper.addError(binderException.getMessage());
-                inputPage.addObject(binderException.getParameterKey(), binderException.getParameterValue());
-            }
-            return inputPage;
+            return addErrorsToPage(inputPage, exceptions);
         }
 
         List<FormError> errors = validate(enrollment, pageName, formNames);
@@ -1157,6 +1129,20 @@ public class EnrollmentPageFlowController extends BaseController {
         } else {
             return showPage(pageName, enrollment, errors);
         }
+    }
+
+    private ModelAndView addErrorsToPage(
+            ModelAndView page,
+            List<BinderException> exceptions
+    ) {
+        for (BinderException binderException : exceptions) {
+            ControllerHelper.addError(binderException.getMessage());
+            page.addObject(
+                    binderException.getParameterKey(),
+                    binderException.getParameterValue()
+            );
+        }
+        return page;
     }
 
     /**

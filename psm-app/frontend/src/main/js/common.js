@@ -11,11 +11,11 @@ $.jMaskGlobals = {
   watchDataMask: false,
   byPassKeys: [9, 16, 17, 18, 36, 37, 38, 39, 40, 91],
   translation: {
-    '0': {pattern: /\d/},
-    '9': {pattern: /\d/, optional: true},
-    '#': {pattern: /\d/, recursive: true},
-    'A': {pattern: /[a-zA-Z0-9]/},
-    'S': {pattern: /[a-zA-Z]/}
+    '0': { pattern: /\d/ },
+    '9': { pattern: /\d/, optional: true },
+    '#': { pattern: /\d/, recursive: true },
+    'A': { pattern: /[a-zA-Z0-9]/ },
+    'S': { pattern: /[a-zA-Z]/ },
   }
 };
 
@@ -150,25 +150,25 @@ function setUserHelpClickHandler(
     helpDocsPath,
     helpItemIds,
     title
-  ) {
-    $(helpLinkSelector)
-      .off("click")
-      .click(function userHelpClickHandler() {
-        resetUserHelpModal('#user-help-modal');
-        addressLoadModal('#user-help-modal');
-        $.get(
-          ctx + helpDocsPath,
-          populateUserHelpModal.bind(
-            undefined,
-            'user-help-modal',
-            helpItemIds,
-            title
-          )
-        );
-      });
+) {
+  $(helpLinkSelector)
+    .off("click")
+    .click(function userHelpClickHandler() {
+      resetUserHelpModal('#user-help-modal');
+      addressLoadModal('#user-help-modal');
+      $.get(
+        ctx + helpDocsPath,
+        populateUserHelpModal.bind(
+          undefined,
+          'user-help-modal',
+          helpItemIds,
+          title
+        )
+      );
+    });
 };
 
-$(document).ready(function() {
+$(document).ready(function () {
 
   $('.searchPanel input[type="checkbox"]')
     .css("border", "none")

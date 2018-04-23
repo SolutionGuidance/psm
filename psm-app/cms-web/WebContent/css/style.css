@@ -19,9 +19,6 @@ input,select,textarea{
   font-family:Arial, Helvetica, sans-serif;
 }
 
-.hint{
-  color:#999999;
-}
 .contentWidth {
   margin: 0 auto;
   min-width:760px;

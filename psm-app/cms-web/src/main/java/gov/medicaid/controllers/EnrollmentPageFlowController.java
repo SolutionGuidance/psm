@@ -51,7 +51,6 @@ import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.StateType;
 import gov.medicaid.entities.Validity;
 import gov.medicaid.entities.dto.FormError;
-import gov.medicaid.entities.dto.MinimumLicenseRulesModel;
 import gov.medicaid.entities.dto.UITabModel;
 import gov.medicaid.entities.dto.ViewModel;
 import gov.medicaid.entities.dto.ViewStatics;
@@ -285,7 +284,6 @@ public class EnrollmentPageFlowController extends BaseController {
      * Starts the renewal process using an old ticket.
      *
      * @param ticketIds the profile(s) to renew
-     * @param model     the request model
      * @return the enrollment start page.
      * @endpoint "/provider/enrollment/bulkRenewTickets"
      * @verb POST
@@ -293,18 +291,17 @@ public class EnrollmentPageFlowController extends BaseController {
     @RequestMapping(value = "/bulkRenewTickets", method = RequestMethod.POST)
     @ResponseBody
     public StatusDTO bulkRenewTickets(
-            @RequestParam("ids") long[] ticketIds,
-            Model model
+            @RequestParam("ids") long[] ticketIds
     ) {
-        Set<Long> profileIds = new HashSet<Long>();
+        Set<Long> profileIds = new HashSet<>();
         StatusDTO results = new StatusDTO();
         try {
             CMSUser user = ControllerHelper.getCurrentUser();
-            List<String> supersededList = new ArrayList<String>();
-            List<String> successfulList = new ArrayList<String>();
-            List<String> failedList = new ArrayList<String>();
-            List<String> invalidTickets = new ArrayList<String>();
-            List<String> invalidDataTickets = new ArrayList<String>();
+            List<String> supersededList = new ArrayList<>();
+            List<String> successfulList = new ArrayList<>();
+            List<String> failedList = new ArrayList<>();
+            List<String> invalidTickets = new ArrayList<>();
+            List<String> invalidDataTickets = new ArrayList<>();
 
             for (long ticketId : ticketIds) {
                 Enrollment oldTicket = enrollmentService.getTicketDetails(user, ticketId);
@@ -476,11 +473,7 @@ public class EnrollmentPageFlowController extends BaseController {
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
         if (!exceptions.isEmpty()) {
             ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
-            for (BinderException binderException : exceptions) {
-                ControllerHelper.addError(binderException.getMessage());
-                inputPage.addObject(binderException.getParameterKey(), binderException.getParameterValue());
-            }
-            return inputPage;
+            return addErrorsToPage(inputPage, exceptions);
         }
 
         return showPrevPage(pageName, enrollment);
@@ -508,11 +501,7 @@ public class EnrollmentPageFlowController extends BaseController {
         setPersonDefaults(enrollment);
         if (!exceptions.isEmpty()) {
             ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
-            for (BinderException binderException : exceptions) {
-                ControllerHelper.addError(binderException.getMessage());
-                inputPage.addObject(binderException.getParameterKey(), binderException.getParameterValue());
-            }
-            return inputPage;
+            return addErrorsToPage(inputPage, exceptions);
         }
 
         List<FormError> errors = validate(enrollment, pageName, formNames);
@@ -559,7 +548,6 @@ public class EnrollmentPageFlowController extends BaseController {
      *
      * @param enrollment the current enrollment model
      * @param request    the request
-     * @param model      the request model
      * @return the next page, or the same page if there were errors
      * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/steps/rebind"
@@ -568,19 +556,14 @@ public class EnrollmentPageFlowController extends BaseController {
     @RequestMapping(value = "/steps/rebind", method = RequestMethod.POST)
     public ModelAndView rebind(
             @ModelAttribute("enrollment") EnrollmentType enrollment,
-            HttpServletRequest request,
-            Model model
+            HttpServletRequest request
     ) throws PortalServiceException {
         String pageName = request.getParameter("pageName");
         String[] formNames = request.getParameterValues("formNames");
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
         if (!exceptions.isEmpty()) {
             ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
-            for (BinderException binderException : exceptions) {
-                ControllerHelper.addError(binderException.getMessage());
-                inputPage.addObject(binderException.getParameterKey(), binderException.getParameterValue());
-            }
-            return inputPage;
+            return addErrorsToPage(inputPage, exceptions);
         }
 
         // List<FormError> errors = validate(enrollment, pageName, formNames);
@@ -629,7 +612,7 @@ public class EnrollmentPageFlowController extends BaseController {
         } else if (null != request.getParameter("save")) {
             return save(enrollment, request, status);
         } else if (null != request.getParameter("saveNote")) {
-            return saveNote(enrollment, request, status);
+            return saveNote(enrollment, request);
         } else if (null != request.getParameter("resubmitWithChanges")) {
             return resubmitWithChanges(enrollment, request, status);
         }
@@ -800,27 +783,6 @@ public class EnrollmentPageFlowController extends BaseController {
     }
 
     /**
-     * Performs license type lookup.
-     *
-     * @return the lookup JSON
-     * @throws PortalServiceException for any errors encountered
-     * @endpoint "/provider/enrollment/lookupMinimumLicenses"
-     * @verb POST
-     */
-    @RequestMapping(value = "/lookupMinimumLicenses", method = RequestMethod.POST)
-    @ResponseBody
-    public MinimumLicenseRulesModel lookupMinimumLicenses(
-            @ModelAttribute("enrollment") EnrollmentType enrollment,
-            HttpServletRequest request,
-            Model model
-    ) throws PortalServiceException {
-
-        String[] formNames = request.getParameterValues("formNames");
-        bindRequest(formNames, enrollment, request);
-        return presentationService.getMinimumLicenseRules(enrollment);
-    }
-
-    /**
      * Loads the given enrollment by id.
      *
      * @param ticketId the enrollment ticket id
@@ -934,11 +896,7 @@ public class EnrollmentPageFlowController extends BaseController {
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
         if (!exceptions.isEmpty()) {
             ModelAndView inputPage = showPage(fromPage, enrollment, NO_ERRORS);
-            for (BinderException binderException : exceptions) {
-                ControllerHelper.addError(binderException.getMessage());
-                inputPage.addObject(binderException.getParameterKey(), binderException.getParameterValue());
-            }
-            return inputPage;
+            return addErrorsToPage(inputPage, exceptions);
         }
 
         List<FormError> errors = validate(enrollment, fromPage, formNames);
@@ -954,7 +912,6 @@ public class EnrollmentPageFlowController extends BaseController {
      *
      * @param enrollment the current enrollment model
      * @param request    the request
-     * @param status     the session status
      * @return the same page, with a success/error message
      * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/saveNote"
@@ -963,13 +920,12 @@ public class EnrollmentPageFlowController extends BaseController {
     @RequestMapping(value = "/saveNote", method = RequestMethod.POST)
     public ModelAndView saveNote(
             @ModelAttribute("enrollment") EnrollmentType enrollment,
-            HttpServletRequest request,
-            SessionStatus status
+            HttpServletRequest request
     ) throws PortalServiceException {
         CMSPrincipal principal = ControllerHelper.getPrincipal();
         String text = request.getParameter("noteText");
 
-        ArrayList<FormError> errors = new ArrayList<FormError>();
+        List<FormError> errors = new ArrayList<>();
         if (Util.isBlank(text)) {
             FormError error = new FormError();
             error.setFieldId("noteText");
@@ -1020,14 +976,10 @@ public class EnrollmentPageFlowController extends BaseController {
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
         if (!exceptions.isEmpty()) {
             ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
-            for (BinderException binderException : exceptions) {
-                ControllerHelper.addError(binderException.getMessage());
-                inputPage.addObject(binderException.getParameterKey(), binderException.getParameterValue());
-            }
-            return inputPage;
+            return addErrorsToPage(inputPage, exceptions);
         }
 
-        List<FormError> errors = new ArrayList<FormError>();
+        List<FormError> errors = new ArrayList<>();
         // validate when saving the first page
         if (ViewStatics.INDIVIDUAL_PCA_INFORMATION.equals(pageName)
                 || ViewStatics.PERSONAL_INFORMATION.equals(pageName) || ViewStatics.ORGANIZATION_INFO.equals(pageName)) {
@@ -1076,11 +1028,7 @@ public class EnrollmentPageFlowController extends BaseController {
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
         if (!exceptions.isEmpty()) {
             ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
-            for (BinderException binderException : exceptions) {
-                ControllerHelper.addError(binderException.getMessage());
-                inputPage.addObject(binderException.getParameterKey(), binderException.getParameterValue());
-            }
-            return inputPage;
+            return addErrorsToPage(inputPage, exceptions);
         }
 
         List<FormError> errors = validate(enrollment, pageName, formNames);
@@ -1107,7 +1055,7 @@ public class EnrollmentPageFlowController extends BaseController {
                 mv.addObject("id", serviceResponse.getTicketNumber());
                 ControllerHelper.flashPopup("submitEnrollmentModal");
 
-                Map<String, Object> vars = new HashMap<String, Object>();
+                Map<String, Object> vars = new HashMap<>();
                 String emailAddress = enrollment.getContactInformation().getEmailAddress();
                 notificationService.sendNotification(emailAddress, EmailTemplate.PENDING_ENROLLMENT, vars);
 
@@ -1143,11 +1091,7 @@ public class EnrollmentPageFlowController extends BaseController {
         List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
         if (!exceptions.isEmpty()) {
             ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
-            for (BinderException binderException : exceptions) {
-                ControllerHelper.addError(binderException.getMessage());
-                inputPage.addObject(binderException.getParameterKey(), binderException.getParameterValue());
-            }
-            return inputPage;
+            return addErrorsToPage(inputPage, exceptions);
         }
 
         List<FormError> errors = validate(enrollment, pageName, formNames);
@@ -1174,7 +1118,7 @@ public class EnrollmentPageFlowController extends BaseController {
                 mv.addObject("id", enrollment.getObjectId());
                 ControllerHelper.flashPopup("submitEnrollmentModal");
 
-                Map<String, Object> vars = new HashMap<String, Object>();
+                Map<String, Object> vars = new HashMap<>();
                 String emailAddress = enrollment.getContactInformation().getEmailAddress();
                 notificationService.sendNotification(emailAddress, EmailTemplate.MODIFIED_ENROLLMENT, vars);
 
@@ -1185,6 +1129,20 @@ public class EnrollmentPageFlowController extends BaseController {
         } else {
             return showPage(pageName, enrollment, errors);
         }
+    }
+
+    private ModelAndView addErrorsToPage(
+            ModelAndView page,
+            List<BinderException> exceptions
+    ) {
+        for (BinderException binderException : exceptions) {
+            ControllerHelper.addError(binderException.getMessage());
+            page.addObject(
+                    binderException.getParameterKey(),
+                    binderException.getParameterValue()
+            );
+        }
+        return page;
     }
 
     /**
@@ -1204,8 +1162,7 @@ public class EnrollmentPageFlowController extends BaseController {
         List<String> pages = viewModel.getTabNames();
 
         String prevPage = ViewStatics.PROVIDER_TYPE_PAGE;
-        for (Iterator<String> iterator = pages.iterator(); iterator.hasNext();) {
-            String page = iterator.next();
+        for (String page : pages) {
             if (page.equals(pageName)) {
                 break;
             }
@@ -1288,7 +1245,7 @@ public class EnrollmentPageFlowController extends BaseController {
         enrollment.setProgressPage(pageName);
 
         ModelAndView mv = new ModelAndView();
-        mv.setViewName(determineViewName(pageName, enrollment));
+        mv.setViewName(determineViewName(enrollment));
 
         mv.addObject("errors", errors);
         mv.addObject("pageName", pageName);
@@ -1302,19 +1259,10 @@ public class EnrollmentPageFlowController extends BaseController {
         mv.addObject("isReopened", reopened);
         if (requestType != null) { // imported data?x
             switch (requestType) {
-                case UPDATE:
-                    mv.addObject("isEditEnrollment", true);
-                    mv.addObject("isNewEnrollment", false);
-                    mv.addObject("isRenewalEnrollment", false);
-                    break;
                 case RENEWAL:
-                    mv.addObject("isEditEnrollment", false);
-                    mv.addObject("isNewEnrollment", false);
                     mv.addObject("isRenewalEnrollment", true);
                     break;
                 default:
-                    mv.addObject("isNewEnrollment", true);
-                    mv.addObject("isEditEnrollment", false);
                     mv.addObject("isRenewalEnrollment", false);
                     break;
             }
@@ -1323,7 +1271,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
         // ticket details
 
-        Map<String, Object> modelMap = new HashMap<String, Object>();
+        Map<String, Object> modelMap = new HashMap<>();
         Map<String, UITabModel> pageModels = viewModel.getTabModels();
 
         boolean readOnly = false;
@@ -1435,14 +1383,10 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Determines the JSP name for the given page.
      *
-     * @param pageName   the page name
      * @param enrollment the enrollment model
      * @return the jsp view for the page
      */
-    private String determineViewName(
-            String pageName,
-            EnrollmentType enrollment
-    ) {
+    private String determineViewName(EnrollmentType enrollment) {
         String status = enrollment.getStatus();
         if (enrollment.getRequestType() == null) {
             return "provider/enrollment/steps/view_profile_details";
@@ -1522,7 +1466,7 @@ public class EnrollmentPageFlowController extends BaseController {
             String pageName,
             String[] formNames
     ) throws PortalServiceException {
-        List<FormError> errors = new ArrayList<FormError>();
+        List<FormError> errors = new ArrayList<>();
         if (formNames != null) {
             ValidationResponse results = presentationService.checkForErrors(enrollment, Arrays.asList(pageName));
             for (String form : formNames) {
@@ -1549,8 +1493,6 @@ public class EnrollmentPageFlowController extends BaseController {
      * @param formNames  the forms submitted
      * @param enrollment the model to bind to
      * @param request    the request
-     * @throws BinderException        for binding errors due to invalid data
-     *                                type/formats
      * @throws PortalServiceException for any other errors encountered
      */
     private List<BinderException> bindRequest(
@@ -1559,7 +1501,7 @@ public class EnrollmentPageFlowController extends BaseController {
             HttpServletRequest request
     ) throws PortalServiceException {
 
-        List<BinderException> exceptions = new ArrayList<BinderException>();
+        List<BinderException> exceptions = new ArrayList<>();
 
         bindFiles(enrollment, request);
 

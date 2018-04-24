@@ -5,6 +5,7 @@
   "repository": "https://github.com/SolutionGuidance/psm",
   "dependencies": {
     "axe-core": "^2.6.1",
+    "d3": "^5.1.0",
     "jquery-mask-plugin": "^1.14.15",
     "jscs": "^3.0.7"
   },

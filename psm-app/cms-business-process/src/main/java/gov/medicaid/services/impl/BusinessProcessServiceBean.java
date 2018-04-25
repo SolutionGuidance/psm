@@ -30,7 +30,6 @@ import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.process.enrollment.AcceptedHandler;
 import gov.medicaid.process.enrollment.DisqualificationHandler;
-import gov.medicaid.process.enrollment.EnrollmentHistoryHandler;
 import gov.medicaid.process.enrollment.EnrollmentMonitor;
 import gov.medicaid.process.enrollment.ExcludedProvidersScreeningHandler;
 import gov.medicaid.process.enrollment.PreProcessHandler;
@@ -141,7 +140,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         handlers.put("PreProcess", new PreProcessHandler());
         handlers.put("Validate", new ValidationHandler());
         handlers.put("Reject Application", new RejectedHandler());
-        handlers.put("Get Enrollment History", new EnrollmentHistoryHandler());
         handlers.put("Verify SSN", new VerifySSNHandler());
         handlers.put("Verify License or Certification", new VerifyLicenseHandler());
         handlers.put(

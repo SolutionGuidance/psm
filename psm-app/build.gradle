@@ -325,6 +325,7 @@ project(':frontend') {
         [
             'axe-core/axe.min.js',
             'jquery-mask-plugin/dist/jquery.mask.min.js',
+            'd3/dist/d3.min.js',
         ]
             .collect { "node_modules/${it}" }
             .collect { project.file(it) }

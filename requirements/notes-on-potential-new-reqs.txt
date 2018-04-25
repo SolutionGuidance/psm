@@ -1,0 +1,23 @@
+Notes on some issues that may warrant creating new reqs that fit them better.
+
+1. Issues related to fostering the user community (as opposed to the 
+developer/contributor community), and other outward facing promotional stuff:
+
+  394 - Systematize and advertise online PSM community of practice
+  395 - Create standalone PSM brochure website
+  439 - Auto-update standalone user docs website and PDF
+  458 - bundle user & developer docs for psm-dev
+
+2. Issues relating to code quality in terms of separation of concerns, 
+modularity, avoiding unnecessary coupling.
+
+  599 - Stop checking for access permissions for system-internal lookups
+  653 - Remove styles from labels
+
+3. Issues on being state-agnostic/generic, not hard-coding one state.
+
+  655 - Remove or generify UMPI field
+
+Karl thought 599, 653, and 655 were covered by SQ-1.5.  Paul when first
+making these notes was taking a narrower interpretation of D.R.Y. principles.
+Left in the notes here for follow-up as needed.

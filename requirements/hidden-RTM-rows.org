@@ -1,0 +1,364 @@
+#+STARTUP: showeverything
+
+* psm-AD-1.1
+
+"The PSM shall support a range of analysis actions. "
+
+* psm-AD-1.2
+
+"The PSM shall collect and summarize data for specific user
+communities (e.g. data marts or cubes) such as program analysis staff,
+research group, financial management unit, agency executives
+(e.g. dashboard)."
+
+* psm-AD-1.3
+
+"The PSM shall provide reports that allow users to drill down from
+summarized data to detailed data."
+
+* psm-AD-1.4
+
+"The PSM shall limit access to authorized group of stakeholders."
+
+* psm-AD-2.1
+
+"The PSM shall provide a user interface or associated interfaces text
+titles for frames to facilitate frame identification and navigation."
+
+* psm-AD-2.2
+
+"The PSM shall provide member and provider access to services via
+browser, kiosk, voice response solution, or mobile device, and manual
+submissions."
+
+* psm-AD-2.3
+
+"The PSM shall conform to usability and design standards set by the
+state. This includes aesthetics, consistency in the user interface,
+and visual quality of the interfaces."
+
+* psm-AD-2.4
+
+"The PSM shall fully comply with section 508 accessibility."
+
+* psm-AD-3.1
+
+"The PSM shall support retrieval and presentation of data associated
+with geographic indicators such as state, county, and zip code."
+
+* psm-AD-3.2
+
+"The PSM shall support federal reporting requirements when these
+requirements are met through the decision support services (DSS)."
+
+* psm-AD-3.3
+
+"The PSM shall support a variety of formats and output options
+(e.g. Word, Excel, html, Access database, or GUI formats)."
+
+* psm-AD-3.4
+
+"The PSM shall support simple queries and pre-formatted reports that
+are easy to access, follow a user-friendly protocol, and produce
+responses immediately."
+
+* psm-AD-3.5
+
+"The PSM shall provide ad hoc reporting capability that presents
+summarized information on key factors to executive staff upon
+request."
+
+* psm-AD-3.6
+
+"The PSM shall provide ad hoc query capability for retrieval of data
+relevant to specific operational units."
+
+* psm-AD-4.1
+
+"The PSM shall provide the ability to record and monitor the
+performance and utilization of resources within the overall system."
+
+* psm-AD-4.2
+
+"The PSM shall generate performance measures for specific business
+processes using predefined and ad hoc reporting methods."
+
+* psm-AD-5.1
+
+"The PSM shall follow regulations govern the safeguard of information
+about applicants and beneficiaries.  The following is the minimal set
+of information that must be safeguarded:
+
+(1) Name and addresses
+(2) Social and economic conditions or circumstances:
+(3) Agency evaluation of personal information;
+(4) Any information received for verifying income;
+"
+
+* psm-AD-5.2
+
+"The PSM shall verify the identity of all users, denies access to
+invalid users. For example:
+
+  - Requires unique sign-on (ID and password)
+
+  - Requires authentication of the receiving entity prior to a system
+    initiated session, such as transmitting responses to eligibility
+    inquiries."
+
+* psm-AD-5.3
+
+"The PSM shall enforce password policies for length, character
+requirements, and updates."
+
+* psm-AD-5.5
+
+"The PSM shall permit supervisors or other designated officials to set
+and modify user security access profile."
+
+* psm-AD-5.6
+
+"The PSM shall alert appropriate staff authorities of potential
+violations of privacy safeguards, such as inappropriate access to
+confidential information."
+
+* psm-AD-5.7
+
+"The PSM of shall contain verification mechanisms that are capable of
+authenticating authority (as well as identify) for the use or
+disclosure requested. "
+
+* psm-AD-5.8
+
+"The PSM shall provide the capability that all system activity can be
+traced to a specific user or entity."
+
+* psm-AD-5.9
+
+"The PSM shall log system activity and enable analysts to examine
+system activity in accordance with audit policies and procedures
+(error diagnosis, and performance management) adopted by the Medicaid
+agency."
+
+* psm-AD-5.10
+
+"The PSM shall have the capability to provision access to an
+authorized user or request."
+
+* psm-AD-5.13
+
+"User account access authorization should follow the concept of least
+privilege allowing users access to only the information that is
+necessary to accomplish assigned tasks in accordance with business
+functions." ;
+
+* psm-AD-5.14
+
+"The PSM shall support the state policy to disable account due to
+invalid login attempts."
+
+* psm-AD-5.16
+
+"The PSM shall enforce a sufficient level of authentication /
+identification against fraudulent transmission and imitative
+communications deceptions by validating the transmission, message,
+station or individual."
+
+
+* psm-IA-1.1
+
+"The PSM shall demonstrate adoption of a CDM that depicts the business
+area high-level data and general relationships for intrastate
+exchange."
+
+* psm-IA-1.2
+
+"The PSM shall identify relationships between the PSM and other key
+entities in the Medicaid enterprise."
+
+* psm-IA-2.1
+
+"The PSM shall demonstrate the adoption of an intrastate metadata
+repository and contribute to the agency definition of the data
+entities, attributes, data models, and relationships sufficiently to
+convey the overall meaning and use of Medicaid data and information."
+
+* psm-IA-2.2
+
+"The PSM shall update all historical claim data, recipient enrollment,
+provider enrollment, and other primary reference data on a scheduled
+basis."
+
+* psm-IA-3.1
+
+"The PSM shall, at a minimum, support transfer of provider screening
+data to and from MMIS and other entities."
+
+* psm-IA-3.2
+
+"The PSM shall support consumption of data in multiple formats from
+many sources, such as vital statistics, MCO encounter data, benefit
+manager encounter data (pharmacy, dental, mental health), waiver
+program data, and census bureau."
+
+COMMENT: "Evidence: demonstrated by interfacing with LEIE data"
+
+* psm-IA-3.3
+
+"The PSM shall require, capture, and maintain the 10-digit national
+provider identifier."
+
+* psm-IA-3.4
+
+"The PSM shall accept the national provider identifier in all standard
+electronic transactions mandated under HIPAA."
+
+* psm-IA-3.5
+
+"The PSM shall interface with the National Plan and Provider
+Enumerator System (NPPES) to verify the NPI of provider applicants."
+
+* psm-IA-3.6
+
+"The PSM shall not allow atypical providers to be assigned numbers
+that duplicate any number assigned by the NPPES."
+
+* psm-IA-3.7
+
+"The PSM shall provide the ability to link and de-link to other
+Medicaid provider IDs for the same provider, (e.g., numbers used
+before the NPI was established, erroneously issued prior numbers,
+multiple NPIs for different subparts, etc.). Captures/crosswalks
+subpart NPIs used by Medicare (but not Medicaid) to facilitate
+coordination of benefits (COB) claims processing."
+
+* psm-IA-3.8
+
+"The PSM shall be capable of or support the production of a random
+sample of data that would be needed for audit purposes based on the
+state-established selection criteria. "
+
+* psm-IA-3.9
+
+"The PSM shall comply with the SMA's standardized structure and
+vocabulary data for automated electronic intrastate interchanges and
+interoperability."
+
+* psm-IA-4.2
+
+"The PSM shall maintain providers' data (e.g., links from providers to
+other entities, such as groups, managed care organizations, chains,
+networks, ownerships, and partnerships)."
+
+* psm-IA-4.3
+
+"The PSM shall verify that all fields defined as numeric contain only
+numeric data."
+
+* psm-IA-4.4
+
+"The PSM shall verify that all fields defined as alphabetic contain
+only alphabetic data."
+
+
+* psm-IU-1.1
+
+"The PSM shall use technology-neutral interfaces that localize and
+minimize impact of new technology insertion."
+
+* psm-IU-2.1
+
+"The PSM shall maintain online access to at least four years of
+selected management reports and five years of annual reports."
+
+COMMENT: "Currently there is no reporting planned for PSM.  However,
+there is no plan to delete the data in the database."
+
+META-COMMENT (from kfogel on [2018-03-31]): Whuh-huh?  There are
+plenty of reporting requirements; in fact, many of them are in this
+file.  The above comment may have been written before we had the
+complete set of requirements in front of us.  In any case, we should
+probably remove it from this item in RTM.xlsx, as its first sentence
+is not true and it second sentence is not necessary.
+
+* psm-IU-2.2
+
+"The PSM shall conduct information exchange (internally and
+externally) using MITA Framework, industry standards, and other
+nationally recognized standards."
+
+* psm-IU-2.3
+
+"The PSM shall develop data models that include mapping of information
+exchange with external organizations."
+
+* psm-IU-2.4
+
+"The PSM shall apply single source of information methodologies."
+
+* psm-IU-2.5
+
+"The PSM shall provide full-text search capability"
+
+COMMENT: "This is requested by Anshuman during the 8/10/17 PSM status
+meeting"
+
+* psm-IU-3.2
+
+"The PSM shall use rules editor that maintains the current version of
+standardized business rules definitions in a language that business
+people can interpret and transforms them into machine language to
+automate them."
+
+* psm-IU-4.1
+
+"The PSM shall support an authorized user access to user activity
+history and other management functions, including log-on approvals/
+disapprovals and log search and playback."
+
+* psm-IU-4.2
+
+"The PSM shall define information sharing and event notification
+standards to allow aggregated and integrated information."
+
+
+* psm-SA-1.1
+
+"The PSM shall accommodate customer preferences for communications by
+email, text, mobile devices, or phones."
+
+* psm-SA-2.1
+
+"The PSM shall comply with standards and protocols adopted by the
+Secretary under sections 1104 and 1561 of the Affordable Care Act. "
+"N/A - 1104 and 1561 are for individuals and not providers"
+
+* psm-SA-4.0
+
+"The PSM shall use regionally standardized business rule definitions
+in both human and machine-readable formats." "No in the pre-cert check
+list but PSM will do this"
+
+* psm-SA-4.1
+
+"The PSM shall contain modules that can be interchanged without major
+system design." "Evidence: have an architecture diagram showing rules
+engine is an separate component"
+
+* psm-SA-4.2
+
+"The PSM shall use an intrastate rules engine separate from core
+programming with established interstate standardized business rules
+definitions." "Evidence: have an architecture diagram showing rules
+engine is an separate component"
+
+* psm-SA-4.4
+
+"The PSM shall support open standards between key interfaces have been
+considered for all and chosen where feasible."
+
+* psm-SA-4.5
+
+"The PSM shall support Modularity verification through extensive
+testing that demonstrates compliance with chosen interface standards
+and specifications."

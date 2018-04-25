@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+# Print out PSM reqs (obtained from CSV) in a specified format.
+#
+# Copyright (C) 2018 Open Tech Strategies, LLC
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+__doc__ = """\
+Usage:
+
+  $ reqs2any [ --output=OUTPUT_FORMAT ] CSV_FILE
+
+Convert a single CSV file of requirements to OUTPUT_FORMAT.  The two
+supported output formats so far are "human" (the default) and "elisp".
+
+Note: This requires the psm_reqs.py module to be available in the
+Python import path (typically it is in the same directory).
+"""
+
+import sys
+import getopt
+import psm_reqs
+
+
+def main():
+    """Create wiki pages from a supplied CSV."""
+    output_format = None
+
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], 'h?q', 
+                                   ["help", "usage", "output="])
+    except getopt.GetoptError as err:
+        sys.stderr.write("ERROR: '%s'\n" % err)
+        usage(errout=True)
+        sys.exit(2)
+
+    for o, a in opts:
+        if o in ("-h", "-?", "--help", "--usage",):
+            print("%s" % __doc__)
+            sys.exit(0)
+        elif o in ("--output",):
+            output_format = a
+        else:
+            sys.stderr.write("ERROR: unrecognized option '%s'\n" % o)
+            sys.exit(1)
+
+    if output_format is None:
+        output_format = "human"
+
+    if not (output_format in ("human","elisp",)):
+        sys.stderr.write("ERROR: unrecognized output format '%s'\n"
+                         % output_format)
+        sys.exit(1)
+
+    if len(args) < 1:
+        sys.stderr.write("ERROR: CSV input file(s) required\n")
+        sys.stderr.write("\n")
+        sys.stderr.write("%s" % __doc__)
+        sys.exit(1)
+
+    reqs = psm_reqs.get_reqs(*args)
+
+    # Note that we'll print the requirements in whatever order we
+    # received them via CSV files, because iteration over dicts
+    # in Python will now (or will soon) preserve insertion order:
+    # https://mail.python.org/pipermail/python-dev/2017-December/151283.html
+    #
+    # We could also print them out sorted lexically by req ID, with:
+    #
+    #   for req in [reqs[key] for key in sorted(reqs)]:
+    #
+    # However, that would not work quite the way we want, because,
+    # for example, "psm-FR-3.3" would sort after "psm-FR-3.25".
+    for req in reqs.values():
+        if output_format == "human":
+            print("%s" % req)
+            print("===================================")
+        elif output_format == "elisp":
+            # Every req has at least these fields.
+            print("  ((id \"%s\")\n"
+                  "   (category \"%s\")\n"
+                  "   (description \"%s\")"
+                  % (req.req_id.replace('"', '\\"'),
+                     req.category.replace('"', '\\"'),
+                     req.description.replace('"', '\\"')))
+            # Each of these fields is optional
+            for elisp_symbol, req_field in (
+                    ("comment", req.comment,),
+                    ("priority", req.priority,),
+                    ("rank", req.rank,),
+                    ("source", req.source,),
+                    ("source-doc", req.source_doc,),
+                    ("release", req.release,),
+                    ("design-ref", req.design_ref,),
+                    ("acceptance-test-ref", req.acceptance_test_ref,),):
+                if (req_field is not None) and (req_field != ""):
+                    print("   (%s \"%s\")" % (elisp_symbol, req_field))
+            # Close out this req's sublist.
+            print("  )")
+        else:
+            sys.stderr.write("ERROR: unknown output format '%s' "
+                             "should have been caught earlier\n"
+                             % output_format)
+            sys.exit(1)
+
+
+if __name__ == '__main__':
+    main()

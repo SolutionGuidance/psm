@@ -1,0 +1,74 @@
+#+STARTUP: showeverything
+
+This list shows the requirements we created, including both the new
+"SQ" ("Software Quality") set and the other new reqs that we added to
+existing sheets.
+
+The purpose of this list is to show which of our added requirements
+might be redundant with reqs that we later discovered in hidden rows.
+Such possible redundancies are shown with two kinds of annotation:
+
+  "(duplicate of hidden req ...)"
+
+  "(related hidden reqs: ...)"
+
+The "duplicate" annotation means that the new req we created just
+needs to go away, and every issue that has it as a label should
+instead be labeled with the existing req that it was a duplicate of.
+
+The "related hidden reqs" annotation indicates one or more formerly
+hidden reqs that might be a better fit for a given issue than the
+current new req is.  In this case, the appropriate existing reqs
+should be added to the issue, and usually new req should be taken off
+as well (though there could be exceptions).  It may be that once we've
+gone all the way through that process, we'll discover that some of the
+new reqs that weren't thought to be redundant with one particular
+single formerly-hidden req are nonetheless unused (and therefore
+redundant) after all, because the old hidden reqs provide complete
+coverage everywhere the new req had been used.  We'll see.
+
+* psm-AD-5.18 (related hidden reqs: psm-AD-5.5, psm-AD-1.4, psm-AD-5.13, psm-AD-5.1, psm-AD-5.2, psm-AD-5.3, psm-AD-5.5, psm-AD-5.7, psm-AD-5.13, psm-AD-5.14, psm-AD-5.16)
+  The PSM shall be secure from unauthorized access or use, and shall sanitize inputs and outputs where possible so as to avoid compromising itself or other systems.
+
+* psm-FR-4.6 (related hidden reqs: none)
+  The PSM shall have the ability to enforce limits on the number of providers of a given type enrolled simultaneously.
+
+* psm-FR-4.7 (related hidden reqs: none)
+  The PSM shall support admin-configurable automated re-screening.  C.f. psm-FR-7.3.
+
+* psm-FR-4.8 (related hidden reqs: none)
+  The PSM shall support provider agents (a.k.a. service agents a.k.a. non-provider users) who act on a provider's behalf and whose authorization may be a subset of that provider's.
+
+* DONE psm-FR-7.13 (duplicate of hidden req psm-IU-2.5)
+  The PSM shall support searching and pattern-matching based on all fields accepted as input (and based on all reasonable combinations of such fields).
+
+  NOTE TO PAUL: I've already done this one.  Every "LABEL CHANGES" section that should have it has it now.  -Karl
+
+* psm-FR-7.14 (related hidden reqs: psm-AD-2.3)
+  The PSM's user interface shall be as simple, comprehensible, navigable, reliable, robust in the face of error, and responsive as possible.
+
+* DONE psm-FR-10.2 (duplicate of hidden req psm-AD-2.4) (related hidden reqs: psm-AD-2.1)
+  The PSM shall be accessible in compliance with Section 508 of the Rehabilitation Act.
+
+  NOTE TO PAUL: I've already done this one.  Every "LABEL CHANGES" section that should have it has it now.  -Karl
+
+* psm-II-4.5 (related hidden reqs: none)
+  The PSM shall be configurable where feasible.
+
+* psm-SQ-1.1 (related hidden reqs: none)
+  The PSM shall have an open source repository and source code base organized to be welcoming to outside contributors.
+
+* psm-SQ-1.2 (related hidden reqs: psm-IA-3.8, psm-SA-4.5)
+  The PSM shall include and undergo automated testing at regular intervals, through continuous integration and deployment processes.  The PSM shall also undergo manual testing and QA as needed.
+
+* psm-SQ-1.3 (related hidden reqs: none)
+  The PSM shall use modern source code dependency management techniques, and shall use up-to-date versions of upstream third-party dependencies.
+
+* psm-SQ-1.4 (related hidden reqs: psm-IA-3.8)
+  The PSM shall use documented build, test, release, and installation processes that are automated as much as possible, for both development and production use.
+
+* psm-SQ-1.5 (related hidden reqs: psm-IU-2.4, psm-SA-4.1)
+  The PSM shall use D.R.Y. coding principles to avoid unnecessary complexity, inflexibility, redundancy, and denormalization in the source code and database schemas, and to use precise terminology in data structures and operations.
+
+* psm-SQ-1.6 (related hidden reqs: none)
+  The PSM shall use system resources efficiently and in proportion to operational demands and data size.

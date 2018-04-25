@@ -1,0 +1,16 @@
+Requirement ID Number,Requirement Category,Requirement Statement,Priority,Rank,Source,Source Document,Release,Design Reference,Acceptance Test Reference,Comment
+,1.  Technical Service Classification:  Configuration Management,,,,,,,,,
+psm-IU-1.1,,The PSM shall use technology-neutral interfaces that localize and minimize impact of new technology insertion.,1,Low,TA.CM.4,,MVP - Sept,,,
+,2.  Technical Service Classification:  Data Access and Management,,,,,,,,,
+psm-IU-2.1,,The PSM shall maintain online access to at least four years of selected management reports and five years of annual reports.,,,TA.DAM.1,,Post R1,,,"Currently there is no reporting planned for PSM.  However, there is no plan to delete the data in the database."
+psm-IU-2.2,,"The PSM shall conduct information exchange (internally and externally) using MITA Framework, industry standards, and other nationally recognized standards.",2,High ,TA.DAM.2,,MVP - Sept,,,
+psm-IU-2.3,,The PSM shall develop data models that include mapping of information exchange with external organizations.,,,TA.DAM.3,,Alpha,,,
+psm-IU-2.4,,The PSM shall apply single source of information methodologies.,3,Medium,TA.DAM.7,,MVP - Sept,,,
+psm-IU-2.5,,The PSM shall provide full-text search capability,,,CMS ,,Beta,,,This is requested by Anshuman during the 8/10/17 PSM status meeting
+,3.  Technical Service Classification:  Decision Management,,,,,,,,,
+psm-IU-3.1,,The PSM of shall use standardized business rules definitions that reside in a separate application or rules engine.,,,TA.DM.1,,Alpha,,,
+psm-IU-3.2,,The PSM shall use rules editor that maintains the current version of standardized business rules definitions in a language that business people can interpret and transforms them into machine language to automate them.,,,TA.DM.2,,Alpha,,,
+,4.  Technical Service Classification:  Logging,,,,,,,,,
+psm-IU-4.1,,"The PSM shall support an authorized user access to user activity history and other management functions, including log-on approvals/ disapprovals and log search and playback.",,,TA.LG.1,,Beta,,,
+psm-IU-4.2,,The PSM shall define information sharing and event notification standards to allow aggregated and integrated information.,,,TA.LG.2,,Post R1,,,
+psm-IU-4.3,,The PSM shall provide an architecture diagram depicting how it is technically structured.,,,CMS,,MVP - Dec,,,This is requested by Anshuman during the 8/10/17 PSM status meeting

@@ -1,14 +1,26 @@
 "Requirement ID Number";"Requirement Statement";"Comment" 
 (CSV was exported with semi-colon separator, strings enclosed in quotes)
 
-Note: some of these requirements were "hidden" in the RTM.  
+Note that this list does not include requirement rows that were
+"hidden" in RTM.xlsx.  We later determined that the should be
+included, but the repair process is easier if they're in a separate
+file, so see [[file:hidden-RTM-rows.org][hidden-RTM-rows.org]].
 
-Linking to issues will be done with a colon after the requirements
-number, followed by a list of issue numbers (without #) separated by
-comma and space.
+The entire "psm-SQ-*" category is new (it has been added as a new
+sheet in RTM.xlsx) and there are also some newly-created requirements
+in existing categories.  See [[file:added-reqs.org][added-reqs.org]] for details.  The short
+story is: some of the new reqs will likely go away because they are
+redundant with reqs that we discovered later when we un-hid some rows.
+For now, they are all listed at the end, after the "SQ" set, even
+though in RTM.xlsx they have been added to appropriate sheets.
 
-Requirements items that don't yet appear in RTM.xlsx are denoted with
-"psm-IP-x.x" (IP for In Progress).
+Very likely this whole file will go away soon.  We can now use the
+[[file:show-reqs][show-reqs]] script in this directory to print out all the requirements
+whenever we need, as long as the CSV exports in csv-exports/ are
+up-to-date with RTM.xlsx.  So whatever unredundifiying we do, we
+should just do it in RTM.xlsx (or whatever our master location for
+reqs is), export all the sheets to CSV, and then use the CSV files to
+port reqs to textual formats as needed.
 
 * psm-FR-1.1
 "The PSM shall accept a form that shows a tax ID number and legal name
@@ -452,13 +464,13 @@ to the greatest extent possible.";
 * psm-II-4.4
 "Clearly documented - The PSM shall provide detailed API documentation
 provided for every API. ";
-* psm-SA-3.1
+* psm-SC-3.1
 "The PSM shall support the architecture adopted to preserve the ability
 to efficiently, effectively, and appropriately exchange data with other
 participants in the health and human services enterprise."; 
 
 COMMENT: "Satified with the API requirements"
-* psm-SA-4.3
+* psm-SC-4.3
 "The PSM design documents shall utilize a widely supported modeling
 language (e.g., UML, BPMN).";
 * psm-IA-4.1
@@ -489,6 +501,7 @@ inactivity. (Addressable) ";
 "The PSM shall support roles and responsibilities of individuals that
 are separated through assigned information access authorization as
 necessary to prevent malevolent activity.";
+C.f. psm-AD-5.2, 
 * psm-AD-5.15
 "After 15 minutes of inactivity, the PSM shall initiate a session lock;
 the session lock should remain in place until the user reestablishes
@@ -530,9 +543,11 @@ The PSM shall also undergo manual testing and QA as needed."
 "The PSM shall be configurable where feasible."
 * psm-AD-5.18
 "The PSM shall be secure from unauthorized access or use, and shall sanitize inputs and outputs where possible so as to avoid compromising itself or other systems."
+C.f. psm-AD-5.1
 * psm-FR-10.2
 "The PSM shall be accessible in compliance with Section 508 of the
 Rehabilitation Act."
+C.f. psm-AD-2.1, psm-AD-2.2
 * psm-FR-7.14
 "The PSM's user interface shall be as simple, comprehensible, navigable, reliable, robust in the face of error, and responsive as possible."
 * psm-FR-7.13

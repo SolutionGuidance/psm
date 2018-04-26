@@ -1,111 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://gov.medicaid.process/EnrollmentProcess" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://gov.medicaid.process/EnrollmentProcess" xmlns:cms="http://gov.medicaid.shared/Entities">
-	<annotation>
-		<documentation xml:lang="en">
-			This defines the aggregate schema used by the enrollment business process.
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://gov.medicaid.process/EnrollmentProcess"
+        xmlns:cms="http://gov.medicaid.shared/Entities"
+        targetNamespace="http://gov.medicaid.process/EnrollmentProcess"
+        elementFormDefault="qualified">
+  <annotation>
+    <documentation xml:lang="en">
+      This defines the aggregate schema used by the enrollment business process.
 
-			@author TCSASSEMBLER
-			@version 1.0
-		</documentation>
-	</annotation>
-
-	<import schemaLocation="Entities.xsd" namespace="http://gov.medicaid.shared/Entities"></import>
-
-	<element name="EnrollmentProcess">
-		<annotation>
-			<documentation xml:lang="en">Root element for the entire process model.</documentation>
-		</annotation>
-		<complexType>
-			<sequence>
-			    <element name="SessionId" type="int" maxOccurs="1" minOccurs="0"></element>
-				<element name="Enrollment" type="tns:EnrollmentType"></element>
-				<element name="EnrollmentStatus" type="cms:EnrollmentStatusType"></element>
-				<element name="EnrollmentStatusHistory" type="cms:EnrollmentStatusHistoryType"></element>
-				<element name="PostSubmissionInformation" type="cms:PostSubmissionInformationType"></element>
-				<element name="PreApprovalQuestions" type="string"></element>
-				<element name="AssessedFees" type="tns:AssessedFeesType"></element>
-				<element name="ProcessResults" type="tns:ProcessResultsType"></element>
-				<element name="ProcessAudit" type="tns:ProcessAuditType"></element>
-			</sequence>
-		</complexType>
-	</element>
-
-	<complexType name="EnrollmentType">
-		<annotation>
-			<documentation xml:lang="en">Wraps the submitted provider information and includes support for tracking approver made edits.</documentation>
-		</annotation>
-		<complexContent>
-			<extension base="cms:EnrollmentInformationType">
-				<sequence>
-					<element name="ProviderInformation" type="cms:ProviderInformationType">
-					</element>
-					<element name="SubmissionEditHistory" type="tns:EditHistoryType" maxOccurs="unbounded" minOccurs="0"></element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-
-	<complexType name="AssessedFeesType">
-		<annotation>
-			<documentation xml:lang="en">All fees assessed by the business rules.</documentation>
-		</annotation>
-		<sequence>
-			<element name="PaymentInformation" type="cms:PaymentInformationType"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="EditHistoryType">
-		<annotation>
-			<documentation xml:lang="en">History of edits made on a submission by approvers during the execution of the business process.</documentation>
-		</annotation>
-		<sequence>
-			<element name="EditedBy" type="string"></element>
-			<element name="EditedByRole" type="string"></element>
-			<element name="EditedOn" type="date"></element>
-			<element name="EditNote" type="string"></element>
-			<element name="ProviderInformation" type="cms:ProviderInformationType">
-			</element>
-		</sequence>
-	</complexType>
-
-	<complexType name="ProcessResultsType">
-		<annotation>
-			<documentation xml:lang="en">Aggregation of all process execution results.</documentation>
-		</annotation>
-		<sequence>
-			<element name="ValidationResult" type="cms:ValidationResultType">
-			</element>
-			<element name="ScreeningResults" type="tns:ScreeningResultsType"></element>
-		</sequence>
-	</complexType>
-
-
-	<complexType name="ScreeningResultsType">
-		<annotation>
-			<documentation xml:lang="en">Collection wrapper for all screening process execution results.</documentation>
-		</annotation>
-		<sequence>
-			<element name="AutomaticScreeningStatus" type="cms:ValidationResultType" maxOccurs="1" minOccurs="1"></element>
-			<element name="ScreeningResult" type="cms:ScreeningResultType" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="ProcessExecutionType">
-		<sequence>
-			<element name="ObjectId" type="string" maxOccurs="1" minOccurs="1"></element>
-			<element name="ProcessName" type="string" maxOccurs="1" minOccurs="1"></element>
-			<element name="StartTime" type="dateTime" maxOccurs="1" minOccurs="1"></element>
-			<element name="EndTime" type="dateTime" maxOccurs="1" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-	<complexType name="ProcessAuditType">
-		<sequence>
-			<element name="ProcessInstanceId" type="string" maxOccurs="1" minOccurs="1"></element>
-			<element name="ProcessExecutions" type="tns:ProcessExecutionType" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
-	</complexType>
-
-
-
+      @author TCSASSEMBLER
+      @version 1.0
+    </documentation>
+  </annotation>
+  <import schemaLocation="Entities.xsd"
+          namespace="http://gov.medicaid.shared/Entities"/>
+  <element name="EnrollmentProcess">
+    <annotation>
+      <documentation xml:lang="en">Root element for the entire process model.</documentation>
+    </annotation>
+    <complexType>
+      <sequence>
+        <element name="SessionId" type="int" maxOccurs="1" minOccurs="0"/>
+        <element name="Enrollment" type="tns:EnrollmentType"/>
+        <element name="EnrollmentStatus" type="cms:EnrollmentStatusType"/>
+        <element name="EnrollmentStatusHistory" type="cms:EnrollmentStatusHistoryType"/>
+        <element name="PostSubmissionInformation" type="cms:PostSubmissionInformationType"/>
+        <element name="PreApprovalQuestions" type="string"/>
+        <element name="AssessedFees" type="tns:AssessedFeesType"/>
+        <element name="ProcessResults" type="tns:ProcessResultsType"/>
+        <element name="ProcessAudit" type="tns:ProcessAuditType"/>
+      </sequence>
+    </complexType>
+  </element>
+  <complexType name="EnrollmentType">
+    <annotation>
+      <documentation xml:lang="en">Wraps the submitted provider information and includes support for tracking approver made edits.</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="cms:EnrollmentInformationType">
+        <sequence>
+          <element name="ProviderInformation" type="cms:ProviderInformationType"/>
+          <element name="SubmissionEditHistory"
+                   type="tns:EditHistoryType"
+                   maxOccurs="unbounded"
+                   minOccurs="0"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AssessedFeesType">
+    <annotation>
+      <documentation xml:lang="en">All fees assessed by the business rules.</documentation>
+    </annotation>
+    <sequence>
+      <element name="PaymentInformation" type="cms:PaymentInformationType"/>
+    </sequence>
+  </complexType>
+  <complexType name="EditHistoryType">
+    <annotation>
+      <documentation xml:lang="en">History of edits made on a submission by approvers during the execution of the business process.</documentation>
+    </annotation>
+    <sequence>
+      <element name="EditedBy" type="string"/>
+      <element name="EditedByRole" type="string"/>
+      <element name="EditedOn" type="date"/>
+      <element name="EditNote" type="string"/>
+      <element name="ProviderInformation" type="cms:ProviderInformationType"/>
+    </sequence>
+  </complexType>
+  <complexType name="ProcessResultsType">
+    <annotation>
+      <documentation xml:lang="en">Aggregation of all process execution results.</documentation>
+    </annotation>
+    <sequence>
+      <element name="ValidationResult" type="cms:ValidationResultType"/>
+      <element name="ScreeningResults" type="tns:ScreeningResultsType"/>
+    </sequence>
+  </complexType>
+  <complexType name="ScreeningResultsType">
+    <annotation>
+      <documentation xml:lang="en">Collection wrapper for all screening process execution results.</documentation>
+    </annotation>
+    <sequence>
+      <element name="AutomaticScreeningStatus"
+               type="cms:ValidationResultType"
+               maxOccurs="1"
+               minOccurs="1"/>
+      <element name="ScreeningResult"
+               type="cms:ScreeningResultType"
+               maxOccurs="unbounded"
+               minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="ProcessExecutionType">
+    <sequence>
+      <element name="ObjectId" type="string" maxOccurs="1" minOccurs="1"/>
+      <element name="ProcessName" type="string" maxOccurs="1" minOccurs="1"/>
+      <element name="StartTime" type="dateTime" maxOccurs="1" minOccurs="1"/>
+      <element name="EndTime" type="dateTime" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="ProcessAuditType">
+    <sequence>
+      <element name="ProcessInstanceId"
+               type="string"
+               maxOccurs="1"
+               minOccurs="1"/>
+      <element name="ProcessExecutions"
+               type="tns:ProcessExecutionType"
+               maxOccurs="unbounded"
+               minOccurs="0"/>
+    </sequence>
+  </complexType>
 </schema>

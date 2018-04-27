@@ -29,6 +29,7 @@ import gov.medicaid.entities.DesignatedContact;
 import gov.medicaid.entities.Document;
 import gov.medicaid.entities.EmailTemplate;
 import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.EnrollmentSearchCriteria;
 import gov.medicaid.entities.EnrollmentStatus;
 import gov.medicaid.entities.Entity;
 import gov.medicaid.entities.License;
@@ -58,6 +59,7 @@ import gov.medicaid.services.NotificationService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.Util;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.NotImplementedException;
 
@@ -74,6 +76,7 @@ import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
@@ -389,6 +392,64 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 "SELECT NEW gov.medicaid.entities.UserRequest(t.ticketId, e.npi, t.submissionDate, "
                         + "rt.description, ts.description, t.statusDate, rl.description, pt.description, "
                         + "e.name, t.createdOn, rl.sortIndex, t.processInstanceId, t.profileReferenceId) " + fromClause);
+
+        appendCriteria(fetchQuery, user, criteria);
+        appendSorting(fetchQuery, criteria);
+
+        Query items = getEm().createQuery(fetchQuery.toString());
+        bindParameters(items, user, criteria);
+        if (criteria.getPageSize() > 0) {
+            int offset = (criteria.getPageNumber() - 1) * criteria.getPageSize();
+            items.setFirstResult(offset);
+            items.setMaxResults(criteria.getPageSize());
+        }
+
+        results.setItems(items.getResultList());
+        return results;
+    }
+
+    /**
+     * This method gets all the enrollments that meet the search criteria. If none
+     * available, the search result will be empty.
+     *
+     * @param user     the user performing the action
+     * @param criteria the search criteria
+     * @return the applicable providers
+     * @throws IllegalArgumentException if any argument is null, or the page
+     *                                  size and page number settings are
+     *                                  invalid
+     * @throws PortalServiceException   for any errors encountered
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public SearchResult<Enrollment> searchEnrollments(
+            CMSUser user,
+            EnrollmentSearchCriteria criteria
+    ) throws PortalServiceException {
+        if (criteria == null) {
+            throw new IllegalArgumentException("Criteria cannot be null.");
+        }
+        if (user == null || user.getRole() == null) {
+            throw new IllegalArgumentException("User and the corresponding role cannot be null.");
+        }
+        if (!user.getRole().getDescription().equals(ViewStatics.ROLE_SERVICE_ADMINISTRATOR)) {
+            throw new IllegalArgumentException("User must be a service administrator.");
+        }
+
+        SearchResult<Enrollment> results = new SearchResult<>();
+        results.setPageNumber(criteria.getPageNumber());
+        results.setPageSize(criteria.getPageSize());
+
+        String fromClause = "FROM Enrollment e";
+
+        StringBuilder countQuery = new StringBuilder("SELECT count(*) " + fromClause);
+        appendCriteria(countQuery, user, criteria);
+
+        Query count = getEm().createQuery(countQuery.toString());
+        bindParameters(count, user, criteria);
+        results.setTotal(((Number) count.getSingleResult()).intValue());
+
+        StringBuilder fetchQuery = new StringBuilder(fromClause);
 
         appendCriteria(fetchQuery, user, criteria);
         appendSorting(fetchQuery, criteria);
@@ -1936,6 +1997,26 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     }
 
     /**
+     * Appends the enrollment search criteria to the current buffer.
+     *
+     * @param buffer   the query buffer
+     * @param user     the current user
+     * @param criteria the search criteria
+     */
+    private void appendCriteria(
+            StringBuilder buffer,
+            CMSUser user,
+            EnrollmentSearchCriteria criteria
+    ) {
+        if (criteria.getCreateDateStart() != null) {
+            buffer.append("AND t.createdOn >= :createDateStart ");
+        }
+        if (criteria.getCreateDateEnd() != null) {
+            buffer.append("AND t.createdOn <= :createDateEnd ");
+        }
+    }
+
+    /**
      * Binds the provider search criteria to the query.
      *
      * @param query    the query to bind to
@@ -1993,6 +2074,26 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         if (criteria.getStatusDateEnd() != null) {
             query.setParameter("statusDateEnd", criteria.getStatusDateEnd());
         }
+        if (criteria.getCreateDateStart() != null) {
+            query.setParameter("createDateStart", criteria.getCreateDateStart());
+        }
+        if (criteria.getCreateDateEnd() != null) {
+            query.setParameter("createDateEnd", criteria.getCreateDateEnd());
+        }
+    }
+
+    /**
+     * Binds the enrollment search criteria to the query.
+     *
+     * @param query    the query to bind to
+     * @param user     the user performing the action
+     * @param criteria the search criteria
+     */
+    private void bindParameters(
+            Query query,
+            CMSUser user,
+            EnrollmentSearchCriteria criteria
+    ) {
         if (criteria.getCreateDateStart() != null) {
             query.setParameter("createDateStart", criteria.getCreateDateStart());
         }

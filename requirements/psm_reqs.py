@@ -104,7 +104,7 @@ class PSMRequirementFamilyException(Exception):
     pass
 
 
-def get_reqs(*csv_files):
+def get_reqs(csv_files):
     """Return a dictionary of PSMRequirements based on CSV_FILES.
     CSV_FILES is an array of (string) paths to CSV files.
     Return a dict mapping PSM req IDs to PSMRequirement instances."""

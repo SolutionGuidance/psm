@@ -20,6 +20,7 @@
     <s:intercept-url pattern="/admin/**" access="ROLE_SERVICE_ADMINISTRATOR"/>
     <s:intercept-url pattern="/agent/**" access="ROLE_SERVICE_ADMINISTRATOR"/>
     <s:intercept-url pattern="/ops/**" access="ROLE_SERVICE_ADMINISTRATOR"/>
+    <s:intercept-url pattern="/reports/**" access="ROLE_SERVICE_ADMINISTRATOR"/>
     <s:intercept-url pattern="/myprofile/**" access="ROLE_PROVIDER,ROLE_SERVICE_ADMINISTRATOR"/>
     <s:intercept-url pattern="/provider/profile/edit" access="ROLE_PROVIDER,ROLE_SERVICE_ADMINISTRATOR"/>
     <s:intercept-url pattern="/provider/profile/renew" access="ROLE_PROVIDER,ROLE_SERVICE_ADMINISTRATOR"/>

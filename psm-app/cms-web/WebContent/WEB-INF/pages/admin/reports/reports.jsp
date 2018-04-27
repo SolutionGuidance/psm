@@ -29,6 +29,13 @@
                   Applications by Reviewer
                 </a>
               </div>
+              <div class="row">
+                <a href="${ctx}/admin/reports/draft-applications/"
+                  class="draftApplicationsLink"
+                >
+                  Draft Applications
+                </a>
+              </div>
             </div>
           </div>
         </div>

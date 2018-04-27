@@ -769,6 +769,55 @@ CREATE TABLE provider_profiles(
   last_modified_by TEXT,
   last_modified_at TIMESTAMP WITH TIME ZONE
 );
+INSERT INTO provider_profiles (
+  control_no,
+  profile_id,
+  ticket_id,
+  /* effective_date, */
+  /* profile_status_code, */
+  works_on_reservation,
+  maintains_own_private_practice,
+  employed_or_contracted_by_group,
+  criminal_conviction,
+  civil_penalty,
+  previous_exclusion,
+  /* employee_criminal_conviction, */
+  /* employee_civil_penalty, */
+  /* employee_previous_exclusion, */
+  /* adult, */
+  /* county, */
+  /* employed_since_clearance, */
+  risk_level_code,
+  /* bed_count, */
+  /* bed_count_title_18, */
+  /* bed_count_title_19, */
+  /* bed_count_dual_certified, */
+  /* bed_count_icf, */
+  /* bed_count_effective_date, */
+  /* physical_and_occupational_therapy, */
+  reference_ticket_id
+  /* owner_id, */
+  /* form_completed_by, */
+  /* health_board, */
+  /* created_by, */
+  /* created_at, */
+  /* last_modified_by, */
+  /* last_modified_at */
+) VALUES
+  (1001, 0, 1001, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
+  (1002, 0, 1002, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
+  (1003, 0, 1003, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
+  (1004, 0, 1004, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
+  (1005, 0, 1005, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
+  (1006, 0, 1006, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
+  (1007, 0, 1007, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
+  (1008, 0, 1008, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
+  (1009, 0, 1009, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
+  (1010, 0, 1010, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
+  (1011, 0, 1011, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
+  (1012, 0, 1012, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
+  (1013, 0, 1013, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
+  (1014, 0, 1014, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0);
 
 CREATE TABLE provider_category_of_service_approvals(
   provider_category_of_service_approval_id BIGINT PRIMARY KEY,
@@ -844,6 +893,37 @@ CREATE TABLE enrollments(
   changed_at TIMESTAMP WITH TIME ZONE,
   change_note TEXT
 );
+INSERT INTO enrollments (
+  enrollment_id,
+  enrollment_status_code,
+  request_type_code,
+  /*process_instance_id,*/
+  /*profile_reference_id,*/
+  /*reference_timestamp,*/
+  /*progress_page,*/
+  created_by,
+  created_at,
+  submitted_by,
+  submitted_at,
+  changed_by,
+  changed_at
+  /*change_note*/
+) VALUES
+  (1001, '01', '02', 'p1', '2017-01-01 12:00:00', NULL, NULL, 'p1', '2017-01-01 12:00:00'),
+  (1002, '02', '02', 'p1', '2017-01-01 12:00:00', 'p1', '2017-01-01 13:00:00', 'p1', '2017-01-01 13:00:00'),
+  (1003, '02', '02', 'p1', '2017-01-01 12:00:00', 'p1', '2017-02-01 13:00:00', 'p1', '2017-02-01 13:00:00'),
+  (1004, '02', '02', 'p1', '2017-01-01 12:00:00', 'p1', '2017-03-01 13:00:00', 'p1', '2017-03-01 13:00:00'),
+  (1005, '02', '02', 'p1', '2017-02-01 12:00:00', 'p1', '2017-02-01 13:00:00', 'p1', '2017-02-01 13:00:00'),
+  (1006, '03', '02', 'p1', '2017-03-01 12:00:00', 'p1', '2017-04-01 13:00:00', 'p1', '2017-04-01 13:00:00'),
+  (1007, '03', '02', 'p1', '2017-04-01 12:00:00', 'p1', '2017-06-01 13:00:00', 'p1', '2017-06-01 13:00:00'),
+  (1008, '04', '02', 'p1', '2017-04-01 12:00:00', 'p1', '2017-05-01 13:00:00', 'p1', '2017-05-01 13:00:00'),
+  (1009, '04', '02', 'p1', '2017-05-01 12:00:00', 'p1', '2017-05-01 13:00:00', 'p1', '2017-05-01 13:00:00'),
+  (1010, '02', '02', 'p1', '2017-05-01 12:00:00', 'p1', '2017-10-01 13:00:00', 'p1', '2017-10-01 13:00:00'),
+  (1011, '02', '02', 'p1', '2017-05-01 12:00:00', 'p1', '2017-07-01 13:00:00', 'p1', '2017-07-01 13:00:00'),
+  (1012, '02', '02', 'p1', '2017-06-01 12:00:00', 'p1', '2017-06-01 13:00:00', 'p1', '2017-06-01 13:00:00'),
+  (1013, '01', '02', 'p1', '2017-07-01 12:00:00', NULL, NULL, 'p1', '2017-07-01 12:00:00'),
+  (1014, '02', '02', 'p1', '2017-08-01 12:00:00', 'p1', '2017-09-01 13:00:00', 'p1', '2017-09-01 13:00:00');
+
 
 CREATE TABLE provider_type_agreement_documents(
   provider_type_code CHARACTER VARYING(2)
@@ -984,6 +1064,38 @@ CREATE TABLE entities(
   background_study_id TEXT,
   background_clearance_date TIMESTAMP WITH TIME ZONE
 );
+INSERT INTO entities (
+  entity_id,
+  /* enrolled, */
+  profile_id,
+  ticket_id,
+  name,
+  /* legal_name, */
+  /* legacy_indicator, */
+  /* legacy_id, */
+  npi,
+  /* nonexclusion_verified, */
+  provider_type_code
+  /* provider_sub_type, */
+  /* contact_id, */
+  /* background_study_id */
+  /* background_clearance_date */
+) VALUES
+  (1001, 0, 1001, 'My Private Practice', '1111111112', '05'),
+  (1002, 0, 1002, 'My Private Practice', '1111111112', '06'),
+  (1003, 0, 1003, 'My Private Practice', '1111111112', '07'),
+  (1004, 0, 1004, 'My Private Practice', '1111111112', '08'),
+  (1005, 0, 1005, 'My Private Practice', '1111111112', NULL),
+  (1006, 0, 1006, 'My Private Practice', '1111111112', '10'),
+  (1007, 0, 1007, 'My Private Practice', '1111111112', '11'),
+  (1008, 0, 1008, 'My Private Practice', '1111111112', NULL),
+  (1009, 0, 1009, 'My Private Practice', '1111111112', '13'),
+  (1010, 0, 1010, 'My Private Practice', '1111111112', '14'),
+  (1011, 0, 1011, 'My Private Practice', '1111111112', NULL),
+  (1012, 0, 1012, 'My Private Practice', '1111111112', '16'),
+  (1013, 0, 1013, 'My Private Practice', '1111111112', NULL),
+  (1014, 0, 1014, 'My Private Practice', '1111111112', '17');
+
 CREATE TABLE organizations(
   entity_id BIGINT PRIMARY KEY
     REFERENCES entities(entity_id),

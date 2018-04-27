@@ -11,3 +11,8 @@ Feature: Accessibility Checks for Report Pages
     Given I am logged in as an admin
     And I am on the applications by reviewer page
     Then I should have no accessibility issues
+
+  Scenario: Draft Applications Page
+    Given I am logged in as an admin
+    And I am on the draft applications page
+    Then I should have no accessibility issues

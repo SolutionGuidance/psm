@@ -1,7 +1,6 @@
 package gov.medicaid.controllers.admin.report;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
@@ -26,7 +25,6 @@ import gov.medicaid.services.ProviderEnrollmentService;
 public class ApplicationsApprovedReportController extends gov.medicaid.controllers.BaseController {
 
     private ProviderEnrollmentService enrollmentService;
-    private SimpleDateFormat csvDf = new SimpleDateFormat("yyyyMMdd-hhmm");
 
     public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
         this.enrollmentService = enrollmentService;
@@ -46,7 +44,7 @@ public class ApplicationsApprovedReportController extends gov.medicaid.controlle
         @RequestParam(value = "endDate", required = false) Date endDate,
         HttpServletResponse response
     ) throws PortalServiceException {
-        String csvFileName = "applicationreviewers_" + csvDf.format(new Date()) + ".csv";
+        String csvFileName = ReportControllerUtils.buildCsvName("applicationreviewers");
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", csvFileName));
 

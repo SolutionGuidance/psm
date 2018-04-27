@@ -55,6 +55,11 @@ public class GeneralSteps {
     }
 
     @Step
+    public void navigateToReportsPage() {
+        dashboardPage.click$(".reportsLink");
+    }
+
+    @Step
     public void navigateToPendingPage() {
         navigateToDraftPage();
         dashboardPage.click$(".pendingTab");

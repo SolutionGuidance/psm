@@ -19,6 +19,7 @@ package gov.medicaid.services;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Document;
 import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.EnrollmentSearchCriteria;
 import gov.medicaid.entities.Note;
 import gov.medicaid.entities.PracticeLookup;
 import gov.medicaid.entities.PracticeSearchCriteria;
@@ -33,6 +34,7 @@ import gov.medicaid.entities.UserRequest;
 import gov.medicaid.entities.Validity;
 
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -149,6 +151,23 @@ public interface ProviderEnrollmentService {
     SearchResult<UserRequest> searchTickets(
             CMSUser user,
             ProviderSearchCriteria criteria
+    ) throws PortalServiceException;
+
+    /**
+     * This method gets all the enrollments that meet the search criteria. If none
+     * available, the search result will be empty.
+     *
+     * @param user     the user performing the action
+     * @param criteria the search criteria
+     * @return the enrollments providers
+     * @throws IllegalArgumentException if any argument is null, or the page
+     *                                  size and page number settings are
+     *                                  invalid
+     * @throws PortalServiceException   for any errors encountered
+     */
+    SearchResult<Enrollment> searchEnrollments(
+            CMSUser user,
+            EnrollmentSearchCriteria criteria
     ) throws PortalServiceException;
 
     /**

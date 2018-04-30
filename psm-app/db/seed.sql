@@ -60,15 +60,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-CREATE SEQUENCE hibernate_sequence;
-
-CREATE TABLE persistent_logins (
-  series VARCHAR(64) PRIMARY KEY,
-  username VARCHAR(64) NOT NULL,
-  token VARCHAR(64) NOT NULL,
-  last_used TIMESTAMP WITH TIME ZONE NOT NULL
-);
-
 CREATE TABLE roles (
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE

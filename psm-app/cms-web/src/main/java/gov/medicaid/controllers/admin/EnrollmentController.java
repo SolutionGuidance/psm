@@ -285,8 +285,8 @@ public class EnrollmentController extends BaseController {
             @RequestParam("id") long id
     ) throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
-        Enrollment ticket = enrollmentService.getTicketDetails(user, id);
-        long processInstanceId = ticket.getProcessInstanceId();
+        Enrollment enrollment = enrollmentService.getTicketDetails(user, id);
+        long processInstanceId = enrollment.getProcessInstanceId();
         if (processInstanceId <= 0) {
             throw new PortalServiceException("Requested profile is not available for review.");
         }
@@ -353,8 +353,8 @@ public class EnrollmentController extends BaseController {
             @RequestParam("type") String type
     ) throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
-        Enrollment ticket = enrollmentService.getTicketDetails(user, id);
-        long processInstanceId = ticket.getProcessInstanceId();
+        Enrollment enrollment = enrollmentService.getTicketDetails(user, id);
+        long processInstanceId = enrollment.getProcessInstanceId();
         if (processInstanceId <= 0) {
             throw new PortalServiceException("Requested profile is not available for review.");
         }
@@ -612,9 +612,9 @@ public class EnrollmentController extends BaseController {
             String reason
     ) throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
-        Enrollment ticketDetails = enrollmentService.getTicketDetails(user, ticketId);
+        Enrollment enrollment = enrollmentService.getTicketDetails(user, ticketId);
 
-        long processInstanceId = ticketDetails.getProcessInstanceId();
+        long processInstanceId = enrollment.getProcessInstanceId();
         if (processInstanceId <= 0) {
             throw new PortalServiceException("Requested profile is not available for approval.");
         }

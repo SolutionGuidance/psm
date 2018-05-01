@@ -781,10 +781,6 @@ public class EnrollmentController extends BaseController {
             status.setNonExclusion("Y");
         }
 
-        if ("Y".equals(dto.getSsnVerified())) {
-            status.setSocialSecurityNumber("Y");
-        }
-
         return provider;
     }
 

@@ -31,7 +31,6 @@ import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Document;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Entity;
-import gov.medicaid.entities.Person;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.RiskLevel;
 import gov.medicaid.entities.dto.UITabModel;
@@ -163,11 +162,6 @@ public final class XMLAdapter {
         provider.setVerificationStatus(verification);
         if (profile.getEntity() != null) {
             provider.setLegacyTransfer(profile.getEntity().getLegacyIndicator());
-            if (profile.getEntity() instanceof Person) {
-                Person person = (Person) profile.getEntity();
-                verification.setSocialSecurityNumber(person.getSsnVerifiedInd());
-            }
-
             verification.setNonExclusion(profile.getEntity().getNonExclusionVerifiedInd());
         }
 
@@ -257,11 +251,6 @@ public final class XMLAdapter {
             entity.setLegacyIndicator(provider.getLegacyTransfer());
         }
         if (verification != null && entity != null) {
-            if (entity instanceof Person) {
-                Person person = (Person) entity;
-                person.setSsnVerifiedInd(verification.getSocialSecurityNumber());
-            }
-
             entity.setNonExclusionVerifiedInd(verification.getNonExclusion());
         }
         return ticket;

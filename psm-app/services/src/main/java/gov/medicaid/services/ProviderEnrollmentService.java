@@ -37,6 +37,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -222,13 +223,30 @@ public interface ProviderEnrollmentService {
     ) throws PortalServiceException;
 
     /**
-     * Retrieves the ticket details (full).
+     * Look up an enrollment application by its ID, checking that the given user
+     * has permission to access the enrollment.
+     *
+     * @param user         the requesting user; used for authorization
+     * @param enrollmentId the ID of the enrollment
+     * @return the enrollment, if found; empty, if not found.
+     * @throws PortalServiceException if not authorized
+     */
+    Optional<Enrollment> getEnrollment(
+            CMSUser user,
+            long enrollmentId
+    ) throws PortalServiceException;
+
+    /**
+     * Retrieves the ticket details (full). Deprecated in favor of getEnrollment.
      *
      * @param user     the user getting the ticket.
      * @param ticketId the ticket to get the details for
      * @return the complete ticket and provider profile, or null if not found
      * @throws PortalServiceException for any errors encountered
+     * @see ProviderEnrollmentService#getEnrollment(CMSUser, long)
+     * @deprecated This can return null, and lead to a NullPointerException.
      */
+    @Deprecated
     Enrollment getTicketDetails(
             CMSUser user,
             long ticketId

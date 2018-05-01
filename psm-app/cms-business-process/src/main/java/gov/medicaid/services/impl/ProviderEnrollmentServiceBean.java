@@ -85,6 +85,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -552,27 +553,38 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     }
 
     @Override
+    public Optional<Enrollment> getEnrollment(
+            CMSUser user,
+            long enrollmentId
+    ) throws PortalServiceException {
+        checkTicketEntitlement(user, enrollmentId);
+
+        Enrollment enrollment = getEm().find(Enrollment.class, enrollmentId);
+        if (enrollment == null) {
+            return Optional.empty();
+        }
+
+        ProviderProfile providerProfile = getProviderDetailsByTicket(
+                enrollmentId,
+                true
+        );
+        if (providerProfile == null) {
+            return Optional.empty();
+        }
+
+        enrollment.setDetails(providerProfile);
+        return Optional.of(enrollment);
+    }
+
+    @Override
     public Enrollment getTicketDetails(
             CMSUser user,
             long ticketId
     ) throws PortalServiceException {
-        checkTicketEntitlement(user, ticketId);
-
-        Enrollment ticket = getEm().find(Enrollment.class, ticketId);
-        if (ticket == null) {
-            return null;
-        }
-
-        ProviderProfile providerProfile = getProviderDetailsByTicket(
-                ticketId,
-                true
-        );
-        if (providerProfile == null) {
-            return null;
-        }
-
-        ticket.setDetails(providerProfile);
-        return ticket;
+        return getEnrollment(
+                user,
+                ticketId
+        ).orElse(null);
     }
 
     /**

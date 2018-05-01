@@ -285,7 +285,12 @@ public class EnrollmentController extends BaseController {
             @RequestParam("id") long id
     ) throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
-        Enrollment enrollment = enrollmentService.getTicketDetails(user, id);
+        Enrollment enrollment = enrollmentService.getEnrollment(
+                user,
+                id
+        ).orElseThrow(() -> new PortalServiceException(
+                "Could not find enrollment application with that ID."
+        ));
         long processInstanceId = enrollment.getProcessInstanceId();
         if (processInstanceId <= 0) {
             throw new PortalServiceException("Requested profile is not available for review.");

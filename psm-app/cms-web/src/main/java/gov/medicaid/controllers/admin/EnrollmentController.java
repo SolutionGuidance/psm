@@ -603,37 +603,6 @@ public class EnrollmentController extends BaseController {
     }
 
     /**
-     * This action will reject the current enrollment of the profile with the
-     * given ID.
-     *
-     * @param id     the profile ID
-     * @param reason the reason
-     * @return the status result
-     * @throws IllegalArgumentException if reason is null/empty
-     * @endpoint "/agent/enrollment/reject"
-     */
-    @RequestMapping("/agent/enrollment/reject")
-    @ResponseBody
-    public StatusDTO reject(
-            @RequestParam("id") long id,
-            @RequestParam("reason") String reason
-    ) {
-        if (reason == null || reason.trim().length() == 0) {
-            throw new IllegalArgumentException("A reason must be provided.");
-        }
-
-        StatusDTO statusDTO = new StatusDTO();
-        try {
-            completeReview(id, null, true, reason);
-            statusDTO.setMessage("Request has been sent, you will be notified once it is processed.");
-        } catch (PortalServiceException ex) {
-            statusDTO.setMessage(USER_ERROR_MSG);
-        }
-
-        return statusDTO;
-    }
-
-    /**
      * This action will initiated an immediate screening of the enrollment.
      *
      * @param id the profile ID

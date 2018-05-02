@@ -32,6 +32,8 @@ import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.domain.model.ValidationResultType;
 import gov.medicaid.domain.model.VerificationStatusType;
+import gov.medicaid.entities.AutomaticScreening;
+import gov.medicaid.entities.AutomaticScreening.Result;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.CategoryOfService;
 import gov.medicaid.entities.Enrollment;
@@ -39,6 +41,7 @@ import gov.medicaid.entities.EnrollmentStatus;
 import gov.medicaid.entities.Event;
 import gov.medicaid.entities.HelpItem;
 import gov.medicaid.entities.HelpSearchCriteria;
+import gov.medicaid.entities.LeieAutomaticScreening;
 import gov.medicaid.entities.ProviderCategoryOfService;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.ProviderSearchCriteria;
@@ -77,8 +80,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -285,7 +290,7 @@ public class EnrollmentController extends BaseController {
             @RequestParam("id") long id
     ) throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
-        Enrollment enrollment = enrollmentService.getEnrollment(
+        Enrollment enrollment = enrollmentService.getEnrollmentWithScreenings(
                 user,
                 id
         ).orElseThrow(() -> new PortalServiceException(
@@ -305,7 +310,6 @@ public class EnrollmentController extends BaseController {
                         && taskSummary.getProcessInstanceId() == processInstanceId) {
                     EnrollmentProcess taskModel = businessProcessService.getTaskModel(taskSummary.getId());
                     mv = new ModelAndView("admin/service_agent_review_screening", "model", taskModel);
-                    VerificationStatusType verification = XMLUtility.nsGetVerificationStatus(taskModel);
                     if (taskModel.getProcessResults() != null) {
                         ProcessResultsType processResults = taskModel.getProcessResults();
                         if (processResults.getScreeningResults() != null) {
@@ -329,7 +333,7 @@ public class EnrollmentController extends BaseController {
                             }
                         }
                     }
-                    mv.addObject("verification", verification);
+                    addLeieResults(mv, enrollment);
                     mv.addObject("id", id);
                     break;
                 }
@@ -341,6 +345,32 @@ public class EnrollmentController extends BaseController {
         } catch (Exception e) {
             throw new PortalServiceException("Error while invoking process server.", e);
         }
+    }
+
+    private void addLeieResults(ModelAndView mv, Enrollment enrollment) {
+        Optional<Result> result = getMostRecentAutomaticScreeningResult(
+                LeieAutomaticScreening.class,
+                enrollment
+        );
+        mv.addObject(
+                "leieScreeningPassed",
+                Result.PASS.equals(result.orElse(null))
+        );
+        mv.addObject(
+                "leieScreeningResult",
+                result.map(Enum::toString).orElse("Not performed")
+        );
+    }
+
+    private Optional<Result> getMostRecentAutomaticScreeningResult(
+            Class<? extends AutomaticScreening> automaticScreeningType,
+            Enrollment enrollment
+    ) {
+        return enrollment.getAutomaticScreenings()
+                .stream()
+                .filter(automaticScreeningType::isInstance)
+                .max(Comparator.comparing(AutomaticScreening::getCreatedAt))
+                .map(AutomaticScreening::getResult);
     }
 
     /**

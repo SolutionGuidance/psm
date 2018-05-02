@@ -52,14 +52,7 @@
                         <td><a class="autoScreeningResultLink"
                               href="${ctx}/agent/enrollment/autoScreeningResult?type=EXCLUDED PROVIDERS&id=${id}"
                               target="_blank">
-                          <c:choose>
-                          <c:when test="${empty verification.nonExclusion}">
-                            Not performed
-                          </c:when>
-                          <c:otherwise>
-                            View results
-                          </c:otherwise>
-                          </c:choose>
+                          ${leieScreeningResult}
                         </a></td>
                         <td>
                           <input
@@ -67,7 +60,7 @@
                             title="Non-exclusion Verified"
                             name="nonExclusionVerified"
                             value="Y"
-                            ${verification.nonExclusion eq 'Y' ? 'checked' : ''}
+                            ${leieScreeningPassed ? 'checked' : ''}
                             />
                         </td>
                       </tr>

@@ -237,6 +237,21 @@ public interface ProviderEnrollmentService {
     ) throws PortalServiceException;
 
     /**
+     * Look up an enrollment application by its ID, including the associated
+     * automatic screening results, and checking that the given user has
+     * permission to access the enrollment.
+     *
+     * @param user            the requesting user; used for authorization
+     * @param enrollmentId    the ID of the enrollment
+     * @return the enrollment, if found; empty, if not found.
+     * @throws PortalServiceException if not authorized
+     */
+    Optional<Enrollment> getEnrollmentWithScreenings(
+            CMSUser user,
+            long enrollmentId
+    ) throws PortalServiceException;
+
+    /**
      * Retrieves the ticket details (full). Deprecated in favor of getEnrollment.
      *
      * @param user     the user getting the ticket.

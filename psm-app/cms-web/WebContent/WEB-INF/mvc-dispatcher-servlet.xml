@@ -283,7 +283,6 @@
         parent="BaseController">
     <property name="businessProcessService" ref="BusinessProcessService"/>
     <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-    <property name="screeningService" ref="ScreeningService"/>
     <property name="helpService" ref="HelpService"/>
     <property name="eventService" ref="EventService"/>
     <property name="lookupService" ref="LookupService"/>

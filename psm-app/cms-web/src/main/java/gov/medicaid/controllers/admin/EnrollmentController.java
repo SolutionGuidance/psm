@@ -60,7 +60,6 @@ import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.ProviderTypeService;
-import gov.medicaid.services.ScreeningService;
 import org.jbpm.task.query.TaskSummary;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
@@ -108,8 +107,6 @@ public class EnrollmentController extends BaseController {
 
     private BusinessProcessService businessProcessService;
 
-    private ScreeningService screeningService;
-
     private HelpService helpService;
 
     private EventService eventService;
@@ -133,9 +130,6 @@ public class EnrollmentController extends BaseController {
     @PostConstruct
     protected void init() {
         super.init();
-        if (screeningService == null) {
-            throw new PortalServiceConfigurationException("screeningService is not configured correctly.");
-        }
         if (enrollmentService == null) {
             throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
         }
@@ -608,10 +602,6 @@ public class EnrollmentController extends BaseController {
 
     public void setEventService(EventService eventService) {
         this.eventService = eventService;
-    }
-
-    public void setScreeningService(ScreeningService screeningService) {
-        this.screeningService = screeningService;
     }
 
     /**

@@ -91,27 +91,4 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
             throw new PortalServiceException("Could not database complete operation.", e);
         }
     }
-
-    @Override
-    public void performScreeningById(long enrollmentId) throws PortalServiceException {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void scheduleMediCareProgramDataChange(int time) throws PortalServiceException {
-
-    }
-
-    @Override
-    public void scheduleRevalidation(int time, long userId) throws PortalServiceException {
-
-    }
-
-    @Override
-    public void scheduleScreening(int time) throws PortalServiceException {
-
-    }
-
 }
-

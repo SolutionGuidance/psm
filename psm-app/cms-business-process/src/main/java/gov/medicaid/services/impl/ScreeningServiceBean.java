@@ -16,8 +16,6 @@
 
 package gov.medicaid.services.impl;
 
-import java.util.Date;
-
 import gov.medicaid.entities.ScreeningSchedule;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ScreeningService;
@@ -115,9 +113,5 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
 
     }
 
-    @Override
-    public void scheduleScreening(long id, Date date) throws PortalServiceException {
-
-    }
 }
 

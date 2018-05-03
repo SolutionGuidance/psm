@@ -16,8 +16,6 @@
 
 package gov.medicaid.services;
 
-import java.util.Date;
-
 import javax.jws.WebService;
 
 import gov.medicaid.entities.ScreeningSchedule;
@@ -86,12 +84,4 @@ public interface ScreeningService {
     void saveScreeningSchedule(
             ScreeningSchedule screeningSchedule
     ) throws PortalServiceException;
-
-    /**
-     * Schedules screening for the given ticket.
-     * @param id the ticket to schedule
-     * @param date the schedule date.
-     * @throws PortalServiceException - If there are any errors during the execution of this method
-     */
-    void scheduleScreening(long id, Date date) throws PortalServiceException;
 }

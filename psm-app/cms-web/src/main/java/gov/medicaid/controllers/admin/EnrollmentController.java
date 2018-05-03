@@ -60,7 +60,6 @@ import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.ProviderTypeService;
-import gov.medicaid.services.ScreeningService;
 import org.jbpm.task.query.TaskSummary;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
@@ -108,8 +107,6 @@ public class EnrollmentController extends BaseController {
 
     private BusinessProcessService businessProcessService;
 
-    private ScreeningService screeningService;
-
     private HelpService helpService;
 
     private EventService eventService;
@@ -133,9 +130,6 @@ public class EnrollmentController extends BaseController {
     @PostConstruct
     protected void init() {
         super.init();
-        if (screeningService == null) {
-            throw new PortalServiceConfigurationException("screeningService is not configured correctly.");
-        }
         if (enrollmentService == null) {
             throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
         }
@@ -602,97 +596,12 @@ public class EnrollmentController extends BaseController {
         return "redirect:/ops/viewDashboard";
     }
 
-    /**
-     * This action will reject the current enrollment of the profile with the
-     * given ID.
-     *
-     * @param id     the profile ID
-     * @param reason the reason
-     * @return the status result
-     * @throws IllegalArgumentException if reason is null/empty
-     * @endpoint "/agent/enrollment/reject"
-     */
-    @RequestMapping("/agent/enrollment/reject")
-    @ResponseBody
-    public StatusDTO reject(
-            @RequestParam("id") long id,
-            @RequestParam("reason") String reason
-    ) {
-        if (reason == null || reason.trim().length() == 0) {
-            throw new IllegalArgumentException("A reason must be provided.");
-        }
-
-        StatusDTO statusDTO = new StatusDTO();
-        try {
-            completeReview(id, null, true, reason);
-            statusDTO.setMessage("Request has been sent, you will be notified once it is processed.");
-        } catch (PortalServiceException ex) {
-            statusDTO.setMessage(USER_ERROR_MSG);
-        }
-
-        return statusDTO;
-    }
-
-    /**
-     * This action will initiated an immediate screening of the enrollment.
-     *
-     * @param id the profile ID
-     * @return the status
-     * @endpoint "/agent/enrollment/screen"
-     */
-    @RequestMapping("/agent/enrollment/screen")
-    @ResponseBody
-    public StatusDTO initiateOnDemandScreening(@RequestParam("id") long id) {
-        StatusDTO statusDTO = new StatusDTO();
-        try {
-            screeningService.performScreening(id);
-            statusDTO.setSuccess(true);
-        } catch (PortalServiceException ex) {
-            statusDTO.setMessage(USER_ERROR_MSG);
-        }
-        return statusDTO;
-    }
-
-    /**
-     * This action will initiated a screening of the enrollment at the given
-     * date.
-     *
-     * @param id   the profile ID
-     * @param date the date of the requested screening
-     * @return the status
-     * @throws IllegalArgumentException if date is null or is a date in the past
-     * @endpoint "/agent/enrollment/schedule"
-     */
-    @RequestMapping("/agent/enrollment/schedule")
-    @ResponseBody
-    public StatusDTO initiateScheduledScreening(
-            @RequestParam("id") long id,
-            @RequestParam("date") Date date
-    ) {
-        if (date == null || date.before(new Date())) {
-            throw new IllegalArgumentException("A valid future date must be specified.");
-        }
-
-        StatusDTO statusDTO = new StatusDTO();
-        try {
-            screeningService.scheduleScreening(id, date);
-            statusDTO.setSuccess(true);
-        } catch (PortalServiceException ex) {
-            statusDTO.setMessage(USER_ERROR_MSG);
-        }
-        return statusDTO;
-    }
-
     public void setHelpService(HelpService helpService) {
         this.helpService = helpService;
     }
 
     public void setEventService(EventService eventService) {
         this.eventService = eventService;
-    }
-
-    public void setScreeningService(ScreeningService screeningService) {
-        this.screeningService = screeningService;
     }
 
     /**

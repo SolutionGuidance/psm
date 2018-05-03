@@ -95,12 +95,6 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
     }
 
     @Override
-    public void performScreening(long userId) throws PortalServiceException {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public void performScreeningById(long enrollmentId) throws PortalServiceException {
         // TODO Auto-generated method stub
 

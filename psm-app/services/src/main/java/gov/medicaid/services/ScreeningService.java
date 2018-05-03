@@ -34,15 +34,6 @@ import gov.medicaid.entities.ScreeningSchedule;
  */
 @WebService
 public interface ScreeningService {
-
-    /**
-     * This method performs the screening.
-     *
-     * @param userId - the user ID
-     * @throws PortalServiceException - If there are any errors during the execution of this method
-     */
-    void performScreening(long userId) throws PortalServiceException;
-
     /**
      * This method performs the screening by ID.
      *

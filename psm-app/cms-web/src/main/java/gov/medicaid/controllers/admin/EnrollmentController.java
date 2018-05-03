@@ -603,26 +603,6 @@ public class EnrollmentController extends BaseController {
     }
 
     /**
-     * This action will initiated an immediate screening of the enrollment.
-     *
-     * @param id the profile ID
-     * @return the status
-     * @endpoint "/agent/enrollment/screen"
-     */
-    @RequestMapping("/agent/enrollment/screen")
-    @ResponseBody
-    public StatusDTO initiateOnDemandScreening(@RequestParam("id") long id) {
-        StatusDTO statusDTO = new StatusDTO();
-        try {
-            screeningService.performScreening(id);
-            statusDTO.setSuccess(true);
-        } catch (PortalServiceException ex) {
-            statusDTO.setMessage(USER_ERROR_MSG);
-        }
-        return statusDTO;
-    }
-
-    /**
      * This action will initiated a screening of the enrollment at the given
      * date.
      *

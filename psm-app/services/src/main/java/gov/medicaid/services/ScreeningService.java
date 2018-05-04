@@ -18,7 +18,10 @@ package gov.medicaid.services;
 
 import javax.jws.WebService;
 
+import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.ScreeningSchedule;
+
+import java.util.Optional;
 
 /**
  * This represents the service API to perform screenings.
@@ -51,4 +54,8 @@ public interface ScreeningService {
     void saveScreeningSchedule(
             ScreeningSchedule screeningSchedule
     ) throws PortalServiceException;
+
+    Optional<AutomaticScreening> findScreening(
+            long screeningId
+    );
 }

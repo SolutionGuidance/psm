@@ -30,13 +30,10 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
-import javax.persistence.EntityGraph;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 
 /**
  * This class provides an implementation of the <code>ProviderTypeDAO</code> as a local EJB.
@@ -152,12 +149,11 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public ProviderType get(String id) throws PortalServiceException {
         try {
-            EntityGraph graph = getEm().getEntityGraph(
-                    "ProviderType with AgreementDocuments"
+            return getEm().find(
+                    ProviderType.class,
+                    id,
+                    hintEntityGraph("ProviderType with AgreementDocuments")
             );
-            Map<String, Object> hints = new HashMap<>();
-            hints.put("javax.persistence.loadgraph", graph);
-            return getEm().find(ProviderType.class, id, hints);
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);
         }

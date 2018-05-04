@@ -49,11 +49,20 @@
                       <tr>
                         <td>EXCLUDED PROVIDER VERIFICATION IN OIG (checked means not in exclusion list)</td>
                         <td></td>
-                        <td><a class="autoScreeningResultLink"
-                              href="${ctx}/agent/enrollment/autoScreeningResult?type=EXCLUDED PROVIDERS&id=${id}"
-                              target="_blank">
-                          ${leieScreeningResult}
-                        </a></td>
+                        <td>
+                          <c:choose>
+                            <c:when test="${not empty leieScreeningId}">
+                              <a class="autoScreeningResultLink"
+                                  href="<c:url value="/agent/automatic-screening/${leieScreeningId}"/>"
+                                  target="_blank">
+                                ${leieScreeningResult}
+                              </a>
+                            </c:when>
+                            <c:otherwise>
+                              ${leieScreeningResult}
+                            </c:otherwise>
+                          </c:choose>
+                        </td>
                         <td>
                           <input
                             type="checkbox"

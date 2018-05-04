@@ -260,6 +260,11 @@
         parent="BaseServiceAdminController">
     <property name="agreementDocumentService" ref="AgreementDocumentService"/>
   </bean>
+  <bean id="AutomaticScreeningController"
+        class="gov.medicaid.controllers.admin.AutomaticScreeningController"
+        parent="BaseServiceAdminController">
+    <constructor-arg ref="ScreeningService"/>
+  </bean>
   <bean id="DashboardController"
         class="gov.medicaid.controllers.admin.DashboardController"
         parent="BaseServiceAdminController">

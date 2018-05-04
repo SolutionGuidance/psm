@@ -3,6 +3,8 @@ package gov.medicaid.entities;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
@@ -10,6 +12,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "leie_automatic_screenings")
+@NamedEntityGraph(
+        name = "Screening with matches",
+        attributeNodes = {@NamedAttributeNode("matches")}
+)
 public class LeieAutomaticScreening extends AutomaticScreening {
     @Column(
             name = "npi_search_term",

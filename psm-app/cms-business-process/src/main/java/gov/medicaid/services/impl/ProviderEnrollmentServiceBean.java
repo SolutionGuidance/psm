@@ -595,8 +595,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         Map<String, Object> hints = new HashMap<>();
         if (entityGraphName != null) {
-            EntityGraph graph = getEm().getEntityGraph(entityGraphName);
-            hints.put("javax.persistence.loadgraph", graph);
+            hints = hintEntityGraph(entityGraphName);
         }
 
         Enrollment enrollment = getEm().find(

@@ -16,7 +16,6 @@
 
 package gov.medicaid.controllers.admin;
 
-import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.controllers.BaseController;
 import gov.medicaid.controllers.ControllerHelper;
 import gov.medicaid.controllers.dto.ApprovalDTO;
@@ -25,9 +24,7 @@ import gov.medicaid.domain.model.EnrollmentProcess;
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ProcessResultsType;
 import gov.medicaid.domain.model.ProviderInformationType;
-import gov.medicaid.domain.model.ScreeningResultType;
 import gov.medicaid.domain.model.ScreeningResultsType;
-import gov.medicaid.domain.model.SearchResultType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.domain.model.ValidationResultType;
@@ -348,10 +345,11 @@ public class EnrollmentController extends BaseController {
     }
 
     private void addLeieResults(ModelAndView mv, Enrollment enrollment) {
-        Optional<Result> result = getMostRecentAutomaticScreeningResult(
+        Optional<LeieAutomaticScreening> screening = getMostRecentAutomaticScreeningResult(
                 LeieAutomaticScreening.class,
                 enrollment
         );
+        Optional<Result> result = screening.map(AutomaticScreening::getResult);
         mv.addObject(
                 "leieScreeningPassed",
                 Result.PASS.equals(result.orElse(null))
@@ -360,68 +358,22 @@ public class EnrollmentController extends BaseController {
                 "leieScreeningResult",
                 result.map(Enum::toString).orElse("Not performed")
         );
+        screening.ifPresent(leieAutomaticScreening -> mv.addObject(
+                "leieScreeningId",
+                leieAutomaticScreening.getAutomaticScreeningId()
+        ));
     }
 
-    private Optional<Result> getMostRecentAutomaticScreeningResult(
-            Class<? extends AutomaticScreening> automaticScreeningType,
+    private <T extends AutomaticScreening>
+    Optional<T> getMostRecentAutomaticScreeningResult(
+            Class<T> automaticScreeningType,
             Enrollment enrollment
     ) {
         return enrollment.getAutomaticScreenings()
                 .stream()
                 .filter(automaticScreeningType::isInstance)
                 .max(Comparator.comparing(AutomaticScreening::getCreatedAt))
-                .map(AutomaticScreening::getResult);
-    }
-
-    /**
-     * This action will load the screening results log.
-     *
-     * @param id the profile id
-     * @return the model and view instance that contains the name of view to be
-     * rendered and data to be used for rendering (not null)
-     * @throws PortalServiceException If there are any errors in the action
-     * @endpoint "/agent/enrollment/autoScreeningResult"
-     */
-    @RequestMapping("/agent/enrollment/autoScreeningResult")
-    public ModelAndView viewScreeningLog(
-            @RequestParam("id") long id,
-            @RequestParam("type") String type
-    ) throws PortalServiceException {
-        CMSUser user = ControllerHelper.getCurrentUser();
-        Enrollment enrollment = enrollmentService.getTicketDetails(user, id);
-        long processInstanceId = enrollment.getProcessInstanceId();
-        if (processInstanceId <= 0) {
-            throw new PortalServiceException("Requested profile is not available for review.");
-        }
-
-        try {
-            List<TaskSummary> availableTasks = businessProcessService.getAvailableTasks(user.getUsername(),
-                    Arrays.asList(user.getRole().getDescription()));
-            ModelAndView mv = new ModelAndView("admin/screening_log");
-            for (TaskSummary taskSummary : availableTasks) {
-                if (taskSummary.getName().equals(APPROVAL_TASK_NAME)
-                        && taskSummary.getProcessInstanceId() == processInstanceId) {
-                    EnrollmentProcess taskModel = businessProcessService.getTaskModel(taskSummary.getId());
-                    ScreeningResultsType screeningResults = XMLUtility.nsGetScreeningResults(taskModel);
-                    List<ScreeningResultType> results = screeningResults.getScreeningResult();
-                    SearchResultType output = null;
-                    for (ScreeningResultType screeningResultType : results) {
-                        if (screeningResultType.getScreeningType().equals(type)) {
-                            if ("EXCLUDED PROVIDERS".equals(type)) {
-                                output = screeningResultType.getExclusionVerificationResult();
-                            } else {
-                                output = screeningResultType.getSearchResult();
-                            }
-                        }
-                    }
-                    mv.addObject("output", output);
-                    break;
-                }
-            }
-            return mv;
-        } catch (Exception e) {
-            throw new PortalServiceException("Error while invoking process server.", e);
-        }
+                .map(automaticScreeningType::cast);
     }
 
     /**

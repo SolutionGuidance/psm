@@ -426,7 +426,6 @@
       <element name="ScreeningType" type="string" maxOccurs="1" minOccurs="1"/>
       <element name="Status" type="tns:OperationStatusType" maxOccurs="1" minOccurs="1"/>
       <choice>
-        <element name="LicenseVerificationResult" type="tns:LicenseVerificationSearchResultType" maxOccurs="1" minOccurs="0"/>
         <element name="ExclusionVerificationResult" type="tns:SearchResultType" maxOccurs="1" minOccurs="0"/>
         <element name="SearchResult" type="tns:SearchResultType" maxOccurs="1" minOccurs="0"/>
       </choice>
@@ -492,18 +491,6 @@
       <element name="Value" type="string"/>
     </sequence>
   </complexType>
-  <complexType name="LicenseVerificationSearchResultType">
-    <annotation>
-      <documentation xml:lang="en">Represents a license specific search result.</documentation>
-    </annotation>
-    <complexContent>
-      <extension base="tns:ExternalSourcesScreeningResultType">
-        <sequence>
-          <element name="LicenseObjectId" type="string"/>
-        </sequence>
-      </extension>
-    </complexContent>
-  </complexType>
   <complexType name="StatusMessagesType">
     <sequence>
       <element name="StatusMessage" type="tns:StatusMessageType" maxOccurs="unbounded" minOccurs="0"/>
@@ -529,7 +516,6 @@
       <element name="IssuingState" type="string" maxOccurs="1" minOccurs="0"/>
       <element name="IssuingBoard" type="string" maxOccurs="1" minOccurs="0"/>
       <element name="AttachmentObjectId" type="string" maxOccurs="1" minOccurs="0"/>
-      <element name="Verified" type="string" maxOccurs="1" minOccurs="0"/>
       <element name="Status" type="string" maxOccurs="1" minOccurs="0"/>
     </sequence>
   </complexType>
@@ -791,7 +777,6 @@
   </simpleType>
   <complexType name="VerificationStatusType">
     <sequence>
-      <element name="Licenses" type="string"/>
       <element name="NonExclusion" type="string"/>
     </sequence>
   </complexType>

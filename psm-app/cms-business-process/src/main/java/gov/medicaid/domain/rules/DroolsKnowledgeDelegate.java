@@ -64,11 +64,6 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
     private final KnowledgeBase screeningKnowledgeBase;
 
     /**
-     * The composed knowledge base containing external sources configuration.
-     */
-    private final KnowledgeBase externalSourcesKnowledgeBase;
-
-    /**
      * Flag indicating if guvnor should be used.
      */
     private final boolean useGuvnor;
@@ -81,7 +76,6 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
         useGuvnor = "N".equalsIgnoreCase(config.getUseEmbeddedRules());
         validationKnowledgeBase = readValidationKnowledgeBase();
         screeningKnowledgeBase = readScreeningKnowledgeBase();
-        externalSourcesKnowledgeBase = readExternalSourcesKnowledgeBase();
     }
 
     /* (non-Javadoc)
@@ -164,31 +158,6 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
     }
 
     /**
-     * Creates the knowledge base from the external sources packages.
-     *
-     * @return the knowledge base
-     */
-    private KnowledgeBase readExternalSourcesKnowledgeBase() {
-        KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        if (useGuvnor) {
-            kbuilder.add(ResourceFactory.newClassPathResource("ExternalSourcesRules.xml"), ResourceType.CHANGE_SET);
-        } else {
-            kbuilder.add(ResourceFactory.newClassPathResource("cms.externalsources.drl"), ResourceType.DRL);
-        }
-
-        KnowledgeBuilderErrors errors = kbuilder.getErrors();
-        if (errors.size() > 0) {
-            for (KnowledgeBuilderError error : errors) {
-                System.err.println(error);
-            }
-            throw new IllegalStateException("Could not parse knowledge.");
-        }
-        KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
-        kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());
-        return kbase;
-    }
-
-    /**
      * Creates the knowledge base from the packages.
      *
      * @return the knowledge base
@@ -213,14 +182,6 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
         KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
         kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());
         return kbase;
-    }
-
-    /* (non-Javadoc)
-     * @see gov.medicaid.domain.rules.KnowledgeDelegate#newExternalSourcesConfigSession()
-     */
-    @Override
-    public StatefulKnowledgeSession newExternalSourcesConfigSession() {
-        return externalSourcesKnowledgeBase.newStatefulKnowledgeSession();
     }
 
     /* (non-Javadoc)

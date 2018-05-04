@@ -50,13 +50,6 @@ public interface KnowledgeDelegate {
     StatefulKnowledgeSession newScreeningValidationSession();
 
     /**
-     * Creates a new session for configuring external sources.
-     *
-     * @return a new session.
-     */
-    StatefulKnowledgeSession newExternalSourcesConfigSession();
-
-    /**
      * Creates a new session for running frontend validation.
      *
      * @return a new session.

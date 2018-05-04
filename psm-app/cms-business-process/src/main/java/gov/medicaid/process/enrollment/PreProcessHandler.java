@@ -18,8 +18,6 @@ package gov.medicaid.process.enrollment;
 
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.EnrollmentProcess;
-import gov.medicaid.domain.model.LicenseInformationType;
-import gov.medicaid.domain.model.LicenseType;
 import gov.medicaid.domain.model.PostSubmissionInformationType;
 import gov.medicaid.domain.model.ProcessAuditType;
 import gov.medicaid.domain.model.ProcessResultsType;
@@ -27,12 +25,10 @@ import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.RequestType;
 import gov.medicaid.domain.model.ValidationResultType;
 import gov.medicaid.domain.model.VerificationStatusType;
-
-import java.util.List;
-import java.util.logging.Logger;
-
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
+
+import java.util.logging.Logger;
 
 /**
  * This initializes the application model.
@@ -66,12 +62,6 @@ public class PreProcessHandler extends GenericHandler {
         // clear post submission data, it will be set by the rules
         processModel.setPostSubmissionInformation(new PostSubmissionInformationType());
         if (processModel.getEnrollment().getRequestType() == RequestType.ENROLLMENT) {
-            LicenseInformationType licenseInfo = XMLUtility.nsGetLicenseInformation(processModel);
-            List<LicenseType> licenseList = licenseInfo.getLicense();
-            for (LicenseType licenseType : licenseList) {
-                licenseType.setVerified(null);
-            }
-
             processModel.getEnrollment().setRiskLevel(null);
 
             // clear any verification status that is set by caller

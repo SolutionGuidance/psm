@@ -321,48 +321,6 @@ salience 20
 
 end
 
-rule 'Set license verification status based on the current status of all licenses.'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-    when
-        $provider: ProviderInformationType()
-        $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
-        not LicenseType(verified != "Y") from $licenseInformation.license;
-        $verification : VerificationStatusType(licenses != "Y")
-    then
-        modify($verification) {
-            setLicenses("Y")
-        };
-
-end
-
-rule 'All Submitted Licenses Must Be Verified'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
-salience -10
-
-    when
-        VerificationStatusType(licenses != "Y")
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/LicenseInformation",
-            "00002",
-            "All Submitted Licenses Must Be Verified."
-        );
-
-end
-
 rule 'Applicant Must Not Be In the Excluded Providers List'
 dialect 'mvel'
 /*

@@ -418,36 +418,6 @@
       <element name="RelatedElementPath" type="string" maxOccurs="1" minOccurs="0"/>
     </sequence>
   </complexType>
-  <complexType name="ScreeningResultType">
-    <annotation>
-      <documentation xml:lang="en">Represents the result of screening processes.</documentation>
-    </annotation>
-    <sequence>
-      <element name="ScreeningType" type="string" maxOccurs="1" minOccurs="1"/>
-      <element name="Status" type="tns:OperationStatusType" maxOccurs="1" minOccurs="1"/>
-      <choice>
-        <element name="ExclusionVerificationResult" type="tns:SearchResultType" maxOccurs="1" minOccurs="0"/>
-        <element name="SearchResult" type="tns:SearchResultType" maxOccurs="1" minOccurs="0"/>
-      </choice>
-    </sequence>
-  </complexType>
-  <complexType name="ExternalSourcesScreeningResultType">
-    <annotation>
-      <documentation xml:lang="en">Represents the result of CMS external sources screening.</documentation>
-    </annotation>
-    <sequence>
-      <element name="Status" type="tns:OperationStatusType" maxOccurs="1" minOccurs="0"/>
-      <element name="SearchResults" type="tns:SearchResultType" maxOccurs="1" minOccurs="0"/>
-    </sequence>
-  </complexType>
-  <complexType name="SearchResultType">
-    <annotation>
-      <documentation xml:lang="en">Represents a generic search result wrapper.</documentation>
-    </annotation>
-    <sequence>
-      <element name="SearchResultItem" type="tns:SearchResultItemType" maxOccurs="unbounded" minOccurs="0"/>
-    </sequence>
-  </complexType>
   <complexType name="OperationStatusType">
     <annotation>
       <documentation xml:lang="en">Represents the status of an executed process.</documentation>
@@ -463,15 +433,6 @@
         </simpleType>
       </element>
       <element name="StatusMessages" type="tns:StatusMessagesType"/>
-    </sequence>
-  </complexType>
-  <complexType name="SearchResultItemType">
-    <annotation>
-      <documentation xml:lang="en">Represents a search result row.</documentation>
-    </annotation>
-    <sequence>
-      <element name="ColumnData" type="tns:PropertyListType"/>
-      <element name="SupplementaryData" type="tns:PropertyListType"/>
     </sequence>
   </complexType>
   <complexType name="PropertyListType">

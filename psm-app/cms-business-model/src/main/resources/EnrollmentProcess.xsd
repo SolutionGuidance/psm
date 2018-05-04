@@ -86,10 +86,6 @@
                type="cms:ValidationResultType"
                maxOccurs="1"
                minOccurs="1"/>
-      <element name="ScreeningResult"
-               type="cms:ScreeningResultType"
-               maxOccurs="unbounded"
-               minOccurs="0"/>
     </sequence>
   </complexType>
   <complexType name="ProcessExecutionType">

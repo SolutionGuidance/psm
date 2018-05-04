@@ -24,11 +24,7 @@ import ca.uhn.fhir.rest.gclient.StringClientParam;
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.EnrollmentProcess;
 import gov.medicaid.domain.model.EnrollmentType;
-import gov.medicaid.domain.model.ExternalSourcesScreeningResultType;
 import gov.medicaid.domain.model.ProviderInformationType;
-import gov.medicaid.domain.model.ScreeningResultType;
-import gov.medicaid.domain.model.SearchResultItemType;
-import gov.medicaid.domain.model.SearchResultType;
 import gov.medicaid.domain.model.VerificationStatusType;
 import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.Enrollment;
@@ -84,7 +80,7 @@ public class ExcludedProvidersScreeningHandler extends GenericHandler {
             }
         } catch (RuntimeException e) {
             logger.log(WARNING, "Error checking provider against LEIE", e);
-            setResultError(screening, processModel);
+            setResultError(screening);
         }
 
         enrollment.addAutomaticScreening(screening);
@@ -107,23 +103,11 @@ public class ExcludedProvidersScreeningHandler extends GenericHandler {
 
         setNonExclusionVerificationStatus(processModel, "N");
 
-        ExternalSourcesScreeningResultType results = new ExternalSourcesScreeningResultType();
-        SearchResultType searchResults = new SearchResultType();
         for (Bundle.BundleEntryComponent e : providerSearchResults.getEntry()) {
             Exclusion exclusion = (Exclusion) e.getResource();
 
             screening.addMatch(exclusion.toMatch());
-
-            SearchResultItemType searchResultItem = new SearchResultItemType();
-            searchResultItem.setColumnData(exclusion.toPropertyList());
-
-            searchResults.getSearchResultItem().add(searchResultItem);
         }
-
-        results.setSearchResults(searchResults);
-        results.setStatus(XMLUtility.newStatus("SUCCESS"));
-
-        attachScreeningResultToProcess(processModel, results);
     }
 
     private void setResultNotExcluded(
@@ -133,12 +117,6 @@ public class ExcludedProvidersScreeningHandler extends GenericHandler {
         screening.setResult(AutomaticScreening.Result.PASS);
 
         setNonExclusionVerificationStatus(processModel, "Y");
-
-        ExternalSourcesScreeningResultType results =
-                new ExternalSourcesScreeningResultType();
-        results.setSearchResults(new SearchResultType());
-        results.setStatus(XMLUtility.newStatus("SUCCESS"));
-        attachScreeningResultToProcess(processModel, results);
     }
 
     private void setNonExclusionVerificationStatus(
@@ -151,30 +129,9 @@ public class ExcludedProvidersScreeningHandler extends GenericHandler {
     }
 
     private void setResultError(
-            LeieAutomaticScreening screening,
-            EnrollmentProcess processModel
+            LeieAutomaticScreening screening
     ) {
         screening.setResult(AutomaticScreening.Result.ERROR);
-
-        ExternalSourcesScreeningResultType results =
-                new ExternalSourcesScreeningResultType();
-        results.setStatus(XMLUtility.newStatus("ERROR"));
-        attachScreeningResultToProcess(processModel, results);
-    }
-
-    private void attachScreeningResultToProcess(
-            EnrollmentProcess processModel,
-            ExternalSourcesScreeningResultType results
-    ) {
-        ScreeningResultType screeningResultType = new ScreeningResultType();
-        screeningResultType.setExclusionVerificationResult(
-                results.getSearchResults()
-        );
-        screeningResultType.setScreeningType("EXCLUDED PROVIDERS");
-        screeningResultType.setStatus(XMLUtility.newStatus("SUCCESS"));
-        XMLUtility.nsGetScreeningResults(processModel)
-                .getScreeningResult()
-                .add(screeningResultType);
     }
 
     private boolean providerIsExcluded(Bundle providerSearchResults) {

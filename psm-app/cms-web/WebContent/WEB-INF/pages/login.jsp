@@ -38,7 +38,13 @@
 
               <div class="row">
                 <label for="username" class="label">Username</label>
-                <input id="username" name="username" type="text" class="text" value="${LAST_USERNAME}" maxlength="50"/>
+                <input id="username"
+                       name="username"
+                       type="text"
+                       class="text"
+                       value="${LAST_USERNAME}"
+                       maxlength="50"
+                       autofocus />
               </div>
               <div class="row">
                 <label for="password" class="label">Password</label>

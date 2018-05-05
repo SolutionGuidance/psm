@@ -1,0 +1,3 @@
+systemProp.databaseUser=
+systemProp.databasePassword=
+systemProp.databasePath=jdbc:postgresql:psm

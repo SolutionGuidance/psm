@@ -39,7 +39,6 @@ DROP TABLE IF EXISTS
   provider_type_license_types,
   provider_type_settings,
   provider_types,
-  qualified_professional_types,
   relationship_types,
   request_types,
   risk_levels,
@@ -89,10 +88,6 @@ INSERT INTO cms_authentication (username, password) VALUES
     '98181be881581e6edbe84e40cd48d42c4ce5959af990fab2e6644397deed0135a8e9aea50c'
   );
 
-CREATE TABLE qualified_professional_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO qualified_professional_types (code, description) VALUES
   ('01', 'Registered Nurse'),
   ('02', 'Licensed Social Worker'),

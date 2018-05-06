@@ -46,7 +46,6 @@ DROP TABLE IF EXISTS
   provider_types,
   qualified_professional_types,
   relationship_types,
-  request_types,
   risk_levels,
   roles,
   screening_schedules,
@@ -664,10 +663,6 @@ INSERT INTO specialty_types (code, description, sub_category) VALUES
   ('US', 'Upper Sioux Indian Reservation', 'TC'),
   ('WE', 'White Earth Indian Reservation', 'TC');
 
-CREATE TABLE request_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO request_types (code, description) VALUES
   ('01', 'Import Profile'),
   ('02', 'Enrollment'),

@@ -1,6 +1,3 @@
-DROP SEQUENCE IF EXISTS
-  hibernate_sequence
-CASCADE;
 DROP TABLE IF EXISTS
   accepted_agreements,
   addresses,
@@ -37,7 +34,6 @@ DROP TABLE IF EXISTS
   pay_to_provider_types,
   pay_to_providers,
   people,
-  persistent_logins,
   profile_statuses,
   provider_approved_categories_of_service,
   provider_category_of_service_approvals,

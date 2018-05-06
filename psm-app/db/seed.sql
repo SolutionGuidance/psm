@@ -9,7 +9,6 @@ DROP TABLE IF EXISTS
   beneficial_owner_types,
   binary_contents,
   categories_of_service,
-  cms_authentication,
   contacts,
   counties,
   degrees,
@@ -73,10 +72,6 @@ INSERT INTO cms_user (
   ('ADMIN', 'admin', 'admin', 'admin', 'admin@example.com', 'ACTIVE', 'R3'),
   ('SYSTEM', 'system', 'system', 'system', 'system@example.com', 'ACTIVE', 'R4');
 
-CREATE TABLE cms_authentication(
-  username TEXT PRIMARY KEY,
-  password TEXT NOT NULL
-);
 INSERT INTO cms_authentication (username, password) VALUES
   (
     'admin',

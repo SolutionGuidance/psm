@@ -98,4 +98,20 @@
       <dropTable tableName="cms_user"/>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue254-create-table-cms-authentication">
+    <createTable tableName="cms_authentication">
+      <column name="username"
+        type="text">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="password"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="cms_authentication"/>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

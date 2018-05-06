@@ -321,4 +321,21 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-categories-of-service">
+    <createTable tableName="categories_of_service">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="categories_of_service"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

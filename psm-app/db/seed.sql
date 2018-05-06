@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS
   beneficial_owner,
   beneficial_owner_types,
   binary_contents,
-  categories_of_service,
   contacts,
   counties,
   degrees,
@@ -203,10 +202,6 @@ INSERT INTO pay_to_provider_types(code, description) VALUES
   ('02', 'ERA'),
   ('03', 'Both');
 
-CREATE TABLE categories_of_service (
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO categories_of_service (code, description) VALUES
   ('01', 'AC Transportation'),
   ('02', 'Home Delivered Meals'),

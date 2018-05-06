@@ -27,7 +27,6 @@ DROP TABLE IF EXISTS
   provider_type_agreement_documents,
   provider_type_license_types,
   provider_type_settings,
-  request_types,
   screening_schedules,
   states
 CASCADE;
@@ -519,10 +518,6 @@ INSERT INTO specialty_types (code, description, sub_category) VALUES
   ('US', 'Upper Sioux Indian Reservation', 'TC'),
   ('WE', 'White Earth Indian Reservation', 'TC');
 
-CREATE TABLE request_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO request_types (code, description) VALUES
   ('01', 'Import Profile'),
   ('02', 'Enrollment'),

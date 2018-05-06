@@ -393,4 +393,33 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-risk-level">
+    <createTable tableName="risk_levels">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="sort_index"
+        type="int">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="risk_levels"/>
+    </rollback>
+  </changeSet>
+
+  CREATE TABLE (
+    code CHARACTER VARYING(2) PRIMARY KEY,
+    sort_index INTEGER UNIQUE NOT NULL,
+    description TEXT UNIQUE
+  );
+
+
 </databaseChangeLog>

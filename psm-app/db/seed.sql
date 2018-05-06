@@ -32,7 +32,6 @@ DROP TABLE IF EXISTS
   provider_type_settings,
   relationship_types,
   request_types,
-  risk_levels,
   screening_schedules,
   sent_notifications,
   specialty_types,
@@ -353,11 +352,6 @@ INSERT INTO beneficial_owner_types (code, owner_type, description) VALUES
   ('06', 'P', 'Managing Director'),
   ('99', 'A', 'Other');
 
-CREATE TABLE risk_levels(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  sort_index INTEGER UNIQUE NOT NULL,
-  description TEXT UNIQUE
-);
 INSERT INTO risk_levels (code, sort_index, description) VALUES
   ('01', 1, 'Limited'),
   ('02', 2, 'Moderate'),

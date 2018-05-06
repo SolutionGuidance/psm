@@ -8,7 +8,6 @@ DROP TABLE IF EXISTS
   contacts,
   designated_contacts,
   documents,
-  enrollment_statuses,
   enrollments,
   entities,
   events,
@@ -364,10 +363,6 @@ INSERT INTO relationship_types (CODE, DESCRIPTION) VALUES
   ('03', 'Parent'),
   ('04', 'Sibling');
 
-CREATE TABLE enrollment_statuses(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO enrollment_statuses (code, description) VALUES
   ('01', 'Draft'),
   ('02', 'Pending'),

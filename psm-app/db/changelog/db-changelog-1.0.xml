@@ -415,11 +415,21 @@
     </rollback>
   </changeSet>
 
-  CREATE TABLE (
-    code CHARACTER VARYING(2) PRIMARY KEY,
-    sort_index INTEGER UNIQUE NOT NULL,
-    description TEXT UNIQUE
-  );
-
+  <changeSet author="" id="issue254-create-table-degrees">
+    <createTable tableName="degrees">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="degrees"/>
+    </rollback>
+  </changeSet>
 
 </databaseChangeLog>

@@ -23,7 +23,6 @@ DROP TABLE IF EXISTS
   notes,
   organizations,
   ownership_info,
-  pay_to_provider_types,
   pay_to_providers,
   people,
   provider_approved_categories_of_service,
@@ -199,10 +198,6 @@ INSERT INTO license_statuses (code, description) VALUES
   ('02', 'Suspended'),
   ('03', 'Expired');
 
-CREATE TABLE pay_to_provider_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO pay_to_provider_types(code, description) VALUES
   ('01', 'Claim'),
   ('02', 'ERA'),

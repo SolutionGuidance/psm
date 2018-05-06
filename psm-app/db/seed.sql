@@ -31,7 +31,6 @@ DROP TABLE IF EXISTS
   provider_type_settings,
   request_types,
   screening_schedules,
-  sent_notifications,
   specialty_types,
   states
 CASCADE;
@@ -364,14 +363,6 @@ INSERT INTO relationship_types (CODE, DESCRIPTION) VALUES
   ('02', 'Child'),
   ('03', 'Parent'),
   ('04', 'Sibling');
-
-CREATE TABLE sent_notifications(
-  notification_id BIGINT PRIMARY KEY,
-  notification_type TEXT NOT NULL,
-  sent_to TEXT NOT NULL,
-  notification_content TEXT NOT NULL,
-  sent_at TIMESTAMP WITH TIME ZONE NOT NULL
-);
 
 CREATE TABLE enrollment_statuses(
   code CHARACTER VARYING(2) PRIMARY KEY,

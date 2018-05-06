@@ -449,4 +449,32 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-sent-notifications">
+    <createTable tableName="sent_notifications">
+      <column name="notification_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="notification_type"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="sent_to"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="notification_content"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="sent_at"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="sent_notifications"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

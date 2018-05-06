@@ -565,4 +565,151 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-provider-profiles">
+    <createTable tableName="provider_profiles">
+      <column name="control_no"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="effective_date"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="profile_status_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_provider_profiles_profile_statuses"
+          references="profile_statuses(code)"/>
+      </column>
+      <column name="works_on_reservation"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="maintains_own_private_practice"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="employed_or_contracted_by_group"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="criminal_conviction"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="civil_penalty"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="previous_exclusion"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="employee_criminal_conviction"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="employee_civil_penalty"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="employee_previous_exclusion"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="adult"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="country"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="employed_since_clearance"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="risk_level_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_provider_profiles_risk_levels"
+          references="risk_levels(code)"/>
+      </column>
+      <column name="bed_count"
+        type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="bed_count_title_18"
+        type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="bed_count_title_19"
+        type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="bed_count_dual_certified"
+        type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="bed_count_icf"
+        type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="bed_count_effective_date"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="physical_and_occupational_therapy"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="reference_ticket_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="owner_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="form_completed_by"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="health_board"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_by"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_modified_by"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_modified_at"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_profiles"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

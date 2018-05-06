@@ -36,6 +36,24 @@
     </rollback>
   </changeSet>
 
+
+
+  <changeSet author="" id="issue254-create-table-roles">
+    <createTable tableName="roles">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="roles"/>
+    </rollback>
+  </changeSet>
+
   <changeSet author="" id="issue254-create-table-request-types">
     <createTable tableName="request_types">
       <column name="code"

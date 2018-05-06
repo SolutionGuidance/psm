@@ -45,7 +45,6 @@ DROP TABLE IF EXISTS
   qualified_professional_types,
   relationship_types,
   risk_levels,
-  roles,
   screening_schedules,
   sent_notifications,
   service_categories,
@@ -53,10 +52,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-CREATE TABLE roles (
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO roles (code, description) VALUES
   ('R1', 'Provider'),
   ('R2', 'Service Agent'),

@@ -37,7 +37,6 @@ DROP TABLE IF EXISTS
   risk_levels,
   screening_schedules,
   sent_notifications,
-  service_categories,
   specialty_types,
   states
 CASCADE;
@@ -230,11 +229,6 @@ INSERT INTO categories_of_service (code, description) VALUES
   ('25', 'Foster Care Services'),
   ('26', 'Waiver Transportation');
 
-
-CREATE TABLE service_categories (
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO service_categories (code, description) VALUES
   ('01', 'AC Transportation'),
   ('02', 'Home Delivered Meals'),

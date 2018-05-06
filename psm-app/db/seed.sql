@@ -27,8 +27,7 @@ DROP TABLE IF EXISTS
   provider_type_agreement_documents,
   provider_type_license_types,
   provider_type_settings,
-  screening_schedules,
-  states
+  screening_schedules
 CASCADE;
 
 INSERT INTO roles (code, description) VALUES
@@ -525,10 +524,6 @@ INSERT INTO request_types (code, description) VALUES
   ('04', 'Suspend'),
   ('05', 'Update');
 
-CREATE TABLE states (
-   code CHARACTER VARYING(2) PRIMARY KEY,
-   description TEXT UNIQUE
-);
 INSERT INTO states (code, description) VALUES
   ('AK', 'Alaska'),
   ('AL', 'Alabama'),

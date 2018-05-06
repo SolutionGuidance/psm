@@ -4,7 +4,6 @@ DROP TABLE IF EXISTS
   affiliations,
   agreement_documents,
   audit_details,
-  audit_records,
   beneficial_owner,
   beneficial_owner_types,
   binary_contents,
@@ -92,13 +91,6 @@ INSERT INTO cms_authentication (username, password) VALUES
     '98181be881581e6edbe84e40cd48d42c4ce5959af990fab2e6644397deed0135a8e9aea50c'
   );
 
-CREATE TABLE audit_records(
-  audit_record_id BIGINT PRIMARY KEY,
-  action TEXT,
-  date TIMESTAMP WITH TIME ZONE,
-  system_id TEXT,
-  username TEXT
-);
 CREATE TABLE audit_details(
   audit_detail_id BIGINT PRIMARY KEY,
   audit_record_id BIGINT NOT NULL REFERENCES audit_records(audit_record_id),

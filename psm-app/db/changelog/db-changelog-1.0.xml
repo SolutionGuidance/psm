@@ -14,22 +14,22 @@
 
   <changeSet author="" id="issue254-create-table-persistent-logins-table">
     <createTable tableName="persistent_logins">
-        <column name="series"
-          type="varchar(64)">
-          <constraints primaryKey="true"/>
-        </column>
-        <column name="username"
-          type="varchar(64)">
-          <constraints nullable="false"/>
-        </column>
-        <column name="token"
-          type="varchar(64)">
-          <constraints nullable="false"/>
-        </column>
-        <column name="last_used"
-          type="timestamp with time zone">
-          <constraints nullable="false"/>
-        </column>
+      <column name="series"
+        type="varchar(64)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="username"
+        type="varchar(64)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="token"
+        type="varchar(64)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_used"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
     </createTable>
     <rollback>
       <dropTable tableName="persistent_logins"/>

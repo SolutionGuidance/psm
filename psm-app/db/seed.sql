@@ -7,7 +7,6 @@ DROP TABLE IF EXISTS
   beneficial_owner_types,
   binary_contents,
   contacts,
-  counties,
   degrees,
   designated_contacts,
   documents,
@@ -257,10 +256,6 @@ INSERT INTO service_categories (code, description) VALUES
   ('25', 'Foster Care Services'),
   ('26', 'Waiver Transportation');
 
-CREATE TABLE counties (
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO counties (code, description) VALUES
   ('01', 'Aitkin'),
   ('02', 'Anoka'),

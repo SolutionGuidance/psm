@@ -253,4 +253,21 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-entity-structure-types">
+    <createTable tableName="entity_structure_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="entity_structure_types"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

@@ -15,7 +15,6 @@ DROP TABLE IF EXISTS
   enrollment_statuses,
   enrollments,
   entities,
-  entity_structure_types,
   events,
   external_account_links,
   external_profile_links,
@@ -177,10 +176,6 @@ INSERT INTO profile_statuses (code, description) VALUES
   ('02', 'Suspended'),
   ('03', 'Expired');
 
-CREATE TABLE entity_structure_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO entity_structure_types (code, description) VALUES
   ('01', 'Sole Proprietorship'),
   ('02', 'Partnership'),

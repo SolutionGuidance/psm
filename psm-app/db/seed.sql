@@ -38,7 +38,6 @@ DROP TABLE IF EXISTS
   provider_type_agreement_documents,
   provider_type_license_types,
   provider_type_settings,
-  provider_types,
   relationship_types,
   request_types,
   risk_levels,
@@ -94,11 +93,6 @@ INSERT INTO qualified_professional_types (code, description) VALUES
   ('03', 'Mental Health Professional'),
   ('04', 'Qualified Developmental Disability Specialist');
 
-CREATE TABLE provider_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE,
-  applicant_type TEXT NOT NULL DEFAULT 'INDIVIDUAL'
-);
 INSERT INTO provider_types(code, description, applicant_type) VALUES
   ('01', 'Audiologist', 'INDIVIDUAL'),
   ('02', 'Optometrist', 'INDIVIDUAL'),

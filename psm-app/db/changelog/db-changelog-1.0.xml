@@ -214,4 +214,26 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-provider-types">
+    <createTable tableName="provider_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    <column name="applicant_type"
+      type="text"
+      defaultValue="INDIVIDUAL">
+      <constraints nullable="false"/>
+    </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_types"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

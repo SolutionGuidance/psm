@@ -143,4 +143,38 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-audit-details">
+    <createTable tableName="audit_details">
+      <column name="audit_detail_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="audit_record_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_audit_details_audit_records"
+          references="audit_records(audit_record_id)"/>
+      </column>
+      <column name="table_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="column_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="old_value"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="new_value"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="audit_details"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

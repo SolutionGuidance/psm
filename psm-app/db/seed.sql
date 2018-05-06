@@ -19,7 +19,6 @@ DROP TABLE IF EXISTS
   events,
   external_account_links,
   external_profile_links,
-  help_items,
   issuing_boards,
   license_statuses,
   license_types,
@@ -89,12 +88,6 @@ INSERT INTO cms_authentication (username, password) VALUES
     '17875afbd828d562a92dec2e287c425c9b844b298bb8d241adfcb893e937a8ac3e48f0' ||
     '98181be881581e6edbe84e40cd48d42c4ce5959af990fab2e6644397deed0135a8e9aea50c'
   );
-
-CREATE TABLE help_items(
-  help_item_id BIGINT PRIMARY KEY,
-  title TEXT,
-  description TEXT
-);
 
 CREATE TABLE qualified_professional_types(
   code CHARACTER VARYING(2) PRIMARY KEY,

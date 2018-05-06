@@ -177,4 +177,24 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-help-items">
+    <createTable tableName="help_items">
+      <column name="help_item_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="title"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="help_items"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

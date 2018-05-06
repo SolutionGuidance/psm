@@ -372,4 +372,25 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-beneficial-owner-types">
+    <createTable tableName="beneficial_owner_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+      <column name="owner_type"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="beneficial_owner_types"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

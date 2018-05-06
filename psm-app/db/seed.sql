@@ -4,7 +4,6 @@ DROP TABLE IF EXISTS
   affiliations,
   agreement_documents,
   beneficial_owner,
-  beneficial_owner_types,
   binary_contents,
   contacts,
   degrees,
@@ -345,11 +344,6 @@ INSERT INTO counties (code, description) VALUES
   ('86', 'Wright'),
   ('87', 'Yellow');
 
-CREATE TABLE beneficial_owner_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE,
-  owner_type CHARACTER VARYING(1)
-);
 INSERT INTO beneficial_owner_types (code, owner_type, description) VALUES
   ('01', 'A', 'Subcontractor'),
   ('02', 'P', 'Managing Employee'),

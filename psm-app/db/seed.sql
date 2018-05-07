@@ -1,6 +1,5 @@
 DROP TABLE IF EXISTS
   accepted_agreements,
-  addresses,
   affiliations,
   agreement_documents,
   beneficial_owner,
@@ -573,17 +572,6 @@ INSERT INTO states (code, description) VALUES
   ('WI', 'Wisconsin'),
   ('WV', 'West Virginia'),
   ('WY', 'Wyoming');
-
-CREATE TABLE addresses(
-  address_id BIGINT PRIMARY KEY,
-  attention_line TEXT,
-  address_line_1 TEXT,
-  address_line_2 TEXT,
-  city TEXT,
-  state TEXT,
-  zip_code TEXT,
-  county TEXT
-);
 
 CREATE TABLE agreement_documents(
   agreement_document_id BIGINT PRIMARY KEY,

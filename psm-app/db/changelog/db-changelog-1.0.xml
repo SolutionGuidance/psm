@@ -760,5 +760,44 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-addresses">
+    <createTable tableName="addresses">
+      <column name="address_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="attention_line"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="address_line_1"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="address_line_2"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="city"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="state"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="zip_code"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="county"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="addresses"/>
+    </rollback>
+  </changeSet>
 
 </databaseChangeLog>

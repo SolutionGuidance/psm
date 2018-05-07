@@ -16,7 +16,6 @@ DROP TABLE IF EXISTS
   degrees,
   designated_contacts,
   documents,
-  enrollments,
   entities,
   entity_structure_types,
   events,
@@ -865,24 +864,6 @@ CREATE TABLE contacts(
     REFERENCES addresses(address_id)
 );
 
-CREATE TABLE enrollments(
-  enrollment_id BIGINT PRIMARY KEY,
-  enrollment_status_code CHARACTER VARYING(2)
-    REFERENCES enrollment_statuses(code),
-  request_type_code CHARACTER VARYING(2)
-    REFERENCES request_types(code),
-  process_instance_id BIGINT NOT NULL DEFAULT 0,
-  profile_reference_id BIGINT NOT NULL DEFAULT 0,
-  reference_timestamp TIMESTAMP WITH TIME ZONE,
-  progress_page TEXT,
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE,
-  submitted_by TEXT,
-  submitted_at TIMESTAMP WITH TIME ZONE,
-  changed_by TEXT,
-  changed_at TIMESTAMP WITH TIME ZONE,
-  change_note TEXT
-);
 INSERT INTO enrollments (
   enrollment_id,
   enrollment_status_code,

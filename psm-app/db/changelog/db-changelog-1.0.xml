@@ -740,5 +740,25 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-provider-approved-categories-or-service">
+    <createTable tableName="provider_approved_categories_of_service">
+      <column name="provider_category_of_service_approval_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_pacos_pacos_approvals"
+          references="provider_category_of_service_approvals(provider_category_of_service_approval_id)"/>
+      </column>
+      <column name="category_of_service_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_pacos_categories_of_service"
+          references="categories_of_service(code)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_approved_categories_of_service"/>
+    </rollback>
+  </changeSet>
+
 
 </databaseChangeLog>

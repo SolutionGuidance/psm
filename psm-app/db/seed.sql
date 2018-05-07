@@ -1,7 +1,6 @@
 DROP TABLE IF EXISTS
   accepted_agreements,
   affiliations,
-  agreement_documents,
   beneficial_owner,
   binary_contents,
   contacts,
@@ -573,15 +572,6 @@ INSERT INTO states (code, description) VALUES
   ('WV', 'West Virginia'),
   ('WY', 'Wyoming');
 
-CREATE TABLE agreement_documents(
-  agreement_document_id BIGINT PRIMARY KEY,
-  type TEXT,
-  title TEXT,
-  version INTEGER,
-  body TEXT,
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE
-);
 INSERT INTO agreement_documents (
   agreement_document_id,
   type,

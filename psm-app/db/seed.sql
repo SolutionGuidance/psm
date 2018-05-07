@@ -5,7 +5,6 @@ DROP TABLE IF EXISTS
   binary_contents,
   designated_contacts,
   documents,
-  entities,
   events,
   external_account_links,
   external_profile_links,
@@ -687,25 +686,6 @@ INSERT INTO provider_type_license_types(
   ('68', 'AZ'),
   ('69', 'AO');
 
-CREATE TABLE entities(
-  entity_id BIGINT PRIMARY KEY,
-  enrolled CHARACTER VARYING(1),
-  profile_id BIGINT NOT NULL,
-  ticket_id BIGINT,
-  name TEXT,
-  legal_name TEXT,
-  legacy_indicator CHARACTER VARYING(1),
-  legacy_id TEXT,
-  npi TEXT,
-  nonexclusion_verified CHARACTER VARYING(1),
-  provider_type_code CHARACTER VARYING(2)
-    REFERENCES provider_types(code),
-  provider_sub_type TEXT,
-  contact_id BIGINT
-    REFERENCES contacts(contact_id),
-  background_study_id TEXT,
-  background_clearance_date TIMESTAMP WITH TIME ZONE
-);
 CREATE TABLE organizations(
   entity_id BIGINT PRIMARY KEY
     REFERENCES entities(entity_id),

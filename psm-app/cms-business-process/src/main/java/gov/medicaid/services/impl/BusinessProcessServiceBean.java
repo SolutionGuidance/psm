@@ -29,7 +29,6 @@ import gov.medicaid.entities.EnrollmentStatus;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.process.enrollment.AcceptedHandler;
-import gov.medicaid.process.enrollment.DisqualificationHandler;
 import gov.medicaid.process.enrollment.EnrollmentMonitor;
 import gov.medicaid.process.enrollment.ExcludedProvidersScreeningHandler;
 import gov.medicaid.process.enrollment.PreProcessHandler;
@@ -142,7 +141,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
                 "Check Excluded Provider List in OIG",
                 new ExcludedProvidersScreeningHandler(config.getLeieApiBaseUrl())
         );
-        handlers.put("Auto Disqualification", new DisqualificationHandler());
         handlers.put("Auto Screening", new ScreeningHandler());
         handlers.put("Accept Application", new AcceptedHandler(notificationService));
 

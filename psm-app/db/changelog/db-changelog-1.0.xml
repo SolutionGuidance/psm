@@ -929,4 +929,27 @@
       <dropTable tableName="enrollments"/>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-type-agreement-documents">
+    <createTable tableName="provider_type_agreement_documents">
+      <column name="provider_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_ptad_provider_types"
+          references="provider_types(code)"/>
+      </column>
+      <column name="agreement_document_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_ptad_agreement_documents"
+          references="agreement_documents(agreement_document_id)"/>
+      </column>
+    </createTable>
+    <addPrimaryKey columnNames="provider_type_code, agreement_document_id"
+      constraintName="pk_ptc_adi"
+      tableName="provider_type_agreement_documents"/>
+    <rollback>
+      <dropTable tableName="provider_type_agreement_documents"/>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

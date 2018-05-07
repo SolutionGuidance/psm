@@ -17,7 +17,6 @@ DROP TABLE IF EXISTS
   people,
   provider_statements,
   provider_services,
-  provider_type_agreement_documents,
   provider_type_license_types,
   provider_type_settings,
   screening_schedules
@@ -583,13 +582,6 @@ INSERT INTO agreement_documents (
   (2, '02', 'Addendum (2)', 0, 'This is the content of the addendum.', 'system', NOW()),
   (3, '01', 'Child And Teen Checkup Agreement (DHS-4646)', 0, 'This is a required document.', 'system', NOW());
 
-CREATE TABLE provider_type_agreement_documents(
-  provider_type_code CHARACTER VARYING(2)
-    REFERENCES provider_types(code),
-  agreement_document_id BIGINT
-    REFERENCES agreement_documents(agreement_document_id),
-  PRIMARY KEY (provider_type_code, agreement_document_id)
-);
 INSERT INTO provider_type_agreement_documents (
   provider_type_code,
   agreement_document_id

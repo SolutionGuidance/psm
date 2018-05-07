@@ -836,4 +836,33 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-contacts">
+    <createTable tableName="contacts">
+      <column name="contact_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="phone_number"
+        type="text">
+      </column>
+      <column name="fax_number"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="email"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="address_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_contacts_addresses"
+          references="addresses(address_id)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="contacts"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

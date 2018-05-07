@@ -3,7 +3,6 @@ DROP TABLE IF EXISTS
   affiliations,
   beneficial_owner,
   binary_contents,
-  contacts,
   designated_contacts,
   documents,
   enrollments,
@@ -584,15 +583,6 @@ INSERT INTO agreement_documents (
   (1, '01', 'Agreement (1)', 0, 'This is the content of the agreement.', 'system', NOW()),
   (2, '02', 'Addendum (2)', 0, 'This is the content of the addendum.', 'system', NOW()),
   (3, '01', 'Child And Teen Checkup Agreement (DHS-4646)', 0, 'This is a required document.', 'system', NOW());
-
-CREATE TABLE contacts(
-  contact_id BIGINT PRIMARY KEY,
-  phone_number TEXT,
-  fax_number TEXT,
-  email TEXT,
-  address_id BIGINT
-    REFERENCES addresses(address_id)
-);
 
 CREATE TABLE enrollments(
   enrollment_id BIGINT PRIMARY KEY,

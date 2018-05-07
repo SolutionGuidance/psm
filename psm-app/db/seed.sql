@@ -5,7 +5,6 @@ DROP TABLE IF EXISTS
   binary_contents,
   designated_contacts,
   documents,
-  enrollments,
   entities,
   events,
   external_account_links,
@@ -583,25 +582,6 @@ INSERT INTO agreement_documents (
   (1, '01', 'Agreement (1)', 0, 'This is the content of the agreement.', 'system', NOW()),
   (2, '02', 'Addendum (2)', 0, 'This is the content of the addendum.', 'system', NOW()),
   (3, '01', 'Child And Teen Checkup Agreement (DHS-4646)', 0, 'This is a required document.', 'system', NOW());
-
-CREATE TABLE enrollments(
-  enrollment_id BIGINT PRIMARY KEY,
-  enrollment_status_code CHARACTER VARYING(2)
-    REFERENCES enrollment_statuses(code),
-  request_type_code CHARACTER VARYING(2)
-    REFERENCES request_types(code),
-  process_instance_id BIGINT NOT NULL DEFAULT 0,
-  profile_reference_id BIGINT NOT NULL DEFAULT 0,
-  reference_timestamp TIMESTAMP WITH TIME ZONE,
-  progress_page TEXT,
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE,
-  submitted_by TEXT,
-  submitted_at TIMESTAMP WITH TIME ZONE,
-  changed_by TEXT,
-  changed_at TIMESTAMP WITH TIME ZONE,
-  change_note TEXT
-);
 
 CREATE TABLE provider_type_agreement_documents(
   provider_type_code CHARACTER VARYING(2)

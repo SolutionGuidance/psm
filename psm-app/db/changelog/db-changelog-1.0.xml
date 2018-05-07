@@ -952,4 +952,27 @@
       <dropTable tableName="provider_type_agreement_documents"/>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-type-license-types">
+    <createTable tableName="provider_type_license_types">
+      <column name="provider_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_ptlt_provider_types"
+          references="provider_types(code)"/>
+      </column>
+      <column name="license_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_ptad_license_types"
+          references="license_types(code)"/>
+      </column>
+    </createTable>
+    <addPrimaryKey columnNames="provider_type_code, license_type_code"
+      constraintName="pk_ptc_ltc"
+      tableName="provider_type_license_types"/>
+    <rollback>
+      <dropTable tableName="provider_type_license_types"/>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

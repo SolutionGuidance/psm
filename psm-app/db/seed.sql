@@ -4,7 +4,6 @@ DROP TABLE IF EXISTS
   external_profile_links,
   notes,
   pay_to_providers,
-  provider_statements,
   provider_services,
   provider_type_settings
 CASCADE;

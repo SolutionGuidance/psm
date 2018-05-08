@@ -3,7 +3,6 @@ DROP TABLE IF EXISTS
   affiliations,
   beneficial_owner,
   designated_contacts,
-  documents,
   events,
   external_account_links,
   external_profile_links,
@@ -682,18 +681,6 @@ INSERT INTO provider_type_license_types(
   ('68', 'AO'),
   ('68', 'AZ'),
   ('69', 'AO');
-
-CREATE TABLE documents(
-  document_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  "type" TEXT,
-  filename TEXT,
-  description TEXT,
-  binary_content_id TEXT,
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE
-);
 
 CREATE TABLE designated_contacts(
   designated_contact_id BIGINT PRIMARY KEY,

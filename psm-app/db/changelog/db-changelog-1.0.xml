@@ -1187,4 +1187,48 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-documents">
+    <createTable tableName="documents">
+      <column name="document_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="`type`"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="filename"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="binary_content_id"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="created_by"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="created_at"
+        type="timestamp with time zone">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="documents"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

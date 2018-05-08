@@ -1692,4 +1692,54 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-pay-to-providers">
+    <createTable tableName="pay_to_providers">
+      <column name="pay_to_providers_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="effective_date"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="pay_to_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_ptp_ptp_types"
+          references="pay_to_provider_types(code)"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="target_profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="contact_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="npi"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="phone"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="pay_to_providers"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

@@ -2,7 +2,6 @@ DROP TABLE IF EXISTS
   accepted_agreements,
   affiliations,
   beneficial_owner,
-  designated_contacts,
   events,
   external_account_links,
   external_profile_links,
@@ -681,17 +680,6 @@ INSERT INTO provider_type_license_types(
   ('68', 'AO'),
   ('68', 'AZ'),
   ('69', 'AO');
-
-CREATE TABLE designated_contacts(
-  designated_contact_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  designated_contact_type TEXT,
-  same_as_provider CHARACTER VARYING(1),
-  hired_at DATE,
-  person_id BIGINT
-    REFERENCES people(entity_id)
-);
 
 CREATE TABLE accepted_agreements(
   accepted_agreement_id BIGINT PRIMARY KEY,

@@ -1231,4 +1231,42 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-designated-contacts">
+    <createTable tableName="designated_contacts">
+      <column name="designated_contact_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="designated_contact_type"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="same_as_provider"
+        type="varchar(1)">
+        <constraints nullable="false" />
+      </column>
+      <column name="hired_at"
+        type="date">
+        <constraints nullable="false" />
+      </column>
+      <column name="person_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_designated_contacts_people"
+          references="people(entity_id)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="designated_contacts"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

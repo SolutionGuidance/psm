@@ -1299,4 +1299,26 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-screening-schedules">
+    <createTable tableName="screening_schedules">
+      <column name="screening_schedule_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="upcoming_screening_date"
+        type="date">
+      </column>
+      <column name="interval_type"
+        type="text">
+      </column>
+      <column name="interval_value"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="screening_schedules"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

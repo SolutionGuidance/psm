@@ -10,8 +10,7 @@ DROP TABLE IF EXISTS
   pay_to_providers,
   provider_statements,
   provider_services,
-  provider_type_settings,
-  screening_schedules
+  provider_type_settings
 CASCADE;
 
 INSERT INTO roles (code, description) VALUES
@@ -679,13 +678,6 @@ INSERT INTO provider_type_license_types(
   ('68', 'AO'),
   ('68', 'AZ'),
   ('69', 'AO');
-
-CREATE TABLE screening_schedules(
-  screening_schedule_id BIGINT PRIMARY KEY,
-  upcoming_screening_date DATE,
-  interval_type TEXT,
-  interval_value BIGINT NOT NULL
-);
 
 INSERT INTO screening_schedules(
   screening_schedule_id,

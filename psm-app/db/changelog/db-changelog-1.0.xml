@@ -1393,4 +1393,74 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-affiliations">
+    <createTable tableName="affiliations">
+      <column name="affiliation_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="is_primary"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="object_type"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="effective_at"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="target_profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="target_entity_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="qualified_professional_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_affiliations_qpt"
+          references="qualified_professional_types(code)"/>
+      </column>
+      <column name="mental_health_professional_type"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="acknowledgement_attachment_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="is_terminated"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="terminated_at"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="bgs_study_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="bgs_clearance_date"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="affiliations"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

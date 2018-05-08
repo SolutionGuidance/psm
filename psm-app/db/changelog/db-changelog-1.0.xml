@@ -1742,4 +1742,34 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-provider-type-settings">
+    <createTable tableName="provider_type_settings">
+      <column name="provider_type_setting_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="provider_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_pts_provider_types"
+          references="provider_types(code)"/>
+      </column>
+      <column name="related_entity_type"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="related_entity_code"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="relationship_type"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="events"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

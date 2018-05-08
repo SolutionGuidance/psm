@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS
-  accepted_agreements,
   affiliations,
   beneficial_owner,
   events,
@@ -680,15 +679,6 @@ INSERT INTO provider_type_license_types(
   ('68', 'AO'),
   ('68', 'AZ'),
   ('69', 'AO');
-
-CREATE TABLE accepted_agreements(
-  accepted_agreement_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  accepted_date DATE,
-  agreement_document_id BIGINT
-    REFERENCES  agreement_documents(agreement_document_id)
- ) ;
 
 CREATE TABLE screening_schedules(
   screening_schedule_id BIGINT PRIMARY KEY,

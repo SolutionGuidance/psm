@@ -1269,4 +1269,34 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-accepted-agreements">
+    <createTable tableName="accepted_agreements">
+      <column name="accepted_agreement_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="accepted_date"
+        type="date">
+        <constraints nullable="false" />
+      </column>
+      <column name="agreement_document_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_accepted_agreements_agreement_documents"
+          references="agreement_documents(agreement_document_id)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="accepted_agreements"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

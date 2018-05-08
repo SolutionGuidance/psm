@@ -1,8 +1,3 @@
-DROP TABLE IF EXISTS
-  external_account_links,
-  external_profile_links
-CASCADE;
-
 INSERT INTO roles (code, description) VALUES
   ('R1', 'Provider'),
   ('R2', 'Service Agent'),
@@ -821,13 +816,6 @@ INSERT INTO provider_type_settings (
   (100004, '41', 'LicenseType', 'M4', 'QL'),
   (100006, '41', 'LicenseType', 'H1', 'QL'),
   (100007, '41', 'LicenseType', 'H2', 'QL');
-
-CREATE TABLE external_account_links(
-  external_account_link_id BIGINT PRIMARY KEY,
-  user_id TEXT,
-  system_id TEXT,
-  external_user_id TEXT
-);
 
 CREATE TABLE external_profile_links(
   external_profile_link_id BIGINT PRIMARY KEY,

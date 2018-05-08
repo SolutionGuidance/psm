@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS
-  events,
   external_account_links,
   external_profile_links,
   pay_to_providers,
@@ -680,15 +679,6 @@ INSERT INTO screening_schedules(
   interval_value
 ) VALUES
   (1, null, null, 0);
-
-CREATE TABLE events(
-  event_id BIGINT PRIMARY KEY,
-  ticket_id BIGINT,
-  npi TEXT,
-  status TEXT,
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE
-);
 
 CREATE TABLE pay_to_providers(
   pay_to_providers_id  BIGINT PRIMARY KEY,

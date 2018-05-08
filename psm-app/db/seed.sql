@@ -1,7 +1,6 @@
 DROP TABLE IF EXISTS
   external_account_links,
-  external_profile_links,
-  provider_services
+  external_profile_links
 CASCADE;
 
 INSERT INTO roles (code, description) VALUES
@@ -822,14 +821,6 @@ INSERT INTO provider_type_settings (
   (100004, '41', 'LicenseType', 'M4', 'QL'),
   (100006, '41', 'LicenseType', 'H1', 'QL'),
   (100007, '41', 'LicenseType', 'H2', 'QL');
-
-CREATE TABLE provider_services(
-  provider_service_id BIGINT PRIMARY KEY,
-  profile_id BIGINT DEFAULT 0 NOT NULL,
-  ticket_id BIGINT DEFAULT 0 NOT NULL,
-  service_category_code CHARACTER VARYING(2)
-    REFERENCES service_categories(code)
-);
 
 CREATE TABLE external_account_links(
   external_account_link_id BIGINT PRIMARY KEY,

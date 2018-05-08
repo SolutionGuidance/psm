@@ -1772,4 +1772,32 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-provider-services">
+    <createTable tableName="provider_services">
+      <column name="provider_service_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="service_category_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_provider_services_service_categories"
+          references="service_categories(code)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_services"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

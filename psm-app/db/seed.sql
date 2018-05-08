@@ -2,7 +2,6 @@ DROP TABLE IF EXISTS
   events,
   external_account_links,
   external_profile_links,
-  notes,
   pay_to_providers,
   provider_services,
   provider_type_settings
@@ -681,15 +680,6 @@ INSERT INTO screening_schedules(
   interval_value
 ) VALUES
   (1, null, null, 0);
-
-CREATE TABLE notes(
-  note_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  note_text TEXT,
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE
-);
 
 CREATE TABLE events(
   event_id BIGINT PRIMARY KEY,

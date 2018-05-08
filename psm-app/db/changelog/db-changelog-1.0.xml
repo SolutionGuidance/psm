@@ -1628,4 +1628,36 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-notes">
+    <createTable tableName="notes">
+      <column name="note_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="note_text"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_by"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="crated_at"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="notes"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

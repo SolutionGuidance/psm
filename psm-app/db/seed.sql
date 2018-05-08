@@ -2,7 +2,6 @@ DROP TABLE IF EXISTS
   accepted_agreements,
   affiliations,
   beneficial_owner,
-  binary_contents,
   designated_contacts,
   documents,
   events,
@@ -683,11 +682,6 @@ INSERT INTO provider_type_license_types(
   ('68', 'AO'),
   ('68', 'AZ'),
   ('69', 'AO');
-
-CREATE TABLE binary_contents(
-  binary_content_id TEXT PRIMARY KEY,
-  content OID
-);
 
 CREATE TABLE documents(
   document_id BIGINT PRIMARY KEY,

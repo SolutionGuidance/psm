@@ -1321,4 +1321,76 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-licenses">
+    <createTable tableName="licenses">
+      <column name="license_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="affiliate_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="object_type"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="license_number"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="issued_at"
+        type="date">
+        <constraints nullable="false" />
+      </column>
+      <column name="expires_at"
+        type="date">
+        <constraints nullable="false" />
+      </column>
+      <column name="issuing_us_state"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="issuing_board_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_licenses_issuing_boards"
+          references="issuing_boards(code)"/>
+      </column>
+      <column name="licenses_status_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_licenses_license_statuses"
+          references="license_statuses(code)"/>
+      </column>
+      <column name="license_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_licenses_license_types"
+          references="license_types(code)"/>
+      </column>
+      <column name="specialty_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_licenses_specialty_types"
+          references="specialty_types(code)"/>
+      </column>
+      <column name="attachment_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="licenses"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

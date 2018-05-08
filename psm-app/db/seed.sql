@@ -10,7 +10,6 @@ DROP TABLE IF EXISTS
   external_profile_links,
   licenses,
   notes,
-  organizations,
   ownership_info,
   pay_to_providers,
   people,
@@ -686,26 +685,6 @@ INSERT INTO provider_type_license_types(
   ('68', 'AZ'),
   ('69', 'AO');
 
-CREATE TABLE organizations(
-  entity_id BIGINT PRIMARY KEY
-    REFERENCES entities(entity_id),
-  fein CHARACTER VARYING(10),
-  agency_id TEXT,
-  billing_same_as_primary CHARACTER VARYING(1),
-  reimbursement_same_as_primary CHARACTER VARYING(1),
-  ten99_same_as_primary CHARACTER VARYING(1),
-  billing_address_id BIGINT
-    REFERENCES addresses(address_id),
-  reimbursement_address_id BIGINT
-    REFERENCES addresses(address_id),
-  ten99_address_id BIGINT
-    REFERENCES addresses(address_id),
-  state_tax_id TEXT,
-  state_medicaid_id TEXT,
-  fiscal_year_end TEXT,
-  remittance_sequence_order TEXT,
-  eft_accepted BOOLEAN
-);
 CREATE TABLE people(
   entity_id BIGINT PRIMARY KEY
     REFERENCES entities(entity_id),

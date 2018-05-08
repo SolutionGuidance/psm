@@ -12,7 +12,6 @@ DROP TABLE IF EXISTS
   notes,
   ownership_info,
   pay_to_providers,
-  people,
   provider_statements,
   provider_services,
   provider_type_settings,
@@ -684,21 +683,6 @@ INSERT INTO provider_type_license_types(
   ('68', 'AO'),
   ('68', 'AZ'),
   ('69', 'AO');
-
-CREATE TABLE people(
-  entity_id BIGINT PRIMARY KEY
-    REFERENCES entities(entity_id),
-  prefix TEXT,
-  first_name TEXT,
-  middle_name TEXT,
-  last_name TEXT,
-  suffix TEXT,
-  ssn TEXT,
-  birth_date DATE,
-  degree_code CHARACTER VARYING(2)
-    REFERENCES degrees(code),
-  degree_award_date DATE
-);
 
 CREATE TABLE binary_contents(
   binary_content_id TEXT PRIMARY KEY,

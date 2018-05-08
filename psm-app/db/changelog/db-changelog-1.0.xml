@@ -1120,4 +1120,57 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-people">
+    <createTable tableName="people">
+      <column name="entity_id"
+        type="bigint">
+        <constraints primaryKey="true"
+          foreignKeyName="fk_organizations_entities"
+          references="entities(entity_id)"/>
+      </column>
+      <column name="prefix"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="first_name"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="middle_name"
+        type="text">
+      </column>
+      <column name="last_name"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="suffix"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="ssn"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="birth_date"
+        type="date">
+        <constraints nullable="false" />
+      </column>
+      <column name="degree_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_people_degrees"
+          references="degrees(code)"/>
+      </column>
+      <column name="degree_award_date"
+        type="date">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="people"/>
+    </rollback>
+  </changeSet>
+
+
+
 </databaseChangeLog>

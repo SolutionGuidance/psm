@@ -816,10 +816,3 @@ INSERT INTO provider_type_settings (
   (100004, '41', 'LicenseType', 'M4', 'QL'),
   (100006, '41', 'LicenseType', 'H1', 'QL'),
   (100007, '41', 'LicenseType', 'H2', 'QL');
-
-CREATE TABLE external_profile_links(
-  external_profile_link_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  system_id TEXT,
-  external_profile_id TEXT
-);

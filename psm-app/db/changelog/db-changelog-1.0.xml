@@ -1824,4 +1824,28 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-external-profile-links">
+    <createTable tableName="external_profile_links">
+      <column name="external_profile_link_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="system_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="external_profile_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="external_profile_links"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

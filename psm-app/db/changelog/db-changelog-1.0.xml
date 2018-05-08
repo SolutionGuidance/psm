@@ -1463,4 +1463,40 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-ownership-info">
+    <createTable tableName="ownership_info">
+      <column name="ownership_info_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="entity_structure_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_ownership_info_est"
+          references="entity_structure_types(code)"/>
+      </column>
+      <column name="entity_structure_subtype_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_ownership_info_est_sub"
+          references="entity_structure_types(code)"/>
+      </column>
+      <column name="other_entity_type_desc"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="ownership_info"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

@@ -1499,4 +1499,101 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-beneficial-owner">
+    <createTable tableName="beneficial_owner">
+      <column name="beneficial_owner_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="person_ind"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ben_type_cd"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_beneficial_owner_bot"
+          references="beneficial_owner_types(code)"/>
+      </column>
+      <column name="oth_type_desc"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="own_interest_pct"
+        type="float">
+        <constraints nullable="false"/>
+      </column>
+      <column name="address_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_beneficial_owner_address"
+          references="addresses(address_id)"/>
+      </column>
+      <column name="oth_provider_interest_ind"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="oth_provider_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="oth_provider_own_pct"
+        type="float">
+        <constraints nullable="false"/>
+      </column>
+      <column name="oth_provider_address_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_beneficial_owner_provider_address"
+          references="addresses(address_id)"/>
+      </column>
+      <column name="middle_name"
+        type="text">
+      </column>
+      <column name="first_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ssn"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="birth_dt"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="hired_at"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="relationship_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_beneficial_owner_relationship_types"
+          references="relationship_types(code)"/>
+      </column>
+      <column name="ownership_info_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_beneficial_owner_ownership_info"
+          references="ownership_info(ownership_info_id)"/>
+      </column>
+      <column name="fein"
+        type="varchar(20)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="legal_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="beneficial_owner"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS
-  beneficial_owner,
   events,
   external_account_links,
   external_profile_links,
@@ -683,43 +682,6 @@ INSERT INTO screening_schedules(
   interval_value
 ) VALUES
   (1, null, null, 0);
-
-CREATE TABLE beneficial_owner (
-  beneficial_owner_id       BIGINT PRIMARY KEY,
-  person_ind                CHARACTER VARYING(1),
-  ben_type_cd               CHARACTER VARYING(2)
-    REFERENCES beneficial_owner_types (code),
-  oth_type_desc             TEXT,
-  own_interest_pct          FLOAT,
-  address_id                BIGINT
-    REFERENCES addresses (address_id),
-  oth_provider_interest_ind TEXT,
-  oth_provider_name         TEXT,
-  oth_provider_own_pct      FLOAT,
-  oth_provider_address_id   BIGINT
-    REFERENCES addresses(address_id),
-  middle_name               TEXT,
-  first_name                TEXT,
-  last_name                 TEXT,
-  ssn                       TEXT,
-  birth_dt                  DATE,
-  hired_at                  DATE,
-  relationship_type_code    CHARACTER VARYING(2)
-    REFERENCES relationship_types (code),
-  ownership_info_id         BIGINT
-    REFERENCES ownership_info(ownership_info_id),
-  fein                      CHARACTER VARYING(20),
-  legal_name                TEXT
-);
-
-CREATE TABLE provider_statements(
-  provider_statement_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  name TEXT,
-  title TEXT,
-  "date" DATE
-);
 
 CREATE TABLE notes(
   note_id BIGINT PRIMARY KEY,

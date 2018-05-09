@@ -28,29 +28,67 @@
                 Review
               </a>
             </c:if>
-            <span>LEIE Automatic Screening Log</span>
+            <span>Results from Automatic LEIE Screening</span>
           </div>
-          <h1>Automatic Screening Log</h1>
+          <h1>Results from Automatic LEIE Screening</h1>
           <div class="tabSection" id="enrollmentSection">
             <div class="detailPanel">
-              <div>
+
+              <c:choose>
+                <c:when test="${screening_result == 'ERROR'}">
+                  <div class="row screeningResult">
+                    A connection error occurred.
+                  </div>
+                  <div class="row">
+                    <strong>
+                      <a
+                        href="javascript:alert('Retrying the LEIE screening has not been implemented yet.');">
+                        Retry the automatic LEIE screening</a>
+                      or
+                      <a href="https://exclusions.oig.hhs.gov/">
+                        search the LEIE manually</a>.
+                    </strong>
+                  </div>
+                </c:when>
+                <c:when test="${screening_result == 'PASS'}">
+                  <div class="row screeningResultPass">
+                    This provider does not appear in the LEIE and may be
+                    approved.
+                  </div>
+                </c:when>
+                <c:otherwise>
+                  <div class="row screeningResultFail">
+                    This provider appears in the LEIE and should be rejected.
+                  </div>
+                </c:otherwise>
+              </c:choose>
+
+              <div class="row">
                 Screening result:
                 <span class="screening-result">${screening_result}</span>
               </div>
-              <div>
+              <div class="row">
                 Checked at:
                 <span class="screening-date">
                   ${screening_date}
                 </span>
               </div>
-              <div>
+              <div class="row">
                 NPI searched:
                 <span class="search-term">
                   ${search_term}
                 </span>
               </div>
-              <div class="matched-exclusions">
-                <div>There were ${fn:length(exclusions)} matches.</div>
+              <div class="row matched-exclusions">
+                <c:set var="count" value="${fn:length(exclusions)}" />
+                <c:choose>
+                  <c:when test="${count == 1}">
+                    <div>There was ${count} match.</div>
+                  </c:when>
+                  <c:otherwise>
+                    <div>There were ${count} matches.</div>
+                  </c:otherwise>
+                </c:choose>
                 <c:forEach var="exclusion" items="${exclusions}">
                   <hr>
                   <h:leie_exclusion exclusion="${exclusion}"/>

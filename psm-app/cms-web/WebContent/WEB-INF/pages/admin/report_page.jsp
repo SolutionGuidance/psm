@@ -24,6 +24,19 @@
           <div>
             This page is a work-in-progress placeholder.
           </div>
+          <hr>
+          <h2>Applications Approved and Denied</h2>
+          <form action="${ctx}/admin/report/enrollmentapproval.csv">
+            <div>
+              <span class="dateWrapper">
+                <input name="startDate" id="startDate" title="Date Start" class="date" type="text" readonly="readonly"/>
+              </span>
+              <span class="dateWrapper">
+                <input name="endDate" id="endDate" title="Date End" class="date" type="text" readonly="readonly"/>
+              </span>
+            </div>
+            <input type="submit" value="Generate CSV"/>
+          </form>
           <!-- /.section -->
         </div>
       </div>

@@ -23,7 +23,9 @@
             <div class="detailPanel">
               <div class="row"><h3>Select a Report</h3></div>
               <div class="row">
-                <a href="${ctx}/admin/reports/applications-by-reviewer/">
+                <a href="${ctx}/admin/reports/applications-by-reviewer/"
+                  class="applicationsByReviewerLink"
+                >
                   Applications by Reviewer
                 </a>
               </div>

@@ -8,8 +8,8 @@ public class ReportSteps {
     private ReportPage reportPage;
 
     @Step
-    public void downloadApplicationsApprovedReport() {
-        reportPage.downloadApplicationsApprovedReport();
+    public void downloadApplicationsByReviewerReport() {
+        reportPage.click$(".downloadApplicationsByReviewerButton");
     }
 
     @Step

@@ -40,7 +40,7 @@ public class ApplicationsApprovedReportController extends gov.medicaid.controlle
         }
     }
 
-    @RequestMapping(value = "/admin/report/enrollmentapproval.csv", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/reports/enrollmentapproval.csv", method = RequestMethod.GET)
     public void getEnrollments(
         @RequestParam(value = "startDate", required = false) Date startDate,
         @RequestParam(value = "endDate", required = false) Date endDate,

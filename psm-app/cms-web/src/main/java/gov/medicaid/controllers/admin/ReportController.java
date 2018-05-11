@@ -11,12 +11,4 @@ public class ReportController {
     public ModelAndView viewReports() {
         return new ModelAndView("admin/reports/reports");
     }
-
-    @RequestMapping(
-            value = "/admin/reports/applications-by-reviewer",
-            method = RequestMethod.GET
-    )
-    public ModelAndView viewApprovedDenied() {
-        return new ModelAndView("admin/reports/applications_by_reviewer");
-    }
 }

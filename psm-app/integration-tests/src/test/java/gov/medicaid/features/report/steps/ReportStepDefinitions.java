@@ -33,6 +33,26 @@ public class ReportStepDefinitions {
         reportSteps.downloadApplicationsByReviewerReport();
     }
 
+    @Given("^I search for applications by reviewer between '([^']*)' and '([^']*)'$")
+    public void i_search_for_applications_by_reviewer_between_and(String d1, String d2) throws Exception {
+        reportSteps.searchApplicationsInReviewBetween(d1, d2);
+    }
+
+    @Given("^I search for applications by reviewer$")
+    public void i_search_for_applications_by_reviewer() throws Exception {
+        reportSteps.searchApplicationsInReview();
+    }
+
+    @Then("^I should see no results message$")
+    public void i_should_see_no_results_message() throws Exception {
+        reportSteps.checkNoApplicationsByReviewerResults();
+    }
+
+    @Then("^I should see results$")
+    public void i_should_see_results() throws Exception {
+        reportSteps.checkApplicationsByReviewerHasResults();
+    }
+
     @Then("^I should see the reports page$")
     public void i_should_see_the_reports_page() {
         reportSteps.checkOnReportPage();
@@ -63,5 +83,4 @@ public class ReportStepDefinitions {
     public void i_should_have_no_errors() throws Exception {
         generalSteps.hasNoServerError();
     }
-
 }

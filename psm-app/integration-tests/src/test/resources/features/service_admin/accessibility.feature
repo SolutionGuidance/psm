@@ -66,8 +66,3 @@ Feature: General Accessibility Checks for Admins
     Given I am logged in as an admin
     And I am on the Screening Log page
     Then I should have no accessibility issues
-
-  Scenario: Reports Accessible
-    Given I am logged in as an admin
-    And I am on the reports page
-    Then I should have no accessibility issues

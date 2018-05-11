@@ -3,7 +3,6 @@
 <html lang="en-US">
   <c:set var="title" value="Reports"/>
   <c:set var="adminPage" value="true" />
-  <c:set var="includeD3" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -20,24 +19,18 @@
           <div class="head">
             <h1 class="text">Reports</h1>
           </div>
-          <div class="clearFixed"></div>
-          <div>
-            This page is a work-in-progress placeholder.
-          </div>
-          <hr>
-          <h2>Applications Approved and Denied</h2>
-          <form action="${ctx}/admin/report/enrollmentapproval.csv">
-            <div>
-              <span class="dateWrapper">
-                <input name="startDate" id="startDate" title="Date Start" class="date" type="text" readonly="readonly"/>
-              </span>
-              <span class="dateWrapper">
-                <input name="endDate" id="endDate" title="Date End" class="date" type="text" readonly="readonly"/>
-              </span>
+          <div class="tabSection">
+            <div class="detailPanel">
+              <div class="row"><h3>Select a Report</h3></div>
+              <div class="row">
+                <a href="${ctx}/admin/reports/applications-by-reviewer/"
+                  class="applicationsByReviewerLink"
+                >
+                  Applications by Reviewer
+                </a>
+              </div>
             </div>
-            <input type="submit" value="Generate CSV"/>
-          </form>
-          <!-- /.section -->
+          </div>
         </div>
       </div>
       <!-- /#mainContent -->

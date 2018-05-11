@@ -11,8 +11,4 @@ public class ReportPage extends PsmPage {
         String headerText = $("#wrapper h1.text").getText();
         assertThat(headerText).contains("Reports");
     }
-
-    public void downloadApplicationsApprovedReport() {
-        click($("#wrapper form input[type=\"submit\"]"));
-    }
 }

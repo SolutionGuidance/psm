@@ -27,6 +27,9 @@
               class="downloadDraftApplications"
             >Download this report</a>
           </div>
+
+          <div id="draftApplicationsLineGraph"></div>
+
           <div class="reportTable dashboardPanel">
             <c:forEach var="enrollmentMonth" items="${enrollmentMonths}">
               <div class="tableData">
@@ -69,7 +72,5 @@
     <!-- /#wrapper -->
   </body>
 
-  <script>
-    var reportInformation = reportTableToJson($(".reportTable"));
-  </script>
+  <script src="${ctx}/js/admin/draftsReport.js"></script>
 </html>

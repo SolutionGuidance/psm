@@ -137,15 +137,6 @@ $(document).ready(function () {
   //		$(this).next('.ui-datepicker-trigger').click();
   //	});
 
-  $("input.date").mask("00/00/0000");
-  $("input.ssnMasked").mask("000-00-0000");
-  $("input.npiMasked").mask("0000000000");
-  $("input.umpiMasked").mask("AAAAAAAAAA");
-  $("input.feinMasked").mask("00-0000000");
-  $("input.taxIdMasked").mask("0000000");
-  $("input.countyMask").mask("000");
-  $("input.fiscalMonthInput, input.fiscalYearInput").mask("00");
-
   //	$('.ui-datepicker-trigger').attr('alt','').attr('title','');
 
   $('.filterBtn').live('click', function () {

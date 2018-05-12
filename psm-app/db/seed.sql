@@ -1,82 +1,9 @@
-DROP TABLE IF EXISTS
-  accepted_agreements,
-  addresses,
-  affiliations,
-  agreement_documents,
-  audit_details,
-  audit_records,
-  beneficial_owner,
-  beneficial_owner_types,
-  binary_contents,
-  categories_of_service,
-  cms_authentication,
-  cms_user,
-  contacts,
-  counties,
-  degrees,
-  designated_contacts,
-  documents,
-  enrollment_statuses,
-  enrollments,
-  entities,
-  entity_structure_types,
-  events,
-  external_account_links,
-  external_profile_links,
-  help_items,
-  issuing_boards,
-  license_statuses,
-  license_types,
-  licenses,
-  notes,
-  organizations,
-  ownership_info,
-  pay_to_provider_types,
-  pay_to_providers,
-  people,
-  profile_statuses,
-  provider_approved_categories_of_service,
-  provider_category_of_service_approvals,
-  provider_profiles,
-  provider_statements,
-  provider_services,
-  provider_type_agreement_documents,
-  provider_type_license_types,
-  provider_type_settings,
-  provider_types,
-  qualified_professional_types,
-  relationship_types,
-  request_types,
-  risk_levels,
-  roles,
-  screening_schedules,
-  sent_notifications,
-  service_categories,
-  specialty_types,
-  states
-CASCADE;
-
-CREATE TABLE roles (
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO roles (code, description) VALUES
   ('R1', 'Provider'),
   ('R2', 'Service Agent'),
   ('R3', 'Service Administrator'),
   ('R4', 'System Administrator');
 
-CREATE TABLE cms_user (
-  user_id TEXT PRIMARY KEY,
-  username TEXT UNIQUE NOT NULL,
-  first_name TEXT,
-  middle_name TEXT,
-  last_name TEXT,
-  phone_number TEXT,
-  email TEXT,
-  status TEXT,
-  role_code CHARACTER VARYING(2) REFERENCES roles(code)
-);
 INSERT INTO cms_user (
   user_id,
   username,
@@ -90,10 +17,6 @@ INSERT INTO cms_user (
   ('ADMIN', 'admin', 'admin', 'admin', 'admin@example.com', 'ACTIVE', 'R3'),
   ('SYSTEM', 'system', 'system', 'system', 'system@example.com', 'ACTIVE', 'R4');
 
-CREATE TABLE cms_authentication(
-  username TEXT PRIMARY KEY,
-  password TEXT NOT NULL
-);
 INSERT INTO cms_authentication (username, password) VALUES
   (
     'admin',
@@ -114,42 +37,12 @@ INSERT INTO cms_authentication (username, password) VALUES
     '98181be881581e6edbe84e40cd48d42c4ce5959af990fab2e6644397deed0135a8e9aea50c'
   );
 
-CREATE TABLE audit_records(
-  audit_record_id BIGINT PRIMARY KEY,
-  action TEXT,
-  date TIMESTAMP WITH TIME ZONE,
-  system_id TEXT,
-  username TEXT
-);
-CREATE TABLE audit_details(
-  audit_detail_id BIGINT PRIMARY KEY,
-  audit_record_id BIGINT NOT NULL REFERENCES audit_records(audit_record_id),
-  table_name TEXT,
-  column_name TEXT,
-  old_value TEXT,
-  new_value TEXT
-);
-CREATE TABLE help_items(
-  help_item_id BIGINT PRIMARY KEY,
-  title TEXT,
-  description TEXT
-);
-
-CREATE TABLE qualified_professional_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO qualified_professional_types (code, description) VALUES
   ('01', 'Registered Nurse'),
   ('02', 'Licensed Social Worker'),
   ('03', 'Mental Health Professional'),
   ('04', 'Qualified Developmental Disability Specialist');
 
-CREATE TABLE provider_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE,
-  applicant_type TEXT NOT NULL DEFAULT 'INDIVIDUAL'
-);
 INSERT INTO provider_types(code, description, applicant_type) VALUES
   ('01', 'Audiologist', 'INDIVIDUAL'),
   ('02', 'Optometrist', 'INDIVIDUAL'),
@@ -230,19 +123,11 @@ INSERT INTO provider_types(code, description, applicant_type) VALUES
   ('77', 'Medical Transportation', 'ORGANIZATION'),
   ('78', 'Billing Entity for Physician Services', 'ORGANIZATION');
 
-CREATE TABLE profile_statuses(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO profile_statuses (code, description) VALUES
   ('01', 'Active'),
   ('02', 'Suspended'),
   ('03', 'Expired');
 
-CREATE TABLE entity_structure_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO entity_structure_types (code, description) VALUES
   ('01', 'Sole Proprietorship'),
   ('02', 'Partnership'),
@@ -254,10 +139,6 @@ INSERT INTO entity_structure_types (code, description) VALUES
   ('08', 'Professional Association'),
   ('99', 'Other');
 
-CREATE TABLE issuing_boards(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO issuing_boards (code, description) VALUES
   ('B1', 'AANA'),
   ('B2', 'NARM'),
@@ -267,28 +148,16 @@ INSERT INTO issuing_boards (code, description) VALUES
   ('B6', 'ABMS'),
   ('B7', 'ABPS');
 
-CREATE TABLE license_statuses(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO license_statuses (code, description) VALUES
   ('01', 'Active'),
   ('02', 'Suspended'),
   ('03', 'Expired');
 
-CREATE TABLE pay_to_provider_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO pay_to_provider_types(code, description) VALUES
   ('01', 'Claim'),
   ('02', 'ERA'),
   ('03', 'Both');
 
-CREATE TABLE categories_of_service (
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO categories_of_service (code, description) VALUES
   ('01', 'AC Transportation'),
   ('02', 'Home Delivered Meals'),
@@ -317,11 +186,6 @@ INSERT INTO categories_of_service (code, description) VALUES
   ('25', 'Foster Care Services'),
   ('26', 'Waiver Transportation');
 
-
-CREATE TABLE service_categories (
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO service_categories (code, description) VALUES
   ('01', 'AC Transportation'),
   ('02', 'Home Delivered Meals'),
@@ -350,10 +214,6 @@ INSERT INTO service_categories (code, description) VALUES
   ('25', 'Foster Care Services'),
   ('26', 'Waiver Transportation');
 
-CREATE TABLE counties (
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO counties (code, description) VALUES
   ('01', 'Aitkin'),
   ('02', 'Anoka'),
@@ -443,11 +303,6 @@ INSERT INTO counties (code, description) VALUES
   ('86', 'Wright'),
   ('87', 'Yellow');
 
-CREATE TABLE beneficial_owner_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE,
-  owner_type CHARACTER VARYING(1)
-);
 INSERT INTO beneficial_owner_types (code, owner_type, description) VALUES
   ('01', 'A', 'Subcontractor'),
   ('02', 'P', 'Managing Employee'),
@@ -457,56 +312,27 @@ INSERT INTO beneficial_owner_types (code, owner_type, description) VALUES
   ('06', 'P', 'Managing Director'),
   ('99', 'A', 'Other');
 
-CREATE TABLE risk_levels(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  sort_index INTEGER UNIQUE NOT NULL,
-  description TEXT UNIQUE
-);
 INSERT INTO risk_levels (code, sort_index, description) VALUES
   ('01', 1, 'Limited'),
   ('02', 2, 'Moderate'),
   ('03', 3, 'High');
 
-CREATE TABLE degrees(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO degrees(CODE, DESCRIPTION) VALUES
   ('D1', 'MASTERS'),
   ('D2', 'DOCTORATE');
 
-CREATE TABLE relationship_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO relationship_types (CODE, DESCRIPTION) VALUES
   ('01', 'Spouse'),
   ('02', 'Child'),
   ('03', 'Parent'),
   ('04', 'Sibling');
 
-CREATE TABLE sent_notifications(
-  notification_id BIGINT PRIMARY KEY,
-  notification_type TEXT NOT NULL,
-  sent_to TEXT NOT NULL,
-  notification_content TEXT NOT NULL,
-  sent_at TIMESTAMP WITH TIME ZONE NOT NULL
-);
-
-CREATE TABLE enrollment_statuses(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO enrollment_statuses (code, description) VALUES
   ('01', 'Draft'),
   ('02', 'Pending'),
   ('03', 'Rejected'),
   ('04', 'Approved');
 
-CREATE TABLE license_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO license_types (code, description) VALUES
   ('A0', 'Background Study'),
   ('A1', 'Head Start Agency Certification'),
@@ -580,11 +406,6 @@ INSERT INTO license_types (code, description) VALUES
   ('N4', 'Psychologist'),
   ('N5', 'Physician');
 
-CREATE TABLE specialty_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE,
-  sub_category CHARACTER VARYING(2)
-);
 INSERT INTO specialty_types (code, description) VALUES
   ('01', 'Allergy'),
   ('02', 'Anesthesiology'),
@@ -664,10 +485,6 @@ INSERT INTO specialty_types (code, description, sub_category) VALUES
   ('US', 'Upper Sioux Indian Reservation', 'TC'),
   ('WE', 'White Earth Indian Reservation', 'TC');
 
-CREATE TABLE request_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO request_types (code, description) VALUES
   ('01', 'Import Profile'),
   ('02', 'Enrollment'),
@@ -675,10 +492,6 @@ INSERT INTO request_types (code, description) VALUES
   ('04', 'Suspend'),
   ('05', 'Update');
 
-CREATE TABLE states (
-   code CHARACTER VARYING(2) PRIMARY KEY,
-   description TEXT UNIQUE
-);
 INSERT INTO states (code, description) VALUES
   ('AK', 'Alaska'),
   ('AL', 'Alabama'),
@@ -732,78 +545,6 @@ INSERT INTO states (code, description) VALUES
   ('WV', 'West Virginia'),
   ('WY', 'Wyoming');
 
-CREATE TABLE provider_profiles(
-  control_no BIGINT PRIMARY KEY,
-  profile_id BIGINT NOT NULL DEFAULT 0,
-  ticket_id BIGINT NOT NULL DEFAULT 0,
-  effective_date DATE,
-  profile_status_code CHARACTER VARYING(2)
-    REFERENCES profile_statuses(code),
-  works_on_reservation CHARACTER VARYING(1),
-  maintains_own_private_practice CHARACTER VARYING(1),
-  employed_or_contracted_by_group CHARACTER VARYING(1),
-  criminal_conviction CHARACTER VARYING(1),
-  civil_penalty CHARACTER VARYING(1),
-  previous_exclusion CHARACTER VARYING(1),
-  employee_criminal_conviction CHARACTER VARYING(1),
-  employee_civil_penalty CHARACTER VARYING(1),
-  employee_previous_exclusion CHARACTER VARYING(1),
-  adult CHARACTER VARYING(1),
-  county TEXT,
-  employed_since_clearance CHARACTER VARYING(1),
-  risk_level_code CHARACTER VARYING(2)
-    REFERENCES risk_levels(code),
-  bed_count INTEGER,
-  bed_count_title_18 INTEGER,
-  bed_count_title_19 INTEGER,
-  bed_count_dual_certified INTEGER,
-  bed_count_icf INTEGER,
-  bed_count_effective_date DATE,
-  physical_and_occupational_therapy CHARACTER VARYING(1),
-  reference_ticket_id BIGINT NOT NULL DEFAULT 0,
-  owner_id TEXT,
-  form_completed_by TEXT,
-  health_board CHARACTER VARYING(1),
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE,
-  last_modified_by TEXT,
-  last_modified_at TIMESTAMP WITH TIME ZONE
-);
-
-CREATE TABLE provider_category_of_service_approvals(
-  provider_category_of_service_approval_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  start_date DATE,
-  end_date DATE
-);
-CREATE TABLE provider_approved_categories_of_service(
-  provider_category_of_service_approval_id BIGINT
-    REFERENCES provider_category_of_service_approvals(provider_category_of_service_approval_id),
-  category_of_service_code CHARACTER VARYING(2)
-    REFERENCES categories_of_service(code)
-);
-
-CREATE TABLE addresses(
-  address_id BIGINT PRIMARY KEY,
-  attention_line TEXT,
-  address_line_1 TEXT,
-  address_line_2 TEXT,
-  city TEXT,
-  state TEXT,
-  zip_code TEXT,
-  county TEXT
-);
-
-CREATE TABLE agreement_documents(
-  agreement_document_id BIGINT PRIMARY KEY,
-  type TEXT,
-  title TEXT,
-  version INTEGER,
-  body TEXT,
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE
-);
 INSERT INTO agreement_documents (
   agreement_document_id,
   type,
@@ -817,41 +558,6 @@ INSERT INTO agreement_documents (
   (2, '02', 'Addendum (2)', 0, 'This is the content of the addendum.', 'system', NOW()),
   (3, '01', 'Child And Teen Checkup Agreement (DHS-4646)', 0, 'This is a required document.', 'system', NOW());
 
-CREATE TABLE contacts(
-  contact_id BIGINT PRIMARY KEY,
-  phone_number TEXT,
-  fax_number TEXT,
-  email TEXT,
-  address_id BIGINT
-    REFERENCES addresses(address_id)
-);
-
-CREATE TABLE enrollments(
-  enrollment_id BIGINT PRIMARY KEY,
-  enrollment_status_code CHARACTER VARYING(2)
-    REFERENCES enrollment_statuses(code),
-  request_type_code CHARACTER VARYING(2)
-    REFERENCES request_types(code),
-  process_instance_id BIGINT NOT NULL DEFAULT 0,
-  profile_reference_id BIGINT NOT NULL DEFAULT 0,
-  reference_timestamp TIMESTAMP WITH TIME ZONE,
-  progress_page TEXT,
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE,
-  submitted_by TEXT,
-  submitted_at TIMESTAMP WITH TIME ZONE,
-  changed_by TEXT,
-  changed_at TIMESTAMP WITH TIME ZONE,
-  change_note TEXT
-);
-
-CREATE TABLE provider_type_agreement_documents(
-  provider_type_code CHARACTER VARYING(2)
-    REFERENCES provider_types(code),
-  agreement_document_id BIGINT
-    REFERENCES agreement_documents(agreement_document_id),
-  PRIMARY KEY (provider_type_code, agreement_document_id)
-);
 INSERT INTO provider_type_agreement_documents (
   provider_type_code,
   agreement_document_id
@@ -859,13 +565,6 @@ INSERT INTO provider_type_agreement_documents (
   ('18', 1),
   ('54', 3);
 
-CREATE TABLE provider_type_license_types(
-  provider_type_code CHARACTER VARYING(2)
-    REFERENCES provider_types(code),
-  license_type_code CHARACTER VARYING(2)
-    REFERENCES license_types(code),
-  PRIMARY KEY (provider_type_code, license_type_code)
-);
 INSERT INTO provider_type_license_types(
   provider_type_code,
   license_type_code
@@ -965,104 +664,6 @@ INSERT INTO provider_type_license_types(
   ('68', 'AZ'),
   ('69', 'AO');
 
-CREATE TABLE entities(
-  entity_id BIGINT PRIMARY KEY,
-  enrolled CHARACTER VARYING(1),
-  profile_id BIGINT NOT NULL,
-  ticket_id BIGINT,
-  name TEXT,
-  legal_name TEXT,
-  legacy_indicator CHARACTER VARYING(1),
-  legacy_id TEXT,
-  npi TEXT,
-  nonexclusion_verified CHARACTER VARYING(1),
-  provider_type_code CHARACTER VARYING(2)
-    REFERENCES provider_types(code),
-  provider_sub_type TEXT,
-  contact_id BIGINT
-    REFERENCES contacts(contact_id),
-  background_study_id TEXT,
-  background_clearance_date TIMESTAMP WITH TIME ZONE
-);
-CREATE TABLE organizations(
-  entity_id BIGINT PRIMARY KEY
-    REFERENCES entities(entity_id),
-  fein CHARACTER VARYING(10),
-  agency_id TEXT,
-  billing_same_as_primary CHARACTER VARYING(1),
-  reimbursement_same_as_primary CHARACTER VARYING(1),
-  ten99_same_as_primary CHARACTER VARYING(1),
-  billing_address_id BIGINT
-    REFERENCES addresses(address_id),
-  reimbursement_address_id BIGINT
-    REFERENCES addresses(address_id),
-  ten99_address_id BIGINT
-    REFERENCES addresses(address_id),
-  state_tax_id TEXT,
-  state_medicaid_id TEXT,
-  fiscal_year_end TEXT,
-  remittance_sequence_order TEXT,
-  eft_accepted BOOLEAN
-);
-CREATE TABLE people(
-  entity_id BIGINT PRIMARY KEY
-    REFERENCES entities(entity_id),
-  prefix TEXT,
-  first_name TEXT,
-  middle_name TEXT,
-  last_name TEXT,
-  suffix TEXT,
-  ssn TEXT,
-  birth_date DATE,
-  degree_code CHARACTER VARYING(2)
-    REFERENCES degrees(code),
-  degree_award_date DATE
-);
-
-CREATE TABLE binary_contents(
-  binary_content_id TEXT PRIMARY KEY,
-  content OID
-);
-
-CREATE TABLE documents(
-  document_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  "type" TEXT,
-  filename TEXT,
-  description TEXT,
-  binary_content_id TEXT,
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE
-);
-
-CREATE TABLE designated_contacts(
-  designated_contact_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  designated_contact_type TEXT,
-  same_as_provider CHARACTER VARYING(1),
-  hired_at DATE,
-  person_id BIGINT
-    REFERENCES people(entity_id)
-);
-
-CREATE TABLE accepted_agreements(
-  accepted_agreement_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  accepted_date DATE,
-  agreement_document_id BIGINT
-    REFERENCES  agreement_documents(agreement_document_id)
- ) ;
-
-CREATE TABLE screening_schedules(
-  screening_schedule_id BIGINT PRIMARY KEY,
-  upcoming_screening_date DATE,
-  interval_type TEXT,
-  interval_value BIGINT NOT NULL
-);
-
 INSERT INTO screening_schedules(
   screening_schedule_id,
   upcoming_screening_date,
@@ -1071,134 +672,6 @@ INSERT INTO screening_schedules(
 ) VALUES
   (1, null, null, 0);
 
-CREATE TABLE licenses(
-  license_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  affiliate_id BIGINT,
-  object_type TEXT,
-  license_number TEXT,
-  issued_at DATE,
-  expires_at DATE,
-  issuing_us_state TEXT,
-  issuing_board_code CHARACTER VARYING(2)
-    REFERENCES issuing_boards(code),
-  license_status_code CHARACTER VARYING(2)
-    REFERENCES license_statuses(code),
-  license_type_code CHARACTER VARYING(2)
-    REFERENCES license_types(code),
-  specialty_type_code CHARACTER VARYING(2)
-    REFERENCES specialty_types(code),
-  attachment_id BIGINT
-);
-
-CREATE TABLE affiliations(
-  affiliation_id BIGINT PRIMARY KEY,
-  is_primary CHARACTER VARYING(1),
-  profile_id BIGINT,
-  object_type TEXT,
-  ticket_id BIGINT,
-  effective_at DATE,
-  target_profile_id BIGINT,
-  target_entity_id BIGINT,
-  qualified_professional_type_code CHARACTER VARYING(2)
-    REFERENCES qualified_professional_types(code),
-  mental_health_professional_type TEXT,
-  acknowledgement_attachment_id TEXT,
-  is_terminated CHARACTER VARYING(1),
-  terminated_at DATE,
-  bgs_study_id TEXT,
-  bgs_clearance_date DATE
-);
-
-CREATE TABLE ownership_info (
-  ownership_info_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  entity_structure_type_code CHARACTER VARYING(2)
-    REFERENCES entity_structure_types(code),
-  entity_structure_subtype_code CHARACTER VARYING(2)
-    REFERENCES entity_structure_types(code),
-  other_entity_type_desc TEXT
-);
-
-CREATE TABLE beneficial_owner (
-  beneficial_owner_id       BIGINT PRIMARY KEY,
-  person_ind                CHARACTER VARYING(1),
-  ben_type_cd               CHARACTER VARYING(2)
-    REFERENCES beneficial_owner_types (code),
-  oth_type_desc             TEXT,
-  own_interest_pct          FLOAT,
-  address_id                BIGINT
-    REFERENCES addresses (address_id),
-  oth_provider_interest_ind TEXT,
-  oth_provider_name         TEXT,
-  oth_provider_own_pct      FLOAT,
-  oth_provider_address_id   BIGINT
-    REFERENCES addresses(address_id),
-  middle_name               TEXT,
-  first_name                TEXT,
-  last_name                 TEXT,
-  ssn                       TEXT,
-  birth_dt                  DATE,
-  hired_at                  DATE,
-  relationship_type_code    CHARACTER VARYING(2)
-    REFERENCES relationship_types (code),
-  ownership_info_id         BIGINT
-    REFERENCES ownership_info(ownership_info_id),
-  fein                      CHARACTER VARYING(20),
-  legal_name                TEXT
-);
-
-CREATE TABLE provider_statements(
-  provider_statement_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  name TEXT,
-  title TEXT,
-  "date" DATE
-);
-
-CREATE TABLE notes(
-  note_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  note_text TEXT,
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE
-);
-
-CREATE TABLE events(
-  event_id BIGINT PRIMARY KEY,
-  ticket_id BIGINT,
-  npi TEXT,
-  status TEXT,
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE
-);
-
-CREATE TABLE pay_to_providers(
-  pay_to_providers_id  BIGINT PRIMARY KEY,
-  effective_date DATE,
-  pay_to_type_code CHARACTER VARYING(2)
-    REFERENCES pay_to_provider_types(code),
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  target_profile_id BIGINT,
-  name TEXT,
-  contact_name TEXT,
-  npi TEXT,
-  phone TEXT
-);
-
-CREATE TABLE provider_type_settings (
-  provider_type_setting_id INTEGER PRIMARY KEY,
-  provider_type_code CHARACTER VARYING(2) NOT NULL
-    REFERENCES provider_types(code),
-  related_entity_type TEXT NOT NULL,
-  related_entity_code TEXT NOT NULL,
-  relationship_type TEXT NOT NULL
-);
 INSERT INTO provider_type_settings (
   provider_type_setting_id,
   provider_type_code,
@@ -1343,25 +816,3 @@ INSERT INTO provider_type_settings (
   (100004, '41', 'LicenseType', 'M4', 'QL'),
   (100006, '41', 'LicenseType', 'H1', 'QL'),
   (100007, '41', 'LicenseType', 'H2', 'QL');
-
-CREATE TABLE provider_services(
-  provider_service_id BIGINT PRIMARY KEY,
-  profile_id BIGINT DEFAULT 0 NOT NULL,
-  ticket_id BIGINT DEFAULT 0 NOT NULL,
-  service_category_code CHARACTER VARYING(2)
-    REFERENCES service_categories(code)
-);
-
-CREATE TABLE external_account_links(
-  external_account_link_id BIGINT PRIMARY KEY,
-  user_id TEXT,
-  system_id TEXT,
-  external_user_id TEXT
-);
-
-CREATE TABLE external_profile_links(
-  external_profile_link_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  system_id TEXT,
-  external_profile_id TEXT
-);

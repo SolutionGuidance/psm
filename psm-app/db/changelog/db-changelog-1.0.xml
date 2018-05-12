@@ -14,25 +14,1837 @@
 
   <changeSet author="" id="issue254-create-table-persistent-logins-table">
     <createTable tableName="persistent_logins">
-        <column name="series"
-          type="varchar(64)">
-          <constraints primaryKey="true"/>
-        </column>
-        <column name="username"
-          type="varchar(64)">
-          <constraints nullable="false"/>
-        </column>
-        <column name="token"
-          type="varchar(64)">
-          <constraints nullable="false"/>
-        </column>
-        <column name="last_used"
-          type="timestamp with time zone">
-          <constraints nullable="false"/>
-        </column>
+      <column name="series"
+        type="varchar(64)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="username"
+        type="varchar(64)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="token"
+        type="varchar(64)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_used"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
     </createTable>
     <rollback>
       <dropTable tableName="persistent_logins"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-roles">
+    <createTable tableName="roles">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="varchar(64)">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="roles"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-cms-user">
+    <createTable tableName="cms_user">
+      <column name="user_id"
+        type="text">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="username"
+        type="text">
+        <constraints
+          nullable="false"
+          unique="true"/>
+      </column>
+      <column name="first_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="middle_name"
+        type="text">
+      </column>
+      <column name="last_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="phone_number"
+        type="text">
+      </column>
+      <column name="email"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="status"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="role_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_cms_user_role"
+          references="roles(code)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="cms_user"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-cms-authentication">
+    <createTable tableName="cms_authentication">
+      <column name="username"
+        type="text">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="password"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="cms_authentication"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-audit-records">
+    <createTable tableName="audit_records">
+      <column name="audit_record_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="action"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="date"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+      <column name="system_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="username"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="audit_records"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-audit-details">
+    <createTable tableName="audit_details">
+      <column name="audit_detail_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="audit_record_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_audit_details_audit_records"
+          references="audit_records(audit_record_id)"/>
+      </column>
+      <column name="table_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="column_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="old_value"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="new_value"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="audit_details"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-help-items">
+    <createTable tableName="help_items">
+      <column name="help_item_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="title"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="help_items"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-qualified-professional-types">
+    <createTable tableName="qualified_professional_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="qualified_professional_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-types">
+    <createTable tableName="provider_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    <column name="applicant_type"
+      type="text"
+      defaultValue="INDIVIDUAL">
+      <constraints nullable="false"/>
+    </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-profile-statuses">
+    <createTable tableName="profile_statuses">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="profile_statuses"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-entity-structure-types">
+    <createTable tableName="entity_structure_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="entity_structure_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-issuing-boards">
+    <createTable tableName="issuing_boards">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="issuing_boards"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-license-statuses">
+    <createTable tableName="license_statuses">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="license_statuses"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-pay-to-provider-types">
+    <createTable tableName="pay_to_provider_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="pay_to_provider_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-categories-of-service">
+    <createTable tableName="categories_of_service">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="categories_of_service"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-service-categories">
+    <createTable tableName="service_categories">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="service_categories"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-counties">
+    <createTable tableName="counties">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="counties"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-beneficial-owner-types">
+    <createTable tableName="beneficial_owner_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+      <column name="owner_type"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="beneficial_owner_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-risk-level">
+    <createTable tableName="risk_levels">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="sort_index"
+        type="int">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="risk_levels"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-degrees">
+    <createTable tableName="degrees">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="degrees"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-relationship-types">
+    <createTable tableName="relationship_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="relationship_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-sent-notifications">
+    <createTable tableName="sent_notifications">
+      <column name="notification_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="notification_type"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="sent_to"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="notification_content"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="sent_at"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="sent_notifications"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-enrollment-statuses">
+    <createTable tableName="enrollment_statuses">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="enrollment_statuses"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-license-types">
+    <createTable tableName="license_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="license_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-specialty-types">
+    <createTable tableName="specialty_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+      <column name="sub_category"
+        type="text">
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="specialty_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-request-types">
+    <createTable tableName="request_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="request_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-states">
+    <createTable tableName="states">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="states"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-profiles">
+    <createTable tableName="provider_profiles">
+      <column name="control_no"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="effective_date"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="profile_status_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_provider_profiles_profile_statuses"
+          references="profile_statuses(code)"/>
+      </column>
+      <column name="works_on_reservation"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="maintains_own_private_practice"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="employed_or_contracted_by_group"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="criminal_conviction"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="civil_penalty"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="previous_exclusion"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="employee_criminal_conviction"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="employee_civil_penalty"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="employee_previous_exclusion"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="adult"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="country"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="employed_since_clearance"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="risk_level_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_provider_profiles_risk_levels"
+          references="risk_levels(code)"/>
+      </column>
+      <column name="bed_count"
+        type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="bed_count_title_18"
+        type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="bed_count_title_19"
+        type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="bed_count_dual_certified"
+        type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="bed_count_icf"
+        type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="bed_count_effective_date"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="physical_and_occupational_therapy"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="reference_ticket_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="owner_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="form_completed_by"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="health_board"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_by"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_modified_by"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_modified_at"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_profiles"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-category-of-service-approvals">
+    <createTable tableName="provider_category_of_service_approvals">
+      <column name="provider_category_of_service_approval_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="start_date"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="end_date"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_category_of_service_approvals"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-approved-categories-or-service">
+    <createTable tableName="provider_approved_categories_of_service">
+      <column name="provider_category_of_service_approval_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_pacos_pacos_approvals"
+          references="provider_category_of_service_approvals(provider_category_of_service_approval_id)"/>
+      </column>
+      <column name="category_of_service_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_pacos_categories_of_service"
+          references="categories_of_service(code)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_approved_categories_of_service"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-addresses">
+    <createTable tableName="addresses">
+      <column name="address_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="attention_line"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="address_line_1"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="address_line_2"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="city"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="state"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="zip_code"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="county"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="addresses"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-agreement-documents">
+    <createTable tableName="agreement_documents">
+      <column name="agreement_document_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="type"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="title"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="version"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="body"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_by"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="agreement_documents"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-contacts">
+    <createTable tableName="contacts">
+      <column name="contact_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="phone_number"
+        type="text">
+      </column>
+      <column name="fax_number"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="email"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="address_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_contacts_addresses"
+          references="addresses(address_id)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="contacts"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-enrollments">
+    <createTable tableName="enrollments">
+      <column name="enrollment_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="enrollment_status_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_enrollments_enrollment_statuses"
+          references="enrollment_statuses(code)"/>
+      </column>
+      <column name="request_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_enrollments_request_types"
+          references="request_types(code)"/>
+      </column>
+      <column name="process_instance_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="profile_reference_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="reference_timestamp"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+      <column name="progress_page"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_by"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+      <column name="submitted_by"
+        type="text">
+      </column>
+      <column name="submitted_at"
+        type="timestamp with time zone">
+      </column>
+      <column name="changed_by"
+        type="text">
+      </column>
+      <column name="changed_at"
+        type="timestamp with time zone">
+      </column>
+      <column name="change_note"
+        type="text">
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="enrollments"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-type-agreement-documents">
+    <createTable tableName="provider_type_agreement_documents">
+      <column name="provider_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_ptad_provider_types"
+          references="provider_types(code)"/>
+      </column>
+      <column name="agreement_document_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_ptad_agreement_documents"
+          references="agreement_documents(agreement_document_id)"/>
+      </column>
+    </createTable>
+    <addPrimaryKey columnNames="provider_type_code, agreement_document_id"
+      constraintName="pk_ptc_adi"
+      tableName="provider_type_agreement_documents"/>
+    <rollback>
+      <dropTable tableName="provider_type_agreement_documents"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-type-license-types">
+    <createTable tableName="provider_type_license_types">
+      <column name="provider_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_ptlt_provider_types"
+          references="provider_types(code)"/>
+      </column>
+      <column name="license_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_ptad_license_types"
+          references="license_types(code)"/>
+      </column>
+    </createTable>
+    <addPrimaryKey columnNames="provider_type_code, license_type_code"
+      constraintName="pk_ptc_ltc"
+      tableName="provider_type_license_types"/>
+    <rollback>
+      <dropTable tableName="provider_type_license_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-entities">
+    <createTable tableName="entities">
+      <column name="entity_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="enrolled"
+        type="varchar(1)">
+        <constraints nullable="false" />
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="name"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="legal_name"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="legacy_indicator"
+        type="varchar(1)">
+        <constraints nullable="false" />
+      </column>
+      <column name="legacy_id"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="npi"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="nonexclusion_verified"
+        type="varchar(1)">
+        <constraints nullable="false" />
+      </column>
+      <column name="provider_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_entities_provider_types"
+          references="provider_types(code)"/>
+      </column>
+      <column name="provider_sub_type"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="contact_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_entities_contacts"
+          references="contacts(contact_id)"/>
+      </column>
+      <column name="background_study_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="background_clearance_date"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="entities"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-organizations">
+    <createTable tableName="organizations">
+      <column name="entity_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_organizations_entities"
+          references="entities(entity_id)"/>
+      </column>
+      <column name="fein"
+        type="varchar(10)">
+        <constraints nullable="false" />
+      </column>
+      <column name="agency_id"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="billing_same_as_primary"
+        type="varchar(1)">
+        <constraints nullable="false" />
+      </column>
+      <column name="reimbursement_same_as_primary"
+        type="varchar(1)">
+        <constraints nullable="false" />
+      </column>
+      <column name="ten99_same_as_primary"
+        type="varchar(1)">
+        <constraints nullable="false" />
+      </column>
+      <column name="billing_address_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_organizations_business_addresses"
+          references="addresses(address_id)"/>
+      </column>
+      <column name="reimbursement_address_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_organizations_reimbursement_addresses"
+          references="addresses(address_id)"/>
+      </column>
+      <column name="ten99_address_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_organizations_ten99_addresses"
+          references="addresses(address_id)"/>
+      </column>
+      <column name="state_tax_id"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="state_medicaid_id"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="fiscal_year_end"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="remittance_sequence_order"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="eft_acepted"
+        type="boolean">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="organizations"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-people">
+    <createTable tableName="people">
+      <column name="entity_id"
+        type="bigint">
+        <constraints primaryKey="true"
+          foreignKeyName="fk_organizations_entities"
+          references="entities(entity_id)"/>
+      </column>
+      <column name="prefix"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="first_name"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="middle_name"
+        type="text">
+      </column>
+      <column name="last_name"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="suffix"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="ssn"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="birth_date"
+        type="date">
+        <constraints nullable="false" />
+      </column>
+      <column name="degree_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_people_degrees"
+          references="degrees(code)"/>
+      </column>
+      <column name="degree_award_date"
+        type="date">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="people"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-binary-contents">
+    <createTable tableName="binary_contents">
+      <column name="binary_content_id"
+        type="text">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="content"
+        type="oid">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="binary_contents"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-documents">
+    <createTable tableName="documents">
+      <column name="document_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="`type`"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="filename"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="description"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="binary_content_id"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="created_by"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="created_at"
+        type="timestamp with time zone">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="documents"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-designated-contacts">
+    <createTable tableName="designated_contacts">
+      <column name="designated_contact_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="designated_contact_type"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="same_as_provider"
+        type="varchar(1)">
+        <constraints nullable="false" />
+      </column>
+      <column name="hired_at"
+        type="date">
+        <constraints nullable="false" />
+      </column>
+      <column name="person_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_designated_contacts_people"
+          references="people(entity_id)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="designated_contacts"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-accepted-agreements">
+    <createTable tableName="accepted_agreements">
+      <column name="accepted_agreement_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="accepted_date"
+        type="date">
+        <constraints nullable="false" />
+      </column>
+      <column name="agreement_document_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_accepted_agreements_agreement_documents"
+          references="agreement_documents(agreement_document_id)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="accepted_agreements"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-screening-schedules">
+    <createTable tableName="screening_schedules">
+      <column name="screening_schedule_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="upcoming_screening_date"
+        type="date">
+      </column>
+      <column name="interval_type"
+        type="text">
+      </column>
+      <column name="interval_value"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="screening_schedules"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-licenses">
+    <createTable tableName="licenses">
+      <column name="license_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="affiliate_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="object_type"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="license_number"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="issued_at"
+        type="date">
+        <constraints nullable="false" />
+      </column>
+      <column name="expires_at"
+        type="date">
+        <constraints nullable="false" />
+      </column>
+      <column name="issuing_us_state"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+      <column name="issuing_board_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_licenses_issuing_boards"
+          references="issuing_boards(code)"/>
+      </column>
+      <column name="licenses_status_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_licenses_license_statuses"
+          references="license_statuses(code)"/>
+      </column>
+      <column name="license_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_licenses_license_types"
+          references="license_types(code)"/>
+      </column>
+      <column name="specialty_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_licenses_specialty_types"
+          references="specialty_types(code)"/>
+      </column>
+      <column name="attachment_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="licenses"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-affiliations">
+    <createTable tableName="affiliations">
+      <column name="affiliation_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="is_primary"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="object_type"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="effective_at"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="target_profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="target_entity_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="qualified_professional_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_affiliations_qpt"
+          references="qualified_professional_types(code)"/>
+      </column>
+      <column name="mental_health_professional_type"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="acknowledgement_attachment_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="is_terminated"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="terminated_at"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="bgs_study_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="bgs_clearance_date"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="affiliations"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-ownership-info">
+    <createTable tableName="ownership_info">
+      <column name="ownership_info_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="entity_structure_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_ownership_info_est"
+          references="entity_structure_types(code)"/>
+      </column>
+      <column name="entity_structure_subtype_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_ownership_info_est_sub"
+          references="entity_structure_types(code)"/>
+      </column>
+      <column name="other_entity_type_desc"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="ownership_info"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-beneficial-owner">
+    <createTable tableName="beneficial_owner">
+      <column name="beneficial_owner_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="person_ind"
+        type="varchar(1)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ben_type_cd"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_beneficial_owner_bot"
+          references="beneficial_owner_types(code)"/>
+      </column>
+      <column name="oth_type_desc"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="own_interest_pct"
+        type="float">
+        <constraints nullable="false"/>
+      </column>
+      <column name="address_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_beneficial_owner_address"
+          references="addresses(address_id)"/>
+      </column>
+      <column name="oth_provider_interest_ind"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="oth_provider_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="oth_provider_own_pct"
+        type="float">
+        <constraints nullable="false"/>
+      </column>
+      <column name="oth_provider_address_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_beneficial_owner_provider_address"
+          references="addresses(address_id)"/>
+      </column>
+      <column name="middle_name"
+        type="text">
+      </column>
+      <column name="first_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ssn"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="birth_dt"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="hired_at"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="relationship_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_beneficial_owner_relationship_types"
+          references="relationship_types(code)"/>
+      </column>
+      <column name="ownership_info_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="fk_beneficial_owner_ownership_info"
+          references="ownership_info(ownership_info_id)"/>
+      </column>
+      <column name="fein"
+        type="varchar(20)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="legal_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="beneficial_owner"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-statements">
+    <createTable tableName="provider_statements">
+      <column name="provider_statement_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="title"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="`date`"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_statements"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-notes">
+    <createTable tableName="notes">
+      <column name="note_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="note_text"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_by"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="crated_at"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="notes"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-events">
+    <createTable tableName="events">
+      <column name="event_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="npi"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="status"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_by"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="events"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-pay-to-providers">
+    <createTable tableName="pay_to_providers">
+      <column name="pay_to_providers_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="effective_date"
+        type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="pay_to_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_ptp_ptp_types"
+          references="pay_to_provider_types(code)"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="target_profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="contact_name"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="npi"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="phone"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="pay_to_providers"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-type-settings">
+    <createTable tableName="provider_type_settings">
+      <column name="provider_type_setting_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="provider_type_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_pts_provider_types"
+          references="provider_types(code)"/>
+      </column>
+      <column name="related_entity_type"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="related_entity_code"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="relationship_type"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="events"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-services">
+    <createTable tableName="provider_services">
+      <column name="provider_service_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="service_category_code"
+        type="varchar(2)">
+        <constraints nullable="false"
+          foreignKeyName="fk_provider_services_service_categories"
+          references="service_categories(code)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_services"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-external-account-links">
+    <createTable tableName="external_account_links">
+      <column name="external_account_link_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="user_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="system_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="external_user_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="external_account_links"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-external-profile-links">
+    <createTable tableName="external_profile_links">
+      <column name="external_profile_link_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="system_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="external_profile_id"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="external_profile_links"/>
     </rollback>
   </changeSet>
 

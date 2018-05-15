@@ -42,19 +42,20 @@
                 <span class="screening-date">
                   ${screening_date}
                 </span>
-            </div>
-            <div>
-              NPI searched:
-              <span class="search-term">
-                ${search_term}
-              </span>
-            </div>
-            <div class="matched-exclusions">
-              <div>There were ${fn:length(exclusions)} matches.</div>
-              <c:forEach var="exclusion" items="${exclusions}">
-                <hr>
-                <h:leie_exclusion exclusion="${exclusion}"/>
-              </c:forEach>
+              </div>
+              <div>
+                NPI searched:
+                <span class="search-term">
+                  ${search_term}
+                </span>
+              </div>
+              <div class="matched-exclusions">
+                <div>There were ${fn:length(exclusions)} matches.</div>
+                <c:forEach var="exclusion" items="${exclusions}">
+                  <hr>
+                  <h:leie_exclusion exclusion="${exclusion}"/>
+                </c:forEach>
+              </div>
             </div>
           </div>
         </div>

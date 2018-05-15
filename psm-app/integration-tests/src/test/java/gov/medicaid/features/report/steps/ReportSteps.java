@@ -2,6 +2,7 @@ package gov.medicaid.features.report.steps;
 
 import gov.medicaid.features.report.ui.ApplicationsByReviewerPage;
 import gov.medicaid.features.report.ui.DraftApplicationsPage;
+import gov.medicaid.features.report.ui.TimeToReviewPage;
 import gov.medicaid.features.report.ui.ReportPage;
 
 import net.thucydides.core.annotations.Step;
@@ -9,6 +10,7 @@ import net.thucydides.core.annotations.Step;
 public class ReportSteps {
     private ReportPage reportPage;
     private DraftApplicationsPage draftApplicationsPage;
+    private TimeToReviewPage timeToReviewPage;
     private ApplicationsByReviewerPage applicationsByReviewerPage;
 
     @Step
@@ -42,6 +44,11 @@ public class ReportSteps {
     }
 
     @Step
+    public void navigateToTimeToReviewReport() {
+        reportPage.click$(".timeToReviewLink");
+    }
+
+    @Step
     public void checkOnReportPage() {
         reportPage.checkOnReportPage();
     }
@@ -57,7 +64,30 @@ public class ReportSteps {
     }
 
     @Step
+    public void checkOnTimeToReviewPage() {
+        timeToReviewPage.checkOnPage();
+    }
+
+    @Step
+    public void checkTimeToReviewPageHasNARowFor(String month) {
+        timeToReviewPage.checkHasRowFor(month);
+        timeToReviewPage.checkRowHasMean(month, "N/A");
+        timeToReviewPage.checkRowHasMedian(month, "N/A");
+    }
+
+    @Step
+    public void checkTimeToReviewPageHasRowWithEnrollments(String month, String numEnrollments) {
+        timeToReviewPage.checkHasRowFor(month);
+        timeToReviewPage.checkRowHasNumber(month, numEnrollments);
+    }
+
+    @Step
     public void downloadDraftReportCsv() {
         draftApplicationsPage.click$(".downloadDraftApplications");
+    }
+
+    @Step
+    public void downloadTimeToReviewReportCsv() {
+        draftApplicationsPage.click$(".downloadTimeToReview");
     }
 }

@@ -28,3 +28,8 @@ Feature: Accessibility Checks for Report Pages
     Given I am logged in as an admin
     And I am on the draft applications page
     Then I should have no accessibility issues
+
+  Scenario: Time to Review Page
+    Given I am logged in as an admin
+    And I am on the time to review page
+    Then I should have no accessibility issues

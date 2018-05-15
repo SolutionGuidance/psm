@@ -36,6 +36,13 @@
                   Draft Applications
                 </a>
               </div>
+              <div class="row">
+                <a href="${ctx}/admin/reports/time-to-review/"
+                  class="timeToReviewLink"
+                >
+                  Time to Review
+                </a>
+              </div>
             </div>
           </div>
         </div>

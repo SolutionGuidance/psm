@@ -7,6 +7,7 @@ import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.springframework.mock.web.MockHttpServletResponse
 
+import gov.medicaid.entities.CMSUser
 import gov.medicaid.entities.Enrollment
 import gov.medicaid.entities.EnrollmentStatus
 import gov.medicaid.entities.SearchResult
@@ -26,7 +27,7 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
         return new Enrollment([
             ticketId: id,
             createdOn: toDate(createdOn),
-            lastUpdatedBy: lastUpdatedBy,
+            lastUpdatedBy: new CMSUser([userId: lastUpdatedBy]),
             statusDate: toDate(statusDate),
             status: new EnrollmentStatus([description: status])
         ])

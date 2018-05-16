@@ -229,14 +229,14 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         ProviderProfile profile = ticket.getDetails().clone();
 
         // set audit
-        profile.setModifiedBy(ticket.getSubmittedBy());
+        profile.setModifiedBy(ticket.getSubmittedBy().getUserId());
         profile.setModifiedOn(ticket.getStatusDate());
         profile.setReferenceTicketId(ticket.getTicketId());
 
         if (ticket.getRequestType().getDescription().equals(ViewStatics.ENROLLMENT_REQUEST)) {
             profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
-            profile.setOwnerId(ticket.getSubmittedBy());
-            profile.setCreatedBy(ticket.getSubmittedBy());
+            profile.setOwnerId(ticket.getSubmittedBy().getUserId());
+            profile.setCreatedBy(ticket.getSubmittedBy().getUserId());
             profile.setCreatedOn(ticket.getStatusDate());
 
             profile.getEntity().setEnrolled("Y");
@@ -250,7 +250,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             saveRelatedEntities(profile);
         } else if (ticket.getRequestType().getDescription().equals(ViewStatics.IMPORT_REQUEST)) {
             profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
-            profile.setOwnerId(ticket.getSubmittedBy());
+            profile.setOwnerId(ticket.getSubmittedBy().getUserId());
             profile.getEntity().setEnrolled("Y");
             insertProfile(0, profile);
         } else {
@@ -541,7 +541,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
 
         if (ticket.getTicketId() == 0) {
-            ticket.setCreatedBy(user.getUserId());
+            ticket.setCreatedBy(user);
             ticket.setCreatedOn(Calendar.getInstance().getTime());
         } else {
             // delete - insert
@@ -1144,8 +1144,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         if (!FULL_ACCESS.contains(user.getRole().getDescription())) {
             if (user.getProxyForNPI() == null) {
                 Query q = getEm().createQuery(
-                        "SELECT 1 FROM Enrollment t WHERE t.ticketId = :ticketId AND t.createdBy = :username");
-                q.setParameter("username", user.getUserId());
+                        "SELECT 1 FROM Enrollment t WHERE t.ticketId = :ticketId AND t.createdBy = :user");
+                q.setParameter("user", user);
                 q.setParameter("ticketId", ticketId);
                 List rs = q.getResultList();
                 if (rs.isEmpty()) {
@@ -2063,7 +2063,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             ProviderSearchCriteria criteria
     ) {
         if (!FULL_ACCESS.contains(user.getRole().getDescription())) {
-            buffer.append("AND t.createdBy = :username ");
+            buffer.append("AND t.createdBy = :user ");
         }
         if (criteria.getProfileId() > 0) {
             buffer.append("AND e.profileId = :profileId ");
@@ -2151,7 +2151,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             ProviderSearchCriteria criteria
     ) {
         if (!FULL_ACCESS.contains(user.getRole().getDescription())) {
-            query.setParameter("username", user.getUserId());
+            query.setParameter("user", user);
         }
         if (criteria.getProfileId() > 0) {
             query.setParameter("profileId", criteria.getProfileId());
@@ -2373,7 +2373,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             Enrollment ticket,
             boolean insertDetails
     ) throws PortalServiceException {
-        ticket.setLastUpdatedBy(user.getUserId());
+        ticket.setLastUpdatedBy(user);
         ProviderProfile details = ticket.getDetails();
         ticket = getEm().merge(ticket);
 
@@ -2398,7 +2398,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         saveAsDraft(user, ticket);
 
         // bypass JBPM process and approve directly!
-        ticket.setSubmittedBy(user.getUserId());
+        ticket.setSubmittedBy(user);
         Date now = Calendar.getInstance().getTime();
         ticket.setSubmissionDate(now);
         ticket.setStatusDate(now);

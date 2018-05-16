@@ -409,4 +409,30 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue815-add-enrollment-user-fk">
+    <addForeignKeyConstraint baseColumnNames="created_by"
+      baseTableName="enrollments"
+      constraintName="enrollments_created_by_fkey"
+      referencedColumnNames="user_id"
+      referencedTableName="cms_user" />
+    <addForeignKeyConstraint baseColumnNames="submitted_by"
+      baseTableName="enrollments"
+      constraintName="enrollments_submitted_by_fkey"
+      referencedColumnNames="user_id"
+      referencedTableName="cms_user" />
+    <addForeignKeyConstraint baseColumnNames="changed_by"
+      baseTableName="enrollments"
+      constraintName="enrollments_changed_by_fkey"
+      referencedColumnNames="user_id"
+      referencedTableName="cms_user" />
+    <rollback>
+      <dropForeignKeyConstraint baseTableName="enrollments"
+        constraintName="enrollments_created_by_fkey"/>
+      <dropForeignKeyConstraint baseTableName="enrollments"
+        constraintName="enrollments_submitted_by_fkey"/>
+      <dropForeignKeyConstraint baseTableName="enrollments"
+        constraintName="enrollments_changed_by_fkey"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

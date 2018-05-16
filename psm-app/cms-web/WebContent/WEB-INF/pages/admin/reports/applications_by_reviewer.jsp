@@ -89,7 +89,7 @@
                       <tr class="reportRow">
                         <td>${enrollment.ticketId}</td>
                         <td><fmt:formatDate value="${enrollment.createdOn}" pattern="dd MMMM yyyy" /></td>
-                        <td>${enrollment.lastUpdatedBy}</td>
+                        <td>${enrollment.lastUpdatedBy.userId}</td>
                         <td><fmt:formatDate value="${enrollment.statusDate}" pattern="dd MMMM yyyy" /></td>
                         <td>${enrollment.status.description}</td>
                       </tr>

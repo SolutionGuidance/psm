@@ -281,7 +281,7 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
                 saveTicket(user, enrollment, false); // retain status
                 // synchronize with DB
                 Enrollment ticket = providerEnrollmentService.getTicketDetails(user, ticketId);
-                businessProcessService.updateRequest(XMLAdapter.toXML(ticket), user.getUserId(), user.getRole().getDescription());
+                businessProcessService.updateRequest(XMLAdapter.toXML(ticket), user);
             } catch (Exception e) {
                 throw new PortalServiceException("Resubmit failed.", e);
             }

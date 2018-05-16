@@ -168,6 +168,22 @@ public interface ProviderEnrollmentService {
     ) throws PortalServiceException;
 
     /**
+     * This method gets all the enrollments that are draft status at end of
+     * month, and that meet the search criteria. If none available, the
+     * search result will be empty.
+     *
+     * @param criteria the search criteria
+     * @return the enrollments
+     * @throws IllegalArgumentException if any argument is null, or the page
+     *                                  size and page number settings are
+     *                                  invalid
+     * @throws PortalServiceException   for any errors encountered
+     */
+    SearchResult<Enrollment> getDraftAtEomEnrollments(
+            EnrollmentSearchCriteria criteria
+    ) throws PortalServiceException;
+
+    /**
      * This method gets all the providers owned by the given user. If none
      * available, the search result will be empty.
      *

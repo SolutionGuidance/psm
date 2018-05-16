@@ -173,6 +173,10 @@
     <property name="enrollmentService" ref="ProviderEnrollmentService"/>
   </bean>
 
+  <bean id="DraftApplicationsReportController" class="gov.medicaid.controllers.admin.report.DraftApplicationsReportController">
+    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
+  </bean>
+
   <bean id="RegistrationFormValidator" class="gov.medicaid.controllers.validators.RegistrationFormValidator">
     <property name="registrationService" ref="RegistrationService"/>
   </bean>

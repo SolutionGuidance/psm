@@ -462,6 +462,60 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     }
 
     /**
+     * This method gets all the enrollments that are draft status at end of
+     * month, and that meet the search criteria. If none available, the
+     * search result will be empty.
+     *
+     * @param criteria the search criteria
+     * @return the enrollments
+     * @throws IllegalArgumentException if any argument is null, or the page
+     *                                  size and page number settings are
+     *                                  invalid
+     * @throws PortalServiceException   for any errors encountered
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public SearchResult<Enrollment> getDraftAtEomEnrollments(
+            EnrollmentSearchCriteria criteria
+    ) throws PortalServiceException {
+        if (criteria == null) {
+            throw new IllegalArgumentException("Criteria cannot be null.");
+        }
+
+        SearchResult<Enrollment> results = new SearchResult<>();
+        results.setPageNumber(criteria.getPageNumber());
+        results.setPageSize(criteria.getPageSize());
+
+        String baseClause = "FROM Enrollment t LEFT JOIN t.status ts WHERE " +
+          " (t.submissionDate IS NULL OR " +
+          "  MONTH(t.createdOn) != MONTH(t.submissionDate) " +
+          "  OR YEAR(t.createdOn) != YEAR(t.submissionDate)) ";
+
+        StringBuilder countQuery = new StringBuilder("SELECT count(*) " + baseClause);
+        appendCriteria(countQuery, criteria);
+
+        Query count = getEm().createQuery(countQuery.toString());
+        bindParameters(count, criteria);
+        results.setTotal(((Number) count.getSingleResult()).intValue());
+
+        StringBuilder fetchQuery = new StringBuilder("SELECT t " + baseClause);
+
+        appendCriteria(fetchQuery, criteria);
+        appendSorting(fetchQuery, criteria);
+
+        Query items = getEm().createQuery(fetchQuery.toString());
+        bindParameters(items, criteria);
+        if (criteria.getPageSize() > 0) {
+            int offset = (criteria.getPageNumber() - 1) * criteria.getPageSize();
+            items.setFirstResult(offset);
+            items.setMaxResults(criteria.getPageSize());
+        }
+
+        results.setItems(items.getResultList());
+        return results;
+    }
+
+    /**
      * Saves the given ticket as draft.
      *
      * @param user   the user saving the ticket.

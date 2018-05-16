@@ -67,6 +67,11 @@ public class PsmPage extends PageObject {
         });
     }
 
+    public void hasNoServerError() {
+        String headerText = $("#wrapper h1").getText();
+        assertThat(headerText).isNotEqualTo("Error");
+    }
+
     private static Optional<URL> getAxeCoreUrl(WebDriver driver) {
         return Optional
                 .ofNullable(driver.getCurrentUrl())

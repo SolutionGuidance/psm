@@ -25,6 +25,11 @@ public class GeneralSteps {
     }
 
     @Step
+    public void hasNoServerError() {
+        psmPage.hasNoServerError();
+    }
+
+    @Step
     public void navigateToRegisterNewAccountPage() {
         loginPage.open();
         loginPage.click$(".registerNewAccountLink");

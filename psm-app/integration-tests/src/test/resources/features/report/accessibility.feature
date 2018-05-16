@@ -12,7 +12,24 @@ Feature: Accessibility Checks for Report Pages
     And I am on the applications by reviewer page
     Then I should have no accessibility issues
 
+  Scenario: Applications by Reviewer Page with No Results
+    Given I am logged in as an admin
+    And I am on the applications by reviewer page
+    And I search for applications by reviewer between '01/01/2001' and '01/02/2001'
+    Then I should have no accessibility issues
+
+  Scenario: Applications by Reviewer Page with Results
+    Given I am logged in as an admin
+    And I am on the applications by reviewer page
+    And I search for applications by reviewer between '01/01/2017' and '12/01/2017'
+    Then I should have no accessibility issues
+
   Scenario: Draft Applications Page
     Given I am logged in as an admin
     And I am on the draft applications page
+    Then I should have no accessibility issues
+
+  Scenario: Time to Review Page
+    Given I am logged in as an admin
+    And I am on the time to review page
     Then I should have no accessibility issues

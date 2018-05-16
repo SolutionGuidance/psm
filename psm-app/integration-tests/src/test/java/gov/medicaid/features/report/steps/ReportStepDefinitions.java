@@ -33,6 +33,26 @@ public class ReportStepDefinitions {
         reportSteps.downloadApplicationsByReviewerReport();
     }
 
+    @Given("^I search for applications by reviewer between '([^']*)' and '([^']*)'$")
+    public void i_search_for_applications_by_reviewer_between_and(String d1, String d2) throws Exception {
+        reportSteps.searchApplicationsInReviewBetween(d1, d2);
+    }
+
+    @Given("^I search for applications by reviewer$")
+    public void i_search_for_applications_by_reviewer() throws Exception {
+        reportSteps.searchApplicationsInReview();
+    }
+
+    @Then("^I should see no results message$")
+    public void i_should_see_no_results_message() throws Exception {
+        reportSteps.checkNoApplicationsByReviewerResults();
+    }
+
+    @Then("^I should see results$")
+    public void i_should_see_results() throws Exception {
+        reportSteps.checkApplicationsByReviewerHasResults();
+    }
+
     @Then("^I should see the reports page$")
     public void i_should_see_the_reports_page() {
         reportSteps.checkOnReportPage();
@@ -59,9 +79,34 @@ public class ReportStepDefinitions {
         reportSteps.checkDraftApplicationsPageHasTableFor(month);
     }
 
+    @Given("^I am on the time to review page$")
+    public void i_am_on_the_time_to_review_page() throws Exception {
+        i_am_on_the_reports_page();
+        reportSteps.navigateToTimeToReviewReport();
+    }
+
+    @Then("^I should see the time to review page$")
+    public void i_should_see_the_time_to_review_page() throws Exception {
+        reportSteps.checkOnTimeToReviewPage();
+    }
+
+    @Then("^I should see a time to review row for '(.*)' with (\\d+) enrollments$")
+    public void i_should_see_a_time_to_review_row_for_with_enrollments(String month, String numEnrollments) throws Exception {
+        reportSteps.checkTimeToReviewPageHasRowWithEnrollments(month, numEnrollments);
+    }
+
+    @Then("^I should see a N/A time to review row for '(.*)'$")
+    public void i_should_see_a_N_A_time_to_review_row_for(String month) throws Exception {
+        reportSteps.checkTimeToReviewPageHasNARowFor(month);
+    }
+
+    @Given("^I download the time to review report$")
+    public void i_download_the_time_to_review_report() throws Exception {
+        reportSteps.downloadTimeToReviewReportCsv();
+    }
+
     @Then("^I should have no errors$")
     public void i_should_have_no_errors() throws Exception {
         generalSteps.hasNoServerError();
     }
-
 }

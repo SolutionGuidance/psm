@@ -93,7 +93,7 @@ public class ApplicationsInDraftReportController extends gov.medicaid.controller
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         criteria.setAscending(true);
         criteria.setSortColumn("created_at");
-        return enrollmentService.getDraftAtEOMEnrollments(criteria);
+        return enrollmentService.getDraftAtEomEnrollments(criteria);
     }
 
     private List<EnrollmentMonth> groupEnrollments(List<Enrollment> enrollments) {

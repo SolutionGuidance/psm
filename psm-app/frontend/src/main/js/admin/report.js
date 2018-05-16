@@ -1,7 +1,7 @@
 "use strict";
 
 function reportTableToJson (table) {
-  data = [];
+  var data = [];
   $(table).find(".reportRow").each(function(idx, row) {
     var dataEntry = {};
     $(row).find(".reportDatum").each(function(idx, datum) {

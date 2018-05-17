@@ -99,7 +99,7 @@ class DraftApplicationsReportControllerTest extends Specification {
             def records = csv.getRecords();
 
         then:
-            records.size == 10
+            records.size == 12
             records[1].size() == 4
             records[6].size() == 4
             records[1][0] == middleThisMonth.withDayOfMonth(1).toString()
@@ -120,7 +120,7 @@ class DraftApplicationsReportControllerTest extends Specification {
             def mv = controller.getEnrollments().getModel()
 
         then:
-            mv["enrollmentMonths"].size == 3
+            mv["enrollmentMonths"].size == 4
             mv["enrollmentMonths"][0].month == middleThisMonth.withDayOfMonth(1)
             mv["enrollmentMonths"][0].enrollments[0].ticketId == 4
             mv["enrollmentMonths"][2].month == middleThisMonth.withDayOfMonth(1).minusMonths(2)

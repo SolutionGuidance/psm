@@ -20,6 +20,7 @@ import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Document;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentSearchCriteria;
+import gov.medicaid.entities.Entity;
 import gov.medicaid.entities.Note;
 import gov.medicaid.entities.PracticeLookup;
 import gov.medicaid.entities.PracticeSearchCriteria;
@@ -34,6 +35,7 @@ import gov.medicaid.entities.UserRequest;
 import gov.medicaid.entities.Validity;
 
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -568,5 +570,18 @@ public interface ProviderEnrollmentService {
     void updateLegacyId(
             long profileId,
             String legacyId
+    ) throws PortalServiceException;
+
+    /**
+     * Retrieves the related entity for the given profile key.
+     *
+     * @param profileId the profile id of the provider
+     * @param ticketId  the request ticket id
+     * @return the related entity to the profile
+     * @throws PortalServiceException for any errors encountered
+     */
+    Entity findEntityByProviderKey(
+            Long profileId,
+            Long ticketId
     ) throws PortalServiceException;
 }

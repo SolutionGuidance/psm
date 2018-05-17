@@ -431,8 +431,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         results.setPageNumber(criteria.getPageNumber());
         results.setPageSize(criteria.getPageSize());
 
-        String baseClause = "FROM Enrollment t LEFT JOIN t.status ts " +
-          "WHERE ts.description in (:enrollmentStatuses) ";
+        String baseClause = "FROM Enrollment t " +
+            "LEFT JOIN t.status ts, Entity e " +
+            "LEFT JOIN e.providerType pt " +
+            "WHERE e.ticketId = t.ticketId " +
+            "AND ts.description in (:enrollmentStatuses) ";
 
         StringBuilder countQuery = new StringBuilder("SELECT count(*) " + baseClause);
         appendCriteria(countQuery, criteria);
@@ -1047,6 +1050,39 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     }
 
     /**
+     * Retrieves the related entity for the given profile key.
+     *
+     * @param profileId the profile id of the provider
+     * @param ticketId  the request ticket id
+     * @return the related entity to the profile
+     */
+    @Override
+    public Entity findEntityByProviderKey(Long profileId, Long ticketId) {
+        String queryStr = "FROM Entity e WHERE 1 = 1 ";
+        if (profileId != null) {
+            queryStr += " AND profileId = :profileId";
+        }
+        if (ticketId != null) {
+            queryStr += " AND ticketId = :ticketId";
+        }
+        TypedQuery<Entity> query = getEm().createQuery(queryStr, Entity.class);
+
+        if (profileId != null) {
+            query.setParameter("profileId", profileId);
+        }
+        if (ticketId != null) {
+            query.setParameter("ticketId", ticketId);
+        }
+
+        List<Entity> rs = query.getResultList();
+        if (rs.isEmpty()) {
+            return null;
+        }
+        return (Entity) rs.get(0);
+    }
+
+
+    /**
      * Inserts the given attachment and its contents.
      *
      * @param attachment the attachment to create
@@ -1151,7 +1187,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 }
             } else {
                 // not the creator but given proxy access via the NPI ID
-                Entity entity = findEntityByProviderKey(profileId, 0);
+                Entity entity = findEntityByProviderKey(profileId, 0L);
                 if (!entity.getNpi().equals(user.getProxyForNPI())) {
                     throw new PortalServiceException("You have no access to the requested profile.");
                 }
@@ -1902,7 +1938,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 affiliation.setEntity(getEm().find(Entity.class, affiliation.getTargetEntityId()));
                 affiliation.setAffiliateLicenses(findAffiliateLicences(affiliation.getTargetEntityId()));
             } else {
-                affiliation.setEntity(findEntityByProviderKey(affiliation.getTargetProfileId(), 0));
+                affiliation.setEntity(findEntityByProviderKey(affiliation.getTargetProfileId(), 0L));
             }
         }
         return affiliations;
@@ -1962,25 +1998,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         query.setParameter("profileId", profileId);
         query.setParameter("ticketId", ticketId);
         return query.getResultList();
-    }
-
-    /**
-     * Retrieves the related entity for the given profile key.
-     *
-     * @param profileId the profile id of the provider
-     * @param ticketId  the request ticket id
-     * @return the related entity to the profile
-     */
-    @SuppressWarnings("rawtypes")
-    private Entity findEntityByProviderKey(long profileId, long ticketId) {
-        Query query = getEm().createQuery("FROM Entity e WHERE ticketId = :ticketId AND profileId = :profileId");
-        query.setParameter("profileId", profileId);
-        query.setParameter("ticketId", ticketId);
-        List rs = query.getResultList();
-        if (rs.isEmpty()) {
-            return null;
-        }
-        return (Entity) rs.get(0);
     }
 
     /**
@@ -2116,6 +2133,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         if (criteria.getCreateDateEnd() != null) {
             buffer.append("AND t.createdOn <= :createDateEnd ");
         }
+        if (Util.isNotEmpty(criteria.getProviderTypes())) {
+            buffer.append("AND pt.code in (:providerTypes) ");
+        }
     }
 
     /**
@@ -2199,6 +2219,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
         if (criteria.getCreateDateEnd() != null) {
             query.setParameter("createDateEnd", criteria.getCreateDateEnd());
+        }
+        if (Util.isNotEmpty(criteria.getProviderTypes())) {
+            query.setParameter("providerTypes", criteria.getProviderTypes());
         }
     }
 

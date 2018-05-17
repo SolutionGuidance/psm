@@ -63,6 +63,8 @@ public class PsmPage extends PageObject {
 
             JSONArray violations = responseJSON.getJSONArray("violations");
 
+            System.out.println(violations);
+
             assertThat(violations.length()).isEqualTo(0);
         });
     }

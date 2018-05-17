@@ -43,6 +43,13 @@
                   Time to Review
                 </a>
               </div>
+              <div class="row">
+                <a href="${ctx}/admin/reports/provider-types/"
+                  class="providerTypesLink"
+                >
+                  Provider Types
+                </a>
+              </div>
             </div>
           </div>
         </div>

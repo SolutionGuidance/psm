@@ -33,3 +33,8 @@ Feature: Accessibility Checks for Report Pages
     Given I am logged in as an admin
     And I am on the time to review page
     Then I should have no accessibility issues
+
+  Scenario: Provider Types Page
+    Given I am logged in as an admin
+    And I am on the provider types page
+    Then I should have no accessibility issues

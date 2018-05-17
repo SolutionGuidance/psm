@@ -1,11 +1,13 @@
 "use strict";
 
-var reportJson = reportTableToJson($(".reportTable"));
+window.addEventListener("load", function () {
+  var reportJson = reportTableToJson($(".reportTable"));
 
-var monthCounts = getDateCounts("month", reportJson);
+  var monthCounts = getDateCounts("month", reportJson);
 
-drawMonthsLineGraph(
-  "#draftApplicationsLineGraph",
-  "Draft Applications",
-  monthCounts
-);
+  drawMonthsLineGraph(
+    "#draftApplicationsLineGraph",
+    "Draft Applications",
+    monthCounts
+  );
+});

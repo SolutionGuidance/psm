@@ -1,11 +1,6 @@
 package gov.medicaid.controllers.admin.report;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -24,6 +19,8 @@ import gov.medicaid.entities.SearchResult;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
+
+import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
 
 @Controller
 public class DraftApplicationsReportController extends gov.medicaid.controllers.BaseController {
@@ -94,63 +91,16 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
     }
 
     private List<EnrollmentMonth> groupEnrollments(List<Enrollment> enrollments) {
-        List<EnrollmentMonth> enrollmentMonths = new ArrayList<>();
-
-        if (enrollments.size() > 0) {
-            LocalDate firstMonth = toLocalDate(enrollments.get(0).getCreatedOn()).withDayOfMonth(1);
-            LocalDate thisMonth = LocalDate.now().withDayOfMonth(1);
-
-            LocalDate workingMonth = thisMonth;
-            while (workingMonth.isAfter(firstMonth)) {
-                EnrollmentMonth em = new EnrollmentMonth(workingMonth);
-                enrollmentMonths.add(em);
-
-                for (Enrollment enrollment : enrollments) {
-                    em.addEnrollmentIfInMonth(enrollment);
-                }
-
-                workingMonth = workingMonth.minusMonths(1);
-            }
-        }
-        return enrollmentMonths;
-    }
-
-    /**
-     * Helper class for arranging the Enrollments into months.
-     */
-    public static class EnrollmentMonth {
-        private LocalDate month;
-        List<Enrollment> enrollments;
-
-        public EnrollmentMonth(LocalDate month) {
-            this.month = month;
-            enrollments = new ArrayList<>();
-        }
-
-        public void addEnrollmentIfInMonth(Enrollment enrollment) {
-            LocalDate nextMonth = month.plusMonths(1);
-
-            if (
-                nextMonth.isAfter(toLocalDate(enrollment.getCreatedOn())) &&
-                (
-                    enrollment.getSubmissionDate() == null ||
-                    nextMonth.minusDays(1).isBefore(toLocalDate(enrollment.getSubmissionDate()))
-                )
-            ) {
-                enrollments.add(enrollment);
-            }
-        }
-
-        public LocalDate getMonth() {
-            return month;
-        }
-
-        public List<Enrollment> getEnrollments() {
-            return enrollments;
-        }
-    }
-
-    private static LocalDate toLocalDate(Date d) {
-        return LocalDateTime.ofInstant(d.toInstant(), ZoneId.systemDefault()).toLocalDate();
+        return ReportControllerUtils.groupEnrollments(
+            enrollments,
+            e -> e.getCreatedOn(),
+            (e, monthStart, monthEnd) -> {
+                return
+                    monthEnd.plusDays(1).isAfter(ReportControllerUtils.toLocalDate(e.getCreatedOn())) &&
+                    (
+                        e.getSubmissionDate() == null ||
+                        monthEnd.isBefore(ReportControllerUtils.toLocalDate(e.getSubmissionDate()))
+                    );
+            });
     }
 }

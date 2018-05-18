@@ -11,80 +11,152 @@ import spock.lang.Specification
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 class ApplicationsApprovedReportControllerTest extends Specification {
-  private ApplicationsApprovedReportController controller
-  private ProviderEnrollmentService service
-  private static TimeZone originalTimeZone
+    private ApplicationsApprovedReportController controller
+    private ProviderEnrollmentService service
+    private static TimeZone originalTimeZone
 
-  void setupSpec() {
-      originalTimeZone = TimeZone.getDefault()
-  }
+    private toDate(dateStr) {
+        Date.parse("yyyy-MM-dd HH:mm:ss zzz", dateStr)
+    }
 
-  void cleanupSpec() {
-      TimeZone.setDefault(originalTimeZone)
-  }
+    private makeEnrollment(id, createdOn, lastUpdatedBy, statusDate, status) {
+        return new Enrollment([
+            ticketId: id,
+            createdOn: toDate(createdOn),
+            lastUpdatedBy: lastUpdatedBy,
+            statusDate: toDate(statusDate),
+            status: new EnrollmentStatus([description: status])
+        ])
+    }
 
-  void setup() {
-      controller = new ApplicationsApprovedReportController();
-      service = Mock(ProviderEnrollmentService);
+    void setupSpec() {
+        originalTimeZone = TimeZone.getDefault()
+    }
 
-      controller.setEnrollmentService(service);
+    void cleanupSpec() {
+        TimeZone.setDefault(originalTimeZone)
+    }
 
-      TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
-  }
+    void setup() {
+        controller = new ApplicationsApprovedReportController();
+        service = Mock(ProviderEnrollmentService);
 
-  def "csv with no enrollments - header"() {
-      given:
-          def results = new SearchResult<Enrollment>()
-          results.setItems([])
-          1 * service.searchEnrollments(_) >> results
-          def response = new MockHttpServletResponse()
+        controller.setEnrollmentService(service);
 
-      when:
-          controller.getEnrollments(null, null, response)
-          def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
-          def records = csv.getRecords();
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
+    }
 
-      then:
-          records[0][0] == "Application ID"
-          records[0][1] == "Submission Date"
-          records[0][2] == "Reviewed By"
-          records[0][3] == "Review Date"
-          records[0][4] == "Status"
-          records.size == 1
-          records[0].size() == 5
-  }
+    def "csv with no enrollments - header"() {
+        given:
+            def results = new SearchResult<Enrollment>()
+            results.setItems([])
+            1 * service.searchEnrollments(_) >> results
+            def response = new MockHttpServletResponse()
 
-  def "csv with an enrollments"() {
-      given:
-          def results = new SearchResult<Enrollment>()
-          results.setItems([
-                  new Enrollment([
-                      ticketId: 1234,
-                      createdOn: Date.parse("yyyy-MM-dd HH:mm:ss zzz", "2018-05-05 12:32:33 PST"),
-                      lastUpdatedBy: "ADMIN",
-                      statusDate: Date.parse("yyyy-MM-dd HH:mm:ss zzz", "2018-05-08 5:03:55 PST"),
-                      status: new EnrollmentStatus([description: "TEST"])
-                  ])
-              ])
-          1 * service.searchEnrollments(_) >> results
+        when:
+            controller.getApplicationsByReviewerCsv(null, null, response)
+            def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
+            def records = csv.getRecords();
 
-          System.out.println();
+        then:
+            records[0][0] == "Application ID"
+            records[0][1] == "Submission Date"
+            records[0][2] == "Reviewed By"
+            records[0][3] == "Review Date"
+            records[0][4] == "Status"
+            records.size == 1
+            records[0].size() == 5
+    }
 
-          def response = new MockHttpServletResponse()
+    def "csv with an enrollments"() {
+        given:
+            def results = new SearchResult<Enrollment>()
+            results.setItems([
+                makeEnrollment(1234, "2018-05-05 12:32:33 PST", "ADMIN", "2018-05-08 5:03:55 PST", "TEST")
+                ])
+            1 * service.searchEnrollments(_) >> results
 
-      when:
-          controller.getEnrollments(null, null, response)
-          def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
-          def records = csv.getRecords();
+            def response = new MockHttpServletResponse()
 
-      then:
-          records.size == 2
-          records[1].size() == 5
-          records[1][0] == "1234"
-          records[1][1] == "Sat May 05 20:32:33 UTC 2018"
-          records[1][2] == "ADMIN"
-          records[1][3] == "Tue May 08 13:03:55 UTC 2018"
-          records[1][4] == "TEST"
-  }
+        when:
+            controller.getApplicationsByReviewerCsv(null, null, response)
+            def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
+            def records = csv.getRecords();
+
+        then:
+            records.size == 2
+            records[1].size() == 5
+            records[1][0] == "1234"
+            records[1][1] == "Sat May 05 20:32:33 UTC 2018"
+            records[1][2] == "ADMIN"
+            records[1][3] == "Tue May 08 13:03:55 UTC 2018"
+            records[1][4] == "TEST"
+    }
+
+    private testData() {
+        def results = new SearchResult<Enrollment>()
+        results.setItems([
+            makeEnrollment(1234, "2018-05-05 12:32:33 PST", "ADMIN", "2018-05-08 5:03:55 PST", "TEST"),
+            makeEnrollment(1235, "2018-05-04 12:32:33 PST", "p1", "2018-05-09 5:03:55 PST", "APPROVED"),
+            makeEnrollment(1236, "2018-05-03 12:32:33 PST", "p1", "2018-05-10 5:03:55 PST", "DRAFT"),
+            makeEnrollment(1237, "2018-05-02 12:32:33 PST", "ADMIN", "2018-05-11 5:03:55 PST", "TEST")
+        ].sort{it.getCreatedOn()})
+        results
+    }
+
+    def "base mv"() {
+        when:
+            def results = new SearchResult<Enrollment>()
+            results.setItems([])
+            1 * service.searchEnrollments(_) >> results
+            def mv = controller.getApplicationsByReviewer(null, null, null).model
+
+        then:
+            mv["startDate"] == Date.from(LocalDate.now().withDayOfMonth(1).atStartOfDay(ZoneId.systemDefault()).toInstant())
+            mv["endDate"] == Date.from(LocalDate.now().plusMonths(1).withDayOfMonth(1).minusDays(1)
+                .atStartOfDay(ZoneId.systemDefault()).toInstant())
+            mv["enrollments"].size == 0
+    }
+
+    def "submitted mv"() {
+        when:
+            def mv = controller.getApplicationsByReviewer("", null, null).model
+
+        then:
+            1 * service.searchEnrollments(*_) >> { arguments ->
+              assert null == arguments[0].createDateStart
+              assert null == arguments[0].createDateEnd
+              testData()
+            }
+            mv["startDate"] == null
+            mv["endDate"] == null
+            mv["enrollments"].size == 4
+            mv["enrollments"][0].ticketId == 1237
+    }
+
+    def "submitted mv with dates"() {
+        given:
+            def startDate = toDate("2018-05-05 12:32:33 PST")
+            def endDate = toDate("2018-05-08 12:32:33 PST")
+
+        when:
+            def mv = controller.getApplicationsByReviewer(
+                "2018-05-05 12:32:33 PST",
+                startDate,
+                endDate
+            ).model
+
+        then:
+            1 * service.searchEnrollments(*_) >> { arguments ->
+              assert startDate == arguments[0].createDateStart
+              assert endDate == arguments[0].createDateEnd
+              testData()
+            }
+            mv["startDate"] == startDate
+            mv["endDate"] == endDate
+    }
 }

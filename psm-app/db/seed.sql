@@ -50,26 +50,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO cms_authentication (username, password) VALUES
-  (
-    'admin',
-    -- password: admin
-    '26cf59d323394cd4c9a9706de385347fb80189005d5e9e38574c2fed30093c6bdcb335' ||
-    'eee3d61198791b51940e3a99899c27e6e6109c1a7d65f78910bfdc41d2b885c3cf2767b0f6'
-  ),
-  (
-    'p1',
-    -- password: p1
-    'fdd4faeb765ba02721c61daffaf6df69e45a9a48252ffbbf522f7d73363c1e945d2c5c' ||
-    '88bc38fe17d374abcdaa87f6a218032bd1d93e9b9dd47e35ad6d7021bf3ffa7725ee1d801c'
-  ),
-  (
-    'system',
-    -- password: system
-    '17875afbd828d562a92dec2e287c425c9b844b298bb8d241adfcb893e937a8ac3e48f0' ||
-    '98181be881581e6edbe84e40cd48d42c4ce5959af990fab2e6644397deed0135a8e9aea50c'
-  );
-
 CREATE TABLE audit_records(
   audit_record_id BIGINT PRIMARY KEY,
   action TEXT,

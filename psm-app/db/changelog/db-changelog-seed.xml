@@ -17,4 +17,10 @@
       tableName="cms_user" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-cms-authentication" runOnChange="true">
+    <loadUpdateData file="db/seeds/cms_authentication.csv"
+      primaryKey="username"
+      tableName="cms_authentication" />
+  </changeSet>
+
 </databaseChangeLog>

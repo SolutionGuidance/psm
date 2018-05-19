@@ -17,7 +17,6 @@ DROP TABLE IF EXISTS
   events,
   external_account_links,
   external_profile_links,
-  help_items,
   issuing_boards,
   license_statuses,
   license_types,
@@ -47,12 +46,6 @@ DROP TABLE IF EXISTS
   specialty_types,
   states
 CASCADE;
-
-CREATE TABLE help_items(
-  help_item_id BIGINT PRIMARY KEY,
-  title TEXT,
-  description TEXT
-);
 
 CREATE TABLE qualified_professional_types(
   code CHARACTER VARYING(2) PRIMARY KEY,

@@ -393,4 +393,20 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-profile-statuses">
+    <createTable tableName="profile_statuses">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="profile_statuses"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

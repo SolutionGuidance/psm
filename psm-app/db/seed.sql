@@ -27,7 +27,6 @@ DROP TABLE IF EXISTS
   pay_to_provider_types,
   pay_to_providers,
   people,
-  profile_statuses,
   provider_approved_categories_of_service,
   provider_category_of_service_approvals,
   provider_profiles,
@@ -45,10 +44,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-CREATE TABLE profile_statuses(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO profile_statuses (code, description) VALUES
   ('01', 'Active'),
   ('02', 'Suspended'),

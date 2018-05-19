@@ -52,12 +52,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO roles (code, description) VALUES
-  ('R1', 'Provider'),
-  ('R2', 'Service Agent'),
-  ('R3', 'Service Administrator'),
-  ('R4', 'System Administrator');
-
 CREATE TABLE cms_user (
   user_id TEXT PRIMARY KEY,
   username TEXT UNIQUE NOT NULL,

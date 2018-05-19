@@ -356,4 +356,20 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-qualified-professional-types">
+    <createTable tableName="qualified_professional_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="qualified_professional_types"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

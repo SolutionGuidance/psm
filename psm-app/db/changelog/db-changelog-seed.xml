@@ -11,4 +11,10 @@
       tableName="roles" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-cms-user" runOnChange="true">
+    <loadUpdateData file="db/seeds/cms_user.csv"
+      primaryKey="user_id"
+      tableName="cms_user" />
+  </changeSet>
+
 </databaseChangeLog>

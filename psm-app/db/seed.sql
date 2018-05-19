@@ -51,19 +51,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO cms_user (
-  user_id,
-  username,
-  first_name,
-  last_name,
-  email,
-  status,
-  role_code
-) VALUES
-  ('p1', 'p1', 'p1', 'p1', 'p1@example.com', 'ACTIVE', 'R1'),
-  ('ADMIN', 'admin', 'admin', 'admin', 'admin@example.com', 'ACTIVE', 'R3'),
-  ('SYSTEM', 'system', 'system', 'system', 'system@example.com', 'ACTIVE', 'R4');
-
 CREATE TABLE cms_authentication(
   username TEXT PRIMARY KEY,
   password TEXT NOT NULL

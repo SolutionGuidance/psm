@@ -294,4 +294,24 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-audit-records">
+    <createTable tableName="audit_records">
+      <column name="audit_record_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="action"
+        type="text" />
+      <column name="date"
+        type="timestamp with time zone" />
+      <column name="system_id"
+        type="text" />
+      <column name="username"
+        type="text" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="audit_records"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

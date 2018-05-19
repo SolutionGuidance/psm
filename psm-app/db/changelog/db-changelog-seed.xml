@@ -35,4 +35,10 @@
       tableName="provider_types" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-profile-statuses" runOnChange="true">
+    <loadUpdateData file="db/seeds/profile_statuses.csv"
+      primaryKey="code"
+      tableName="profile_statuses" />
+  </changeSet>
+
 </databaseChangeLog>

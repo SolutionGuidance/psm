@@ -44,11 +44,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO profile_statuses (code, description) VALUES
-  ('01', 'Active'),
-  ('02', 'Suspended'),
-  ('03', 'Expired');
-
 CREATE TABLE entity_structure_types(
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE

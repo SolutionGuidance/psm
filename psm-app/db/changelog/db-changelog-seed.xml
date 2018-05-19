@@ -29,4 +29,10 @@
       tableName="qualified_professional_types" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-provider-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/provider_types.csv"
+      primaryKey="code"
+      tableName="provider_types" />
+  </changeSet>
+
 </databaseChangeLog>

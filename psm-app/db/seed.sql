@@ -36,7 +36,6 @@ DROP TABLE IF EXISTS
   provider_type_agreement_documents,
   provider_type_license_types,
   provider_type_settings,
-  provider_types,
   relationship_types,
   risk_levels,
   screening_schedules,
@@ -46,11 +45,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-CREATE TABLE provider_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE,
-  applicant_type TEXT NOT NULL DEFAULT 'INDIVIDUAL'
-);
 INSERT INTO provider_types(code, description, applicant_type) VALUES
   ('01', 'Audiologist', 'INDIVIDUAL'),
   ('02', 'Optometrist', 'INDIVIDUAL'),

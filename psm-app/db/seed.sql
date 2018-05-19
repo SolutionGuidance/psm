@@ -46,12 +46,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO qualified_professional_types (code, description) VALUES
-  ('01', 'Registered Nurse'),
-  ('02', 'Licensed Social Worker'),
-  ('03', 'Mental Health Professional'),
-  ('04', 'Qualified Developmental Disability Specialist');
-
 CREATE TABLE provider_types(
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE,

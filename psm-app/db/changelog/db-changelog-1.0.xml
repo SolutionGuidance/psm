@@ -242,4 +242,40 @@
       <dropTable tableName="leie_automatic_screenings_matches"/>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue254-create-table-cms-user">
+    <createTable tableName="cms_user">
+      <column name="user_id"
+        type="text">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="username"
+        type="text">
+        <constraints
+          nullable="false"
+          unique="true"/>
+      </column>
+      <column name="first_name"
+        type="text" />
+      <column name="middle_name"
+        type="text" />
+      <column name="last_name"
+        type="text" />
+      <column name="phone_number"
+        type="text" />
+      <column name="email"
+        type="text" />
+      <column name="status"
+        type="text" />
+      <column name="role_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="cms_user_role_code_fkey"
+          references="roles(code)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="cms_user"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

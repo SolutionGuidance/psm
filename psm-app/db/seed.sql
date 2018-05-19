@@ -10,7 +10,6 @@ DROP TABLE IF EXISTS
   binary_contents,
   categories_of_service,
   cms_authentication,
-  cms_user,
   contacts,
   counties,
   degrees,
@@ -52,17 +51,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-CREATE TABLE cms_user (
-  user_id TEXT PRIMARY KEY,
-  username TEXT UNIQUE NOT NULL,
-  first_name TEXT,
-  middle_name TEXT,
-  last_name TEXT,
-  phone_number TEXT,
-  email TEXT,
-  status TEXT,
-  role_code CHARACTER VARYING(2) REFERENCES roles(code)
-);
 INSERT INTO cms_user (
   user_id,
   username,

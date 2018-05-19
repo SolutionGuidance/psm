@@ -9,7 +9,6 @@ DROP TABLE IF EXISTS
   beneficial_owner_types,
   binary_contents,
   categories_of_service,
-  cms_authentication,
   contacts,
   counties,
   degrees,
@@ -51,10 +50,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-CREATE TABLE cms_authentication(
-  username TEXT PRIMARY KEY,
-  password TEXT NOT NULL
-);
 INSERT INTO cms_authentication (username, password) VALUES
   (
     'admin',

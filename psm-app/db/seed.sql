@@ -3,7 +3,6 @@ DROP TABLE IF EXISTS
   addresses,
   affiliations,
   agreement_documents,
-  audit_details,
   beneficial_owner,
   beneficial_owner_types,
   binary_contents,
@@ -49,14 +48,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-CREATE TABLE audit_details(
-  audit_detail_id BIGINT PRIMARY KEY,
-  audit_record_id BIGINT NOT NULL REFERENCES audit_records(audit_record_id),
-  table_name TEXT,
-  column_name TEXT,
-  old_value TEXT,
-  new_value TEXT
-);
 CREATE TABLE help_items(
   help_item_id BIGINT PRIMARY KEY,
   title TEXT,

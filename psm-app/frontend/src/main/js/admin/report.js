@@ -90,6 +90,24 @@ function getDateCounts(dateField, reportJson) {
 }
 
 /**
+ * Used to extract data from a report JSON object into an array of point
+ * objects.  Use .bind() to supply the xKey and yKey, then the resulting
+ * function can be used with .reduce() on the report data JSON object.
+ * @param xKey string The key for accessing X-axis data.
+ * @param yKey string The key for accessing Y-axis data.
+ * @param points array Point objects are added to this array.
+ * @param datum object An object containg data from a report table row.
+ */
+function extractPoints(xKey, yKey, points, datum) {
+  var point = {
+    x: datum[xKey],
+    y: Number(datum[yKey])
+  };
+  points.push(point);
+  return points;
+}
+
+/**
  * @param label string  Label for the line.
  * @param color string  A CSS color value.
  * @param points array  An array of points objects.

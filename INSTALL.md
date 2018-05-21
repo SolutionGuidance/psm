@@ -19,6 +19,7 @@ deployment guide will be part of our 1.0 release. ***
     - [Configure Mail](#configure-mail)
     - [Configure Database](#configure-database)
     - [Build and deploy the application](#build-and-deploy-the-application)
+	  - [Database Migrations](#db-migrations)
     - [Build documentation](#build-documentation)
     - [Run automated tests](#run-automated-tests)
     - [Maintain and update environment](#maintain-and-update-environment)

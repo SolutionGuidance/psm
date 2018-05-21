@@ -62,4 +62,8 @@
   {{#if reportPage}}
     <script src="{{ctx}}/js/admin/report.js"></script>
   {{/if}}
+
+  {{#each pageScripts}}
+    <script src="{{this}}"></script>
+  {{/each}}
 </head>

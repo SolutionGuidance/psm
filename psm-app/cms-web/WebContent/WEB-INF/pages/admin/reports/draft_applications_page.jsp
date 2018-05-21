@@ -6,6 +6,7 @@
   <c:set var="adminPage" value="true" />
   <c:set var="reportPage" value="true" />
   <c:set var="includeD3" value="true" />
+  <c:set var="pageScripts" value="${[ctx.concat('/js/admin/draftsReport.js')]}" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -27,6 +28,9 @@
               class="downloadDraftApplications"
             >Download this report</a>
           </div>
+
+          <div id="draftApplicationsLineGraph"></div>
+
           <div class="reportTable dashboardPanel">
             <c:forEach var="enrollmentMonth" items="${enrollmentMonths}">
               <div class="tableData">
@@ -68,8 +72,4 @@
     </div>
     <!-- /#wrapper -->
   </body>
-
-  <script>
-    var reportInformation = reportTableToJson($(".reportTable"));
-  </script>
 </html>

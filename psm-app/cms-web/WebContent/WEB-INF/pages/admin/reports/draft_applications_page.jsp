@@ -6,7 +6,7 @@
   <c:set var="adminPage" value="true" />
   <c:set var="reportPage" value="true" />
   <c:set var="includeD3" value="true" />
-  <c:set var="pageScript" value="${ctx}/js/admin/draftsReport.js" />
+  <c:set var="pageScripts" value="${[ctx.concat('/js/admin/draftsReport.js')]}" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">

@@ -372,7 +372,7 @@
                         <c:set var="formName" value="_15_legalName"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                         <label for="legalName">Legal Name<span class="required">*</span></label>
-                        <input type="text" class="normalInput" id="legalName" name="${formName}" value="${formValue}" maxlength="100"/>
+                        <input type="text" class="longNormalInput" id="legalName" name="${formName}" value="${formValue}" maxlength="1024"/>
                     </div>
 
                     <div class="row addressline1">
@@ -531,7 +531,7 @@
                     <c:set var="formName" value="_15_legalName"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <label for="legalName">Legal Name<span class="required">*</span></label>
-                    <input type="text" class="normalInput" id="legalName" name="${formName}" value="${formValue}" maxlength="100"/>
+                    <input type="text" class="longNormalInput" id="legalName" name="${formName}" value="${formValue}" maxlength="1024"/>
                 </div>
                 </c:if>
 

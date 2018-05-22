@@ -90,30 +90,119 @@ function getDateCounts(dateField, reportJson) {
 }
 
 /**
- * Draw a line graph showing a certain amount of something across a range of
- * months.
- * @param elementId string Id of what will become the parent element of the svg.
- * @param yAxisLabel string Label for the Y axis.
- * @param monthCounts object Maps a month string ('2018-05-01') to an integer.
+ * @param label string  Label for the line.
+ * @param color string  A CSS color value.
+ * @param points array  An array of points objects.
+ * @return An object containing data for a line to be drawn on a line graph.
  */
-function drawMonthsLineGraph(elementId, yAxisLabel, monthCounts) {
-  var months = Object.keys(monthCounts);
-  var counts = months.map(function (month) {
-    return monthCounts[month];
+function makeLineData(label, color, points) {
+  return {
+    label: label,
+    color: color,
+    points: points
+  };
+}
+
+/**
+ * @param line  A line data object (see makeLineData).
+ * @return An array of point objects for the line.
+ */
+function getPoints(line) {
+  return line.points;
+}
+
+/**
+ * @param points An array of point objects.
+ * @return An array of the X coordinates for those points.
+ */
+function getXs(points) {
+  return points.map(function getX(point) {
+    return point.x;
   });
+}
 
-  var maxDrafts = d3.max(counts);
-
-  var points = months.map(function (month) {
-    return {
-      month: month,
-      drafts: monthCounts[month]
-    };
+/**
+ * @param points An array of point objects.
+ * @return An array of the Y coordinates for those points.
+ */
+function getYs(points) {
+  return points.map(function getY(point) {
+    return point.y;
   });
+}
 
-  var firstMonth = d3.min(months);
-  var lastMonth = d3.max(months);
+function getMin(array) {
+  return d3.min(array);
+}
 
+function getMax(array) {
+  return d3.max(array);
+}
+
+/**
+ * @param allXs Array of arrays of X coordinates.
+ * @return The smallest X coordinate.
+ */
+function getMinX(allXs) {
+  var minXs = allXs.map(getMin);
+  return d3.min(minXs);
+}
+
+/**
+ * @param allXs Array of arrays of X coordinates.
+ * @return The largest X coordinate.
+ */
+function getMaxX(allXs) {
+  var maxXs = allXs.map(getMax);
+  return d3.max(maxXs);
+}
+
+/**
+ * @param allYs Array of arrays of Y coordinates.
+ * @return The largest Y coordinate.
+ */
+function getMaxY(allYs) {
+  var maxYs = allYs.map(getMax);
+  return d3.max(maxYs);
+}
+
+/**
+ * @param lines array  Contains line data objects (see the makeLineData
+ *                     function) with color, label, array of points, etc.
+ * @return object  Contains the domains (min and max values) for X and Y axes.
+ */
+function getAxisDomains(lines) {
+  var allPoints = lines.map(getPoints);
+  var allXs = allPoints.map(getXs);
+  var allYs = allPoints.map(getYs);
+
+  var minX = getMinX(allXs);
+  var maxX = getMaxX(allXs);
+  var minY = 0;
+  var maxY = getMaxY(allYs);
+
+  return {
+    xAxis: [addMonths(-1, new Date(minX)), addMonths(1, new Date(maxX))],
+    yAxis: [minY, maxY + maxY * 0.1]
+  };
+}
+
+/**
+ * Add a line graph to the page for a range of months (the X axis).
+ * @param elementId string  Id of what will be the parent element of the svg.
+ * @param xAxisLabel string
+ * @param yAxisLabel string
+ * @param lines array  Contains line data objects (see the makeLineData
+ *                     function) with color, label, array of points, etc.
+ * @param axisDomains object  Contains domains for the X and Y axes.
+ */
+function drawMonthsLineGraph(
+  elementId,
+  xAxisLabel,
+  yAxisLabel,
+  lines,
+  axisDomains
+) {
   var WIDTH = 960;
   var HEIGHT = 460;
   var MARGINS = {
@@ -131,18 +220,15 @@ function drawMonthsLineGraph(elementId, yAxisLabel, monthCounts) {
 
   var xScale = d3
     .scaleTime()
-    .domain([
-      addMonths(-1, new Date(firstMonth)),
-      addMonths(1, new Date(lastMonth))
-    ])
+    .domain(axisDomains.xAxis)
     .range([MARGINS.left, WIDTH - MARGINS.right]);
 
   var yScale = d3
     .scaleLinear()
-    .domain([0, maxDrafts + maxDrafts * 0.1])
+    .domain(axisDomains.yAxis)
     .range([HEIGHT - MARGINS.top, MARGINS.bottom]);
 
-  var xAxis = d3.axisBottom(xScale).ticks(months.length, "%b %Y");
+  var xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%b %Y"));
 
   var yAxis = d3.axisLeft(yScale);
 
@@ -160,19 +246,21 @@ function drawMonthsLineGraph(elementId, yAxisLabel, monthCounts) {
 
   var lineFunction = d3
     .line()
-    .x(function (d) {
-      return xScale(new Date(d.month));
+    .x(function (point) {
+      return xScale(new Date(point.x));
     })
-    .y(function (d) {
-      return yScale(d.drafts);
+    .y(function (point) {
+      return yScale(point.y);
     });
 
-  root
-    .append("path")
-    .attr("d", lineFunction(points))
-    .attr("stroke", "#0d4478")
-    .attr("stroke-width", 2)
-    .attr("fill", "none");
+  lines.forEach(function addLine(line) {
+    root
+      .append("path")
+      .attr("d", lineFunction(line.points))
+      .attr("stroke", line.color)
+      .attr("stroke-width", 2)
+      .attr("fill", "none");
+  });
 
   // Render the Y axis label. Due to the 90 degree rotation, the x and
   // y attributes have the opposite effect from what you'd expect.

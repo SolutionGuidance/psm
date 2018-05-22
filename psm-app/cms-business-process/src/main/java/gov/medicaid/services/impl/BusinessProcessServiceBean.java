@@ -139,7 +139,10 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         handlers.put("Reject Application", new RejectedHandler());
         handlers.put(
                 "Check Excluded Provider List in OIG",
-                new ExcludedProvidersScreeningHandler(config.getLeieApiBaseUrl())
+                new ExcludedProvidersScreeningHandler(
+                        config.getLeieApiBaseUrl(),
+                        config.getPortalEntityManager()
+                )
         );
         handlers.put("Auto Screening", new ScreeningHandler());
         handlers.put("Accept Application", new AcceptedHandler(notificationService));

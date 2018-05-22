@@ -119,4 +119,109 @@
       <dropTable tableName="enrollments"/>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue761-create-table-automatic-screenings-table">
+    <createTable tableName="automatic_screenings">
+      <column name="automatic_screening_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="enrollment_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="automatic_screenings_enrollment_id_fkey"
+          references="enrollments(enrollment_id)"/>
+      </column>
+      <column name="created_at"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+      <column name="result"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="automatic_screenings"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue761-create-table-leie-automatic-screenings-table">
+    <createTable tableName="leie_automatic_screenings">
+      <column name="automatic_screening_id"
+        type="bigint">
+        <constraints primaryKey="true"
+          foreignKeyName="leie_automatic_screenings_automatic_screening_id_fkey"
+          references="automatic_screenings(automatic_screening_id)"/>
+      </column>
+      <column name="npi_search_term"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="leie_automatic_screenings"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue761-create-table-leie-automatic-screening-matches-table">
+    <createTable tableName="leie_automatic_screening_matches">
+      <column name="leie_automatic_screening_match_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="leie_automatic_screening_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="leie_automatic_screening_match_leie_automatic_screening_id_fkey"
+          references="leie_automatic_screenings(automatic_screening_id)" />
+      </column>
+      <column name="resource_url"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="npi"
+        type="text" />
+      <column name="upin"
+        type="text" />
+      <column name="first_name"
+        type="text" />
+      <column name="middle_name"
+        type="text" />
+      <column name="last_name"
+        type="text" />
+      <column name="business_name"
+        type="text" />
+      <column name="address"
+        type="text" />
+      <column name="city"
+        type="text" />
+      <column name="state"
+        type="text" />
+      <column name="zip_code"
+        type="text" />
+      <column name="born_at"
+        type="date" />
+      <column name="excluded_at"
+        type="date" />
+      <column name="exclusion_type"
+        type="text" />
+      <column name="general"
+        type="text" />
+      <column name="speciality"
+        type="text" />
+      <column name="reinstated_at"
+        type="date" />
+      <column name="waived_at"
+        type="date" />
+      <column name="waiver_state"
+        type="text" />
+    </createTable>
+    <addUniqueConstraint
+      tableName="leie_automatic_screening_matches"
+      columnNames="leie_automatic_screening_id, resource_url"/>
+    <rollback>
+      <dropTable tableName="leie_automatic_screenings_matches"/>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

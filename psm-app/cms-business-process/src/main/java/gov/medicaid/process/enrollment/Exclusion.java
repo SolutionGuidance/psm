@@ -4,14 +4,17 @@ import ca.uhn.fhir.model.api.annotation.Child;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import gov.medicaid.domain.model.NameValuePairType;
 import gov.medicaid.domain.model.PropertyListType;
+import gov.medicaid.entities.LeieAutomaticScreeningMatch;
 import org.apache.commons.lang3.tuple.Pair;
 import org.hl7.fhir.dstu3.model.DateType;
 import org.hl7.fhir.dstu3.model.IntegerType;
+import org.hl7.fhir.dstu3.model.PrimitiveType;
 import org.hl7.fhir.dstu3.model.Resource;
 import org.hl7.fhir.dstu3.model.ResourceType;
 import org.hl7.fhir.dstu3.model.StringType;
 import org.hl7.fhir.instance.model.api.IPrimitiveType;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -256,6 +259,53 @@ public class Exclusion extends Resource {
                         .collect(Collectors.toList())
         );
         return propertyListType;
+    }
+
+    public LeieAutomaticScreeningMatch toMatch() {
+        LeieAutomaticScreeningMatch match = new LeieAutomaticScreeningMatch();
+        match.setResourceUrl(getId());
+        match.setNpi(fromPrimitiveType(npi));
+        match.setUpin(fromPrimitiveType(upin));
+        match.setFirstName(fromPrimitiveType(firstName));
+        match.setMiddleName(fromPrimitiveType(middleName));
+        match.setLastName(fromPrimitiveType(lastName));
+        match.setBusinessName(fromPrimitiveType(businessName));
+        match.setAddress(fromPrimitiveType(address));
+        match.setCity(fromPrimitiveType(city));
+        match.setZipCode(fromPrimitiveType(zip));
+        match.setDateOfBirth(fromDstuDateType(dateOfBirth));
+        match.setExcludedAt(fromDstuDateType(exclusionDate));
+        match.setExclusionType(fromPrimitiveType(exclusionType));
+        match.setGeneral(fromPrimitiveType(general));
+        match.setSpeciality(fromPrimitiveType(specialty));
+        match.setReinstantedAt(fromDstuDateType(reinDate));
+        match.setWaivedAt(fromDstuDateType(waiverDate));
+        match.setWaiverState(fromPrimitiveType(waiverState));
+        return match;
+    }
+
+    private static <T> String fromPrimitiveType(PrimitiveType<T> primitiveType) {
+        if (primitiveType == null || primitiveType.isEmpty()) {
+            return null;
+        } else {
+            return primitiveType.getValueAsString();
+        }
+    }
+
+    private static LocalDate fromDstuDateType(DateType date) {
+        if (date == null || date.isEmpty()) {
+            return null;
+        } else {
+            // The FHIR DateType month value is 0-indexed, but Java's
+            // LocalDate assumes it's 1-indexed and will throw an error
+            // for January (month 0) unless we standardize.
+            Integer javaMonth = date.getMonth() + 1;
+            return LocalDate.of(
+                    date.getYear(),
+                    javaMonth,
+                    date.getDay()
+            );
+        }
     }
 
     private NameValuePairType toNameValuePair(String name, String value) {

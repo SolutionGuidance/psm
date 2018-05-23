@@ -51,7 +51,7 @@ class ProviderEnrollmentServiceBeanTest extends Specification {
     def "GetTicketDetails returns enrollment with profile on valid ID"() {
         given:
         Enrollment enrollment = new Enrollment()
-        entityManager.find(Enrollment.class, TICKET_ID) >> enrollment
+        entityManager.find(Enrollment.class, TICKET_ID, _ as Map) >> enrollment
         entityManager.createQuery(PROFILE_QUERY) >>
                 mockQuery([new ProviderProfile()])
         entityManager.createQuery(_ as String) >> mockQuery([])

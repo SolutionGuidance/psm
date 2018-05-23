@@ -49,25 +49,27 @@
                       <tr>
                         <td>EXCLUDED PROVIDER VERIFICATION IN OIG (checked means not in exclusion list)</td>
                         <td></td>
-                        <td><a class="autoScreeningResultLink"
-                              href="${ctx}/agent/enrollment/autoScreeningResult?type=EXCLUDED PROVIDERS&id=${id}"
-                              target="_blank">
+                        <td>
                           <c:choose>
-                          <c:when test="${empty verification.nonExclusion}">
-                            Not performed
-                          </c:when>
-                          <c:otherwise>
-                            View results
-                          </c:otherwise>
+                            <c:when test="${not empty leieScreeningId}">
+                              <a class="autoScreeningResultLink"
+                                  href="<c:url value="/agent/automatic-screening/${leieScreeningId}"/>"
+                                  target="_blank">
+                                ${leieScreeningResult}
+                              </a>
+                            </c:when>
+                            <c:otherwise>
+                              ${leieScreeningResult}
+                            </c:otherwise>
                           </c:choose>
-                        </a></td>
+                        </td>
                         <td>
                           <input
                             type="checkbox"
                             title="Non-exclusion Verified"
                             name="nonExclusionVerified"
                             value="Y"
-                            ${verification.nonExclusion eq 'Y' ? 'checked' : ''}
+                            ${leieScreeningPassed ? 'checked' : ''}
                             />
                         </td>
                       </tr>

@@ -36,4 +36,192 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-request-types">
+    <createTable tableName="request_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="request_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-enrollment-statuses">
+    <createTable tableName="enrollment_statuses">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="enrollment_statuses"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-enrollments">
+    <createTable tableName="enrollments">
+      <column name="enrollment_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="enrollment_status_code"
+        type="varchar(2)">
+        <constraints
+          foreignKeyName="enrollments_enrollment_status_code_fkey"
+          references="enrollment_statuses(code)"/>
+      </column>
+      <column name="request_type_code"
+        type="varchar(2)">
+        <constraints
+          foreignKeyName="enrollments_request_type_code_fkey"
+          references="request_types(code)"/>
+      </column>
+      <column name="process_instance_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="profile_reference_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="reference_timestamp"
+        type="timestamp with time zone"/>
+      <column name="progress_page"
+        type="text"/>
+      <column name="created_by"
+        type="text"/>
+      <column name="created_at"
+        type="timestamp with time zone"/>
+      <column name="submitted_by"
+        type="text"/>
+      <column name="submitted_at"
+        type="timestamp with time zone"/>
+      <column name="changed_by"
+        type="text"/>
+      <column name="changed_at"
+        type="timestamp with time zone"/>
+      <column name="change_note"
+        type="text"/>
+    </createTable>
+    <rollback>
+      <dropTable tableName="enrollments"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue761-create-table-automatic-screenings-table">
+    <createTable tableName="automatic_screenings">
+      <column name="automatic_screening_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="enrollment_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="automatic_screenings_enrollment_id_fkey"
+          references="enrollments(enrollment_id)"/>
+      </column>
+      <column name="created_at"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+      <column name="result"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="automatic_screenings"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue761-create-table-leie-automatic-screenings-table">
+    <createTable tableName="leie_automatic_screenings">
+      <column name="automatic_screening_id"
+        type="bigint">
+        <constraints primaryKey="true"
+          foreignKeyName="leie_automatic_screenings_automatic_screening_id_fkey"
+          references="automatic_screenings(automatic_screening_id)"/>
+      </column>
+      <column name="npi_search_term"
+        type="text">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="leie_automatic_screenings"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue761-create-table-leie-automatic-screening-matches-table">
+    <createTable tableName="leie_automatic_screening_matches">
+      <column name="leie_automatic_screening_match_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="leie_automatic_screening_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="leie_automatic_screening_match_leie_automatic_screening_id_fkey"
+          references="leie_automatic_screenings(automatic_screening_id)" />
+      </column>
+      <column name="resource_url"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="npi"
+        type="text" />
+      <column name="upin"
+        type="text" />
+      <column name="first_name"
+        type="text" />
+      <column name="middle_name"
+        type="text" />
+      <column name="last_name"
+        type="text" />
+      <column name="business_name"
+        type="text" />
+      <column name="address"
+        type="text" />
+      <column name="city"
+        type="text" />
+      <column name="state"
+        type="text" />
+      <column name="zip_code"
+        type="text" />
+      <column name="born_at"
+        type="date" />
+      <column name="excluded_at"
+        type="date" />
+      <column name="exclusion_type"
+        type="text" />
+      <column name="general"
+        type="text" />
+      <column name="speciality"
+        type="text" />
+      <column name="reinstated_at"
+        type="date" />
+      <column name="waived_at"
+        type="date" />
+      <column name="waiver_state"
+        type="text" />
+    </createTable>
+    <addUniqueConstraint
+      tableName="leie_automatic_screening_matches"
+      columnNames="leie_automatic_screening_id, resource_url"/>
+    <rollback>
+      <dropTable tableName="leie_automatic_screenings_matches"/>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

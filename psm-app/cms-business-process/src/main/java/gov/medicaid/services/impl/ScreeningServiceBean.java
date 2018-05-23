@@ -16,6 +16,7 @@
 
 package gov.medicaid.services.impl;
 
+import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.ScreeningSchedule;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ScreeningService;
@@ -27,6 +28,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.PersistenceException;
+import java.util.Optional;
 
 /**
  * This class provides an implementation of the ScreeningDAO as a local EJB.
@@ -90,5 +92,18 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not database complete operation.", e);
         }
+    }
+
+    @Override
+    public Optional<AutomaticScreening> findScreening(
+            long screeningId
+    ) {
+        return Optional.ofNullable(
+                getEm().find(
+                        AutomaticScreening.class,
+                        screeningId,
+                        hintEntityGraph("Screening with matches")
+                )
+        );
     }
 }

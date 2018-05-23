@@ -16,8 +16,6 @@ DROP TABLE IF EXISTS
   degrees,
   designated_contacts,
   documents,
-  enrollment_statuses,
-  enrollments,
   entities,
   entity_structure_types,
   events,
@@ -46,7 +44,6 @@ DROP TABLE IF EXISTS
   provider_types,
   qualified_professional_types,
   relationship_types,
-  request_types,
   risk_levels,
   roles,
   screening_schedules,
@@ -493,10 +490,6 @@ CREATE TABLE sent_notifications(
   sent_at TIMESTAMP WITH TIME ZONE NOT NULL
 );
 
-CREATE TABLE enrollment_statuses(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO enrollment_statuses (code, description) VALUES
   ('01', 'Draft'),
   ('02', 'Pending'),
@@ -664,10 +657,6 @@ INSERT INTO specialty_types (code, description, sub_category) VALUES
   ('US', 'Upper Sioux Indian Reservation', 'TC'),
   ('WE', 'White Earth Indian Reservation', 'TC');
 
-CREATE TABLE request_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO request_types (code, description) VALUES
   ('01', 'Import Profile'),
   ('02', 'Enrollment'),
@@ -875,24 +864,6 @@ CREATE TABLE contacts(
     REFERENCES addresses(address_id)
 );
 
-CREATE TABLE enrollments(
-  enrollment_id BIGINT PRIMARY KEY,
-  enrollment_status_code CHARACTER VARYING(2)
-    REFERENCES enrollment_statuses(code),
-  request_type_code CHARACTER VARYING(2)
-    REFERENCES request_types(code),
-  process_instance_id BIGINT NOT NULL DEFAULT 0,
-  profile_reference_id BIGINT NOT NULL DEFAULT 0,
-  reference_timestamp TIMESTAMP WITH TIME ZONE,
-  progress_page TEXT,
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE,
-  submitted_by TEXT,
-  submitted_at TIMESTAMP WITH TIME ZONE,
-  changed_by TEXT,
-  changed_at TIMESTAMP WITH TIME ZONE,
-  change_note TEXT
-);
 INSERT INTO enrollments (
   enrollment_id,
   enrollment_status_code,

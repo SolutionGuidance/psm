@@ -85,6 +85,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -552,27 +553,81 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     }
 
     @Override
+    public Optional<Enrollment> getEnrollment(
+            CMSUser user,
+            long enrollmentId
+    ) throws PortalServiceException {
+        return getEnrollment(user, enrollmentId, null);
+    }
+
+    @Override
+    public Optional<Enrollment> getEnrollmentWithScreenings(
+            CMSUser user,
+            long enrollmentId
+    ) throws PortalServiceException {
+        return getEnrollment(
+                user,
+                enrollmentId,
+                "Enrollment with screenings"
+        );
+    }
+
+    /**
+     * Look up an enrollment application by its ID, optionally fetching the
+     * named entity graph, and checking that the given user has permission to
+     * access the enrollment.
+     *
+     * @param user            the requesting user; used for authorization
+     * @param enrollmentId    the ID of the enrollment
+     * @param entityGraphName the optional name of the entity graph;
+     *                        fetch the default graph if null.
+     * @return the enrollment, if found; empty, if not found.
+     * @throws PortalServiceException   if not authorized
+     * @throws IllegalArgumentException if there is no entity graph with the
+     *                                  given name
+     */
+    private Optional<Enrollment> getEnrollment(
+            CMSUser user,
+            long enrollmentId,
+            String entityGraphName
+    ) throws PortalServiceException {
+        checkTicketEntitlement(user, enrollmentId);
+
+        Map<String, Object> hints = new HashMap<>();
+        if (entityGraphName != null) {
+            hints = hintEntityGraph(entityGraphName);
+        }
+
+        Enrollment enrollment = getEm().find(
+                Enrollment.class,
+                enrollmentId,
+                hints
+        );
+        if (enrollment == null) {
+            return Optional.empty();
+        }
+
+        ProviderProfile providerProfile = getProviderDetailsByTicket(
+                enrollmentId,
+                true
+        );
+        if (providerProfile == null) {
+            return Optional.empty();
+        }
+
+        enrollment.setDetails(providerProfile);
+        return Optional.of(enrollment);
+    }
+
+    @Override
     public Enrollment getTicketDetails(
             CMSUser user,
             long ticketId
     ) throws PortalServiceException {
-        checkTicketEntitlement(user, ticketId);
-
-        Enrollment ticket = getEm().find(Enrollment.class, ticketId);
-        if (ticket == null) {
-            return null;
-        }
-
-        ProviderProfile providerProfile = getProviderDetailsByTicket(
-                ticketId,
-                true
-        );
-        if (providerProfile == null) {
-            return null;
-        }
-
-        ticket.setDetails(providerProfile);
-        return ticket;
+        return getEnrollment(
+                user,
+                ticketId
+        ).orElse(null);
     }
 
     /**

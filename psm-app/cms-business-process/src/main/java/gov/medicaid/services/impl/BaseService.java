@@ -23,9 +23,12 @@ import gov.medicaid.services.LookupService;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -93,6 +96,13 @@ public abstract class BaseService {
         }
 
         systemUser = config.getSystemUser();
+    }
+
+    Map<String, Object> hintEntityGraph(String entityGraphName) {
+        EntityGraph graph = getEm().getEntityGraph(entityGraphName);
+        Map<String, Object> hints = new HashMap<>();
+        hints.put("javax.persistence.loadgraph", graph);
+        return hints;
     }
 
     /**

@@ -48,6 +48,7 @@
     <class>gov.medicaid.entities.AuditDetail</class>
     <class>gov.medicaid.entities.AuditRecord</class>
     <class>gov.medicaid.entities.Authentication</class>
+    <class>gov.medicaid.entities.AutomaticScreening</class>
     <class>gov.medicaid.entities.BeneficialOwner</class>
     <class>gov.medicaid.entities.BeneficialOwnerType</class>
     <class>gov.medicaid.entities.BinaryContent</class>
@@ -67,6 +68,8 @@
     <class>gov.medicaid.entities.ExternalProfileLink</class>
     <class>gov.medicaid.entities.HelpItem</class>
     <class>gov.medicaid.entities.IssuingBoard</class>
+    <class>gov.medicaid.entities.LeieAutomaticScreening</class>
+    <class>gov.medicaid.entities.LeieAutomaticScreeningMatch</class>
     <class>gov.medicaid.entities.License</class>
     <class>gov.medicaid.entities.LicenseStatus</class>
     <class>gov.medicaid.entities.LicenseType</class>

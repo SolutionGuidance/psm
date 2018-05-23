@@ -18,6 +18,7 @@ deployment guide will be part of our 1.0 release. ***
     - [Configure WildFly](#configure-wildfly)
     - [Configure Mail](#configure-mail)
     - [Configure Database](#configure-database)
+    - [Run Database Migrations](#run-database-migrations)
     - [Build and deploy the application](#build-and-deploy-the-application)
     - [Build documentation](#build-documentation)
     - [Run automated tests](#run-automated-tests)
@@ -327,6 +328,25 @@ xa-data-source add \
   --xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
 EOF
 ```
+## Run Database Migrations
+Setting up the database requires running the liquibase migrations to 
+get the database into the up-to-date configuration. See [MIGRATIONS.md](docs/MIGRATIONS.md) for details
+
+Migration scripts are stored in `psm-app/db/`. 
+
+
+1. Run the migrations:
+
+    ```shell
+       > ./gradlew db:update
+    ```
+
+2. Add the sample data to the database, use `psm-app/db/seed.sql`:
+
+    ```ShellSession
+       $ cat {/path/to/psm}/psm-app/db/seed.sql \
+        | psql -h localhost -U psm psm
+    ```
 
 ## Build and deploy the application
 1. Navigate to the psm-app directory:

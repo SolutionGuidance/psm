@@ -16,18 +16,14 @@
 
 package gov.medicaid.controllers;
 
-import java.util.logging.Logger;
 import gov.medicaid.controllers.validators.StrictCustomDateEditor;
-import gov.medicaid.interceptors.HandlebarsInterceptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+import java.util.logging.Logger;
 
 /**
  * A base controller class that other classes will extend that provides logging.
@@ -69,24 +65,6 @@ public abstract class BaseController {
     @InitBinder
     public void initBinder(final WebDataBinder binder) {
         binder.registerCustomEditor(Date.class, null, new StrictCustomDateEditor());
-    }
-
-    /**
-     * Captures any exception that is thrown from the controllers and renders
-     * the error page.
-     *
-     * @param request the request that resulted in an exception
-     * @param ex      the exception thrown
-     * @return the error view
-     */
-    @ExceptionHandler(Exception.class)
-    public ModelAndView handleError(
-            HttpServletRequest request,
-            Exception ex
-    ) {
-        ModelAndView view = new ModelAndView("error");
-        HandlebarsInterceptor.addCommonVariables(request, view);
-        return view;
     }
 
     /**

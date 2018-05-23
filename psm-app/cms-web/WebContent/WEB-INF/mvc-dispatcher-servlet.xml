@@ -332,4 +332,7 @@
         parent="BaseSystemAdminController">
     <property name="userValidator" ref="UserValidator"/>
   </bean>
+
+  <bean id="ErrorController"
+        class="gov.medicaid.controllers.ErrorController"/>
 </beans>

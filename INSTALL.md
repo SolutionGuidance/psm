@@ -19,6 +19,7 @@ deployment guide will be part of our 1.0 release. ***
     - [Configure Mail](#configure-mail)
     - [Configure Database](#configure-database)
     - [Build and deploy the application](#build-and-deploy-the-application)
+	  - [Database Migrations](#db-migrations)
     - [Build documentation](#build-documentation)
     - [Run automated tests](#run-automated-tests)
     - [Maintain and update environment](#maintain-and-update-environment)
@@ -387,6 +388,21 @@ EOF
     accounts.  Username `admin` with password `admin` is a "service
     admin" account that can create new provider enrollments.
 
+## DB Migrations
+Database changes are tracked via migration scripts using liquibase, which are stored in a `changelog` folder within the `psm-app/db/` project.  The `db-changelog-master.xml` is the root changelog. To keep the database upto date run migrations:
+
+
+```shell
+> ./gradlew db:update
+```
+
+And to incorporate sample data from seed.sql:
+
+	```ShellSession
+      $ cat {/path/to/psm}/psm-app/db/seed.sql \
+        | psql -h localhost -U psm psm
+    ```
+	
 ## Build documentation
 
 Generate the API documentation from Javadoc annotations by navigating to the

@@ -32,7 +32,7 @@
                       <div class="row">
                         <h3>Server Error</h3>
                         <p style="color: #c00;">
-                          An error has been occurred while processing your request, please contact 1-800-1010-2010 for any concerns.
+                          An error has occurred while processing your request, please contact 1-800-1010-2010 for any concerns.
                         </p>
                       </div>
                     </div>
@@ -79,7 +79,7 @@
           <!-- start of error message -->
           <div id="errorbar">
             <div class="contentWidth">
-              An error has been occurred while processing your request, please contact 1-800-1010-2010 for any concerns.
+              An error has occurred while processing your request, please contact 1-800-1010-2010 for any concerns.
             </div>
           </div>
           <!-- end of error message -->

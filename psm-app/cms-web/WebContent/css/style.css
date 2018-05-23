@@ -4039,6 +4039,19 @@ form .error{
   color: #d00;
 }
 
+.screeningResult,
+.screeningResultPass,
+.screeningResultFail {
+  font-weight: bold;
+  font-size: large;
+}
+.screeningResultPass {
+  color: #3a7b0f;
+}
+.screeningResultFail {
+  color: #d00;
+}
+
 /* END OF SERVICE ADMIN STYLES -------------------------------------------------- */
 
 

@@ -50,6 +50,13 @@
                   Provider Types
                 </a>
               </div>
+              <div class="row">
+                <a href="${ctx}/admin/reports/reviewed-documents/"
+                  class="reviewedDocumentsLink"
+                >
+                  Reviewed Documents
+                </a>
+              </div>
             </div>
           </div>
         </div>

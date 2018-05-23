@@ -952,6 +952,23 @@ CREATE TABLE documents(
   created_by TEXT,
   created_at TIMESTAMP WITH TIME ZONE
 );
+INSERT INTO documents(
+  document_id,
+  profile_id,
+  ticket_id
+  /*"type",*/
+  /*filename,*/
+  /*description,*/
+  /*binary_content_id,*/
+  /*created_by,*/
+  /*created_at*/
+) VALUES
+  (1001, 0, 1006),
+  (1002, 0, 1008),
+  (1003, 0, 1009),
+  (1004, 0, 1010),
+  (1005, 0, 1010),
+  (1006, 0, 1010);
 
 CREATE TABLE designated_contacts(
   designated_contact_id BIGINT PRIMARY KEY,

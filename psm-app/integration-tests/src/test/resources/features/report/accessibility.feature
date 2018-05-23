@@ -38,3 +38,8 @@ Feature: Accessibility Checks for Report Pages
     Given I am logged in as an admin
     And I am on the provider types page
     Then I should have no accessibility issues
+
+  Scenario: Reviewed Documents Page
+    Given I am logged in as an admin
+    And I am on the reviewed documents page
+    Then I should have no accessibility issues

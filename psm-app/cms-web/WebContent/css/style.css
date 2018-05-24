@@ -1188,6 +1188,17 @@ input.date{
   background:url(../i/input-bg.png) repeat-x left top;
 }
 
+.newEnrollmentPanel input.longNormalInput{
+  width:408px;
+  height:20px;
+  padding-left:5px;
+  line-height:20px;
+  float:left;
+  margin:4px 7px 0;
+  border:1px solid #7ea5c8;
+  background:url(../i/input-bg.png) repeat-x left top;
+}
+
 .newEnrollmentPanel input.date{
   width:95px;
   height:20px;
@@ -1473,6 +1484,10 @@ input.date{
 
 .practicePanel input.normalInput{
   width:204px;
+}
+
+.practicePanel input.longNormalInput{
+  width:408px;
 }
 
 .practicePanel input.date{

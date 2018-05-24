@@ -7376,13 +7376,13 @@ dialect 'mvel'
                 ProviderType.INTERMEDIATE_CARE_FACILITIES_FOR_PERSONS_WITH_DEVELOPMENTAL_DISABILITIES.value()
             )
         )
-        OrganizationApplicantType( legalName != null, legalName not matches "^.{0,35}$" )
+        OrganizationApplicantType( legalName != null, legalName not matches "^.{0,1024}$" )
         $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/ApplicantInformation/OrganizationInformation/LegalName",
             "00001",
-            "Legal Name length cannot exceed 35 characters."
+            "Legal Name length cannot exceed 1024 characters."
         );
 
 end

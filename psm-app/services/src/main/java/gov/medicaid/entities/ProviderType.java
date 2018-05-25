@@ -134,4 +134,17 @@ public class ProviderType extends LookupEntity {
     public void setLicenseTypes(List<LicenseType> licenseTypes) {
         this.licenseTypes = licenseTypes;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ProviderType) {
+            return getCode().equals(((ProviderType) obj).getCode());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getCode().hashCode();
+    }
 }

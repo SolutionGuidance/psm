@@ -2,11 +2,13 @@ package gov.medicaid.services.impl
 
 import gov.medicaid.entities.CMSUser
 import gov.medicaid.entities.Enrollment
+import gov.medicaid.entities.Entity
 import gov.medicaid.entities.ProviderProfile
 import gov.medicaid.entities.Role
 import spock.lang.Specification
 
 import javax.persistence.EntityManager
+import javax.persistence.TypedQuery
 import javax.persistence.Query
 
 class ProviderEnrollmentServiceBeanTest extends Specification {
@@ -55,6 +57,7 @@ class ProviderEnrollmentServiceBeanTest extends Specification {
         entityManager.createQuery(PROFILE_QUERY) >>
                 mockQuery([new ProviderProfile()])
         entityManager.createQuery(_ as String) >> mockQuery([])
+        entityManager.createQuery(_ as String, Entity.class) >> mockTypedQuery([] as List<Entity>)
 
 
         when:
@@ -67,6 +70,12 @@ class ProviderEnrollmentServiceBeanTest extends Specification {
 
     private <T> Query mockQuery(List<T> returnValue) {
         def query = Mock(Query)
+        query.getResultList() >> returnValue
+        return query
+    }
+
+    private <T> Query mockTypedQuery(List<T> returnValue) {
+        def query = Mock(TypedQuery)
         query.getResultList() >> returnValue
         return query
     }

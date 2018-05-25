@@ -105,6 +105,51 @@ public class ReportStepDefinitions {
         reportSteps.downloadTimeToReviewReportCsv();
     }
 
+    @Given("^I am on the provider types page$")
+    public void i_am_on_the_provider_types_page() {
+        i_am_on_the_reports_page();
+        reportSteps.navigateToProviderTypesReport();
+    }
+
+    @Then("^I should see the provider types page$")
+    public void i_should_see_the_provider_types_page() {
+        reportSteps.checkOnProviderTypesPage();
+    }
+
+    @Then("^I should see a provider types table with '(\\d+)' enrollments for '(.*)' in month '(.*)'$")
+    public void i_should_see_a_provider_types_table_with_enrollments_for_type_in_month(
+        int numEnrollments,
+        String providerTypeDesc,
+        String month
+    ) {
+        reportSteps.checkProviderTypesPageHasEnrollmentsForMonth(numEnrollments, providerTypeDesc, month);
+    }
+
+    @Then("^I should see no results for month '(.*)'$")
+    public void i_should_see_no_results_for_month(String month) {
+        reportSteps.checkProviderTypesPageHasNoResultsForMonth(month);
+    }
+
+    @Given("^I select the provider type '(.*)'$")
+    public void i_select_the_provider_type(String providerTypeDesc) {
+        reportSteps.selectProviderTypeOption(providerTypeDesc);
+    }
+
+    @Given("^I filter for provider types$")
+    public void i_filter_for_provider_types() {
+        reportSteps.filterProviderTypes();
+    }
+
+    @Given("^I download the provider types report$")
+    public void i_download_the_provider_types_report() {
+        reportSteps.downloadProviderTypesReportCsv();
+    }
+
+    @Then("^I should see provider type '(.*)' selected$")
+    public void i_should_see_provider_type_selected(String providerTypeDesc) {
+        reportSteps.checkProviderTypeSelected(providerTypeDesc);
+    }
+
     @Then("^I should have no errors$")
     public void i_should_have_no_errors() throws Exception {
         generalSteps.hasNoServerError();

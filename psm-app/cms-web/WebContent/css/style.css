@@ -4979,6 +4979,14 @@ select.stateSelect, select.stateSelectFor {
   width: 5%;
 }
 
+.providerTypesNum {
+  width: 150px;
+}
+
+.tableData .noResults {
+  padding: 6px;
+}
+
 /* START OF ERROR MESSAGE ------------------------------------------------------- */
 #errorbar {
   background: #c00;

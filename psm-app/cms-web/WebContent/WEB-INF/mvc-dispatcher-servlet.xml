@@ -181,6 +181,11 @@
     <property name="enrollmentService" ref="ProviderEnrollmentService"/>
   </bean>
 
+  <bean id="ProviderTypesReportController" class="gov.medicaid.controllers.admin.report.ProviderTypesReportController">
+    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
+    <property name="providerTypeService" ref="ProviderTypeService"/>
+  </bean>
+
   <bean id="RegistrationFormValidator" class="gov.medicaid.controllers.validators.RegistrationFormValidator">
     <property name="registrationService" ref="RegistrationService"/>
   </bean>

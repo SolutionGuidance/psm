@@ -247,6 +247,8 @@ var reportUtils = (function makeReportUtils() {
       .domain(axisDomains.yAxis)
       .range([HEIGHT - MARGINS.top, MARGINS.bottom]);
 
+    // Render X and Y axes.
+
     var xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%b %Y"));
 
     var yAxis = d3.axisLeft(yScale);
@@ -262,6 +264,21 @@ var reportUtils = (function makeReportUtils() {
       .attr("class", "yAxis")
       .attr("transform", "translate(" + MARGINS.left + ",0)")
       .call(yAxis);
+
+    // Render the Y axis label. Due to the 90 degree rotation, the x and
+    // y attributes have the opposite effect from what you'd expect.
+    root
+      .append("text")
+      .attr("class", "y-axis-label")
+      .attr("font-size", "10px")
+      .attr("text-anchor", "middle")
+      .attr("y", 20)
+      .attr("dy", "0em")
+      .attr("x", -(HEIGHT / 2))
+      .attr("transform", "rotate(-90)")
+      .text(yAxisLabel);
+
+    // Render lines.
 
     var lineFunction = d3
       .line()
@@ -280,19 +297,6 @@ var reportUtils = (function makeReportUtils() {
         .attr("stroke-width", 2)
         .attr("fill", "none");
     });
-
-    // Render the Y axis label. Due to the 90 degree rotation, the x and
-    // y attributes have the opposite effect from what you'd expect.
-    root
-      .append("text")
-      .attr("class", "y-axis-label")
-      .attr("font-size", "10px")
-      .attr("text-anchor", "middle")
-      .attr("y", 20)
-      .attr("dy", "0em")
-      .attr("x", -(HEIGHT / 2))
-      .attr("transform", "rotate(-90)")
-      .text(yAxisLabel);
   }
 
   // Return an object that provides public access to certain functions.

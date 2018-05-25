@@ -4,11 +4,11 @@ function reportTableToJson(table) {
   var data = [];
   $(table)
     .find(".reportRow")
-    .each(function (idx, row) {
+    .each(function handleRow(idx, row) {
       var dataEntry = {};
       $(row)
         .find(".reportDatum")
-        .each(function (idx, datum) {
+        .each(function handleDatum(idx, datum) {
           dataEntry[$(datum).attr("reportField")] = $(datum).attr(
             "reportValue"
           );
@@ -51,7 +51,7 @@ function getDaysInMonth(date) {
     30,
     31,
     30,
-    31
+    31,
   ][month];
 }
 
@@ -79,7 +79,7 @@ function addMonths(toAdd, date) {
  * @return object  Maps date strings (e.g. '2018-05-01') to positive integers.
  */
 function getDateCounts(dateField, reportJson) {
-  return reportJson.reduce(function (dateCounts, datum) {
+  return reportJson.reduce(function toDateCounts(dateCounts, datum) {
     // datum is an object that contains one unit of report data (e.g. a draft
     // application in a given month).  It typically represents one row of a
     // report table.
@@ -101,7 +101,7 @@ function getDateCounts(dateField, reportJson) {
 function extractPoints(xKey, yKey, points, datum) {
   var point = {
     x: datum[xKey],
-    y: Number(datum[yKey])
+    y: Number(datum[yKey]),
   };
   points.push(point);
   return points;
@@ -117,7 +117,7 @@ function makeLineData(label, color, points) {
   return {
     label: label,
     color: color,
-    points: points
+    points: points,
   };
 }
 
@@ -201,7 +201,7 @@ function getAxisDomains(lines) {
 
   return {
     xAxis: [addMonths(-1, new Date(minX)), addMonths(1, new Date(maxX))],
-    yAxis: [minY, maxY + maxY * 0.1]
+    yAxis: [minY, maxY + maxY * 0.1],
   };
 }
 
@@ -227,7 +227,7 @@ function drawMonthsLineGraph(
     top: 20,
     right: 20,
     bottom: 20,
-    left: 50
+    left: 50,
   };
 
   var root = d3
@@ -264,10 +264,10 @@ function drawMonthsLineGraph(
 
   var lineFunction = d3
     .line()
-    .x(function (point) {
+    .x(function scaleX(point) {
       return xScale(new Date(point.x));
     })
-    .y(function (point) {
+    .y(function scaleY(point) {
       return yScale(point.y);
     });
 

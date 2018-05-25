@@ -40,8 +40,9 @@ public class ReportControllerUtils {
 
         if (enrollments.size() > 0) {
             LocalDate earliestDate =
-                enrollments.stream().map(e -> toLocalDate(dateFunc.apply(e))).
-                    min(Comparator.comparing(LocalDate::toEpochDay)).get();
+                enrollments.stream()
+                    .map(e -> toLocalDate(dateFunc.apply(e)))
+                    .min(Comparator.comparing(LocalDate::toEpochDay)).get();
 
             LocalDate firstMonth = earliestDate.withDayOfMonth(1);
             LocalDate thisMonth = LocalDate.now().withDayOfMonth(1);
@@ -69,24 +70,24 @@ public class ReportControllerUtils {
         List<Enrollment> enrollments;
 
         public EnrollmentMonth(LocalDate month) {
-          this.month = month;
-          enrollments = new ArrayList<>();
+            this.month = month;
+            enrollments = new ArrayList<>();
         }
 
         public void addEnrollment(Enrollment enrollment, EnrollmentInMonthPredicate pred) {
-          LocalDate nextMonth = month.plusMonths(1);
+            LocalDate nextMonth = month.plusMonths(1);
 
-          if (pred.test(enrollment, month, nextMonth.minusDays(1))) {
-              enrollments.add(enrollment);
-          }
+            if (pred.test(enrollment, month, nextMonth.minusDays(1))) {
+                enrollments.add(enrollment);
+            }
         }
 
         public LocalDate getMonth() {
-          return month;
+            return month;
         }
 
         public List<Enrollment> getEnrollments() {
-          return enrollments;
+            return enrollments;
         }
     }
 }

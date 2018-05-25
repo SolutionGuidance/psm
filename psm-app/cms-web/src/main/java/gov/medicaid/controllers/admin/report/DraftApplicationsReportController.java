@@ -39,7 +39,7 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
     }
 
     @RequestMapping(value = "/admin/reports/draft-applications", method = RequestMethod.GET)
-    public ModelAndView getEnrollments() throws PortalServiceException {
+    public ModelAndView getDraftApplications() throws PortalServiceException {
         ModelAndView mv = new ModelAndView("admin/reports/draft_applications_page");
         SearchResult<Enrollment> enrollments = getEnrollmentsFromDB();
         List<EnrollmentMonth> months = groupEnrollments(enrollments.getItems());
@@ -49,7 +49,7 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
     }
 
     @RequestMapping(value = "/admin/reports/draftapplications.csv", method = RequestMethod.GET)
-    public void getEnrollments(HttpServletResponse response) throws PortalServiceException {
+    public void getDraftApplicationsCsv(HttpServletResponse response) throws PortalServiceException {
         String csvFileName = ReportControllerUtils.buildCsvName("draftapplications");
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", csvFileName));
@@ -74,7 +74,7 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
                         enrollment.getTicketId(),
                         enrollment.getCreatedOn(),
                         enrollment.getSubmissionDate()
-                        );
+                    );
                 }
             }
             csvPrinter.close();
@@ -93,7 +93,7 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
     private List<EnrollmentMonth> groupEnrollments(List<Enrollment> enrollments) {
         return ReportControllerUtils.groupEnrollments(
             enrollments,
-            e -> e.getCreatedOn(),
+            Enrollment::getCreatedOn,
             (e, monthStart, monthEnd) -> {
                 return
                     monthEnd.plusDays(1).isAfter(ReportControllerUtils.toLocalDate(e.getCreatedOn())) &&

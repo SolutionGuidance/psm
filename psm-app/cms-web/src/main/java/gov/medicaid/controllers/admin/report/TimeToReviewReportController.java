@@ -42,7 +42,7 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
     }
 
     @RequestMapping(value = "/admin/reports/time-to-review", method = RequestMethod.GET)
-    public ModelAndView timeToReview() throws PortalServiceException {
+    public ModelAndView getTimeToReview() throws PortalServiceException {
         ModelAndView mv = new ModelAndView("admin/reports/time_to_review_page");
         SearchResult<Enrollment> enrollments = getEnrollmentsFromDB();
         List<EnrollmentMonth> ems = groupEnrollments(enrollments.getItems());
@@ -53,7 +53,7 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
     }
 
     @RequestMapping(value = "/admin/reports/timetoreview.csv", method = RequestMethod.GET)
-    public void timeToReviewCsv(HttpServletResponse response) throws PortalServiceException {
+    public void getTimeToReviewCsv(HttpServletResponse response) throws PortalServiceException {
         String csvFileName = ReportControllerUtils.buildCsvName("timetoreview");
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", csvFileName));
@@ -77,7 +77,7 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
                    month.getEnrollments().size(),
                    month.getMean().isZero() ? "N/A" : month.getMeanAsString(),
                    month.getMedian().isZero() ? "N/A" : month.getMedianAsString()
-                   );
+               );
             }
             csvPrinter.close();
         } catch (IOException e) {
@@ -93,12 +93,12 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
     private List<EnrollmentMonth> groupEnrollments(List<Enrollment> enrollments) {
         return ReportControllerUtils.groupEnrollments(
             enrollments,
-            e -> e.getStatusDate(),
+            Enrollment::getStatusDate,
             (e, monthStart, monthEnd) -> {
                 return !(
-                        monthStart.isAfter(ReportControllerUtils.toLocalDate(e.getStatusDate())) ||
-                        monthEnd.isBefore(ReportControllerUtils.toLocalDate(e.getStatusDate()))
-                    );
+                    monthStart.isAfter(ReportControllerUtils.toLocalDate(e.getStatusDate())) ||
+                    monthEnd.isBefore(ReportControllerUtils.toLocalDate(e.getStatusDate()))
+                );
             });
     }
 

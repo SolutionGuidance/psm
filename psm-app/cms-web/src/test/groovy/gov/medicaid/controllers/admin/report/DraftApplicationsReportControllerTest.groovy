@@ -48,7 +48,7 @@ class DraftApplicationsReportControllerTest extends Specification {
             def response = new MockHttpServletResponse()
 
         when:
-            controller.getEnrollments(response)
+            controller.getDraftApplicationsCsv(response)
             def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
             def records = csv.getRecords();
 
@@ -94,7 +94,7 @@ class DraftApplicationsReportControllerTest extends Specification {
             def response = new MockHttpServletResponse()
 
         when:
-            controller.getEnrollments(response)
+            controller.getDraftApplicationsCsv(response)
             def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
             def records = csv.getRecords();
 
@@ -117,7 +117,7 @@ class DraftApplicationsReportControllerTest extends Specification {
             1 * service.getDraftAtEomEnrollments(_) >> testData()
 
         when:
-            def mv = controller.getEnrollments().getModel()
+            def mv = controller.getDraftApplications().getModel()
 
         then:
             mv["enrollmentMonths"].size == 4

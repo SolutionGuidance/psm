@@ -91,7 +91,7 @@ public class ApplicationsApprovedReportController extends gov.medicaid.controlle
                     enrollment.getLastUpdatedBy(),
                     enrollment.getStatusDate(),
                     enrollment.getStatus().getDescription()
-                    );
+                );
             }
             csvPrinter.close();
         } catch (IOException e) {

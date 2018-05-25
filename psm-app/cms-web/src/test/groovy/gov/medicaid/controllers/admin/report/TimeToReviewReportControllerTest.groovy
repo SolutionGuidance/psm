@@ -50,7 +50,7 @@ class TimeToReviewReportControllerTest extends Specification {
             def response = new MockHttpServletResponse()
 
         when:
-            controller.timeToReviewCsv(response)
+            controller.getTimeToReviewCsv(response)
             def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
             def records = csv.getRecords();
 
@@ -105,7 +105,7 @@ class TimeToReviewReportControllerTest extends Specification {
             def response = new MockHttpServletResponse()
 
         when:
-            controller.timeToReviewCsv(response)
+            controller.getTimeToReviewCsv(response)
             def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
             def records = csv.getRecords();
 
@@ -136,7 +136,7 @@ class TimeToReviewReportControllerTest extends Specification {
             1 * service.searchEnrollments(_) >> testData()
 
         when:
-            def mv = controller.timeToReview().getModel()
+            def mv = controller.getTimeToReview().getModel()
 
         then:
             mv["months"].size == 4

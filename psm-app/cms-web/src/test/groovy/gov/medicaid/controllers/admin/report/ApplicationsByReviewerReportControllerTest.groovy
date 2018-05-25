@@ -1,18 +1,17 @@
 package gov.medicaid.controllers.admin.report
 
-import gov.medicaid.entities.SearchResult
-import org.springframework.web.servlet.ModelAndView
-import gov.medicaid.services.ProviderEnrollmentService
-import javax.servlet.http.HttpServletResponse
-import org.springframework.mock.web.MockHttpServletResponse
-import gov.medicaid.entities.Enrollment
-import gov.medicaid.entities.EnrollmentStatus
-import spock.lang.Specification
+import java.time.LocalDate
+import java.time.ZoneId
+
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
+import org.springframework.mock.web.MockHttpServletResponse
 
-import java.time.LocalDate;
-import java.time.ZoneId;
+import gov.medicaid.entities.Enrollment
+import gov.medicaid.entities.EnrollmentStatus
+import gov.medicaid.entities.SearchResult
+import gov.medicaid.services.ProviderEnrollmentService
+import spock.lang.Specification
 
 class ApplicationsByReviewerReportControllerTest extends Specification {
     private ApplicationsByReviewerReportController controller
@@ -42,59 +41,59 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
     }
 
     void setup() {
-        controller = new ApplicationsByReviewerReportController();
-        service = Mock(ProviderEnrollmentService);
+        controller = new ApplicationsByReviewerReportController()
+        service = Mock(ProviderEnrollmentService)
 
-        controller.setEnrollmentService(service);
+        controller.setEnrollmentService(service)
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
     }
 
     def "csv with no enrollments - header"() {
         given:
-            def results = new SearchResult<Enrollment>()
-            results.setItems([])
-            1 * service.searchEnrollments(_) >> results
-            def response = new MockHttpServletResponse()
+        def results = new SearchResult<Enrollment>()
+        results.setItems([])
+        1 * service.searchEnrollments(_) >> results
+        def response = new MockHttpServletResponse()
 
         when:
-            controller.getApplicationsByReviewerCsv(null, null, response)
-            def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
-            def records = csv.getRecords();
+        controller.getApplicationsByReviewerCsv(null, null, response)
+        def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
+        def records = csv.getRecords()
 
         then:
-            records[0][0] == "Application ID"
-            records[0][1] == "Submission Date"
-            records[0][2] == "Reviewed By"
-            records[0][3] == "Review Date"
-            records[0][4] == "Status"
-            records.size == 1
-            records[0].size() == 5
+        records[0][0] == "Application ID"
+        records[0][1] == "Submission Date"
+        records[0][2] == "Reviewed By"
+        records[0][3] == "Review Date"
+        records[0][4] == "Status"
+        records.size == 1
+        records[0].size() == 5
     }
 
     def "csv with an enrollments"() {
         given:
-            def results = new SearchResult<Enrollment>()
-            results.setItems([
-                makeEnrollment(1234, "2018-05-05 12:32:33 PST", "ADMIN", "2018-05-08 5:03:55 PST", "TEST")
-                ])
-            1 * service.searchEnrollments(_) >> results
+        def results = new SearchResult<Enrollment>()
+        results.setItems([
+            makeEnrollment(1234, "2018-05-05 12:32:33 PST", "ADMIN", "2018-05-08 5:03:55 PST", "TEST")
+        ])
+        1 * service.searchEnrollments(_) >> results
 
-            def response = new MockHttpServletResponse()
+        def response = new MockHttpServletResponse()
 
         when:
-            controller.getApplicationsByReviewerCsv(null, null, response)
-            def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
-            def records = csv.getRecords();
+        controller.getApplicationsByReviewerCsv(null, null, response)
+        def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
+        def records = csv.getRecords()
 
         then:
-            records.size == 2
-            records[1].size() == 5
-            records[1][0] == "1234"
-            records[1][1] == "Sat May 05 20:32:33 UTC 2018"
-            records[1][2] == "ADMIN"
-            records[1][3] == "Tue May 08 13:03:55 UTC 2018"
-            records[1][4] == "TEST"
+        records.size == 2
+        records[1].size() == 5
+        records[1][0] == "1234"
+        records[1][1] == "Sat May 05 20:32:33 UTC 2018"
+        records[1][2] == "ADMIN"
+        records[1][3] == "Tue May 08 13:03:55 UTC 2018"
+        records[1][4] == "TEST"
     }
 
     private testData() {
@@ -110,53 +109,53 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
 
     def "base mv"() {
         when:
-            def results = new SearchResult<Enrollment>()
-            results.setItems([])
-            1 * service.searchEnrollments(_) >> results
-            def mv = controller.getApplicationsByReviewer(null, null, null).model
+        def results = new SearchResult<Enrollment>()
+        results.setItems([])
+        1 * service.searchEnrollments(_) >> results
+        def mv = controller.getApplicationsByReviewer(null, null, null).model
 
         then:
-            mv["startDate"] == Date.from(LocalDate.now().withDayOfMonth(1).atStartOfDay(ZoneId.systemDefault()).toInstant())
-            mv["endDate"] == Date.from(LocalDate.now().plusMonths(1).withDayOfMonth(1).minusDays(1)
+        mv["startDate"] == Date.from(LocalDate.now().withDayOfMonth(1).atStartOfDay(ZoneId.systemDefault()).toInstant())
+        mv["endDate"] == Date.from(LocalDate.now().plusMonths(1).withDayOfMonth(1).minusDays(1)
                 .atStartOfDay(ZoneId.systemDefault()).toInstant())
-            mv["enrollments"].size == 0
+        mv["enrollments"].size == 0
     }
 
     def "submitted mv"() {
         when:
-            def mv = controller.getApplicationsByReviewer("", null, null).model
+        def mv = controller.getApplicationsByReviewer("", null, null).model
 
         then:
-            1 * service.searchEnrollments(*_) >> { arguments ->
-              assert null == arguments[0].createDateStart
-              assert null == arguments[0].createDateEnd
-              testData()
-            }
-            mv["startDate"] == null
-            mv["endDate"] == null
-            mv["enrollments"].size == 4
-            mv["enrollments"][0].ticketId == 1237
+        1 * service.searchEnrollments(*_) >> { arguments ->
+            assert null == arguments[0].createDateStart
+            assert null == arguments[0].createDateEnd
+            testData()
+        }
+        mv["startDate"] == null
+        mv["endDate"] == null
+        mv["enrollments"].size == 4
+        mv["enrollments"][0].ticketId == 1237
     }
 
     def "submitted mv with dates"() {
         given:
-            def startDate = toDate("2018-05-05 12:32:33 PST")
-            def endDate = toDate("2018-05-08 12:32:33 PST")
+        def startDate = toDate("2018-05-05 12:32:33 PST")
+        def endDate = toDate("2018-05-08 12:32:33 PST")
 
         when:
-            def mv = controller.getApplicationsByReviewer(
-                "2018-05-05 12:32:33 PST",
-                startDate,
-                endDate
-            ).model
+        def mv = controller.getApplicationsByReviewer(
+            "2018-05-05 12:32:33 PST",
+            startDate,
+            endDate
+        ).model
 
         then:
-            1 * service.searchEnrollments(*_) >> { arguments ->
-              assert startDate == arguments[0].createDateStart
-              assert endDate == arguments[0].createDateEnd
-              testData()
-            }
-            mv["startDate"] == startDate
-            mv["endDate"] == endDate
+        1 * service.searchEnrollments(*_) >> { arguments ->
+            assert startDate == arguments[0].createDateStart
+            assert endDate == arguments[0].createDateEnd
+            testData()
+        }
+        mv["startDate"] == startDate
+        mv["endDate"] == endDate
     }
 }

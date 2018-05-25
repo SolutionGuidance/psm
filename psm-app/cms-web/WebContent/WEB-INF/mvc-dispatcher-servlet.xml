@@ -169,7 +169,7 @@
         class="gov.medicaid.controllers.admin.ReportController">
   </bean>
 
-  <bean id="ApplicationsApprovedReportController" class="gov.medicaid.controllers.admin.report.ApplicationsApprovedReportController">
+  <bean id="ApplicationsByReviewerReportController" class="gov.medicaid.controllers.admin.report.ApplicationsByReviewerReportController">
     <property name="enrollmentService" ref="ProviderEnrollmentService"/>
   </bean>
 

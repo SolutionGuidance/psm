@@ -25,7 +25,7 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 
 @Controller
-public class ApplicationsApprovedReportController extends gov.medicaid.controllers.BaseController {
+public class ApplicationsByReviewerReportController extends gov.medicaid.controllers.BaseController {
     private ProviderEnrollmentService enrollmentService;
 
     public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {

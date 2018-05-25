@@ -14,8 +14,8 @@ import org.apache.commons.csv.CSVParser
 import java.time.LocalDate;
 import java.time.ZoneId;
 
-class ApplicationsApprovedReportControllerTest extends Specification {
-    private ApplicationsApprovedReportController controller
+class ApplicationsByReviewerReportControllerTest extends Specification {
+    private ApplicationsByReviewerReportController controller
     private ProviderEnrollmentService service
     private static TimeZone originalTimeZone
 
@@ -42,7 +42,7 @@ class ApplicationsApprovedReportControllerTest extends Specification {
     }
 
     void setup() {
-        controller = new ApplicationsApprovedReportController();
+        controller = new ApplicationsByReviewerReportController();
         service = Mock(ProviderEnrollmentService);
 
         controller.setEnrollmentService(service);

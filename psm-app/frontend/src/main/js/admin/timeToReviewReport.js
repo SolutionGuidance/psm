@@ -1,28 +1,27 @@
-"use strict";
-
 window.addEventListener("load", function drawTimeToReviewLineGraph() {
-  var reportJson = reportTableToJson($(".reportTable"));
+  "use strict";
+  var reportJson = reportUtils.tableToJson($(".reportTable"));
 
   var medianPoints = reportJson.reduce(
-    extractPoints.bind(undefined, "month", "medianReviewTime"),
+    reportUtils.extractPoints.bind(undefined, "month", "medianReviewTime"),
     []
   );
 
   var meanPoints = reportJson.reduce(
-    extractPoints.bind(undefined, "month", "meanReviewTime"),
+    reportUtils.extractPoints.bind(undefined, "month", "meanReviewTime"),
     []
   );
 
   var lines = [
-    makeLineData("Median", "orange", medianPoints),
-    makeLineData("Mean", "#0d4478", meanPoints),
+    reportUtils.makeLineData("Median", "orange", medianPoints),
+    reportUtils.makeLineData("Mean", "#0d4478", meanPoints),
   ];
 
-  drawMonthsLineGraph(
+  reportUtils.drawMonthsLineGraph(
     "#timeToReviewLineGraph",
     "",
     "Time to Review in Days (Mean in Blue and Median in Orange)",
     lines,
-    getAxisDomains(lines)
+    reportUtils.getAxisDomains(lines)
   );
 });

@@ -231,6 +231,9 @@ var reportUtils = (function makeReportUtils() {
       left: 50,
     };
 
+    // Clear loading message.
+    $(".lineGraphContainer").empty();
+
     var root = d3
       .select(elementId)
       .append("svg")

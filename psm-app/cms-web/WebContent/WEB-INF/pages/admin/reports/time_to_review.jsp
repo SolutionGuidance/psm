@@ -29,7 +29,9 @@
             >Download this report</a>
           </div>
 
-          <div id="timeToReviewLineGraph"></div>
+          <div id="timeToReviewLineGraph" class="lineGraphContainer">
+           <em>Loading...</em>
+          </div>
 
           <div class="reportTable dashboardPanel">
             <div class="tableData">

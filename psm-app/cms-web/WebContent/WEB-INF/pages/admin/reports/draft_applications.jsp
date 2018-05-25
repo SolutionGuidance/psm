@@ -29,7 +29,9 @@
             >Download this report</a>
           </div>
 
-          <div id="draftApplicationsLineGraph"></div>
+          <div id="draftApplicationsLineGraph" class="lineGraphContainer">
+            <em>Loading...</em>
+          </div>
 
           <div class="reportTable dashboardPanel">
             <c:forEach var="enrollmentMonth" items="${enrollmentMonths}">

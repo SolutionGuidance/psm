@@ -3,18 +3,17 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Draft Report</title>
-  <script src="../src/main/js/admin/report.js"></script>
+  <title>Time to Review Report</title>
+  <script src="../src/main/js/admin/reportUtils.js"></script>
   <script src="d3.v5.min.js"></script>
+  <script src="jquery-1.7.1.min.js"></script>
   <script src="timeToReviewData.js"></script>
   <script src="../src/main/js/admin/timeToReviewReport.js"></script>
 
 <script>
-function reportTableToJson() {
+reportUtils.tableToJson = function mock() {
   return reportJson;
 }
-
-function $() {}
 </script>
 
 </head>

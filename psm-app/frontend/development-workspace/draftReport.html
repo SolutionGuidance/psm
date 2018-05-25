@@ -4,17 +4,16 @@
 <head>
   <meta charset="utf-8">
   <title>Draft Report</title>
-  <script src="../src/main/js/admin/report.js"></script>
+  <script src="../src/main/js/admin/reportUtils.js"></script>
   <script src="d3.v5.min.js"></script>
+  <script src="jquery-1.7.1.min.js"></script>
   <script src="draftReportInformation.js"></script>
   <script src="../src/main/js/admin/draftsReport.js"></script>
-  
+
 <script>
-function reportTableToJson() {
+reportUtils.tableToJson = function mock() {
   return reportInformation;
 }
-
-function $() {}
 </script>
 
 </head>

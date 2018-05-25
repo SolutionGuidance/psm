@@ -40,7 +40,7 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
 
     @RequestMapping(value = "/admin/reports/draft-applications", method = RequestMethod.GET)
     public ModelAndView getDraftApplications() throws PortalServiceException {
-        ModelAndView mv = new ModelAndView("admin/reports/draft_applications_page");
+        ModelAndView mv = new ModelAndView("admin/reports/draft_applications");
         SearchResult<Enrollment> enrollments = getEnrollmentsFromDB();
         List<EnrollmentMonth> months = groupEnrollments(enrollments.getItems());
 

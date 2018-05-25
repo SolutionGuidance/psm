@@ -5,19 +5,19 @@ Feature: Applications by Reviewer Report
     Given I am logged in as an admin
     And I am on the applications by reviewer page
     And I search for applications by reviewer between '01/01/2001' and '01/02/2001'
-    Then I should see no results message
+    Then I should see no applications by reviewer results
 
   Scenario: Search Applications by Reviewer Page with Results
     Given I am logged in as an admin
     And I am on the applications by reviewer page
     And I search for applications by reviewer between '01/01/2017' and '12/01/2017'
-    Then I should see results
+    Then I should see applications by reviewer results
 
   Scenario: Search Applications by Reviewer Page without Dates with Results
     Given I am logged in as an admin
     And I am on the applications by reviewer page
     And I search for applications by reviewer with cleared dates
-    Then I should see results
+    Then I should see applications by reviewer results
 
   Scenario: Download Applications by Reviewer CSV
     Given I am logged in as an admin

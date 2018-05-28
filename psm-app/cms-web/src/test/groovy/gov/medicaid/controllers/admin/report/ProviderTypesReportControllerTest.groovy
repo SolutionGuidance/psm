@@ -1,24 +1,19 @@
 package gov.medicaid.controllers.admin.report
 
-import gov.medicaid.entities.SearchResult
-import gov.medicaid.services.ProviderEnrollmentService
-import gov.medicaid.services.ProviderTypeService
-import gov.medicaid.entities.Enrollment
-import gov.medicaid.entities.Person
-import gov.medicaid.entities.ProviderType
-import gov.medicaid.entities.EnrollmentStatus
-import gov.medicaid.entities.dto.ViewStatics
-
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
-import javax.servlet.http.HttpServletResponse
 
-import org.springframework.web.servlet.ModelAndView
-import org.springframework.mock.web.MockHttpServletResponse
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
+import org.springframework.mock.web.MockHttpServletResponse
 
+import gov.medicaid.entities.Enrollment
+import gov.medicaid.entities.Person
+import gov.medicaid.entities.ProviderType
+import gov.medicaid.entities.SearchResult
+import gov.medicaid.services.ProviderEnrollmentService
+import gov.medicaid.services.ProviderTypeService
 import spock.lang.Specification
 
 class ProviderTypesReportControllerTest extends Specification {
@@ -37,16 +32,16 @@ class ProviderTypesReportControllerTest extends Specification {
         providerTypeService = Mock(ProviderTypeService)
 
         providerTypeService.search(_) >>
-           new SearchResult<ProviderType>(
-               [items: 
-                   [
-                   new ProviderType([code: "PT 1", description: "PT 1"]),
-                   new ProviderType([code: "PT 2", description: "PT 2"]),
-                   new ProviderType([code: "PT 3", description: "PT 3"]),
-                   new ProviderType([code: "PT 4", description: "PT 4"])
-                   ]
-               ]
-           )
+                new SearchResult<ProviderType>(
+                [items:
+                    [
+                        new ProviderType([code: "PT 1", description: "PT 1"]),
+                        new ProviderType([code: "PT 2", description: "PT 2"]),
+                        new ProviderType([code: "PT 3", description: "PT 3"]),
+                        new ProviderType([code: "PT 4", description: "PT 4"])
+                    ]
+                ]
+                )
 
         controller.setEnrollmentService(enrollmentService)
         controller.setProviderTypeService(providerTypeService)
@@ -90,18 +85,18 @@ class ProviderTypesReportControllerTest extends Specification {
     }
 
     def "csv with no enrollments - header"() {
-    given:
+        given:
         def results = new SearchResult<Enrollment>()
         results.setItems([])
         1 * enrollmentService.searchEnrollments(_) >> results
         def response = new MockHttpServletResponse()
 
-    when:
+        when:
         controller.getProviderTypesCsv(null, response)
         def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
         def records = csv.getRecords()
 
-    then:
+        then:
         records[0][0] == "Month Reviewed"
         records[0][1] == "Provider Type"
         records[0][2] == "Number Reviewed"
@@ -110,18 +105,18 @@ class ProviderTypesReportControllerTest extends Specification {
     }
 
     def "csv with enrollments"() {
-    given:
+        given:
         1 * enrollmentService.searchEnrollments(_) >> testEnrollmentData()
         setupTestEntities()
 
         def response = new MockHttpServletResponse()
 
-    when:
+        when:
         controller.getProviderTypesCsv(null, response)
         def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
         def records = csv.getRecords()
 
-    then:
+        then:
         records.size == 5
         records[1].size() == 3
         records[1][0] == noonMiddleThisMonth.withDayOfMonth(1).toLocalDate().toString()
@@ -139,14 +134,14 @@ class ProviderTypesReportControllerTest extends Specification {
     }
 
     def "mv with enrollments"() {
-    given:
+        given:
         1 * enrollmentService.searchEnrollments(_) >> testEnrollmentData()
         setupTestEntities()
 
-    when:
+        when:
         def mv = controller.getProviderTypes(["PT 1", "PT 2"]).model
 
-    then:
+        then:
         mv["months"].size == 3
         mv["months"][0].month == noonMiddleThisMonth.withDayOfMonth(1).toLocalDate()
         mv["months"][0].getProviderTypes().get(0).description == "PT 1"

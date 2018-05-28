@@ -1,19 +1,15 @@
 package gov.medicaid.controllers.admin.report
 
-import gov.medicaid.entities.SearchResult
-import gov.medicaid.services.ProviderEnrollmentService
-import gov.medicaid.entities.Enrollment
-import gov.medicaid.entities.EnrollmentStatus
+import java.time.LocalDate
+import java.time.ZoneId
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import javax.servlet.http.HttpServletResponse
-
-import org.springframework.web.servlet.ModelAndView
-import org.springframework.mock.web.MockHttpServletResponse
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
+import org.springframework.mock.web.MockHttpServletResponse
 
+import gov.medicaid.entities.Enrollment
+import gov.medicaid.entities.SearchResult
+import gov.medicaid.services.ProviderEnrollmentService
 import spock.lang.Specification
 
 class DraftApplicationsReportControllerTest extends Specification {
@@ -24,7 +20,7 @@ class DraftApplicationsReportControllerTest extends Specification {
 
     void setupSpec() {
         originalTimeZone = TimeZone.getDefault()
-        middleThisMonth = LocalDate.now().withDayOfMonth(15);
+        middleThisMonth = LocalDate.now().withDayOfMonth(15)
     }
 
     void cleanupSpec() {
@@ -32,33 +28,33 @@ class DraftApplicationsReportControllerTest extends Specification {
     }
 
     void setup() {
-        controller = new DraftApplicationsReportController();
-        service = Mock(ProviderEnrollmentService);
+        controller = new DraftApplicationsReportController()
+        service = Mock(ProviderEnrollmentService)
 
-        controller.setEnrollmentService(service);
+        controller.setEnrollmentService(service)
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
     }
 
     def "csv with no enrollments - header"() {
         given:
-            def results = new SearchResult<Enrollment>()
-            results.setItems([])
-            1 * service.getDraftAtEomEnrollments(_) >> results
-            def response = new MockHttpServletResponse()
+        def results = new SearchResult<Enrollment>()
+        results.setItems([])
+        1 * service.getDraftAtEomEnrollments(_) >> results
+        def response = new MockHttpServletResponse()
 
         when:
-            controller.getEnrollments(response)
-            def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
-            def records = csv.getRecords();
+        controller.getDraftApplicationsCsv(response)
+        def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
+        def records = csv.getRecords()
 
         then:
-            records[0][0] == "Month in Draft"
-            records[0][1] == "Application ID"
-            records[0][2] == "Creation Date"
-            records[0][3] == "Submission Date"
-            records.size == 1
-            records[0].size() == 4
+        records[0][0] == "Month in Draft"
+        records[0][1] == "Application ID"
+        records[0][2] == "Creation Date"
+        records[0][3] == "Submission Date"
+        records.size == 1
+        records[0].size() == 4
     }
 
     private toDate(localDate) {
@@ -89,43 +85,43 @@ class DraftApplicationsReportControllerTest extends Specification {
 
     def "csv with enrollments"() {
         given:
-            1 * service.getDraftAtEomEnrollments(_) >> testData()
+        1 * service.getDraftAtEomEnrollments(_) >> testData()
 
-            def response = new MockHttpServletResponse()
+        def response = new MockHttpServletResponse()
 
         when:
-            controller.getEnrollments(response)
-            def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
-            def records = csv.getRecords();
+        controller.getDraftApplicationsCsv(response)
+        def csv = CSVParser.parse(response.getContentAsString(), CSVFormat.DEFAULT)
+        def records = csv.getRecords()
 
         then:
-            records.size == 12
-            records[1].size() == 4
-            records[6].size() == 4
-            records[1][0] == middleThisMonth.withDayOfMonth(1).toString()
-            records[1][1] == "4"
-            records[1][2] == toDate(middleThisMonth.minusMonths(3).minusDays(1)).toString()
-            records[1][3] == ""
-            records[7][0] == middleThisMonth.withDayOfMonth(1).minusMonths(1).toString()
-            records[7][1] == "1"
-            records[7][2] == toDate(middleThisMonth.minusMonths(1)).toString()
-            records[7][3] == toDate(middleThisMonth).toString()
+        records.size == 12
+        records[1].size() == 4
+        records[6].size() == 4
+        records[1][0] == middleThisMonth.withDayOfMonth(1).toString()
+        records[1][1] == "4"
+        records[1][2] == toDate(middleThisMonth.minusMonths(3).minusDays(1)).toString()
+        records[1][3] == ""
+        records[7][0] == middleThisMonth.withDayOfMonth(1).minusMonths(1).toString()
+        records[7][1] == "1"
+        records[7][2] == toDate(middleThisMonth.minusMonths(1)).toString()
+        records[7][3] == toDate(middleThisMonth).toString()
     }
 
     def "mv with enrollments"() {
         given:
-            1 * service.getDraftAtEomEnrollments(_) >> testData()
+        1 * service.getDraftAtEomEnrollments(_) >> testData()
 
         when:
-            def mv = controller.getEnrollments().getModel()
+        def mv = controller.getDraftApplications().getModel()
 
         then:
-            mv["enrollmentMonths"].size == 4
-            mv["enrollmentMonths"][0].month == middleThisMonth.withDayOfMonth(1)
-            mv["enrollmentMonths"][0].enrollments[0].ticketId == 4
-            mv["enrollmentMonths"][2].month == middleThisMonth.withDayOfMonth(1).minusMonths(2)
-            mv["enrollmentMonths"][2].enrollments[1].createdOn == toDate(middleThisMonth.minusMonths(2))
-            mv["enrollmentMonths"][1].enrollments[0].submissionDate == null
-            mv["enrollmentMonths"][1].enrollments[2].submissionDate == toDate(middleThisMonth)
+        mv["enrollmentMonths"].size == 4
+        mv["enrollmentMonths"][0].month == middleThisMonth.withDayOfMonth(1)
+        mv["enrollmentMonths"][0].enrollments[0].ticketId == 4
+        mv["enrollmentMonths"][2].month == middleThisMonth.withDayOfMonth(1).minusMonths(2)
+        mv["enrollmentMonths"][2].enrollments[1].createdOn == toDate(middleThisMonth.minusMonths(2))
+        mv["enrollmentMonths"][1].enrollments[0].submissionDate == null
+        mv["enrollmentMonths"][1].enrollments[2].submissionDate == toDate(middleThisMonth)
     }
 }

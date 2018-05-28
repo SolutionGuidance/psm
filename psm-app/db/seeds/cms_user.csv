@@ -1,0 +1,4 @@
+user_id,username,first_name,last_name,email,status,role_code
+"p1","p1","p1","p1","p1@example.com","ACTIVE","R1"
+"ADMIN","admin","admin","admin","admin@example.com","ACTIVE","R3"
+"SYSTEM","system","system","system","system@example.com","ACTIVE","R4"

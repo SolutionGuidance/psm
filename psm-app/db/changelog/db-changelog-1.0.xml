@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
-  xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
-                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
   <changeSet author="" id="issue254-create-hibernate-sequence">
     <createSequence sequenceName="hibernate_sequence"/>
@@ -14,25 +14,43 @@
 
   <changeSet author="" id="issue254-create-table-persistent-logins-table">
     <createTable tableName="persistent_logins">
-        <column name="series"
-          type="varchar(64)">
-          <constraints primaryKey="true"/>
-        </column>
-        <column name="username"
-          type="varchar(64)">
-          <constraints nullable="false"/>
-        </column>
-        <column name="token"
-          type="varchar(64)">
-          <constraints nullable="false"/>
-        </column>
-        <column name="last_used"
-          type="timestamp with time zone">
-          <constraints nullable="false"/>
-        </column>
+      <column name="series"
+        type="varchar(64)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="username"
+        type="varchar(64)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="token"
+        type="varchar(64)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_used"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
     </createTable>
     <rollback>
       <dropTable tableName="persistent_logins"/>
+    </rollback>
+  </changeSet>
+
+
+
+  <changeSet author="" id="issue254-create-table-roles">
+    <createTable tableName="roles">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="roles"/>
     </rollback>
   </changeSet>
 
@@ -224,4 +242,171 @@
       <dropTable tableName="leie_automatic_screenings_matches"/>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue254-create-table-cms-user">
+    <createTable tableName="cms_user">
+      <column name="user_id"
+        type="text">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="username"
+        type="text">
+        <constraints
+          nullable="false"
+          unique="true"/>
+      </column>
+      <column name="first_name"
+        type="text" />
+      <column name="middle_name"
+        type="text" />
+      <column name="last_name"
+        type="text" />
+      <column name="phone_number"
+        type="text" />
+      <column name="email"
+        type="text" />
+      <column name="status"
+        type="text" />
+      <column name="role_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="cms_user_role_code_fkey"
+          references="roles(code)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="cms_user"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-cms-authentication">
+    <createTable tableName="cms_authentication">
+      <column name="username"
+        type="text">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="password"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="cms_authentication"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-audit-records">
+    <createTable tableName="audit_records">
+      <column name="audit_record_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="action"
+        type="text" />
+      <column name="date"
+        type="timestamp with time zone" />
+      <column name="system_id"
+        type="text" />
+      <column name="username"
+        type="text" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="audit_records"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-audit-details">
+    <createTable tableName="audit_details">
+      <column name="audit_detail_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="audit_record_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="audit_details_audit_record_id_fkey"
+          references="audit_records(audit_record_id)"/>
+      </column>
+      <column name="table_name"
+        type="text" />
+      <column name="column_name"
+        type="text" />
+      <column name="old_value"
+        type="text" />
+      <column name="new_value"
+        type="text" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="audit_details"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-help-items">
+    <createTable tableName="help_items">
+      <column name="help_item_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="title"
+        type="text" />
+      <column name="description"
+        type="text" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="help_items"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-qualified-professional-types">
+    <createTable tableName="qualified_professional_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="qualified_professional_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-types">
+    <createTable tableName="provider_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    <column name="applicant_type"
+      type="text"
+      defaultValue="INDIVIDUAL">
+      <constraints nullable="false"/>
+    </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-profile-statuses">
+    <createTable tableName="profile_statuses">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="profile_statuses"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

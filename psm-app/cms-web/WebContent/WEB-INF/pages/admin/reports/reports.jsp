@@ -57,6 +57,13 @@
                   Reviewed Documents
                 </a>
               </div>
+              <div class="row">
+                <a href="${ctx}/admin/reports/risk-levels/"
+                  class="riskLevelsLink"
+                >
+                  Risk Levels
+                </a>
+              </div>
             </div>
           </div>
         </div>

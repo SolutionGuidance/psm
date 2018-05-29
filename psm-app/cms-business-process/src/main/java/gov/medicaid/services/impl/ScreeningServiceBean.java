@@ -28,6 +28,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.PersistenceException;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -105,5 +106,12 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
                         hintEntityGraph("Screening with matches")
                 )
         );
+    }
+
+    @Override
+    public List<AutomaticScreening> getAllScreenings() {
+        return getEm()
+                .createQuery("FROM AutomaticScreening", AutomaticScreening.class)
+                .getResultList();
     }
 }

@@ -19,6 +19,11 @@
           </li>
 
           {{#if isServiceAdministrator}}
+          <li class="{{#if activeTabScreenings }} active {{/if}}">
+            <a class="screeningsLink" href="{{ctx}}/agent/screenings">SCREENINGS</a>
+            {{#if activeTabScreenings }} <span class="arrow"></span> {{/if}}
+          </li>
+
           <li class="{{#if activeTab5 }} active {{/if}}">
             <a class="reportsLink" href="{{ctx}}/admin/reports">REPORTS</a>
             {{#if activeTab5 }} <span class="arrow"></span> {{/if}}

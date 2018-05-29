@@ -78,9 +78,8 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
      * This method saves the screening schedule.
      *
      * @param screeningSchedule - the screening schedule
-     *
      * @throws IllegalArgumentException - If screeningSchedule is null
-     * @throws PortalServiceException - If there are any errors during the execution of this method
+     * @throws PortalServiceException   - If there are any errors during the execution of this method
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void saveScreeningSchedule(ScreeningSchedule screeningSchedule) throws PortalServiceException {

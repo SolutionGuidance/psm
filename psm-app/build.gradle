@@ -321,15 +321,21 @@ project(':db') {
     project.tasks.each { dbTask ->
         dbTask.doFirst {
             if (!System.properties.containsKey('databasePath')) {
-              throw new InvalidUserDataException("No database path found in `gradle.properties`; please see MIGRATIONS.md.")
+              throw new InvalidUserDataException("systemProp.databasePath " +
+                  "entry not found in `gradle.properties`; " +
+                  "please see MIGRATIONS.md.")
             }
 
             if (!System.properties.containsKey('databaseUser')) {
-              throw new InvalidUserDataException("No database user found in `gradle.properties`; please see MIGRATIONS.md.")
+              throw new InvalidUserDataException("systemProp.databaseUser " +
+                  "entry not found in 'gradle.properties`; " +
+                  "please see MIGRATIONS.md.")
             }
 
             if (!System.properties.containsKey('databasePassword')) {
-              throw new InvalidUserDataException("No database password found in `gradle.properties`; please see MIGRATIONS.md.")
+              throw new InvalidUserDataException("systemProp.databasePassword " +
+                  "entry not found in `gradle.properties`; " +
+                  "please see MIGRATIONS.md.")
             }
         }
     }

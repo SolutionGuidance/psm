@@ -8,6 +8,16 @@ Changes to the database are registered inside of `ChangeLog` files. Each change 
 ## Running Migrations
 To run migrations:
 
+Create or edit the file `psm-app/gradle.properties` as shown in
+`psm-app/gradle.properties.template.`
+
+Note the format for the URL property `systemProp.DatabasePath`:
+
+```
+jdbc:postgresql://host:port/database
+```
+Then execute the following command:
+
 ```shell
 > ./gradlew db:update
 ```

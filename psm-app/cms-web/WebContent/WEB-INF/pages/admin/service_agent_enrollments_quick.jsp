@@ -10,6 +10,7 @@
 <html lang="en-US">
   <c:set var="title" value="Search Results"/>
   <c:set var="adminPage" value="true" />
+  <c:set var="quickSearchNpi" value="${param.npi}" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">

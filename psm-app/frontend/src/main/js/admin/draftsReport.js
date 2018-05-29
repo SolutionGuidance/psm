@@ -1,13 +1,25 @@
-"use strict";
+window.addEventListener("load", function drawDraftsLineGraph() {
+  "use strict";
+  var reportJson = reportUtils.tableToJson($(".reportTable"));
+  var monthCounts = reportUtils.getDateCounts("month", reportJson);
+  var months = Object.keys(monthCounts);
 
-window.addEventListener("load", function () {
-  var reportJson = reportTableToJson($(".reportTable"));
+  var draftsPoints = months.map(function makePoints(month) {
+    return {
+      x: month,
+      y: monthCounts[month],
+    };
+  });
 
-  var monthCounts = getDateCounts("month", reportJson);
+  var lines = [
+    reportUtils.makeLineData("Draft Applications", "#0d4478", draftsPoints),
+  ];
 
-  drawMonthsLineGraph(
+  reportUtils.drawMonthsLineGraph(
     "#draftApplicationsLineGraph",
+    "",
     "Draft Applications",
-    monthCounts
+    lines,
+    reportUtils.getAxisDomains(lines)
   );
 });

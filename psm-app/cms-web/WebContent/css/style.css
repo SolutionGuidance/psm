@@ -4067,6 +4067,10 @@ form .error{
   color: #d00;
 }
 
+.lineGraphContainer {
+  height: 750px;
+}
+
 /* END OF SERVICE ADMIN STYLES -------------------------------------------------- */
 
 

@@ -27,20 +27,34 @@ public enum RemittanceSequenceOrder {
     /**
      * By enrollee name.
      */
-    BY_ENROLLEE_NAME,
+    BY_ENROLLEE_NAME(""),
 
     /**
      * By patient account.
      */
-    PATIENT_ACCOUNT_OR_OWN_REFERENCE_ORDER,
+    PATIENT_ACCOUNT_OR_OWN_REFERENCE_ORDER("Patient Account or Own Reference Number Order"),
 
     /**
      * By transaction control.
      */
-    DHS_TRANSACTION_CONTROL_ORDER,
+    DHS_TRANSACTION_CONTROL_ORDER("DHS Transaction Control Number Order"),
 
     /**
      * By MHCP ID.
      */
-    RECIPIENT_MHCP_ID_NUMBER_ORDER;
+    RECIPIENT_MHCP_ID_NUMBER_ORDER("Recipient MHCP ID Number Order");
+
+    private String description;
+
+    RemittanceSequenceOrder(String desc) {
+        this.setDescription(desc);
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    private void setDescription(String desc) {
+        this.description = desc;
+    }
 }

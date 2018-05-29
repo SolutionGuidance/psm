@@ -315,7 +315,8 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
             PDFHelper.addLabelValueCell(practiceInfo, "State Tax ID", PDFHelper.value(model, ns, "stateTaxId"));
             PDFHelper.addLabelValueCell(practiceInfo, "Fiscal Year End", PDFHelper.getFiscalYear(model, ns));
             PDFHelper.addLabelValueCell(practiceInfo, "Accepts EFT", PDFHelper.getBoolean(model, ns, "eftAccepted"));
-            PDFHelper.addLabelValueCell(practiceInfo, "Remittance Sequence", PDFHelper.value(model, ns, "remittanceSequence"));
+            PDFHelper.addLabelValueCell(practiceInfo, "Remittance Sequence", RemittanceSequenceOrder.
+                    valueOf(PDFHelper.value(model, ns, "remittanceSequence")).getDescription());
         }
 
         document.add(practiceInfo);

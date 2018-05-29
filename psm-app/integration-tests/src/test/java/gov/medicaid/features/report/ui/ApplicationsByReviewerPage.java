@@ -6,6 +6,11 @@ import net.thucydides.core.annotations.DefaultUrl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Optional;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 @DefaultUrl("http://localhost:8080/cms/admin/reports/applications-by-reviewer")
 public class ApplicationsByReviewerPage extends PsmPage {
     public void checkOnPage() {
@@ -35,5 +40,15 @@ public class ApplicationsByReviewerPage extends PsmPage {
 
     public void checkHasNoResults() {
         assertThat($("#wrapper .noResults").getText()).contains("No results found");
+    }
+
+    public void clickOnEnrollment(int enrollmentId) {
+        Optional<WebElement> link =
+            getDriver().findElements(By.cssSelector("#wrapper .tableData .generalTable tr td a")).stream()
+                .filter(a -> a.getText().equals("" + enrollmentId))
+            .findFirst();
+
+        assertThat(link.isPresent()).isTrue();
+        link.get().click();
     }
 }

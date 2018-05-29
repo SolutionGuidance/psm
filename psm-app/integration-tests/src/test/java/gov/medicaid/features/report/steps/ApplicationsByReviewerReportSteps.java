@@ -32,4 +32,9 @@ public class ApplicationsByReviewerReportSteps {
     public void downloadApplicationsByReviewerReport() {
         applicationsByReviewerPage.click$(".downloadApplicationsByReviewerLink");
     }
+
+    @Step
+    public void clickOnEnrollment(int enrollmentId) {
+        applicationsByReviewerPage.clickOnEnrollment(enrollmentId);
+    }
 }

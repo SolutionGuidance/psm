@@ -87,7 +87,11 @@
                     </thead>
                     <c:forEach var="enrollment" items="${enrollments}">
                       <tr class="reportRow">
-                        <td>${enrollment.ticketId}</td>
+                        <td>
+                          <a href="${ctx}/provider/enrollment/view?id=${enrollment.ticketId}">
+                            ${enrollment.ticketId}
+                          </a>
+                        </td>
                         <td><fmt:formatDate value="${enrollment.createdOn}" pattern="dd MMMM yyyy" /></td>
                         <td>${enrollment.lastUpdatedBy}</td>
                         <td><fmt:formatDate value="${enrollment.statusDate}" pattern="dd MMMM yyyy" /></td>

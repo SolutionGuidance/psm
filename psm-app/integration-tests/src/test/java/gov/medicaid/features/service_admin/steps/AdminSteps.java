@@ -1,7 +1,10 @@
 package gov.medicaid.features.service_admin.steps;
 
 import gov.medicaid.features.PsmPage;
+import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
+
 import net.thucydides.core.annotations.Step;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -11,6 +14,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AdminSteps {
 
     private PsmPage psmPage;
+
+    private OrganizationInfoPage organizationInfoPage;
 
     @Step
     public void openWriteNoteModal() {
@@ -24,5 +29,10 @@ public class AdminSteps {
         WebElement viewLink = row.findElement(By.className("viewLink"));
         psmPage.click(viewLink);
         assertThat(psmPage.getTitle().contains("Organization Information"));
+    }
+
+    @Step
+    public void checkOnPersonalInformationPage() {
+        assertThat(organizationInfoPage.isPersonalEnrollment());
     }
 }

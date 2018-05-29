@@ -27,10 +27,13 @@ directory. The major ones are:
   frontend elements to Java handles, definitions of EE services that
   `cms-business-process` implements)
 
-* `cms-web` (MVC, web controller, frontend, UI)
+* `cms-web` (MVC, web controller, UI, HTML, CSS)
 
 * `cms-portal-services` (generates EAR file, and is where TopCoder JAR
   files live)
+
+* `frontend` (manages JavaScript used on the frontend, see
+  [frontend/README.md](../psm-app/frontend/README.md))
 
 * `userhelp` (contains prose documents for end user help)
 

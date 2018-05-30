@@ -28,7 +28,7 @@ deployment guide will be part of our 1.0 release. ***
 
 # Background and Current Deployment Status
 
-2017-09-08: The PSM is not yet ready for production deployment,
+2018-06-01: The PSM is not yet ready for production deployment,
 but is ready for development deployment.
 
 The PSM was originally developed to run in the open source web
@@ -336,9 +336,9 @@ EOF
    ```
 
 1. Build the application with `gradle`. This depends on libraries
-   provided by the application server.  Note that command is a wrapper
+   provided by the application server.  Note that the command used is a wrapper
    around gradle and it is called `gradlew`, not `gradle`.  The
-   gradlew wrapper executable is in the psm-app directory of the git
+   `gradlew` wrapper executable is in the `psm-app` directory of the git
    repository.
 
    ```ShellSession
@@ -390,7 +390,7 @@ EOF
 ## Build documentation
 
 Generate the API documentation from Javadoc annotations by navigating to the
-psm-app directory and invoking gradle:
+`psm-app` directory and invoking gradle:
 
     ./gradlew cms-web:apiDocs
 

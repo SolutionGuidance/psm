@@ -99,7 +99,7 @@ class ProviderTypesReportControllerTest extends Specification {
         then:
         records[0][0] == "Month Reviewed"
         records[0][1] == "Provider Type"
-        records[0][2] == "Number Reviewed"
+        records[0][2] == "Applications Reviewed"
         records.size == 1
         records[0].size() == 3
     }

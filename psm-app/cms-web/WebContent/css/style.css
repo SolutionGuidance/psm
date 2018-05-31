@@ -4086,6 +4086,9 @@ form .error{
 .legendItemText {
   display: inline-block;
 }
+.lineGraphNote {
+  margin: 12px;
+}
 
 /* END OF SERVICE ADMIN STYLES -------------------------------------------------- */
 

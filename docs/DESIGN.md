@@ -20,12 +20,15 @@ directory. The major ones are:
 
 * `cms-business-model` (contains XML-defined Java data types, e.g.,
   license type)
+>
+>This subproject contains JAXB-generated code that Drools rules are setup to work with
 
 * `cms-business-process` (includes callbacks into Java from jBPM)
 
 * `cms-services` (includes Hibernate entities, binders that map
   frontend elements to Java handles, definitions of EE services that
   `cms-business-process` implements)
+>This subproject is a service layer which communicates to database and frontend.
 
 * `cms-web` (MVC, web controller, UI, HTML, CSS)
   * See [`REPORTS.md`](REPORTS.md) for design related to PSM reports
@@ -35,6 +38,8 @@ directory. The major ones are:
 
 * `frontend` (manages JavaScript used on the frontend, see
   [frontend/README.md](../psm-app/frontend/README.md))
+>This subproject contains PSM-specific JavaScript code, and uses node.js
+to specify and download the JavaScript libraries it depends on 
 
 * `userhelp` (contains prose documents for end user help)
 

@@ -13,6 +13,13 @@ Feature: Applications by Reviewer Report
     And I search for applications by reviewer between '01/01/2017' and '12/01/2017'
     Then I should see applications by reviewer results
 
+  Scenario: View Applications by Reviewer Enrollment
+    Given I am logged in as an admin
+    And I am on the applications by reviewer page
+    And I search for applications by reviewer between '01/01/2017' and '12/01/2017'
+    And I click on enrollment '1006'
+    Then I am on the Personal Information page
+
   Scenario: Search Applications by Reviewer Page without Dates with Results
     Given I am logged in as an admin
     And I am on the applications by reviewer page

@@ -31,9 +31,7 @@
                     <div class="wholeCol">
                       <div class="row">
                         <h3>Server Error</h3>
-                        <p style="color: #c00;">
-                          An error has occurred while processing your request, please contact 1-800-1010-2010 for any concerns.
-                        </p>
+                        <pre>Exception: ${exception}</pre>
                       </div>
                     </div>
                   </div>

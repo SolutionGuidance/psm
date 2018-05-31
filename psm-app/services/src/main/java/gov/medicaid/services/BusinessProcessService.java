@@ -126,7 +126,6 @@ public interface BusinessProcessService {
      */
     void updateRequest(
             EnrollmentType ticket,
-            String user,
-            String userRole
+            CMSUser user
     ) throws Exception;
 }

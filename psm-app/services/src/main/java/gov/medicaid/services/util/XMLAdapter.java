@@ -110,7 +110,9 @@ public final class XMLAdapter {
 
         enrollment.setProcessInstanceId(ticket.getProcessInstanceId());
         enrollment.setProgressPage(ticket.getProgressPage());
-        enrollment.setSubmittedBy(ticket.getSubmittedBy());
+        if (ticket.getSubmittedBy() != null) {
+            enrollment.setSubmittedBy(ticket.getSubmittedBy().getUserId());
+        }
         enrollment.setSubmittedOn(BinderUtils.toCalendar(ticket.getSubmissionDate()));
         enrollment.setStatusDate(BinderUtils.toCalendar(ticket.getStatusDate()));
 

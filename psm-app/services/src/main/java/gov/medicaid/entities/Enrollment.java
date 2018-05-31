@@ -117,14 +117,16 @@ public class Enrollment implements Serializable {
     /**
      * Username that submitted the request.
      */
-    @Column(name = "submitted_by")
-    private String submittedBy;
+    @ManyToOne
+    @JoinColumn(name = "submitted_by")
+    private CMSUser submittedBy;
 
     /**
      * Username that created this request.
      */
-    @Column(name = "created_by")
-    private String createdBy;
+    @ManyToOne
+    @JoinColumn(name = "created_by")
+    private CMSUser createdBy;
 
     @Column(name = "created_at")
     private Date createdOn;
@@ -132,8 +134,9 @@ public class Enrollment implements Serializable {
     /**
      * Username that last made changes to the ticket.
      */
-    @Column(name = "changed_by")
-    private String lastUpdatedBy;
+    @ManyToOne
+    @JoinColumn(name = "changed_by")
+    private CMSUser lastUpdatedBy;
 
     /**
      * Ticket details.
@@ -193,19 +196,19 @@ public class Enrollment implements Serializable {
         this.statusNote = statusNote;
     }
 
-    public String getSubmittedBy() {
+    public CMSUser getSubmittedBy() {
         return submittedBy;
     }
 
-    public void setSubmittedBy(String submittedBy) {
+    public void setSubmittedBy(CMSUser submittedBy) {
         this.submittedBy = submittedBy;
     }
 
-    public String getLastUpdatedBy() {
+    public CMSUser getLastUpdatedBy() {
         return lastUpdatedBy;
     }
 
-    public void setLastUpdatedBy(String lastUpdatedBy) {
+    public void setLastUpdatedBy(CMSUser lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
     }
 
@@ -233,11 +236,11 @@ public class Enrollment implements Serializable {
         this.submissionDate = submissionDate;
     }
 
-    public String getCreatedBy() {
+    public CMSUser getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(CMSUser createdBy) {
         this.createdBy = createdBy;
     }
 

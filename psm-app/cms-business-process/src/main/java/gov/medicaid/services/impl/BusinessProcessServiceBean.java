@@ -199,7 +199,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     }
 
     private void resubmit(
-            String user,
+            CMSUser user,
             EnrollmentProcess processModel
     ) throws Exception {
         StatefulKnowledgeSession ksession = null;
@@ -399,14 +399,13 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
 
     public void updateRequest(
             EnrollmentType ticket,
-            String user,
-            String userRole
+            CMSUser user
     ) throws Exception {
         UserTransaction utx = context.getUserTransaction();
         final ProviderInformationType updates = ticket.getProviderInformation();
 
-        if (userRole.equals(ViewStatics.ROLE_PROVIDER)) {
-            if (!user.equals(ticket.getSubmittedBy())) {
+        if (user.getRole().getDescription().equals(ViewStatics.ROLE_PROVIDER)) {
+            if (!user.getUserId().equals(ticket.getSubmittedBy())) {
                 throw new PortalServiceException("Only the submitter and administrators are allowed to modify pending submissions.");
             }
         }
@@ -444,15 +443,15 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
                 // replace the current profile
                 enrollment.setProviderInformation(updates);
                 EditHistoryType editHistory = new EditHistoryType();
-                editHistory.setEditedBy(user);
-                editHistory.setEditedByRole(userRole);
+                editHistory.setEditedBy(user.getUserId());
+                editHistory.setEditedByRole(user.getRole().getDescription());
                 editHistory.setEditedOn(Calendar.getInstance());
                 editHistory.setEditNote("Resubmitted");
                 editHistory.setProviderInformation(oldData);
                 processModel.getEnrollment().getSubmissionEditHistory().add(editHistory);
             }
 
-            processModel.getEnrollment().getProviderInformation().setReviewedBy(user);
+            processModel.getEnrollment().getProviderInformation().setReviewedBy(user.getUserId());
             // reset verification whenever the request is resubmitted
             processModel.getEnrollment().getProviderInformation().setVerificationStatus(new VerificationStatusType());
 
@@ -512,7 +511,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             }
 
             ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.PENDING_STATUS));
-            ticket.setSubmittedBy(user.getUserId());
+            ticket.setSubmittedBy(user);
             ticket.setSubmissionDate(Calendar.getInstance().getTime());
             ticket.setStatusDate(Calendar.getInstance().getTime());
 
@@ -538,7 +537,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             }
 
             ut.begin();
-            ticket.setLastUpdatedBy(user.getUserId());
+            ticket.setLastUpdatedBy(user);
             getEm().merge(ticket);
             ut.commit();
         } catch (Exception e) {

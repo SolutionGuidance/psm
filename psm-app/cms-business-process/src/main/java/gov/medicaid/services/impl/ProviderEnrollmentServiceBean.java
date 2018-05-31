@@ -1081,6 +1081,32 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         return (Entity) rs.get(0);
     }
 
+    /**
+     * Retrieves the related attachments for the given profile key.
+     *
+     * @param profileId the profile id of the provider
+     * @param ticketId  the request ticket id
+     * @return the related attachments to the profile
+     */
+    @Override
+    public List<Document> findAttachments(Long profileId, Long ticketId) {
+        String queryStr = "FROM Document a WHERE 1 = 1 ";
+        if (profileId != null) {
+            queryStr += " AND profileId = :profileId";
+        }
+        if (ticketId != null) {
+            queryStr += " AND ticketId = :ticketId";
+        }
+        TypedQuery<Document> query = getEm().createQuery(queryStr, Document.class);
+
+        if (profileId != null) {
+            query.setParameter("profileId", profileId);
+        }
+        if (ticketId != null) {
+            query.setParameter("ticketId", ticketId);
+        }
+        return query.getResultList();
+    }
 
     /**
      * Inserts the given attachment and its contents.
@@ -1948,21 +1974,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     private List<License> findAffiliateLicences(long affiliateId) {
         Query query = getEm().createQuery("FROM License l WHERE affiliateId = :affiliateId");
         query.setParameter("affiliateId", affiliateId);
-        return query.getResultList();
-    }
-
-    /**
-     * Retrieves the related attachments for the given profile key.
-     *
-     * @param profileId the profile id of the provider
-     * @param ticketId  the request ticket id
-     * @return the related attachments to the profile
-     */
-    @SuppressWarnings("unchecked")
-    private List<Document> findAttachments(long profileId, long ticketId) {
-        Query query = getEm().createQuery("FROM Document a WHERE ticketId = :ticketId AND profileId = :profileId");
-        query.setParameter("profileId", profileId);
-        query.setParameter("ticketId", ticketId);
         return query.getResultList();
     }
 

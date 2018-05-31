@@ -584,4 +584,15 @@ public interface ProviderEnrollmentService {
             Long profileId,
             Long ticketId
     ) throws PortalServiceException;
+
+    /**
+     * Retrieves the related attachments for the given profile key.
+     *
+     * @param profileId the profile id of the provider
+     * @param ticketId  the request ticket id
+     * @return the related attachments to the profile
+     */
+    List<Document> findAttachments(
+            Long profileId,
+            Long ticketId);
 }

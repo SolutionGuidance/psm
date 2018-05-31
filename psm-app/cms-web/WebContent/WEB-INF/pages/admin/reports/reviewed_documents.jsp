@@ -6,6 +6,7 @@
   <c:set var="adminPage" value="true" />
   <c:set var="reportPage" value="true" />
   <c:set var="includeD3" value="true" />
+  <c:set var="pageScripts" value="${[ctx.concat('/js/admin/reviewedDocumentsReport.js')]}" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -27,6 +28,11 @@
               class="downloadReviewedDocuments"
             >Download this report</a>
           </div>
+
+          <div id="reviewedDocumentsLineGraph" class="lineGraphContainer">
+            <em>Loading...</em>
+          </div>
+
           <div class="reportTable dashboardPanel">
             <div class="tableData">
               <div class="tableTitle">
@@ -40,9 +46,21 @@
                   </tr>
                 </thead>
                 <c:forEach var="month" items="${months}">
-                  <tr>
-                    <td>${month.month}</td>
-                    <td>${month.numDocuments}</td>
+                  <tr class="reportRow">
+                    <td
+                      class="reportDatum"
+                      reportField="month"
+                      reportValue="${month.month}"
+                    >
+                      ${month.month}
+                    </td>
+                    <td
+                      class="reportDatum"
+                      reportField="documents"
+                      reportValue="${month.numDocuments}"
+                    >
+                      ${month.numDocuments}
+                    </td>
                   </tr>
                 </c:forEach>
               </table>

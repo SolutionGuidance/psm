@@ -5448,10 +5448,26 @@ dialect 'mvel'
         );
 end
 
+rule 'Enrollment Personal Email Address is Required when Same As Above is Checked'
+dialect 'mvel'
+    when
+        $enrollment: EnrollmentType(ContactSameAsApplicant == "Y");
+        ContactInformationType(emailAddress == null || emailAddress
+            matches "^[\\s]*$" ) from $enrollment.contactInformation
+        $report: ErrorReporter()
+    then
+        $report.addError(
+            "/ProviderInformation/ApplicantInformation/PersonalInformation/ContactInformation/EmailAddress",
+            "00001",
+            "Personal Email Address is required when same as above is checked."
+        );
+end
+
+
 rule 'Enrollment Contact Email Address is Required'
 dialect 'mvel'
     when
-        $enrollment: EnrollmentType()
+        $enrollment: EnrollmentType(ContactSameAsApplicant == "N" || ContactSameAsApplicant == null)
         ContactInformationType(emailAddress == null || emailAddress
             matches "^[\\s]*$" ) from $enrollment.contactInformation 
         $report: ErrorReporter()

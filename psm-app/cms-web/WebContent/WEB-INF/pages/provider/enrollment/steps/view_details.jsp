@@ -16,7 +16,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
-            <c:set var="activeTab" value="2"></c:set>
+            <c:set var="activeTabEnrollments" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->

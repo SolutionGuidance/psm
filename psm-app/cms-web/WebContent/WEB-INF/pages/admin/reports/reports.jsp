@@ -11,6 +11,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
+            <c:set var="activeTabReports" value="true" />
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <div class="breadCrumb">

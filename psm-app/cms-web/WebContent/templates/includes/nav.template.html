@@ -8,14 +8,14 @@
             {{#if hasArrow}}<span class="arrow"></span>{{/if}}
           </li>
         {{else}}
-          <li class="{{#if activeTab1 }} active {{/if}}">
+          <li class="{{#if activeTabDashboard }} active {{/if}}">
             <a href="{{ctx}}/landing">DASHBOARD</a>
-            {{#if activeTab1 }} <span class="arrow"></span> {{/if}}
+            {{#if activeTabDashboard }} <span class="arrow"></span> {{/if}}
           </li>
 
-          <li class="{{#if activeTab2 }} active {{/if}}">
+          <li class="{{#if activeTabEnrollments }} active {{/if}}">
             <a class="enrollmentsLink" href="{{ctx}}/provider/dashboard/drafts">ENROLLMENTS</a>
-            {{#if activeTab2 }} <span class="arrow"></span> {{/if}}
+            {{#if activeTabEnrollments }} <span class="arrow"></span> {{/if}}
           </li>
 
           {{#if isServiceAdministrator}}
@@ -24,20 +24,20 @@
               {{#if activeTabScreenings }} <span class="arrow"></span> {{/if}}
             </li>
 
-            <li class="{{#if activeTab5 }} active {{/if}}">
+            <li class="{{#if activeTabReports }} active {{/if}}">
               <a class="reportsLink" href="{{ctx}}/admin/reports">REPORTS</a>
-              {{#if activeTab5 }} <span class="arrow"></span> {{/if}}
+              {{#if activeTabReports }} <span class="arrow"></span> {{/if}}
             </li>
 
-            <li class="{{#if activeTab4 }} active {{/if}}">
+            <li class="{{#if activeTabFunctions }} active {{/if}}">
               <a class="functionsLink" href="{{ctx}}/admin/viewProviderTypes">FUNCTIONS</a>
-              {{#if activeTab4 }} <span class="arrow"></span> {{/if}}
+              {{#if activeTabFunctions }} <span class="arrow"></span> {{/if}}
             </li>
           {{/if}}
 
-          <li class="last {{#if activeTab3 }} active {{/if}}">
+          <li class="last {{#if activeTabProfile }} active {{/if}}">
             <a href="{{ctx}}/myprofile" id="my_profile_tab">MY PROFILE</a>
-            {{#if activeTab3 }} <span class="arrow"></span> {{/if}}
+            {{#if activeTabProfile }} <span class="arrow"></span> {{/if}}
           </li>
         {{/if}}
       </ul>

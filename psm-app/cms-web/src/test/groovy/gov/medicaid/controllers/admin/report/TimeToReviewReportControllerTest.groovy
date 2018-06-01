@@ -51,7 +51,7 @@ class TimeToReviewReportControllerTest extends Specification {
 
         then:
         records[0][0] == "Month"
-        records[0][1] == "Number Reviewed"
+        records[0][1] == "Applications Reviewed"
         records[0][2] == "Mean Review Time"
         records[0][3] == "Median Review Time"
         records.size == 1

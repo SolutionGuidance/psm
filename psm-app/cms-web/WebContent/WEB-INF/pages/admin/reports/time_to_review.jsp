@@ -42,7 +42,7 @@
                 <thead>
                   <tr>
                     <th>Month</th>
-                    <th>Number Reviewed</th>
+                    <th>Applications Reviewed</th>
                     <th>Mean Review Time</th>
                     <th>Median Review Time</th>
                   </tr>

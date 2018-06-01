@@ -98,7 +98,7 @@ public class ProviderTypesReportController extends gov.medicaid.controllers.Base
         try {
             CSVPrinter csvPrinter = new CSVPrinter(response.getWriter(), CSVFormat.DEFAULT);
 
-            csvPrinter.printRecord("Month Reviewed", "Provider Type", "Number Reviewed");
+            csvPrinter.printRecord("Month Reviewed", "Provider Type", "Applications Reviewed");
 
             for (Month month : months) {
                 for (ProviderType providerType : month.getProviderTypes()) {

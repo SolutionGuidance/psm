@@ -67,7 +67,7 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
 
             csvPrinter.printRecord(
                 "Month",
-                "Number Reviewed",
+                "Applications Reviewed",
                 "Mean Review Time",
                 "Median Review Time"
             );

@@ -300,6 +300,27 @@ var reportUtils = (function makeReportUtils() {
         .attr("stroke-width", 2)
         .attr("fill", "none");
     });
+
+    // Render legend.
+
+    var legend = d3
+      .select(elementId)
+      .append("div")
+      .attr("class", "legend");
+
+    lines.forEach(function addLegendItem(line) {
+      var item = legend.append("div").attr("class", "legendItem");
+
+      item
+        .append("div")
+        .attr("class", "legendColorSwatch")
+        .attr("style", "background: " + line.color + ";");
+
+      item
+        .append("div")
+        .attr("class", "legendItemText")
+        .text(line.label);
+    });
   }
 
   // Return an object that provides public access to certain functions.

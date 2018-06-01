@@ -4067,8 +4067,27 @@ form .error{
   color: #d00;
 }
 
-.lineGraphContainer {
-  height: 750px;
+.legend {
+  margin: 1.5rem 3rem;
+}
+.legendItem {
+  display: inline-block;
+  padding: 0px;
+  margin: 4px;
+  font-size: 12px;
+}
+.legendColorSwatch {
+  display: inline-block;
+  padding: 0;
+  margin: 0 5px 0 8px;
+  height: 13px;
+  width: 13px;
+}
+.legendItemText {
+  display: inline-block;
+}
+.lineGraphNote {
+  margin: 12px;
 }
 
 /* END OF SERVICE ADMIN STYLES -------------------------------------------------- */

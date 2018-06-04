@@ -53,4 +53,10 @@
       tableName="issuing_boards" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-license-statuses" runOnChange="true">
+    <loadUpdateData file="db/seeds/license_statuses.csv"
+      primaryKey="code"
+      tableName="license_statuses" />
+  </changeSet>
+
 </databaseChangeLog>

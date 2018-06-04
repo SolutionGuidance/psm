@@ -41,11 +41,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO license_statuses (code, description) VALUES
-  ('01', 'Active'),
-  ('02', 'Suspended'),
-  ('03', 'Expired');
-
 CREATE TABLE pay_to_provider_types(
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE

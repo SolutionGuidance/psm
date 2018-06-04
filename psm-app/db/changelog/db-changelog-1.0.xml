@@ -483,4 +483,20 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-pay-to-provider-types">
+    <createTable tableName="pay_to_provider_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="pay_to_provider_types"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

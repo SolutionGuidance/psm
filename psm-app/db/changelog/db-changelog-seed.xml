@@ -65,4 +65,10 @@
       tableName="pay_to_provider_types" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-categories-of-service" runOnChange="true">
+    <loadUpdateData file="db/seeds/categories_of_service.csv"
+      primaryKey="code"
+      tableName="categories_of_service" />
+  </changeSet>
+
 </databaseChangeLog>

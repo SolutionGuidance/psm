@@ -141,6 +141,7 @@ public class EnrollmentSteps {
     public void enterContactInfo() {
         organizationInfoPage.setContactName("Test Contact");
         organizationInfoPage.setContactPhone("4445556666");
+        organizationInfoPage.setContactEmail("scontact@example.com");
     }
 
     public String generateEffectiveDate() {

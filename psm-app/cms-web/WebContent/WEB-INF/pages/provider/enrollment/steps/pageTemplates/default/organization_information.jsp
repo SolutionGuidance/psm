@@ -850,7 +850,7 @@
        <div class="row">
            <c:set var="formName" value="_15_contactEmail"></c:set>
            <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-           <label for="contactEmail">Contact Email Address</label>
+           <label for="contactEmail">Contact Email Address<span class="required">*</span></label>
            <input ${disableContact} type="text" class="normalInput" id="contactEmail" name="${formName}" value="${formValue}" maxlength="50"/>
        </div>
        <div class="clearFixed"></div>

@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS
   beneficial_owner,
   beneficial_owner_types,
   binary_contents,
-  categories_of_service,
   contacts,
   counties,
   degrees,
@@ -40,10 +39,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-CREATE TABLE categories_of_service (
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO categories_of_service (code, description) VALUES
   ('01', 'AC Transportation'),
   ('02', 'Home Delivered Meals'),

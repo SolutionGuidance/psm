@@ -59,4 +59,10 @@
       tableName="license_statuses" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-pay-to-provider-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/pay_to_provider_types.csv"
+      primaryKey="code"
+      tableName="pay_to_provider_types" />
+  </changeSet>
+
 </databaseChangeLog>

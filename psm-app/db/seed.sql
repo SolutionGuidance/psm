@@ -40,11 +40,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO pay_to_provider_types(code, description) VALUES
-  ('01', 'Claim'),
-  ('02', 'ERA'),
-  ('03', 'Both');
-
 CREATE TABLE categories_of_service (
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE

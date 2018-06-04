@@ -22,6 +22,7 @@ deployment guide will be part of our 1.0 release. ***
     - [Build documentation](#build-documentation)
     - [Run automated tests](#run-automated-tests)
     - [Maintain and update environment](#maintain-and-update-environment)
+    - [Run Database Migrations](#run-database-migrations)
 - **[Production Deployment](#production-deployment)**
     - [NGINX](#nginx)
     - [Continuous Deployment](#continuous-deployment)
@@ -368,15 +369,22 @@ EOF
    If you have a previous build deployed already, you can replace the
    deployment in the UI or add the `--force` switch after `deploy`.
 
-1. Create database schema and initial data. Use `seed.sql` to create tables and
-   data for the application, and `jbpm.sql` to create tables and data for the
-   embedded jBPM engine:
+1. Create database schema and initial data.  Right now, we are midway
+   through a migration to Liquibase and so are using both Liquibase
+   migrations and SQL files to create the database. First, run the
+   migrations to create the first set of tables.  Then, use `seed.sql`
+   to create tables and data for the application, and `jbpm.sql` to
+   create tables and data for the embedded jBPM engine:
 
-      ```ShellSession
-      $ cat {/path/to/psm}/psm-app/db/jbpm.sql \
-            {/path/to/psm}/psm-app/db/seed.sql \
-        | psql -h localhost -U psm psm
-      ```
+    ```shell
+       > ./gradlew db:update
+    ```
+
+    ```ShellSession
+    $ cat {/path/to/psm}/psm-app/db/jbpm.sql \
+          {/path/to/psm}/psm-app/db/seed.sql \
+      | psql -h localhost -U psm psm
+    ```
 
 1. To check that the app is running, navigate to
    [http://localhost:8080/cms/login](http://localhost:8080/cms/login).
@@ -416,6 +424,23 @@ See `docs/TESTING.md` for instructions on running the automated tests.
 
 See `scripts/` for several utility scripts for use by system
 administrators or our build systems.
+
+## Run Database Migrations
+
+Updating the database requires running the Liquibase migrations to get
+the database into the up-to-date configuration. See
+[MIGRATIONS.md](docs/MIGRATIONS.md) for details.
+
+Migration scripts are stored in `psm-app/db/`. 
+
+
+1. To run the migrations:
+
+    ```shell
+       > ./gradlew db:update
+    ```
+
+More material coming soon about how to run individual migrations.
 
 # Production Deployment
 

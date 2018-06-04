@@ -42,15 +42,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO issuing_boards (code, description) VALUES
-  ('B1', 'AANA'),
-  ('B2', 'NARM'),
-  ('B3', 'ANCC'),
-  ('B4', 'AOTA'),
-  ('B5', 'ADA'),
-  ('B6', 'ABMS'),
-  ('B7', 'ABPS');
-
 CREATE TABLE license_statuses(
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE

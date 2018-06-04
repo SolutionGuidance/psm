@@ -77,4 +77,10 @@
       tableName="service_categories" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-counties" runOnChange="true">
+    <loadUpdateData file="db/seeds/counties.csv"
+      primaryKey="code"
+      tableName="counties" />
+  </changeSet>
+
 </databaseChangeLog>

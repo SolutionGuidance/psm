@@ -13,7 +13,6 @@ DROP TABLE IF EXISTS
   designated_contacts,
   documents,
   entities,
-  entity_structure_types,
   events,
   external_account_links,
   external_profile_links,
@@ -44,10 +43,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-CREATE TABLE entity_structure_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO entity_structure_types (code, description) VALUES
   ('01', 'Sole Proprietorship'),
   ('02', 'Partnership'),

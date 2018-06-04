@@ -28,6 +28,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.PersistenceException;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -77,9 +78,8 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
      * This method saves the screening schedule.
      *
      * @param screeningSchedule - the screening schedule
-     *
      * @throws IllegalArgumentException - If screeningSchedule is null
-     * @throws PortalServiceException - If there are any errors during the execution of this method
+     * @throws PortalServiceException   - If there are any errors during the execution of this method
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void saveScreeningSchedule(ScreeningSchedule screeningSchedule) throws PortalServiceException {
@@ -105,5 +105,12 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
                         hintEntityGraph("Screening with matches")
                 )
         );
+    }
+
+    @Override
+    public List<AutomaticScreening> getAllScreenings() {
+        return getEm()
+                .createQuery("FROM AutomaticScreening", AutomaticScreening.class)
+                .getResultList();
     }
 }

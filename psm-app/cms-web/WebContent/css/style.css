@@ -109,7 +109,7 @@ input,select,textarea{
 }
 .nav ul{
   float:left;
-  width:50%;
+  width:60%;
 }
 .nav ul li{
   display: inline;
@@ -138,7 +138,7 @@ input,select,textarea{
 }
 .mainNav .searchWidget{
   float:right;
-  width:49%;
+  width:39%;
 }
 .mainNav .searchWidget a{
   float:right;
@@ -4065,6 +4065,16 @@ form .error{
 }
 .screeningResultFail {
   color: #d00;
+}
+.screeningsDateRange {
+  margin: 20px 0px 0px;
+}
+.screeningsTabFilterPanel {
+  min-height: 0;
+}
+.screeningsTabDatesBtn {
+  margin-top: 4px;
+  margin-left: 10px;
 }
 
 .legend {

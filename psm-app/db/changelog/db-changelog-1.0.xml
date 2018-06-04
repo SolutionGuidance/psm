@@ -443,8 +443,7 @@
       </column>
       <column name="description"
         type="text">
-        <constraints nullable="false"
-          unique="true"/>
+        <constraints unique="true"/>
       </column>
     </createTable>
     <rollback>

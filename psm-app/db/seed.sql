@@ -43,17 +43,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO entity_structure_types (code, description) VALUES
-  ('01', 'Sole Proprietorship'),
-  ('02', 'Partnership'),
-  ('03', 'Corporation'),
-  ('04', 'Non-Profit'),
-  ('05', 'Hospital Based'),
-  ('06', 'State'),
-  ('07', 'Public'),
-  ('08', 'Professional Association'),
-  ('99', 'Other');
-
 CREATE TABLE issuing_boards(
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE

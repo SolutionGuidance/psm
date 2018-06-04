@@ -41,4 +41,10 @@
       tableName="profile_statuses" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-entity-structure-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/entity_structure_types.csv"
+      primaryKey="code"
+      tableName="entity_structure_types" />
+  </changeSet>
+
 </databaseChangeLog>

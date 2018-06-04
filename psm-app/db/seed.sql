@@ -7,7 +7,6 @@ DROP TABLE IF EXISTS
   beneficial_owner_types,
   binary_contents,
   contacts,
-  counties,
   degrees,
   designated_contacts,
   documents,
@@ -38,10 +37,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-CREATE TABLE counties (
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO counties (code, description) VALUES
   ('01', 'Aitkin'),
   ('02', 'Anoka'),

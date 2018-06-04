@@ -16,7 +16,6 @@ DROP TABLE IF EXISTS
   events,
   external_account_links,
   external_profile_links,
-  issuing_boards,
   license_statuses,
   license_types,
   licenses,
@@ -43,10 +42,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-CREATE TABLE issuing_boards(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO issuing_boards (code, description) VALUES
   ('B1', 'AANA'),
   ('B2', 'NARM'),

@@ -467,4 +467,20 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-license-statuses">
+    <createTable tableName="license_statuses">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="license_statuses"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

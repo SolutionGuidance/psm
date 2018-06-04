@@ -16,7 +16,6 @@ DROP TABLE IF EXISTS
   events,
   external_account_links,
   external_profile_links,
-  license_statuses,
   license_types,
   licenses,
   notes,
@@ -42,10 +41,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-CREATE TABLE license_statuses(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO license_statuses (code, description) VALUES
   ('01', 'Active'),
   ('02', 'Suspended'),

@@ -6,6 +6,7 @@
   <c:set var="adminPage" value="true" />
   <c:set var="reportPage" value="true" />
   <c:set var="includeD3" value="true" />
+  <c:set var="pageScripts" value="${[ctx.concat('/js/admin/riskLevelsReport.js')]}" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -27,6 +28,17 @@
               class="downloadRiskLevels"
             >Download this report</a>
           </div>
+
+          <div id="riskLevelsLineGraph" class="lineGraphContainer">
+            <em>Loading...</em>
+          </div>
+
+          <p>
+            This report covers only the applications that have been reviewed
+            (approved or denied), and not applications that have been
+            submitted but not yet reviewed.
+          </p>
+
           <div class="reportTable dashboardPanel">
             <div class="tableData">
               <div class="tableTitle">
@@ -42,10 +54,22 @@
                   </tr>
                 </thead>
                 <c:forEach var="month" items="${months}">
-                  <tr>
-                    <td>${month.month}</td>
+                  <tr class="reportRow">
+                    <td
+                      class="reportDatum"
+                      reportField="month"
+                      reportValue="${month.month}"
+                    >
+                      ${month.month}
+                    </td>
                     <c:forEach var="riskLevel" items="${riskLevels}">
-                      <td>${month.getNum(riskLevel)}</td>
+                      <td
+                        class="reportDatum"
+                        reportField="${riskLevel.toLowerCase()}"
+                        reportValue="${month.getNum(riskLevel)}"
+                      >
+                        ${month.getNum(riskLevel)}
+                      </td>
                     </c:forEach>
                   </tr>
                 </c:forEach>

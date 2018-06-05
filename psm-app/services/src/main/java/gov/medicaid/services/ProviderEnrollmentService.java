@@ -595,4 +595,15 @@ public interface ProviderEnrollmentService {
     List<Document> findAttachments(
             Long profileId,
             Long ticketId);
+
+    /**
+     * Retrieves the provider details for the given ticket.
+     *
+     * @param ticketId      the ticket to search for
+     * @param fetchChildren if true, the entire object tree is retrieved
+     * @return the ticket details
+     */
+    ProviderProfile getProviderDetailsByTicket(
+            long ticketId,
+            boolean fetchChildren);
 }

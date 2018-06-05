@@ -1109,6 +1109,32 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     }
 
     /**
+     * Retrieves the provider details for the given ticket.
+     *
+     * @param ticketId      the ticket to search for
+     * @param fetchChildren if true, the entire object tree is retrieved
+     * @return the ticket details
+     */
+    public ProviderProfile getProviderDetailsByTicket(
+            long ticketId,
+            boolean fetchChildren
+    ) {
+        TypedQuery<ProviderProfile> query =
+            getEm().createQuery("FROM ProviderProfile p WHERE ticketId = :ticketId", ProviderProfile.class);
+        query.setParameter("ticketId", ticketId);
+        List<ProviderProfile> rs = query.getResultList();
+        if (rs.isEmpty()) {
+            return null;
+        }
+
+        ProviderProfile profile = (ProviderProfile) rs.get(0);
+        if (fetchChildren) {
+            fetchChildren(profile);
+        }
+        return profile;
+    }
+
+    /**
      * Inserts the given attachment and its contents.
      *
      * @param attachment the attachment to create
@@ -1760,33 +1786,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         if (profile != null) {
             purge(profile);
         }
-    }
-
-    /**
-     * Retrieves the provider details for the given ticket.
-     *
-     * @param ticketId      the ticket to search for
-     * @param fetchChildren if true, the entire object tree is retrieved
-     * @return the ticket details
-     * @throws PortalServiceException for any errors encountered
-     */
-    @SuppressWarnings("rawtypes")
-    private ProviderProfile getProviderDetailsByTicket(
-            long ticketId,
-            boolean fetchChildren
-    ) throws PortalServiceException {
-        Query query = getEm().createQuery("FROM ProviderProfile p WHERE ticketId = :ticketId");
-        query.setParameter("ticketId", ticketId);
-        List rs = query.getResultList();
-        if (rs.isEmpty()) {
-            return null;
-        }
-
-        ProviderProfile profile = (ProviderProfile) rs.get(0);
-        if (fetchChildren) {
-            fetchChildren(profile);
-        }
-        return profile;
     }
 
     /**

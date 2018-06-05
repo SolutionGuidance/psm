@@ -55,12 +55,11 @@ class ProviderEnrollmentServiceBeanTest extends Specification {
         given:
         Enrollment enrollment = new Enrollment()
         entityManager.find(Enrollment.class, TICKET_ID, _ as Map) >> enrollment
-        entityManager.createQuery(PROFILE_QUERY) >>
-                mockQuery([new ProviderProfile()])
+        entityManager.createQuery(PROFILE_QUERY, ProviderProfile.class) >>
+                mockTypedQuery([new ProviderProfile()])
         entityManager.createQuery(_ as String) >> mockQuery([])
         entityManager.createQuery(_ as String, Entity.class) >> mockTypedQuery([] as List<Entity>)
         entityManager.createQuery(_ as String, Document.class) >> mockTypedQuery([] as List<Document>)
-
 
         when:
         def result = service.getTicketDetails(systemUser, TICKET_ID)

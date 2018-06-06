@@ -6,19 +6,18 @@
     1. **lowest**: knowledge base / session creation **to**
     2. **highest**: knowledge base / session invocation
 2. Refactor existing code to reduce the exposure of RulesEngine API's to the minimum
-    1. Refactor use of Drools knowledge objects
+    1. Refactor creation and use of Drools knowledge objects
     2. If possible, refactor Drools `WorkItem`-related artifacts by applying subclassing / wrapping / adapting.
-3. Rebuild and test refactored code
-4. Update Drools to KIE 7.7.0.Final
+3. Update Drools to KIE 7.7.0.Final
     - The KIE API's introduced in Drools Version 6 replace most of the
     previous Drools API's
     - Resolve any conflicts with current jBPM version (also version 5.4.0.Final).
-5. **Optional**: Move all Drools API-related code to a separate project to support easier testing and guarantee future isolation.
-6. **Optional**: Decouple the KIE layer further, providing interfaces
+4. **Optional**: Move all Drools API-related code to a separate jar project to support easier testing and guarantee future isolation.
+5. **Optional**: Decouple the KIE layer further, providing interfaces
 to an external KIE Rules Server process.
 
 ---
-#### Analysis 1.1: Knowledge Base / Sesssion Creation
+#### Analysis 1.1: Knowledge Base / Session Creation
 **interface gov.medicaid.domain.rules.KnowledgeDelegate**
 
 Defines 4 factory methods for creating `Drools StatefulKnowledgeSession` instances.

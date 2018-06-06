@@ -26,10 +26,7 @@ import gov.medicaid.domain.model.SpecialtyNames;
 import gov.medicaid.domain.model.UISection;
 import gov.medicaid.domain.model.ValidationRequest;
 import gov.medicaid.domain.model.ValidationResponse;
-import gov.medicaid.domain.model.ValidationResultType;
-import gov.medicaid.domain.rules.CMSKnowledgeUtility;
-import gov.medicaid.domain.rules.GlobalLookups;
-import gov.medicaid.domain.rules.inference.LookupEntry;
+import gov.medicaid.domain.rules.RulesExecutor;
 import gov.medicaid.entities.License;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormSettings;
@@ -51,8 +48,6 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
-import org.drools.runtime.StatefulKnowledgeSession;
-
 /**
  * Defines the UI related services.
  *
@@ -73,6 +68,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
      *            the provider to determine how to display
      * @return the model having some instructions on how to present the given provider
      */
+    @Override
     public ViewModel getProviderViewModel(ProviderProfile provider) {
         if (provider == null) {
             throw new IllegalArgumentException("provider cannot be null.");
@@ -360,6 +356,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
      *            the provider to determine how to display
      * @return the model having some instructions on how to present the given provider
      */
+    @Override
     public ViewModel getProviderViewModel(ProviderInformationType provider) {
         if (provider == null) {
             throw new IllegalArgumentException("provider cannot be null.");
@@ -720,6 +717,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
      *            the tabs to validate, if null or empty, the entire ticket is checked
      * @return the set of error messages found, empty if the ticket is valid
      */
+    @Override
     public ValidationResponse checkForErrors(EnrollmentType ticket, List<String> tabs) {
         ValidationRequest request = new ValidationRequest();
         if (tabs != null && !tabs.isEmpty()) {
@@ -750,46 +748,6 @@ public class PresentationServiceBean extends BaseService implements Presentation
             }
         }
         request.setEnrollment(ticket);
-        return checkForErrors(request);
+        return RulesExecutor.executeProviderValidationRules(request);
     }
-
-    /**
-     * Uses the front-end validation rules to check the provider profile.
-     *
-     * @param request
-     *            the validation request
-     * @return the validation messages.
-     */
-    private ValidationResponse checkForErrors(ValidationRequest request) {
-        StatefulKnowledgeSession ksession = CMSKnowledgeUtility.newValidationSession();
-        try {
-            ValidationResultType validation = new ValidationResultType();
-            List<LookupEntry> allLookupEntries = GlobalLookups.getInstance().getAllLookupEntries();
-
-            for (LookupEntry lookupEntry : allLookupEntries) {
-                ksession.insert(lookupEntry);
-            }
-
-            // configure sections to validate
-            if ("Y".equals(request.getPartial())) {
-                List<UISection> sections = request.getSections();
-                for (UISection uiSection : sections) {
-                    ksession.insert(new LookupEntry("UISection", uiSection.value(), uiSection.value()));
-                }
-            }
-
-            ProviderInformationType provider = request.getEnrollment().getProviderInformation();
-            ksession.insert(request.getEnrollment());
-            ksession.insert(provider);
-            ksession.insert(validation);
-            ksession.fireAllRules();
-
-            ValidationResponse validationResponse = new ValidationResponse();
-            validationResponse.setValidationResult(validation);
-            return validationResponse;
-        } finally {
-            ksession.dispose();
-        }
-    }
-
 }

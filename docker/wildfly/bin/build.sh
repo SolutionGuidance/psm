@@ -60,6 +60,8 @@ fi
 cp /tmp/psm-build/cms-portal-services/build/libs/${EAR_NAME} ${EAR}
 cp /tmp/psm-build/cms-portal-services/build/libs/${EAR_NAME} /mnt/psm-app/cms-portal-services/build/libs/${EAR_NAME}
 
+# Run the database build, overriding the gradle.properties file with arguments
+./gradlew db:update -DdatabasePath=jdbc:postgresql://psm_db_1:5432/psm -DdatabaseUser=psm -DdatabasePassword=psm
 # Clean up
 rm -rf /tmp/psm-build
 

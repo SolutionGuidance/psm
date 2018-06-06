@@ -24,8 +24,10 @@ function wait_for_jboss() {
 
 # If our config is newer than the somewhat randomly-chosen
 # bin/product.conf, it indicates we've already done setup.
-#[[ ${JBOSS_HOME}/standalone/configuration/standalone-full.xml -nt ${JBOSS_HOME}/bin/product.conf  ]] && echo "Wildfly seems to be configured; exiting setup and restarting." && exit
-
+if [[ ${JBOSS_HOME}/standalone/configuration/standalone-full.xml -nt ${JBOSS_HOME}/bin/product.conf  ]] ; then
+  echo "Wildfly seems to be configured; exiting setup and restarting."
+  exit
+fi
 
 echo "Wildfly may not be configured; running configuration script."
 nohup ${JBOSS_HOME}/bin/standalone.sh -c standalone-full.xml &

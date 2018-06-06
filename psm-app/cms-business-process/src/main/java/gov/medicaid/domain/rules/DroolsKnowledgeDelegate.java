@@ -40,13 +40,15 @@ import org.jbpm.task.service.TaskService;
 import org.jbpm.task.service.local.LocalTaskService;
 
 /**
- * This class is used to configure and execute CMS Business rules.
+ * This class is used to config
+ * <p>
+ * v1.1 - WAS Porting - pass reference to user transaction when invoking BPMN,
+ * add flag to use guvnor
  *
- * v1.1 - WAS Porting - pass reference to user transaction when invoking BPMN, add flag to use guvnor
  * @author TCSASSEMBLER
  * @version 1.1
  */
-public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
+public class DroolsKnowledgeDelegate {
 
     /**
      * The composed knowledge base containing validation.
@@ -56,7 +58,7 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
     /**
      * The composed knowledge base.
      */
-    private final KnowledgeBase processKnowledgeBase = readProcessKnowledgeBase();
+    private final KnowledgeBase processKnowledgeBase;
 
     /**
      * The composed knowledge base containing screening.
@@ -75,28 +77,62 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
         CMSConfigurator config = new CMSConfigurator();
         useGuvnor = "N".equalsIgnoreCase(config.getUseEmbeddedRules());
         validationKnowledgeBase = readValidationKnowledgeBase();
+        processKnowledgeBase = readProcessKnowledgeBase();
         screeningKnowledgeBase = readScreeningKnowledgeBase();
     }
 
-    /* (non-Javadoc)
-     * @see gov.medicaid.domain.rules.KnowledgeDelegate#newWorkflowSession()
+    /**
+     * Creates a new business process session for CMS workflow.
+     *
+     * @param entityManagerFactory
+     * @param utx
+     * @return StatefulKnowledgeSession
      */
-    @Override
-    public StatefulKnowledgeSession newWorkflowSession(EntityManagerFactory entityManagerFactory, UserTransaction utx) {
-        StatefulKnowledgeSession ksession = JPAKnowledgeService.newStatefulKnowledgeSession(processKnowledgeBase, null,
+    public StatefulKnowledgeSession newWorkflowSession(
+        EntityManagerFactory entityManagerFactory,
+        UserTransaction utx) {
+        StatefulKnowledgeSession ksession = JPAKnowledgeService.newStatefulKnowledgeSession(
+            processKnowledgeBase, null,
             createEnvironment(entityManagerFactory, utx));
-        LocalTaskService client = new LocalTaskService(new TaskService(entityManagerFactory,
+        LocalTaskService client = new LocalTaskService(new TaskService(
+            entityManagerFactory,
             SystemEventListenerFactory.getSystemEventListener()));
         ksession.getWorkItemManager().registerWorkItemHandler("Human Task",
             new LocalHumanTaskHandler(ksession, client));
         return ksession;
     }
 
-    @Override
-    public StatefulKnowledgeSession reloadWorkflowSession(int sessionId, EntityManagerFactory factory, UserTransaction utx) {
-        StatefulKnowledgeSession ksession = JPAKnowledgeService.loadStatefulKnowledgeSession(sessionId, processKnowledgeBase, null,
-            createEnvironment(factory, utx));
+    /**
+     * @return StatefulKnowledgeSession
+     */
+    public StatefulKnowledgeSession newScreeningValidationSession() {
+        return screeningKnowledgeBase.newStatefulKnowledgeSession();
+    }
+
+
+    /**
+     * @param sessionId
+     * @param entityManagerFactory
+     * @param utx
+     * @return StatefulKnowledgeSession
+     */
+    public StatefulKnowledgeSession reloadWorkflowSession(int sessionId,
+        EntityManagerFactory entityManagerFactory,
+        UserTransaction utx) {
+        StatefulKnowledgeSession ksession =
+            JPAKnowledgeService.loadStatefulKnowledgeSession(
+                sessionId, processKnowledgeBase, null,
+                createEnvironment(entityManagerFactory, utx));
         return ksession;
+    }
+
+    /**
+     * Creates a new session for running validation of UI-submitted data.
+     *
+     * @return StatefulKnowledgeSession
+     */
+    public StatefulKnowledgeSession newValidationSession() {
+        return validationKnowledgeBase.newStatefulKnowledgeSession();
     }
 
     /**
@@ -106,30 +142,24 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
      */
     private KnowledgeBase readProcessKnowledgeBase() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        kbuilder.add(ResourceFactory.newClassPathResource("EnrollmentProcess.bpmn"), ResourceType.BPMN2);
+        kbuilder.add(ResourceFactory.newClassPathResource(
+            "EnrollmentProcess.bpmn"), ResourceType.BPMN2);
         return kbuilder.newKnowledgeBase();
     }
 
     /**
      * Creates a rule environment.
      *
-     * @param emf the persistence factory
+     * @param entityManagerFactory the persistence factory
      * @param utx
      * @return a new environment
      */
-    private Environment createEnvironment(EntityManagerFactory emf, UserTransaction utx) {
+    private Environment createEnvironment(EntityManagerFactory entityManagerFactory,
+        UserTransaction utx) {
         Environment env = EnvironmentFactory.newEnvironment();
-        env.set(EnvironmentName.ENTITY_MANAGER_FACTORY, emf);
-        env.set(EnvironmentName.APP_SCOPED_ENTITY_MANAGER, emf.createEntityManager());
+        env.set(EnvironmentName.ENTITY_MANAGER_FACTORY, entityManagerFactory);
+        env.set(EnvironmentName.APP_SCOPED_ENTITY_MANAGER, entityManagerFactory.createEntityManager());
         return env;
-    }
-
-    /* (non-Javadoc)
-     * @see gov.medicaid.domain.rules.KnowledgeDelegate#newScreeningValidationSession()
-     */
-    @Override
-    public StatefulKnowledgeSession newScreeningValidationSession() {
-        return screeningKnowledgeBase.newStatefulKnowledgeSession();
     }
 
     /**
@@ -140,9 +170,11 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
     private KnowledgeBase readScreeningKnowledgeBase() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
         if (useGuvnor) {
-            kbuilder.add(ResourceFactory.newClassPathResource("ScreeningRules.xml"), ResourceType.CHANGE_SET);
+            kbuilder.add(ResourceFactory.newClassPathResource("ScreeningRules.xml"),
+                ResourceType.CHANGE_SET);
         } else {
-            kbuilder.add(ResourceFactory.newClassPathResource("cms.screening.drl"), ResourceType.DRL);
+            kbuilder.add(ResourceFactory.newClassPathResource("cms.screening.drl"),
+                ResourceType.DRL);
         }
 
         KnowledgeBuilderErrors errors = kbuilder.getErrors();
@@ -165,11 +197,15 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
     private KnowledgeBase readValidationKnowledgeBase() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
         if (useGuvnor) {
-            kbuilder.add(ResourceFactory.newClassPathResource("ValidationRules.xml"), ResourceType.CHANGE_SET);
+            kbuilder.add(ResourceFactory.newClassPathResource("ValidationRules.xml"),
+                ResourceType.CHANGE_SET);
         } else {
-            kbuilder.add(ResourceFactory.newClassPathResource("cms.dsl"), ResourceType.DSL);
-            kbuilder.add(ResourceFactory.newClassPathResource("cms.validation.dslr"), ResourceType.DSLR);
-            kbuilder.add(ResourceFactory.newClassPathResource("cms.validation.drl"), ResourceType.DRL);
+            kbuilder.add(ResourceFactory.newClassPathResource("cms.dsl"),
+                ResourceType.DSL);
+            kbuilder.add(ResourceFactory.newClassPathResource("cms.validation.dslr"),
+                ResourceType.DSLR);
+            kbuilder.add(ResourceFactory.newClassPathResource("cms.validation.drl"),
+                ResourceType.DRL);
         }
 
         KnowledgeBuilderErrors errors = kbuilder.getErrors();
@@ -182,13 +218,5 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
         KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
         kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());
         return kbase;
-    }
-
-    /* (non-Javadoc)
-     * @see gov.medicaid.domain.rules.KnowledgeDelegate#newValidationSession()
-     */
-    @Override
-    public StatefulKnowledgeSession newValidationSession() {
-        return validationKnowledgeBase.newStatefulKnowledgeSession();
     }
 }

@@ -43,9 +43,10 @@ ENV TINI_SHA 066ad710107dc7ee05d3aa6e4974f01dc98f3888
 RUN curl -fL https://github.com/krallin/tini/releases/download/v0.5.0/tini-static -o /bin/tini && chmod +x /bin/tini \
                  && echo "$TINI_SHA /bin/tini" | sha1sum -c -
 
-# We touch the file here to use as a newness flag later.  If our
-# config is newer than the somewhat randomly-chosen bin/product.conf,
-# it indicates we've already done setup.sh.
+# Touch the Wildfly configuration file. The setup script, setup.sh 
+# (executed later), uses the modification time of this file to determine 
+# whether initial configuration has already been done. See that script
+# for more details.
 RUN touch /opt/jboss/wildfly/bin/product.conf
 
 # Save wildfly contents.  We'll restore them to a data volume later.
@@ -55,13 +56,14 @@ RUN touch /opt/jboss/wildfly/bin/product.conf
 # https://bugs.openjdk.java.net/browse/JDK-8165852
 RUN mv /opt/jboss/wildfly /opt/jboss/wildfly.static
 
-# Load and prep our cmd script and subsidiary scripts.  That cmd
-# script builds the ear file, sets up the server, waits for db and
-# mail to come up, then starts the wildfly server.  On subsequent
-# runs, it should skip build and setup unless something changes.
+# Prepare the configuration scripts that set up the server, build the
+# application, and run the whole setup.
 COPY bin/* /usr/local/bin/
 RUN chmod a+x /usr/local/bin/*
 
+# Expose ports for configuration and app use.
 EXPOSE 8443 9990 8080
 
+# Run the entrypoint script, which handles the setup and execution
+# of the application.
 ENTRYPOINT ["tini", "--", "/usr/local/bin/entrypoint.sh"]

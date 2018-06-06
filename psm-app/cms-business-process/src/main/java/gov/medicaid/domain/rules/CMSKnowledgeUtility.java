@@ -22,7 +22,7 @@ import javax.transaction.UserTransaction;
 import org.drools.runtime.StatefulKnowledgeSession;
 
 /**
- * This class is used to configure and execute CMS Business rules.
+ * This class provides a facade for DroolsKnowledgeDelegate
  *
  * v1.1 - WAS Porting - pass reference to user transaction when invoking BPMN
  * @author TCSASSEMBLER
@@ -33,7 +33,7 @@ public class CMSKnowledgeUtility {
     /**
      * Knowledge implementation.
      */
-    private static KnowledgeDelegate knowledge = new DroolsKnowledgeDelegate();
+    private static DroolsKnowledgeDelegate knowledge = new DroolsKnowledgeDelegate();
 
     /**
      * Private constructor.
@@ -48,7 +48,8 @@ public class CMSKnowledgeUtility {
      *
      * @return the session created
      */
-    public static StatefulKnowledgeSession newWorkflowSession(EntityManagerFactory entityManager, UserTransaction utx) {
+    public static StatefulKnowledgeSession newWorkflowSession(EntityManagerFactory entityManager,
+        UserTransaction utx) {
         return knowledge.newWorkflowSession(entityManager, utx);
     }
 
@@ -73,9 +74,11 @@ public class CMSKnowledgeUtility {
     /**
      * @param sessionId
      * @return
-     * @see gov.medicaid.domain.rules.KnowledgeDelegate#reloadWorkflowSession(int)
+     * @see gov.medicaid.domain.rules.DroolsKnowledgeDelegate#reloadWorkflowSession(
+     * int,EntityManagerFactory,UserTransaction)
      */
-    public static StatefulKnowledgeSession reloadWorkflowSession(int sessionId, EntityManagerFactory factory, UserTransaction utx) {
+    public static StatefulKnowledgeSession reloadWorkflowSession(int sessionId,
+        EntityManagerFactory factory, UserTransaction utx) {
         return knowledge.reloadWorkflowSession(sessionId, factory, utx);
     }
 }

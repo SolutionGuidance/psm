@@ -6094,7 +6094,7 @@ dialect 'mvel'
         $report.addError(
             "/ProviderInformation/FacilityCredentials/License[" + index+ "]/OriginalIssueDate",
             "00001",
-            "Facility license original issue date cannot be earlier than Effective Date."
+            "Facility license original issue date must be earlier than Effective Date."
         );
 end
 

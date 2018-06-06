@@ -46,7 +46,7 @@ Find the container ID corresponding to the `postgres:alpine` container and copy 
 
 - Next, connect to the container by running `docker exec -it <container id> /bin/bash`, substituting `<container id>` for the ID you copied before. In this case, the command would look like `docker exec -it 2b80cb20d5fc /bin/bash'`
 
-- After running the command, you will be presented with a bash shell inside the database container. The final step is to run this command:
+- After running the command, you will be presented with a bash shell inside the database container. The final step is to run this command inside the container:
 
 ```
 $ cat /mnt/psm-app/db/jbpm.sql \
@@ -60,28 +60,14 @@ At this point, the application should be ready to go. To try the PSM app out, po
 
 ## Installing Docker
 
-### docker.io
+In general, an installation of the latest version of Docker for your platform should work well. Recent versions should include all the dependencies necessary (docker-compose, etc).
 
-Whenever I talk to people who work for Docker, they advise against
-running your distro's packaged version of Docker.  The packages just
-don't work very well, partly because Docker is still such a
-fast-moving target.  In my own experience, those people are correct.
+You can find the installation instructions for Docker [here](https://docs.docker.com/install/). A basic installation should be sufficient to get the PSM app running.
 
-Docker is not in Debian Stable (jessie).  The Debian
-[Wiki](https://wiki.debian.org/Docker) advises using the backports
-repository, but it probably makes more sense not to.  Even on Debian
-Testing (stretch), where Docker is packaged, the packaged version of
-`docker.io` doesn't run properly on two of my boxes.  It gives "No
-help topic 'create'" errors and refuses to run anything.  I recommend
-installing Docker from
-[a .deb file](https://download.docker.com/linux/debian/dists/stretch/pool/stable/amd64/docker-ce_17.03.1~ce-0~debian-stretch_amd64.deb)
-from the Docker website.
+The Docker setup was developed and tested on MacOS, but there shouldn't be many platform-specific issues (that's the point of Docker, after all).
 
-Alternatively, if you want to use the Docker `apt-get` repository, see
-[this page](https://docs.docker.com/engine/installation/linux/debian/).
+## Troubleshooting
 
-### docker-compose
+### Organization Proxies
 
-The `docker-compose.yml` file uses version 2 of the configuration
-format, which means the version in the Debian stable and testing repos
-should be able to handle it.
+If possible, it's recommended to run the Docker build when off any enterprise proxies. It's likely you'll run into issues within certain containers when running over a proxy, even if Docker itself is configured correctly for a proxy.

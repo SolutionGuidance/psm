@@ -1,8 +1,0 @@
-Requirement ID Number,Requirement Category,Requirement Statement,Priority,Rank,Source,Source Document,Release,Design Reference,Acceptance Test Reference,Comment
-,1.  Software Quality and Maintainability,,,,,,,,,
-psm-SQ-1.1,,The PSM shall have an open source repository and source code base organized to be welcoming to outside contributors.,,,,,,,,
-psm-SQ-1.2,,"The PSM shall include and undergo automated testing at regular intervals, through continuous integration and deployment processes.  The PSM shall also undergo manual testing and QA as needed.",,,,,,,,
-psm-SQ-1.3,,"The PSM shall use modern source code dependency management techniques, and shall use up-to-date versions of upstream third-party dependencies and formats.",,,,,,,,
-psm-SQ-1.4,,"The PSM shall use documented build, test, release, and installation processes that are automated as much as possible, for both development and production use.",,,,,,,,
-psm-SQ-1.5,,"The PSM shall use D.R.Y. coding principles to avoid unnecessary complexity, inflexibility, redundancy, and denormalization in the source code and database schemas, and to use precise terminology in data structures and operations.",,,,,,,,
-psm-SQ-1.6,,The PSM shall use system resources efficiently and in proportion to operational demands and data size.,,,,,,,,

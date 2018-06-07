@@ -435,4 +435,116 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-entity-structure-types">
+    <createTable tableName="entity_structure_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="entity_structure_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-issuing-boards">
+    <createTable tableName="issuing_boards">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="issuing_boards"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-license-statuses">
+    <createTable tableName="license_statuses">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="license_statuses"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-pay-to-provider-types">
+    <createTable tableName="pay_to_provider_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="pay_to_provider_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-categories-of-service">
+    <createTable tableName="categories_of_service">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="categories_of_service"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-service-categories">
+    <createTable tableName="service_categories">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="service_categories"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-counties">
+    <createTable tableName="counties">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="counties"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

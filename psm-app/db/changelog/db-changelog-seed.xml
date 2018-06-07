@@ -41,4 +41,46 @@
       tableName="profile_statuses" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-entity-structure-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/entity_structure_types.csv"
+      primaryKey="code"
+      tableName="entity_structure_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-issuing-boards" runOnChange="true">
+    <loadUpdateData file="db/seeds/issuing_boards.csv"
+      primaryKey="code"
+      tableName="issuing_boards" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-license-statuses" runOnChange="true">
+    <loadUpdateData file="db/seeds/license_statuses.csv"
+      primaryKey="code"
+      tableName="license_statuses" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-pay-to-provider-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/pay_to_provider_types.csv"
+      primaryKey="code"
+      tableName="pay_to_provider_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-categories-of-service" runOnChange="true">
+    <loadUpdateData file="db/seeds/categories_of_service.csv"
+      primaryKey="code"
+      tableName="categories_of_service" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-service-categories" runOnChange="true">
+    <loadUpdateData file="db/seeds/service_categories.csv"
+      primaryKey="code"
+      tableName="service_categories" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-counties" runOnChange="true">
+    <loadUpdateData file="db/seeds/counties.csv"
+      primaryKey="code"
+      tableName="counties" />
+  </changeSet>
+
 </databaseChangeLog>

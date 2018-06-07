@@ -90,6 +90,12 @@ allprojects {
 ].each { name ->
     project(":$name") {
         apply plugin: 'groovy'
+        apply plugin: 'codenarc'
+
+        codenarc {
+            toolVersion = '1.1'
+            configFile = rootProject.file("codenarc.groovy")
+        }
 
         configurations {
             testCompile.extendsFrom compileOnly

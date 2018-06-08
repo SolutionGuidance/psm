@@ -30,23 +30,23 @@ class EnrollmentAcceptsEftToFhirTest extends Specification {
     }
 
     def addAffiliationToEnrollment(Enrollment enrollment, boolean eftAccepted, boolean isPrimary) {
-      def organization = new Organization()
-      organization.setEftAccepted(eftAccepted)
+        def organization = new Organization()
+        organization.setEftAccepted(eftAccepted)
 
-      def affiliation = new Affiliation()
-      affiliation.setEntity(organization)
-      if (isPrimary) {
-        affiliation.setPrimaryInd("Y")
-      }
+        def affiliation = new Affiliation()
+        affiliation.setEntity(organization)
+        if (isPrimary) {
+            affiliation.setPrimaryInd("Y")
+        }
 
-      def affiliations = enrollment.details.getAffiliations()
-      if (affiliations == null) {
-        affiliations = new ArrayList<Affiliation>()
-      }
+        def affiliations = enrollment.details.getAffiliations()
+        if (affiliations == null) {
+            affiliations = new ArrayList<Affiliation>()
+        }
 
-      affiliations.add(affiliation)
-      enrollment.details.setAffiliations(affiliations)
-      return enrollment
+        affiliations.add(affiliation)
+        enrollment.details.setAffiliations(affiliations)
+        return enrollment
     }
 
     def "No primary affiliation does not accept EFT"() {

@@ -26,13 +26,13 @@ class EnrollmentAcceptsEftToFhirTest extends Specification {
         enrollment.details.entity.providerType.description = "Audiologist"
     }
 
-    def addAffiliationToEnrollment(Enrollment enrollment, boolean eftAccepted, boolean isPrimary) {
+    void addAffiliation(Map args, Enrollment enrollment) {
         def organization = new Organization()
-        organization.setEftAccepted(eftAccepted)
+        organization.setEftAccepted(args.eftAccepted)
 
         def affiliation = new Affiliation()
         affiliation.setEntity(organization)
-        if (isPrimary) {
+        if (args.primary) {
             affiliation.setPrimaryInd("Y")
         }
 
@@ -43,13 +43,12 @@ class EnrollmentAcceptsEftToFhirTest extends Specification {
 
         affiliations.add(affiliation)
         enrollment.details.setAffiliations(affiliations)
-        return enrollment
     }
 
     def "No primary affiliation does not accept EFT"() {
         given:
-        enrollment = addAffiliationToEnrollment(enrollment, false, false)
-        enrollment = addAffiliationToEnrollment(enrollment, true, false)
+        addAffiliation(enrollment, eftAccepted: false, primary: false)
+        addAffiliation(enrollment, eftAccepted: true, primary: false)
 
         when:
         def result = transformer.apply(enrollment)
@@ -68,7 +67,7 @@ class EnrollmentAcceptsEftToFhirTest extends Specification {
 
     def "Primary affiliation without EFT does not accept EFT"() {
         given:
-        enrollment = addAffiliationToEnrollment(enrollment, false, true)
+        addAffiliation(enrollment, eftAccepted: false, primary: true)
 
         when:
         def result = transformer.apply(enrollment)
@@ -79,7 +78,7 @@ class EnrollmentAcceptsEftToFhirTest extends Specification {
 
     def "Primary affiliation with EFT does accept EFT"() {
         given:
-        enrollment = addAffiliationToEnrollment(enrollment, true, true)
+        addAffiliation(enrollment, eftAccepted: true, primary: true)
 
         when:
         def result = transformer.apply(enrollment)

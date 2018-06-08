@@ -56,7 +56,9 @@ $ cat /mnt/psm-app/db/jbpm.sql \
 
 After running, the console should display results for a bunch of SQL operations.
 
-At this point, the application should be ready to go. To try the PSM app out, point your browser at [localhost:8080/cms/login](http://localhost:8080/cms/login).
+If the database is updated at any point, this step should be repeated to ensure any new data shows up.
+
+At this point, the application should be ready to go. To try the PSM app out, point your browser at [localhost:8080/cms/login](http://localhost:8080/cms/login). You can log in with username `p1` and password `p1`.
 
 ## Installing Docker
 

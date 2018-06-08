@@ -37,7 +37,7 @@ if [ -e ${EAR} ]; then
 		
 		# If the app in the build tree is newest, we're done
 		[[ "/mnt/psm-app/cms-portal-services/build/libs/${EAR_NAME}" == $(find /mnt/psm-app -type f -printf '%T@ %p\0' | sort -zk 1nr | sed -z 's/^[^ ]* //' | tr '\0' '\n' | head -n 1) ]] && cp /mnt/psm-app/cms-portal-services/build/libs/${EAR_NAME} ${EAR} && exit
-		printf "...but something in psm-app has changed. Rebuilding project now."
+		echo "...but something in psm-app has changed. Rebuilding project now."
 fi
 
 ####################################
@@ -55,7 +55,8 @@ cd /tmp/psm-build
 ./gradlew cms-portal-services:build
 
 # Move the resulting .ear file to both the Wildfly deployments directory and the build
-# tree directory. 
+# tree directory.
+
 # First, create build tree directory if it doesn't exist
 if [ ! -e "/mnt/psm-app/cms-portal-services/build" ]; then
 		echo "Making new build directory"
@@ -67,17 +68,10 @@ fi
 cp /tmp/psm-build/cms-portal-services/build/libs/${EAR_NAME} ${EAR}
 cp /tmp/psm-build/cms-portal-services/build/libs/${EAR_NAME} /mnt/psm-app/cms-portal-services/build/libs/${EAR_NAME}
 
-# Finally, we need to build the Liquibase database, encapsulated within a Gradle task.
-
-# Normally, this task pulls configuration values from gradle.properties within the repo's 
-# root directory; however, those values need to be different for Docker vs. a local installation.
-# Since developers may want to run both at the same time, we override that configuration file with 
-# command line arguments that work for Docker.
-
-# The database path is configured with the host set to psm_db_1, the name of the database container 
-# within the Docker bridge network (used for esy communication between containers). Username and 
-# password are configured to match the ones provided as arguments for the database in docker-compose.yml.
-./gradlew db:update -DdatabasePath=jdbc:postgresql://psm_db_1:5432/psm -DdatabaseUser=psm -DdatabasePassword=psm
+# We may need to rebuild the Liquibase database; it may have changed configuration. To
+# see more information about the Liquibase setup, see comments in setup.sh.
+echo "Rebuilding Liquibase database."
+./gradlew db:update -DdatabasePath=jdbc:postgresql://psm_db_1:5432/psm -DdatabaseUser=psm -DdatabasePassword=psm;
 
 # Clean up the temporary build directory.
 rm -rf /tmp/psm-build

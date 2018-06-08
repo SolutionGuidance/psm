@@ -26,8 +26,7 @@ echo "Running build.sh"
 /usr/local/bin/build.sh && echo "Finished build process!";
 
 # Once both scripts finish running, the application should be ready to go.
+
 # Boot up Wildfly one final time with networking. 
 echo "Starting Wildfly with networking..."
 ${JBOSS_HOME}/bin/standalone.sh -c standalone-full.xml -bmanagement 0.0.0.0 -b 0.0.0.0
-
-

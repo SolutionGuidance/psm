@@ -43,12 +43,6 @@ ENV TINI_SHA 066ad710107dc7ee05d3aa6e4974f01dc98f3888
 RUN curl -fL https://github.com/krallin/tini/releases/download/v0.5.0/tini-static -o /bin/tini && chmod +x /bin/tini \
                  && echo "$TINI_SHA /bin/tini" | sha1sum -c -
 
-# Touch the Wildfly configuration file. The setup script, setup.sh 
-# (executed later), uses the modification time of this file to determine 
-# whether initial configuration has already been done. See that script
-# for more details.
-RUN touch /opt/jboss/wildfly/bin/product.conf
-
 # Save wildfly contents.  We'll restore them to a data volume later.
 # This lets wildfly make its writes in a data volume, which means it
 # doesn't have to write to the container's overlayfs.  This lets us

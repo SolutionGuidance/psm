@@ -1,16 +1,13 @@
 package gov.medicaid.api.transformers
 
 import gov.medicaid.entities.Affiliation
-import gov.medicaid.entities.Entity
 import gov.medicaid.entities.Enrollment
 import gov.medicaid.entities.EnrollmentStatus
 import gov.medicaid.entities.Organization
 import gov.medicaid.entities.Person
 import gov.medicaid.entities.ProviderProfile
 import gov.medicaid.entities.ProviderType
-import org.hl7.fhir.dstu3.model.Practitioner
 import spock.lang.Specification
-import java.util.ArrayList;
 
 class EnrollmentAcceptsEftToFhirTest extends Specification {
     EnrollmentAcceptsEftToFhir transformer

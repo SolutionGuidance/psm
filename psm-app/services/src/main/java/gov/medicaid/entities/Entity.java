@@ -75,9 +75,6 @@ public abstract class Entity implements Serializable {
     @Column(name = "legacy_indicator")
     private String legacyIndicator;
 
-    @Column(name = "legacy_id")
-    private String legacyId;
-
     private String npi;
 
     @Column(name = "nonexclusion_verified")
@@ -224,11 +221,4 @@ public abstract class Entity implements Serializable {
         this.providerSubType = providerSubType;
     }
 
-    public String getLegacyId() {
-        return legacyId;
-    }
-
-    public void setLegacyId(String legacyId) {
-        this.legacyId = legacyId;
-    }
 }

@@ -1632,4 +1632,15 @@
       </createTable>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue57-remove-legacy-id">
+    <dropColumn tableName="entities"
+      columnName="legacy_id"/>
+    <rollback>
+      <addColumn tableName="entities">
+        <column name="legacy_id"
+          type="text"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

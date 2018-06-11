@@ -72,9 +72,6 @@ public abstract class Entity implements Serializable {
     @Column(name = "legal_name")
     private String legalName;
 
-    @Column(name = "legacy_indicator")
-    private String legacyIndicator;
-
     private String npi;
 
     @Column(name = "nonexclusion_verified")
@@ -131,14 +128,6 @@ public abstract class Entity implements Serializable {
 
     public void setLegalName(String legalName) {
         this.legalName = legalName;
-    }
-
-    public String getLegacyIndicator() {
-        return legacyIndicator;
-    }
-
-    public void setLegacyIndicator(String legacyIndicator) {
-        this.legacyIndicator = legacyIndicator;
     }
 
     public String getNpi() {

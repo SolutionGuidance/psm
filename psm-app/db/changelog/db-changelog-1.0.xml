@@ -1643,4 +1643,15 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue57-remove-legacy-indicator">
+    <dropColumn tableName="entities"
+      columnName="legacy_indicator"/>
+    <rollback>
+      <addColumn tableName="entities">
+        <column name="legacy_indicator"
+          type="character varying(1)"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

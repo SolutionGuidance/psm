@@ -6,11 +6,20 @@ import gov.medicaid.entities.Person
 import gov.medicaid.entities.ProviderProfile
 import gov.medicaid.entities.ProviderType
 import org.hl7.fhir.dstu3.model.Task
+import org.hl7.fhir.dstu3.model.Task.ParameterComponent
 import spock.lang.Specification
 
 class EnrollmentToFhirTest extends Specification {
     EnrollmentToFhir transformer
     Enrollment enrollment
+
+    def getInputByType(inputs, name) {
+        for (ParameterComponent input : inputs) {
+            if (input.getType().getText() == name)
+                return input;
+        }
+        return null;
+    }
 
     def setup() {
         transformer = new EnrollmentToFhir()
@@ -60,8 +69,18 @@ class EnrollmentToFhirTest extends Specification {
 
         then:
         result.hasInput()
-        result.input.size() == 1
-        result.input.first().value.toString() == "Audiologist"
+        def input = getInputByType(result.input, "Provider Type")
+        input.value.toString() == "Audiologist"
+    }
+
+    def "Accepts EFT is set as input"() {
+        when:
+        def result = transformer.apply(enrollment)
+
+        then:
+        result.hasInput()
+        def input = getInputByType(result.input, "Accepts EFT")
+        input.value.booleanValue() == false
     }
 
     def "Enrollment ID is set as identifier"() {

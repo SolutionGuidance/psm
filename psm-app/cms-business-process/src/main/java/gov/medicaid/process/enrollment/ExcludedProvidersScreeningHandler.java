@@ -16,27 +16,17 @@
 
 package gov.medicaid.process.enrollment;
 
-import ca.uhn.fhir.context.FhirContext;
-import ca.uhn.fhir.rest.api.EncodingEnum;
-import ca.uhn.fhir.rest.client.api.IGenericClient;
-import ca.uhn.fhir.rest.client.api.ServerValidationModeEnum;
-import ca.uhn.fhir.rest.gclient.StringClientParam;
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.EnrollmentProcess;
-import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.VerificationStatusType;
 import gov.medicaid.entities.AutomaticScreening;
-import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.LeieAutomaticScreening;
+import gov.medicaid.services.impl.LeieExternalScreener;
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
-import org.hl7.fhir.dstu3.model.Bundle;
 
 import javax.persistence.EntityManager;
 import java.util.logging.Logger;
-
-import static java.util.logging.Level.WARNING;
 
 /**
  * This checks the excluded providers from the OIG LEIE.
@@ -44,78 +34,56 @@ import static java.util.logging.Level.WARNING;
 public class ExcludedProvidersScreeningHandler extends GenericHandler {
     private final Logger logger = Logger.getLogger(getClass().getName());
 
-    private String baseUri;
-    private final EntityManager entityManager;
-    private FhirContext fhirContext;
+    private final LeieExternalScreener leieExternalScreener;
 
     public ExcludedProvidersScreeningHandler(
             String baseUri,
             EntityManager entityManager
     ) {
-        this.baseUri = baseUri;
-        this.entityManager = entityManager;
-        fhirContext = FhirContext.forDstu3();
-        fhirContext.registerCustomType(Exclusion.class);
-        fhirContext.getRestfulClientFactory().setServerValidationMode(
-                ServerValidationModeEnum.NEVER
+        leieExternalScreener = new LeieExternalScreener(
+                baseUri,
+                entityManager
         );
     }
 
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
         logger.info("Checking provider exclusion.");
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
-        Enrollment enrollment = getEnrollment(processModel.getEnrollment());
+        Long enrollmentId = Long.parseLong(
+                processModel.getEnrollment().getObjectId()
+        );
 
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
 
-        LeieAutomaticScreening screening = new LeieAutomaticScreening();
-        screening.setNpiSearchTerm(provider.getNPI());
+        AutomaticScreening.Result result = leieExternalScreener.screen(
+                enrollmentId,
+                provider.getNPI()
+        );
 
-        try {
-            Bundle providerSearchResults = searchLeieForProvider(provider.getNPI());
-            if (providerIsExcluded(providerSearchResults)) {
-                setResultExcluded(screening, processModel, providerSearchResults);
-            } else {
-                setResultNotExcluded(screening, processModel);
-            }
-        } catch (RuntimeException e) {
-            logger.log(WARNING, "Error checking provider against LEIE", e);
-            setResultError(screening);
+        switch (result) {
+            case PASS:
+                setResultNotExcluded(processModel);
+                break;
+            case FAIL:
+                setResultExcluded(processModel);
+                break;
+            case ERROR:
+                break;
         }
 
-        enrollment.addAutomaticScreening(screening);
-        entityManager.merge(enrollment);
         item.getResults().put("model", processModel);
         manager.completeWorkItem(item.getId(), item.getResults());
     }
 
-    private Enrollment getEnrollment(EnrollmentType enrollmentType) {
-        long enrollmentId = Long.parseLong(enrollmentType.getObjectId());
-        return entityManager.find(Enrollment.class, enrollmentId);
-    }
-
     private void setResultExcluded(
-            LeieAutomaticScreening screening,
-            EnrollmentProcess processModel,
-            Bundle providerSearchResults
+            EnrollmentProcess processModel
     ) {
-        screening.setResult(AutomaticScreening.Result.FAIL);
-
         setNonExclusionVerificationStatus(processModel, "N");
-
-        for (Bundle.BundleEntryComponent e : providerSearchResults.getEntry()) {
-            Exclusion exclusion = (Exclusion) e.getResource();
-
-            screening.addMatch(exclusion.toMatch());
-        }
     }
 
     private void setResultNotExcluded(
-            LeieAutomaticScreening screening,
             EnrollmentProcess processModel
     ) {
-        screening.setResult(AutomaticScreening.Result.PASS);
-
         setNonExclusionVerificationStatus(processModel, "Y");
     }
 
@@ -126,26 +94,5 @@ public class ExcludedProvidersScreeningHandler extends GenericHandler {
         VerificationStatusType verificationStatus =
                 XMLUtility.nsGetVerificationStatus(processModel);
         verificationStatus.setNonExclusion(status);
-    }
-
-    private void setResultError(
-            LeieAutomaticScreening screening
-    ) {
-        screening.setResult(AutomaticScreening.Result.ERROR);
-    }
-
-    private boolean providerIsExcluded(Bundle providerSearchResults) {
-        return providerSearchResults.getTotal() > 0;
-    }
-
-    private Bundle searchLeieForProvider(String npi) {
-        IGenericClient client = fhirContext.newRestfulGenericClient(baseUri);
-        client.setEncoding(EncodingEnum.JSON);
-        return client
-                .search()
-                .forResource("Exclusion")
-                .where(new StringClientParam("npi").matches().value(npi))
-                .returnBundle(org.hl7.fhir.dstu3.model.Bundle.class)
-                .execute();
     }
 }

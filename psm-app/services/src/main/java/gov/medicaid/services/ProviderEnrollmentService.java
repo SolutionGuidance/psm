@@ -561,18 +561,6 @@ public interface ProviderEnrollmentService {
     boolean existsProfile(String profileNPI) throws PortalServiceException;
 
     /**
-     * Callback from legacy system for setting the legacy ID.
-     *
-     * @param profileId the profile id
-     * @param legacyId  the legacy id
-     * @throws PortalServiceException for any errors encountered
-     */
-    void updateLegacyId(
-            long profileId,
-            String legacyId
-    ) throws PortalServiceException;
-
-    /**
      * Retrieves the related entity for the given profile key.
      *
      * @param profileId the profile id of the provider

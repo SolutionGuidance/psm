@@ -2760,26 +2760,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     }
 
     /**
-     * Callback from legacy system for setting the legacy ID.
-     *
-     * @param ticketId the ticket id
-     * @param legacyId the legacy id
-     * @throws PortalServiceException for any errors encountered
-     */
-    @Override
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public void updateLegacyId(
-            long ticketId,
-            String legacyId
-    ) throws PortalServiceException {
-        Enrollment ticket = getTicketDetails(getSystemUser(), ticketId);
-        long profileId = ticket.getProfileReferenceId();
-        ProviderProfile provider = getProviderDetails(getSystemUser(), profileId);
-        provider.getEntity().setLegacyId(legacyId);
-        getEm().merge(provider.getEntity());
-    }
-
-    /**
      * Purges any trace of a legacy record
      *
      * @param legacyId the legacy id

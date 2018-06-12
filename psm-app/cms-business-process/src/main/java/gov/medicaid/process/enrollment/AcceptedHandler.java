@@ -30,9 +30,6 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.XMLAdapter;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -107,9 +104,7 @@ public class AcceptedHandler extends GenericHandler {
 
             item.getResults().put("model", model);
             manager.completeWorkItem(item.getId(), item.getResults());
-            Map<String, Object> vars = new HashMap<String, Object>();
-            String emailAddress = model.getEnrollment().getContactInformation().getEmailAddress();
-            notificationService.sendNotification(emailAddress, EmailTemplate.APPROVED_ENROLLMENT, vars);
+            notificationService.sendEnrollmentNotification(model.getEnrollment(), EmailTemplate.APPROVED_ENROLLMENT);
 
             // Issue #215 - add hook for approval
         } catch (PortalServiceException e) {

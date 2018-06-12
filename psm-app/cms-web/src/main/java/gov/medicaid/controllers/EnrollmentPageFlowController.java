@@ -1055,9 +1055,7 @@ public class EnrollmentPageFlowController extends BaseController {
                 mv.addObject("id", serviceResponse.getTicketNumber());
                 ControllerHelper.flashPopup("submitEnrollmentModal");
 
-                Map<String, Object> vars = new HashMap<>();
-                String emailAddress = enrollment.getContactInformation().getEmailAddress();
-                notificationService.sendNotification(emailAddress, EmailTemplate.PENDING_ENROLLMENT, vars);
+                notificationService.sendEnrollmentNotification(enrollment, EmailTemplate.PENDING_ENROLLMENT);
 
                 // Issue #215 - add hook for successful submission
 
@@ -1118,9 +1116,7 @@ public class EnrollmentPageFlowController extends BaseController {
                 mv.addObject("id", enrollment.getObjectId());
                 ControllerHelper.flashPopup("submitEnrollmentModal");
 
-                Map<String, Object> vars = new HashMap<>();
-                String emailAddress = enrollment.getContactInformation().getEmailAddress();
-                notificationService.sendNotification(emailAddress, EmailTemplate.MODIFIED_ENROLLMENT, vars);
+                notificationService.sendEnrollmentNotification(enrollment, EmailTemplate.MODIFIED_ENROLLMENT);
 
                 // Issue #215 - add hook for successful resubmission
 

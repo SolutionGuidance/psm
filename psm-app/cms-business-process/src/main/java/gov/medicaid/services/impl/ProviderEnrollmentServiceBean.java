@@ -171,10 +171,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             throw new PortalServiceException("Cannot change status because it is not in pending state.");
         }
 
-        CMSUser submittingUser = getUserByEnrollment(ticket);
-        Map<String, Object> vars = new HashMap<>();
-        String emailAddress = submittingUser.getEmail();
-        notificationService.sendNotification(emailAddress, EmailTemplate.REJECTED_ENROLLMENT, vars);
+        EnrollmentType enrollment = XMLAdapter.toXML(ticket);
+        notificationService.sendEnrollmentNotification(enrollment, EmailTemplate.REJECTED_ENROLLMENT);
 
         ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.REJECTED_STATUS));
         ticket.setStatusNote(reason);
@@ -182,25 +180,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         saveTicket(user, ticket, false);
     }
 
-    /**
-     * Look up the user who submitted an enrollment
-     *
-     * TODO: this is not the appropriate location for this functionality
-     * If / when a refactor to how we do our models is done, this should
-     * live inside of the Enrollment model.
-     *
-     * @param  enrollment The enrollment object whose creator we want to look up
-     * @return            The CMS user object associated with the user who made the enrollment
-     */
-    private CMSUser getUserByEnrollment(Enrollment enrollment) {
-        return getEm().createQuery(
-            "FROM CMSUser where username = :username",
-            CMSUser.class
-        ).setParameter(
-            "username",
-            enrollment.getSubmittedBy()
-        ).getSingleResult();
-    }
 
     /**
      * This is the service method to be called after the process has completed

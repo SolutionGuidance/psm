@@ -34,6 +34,7 @@ import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.util.PDFHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -111,7 +112,10 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         statement.setName(param(request, "name"));
         statement.setTitle(param(request, "title"));
         try {
-            statement.setSignDate(BinderUtils.getAsCalendar(param(request, "date")));
+            Date today = new Date();
+            SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+            String paramToday = df.format(today);
+            statement.setSignDate(BinderUtils.getAsCalendar(paramToday));
         } catch (BinderException e) {
             e.setAttribute(name("date"), param(request, "date"));
             exceptions.add(e);
@@ -434,7 +438,10 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
             ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(enrollment);
             xStatement.setName(hStatement.getName());
             xStatement.setTitle(hStatement.getTitle());
-            xStatement.setSignDate(BinderUtils.toCalendar(hStatement.getDate()));
+            // Sets the signing date when the user saves the application
+            // as a draft
+            Date today = new Date();
+            xStatement.setSignDate(BinderUtils.toCalendar(today));
         }
     }
 

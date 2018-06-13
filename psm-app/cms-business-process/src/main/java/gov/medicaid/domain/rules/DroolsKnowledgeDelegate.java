@@ -40,7 +40,7 @@ import org.jbpm.task.service.TaskService;
 import org.jbpm.task.service.local.LocalTaskService;
 
 /**
- * This class is used to config
+ * This class is used to configure and execute CMS Business rule containers.
  * <p>
  * v1.1 - WAS Porting - pass reference to user transaction when invoking BPMN,
  * add flag to use guvnor

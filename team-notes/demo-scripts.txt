@@ -1,6 +1,56 @@
    Scripts for live demonstrations of the PSM to various audiences.
    ================================================================
 
+If you use Emacs org mode, this file will be easier to read.
+
+* Update to demo site in June 2018
+The audience for this section is mostly @jvasile, or others who are
+familiar with how the PSM has developed over time.
+
+** provider side
+   This still looks similar to previous versions, and can follow earlier
+   scripts.
+
+** admin side
+   This looks different, and we should show more information.
+
+*** Review workflow (Enrollments tab)
+    - When you choose to "review" an application, you'll see that only
+      the external sources that are hooked up appear.  You can mention
+      that the others are coming soon.  This means that fewer
+      distracting errors will appear, and fewer boxes will need to be
+      checked.
+    - Click on the "PASS," "FAIL," or "ERROR" in the Automatic Screening
+      column to see a more comprehensible results page.
+
+*** Reports tab
+    - See the list of initial reports -- note that more can be added,
+      and we expect to update and improve these.
+    - "Applications by Reviewer"
+      - only shows the applications that have been either Approved or
+        Denied -- doesn't show pending or drafts
+    - "Draft Applications"
+      - shows number of drafts over time (currently the "Submitted Date"
+        column should be removed)
+    - "Time to Review"
+      - the most-requested report -- shows how long it takes an
+        application to go through the process.  Ideally this would show
+        that the state is moving providers from submission to review in
+        decreasing or stable amounts of time.
+    - "Provider Types"
+      - number of applications by provider type, over time
+    - "Reviewed Documents"
+      - number of documents (licenses) reviewed over time
+    - "Risk Levels"
+      - number of applications reviewed in each risk level over time
+
+*** Screenings tab
+    *Warning*: Most of this page is not yet wired up!  Expect buttons not
+    to be functional, and set that expectation with audiences.
+    - It shows the screening tests we've run on applications so far,
+      either as part of the regular submission process or as regular
+      re-screening over time
+
 * For MESC 2017  (`wip-leie` branch as of 7 August 2017)
 
   Use demo.psm.solutionguidance.com or a local copy.

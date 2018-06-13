@@ -118,7 +118,7 @@
     </table>
     <div class="clearFixed"></div>
     <div class="tableBottom">
-        <a href="javascript:;" id="addLicense">+ Add Another License/Certification</a>
+        <a href="javascript:;" id="addLicense">+ Add A License/Certification</a>
     </div>
     <div class="tl"></div>
     <div class="tr"></div>

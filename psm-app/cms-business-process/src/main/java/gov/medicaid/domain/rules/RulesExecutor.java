@@ -56,7 +56,7 @@ public class RulesExecutor {
      */
     public static ValidationResponse executeProviderValidationRules(
         gov.medicaid.domain.model.ValidationRequest request) {
-
+        ValidationResponse validationResponse;
         StatefulKnowledgeSession ksession = CMSKnowledgeUtility.newValidationSession();
         try {
             gov.medicaid.domain.model.ValidationResultType validationResultType = new ValidationResultType();
@@ -82,9 +82,8 @@ public class RulesExecutor {
             ksession.insert(validationResultType);
             ksession.fireAllRules();
 
-            ValidationResponse validationResponse = new ValidationResponse();
+            validationResponse = new ValidationResponse();
             validationResponse.setValidationResult(validationResultType);
-            return validationResponse;
         } finally {
             if (ksession != null) {
                 try {
@@ -94,6 +93,7 @@ public class RulesExecutor {
                 }
             }
         }
+        return validationResponse;
     }
 
     /**
@@ -101,9 +101,9 @@ public class RulesExecutor {
      * @param validationResultType
      */
     public static void executeProviderScreeningRules(
-        gov.medicaid.domain.model.EnrollmentProcess enrollmentProcess,
-        gov.medicaid.domain.model.ValidationResultType validationResultType) {
-
+        EnrollmentProcess enrollmentProcess,
+        ValidationResultType validationResultType
+    ) {
         StatefulKnowledgeSession ksession =
             CMSKnowledgeUtility.newScreeningValidationSession();
         try {
@@ -139,11 +139,12 @@ public class RulesExecutor {
      * @return long     the EnrollmentProcess id
      * @throws Exception
      */
-    public static long startEnrollmentProcess(EnrollmentType enrollment,
+    public static long startEnrollmentProcess(
+        EnrollmentType enrollment,
         Set<Map.Entry<String, WorkItemHandler>> workItemHandlerEntrySet,
-        EntityManagerFactory entityManagerFactory, EJBContext ejbContext)
-        throws Exception {
-
+        EntityManagerFactory entityManagerFactory,
+        EJBContext ejbContext
+    ) throws Exception {
         long processId;
         StatefulKnowledgeSession ksession = null;
         try {
@@ -201,13 +202,16 @@ public class RulesExecutor {
      * @param ejbContext
      * @throws Exception
      */
-    public static void resubmitEnrollment(CMSUser user, CMSUser systemUser,
+    public static void resubmitEnrollment(
+        CMSUser user,
+        CMSUser systemUser,
         EnrollmentProcess enrollmentProcess,
         Set<Map.Entry<String, WorkItemHandler>> workItemHandlerEntrySet,
         ProviderEnrollmentService providerEnrollmentService,
-        EntityManagerFactory entityManagerFactory, EntityManager entityManager,
-        EJBContext ejbContext) throws Exception {
-
+        EntityManagerFactory entityManagerFactory,
+        EntityManager entityManager,
+        EJBContext ejbContext
+    ) throws Exception {
         StatefulKnowledgeSession ksession = null;
         try {
             UserTransaction tx = ejbContext.getUserTransaction();
@@ -259,12 +263,15 @@ public class RulesExecutor {
      * @throws Exception
      */
     public static void completeEnrollmentReview(
-        String username, String approver, String comment,
-        ProviderInformationType updates, long taskId, List<String> roles,
+        String username,
+        String approver,
+        String comment,
+        ProviderInformationType updates,
+        long taskId, List<String> roles,
         Set<Map.Entry<String, WorkItemHandler>> workItemHandlerEntrySet,
         EntityManagerFactory entityManagerFactory,
-        EJBContext ejbContext) throws Exception {
-
+        EJBContext ejbContext
+    ) throws Exception {
         LocalTaskService localTaskService = new LocalTaskService(
             new TaskService(entityManagerFactory,
                 SystemEventListenerFactory.getSystemEventListener()));
@@ -331,13 +338,13 @@ public class RulesExecutor {
         LocalTaskService client,
         Set<Map.Entry<String, WorkItemHandler>> workItemHandlerEntrySet,
         EntityManagerFactory entityManagerFactory,
-        UserTransaction tx) throws Exception {
-
+        UserTransaction tx
+    ) throws Exception {
         Integer enrollmentProcessSessionId = enrollmentProcess.getSessionId();
         if (null == enrollmentProcessSessionId) {
             throw new Exception("no EnrollmentProcessId found");
         }
-        StatefulKnowledgeSession ksession = null;
+        StatefulKnowledgeSession ksession;
 
         // this is a workaround based on https://issues.jboss.org/browse/JBPM-3673
         ksession = CMSKnowledgeUtility.reloadWorkflowSession(enrollmentProcessSessionId,
@@ -351,5 +358,4 @@ public class RulesExecutor {
         }
         return ksession;
     }
-
 }

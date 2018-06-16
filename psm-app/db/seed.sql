@@ -33,12 +33,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO relationship_types (CODE, DESCRIPTION) VALUES
-  ('01', 'Spouse'),
-  ('02', 'Child'),
-  ('03', 'Parent'),
-  ('04', 'Sibling');
-
 CREATE TABLE sent_notifications(
   notification_id BIGINT PRIMARY KEY,
   notification_type TEXT NOT NULL,

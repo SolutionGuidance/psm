@@ -101,4 +101,10 @@
       tableName="degrees" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-relationship-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/relationship_types.csv"
+      primaryKey="code"
+      tableName="relationship_types" />
+  </changeSet>
+
 </databaseChangeLog>

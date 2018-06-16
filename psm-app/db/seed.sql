@@ -29,18 +29,12 @@ DROP TABLE IF EXISTS
   provider_type_license_types,
   provider_type_settings,
   relationship_types,
-  risk_levels,
   screening_schedules,
   sent_notifications,
   specialty_types,
   states
 CASCADE;
 
-CREATE TABLE risk_levels(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  sort_index INTEGER UNIQUE NOT NULL,
-  description TEXT UNIQUE
-);
 INSERT INTO risk_levels (code, sort_index, description) VALUES
   ('01', 1, 'Limited'),
   ('02', 2, 'Moderate'),

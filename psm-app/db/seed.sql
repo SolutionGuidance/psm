@@ -35,11 +35,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO risk_levels (code, sort_index, description) VALUES
-  ('01', 1, 'Limited'),
-  ('02', 2, 'Moderate'),
-  ('03', 3, 'High');
-
 CREATE TABLE degrees(
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE

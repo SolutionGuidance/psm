@@ -89,4 +89,10 @@
       tableName="beneficial_owner_types" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-beneficial-risk-levels" runOnChange="true">
+    <loadUpdateData file="db/seeds/risk_levels.csv"
+      primaryKey="code"
+      tableName="risk_levels" />
+  </changeSet>
+
 </databaseChangeLog>

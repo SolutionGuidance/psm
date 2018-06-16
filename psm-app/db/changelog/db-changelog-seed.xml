@@ -113,4 +113,10 @@
       tableName="enrollment_statuses" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-license-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/license_types.csv"
+      primaryKey="code"
+      tableName="license_types" />
+  </changeSet>
+
 </databaseChangeLog>

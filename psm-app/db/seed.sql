@@ -32,12 +32,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO enrollment_statuses (code, description) VALUES
-  ('01', 'Draft'),
-  ('02', 'Pending'),
-  ('03', 'Rejected'),
-  ('04', 'Approved');
-
 CREATE TABLE license_types(
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE

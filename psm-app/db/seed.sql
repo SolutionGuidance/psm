@@ -12,7 +12,6 @@ DROP TABLE IF EXISTS
   events,
   external_account_links,
   external_profile_links,
-  license_types,
   licenses,
   notes,
   organizations,
@@ -32,10 +31,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-CREATE TABLE license_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO license_types (code, description) VALUES
   ('A0', 'Background Study'),
   ('A1', 'Head Start Agency Certification'),

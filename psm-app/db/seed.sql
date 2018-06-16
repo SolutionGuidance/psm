@@ -34,10 +34,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO degrees(CODE, DESCRIPTION) VALUES
-  ('D1', 'MASTERS'),
-  ('D2', 'DOCTORATE');
-
 CREATE TABLE relationship_types(
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE

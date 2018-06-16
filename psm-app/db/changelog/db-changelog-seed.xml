@@ -95,4 +95,10 @@
       tableName="risk_levels" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-degrees" runOnChange="true">
+    <loadUpdateData file="db/seeds/degrees.csv"
+      primaryKey="code"
+      tableName="degrees" />
+  </changeSet>
+
 </databaseChangeLog>

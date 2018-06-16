@@ -27,17 +27,12 @@ DROP TABLE IF EXISTS
   provider_type_agreement_documents,
   provider_type_license_types,
   provider_type_settings,
-  relationship_types,
   screening_schedules,
   sent_notifications,
   specialty_types,
   states
 CASCADE;
 
-CREATE TABLE relationship_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO relationship_types (CODE, DESCRIPTION) VALUES
   ('01', 'Spouse'),
   ('02', 'Child'),

@@ -83,4 +83,10 @@
       tableName="counties" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-beneficial-owner-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/beneficial_owner_types.csv"
+      primaryKey="code"
+      tableName="beneficial_owner_types" />
+  </changeSet>
+
 </databaseChangeLog>

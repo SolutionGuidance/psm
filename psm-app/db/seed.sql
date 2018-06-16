@@ -36,15 +36,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO beneficial_owner_types (code, owner_type, description) VALUES
-  ('01', 'A', 'Subcontractor'),
-  ('02', 'P', 'Managing Employee'),
-  ('03', 'A', 'Owner - 5% or more of Ownership Interest'),
-  ('04', 'P', 'Board Member or Officer'),
-  ('05', 'P', 'Program Manager'),
-  ('06', 'P', 'Managing Director'),
-  ('99', 'A', 'Other');
-
 CREATE TABLE risk_levels(
   code CHARACTER VARYING(2) PRIMARY KEY,
   sort_index INTEGER UNIQUE NOT NULL,

@@ -1,0 +1,8 @@
+code,owner_type,description
+"01","A","Subcontractor"
+"02","P","Managing Employee"
+"03","A","Owner - 5% or more of Ownership Interest"
+"04","P","Board Member or Officer"
+"05","P","Program Manager"
+"06","P","Managing Director"
+"99","A","Other"

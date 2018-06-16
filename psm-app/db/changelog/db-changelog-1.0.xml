@@ -585,4 +585,20 @@
       <dropTable tableName="risk_levels"/>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue254-create-table-degrees">
+    <createTable tableName="degrees">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="degrees"/>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

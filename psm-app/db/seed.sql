@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS
   beneficial_owner,
   binary_contents,
   contacts,
-  degrees,
   designated_contacts,
   documents,
   entities,
@@ -35,10 +34,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-CREATE TABLE degrees(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
 INSERT INTO degrees(CODE, DESCRIPTION) VALUES
   ('D1', 'MASTERS'),
   ('D2', 'DOCTORATE');

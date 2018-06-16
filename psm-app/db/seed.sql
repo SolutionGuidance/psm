@@ -28,18 +28,9 @@ DROP TABLE IF EXISTS
   provider_type_license_types,
   provider_type_settings,
   screening_schedules,
-  sent_notifications,
   specialty_types,
   states
 CASCADE;
-
-CREATE TABLE sent_notifications(
-  notification_id BIGINT PRIMARY KEY,
-  notification_type TEXT NOT NULL,
-  sent_to TEXT NOT NULL,
-  notification_content TEXT NOT NULL,
-  sent_at TIMESTAMP WITH TIME ZONE NOT NULL
-);
 
 INSERT INTO enrollment_statuses (code, description) VALUES
   ('01', 'Draft'),

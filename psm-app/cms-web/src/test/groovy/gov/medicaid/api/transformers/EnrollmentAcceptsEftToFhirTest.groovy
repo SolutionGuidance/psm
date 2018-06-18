@@ -87,6 +87,17 @@ class EnrollmentAcceptsEftToFhirTest extends Specification {
         result.value.booleanValue() == true
     }
 
+    def "Primary affiliation with no data on EFT does not accept EFT"() {
+        given:
+        addAffiliation(enrollment, eftAccepted: null, primary: true)
+
+        when:
+        def result = transformer.apply(enrollment)
+
+        then:
+        result.value.booleanValue() == false
+    }
+
     def "Transforming null throws"() {
         when:
         transformer.apply(null)

@@ -547,4 +547,119 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-beneficial-owner-types">
+    <createTable tableName="beneficial_owner_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+      <column name="owner_type"
+        type="varchar(1)" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="beneficial_owner_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-risk-level">
+    <createTable tableName="risk_levels">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="sort_index"
+        type="int">
+        <constraints nullable="false"
+          unique="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="risk_levels"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-degrees">
+    <createTable tableName="degrees">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="degrees"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-relationship-types">
+    <createTable tableName="relationship_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="relationship_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-sent-notifications">
+    <createTable tableName="sent_notifications">
+      <column name="notification_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="notification_type"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="sent_to"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="notification_content"
+        type="text">
+        <constraints nullable="false"/>
+      </column>
+      <column name="sent_at"
+        type="timestamp with time zone">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="sent_notifications"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-license-types">
+    <createTable tableName="license_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="license_types"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

@@ -4,17 +4,14 @@ DROP TABLE IF EXISTS
   affiliations,
   agreement_documents,
   beneficial_owner,
-  beneficial_owner_types,
   binary_contents,
   contacts,
-  degrees,
   designated_contacts,
   documents,
   entities,
   events,
   external_account_links,
   external_profile_links,
-  license_types,
   licenses,
   notes,
   organizations,
@@ -29,146 +26,10 @@ DROP TABLE IF EXISTS
   provider_type_agreement_documents,
   provider_type_license_types,
   provider_type_settings,
-  relationship_types,
-  risk_levels,
   screening_schedules,
-  sent_notifications,
   specialty_types,
   states
 CASCADE;
-
-CREATE TABLE beneficial_owner_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE,
-  owner_type CHARACTER VARYING(1)
-);
-INSERT INTO beneficial_owner_types (code, owner_type, description) VALUES
-  ('01', 'A', 'Subcontractor'),
-  ('02', 'P', 'Managing Employee'),
-  ('03', 'A', 'Owner - 5% or more of Ownership Interest'),
-  ('04', 'P', 'Board Member or Officer'),
-  ('05', 'P', 'Program Manager'),
-  ('06', 'P', 'Managing Director'),
-  ('99', 'A', 'Other');
-
-CREATE TABLE risk_levels(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  sort_index INTEGER UNIQUE NOT NULL,
-  description TEXT UNIQUE
-);
-INSERT INTO risk_levels (code, sort_index, description) VALUES
-  ('01', 1, 'Limited'),
-  ('02', 2, 'Moderate'),
-  ('03', 3, 'High');
-
-CREATE TABLE degrees(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
-INSERT INTO degrees(CODE, DESCRIPTION) VALUES
-  ('D1', 'MASTERS'),
-  ('D2', 'DOCTORATE');
-
-CREATE TABLE relationship_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
-INSERT INTO relationship_types (CODE, DESCRIPTION) VALUES
-  ('01', 'Spouse'),
-  ('02', 'Child'),
-  ('03', 'Parent'),
-  ('04', 'Sibling');
-
-CREATE TABLE sent_notifications(
-  notification_id BIGINT PRIMARY KEY,
-  notification_type TEXT NOT NULL,
-  sent_to TEXT NOT NULL,
-  notification_content TEXT NOT NULL,
-  sent_at TIMESTAMP WITH TIME ZONE NOT NULL
-);
-
-INSERT INTO enrollment_statuses (code, description) VALUES
-  ('01', 'Draft'),
-  ('02', 'Pending'),
-  ('03', 'Rejected'),
-  ('04', 'Approved');
-
-CREATE TABLE license_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE
-);
-INSERT INTO license_types (code, description) VALUES
-  ('A0', 'Background Study'),
-  ('A1', 'Head Start Agency Certification'),
-  ('A2', 'Class A Professional Home Care License'),
-  ('A3', 'HCFA Medicare Certification'),
-  ('A4', 'Housing with Services'),
-  ('A5', 'Off-site Approval Letter From Medicare'),
-  ('A6', 'Verification of IHS status'),
-  ('A7', 'County Contract to Provider IRTS'),
-  ('A8', 'Rule 36 Licensed Facility'),
-  ('A9', 'Class A License'),
-  ('AA', 'Pharmacy License'),
-  ('AB', 'Class A License For Private Duty Nursing Services'),
-  ('AC', 'Medicare Certification For Home Health Aide And Skilled Nursing Services'),
-  ('AD', 'Regional Treatment Center Certification'),
-  ('AE', 'Medicare Approval Letter'),
-  ('AF', 'Comprehensive Outpatient Rehabilitation Facility Certification'),
-  ('AG', 'Independent or Portable X-ray Certification from CMS'),
-  ('AH', 'FDA Certification - Mammography services'),
-  ('AI', 'PCA 1 or 3 day Steps for Success Training'),
-  ('AJ', 'Medicare Certification'),
-  ('AK', 'Rule 5 License issued from MN Department of Human Services'),
-  ('AL', 'Certificate of Compliance from MN Department of Human Rights'),
-  ('AM', 'Rule 29 License'),
-  ('AN', 'Day Training & Habilitation License'),
-  ('AO', 'License and Transmittal (CMS 1539 Form) from MN Department of Health'),
-  ('AP', 'Approval by Kent Dufresne to enroll new facility'),
-  ('AQ', 'Hospice license from the MN Dept of Health'),
-  ('AR', 'CMS Medicare Certification Letter'),
-  ('AS', 'Ambulance Services - Basic Service'),
-  ('AT', 'Ambulance Services - Advanced Life Support'),
-  ('AU', 'Ambulance Services - Air Transport with FAA Air Worthiness Certificate'),
-  ('AV', 'State License to operate as a Hospital'),
-  ('AW', 'CMS PECOS Website Verification'),
-  ('AX', 'CLIA Certificate if billing Lab Services'),
-  ('AZ', 'Renal Dialysis Facility Approval letter from regional CMS office'),
-  ('B0', 'Hospital Based Clinic Designation:  approval letter from CMS'),
-  ('B1', 'Adult Day Care License'),
-  ('B2', '245B License'),
-  ('CA', 'Adult Rehabilitative Mental Health Services'),
-  ('CB', 'Children''s Therapeutic Services and Supports (CTSS)'),
-  ('CC', 'Adult Crisis Response Services - Crisis Assessment & Crisis Intervention'),
-  ('CD', 'Adult Crisis Response Services - Crisis Stabilization'),
-  ('CE', 'Adult Crisis Response Services - Short-Term Residential'),
-  ('H1', 'Rehab Counselor Certification'),
-  ('H2', 'Psychosocial Rehab Practitioner Certification'),
-  ('H3', 'Licensed Practical Nurse'),
-  ('L0', 'Marriage And Family Therapist'),
-  ('L1', 'Audiologist License'),
-  ('L2', 'Registration with the Department Of Health'),
-  ('L3', 'Optometrist'),
-  ('L4', 'Registered Nurse'),
-  ('L5', 'PCA Training Certificate'),
-  ('L6', 'Traditional Midwife'),
-  ('L7', 'MnSCU Certification'),
-  ('L8', 'Chiropractic Examiner'),
-  ('L9', 'License To Practice Podiatric Medicine'),
-  ('M0', 'Hearing Aid Dispenser'),
-  ('M1', 'Professional Clinical Counselor'),
-  ('M2', 'Occupational Therapy'),
-  ('M3', 'Physician Assistant'),
-  ('M4', 'Physical Therapist'),
-  ('M5', 'Speech Language Pathologist'),
-  ('M6', 'Acupuncturist'),
-  ('M7', 'Dental Hygienist'),
-  ('M8', 'Mental Health Rehab Professional'),
-  ('M9', 'Dental'),
-  ('N1', 'Dietician or Nutritionist'),
-  ('N2', 'Clinical Social Worker'),
-  ('N3', 'Pharmacist License'),
-  ('N4', 'Psychologist'),
-  ('N5', 'Physician');
 
 CREATE TABLE specialty_types(
   code CHARACTER VARYING(2) PRIMARY KEY,

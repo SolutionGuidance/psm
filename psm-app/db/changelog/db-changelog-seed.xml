@@ -83,4 +83,40 @@
       tableName="counties" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-beneficial-owner-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/beneficial_owner_types.csv"
+      primaryKey="code"
+      tableName="beneficial_owner_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-beneficial-risk-levels" runOnChange="true">
+    <loadUpdateData file="db/seeds/risk_levels.csv"
+      primaryKey="code"
+      tableName="risk_levels" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-degrees" runOnChange="true">
+    <loadUpdateData file="db/seeds/degrees.csv"
+      primaryKey="code"
+      tableName="degrees" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-relationship-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/relationship_types.csv"
+      primaryKey="code"
+      tableName="relationship_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-enrollment-statuses" runOnChange="true">
+    <loadUpdateData file="db/seeds/enrollment_statuses.csv"
+      primaryKey="code"
+      tableName="enrollment_statuses" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-license-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/license_types.csv"
+      primaryKey="code"
+      tableName="license_types" />
+  </changeSet>
+
 </databaseChangeLog>

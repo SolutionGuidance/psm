@@ -490,15 +490,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             ticket.setStatusDate(Calendar.getInstance().getTime());
 
             try {
-                if (ViewStatics.ENROLLMENT_REQUEST.equals(ticket.getRequestType().getDescription())) {
-                    long processInstance = enroll(XMLAdapter.toXML(ticket));
-                    ticket.setProcessInstanceId(processInstance);
-
-                } else if (ViewStatics.RENEWAL_REQUEST.equals(ticket.getRequestType().getDescription())) {
-                    long processInstance = enroll(XMLAdapter.toXML(ticket));
-                    ticket.setProcessInstanceId(processInstance);
-
-                } else if (ViewStatics.UPDATE_REQUEST.equals(ticket.getRequestType().getDescription())) {
+                if (isEnrollmentRequest(ticket)) {
                     long processInstance = enroll(XMLAdapter.toXML(ticket));
                     ticket.setProcessInstanceId(processInstance);
                 }
@@ -513,6 +505,17 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         } catch (Exception e) {
             throw new PortalServiceException("Submission caused an error, see logs for details.", e);
         }
+    }
+
+    private boolean isEnrollmentRequest(Enrollment ticket) {
+        List<String> enrollmentRequestTypes = Arrays.asList(
+                ViewStatics.ENROLLMENT_REQUEST,
+                ViewStatics.RENEWAL_REQUEST,
+                ViewStatics.UPDATE_REQUEST
+        );
+        return enrollmentRequestTypes.contains(
+                ticket.getRequestType().getDescription()
+        );
     }
 
     /**

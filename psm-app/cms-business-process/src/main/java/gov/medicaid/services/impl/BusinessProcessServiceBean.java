@@ -26,7 +26,6 @@ import gov.medicaid.domain.rules.CMSKnowledgeUtility;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentStatus;
-import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.process.enrollment.AcceptedHandler;
 import gov.medicaid.process.enrollment.EnrollmentMonitor;
@@ -238,36 +237,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
 
     private EntityManagerFactory getEmf() {
         return emf;
-    }
-
-    /**
-     * Starts the renewal process.
-     *
-     * @param ticket         the renewal request
-     * @param currentProfile the current profile for this provider
-     * @return the process instance id.
-     * @throws Exception for any errors encountered
-     */
-    private long renew(
-            EnrollmentType ticket,
-            EnrollmentType currentProfile
-    ) throws Exception {
-        return enroll(ticket);
-    }
-
-    /**
-     * Starts the update process.
-     *
-     * @param ticket         the update request
-     * @param currentProfile the current profile for this provider
-     * @return the process instance id.
-     * @throws Exception for any errors encountered
-     */
-    private long update(
-            EnrollmentType ticket,
-            EnrollmentType currentProfile
-    ) throws Exception {
-        return enroll(ticket);
     }
 
     /**
@@ -526,15 +495,11 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
                     ticket.setProcessInstanceId(processInstance);
 
                 } else if (ViewStatics.RENEWAL_REQUEST.equals(ticket.getRequestType().getDescription())) {
-                    ProviderProfile baseProfile = providerService.getProviderDetails(user, ticket.getDetails()
-                            .getProfileId());
-                    long processInstance = renew(XMLAdapter.toXML(ticket), XMLAdapter.toXML(baseProfile));
+                    long processInstance = enroll(XMLAdapter.toXML(ticket));
                     ticket.setProcessInstanceId(processInstance);
 
                 } else if (ViewStatics.UPDATE_REQUEST.equals(ticket.getRequestType().getDescription())) {
-                    ProviderProfile baseProfile = providerService.getProviderDetails(user, ticket.getDetails()
-                            .getProfileId());
-                    long processInstance = update(XMLAdapter.toXML(ticket), XMLAdapter.toXML(baseProfile));
+                    long processInstance = enroll(XMLAdapter.toXML(ticket));
                     ticket.setProcessInstanceId(processInstance);
                 }
             } catch (Exception e) {

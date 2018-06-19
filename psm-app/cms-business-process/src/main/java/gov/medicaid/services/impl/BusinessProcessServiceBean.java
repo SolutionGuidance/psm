@@ -159,7 +159,9 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
      * @return the process instance id
      * @throws Exception for any errors encountered
      */
-    public long enroll(EnrollmentType enrollment) throws Exception {
+    public long enroll(
+            EnrollmentType enrollment
+    ) throws Exception {
         StatefulKnowledgeSession ksession = null;
         UserTransaction utx = context.getUserTransaction();
         boolean owner = false;
@@ -261,7 +263,10 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
      * @return the process instance id.
      * @throws Exception for any errors encountered
      */
-    public long update(EnrollmentType ticket, EnrollmentType currentProfile) throws Exception {
+    public long update(
+            EnrollmentType ticket,
+            EnrollmentType currentProfile
+    ) throws Exception {
         return enroll(ticket);
     }
 

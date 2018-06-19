@@ -40,15 +40,6 @@ public interface BusinessProcessService {
     void submitTicket(CMSUser user, long ticketId) throws PortalServiceException;
 
     /**
-     * Starts a new enrollment process.
-     *
-     * @param enrollment the enrollment requested
-     * @return the process instance id
-     * @throws Exception for any errors encountered
-     */
-    long enroll(EnrollmentType enrollment) throws Exception;
-
-    /**
      * Retrieves the available tasks for the given user and roles.
      *
      * @param username the user to get the tasks for
@@ -88,32 +79,6 @@ public interface BusinessProcessService {
             ProviderInformationType updates,
             boolean reject,
             String comment
-    ) throws Exception;
-
-    /**
-     * Starts the renewal process.
-     *
-     * @param ticket         the renewal request
-     * @param currentProfile the current profile for this provider
-     * @return the process instance id.
-     * @throws Exception for any errors encountered
-     */
-    long renew(
-            EnrollmentType ticket,
-            EnrollmentType currentProfile
-    ) throws Exception;
-
-    /**
-     * Starts the update process.
-     *
-     * @param ticket         the update request
-     * @param currentProfile the current profile for this provider
-     * @return the process instance id.
-     * @throws Exception for any errors encountered
-     */
-    long update(
-            EnrollmentType ticket,
-            EnrollmentType currentProfile
     ) throws Exception;
 
     /**

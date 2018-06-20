@@ -262,6 +262,12 @@ public class ProviderDashboardController extends BaseController {
         criteria.setStatuses(Arrays.asList(status));
         ModelAndView mv = searchTickets(criteria, view);
         mv.addObject("statusFilter", status);
+        if (ViewStatics.REJECTED_STATUS.equals(status)) {
+            mv.addObject("listType", "Denied Enrollments");
+        } else {
+            mv.addObject("listType", status + " Enrollments");
+        }
+
         return mv;
     }
 

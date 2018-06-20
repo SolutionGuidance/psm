@@ -8,7 +8,7 @@
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 <!DOCTYPE html>
 <html lang="en-US">
-  <c:set var="title" value="Enrollment"/>
+  <c:set var="title" value="Draft Enrollments"/>
   <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
@@ -23,14 +23,15 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            Enrollments
+            <a href="<c:url value='/provider/dashboard/drafts' />">Enrollments</a>
+            <span>Draft Enrollments</span>
           </div>
-          <h1>Enrollments</h1>
+          <h1>Draft Enrollments</h1>
           <div class="tabSection" id="enrollmentSection">
             <c:set var="active_enrollment_tab" value="draft"/>
             <c:set var="enrollmentSearchFormAction" value="${ctx}/provider/search/draft?statuses=Draft"/>
             <c:set var="searchResult" value="${results}"/>
-            <c:set var="itemsName" value="Enrollment Draft${searchResult.total>1?'s':''}"/>
+            <c:set var="itemsName" value="Draft Enrollment${searchResult.total>1?'s':''}"/>
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_tab_section.jsp" %>
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_form.jsp" %>
             <!-- /.tabHead -->

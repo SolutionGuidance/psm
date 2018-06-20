@@ -56,31 +56,31 @@ public class GeneralSteps {
 
     @Step
     public void navigateToDraftPage() {
-        dashboardPage.click$(".enrollmentsLink");
+        clickLinkAssertTitle(".enrollmentsLink", "Draft Enrollments");
     }
 
     @Step
     public void navigateToPendingPage() {
         navigateToDraftPage();
-        dashboardPage.click$(".pendingTab");
+        clickLinkAssertTitle(".pendingTab", "Pending Enrollments");
     }
 
     @Step
     public void navigateToApprovedPage() {
         navigateToDraftPage();
-        dashboardPage.click$(".approvedTab");
+        clickLinkAssertTitle(".approvedTab", "Approved Enrollments");
     }
 
     @Step
     public void navigateToDeniedPage() {
         navigateToDraftPage();
-        dashboardPage.click$(".deniedTab");
+        clickLinkAssertTitle(".deniedTab", "Denied Enrollments");
     }
 
     @Step
     public void navigateToNotesPage() {
         navigateToDraftPage();
-        dashboardPage.click$(".notesTab");
+        clickLinkAssertTitle(".notesTab", "Notes");
     }
 
     @Step

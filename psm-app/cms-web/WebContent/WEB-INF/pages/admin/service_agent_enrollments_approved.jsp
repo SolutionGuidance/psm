@@ -8,7 +8,7 @@
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 <!DOCTYPE html>
 <html lang="en-US">
-  <c:set var="title" value="Enrollment"/>
+  <c:set var="title" value="Approved Enrollments"/>
   <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
@@ -23,9 +23,10 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            Enrollments
+            <a href="<c:url value='/provider/dashboard/drafts' />">Enrollments</a>
+            <span>Approved Enrollments</span>
           </div>
-          <h1>Enrollments</h1>
+          <h1>Approved Enrollments</h1>
           <div class="tabSection" id="enrollmentSection">
             <c:set var="active_enrollment_tab" value="approved"/>
             <c:set var="enrollmentSearchFormAction" value="${ctx}/provider/search/approved?statuses=Approved"/>

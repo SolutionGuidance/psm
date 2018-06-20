@@ -5,7 +5,6 @@
     <div class="wholeCol">
         <div class="row">
             <label>Is applicant a provider at a Public Health Service (PHS) Indian Hospital?</label>
-            <span class="floatL"><b>:</b></span>
             <span id="worksOnReservation"><c:choose>
                 <c:when test="${requestScope['_13_worksOnReservation'] eq 'Y'}">Yes</c:when>
                 <c:when test="${requestScope['_13_worksOnReservation'] eq 'N'}">No</c:when>

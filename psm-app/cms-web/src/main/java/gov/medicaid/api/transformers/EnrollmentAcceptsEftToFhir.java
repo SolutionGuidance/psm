@@ -31,7 +31,8 @@ public class EnrollmentAcceptsEftToFhir
                 if ("Y".equals(affiliation.getPrimaryInd())) {
                     Entity entity = affiliation.getEntity();
                     if (entity instanceof Organization) {
-                        if (((Organization) entity).isEftAccepted()) {
+                        if (Boolean.TRUE.equals(
+                                ((Organization) entity).isEftAccepted())) {
                             return true;
                         }
                     }

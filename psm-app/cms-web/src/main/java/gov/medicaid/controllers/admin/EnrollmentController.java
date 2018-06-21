@@ -435,7 +435,9 @@ public class EnrollmentController extends BaseController {
             throw new IllegalArgumentException("A valid criteria must be provided.");
         }
 
-        return doSearch("admin/service_agent_enrollments_" + view, criteria);
+        ModelAndView mv = doSearch("admin/service_agent_enrollment_list", criteria);
+        mv.addObject("tabName", view);
+        return mv;
     }
 
     @RequestMapping({

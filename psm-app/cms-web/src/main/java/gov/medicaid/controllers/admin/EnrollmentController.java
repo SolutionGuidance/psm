@@ -563,11 +563,8 @@ public class EnrollmentController extends BaseController {
      */
     @RequestMapping("/agent/enrollment/approve")
     public String approve(@RequestParam("id") long id, ApprovalDTO dto) {
-        StatusDTO statusDTO = new StatusDTO();
-
         try {
             completeReview(id, dto, false, "");
-            statusDTO.setSuccess(true);
             ControllerHelper.flashInfo("Approval request has been sent, you will be notified once it is processed.");
         } catch (PortalServiceException ex) {
             ControllerHelper.flashError(USER_ERROR_MSG);

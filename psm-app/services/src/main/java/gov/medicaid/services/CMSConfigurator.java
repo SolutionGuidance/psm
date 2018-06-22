@@ -73,8 +73,8 @@ public class CMSConfigurator {
                 "Could not find application configuration, make sure it is in the classpath.");
         }
 
-        if (globalSettings == null) {
-            synchronized (CMSConfigurator.class) {
+        synchronized (CMSConfigurator.class) {
+            if (globalSettings == null) {
                 globalSettings = new Properties();
                 try {
                     globalSettings.load(stream);
@@ -90,13 +90,13 @@ public class CMSConfigurator {
                         }
                     }
                 }
-            }
-        } else {
-            if (stream != null) {
-                try {
-                    stream.close();
-                } catch (IOException e) {
-                    throw new PortalServiceConfigurationException("Unable to close configuration.");
+            } else {
+                if (stream != null) {
+                    try {
+                        stream.close();
+                    } catch (IOException e) {
+                        throw new PortalServiceConfigurationException("Unable to close configuration.");
+                    }
                 }
             }
         }

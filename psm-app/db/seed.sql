@@ -1,6 +1,5 @@
 DROP TABLE IF EXISTS
   accepted_agreements,
-  addresses,
   affiliations,
   agreement_documents,
   beneficial_owner,
@@ -25,17 +24,6 @@ DROP TABLE IF EXISTS
   provider_type_settings,
   screening_schedules
 CASCADE;
-
-CREATE TABLE addresses(
-  address_id BIGINT PRIMARY KEY,
-  attention_line TEXT,
-  address_line_1 TEXT,
-  address_line_2 TEXT,
-  city TEXT,
-  state TEXT,
-  zip_code TEXT,
-  county TEXT
-);
 
 CREATE TABLE agreement_documents(
   agreement_document_id BIGINT PRIMARY KEY,

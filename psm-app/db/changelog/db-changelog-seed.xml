@@ -137,4 +137,10 @@
       tableName="states" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-provider-profiles" runOnChange="true">
+    <loadUpdateData file="db/seeds/provider_profiles.csv"
+      primaryKey="control_no"
+      tableName="provider_profiles" />
+  </changeSet>
+
 </databaseChangeLog>

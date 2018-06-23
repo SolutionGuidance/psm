@@ -28,56 +28,6 @@ DROP TABLE IF EXISTS
   screening_schedules
 CASCADE;
 
-INSERT INTO provider_profiles (
-  control_no,
-  profile_id,
-  ticket_id,
-  /* effective_date, */
-  /* profile_status_code, */
-  works_on_reservation,
-  maintains_own_private_practice,
-  employed_or_contracted_by_group,
-  criminal_conviction,
-  civil_penalty,
-  previous_exclusion,
-  /* employee_criminal_conviction, */
-  /* employee_civil_penalty, */
-  /* employee_previous_exclusion, */
-  /* adult, */
-  /* county, */
-  /* employed_since_clearance, */
-  risk_level_code,
-  /* bed_count, */
-  /* bed_count_title_18, */
-  /* bed_count_title_19, */
-  /* bed_count_dual_certified, */
-  /* bed_count_icf, */
-  /* bed_count_effective_date, */
-  /* physical_and_occupational_therapy, */
-  reference_ticket_id
-  /* owner_id, */
-  /* form_completed_by, */
-  /* health_board, */
-  /* created_by, */
-  /* created_at, */
-  /* last_modified_by, */
-  /* last_modified_at */
-) VALUES
-  (1001, 0, 1001, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
-  (1002, 0, 1002, 'N', 'Y', 'N', 'N', 'N', 'N', '03', 0),
-  (1003, 0, 1003, 'N', 'Y', 'N', 'N', 'N', 'N', '02', 0),
-  (1004, 0, 1004, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
-  (1005, 0, 1005, 'N', 'Y', 'N', 'N', 'N', 'N', '02', 0),
-  (1006, 0, 1006, 'N', 'Y', 'N', 'N', 'N', 'N', '02', 0),
-  (1007, 0, 1007, 'N', 'Y', 'N', 'N', 'N', 'N', '02', 0),
-  (1008, 0, 1008, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
-  (1009, 0, 1009, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
-  (1010, 0, 1010, 'N', 'Y', 'N', 'N', 'N', 'N', '03', 0),
-  (1011, 0, 1011, 'N', 'Y', 'N', 'N', 'N', 'N', '02', 0),
-  (1012, 0, 1012, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
-  (1013, 0, 1013, 'N', 'Y', 'N', 'N', 'N', 'N', '01', 0),
-  (1014, 0, 1014, 'N', 'Y', 'N', 'N', 'N', 'N', '02', 0);
-
 CREATE TABLE provider_category_of_service_approvals(
   provider_category_of_service_approval_id BIGINT PRIMARY KEY,
   profile_id BIGINT,

@@ -20,7 +20,6 @@ DROP TABLE IF EXISTS
   people,
   provider_approved_categories_of_service,
   provider_category_of_service_approvals,
-  provider_profiles,
   provider_statements,
   provider_services,
   provider_type_agreement_documents,
@@ -29,43 +28,6 @@ DROP TABLE IF EXISTS
   screening_schedules
 CASCADE;
 
-CREATE TABLE provider_profiles(
-  control_no BIGINT PRIMARY KEY,
-  profile_id BIGINT NOT NULL DEFAULT 0,
-  ticket_id BIGINT NOT NULL DEFAULT 0,
-  effective_date DATE,
-  profile_status_code CHARACTER VARYING(2)
-    REFERENCES profile_statuses(code),
-  works_on_reservation CHARACTER VARYING(1),
-  maintains_own_private_practice CHARACTER VARYING(1),
-  employed_or_contracted_by_group CHARACTER VARYING(1),
-  criminal_conviction CHARACTER VARYING(1),
-  civil_penalty CHARACTER VARYING(1),
-  previous_exclusion CHARACTER VARYING(1),
-  employee_criminal_conviction CHARACTER VARYING(1),
-  employee_civil_penalty CHARACTER VARYING(1),
-  employee_previous_exclusion CHARACTER VARYING(1),
-  adult CHARACTER VARYING(1),
-  county TEXT,
-  employed_since_clearance CHARACTER VARYING(1),
-  risk_level_code CHARACTER VARYING(2)
-    REFERENCES risk_levels(code),
-  bed_count INTEGER,
-  bed_count_title_18 INTEGER,
-  bed_count_title_19 INTEGER,
-  bed_count_dual_certified INTEGER,
-  bed_count_icf INTEGER,
-  bed_count_effective_date DATE,
-  physical_and_occupational_therapy CHARACTER VARYING(1),
-  reference_ticket_id BIGINT NOT NULL DEFAULT 0,
-  owner_id TEXT,
-  form_completed_by TEXT,
-  health_board CHARACTER VARYING(1),
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE,
-  last_modified_by TEXT,
-  last_modified_at TIMESTAMP WITH TIME ZONE
-);
 INSERT INTO provider_profiles (
   control_no,
   profile_id,

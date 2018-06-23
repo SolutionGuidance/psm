@@ -23,6 +23,7 @@ import gov.medicaid.domain.model.AgencyInformationType;
 import gov.medicaid.domain.model.ApplicantInformationType;
 import gov.medicaid.domain.model.AttachedDocumentsType;
 import gov.medicaid.domain.model.ContactInformationType;
+import gov.medicaid.domain.model.DesignatedContactInformationType;
 import gov.medicaid.domain.model.EnrollmentProcess;
 import gov.medicaid.domain.model.EnrollmentStatusChangeType;
 import gov.medicaid.domain.model.EnrollmentStatusHistoryType;
@@ -588,5 +589,19 @@ public class XMLUtility {
             provider.setQualifiedProfessionals(new QualifiedProfessionalsType());
         }
         return provider.getQualifiedProfessionals();
+    }
+
+    /**
+     * Null safe get for the designated contact information.
+     *
+     * @param enrollment the object to get the property from
+     * @return the required property
+     */
+    public static DesignatedContactInformationType nsGetDesignatedContactInformation(EnrollmentType enrollment) {
+        ProviderInformationType provider = nsGetProvider(enrollment);
+        if (provider.getDesignatedContactInformation() == null) {
+            provider.setDesignatedContactInformation(new DesignatedContactInformationType());
+        }
+        return provider.getDesignatedContactInformation();
     }
 }

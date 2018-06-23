@@ -71,9 +71,17 @@ Feature: General Accessibility Checks for Admins
     Then I should have no accessibility issues
 
   # This depends implicitly on the individual enrollment submission tests
-  Scenario: Admin Review Enrollment DMF Page
+  Scenario: Admin Review Enrollment DMF Page - Individual
     Given I am logged in as an admin
     And I am on the Pending page
     And I open the Review Enrollment page for NPI '0000000006'
+    And I open the DMF Details page
+    Then I should have no accessibility issues
+
+  # This depends implicitly on the group enrollment submission tests
+  Scenario: Admin Review Enrollment DMF Page - Group
+    Given I am logged in as an admin
+    And I am on the Pending page
+    And I open the Review Enrollment page for NPI '1234567893'
     And I open the DMF Details page
     Then I should have no accessibility issues

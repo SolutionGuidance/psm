@@ -18,7 +18,6 @@ DROP TABLE IF EXISTS
   ownership_info,
   pay_to_providers,
   people,
-  provider_approved_categories_of_service,
   provider_statements,
   provider_services,
   provider_type_agreement_documents,
@@ -26,13 +25,6 @@ DROP TABLE IF EXISTS
   provider_type_settings,
   screening_schedules
 CASCADE;
-
-CREATE TABLE provider_approved_categories_of_service(
-  provider_category_of_service_approval_id BIGINT
-    REFERENCES provider_category_of_service_approvals(provider_category_of_service_approval_id),
-  category_of_service_code CHARACTER VARYING(2)
-    REFERENCES categories_of_service(code)
-);
 
 CREATE TABLE addresses(
   address_id BIGINT PRIMARY KEY,

@@ -27,15 +27,9 @@ DROP TABLE IF EXISTS
   provider_type_license_types,
   provider_type_settings,
   screening_schedules,
-  specialty_types,
   states
 CASCADE;
 
-CREATE TABLE specialty_types(
-  code CHARACTER VARYING(2) PRIMARY KEY,
-  description TEXT UNIQUE,
-  sub_category CHARACTER VARYING(2)
-);
 INSERT INTO specialty_types (code, description) VALUES
   ('01', 'Allergy'),
   ('02', 'Anesthesiology'),

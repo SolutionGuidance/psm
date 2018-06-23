@@ -677,4 +677,23 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-specialty-types">
+    <createTable tableName="specialty_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+      <column name="sub_category"
+        type="text">
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="specialty_types"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

@@ -143,4 +143,10 @@
       tableName="provider_profiles" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-agreement-documents" runOnChange="true">
+    <loadUpdateData file="db/seeds/agreement_documents.csv"
+      primaryKey="agreement_document_id"
+      tableName="agreement_documents" />
+  </changeSet>
+
 </databaseChangeLog>

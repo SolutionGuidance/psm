@@ -69,6 +69,16 @@
                     <span>${user.email}</span>
                   </div>
                   <div class="row">
+                    <label>API Read Access</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${user.apiRead ? "Yes" : "No"}</span>
+                  </div>
+                  <div class="row">
+                    <label>API Write Access</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${user.apiWrite ? "Yes" : "No"}</span>
+                  </div>
+                  <div class="row">
                     <label>User Role</label>
                     <span class="floatL"><b>:</b></span>
                     <span>${user.role.description}</span>

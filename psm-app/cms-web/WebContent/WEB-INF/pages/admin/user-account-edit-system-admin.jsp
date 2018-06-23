@@ -116,6 +116,16 @@
                       <form:input id="email" cssClass="normalInput" path="email" />
                     </div>
                     <div class="row">
+                      <label for="apiRead">API Read Access</label>
+                      <span class="floatL"><b>:</b></span>
+                      <form:checkbox id="apiRead" path="apiRead" />
+                    </div>
+                    <div class="row">
+                      <label for="apiWrite">API Write Access</label>
+                      <span class="floatL"><b>:</b></span>
+                      <form:checkbox id="apiWrite" path="apiWrite" />
+                    </div>
+                    <div class="row">
                       <label for="userRole">User Role</label>
                       <span class="floatL"><b>:</b></span>
                       <form:select id="userRole" cssClass="userRoleSelect" path="role.description">

@@ -600,6 +600,8 @@ public class RegistrationServiceBean extends BaseService implements Registration
         changes.setLastName(user.getLastName());
         changes.setMiddleName(user.getMiddleName());
         changes.setEmail(user.getEmail());
+        changes.setApiRead(user.getApiRead());
+        changes.setApiWrite(user.getApiWrite());
 
         if (user.getStatus() != null) {
             changes.setStatus(user.getStatus());

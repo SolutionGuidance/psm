@@ -662,4 +662,19 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue847-add-user-api-permission-fields">
+    <addColumn tableName="cms_user">
+      <column name="api_read" type="boolean" defaultValue="f">
+        <constraints nullable="false"/>
+      </column>
+      <column name="api_write" type="boolean" defaultValue="f">
+        <constraints nullable="false"/>
+      </column>
+    </addColumn>
+    <rollback>
+      <dropColumn columnName="api_read" tableName="cms_user"/>
+      <dropColumn columnName="api_write" tableName="cms_user"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

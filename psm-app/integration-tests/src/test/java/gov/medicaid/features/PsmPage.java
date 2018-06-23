@@ -65,8 +65,10 @@ public class PsmPage extends PageObject {
     }
 
     public void hasNoServerError() {
-        String headerText = $("#wrapper h1").getText();
-        assertThat(headerText).isNotEqualTo("Error");
+        if ($("#wrapper h1").isPresent()) {
+            String headerText = $("#wrapper h1").getText();
+            assertThat(headerText).isNotEqualTo("Error");
+        }
     }
 
     public void switchToWindowOrFail(String title) {

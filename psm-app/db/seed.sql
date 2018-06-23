@@ -30,13 +30,6 @@ DROP TABLE IF EXISTS
   states
 CASCADE;
 
-INSERT INTO request_types (code, description) VALUES
-  ('01', 'Import Profile'),
-  ('02', 'Enrollment'),
-  ('03', 'Renewal'),
-  ('04', 'Suspend'),
-  ('05', 'Update');
-
 CREATE TABLE states (
    code CHARACTER VARYING(2) PRIMARY KEY,
    description TEXT UNIQUE

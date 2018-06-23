@@ -125,4 +125,10 @@
       tableName="specialty_types" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-request-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/request_types.csv"
+      primaryKey="code"
+      tableName="request_types" />
+  </changeSet>
+
 </databaseChangeLog>

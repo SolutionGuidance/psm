@@ -867,4 +867,28 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-agreement-documents">
+    <createTable tableName="agreement_documents">
+      <column name="agreement_document_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="type"
+        type="text" />
+      <column name="title"
+        type="text" />
+      <column name="version"
+        type="int" />
+      <column name="body"
+        type="text" />
+      <column name="created_by"
+        type="text" />
+      <column name="created_at"
+        type="timestamp with time zone" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="agreement_documents"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

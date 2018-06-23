@@ -26,14 +26,9 @@ DROP TABLE IF EXISTS
   provider_type_agreement_documents,
   provider_type_license_types,
   provider_type_settings,
-  screening_schedules,
-  states
+  screening_schedules
 CASCADE;
 
-CREATE TABLE states (
-   code CHARACTER VARYING(2) PRIMARY KEY,
-   description TEXT UNIQUE
-);
 INSERT INTO states (code, description) VALUES
   ('AK', 'Alaska'),
   ('AL', 'Alabama'),

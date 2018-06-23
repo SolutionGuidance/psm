@@ -131,4 +131,10 @@
       tableName="request_types" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-states" runOnChange="true">
+    <loadUpdateData file="db/seeds/states.csv"
+      primaryKey="code"
+      tableName="states" />
+  </changeSet>
+
 </databaseChangeLog>

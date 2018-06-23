@@ -19,7 +19,6 @@ DROP TABLE IF EXISTS
   pay_to_providers,
   people,
   provider_approved_categories_of_service,
-  provider_category_of_service_approvals,
   provider_statements,
   provider_services,
   provider_type_agreement_documents,
@@ -28,13 +27,6 @@ DROP TABLE IF EXISTS
   screening_schedules
 CASCADE;
 
-CREATE TABLE provider_category_of_service_approvals(
-  provider_category_of_service_approval_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  start_date DATE,
-  end_date DATE
-);
 CREATE TABLE provider_approved_categories_of_service(
   provider_category_of_service_approval_id BIGINT
     REFERENCES provider_category_of_service_approvals(provider_category_of_service_approval_id),

@@ -28,6 +28,7 @@ directory. The major ones are:
   `cms-business-process` implements)
 
 * `cms-web` (MVC, web controller, UI, HTML, CSS)
+  * See [`REPORTS.md`](REPORTS.md) for design related to PSM reports
 
 * `cms-portal-services` (generates EAR file, and is where TopCoder JAR
   files live)

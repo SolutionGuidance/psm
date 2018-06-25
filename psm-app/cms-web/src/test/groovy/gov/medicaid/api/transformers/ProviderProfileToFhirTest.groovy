@@ -6,13 +6,13 @@ import gov.medicaid.entities.Person
 import org.hl7.fhir.dstu3.model.Practitioner
 import spock.lang.Specification
 
-class EntityToFhirTest extends Specification {
-    EntityToFhir transformer
+class ProviderProfileToFhirTest extends Specification {
+    ProviderProfileToFhir transformer
     Person individual
     Organization organization
 
     def setup() {
-        transformer = new EntityToFhir()
+        transformer = new ProviderProfileToFhir()
         individual = new Person()
         organization = new Organization()
     }
@@ -207,7 +207,7 @@ class EntityToFhirTest extends Specification {
 
         then:
         result.getIdentifier().size() == 1
-        result.getIdentifier().first().system == EntityToFhir.EIN_OID
+        result.getIdentifier().first().system == ProviderProfileToFhir.EIN_OID
         result.getIdentifier().first().value == "00-1234567"
     }
 
@@ -224,7 +224,7 @@ class EntityToFhirTest extends Specification {
             i -> i.getSystem() == "http://hl7.org/fhir/sid/us-npi"
         })
         result.getIdentifier().stream().anyMatch({
-            i -> i.getSystem() == EntityToFhir.EIN_OID
+            i -> i.getSystem() == ProviderProfileToFhir.EIN_OID
         })
         result.getIdentifier().size() == 2
     }

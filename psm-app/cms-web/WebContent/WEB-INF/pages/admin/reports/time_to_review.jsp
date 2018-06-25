@@ -34,6 +34,12 @@
            <em>Loading...</em>
           </div>
 
+          <p>
+            Applications are reported for the month they are reviewed,
+            after the review process is complete, to ensure that past
+            data remains stable.
+          </p>
+
           <div class="reportTable dashboardPanel">
             <div class="tableData">
               <div class="tableTitle">

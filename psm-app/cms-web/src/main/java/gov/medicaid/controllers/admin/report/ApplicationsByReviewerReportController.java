@@ -80,6 +80,8 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
 
             csvPrinter.printRecord(
                 "Application ID",
+                "Provider Name",
+                "Provider Type",
                 "Submission Date",
                 "Reviewed By",
                 "Review Date",
@@ -87,6 +89,8 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
             for (Enrollment enrollment : enrollments) {
                 csvPrinter.printRecord(
                     enrollment.getTicketId(),
+                    enrollment.getDetails().getEntity().getName(),
+                    enrollment.getDetails().getEntity().getProviderType().getDescription(),
                     enrollment.getCreatedOn(),
                     enrollment.getLastUpdatedBy().getUsername(),
                     enrollment.getStatusDate(),
@@ -108,6 +112,16 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
         criteria.setCreateDateEnd(endDate);
         criteria.setAscending(true);
         criteria.setSortColumn("created_at");
-        return enrollmentService.searchEnrollments(criteria).getItems();
+
+        List<Enrollment> results = enrollmentService.searchEnrollments(criteria).getItems();
+
+        results.stream()
+            .forEach(e -> {
+                e.setDetails(
+                    enrollmentService.getProviderDetailsByTicket(e.getTicketId(), true)
+                );
+            });
+
+        return results;
     }
 }

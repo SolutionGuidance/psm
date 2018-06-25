@@ -74,12 +74,14 @@
           </div>
           <c:choose>
             <c:when test="${fn:length(enrollments) gt 0}">
-              <div class="reportTable tableData dashboardPanel">
+              <div class="reportTable tableData">
                 <div class="tableData">
                   <table class="generalTable">
                     <thead>
                       <tr>
                         <th>Application ID</th>
+                        <th>Provider Name</th>
+                        <th>Provider Type</th>
                         <th>Submission Date</th>
                         <th>Reviewed By</th>
                         <th>Review Date</th>
@@ -93,6 +95,8 @@
                             ${enrollment.ticketId}
                           </a>
                         </td>
+                        <td>${enrollment.details.entity.name}</td>
+                        <td>${enrollment.details.entity.providerType.description}</td>
                         <td><fmt:formatDate value="${enrollment.createdOn}" pattern="dd MMMM yyyy" /></td>
                         <td>${enrollment.lastUpdatedBy.username}</td>
                         <td><fmt:formatDate value="${enrollment.statusDate}" pattern="dd MMMM yyyy" /></td>

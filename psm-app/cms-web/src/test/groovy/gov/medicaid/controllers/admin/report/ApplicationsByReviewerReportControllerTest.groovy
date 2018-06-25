@@ -10,6 +10,9 @@ import org.springframework.mock.web.MockHttpServletResponse
 import gov.medicaid.entities.CMSUser
 import gov.medicaid.entities.Enrollment
 import gov.medicaid.entities.EnrollmentStatus
+import gov.medicaid.entities.Person
+import gov.medicaid.entities.ProviderProfile
+import gov.medicaid.entities.ProviderType
 import gov.medicaid.entities.SearchResult
 import gov.medicaid.services.ProviderEnrollmentService
 import spock.lang.Specification
@@ -30,6 +33,15 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
             lastUpdatedBy: new CMSUser([username: lastUpdatedBy]),
             statusDate: toDate(statusDate),
             status: new EnrollmentStatus([description: status])
+        ])
+    }
+
+    private makeProviderProfile(providerName, providerType) {
+        return new ProviderProfile([
+            entity: new Person([
+                name: providerName,
+                providerType: new ProviderType([description: providerType])
+            ])
         ])
     }
 
@@ -64,12 +76,14 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
 
         then:
         records[0][0] == "Application ID"
-        records[0][1] == "Submission Date"
-        records[0][2] == "Reviewed By"
-        records[0][3] == "Review Date"
-        records[0][4] == "Status"
+        records[0][1] == "Provider Name"
+        records[0][2] == "Provider Type"
+        records[0][3] == "Submission Date"
+        records[0][4] == "Reviewed By"
+        records[0][5] == "Review Date"
+        records[0][6] == "Status"
         records.size == 1
-        records[0].size() == 5
+        records[0].size() == 7
     }
 
     def "csv with an enrollments"() {
@@ -79,6 +93,7 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
             makeEnrollment(1234, "2018-05-05 12:32:33 PST", "admin", "2018-05-08 5:03:55 PST", "TEST")
         ])
         1 * service.searchEnrollments(_) >> results
+        1 * service.getProviderDetailsByTicket(1234, true) >> makeProviderProfile("Provider", "Type");
 
         def response = new MockHttpServletResponse()
 
@@ -89,12 +104,14 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
 
         then:
         records.size == 2
-        records[1].size() == 5
+        records[1].size() == 7
         records[1][0] == "1234"
-        records[1][1] == "Sat May 05 20:32:33 UTC 2018"
-        records[1][2] == "admin"
-        records[1][3] == "Tue May 08 13:03:55 UTC 2018"
-        records[1][4] == "TEST"
+        records[1][1] == "Provider"
+        records[1][2] == "Type"
+        records[1][3] == "Sat May 05 20:32:33 UTC 2018"
+        records[1][4] == "admin"
+        records[1][5] == "Tue May 08 13:03:55 UTC 2018"
+        records[1][6] == "TEST"
     }
 
     private testData() {

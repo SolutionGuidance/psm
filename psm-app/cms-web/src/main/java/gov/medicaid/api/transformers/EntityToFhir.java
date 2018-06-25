@@ -37,6 +37,7 @@ public class EntityToFhir implements Function<Entity, DomainResource> {
         practitioner.addIdentifier(ssn(person));
         practitioner.addIdentifier(npi(person));
         practitioner.addName(name(person));
+        practitioner.setBirthDate(person.getDob());
         return practitioner;
     }
 

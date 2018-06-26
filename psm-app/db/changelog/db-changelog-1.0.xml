@@ -891,4 +891,27 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-contacts">
+    <createTable tableName="contacts">
+      <column name="contact_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="phone_number"
+        type="text" />
+      <column name="fax_number"
+        type="text" />
+      <column name="email"
+        type="text" />
+      <column name="address_id"
+        type="bigint">
+        <constraints foreignKeyName="contacts_address_id_fkey"
+          references="addresses(address_id)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="contacts"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

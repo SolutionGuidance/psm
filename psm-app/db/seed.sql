@@ -3,7 +3,6 @@ DROP TABLE IF EXISTS
   affiliations,
   beneficial_owner,
   binary_contents,
-  contacts,
   designated_contacts,
   documents,
   entities,
@@ -23,15 +22,6 @@ DROP TABLE IF EXISTS
   provider_type_settings,
   screening_schedules
 CASCADE;
-
-CREATE TABLE contacts(
-  contact_id BIGINT PRIMARY KEY,
-  phone_number TEXT,
-  fax_number TEXT,
-  email TEXT,
-  address_id BIGINT
-    REFERENCES addresses(address_id)
-);
 
 INSERT INTO enrollments (
   enrollment_id,

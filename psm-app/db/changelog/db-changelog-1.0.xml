@@ -1004,4 +1004,53 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-organizations">
+    <createTable tableName="organizations">
+      <column name="entity_id"
+        type="bigint">
+        <constraints primaryKey="true"
+          foreignKeyName="organizations_entity_id_fkey"
+          references="entities(entity_id)"/>
+      </column>
+      <column name="fein"
+        type="varchar(10)" />
+      <column name="agency_id"
+        type="text" />
+      <column name="billing_same_as_primary"
+        type="varchar(1)" />
+      <column name="reimbursement_same_as_primary"
+        type="varchar(1)" />
+      <column name="ten99_same_as_primary"
+        type="varchar(1)" />
+      <column name="billing_address_id"
+        type="bigint">
+        <constraints foreignKeyName="organizations_billing_address_id_fkey"
+          references="addresses(address_id)"/>
+      </column>
+      <column name="reimbursement_address_id"
+        type="bigint">
+        <constraints foreignKeyName="organizations_reimbursement_address_id_fkey"
+          references="addresses(address_id)"/>
+      </column>
+      <column name="ten99_address_id"
+        type="bigint">
+        <constraints foreignKeyName="organizations_ten99_address_id_fkey"
+          references="addresses(address_id)"/>
+      </column>
+      <column name="state_tax_id"
+        type="text" />
+      <column name="state_medicaid_id"
+        type="text" />
+      <column name="fiscal_year_end"
+        type="text" />
+      <column name="remittance_sequence_order"
+        type="text" />
+      <column name="eft_accepted"
+        type="boolean" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="organizations"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

@@ -935,4 +935,25 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-provider-type-license-types">
+    <createTable tableName="provider_type_license_types">
+      <column name="provider_type_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="provider_type_license_types_provider_type_code_fkey"
+          references="provider_types(code)"/>
+      </column>
+      <column name="license_type_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="provider_type_license_types_license_type_code_fkey"
+          references="license_types(code)"/>
+      </column>
+    </createTable>
+    <addPrimaryKey columnNames="provider_type_code,license_type_code"
+      constraintName="provider_type_license_types_pkey"
+      tableName="provider_type_license_types"/>
+    <rollback>
+      <dropTable tableName="provider_type_license_types"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

@@ -167,4 +167,10 @@
       tableName="provider_type_license_types" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-entities" runOnChange="true">
+    <loadUpdateData file="db/seeds/entities.csv"
+      primaryKey="entity_id"
+      tableName="entities" />
+  </changeSet>
+
 </databaseChangeLog>

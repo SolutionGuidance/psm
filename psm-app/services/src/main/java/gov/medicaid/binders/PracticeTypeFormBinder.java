@@ -16,6 +16,10 @@
 
 package gov.medicaid.binders;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.PdfPTable;
+
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
@@ -26,16 +30,12 @@ import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.util.PDFHelper;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.pdf.PdfPTable;
 
 /**
  * This binder handles the provider type selection form.

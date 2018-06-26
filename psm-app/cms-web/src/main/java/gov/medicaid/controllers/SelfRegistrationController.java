@@ -24,10 +24,6 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.Util;
 
-import java.io.UnsupportedEncodingException;
-
-import javax.annotation.PostConstruct;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,6 +31,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.PostConstruct;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * Handles self-registration flow.

@@ -30,14 +30,14 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.XMLAdapter;
 
-import java.util.List;
-import java.util.logging.Logger;
-
-import javax.persistence.EntityManager;
-
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
+
+import javax.persistence.EntityManager;
+
+import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * This handler is responsible all screening rules.

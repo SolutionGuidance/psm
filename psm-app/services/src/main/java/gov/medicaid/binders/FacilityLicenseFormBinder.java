@@ -36,14 +36,14 @@ import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.util.Util;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the provider type selection form.

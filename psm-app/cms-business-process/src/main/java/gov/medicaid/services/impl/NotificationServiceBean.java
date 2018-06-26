@@ -1,10 +1,18 @@
 package gov.medicaid.services.impl;
 
-import java.io.StringWriter;
+import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.entities.EmailTemplate;
+import gov.medicaid.entities.SentNotification;
+import gov.medicaid.services.CMSConfigurator;
+import gov.medicaid.services.NotificationService;
+import gov.medicaid.services.PortalServiceConfigurationException;
+import gov.medicaid.services.PortalServiceException;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -16,19 +24,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
-import org.apache.velocity.runtime.RuntimeConstants;
-import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-
-import gov.medicaid.domain.model.EnrollmentType;
-import gov.medicaid.entities.EmailTemplate;
-import gov.medicaid.entities.SentNotification;
-import gov.medicaid.services.CMSConfigurator;
-import gov.medicaid.services.NotificationService;
-import gov.medicaid.services.PortalServiceConfigurationException;
-import gov.medicaid.services.PortalServiceException;
+import java.io.StringWriter;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Stateless
 @Local(NotificationService.class)

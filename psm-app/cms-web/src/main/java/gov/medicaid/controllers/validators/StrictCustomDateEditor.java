@@ -16,9 +16,9 @@
 
 package gov.medicaid.controllers.validators;
 
-import java.text.SimpleDateFormat;
-
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+
+import java.text.SimpleDateFormat;
 
 /**
  * This is a strict binder for MM/dd/yyyy date fields.

@@ -16,9 +16,9 @@
 
 package gov.medicaid.entities;
 
-import java.util.Date;
-
 import gov.medicaid.binders.BinderUtils;
+
+import java.util.Date;
 
 /**
  * Projection results from search of enrolled practices.

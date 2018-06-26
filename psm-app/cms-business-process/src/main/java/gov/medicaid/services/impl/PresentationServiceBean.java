@@ -39,10 +39,7 @@ import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.PresentationService;
 import gov.medicaid.services.util.Util;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import org.drools.runtime.StatefulKnowledgeSession;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -51,7 +48,10 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
-import org.drools.runtime.StatefulKnowledgeSession;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Defines the UI related services.

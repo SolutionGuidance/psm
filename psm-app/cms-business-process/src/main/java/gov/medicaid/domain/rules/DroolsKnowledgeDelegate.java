@@ -19,9 +19,6 @@ package gov.medicaid.domain.rules;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.impl.LocalHumanTaskHandler;
 
-import javax.persistence.EntityManagerFactory;
-import javax.transaction.UserTransaction;
-
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
 import org.drools.SystemEventListenerFactory;
@@ -38,6 +35,9 @@ import org.drools.runtime.EnvironmentName;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.jbpm.task.service.TaskService;
 import org.jbpm.task.service.local.LocalTaskService;
+
+import javax.persistence.EntityManagerFactory;
+import javax.transaction.UserTransaction;
 
 /**
  * This class is used to configure and execute CMS Business rules.

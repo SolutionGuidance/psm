@@ -23,15 +23,15 @@ import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.UserSearchCriteria;
 import gov.medicaid.services.PortalServiceException;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.PostConstruct;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * This controller class that provides for user search - simple and advanced.

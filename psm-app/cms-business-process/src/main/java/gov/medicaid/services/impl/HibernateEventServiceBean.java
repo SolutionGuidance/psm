@@ -21,8 +21,6 @@ import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.EventService;
 import gov.medicaid.services.PortalServiceException;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -32,6 +30,8 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+
+import java.util.List;
 
 /**
  * <p>

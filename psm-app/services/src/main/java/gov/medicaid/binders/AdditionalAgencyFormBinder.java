@@ -36,11 +36,11 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.util.Util;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the provider type selection form.

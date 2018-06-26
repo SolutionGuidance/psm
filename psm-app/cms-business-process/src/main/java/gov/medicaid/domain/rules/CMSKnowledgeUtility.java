@@ -16,10 +16,10 @@
 
 package gov.medicaid.domain.rules;
 
+import org.drools.runtime.StatefulKnowledgeSession;
+
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.UserTransaction;
-
-import org.drools.runtime.StatefulKnowledgeSession;
 
 /**
  * This class is used to configure and execute CMS Business rules.

@@ -1,5 +1,7 @@
 package gov.medicaid.controllers.admin.report;
 
+import gov.medicaid.entities.Enrollment;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -9,8 +11,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
-
-import gov.medicaid.entities.Enrollment;
 
 public class ReportControllerUtils {
     public static String buildCsvName(String baseName) {

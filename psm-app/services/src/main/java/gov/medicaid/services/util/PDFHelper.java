@@ -16,13 +16,13 @@
 
 package gov.medicaid.services.util;
 
-import java.util.Map;
-
 import com.lowagie.text.FontFactory;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
+
+import java.util.Map;
 
 /**
  * Common utility methods.

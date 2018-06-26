@@ -16,8 +16,8 @@
 
 package gov.medicaid.entities;
 
-import javax.persistence.Table;
 import javax.persistence.Column;
+import javax.persistence.Table;
 
 @javax.persistence.Entity
 @Table(name = "beneficial_owner_types")

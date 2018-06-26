@@ -22,9 +22,6 @@ import gov.medicaid.entities.SystemId;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
 
-import java.util.ArrayList;
-
-import java.util.logging.Logger;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -32,6 +29,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * Database authenticator that only handles the CMS domain requests.

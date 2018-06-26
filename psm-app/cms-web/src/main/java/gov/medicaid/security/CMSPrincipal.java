@@ -16,11 +16,11 @@
 
 package gov.medicaid.security;
 
-import java.security.Principal;
-import java.util.Date;
-
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.SystemId;
+
+import java.security.Principal;
+import java.util.Date;
 
 /**
  * Defines an extension to the security principal supporting linked user accounts.

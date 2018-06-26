@@ -16,8 +16,6 @@
 
 package gov.medicaid.process.enrollment;
 
-import java.util.Date;
-
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.EnrollmentProcess;
 import gov.medicaid.entities.CMSUser;
@@ -30,11 +28,13 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.XMLAdapter;
 
+import org.drools.runtime.process.WorkItem;
+import org.drools.runtime.process.WorkItemManager;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import org.drools.runtime.process.WorkItem;
-import org.drools.runtime.process.WorkItemManager;
+import java.util.Date;
 
 /**
  * This initializes the application model.

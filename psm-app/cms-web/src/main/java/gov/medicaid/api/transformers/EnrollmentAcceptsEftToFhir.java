@@ -4,11 +4,12 @@ import gov.medicaid.entities.Affiliation;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Entity;
 import gov.medicaid.entities.Organization;
-import org.hl7.fhir.dstu3.model.CodeableConcept;
-import org.hl7.fhir.dstu3.model.BooleanType;
-import org.hl7.fhir.dstu3.model.Task;
-import java.util.List;
 
+import org.hl7.fhir.dstu3.model.BooleanType;
+import org.hl7.fhir.dstu3.model.CodeableConcept;
+import org.hl7.fhir.dstu3.model.Task;
+
+import java.util.List;
 import java.util.function.Function;
 
 public class EnrollmentAcceptsEftToFhir

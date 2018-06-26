@@ -32,6 +32,8 @@ import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.ProviderStatement;
 import gov.medicaid.entities.dto.FormError;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,8 +41,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the provider type selection form.

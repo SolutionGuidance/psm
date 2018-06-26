@@ -22,12 +22,12 @@ import gov.medicaid.services.PartnerSystemService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 
-import java.util.Collections;
-import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Implementation of a partner service.

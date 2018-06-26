@@ -2,7 +2,6 @@ DROP TABLE IF EXISTS
   accepted_agreements,
   affiliations,
   beneficial_owner,
-  binary_contents,
   designated_contacts,
   documents,
   events,
@@ -17,11 +16,6 @@ DROP TABLE IF EXISTS
   provider_type_settings,
   screening_schedules
 CASCADE;
-
-CREATE TABLE binary_contents(
-  binary_content_id TEXT PRIMARY KEY,
-  content OID
-);
 
 CREATE TABLE documents(
   document_id BIGINT PRIMARY KEY,

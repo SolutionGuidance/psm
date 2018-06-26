@@ -1088,4 +1088,18 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-binary-contents">
+    <createTable tableName="binary_contents">
+      <column name="binary_content_id"
+        type="text">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="content"
+        type="oid" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="binary_contents"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

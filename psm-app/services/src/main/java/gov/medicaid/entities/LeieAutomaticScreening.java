@@ -46,4 +46,8 @@ public class LeieAutomaticScreening extends AutomaticScreening {
         match.setLeieAutomaticScreening(this);
         matches.add(match);
     }
+
+    public String getType() {
+        return "LEIE";
+    }
 }

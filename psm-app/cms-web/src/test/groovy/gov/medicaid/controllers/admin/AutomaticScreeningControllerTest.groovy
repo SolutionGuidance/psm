@@ -37,7 +37,9 @@ class AutomaticScreeningControllerTest extends Specification {
 
     def 'A non-LEIE screening throws'() {
         given:
-        service.findScreening(_) >> Optional.of(new AutomaticScreening() {})
+        service.findScreening(_) >> Optional.of(new AutomaticScreening() {
+            String getType() { return "" }
+        })
 
         when:
         controller.viewScreening(1)

@@ -33,6 +33,7 @@ import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.AutomaticScreening.Result;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.CategoryOfService;
+import gov.medicaid.entities.DmfAutomaticScreening;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentStatus;
 import gov.medicaid.entities.Event;
@@ -54,6 +55,7 @@ import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.ProviderTypeService;
+
 import org.jbpm.task.query.TaskSummary;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -68,6 +70,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -261,6 +264,7 @@ public class EnrollmentController extends BaseController {
                         }
                     }
                     addLeieResults(mv, enrollment);
+                    addDmfResults(mv, enrollment);
                     mv.addObject("id", id);
                     break;
                 }
@@ -291,6 +295,26 @@ public class EnrollmentController extends BaseController {
         screening.ifPresent(leieAutomaticScreening -> mv.addObject(
                 "leieScreeningId",
                 leieAutomaticScreening.getAutomaticScreeningId()
+        ));
+    }
+
+    private void addDmfResults(ModelAndView mv, Enrollment enrollment) {
+        Optional<DmfAutomaticScreening> screening = getMostRecentAutomaticScreeningResult(
+                DmfAutomaticScreening.class,
+                enrollment
+        );
+        Optional<Result> result = screening.map(AutomaticScreening::getResult);
+        mv.addObject(
+                "dmfScreeningPassed",
+                Result.PASS.equals(result.orElse(null))
+        );
+        mv.addObject(
+                "dmfScreeningResult",
+                result.map(Enum::toString).orElse("Not performed")
+        );
+        screening.ifPresent(dmfAutomaticScreening -> mv.addObject(
+                "dmfScreeningId",
+                dmfAutomaticScreening.getAutomaticScreeningId()
         ));
     }
 
@@ -610,6 +634,9 @@ public class EnrollmentController extends BaseController {
         VerificationStatusType status = provider.getVerificationStatus();
         if ("Y".equals(dto.getNonExclusionVerified())) { // modify only if set to Y
             status.setNonExclusion("Y");
+        }
+        if ("Y".equals(dto.getNotInDmfVerified())) { // modify only if set to Y
+            status.setNotInDmf("Y");
         }
 
         return provider;

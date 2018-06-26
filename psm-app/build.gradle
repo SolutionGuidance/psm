@@ -35,6 +35,7 @@ ext.libs = [
     hapi_fhir_client: "ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:${hapi_fhir_version}",
     hapi_fhir_server: "ca.uhn.hapi.fhir:hapi-fhir-server:${hapi_fhir_version}",
     hapi_fhir_structures: "ca.uhn.hapi.fhir:hapi-fhir-structures-dstu3:${hapi_fhir_version}",
+    gson: "com.google.code.gson:gson:2.8.1",
     handlebars: 'com.github.jknack:handlebars:4.0.6',
     handlebars_springmvc: 'com.github.jknack:handlebars-springmvc:4.0.6',
     jbpm_human_task_core: dependencies.create("org.jbpm:jbpm-human-task-core:${jbpm_version}") {
@@ -48,6 +49,7 @@ ext.libs = [
         exclude group: 'org.hibernate.javax.persistence'
     },
     liquibase: 'org.liquibase:liquibase-core:3.5.5',
+    okhttp3: "com.squareup.okhttp3:okhttp:3.8.1",
     openpdf: 'com.github.librepdf:openpdf:1.0.5',
     postgres: 'org.postgresql:postgresql:42.2.2',
     spring_beans: "org.springframework:spring-beans:${spring_core_version}",
@@ -153,9 +155,11 @@ project(':cms-business-process') {
         compile libs.commons_io
         compile libs.commons_lang3
         compile libs.guava
+        compile libs.gson
         compile libs.hapi_fhir_client
         compile libs.hapi_fhir_structures
         compile libs.jbpm_human_task_core
+        compile libs.okhttp3
         compile libs.openpdf
         compile libs.spring_security_core
         compile libs.velocity

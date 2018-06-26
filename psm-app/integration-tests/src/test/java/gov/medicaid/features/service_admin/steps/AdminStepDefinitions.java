@@ -1,5 +1,6 @@
 package gov.medicaid.features.service_admin.steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -60,6 +61,19 @@ public class AdminStepDefinitions {
     public void i_am_on_the_review_enrollment_page() {
         adminSteps.goToAdminPendingPage();
         generalSteps.clickLinkAssertTitle(".reviewLink", "Review Enrollment");
+    }
+
+    @When("^I open the Review Enrollment page for NPI '(\\d+)'$")
+    public void i_open_the_Review_Enrollment_page_for_NPI(String npi) {
+        if (!adminSteps.npiRowExists(npi)) {
+            throw new PendingException("No enrollment row for NPI: " + npi);
+        }
+        adminSteps.advanceFromPendingPageToReview(npi);
+    }
+
+    @Given("^I open the DMF Details page$")
+    public void i_open_the_DMF_Details_page() {
+        adminSteps.openDmfDetailsPage();
     }
 
     @When("^I am on the Screening Log page$")

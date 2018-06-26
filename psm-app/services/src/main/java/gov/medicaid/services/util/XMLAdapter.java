@@ -250,6 +250,7 @@ public final class XMLAdapter {
         Entity entity = profile.getEntity();
         if (verification != null && entity != null) {
             entity.setNonExclusionVerifiedInd(verification.getNonExclusion());
+            entity.setNotInDmfVerifiedInd(verification.getNotInDmf());
         }
         return ticket;
     }

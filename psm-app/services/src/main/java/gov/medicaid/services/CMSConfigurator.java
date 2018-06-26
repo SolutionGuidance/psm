@@ -314,6 +314,13 @@ public class CMSConfigurator {
         );
     }
 
+    public String getDmfApiBaseUrl() {
+        return globalSettings.getProperty(
+                "external-sources.dmf",
+                "http://localhost:5001/"
+        );
+    }
+
     /**
      * Retrieves the flag setting for using external or embedded rules
      * @return the flag setting for rules

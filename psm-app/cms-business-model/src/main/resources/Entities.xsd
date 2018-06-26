@@ -737,6 +737,7 @@
   <complexType name="VerificationStatusType">
     <sequence>
       <element name="NonExclusion" type="string"/>
+      <element name="NotInDmf" type="string"/>
     </sequence>
   </complexType>
   <complexType name="SpecialtiesType">

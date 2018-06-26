@@ -179,4 +179,10 @@
       tableName="people" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-documents" runOnChange="true">
+    <loadUpdateData file="db/seeds/documents.csv"
+      primaryKey="document_id"
+      tableName="documents" />
+  </changeSet>
+
 </databaseChangeLog>

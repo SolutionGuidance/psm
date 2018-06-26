@@ -161,4 +161,10 @@
       tableName="provider_type_agreement_documents" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-provider-type-license-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/provider_type_license_types.csv"
+      primaryKey="provider_type_code,license_type_code"
+      tableName="provider_type_license_types" />
+  </changeSet>
+
 </databaseChangeLog>

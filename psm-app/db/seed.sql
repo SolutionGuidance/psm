@@ -12,27 +12,12 @@ DROP TABLE IF EXISTS
   notes,
   ownership_info,
   pay_to_providers,
-  people,
   provider_statements,
   provider_services,
   provider_type_settings,
   screening_schedules
 CASCADE;
 
-CREATE TABLE people(
-  entity_id BIGINT PRIMARY KEY
-    REFERENCES entities(entity_id),
-  prefix TEXT,
-  first_name TEXT,
-  middle_name TEXT,
-  last_name TEXT,
-  suffix TEXT,
-  ssn TEXT,
-  birth_date DATE,
-  degree_code CHARACTER VARYING(2)
-    REFERENCES degrees(code),
-  degree_award_date DATE
-);
 INSERT INTO people (
   entity_id/*,
   prefix,

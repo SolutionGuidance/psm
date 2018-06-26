@@ -1053,4 +1053,39 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-people">
+    <createTable tableName="people">
+      <column name="entity_id"
+        type="bigint">
+        <constraints primaryKey="true"
+          foreignKeyName="people_entity_id_fkey"
+          references="entities(entity_id)"/>
+      </column>
+      <column name="prefix"
+        type="text" />
+      <column name="first_name"
+        type="text" />
+      <column name="middle_name"
+        type="text" />
+      <column name="last_name"
+        type="text" />
+      <column name="suffix"
+        type="text" />
+      <column name="ssn"
+        type="text" />
+      <column name="birth_date"
+        type="date" />
+      <column name="degree_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="people_degree_code_fkey"
+          references="degrees(code)"/>
+      </column>
+      <column name="degree_award_date"
+        type="date" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="people"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

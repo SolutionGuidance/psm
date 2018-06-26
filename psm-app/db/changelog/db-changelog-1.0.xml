@@ -1102,4 +1102,32 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-documents">
+    <createTable tableName="documents">
+      <column name="document_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint" />
+      <column name="ticket_id"
+        type="bigint" />
+      <column name="type"
+        type="text" />
+      <column name="filename"
+        type="text" />
+      <column name="description"
+        type="text" />
+      <column name="binary_content_id"
+        type="text" />
+      <column name="created_by"
+        type="text" />
+      <column name="created_at"
+        type="timestamp with time zone" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="documents"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

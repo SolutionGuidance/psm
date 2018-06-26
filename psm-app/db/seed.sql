@@ -3,7 +3,6 @@ DROP TABLE IF EXISTS
   affiliations,
   beneficial_owner,
   designated_contacts,
-  documents,
   events,
   external_account_links,
   external_profile_links,
@@ -17,17 +16,6 @@ DROP TABLE IF EXISTS
   screening_schedules
 CASCADE;
 
-CREATE TABLE documents(
-  document_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  "type" TEXT,
-  filename TEXT,
-  description TEXT,
-  binary_content_id TEXT,
-  created_by TEXT,
-  created_at TIMESTAMP WITH TIME ZONE
-);
 INSERT INTO documents(
   document_id,
   profile_id,

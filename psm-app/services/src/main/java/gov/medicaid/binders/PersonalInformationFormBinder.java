@@ -405,14 +405,16 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
         PDFHelper.addLabelValueCell(personalInfo, "Individual Practitioner's Email", PDFHelper.value(model, ns, "email"));
         document.add(personalInfo);
 
-        PdfPTable contactInfo = new PdfPTable(2); // 2 columns of key value pairs
-        PDFHelper.setTableAsFullPage(contactInfo);
+        if (!"Y".equals(enrollment.getContactSameAsApplicant())) {
+            PdfPTable contactInfo = new PdfPTable(2); // 2 columns of key value pairs
+            PDFHelper.setTableAsFullPage(contactInfo);
 
-        contactInfo.addCell(PDFHelper.createHeaderCell("Contact Information", 2));
-        PDFHelper.addLabelValueCell(contactInfo, "Contact Name", PDFHelper.value(model, ns, "contactName"));
-        PDFHelper.addLabelValueCell(contactInfo, "Contact Email Address", PDFHelper.value(model, ns, "contactEmail"));
-        PDFHelper.addLabelValueCell(contactInfo, "Contact Phone Number", PDFHelper.getPhone(model, ns, "contactPhone"));
+            contactInfo.addCell(PDFHelper.createHeaderCell("Contact Information", 2));
+            PDFHelper.addLabelValueCell(contactInfo, "Contact Name", PDFHelper.value(model, ns, "contactName"));
+            PDFHelper.addLabelValueCell(contactInfo, "Contact Email Address", PDFHelper.value(model, ns, "contactEmail"));
+            PDFHelper.addLabelValueCell(contactInfo, "Contact Phone Number", PDFHelper.getPhone(model, ns, "contactPhone"));
 
-        document.add(contactInfo);
+            document.add(contactInfo);
+        }
     }
 }

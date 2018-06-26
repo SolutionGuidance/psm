@@ -486,7 +486,8 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     ) throws PortalServiceException {
         UserTransaction ut = context.getUserTransaction();
         try {
-            Enrollment ticket = providerService.getTicketDetails(user, ticketId);
+            Enrollment ticket = providerService.getEnrollmentWithScreenings(user, ticketId).
+                orElseThrow(() -> new PortalServiceException("Couldn't find ticket"));
 
             if (!ViewStatics.DRAFT_STATUS.equals(ticket.getStatus().getDescription())) {
                 throw new PortalServiceException("Cannot submit ticket because it is not in draft status.");

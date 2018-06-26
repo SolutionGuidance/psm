@@ -114,4 +114,9 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
                 .createQuery("FROM AutomaticScreening", AutomaticScreening.class)
                 .getResultList();
     }
+
+    @Override
+    public void saveScreening(AutomaticScreening screening) {
+        getEm().merge(screening);
+    }
 }

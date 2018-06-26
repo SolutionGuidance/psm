@@ -218,6 +218,15 @@ public class CMSConfigurator {
     }
 
     /**
+     * Retrieves the enrollment service.
+     *
+     * @return the enrollment service from the JNDI tree.
+     */
+    public ScreeningService getScreeningService() {
+        return (ScreeningService) fromContext("jndi.ScreeningService", false);
+    }
+
+    /**
      * Retrieves the object from the JNDI tree.
      *
      * @param jndiName the JNDI name configuration property

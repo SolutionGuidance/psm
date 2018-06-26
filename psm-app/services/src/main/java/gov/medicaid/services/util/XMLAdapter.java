@@ -27,10 +27,13 @@ import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.RequestType;
 import gov.medicaid.domain.model.RiskLevelType;
 import gov.medicaid.domain.model.VerificationStatusType;
+import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.CMSUser;
+import gov.medicaid.entities.DmfAutomaticScreening;
 import gov.medicaid.entities.Document;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Entity;
+import gov.medicaid.entities.LeieAutomaticScreening;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.RiskLevel;
 import gov.medicaid.entities.dto.UITabModel;
@@ -162,9 +165,18 @@ public final class XMLAdapter {
         // verification fields
         VerificationStatusType verification = new VerificationStatusType();
         provider.setVerificationStatus(verification);
-        if (profile.getEntity() != null) {
-            verification.setNonExclusion(profile.getEntity().getNonExclusionVerifiedInd());
-        }
+        ticket.getAutomaticScreenings()
+            .forEach(as -> {
+                if (as instanceof LeieAutomaticScreening) {
+                    if (Boolean.TRUE.equals(as.getManualConfirmation())) {
+                         verification.setNonExclusion("Y");
+                    }
+                } else if (as instanceof DmfAutomaticScreening) {
+                    if (Boolean.TRUE.equals(as.getManualConfirmation())) {
+                         verification.setNotInDmf("Y");
+                    }
+                }
+            });
 
         return enrollment;
     }
@@ -248,11 +260,37 @@ public final class XMLAdapter {
         // verification fields
         VerificationStatusType verification = provider.getVerificationStatus();
         Entity entity = profile.getEntity();
-        if (verification != null && entity != null) {
-            entity.setNonExclusionVerifiedInd(verification.getNonExclusion());
-            entity.setNotInDmfVerifiedInd(verification.getNotInDmf());
+        if (verification != null) {
+            ticket.getAutomaticScreenings().stream().forEach(as -> {
+                if (as instanceof LeieAutomaticScreening) {
+                    as.setManualConfirmation("Y".equals(verification.getNonExclusion()));
+                } else if (as instanceof DmfAutomaticScreening) {
+                    as.setManualConfirmation("Y".equals(verification.getNotInDmf()));
+                }
+            });
         }
         return ticket;
+    }
+
+    public static List<AutomaticScreening> mergeFromXML(
+        List<AutomaticScreening> screenings,
+        EnrollmentType enrollment) {
+
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+
+        // verification fields
+        VerificationStatusType verification = provider.getVerificationStatus();
+        if (verification != null) {
+            screenings.stream().forEach(as -> {
+                if (as instanceof LeieAutomaticScreening) {
+                    as.setManualConfirmation("Y".equals(verification.getNonExclusion()));
+                } else if (as instanceof DmfAutomaticScreening) {
+                    as.setManualConfirmation("Y".equals(verification.getNotInDmf()));
+                }
+            });
+        }
+
+        return screenings;
     }
 
     /**

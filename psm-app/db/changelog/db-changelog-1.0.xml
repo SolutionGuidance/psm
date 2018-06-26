@@ -2068,7 +2068,27 @@
         type="text" />
     </createTable>
     <rollback>
-      <dropTable tableName="dmf_automatic_screenings_matches"/>
+      <dropTable tableName="dmf_automatic_screening_matches"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue759-add-automatic-screening-manual-confirmation">
+    <addColumn tableName="automatic_screenings">
+      <column name="manual_confirmation" type="boolean"/>
+    </addColumn>
+    <rollback>
+      <dropColumn columnName="manual_confirmation" tableName="automatic_screenings"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue759-drop-entities-verif">
+    <dropColumn tableName="entities"
+      columnName="nonexclusion_verified"/>
+    <rollback>
+      <addColumn tableName="entities">
+        <column name="nonexclusion_verified"
+          type="varchar(1)" />
+      </addColumn>
     </rollback>
   </changeSet>
 </databaseChangeLog>

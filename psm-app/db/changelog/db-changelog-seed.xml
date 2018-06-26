@@ -149,4 +149,10 @@
       tableName="agreement_documents" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-enrollments" runOnChange="true">
+    <loadUpdateData file="db/seeds/enrollments.csv"
+      primaryKey="enrollment_id"
+      tableName="enrollments" />
+  </changeSet>
+
 </databaseChangeLog>

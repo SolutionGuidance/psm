@@ -155,4 +155,10 @@
       tableName="enrollments" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-provider-type-agreement-documents" runOnChange="true">
+    <loadUpdateData file="db/seeds/provider_type_agreement_documents.csv"
+      primaryKey="provider_type_code,agreement_document_id"
+      tableName="provider_type_agreement_documents" />
+  </changeSet>
+
 </databaseChangeLog>

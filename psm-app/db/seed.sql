@@ -22,13 +22,6 @@ DROP TABLE IF EXISTS
   screening_schedules
 CASCADE;
 
-INSERT INTO provider_type_agreement_documents (
-  provider_type_code,
-  agreement_document_id
-) VALUES
-  ('18', 1),
-  ('54', 3);
-
 CREATE TABLE provider_type_license_types(
   provider_type_code CHARACTER VARYING(2)
     REFERENCES provider_types(code),

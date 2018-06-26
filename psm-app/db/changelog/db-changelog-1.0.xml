@@ -956,4 +956,52 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-entities">
+    <createTable tableName="entities">
+      <column name="entity_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="enrolled"
+        type="varchar(1)" />
+      <column name="profile_id"
+        type="bigint">
+        <constraints nullable="false" />
+      </column>
+      <column name="ticket_id"
+        type="bigint" />
+      <column name="name"
+        type="text" />
+      <column name="legal_name"
+        type="text" />
+      <column name="legacy_indicator"
+        type="varchar(1)" />
+      <column name="legacy_id"
+        type="text" />
+      <column name="npi"
+        type="text" />
+      <column name="nonexclusion_verified"
+        type="varchar(1)" />
+      <column name="provider_type_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="entities_provider_type_code_fkey"
+          references="provider_types(code)"/>
+      </column>
+      <column name="provider_sub_type"
+        type="text" />
+      <column name="contact_id"
+        type="bigint">
+        <constraints foreignKeyName="entities_contact_id_fkey"
+          references="contacts(contact_id)"/>
+      </column>
+      <column name="background_study_id"
+        type="text" />
+      <column name="background_clearance_date"
+        type="timestamp with time zone" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="entities"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

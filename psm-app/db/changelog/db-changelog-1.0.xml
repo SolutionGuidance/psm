@@ -677,4 +677,218 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-specialty-types">
+    <createTable tableName="specialty_types">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+      <column name="sub_category"
+        type="text">
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="specialty_types"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-states">
+    <createTable tableName="states">
+      <column name="code"
+        type="varchar(2)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="description"
+        type="text">
+        <constraints unique="true"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="states"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-profiles">
+    <createTable tableName="provider_profiles">
+      <column name="control_no"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="effective_date"
+        type="date" />
+      <column name="profile_status_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="provider_profiles_profile_status_code_fkey"
+          references="profile_statuses(code)"/>
+      </column>
+      <column name="works_on_reservation"
+        type="varchar(1)" />
+      <column name="maintains_own_private_practice"
+        type="varchar(1)" />
+      <column name="employed_or_contracted_by_group"
+        type="varchar(1)" />
+      <column name="criminal_conviction"
+        type="varchar(1)" />
+      <column name="civil_penalty"
+        type="varchar(1)" />
+      <column name="previous_exclusion"
+        type="varchar(1)" />
+      <column name="employee_criminal_conviction"
+        type="varchar(1)" />
+      <column name="employee_civil_penalty"
+        type="varchar(1)" />
+      <column name="employee_previous_exclusion"
+        type="varchar(1)" />
+      <column name="adult"
+        type="varchar(1)" />
+      <column name="county"
+        type="text" />
+      <column name="employed_since_clearance"
+        type="varchar(1)" />
+      <column name="risk_level_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="provider_profiles_risk_level_code_fkey"
+          references="risk_levels(code)"/>
+      </column>
+      <column name="bed_count"
+        type="int" />
+      <column name="bed_count_title_18"
+        type="int" />
+      <column name="bed_count_title_19"
+        type="int" />
+      <column name="bed_count_dual_certified"
+        type="int" />
+      <column name="bed_count_icf"
+        type="int" />
+      <column name="bed_count_effective_date"
+        type="date" />
+      <column name="physical_and_occupational_therapy"
+        type="varchar(1)" />
+      <column name="reference_ticket_id"
+        type="bigint"
+        defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+      <column name="owner_id"
+        type="text" />
+      <column name="form_completed_by"
+        type="text" />
+      <column name="health_board"
+        type="varchar(1)" />
+      <column name="created_by"
+        type="text" />
+      <column name="created_at"
+        type="timestamp with time zone" />
+      <column name="last_modified_by"
+        type="text" />
+      <column name="last_modified_at"
+        type="timestamp with time zone" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_profiles"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-category-of-service-approvals">
+    <createTable tableName="provider_category_of_service_approvals">
+      <column name="provider_category_of_service_approval_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint" />
+      <column name="ticket_id"
+        type="bigint" />
+      <column name="start_date"
+        type="date" />
+      <column name="end_date"
+        type="date" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_category_of_service_approvals"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-provider-approved-categories-or-service">
+    <createTable tableName="provider_approved_categories_of_service">
+      <column name="provider_category_of_service_approval_id"
+        type="bigint">
+        <constraints foreignKeyName="provider_approved_categories__provider_category_of_service_fkey"
+          references="provider_category_of_service_approvals(provider_category_of_service_approval_id)"/>
+      </column>
+      <column name="category_of_service_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="provider_approved_categories_of_s_category_of_service_code_fkey"
+          references="categories_of_service(code)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_approved_categories_of_service"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-addresses">
+    <createTable tableName="addresses">
+      <column name="address_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="attention_line"
+        type="text" />
+      <column name="address_line_1"
+        type="text" />
+      <column name="address_line_2"
+        type="text" />
+      <column name="city"
+        type="text" />
+      <column name="state"
+        type="text" />
+      <column name="zip_code"
+        type="text" />
+      <column name="county"
+        type="text" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="addresses"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue254-create-table-agreement-documents">
+    <createTable tableName="agreement_documents">
+      <column name="agreement_document_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="type"
+        type="text" />
+      <column name="title"
+        type="text" />
+      <column name="version"
+        type="int" />
+      <column name="body"
+        type="text" />
+      <column name="created_by"
+        type="text" />
+      <column name="created_at"
+        type="timestamp with time zone" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="agreement_documents"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

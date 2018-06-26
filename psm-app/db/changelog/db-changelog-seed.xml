@@ -119,4 +119,34 @@
       tableName="license_types" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-specialty-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/specialty_types.csv"
+      primaryKey="code"
+      tableName="specialty_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-request-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/request_types.csv"
+      primaryKey="code"
+      tableName="request_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-states" runOnChange="true">
+    <loadUpdateData file="db/seeds/states.csv"
+      primaryKey="code"
+      tableName="states" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-provider-profiles" runOnChange="true">
+    <loadUpdateData file="db/seeds/provider_profiles.csv"
+      primaryKey="control_no"
+      tableName="provider_profiles" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-agreement-documents" runOnChange="true">
+    <loadUpdateData file="db/seeds/agreement_documents.csv"
+      primaryKey="agreement_document_id"
+      tableName="agreement_documents" />
+  </changeSet>
+
 </databaseChangeLog>

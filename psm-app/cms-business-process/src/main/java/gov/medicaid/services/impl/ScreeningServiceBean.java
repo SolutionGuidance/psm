@@ -103,8 +103,7 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
         return Optional.ofNullable(
                 getEm().find(
                         AutomaticScreening.class,
-                        screeningId,
-                        hintEntityGraph("Screening with matches")
+                        screeningId
                 )
         );
     }

@@ -68,7 +68,7 @@ class AutomaticScreeningControllerTest extends Specification {
         modelView.model["screening_result"] == "PASS"
         modelView.model["screening_date"] == TIMESTAMP
         modelView.model["search_term"] == NPI
-        modelView.model["exclusions"].size == 0
+        modelView.model["exclusions"].size() == 0
     }
 
     def 'A pending enrollment is marked as in review'() {

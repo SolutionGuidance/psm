@@ -20,8 +20,7 @@ DROP TABLE IF EXISTS
   provider_services,
   provider_type_agreement_documents,
   provider_type_license_types,
-  provider_type_settings,
-  screening_schedules
+  provider_type_settings
 CASCADE;
 
 CREATE TABLE contacts(
@@ -350,21 +349,6 @@ CREATE TABLE accepted_agreements(
   agreement_document_id BIGINT
     REFERENCES  agreement_documents(agreement_document_id)
  ) ;
-
-CREATE TABLE screening_schedules(
-  screening_schedule_id BIGINT PRIMARY KEY,
-  upcoming_screening_date DATE,
-  interval_type TEXT,
-  interval_value BIGINT NOT NULL
-);
-
-INSERT INTO screening_schedules(
-  screening_schedule_id,
-  upcoming_screening_date,
-  interval_type,
-  interval_value
-) VALUES
-  (1, null, null, 0);
 
 CREATE TABLE licenses(
   license_id BIGINT PRIMARY KEY,

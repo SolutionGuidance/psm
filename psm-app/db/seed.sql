@@ -18,33 +18,6 @@ DROP TABLE IF EXISTS
   screening_schedules
 CASCADE;
 
-INSERT INTO people (
-  entity_id/*,
-  prefix,
-  first_name,
-  middle_name,
-  last_name,
-  suffix,
-  ssn,
-  birth_date,
-  degree_code,
-  degree_award_date*/
-) VALUES
- (1001),
- (1002),
- (1003),
- (1004),
- (1005),
- (1006),
- (1007),
- (1008),
- (1009),
- (1010),
- (1011),
- (1012),
- (1013),
- (1014);
-
 CREATE TABLE binary_contents(
   binary_content_id TEXT PRIMARY KEY,
   content OID

@@ -173,4 +173,10 @@
       tableName="entities" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-people" runOnChange="true">
+    <loadUpdateData file="db/seeds/people.csv"
+      primaryKey="entity_id"
+      tableName="people" />
+  </changeSet>
+
 </databaseChangeLog>

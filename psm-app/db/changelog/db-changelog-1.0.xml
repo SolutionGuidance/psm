@@ -914,4 +914,25 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-provider-type-agreement-documents">
+    <createTable tableName="provider_type_agreement_documents">
+      <column name="provider_type_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="provider_type_agreement_documents_provider_type_code_fkey"
+          references="provider_types(code)"/>
+      </column>
+      <column name="agreement_document_id"
+        type="bigint">
+        <constraints foreignKeyName="provider_type_agreement_documents_agreement_document_id_fkey"
+          references="agreement_documents(agreement_document_id)"/>
+      </column>
+    </createTable>
+    <addPrimaryKey columnNames="provider_type_code,agreement_document_id"
+      constraintName="provider_type_agreement_documents_pkey"
+      tableName="provider_type_agreement_documents"/>
+    <rollback>
+      <dropTable tableName="provider_type_agreement_documents"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

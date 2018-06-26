@@ -17,19 +17,11 @@ DROP TABLE IF EXISTS
   people,
   provider_statements,
   provider_services,
-  provider_type_agreement_documents,
   provider_type_license_types,
   provider_type_settings,
   screening_schedules
 CASCADE;
 
-CREATE TABLE provider_type_agreement_documents(
-  provider_type_code CHARACTER VARYING(2)
-    REFERENCES provider_types(code),
-  agreement_document_id BIGINT
-    REFERENCES agreement_documents(agreement_document_id),
-  PRIMARY KEY (provider_type_code, agreement_document_id)
-);
 INSERT INTO provider_type_agreement_documents (
   provider_type_code,
   agreement_document_id

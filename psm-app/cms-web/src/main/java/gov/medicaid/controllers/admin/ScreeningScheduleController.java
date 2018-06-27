@@ -96,7 +96,10 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
      * @endpoint "/admin/getScreeningSchedule"
      * @verb GET
      */
-    @RequestMapping(value = "/admin/getScreeningSchedule", method = RequestMethod.GET)
+    @RequestMapping(
+        value = "/admin/getScreeningSchedule",
+        method = RequestMethod.GET
+    )
     public ModelAndView get() throws PortalServiceException {
         ScreeningSchedule schedule = screeningService.getScreeningSchedule();
         ModelAndView model = new ModelAndView("admin/service_admin_view_schedule");
@@ -114,7 +117,10 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
      * @endpoint "/admin/beginEditScreeningSchedule"
      * @verb GET
      */
-    @RequestMapping(value = "/admin/beginEditScreeningSchedule", method = RequestMethod.GET)
+    @RequestMapping(
+        value = "/admin/beginEditScreeningSchedule",
+        method = RequestMethod.GET
+    )
     public ModelAndView beginEdit() throws PortalServiceException {
         ScreeningSchedule schedule = screeningService.getScreeningSchedule();
         ModelAndView model = new ModelAndView("admin/service_admin_edit_schedule");
@@ -133,9 +139,14 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
      * @endpoint "/admin/updateScreeningSchedule"
      * @verb POST
      */
-    @RequestMapping(value = "/admin/updateScreeningSchedule", method = RequestMethod.POST)
-    public ModelAndView edit(@ModelAttribute("schedule") ScreeningSchedule schedule, HttpServletRequest request)
-        throws PortalServiceException {
+    @RequestMapping(
+        value = "/admin/updateScreeningSchedule",
+        method = RequestMethod.POST
+    )
+    public ModelAndView edit(
+        @ModelAttribute("schedule") ScreeningSchedule schedule,
+        HttpServletRequest request
+    ) throws PortalServiceException {
         screeningService.saveScreeningSchedule(schedule);
 
         ModelAndView model = new ModelAndView("admin/service_admin_view_schedule");

@@ -1200,4 +1200,54 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-licenses">
+    <createTable tableName="licenses">
+      <column name="license_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint"/>
+      <column name="ticket_id"
+        type="bigint"/>
+      <column name="affiliate_id"
+        type="bigint"/>
+      <column name="object_type"
+        type="text"/>
+      <column name="license_number"
+        type="text"/>
+      <column name="issued_at"
+        type="date"/>
+      <column name="expires_at"
+        type="date"/>
+      <column name="issuing_us_state"
+        type="text"/>
+      <column name="issuing_board_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="licenses_issuing_board_code_fkey"
+          references="issuing_boards(code)"/>
+      </column>
+      <column name="license_status_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="licenses_license_status_code_fkey"
+          references="license_statuses(code)"/>
+      </column>
+      <column name="license_type_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="licenses_license_type_code_fkey"
+          references="license_types(code)"/>
+      </column>
+      <column name="specialty_type_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="licenses_specialty_type_code_fkey"
+          references="specialty_types(code)"/>
+      </column>
+      <column name="attachment_id"
+        type="bigint"/>
+    </createTable>
+    <rollback>
+      <dropTable tableName="licenses"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

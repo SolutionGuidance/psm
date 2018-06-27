@@ -10,16 +10,8 @@ DROP TABLE IF EXISTS
   pay_to_providers,
   provider_statements,
   provider_services,
-  provider_type_settings,
-  screening_schedules
+  provider_type_settings
 CASCADE;
-
-CREATE TABLE screening_schedules(
-  screening_schedule_id BIGINT PRIMARY KEY,
-  upcoming_screening_date DATE,
-  interval_type TEXT,
-  interval_value BIGINT NOT NULL
-);
 
 INSERT INTO screening_schedules(
   screening_schedule_id,

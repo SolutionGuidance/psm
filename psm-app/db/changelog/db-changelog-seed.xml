@@ -149,4 +149,40 @@
       tableName="agreement_documents" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-enrollments" runOnChange="true">
+    <loadUpdateData file="db/seeds/enrollments.csv"
+      primaryKey="enrollment_id"
+      tableName="enrollments" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-provider-type-agreement-documents" runOnChange="true">
+    <loadUpdateData file="db/seeds/provider_type_agreement_documents.csv"
+      primaryKey="provider_type_code,agreement_document_id"
+      tableName="provider_type_agreement_documents" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-provider-type-license-types" runOnChange="true">
+    <loadUpdateData file="db/seeds/provider_type_license_types.csv"
+      primaryKey="provider_type_code,license_type_code"
+      tableName="provider_type_license_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-entities" runOnChange="true">
+    <loadUpdateData file="db/seeds/entities.csv"
+      primaryKey="entity_id"
+      tableName="entities" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-people" runOnChange="true">
+    <loadUpdateData file="db/seeds/people.csv"
+      primaryKey="entity_id"
+      tableName="people" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-documents" runOnChange="true">
+    <loadUpdateData file="db/seeds/documents.csv"
+      primaryKey="document_id"
+      tableName="documents" />
+  </changeSet>
+
 </databaseChangeLog>

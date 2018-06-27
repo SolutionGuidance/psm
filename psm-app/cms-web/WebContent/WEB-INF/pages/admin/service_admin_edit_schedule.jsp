@@ -57,7 +57,6 @@
                             <option <c:if test="${upcomingScreeningDateTimeSelect=='PM'}">selected="selected"</c:if> value="PM">PM</option>
                           </select>
                           <form:hidden path="upcomingScreeningDate" id="upcomingScreeningDateField"/>
-                          <form:hidden path="id"/>
                         </div>
                         <div id="intervalRow" class="row">
                           <label for="screeningInterval">Screening interval</label>

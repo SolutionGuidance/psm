@@ -1430,4 +1430,26 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-events">
+    <createTable tableName="events">
+      <column name="event_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="ticket_id"
+        type="bigint"/>
+      <column name="npi"
+        type="text"/>
+      <column name="status"
+        type="text"/>
+      <column name="created_by"
+        type="text"/>
+      <column name="created_at"
+        type="timestamp with time zone"/>
+    </createTable>
+    <rollback>
+      <dropTable tableName="events"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

@@ -185,4 +185,16 @@
       tableName="documents" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-screening-schedules" runOnChange="true">
+    <loadUpdateData file="db/seeds/screening_schedules.csv"
+      primaryKey="screening_schedule_id"
+      tableName="screening_schedules" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-provider-type-settings" runOnChange="true">
+    <loadUpdateData file="db/seeds/provider_type_settings.csv"
+      primaryKey="provider_type_setting_id"
+      tableName="provider_type_settings" />
+  </changeSet>
+
 </databaseChangeLog>

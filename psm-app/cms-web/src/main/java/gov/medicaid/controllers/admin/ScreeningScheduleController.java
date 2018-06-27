@@ -17,10 +17,8 @@
 package gov.medicaid.controllers.admin;
 
 import gov.medicaid.entities.ScreeningSchedule;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ScreeningService;
-
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -29,9 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -48,32 +44,10 @@ import java.util.Locale;
  * @version 1.0
  */
 public class ScreeningScheduleController extends BaseServiceAdminController {
+    private final ScreeningService screeningService;
 
-    /**
-     * Represents the screening schedule service. It is managed with a getter and setter. It may have any value, but is
-     * expected to be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to
-     * change after dependency injection.
-     */
-    private ScreeningService screeningService;
-
-    /**
-     * Empty constructor.
-     */
-    public ScreeningScheduleController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException If there are required injection fields that are not injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-
-        if (screeningService == null) {
-            throw new PortalServiceConfigurationException("screeningService must be configured.");
-        }
+    public ScreeningScheduleController(ScreeningService screeningService) {
+        this.screeningService = screeningService;
     }
 
     /**
@@ -153,23 +127,5 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
         model.addObject("schedule", schedule);
 
         return model;
-    }
-
-    /**
-     * Getter of screeningService.
-     *
-     * @return the screeningService
-     */
-    public ScreeningService getScreeningService() {
-        return screeningService;
-    }
-
-    /**
-     * Set the screeningService.
-     *
-     * @param screeningService the screeningService to set
-     */
-    public void setScreeningService(ScreeningService screeningService) {
-        this.screeningService = screeningService;
     }
 }

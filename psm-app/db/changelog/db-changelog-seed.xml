@@ -185,4 +185,10 @@
       tableName="documents" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-screening-schedules" runOnChange="true">
+    <loadUpdateData file="db/seeds/screening_schedules.csv"
+      primaryKey="screening_schedule_id"
+      tableName="screening_schedules" />
+  </changeSet>
+
 </databaseChangeLog>

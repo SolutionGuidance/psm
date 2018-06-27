@@ -13,14 +13,6 @@ DROP TABLE IF EXISTS
   provider_type_settings
 CASCADE;
 
-INSERT INTO screening_schedules(
-  screening_schedule_id,
-  upcoming_screening_date,
-  interval_type,
-  interval_value
-) VALUES
-  (1, null, null, 0);
-
 CREATE TABLE licenses(
   license_id BIGINT PRIMARY KEY,
   profile_id BIGINT,

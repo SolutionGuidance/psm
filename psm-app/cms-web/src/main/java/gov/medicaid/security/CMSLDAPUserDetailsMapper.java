@@ -27,13 +27,10 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.RegistrationService;
 
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.Properties;
-import java.util.Set;
+import org.springframework.ldap.core.DirContextOperations;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.ldap.userdetails.LdapUserDetailsMapper;
 
 import javax.annotation.PostConstruct;
 import javax.naming.Context;
@@ -45,12 +42,15 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
-import java.util.logging.Logger;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Properties;
+import java.util.Set;
 import java.util.logging.Level;
-import org.springframework.ldap.core.DirContextOperations;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.ldap.userdetails.LdapUserDetailsMapper;
+import java.util.logging.Logger;
 
 /**
  * Simple extension to the {@link LdapUserDetailsMapper} that ensures the LDAP users are also present in the database.

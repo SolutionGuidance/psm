@@ -33,15 +33,15 @@ import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.PostConstruct;
+
+import java.util.List;
 
 /**
  * <p>

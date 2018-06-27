@@ -4,12 +4,12 @@
 
 package gov.medicaid.controllers;
 
-import java.io.IOException;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
+
+import java.io.IOException;
 
 /**
  * This tag library will truncate a text to a specified limit and append an ellipsis.

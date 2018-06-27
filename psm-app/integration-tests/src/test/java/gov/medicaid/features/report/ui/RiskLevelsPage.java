@@ -1,16 +1,16 @@
 package gov.medicaid.features.report.ui;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import gov.medicaid.features.PsmPage;
 
-import java.util.Optional;
-import java.util.stream.Collectors;
+import net.thucydides.core.annotations.DefaultUrl;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import gov.medicaid.features.PsmPage;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-import net.thucydides.core.annotations.DefaultUrl;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DefaultUrl("http://localhost:8080/cms/admin/reports/risk-levels")
 public class RiskLevelsPage extends PsmPage {

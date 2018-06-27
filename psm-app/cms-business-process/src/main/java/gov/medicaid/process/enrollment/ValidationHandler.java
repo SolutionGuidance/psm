@@ -19,10 +19,10 @@ package gov.medicaid.process.enrollment;
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.EnrollmentProcess;
 
-import java.util.logging.Logger;
-
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
+
+import java.util.logging.Logger;
 
 /**
  * This is a mock handler for front-end validation.

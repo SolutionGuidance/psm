@@ -226,6 +226,19 @@ For example, see commit efbf5413e, which made whitespace adjustments to
 and was followed immediately by a substantive change to the same file
 in commit 2fd2dd21e.
 
+### Imports
+
+Import ordering is done in the way that Intellij IDEA does.  It is, as
+follows:
+
+* First all imports, then javax, then java
+* Each group should be sorted lexonagraphically
+* Static imports at bottom of list
+
+Small note that the IDEA default doesn't enforce spaces between all groups,
+so neither does the checkstyle for the PSM.  However, those are acceptable
+and encouraged for larger groups of imports.
+
 ### Licensing Your Contribution
 The PSM is published under the terms of version 2 of the
 [Apache Software License](http://www.apache.org/licenses/).  It is

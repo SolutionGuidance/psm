@@ -23,15 +23,15 @@ import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
 
-import java.util.ArrayList;
-
-import javax.annotation.PostConstruct;
-
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+
+import javax.annotation.PostConstruct;
+
+import java.util.ArrayList;
 
 /**
  * User details implementation for use of the remember me services.

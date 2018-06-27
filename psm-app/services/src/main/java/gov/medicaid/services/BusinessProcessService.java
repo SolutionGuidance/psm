@@ -21,9 +21,9 @@ import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.entities.CMSUser;
 
-import java.util.List;
-
 import org.jbpm.task.query.TaskSummary;
+
+import java.util.List;
 
 /**
  * Defines the interface for enrollment.

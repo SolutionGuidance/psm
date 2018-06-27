@@ -16,11 +16,11 @@
 
 package gov.medicaid.services;
 
-import javax.jws.WebService;
-
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ProviderTypeSearchCriteria;
 import gov.medicaid.entities.SearchResult;
+
+import javax.jws.WebService;
 
 /**
  * This represents the service API to manage provider types.

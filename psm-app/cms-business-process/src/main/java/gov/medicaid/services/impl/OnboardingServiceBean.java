@@ -27,10 +27,6 @@ import gov.medicaid.services.PartnerSystemService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -40,6 +36,10 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.Query;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This is a mock onboarding service implementation used to demo profile imports.

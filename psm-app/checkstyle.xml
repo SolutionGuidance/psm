@@ -54,5 +54,12 @@
     <module name="OneStatementPerLine"/>
     <module name="PackageDeclaration"/>
     <module name="StringLiteralEquality"/>
+    <module name="ImportOrder">
+      <property name="groups" value="*,javax,java"/>
+      <property name="ordered" value="true"/>
+      <property name="separated" value="false"/>
+      <property name="option" value="bottom"/>
+      <property name="sortStaticImportsAlphabetically" value="true"/>
+    </module>
   </module>
 </module>

@@ -19,9 +19,9 @@ package gov.medicaid.controllers.admin;
 import gov.medicaid.controllers.ControllerHelper;
 import gov.medicaid.entities.CMSUser;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
+
+import javax.servlet.http.HttpServletRequest;
 
 import java.util.logging.Logger;
 

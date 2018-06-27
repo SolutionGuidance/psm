@@ -20,10 +20,10 @@ import gov.medicaid.entities.ProviderType;
 import gov.medicaid.services.AgreementDocumentService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
+import javax.annotation.PostConstruct;
 
 /**
  * <p>

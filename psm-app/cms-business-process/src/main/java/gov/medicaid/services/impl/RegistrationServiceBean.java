@@ -16,6 +16,8 @@
 
 package gov.medicaid.services.impl;
 
+import com.topcoder.util.keygenerator.random.RandomStringGenerator;
+
 import gov.medicaid.binders.BinderUtils;
 import gov.medicaid.dao.IdentityProviderDAO;
 import gov.medicaid.entities.AuditDetail;
@@ -36,13 +38,6 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.Util;
 
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -54,7 +49,12 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import com.topcoder.util.keygenerator.random.RandomStringGenerator;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Defines registration related logic.

@@ -28,10 +28,6 @@ import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.Util;
 
-import java.util.ArrayList;
-
-import javax.annotation.PostConstruct;
-
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -40,6 +36,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.annotation.PostConstruct;
+
+import java.util.ArrayList;
 
 /**
  * Mock authentication provider for demonstrating possible integration point.

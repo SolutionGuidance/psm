@@ -16,6 +16,9 @@
 
 package gov.medicaid.binders;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+
 import gov.medicaid.domain.model.AddressType;
 import gov.medicaid.domain.model.BeneficialOwnerType;
 import gov.medicaid.domain.model.ContactInformationType;
@@ -39,15 +42,12 @@ import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.util.Util;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
 
 /**
  * This binder handles the organization information form.

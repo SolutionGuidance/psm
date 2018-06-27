@@ -18,10 +18,11 @@ package gov.medicaid.security;
 
 import gov.medicaid.entities.SystemId;
 
-import java.util.logging.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.ldap.authentication.LdapAuthenticationProvider;
 import org.springframework.security.ldap.authentication.LdapAuthenticator;
+
+import java.util.logging.Logger;
 
 /**
  * LDAP authenticator that only handles the CMS domain requests.

@@ -16,8 +16,6 @@
 
 package gov.medicaid.controllers;
 
-import javax.servlet.http.HttpSession;
-
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.interceptors.FlashMessageInterceptor;
 import gov.medicaid.security.CMSPrincipal;
@@ -27,6 +25,8 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * Utility class for front end controllers.

@@ -6,17 +6,17 @@ package gov.medicaid.services.impl;
 
 import gov.medicaid.domain.model.EnrollmentProcess;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.io.StringReader;
 import java.io.StringWriter;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 
 /**
  * This class is used to ensure backward compatibility of request models thru XML serialization.

@@ -29,13 +29,13 @@ import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.util.Util;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the provider type selection form.

@@ -1,24 +1,5 @@
 package gov.medicaid.controllers.admin.report;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
 import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentSearchCriteria;
@@ -28,6 +9,25 @@ import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.ProviderTypeService;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class ProviderTypesReportController extends gov.medicaid.controllers.BaseController {

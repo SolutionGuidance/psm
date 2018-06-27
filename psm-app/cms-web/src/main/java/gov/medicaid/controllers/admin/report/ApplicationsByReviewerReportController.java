@@ -1,28 +1,27 @@
 package gov.medicaid.controllers.admin.report;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletResponse;
+import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.EnrollmentSearchCriteria;
+import gov.medicaid.services.PortalServiceConfigurationException;
+import gov.medicaid.services.PortalServiceException;
+import gov.medicaid.services.ProviderEnrollmentService;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.EnrollmentSearchCriteria;
-import gov.medicaid.services.PortalServiceConfigurationException;
-import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class ApplicationsByReviewerReportController extends gov.medicaid.controllers.BaseController {

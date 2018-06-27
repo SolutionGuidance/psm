@@ -26,16 +26,16 @@ import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.util.Util;
 
-import java.util.Arrays;
-
-import javax.annotation.PostConstruct;
-
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.PostConstruct;
+
+import java.util.Arrays;
 
 /**
  * This controller class that manages users, all 4 types of them. Changes in 1.1: update search to add initSearchBox

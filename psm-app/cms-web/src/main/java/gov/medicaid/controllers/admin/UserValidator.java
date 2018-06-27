@@ -23,13 +23,13 @@ import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
 
-import java.util.Arrays;
-import java.util.List;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * This is the validator for User instances.

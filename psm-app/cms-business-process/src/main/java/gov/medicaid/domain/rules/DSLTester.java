@@ -28,9 +28,6 @@ import gov.medicaid.domain.model.ValidationResponse;
 import gov.medicaid.domain.model.ValidationResultType;
 import gov.medicaid.domain.rules.inference.LookupEntry;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;
@@ -43,6 +40,9 @@ import org.drools.event.rule.BeforeActivationFiredEvent;
 import org.drools.event.rule.DefaultAgendaEventListener;
 import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Simple test case for the Domain Specific Language Rules.

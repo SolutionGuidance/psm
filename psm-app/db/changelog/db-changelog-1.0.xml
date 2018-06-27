@@ -1408,4 +1408,26 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-notes">
+    <createTable tableName="notes">
+      <column name="note_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint"/>
+      <column name="ticket_id"
+        type="bigint"/>
+      <column name="note_text"
+        type="text"/>
+      <column name="created_by"
+        type="text"/>
+      <column name="created_at"
+        type="timestamp with time zone"/>
+    </createTable>
+    <rollback>
+      <dropTable tableName="notes"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

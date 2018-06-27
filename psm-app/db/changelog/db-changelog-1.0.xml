@@ -1386,4 +1386,26 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-provider-statements">
+    <createTable tableName="provider_statements">
+      <column name="provider_statement_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="profile_id"
+        type="bigint"/>
+      <column name="ticket_id"
+        type="bigint"/>
+      <column name="name"
+        type="text"/>
+      <column name="title"
+        type="text"/>
+      <column name="date"
+        type="date"/>
+    </createTable>
+    <rollback>
+      <dropTable tableName="provider_statements"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

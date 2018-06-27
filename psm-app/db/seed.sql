@@ -4,19 +4,9 @@ DROP TABLE IF EXISTS
   external_profile_links,
   notes,
   pay_to_providers,
-  provider_statements,
   provider_services,
   provider_type_settings
 CASCADE;
-
-CREATE TABLE provider_statements(
-  provider_statement_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  name TEXT,
-  title TEXT,
-  "date" DATE
-);
 
 CREATE TABLE notes(
   note_id BIGINT PRIMARY KEY,

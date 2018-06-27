@@ -1321,4 +1321,69 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-beneficial-owner">
+    <createTable tableName="beneficial_owner">
+      <column name="beneficial_owner_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="person_ind"
+        type="varchar(1)"/>
+      <column name="ben_type_cd"
+        type="varchar(2)">
+        <constraints foreignKeyName="beneficial_owner_ben_type_cd_fkey"
+          references="beneficial_owner_types(code)"/>
+      </column>
+      <column name="oth_type_desc"
+        type="text"/>
+      <column name="own_interest_pct"
+        type="float"/>
+      <column name="address_id"
+        type="bigint">
+        <constraints foreignKeyName="beneficial_owner_address_id_fkey"
+          references="addresses(address_id)"/>
+      </column>
+      <column name="oth_provider_interest_ind"
+        type="text"/>
+      <column name="oth_provider_name"
+        type="text"/>
+      <column name="oth_provider_own_pct"
+        type="float"/>
+      <column name="oth_provider_address_id"
+        type="bigint">
+        <constraints foreignKeyName="beneficial_owner_oth_provider_address_id_fkey"
+          references="addresses(address_id)"/>
+      </column>
+      <column name="middle_name"
+        type="text"/>
+      <column name="first_name"
+        type="text"/>
+      <column name="last_name"
+        type="text"/>
+      <column name="ssn"
+        type="text"/>
+      <column name="birth_dt"
+        type="date"/>
+      <column name="hired_at"
+        type="date"/>
+      <column name="relationship_type_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="beneficial_owner_relationship_type_code_fkey"
+          references="relationship_types(code)"/>
+      </column>
+      <column name="ownership_info_id"
+        type="bigint">
+        <constraints foreignKeyName="beneficial_owner_ownership_info_id_fkey"
+          references="ownership_info(ownership_info_id)"/>
+      </column>
+      <column name="fein"
+        type="varchar(20)"/>
+      <column name="legal_name"
+        type="text"/>
+    </createTable>
+    <rollback>
+      <dropTable tableName="beneficial_owner"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

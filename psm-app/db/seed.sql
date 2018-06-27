@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS
-  accepted_agreements,
   affiliations,
   beneficial_owner,
   events,
@@ -14,15 +13,6 @@ DROP TABLE IF EXISTS
   provider_type_settings,
   screening_schedules
 CASCADE;
-
-CREATE TABLE accepted_agreements(
-  accepted_agreement_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  accepted_date DATE,
-  agreement_document_id BIGINT
-    REFERENCES  agreement_documents(agreement_document_id)
- ) ;
 
 CREATE TABLE screening_schedules(
   screening_schedule_id BIGINT PRIMARY KEY,

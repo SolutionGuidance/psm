@@ -1542,4 +1542,22 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-external-account-links">
+    <createTable tableName="external_account_links">
+      <column name="external_account_link_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="user_id"
+        type="text"/>
+      <column name="system_id"
+        type="text"/>
+      <column name="external_user_id"
+        type="text"/>
+    </createTable>
+    <rollback>
+      <dropTable tableName="external_account_links"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

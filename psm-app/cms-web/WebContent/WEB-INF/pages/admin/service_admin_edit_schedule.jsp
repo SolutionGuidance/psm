@@ -39,37 +39,30 @@
                           <p class="borderBottom">The system will use the following schedule to automatically screen all pending enrollments that have not been manually scheduled for screening.</p>
                         </div>
                         <div class="row">
-                          <label for="editScheduleUpcomingScreeningDateDatePart">Upcoming screening date</label>
+                          <form:label path="dayOfMonth">
+                            Day of month to automatically rescreen
+                          </form:label>
                           <span class="floatL"><b>:</b></span>
-                          <span class="marginLeft10 dateWrapper">
-                            <input id="editScheduleUpcomingScreeningDateDatePart" type="text" readonly="readonly" class="date" value='<fmt:formatDate value="${schedule.upcomingScreeningDate}" pattern="MM/dd/yyyy" />' />
-                          </span>
+                          <form:select path="dayOfMonth">
+                            <c:forEach begin="1" end="28" varStatus="loop">
+                              <form:option value="${loop.index}">
+                                ${loop.index}
+                              </form:option>
+                            </c:forEach>
+                          </form:select>
                         </div>
-                        <div id="screeningTimeRow" class="row">
-                          <label>Upcoming screening Time</label>
+                        <div class="row">
+                          <form:label path="hourOfDay">
+                            Hour of day to automatically rescreen
+                          </form:label>
                           <span class="floatL"><b>:</b></span>
-                          <input name="upcomingScreeningDateHourPart" id="upcomingScreeningDateHourPart" title="Upcoming Screening Hour" type="text" class="shortInput text" value='<fmt:formatDate value="${schedule.upcomingScreeningDate}" pattern="hh" />'/>
-                          <span class="floatL"><b>:</b></span>
-                          <input title="Upcoming Screening Minute" name="upcomingScreeningDateMinutePart" id="upcomingScreeningDateMinutePart" type="text" class="shortInput text" value='<fmt:formatDate value="${schedule.upcomingScreeningDate}" pattern="mm" />'/>
-                          <fmt:formatDate var="upcomingScreeningDateTimeSelect" value="${schedule.upcomingScreeningDate}" pattern="a" />
-                          <select title="Upcoming Screening Time Period" id="upcomingScreeningDateSelect" class="timeSelect">
-                            <option <c:if test="${upcomingScreeningDateTimeSelect=='AM'}">selected="selected"</c:if> value="AM">AM</option>
-                            <option <c:if test="${upcomingScreeningDateTimeSelect=='PM'}">selected="selected"</c:if> value="PM">PM</option>
-                          </select>
-                          <form:hidden path="upcomingScreeningDate" id="upcomingScreeningDateField"/>
-                        </div>
-                        <div id="intervalRow" class="row">
-                          <label for="screeningInterval">Screening interval</label>
-                          <span class="floatL"><b>:</b></span>
-                          <span class="marginLeft10 floatL">
-                            <span class="floatL">Every</span>
-                            <form:input id="screeningInterval" path="interval" cssClass="text shortInput marginLeft20"/>
-                            <form:select id="intervalType" title="Interval Type" cssClass="timeSelect" path="intervalType">
-                              <form:option value="DAYS">day(s)</form:option>
-                              <form:option value="WEEKS">week(s)</form:option>
-                              <form:option value="MONTHS">month(s)</form:option>
-                            </form:select>
-                          </span>
+                          <form:select path="hourOfDay">
+                            <c:forEach begin="0" end="23" varStatus="loop">
+                              <form:option value="${loop.index}">
+                                ${loop.index}:00
+                              </form:option>
+                            </c:forEach>
+                          </form:select>
                         </div>
                       </div>
                     </div>
@@ -78,7 +71,7 @@
                   </div>
                   <div class="buttons">
                     <a href="${ctx}/admin/getScreeningSchedule" class="greyBtn">Cancel</a>
-                    <button class="greyBtn saveScheduleBtn" type="submit">Save</button>
+                    <form:button class="greyBtn">Save</form:button>
                   </div>
                 </div>
               </form:form>

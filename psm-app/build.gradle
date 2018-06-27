@@ -187,6 +187,7 @@ project(':cms-web') {
         compile libs.hapi_fhir_server
         compile libs.hapi_fhir_structures
         compile libs.commons_csv
+        compile libs.guava
         compile libs.spring_beans
         compile libs.spring_ldap
         compile libs.spring_security_acl

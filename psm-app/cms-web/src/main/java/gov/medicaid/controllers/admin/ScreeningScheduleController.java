@@ -19,17 +19,13 @@ package gov.medicaid.controllers.admin;
 import gov.medicaid.entities.ScreeningSchedule;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ScreeningService;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * <p>
@@ -47,17 +43,6 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
 
     public ScreeningScheduleController(ScreeningService screeningService) {
         this.screeningService = screeningService;
-    }
-
-    /**
-     * This method is used to convert the date field.
-     *
-     * @param binder the WebDataBinder instance
-     */
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US);
-        binder.registerCustomEditor(Date.class, "upcomingScreeningDate", new CustomDateEditor(dateFormat, false));
     }
 
     /**
@@ -118,11 +103,33 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
     public ModelAndView edit(
         @ModelAttribute("schedule") ScreeningSchedule schedule
     ) throws PortalServiceException {
+        validateSchedule(schedule);
+
         screeningService.saveScreeningSchedule(schedule);
 
         ModelAndView model = new ModelAndView("admin/service_admin_view_schedule");
         model.addObject("schedule", schedule);
 
         return model;
+    }
+
+    private void validateSchedule(ScreeningSchedule schedule) {
+        checkNotNull(schedule, "Schedule is required.");
+        checkNotNull(
+            schedule.getDayOfMonth(),
+            "Day of month is required."
+        );
+        checkArgument(
+            schedule.getDayOfMonth() >= 1 && schedule.getDayOfMonth() <= 28,
+            "Day of month must be between 1 and 28."
+        );
+        checkNotNull(
+            schedule.getHourOfDay(),
+            "Hour of day is required."
+        );
+        checkArgument(
+            schedule.getHourOfDay() >= 0 && schedule.getHourOfDay() < 24,
+            "Hour of day must be between 0 and 23."
+        );
     }
 }

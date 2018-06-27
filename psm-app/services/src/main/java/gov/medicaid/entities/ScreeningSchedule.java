@@ -17,14 +17,11 @@
 package gov.medicaid.entities;
 
 import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
 
 @javax.persistence.Entity
 @Table(name = "screening_schedules")
@@ -34,45 +31,11 @@ public class ScreeningSchedule implements Serializable {
     @Column(name = "screening_schedule_id")
     private long id;
 
-    /*
-     * Next screening date.
-     */
-    @Column(name = "upcoming_screening_date")
-    private Date upcomingScreeningDate;
+    @Column(name = "day_of_month")
+    private Integer dayOfMonth;
 
-    /*
-     * Interval between screenings.
-     */
-    @Column(name = "interval_value")
-    private int interval;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "interval_type")
-    private ScreeningIntervalType intervalType;
-
-    public Date getUpcomingScreeningDate() {
-        return upcomingScreeningDate;
-    }
-
-    public void setUpcomingScreeningDate(Date upcomingScreeningDate) {
-        this.upcomingScreeningDate = upcomingScreeningDate;
-    }
-
-    public int getInterval() {
-        return interval;
-    }
-
-    public void setInterval(int interval) {
-        this.interval = interval;
-    }
-
-    public ScreeningIntervalType getIntervalType() {
-        return intervalType;
-    }
-
-    public void setIntervalType(ScreeningIntervalType intervalType) {
-        this.intervalType = intervalType;
-    }
+    @Column(name = "hour_of_day")
+    private Integer hourOfDay;
 
     public long getId() {
         return id;
@@ -82,4 +45,19 @@ public class ScreeningSchedule implements Serializable {
         this.id = id;
     }
 
+    public Integer getDayOfMonth() {
+        return dayOfMonth;
+    }
+
+    public void setDayOfMonth(Integer dayOfMonth) {
+        this.dayOfMonth = dayOfMonth;
+    }
+
+    public Integer getHourOfDay() {
+        return hourOfDay;
+    }
+
+    public void setHourOfDay(Integer hourOfDay) {
+        this.hourOfDay = hourOfDay;
+    }
 }

@@ -1,2 +1,2 @@
-screening_schedule_id,upcoming_screening_date,interval_type,interval_value
-"1","NULL","NULL","0"
+screening_schedule_id,day_of_month,hour_of_day
+"1","1","0"

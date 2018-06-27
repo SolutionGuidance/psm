@@ -78,7 +78,7 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
             getEm().persist(providerType);
             return providerType.getCode();
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -134,7 +134,7 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
             }
             getEm().merge(providerType);
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -155,7 +155,7 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
                     hintEntityGraph("ProviderType with AgreementDocuments")
             );
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -174,7 +174,7 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
             }
             getEm().remove(obj);
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 

@@ -96,7 +96,7 @@ public class HibernateEventServiceBean extends BaseService implements EventServi
 
             return event.getId();
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -129,7 +129,7 @@ public class HibernateEventServiceBean extends BaseService implements EventServi
 
             return events;
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 }

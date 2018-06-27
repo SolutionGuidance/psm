@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -106,7 +105,6 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
      * This action will save the entity.
      *
      * @param schedule the ScreeningSchedule
-     * @param request the http servlet request
      * @return the model and view instance
      * @throws IllegalArgumentException if screeningSchedule is null/empty
      * @throws PortalServiceException If there are any errors in the action
@@ -118,8 +116,7 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
         method = RequestMethod.POST
     )
     public ModelAndView edit(
-        @ModelAttribute("schedule") ScreeningSchedule schedule,
-        HttpServletRequest request
+        @ModelAttribute("schedule") ScreeningSchedule schedule
     ) throws PortalServiceException {
         screeningService.saveScreeningSchedule(schedule);
 

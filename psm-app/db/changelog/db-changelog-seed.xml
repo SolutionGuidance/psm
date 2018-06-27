@@ -191,4 +191,10 @@
       tableName="screening_schedules" />
   </changeSet>
 
+  <changeSet author="" id="issue254-seed-provider-type-settings" runOnChange="true">
+    <loadUpdateData file="db/seeds/provider_type_settings.csv"
+      primaryKey="provider_type_setting_id"
+      tableName="provider_type_settings" />
+  </changeSet>
+
 </databaseChangeLog>

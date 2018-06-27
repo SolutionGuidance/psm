@@ -1452,4 +1452,37 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue254-create-table-pay-to-providers">
+    <createTable tableName="pay_to_providers">
+      <column name="pay_to_providers_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="effective_date"
+        type="date"/>
+      <column name="pay_to_type_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="pay_to_providers_pay_to_type_code_fkey"
+          references="pay_to_provider_types(code)"/>
+      </column>
+      <column name="profile_id"
+        type="bigint"/>
+      <column name="ticket_id"
+        type="bigint"/>
+      <column name="target_profile_id"
+        type="bigint"/>
+      <column name="name"
+        type="text"/>
+      <column name="contact_name"
+        type="text"/>
+      <column name="npi"
+        type="text"/>
+      <column name="phone"
+        type="text"/>
+    </createTable>
+    <rollback>
+      <dropTable tableName="pay_to_providers"/>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

@@ -1,24 +1,9 @@
 DROP TABLE IF EXISTS
   external_account_links,
   external_profile_links,
-  pay_to_providers,
   provider_services,
   provider_type_settings
 CASCADE;
-
-CREATE TABLE pay_to_providers(
-  pay_to_providers_id  BIGINT PRIMARY KEY,
-  effective_date DATE,
-  pay_to_type_code CHARACTER VARYING(2)
-    REFERENCES pay_to_provider_types(code),
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  target_profile_id BIGINT,
-  name TEXT,
-  contact_name TEXT,
-  npi TEXT,
-  phone TEXT
-);
 
 CREATE TABLE provider_type_settings (
   provider_type_setting_id INTEGER PRIMARY KEY,

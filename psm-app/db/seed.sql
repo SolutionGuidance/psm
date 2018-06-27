@@ -1,18 +1,9 @@
 DROP TABLE IF EXISTS
   external_account_links,
   external_profile_links,
-  provider_services,
-  provider_type_settings
+  provider_services
 CASCADE;
 
-CREATE TABLE provider_type_settings (
-  provider_type_setting_id INTEGER PRIMARY KEY,
-  provider_type_code CHARACTER VARYING(2) NOT NULL
-    REFERENCES provider_types(code),
-  related_entity_type TEXT NOT NULL,
-  related_entity_code TEXT NOT NULL,
-  relationship_type TEXT NOT NULL
-);
 INSERT INTO provider_type_settings (
   provider_type_setting_id,
   provider_type_code,

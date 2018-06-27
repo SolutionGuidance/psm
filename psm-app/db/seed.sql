@@ -4,23 +4,11 @@ DROP TABLE IF EXISTS
   external_account_links,
   external_profile_links,
   notes,
-  ownership_info,
   pay_to_providers,
   provider_statements,
   provider_services,
   provider_type_settings
 CASCADE;
-
-CREATE TABLE ownership_info (
-  ownership_info_id BIGINT PRIMARY KEY,
-  profile_id BIGINT,
-  ticket_id BIGINT,
-  entity_structure_type_code CHARACTER VARYING(2)
-    REFERENCES entity_structure_types(code),
-  entity_structure_subtype_code CHARACTER VARYING(2)
-    REFERENCES entity_structure_types(code),
-  other_entity_type_desc TEXT
-);
 
 CREATE TABLE beneficial_owner (
   beneficial_owner_id       BIGINT PRIMARY KEY,

@@ -30,3 +30,24 @@ follows:
 Small note that the IDEA default doesn't enforce spaces between all groups,
 so neither does the checkstyle for the PSM.  However, those are acceptable
 and encouraged for larger groups of imports.
+
+## Modifiers
+
+Class, field, and method modifiers should be written in the order suggested by
+the Java Language specification:
+
+1. public
+2. protected
+3. private
+4. abstract
+5. default
+6. static
+7. final
+8. transient
+9. volatile
+10. synchronized
+11. native
+12. strictfp
+
+This is enforced via the Checkstyle rule
+[ModifierOrder](http://checkstyle.sourceforge.net/config_modifier.html#ModifierOrder).

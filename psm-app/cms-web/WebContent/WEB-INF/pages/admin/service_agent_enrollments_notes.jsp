@@ -29,7 +29,7 @@
           <h1>Notes</h1>
           <div class="tabSection" id="enrollmentSection">
             <c:set var="active_enrollment_tab" value="notes"/>
-            <c:set var="enrollmentSearchFormAction" value="${ctx}/provider/search/notes?statuses="/>
+            <c:set var="enrollmentSearchFormAction" value="${ctx}/provider/enrollments/notes?statuses="/>
             <c:set var="searchResult" value="${results}"/>
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_tab_section.jsp" %>
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_form.jsp" %>

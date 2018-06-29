@@ -67,36 +67,21 @@ public class CMSConfigurator {
      * Reads the configuration and stores it.
      */
     public CMSConfigurator() {
-        InputStream stream = getClass().getResourceAsStream(DEFAULT_CMS_CONFIG_FILE);
-        if (stream == null) {
-            throw new PortalServiceConfigurationException(
-                "Could not find application configuration, make sure it is in the classpath.");
-        }
+        synchronized (CMSConfigurator.class) {
+            if (globalSettings == null) {
+                try (InputStream stream = getClass().getResourceAsStream(DEFAULT_CMS_CONFIG_FILE)) {
+                    if (stream == null) {
+                        throw new PortalServiceConfigurationException(
+                            "Could not find application configuration, make sure it is in the classpath.");
+                    }
 
-        if (globalSettings == null) {
-            synchronized (CMSConfigurator.class) {
-                globalSettings = new Properties();
-                try {
+                    globalSettings = new Properties();
                     globalSettings.load(stream);
                 } catch (IOException e) {
                     throw new PortalServiceConfigurationException(
-                        "Could not read application configuration, make sure it is in the classpath.");
-                } finally {
-                    if (stream != null) {
-                        try {
-                            stream.close();
-                        } catch (IOException e) {
-                            throw new PortalServiceConfigurationException("Unable to close configuration.");
-                        }
-                    }
-                }
-            }
-        } else {
-            if (stream != null) {
-                try {
-                    stream.close();
-                } catch (IOException e) {
-                    throw new PortalServiceConfigurationException("Unable to close configuration.");
+                        "Error reading application configuration.",
+                        e
+                    );
                 }
             }
         }

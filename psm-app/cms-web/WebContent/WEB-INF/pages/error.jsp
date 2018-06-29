@@ -88,47 +88,9 @@
                 <h:handlebars template="includes/logo" context="${pageContext}"/>
               </div>
               <!-- /.mainNav -->
-              <form id="loginForm" action="<c:url value='/login'/>" method="post">
-                <sec:csrfInput />
-                <div class="loginPanel">
-                  <h:handlebars template="includes/flash" context="${pageContext}"/>
 
-                  <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
-                    <div class="errorInfo" style="display: block;">
-                      <h3>Invalid username/password.</h3>
-                      <div class="tl"></div>
-                      <div class="tr"></div>
-                      <div class="bl"></div>
-                      <div class="br"></div>
-                    </div>
-                    <% session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION); %>
-                  </c:if>
+              <%@ include file="/WEB-INF/pages/login_form.jsp" %>
 
-                  <div class="row">
-                    <label for="username" class="label">Username:</label>
-                    <input id="username" type="text" name="username" class="text" value="${LAST_USERNAME}" maxlength="50"/>
-                  </div>
-                  <div class="row">
-                    <label for="password" class="label">Password:</label>
-                    <input id="password" type="password" name="password"/>
-                  </div>
-                  <div class="row">
-                    <label class="label">&nbsp;</label>
-                    <input id="remember" type="checkbox" name="keepUserSignedIn"/>
-                    <label for="remember">Remember Me</label>
-                    <a class="forgotPasswordLink" href="<c:url value="/forgotpassword" />">Forgot Password?</a>
-                  </div>
-                  <div class="buttons">
-                    <button id="btnLogin" class="purpleBtn" type="submit">Login</button>
-                    <a class="registerNewAccountLink" href="<c:url value="/accounts/new" />">Register New Account</a>
-                  </div>
-
-                  <div class="tl"></div>
-                  <div class="tr"></div>
-                  <div class="bl"></div>
-                  <div class="br"></div>
-                </div>
-              </form>
             </div>
           </div>
           <!-- /#mainContent -->

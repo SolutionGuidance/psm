@@ -37,6 +37,13 @@ public class LeieExternalScreener {
     }
 
     public AutomaticScreening.Result screen(Long enrollmentId, String npi) {
+        logger.info(String.format(
+            "Running LEIE screening for enrollment " +
+                "with enrollment_id %d and NPI %s.",
+            enrollmentId,
+            npi
+        ));
+
         Enrollment enrollment = getEnrollment(enrollmentId);
         LeieAutomaticScreening screening = new LeieAutomaticScreening();
         screening.setNpiSearchTerm(npi);
@@ -71,6 +78,12 @@ public class LeieExternalScreener {
             LeieAutomaticScreening screening,
             Bundle providerSearchResults
     ) {
+        logger.info(String.format(
+            "LEIE screening for enrollment with enrollment_id %d " +
+                "found %d matches; marking screening as failed.",
+            screening.getEnrollment().getTicketId(),
+            providerSearchResults.getEntry().size()
+        ));
         screening.setResult(AutomaticScreening.Result.FAIL);
 
         for (Bundle.BundleEntryComponent e : providerSearchResults.getEntry()) {
@@ -83,6 +96,12 @@ public class LeieExternalScreener {
     private void setResultNotExcluded(
             LeieAutomaticScreening screening
     ) {
+        logger.info(String.format(
+            "LEIE screening for enrollment with enrollment_id %d " +
+                "found no matches; marking screening as passed.",
+            screening.getEnrollment().getTicketId()
+        ));
+
         screening.setResult(AutomaticScreening.Result.PASS);
     }
 

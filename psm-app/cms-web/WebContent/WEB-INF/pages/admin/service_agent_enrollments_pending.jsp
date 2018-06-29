@@ -31,7 +31,6 @@
             <c:set var="active_enrollment_tab" value="pending"/>
             <c:set var="enrollmentSearchFormAction" value="${ctx}/provider/search/pending?statuses=Pending"/>
             <c:set var="searchResult" value="${results}"/>
-            <c:set var="itemsName" value="Pending Enrollment${searchResult.total>1?'s':''}"/>
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_tab_section.jsp" %>
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_form.jsp" %>
             <!-- /.tabHead -->

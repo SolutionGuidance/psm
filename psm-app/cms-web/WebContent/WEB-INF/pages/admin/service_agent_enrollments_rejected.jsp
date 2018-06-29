@@ -31,7 +31,6 @@
             <c:set var="active_enrollment_tab" value="rejected"/>
             <c:set var="enrollmentSearchFormAction" value="${ctx}/provider/search/rejected?statuses=Rejected"/>
             <c:set var="searchResult" value="${results}"/>
-            <c:set var="itemsName" value="Denied Enrollment${searchResult.total>1?'s':''}"/>
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_tab_section.jsp" %>
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_form.jsp" %>
             <!-- /.tabHead -->

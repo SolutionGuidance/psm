@@ -28,7 +28,6 @@
 
           <div class="tabSection">
             <c:set var="paginatedResults" value="${results}"/>
-            <c:set var="itemsName" value="${listType}"/>
             <div class="tabHead">
               <div class="tabR">
                 <div class="tabM">

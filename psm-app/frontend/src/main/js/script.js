@@ -2112,14 +2112,6 @@ function changePageNumber(page) {
   $('#paginationForm').submit();
 }
 
-function disableElement(el, cond) {
-  if (cond) {
-    $('#' + el).prop('disabled', true);
-  } else {
-    $('#' + el).prop('disabled', false);
-  }
-}
-
 var isPrimaryPracticeLookup = false;
 var isPrivatePracticeForm = false;
 var practiceLookupResults = {};

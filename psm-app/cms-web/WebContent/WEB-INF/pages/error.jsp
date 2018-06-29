@@ -113,13 +113,6 @@
                     <input id="password" type="password" name="password"/>
                   </div>
                   <div class="row">
-                    <label for="domain" class="label">Domain:</label>
-                    <select id="domain" name="domain" onchange="disableElement('remember', this.value != 'CMS_ONLINE')">
-                      <option value="CMS_ONLINE" selected="selected">Online Portal</option>
-                      <option value="MN_ITS">MN-ITS</option>
-                    </select>
-                  </div>
-                  <div class="row">
                     <label class="label">&nbsp;</label>
                     <input id="remember" type="checkbox" name="keepUserSignedIn"/>
                     <label for="remember">Remember Me</label>

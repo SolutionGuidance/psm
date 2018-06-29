@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -135,6 +136,7 @@ public class RiskLevelsReportController extends gov.medicaid.controllers.BaseCon
                 .map(Enrollment::getTicketId)
                 .map(id -> enrollmentService2.getProviderDetailsByTicket(id, false))
                 .map(ProviderProfile::getRiskLevel)
+                .filter(Objects::nonNull)
                 .map(RiskLevel::getDescription)
                 .collect(Collectors.groupingBy(
                     Function.identity(),

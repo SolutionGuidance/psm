@@ -48,7 +48,7 @@ import javax.transaction.UserTransaction;
  * @author TCSASSEMBLER
  * @version 1.1
  */
-public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
+public class DroolsKnowledgeDelegate {
 
     /**
      * The composed knowledge base containing validation.
@@ -58,7 +58,7 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
     /**
      * The composed knowledge base.
      */
-    private final KnowledgeBase processKnowledgeBase = readProcessKnowledgeBase();
+    private final KnowledgeBase processKnowledgeBase;
 
     /**
      * The composed knowledge base containing screening.
@@ -77,13 +77,10 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
         CMSConfigurator config = new CMSConfigurator();
         useGuvnor = "N".equalsIgnoreCase(config.getUseEmbeddedRules());
         validationKnowledgeBase = readValidationKnowledgeBase();
+        processKnowledgeBase = readProcessKnowledgeBase();
         screeningKnowledgeBase = readScreeningKnowledgeBase();
     }
 
-    /* (non-Javadoc)
-     * @see gov.medicaid.domain.rules.KnowledgeDelegate#newWorkflowSession()
-     */
-    @Override
     public StatefulKnowledgeSession newWorkflowSession(
         EntityManagerFactory entityManagerFactory,
         UserTransaction utx
@@ -100,7 +97,6 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
         return ksession;
     }
 
-    @Override
     public StatefulKnowledgeSession reloadWorkflowSession(
         int sessionId,
         EntityManagerFactory factory,
@@ -142,10 +138,6 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
         return env;
     }
 
-    /* (non-Javadoc)
-     * @see gov.medicaid.domain.rules.KnowledgeDelegate#newScreeningValidationSession()
-     */
-    @Override
     public StatefulKnowledgeSession newScreeningValidationSession() {
         return screeningKnowledgeBase.newStatefulKnowledgeSession();
     }
@@ -208,10 +200,6 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
         return kbase;
     }
 
-    /* (non-Javadoc)
-     * @see gov.medicaid.domain.rules.KnowledgeDelegate#newValidationSession()
-     */
-    @Override
     public StatefulKnowledgeSession newValidationSession() {
         return validationKnowledgeBase.newStatefulKnowledgeSession();
     }

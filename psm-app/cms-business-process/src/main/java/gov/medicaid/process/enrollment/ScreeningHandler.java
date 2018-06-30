@@ -30,7 +30,6 @@ import gov.medicaid.services.util.XMLAdapter;
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
 
-import javax.persistence.EntityManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,16 +40,10 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class ScreeningHandler extends GenericHandler {
-
     /**
      * Provider service.
      */
     private final ProviderEnrollmentService providerService;
-
-    /**
-     * Entity manager.
-     */
-    private final EntityManager entityManager;
 
     private final Logger logger = Logger.getLogger(getClass().getName());
 
@@ -62,7 +55,6 @@ public class ScreeningHandler extends GenericHandler {
     public ScreeningHandler() {
         CMSConfigurator config = new CMSConfigurator();
         this.providerService = config.getEnrollmentService();
-        this.entityManager = config.getPortalEntityManager();
         systemUser = config.getSystemUser();
     }
 

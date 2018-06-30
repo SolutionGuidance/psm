@@ -26,10 +26,7 @@ import gov.medicaid.domain.model.SpecialtyNames;
 import gov.medicaid.domain.model.UISection;
 import gov.medicaid.domain.model.ValidationRequest;
 import gov.medicaid.domain.model.ValidationResponse;
-import gov.medicaid.domain.model.ValidationResultType;
-import gov.medicaid.domain.rules.CMSKnowledgeUtility;
-import gov.medicaid.domain.rules.GlobalLookups;
-import gov.medicaid.domain.rules.inference.LookupEntry;
+import gov.medicaid.domain.rules.RulesExecutor;
 import gov.medicaid.entities.License;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormSettings;
@@ -38,8 +35,6 @@ import gov.medicaid.entities.dto.ViewModel;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.PresentationService;
 import gov.medicaid.services.util.Util;
-
-import org.drools.runtime.StatefulKnowledgeSession;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -806,48 +801,6 @@ public class PresentationServiceBean extends BaseService implements Presentation
             }
         }
         request.setEnrollment(ticket);
-        return checkForErrors(request);
+        return RulesExecutor.executeProviderValidationRules(request);
     }
-
-    /**
-     * Uses the front-end validation rules to check the provider profile.
-     *
-     * @param request the validation request
-     * @return the validation messages.
-     */
-    private ValidationResponse checkForErrors(ValidationRequest request) {
-        StatefulKnowledgeSession ksession = CMSKnowledgeUtility.newValidationSession();
-        try {
-            ValidationResultType validation = new ValidationResultType();
-            List<LookupEntry> allLookupEntries =
-                GlobalLookups.getInstance().getAllLookupEntries();
-
-            for (LookupEntry lookupEntry : allLookupEntries) {
-                ksession.insert(lookupEntry);
-            }
-
-            // configure sections to validate
-            if ("Y".equals(request.getPartial())) {
-                List<UISection> sections = request.getSections();
-                for (UISection uiSection : sections) {
-                    ksession.insert(new LookupEntry("UISection", uiSection.value(),
-                        uiSection.value()));
-                }
-            }
-
-            ProviderInformationType provider =
-                request.getEnrollment().getProviderInformation();
-            ksession.insert(request.getEnrollment());
-            ksession.insert(provider);
-            ksession.insert(validation);
-            ksession.fireAllRules();
-
-            ValidationResponse validationResponse = new ValidationResponse();
-            validationResponse.setValidationResult(validation);
-            return validationResponse;
-        } finally {
-            ksession.dispose();
-        }
-    }
-
 }

@@ -157,6 +157,26 @@ class EntityToFhirTest extends Specification {
         !name.hasPeriod()
     }
 
+    def "Individual's date of birth is set correctly"() {
+        given:
+        individual.setDob(new Date(1985, 6, 25))
+
+        when:
+        def result = transformer.apply(individual) as Practitioner
+
+        then:
+        result.hasBirthDate()
+        result.getBirthDate() == new Date(1985, 6, 25)
+    }
+
+    def "Individual's date of birth is not set"() {
+        when:
+        def result = transformer.apply(individual) as Practitioner
+
+        then:
+        !result.hasBirthDate()
+    }
+
     def "Organization without ID gets ID 0"() {
         when:
         def result = transformer.apply(organization)

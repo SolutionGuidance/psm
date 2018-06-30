@@ -22,13 +22,13 @@ import gov.medicaid.domain.model.EnrollmentProcess;
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.VerificationStatusType;
-import gov.medicaid.domain.rules.CMSKnowledgeUtility;
+import gov.medicaid.domain.rules.RulesExecutor;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentStatus;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.process.enrollment.AcceptedHandler;
-import gov.medicaid.process.enrollment.EnrollmentMonitor;
+import gov.medicaid.process.enrollment.EnrollmentProcessUtils;
 import gov.medicaid.process.enrollment.ExcludedProvidersScreeningHandler;
 import gov.medicaid.process.enrollment.PreProcessHandler;
 import gov.medicaid.process.enrollment.RejectedHandler;
@@ -41,14 +41,8 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.XMLAdapter;
 import org.drools.SystemEventListenerFactory;
-import org.drools.runtime.StatefulKnowledgeSession;
-import org.drools.runtime.process.ProcessInstance;
 import org.drools.runtime.process.WorkItemHandler;
-import org.jbpm.task.AccessType;
-import org.jbpm.task.Content;
-import org.jbpm.task.Task;
 import org.jbpm.task.query.TaskSummary;
-import org.jbpm.task.service.ContentData;
 import org.jbpm.task.service.TaskService;
 import org.jbpm.task.service.local.LocalTaskService;
 
@@ -62,20 +56,12 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
-import javax.transaction.Status;
 import javax.transaction.UserTransaction;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import java.util.logging.Logger;
 
 import static java.util.logging.Level.SEVERE;
@@ -162,83 +148,25 @@ public class BusinessProcessServiceBean extends BaseService
     private long enroll(
         EnrollmentType enrollment
     ) throws Exception {
-        StatefulKnowledgeSession ksession = null;
-        UserTransaction utx = context.getUserTransaction();
-        boolean owner = false;
+        Long processId;
         try {
-            if (utx.getStatus() == Status.STATUS_NO_TRANSACTION) {
-                utx.begin();
-                owner = true;
-            }
-
-            ksession = CMSKnowledgeUtility.newWorkflowSession(getEmf(), utx);
-            Set<Entry<String, WorkItemHandler>> entrySet = handlers.entrySet();
-            for (Entry<String, WorkItemHandler> entry : entrySet) {
-                ksession.getWorkItemManager().registerWorkItemHandler(entry.getKey(),
-                    entry.getValue());
-            }
-
-            Map<String, Object> params = new HashMap<>();
-            EnrollmentProcess processModel = new XMLSerializingEnrollmentProcess();
-            processModel.setSessionId(ksession.getId());
-            processModel.setEnrollment(enrollment);
-            params.put("model", processModel);
-            ksession.insert(processModel);
-            ksession.addEventListener(new EnrollmentMonitor());
-            ProcessInstance process = ksession.startProcess(
-                "gov.medicaid.process.enrollment", params);
-            if (utx.getStatus() == Status.STATUS_ACTIVE && owner) {
-                utx.commit();
-            }
-            return process.getId();
-        } finally {
-            if (ksession != null) {
-                try {
-                    ksession.dispose();
-                } catch (Throwable t) {
-                    logger.log(SEVERE, "Could not close session.", t);
-                }
-            }
+            processId = RulesExecutor.startEnrollmentProcess(enrollment,
+                handlers.entrySet(),
+                getEmf(), context);
+        } catch (Throwable t) {
+            logger.log(SEVERE, "Could not close session.", t);
+            throw t;
         }
+        return processId;
     }
 
     private void resubmit(
         CMSUser user,
         EnrollmentProcess processModel
     ) throws Exception {
-        StatefulKnowledgeSession ksession = null;
-        UserTransaction utx = context.getUserTransaction();
-        try {
-            utx.begin();
-            ksession = CMSKnowledgeUtility.newWorkflowSession(getEmf(), utx);
-            Set<Entry<String, WorkItemHandler>> entrySet = handlers.entrySet();
-            for (Entry<String, WorkItemHandler> entry : entrySet) {
-                ksession.getWorkItemManager().registerWorkItemHandler(entry.getKey(),
-                    entry.getValue());
-            }
-
-            Map<String, Object> params = new HashMap<>();
-            processModel.setSessionId(ksession.getId());
-            params.put("model", processModel);
-            ksession.insert(processModel);
-            ksession.addEventListener(new EnrollmentMonitor());
-            ProcessInstance process = ksession.startProcess(
-                "gov.medicaid.process.enrollment", params);
-            long processId = process.getId();
-            String ticketId = processModel.getEnrollment().getObjectId();
-            Enrollment ticket = providerService.getTicketDetails(getSystemUser(),
-                Long.parseLong(ticketId));
-            ticket.setProcessInstanceId(processId);
-            ticket.setLastUpdatedBy(user);
-            getEm().merge(ticket);
-            utx.commit();
-        } finally {
-            try {
-                ksession.dispose();
-            } catch (Throwable t) {
-                logger.log(SEVERE, "Could not close session.", t);
-            }
-        }
+        RulesExecutor.resubmitEnrollment(user, getSystemUser(),
+            processModel, handlers.entrySet(), providerService, getEmf(),
+            getEm(), context);
     }
 
     private EntityManagerFactory getEmf() {
@@ -284,7 +212,7 @@ public class BusinessProcessServiceBean extends BaseService
         LocalTaskService client = new LocalTaskService(new TaskService(getEmf(),
             SystemEventListenerFactory.getSystemEventListener()));
         try {
-            return getEnrollmentForReview(client, taskId);
+            return EnrollmentProcessUtils.getEnrollmentForReview(client, taskId);
         } finally {
             client.dispose();
         }
@@ -309,79 +237,17 @@ public class BusinessProcessServiceBean extends BaseService
         boolean reject,
         String comment
     ) throws Exception {
-        UserTransaction utx = context.getUserTransaction();
-        utx.begin();
+
         String username = "Administrator";
-        LocalTaskService client = new LocalTaskService(new TaskService(getEmf(),
-            SystemEventListenerFactory.getSystemEventListener()));
-        StatefulKnowledgeSession ksession = null;
-        try {
-            client.claim(taskId, username, roles);
-
-            EnrollmentProcess processModel = getEnrollmentForReview(client, taskId);
-            ksession = reloadSessionById(utx, client, processModel);
-            EnrollmentType enrollment = processModel.getEnrollment();
-
-            // track changes made by approvers.
-            if (updates != null) {
-                ProviderInformationType oldData = enrollment.getProviderInformation();
-                // replace the current profile
-                enrollment.setProviderInformation(updates);
-                EditHistoryType editHistory = new EditHistoryType();
-                editHistory.setEditedBy(approver);
-                editHistory.setEditedByRole(roles.toString());
-                editHistory.setEditedOn(Calendar.getInstance());
-                editHistory.setEditNote(comment);
-                editHistory.setProviderInformation(oldData);
-                processModel.getEnrollment().getSubmissionEditHistory().add(editHistory);
-            }
-
-            processModel.getEnrollment().getProviderInformation().setReviewedBy(approver);
-
-            client.start(taskId, username);
-            client.complete(taskId, username, marshalContent(processModel, "N"));
-            utx.commit();
-        } finally {
-            try {
-                ksession.dispose();
-            } catch (Throwable t) {
-                logger.log(SEVERE, "Could not close session.", t);
-            }
-            client.dispose();
-        }
+        RulesExecutor.completeEnrollmentReview(username, approver, comment, updates,
+            taskId, roles, handlers.entrySet(), getEmf(), context);
     }
 
     /**
-     * Reloads the knowledge session with the given id.
-     *
-     * @param utx          the current transaction
-     * @param client       the service client
-     * @param processModel the process model
-     * @return the reloaded session
+     * @param ticket the update request
+     * @param user   the user performing the update
+     * @throws Exception
      */
-    private StatefulKnowledgeSession reloadSessionById(
-        UserTransaction utx,
-        LocalTaskService client,
-        EnrollmentProcess processModel
-    ) {
-        StatefulKnowledgeSession ksession = null;
-
-        Integer session = processModel.getSessionId();
-        if (session != null) {
-            // this is a workaround based on https://issues.jboss.org/browse/JBPM-3673
-            ksession = CMSKnowledgeUtility.reloadWorkflowSession(session, getEmf(), utx);
-            LocalHumanTaskHandler handler = new LocalHumanTaskHandler(ksession, client);
-            ksession.getWorkItemManager().registerWorkItemHandler("Human Task", handler);
-            Set<Entry<String, WorkItemHandler>> entrySet = handlers.entrySet();
-            for (Entry<String, WorkItemHandler> entry : entrySet) {
-                ksession.getWorkItemManager().registerWorkItemHandler(entry.getKey(),
-                    entry.getValue());
-            }
-            ksession.signalEvent("Trigger", null);
-        }
-        return ksession;
-    }
-
     public void updateRequest(
         EnrollmentType ticket,
         CMSUser user
@@ -392,8 +258,7 @@ public class BusinessProcessServiceBean extends BaseService
         if (user.getRole().getDescription().equals(ViewStatics.ROLE_PROVIDER)) {
             if (!user.getUserId().equals(ticket.getSubmittedBy())) {
                 throw new PortalServiceException(
-                    "Only the submitter and administrators " +
-                        "are allowed to modify pending submissions.");
+                    "Only the submitter and administrators are allowed to modify pending submissions.");
             }
         }
 
@@ -423,7 +288,8 @@ public class BusinessProcessServiceBean extends BaseService
             utx.begin();
             client.claim(taskId, username);
 
-            EnrollmentProcess processModel = getEnrollmentForReview(client, taskId);
+            EnrollmentProcess processModel =
+                EnrollmentProcessUtils.getEnrollmentForReview(client, taskId);
             EnrollmentType enrollment = processModel.getEnrollment();
 
             // track changes made by approvers.
@@ -451,7 +317,8 @@ public class BusinessProcessServiceBean extends BaseService
             client.start(taskId, username);
 
             // recall/abort request
-            client.complete(taskId, username, marshalContent(processModel, "Y"));
+            client.complete(taskId, username,
+                EnrollmentProcessUtils.marshalEnrollmentProcess(processModel, "Y"));
             utx.commit();
 
             // resubmit
@@ -459,28 +326,6 @@ public class BusinessProcessServiceBean extends BaseService
         } finally {
             client.dispose();
         }
-    }
-
-
-    /**
-     * Retrieves the current model.
-     *
-     * @param client the client to be used
-     * @param taskId the task id associated
-     * @return the process model for the waiting task
-     */
-    @SuppressWarnings("unchecked")
-    private EnrollmentProcess getEnrollmentForReview(
-        LocalTaskService client,
-        long taskId
-    ) throws IOException, ClassNotFoundException {
-        Task task = client.getTask(taskId);
-        Content content = client.getContent(task.getTaskData().getDocumentContentId());
-        ByteArrayInputStream bis = new ByteArrayInputStream(content.getContent());
-        ObjectInputStream in = new ObjectInputStream(bis);
-        Map<String, Object> taskModel = (Map<String, Object>) in.readObject();
-        in.close();
-        return (EnrollmentProcess) taskModel.get("ProcessModel");
     }
 
     /**
@@ -538,29 +383,5 @@ public class BusinessProcessServiceBean extends BaseService
         return enrollmentRequestTypes.contains(
             ticket.getRequestType().getDescription()
         );
-    }
-
-    /**
-     * Converts the process model to the output content data.
-     *
-     * @param processModel the process model
-     * @return the content data model
-     * @throws IOException if the objects cannot be written.
-     */
-    private ContentData marshalContent(
-        EnrollmentProcess processModel,
-        String isAbort
-    ) throws IOException {
-        Map<String, Object> data = new HashMap<>();
-        data.put("model", processModel);
-        data.put("isAbort", isAbort);
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutputStream out = new ObjectOutputStream(bos);
-        out.writeObject(data);
-        out.close();
-        ContentData contentData = new ContentData();
-        contentData.setContent(bos.toByteArray());
-        contentData.setAccessType(AccessType.Inline);
-        return contentData;
     }
 }

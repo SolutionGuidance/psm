@@ -73,6 +73,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
      * @param provider the provider to determine how to display
      * @return the model having some instructions on how to present the given provider
      */
+    @Override
     public ViewModel getProviderViewModel(ProviderProfile provider) {
         if (provider == null) {
             throw new IllegalArgumentException("provider cannot be null.");
@@ -379,6 +380,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
      * @param provider the provider to determine how to display
      * @return the model having some instructions on how to present the given provider
      */
+    @Override
     public ViewModel getProviderViewModel(ProviderInformationType provider) {
         if (provider == null) {
             throw new IllegalArgumentException("provider cannot be null.");
@@ -773,6 +775,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
      * @param tabs   the tabs to validate, if null or empty, the entire ticket is checked
      * @return the set of error messages found, empty if the ticket is valid
      */
+    @Override
     public ValidationResponse checkForErrors(EnrollmentType ticket, List<String> tabs) {
         ValidationRequest request = new ValidationRequest();
         if (tabs != null && !tabs.isEmpty()) {

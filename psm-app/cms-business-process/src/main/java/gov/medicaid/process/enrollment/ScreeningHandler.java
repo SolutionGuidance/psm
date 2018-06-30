@@ -21,22 +21,17 @@ import gov.medicaid.domain.model.EnrollmentProcess;
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.ValidationResultType;
-import gov.medicaid.domain.rules.CMSKnowledgeUtility;
-import gov.medicaid.domain.rules.GlobalLookups;
-import gov.medicaid.domain.rules.inference.LookupEntry;
+import gov.medicaid.domain.rules.RulesExecutor;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.XMLAdapter;
-
-import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
 
 import javax.persistence.EntityManager;
-
-import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -77,36 +72,25 @@ public class ScreeningHandler extends GenericHandler {
      * @param item    the work item to abort
      * @param manager the work item manager
      */
-    public void executeWorkItem(WorkItem item, WorkItemManager manager) {
+    public void executeWorkItem(
+        WorkItem item,
+        WorkItemManager manager
+    ) {
         logger.info("Screening the provider.");
-        EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
-
+        EnrollmentProcess processModel =
+            (EnrollmentProcess) item.getParameter("model");
         ValidationResultType validationResult = new ValidationResultType();
         XMLUtility.nsGetScreeningResults(processModel).setAutomaticScreeningStatus(
             validationResult);
-        StatefulKnowledgeSession ksession = CMSKnowledgeUtility.newScreeningValidationSession();
-
-        // known facts for screening
-        ksession.insert(processModel.getPostSubmissionInformation());
-        EnrollmentType enrollment = processModel.getEnrollment();
-        ksession.insert(enrollment);
-        ksession.insert(enrollment.getProviderInformation());
-        ksession.insert(enrollment.getProviderInformation().getVerificationStatus());
-        ksession.insert(processModel.getProcessResults().getScreeningResults());
-        ksession.insert(validationResult);
-        List<LookupEntry> allLookupEntries = GlobalLookups.getInstance().getAllLookupEntries();
-        for (LookupEntry lookupEntry : allLookupEntries) {
-            ksession.insert(lookupEntry);
-        }
-
-        ksession.fireAllRules();
-
-        // merge rule changes to the model
         try {
+            RulesExecutor.executeProviderScreeningRules(processModel,
+                validationResult);
+            EnrollmentType enrollment = processModel.getEnrollment();
             providerService.saveEnrollmentDetails(
                 XMLAdapter.fromXML(systemUser, enrollment));
             long ticketId = Long.parseLong(enrollment.getObjectId());
-            ProviderInformationType providerInformation = enrollment.getProviderInformation();
+            ProviderInformationType providerInformation =
+                enrollment.getProviderInformation();
             // transient field (should really add to DB)
             String reviewer = providerInformation.getReviewedBy();
             ProviderInformationType updatedInfo = XMLAdapter.toXML(
@@ -115,7 +99,7 @@ public class ScreeningHandler extends GenericHandler {
             updatedInfo.setReviewedBy(reviewer);
             enrollment.setProviderInformation(updatedInfo);
         } catch (PortalServiceException e) {
-            logger.log(java.util.logging.Level.SEVERE, e.getMessage(), e);
+            logger.log(Level.SEVERE, e.getMessage(), e);
         }
 
         // reset validation results

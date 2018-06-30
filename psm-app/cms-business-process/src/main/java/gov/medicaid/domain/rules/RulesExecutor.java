@@ -1,5 +1,7 @@
 package gov.medicaid.domain.rules;
 
+import gov.medicaid.domain.model.EnrollmentProcess;
+import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.UISection;
 import gov.medicaid.domain.model.ValidationRequest;
@@ -69,5 +71,36 @@ public class RulesExecutor {
             }
         }
         return validationResponse;
+    }
+
+    public static void executeProviderScreeningRules(
+        EnrollmentProcess enrollmentProcess,
+        ValidationResultType validationResultType
+    ) {
+        StatefulKnowledgeSession ksession =
+            CMSKnowledgeUtility.newScreeningValidationSession();
+        try {
+            ksession.insert(enrollmentProcess.getPostSubmissionInformation());
+            EnrollmentType enrollmentType = enrollmentProcess.getEnrollment();
+            ksession.insert(enrollmentType);
+            ksession.insert(enrollmentType.getProviderInformation());
+            ksession.insert(
+                enrollmentType.getProviderInformation().getVerificationStatus());
+            ksession.insert(enrollmentProcess.getProcessResults().getScreeningResults());
+            ksession.insert(validationResultType);
+            List<LookupEntry> allLookupEntries = GlobalLookups.getInstance().getAllLookupEntries();
+            for (LookupEntry thisLookupEntry : allLookupEntries) {
+                ksession.insert(thisLookupEntry);
+            }
+            ksession.fireAllRules();
+        } finally {
+            if (ksession != null) {
+                try {
+                    ksession.dispose();
+                } catch (Throwable t) {
+                    logger.log(Level.SEVERE, "Could not close session.", t);
+                }
+            }
+        }
     }
 }

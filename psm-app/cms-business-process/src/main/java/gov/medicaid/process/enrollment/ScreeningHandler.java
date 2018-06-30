@@ -74,7 +74,7 @@ public class ScreeningHandler extends GenericHandler {
     /**
      * Runs the screening rules.
      *
-     * @param item the work item to abort
+     * @param item    the work item to abort
      * @param manager the work item manager
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
@@ -82,7 +82,8 @@ public class ScreeningHandler extends GenericHandler {
         EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
 
         ValidationResultType validationResult = new ValidationResultType();
-        XMLUtility.nsGetScreeningResults(processModel).setAutomaticScreeningStatus(validationResult);
+        XMLUtility.nsGetScreeningResults(processModel).setAutomaticScreeningStatus(
+            validationResult);
         StatefulKnowledgeSession ksession = CMSKnowledgeUtility.newScreeningValidationSession();
 
         // known facts for screening
@@ -102,11 +103,15 @@ public class ScreeningHandler extends GenericHandler {
 
         // merge rule changes to the model
         try {
-            providerService.saveEnrollmentDetails(XMLAdapter.fromXML(systemUser, enrollment));
+            providerService.saveEnrollmentDetails(
+                XMLAdapter.fromXML(systemUser, enrollment));
             long ticketId = Long.parseLong(enrollment.getObjectId());
             ProviderInformationType providerInformation = enrollment.getProviderInformation();
-            String reviewer = providerInformation.getReviewedBy(); // transient field (should really add to DB)
-            ProviderInformationType updatedInfo = XMLAdapter.toXML(providerService.getTicketDetails(systemUser, ticketId)).getProviderInformation();
+            // transient field (should really add to DB)
+            String reviewer = providerInformation.getReviewedBy();
+            ProviderInformationType updatedInfo = XMLAdapter.toXML(
+                providerService.getTicketDetails(systemUser,
+                    ticketId)).getProviderInformation();
             updatedInfo.setReviewedBy(reviewer);
             enrollment.setProviderInformation(updatedInfo);
         } catch (PortalServiceException e) {

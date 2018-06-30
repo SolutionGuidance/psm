@@ -42,7 +42,9 @@ import javax.transaction.UserTransaction;
 /**
  * This class is used to configure and execute CMS Business rules.
  *
- * v1.1 - WAS Porting - pass reference to user transaction when invoking BPMN, add flag to use guvnor
+ * v1.1 - WAS Porting - pass reference to user transaction when invoking BPMN,
+ * add flag to use guvnor
+ *
  * @author TCSASSEMBLER
  * @version 1.1
  */
@@ -82,19 +84,31 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
      * @see gov.medicaid.domain.rules.KnowledgeDelegate#newWorkflowSession()
      */
     @Override
-    public StatefulKnowledgeSession newWorkflowSession(EntityManagerFactory entityManagerFactory, UserTransaction utx) {
-        StatefulKnowledgeSession ksession = JPAKnowledgeService.newStatefulKnowledgeSession(processKnowledgeBase, null,
-            createEnvironment(entityManagerFactory, utx));
-        LocalTaskService client = new LocalTaskService(new TaskService(entityManagerFactory,
-            SystemEventListenerFactory.getSystemEventListener()));
+    public StatefulKnowledgeSession newWorkflowSession(
+        EntityManagerFactory entityManagerFactory,
+        UserTransaction utx
+    ) {
+        StatefulKnowledgeSession ksession =
+            JPAKnowledgeService.newStatefulKnowledgeSession(
+                processKnowledgeBase, null,
+                createEnvironment(entityManagerFactory, utx));
+        LocalTaskService client = new LocalTaskService(
+            new TaskService(entityManagerFactory,
+                SystemEventListenerFactory.getSystemEventListener()));
         ksession.getWorkItemManager().registerWorkItemHandler("Human Task",
             new LocalHumanTaskHandler(ksession, client));
         return ksession;
     }
 
     @Override
-    public StatefulKnowledgeSession reloadWorkflowSession(int sessionId, EntityManagerFactory factory, UserTransaction utx) {
-        StatefulKnowledgeSession ksession = JPAKnowledgeService.loadStatefulKnowledgeSession(sessionId, processKnowledgeBase, null,
+    public StatefulKnowledgeSession reloadWorkflowSession(
+        int sessionId,
+        EntityManagerFactory factory,
+        UserTransaction utx
+    ) {
+        StatefulKnowledgeSession ksession =
+            JPAKnowledgeService.loadStatefulKnowledgeSession(
+            sessionId, processKnowledgeBase, null,
             createEnvironment(factory, utx));
         return ksession;
     }
@@ -106,7 +120,8 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
      */
     private KnowledgeBase readProcessKnowledgeBase() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        kbuilder.add(ResourceFactory.newClassPathResource("EnrollmentProcess.bpmn"), ResourceType.BPMN2);
+        kbuilder.add(ResourceFactory.newClassPathResource("EnrollmentProcess.bpmn"),
+            ResourceType.BPMN2);
         return kbuilder.newKnowledgeBase();
     }
 
@@ -117,7 +132,10 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
      * @param utx
      * @return a new environment
      */
-    private Environment createEnvironment(EntityManagerFactory emf, UserTransaction utx) {
+    private Environment createEnvironment(
+        EntityManagerFactory emf,
+        UserTransaction utx
+    ) {
         Environment env = EnvironmentFactory.newEnvironment();
         env.set(EnvironmentName.ENTITY_MANAGER_FACTORY, emf);
         env.set(EnvironmentName.APP_SCOPED_ENTITY_MANAGER, emf.createEntityManager());
@@ -140,9 +158,11 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
     private KnowledgeBase readScreeningKnowledgeBase() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
         if (useGuvnor) {
-            kbuilder.add(ResourceFactory.newClassPathResource("ScreeningRules.xml"), ResourceType.CHANGE_SET);
+            kbuilder.add(ResourceFactory.newClassPathResource("ScreeningRules.xml"),
+                ResourceType.CHANGE_SET);
         } else {
-            kbuilder.add(ResourceFactory.newClassPathResource("cms.screening.drl"), ResourceType.DRL);
+            kbuilder.add(ResourceFactory.newClassPathResource("cms.screening.drl"),
+                ResourceType.DRL);
         }
 
         KnowledgeBuilderErrors errors = kbuilder.getErrors();
@@ -165,11 +185,15 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
     private KnowledgeBase readValidationKnowledgeBase() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
         if (useGuvnor) {
-            kbuilder.add(ResourceFactory.newClassPathResource("ValidationRules.xml"), ResourceType.CHANGE_SET);
+            kbuilder.add(ResourceFactory.newClassPathResource("ValidationRules.xml"),
+                ResourceType.CHANGE_SET);
         } else {
-            kbuilder.add(ResourceFactory.newClassPathResource("cms.dsl"), ResourceType.DSL);
-            kbuilder.add(ResourceFactory.newClassPathResource("cms.validation.dslr"), ResourceType.DSLR);
-            kbuilder.add(ResourceFactory.newClassPathResource("cms.validation.drl"), ResourceType.DRL);
+            kbuilder.add(ResourceFactory.newClassPathResource("cms.dsl"),
+                ResourceType.DSL);
+            kbuilder.add(ResourceFactory.newClassPathResource("cms.validation.dslr"),
+                ResourceType.DSLR);
+            kbuilder.add(ResourceFactory.newClassPathResource("cms.validation.drl"),
+                ResourceType.DRL);
         }
 
         KnowledgeBuilderErrors errors = kbuilder.getErrors();

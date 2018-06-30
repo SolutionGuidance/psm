@@ -83,7 +83,8 @@ import static java.util.logging.Level.SEVERE;
 @Stateless
 @Local(BusinessProcessService.class)
 @TransactionManagement(TransactionManagementType.BEAN)
-public class BusinessProcessServiceBean extends BaseService implements BusinessProcessService {
+public class BusinessProcessServiceBean extends BaseService
+    implements BusinessProcessService {
     private final Logger logger = Logger.getLogger(getClass().getName());
 
     /**
@@ -137,11 +138,11 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         handlers.put("Validate", new ValidationHandler());
         handlers.put("Reject Application", new RejectedHandler());
         handlers.put(
-                "Check Excluded Provider List in OIG",
-                new ExcludedProvidersScreeningHandler(
-                        config.getLeieApiBaseUrl(),
-                        config.getPortalEntityManager()
-                )
+            "Check Excluded Provider List in OIG",
+            new ExcludedProvidersScreeningHandler(
+                config.getLeieApiBaseUrl(),
+                config.getPortalEntityManager()
+            )
         );
         handlers.put("Auto Screening", new ScreeningHandler());
         handlers.put("Accept Application", new AcceptedHandler(notificationService));
@@ -159,7 +160,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
      * @throws Exception for any errors encountered
      */
     private long enroll(
-            EnrollmentType enrollment
+        EnrollmentType enrollment
     ) throws Exception {
         StatefulKnowledgeSession ksession = null;
         UserTransaction utx = context.getUserTransaction();
@@ -173,7 +174,8 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             ksession = CMSKnowledgeUtility.newWorkflowSession(getEmf(), utx);
             Set<Entry<String, WorkItemHandler>> entrySet = handlers.entrySet();
             for (Entry<String, WorkItemHandler> entry : entrySet) {
-                ksession.getWorkItemManager().registerWorkItemHandler(entry.getKey(), entry.getValue());
+                ksession.getWorkItemManager().registerWorkItemHandler(entry.getKey(),
+                    entry.getValue());
             }
 
             Map<String, Object> params = new HashMap<>();
@@ -183,7 +185,8 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             params.put("model", processModel);
             ksession.insert(processModel);
             ksession.addEventListener(new EnrollmentMonitor());
-            ProcessInstance process = ksession.startProcess("gov.medicaid.process.enrollment", params);
+            ProcessInstance process = ksession.startProcess(
+                "gov.medicaid.process.enrollment", params);
             if (utx.getStatus() == Status.STATUS_ACTIVE && owner) {
                 utx.commit();
             }
@@ -200,8 +203,8 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     }
 
     private void resubmit(
-            CMSUser user,
-            EnrollmentProcess processModel
+        CMSUser user,
+        EnrollmentProcess processModel
     ) throws Exception {
         StatefulKnowledgeSession ksession = null;
         UserTransaction utx = context.getUserTransaction();
@@ -210,7 +213,8 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             ksession = CMSKnowledgeUtility.newWorkflowSession(getEmf(), utx);
             Set<Entry<String, WorkItemHandler>> entrySet = handlers.entrySet();
             for (Entry<String, WorkItemHandler> entry : entrySet) {
-                ksession.getWorkItemManager().registerWorkItemHandler(entry.getKey(), entry.getValue());
+                ksession.getWorkItemManager().registerWorkItemHandler(entry.getKey(),
+                    entry.getValue());
             }
 
             Map<String, Object> params = new HashMap<>();
@@ -218,10 +222,12 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             params.put("model", processModel);
             ksession.insert(processModel);
             ksession.addEventListener(new EnrollmentMonitor());
-            ProcessInstance process = ksession.startProcess("gov.medicaid.process.enrollment", params);
+            ProcessInstance process = ksession.startProcess(
+                "gov.medicaid.process.enrollment", params);
             long processId = process.getId();
             String ticketId = processModel.getEnrollment().getObjectId();
-            Enrollment ticket = providerService.getTicketDetails(getSystemUser(), Long.parseLong(ticketId));
+            Enrollment ticket = providerService.getTicketDetails(getSystemUser(),
+                Long.parseLong(ticketId));
             ticket.setProcessInstanceId(processId);
             ticket.setLastUpdatedBy(user);
             getEm().merge(ticket);
@@ -248,16 +254,18 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
      * @throws Exception for any errors encountered
      */
     public List<TaskSummary> getAvailableTasks(
-            String username,
-            List<String> roles
+        String username,
+        List<String> roles
     ) throws Exception {
         UserTransaction utx = context.getUserTransaction();
         LocalTaskService client = null;
         try {
             utx.begin();
-            client = new LocalTaskService(new TaskService(getEmf(), SystemEventListenerFactory.getSystemEventListener()));
+            client = new LocalTaskService(new TaskService(getEmf(),
+                SystemEventListenerFactory.getSystemEventListener()));
             utx.commit();
-            return client.getTasksAssignedAsPotentialOwner("Administrator", roles, LOCALE);
+            return client.getTasksAssignedAsPotentialOwner("Administrator", roles,
+                LOCALE);
         } finally {
             if (client != null) {
                 client.dispose();
@@ -273,7 +281,8 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
      * @throws Exception for any errors encountered
      */
     public EnrollmentProcess getTaskModel(long taskId) throws Exception {
-        LocalTaskService client = new LocalTaskService(new TaskService(getEmf(), SystemEventListenerFactory.getSystemEventListener()));
+        LocalTaskService client = new LocalTaskService(new TaskService(getEmf(),
+            SystemEventListenerFactory.getSystemEventListener()));
         try {
             return getEnrollmentForReview(client, taskId);
         } finally {
@@ -293,17 +302,18 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
      * @throws Exception for any errors encountered
      */
     public void completeReview(
-            final long taskId,
-            String approver,
-            List<String> roles,
-            final ProviderInformationType updates,
-            boolean reject,
-            String comment
+        final long taskId,
+        String approver,
+        List<String> roles,
+        final ProviderInformationType updates,
+        boolean reject,
+        String comment
     ) throws Exception {
         UserTransaction utx = context.getUserTransaction();
         utx.begin();
         String username = "Administrator";
-        LocalTaskService client = new LocalTaskService(new TaskService(getEmf(), SystemEventListenerFactory.getSystemEventListener()));
+        LocalTaskService client = new LocalTaskService(new TaskService(getEmf(),
+            SystemEventListenerFactory.getSystemEventListener()));
         StatefulKnowledgeSession ksession = null;
         try {
             client.claim(taskId, username, roles);
@@ -350,9 +360,9 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
      * @return the reloaded session
      */
     private StatefulKnowledgeSession reloadSessionById(
-            UserTransaction utx,
-            LocalTaskService client,
-            EnrollmentProcess processModel
+        UserTransaction utx,
+        LocalTaskService client,
+        EnrollmentProcess processModel
     ) {
         StatefulKnowledgeSession ksession = null;
 
@@ -364,7 +374,8 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             ksession.getWorkItemManager().registerWorkItemHandler("Human Task", handler);
             Set<Entry<String, WorkItemHandler>> entrySet = handlers.entrySet();
             for (Entry<String, WorkItemHandler> entry : entrySet) {
-                ksession.getWorkItemManager().registerWorkItemHandler(entry.getKey(), entry.getValue());
+                ksession.getWorkItemManager().registerWorkItemHandler(entry.getKey(),
+                    entry.getValue());
             }
             ksession.signalEvent("Trigger", null);
         }
@@ -372,27 +383,31 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     }
 
     public void updateRequest(
-            EnrollmentType ticket,
-            CMSUser user
+        EnrollmentType ticket,
+        CMSUser user
     ) throws Exception {
         UserTransaction utx = context.getUserTransaction();
         final ProviderInformationType updates = ticket.getProviderInformation();
 
         if (user.getRole().getDescription().equals(ViewStatics.ROLE_PROVIDER)) {
             if (!user.getUserId().equals(ticket.getSubmittedBy())) {
-                throw new PortalServiceException("Only the submitter and administrators are allowed to modify pending submissions.");
+                throw new PortalServiceException(
+                    "Only the submitter and administrators " +
+                        "are allowed to modify pending submissions.");
             }
         }
 
         // use process admin to recall submission
         String username = "Administrator";
         List<String> adminRole = Arrays.asList(
-                ViewStatics.ROLE_SERVICE_ADMINISTRATOR
+            ViewStatics.ROLE_SERVICE_ADMINISTRATOR
         );
 
-        LocalTaskService client = new LocalTaskService(new TaskService(getEmf(), SystemEventListenerFactory.getSystemEventListener()));
+        LocalTaskService client = new LocalTaskService(new TaskService(getEmf(),
+            SystemEventListenerFactory.getSystemEventListener()));
 
-        List<TaskSummary> tasks = client.getTasksAssignedAsPotentialOwner(username, adminRole, "en-UK", -1, -1);
+        List<TaskSummary> tasks = client.getTasksAssignedAsPotentialOwner(username,
+            adminRole, "en-UK", -1, -1);
         long taskId = 0;
         for (TaskSummary taskSummary : tasks) {
             if (ticket.getProcessInstanceId() == taskSummary.getProcessInstanceId()) {
@@ -425,11 +440,14 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
                 processModel.getEnrollment().getSubmissionEditHistory().add(editHistory);
             }
 
-            processModel.getEnrollment().getProviderInformation().setReviewedBy(user.getUserId());
+            processModel.getEnrollment().getProviderInformation().setReviewedBy(
+                user.getUserId());
             // reset verification whenever the request is resubmitted
-            processModel.getEnrollment().getProviderInformation().setVerificationStatus(new VerificationStatusType());
+            processModel.getEnrollment().getProviderInformation().setVerificationStatus(
+                new VerificationStatusType());
 
-            XMLUtility.moveToStatus(processModel, username, "PENDING", "Request was resubmitted with changes.");
+            XMLUtility.moveToStatus(processModel, username, "PENDING",
+                "Request was resubmitted with changes.");
             client.start(taskId, username);
 
             // recall/abort request
@@ -453,8 +471,8 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
      */
     @SuppressWarnings("unchecked")
     private EnrollmentProcess getEnrollmentForReview(
-            LocalTaskService client,
-            long taskId
+        LocalTaskService client,
+        long taskId
     ) throws IOException, ClassNotFoundException {
         Task task = client.getTask(taskId);
         Content content = client.getContent(task.getTaskData().getDocumentContentId());
@@ -473,18 +491,20 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
      * @throws PortalServiceException for any errors encountered
      */
     public void submitTicket(
-            CMSUser user,
-            long ticketId
+        CMSUser user,
+        long ticketId
     ) throws PortalServiceException {
         UserTransaction ut = context.getUserTransaction();
         try {
             Enrollment ticket = providerService.getTicketDetails(user, ticketId);
 
             if (!ViewStatics.DRAFT_STATUS.equals(ticket.getStatus().getDescription())) {
-                throw new PortalServiceException("Cannot submit ticket because it is not in draft status.");
+                throw new PortalServiceException(
+                    "Cannot submit ticket because it is not in draft status.");
             }
 
-            ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.PENDING_STATUS));
+            ticket.setStatus(findLookupByDescription(EnrollmentStatus.class,
+                ViewStatics.PENDING_STATUS));
             ticket.setSubmittedBy(user);
             ticket.setSubmissionDate(Calendar.getInstance().getTime());
             ticket.setStatusDate(Calendar.getInstance().getTime());
@@ -495,7 +515,8 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
                     ticket.setProcessInstanceId(processInstance);
                 }
             } catch (Exception e) {
-                throw new PortalServiceException("Submission caused an error, see logs for details.", e);
+                throw new PortalServiceException(
+                    "Submission caused an error, see logs for details.", e);
             }
 
             ut.begin();
@@ -503,18 +524,19 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             getEm().merge(ticket);
             ut.commit();
         } catch (Exception e) {
-            throw new PortalServiceException("Submission caused an error, see logs for details.", e);
+            throw new PortalServiceException(
+                "Submission caused an error, see logs for details.", e);
         }
     }
 
     private boolean isEnrollmentRequest(Enrollment ticket) {
         List<String> enrollmentRequestTypes = Arrays.asList(
-                ViewStatics.ENROLLMENT_REQUEST,
-                ViewStatics.RENEWAL_REQUEST,
-                ViewStatics.UPDATE_REQUEST
+            ViewStatics.ENROLLMENT_REQUEST,
+            ViewStatics.RENEWAL_REQUEST,
+            ViewStatics.UPDATE_REQUEST
         );
         return enrollmentRequestTypes.contains(
-                ticket.getRequestType().getDescription()
+            ticket.getRequestType().getDescription()
         );
     }
 
@@ -526,8 +548,8 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
      * @throws IOException if the objects cannot be written.
      */
     private ContentData marshalContent(
-            EnrollmentProcess processModel,
-            String isAbort
+        EnrollmentProcess processModel,
+        String isAbort
     ) throws IOException {
         Map<String, Object> data = new HashMap<>();
         data.put("model", processModel);

@@ -25,6 +25,7 @@ import javax.transaction.UserTransaction;
  * This class is used to configure and execute CMS Business rules.
  *
  * v1.1 - WAS Porting - pass reference to user transaction when invoking BPMN
+ *
  * @author TCSASSEMBLER
  * @version 1.1
  */
@@ -43,12 +44,15 @@ public class CMSKnowledgeUtility {
 
     /**
      * Creates a new business process session for CMS workflow.
+     *
      * @param entityManager
      * @param utx
-     *
      * @return the session created
      */
-    public static StatefulKnowledgeSession newWorkflowSession(EntityManagerFactory entityManager, UserTransaction utx) {
+    public static StatefulKnowledgeSession newWorkflowSession(
+        EntityManagerFactory entityManager,
+        UserTransaction utx
+    ) {
         return knowledge.newWorkflowSession(entityManager, utx);
     }
 
@@ -73,9 +77,14 @@ public class CMSKnowledgeUtility {
     /**
      * @param sessionId
      * @return
-     * @see gov.medicaid.domain.rules.KnowledgeDelegate#reloadWorkflowSession(int)
+     * @see gov.medicaid.domain.rules.KnowledgeDelegate#reloadWorkflowSession(int,
+     * EntityManagerFactory, UserTransaction)
      */
-    public static StatefulKnowledgeSession reloadWorkflowSession(int sessionId, EntityManagerFactory factory, UserTransaction utx) {
+    public static StatefulKnowledgeSession reloadWorkflowSession(
+        int sessionId,
+        EntityManagerFactory factory,
+        UserTransaction utx
+    ) {
         return knowledge.reloadWorkflowSession(sessionId, factory, utx);
     }
 }

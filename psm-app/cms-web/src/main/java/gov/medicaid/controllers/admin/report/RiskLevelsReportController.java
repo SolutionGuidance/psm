@@ -3,6 +3,8 @@ package gov.medicaid.controllers.admin.report;
 import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentSearchCriteria;
+import gov.medicaid.entities.ProviderProfile;
+import gov.medicaid.entities.RiskLevel;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
@@ -22,9 +24,10 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Controller
@@ -119,22 +122,30 @@ public class RiskLevelsReportController extends gov.medicaid.controllers.BaseCon
     }
 
     public static class RiskLevelsMonth {
-        private Map<String, Integer> numByRiskLevel;
+        private Map<String, Long> numByRiskLevel;
         private LocalDate month;
 
         public RiskLevelsMonth(EnrollmentMonth em, ProviderEnrollmentService enrollmentService2) {
-            numByRiskLevel = new HashMap<>();
-            RISK_LEVELS.stream().forEach(l -> numByRiskLevel.put(l, 0));
+            numByRiskLevel = RISK_LEVELS.stream().collect(Collectors.toMap(
+                Function.identity(),
+                x -> 0L
+            ));
             month = em.getMonth();
 
-            em.getEnrollments().stream().forEach(e -> {
-                numByRiskLevel.computeIfPresent(
-                    enrollmentService2.getProviderDetailsByTicket(e.getTicketId(), false)
-                        .getRiskLevel().getDescription(),
-                    (k, v) -> v + 1); });
+            numByRiskLevel.putAll(em.getEnrollments().stream()
+                .map(Enrollment::getTicketId)
+                .map(id -> enrollmentService2.getProviderDetailsByTicket(id, false))
+                .map(ProviderProfile::getRiskLevel)
+                .filter(Objects::nonNull)
+                .map(RiskLevel::getDescription)
+                .collect(Collectors.groupingBy(
+                    Function.identity(),
+                    Collectors.counting()
+                ))
+            );
         }
 
-        public int getNum(String riskLevel) {
+        public long getNum(String riskLevel) {
             return numByRiskLevel.get(riskLevel);
         }
 

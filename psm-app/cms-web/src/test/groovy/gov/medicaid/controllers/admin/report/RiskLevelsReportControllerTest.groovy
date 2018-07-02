@@ -141,4 +141,25 @@ class RiskLevelsReportControllerTest extends Specification {
         mv["months"][2].month == noonMiddleThisMonth.minusMonths(2).withDayOfMonth(1).toLocalDate()
         mv["months"][2].getNum(ViewStatics.MODERATE_RISK) == 1
     }
+
+    def "enrollment without risk level does not cause exceptions"() {
+        given:
+        def results = new SearchResult<Enrollment>()
+        results.setItems([
+            makeEnrollment(1, noonMiddleThisMonth),
+        ])
+        1 * enrollmentService.searchEnrollments(_) >> results
+        enrollmentService.getProviderDetailsByTicket(1, false) >>
+            new ProviderProfile()
+
+        when:
+        def mv = controller.getRiskLevels().model
+
+        then:
+        mv["months"].size == 1
+        mv["months"][0].month == noonMiddleThisMonth.withDayOfMonth(1).toLocalDate()
+        mv["months"][0].getNum(ViewStatics.LOW_RISK) == 0
+        mv["months"][0].getNum(ViewStatics.MODERATE_RISK) == 0
+        mv["months"][0].getNum(ViewStatics.HIGH_RISK) == 0
+    }
 }

@@ -58,8 +58,6 @@ Feature: General Accessibility Checks
     And I am on the Account Setup page
     Then I should have no accessibility issues
 
-  # issue #687 sometimes fails, 'no submit button for form'
-  @ignore
   Scenario: Advanced Search Page
     Given I am logged in as a provider
     And I am on the Advanced Search page

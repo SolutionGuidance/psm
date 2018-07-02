@@ -17,24 +17,15 @@
 package gov.medicaid.controllers.admin;
 
 import gov.medicaid.entities.ScreeningSchedule;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ScreeningService;
-
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * <p>
@@ -48,43 +39,10 @@ import java.util.Locale;
  * @version 1.0
  */
 public class ScreeningScheduleController extends BaseServiceAdminController {
+    private final ScreeningService screeningService;
 
-    /**
-     * Represents the screening schedule service. It is managed with a getter and setter. It may have any value, but is
-     * expected to be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to
-     * change after dependency injection.
-     */
-    private ScreeningService screeningService;
-
-    /**
-     * Empty constructor.
-     */
-    public ScreeningScheduleController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException If there are required injection fields that are not injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-
-        if (screeningService == null) {
-            throw new PortalServiceConfigurationException("screeningService must be configured.");
-        }
-    }
-
-    /**
-     * This method is used to convert the date field.
-     *
-     * @param binder the WebDataBinder instance
-     */
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US);
-        binder.registerCustomEditor(Date.class, "upcomingScreeningDate", new CustomDateEditor(dateFormat, false));
+    public ScreeningScheduleController(ScreeningService screeningService) {
+        this.screeningService = screeningService;
     }
 
     /**
@@ -96,7 +54,10 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
      * @endpoint "/admin/getScreeningSchedule"
      * @verb GET
      */
-    @RequestMapping(value = "/admin/getScreeningSchedule", method = RequestMethod.GET)
+    @RequestMapping(
+        value = "/admin/getScreeningSchedule",
+        method = RequestMethod.GET
+    )
     public ModelAndView get() throws PortalServiceException {
         ScreeningSchedule schedule = screeningService.getScreeningSchedule();
         ModelAndView model = new ModelAndView("admin/service_admin_view_schedule");
@@ -114,7 +75,10 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
      * @endpoint "/admin/beginEditScreeningSchedule"
      * @verb GET
      */
-    @RequestMapping(value = "/admin/beginEditScreeningSchedule", method = RequestMethod.GET)
+    @RequestMapping(
+        value = "/admin/beginEditScreeningSchedule",
+        method = RequestMethod.GET
+    )
     public ModelAndView beginEdit() throws PortalServiceException {
         ScreeningSchedule schedule = screeningService.getScreeningSchedule();
         ModelAndView model = new ModelAndView("admin/service_admin_edit_schedule");
@@ -126,16 +90,21 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
      * This action will save the entity.
      *
      * @param schedule the ScreeningSchedule
-     * @param request the http servlet request
      * @return the model and view instance
      * @throws IllegalArgumentException if screeningSchedule is null/empty
      * @throws PortalServiceException If there are any errors in the action
      * @endpoint "/admin/updateScreeningSchedule"
      * @verb POST
      */
-    @RequestMapping(value = "/admin/updateScreeningSchedule", method = RequestMethod.POST)
-    public ModelAndView edit(@ModelAttribute("schedule") ScreeningSchedule schedule, HttpServletRequest request)
-        throws PortalServiceException {
+    @RequestMapping(
+        value = "/admin/updateScreeningSchedule",
+        method = RequestMethod.POST
+    )
+    public ModelAndView edit(
+        @ModelAttribute("schedule") ScreeningSchedule schedule
+    ) throws PortalServiceException {
+        validateSchedule(schedule);
+
         screeningService.saveScreeningSchedule(schedule);
 
         ModelAndView model = new ModelAndView("admin/service_admin_view_schedule");
@@ -144,21 +113,23 @@ public class ScreeningScheduleController extends BaseServiceAdminController {
         return model;
     }
 
-    /**
-     * Getter of screeningService.
-     *
-     * @return the screeningService
-     */
-    public ScreeningService getScreeningService() {
-        return screeningService;
-    }
-
-    /**
-     * Set the screeningService.
-     *
-     * @param screeningService the screeningService to set
-     */
-    public void setScreeningService(ScreeningService screeningService) {
-        this.screeningService = screeningService;
+    private void validateSchedule(ScreeningSchedule schedule) {
+        checkNotNull(schedule, "Schedule is required.");
+        checkNotNull(
+            schedule.getDayOfMonth(),
+            "Day of month is required."
+        );
+        checkArgument(
+            schedule.getDayOfMonth() >= 1 && schedule.getDayOfMonth() <= 28,
+            "Day of month must be between 1 and 28."
+        );
+        checkNotNull(
+            schedule.getHourOfDay(),
+            "Hour of day is required."
+        );
+        checkArgument(
+            schedule.getHourOfDay() >= 0 && schedule.getHourOfDay() < 24,
+            "Hour of day must be between 0 and 23."
+        );
     }
 }

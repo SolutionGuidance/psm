@@ -1578,4 +1578,42 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue740-alter-screening-schedules">
+    <dropColumn tableName="screening_schedules"
+      columnName="upcoming_screening_date"/>
+    <dropColumn tableName="screening_schedules"
+      columnName="interval_value"/>
+    <dropColumn tableName="screening_schedules"
+      columnName="interval_type"/>
+    <addColumn tableName="screening_schedules">
+      <column name="day_of_month"
+        type="int"/>
+      <column name="hour_of_day"
+        type="int"/>
+    </addColumn>
+    <sql>
+      ALTER TABLE screening_schedules
+      ADD CONSTRAINT screening_schedules_day_of_month_check
+      CHECK (day_of_month &gt;=1 AND day_of_month &lt;= 31)
+    </sql>
+    <sql>
+      ALTER TABLE screening_schedules
+      ADD CONSTRAINT screening_schedules_hour_of_day_check
+      CHECK (hour_of_day &gt;=0 AND hour_of_day &lt; 24)
+    </sql>
+    <rollback>
+      <dropColumn tableName="screening_schedules"
+        columnName="day_of_month"/>
+      <dropColumn tableName="screening_schedules"
+        columnName="hour_of_day"/>
+      <addColumn tableName="screening_schedules">
+        <column name="upcoming_screening_date"
+          type="date"/>
+        <column name="interval_type"
+          type="text"/>
+        <column name="interval_value"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

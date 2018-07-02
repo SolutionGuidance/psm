@@ -224,51 +224,6 @@ $(document).ready(function () {
         }
       });
 
-  $("#updateScreeningScheduleForm").validate({
-    errorElement: 'p',
-    rules: {
-      interval: {
-            required: true,
-            digits: true
-          },
-      upcomingScreeningDateHourPart: {
-          required: true,
-          digits: true,
-          range: [1, 12]
-        },
-      upcomingScreeningDateMinutePart: {
-          required: true,
-          digits: true,
-          range: [0, 59]
-        }
-    },
-    messages: {
-      interval: {
-          required: "The field 'interval' is required.",
-          digits: "Please enter only digits for 'interval'."
-        },
-      upcomingScreeningDateHourPart: {
-          required: "The hour part of the 'Upcoming screening Time' is required.",
-          digits: "Please enter only digits for 'hour' part of the 'Upcoming screening Time'.",
-          range: "Please enter a value between 1 and 12 for 'hour' part of the 'Upcoming screening Time'."
-        },
-      upcomingScreeningDateMinutePart: {
-            required: "The minute part of the 'Upcoming screening Time' is required.",
-            digits: "Please enter only digits for 'minute' part of the 'Upcoming screening Time'.",
-            range: "Please enter a value between 0 and 59 for 'minute' part of the 'Upcoming screening Time'."
-          }
-    },
-    errorPlacement: function (error, element) {
-        if (element.attr("name") == 'interval') {
-          $(error).insertAfter("#intervalRow");
-        } else if (element.attr("name") == 'upcomingScreeningDateHourPart' || element.attr("name") == 'upcomingScreeningDateMinutePart') {
-          $(error).insertAfter("#screeningTimeRow");
-        } else {
-          error.insertAfter(element);
-        }
-      }
-  });
-
   $("#userForm").validate({
       rules: {
         username: {
@@ -532,17 +487,6 @@ $(document).ready(function () {
             $('#searchForm').submit();
           }
         });
-  });
-
-  $('.saveScheduleBtn').click(function (event) {
-    event.preventDefault();
-    var upcomingScreeningDateDatePart = $("#upcomingScreeningDateDatePart").val();
-    var upcomingScreeningDateHourPart = $("#upcomingScreeningDateHourPart").val();
-    var upcomingScreeningDateMinutePart = $("#upcomingScreeningDateMinutePart").val();
-    var upcomingScreeningDateSelect = $("#upcomingScreeningDateSelect").val();
-    var dateString = upcomingScreeningDateDatePart + " " + upcomingScreeningDateHourPart + ":" + upcomingScreeningDateMinutePart + " " + upcomingScreeningDateSelect;
-    $("#upcomingScreeningDateField").val(dateString);
-    $('#updateScreeningScheduleForm').submit();
   });
 
   jQuery.ajaxSetup({

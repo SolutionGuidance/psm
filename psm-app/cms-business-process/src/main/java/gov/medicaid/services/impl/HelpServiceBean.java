@@ -75,7 +75,7 @@ public class HelpServiceBean extends BaseService implements HelpService {
             getEm().persist(help);
             return help.getId();
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -101,7 +101,7 @@ public class HelpServiceBean extends BaseService implements HelpService {
             }
             getEm().merge(help);
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -118,7 +118,7 @@ public class HelpServiceBean extends BaseService implements HelpService {
         try {
             return getEm().find(HelpItem.class, id);
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -138,7 +138,7 @@ public class HelpServiceBean extends BaseService implements HelpService {
             }
             getEm().remove(item);
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 

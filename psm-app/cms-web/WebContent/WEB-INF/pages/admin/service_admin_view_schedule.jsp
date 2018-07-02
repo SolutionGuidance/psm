@@ -44,20 +44,14 @@
                         <p class="borderBottom">The system will use the following schedule to automatically screen all pending enrollments that have not been manually scheduled for screening.</p>
                       </div>
                       <div class="row">
-                        <label>Upcoming screening date</label>
+                        <label>Day of month to automatically rescreen</label>
                         <span class="floatL"><b>:</b></span>
-                        <span class="marginLeft10"><fmt:formatDate value="${schedule.upcomingScreeningDate}" pattern="MM / dd / yyyy hh:mm a"/></span>
+                        <span class="marginLeft10">${schedule.dayOfMonth}</span>
                       </div>
                       <div class="row">
-                        <label>Screening interval</label>
+                        <label>Hour of day to automatically rescreen</label>
                         <span class="floatL"><b>:</b></span>
-                        <span class="marginLeft10">Every ${schedule.interval}
-                          <c:choose>
-                          <c:when test="${schedule.intervalType=='DAYS'}">day<c:if test="${schedule.interval>1}">s</c:if></c:when>
-                          <c:when test="${schedule.intervalType=='WEEKS'}">week<c:if test="${schedule.interval>1}">s</c:if></c:when>
-                          <c:when test="${schedule.intervalType=='MONTHS'}">month<c:if test="${schedule.interval>1}">s</c:if></c:when>
-                          </c:choose>
-                        </span>
+                        <span class="marginLeft10">${schedule.hourOfDay}:00</span>
                       </div>
                     </div>
                   </div>

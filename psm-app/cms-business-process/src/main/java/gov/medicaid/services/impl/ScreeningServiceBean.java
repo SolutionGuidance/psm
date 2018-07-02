@@ -70,7 +70,7 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
             ScreeningSchedule schedule = getEm().find(ScreeningSchedule.class, SCREENING_SCHEDULE_ID);
             return schedule;
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -87,10 +87,12 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
             throw new IllegalArgumentException("Argument 'screeningSchedule' cannot be null.");
         }
 
+        screeningSchedule.setId(SCREENING_SCHEDULE_ID);
+
         try {
             getEm().merge(screeningSchedule);
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 

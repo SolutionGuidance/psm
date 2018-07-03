@@ -54,10 +54,8 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
     }
 
     void setup() {
-        controller = new ApplicationsByReviewerReportController()
         service = Mock(ProviderEnrollmentService)
-
-        controller.setEnrollmentService(service)
+        controller = new ApplicationsByReviewerReportController(service)
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
     }

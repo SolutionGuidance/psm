@@ -282,7 +282,6 @@
         class="gov.medicaid.controllers.admin.DashboardController"
         parent="BaseServiceAdminController">
     <property name="providerProfileService" ref="ProviderEnrollmentService"/>
-    <property name="helpService" ref="HelpService"/>
     <property name="eventService" ref="EventService"/>
   </bean>
   <bean id="HelpController"

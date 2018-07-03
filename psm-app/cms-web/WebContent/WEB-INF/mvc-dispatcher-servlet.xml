@@ -139,11 +139,7 @@
 
   <bean id="MyProfileController"
         class="gov.medicaid.controllers.MyProfileController"
-        parent="BaseController">
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-    <property name="registrationService" ref="RegistrationService"/>
-    <property name="validator" ref="UpdatePasswordFormValidator"/>
-  </bean>
+        parent="BaseController"/>
 
   <context:component-scan
       base-package="gov.medicaid.controllers.admin" />

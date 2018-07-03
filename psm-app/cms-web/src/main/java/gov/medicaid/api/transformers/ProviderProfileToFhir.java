@@ -15,6 +15,7 @@ import org.hl7.fhir.dstu3.model.Identifier;
 import org.hl7.fhir.dstu3.model.Practitioner;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 
@@ -94,11 +95,15 @@ public class ProviderProfileToFhir implements Function<ProviderProfile, DomainRe
         );
     }
 
-    private ArrayList<Address> addresses(ProviderProfile profile) {
-        ArrayList<Address> addresses = new ArrayList<>();
+    private List<Address> addresses(ProviderProfile profile) {
+        List<Address> addresses = new ArrayList<>();
         EntityAddressToFhirAddress addressTranslator = new EntityAddressToFhirAddress();
 
         List<Affiliation> practitionerAffiliations = profile.getAffiliations();
+        if (practitionerAffiliations == null) {
+            return Collections.emptyList();
+        }
+
         for (Affiliation affiliation : practitionerAffiliations) {
             if (ViewStatics.DISCRIMINATOR_LOCATION.equals(affiliation.getObjectType())) {
                 Address affiliationAddress = addressTranslator.apply(affiliation.getEntity().getContactInformation().getAddress());
@@ -109,11 +114,15 @@ public class ProviderProfileToFhir implements Function<ProviderProfile, DomainRe
         return addresses;
     }
 
-    private ArrayList<ContactPoint> numbers(ProviderProfile profile) {
-        ArrayList<ContactPoint> numbers = new ArrayList<>();
+    private List<ContactPoint> numbers(ProviderProfile profile) {
+        List<ContactPoint> numbers = new ArrayList<>();
         EntityNumberToContactPoint numberTranslator = new EntityNumberToContactPoint();
 
         List<Affiliation> practitionerAffiliations = profile.getAffiliations();
+        if (practitionerAffiliations == null) {
+            return Collections.emptyList();
+        }
+
         for (Affiliation affiliation : practitionerAffiliations) {
             if (ViewStatics.DISCRIMINATOR_LOCATION.equals(affiliation.getObjectType())) {
                 ContactPoint affiliationNumber = numberTranslator.apply(affiliation.getEntity().getContactInformation().getPhoneNumber());

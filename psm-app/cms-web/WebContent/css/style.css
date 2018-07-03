@@ -3936,10 +3936,16 @@ input.text{
 #editAgreementPanel .newEnrollmentPanel{
   border-top:0;
 }
-#addHelpTopicPanel label,#editHelpTopicPanel label,#addAgreementPanel label,#editAgreementPanel label{
+#addHelpTopicPanel label,
+#editHelpTopicPanel label,
+#addAgreementPanel label,
+#editAgreementPanel label{
   width:10%;
 }
-#addHelpTopicPanel .text,#editHelpTopicPanel .text,#addAgreementPanel .text,#editAgreementPanel .text{
+#addHelpTopicPanel .text,
+#editHelpTopicPanel .text,
+#addAgreementPanel .text,
+#editAgreementPanel .text{
   background: url("../i/input-bg.png") repeat-x scroll left top transparent;
   border: 1px solid #7EA5C8;
   font-size:12px;
@@ -3947,10 +3953,14 @@ input.text{
   padding:2px 5px;
   margin-left:10px;
 }
-#addHelpTopicPanel textarea.text,#editHelpTopicPanel textarea.text,#addAgreementPanel textarea.text,#editAgreementPanel textarea.text{
+#addHelpTopicPanel textarea.text,
+#editHelpTopicPanel textarea.text,
+#addAgreementPanel textarea.text,
+#editAgreementPanel textarea.text{
   margin-top:10px;
 }
-#viewHelpTopicPanel p,#viewAgreementPanel p{
+#viewHelpTopicPanel p,
+#viewAgreementPanel p{
   line-height:18px;
 }
 #enrollmentSection #tabAgreement .pagination .left{

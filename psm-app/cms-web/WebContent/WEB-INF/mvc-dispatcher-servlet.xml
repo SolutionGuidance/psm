@@ -135,11 +135,7 @@
 
   <bean id="OnboardingController"
         class="gov.medicaid.controllers.OnboardingController"
-        parent="BaseController">
-    <property name="onboardingService" ref="OnboardingService"/>
-    <property name="registrationService" ref="RegistrationService"/>
-    <property name="validator" ref="AccountLinkFormValidator"/>
-  </bean>
+        parent="BaseController"/>
 
   <bean id="MyProfileController"
         class="gov.medicaid.controllers.MyProfileController"

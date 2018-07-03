@@ -3,23 +3,32 @@ package gov.medicaid.api.transformers
 import gov.medicaid.entities.Entity
 import gov.medicaid.entities.Organization
 import gov.medicaid.entities.Person
+import gov.medicaid.entities.ProviderProfile
 import org.hl7.fhir.dstu3.model.Practitioner
 import spock.lang.Specification
 
 class ProviderProfileToFhirTest extends Specification {
     ProviderProfileToFhir transformer
     Person individual
+    ProviderProfile individualProfile
     Organization organization
+    ProviderProfile organizationProfile
 
     def setup() {
         transformer = new ProviderProfileToFhir()
         individual = new Person()
+        individualProfile = new ProviderProfile([
+            entity: individual
+        ])
         organization = new Organization()
+        organizationProfile = new ProviderProfile([
+            entity: organization
+        ])
     }
 
     def "Individual without ID gets ID 0"() {
         when:
-        def result = transformer.apply(individual)
+        def result = transformer.apply(individualProfile)
 
         then:
         result.getId() == "#0"
@@ -30,7 +39,7 @@ class ProviderProfileToFhirTest extends Specification {
         individual.setNpi("1234567893")
 
         when:
-        def result = transformer.apply(individual) as Practitioner
+        def result = transformer.apply(individualProfile) as Practitioner
 
         then:
         result.getIdentifier().stream().noneMatch({
@@ -43,7 +52,7 @@ class ProviderProfileToFhirTest extends Specification {
         individual.setSsn("333224444")
 
         when:
-        def result = transformer.apply(individual) as Practitioner
+        def result = transformer.apply(individualProfile) as Practitioner
 
         then:
         result.getIdentifier().stream().noneMatch({
@@ -57,7 +66,7 @@ class ProviderProfileToFhirTest extends Specification {
         individual.setSsn("333224444")
 
         when:
-        def result = transformer.apply(individual) as Practitioner
+        def result = transformer.apply(individualProfile) as Practitioner
 
         then:
         result.getIdentifier().stream().anyMatch({
@@ -75,7 +84,7 @@ class ProviderProfileToFhirTest extends Specification {
         individual.setLastName("Last")
 
         when:
-        def result = transformer.apply(individual) as Practitioner
+        def result = transformer.apply(individualProfile) as Practitioner
 
         then:
         result.getName().size() == 1
@@ -102,7 +111,7 @@ class ProviderProfileToFhirTest extends Specification {
         individual.setLastName("Last")
 
         when:
-        def result = transformer.apply(individual) as Practitioner
+        def result = transformer.apply(individualProfile) as Practitioner
 
         then:
         result.getName().size() == 1
@@ -132,7 +141,7 @@ class ProviderProfileToFhirTest extends Specification {
         individual.setSuffix("I")
 
         when:
-        def result = transformer.apply(individual) as Practitioner
+        def result = transformer.apply(individualProfile) as Practitioner
 
         then:
         result.getName().size() == 1
@@ -162,7 +171,7 @@ class ProviderProfileToFhirTest extends Specification {
         individual.setDob(new Date(1985, 6, 25))
 
         when:
-        def result = transformer.apply(individual) as Practitioner
+        def result = transformer.apply(individualProfile) as Practitioner
 
         then:
         result.hasBirthDate()
@@ -171,7 +180,7 @@ class ProviderProfileToFhirTest extends Specification {
 
     def "Individual's date of birth is not set"() {
         when:
-        def result = transformer.apply(individual) as Practitioner
+        def result = transformer.apply(individualProfile) as Practitioner
 
         then:
         !result.hasBirthDate()
@@ -179,7 +188,7 @@ class ProviderProfileToFhirTest extends Specification {
 
     def "Organization without ID gets ID 0"() {
         when:
-        def result = transformer.apply(organization)
+        def result = transformer.apply(organizationProfile)
 
         then:
         result.getId() == "#0"
@@ -190,7 +199,7 @@ class ProviderProfileToFhirTest extends Specification {
         organization.setNpi("1234567893")
 
         when:
-        def result = transformer.apply(organization) as org.hl7.fhir.dstu3.model.Organization
+        def result = transformer.apply(organizationProfile) as org.hl7.fhir.dstu3.model.Organization
 
         then:
         result.getIdentifier().size() == 1
@@ -203,7 +212,7 @@ class ProviderProfileToFhirTest extends Specification {
         organization.setFein("00-1234567")
 
         when:
-        def result = transformer.apply(organization) as org.hl7.fhir.dstu3.model.Organization
+        def result = transformer.apply(organizationProfile) as org.hl7.fhir.dstu3.model.Organization
 
         then:
         result.getIdentifier().size() == 1
@@ -217,7 +226,7 @@ class ProviderProfileToFhirTest extends Specification {
         organization.setFein("00-1234567")
 
         when:
-        def result = transformer.apply(organization) as org.hl7.fhir.dstu3.model.Organization
+        def result = transformer.apply(organizationProfile) as org.hl7.fhir.dstu3.model.Organization
 
         then:
         result.getIdentifier().stream().anyMatch({
@@ -234,7 +243,7 @@ class ProviderProfileToFhirTest extends Specification {
         organization.setName("Organization Name")
 
         when:
-        def result = transformer.apply(organization) as org.hl7.fhir.dstu3.model.Organization
+        def result = transformer.apply(organizationProfile) as org.hl7.fhir.dstu3.model.Organization
 
         then:
         result.getName() == "Organization Name"
@@ -242,10 +251,12 @@ class ProviderProfileToFhirTest extends Specification {
 
     def "Transforming an unexpected class throws"() {
         given:
-        Entity entity = new Entity() {}
+        ProviderProfile entityProfile = new ProviderProfile([
+            entity: new Entity() {}
+        ])
 
         when:
-        transformer.apply(entity)
+        transformer.apply(entityProfile)
 
         then:
         thrown(IllegalArgumentException)

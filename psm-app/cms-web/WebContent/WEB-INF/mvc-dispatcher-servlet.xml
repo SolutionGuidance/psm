@@ -169,23 +169,8 @@
         class="gov.medicaid.controllers.admin.ReportController">
   </bean>
 
-  <bean id="ApplicationsByReviewerReportController"
-        class="gov.medicaid.controllers.admin.report.ApplicationsByReviewerReportController"/>
-
-  <bean id="DraftApplicationsReportController"
-        class="gov.medicaid.controllers.admin.report.DraftApplicationsReportController"/>
-
-  <bean id="TimeToReviewReportController"
-        class="gov.medicaid.controllers.admin.report.TimeToReviewReportController"/>
-
-  <bean id="ProviderTypesReportController"
-        class="gov.medicaid.controllers.admin.report.ProviderTypesReportController"/>
-
-  <bean id="ReviewedDocumentsReportController"
-        class="gov.medicaid.controllers.admin.report.ReviewedDocumentsReportController"/>
-
-  <bean id="RiskLevelsReportController"
-        class="gov.medicaid.controllers.admin.report.RiskLevelsReportController"/>
+  <context:component-scan
+      base-package="gov.medicaid.controllers.admin.report" />
 
   <bean id="RegistrationFormValidator" class="gov.medicaid.controllers.validators.RegistrationFormValidator">
     <property name="registrationService" ref="RegistrationService"/>

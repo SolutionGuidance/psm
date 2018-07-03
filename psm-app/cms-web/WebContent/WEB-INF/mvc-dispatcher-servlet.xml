@@ -127,14 +127,7 @@
 
   <bean id="EnrollmentPageFlowController"
         class="gov.medicaid.controllers.EnrollmentPageFlowController"
-        parent="BaseController">
-    <property name="enrollmentWebService" ref="EnrollmentWebService"/>
-    <property name="presentationService" ref="PresentationService"/>
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-    <property name="exportService" ref="ExportService"/>
-    <property name="lookupService" ref="LookupService"/>
-    <property name="notificationService" ref="NotificationService"/>
-  </bean>
+        parent="BaseController"/>
 
   <bean id="ProviderDashboardController"
         class="gov.medicaid.controllers.ProviderDashboardController"

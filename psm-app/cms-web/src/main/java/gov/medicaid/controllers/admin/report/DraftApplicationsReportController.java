@@ -4,7 +4,6 @@ import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMon
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentSearchCriteria;
 import gov.medicaid.entities.SearchResult;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
@@ -23,18 +21,10 @@ import java.util.List;
 
 @Controller
 public class DraftApplicationsReportController extends gov.medicaid.controllers.BaseController {
-    private ProviderEnrollmentService enrollmentService;
+    private final ProviderEnrollmentService enrollmentService;
 
-    public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
+    public DraftApplicationsReportController(ProviderEnrollmentService enrollmentService) {
         this.enrollmentService = enrollmentService;
-    }
-
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (enrollmentService == null) {
-            throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
-        }
     }
 
     @RequestMapping(value = "/admin/reports/draft-applications", method = RequestMethod.GET)

@@ -172,9 +172,8 @@
   <bean id="ApplicationsByReviewerReportController"
         class="gov.medicaid.controllers.admin.report.ApplicationsByReviewerReportController"/>
 
-  <bean id="DraftApplicationsReportController" class="gov.medicaid.controllers.admin.report.DraftApplicationsReportController">
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-  </bean>
+  <bean id="DraftApplicationsReportController"
+        class="gov.medicaid.controllers.admin.report.DraftApplicationsReportController"/>
 
   <bean id="TimeToReviewReportController" class="gov.medicaid.controllers.admin.report.TimeToReviewReportController">
     <property name="enrollmentService" ref="ProviderEnrollmentService"/>

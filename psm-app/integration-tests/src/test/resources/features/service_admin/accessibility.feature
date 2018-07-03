@@ -13,24 +13,28 @@ Feature: General Accessibility Checks for Admins
     And I am on the Draft page
     And I open the filter panel
     Then I should have no accessibility issues
+    And I should see enrollments
 
   Scenario: Admin Pending Page
     Given I am logged in as an admin
     And I am on the Pending page
     And I open the filter panel
     Then I should have no accessibility issues
+    And I should see enrollments
 
   Scenario: Admin Approved Page
     Given I am logged in as an admin
     And I am on the Approved page
     And I open the filter panel
     Then I should have no accessibility issues
+    And I should see enrollments
 
   Scenario: Admin Denied Page
     Given I am logged in as an admin
     And I am on the Denied page
     And I open the filter panel
     Then I should have no accessibility issues
+    And I should see enrollments
 
   # fails: duplicate IDs
   @ignore
@@ -40,6 +44,7 @@ Feature: General Accessibility Checks for Admins
     And I open the filter panel
     And I open the Write Note modal
     Then I should have no accessibility issues
+    And I should see enrollments
 
   # fails: COS input field needs label or title
   @ignore

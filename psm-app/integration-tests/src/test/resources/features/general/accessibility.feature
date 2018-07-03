@@ -24,24 +24,28 @@ Feature: General Accessibility Checks
     And I am on the Draft page
     When I open the filter panel
     Then I should have no accessibility issues
+    And I should see enrollments
 
   Scenario: Provider Pending Page
     Given I am logged in as a provider
     And I am on the Pending page
     When I open the filter panel
     Then I should have no accessibility issues
+    And I should see enrollments
 
   Scenario: Provider Approved Page
     Given I am logged in as a provider
     And I am on the Approved page
     When I open the filter panel
     Then I should have no accessibility issues
+    And I should see enrollments
 
   Scenario: Provider Denied Page
     Given I am logged in as a provider
     And I am on the Denied page
     When I open the filter panel
     Then I should have no accessibility issues
+    And I should see enrollments
 
   Scenario: My Profile Page
     Given I am logged in as a provider

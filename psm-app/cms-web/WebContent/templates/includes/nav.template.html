@@ -63,9 +63,16 @@
         <div class="searchWidget">
           <a class="advancedSearchLink" href="{{ctx}}/provider/search/advanced">Advanced Search</a>
           <div class="inputContainer">
-            <form action="{{ctx}}/provider/search/quick" method="get">
+            <form action="{{ctx}}/provider/search/quick" method="get" class="quickSearchForm">
               <button class="search" title="Search" aria-label="Search"></button>
-              <input type="text" name="npi" placeholder="Search Keyword" value="{{#if quickSearchNpi }}{{quickSearchNpi}}{{/if}}" title="Search Keyword" />
+              <input
+                type="text"
+                name="npi"
+                placeholder="Search Keyword"
+                class="quickSearchNpi"
+                value="{{#if quickSearchNpi }}{{quickSearchNpi}}{{/if}}"
+                title="Search Keyword"
+              />
             </form>
           </div>
         </div>

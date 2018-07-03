@@ -19,7 +19,6 @@ package gov.medicaid.controllers;
 import gov.medicaid.controllers.forms.RegistrationForm;
 import gov.medicaid.controllers.validators.RegistrationFormValidator;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.Util;
@@ -31,8 +30,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.annotation.PostConstruct;
 
 import java.io.UnsupportedEncodingException;
 
@@ -46,38 +43,15 @@ import java.io.UnsupportedEncodingException;
 @Controller
 @RequestMapping("/accounts/*")
 public class SelfRegistrationController extends BaseController {
+    private final RegistrationService registrationService;
+    private final RegistrationFormValidator validator;
 
-    /**
-     * Registration service.
-     */
-    private RegistrationService registrationService;
-
-    /**
-     * Validator.
-     */
-    private RegistrationFormValidator validator;
-
-    /**
-     * Empty constructor.
-     */
-    public SelfRegistrationController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException - If there are required injection fields that are not injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (registrationService == null) {
-            throw new PortalServiceConfigurationException("registrationService is not configured correctly.");
-        }
-
-        if (validator == null) {
-            throw new PortalServiceConfigurationException("validator is not configured correctly.");
-        }
+    public SelfRegistrationController(
+        RegistrationService registrationService,
+        RegistrationFormValidator validator
+    ) {
+        this.registrationService = registrationService;
+        this.validator = validator;
     }
 
     /**
@@ -176,23 +150,5 @@ public class SelfRegistrationController extends BaseController {
         user.setUsername(registrant.getUsername());
         user.setEmail(registrant.getEmail());
         return user;
-    }
-
-    /**
-     * Sets the value of the field <code>registrationService</code>.
-     *
-     * @param registrationService the registrationService to set
-     */
-    public void setRegistrationService(RegistrationService registrationService) {
-        this.registrationService = registrationService;
-    }
-
-    /**
-     * Sets the value of the field <code>validator</code>.
-     *
-     * @param validator the validator to set
-     */
-    public void setValidator(RegistrationFormValidator validator) {
-        this.validator = validator;
     }
 }

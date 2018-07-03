@@ -116,10 +116,7 @@
 
   <bean id="SelfRegistrationController"
         class="gov.medicaid.controllers.SelfRegistrationController"
-        parent="BaseController">
-    <property name="registrationService" ref="RegistrationService"/>
-    <property name="validator" ref="RegistrationFormValidator"/>
-  </bean>
+        parent="BaseController"/>
 
   <bean id="ForgotPasswordController"
         class="gov.medicaid.controllers.ForgotPasswordController"

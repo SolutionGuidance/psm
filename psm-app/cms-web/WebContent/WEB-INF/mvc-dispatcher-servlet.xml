@@ -243,9 +243,7 @@
   </bean>
   <bean id="AgreementDocumentController"
         class="gov.medicaid.controllers.admin.AgreementDocumentController"
-        parent="BaseServiceAdminController">
-    <property name="agreementDocumentService" ref="AgreementDocumentService"/>
-  </bean>
+        parent="BaseServiceAdminController"/>
   <bean id="AutomaticScreeningController"
         class="gov.medicaid.controllers.admin.AutomaticScreeningController"
         parent="BaseServiceAdminController">

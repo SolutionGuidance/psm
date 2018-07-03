@@ -7,7 +7,6 @@ import gov.medicaid.entities.EnrollmentSearchCriteria;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.RiskLevel;
 import gov.medicaid.entities.dto.ViewStatics;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
@@ -32,24 +30,16 @@ import java.util.stream.Collectors;
 
 @Controller
 public class RiskLevelsReportController extends gov.medicaid.controllers.BaseController {
-    private ProviderEnrollmentService enrollmentService;
-
     private static final List<String> RISK_LEVELS = ImmutableList.of(
         ViewStatics.LOW_RISK,
         ViewStatics.MODERATE_RISK,
         ViewStatics.HIGH_RISK
     );
 
-    public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
-    }
+    private final ProviderEnrollmentService enrollmentService;
 
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (enrollmentService == null) {
-            throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
-        }
+    public RiskLevelsReportController(ProviderEnrollmentService enrollmentService) {
+        this.enrollmentService = enrollmentService;
     }
 
     @RequestMapping(value = "/admin/reports/risk-levels", method = RequestMethod.GET)

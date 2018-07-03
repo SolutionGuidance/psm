@@ -4,14 +4,13 @@ import gov.medicaid.entities.Enrollment;
 import org.hl7.fhir.dstu3.model.DomainResource;
 import org.hl7.fhir.dstu3.model.Reference;
 import org.hl7.fhir.dstu3.model.Task;
-
 import java.util.function.Function;
 
 public class EnrollmentToFhir implements Function<Enrollment, Task> {
     @Override
     public Task apply(Enrollment enrollment) {
-        DomainResource requester = new EntityToFhir().apply(
-                enrollment.getDetails().getEntity()
+        DomainResource requester = new ProviderProfileToFhir().apply(
+                enrollment.getDetails()
         );
 
         Task task = new Task();

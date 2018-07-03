@@ -27,9 +27,9 @@ class ProviderTypesReportControllerTest extends Specification {
     }
 
     void setup() {
-        controller = new ProviderTypesReportController()
         enrollmentService = Mock(ProviderEnrollmentService)
         providerTypeService = Mock(ProviderTypeService)
+        controller = new ProviderTypesReportController(enrollmentService, providerTypeService)
 
         providerTypeService.search(_) >>
                 new SearchResult<ProviderType>(
@@ -42,9 +42,6 @@ class ProviderTypesReportControllerTest extends Specification {
                     ]
                 ]
                 )
-
-        controller.setEnrollmentService(enrollmentService)
-        controller.setProviderTypeService(providerTypeService)
     }
 
     private toDate(d) {

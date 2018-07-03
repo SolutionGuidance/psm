@@ -5,7 +5,6 @@ import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentSearchCriteria;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ProviderTypeSearchCriteria;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.ProviderTypeService;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
@@ -31,26 +29,15 @@ import java.util.stream.Collectors;
 
 @Controller
 public class ProviderTypesReportController extends gov.medicaid.controllers.BaseController {
-    private ProviderEnrollmentService enrollmentService;
-    private ProviderTypeService providerTypeService;
+    private final ProviderEnrollmentService enrollmentService;
+    private final ProviderTypeService providerTypeService;
 
-    public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
+    public ProviderTypesReportController(
+        ProviderEnrollmentService enrollmentService,
+        ProviderTypeService providerTypeService
+    ) {
         this.enrollmentService = enrollmentService;
-    }
-
-    public void setProviderTypeService(ProviderTypeService providerTypeService) {
         this.providerTypeService = providerTypeService;
-    }
-
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (enrollmentService == null) {
-            throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
-        }
-        if (providerTypeService == null) {
-            throw new PortalServiceConfigurationException("providerTypeService is not configured correctly.");
-        }
     }
 
     @RequestMapping(value = "/admin/reports/provider-types", method = RequestMethod.GET)

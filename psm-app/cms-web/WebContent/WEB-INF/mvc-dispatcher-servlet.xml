@@ -131,10 +131,7 @@
 
   <bean id="ProviderDashboardController"
         class="gov.medicaid.controllers.ProviderDashboardController"
-        parent="BaseController">
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-    <property name="exportService" ref="ExportService"/>
-  </bean>
+        parent="BaseController"/>
 
   <bean id="OnboardingController"
         class="gov.medicaid.controllers.OnboardingController"

@@ -30,7 +30,6 @@
           <div class="tabSection" id="advancedSearch">
             <c:set var="enrollmentSearchFormAction" value="${ctx}/provider/search/advanced"/>
             <c:set var="searchResult" value="${results}"/>
-            <c:set var="itemsName" value="Enrollment${searchResult.total>1?'s':''} Found"/>
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_form.jsp" %>
             <div class="detailPanel" id="advancedFilterPanel">
               <div class="section">

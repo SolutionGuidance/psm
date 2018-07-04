@@ -30,4 +30,8 @@ public class DashboardPage extends PsmPage {
         assertThat(getTitle()).isEqualTo("Dashboard");
     }
 
+    public void quickSearch(String npi) {
+        $(".quickSearchNpi").sendKeys(npi);
+        $(".quickSearchForm").submit();
+    }
 }

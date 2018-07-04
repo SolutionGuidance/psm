@@ -24,24 +24,28 @@ Feature: General Accessibility Checks
     And I am on the Draft page
     When I open the filter panel
     Then I should have no accessibility issues
+    And I should see enrollments
 
   Scenario: Provider Pending Page
     Given I am logged in as a provider
     And I am on the Pending page
     When I open the filter panel
     Then I should have no accessibility issues
+    And I should see enrollments
 
   Scenario: Provider Approved Page
     Given I am logged in as a provider
     And I am on the Approved page
     When I open the filter panel
     Then I should have no accessibility issues
+    And I should see enrollments
 
   Scenario: Provider Denied Page
     Given I am logged in as a provider
     And I am on the Denied page
     When I open the filter panel
     Then I should have no accessibility issues
+    And I should see enrollments
 
   Scenario: My Profile Page
     Given I am logged in as a provider
@@ -58,8 +62,6 @@ Feature: General Accessibility Checks
     And I am on the Account Setup page
     Then I should have no accessibility issues
 
-  # issue #687 sometimes fails, 'no submit button for form'
-  @ignore
   Scenario: Advanced Search Page
     Given I am logged in as a provider
     And I am on the Advanced Search page

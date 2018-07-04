@@ -5,7 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en-US">
-  <c:set var="title" value="Dashboard"/>
+  <c:set var="title" value="${listType}"/>
   <h:handlebars template="includes/html_head" context="${pageContext}"/>
   <body>
     <div id="wrapper">
@@ -21,9 +21,10 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            Enrollment
+            <a href="<c:url value='/provider/dashboard/drafts' />">Enrollments</a>
+            <span>${listType}</span>
           </div>
-          <h1>Dashboard</h1>
+          <h1>${listType}</h1>
 
           <div class="tabSection">
             <c:set var="paginatedResults" value="${results}"/>

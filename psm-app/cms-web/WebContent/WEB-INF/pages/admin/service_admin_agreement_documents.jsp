@@ -31,7 +31,6 @@
             <h:handlebars template="admin/includes/functions_service_nav" context="${pageContext}" />
             <div class="tabContent" id="tabAgreement">
               <div id="agreementPanel">
-                <c:set var="itemsName" value="Agreement and AddendumTypes"/>
                 <c:set var="searchResult" value="${agreementDocumentsSearchResult}"/>
 
                 <form:form id="searchForm" action="${ctx}/admin/viewAgreementDocuments" modelAttribute="searchCriteria" method="post">

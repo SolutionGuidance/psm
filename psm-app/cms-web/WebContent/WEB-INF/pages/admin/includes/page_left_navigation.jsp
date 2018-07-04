@@ -19,7 +19,7 @@
 <c:set var="endPageNum" value="${startPageNum+(maxPageNumbersCount-1)>totalPageCount?totalPageCount:startPageNum+(maxPageNumbersCount-1)}"/>
 <c:if test="${searchResult.total > 0}">
     <div class="left topPagination">
-        Displaying <strong>${(currentPageNumber-1)*searchResult.pageSize+1}</strong> - <strong>${searchResult.pageSize == -1 ? searchResult.total : currentPageNumber*searchResult.pageSize>searchResult.total?searchResult.total:currentPageNumber*searchResult.pageSize}</strong> of <strong>${searchResult.total}</strong> ${itemsName} | Show:
+        Displaying <strong>${(currentPageNumber-1)*searchResult.pageSize+1}</strong> - <strong>${searchResult.pageSize == -1 ? searchResult.total : currentPageNumber*searchResult.pageSize>searchResult.total?searchResult.total:currentPageNumber*searchResult.pageSize}</strong> of <strong>${searchResult.total}</strong> | Show:
         <select title="Page Size" class="pageSizeSelect">
             <option value="10" <c:if test="${searchResult.pageSize==10}" >selected="selected"</c:if>>
                 10

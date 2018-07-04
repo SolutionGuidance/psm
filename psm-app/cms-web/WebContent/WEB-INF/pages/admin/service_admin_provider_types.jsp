@@ -32,7 +32,6 @@
             <div class="tabContent" id="tabProviderTypes">
               <div id="providerTablePanel">
 
-                <c:set var="itemsName" value="Provider Types"/>
                 <c:set var="searchResult" value="${providerTypesSearchResult}"/>
 
                 <form:form id="searchForm" action="${ctx}/admin/viewProviderTypes" modelAttribute="searchCriteria" method="post">

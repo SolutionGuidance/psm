@@ -1,14 +1,24 @@
- <%--
-  - Author: TCSASSEMBLER
-  - Version: 1.0
-  - Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
-  -
-  - Description: This is the enrollments pending page.
---%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 <!DOCTYPE html>
 <html lang="en-US">
-  <c:set var="title" value="Enrollment"/>
+  <c:choose>
+    <c:when test="${tabName == 'approved'}">
+      <c:set var="listType" value="Approved Enrollments"/>
+    </c:when>
+    <c:when test="${tabName == 'rejected'}">
+      <c:set var="listType" value="Denied Enrollments"/>
+    </c:when>
+    <c:when test="${tabName == 'pending'}">
+      <c:set var="listType" value="Pending Enrollments"/>
+    </c:when>
+    <c:when test="${tabName == 'draft'}">
+      <c:set var="listType" value="Draft Enrollments"/>
+    </c:when>
+    <c:when test="${tabName == 'notes'}">
+      <c:set var="listType" value="Notes"/>
+    </c:when>
+  </c:choose>
+  <c:set var="title" value="${listType}"/>
   <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
@@ -23,18 +33,18 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            Enrollments
+            <a href="<c:url value='/provider/dashboard/drafts' />">Enrollments</a>
+            <span>${listType}</span>
           </div>
-          <h1>Enrollments</h1>
+          <h1>${listType}</h1>
           <div class="tabSection" id="enrollmentSection">
-            <c:set var="active_enrollment_tab" value="pending"/>
-            <c:set var="enrollmentSearchFormAction" value="${ctx}/provider/search/pending?statuses=Pending"/>
+            <c:set var="active_enrollment_tab" value="${tabName}"/>
+            <c:set var="enrollmentSearchFormAction" value="${ctx}/provider/enrollments/${tabName}?statuses=${Status}"/>
             <c:set var="searchResult" value="${results}"/>
-            <c:set var="itemsName" value="Pending Enrollment${searchResult.total>1?'s':''}"/>
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_tab_section.jsp" %>
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_form.jsp" %>
             <!-- /.tabHead -->
-            <div class="tabContent">
+            <div class="tabContent" id="tabNotes">
               <div class="pagination">
                 <%@ include file="/WEB-INF/pages/admin/includes/page_left_navigation.jsp" %>
                 <%@ include file="/WEB-INF/pages/admin/includes/enrollment_buttons.jsp" %>
@@ -80,5 +90,8 @@
       <!-- #footer -->
     </div>
     <!-- /#wrapper -->
+    <c:if test="${tabName == 'notes'}">
+      <%@ include file="/WEB-INF/pages/admin/includes/enrollment_notes_dialog.jsp" %>
+    </c:if>
   </body>
 </html>

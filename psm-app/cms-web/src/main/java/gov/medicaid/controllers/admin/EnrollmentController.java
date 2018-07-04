@@ -174,7 +174,7 @@ public class EnrollmentController extends BaseController {
         criteria.setShowFilterPanel(true);
         statuses.add("Draft");
         criteria.setStatuses(statuses);
-        return doSearch(criteria, "draft");
+        return doSearch("admin/service_agent_enrollments_draft", criteria);
     }
 
     /**
@@ -399,7 +399,7 @@ public class EnrollmentController extends BaseController {
             throw new IllegalArgumentException("A valid criteria must be provided.");
         }
 
-        ModelAndView results = doSearch(criteria, "print");
+        ModelAndView results = doSearch("admin/service_agent_print_enrollments", criteria);
         SearchResult<UserRequest> items = (SearchResult<UserRequest>) results.getModel().get("results");
 
         response.reset();
@@ -410,16 +410,36 @@ public class EnrollmentController extends BaseController {
     }
 
     /**
-     * This action will search for profile enrollments.
+     * This action will list enrollments.
      *
      * @param criteria the search criteria
      * @param view     the view name
      * @return the model and view instance that contains the name of view to be
      * rendered and data to be used for rendering (not null)
      * @throws PortalServiceException If there are any errors in the action
-     * @endpoint "/agent/enrollment/search/{view}"
-     * @endpoint "/provider/search/{view}"
+     * @endpoint "/agent/enrollment/list/{view}"
+     * @endpoint "/provider/enrollments/{view}"
      */
+    @RequestMapping({
+            "/agent/enrollment/list/{view}",
+            "/provider/enrollments/{view}"
+    })
+    public ModelAndView list(
+            @ModelAttribute("criteria") ProviderSearchCriteria criteria,
+            @PathVariable("view") String view,
+            HttpServletResponse response
+    ) throws PortalServiceException {
+
+        nocache(response);
+        if (criteria == null) {
+            throw new IllegalArgumentException("A valid criteria must be provided.");
+        }
+
+        ModelAndView mv = doSearch("admin/service_agent_enrollment_list", criteria);
+        mv.addObject("tabName", view);
+        return mv;
+    }
+
     @RequestMapping({
             "/agent/enrollment/search/{view}",
             "/provider/search/{view}"
@@ -435,7 +455,24 @@ public class EnrollmentController extends BaseController {
             throw new IllegalArgumentException("A valid criteria must be provided.");
         }
 
-        return doSearch(criteria, view);
+        return doSearch("admin/service_agent_search_enrollments_" + view, criteria);
+    }
+
+    @RequestMapping({
+            "/agent/enrollment/print",
+            "/provider/print"
+    })
+    public ModelAndView print(
+            @ModelAttribute("criteria") ProviderSearchCriteria criteria,
+            HttpServletResponse response
+    ) throws PortalServiceException {
+
+        nocache(response);
+        if (criteria == null) {
+            throw new IllegalArgumentException("A valid criteria must be provided.");
+        }
+
+        return doSearch("admin/service_agent_print_enrollments", criteria);
     }
 
     /**
@@ -666,8 +703,8 @@ public class EnrollmentController extends BaseController {
      * @throws PortalServiceException for any errors encountered
      */
     private ModelAndView doSearch(
-            ProviderSearchCriteria criteria,
-            String view
+            String viewName,
+            ProviderSearchCriteria criteria
     ) throws PortalServiceException {
         if (criteria.getPageNumber() == 0 && criteria.getPageSize() == 0) {
             criteria.setPageNumber(1);
@@ -678,7 +715,7 @@ public class EnrollmentController extends BaseController {
         SearchResult<UserRequest> results = enrollmentService
                 .searchTickets(ControllerHelper.getCurrentUser(), criteria);
 
-        ModelAndView mv = new ModelAndView("admin/service_agent_enrollments_" + view, "results", results);
+        ModelAndView mv = new ModelAndView(viewName, "results", results);
         if (criteria.getStatuses() == null || criteria.getStatuses().isEmpty()) {
             mv.addObject("Status", "");
             // populate notes

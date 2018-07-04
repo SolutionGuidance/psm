@@ -177,7 +177,7 @@ public class ProviderDashboardController extends BaseController {
     @RequestMapping(value = "/drafts", method = RequestMethod.GET)
     public ModelAndView viewDrafts() throws PortalServiceException {
         if (isOperations()) {
-            return new ModelAndView("redirect:/agent/enrollment/search/draft?statuses=Draft&showFilterPanel=true");
+            return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Draft&showFilterPanel=true");
         }
         return filterTicketsByStatus(ViewStatics.DRAFT_STATUS, createDefaultFilter());
     }
@@ -193,7 +193,7 @@ public class ProviderDashboardController extends BaseController {
     @RequestMapping(value = "/pending", method = RequestMethod.GET)
     public ModelAndView viewPending() throws PortalServiceException {
         if (isOperations()) {
-            return new ModelAndView("redirect:/agent/enrollment/search/draft?statuses=Pending&showFilterPanel=true");
+            return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Pending&showFilterPanel=true");
         }
         return filterTicketsByStatus(ViewStatics.PENDING_STATUS, createDefaultFilter());
     }
@@ -209,7 +209,7 @@ public class ProviderDashboardController extends BaseController {
     @RequestMapping(value = "/approved", method = RequestMethod.GET)
     public ModelAndView viewApproved() throws PortalServiceException {
         if (isOperations()) {
-            return new ModelAndView("redirect:/agent/enrollment/search/draft?statuses=Approved&showFilterPanel=true");
+            return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Approved&showFilterPanel=true");
         }
         return filterTicketsByStatus(ViewStatics.APPROVED_STATUS, createDefaultFilter());
     }
@@ -225,7 +225,7 @@ public class ProviderDashboardController extends BaseController {
     @RequestMapping(value = "/rejected", method = RequestMethod.GET)
     public ModelAndView viewRejected() throws PortalServiceException {
         if (isOperations()) {
-            return new ModelAndView("redirect:/agent/enrollment/search/draft?statuses=Rejected&showFilterPanel=true");
+            return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Rejected&showFilterPanel=true");
         }
         return filterTicketsByStatus(ViewStatics.REJECTED_STATUS, createDefaultFilter());
     }
@@ -262,6 +262,12 @@ public class ProviderDashboardController extends BaseController {
         criteria.setStatuses(Arrays.asList(status));
         ModelAndView mv = searchTickets(criteria, view);
         mv.addObject("statusFilter", status);
+        if (ViewStatics.REJECTED_STATUS.equals(status)) {
+            mv.addObject("listType", "Denied Enrollments");
+        } else {
+            mv.addObject("listType", status + " Enrollments");
+        }
+
         return mv;
     }
 

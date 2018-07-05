@@ -44,7 +44,7 @@
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_tab_section.jsp" %>
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_form.jsp" %>
             <!-- /.tabHead -->
-            <div class="tabContent" id="tabNotes">
+            <div class="tabContent" id="${tabName == 'notes' ? 'tabNotes' : ''}">
               <div class="pagination">
                 <%@ include file="/WEB-INF/pages/admin/includes/page_left_navigation.jsp" %>
                 <%@ include file="/WEB-INF/pages/admin/includes/enrollment_buttons.jsp" %>

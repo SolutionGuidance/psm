@@ -607,7 +607,8 @@ public class EnrollmentPageFlowController extends BaseController {
             return previousPage(enrollment, request);
         } else if (null != request.getParameter("next")) {
             return nextPage(enrollment, request);
-        } else if (null != request.getParameter("submit")) {
+        } else if (null != request.getParameter("submit") ||
+                   null != request.getParameter("submitEnrollment")) {
             return submit(enrollment, request, status);
         } else if (null != request.getParameter("save")) {
             return save(enrollment, request, status);

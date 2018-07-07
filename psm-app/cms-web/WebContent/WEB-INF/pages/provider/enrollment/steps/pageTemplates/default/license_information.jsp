@@ -16,18 +16,18 @@
         <thead>
             <tr>
                 <th class="alignCenter">#<span class="sep"></span></th>
-                <th>Type of License/Certification<span class="required">*</span><span class="sep"></span></th>
-                <th>Upload License/Certification <span class="required">*</span><span class="sep"></span></th>
+                <th>Type of License/Certification <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Upload License/Certification <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <c:choose>
                     <c:when test="${hideLicenseNumber}">
                         <th width="0"> </th>
                     </c:when>
                     <c:otherwise>
-                        <th>License/Certification #<span class="required">*</span><span class="sep"></span></th>
+                        <th>License/Certification # <span class="required-dark-background">*</span><span class="sep"></span></th>
                     </c:otherwise>
                 </c:choose>
 
-                <th>Original Issue Date<span class="required">*</span><span class="sep"></span></th>
+                <th>Original Issue Date <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <c:choose>
                      <c:when test="${hideRenewalDate}">
                         <th width="0"> </th>
@@ -38,12 +38,12 @@
                                     <th>Renewal End Date<span class="sep"></span></th>
                                 </c:when>
                                 <c:otherwise>
-                                    <th>Renewal End Date<span class="required">*</span><span class="sep"></span></th>
+                                    <th>Renewal End Date <span class="required-dark-background">*</span><span class="sep"></span></th>
                                 </c:otherwise>
                             </c:choose>
                         </c:otherwise>
                 </c:choose>
-                <th>Issuing State<span class="required">*</span><span class="sep"></span></th>
+                <th>Issuing State <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <th></th>
             </tr>
         </thead>

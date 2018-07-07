@@ -1136,6 +1136,11 @@ input.date{
   color:#e60000;
 }
 
+.required-dark-background{
+  color:#f66;
+  font-size:120%;
+}
+
 /* newEnrollmentPanel */
 .newEnrollmentPanel{
   width:100%;

@@ -4047,6 +4047,13 @@ input.passwordNormalInput{
   width:auto;
 }
 
+.enabledUser .reinstateLink {
+  display:none;
+}
+.disabledUser .suspendLink {
+  display:none;
+}
+
 
 /* END OF SYSTEM ADMIN STYLES --------------------------------------------------- */
 

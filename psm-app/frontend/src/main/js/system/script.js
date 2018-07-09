@@ -1155,6 +1155,20 @@ $(document).ready(function () {
         return false;
       });
 
+    $(".suspendLink, .reinstateLink").on('click', function () {
+      var link = $(this);
+      postJson({
+        url: link.attr("href"),
+        cache: false,
+        type: "POST",
+        dataType: "text",
+        success: function () {
+          link.closest("tr").toggleClass("disabledUser enabledUser");
+        }
+      });
+      return false;
+    });
+
     $('.searchBox').live('click', function () {
         var val = $.trim($('#searchBoxFirstName').val());
         $('#searchBoxLastName').val(val);

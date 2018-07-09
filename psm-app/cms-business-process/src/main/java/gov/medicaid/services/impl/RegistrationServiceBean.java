@@ -813,6 +813,10 @@ public class RegistrationServiceBean extends BaseService implements Registration
      * @throws PortalServiceException for any errors encountered
      */
     public boolean authenticate(String username, String password) throws PortalServiceException {
+        CMSUser user = findByUsername(username);
+        if (user.getStatus() != UserStatus.ACTIVE) {
+            throw new PortalServiceException("User is disabled");
+        }
         return identityProvider.authenticate(username, password);
     }
 }

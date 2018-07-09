@@ -317,6 +317,34 @@ public class SystemAdminUserController extends BaseSystemAdminController {
     }
 
     /**
+     * This action will disable the user with the given ID.
+     *
+     * @param userId - the user Id
+     * @return the model and view instance that contains the name of view to be rendered and data to be used for
+     *         rendering (not null)
+     */
+    @RequestMapping(value = "/suspend", method = RequestMethod.POST)
+    @ResponseBody
+    public void disable(@RequestParam("userId") String userId) {
+        CMSUser actor = ControllerHelper.getCurrentUser();
+        getRegistrationService().suspend(actor, userId);
+    }
+
+    /**
+     * This action will enable the user with the given ID.
+     *
+     * @param userId - the user Id
+     * @return the model and view instance that contains the name of view to be rendered and data to be used for
+     *         rendering (not null)
+     */
+    @RequestMapping(value = "/reinstate", method = RequestMethod.POST)
+    @ResponseBody
+    public void reinstate(@RequestParam("userId") String userId) {
+        CMSUser actor = ControllerHelper.getCurrentUser();
+        getRegistrationService().reinstate(actor, userId);
+    }
+
+    /**
      * Loads the user with the given id into a ModelAndView.
      *
      * @param viewName the name of the view

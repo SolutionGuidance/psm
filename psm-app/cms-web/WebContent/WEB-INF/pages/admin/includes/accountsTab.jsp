@@ -38,7 +38,12 @@
         </thead>
         <tbody>
             <c:forEach var="item" items="${results.items}">
-            <tr>
+            <tr
+              <c:choose>
+                <c:when test="${item.status == 'DISABLED'}">class="disabledUser"</c:when>
+                <c:when test="${item.status == 'ACTIVE'}">class="enabledUser"</c:when>
+              </c:choose>
+              >
                 <td class="alignCenter">
                 <input type="checkbox" title="User ${item.userId}" value="${item.userId}" name="providers"/>
                 </td>
@@ -47,6 +52,9 @@
                 <td>${item.firstName}</td>
                 <td>${item.email}</td>
                 <td class="alignCenter"><a href="<c:url value='/system/user/edit?role=${role}&userId=${item.userId}' />">Edit</a>
+                <span class="sep">|</span>
+                <a href="<c:url value='/system/user/reinstate?userId=${item.userId}' />" class="reinstateLink">Reinstate</a>
+                <a href="<c:url value='/system/user/suspend?userId=${item.userId}' />" class="suspendLink">Suspend</a>
                 <span class="sep">|</span><a href="javascript:;" class="deleteLink">Delete</a></td>
             </tr>
             </c:forEach>

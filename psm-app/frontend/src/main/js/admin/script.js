@@ -1033,177 +1033,6 @@ $(document).ready(function () {
     }
   });
 
-  function helpPageClick(currentLink) {
-    $(".helpHeaderLink").removeAttr("disabled").removeAttr("style");
-    currentLink.attr("disabled", "disabled");
-    currentLink.css("color", "black").css("font-weight", "bold").css("text-decoration", "none").css("cursor", "default");
-  }
-
-  //Scrollbar
-  if ($('#scrollbar').length) {
-    $('#scrollbar').tinyscrollbar({ sizethumb: 161 });
-    $('#allHelp').click(function () {
-      $('#scrollbar').tinyscrollbar_update(0);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterA').click(function () {
-      $('#scrollbar').tinyscrollbar_update(0);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterB').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowB').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterC').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowC').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterD').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowD').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterE').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowE').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterF').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowF').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterG').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowG').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterH').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowH').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterI').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowI').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterJ').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowJ').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterK').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowK').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterL').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowL').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterM').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowM').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterN').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowN').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterO').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowO').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterP').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowP').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterQ').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowQ').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterR').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowR').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterS').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowS').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterT').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowT').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterU').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowU').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterV').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowV').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterW').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowW').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterX').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowX').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterY').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowY').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterZ').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowZ').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-  }
   //Check All
   $('#advancedSearch .checkRow span.label').live('click', function () {
     if ($(this).prev().attr('checked')) {
@@ -1438,24 +1267,9 @@ $(document).ready(function () {
 
   if ($.browser.msie && ($.browser.version == "7.0")) {
     $('#createEnrollment input[type="radio"],#advancedSearch input[type="checkbox"]').css('margin', '5px 3px auto 3px');
-    $('.helpSection .row li').css('width', $('.helpSection .row ul').width() / 3);
   }
 
   /* END OF SERVICE AGENT SCRIPT -------------------------------------------------- */
-
-  $("#helpTopicForm").validate({
-        rules: {
-          title: {
-                required: true,
-                maxlength: 45
-              },
-          description: {
-              required: true,
-              maxlength: 2048
-            }
-
-        }
-      });
 
   $("#agreementDocumentForm").validate({
         rules: {
@@ -1470,22 +1284,6 @@ $(document).ready(function () {
 
         }
       });
-
-  $('.deleteHelpTopicBtn').live('click', function () {
-    loadModal('#deleteHelpTopicModal');
-  });
-
-  $('#deleteHelpTopicModal .deleteOKBtn').click(function () {
-    $.ajax({
-          url: $(this).attr('rel'),
-          cache: false,
-          type: "GET",
-          dataType: "text",
-          success: function (data) {
-            window.location.href = ctx + "/admin/searchHelp";
-          }
-        });
-  });
 
   $('.deleteProviderTypesOnViewBtn').live('click', function () {
     loadModal('#deleteProviderTypesModal');

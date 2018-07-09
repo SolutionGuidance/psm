@@ -240,11 +240,6 @@
       <value>${jndi.AgreementDocumentService}</value>
     </property>
   </bean>
-  <bean id="HelpService" class="org.springframework.jndi.JndiObjectFactoryBean">
-    <property name="jndiName">
-      <value>${jndi.HelpService}</value>
-    </property>
-  </bean>
   <bean id="EventService"
         class="org.springframework.jndi.JndiObjectFactoryBean">
     <property name="jndiName">

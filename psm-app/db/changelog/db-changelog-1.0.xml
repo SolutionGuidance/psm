@@ -1815,4 +1815,171 @@
       tableName="provider_type_settings" />
   </changeSet>
 
+  <changeSet author="" id="issue139-split-beneficial-owner-create-tables">
+    <createTable tableName="person_beneficial_owners">
+      <column name="beneficial_owner_id"
+        type="bigint">
+        <constraints primaryKey="true"
+          foreignKeyName="person_beneficial_owners_beneficial_owner_id_fkey"
+          references="beneficial_owner(beneficial_owner_id)"/>
+      </column>
+      <column name="middle_name"
+        type="text"/>
+      <column name="first_name"
+        type="text"/>
+      <column name="last_name"
+        type="text"/>
+      <column name="ssn"
+        type="text"/>
+      <column name="birth_dt"
+        type="date"/>
+      <column name="hired_at"
+        type="date"/>
+      <column name="relationship_type_code"
+        type="varchar(2)">
+        <constraints foreignKeyName="beneficial_owner_relationship_type_code_fkey"
+          references="relationship_types(code)"/>
+      </column>
+    </createTable>
+    <createTable tableName="organization_beneficial_owners">
+      <column name="beneficial_owner_id"
+        type="bigint">
+        <constraints primaryKey="true"
+          foreignKeyName="organization_beneficial_owners_beneficial_owner_id_fkey"
+          references="beneficial_owner(beneficial_owner_id)"/>
+      </column>
+      <column name="fein"
+        type="varchar(20)"/>
+      <column name="legal_name"
+        type="text"/>
+    </createTable>
+    <rollback>
+      <dropTable tableName="person_beneficial_owners"/>
+      <dropTable tableName="organization_beneficial_owners"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue139-split-beneficial-owner-move-data">
+    <sql>
+      INSERT INTO person_beneficial_owners (
+        beneficial_owner_id,
+        middle_name,
+        first_name,
+        last_name,
+        ssn,
+        birth_dt,
+        hired_at,
+        relationship_type_code
+        )
+      SELECT
+        beneficial_owner_id,
+        middle_name,
+        first_name,
+        last_name,
+        ssn,
+        birth_dt,
+        hired_at,
+        relationship_type_code
+      FROM beneficial_owner WHERE person_ind = 'Y';
+
+      INSERT INTO organization_beneficial_owners (
+        beneficial_owner_id,
+        fein,
+        legal_name)
+      SELECT
+        beneficial_owner_id,
+        fein,
+        legal_name
+      FROM beneficial_owner WHERE person_ind = 'N';
+    </sql>
+
+    <rollback>
+      <sql>
+        UPDATE beneficial_owner bo SET
+          person_ind = (SELECT 'Y' FROM person_beneficial_owners WHERE beneficial_owner_id = bo.beneficial_owner_id),
+          middle_name = (SELECT middle_name FROM person_beneficial_owners WHERE beneficial_owner_id = bo.beneficial_owner_id),
+          first_name = (SELECT first_name FROM person_beneficial_owners WHERE beneficial_owner_id = bo.beneficial_owner_id),
+          last_name = (SELECT last_name FROM person_beneficial_owners WHERE beneficial_owner_id = bo.beneficial_owner_id),
+          ssn = (SELECT ssn FROM person_beneficial_owners WHERE beneficial_owner_id = bo.beneficial_owner_id),
+          birth_dt = (SELECT birth_dt FROM person_beneficial_owners WHERE beneficial_owner_id = bo.beneficial_owner_id),
+          hired_at = (SELECT hired_at FROM person_beneficial_owners WHERE beneficial_owner_id = bo.beneficial_owner_id),
+          relationship_type_code = (SELECT relationship_type_code FROM beneficial_owner WHERE beneficial_owner_id = bo.beneficial_owner_id)
+          WHERE EXISTS (
+            SELECT *
+            FROM person_beneficial_owners pbo
+            WHERE pbo.beneficial_owner_id = bo.beneficial_owner_id
+          );
+        UPDATE beneficial_owner bo SET
+          person_ind = (SELECT 'N' FROM organization_beneficial_owners WHERE beneficial_owner_id = bo.beneficial_owner_id),
+          fein = (SELECT fein FROM organization_beneficial_owners WHERE beneficial_owner_id = bo.beneficial_owner_id),
+          legal_name = (SELECT legal_name FROM organization_beneficial_owners WHERE beneficial_owner_id = bo.beneficial_owner_id)
+          WHERE EXISTS (
+            SELECT *
+            FROM organization_beneficial_owners obo
+            WHERE obo.beneficial_owner_id = bo.beneficial_owner_id
+          );
+      </sql>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue139-split-beneficial-owner-delete-old-columns">
+    <dropColumn
+      tableName="beneficial_owner"
+      columnName="middle_name"/>
+    <dropColumn
+      tableName="beneficial_owner"
+      columnName="first_name"/>
+    <dropColumn
+      tableName="beneficial_owner"
+      columnName="last_name"/>
+    <dropColumn
+      tableName="beneficial_owner"
+      columnName="ssn"/>
+    <dropColumn
+      tableName="beneficial_owner"
+      columnName="birth_dt"/>
+    <dropColumn
+      tableName="beneficial_owner"
+      columnName="hired_at"/>
+    <dropColumn
+      tableName="beneficial_owner"
+      columnName="relationship_type_code"/>
+    <dropColumn
+      tableName="beneficial_owner"
+      columnName="fein"/>
+    <dropColumn
+      tableName="beneficial_owner"
+      columnName="legal_name"/>
+    <dropColumn
+      tableName="beneficial_owner"
+      columnName="person_ind"/>
+    <rollback>
+      <addColumn tableName="beneficial_owner">
+        <column name="person_ind"
+          type="varchar(1)"/>
+        <column name="middle_name"
+          type="text"/>
+        <column name="first_name"
+          type="text"/>
+        <column name="last_name"
+          type="text"/>
+        <column name="ssn"
+          type="text"/>
+        <column name="birth_dt"
+          type="date"/>
+        <column name="hired_at"
+          type="date"/>
+        <column name="relationship_type_code"
+          type="varchar(2)">
+          <constraints foreignKeyName="beneficial_owner_relationship_type_code_fkey"
+            references="relationship_types(code)"/>
+        </column>
+        <column name="fein"
+          type="varchar(20)"/>
+        <column name="legal_name"
+          type="text"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>

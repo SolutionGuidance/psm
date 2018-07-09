@@ -17,8 +17,6 @@
 package gov.medicaid.entities;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,9 +35,8 @@ import java.math.BigDecimal;
  * @version 1.0
  */
 @javax.persistence.Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "beneficial_owner")
-@DiscriminatorColumn(name = "person_ind", discriminatorType = DiscriminatorType.STRING)
 public abstract class BeneficialOwner implements Serializable {
 
     @Id

@@ -100,7 +100,6 @@ The PSM has four types of users, each with their own permission level:
     - Functions:
         - View and edit provider types
         - Edit screening schedule
-        - Add and edit help topics
         - Add and edit agreements/addendums
         - View, create, edit, and delete other service agents
 

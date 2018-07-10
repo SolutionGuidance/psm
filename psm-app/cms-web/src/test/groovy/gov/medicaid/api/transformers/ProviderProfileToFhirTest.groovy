@@ -1,5 +1,7 @@
 package gov.medicaid.api.transformers
 
+import gov.medicaid.entities.Address
+import gov.medicaid.entities.Affiliation
 import gov.medicaid.entities.Entity
 import gov.medicaid.entities.Organization
 import gov.medicaid.entities.Person
@@ -24,6 +26,23 @@ class ProviderProfileToFhirTest extends Specification {
         organizationProfile = new ProviderProfile([
             entity: organization
         ])
+    }
+
+    Affiliation createAffiliation(Map args, Address address, String phoneNumber) {
+        String primary = ""
+        if (args.primary == true) {
+            primary = "Y"
+        }
+        return [
+                entity: [
+                        contactInformation: [
+                                address: address,
+                                phoneNumber: phoneNumber,
+                        ]
+                ] as Organization,
+                objectType: "L",
+                primaryInd: primary,
+        ] as Affiliation
     }
 
     def "Individual without ID gets ID 0"() {
@@ -184,6 +203,197 @@ class ProviderProfileToFhirTest extends Specification {
 
         then:
         !result.hasBirthDate()
+    }
+
+    def "Individual without an address doesn't have one"() {
+        when:
+        def result = transformer.apply(individualProfile) as Practitioner
+
+        then:
+        !result.hasAddress()
+    }
+
+    def "Individual with single affiliation has address set correctly"(){
+        given:
+        Address addr1 = new Address()
+        addr1.setCity("New York City")
+        addr1.setZipcode("10111")
+        addr1.setState("New York")
+        individualProfile.setAffiliations([
+            createAffiliation(addr1, "1234567890", primary:false)
+        ])
+
+        when:
+        def result = transformer.apply(individualProfile) as Practitioner
+
+        then:
+        result.hasAddress()
+        result.getAddress().stream().anyMatch({
+            i-> i.hasCity()
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.getCity() == "New York City"
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.hasPostalCode()
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.getPostalCode() == "10111"
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.hasState()
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.getState() == "New York"
+        })
+        result.getAddress().size() == 1
+    }
+
+    def "Individual with multiple affiliations has addresses set correctly"(){
+        given:
+        Address addr1 = new Address()
+        addr1.setCity("New York City")
+        addr1.setZipcode("10111")
+        addr1.setState("New York")
+
+        Address addr2 = new Address()
+        addr2.setCity("Chicago")
+        addr2.setZipcode("60616")
+        addr2.setState("Illinois")
+
+        individualProfile.setAffiliations([
+            createAffiliation(addr1, "1234567890", primary:false),
+            createAffiliation(addr2, "1234567890", primary:false)
+        ])
+
+        when:
+        def result = transformer.apply(individualProfile) as Practitioner
+
+        then:
+        result.hasAddress()
+
+        result.getAddress().stream().anyMatch({
+            i-> i.hasCity()
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.getCity() == "New York City"
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.hasPostalCode()
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.getPostalCode() == "10111"
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.hasState()
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.getState() == "New York"
+        })
+
+        result.getAddress().stream().anyMatch({
+            i-> i.hasCity()
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.getCity() == "Chicago"
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.hasPostalCode()
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.getPostalCode() == "60616"
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.hasState()
+        })
+        result.getAddress().stream().anyMatch({
+            i-> i.getState() == "Illinois"
+        })
+
+        result.getAddress().size() == 2
+    }
+
+    def "Individual without a phone number doesn't have one"() {
+        when:
+        def result = transformer.apply(individualProfile) as Practitioner
+
+        then:
+        !result.hasTelecom()
+    }
+
+    def "Individual with single affiliation has phone number set correctly"(){
+        given:
+        individualProfile.setAffiliations([
+            createAffiliation(null, "1234567890", primary:true)
+        ])
+
+        when:
+        def result = transformer.apply(individualProfile) as Practitioner
+
+        then:
+        result.hasTelecom()
+
+        result.getTelecom().stream().anyMatch({
+            i-> i.hasValue()
+        })
+
+        result.getTelecom().stream().anyMatch({
+            i-> i.getValue() == "1234567890"
+        })
+
+        result.getTelecom().stream().anyMatch({
+            i-> i.hasRank()
+        })
+
+        result.getTelecom().stream().anyMatch({
+            i-> i.getRank() == 1
+        })
+
+        result.getTelecom().size() == 1
+    }
+
+    def "Individual with multiple affiliations has phone numbers set correctly"(){
+        given:
+        individualProfile.setAffiliations([
+            createAffiliation(null, "1234567890", primary:true),
+            createAffiliation(null, "0987654321", primary:false),
+        ])
+
+        when:
+        def result = transformer.apply(individualProfile) as Practitioner
+
+        then:
+        result.hasTelecom()
+
+        result.getTelecom().stream().anyMatch({
+            i-> i.hasValue()
+        })
+
+        result.getTelecom().stream().anyMatch({
+            i-> i.getValue() == "1234567890"
+        })
+
+        result.getTelecom().stream().anyMatch({
+            i-> i.hasRank()
+        })
+
+        result.getTelecom().stream().anyMatch({
+            i-> i.getRank() == 1
+        })
+
+        result.getTelecom().stream().anyMatch({
+            i-> i.hasValue()
+        })
+
+        result.getTelecom().stream().anyMatch({
+            i-> i.getValue() == "0987654321"
+        })
+
+        result.getTelecom().stream().anyMatch({
+            i-> !i.hasRank()
+        })
+
+        result.getTelecom().size() == 2
     }
 
     def "Organization without ID gets ID 0"() {

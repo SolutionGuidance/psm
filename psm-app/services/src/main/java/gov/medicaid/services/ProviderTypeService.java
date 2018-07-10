@@ -118,4 +118,15 @@ public interface ProviderTypeService {
             ProviderType providerType,
             long[] agreementIds
     );
+
+    /**
+     * Updates the ProviderTypeSettings for licenses.
+     *
+     * @param providerType providerType
+     * @param licenseIds license ids
+     */
+    void updateProviderTypeLicenseSettings(
+            ProviderType providerType,
+            String[] licenseIds
+    );
 }

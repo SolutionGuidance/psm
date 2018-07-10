@@ -60,6 +60,32 @@
                           </div>
                         </div>
                       </div>
+                      <div class="tableHeader"><span>Applicable Licenses</span></div>
+                      <div class="wholeCol">
+                        <div id="providerTypeLicensesContainer">
+                          <c:forEach var="selectedLicenseType" items="${selectedLicenseTypes}">
+                            <div class="providerTypeLicenseRow">
+                              <label>
+                                <div class="providerTypeLicenseRowLabel">Applicable License:</div>
+                                <select class="providerTypeLicenses" name="providerLicenses">
+                                  <c:forEach var="licenseType" items="${allLicenseTypes}">
+                                    <option
+                                      value="${licenseType.code}"
+                                      ${licenseType.code eq selectedLicenseType.code ? 'selected' : ''}
+                                    >
+                                      ${licenseType.description}
+                                    </option>
+                                  </c:forEach>
+                                </select>
+                                <a href="javascript:;" class="remove">REMOVE</a>
+                              </label>
+                            </div>
+                          </c:forEach>
+                        </div>
+                        <div class="row">
+                          <a href="javascript:;" id="addProviderTypeLicense">+ Add Another Applicable License</a>
+                        </div>
+                      </div>
                       <div class="bl"></div>
                       <div class="br"></div>
                     </div>
@@ -70,6 +96,17 @@
                   </div>
                 </div><!--/ #addProviderPanel -->
               </form:form>
+              <div id="licenseTemplate" class="providerTypeLicenseRow">
+                <label>
+                  <div class="providerTypeLicenseRowLabel">Applicable License:</div>
+                  <select class="providerTypeLicenses" name="providerLicenses">
+                    <c:forEach var="licenseType" items="${allLicenseTypes}">
+                      <option value="${licenseType.code}">${licenseType.description}</option>
+                    </c:forEach>
+                  </select>
+                  <a href="javascript:;" class="remove">REMOVE</a>
+                </label>
+              </div>
             </div>
           </div>
         </div>

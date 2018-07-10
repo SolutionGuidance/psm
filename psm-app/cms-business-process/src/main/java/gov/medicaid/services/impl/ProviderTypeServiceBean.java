@@ -18,6 +18,7 @@ package gov.medicaid.services.impl;
 
 import gov.medicaid.domain.model.ApplicantType;
 import gov.medicaid.entities.AgreementDocument;
+import gov.medicaid.entities.LicenseType;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ProviderTypeSearchCriteria;
 import gov.medicaid.entities.SearchResult;
@@ -289,6 +290,17 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
         getEm().merge(providerType);
     }
 
+    @Override
+    public void updateProviderTypeLicenseSettings(
+            ProviderType providerType,
+            String[] licenseCodes
+    ) {
+        providerType.setLicenseTypes(
+                new HashSet<>(getLicenseTypes(licenseCodes))
+        );
+        getEm().merge(providerType);
+    }
+
     private List<AgreementDocument> getAgreementDocuments(long[] agreementIds) {
         if (agreementIds.length == 0) {
             return new ArrayList<>();
@@ -301,6 +313,20 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
                     Arrays.stream(agreementIds)
                             .boxed()
                             .collect(Collectors.toList())
+            ).getResultList();
+        }
+    }
+
+    private List<LicenseType> getLicenseTypes(String[] licenseCodes) {
+        if (licenseCodes.length == 0) {
+            return new ArrayList<>();
+        } else {
+            return getEm().createQuery(
+                    "FROM LicenseType WHERE code IN :codes",
+                    LicenseType.class
+            ).setParameter(
+                    "codes",
+                    Arrays.asList(licenseCodes)
             ).getResultList();
         }
     }

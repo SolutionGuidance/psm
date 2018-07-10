@@ -454,6 +454,17 @@ $(document).ready(function () {
         });
   });
 
+  // For provider type editing/adding
+  $('.providerTypeLicenseRow .remove').on('click', function () {
+    $(this).closest('.providerTypeLicenseRow').remove();
+  });
+
+  $('#addProviderTypeLicense').on('click', function () {
+    var newLicenseRow = $('#licenseTemplate').clone(true, true);
+    newLicenseRow.removeAttr('id');
+    $('#providerTypeLicensesContainer').append(newLicenseRow);
+  });
+
   // delete agreement documents part
   var deleteAgreementDocumentIds = [];
 

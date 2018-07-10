@@ -20,6 +20,7 @@ import gov.medicaid.controllers.ControllerHelper;
 import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.AgreementDocumentSearchCriteria;
 import gov.medicaid.entities.AgreementDocumentType;
+import gov.medicaid.entities.LicenseType;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ProviderTypeSearchCriteria;
 import gov.medicaid.entities.SearchResult;
@@ -196,6 +197,11 @@ public class ProviderTypeController {
         model.addObject("providerType", providerType);
         model.addObject("selectedAgreements", selectedAgreements);
         model.addObject("remainingAgreements", remainingAgreements);
+
+        List<LicenseType> allLicenseTypes = lookupService.findAllLookups(LicenseType.class);
+
+        model.addObject("selectedLicenseTypes", providerType.getLicenseTypes());
+        model.addObject("allLicenseTypes", allLicenseTypes);
         return model;
     }
 
@@ -255,8 +261,10 @@ public class ProviderTypeController {
         // Retrieve
         providerType = providerTypeService.get(providerType.getCode());
         long[] agreementIds = ServletRequestUtils.getLongParameters(request, "providerAgreements");
+        String[] licenseIds = ServletRequestUtils.getStringParameters(request, "providerLicenses");
 
         providerTypeService.updateProviderTypeAgreementSettings(providerType, agreementIds);
+        providerTypeService.updateProviderTypeLicenseSettings(providerType, licenseIds);
 
         ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
         model.addObject("providerType", providerType);

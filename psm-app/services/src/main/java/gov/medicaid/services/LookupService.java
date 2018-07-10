@@ -16,10 +16,8 @@
 
 package gov.medicaid.services;
 
-import gov.medicaid.domain.model.ApplicantType;
 import gov.medicaid.entities.BeneficialOwnerType;
 import gov.medicaid.entities.LookupEntity;
-import gov.medicaid.entities.ProviderType;
 
 import java.util.List;
 
@@ -30,20 +28,6 @@ import java.util.List;
  * @version 1.0
  */
 public interface LookupService {
-    /**
-     * @return all provider types
-     */
-    List<ProviderType> getAllProviderTypes();
-
-    /**
-     * Retrieves the provider types filtered by applicant type.
-     *
-     * @param applicantType
-     *            individual or organizations
-     * @return the filtered provider types
-     */
-    List<ProviderType> getProviderTypes(ApplicantType applicantType);
-
     /**
      * Retrieves the lookup with the given description.
      *
@@ -107,15 +91,4 @@ public interface LookupService {
      * @return the matched lookups
      */
     List<BeneficialOwnerType> findBeneficialOwnerTypes(String entityType);
-
-    /**
-     * Updates the ProviderTypeSettings for agreements.
-     *
-     * @param providerType providerType
-     * @param agreementIds agreement ids
-     */
-    void updateProviderTypeAgreementSettings(
-            ProviderType providerType,
-            long[] agreementIds
-    );
 }

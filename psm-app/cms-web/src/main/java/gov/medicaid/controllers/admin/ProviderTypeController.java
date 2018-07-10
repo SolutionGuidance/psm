@@ -255,7 +255,7 @@ public class ProviderTypeController {
         providerType = providerTypeService.get(providerType.getCode());
         long[] agreementIds = ServletRequestUtils.getLongParameters(request, "providerAgreements");
 
-        lookupService.updateProviderTypeAgreementSettings(providerType, agreementIds);
+        providerTypeService.updateProviderTypeAgreementSettings(providerType, agreementIds);
 
         ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
         model.addObject("providerType", providerType);

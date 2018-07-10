@@ -16,11 +16,14 @@
 
 package gov.medicaid.services;
 
+import gov.medicaid.domain.model.ApplicantType;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ProviderTypeSearchCriteria;
 import gov.medicaid.entities.SearchResult;
 
 import javax.jws.WebService;
+
+import java.util.List;
 
 /**
  * This represents the service API to manage provider types.
@@ -90,4 +93,29 @@ public interface ProviderTypeService {
      * @throws PortalServiceException - If an error occurs while performing the operation
      */
     SearchResult<ProviderType> search(ProviderTypeSearchCriteria criteria) throws PortalServiceException;
+
+    /**
+     * @return all provider types
+     */
+    List<ProviderType> getAllProviderTypes();
+
+    /**
+     * Retrieves the provider types filtered by applicant type.
+     *
+     * @param applicantType
+     *            individual or organizations
+     * @return the filtered provider types
+     */
+    List<ProviderType> getProviderTypes(ApplicantType applicantType);
+
+    /**
+     * Updates the ProviderTypeSettings for agreements.
+     *
+     * @param providerType providerType
+     * @param agreementIds agreement ids
+     */
+    void updateProviderTypeAgreementSettings(
+            ProviderType providerType,
+            long[] agreementIds
+    );
 }

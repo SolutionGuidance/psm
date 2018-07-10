@@ -16,6 +16,8 @@
 
 package gov.medicaid.services.impl;
 
+import gov.medicaid.domain.model.ApplicantType;
+import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ProviderTypeSearchCriteria;
 import gov.medicaid.entities.SearchResult;
@@ -34,8 +36,11 @@ import javax.persistence.EntityGraph;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This class provides an implementation of the <code>ProviderTypeDAO</code> as a local EJB.
@@ -247,6 +252,57 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
 
         results.setItems(items.getResultList());
         return results;
+    }
+
+    public List<ProviderType> getAllProviderTypes() {
+        return getEm().createQuery(
+                "FROM ProviderType",
+                ProviderType.class
+        ).getResultList();
+    }
+
+    /**
+     * Retrieves the provider types filtered by applicant type.
+     *
+     * @param applicantType
+     *            individual or organizations
+     * @return the filtered provider types
+     */
+    public List<ProviderType> getProviderTypes(ApplicantType applicantType) {
+        return getEm().createQuery(
+                "FROM ProviderType WHERE applicantType = :type",
+                ProviderType.class
+        ).setParameter(
+                "type",
+                applicantType
+        ).getResultList();
+    }
+
+    @Override
+    public void updateProviderTypeAgreementSettings(
+            ProviderType providerType,
+            long[] agreementIds
+    ) {
+        providerType.setAgreementDocuments(
+                new HashSet<>(getAgreementDocuments(agreementIds))
+        );
+        getEm().merge(providerType);
+    }
+
+    private List<AgreementDocument> getAgreementDocuments(long[] agreementIds) {
+        if (agreementIds.length == 0) {
+            return new ArrayList<>();
+        } else {
+            return getEm().createQuery(
+                    "FROM AgreementDocument WHERE id IN :ids",
+                    AgreementDocument.class
+            ).setParameter(
+                    "ids",
+                    Arrays.stream(agreementIds)
+                            .boxed()
+                            .collect(Collectors.toList())
+            ).getResultList();
+        }
     }
 
     /**

@@ -30,8 +30,10 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityGraph;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+
 import java.util.HashSet;
 import java.util.List;
 
@@ -152,11 +154,32 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
             return getEm().find(
                     ProviderType.class,
                     id,
-                    hintEntityGraph("ProviderType with AgreementDocuments")
+                    hintEntityGraph("ProviderType with AgreementDocuments and LicenseTypes")
             );
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not complete database operation.", e);
         }
+    }
+
+    /**
+     * This method gets a provider type by its description. If not found, returns null.
+     *
+     * @param description - the description of the provider type to retrieve
+     * @return - the requested provider type, null if not found
+     *
+     * @throws PortalServiceException - If there are any errors during the execution of this method
+     */
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public ProviderType getByDescription(String description) {
+        EntityGraph graph = getEm().getEntityGraph(
+            "ProviderType with AgreementDocuments and LicenseTypes"
+        );
+        return getEm().createQuery(
+            "FROM ProviderType WHERE description = :description",
+            ProviderType.class
+        ).setParameter("description", description)
+        .setHint("javax.persistence.loadgraph", graph)
+        .getSingleResult();
     }
 
     /**

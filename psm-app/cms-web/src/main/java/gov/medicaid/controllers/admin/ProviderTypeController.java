@@ -41,6 +41,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -180,7 +181,7 @@ public class ProviderTypeController {
         criteria.setPageSize(-1);
         List<AgreementDocument> agreements = agreementDocumentService.search(criteria).getItems();
         List<AgreementDocument> remainingAgreements = new ArrayList<AgreementDocument>(agreements);
-        List<AgreementDocument> selectedAgreements = providerType.getAgreementDocuments();
+        Set<AgreementDocument> selectedAgreements = providerType.getAgreementDocuments();
 
         for (AgreementDocument agreement: agreements) {
             for (AgreementDocument selectedAgreement: selectedAgreements) {

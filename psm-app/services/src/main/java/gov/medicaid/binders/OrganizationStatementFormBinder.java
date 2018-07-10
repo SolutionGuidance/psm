@@ -36,11 +36,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * This binder handles the provider type selection form.
@@ -91,8 +93,8 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
         statement.setName(param(request, "name"));
         statement.setTitle(param(request, "title"));
 
-        List<AgreementDocument> docs = getLookupService().getProviderTypeWithAgreementDocuments(
-                provider
+        Set<AgreementDocument> docs = getProviderTypeService().getByDescription(
+            provider.getProviderType()
         ).getAgreementDocuments();
 
         List<ProviderAgreementType> xList = new ArrayList<ProviderAgreementType>();
@@ -144,8 +146,8 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
         attr(mv, "bound", "Y");
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
 
-        List<AgreementDocument> docs = getLookupService().getProviderTypeWithAgreementDocuments(
-                provider
+        Set<AgreementDocument> docs = getProviderTypeService().getByDescription(
+            provider.getProviderType()
         ).getAgreementDocuments();
 
         if (enrollment.getRequestType() == RequestType.RENEWAL && "Y".equals(provider.getRenewalShowBlankStatement())) {
@@ -252,8 +254,8 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
 
         List<AcceptedAgreements> hList = profile.getAgreements();
 
-        List<AgreementDocument> activeList = getLookupService().getProviderTypeWithAgreementDocuments(
-                provider
+        Set<AgreementDocument> activeList = getProviderTypeService().getByDescription(
+            provider.getProviderType()
         ).getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
@@ -298,7 +300,7 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
      * @param list the list to be mapped
      * @return the lookup map
      */
-    private Map<String, AgreementDocument> mapDocumentsById(List<AgreementDocument> list) {
+    private Map<String, AgreementDocument> mapDocumentsById(Collection<AgreementDocument> list) {
         Map<String, AgreementDocument> map = new HashMap<String, AgreementDocument>();
         for (AgreementDocument item : list) {
             map.put(String.valueOf(item.getId()), item);
@@ -356,8 +358,8 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         ProviderProfile profile = ticket.getDetails();
 
-        List<AgreementDocument> activeList = getLookupService().getProviderTypeWithAgreementDocuments(
-                provider
+        Set<AgreementDocument> activeList = getProviderTypeService().getByDescription(
+            provider.getProviderType()
         ).getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 

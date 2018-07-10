@@ -64,6 +64,14 @@ public interface ProviderTypeService {
     ProviderType get(String string) throws PortalServiceException;
 
     /**
+     * This method gets a provider type by its description. If not found, returns null.
+     *
+     * @param description - the description of the provider type to retrieve
+     * @return - the requested provider type
+     */
+    ProviderType getByDescription(String description);
+
+    /**
      * This method deletes the provider type with the given ID.
      *
      * @param id - the ID of the provider type to delete

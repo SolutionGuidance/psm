@@ -42,11 +42,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * This binder handles the provider type selection form.
@@ -111,10 +113,8 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         statement.setName(param(request, "name"));
         statement.setTitle(param(request, "title"));
 
-        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
-                provider
-        );
-        List<AgreementDocument> docs = pt.getAgreementDocuments();
+        ProviderType pt = getProviderTypeService().getByDescription(provider.getProviderType());
+        Set<AgreementDocument> docs = pt.getAgreementDocuments();
 
         List<ProviderAgreementType> xList = new ArrayList<ProviderAgreementType>();
         HashSet<String> agreed = new HashSet<String>();
@@ -159,10 +159,8 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
     public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
-                provider
-        );
-        List<AgreementDocument> docs = pt.getAgreementDocuments();
+        ProviderType pt = getProviderTypeService().getByDescription(provider.getProviderType());
+        Set<AgreementDocument> docs = pt.getAgreementDocuments();
 
         // for renewal the form should be blank
         if (enrollment.getRequestType() == RequestType.RENEWAL && provider.getRenewalShowBlankStatement() == null) {
@@ -284,10 +282,8 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
 
         List<AcceptedAgreements> hList = profile.getAgreements();
 
-        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
-                provider
-        );
-        List<AgreementDocument> activeList = pt.getAgreementDocuments();
+        ProviderType pt = getProviderTypeService().getByDescription(provider.getProviderType());
+        Set<AgreementDocument> activeList = pt.getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
         // Retain any previously accepted agreements that is no longer shown in the page
@@ -331,7 +327,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
      * @param list the list to be mapped
      * @return the lookup map
      */
-    private Map<String, AgreementDocument> mapDocumentsById(List<AgreementDocument> list) {
+    private Map<String, AgreementDocument> mapDocumentsById(Collection<AgreementDocument> list) {
         Map<String, AgreementDocument> map = new HashMap<String, AgreementDocument>();
         for (AgreementDocument item : list) {
             map.put(String.valueOf(item.getId()), item);
@@ -391,10 +387,8 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         provider.setHasCivilPenalty(profile.getCivilPenaltyInd());
         provider.setHasPreviousExclusion(profile.getPreviousExclusionInd());
 
-        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
-                provider
-        );
-        List<AgreementDocument> activeList = pt.getAgreementDocuments();
+        ProviderType pt = getProviderTypeService().getByDescription(provider.getProviderType());
+        Set<AgreementDocument> activeList = pt.getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
         AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(enrollment);

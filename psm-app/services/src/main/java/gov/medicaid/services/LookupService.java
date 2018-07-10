@@ -17,7 +17,6 @@
 package gov.medicaid.services;
 
 import gov.medicaid.domain.model.ApplicantType;
-import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.entities.BeneficialOwnerType;
 import gov.medicaid.entities.LookupEntity;
 import gov.medicaid.entities.ProviderType;
@@ -44,27 +43,6 @@ public interface LookupService {
      * @return the filtered provider types
      */
     List<ProviderType> getProviderTypes(ApplicantType applicantType);
-
-    /**
-     * Finds a ProviderType by its description, and eager-load
-     * its related AgreementDocuments.
-     *
-     * @param providerInformationType The XML-backed provider type to look up in
-     *                                the database.
-     * @return The ProviderType, with its agreementDocuments field fully
-     * initialized.
-     */
-    ProviderType getProviderTypeWithAgreementDocuments(ProviderInformationType providerInformationType);
-
-    /**
-     * Finds a ProviderType by its description, and eager-load
-     * its related LicenseTypes.
-     *
-     * @param providerInformationType The XML-backed provider type to look up in
-     *                                the database.
-     * @return The ProviderType, with its licenseTypes field fully initialized.
-     */
-    ProviderType getProviderTypeWithLicenseTypes(ProviderInformationType providerInformationType);
 
     /**
      * Retrieves the lookup with the given description.

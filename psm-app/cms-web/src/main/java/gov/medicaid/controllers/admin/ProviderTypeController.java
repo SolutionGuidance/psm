@@ -251,7 +251,7 @@ public class ProviderTypeController {
     @RequestMapping(value = "/admin/updateProviderType", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("providerType") ProviderType providerType, HttpServletRequest request)
         throws PortalServiceException {
-        // providerTypeService.update(providerType);
+        providerTypeService.update(providerType);
         // Retrieve
         providerType = providerTypeService.get(providerType.getCode());
         long[] agreementIds = ServletRequestUtils.getLongParameters(request, "providerAgreements");

@@ -64,8 +64,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import static java.util.logging.Level.SEVERE;
-
 @Stateless
 @Local(BusinessProcessService.class)
 @TransactionManagement(TransactionManagementType.BEAN)
@@ -75,7 +73,7 @@ public class BusinessProcessServiceBean extends BaseService
 
     /**
      * See https://issues.jboss.org/browse/JBPM-3791
-     *
+     * <p>
      * To use a different parameter, override the default handler in getTaskClient().
      */
     private static final String LOCALE = "en-UK";
@@ -136,28 +134,6 @@ public class BusinessProcessServiceBean extends BaseService
         if (providerService == null) {
             providerService = config.getEnrollmentService();
         }
-    }
-
-    /**
-     * Starts a new enrollment process.
-     *
-     * @param enrollment the enrollment requested
-     * @return the process instance id
-     * @throws Exception for any errors encountered
-     */
-    private long enroll(
-        EnrollmentType enrollment
-    ) throws Exception {
-        Long processId;
-        try {
-            processId = RulesExecutor.startEnrollmentProcess(enrollment,
-                handlers.entrySet(),
-                getEmf(), context);
-        } catch (Throwable t) {
-            logger.log(SEVERE, "Could not close session.", t);
-            throw t;
-        }
-        return processId;
     }
 
     private void resubmit(
@@ -356,8 +332,10 @@ public class BusinessProcessServiceBean extends BaseService
 
             try {
                 if (isEnrollmentRequest(ticket)) {
-                    long processInstance = enroll(XMLAdapter.toXML(ticket));
-                    ticket.setProcessInstanceId(processInstance);
+                    EnrollmentType enrollmentType = XMLAdapter.toXML(ticket);
+                    long processId = RulesExecutor.startEnrollmentProcess(enrollmentType,
+                        handlers.entrySet(), getEmf(), context);
+                    ticket.setProcessInstanceId(processId);
                 }
             } catch (Exception e) {
                 throw new PortalServiceException(

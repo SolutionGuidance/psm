@@ -148,12 +148,11 @@ public interface ProviderEnrollmentService {
      * @throws IllegalArgumentException if any argument is null, or the page
      *                                  size and page number settings are
      *                                  invalid
-     * @throws PortalServiceException   for any errors encountered
      */
     SearchResult<UserRequest> searchTickets(
             CMSUser user,
             ProviderSearchCriteria criteria
-    ) throws PortalServiceException;
+    );
 
     /**
      * This method gets all the enrollments that meet the search criteria. If none

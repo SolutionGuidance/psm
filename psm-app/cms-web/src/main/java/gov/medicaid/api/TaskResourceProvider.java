@@ -51,7 +51,7 @@ public class TaskResourceProvider implements IResourceProvider {
             @OptionalParam(name = "status") StringOrListParam statuses,
             @OptionalParam(name = "providerType") String providerType,
             @OptionalParam(name = "name") String name
-    ) throws PortalServiceException {
+    ) {
         validateNpi(npi);
 
         ProviderSearchCriteria criteria = new ProviderSearchCriteria();

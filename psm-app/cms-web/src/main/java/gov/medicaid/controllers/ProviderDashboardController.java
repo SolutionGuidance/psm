@@ -255,9 +255,10 @@ public class ProviderDashboardController extends BaseController {
      * @verb GET
      */
     @RequestMapping(value = "/filter", method = RequestMethod.GET)
-    public ModelAndView filterTicketsByStatus(@RequestParam("status") String status, ProviderSearchCriteria criteria)
-        throws PortalServiceException {
-
+    public ModelAndView filterTicketsByStatus(
+        @RequestParam("status") String status,
+        ProviderSearchCriteria criteria
+    ) throws PortalServiceException {
         String view = "provider/dashboard/list_by_status";
         criteria.setStatuses(Arrays.asList(status));
         ModelAndView mv = searchTickets(criteria, view);
@@ -284,8 +285,10 @@ public class ProviderDashboardController extends BaseController {
      */
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/export", method = RequestMethod.GET)
-    public void exportTicketsByStatus(@RequestParam("status") String status, ProviderSearchCriteria criteria,
-        HttpServletResponse response) throws PortalServiceException, IOException {
+    public void exportTicketsByStatus(
+        @RequestParam("status") String status, ProviderSearchCriteria criteria,
+        HttpServletResponse response
+    ) throws PortalServiceException, IOException {
         criteria.setStatuses(Arrays.asList(status));
 
         // export all
@@ -324,7 +327,10 @@ public class ProviderDashboardController extends BaseController {
      * @return the results and the view provided
      * @throws PortalServiceException for any errors encountered
      */
-    private ModelAndView searchTickets(ProviderSearchCriteria criteria, String view) throws PortalServiceException {
+    private ModelAndView searchTickets(
+        ProviderSearchCriteria criteria,
+        String view
+    ) throws PortalServiceException {
         String enrollmentNumber = criteria.getEnrollmentNumber();
         // enrollment number must be a valid long since ids are of that type.
         if (Util.isNotBlank(enrollmentNumber)) {

@@ -207,7 +207,7 @@
                     <a class="greyBtn" href="${cancelUrl}">
                       Cancel
                     </a>
-                    <button class="purpleBtn" type="submit" name="submit">
+                    <button class="purpleBtn" type="submit" name="submitEnrollment">
                       Submit Enrollment
                     </button>
                     <button class="greyBtn" type="submit" name="save">

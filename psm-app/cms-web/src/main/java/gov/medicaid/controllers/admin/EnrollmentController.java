@@ -269,7 +269,7 @@ public class EnrollmentController extends BaseController {
     ) throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
         enrollmentService.rejectTicket(user, id, "Manual Reject by the agent");
-        ModelAndView mv = new ModelAndView("redirect:/provider/search/rejected?statuses=Rejected&showFilterPanel=true");
+        ModelAndView mv = new ModelAndView("redirect:/provider/enrollments/rejected?statuses=Rejected&showFilterPanel=true");
         return mv;
     }
 

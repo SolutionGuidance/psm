@@ -414,11 +414,10 @@ public interface ProviderEnrollmentService {
      *
      * @param npi the npi to search for
      * @return the public lookup data
-     * @throws PortalServiceException for any errors encountered
      */
     List<ProviderLookup> lookupProvider(
             String npi
-    ) throws PortalServiceException;
+    );
 
     /**
      * Direct save (no logical checks) Used by business processes.

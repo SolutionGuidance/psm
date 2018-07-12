@@ -746,7 +746,6 @@ public class EnrollmentPageFlowController extends BaseController {
      *
      * @param npi the provider NPI
      * @return the lookup JSON
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/lookupProvider"
      * @verb POST
      */
@@ -754,7 +753,7 @@ public class EnrollmentPageFlowController extends BaseController {
     @ResponseBody
     public List<ProviderLookup> lookupProvider(
             @RequestParam("npi") String npi
-    ) throws PortalServiceException {
+    ) {
         List<ProviderLookup> results = getEnrollmentService().lookupProvider(npi);
         if (results != null) {
             for (ProviderLookup item : results) {

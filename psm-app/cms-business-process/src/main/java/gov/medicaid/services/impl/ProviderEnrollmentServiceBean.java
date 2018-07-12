@@ -657,13 +657,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *
      * @param npi the National Provider Identifier to search by
      * @return the matching practice results
-     * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     @Override
     public List<ProviderLookup> lookupProvider(
             String npi
-    ) throws PortalServiceException {
+    ) {
         String fetchQuery =
                 "SELECT NEW gov.medicaid.entities.ProviderLookup(e.profileId, e.npi, e.name, e.providerType.description) "
                 + "FROM Entity e WHERE e.npi = :npi AND ticketId = 0 AND e.enrolled = 'Y'";

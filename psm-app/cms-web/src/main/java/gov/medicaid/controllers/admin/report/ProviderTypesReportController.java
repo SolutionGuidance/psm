@@ -118,7 +118,7 @@ public class ProviderTypesReportController extends gov.medicaid.controllers.Base
 
     private List<Enrollment> getEnrollmentsFromDB(
         List<String> providerTypeCodes
-    ) throws PortalServiceException {
+    ) {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         criteria.setProviderTypes(providerTypeCodes);
         return enrollmentService.searchEnrollments(criteria).getItems();

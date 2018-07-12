@@ -53,7 +53,7 @@ public class RiskLevelsReportController extends gov.medicaid.controllers.BaseCon
     }
 
     @RequestMapping(value = "/admin/reports/risk-levels", method = RequestMethod.GET)
-    public ModelAndView getRiskLevels() throws PortalServiceException {
+    public ModelAndView getRiskLevels() {
         ModelAndView mv = new ModelAndView("admin/reports/risk_levels");
 
         List<Enrollment> enrollments = getEnrollmentsFromDB();
@@ -104,7 +104,7 @@ public class RiskLevelsReportController extends gov.medicaid.controllers.BaseCon
         }
     }
 
-    private List<Enrollment> getEnrollmentsFromDB() throws PortalServiceException {
+    private List<Enrollment> getEnrollmentsFromDB() {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         criteria.setAscending(true);
         criteria.setSortColumn("created_at");

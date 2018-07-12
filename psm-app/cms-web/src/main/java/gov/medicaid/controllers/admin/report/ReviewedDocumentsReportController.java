@@ -39,7 +39,7 @@ public class ReviewedDocumentsReportController extends gov.medicaid.controllers.
     }
 
     @RequestMapping(value = "/admin/reports/reviewed-documents", method = RequestMethod.GET)
-    public ModelAndView getReviewedDocuments() throws PortalServiceException {
+    public ModelAndView getReviewedDocuments() {
         ModelAndView mv = new ModelAndView("admin/reports/reviewed_documents");
 
         List<Enrollment> enrollments = getEnrollmentsFromDB();
@@ -77,7 +77,7 @@ public class ReviewedDocumentsReportController extends gov.medicaid.controllers.
         }
     }
 
-    private List<Enrollment> getEnrollmentsFromDB() throws PortalServiceException {
+    private List<Enrollment> getEnrollmentsFromDB() {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         criteria.setAscending(true);
         criteria.setSortColumn("created_at");

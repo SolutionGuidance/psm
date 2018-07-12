@@ -163,11 +163,10 @@ public interface ProviderEnrollmentService {
      * @throws IllegalArgumentException if any argument is null, or the page
      *                                  size and page number settings are
      *                                  invalid
-     * @throws PortalServiceException   for any errors encountered
      */
     SearchResult<Enrollment> searchEnrollments(
             EnrollmentSearchCriteria criteria
-    ) throws PortalServiceException;
+    );
 
     /**
      * This method gets all the enrollments that are draft status at end of

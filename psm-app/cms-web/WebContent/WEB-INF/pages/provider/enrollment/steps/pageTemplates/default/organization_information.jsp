@@ -103,7 +103,7 @@
                     <div class="row">
                         <c:set var="formName" value="_15_stateTaxId"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <label for="{formIdPrefix}_${formName}">MN Tax ID</label>
+                        <label for="{formIdPrefix}_${formName}">State Tax ID</label>
                         <input id="{formIdPrefix}_${formName}" type="text" class="normalInput taxIdMasked" id="stateTaxId" name="${formName}" value="${formValue}" maxlength="10"/>
                     </div>
 
@@ -240,7 +240,7 @@
                     <div class="row">
                         <c:set var="formName" value="_15_stateTaxId"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <label for="{formIdPrefix}_${formName}">MN Tax ID</label>
+                        <label for="{formIdPrefix}_${formName}">State Tax ID</label>
                         <input id="{formIdPrefix}_${formName}" type="text" class="normalInput taxIdMasked" id="stateTaxId" name="${formName}" value="${formValue}" maxlength="10"/>
                     </div>
 
@@ -364,7 +364,7 @@
                     <div class="row">
                         <c:set var="formName" value="_15_stateTaxId"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <label for="stateTaxId">MN Tax ID</label>
+                        <label for="stateTaxId">State Tax ID</label>
                         <input type="text" class="normalInput taxIdMasked" id="stateTaxId" name="${formName}" value="${formValue}" maxlength="10"/>
                     </div>
 
@@ -625,7 +625,7 @@
                 <div class="row">
                     <c:set var="formName" value="_15_stateTaxId"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="stateTaxId">MN Tax ID</label>
+                    <label for="stateTaxId">State Tax ID</label>
                     <input type="text" class="normalInput taxIdMasked" id="stateTaxId" name="${formName}" value="${formValue}" maxlength="10"/>
                 </div>
 

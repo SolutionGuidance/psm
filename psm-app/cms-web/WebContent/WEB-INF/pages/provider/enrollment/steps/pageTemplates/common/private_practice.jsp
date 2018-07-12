@@ -59,7 +59,7 @@
     <span id="fein">${requestScope['_05_fein']}</span>
 </div>
 <div class="row">
-    <label>MN Tax ID</label>
+    <label>State Tax ID</label>
     <span id="stateTaxId">${requestScope['_05_stateTaxId']}</span>
 </div>
 <div class="row">

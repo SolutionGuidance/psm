@@ -51,7 +51,7 @@
                 <span>${requestScope['_15_legalName']}</span>
             </div>
             <div class="row">
-                <label>MN TAX ID </label>
+                <label>State Tax ID</label>
                 <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_stateTaxId']}</span>
             </div>
@@ -123,7 +123,7 @@
                 <span>${requestScope['_15_legalName']}</span>
             </div>
             <div class="row">
-                <label>MN TAX ID </label>
+                <label>State Tax ID</label>
                 <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_stateTaxId']}</span>
             </div>
@@ -178,7 +178,7 @@
                   <span>${requestScope['_15_fein']}</span>
                 </div>
                 <div class="row">
-                    <label>MN Tax Id</label>
+                    <label>State Tax Id</label>
                     <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_15_stateTaxId']}</span>
                 </div>
@@ -322,7 +322,7 @@
                     </span>
                 </div>
                 <div class="row">
-                    <label>MN TAX ID </label>
+                    <label>State Tax ID</label>
                     <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_15_stateTaxId']}</span>
                 </div>

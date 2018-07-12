@@ -178,11 +178,10 @@ public interface ProviderEnrollmentService {
      * @throws IllegalArgumentException if any argument is null, or the page
      *                                  size and page number settings are
      *                                  invalid
-     * @throws PortalServiceException   for any errors encountered
      */
     SearchResult<Enrollment> getDraftAtEomEnrollments(
             EnrollmentSearchCriteria criteria
-    ) throws PortalServiceException;
+    );
 
     /**
      * This method gets all the providers owned by the given user. If none

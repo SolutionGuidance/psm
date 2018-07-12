@@ -448,13 +448,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @throws IllegalArgumentException if any argument is null, or the page
      *                                  size and page number settings are
      *                                  invalid
-     * @throws PortalServiceException   for any errors encountered
      */
     @SuppressWarnings("unchecked")
     @Override
     public SearchResult<Enrollment> getDraftAtEomEnrollments(
             EnrollmentSearchCriteria criteria
-    ) throws PortalServiceException {
+    ) {
         if (criteria == null) {
             throw new IllegalArgumentException("Criteria cannot be null.");
         }

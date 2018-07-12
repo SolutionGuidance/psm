@@ -1363,11 +1363,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * Inserts the provider profile statement.
      *
      * @param details the provider profile
-     * @throws PortalServiceException for any errors encountered
      */
     private void insertStatement(
             ProviderProfile details
-    ) throws PortalServiceException {
+    ) {
         ProviderStatement statement = details.getStatement();
         if (statement == null) {
             return;
@@ -1745,12 +1744,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *
      * @param user     the user performing the operation.
      * @param ticketId the ticket that will be cleared
-     * @throws PortalServiceException for any errors encountered
      */
     private void purgeTicketDetails(
             CMSUser user,
             long ticketId
-    ) throws PortalServiceException {
+    ) {
         ProviderProfile profile = getProviderDetailsByTicket(ticketId, true);
         if (profile != null) {
             purge(profile);

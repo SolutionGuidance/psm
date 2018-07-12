@@ -20,14 +20,11 @@ import gov.medicaid.controllers.ControllerHelper;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.EnrollmentStatus;
 import gov.medicaid.entities.Event;
-import gov.medicaid.entities.HelpItem;
-import gov.medicaid.entities.HelpSearchCriteria;
 import gov.medicaid.entities.ProviderSearchCriteria;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.UserRequest;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.EventService;
-import gov.medicaid.services.HelpService;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
@@ -36,24 +33,12 @@ import gov.medicaid.services.ProviderEnrollmentService;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
 
 import java.util.List;
 
-/**
- * <p>
- * This controller class displays the dashboard and help page.
- * </p>
- * <p>
- * This class is mutable and not thread safe, but used in thread safe manner by framework.
- * </p>
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
- */
 public class DashboardController extends BaseServiceAdminController {
     /**
      * Represents the provider profile service. it is managed with a getter and setter. It may have any value, but is
@@ -61,13 +46,6 @@ public class DashboardController extends BaseServiceAdminController {
      * change after dependency injection.
      */
     private ProviderEnrollmentService providerProfileService;
-
-    /**
-     * Represents the help service. it is managed with a getter and setter. It may have any value, but is expected to be
-     * set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to change after
-     * dependency injection.
-     */
-    private HelpService helpService;
 
     /**
      * Represents the event service. it is managed with a getter and setter. It may have any value, but is expected to
@@ -98,10 +76,6 @@ public class DashboardController extends BaseServiceAdminController {
 
         if (providerProfileService == null) {
             throw new PortalServiceConfigurationException("providerProfileService must be configured.");
-        }
-
-        if (helpService == null) {
-            throw new PortalServiceConfigurationException("helpService must be configured.");
         }
 
         if (eventService == null) {
@@ -173,85 +147,6 @@ public class DashboardController extends BaseServiceAdminController {
         model.addObject("notifications", notifications);
 
         return model;
-    }
-
-    /**
-     * This action will load the help page.
-     *
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     *
-     * @throws PortalServiceException If there are any errors in the action
-     * @endpoint "/viewHelp"
-     * @verb GET
-     */
-    @RequestMapping(value = "/viewHelp", method = RequestMethod.GET)
-    public ModelAndView getHelp() throws PortalServiceException {
-        // Get all help topics with help service
-        SearchResult<HelpItem> result = helpService.search(new HelpSearchCriteria());
-        ModelAndView model = new ModelAndView("admin/help");
-        model.addObject("helpItems", result.getItems());
-
-        return model;
-    }
-
-    /**
-     * This action will get the entity with the given ID.
-     *
-     * @param id the entity ID
-     *
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     *
-     * @throws PortalServiceException If there are any errors in the action
-     * @endpoint "/viewHelpItem"
-     * @verb GET
-     */
-    @RequestMapping(value = "/viewHelpItem", method = RequestMethod.GET)
-    public ModelAndView getHelpItem(@RequestParam("helpItemId") long id) throws PortalServiceException {
-        HelpItem helpItem = helpService.get(id);
-        ModelAndView model = new ModelAndView("admin/help_detail");
-        model.addObject("helpItem", helpItem);
-        return model;
-    }
-
-    /**
-     * This action will search for help items.
-     *
-     * @param criteria the search criteria
-     *
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
-     *
-     * @throws PortalServiceException If there are any errors in the action
-     * @endpoint "/viewHelp"
-     * @verb POST
-     */
-    @RequestMapping(value = "/viewHelp", method = RequestMethod.POST)
-    public ModelAndView searchHelp(@ModelAttribute("criteria") HelpSearchCriteria criteria)
-        throws PortalServiceException {
-        List<HelpItem> helpItems = helpService.search(criteria).getItems();
-        ModelAndView model = new ModelAndView("admin/help");
-        model.addObject("helpItems", helpItems);
-        return model;
-    }
-
-    /**
-     * Getter of helpService.
-     *
-     * @return the helpService
-     */
-    public HelpService getHelpService() {
-        return helpService;
-    }
-
-    /**
-     * Set the helpService.
-     *
-     * @param helpService the helpService to set
-     */
-    public void setHelpService(HelpService helpService) {
-        this.helpService = helpService;
     }
 
     /**

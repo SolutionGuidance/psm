@@ -186,9 +186,6 @@ $(document).ready(function () {
     $('#new-modal #printModal .modal-content .tabContent').show();
     $(this).addClass('active');
     $($(this).attr('href')).show();
-    if ($(this).attr('href') == "#tabHelpTopics") {
-      $('#scrollbar').tinyscrollbar({ sizethumb: 161 });
-    }
 
     if ($(this).attr('href') == '#tabProviderTypes') {
       $('.addProviderBtn').show();
@@ -604,139 +601,6 @@ $(document).ready(function () {
       }
     }
   });
-  //Scrollbar
-  if ($('#scrollbar').length) {
-    $('#scrollbar').tinyscrollbar({ sizethumb: 161 });
-    $('#letterA').click(function () {
-      $('#scrollbar').tinyscrollbar_update(0);
-      return false;
-    });
-
-    $('#letterB').click(function () {
-      $('#scrollbar').tinyscrollbar_update(150);
-      return false;
-    });
-
-    $('#letterC').click(function () {
-      $('#scrollbar').tinyscrollbar_update(300);
-      return false;
-    });
-
-    $('#letterD').click(function () {
-      $('#scrollbar').tinyscrollbar_update(450);
-      return false;
-    });
-
-    $('#letterE').click(function () {
-      $('#scrollbar').tinyscrollbar_update(600);
-      return false;
-    });
-
-    $('#letterF').click(function () {
-      $('#scrollbar').tinyscrollbar_update(750);
-      return false;
-    });
-
-    $('#letterG').click(function () {
-      $('#scrollbar').tinyscrollbar_update(900);
-      return false;
-    });
-
-    $('#letterH').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1050);
-      return false;
-    });
-
-    $('#letterI').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1200);
-      return false;
-    });
-
-    $('#letterJ').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1350);
-      return false;
-    });
-
-    $('#letterK').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1500);
-      return false;
-    });
-
-    $('#letterL').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1650);
-      return false;
-    });
-
-    $('#letterM').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1800);
-      return false;
-    });
-
-    $('#letterN').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1950);
-      return false;
-    });
-
-    $('#letterO').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2100);
-      return false;
-    });
-
-    $('#letterP').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2250);
-      return false;
-    });
-
-    $('#letterQ').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2400);
-      return false;
-    });
-
-    $('#letterR').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2550);
-      return false;
-    });
-
-    $('#letterS').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2700);
-      return false;
-    });
-
-    $('#letterT').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2850);
-      return false;
-    });
-
-    $('#letterU').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3000);
-      return false;
-    });
-
-    $('#letterV').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3150);
-      return false;
-    });
-
-    $('#letterW').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3300);
-      return false;
-    });
-
-    $('#letterX').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3300);
-      return false;
-    });
-
-    $('#letterY').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3300);
-      return false;
-    });
-
-    $('#letterZ').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3300);
-      return false;
-    });
-  }
   //Check All
   $('#advancedSearch .checkRow span.label').live('click', function () {
     if ($(this).prev().attr('checked')) {
@@ -961,7 +825,6 @@ $(document).ready(function () {
 
   if ($.browser.msie && ($.browser.version == "7.0")) {
     $('#createEnrollment input[type="radio"],#advancedSearch input[type="checkbox"]').css('margin', '5px 3px auto 3px');
-    $('.helpSection .row li').css('width', $('.helpSection .row ul').width() / 3);
   }
 
   /* END OF SERVICE AGENT SCRIPT -------------------------------------------------- */
@@ -1047,39 +910,6 @@ $(document).ready(function () {
     $('#screenSchedulePanel').hide();
     $('#changeScreenSchedulePanel').show();
   });
-
-  $('.addHelpTopicBtn').live('click', function () {
-    $('#helpTopicsPanel').hide();
-    $('#viewHelpTopicPanel').hide();
-    $('#editHelpTopicPanel').hide();
-    $('#addHelpTopicPanel').show();
-  });
-
-  $('.editHelpTopicBtn').live('click', function () {
-    $('#helpTopicsPanel').hide();
-    $('#viewHelpTopicPanel').hide();
-    $('#addHelpTopicPanel').hide();
-    $('#editHelpTopicPanel').show();
-  });
-
-  $('.cancelAddHelpTopicBtn,.backToHelpTopicBtn,.deleteOKBtn').live('click', function () {
-    closeModal();
-    $('#viewHelpTopicPanel').hide();
-    $('#editHelpTopicPanel').hide();
-    $('#addHelpTopicPanel').hide();
-    $('#helpTopicsPanel').show();
-  });
-
-  $('.saveAddHelpTopicBtn,.cancelEditHelpTopicBtn,#helpTopicsPanel .overview li a').live('click', function () {
-    $('#viewHelpTopicPanel').show();
-    $('#editHelpTopicPanel').hide();
-    $('#addHelpTopicPanel').hide();
-    $('#helpTopicsPanel').hide();
-  });
-
-  $('.deleteHelpTopicBtn').live('click', function () {
-    loadModal('#deleteHelpTopicModal');
-  })
 
   $('.deleteAgreementBtn').live('click', function () {
     loadModal('#deleteAgreementModal');

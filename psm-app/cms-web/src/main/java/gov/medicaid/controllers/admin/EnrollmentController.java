@@ -36,8 +36,6 @@ import gov.medicaid.entities.CategoryOfService;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentStatus;
 import gov.medicaid.entities.Event;
-import gov.medicaid.entities.HelpItem;
-import gov.medicaid.entities.HelpSearchCriteria;
 import gov.medicaid.entities.LeieAutomaticScreening;
 import gov.medicaid.entities.ProviderCategoryOfService;
 import gov.medicaid.entities.ProviderProfile;
@@ -52,7 +50,6 @@ import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.BusinessProcessService;
 import gov.medicaid.services.EventService;
 import gov.medicaid.services.ExportService;
-import gov.medicaid.services.HelpService;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
@@ -107,8 +104,6 @@ public class EnrollmentController extends BaseController {
 
     private BusinessProcessService businessProcessService;
 
-    private HelpService helpService;
-
     private EventService eventService;
 
     private LookupService lookupService;
@@ -132,9 +127,6 @@ public class EnrollmentController extends BaseController {
         super.init();
         if (enrollmentService == null) {
             throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
-        }
-        if (helpService == null) {
-            throw new PortalServiceConfigurationException("helpService must be configured.");
         }
 
         if (eventService == null) {
@@ -205,53 +197,6 @@ public class EnrollmentController extends BaseController {
         ModelAndView model = new ModelAndView("admin/dashboard");
         model.addObject("profiles", result.getItems());
         model.addObject("notifications", notifications);
-        return model;
-    }
-
-    /**
-     * This action will load the help page.
-     *
-     * @return the model and view instance that contains the name of view to be
-     * rendered and data to be used for rendering (not null)
-     * @throws PortalServiceException If there are any errors in the action
-     * @endpoint "/agent/enrollment/viewHelp"
-     * @verb GET
-     */
-    @RequestMapping(
-            value = "/agent/enrollment/viewHelp",
-            method = RequestMethod.GET
-    )
-    public ModelAndView getHelp() throws PortalServiceException {
-        // Get all help topics with help service
-        HelpSearchCriteria criteria = new HelpSearchCriteria();
-        criteria.setPageNumber(1);
-        criteria.setPageSize(-1);
-        SearchResult<HelpItem> result = helpService.search(criteria);
-        ModelAndView model = new ModelAndView("admin/help");
-        model.addObject("helpItems", result.getItems());
-        return model;
-    }
-
-    /**
-     * This action will get the entity with the given ID.
-     *
-     * @param id the entity ID
-     * @return the model and view instance that contains the name of view to be
-     * rendered and data to be used for rendering (not null)
-     * @throws PortalServiceException If there are any errors in the action
-     * @endpoint "/agent/enrollment/viewHelpItem"
-     * @verb GET
-     */
-    @RequestMapping(
-            value = "/agent/enrollment/viewHelpItem",
-            method = RequestMethod.GET
-    )
-    public ModelAndView getHelpItem(
-            @RequestParam("helpItemId") long id
-    ) throws PortalServiceException {
-        HelpItem helpItem = helpService.get(id);
-        ModelAndView model = new ModelAndView("admin/help_detail");
-        model.addObject("helpItem", helpItem);
         return model;
     }
 
@@ -607,10 +552,6 @@ public class EnrollmentController extends BaseController {
             ControllerHelper.flashError(USER_ERROR_MSG);
         }
         return "redirect:/ops/viewDashboard";
-    }
-
-    public void setHelpService(HelpService helpService) {
-        this.helpService = helpService;
     }
 
     public void setEventService(EventService eventService) {

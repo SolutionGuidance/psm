@@ -240,11 +240,6 @@
       <value>${jndi.AgreementDocumentService}</value>
     </property>
   </bean>
-  <bean id="HelpService" class="org.springframework.jndi.JndiObjectFactoryBean">
-    <property name="jndiName">
-      <value>${jndi.HelpService}</value>
-    </property>
-  </bean>
   <bean id="EventService"
         class="org.springframework.jndi.JndiObjectFactoryBean">
     <property name="jndiName">
@@ -282,13 +277,7 @@
         class="gov.medicaid.controllers.admin.DashboardController"
         parent="BaseServiceAdminController">
     <property name="providerProfileService" ref="ProviderEnrollmentService"/>
-    <property name="helpService" ref="HelpService"/>
     <property name="eventService" ref="EventService"/>
-  </bean>
-  <bean id="HelpController"
-        class="gov.medicaid.controllers.admin.HelpController"
-        parent="BaseServiceAdminController">
-    <property name="helpService" ref="HelpService"/>
   </bean>
   <bean id="ProviderTypeController"
         class="gov.medicaid.controllers.admin.ProviderTypeController"
@@ -311,7 +300,6 @@
         parent="BaseController">
     <property name="businessProcessService" ref="BusinessProcessService"/>
     <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-    <property name="helpService" ref="HelpService"/>
     <property name="eventService" ref="EventService"/>
     <property name="lookupService" ref="LookupService"/>
     <property name="providerTypeService" ref="ProviderTypeService"/>

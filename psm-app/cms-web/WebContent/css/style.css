@@ -2443,70 +2443,6 @@ input.date{
   color:#999999;
 }
 
-/* helpSection */
-.helpSection{
-  width:100%;
-  border:1px solid #d2d2d2;
-  position:relative;
-}
-
-/* header */
-.helpSection .sectionHeader{
-  height:36px;
-  border-bottom:#bdbdbd solid 1px;
-  background:url(../i/panel-head.png) repeat-x left top;
-}
-
-.helpSection .sectionHeader span{
-  padding:0 0 0 20px;
-  font-size:16px;
-  line-height:36px;
-  /* text shadow */
-  text-shadow:#ffffff 0 2px 0;
-}
-
-.helpSection .sectionHeader strong{
-  padding:0 0 0 52px;
-  font-size:14px;
-  line-height:36px;
-  /* text shadow */
-  text-shadow:#ffffff 0 1px 0;
-}
-
-.helpSection .sectionHeader a{
-  padding:0 0 0 18px;
-  font-size:14px;
-  line-height:36px;
-  /* text shadow */
-  text-shadow:#ffffff 0 1px 0;
-}
-
-/* section */
-.helpSection .row{
-  margin:0 0 16px 0;
-  padding:0 0 22px 0;
-  border-bottom:#dedcdc solid 1px;
-}
-
-.helpSection .last{
-  margin:0;
-}
-
-.helpSection .row strong{
-  display:block;
-  margin:0 0 6px 0;
-  font-size:18px;
-  line-height:24px;
-}
-
-.helpSection .row li{
-  width:33%;
-  float:left;
-  display:inline;
-  font-size:14px;
-  line-height:27px;
-}
-
 /* My Profile */
 #myProfile{
   margin:0 0 100px 0;
@@ -2695,27 +2631,6 @@ span.label, span.label strong {
 #mainContent.createEnrollmentPage{
   margin:0 0 60px 0;
 }
-
-/* Help Content */
-#mainContent.helpPage{
-  padding:0 0 34px 0;
-}
-
-.helpContent{
-  margin:13px 0 20px 0;
-  padding:17px 28px 32px 20px;
-  border:#d2d2d2 solid 1px;
-}
-
-.helpContent p{
-  padding:10px 22px 10px 0;
-  line-height:21px;
-}
-
-.helpContent .placeHolder{
-  margin:8px 0 15px 0;
-}
-
 
 /*new css*/
 
@@ -3167,52 +3082,6 @@ a.searchBtn {
   background-image:url(../i/bg-modal-footer.png);
   background-repeat:repeat-x;
   background-position:0 -14px;
-}
-
-/* Tiny Scrollbar */
-#scrollbar{
-  margin:18px 0 50px 0;
-}
-#scrollbar .viewport{
-  height:586px;
-  margin:0 30px 0 20px;
-  overflow:hidden;
-  position:relative;
-}
-#scrollbar .overview{
-  list-style:none;
-  position:absolute;
-  left:0;
-  top:0;
-  padding:0;
-  margin:0;
-}
-
-#scrollbar .scrollbar{
-  width:7px;
-  position:relative;
-  float:right;
-}
-#scrollbar .track{
-  height:100%;
-  width:13px;
-  position:relative;
-  padding:0 1px;
-}
-
-#scrollbar .thumb{
-  background:transparent url(../i/bg-scrollbar-thumb-y.png) no-repeat 50% 100%;
-  height:161px;
-  width:7px;
-  cursor:pointer;
-  overflow:hidden;
-  position:absolute;
-  top:0;
-  left:-5px;
-}
-
-#scrollbar .disable{
-  display:none;
 }
 
 #new-modal{
@@ -3668,19 +3537,18 @@ a.okBtn {
 .serviceAdminTable{
   font-size:11px;
 }
-/* approveModal & rejectOKModal & screenModal & editModal & deleteProviderTypesModal & deleteHelpTopicModal & deleteAgreementModal */
-#noSelectedItemsModal,#approveModal,#rejectOKModal,#screenModal,#editModal,#deleteProviderTypesModal,#deleteHelpTopicModal,#deleteAgreementModal
+#noSelectedItemsModal,#approveModal,#rejectOKModal,#screenModal,#editModal,#deleteProviderTypesModal,#deleteAgreementModal
 {
   width:564px;
 }
 
 #noSelectedItemsModal .container,#approveModal .container,#rejectOKModal .container,#screenModal .container,#editModal .container
-,#deleteProviderTypesModal .container,#deleteHelpTopicModal .container,#deleteAgreementModal .container
+,#deleteProviderTypesModal .container,#deleteAgreementModal .container
 {
   padding:20px 0 10px 0;
 }
 
-#noSelectedItemsModal p,#approveModal p,#rejectOKModal p,#screenModal p,#editModal p,#deleteProviderTypesModal p,#deleteHelpTopicModal p
+#noSelectedItemsModal p,#approveModal p,#rejectOKModal p,#screenModal p,#editModal p,#deleteProviderTypesModal p
 ,#deleteAgreementModal p {
   width:100%;
   height:50px;
@@ -3690,11 +3558,11 @@ a.okBtn {
   vertical-align: middle;
   text-align:center;
 }
-#noSelectedItemsModal p,#approveModal p,#rejectOKModal p,#deleteProviderTypesModal p,#deleteHelpTopicModal p,#deleteAgreementModal p {
+#noSelectedItemsModal p,#approveModal p,#rejectOKModal p,#deleteProviderTypesModal p,#deleteAgreementModal p {
   line-height:50px;
 }
 #noSelectedItemsModal .buttons,#approveModal .buttons,#rejectOKModal .buttons,#screenModal .buttons,#editModal .buttons,#deleteProviderTypesModal .buttons
-,#deleteHelpTopicModal .buttons,#deleteAgreementModal .buttons {
+,#deleteAgreementModal .buttons {
   height:25px;
   padding:20px 0 30px 0;
   text-align:center;
@@ -3702,7 +3570,7 @@ a.okBtn {
 #approveModal .buttons .saveBtn,#rejectOKModal .buttons .saveBtn,#screenModal .buttons .saveBtn{
   margin:0 10px 0 210px;
 }
-#editModal .buttons .saveBtn,#deleteProviderTypesModal .buttons .saveBtn,#deleteProviderTypesModal .buttons .deleteOKBtn,#deleteHelpTopicModal .buttons .deleteOKBtn
+#editModal .buttons .saveBtn,#deleteProviderTypesModal .buttons .saveBtn,#deleteProviderTypesModal .buttons .deleteOKBtn
 ,#deleteAgreementModal .buttons .deleteOKBtn {
   margin:0 10px 0 170px;
 }
@@ -3926,20 +3794,17 @@ input.text{
 .functionTab p{
   width:98%;
 }
-.functionTab .helpSection{
-  float:left;
-}
 #changeScreenSchedulePanel .newEnrollmentPanel,
-#addHelpTopicPanel .newEnrollmentPanel,
-#editHelpTopicPanel .newEnrollmentPanel,
 #addAgreementPanel .newEnrollmentPanel,
 #editAgreementPanel .newEnrollmentPanel{
   border-top:0;
 }
-#addHelpTopicPanel label,#editHelpTopicPanel label,#addAgreementPanel label,#editAgreementPanel label{
+#addAgreementPanel label,
+#editAgreementPanel label{
   width:10%;
 }
-#addHelpTopicPanel .text,#editHelpTopicPanel .text,#addAgreementPanel .text,#editAgreementPanel .text{
+#addAgreementPanel .text,
+#editAgreementPanel .text{
   background: url("../i/input-bg.png") repeat-x scroll left top transparent;
   border: 1px solid #7EA5C8;
   font-size:12px;
@@ -3947,10 +3812,11 @@ input.text{
   padding:2px 5px;
   margin-left:10px;
 }
-#addHelpTopicPanel textarea.text,#editHelpTopicPanel textarea.text,#addAgreementPanel textarea.text,#editAgreementPanel textarea.text{
+#addAgreementPanel textarea.text,
+#editAgreementPanel textarea.text{
   margin-top:10px;
 }
-#viewHelpTopicPanel p,#viewAgreementPanel p{
+#viewAgreementPanel p{
   line-height:18px;
 }
 #enrollmentSection #tabAgreement .pagination .left{

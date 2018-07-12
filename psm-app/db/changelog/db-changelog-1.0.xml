@@ -1616,4 +1616,20 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="699-remove-help-items">
+    <dropTable tableName="help_items"/>
+    <rollback>
+      <createTable tableName="help_items">
+        <column name="help_item_id"
+                type="bigint">
+          <constraints primaryKey="true"/>
+        </column>
+        <column name="title"
+                type="text" />
+        <column name="description"
+                type="text" />
+      </createTable>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

@@ -66,7 +66,6 @@
     <class>gov.medicaid.entities.Event</class>
     <class>gov.medicaid.entities.ExternalAccountLink</class>
     <class>gov.medicaid.entities.ExternalProfileLink</class>
-    <class>gov.medicaid.entities.HelpItem</class>
     <class>gov.medicaid.entities.IssuingBoard</class>
     <class>gov.medicaid.entities.LeieAutomaticScreening</class>
     <class>gov.medicaid.entities.LeieAutomaticScreeningMatch</class>

@@ -109,7 +109,6 @@ As of 5 October 2017, the PSM offers the following functionality:
 
 3. User at "service admin" privilege level
 * View list of provider types
-* View list of help topics
 * View, create, edit, and delete agreements & addendums
 * Change agreement and addendum assignments for provider types
 * View, create, edit, and delete service agents

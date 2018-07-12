@@ -386,7 +386,7 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
         String ns = NAMESPACE;
         if ("Y".equals(PDFHelper.value(model, ns, "bound"))) {
             // License Info Section
-            PdfPTable licenseInfo = new PdfPTable(new float[] {3, 10, 10, 10, 10, 10, 10});
+            PdfPTable licenseInfo = new PdfPTable(new float[] {3, 10, 10, 10, 10, 10});
             licenseInfo.getDefaultCell().setBorder(0);
             licenseInfo.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 
@@ -394,7 +394,6 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
             licenseInfo.setLockedWidth(true);
 
             PDFHelper.addCenterCell(licenseInfo, "#");
-            PDFHelper.addCenterCell(licenseInfo, "Specialty");
             PDFHelper.addCenterCell(licenseInfo, "Type of License/Certification");
             PDFHelper.addCenterCell(licenseInfo, "License/Certification #");
             PDFHelper.addCenterCell(licenseInfo, "Original Issue Date (MM/DD/YYYY)");
@@ -405,7 +404,6 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
             int size = Integer.parseInt(PDFHelper.value(model, ns, "attachmentSize"));
             for (int i = 0; i < size; i++) {
                 PDFHelper.addCenterCell(licenseInfo, String.valueOf(i + 1));
-                PDFHelper.addCenterCell(licenseInfo, "");
                 PDFHelper.addCenterCell(licenseInfo, PDFHelper.value(model, ns, "licenseType", i));
                 PDFHelper.addCenterCell(licenseInfo, PDFHelper.value(model, ns, "licenseNumber", i));
                 PDFHelper.addCenterCell(licenseInfo, PDFHelper.value(model, ns, "originalIssueDate", i));

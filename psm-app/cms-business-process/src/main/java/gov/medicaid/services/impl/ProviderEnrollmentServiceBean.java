@@ -304,9 +304,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             }
 
             BinaryContent content = getEm().find(BinaryContent.class, attachment.getContentId());
-            InputStream input = null;
-            try {
-                input = content.getContent().getBinaryStream();
+            try (InputStream input = content.getContent().getBinaryStream()) {
                 response.setContentType(attachment.getType());
                 response.setHeader(
                         "Content-Disposition",
@@ -315,10 +313,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 IOUtils.copy(input, response.getOutputStream());
             } catch (SQLException e) {
                 throw new IOException("Cannot read binary content from database.", e);
-            } finally {
-                if (input != null) {
-                    input.close();
-                }
             }
         }
     }

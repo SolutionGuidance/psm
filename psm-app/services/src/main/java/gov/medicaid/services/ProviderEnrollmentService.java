@@ -284,12 +284,11 @@ public interface ProviderEnrollmentService {
      * @param user     the user performing the search
      * @param criteria the criteria filter
      * @return the matching practice results
-     * @throws PortalServiceException for any errors encountered
      */
     SearchResult<PracticeLookup> searchPractice(
             CMSUser user,
             PracticeSearchCriteria criteria
-    ) throws PortalServiceException;
+    );
 
     /**
      * Creates a renewal ticket from the given profile id.

@@ -680,14 +680,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param user     the user performing the search
      * @param criteria the criteria filter
      * @return the matching practice results
-     * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings("unchecked")
     @Override
     public SearchResult<PracticeLookup> searchPractice(
             CMSUser user,
             PracticeSearchCriteria criteria
-    ) throws PortalServiceException {
+    ) {
         if (criteria == null) {
             throw new IllegalArgumentException("Criteria cannot be null.");
         }

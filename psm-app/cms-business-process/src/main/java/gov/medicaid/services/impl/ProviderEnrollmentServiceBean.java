@@ -810,11 +810,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *
      * @param user the user performing the action
      * @return - the applicable providers
-     * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings("unchecked")
     @Override
-    public List<ProfileHeader> findMyProfiles(CMSUser user) throws PortalServiceException {
+    public List<ProfileHeader> findMyProfiles(CMSUser user) {
         if (user == null || user.getRole() == null) {
             throw new IllegalArgumentException("User and the corresponding role cannot be null.");
         }

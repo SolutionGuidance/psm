@@ -154,12 +154,11 @@ public class MyProfileController extends BaseController {
      * Displays the my profile page.
      *
      * @return the my profile model and view
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/profile/"
      * @verb GET
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView viewDashboard() throws PortalServiceException {
+    public ModelAndView viewDashboard() {
         CMSPrincipal principal = ControllerHelper.getPrincipal();
         List<ProfileHeader> profiles = enrollmentService.findMyProfiles(principal.getUser());
         ModelAndView mv = new ModelAndView("provider/profile/list");

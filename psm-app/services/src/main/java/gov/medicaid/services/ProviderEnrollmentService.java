@@ -189,11 +189,10 @@ public interface ProviderEnrollmentService {
      *
      * @param user the user performing the action
      * @return the applicable providers
-     * @throws PortalServiceException for any errors encountered
      */
     List<ProfileHeader> findMyProfiles(
             CMSUser user
-    ) throws PortalServiceException;
+    );
 
     /**
      * Saves the given ticket as draft.

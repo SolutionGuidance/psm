@@ -346,7 +346,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         checkSortColumn(criteria, TICKET_COL_CNT);
 
-        SearchResult<UserRequest> results = new SearchResult<UserRequest>();
+        SearchResult<UserRequest> results = new SearchResult<>();
         results.setPageNumber(criteria.getPageNumber());
         results.setPageSize(criteria.getPageSize());
 
@@ -698,7 +698,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         checkSortColumn(criteria, PRACTICE_COL_CNT);
 
-        SearchResult<PracticeLookup> results = new SearchResult<PracticeLookup>();
+        SearchResult<PracticeLookup> results = new SearchResult<>();
         results.setPageNumber(criteria.getPageNumber());
         results.setPageSize(criteria.getPageSize());
 
@@ -748,7 +748,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             return;
         }
 
-        Map<Long, PracticeLookup> map = new HashMap<Long, PracticeLookup>();
+        Map<Long, PracticeLookup> map = new HashMap<>();
         for (PracticeLookup practiceLookup : resultList) {
             map.put(practiceLookup.getProfileId(), practiceLookup);
         }
@@ -757,7 +757,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 "SELECT NEW gov.medicaid.entities.ContactData(dc.profileId, dc.person.name) "
                 + "FROM DesignatedContact dc WHERE dc.type = 'ENROLLMENT' AND dc.profileId IN (:profileIds)";
         Query q = getEm().createQuery(fetchQuery);
-        q.setParameter("profileIds", new ArrayList<Long>(map.keySet()));
+        q.setParameter("profileIds", new ArrayList<>(map.keySet()));
         List<ContactData> rs = q.getResultList();
         for (ContactData contactData : rs) {
             PracticeLookup match = map.get(contactData.getProfileId());
@@ -778,7 +778,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             return;
         }
 
-        Map<Long, ProviderLookup> map = new HashMap<Long, ProviderLookup>();
+        Map<Long, ProviderLookup> map = new HashMap<>();
         for (ProviderLookup practiceLookup : resultList) {
             map.put(practiceLookup.getProfileId(), practiceLookup);
         }
@@ -787,7 +787,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 "SELECT NEW gov.medicaid.entities.ContactData(dc.profileId, dc.person.name, dc.person.contactInformation.phoneNumber) "
                 + "FROM DesignatedContact dc WHERE dc.type = 'ENROLLMENT' AND dc.profileId IN (:profileIds)";
         Query q = getEm().createQuery(fetchQuery);
-        q.setParameter("profileIds", new ArrayList<Long>(map.keySet()));
+        q.setParameter("profileIds", new ArrayList<>(map.keySet()));
         List<ContactData> rs = q.getResultList();
         for (ContactData contactData : rs) {
             ProviderLookup match = map.get(contactData.getProfileId());
@@ -1440,7 +1440,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     private Map<Long, Long> insertAttachments(
             ProviderProfile details
     ) throws PortalServiceException {
-        HashMap<Long, Long> mapping = new HashMap<Long, Long>();
+        HashMap<Long, Long> mapping = new HashMap<>();
 
         List<Document> attachments = details.getAttachments();
         if (attachments == null || attachments.isEmpty()) {
@@ -2277,7 +2277,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             long profileId,
             long ticketId
     ) throws PortalServiceException {
-        List<ProviderCategoryOfService> services = new ArrayList<ProviderCategoryOfService>();
+        List<ProviderCategoryOfService> services = new ArrayList<>();
         services.addAll(getPendingCategoryOfServices(user, ticketId));
         services.addAll(getProviderCategoryOfServices(user, profileId));
         for (ProviderCategoryOfService service : services) {
@@ -2294,7 +2294,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param ticketId  the ticket associated
      */
     private void promoteNotesToBase(long profileId, long ticketId) {
-        List<Note> pendingNotes = new ArrayList<Note>();
+        List<Note> pendingNotes = new ArrayList<>();
         pendingNotes.addAll(findNotes(0, ticketId));
         pendingNotes.addAll(findNotes(profileId, ticketId));
 
@@ -2466,7 +2466,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     @Override
     public List<Note> findNotes(long ticketId) {
-        List<Note> pendingNotes = new ArrayList<Note>();
+        List<Note> pendingNotes = new ArrayList<>();
         pendingNotes.addAll(findNotes(0, ticketId));
         ProviderProfile profile = getProviderDetailsByTicket(ticketId, false);
         if (profile.getProfileId() > 0) {
@@ -2508,7 +2508,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             CMSUser user,
             Set<Long> profileIds
     ) {
-        List<Long> results = new ArrayList<Long>();
+        List<Long> results = new ArrayList<>();
         for (Long profileId : profileIds) {
             try {
                 Enrollment ticket = renewProfile(user, profileId);

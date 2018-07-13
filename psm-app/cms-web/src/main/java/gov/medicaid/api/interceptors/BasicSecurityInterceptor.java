@@ -3,6 +3,7 @@ package gov.medicaid.api.interceptors;
 import ca.uhn.fhir.rest.api.server.RequestDetails;
 import ca.uhn.fhir.rest.server.exceptions.AuthenticationException;
 import ca.uhn.fhir.rest.server.interceptor.InterceptorAdapter;
+import com.google.common.annotations.VisibleForTesting;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.services.RegistrationService;
 import org.apache.commons.codec.binary.Base64;
@@ -69,7 +70,8 @@ public class BasicSecurityInterceptor extends InterceptorAdapter {
         return true;
     }
 
-    private String getUsernameFromBasicAuthHeader(String authHeader) throws AuthenticationException {
+    @VisibleForTesting
+    String getUsernameFromBasicAuthHeader(String authHeader) throws AuthenticationException {
         if (authHeader == null || authHeader.startsWith("Basic ") == false) {
             throw generateAuthenticationException("Invalid or missing authorization header");
         }
@@ -79,7 +81,8 @@ public class BasicSecurityInterceptor extends InterceptorAdapter {
         return parts[0];
     }
 
-    private String getPasswordFromBasicAuthHeader(String authHeader) throws AuthenticationException {
+    @VisibleForTesting
+    String getPasswordFromBasicAuthHeader(String authHeader) throws AuthenticationException {
         if (authHeader == null || authHeader.startsWith("Basic ") == false) {
             throw generateAuthenticationException("Invalid or missing authorization header");
         }

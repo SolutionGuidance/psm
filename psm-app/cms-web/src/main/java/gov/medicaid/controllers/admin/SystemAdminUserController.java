@@ -22,7 +22,6 @@ import gov.medicaid.entities.Role;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.UserSearchCriteria;
 import gov.medicaid.entities.dto.ViewStatics;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.util.Util;
 
@@ -33,8 +32,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.annotation.PostConstruct;
 
 import java.util.Arrays;
 
@@ -66,25 +63,10 @@ public class SystemAdminUserController extends BaseSystemAdminController {
     /**
      * The validator for user parameters.
      */
-    private UserValidator userValidator;
+    private final UserValidator userValidator;
 
-    /**
-     * Empty constructor.
-     */
-    public SystemAdminUserController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException - If there are required injection fields that are not injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (userValidator == null) {
-            throw new PortalServiceConfigurationException("userValidator must be configured.");
-        }
+    public SystemAdminUserController(UserValidator userValidator) {
+        this.userValidator = userValidator;
     }
 
     /**
@@ -417,23 +399,5 @@ public class SystemAdminUserController extends BaseSystemAdminController {
                 && !ViewStatics.ROLE_SYSTEM_ADMINISTRATOR.equals(role)) {
             throw new IllegalArgumentException("Unrecognized 'role' argument was provided.");
         }
-    }
-
-    /**
-     * Gets the value of the field <code>userValidator</code>.
-     *
-     * @return the userValidator
-     */
-    public UserValidator getUserValidator() {
-        return userValidator;
-    }
-
-    /**
-     * Sets the value of the field <code>userValidator</code>.
-     *
-     * @param userValidator the userValidator to set
-     */
-    public void setUserValidator(UserValidator userValidator) {
-        this.userValidator = userValidator;
     }
 }

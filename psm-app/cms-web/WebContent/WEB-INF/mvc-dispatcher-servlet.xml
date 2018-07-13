@@ -271,9 +271,7 @@
 
   <bean id="SystemAdminUserController"
         class="gov.medicaid.controllers.admin.SystemAdminUserController"
-        parent="BaseSystemAdminController">
-    <property name="userValidator" ref="UserValidator"/>
-  </bean>
+        parent="BaseSystemAdminController"/>
 
   <bean id="ErrorController"
         class="gov.medicaid.controllers.ErrorController"/>

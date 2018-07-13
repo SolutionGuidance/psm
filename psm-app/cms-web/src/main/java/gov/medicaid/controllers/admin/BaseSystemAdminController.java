@@ -20,8 +20,6 @@ import gov.medicaid.services.LookupService;
 import gov.medicaid.services.RegistrationService;
 import org.springframework.stereotype.Controller;
 
-import java.util.logging.Logger;
-
 /**
  * A base controller class that other classes will extend that provides logging, auditing, and additional services.
  *
@@ -34,15 +32,6 @@ import java.util.logging.Logger;
  */
 @Controller
 public abstract class BaseSystemAdminController {
-
-    /**
-     * It will be used to log all errors.
-     *
-     * It is injected by the container, may have any value, is fully mutable, but not expected to change after
-     * dependency injection.
-     */
-    private final Logger logger = Logger.getLogger(getClass().getName());
-
     /**
      * Registration service.
      */
@@ -64,15 +53,6 @@ public abstract class BaseSystemAdminController {
      * Ensure the object is properly initialized
      */
     protected void init() {}
-
-    /**
-     * Gets the value of the field <code>logger</code>.
-     *
-     * @return the logger
-     */
-    public Logger getLogger() {
-        return logger;
-    }
 
     /**
      * Gets the value of the field <code>registrationService</code>.

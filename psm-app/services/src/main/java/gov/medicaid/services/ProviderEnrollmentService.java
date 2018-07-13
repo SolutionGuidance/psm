@@ -570,12 +570,11 @@ public interface ProviderEnrollmentService {
      * @param profileId the profile id of the provider
      * @param ticketId  the request ticket id
      * @return the related entity to the profile
-     * @throws PortalServiceException for any errors encountered
      */
     Entity findEntityByProviderKey(
             Long profileId,
             Long ticketId
-    ) throws PortalServiceException;
+    );
 
     /**
      * Retrieves the related attachments for the given profile key.

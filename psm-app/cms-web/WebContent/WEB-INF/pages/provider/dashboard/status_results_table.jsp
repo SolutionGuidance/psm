@@ -198,6 +198,28 @@
               </a>
             </c:otherwise>
           </c:choose>
+          <c:choose>
+            <c:when test="${item.status == 'Approved' && profileIds.contains(item.profileReferenceId)}">
+              <c:url var="editLink" value="/provider/profile/edit">
+                <c:param name="profileId" value="${item.profileReferenceId}"/>
+              </c:url>
+              <c:url var="renewLink" value="/provider/profile/renew">
+                <c:param name="profileId" value="${item.profileReferenceId}"/>
+              </c:url>
+              <a
+                class="actionLink"
+                href="${editLink}"
+              >
+                Edit
+              </a>
+              <a
+                class="actionLink"
+                href="${renewLink}"
+              >
+                Renew
+              </a>
+            </c:when>
+          </c:choose>
           <a
             class="actionLink"
             href="${exportTicketLink}"

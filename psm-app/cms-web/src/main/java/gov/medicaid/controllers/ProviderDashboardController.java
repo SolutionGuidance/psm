@@ -37,7 +37,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Handles dashboard functions.
@@ -313,6 +315,12 @@ public class ProviderDashboardController extends BaseController {
         SearchResult<UserRequest> results = enrollmentService.searchTickets(principal, criteria);
         ModelAndView mv = new ModelAndView(view);
         mv.addObject("results", results);
+
+        List<Long> profileIds = enrollmentService.findMyProfiles(principal)
+                .stream()
+                .map(profileHeader -> profileHeader.getProfileId())
+                .collect(Collectors.toList());
+        mv.addObject("profileIds", profileIds);
 
         ControllerHelper.addPaginationDetails(results, mv);
         ControllerHelper.addPaginationLinks(results, mv);

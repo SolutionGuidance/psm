@@ -246,9 +246,7 @@
         parent="BaseServiceAdminController"/>
   <bean id="AutomaticScreeningController"
         class="gov.medicaid.controllers.admin.AutomaticScreeningController"
-        parent="BaseServiceAdminController">
-    <constructor-arg ref="ScreeningService"/>
-  </bean>
+        parent="BaseServiceAdminController"/>
   <bean id="DashboardController"
         class="gov.medicaid.controllers.admin.DashboardController"
         parent="BaseServiceAdminController">

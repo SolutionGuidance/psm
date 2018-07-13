@@ -7,8 +7,10 @@ import com.google.common.annotations.VisibleForTesting;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.services.RegistrationService;
 import org.apache.commons.codec.binary.Base64;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.nio.charset.Charset;
 import java.util.Map;
 
 public class BasicSecurityInterceptor extends InterceptorAdapter {
@@ -85,12 +87,19 @@ public class BasicSecurityInterceptor extends InterceptorAdapter {
             throw generateAuthenticationException("Invalid or missing authorization header");
         }
         String base64 = authHeader.substring("Basic ".length());
-        String base64decoded = new String(Base64.decodeBase64(base64));
+        String base64decoded = new String(
+            Base64.decodeBase64(base64),
+            Charset.forName("UTF-8")
+        );
         return base64decoded.split(":", 2);
     }
 
     private AuthenticationException generateAuthenticationException(String message) {
-        return (new AuthenticationException(message))
-            .addAuthenticateHeaderForRealm("psm");
+        AuthenticationException exception = new AuthenticationException(message);
+        exception.addResponseHeader(
+            "WWW-Authenticate",
+            "Basic realm=\"PSM\", charset=\"UTF-8\""
+        );
+        return exception;
     }
 }

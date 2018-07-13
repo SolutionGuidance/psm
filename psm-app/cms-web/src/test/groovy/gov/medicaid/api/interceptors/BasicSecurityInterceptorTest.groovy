@@ -5,6 +5,8 @@ import org.apache.commons.codec.binary.Base64
 import spock.lang.Specification
 import spock.lang.Unroll
 
+import java.nio.charset.Charset
+
 class BasicSecurityInterceptorTest extends Specification {
     BasicSecurityInterceptor interceptor
 
@@ -64,6 +66,7 @@ class BasicSecurityInterceptorTest extends Specification {
         "username" | "password"
         "username" | "pass:word"
         "username" | "pass::word"
+        "✓"        | "✓"
     }
 
     private static String createBasicAuthHeader(
@@ -71,7 +74,9 @@ class BasicSecurityInterceptorTest extends Specification {
         String password
     ) {
         return "Basic " + Base64.encodeBase64String(
-            String.format("%s:%s", username, password).getBytes()
+            String.format("%s:%s", username, password).getBytes(
+                Charset.forName("UTF-8")
+            )
         )
     }
 }

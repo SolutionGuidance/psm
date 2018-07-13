@@ -2731,7 +2731,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *
      * @param profileNPI the NPI to be checked
      * @return true if a record matches
-     * @throws PortalServiceException for any errors encountered
      */
     @Override
     public boolean existsProfile(String profileNPI) {

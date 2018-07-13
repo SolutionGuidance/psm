@@ -550,9 +550,8 @@ public interface ProviderEnrollmentService {
      *
      * @param profileNPI the NPI to be checked
      * @return true if a record matches
-     * @throws PortalServiceException for any errors encountered
      */
-    boolean existsProfile(String profileNPI) throws PortalServiceException;
+    boolean existsProfile(String profileNPI);
 
     /**
      * Callback from legacy system for setting the legacy ID.

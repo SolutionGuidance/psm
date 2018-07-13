@@ -25,7 +25,6 @@ import gov.medicaid.entities.ProviderTypeSearchCriteria;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.services.AgreementDocumentService;
 import gov.medicaid.services.LookupService;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderTypeService;
 import gov.medicaid.services.util.Util;
@@ -38,9 +37,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,53 +53,18 @@ import java.util.List;
  * @version 1.0
  */
 public class ProviderTypeController extends BaseServiceAdminController {
+    private final AgreementDocumentService agreementDocumentService;
+    private final LookupService lookupService;
+    private final ProviderTypeService providerTypeService;
 
-    /**
-     * Represents the provider type service. it is managed with a getter and setter. It may have any value, but is
-     * expected to be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to
-     * change after dependency injection.
-     */
-    private ProviderTypeService providerTypeService;
-
-    /**
-     * Represents the agreement document service. it is managed with a getter and setter. It may have any value, but is
-     * expected to be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to
-     * change after dependency injection.
-     */
-    private AgreementDocumentService agreementDocumentService;
-
-    /**
-     * Lookup service.
-     */
-    private LookupService lookupService;
-
-    /**
-     * Empty constructor.
-     */
-    public ProviderTypeController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException If there are required injection fields that are not injected
-     */
-    @Override
-    @PostConstruct
-    protected void init() {
-        super.init();
-
-        if (lookupService == null) {
-            throw new PortalServiceConfigurationException("lookupService must be configured.");
-        }
-
-        if (providerTypeService == null) {
-            throw new PortalServiceConfigurationException("providerTypeService must be configured.");
-        }
-
-        if (agreementDocumentService == null) {
-            throw new PortalServiceConfigurationException("agreementDocumentService must be configured.");
-        }
+    public ProviderTypeController(
+        AgreementDocumentService agreementDocumentService,
+        LookupService lookupService,
+        ProviderTypeService providerTypeService
+    ) {
+        this.agreementDocumentService = agreementDocumentService;
+        this.lookupService = lookupService;
+        this.providerTypeService = providerTypeService;
     }
 
     /**
@@ -248,7 +210,7 @@ public class ProviderTypeController extends BaseServiceAdminController {
     public ModelAndView create(@ModelAttribute("providerType") ProviderType providerType, HttpServletRequest request)
         throws PortalServiceException {
         boolean blank = Util.isBlank(providerType.getDescription());
-        boolean exists = getLookupService().findLookupByDescription(ProviderType.class, providerType.getDescription()) != null;
+        boolean exists = lookupService.findLookupByDescription(ProviderType.class, providerType.getDescription()) != null;
         if (!blank && !exists) {
             providerTypeService.create(providerType);
 
@@ -316,59 +278,5 @@ public class ProviderTypeController extends BaseServiceAdminController {
             providerTypeService.delete(providerTypeId);
         }
         return "success";
-    }
-
-    /**
-     * Getter of providerTypeService.
-     *
-     * @return the providerTypeService
-     */
-    public ProviderTypeService getProviderTypeService() {
-        return providerTypeService;
-    }
-
-    /**
-     * Set the providerTypeService.
-     *
-     * @param providerTypeService the providerTypeService to set
-     */
-    public void setProviderTypeService(ProviderTypeService providerTypeService) {
-        this.providerTypeService = providerTypeService;
-    }
-
-    /**
-     * Getter of agreementDocumentService.
-     *
-     * @return the agreementDocumentService
-     */
-    public AgreementDocumentService getAgreementDocumentService() {
-        return agreementDocumentService;
-    }
-
-    /**
-     * The getter for the lookupService instance variable.
-     *
-     * @return the lookupService
-     */
-    public LookupService getLookupService() {
-        return lookupService;
-    }
-
-    /**
-     * The setter for the lookupService instance variable.
-     *
-     * @param lookupService the lookupService to set
-     */
-    public void setLookupService(LookupService lookupService) {
-        this.lookupService = lookupService;
-    }
-
-    /**
-     * Set the agreementDocumentService.
-     *
-     * @param agreementDocumentService the agreementDocumentService to set
-     */
-    public void setAgreementDocumentService(AgreementDocumentService agreementDocumentService) {
-        this.agreementDocumentService = agreementDocumentService;
     }
 }

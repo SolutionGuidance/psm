@@ -252,11 +252,7 @@
         parent="BaseServiceAdminController"/>
   <bean id="ProviderTypeController"
         class="gov.medicaid.controllers.admin.ProviderTypeController"
-        parent="BaseServiceAdminController">
-    <property name="agreementDocumentService" ref="AgreementDocumentService"/>
-    <property name="providerTypeService" ref="ProviderTypeService"/>
-    <property name="lookupService" ref="LookupService"/>
-  </bean>
+        parent="BaseServiceAdminController"/>
   <bean id="ScreeningScheduleController"
         class="gov.medicaid.controllers.admin.ScreeningScheduleController"
         parent="BaseServiceAdminController"/>

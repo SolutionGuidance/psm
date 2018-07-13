@@ -405,9 +405,8 @@ public interface ProviderEnrollmentService {
      *
      * @param ticketId the ticket id
      * @return the notes for the ticket of for the referenced profile
-     * @throws PortalServiceException for any errors encountered
      */
-    List<Note> findNotes(long ticketId) throws PortalServiceException;
+    List<Note> findNotes(long ticketId);
 
     /**
      * Retrieves public data for enrolled providers by NPI.

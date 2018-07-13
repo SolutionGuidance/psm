@@ -2472,7 +2472,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     }
 
     @Override
-    public List<Note> findNotes(long ticketId) throws PortalServiceException {
+    public List<Note> findNotes(long ticketId) {
         List<Note> pendingNotes = new ArrayList<Note>();
         pendingNotes.addAll(findNotes(0, ticketId));
         ProviderProfile profile = getProviderDetailsByTicket(ticketId, false);

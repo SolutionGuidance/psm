@@ -258,7 +258,6 @@
         class="gov.medicaid.controllers.admin.BaseSystemAdminController"
         abstract="true">
     <property name="registrationService" ref="RegistrationService"/>
-    <property name="lookupService" ref="LookupService"/>
   </bean>
 
   <bean id="SystemAdminUserSearchController"

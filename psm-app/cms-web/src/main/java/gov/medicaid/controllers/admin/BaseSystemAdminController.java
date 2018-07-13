@@ -16,7 +16,6 @@
 
 package gov.medicaid.controllers.admin;
 
-import gov.medicaid.services.LookupService;
 import gov.medicaid.services.RegistrationService;
 import org.springframework.stereotype.Controller;
 
@@ -36,12 +35,6 @@ public abstract class BaseSystemAdminController {
      * Registration service.
      */
     private RegistrationService registrationService;
-
-    /**
-     * Lookup service.
-     */
-    private LookupService lookupService;
-
 
     /**
      * Empty constructor.
@@ -68,21 +61,5 @@ public abstract class BaseSystemAdminController {
      */
     public void setRegistrationService(RegistrationService registrationService) {
         this.registrationService = registrationService;
-    }
-
-    /**
-     * Gets the value of the field <code>lookupService</code>.
-     * @return the lookupService
-     */
-    public LookupService getLookupService() {
-        return lookupService;
-    }
-
-    /**
-     * Sets the value of the field <code>lookupService</code>.
-     * @param lookupService the lookupService to set
-     */
-    public void setLookupService(LookupService lookupService) {
-        this.lookupService = lookupService;
     }
 }

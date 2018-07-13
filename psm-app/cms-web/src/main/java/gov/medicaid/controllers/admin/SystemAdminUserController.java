@@ -22,6 +22,7 @@ import gov.medicaid.entities.Role;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.UserSearchCriteria;
 import gov.medicaid.entities.dto.ViewStatics;
+import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.util.Util;
 
@@ -60,12 +61,17 @@ public class SystemAdminUserController extends BaseSystemAdminController {
      */
     private static final int DEFAULT_PAGE_SIZE = 10;
 
+    private final LookupService lookupService;
     /**
      * The validator for user parameters.
      */
     private final UserValidator userValidator;
 
-    public SystemAdminUserController(UserValidator userValidator) {
+    public SystemAdminUserController(
+        LookupService lookupService,
+        UserValidator userValidator
+    ) {
+        this.lookupService = lookupService;
         this.userValidator = userValidator;
     }
 
@@ -216,7 +222,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
             mv = new ModelAndView("admin/user-account-edit-system-admin");
             mv.addObject("user", user);
             mv.addObject("role", role);
-            mv.addObject("availableRoles", getLookupService().findAllLookups(Role.class));
+            mv.addObject("availableRoles", lookupService.findAllLookups(Role.class));
         } else {
             String userId = getRegistrationService().registerByAdmin(actor, user, password);
             String viewName = "admin/user-account-details-system-admin";
@@ -264,7 +270,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
             mv = new ModelAndView("admin/user-account-edit-system-admin");
             mv.addObject("role", role);
             mv.addObject("user", user);
-            mv.addObject("availableRoles", getLookupService().findAllLookups(Role.class));
+            mv.addObject("availableRoles", lookupService.findAllLookups(Role.class));
         } else {
             CMSUser actor = ControllerHelper.getCurrentUser();
             String userId = getRegistrationService().updateByAdmin(actor, user, password);
@@ -348,7 +354,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
         ModelAndView mv = new ModelAndView(viewName);
         mv.addObject("user", user);
         mv.addObject("role", role);
-        mv.addObject("availableRoles", getLookupService().findAllLookups(Role.class));
+        mv.addObject("availableRoles", lookupService.findAllLookups(Role.class));
         return mv;
     }
 

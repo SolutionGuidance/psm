@@ -168,36 +168,5 @@ See also the section "Participating in the PSM Project" below.
 SECTION 5: Participating in the PSM Project
 ---------------------------------------------------------------------
 
-We welcome questions and contributions.  You can:
-
-* Post in the `psm-dev` discussion group at
-  https://groups.google.com/forum/#!forum/psm-dev.  The forum archives
-  are public, and anyone can post.  The posting guidelines are fairly
-  loose -- as long as your question is about the PSM, it's on-topic.
-
-* File a new issue ticket at https://github.com/SolutionGuidance/psm/issues.
-
-* Submit a [pull
-  request](https://help.github.com/articles/about-pull-requests/) to
-  the [repository](https://github.com/SolutionGuidance/psm/). Here's
-  [our guide for code contributors](CONTRIBUTING.md).
-
-* Chat with us in real time in our [Zulip chat
-  room](https://chat.opentechstrategies.com/#narrow/stream/Provider.20Screening).
-  You'll need to set up an account (which is free) to join the
-  conversation.
-
-* We hold team meetings by conference call sometimes.  The agendas and
-  notes from these meetings can be found in
-  [team-notes/meetings/](team-notes/meetings/).  The current core
-  developers are all based in the U.S., and these meetings are
-  arranged around U.S. time zones.  Eventually, when the PSM project
-  has regular participants beyond the current core team, we may change
-  how we schedule real-time meetings.  For now, however, we schedule
-  meetings on an _ad hoc_ basis and just put the agendas and notes
-  here, so that they are visible along with all the other project
-  resources.
-
-Note that submitting issues or pull requests requires a
-[GitHub](https://github.com/) account, which anyone can create (there
-is no charge).
+Please see [CONTRIBUTING.md](CONTRIBUTING.md), in particular the
+section "Communicating with the PSM Project" at the top.

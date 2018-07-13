@@ -109,40 +109,8 @@
     </property>
   </bean>
 
-  <bean id="BaseController"
-        class="gov.medicaid.controllers.BaseController"
-        abstract="true">
-  </bean>
-
-  <bean id="SelfRegistrationController"
-        class="gov.medicaid.controllers.SelfRegistrationController"
-        parent="BaseController"/>
-
-  <bean id="ForgotPasswordController"
-        class="gov.medicaid.controllers.ForgotPasswordController"
-        parent="BaseController"/>
-
-  <bean id="LandingController"
-        class="gov.medicaid.controllers.LandingController"/>
-
-  <bean id="EnrollmentPageFlowController"
-        class="gov.medicaid.controllers.EnrollmentPageFlowController"
-        parent="BaseController"/>
-
-  <bean id="ProviderDashboardController"
-        class="gov.medicaid.controllers.ProviderDashboardController"
-        parent="BaseController"/>
-
-  <bean id="OnboardingController"
-        class="gov.medicaid.controllers.OnboardingController"
-        parent="BaseController"/>
-
-  <bean id="MyProfileController"
-        class="gov.medicaid.controllers.MyProfileController"
-        parent="BaseController"/>
-
   <context:component-scan
-      base-package="gov.medicaid.controllers.admin" />
+      base-package="gov.medicaid.controllers" />
 
   <bean id="RegistrationFormValidator" class="gov.medicaid.controllers.validators.RegistrationFormValidator">
     <property name="registrationService" ref="RegistrationService"/>
@@ -212,7 +180,4 @@
   <bean id="UserValidator" class="gov.medicaid.controllers.admin.UserValidator">
     <property name="registrationService" ref="RegistrationService"/>
   </bean>
-
-  <bean id="ErrorController"
-        class="gov.medicaid.controllers.ErrorController"/>
 </beans>

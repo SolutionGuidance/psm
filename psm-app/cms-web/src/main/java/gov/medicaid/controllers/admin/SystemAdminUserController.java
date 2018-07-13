@@ -50,7 +50,7 @@ import java.util.Arrays;
  * @endpoint "/system/user/*"
  */
 @RequestMapping("/system/user/*")
-public class SystemAdminUserController extends BaseSystemAdminController {
+public class SystemAdminUserController {
 
     /**
      * Maximum password length.

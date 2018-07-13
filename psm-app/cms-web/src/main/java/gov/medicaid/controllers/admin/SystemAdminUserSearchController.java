@@ -29,8 +29,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -48,7 +46,7 @@ import java.util.List;
  * @endpoint "/system/search/*"
  */
 @RequestMapping("/system/search/*")
-public class SystemAdminUserSearchController extends BaseSystemAdminController {
+public class SystemAdminUserSearchController {
 
     /**
      * The generic error message to be presented to the user.
@@ -131,13 +129,5 @@ public class SystemAdminUserSearchController extends BaseSystemAdminController {
             statusDTO.setMessage(USER_ERROR_MSG);
         }
         return statusDTO;
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
     }
 }

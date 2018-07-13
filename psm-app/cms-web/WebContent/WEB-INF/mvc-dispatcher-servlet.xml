@@ -254,23 +254,15 @@
         class="gov.medicaid.controllers.admin.EnrollmentController"
         parent="BaseController"/>
 
-  <bean id="BaseSystemAdminController"
-        class="gov.medicaid.controllers.admin.BaseSystemAdminController"
-        abstract="true">
-    <property name="registrationService" ref="RegistrationService"/>
-  </bean>
-
   <bean id="SystemAdminUserSearchController"
-        class="gov.medicaid.controllers.admin.SystemAdminUserSearchController"
-        parent="BaseSystemAdminController"/>
+        class="gov.medicaid.controllers.admin.SystemAdminUserSearchController"/>
 
   <bean id="UserValidator" class="gov.medicaid.controllers.admin.UserValidator">
     <property name="registrationService" ref="RegistrationService"/>
   </bean>
 
   <bean id="SystemAdminUserController"
-        class="gov.medicaid.controllers.admin.SystemAdminUserController"
-        parent="BaseSystemAdminController"/>
+        class="gov.medicaid.controllers.admin.SystemAdminUserController"/>
 
   <bean id="ErrorController"
         class="gov.medicaid.controllers.ErrorController"/>

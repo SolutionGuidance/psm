@@ -26,10 +26,7 @@ import gov.medicaid.domain.model.SpecialtyNames;
 import gov.medicaid.domain.model.UISection;
 import gov.medicaid.domain.model.ValidationRequest;
 import gov.medicaid.domain.model.ValidationResponse;
-import gov.medicaid.domain.model.ValidationResultType;
-import gov.medicaid.domain.rules.CMSKnowledgeUtility;
-import gov.medicaid.domain.rules.GlobalLookups;
-import gov.medicaid.domain.rules.inference.LookupEntry;
+import gov.medicaid.domain.rules.RulesExecutor;
 import gov.medicaid.entities.License;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormSettings;
@@ -38,8 +35,6 @@ import gov.medicaid.entities.dto.ViewModel;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.PresentationService;
 import gov.medicaid.services.util.Util;
-
-import org.drools.runtime.StatefulKnowledgeSession;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -66,13 +61,14 @@ import java.util.Map;
 public class PresentationServiceBean extends BaseService implements PresentationService {
 
     /**
-     * Retrieves the presentation model to be used for the given provider. This is shared between the screen and some
+     * Retrieves the presentation model to be used for the given provider.
+     * This is shared between the screen and some
      * other views like exporting providers.
      *
-     * @param provider
-     *            the provider to determine how to display
+     * @param provider the provider to determine how to display
      * @return the model having some instructions on how to present the given provider
      */
+    @Override
     public ViewModel getProviderViewModel(ProviderProfile provider) {
         if (provider == null) {
             throw new IllegalArgumentException("provider cannot be null.");
@@ -80,15 +76,19 @@ public class PresentationServiceBean extends BaseService implements Presentation
 
         Map<String, Boolean> facts = new HashMap<String, Boolean>();
         String providerType = null;
-        if (provider.getEntity() != null && provider.getEntity().getProviderType() != null) {
+        if (provider.getEntity() != null &&
+            provider.getEntity().getProviderType() != null) {
             providerType = provider.getEntity().getProviderType().getDescription();
         }
 
         facts.put("isIndividual", isIndividual(providerType));
         facts.put("canBeInPrivatePractice", canBeInPrivatePractice(providerType));
-        facts.put("isInPrivatePractice", "Y".equals(provider.getMaintainsOwnPrivatePractice()));
-        facts.put("isNotInPrivatePractice", "N".equals(provider.getMaintainsOwnPrivatePractice()));
-        facts.put("isInAdditionalPractice", "Y".equals(provider.getEmployedOrContractedByGroup()));
+        facts.put("isInPrivatePractice",
+            "Y".equals(provider.getMaintainsOwnPrivatePractice()));
+        facts.put("isNotInPrivatePractice",
+            "N".equals(provider.getMaintainsOwnPrivatePractice()));
+        facts.put("isInAdditionalPractice",
+            "Y".equals(provider.getEmployedOrContractedByGroup()));
         facts.put("canHaveSpecialty", canHaveSpecialty(providerType));
         facts.put("askedForHighestDegree", askedForHighestDegree(providerType));
 
@@ -107,8 +107,10 @@ public class PresentationServiceBean extends BaseService implements Presentation
         facts.put("askForSetup", askedForSetup(providerType));
         facts.put("askForCLIA", askForCLIA(providerType));
         facts.put("askForRemmitanceSequence", askForRemmitanceSequence(providerType));
-        facts.put("askedForFacilityCredentials", askedForFacilityCredentials(providerType));
-        facts.put("askHighestDegreeForPsychiatricSpecialty", askHighestDegreeForPsychiatricSpecialty(providerType));
+        facts.put("askedForFacilityCredentials",
+            askedForFacilityCredentials(providerType));
+        facts.put("askHighestDegreeForPsychiatricSpecialty",
+            askHighestDegreeForPsychiatricSpecialty(providerType));
         return runViewRule(providerType, facts);
     }
 
@@ -117,7 +119,8 @@ public class PresentationServiceBean extends BaseService implements Presentation
             return false;
         }
 
-        if (ProviderType.BILLING_ENTITY_FOR_PHYSICAL_REHABILITATIVE_PROVIDERS.value().equals(type)) {
+        if (ProviderType.BILLING_ENTITY_FOR_PHYSICAL_REHABILITATIVE_PROVIDERS.value().equals(
+            type)) {
             return false;
         } else if (ProviderType.CLEARING_HOUSE.value().equals(type)) {
             return false;
@@ -131,13 +134,15 @@ public class PresentationServiceBean extends BaseService implements Presentation
             return false;
         } else if (ProviderType.HOME_HEALTH_AGENCY.value().equals(type)) {
             return false;
-        } else if (ProviderType.INDEPENDENT_DIAGNOSTIC_TESTING_FACILITY.value().equals(type)) {
+        } else if (ProviderType.INDEPENDENT_DIAGNOSTIC_TESTING_FACILITY.value().equals(
+            type)) {
             return false;
         } else if (ProviderType.INDEPENDENT_LABORATORY.value().equals(type)) {
             return false;
         } else if (ProviderType.INDIAN_HEALTH_SERVICE_FACILITY.value().equals(type)) {
             return false;
-        } else if (ProviderType.INTENSIVE_RESIDENTIAL_TREATMENT_FACILITY.value().equals(type)) {
+        } else if (ProviderType.INTENSIVE_RESIDENTIAL_TREATMENT_FACILITY.value().equals(
+            type)) {
             return false;
         } else if (ProviderType.OPTICAL_SUPPLIER.value().equals(type)) {
             return false;
@@ -188,7 +193,8 @@ public class PresentationServiceBean extends BaseService implements Presentation
             return false;
         } else if (ProviderType.FAMILY_PLANNING_AGENCY.value().equals(type)) {
             return false;
-        } else if (ProviderType.BILLING_ENTITY_FOR_PHYSICAL_REHABILITATIVE_PROVIDERS.value().equals(type)) {
+        } else if (ProviderType.BILLING_ENTITY_FOR_PHYSICAL_REHABILITATIVE_PROVIDERS.value().equals(
+            type)) {
             return false;
         } else if (ProviderType.OPTICAL_SUPPLIER.value().equals(type)) {
             return false;
@@ -196,7 +202,8 @@ public class PresentationServiceBean extends BaseService implements Presentation
             return false;
         } else if (ProviderType.WIC_PROGRAM.value().equals(type)) {
             return false;
-        } else if (ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST_GROUP.value().equals(type)) {
+        } else if (ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST_GROUP.value().equals(
+            type)) {
             return false;
         } else if (ProviderType.BILLING_INTERMEDIARY.value().equals(type)) {
             return false;
@@ -212,7 +219,8 @@ public class PresentationServiceBean extends BaseService implements Presentation
             return false;
         } else if (ProviderType.CHIROPRACTIC_CLINIC.value().equals(type)) {
             return false;
-        } else if (ProviderType.BILLING_ENTITY_FOR_PHYSICIAN_SERVICES.value().equals(type)) {
+        } else if (ProviderType.BILLING_ENTITY_FOR_PHYSICIAN_SERVICES.value().equals(
+            type)) {
             return false;
         }
 
@@ -259,11 +267,13 @@ public class PresentationServiceBean extends BaseService implements Presentation
             return false;
         } else if (ProviderType.EDI_TRADING_PARTNER.value().equals(type)) {
             return false;
-        } else if (ProviderType.INDEPENDENT_DIAGNOSTIC_TESTING_FACILITY.value().equals(type)) {
+        } else if (ProviderType.INDEPENDENT_DIAGNOSTIC_TESTING_FACILITY.value().equals(
+            type)) {
             return false;
         } else if (ProviderType.INDEPENDENT_LABORATORY.value().equals(type)) {
             return false;
-        } else if (ProviderType.INTENSIVE_RESIDENTIAL_TREATMENT_FACILITY.value().equals(type)) {
+        } else if (ProviderType.INTENSIVE_RESIDENTIAL_TREATMENT_FACILITY.value().equals(
+            type)) {
             return false;
         } else if (ProviderType.PUBLIC_HEALTH_NURSING_ORGANIZATION.value().equals(type)) {
             return false;
@@ -277,7 +287,8 @@ public class PresentationServiceBean extends BaseService implements Presentation
             return false;
         } else if (ProviderType.CHILD_AND_TEEN_CHECKUP_CLINIC.value().equals(type)) {
             return false;
-        } else if (ProviderType.CHILDRENS_MENTAL_HEALTH_RESIDENTIAL_TREATMENT_FACILITY.value().equals(type)) {
+        } else if (ProviderType.CHILDRENS_MENTAL_HEALTH_RESIDENTIAL_TREATMENT_FACILITY.value().equals(
+            type)) {
             return false;
         } else if (ProviderType.BILLING_INTERMEDIARY.value().equals(type)) {
             return false;
@@ -288,12 +299,14 @@ public class PresentationServiceBean extends BaseService implements Presentation
         } else if (ProviderType.HOSPITAL.value().equals(type)) {
             return false;
         } else if (ProviderType.INTERMEDIATE_CARE_FACILITIES_FOR_PERSONS_WITH_DEVELOPMENTAL_DISABILITIES.value()
-                .equals(type)) {
+            .equals(type)) {
             return false;
-        } else if (ProviderType.HOME_AND_COMMUNITY_BASED_SERVICES_WAIVERED_SERVICES.value().equals(type)) {
+        } else if (ProviderType.HOME_AND_COMMUNITY_BASED_SERVICES_WAIVERED_SERVICES.value().equals(
+            type)) {
             // Fix for PESP-390
             return false;
-        } else if (ProviderType.DAY_TRAINING_AND_HABILITATION_DAY_ACTIVITY_CENTER.value().equals(type)) {
+        } else if (ProviderType.DAY_TRAINING_AND_HABILITATION_DAY_ACTIVITY_CENTER.value().equals(
+            type)) {
             // Fix for PESP-300
             return false;
         } else if (ProviderType.NURSING_FACILITY.value().equals(type)) {
@@ -312,7 +325,8 @@ public class PresentationServiceBean extends BaseService implements Presentation
     private Boolean canBeInPrivatePractice(String providerType) {
         if (ProviderType.ALLIED_DENTAL_PROFESSIONAL.value().equals(providerType)) {
             return false;
-        } else if (ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value().equals(providerType)) {
+        } else if (ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value().equals(
+            providerType)) {
             return false;
         } else if (ProviderType.PHYSICIAN_ASSISTANT.value().equals(providerType)) {
             return false;
@@ -323,14 +337,15 @@ public class PresentationServiceBean extends BaseService implements Presentation
     /**
      * Checks if the provider type can have specialties.
      *
-     * @param providerType
-     *            the provider type.
+     * @param providerType the provider type.
      * @return true if the provider can enter specialty
      */
     private Boolean canHaveSpecialty(String providerType) {
-        if (ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value().equals(providerType)) {
+        if (ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value().equals(
+            providerType)) {
             return true;
-        } else if (ProviderType.CERTIFIED_PROFESSIONAL_MIDWIFE.value().equals(providerType)) {
+        } else if (ProviderType.CERTIFIED_PROFESSIONAL_MIDWIFE.value().equals(
+            providerType)) {
             return true;
         } else if (ProviderType.CLINICAL_NURSE_SPECIALIST.value().equals(providerType)) {
             return true;
@@ -353,13 +368,14 @@ public class PresentationServiceBean extends BaseService implements Presentation
     }
 
     /**
-     * Retrieves the presentation model to be used for the given provider. This is shared between the screen and some
+     * Retrieves the presentation model to be used for the given provider.
+     * This is shared between the screen and some
      * other views like exporting providers.
      *
-     * @param provider
-     *            the provider to determine how to display
+     * @param provider the provider to determine how to display
      * @return the model having some instructions on how to present the given provider
      */
+    @Override
     public ViewModel getProviderViewModel(ProviderInformationType provider) {
         if (provider == null) {
             throw new IllegalArgumentException("provider cannot be null.");
@@ -367,12 +383,17 @@ public class PresentationServiceBean extends BaseService implements Presentation
 
         Map<String, Boolean> facts = new HashMap<String, Boolean>();
         facts.put("isIndividual", isIndividual(provider.getProviderType()));
-        facts.put("canBeInPrivatePractice", canBeInPrivatePractice(provider.getProviderType()));
-        facts.put("isInPrivatePractice", "Y".equals(provider.getMaintainsOwnPrivatePractice()));
-        facts.put("isNotInPrivatePractice", "N".equals(provider.getMaintainsOwnPrivatePractice()));
-        facts.put("isInAdditionalPractice", "Y".equals(provider.getEmployedOrContractedByGroup()));
+        facts.put("canBeInPrivatePractice",
+            canBeInPrivatePractice(provider.getProviderType()));
+        facts.put("isInPrivatePractice",
+            "Y".equals(provider.getMaintainsOwnPrivatePractice()));
+        facts.put("isNotInPrivatePractice",
+            "N".equals(provider.getMaintainsOwnPrivatePractice()));
+        facts.put("isInAdditionalPractice",
+            "Y".equals(provider.getEmployedOrContractedByGroup()));
         facts.put("canHaveSpecialty", canHaveSpecialty(provider.getProviderType()));
-        facts.put("askedForHighestDegree", askedForHighestDegree(provider.getProviderType()));
+        facts.put("askedForHighestDegree",
+            askedForHighestDegree(provider.getProviderType()));
 
         HashSet<String> certs = new HashSet<String>();
         if (provider.getFacilityCredentials() != null) {
@@ -384,19 +405,21 @@ public class PresentationServiceBean extends BaseService implements Presentation
         facts.put("askForOwners", askedForOwners(provider.getProviderType()));
         facts.put("askForSetup", askedForSetup(provider.getProviderType()));
         facts.put("askForCLIA", askForCLIA(provider.getProviderType()));
-        facts.put("askForRemmitanceSequence", askForRemmitanceSequence(provider.getProviderType()));
-        facts.put("askedForFacilityCredentials", askedForFacilityCredentials(provider.getProviderType()));
+        facts.put("askForRemmitanceSequence",
+            askForRemmitanceSequence(provider.getProviderType()));
+        facts.put("askedForFacilityCredentials",
+            askedForFacilityCredentials(provider.getProviderType()));
         facts.put("askHighestDegreeForPsychiatricSpecialty",
-                askHighestDegreeForPsychiatricSpecialty(provider.getProviderType()));
+            askHighestDegreeForPsychiatricSpecialty(provider.getProviderType()));
 
         return runViewRule(provider.getProviderType(), facts);
     }
 
     /**
-     * Checks if the provider type should be asked for degree earned on mental health specialty.
+     * Checks if the provider type should be asked for degree earned on
+     * mental health specialty.
      *
-     * @param providerType
-     *            the provider type.
+     * @param providerType the provider type.
      * @return true if the provider can enter degree
      */
     private boolean askHighestDegreeForPsychiatricSpecialty(String providerType) {
@@ -411,20 +434,23 @@ public class PresentationServiceBean extends BaseService implements Presentation
     /**
      * Checks if the provider type should be asked for degree earned.
      *
-     * @param providerType
-     *            the provider type.
+     * @param providerType the provider type.
      * @return true if the provider can enter degree
      */
     private boolean askedForHighestDegree(String providerType) {
-        if (ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value().equals(providerType)) {
+        if (ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value().equals(
+            providerType)) {
             return true;
-        } else if (ProviderType.LICENSED_MARRIAGE_AND_FAMILY_THERAPIST.value().equals(providerType)) {
+        } else if (ProviderType.LICENSED_MARRIAGE_AND_FAMILY_THERAPIST.value().equals(
+            providerType)) {
             return true;
-        } else if (ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value().equals(providerType)) {
+        } else if (ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value().equals(
+            providerType)) {
             return true;
         } else if (ProviderType.LICENSED_PSYCHOLOGIST.value().equals(providerType)) {
             return true;
-        } else if (ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value().equals(providerType)) {
+        } else if (ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value().equals(
+            providerType)) {
             return true;
         }
         return false;
@@ -433,10 +459,8 @@ public class PresentationServiceBean extends BaseService implements Presentation
     /**
      * Retrieves the view rules.
      *
-     * @param type
-     *            the provider type.
-     * @param facts
-     *            the facts
+     * @param type  the provider type.
+     * @param facts the facts
      * @return the view model
      */
     private ViewModel runViewRule(String type, Map<String, Boolean> facts) {
@@ -496,7 +520,8 @@ public class PresentationServiceBean extends BaseService implements Presentation
                     page.addForm(ViewStatics.HIGHEST_DEGREE_FORM, new FormSettings());
                 } else if (facts.get("askHighestDegreeForPsychiatricSpecialty")) {
                     FormSettings settings = new FormSettings();
-                    settings.addSetting("specialtyTrigger", SpecialtyNames.PSYCHIATRIC_MENTAL_HEALTH.value());
+                    settings.addSetting("specialtyTrigger",
+                        SpecialtyNames.PSYCHIATRIC_MENTAL_HEALTH.value());
                     page.addForm(ViewStatics.HIGHEST_DEGREE_FORM, settings);
                 }
 
@@ -507,16 +532,20 @@ public class PresentationServiceBean extends BaseService implements Presentation
                 if (facts.get("canBeInPrivatePractice")) {
                     page.addForm(ViewStatics.PRACTICE_TYPE_FORM, practiceSettings);
                     if (facts.get("isInPrivatePractice")) {
-                        page.addForm(ViewStatics.PRIVATE_PRACTICE_FORM, new FormSettings());
+                        page.addForm(ViewStatics.PRIVATE_PRACTICE_FORM,
+                            new FormSettings());
                     } else if (facts.get("isNotInPrivatePractice")) {
-                        page.addForm(ViewStatics.PRIMARY_PRACTICE_FORM, new FormSettings());
+                        page.addForm(ViewStatics.PRIMARY_PRACTICE_FORM,
+                            new FormSettings());
                     }
                     if (facts.get("isInAdditionalPractice")) {
-                        page.addForm(ViewStatics.ADDITIONAL_PRACTICE_FORM, new FormSettings());
+                        page.addForm(ViewStatics.ADDITIONAL_PRACTICE_FORM,
+                            new FormSettings());
                     }
                 } else {
                     page.addForm(ViewStatics.PRIMARY_PRACTICE_FORM, new FormSettings());
-                    page.addForm(ViewStatics.ADDITIONAL_PRACTICE_FORM, new FormSettings());
+                    page.addForm(ViewStatics.ADDITIONAL_PRACTICE_FORM,
+                        new FormSettings());
                 }
 
                 viewModel.addTabModel(ViewStatics.PRACTICE_INFORMATION, page);
@@ -553,11 +582,13 @@ public class PresentationServiceBean extends BaseService implements Presentation
                 page.addForm(ViewStatics.REMITTANCE_SEQUENCE_FORM, settings);
             }
 
-            if (ProviderType.DAY_TRAINING_AND_HABILITATION_DAY_ACTIVITY_CENTER.value().equals(type)) {
+            if (ProviderType.DAY_TRAINING_AND_HABILITATION_DAY_ACTIVITY_CENTER.value().equals(
+                type)) {
                 settings.addSetting("requireNPI", false);
             }
 
-            if (ProviderType.HOME_AND_COMMUNITY_BASED_SERVICES_WAIVERED_SERVICES.value().equals(type)) {
+            if (ProviderType.HOME_AND_COMMUNITY_BASED_SERVICES_WAIVERED_SERVICES.value().equals(
+                type)) {
                 settings.addSetting("askUMPI", true);
             }
             if (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value().equals(type)) {
@@ -572,8 +603,9 @@ public class PresentationServiceBean extends BaseService implements Presentation
                 settings.addSetting("useEducationPlanLayout", true);
             } else if (ProviderType.NURSING_FACILITY.value().equals(type)) {
                 settings.addSetting("useNursingFacilityLayout", true);
-            } else if (ProviderType.INTERMEDIATE_CARE_FACILITIES_FOR_PERSONS_WITH_DEVELOPMENTAL_DISABILITIES.value()
-                    .equals(type)) {
+            } else if (ProviderType
+                .INTERMEDIATE_CARE_FACILITIES_FOR_PERSONS_WITH_DEVELOPMENTAL_DISABILITIES
+                .value().equals(type)) {
                 settings.addSetting("useNursingFacilityLayout", true);
             } else if (ProviderType.EDI_TRADING_PARTNER.value().equals(type)) {
                 settings.addSetting("useEDILayout", true);
@@ -596,40 +628,56 @@ public class PresentationServiceBean extends BaseService implements Presentation
 
                 if (ProviderType.TARGETED_CASE_MANAGEMENT.value().equals(type)) {
                     page.addForm(ViewStatics.TCM_CONTRACT_FORM, new FormSettings());
-                } else if (ProviderType.CHILD_AND_TEEN_CHECKUP_CLINIC.value().equals(type)) {
+                } else if (ProviderType.CHILD_AND_TEEN_CHECKUP_CLINIC.value().equals(
+                    type)) {
                     page.addForm(ViewStatics.CTCC_FORM, new FormSettings());
                 } else if (ProviderType.COMMUNITY_HEALTH_CLINIC.value().equals(type)) {
-                    page.addForm(ViewStatics.NONPROFIT_CORPORATION_FORM, new FormSettings());
-                } else if (ProviderType.COUNTY_CONTRACTED_MENTAL_HEALTH_REHAB.value().equals(type)) {
+                    page.addForm(ViewStatics.NONPROFIT_CORPORATION_FORM,
+                        new FormSettings());
+                } else if (ProviderType.COUNTY_CONTRACTED_MENTAL_HEALTH_REHAB.value().equals(
+                    type)) {
                     page.addForm(ViewStatics.FACILITY_CONTRACTS_FORM, new FormSettings());
-                } else if (ProviderType.FEDERALLY_QUALIFIED_HEALTH_CENTER.value().equals(type)) {
-                    page.addForm(ViewStatics.FEDERAL_QUALIFICATION_FORM, new FormSettings());
+                } else if (ProviderType.FEDERALLY_QUALIFIED_HEALTH_CENTER.value().equals(
+                    type)) {
+                    page.addForm(ViewStatics.FEDERAL_QUALIFICATION_FORM,
+                        new FormSettings());
                 } else if (ProviderType.PHYSICIAN_CLINIC.value().equals(type)) {
-                    page.addForm(ViewStatics.PHYSICIAN_CLINIC_FACILITY_QUALIFICATION_FORM, new FormSettings());
+                    page.addForm(ViewStatics.PHYSICIAN_CLINIC_FACILITY_QUALIFICATION_FORM,
+                        new FormSettings());
                 } else {
                     FormSettings licenseSettings = new FormSettings();
                     licenseSettings.addSetting("showCategories", false);
-                    if (ProviderType.HOME_AND_COMMUNITY_BASED_SERVICES_WAIVERED_SERVICES.value().equals(type)) {
+                    if (ProviderType.HOME_AND_COMMUNITY_BASED_SERVICES_WAIVERED_SERVICES
+                        .value().equals(type)) {
                         licenseSettings.addSetting("showCategories", true);
                     }
                     page.addForm(ViewStatics.FACILITY_LICENSE_FORM, licenseSettings);
                 }
 
                 if (ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value().equals(type)) {
-                    page.addForm(ViewStatics.NONPROFIT_CORPORATION_FORM, new FormSettings());
-                    page.addForm(ViewStatics.SLIDING_FEE_SCHEDULE_FORM, new FormSettings());
-                } else if (ProviderType.PUBLIC_HEALTH_NURSING_ORGANIZATION.value().equals(type)) {
+                    page.addForm(ViewStatics.NONPROFIT_CORPORATION_FORM,
+                        new FormSettings());
+                    page.addForm(ViewStatics.SLIDING_FEE_SCHEDULE_FORM,
+                        new FormSettings());
+                } else if (ProviderType.PUBLIC_HEALTH_NURSING_ORGANIZATION.value().equals(
+                    type)) {
                     page.addForm(ViewStatics.PHN_AGENCY_FORM, new FormSettings());
-                } else if (ProviderType.CHILDRENS_MENTAL_HEALTH_RESIDENTIAL_TREATMENT_FACILITY.value().equals(type)) {
+                } else if (ProviderType
+                    .CHILDRENS_MENTAL_HEALTH_RESIDENTIAL_TREATMENT_FACILITY
+                    .value().equals(type)) {
                     page.addForm(ViewStatics.CMHRT_FORM, new FormSettings());
                 } else if (ProviderType.DAY_TREATMENT.value().equals(type)) {
-                    page.addForm(ViewStatics.ADULT_DAY_TREATMENT_APPLICATION_FORM, new FormSettings());
+                    page.addForm(ViewStatics.ADULT_DAY_TREATMENT_APPLICATION_FORM,
+                        new FormSettings());
                     page.addForm(ViewStatics.FACILITY_TYPE_FORM, new FormSettings());
                 } else if (ProviderType.NURSING_FACILITY.value().equals(type)) {
-                    page.addForm(ViewStatics.FACILITY_ELIGIBILITY_FORM, new FormSettings());
-                } else if (ProviderType.INTERMEDIATE_CARE_FACILITIES_FOR_PERSONS_WITH_DEVELOPMENTAL_DISABILITIES
-                        .value().equals(type)) {
-                    page.addForm(ViewStatics.FACILITY_ELIGIBILITY_FORM, new FormSettings());
+                    page.addForm(ViewStatics.FACILITY_ELIGIBILITY_FORM,
+                        new FormSettings());
+                } else if (ProviderType
+                    .INTERMEDIATE_CARE_FACILITIES_FOR_PERSONS_WITH_DEVELOPMENTAL_DISABILITIES
+                    .value().equals(type)) {
+                    page.addForm(ViewStatics.FACILITY_ELIGIBILITY_FORM,
+                        new FormSettings());
                 } else if (ProviderType.HOSPICE.value().equals(type)) {
                     page.addForm(ViewStatics.AMBULANCE_SERVICES_FORM, new FormSettings());
                 }
@@ -638,7 +686,8 @@ public class PresentationServiceBean extends BaseService implements Presentation
                     page.addForm(ViewStatics.CLIA_LICENSE_FORM, new FormSettings());
                 }
 
-                if (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value().equals(type)) {
+                if (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value().equals(
+                    type)) {
                     page.addForm(ViewStatics.PCPO_INSURANCE_FORM, new FormSettings());
                 }
 
@@ -663,7 +712,8 @@ public class PresentationServiceBean extends BaseService implements Presentation
                 page = new UITabModel();
                 FormSettings formSettings = new FormSettings();
                 formSettings.addSetting("askBGSInfo", false);
-                if (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value().equals(type)) {
+                if (ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value().equals(
+                    type)) {
                     formSettings.addSetting("askBGSInfo", true);
                     formSettings.addSetting("askUMPIorNPI", true);
                 }
@@ -680,7 +730,8 @@ public class PresentationServiceBean extends BaseService implements Presentation
             if (facts.get("askForOwners")) {
                 page = new UITabModel();
                 page.addForm(ViewStatics.OWNERSHIP_INFO_FORM, new FormSettings());
-                page.addForm(ViewStatics.ORGANIZATION_DISCLOSURE_FORM, new FormSettings());
+                page.addForm(ViewStatics.ORGANIZATION_DISCLOSURE_FORM,
+                    new FormSettings());
                 viewModel.addTabModel(ViewStatics.OWNERSHIP_INFO, page);
             }
 
@@ -697,29 +748,29 @@ public class PresentationServiceBean extends BaseService implements Presentation
     /**
      * Checks if the given type is an individual provider.
      *
-     * @param type
-     *            the type to check
+     * @param type the type to check
      * @return true if the type is an individual
      */
     private boolean isIndividual(String type) {
         if (Util.isBlank(type)) {
             return false;
         }
-        gov.medicaid.entities.ProviderType lookup = findLookupByDescription(gov.medicaid.entities.ProviderType.class,
-                type);
+        gov.medicaid.entities.ProviderType lookup = findLookupByDescription(
+            gov.medicaid.entities.ProviderType.class,
+            type);
         return lookup.getApplicantType() == ApplicantType.INDIVIDUAL;
     }
 
     /**
-     * This calls the business rules to validation the given enrollment. It is used by the frontend whenever validation
+     * This calls the business rules to validation the given enrollment.
+     * It is used by the frontend whenever validation
      * is needed. It can be used to validate the entire request or a subset of views.
      *
-     * @param ticket
-     *            the ticket to be validated.
-     * @param tabs
-     *            the tabs to validate, if null or empty, the entire ticket is checked
+     * @param ticket the ticket to be validated.
+     * @param tabs   the tabs to validate, if null or empty, the entire ticket is checked
      * @return the set of error messages found, empty if the ticket is valid
      */
+    @Override
     public ValidationResponse checkForErrors(EnrollmentType ticket, List<String> tabs) {
         ValidationRequest request = new ValidationRequest();
         if (tabs != null && !tabs.isEmpty()) {
@@ -750,46 +801,6 @@ public class PresentationServiceBean extends BaseService implements Presentation
             }
         }
         request.setEnrollment(ticket);
-        return checkForErrors(request);
+        return RulesExecutor.executeProviderValidationRules(request);
     }
-
-    /**
-     * Uses the front-end validation rules to check the provider profile.
-     *
-     * @param request
-     *            the validation request
-     * @return the validation messages.
-     */
-    private ValidationResponse checkForErrors(ValidationRequest request) {
-        StatefulKnowledgeSession ksession = CMSKnowledgeUtility.newValidationSession();
-        try {
-            ValidationResultType validation = new ValidationResultType();
-            List<LookupEntry> allLookupEntries = GlobalLookups.getInstance().getAllLookupEntries();
-
-            for (LookupEntry lookupEntry : allLookupEntries) {
-                ksession.insert(lookupEntry);
-            }
-
-            // configure sections to validate
-            if ("Y".equals(request.getPartial())) {
-                List<UISection> sections = request.getSections();
-                for (UISection uiSection : sections) {
-                    ksession.insert(new LookupEntry("UISection", uiSection.value(), uiSection.value()));
-                }
-            }
-
-            ProviderInformationType provider = request.getEnrollment().getProviderInformation();
-            ksession.insert(request.getEnrollment());
-            ksession.insert(provider);
-            ksession.insert(validation);
-            ksession.fireAllRules();
-
-            ValidationResponse validationResponse = new ValidationResponse();
-            validationResponse.setValidationResult(validation);
-            return validationResponse;
-        } finally {
-            ksession.dispose();
-        }
-    }
-
 }

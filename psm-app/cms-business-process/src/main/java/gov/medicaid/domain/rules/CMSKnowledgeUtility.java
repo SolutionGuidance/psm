@@ -22,9 +22,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.transaction.UserTransaction;
 
 /**
- * This class is used to configure and execute CMS Business rules.
+ * This class provides a facade for DroolsKnowledgeDelegate
  *
  * v1.1 - WAS Porting - pass reference to user transaction when invoking BPMN
+ *
  * @author TCSASSEMBLER
  * @version 1.1
  */
@@ -33,7 +34,7 @@ public class CMSKnowledgeUtility {
     /**
      * Knowledge implementation.
      */
-    private static KnowledgeDelegate knowledge = new DroolsKnowledgeDelegate();
+    private static DroolsKnowledgeDelegate knowledge = new DroolsKnowledgeDelegate();
 
     /**
      * Private constructor.
@@ -43,39 +44,43 @@ public class CMSKnowledgeUtility {
 
     /**
      * Creates a new business process session for CMS workflow.
-     * @param entityManager
-     * @param utx
      *
-     * @return the session created
+     * @param entityManager the EntityManagerFactory
+     * @param utx           the transaction to use
+     * @return StatefulKnowledgeSession the workflow session created
      */
-    public static StatefulKnowledgeSession newWorkflowSession(EntityManagerFactory entityManager, UserTransaction utx) {
+    public static StatefulKnowledgeSession newWorkflowSession(
+        EntityManagerFactory entityManager,
+        UserTransaction utx
+    ) {
         return knowledge.newWorkflowSession(entityManager, utx);
     }
 
     /**
-     * Creates a new validation session.
-     *
-     * @return a new screening knowledge session
+     * @return StatefulKnowledgeSession a new screening validation session
      */
     public static StatefulKnowledgeSession newScreeningValidationSession() {
         return knowledge.newScreeningValidationSession();
     }
 
     /**
-     * Creates a new session for running frontend validation.
-     *
-     * @return a new session.
+     * @return StatefulKnowledgeSession a session for frontend validation
      */
     public static StatefulKnowledgeSession newValidationSession() {
         return knowledge.newValidationSession();
     }
 
     /**
-     * @param sessionId
-     * @return
-     * @see gov.medicaid.domain.rules.KnowledgeDelegate#reloadWorkflowSession(int)
+     * @param sessionId id of the session to reload
+     * @param factory   the EntityManagerFactory
+     * @param utx       the transaction to use
+     * @return StatefulKnowledgeSession the reloaded workflow session
      */
-    public static StatefulKnowledgeSession reloadWorkflowSession(int sessionId, EntityManagerFactory factory, UserTransaction utx) {
+    public static StatefulKnowledgeSession reloadWorkflowSession(
+        int sessionId,
+        EntityManagerFactory factory,
+        UserTransaction utx
+    ) {
         return knowledge.reloadWorkflowSession(sessionId, factory, utx);
     }
 }

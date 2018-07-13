@@ -1046,7 +1046,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         if (rs.isEmpty()) {
             return null;
         }
-        return (Entity) rs.get(0);
+        return rs.get(0);
     }
 
     /**
@@ -1095,7 +1095,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             return null;
         }
 
-        ProviderProfile profile = (ProviderProfile) rs.get(0);
+        ProviderProfile profile = rs.get(0);
         if (fetchChildren) {
             fetchChildren(profile);
         }

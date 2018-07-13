@@ -72,24 +72,21 @@ public class BasicSecurityInterceptor extends InterceptorAdapter {
 
     @VisibleForTesting
     String getUsernameFromBasicAuthHeader(String authHeader) throws AuthenticationException {
-        if (authHeader == null || authHeader.startsWith("Basic ") == false) {
-            throw generateAuthenticationException("Invalid or missing authorization header");
-        }
-        String base64 = authHeader.substring("Basic ".length());
-        String base64decoded = new String(Base64.decodeBase64(base64));
-        String[] parts = base64decoded.split(":", 2);
-        return parts[0];
+        return decodeBasicAuthHeader(authHeader)[0];
     }
 
     @VisibleForTesting
     String getPasswordFromBasicAuthHeader(String authHeader) throws AuthenticationException {
+        return decodeBasicAuthHeader(authHeader)[1];
+    }
+
+    private String[] decodeBasicAuthHeader(String authHeader) throws AuthenticationException {
         if (authHeader == null || authHeader.startsWith("Basic ") == false) {
             throw generateAuthenticationException("Invalid or missing authorization header");
         }
         String base64 = authHeader.substring("Basic ".length());
         String base64decoded = new String(Base64.decodeBase64(base64));
-        String[] parts = base64decoded.split(":", 2);
-        return parts[1];
+        return base64decoded.split(":", 2);
     }
 
     private AuthenticationException generateAuthenticationException(String message) {

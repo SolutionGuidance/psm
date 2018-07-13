@@ -249,10 +249,7 @@
         parent="BaseServiceAdminController"/>
   <bean id="DashboardController"
         class="gov.medicaid.controllers.admin.DashboardController"
-        parent="BaseServiceAdminController">
-    <property name="providerProfileService" ref="ProviderEnrollmentService"/>
-    <property name="eventService" ref="EventService"/>
-  </bean>
+        parent="BaseServiceAdminController"/>
   <bean id="ProviderTypeController"
         class="gov.medicaid.controllers.admin.ProviderTypeController"
         parent="BaseServiceAdminController">

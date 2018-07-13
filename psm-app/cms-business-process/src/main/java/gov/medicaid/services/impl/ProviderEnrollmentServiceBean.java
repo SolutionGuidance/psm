@@ -1007,14 +1007,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param sourceSystem the source of the imported profile
      * @param profile      the profile to be created
      * @return the assigned internal id
-     * @throws PortalServiceException for any errors encountered
      */
     @Override
     public long importProfile(
             CMSUser user,
             SystemId sourceSystem,
             ProviderProfile profile
-    ) throws PortalServiceException {
+    ) {
         throw new NotImplementedException("Profile import is not yet supported.");
     }
 

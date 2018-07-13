@@ -366,13 +366,12 @@ public interface ProviderEnrollmentService {
      * @param sourceSystem    the source of the imported profile
      * @param providerProfile the profile to be created
      * @return the internal profile id for the imported profile
-     * @throws PortalServiceException for any errors encountered
      */
     long importProfile(
             CMSUser user,
             SystemId sourceSystem,
             ProviderProfile providerProfile
-    ) throws PortalServiceException;
+    );
 
     /**
      * Retrieves the attachments with the given id.

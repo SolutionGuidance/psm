@@ -2686,7 +2686,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param profileNPI     the employee to be checked
      * @return true if there is an affiliation between the two arguments that
      * gives the first access to the latter
-     * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings("unchecked")
     @Override

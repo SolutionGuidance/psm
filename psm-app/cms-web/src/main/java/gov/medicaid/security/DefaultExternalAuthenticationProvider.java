@@ -24,7 +24,6 @@ import gov.medicaid.entities.SystemId;
 import gov.medicaid.services.PartnerSystemService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.Util;
 
@@ -117,12 +116,8 @@ public class DefaultExternalAuthenticationProvider implements AuthenticationProv
                 throw new BadCredentialsException("Referrer is required.");
             }
 
-            try {
-                if (!partnerService.authenticate(username, password, profileNPI, referrer)) {
-                    throw new BadCredentialsException("Invalid credentials.");
-                }
-            } catch (PortalServiceException e) {
-                throw new PortalServiceRuntimeException("Data lookup errors", e);
+            if (!partnerService.authenticate(username, password, profileNPI, referrer)) {
+                throw new BadCredentialsException("Invalid credentials.");
             }
 
             return createSuccessfulAuthentication(userToken, loadProxyUser(username, profileNPI));

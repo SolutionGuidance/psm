@@ -158,9 +158,8 @@ public class OnboardingServiceBean extends BaseService implements OnboardingServ
      * @param link the external account link to verify credentials for
      * @param password the credentials
      * @return true if the credentials provided are valid
-     * @throws PortalServiceException for any errors encountered
      */
-    public boolean verifyCredentials(ExternalAccountLink link, String password) throws PortalServiceException {
+    public boolean verifyCredentials(ExternalAccountLink link, String password) {
         PartnerSystemService partner = partnerSystemServices.get(link.getSystemId());
         return partner.authenticate(link.getExternalUserId(), password, null, null);
     }

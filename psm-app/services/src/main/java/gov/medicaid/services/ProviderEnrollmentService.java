@@ -537,12 +537,11 @@ public interface ProviderEnrollmentService {
      * @param profileNPI     the employee to be checked
      * @return true if there is an affiliation between the two arguments that
      * gives the first access to the latter
-     * @throws PortalServiceException for any errors encountered
      */
     boolean hasGroupAffiliation(
             String externalUserId,
             String profileNPI
-    ) throws PortalServiceException;
+    );
 
     /**
      * Returns true if there is a profile found in the database with the given

@@ -56,6 +56,7 @@ import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.ProviderTypeService;
 import org.jbpm.task.query.TaskSummary;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -86,6 +87,7 @@ import java.util.UUID;
  * <b>Thread Safety</b> This class is mutable and not thread safe, but used in thread safe manner by framework.
  * </p>
  */
+@Controller
 public class EnrollmentController extends BaseController {
 
     /**

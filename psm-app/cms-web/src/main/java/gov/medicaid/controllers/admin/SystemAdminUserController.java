@@ -27,6 +27,7 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.Util;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,6 +50,7 @@ import java.util.Arrays;
  * @since 1.0
  * @endpoint "/system/user/*"
  */
+@Controller
 @RequestMapping("/system/user/*")
 public class SystemAdminUserController {
 

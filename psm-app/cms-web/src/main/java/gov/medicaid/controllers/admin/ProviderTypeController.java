@@ -29,6 +29,7 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderTypeService;
 import gov.medicaid.services.util.Util;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +53,7 @@ import java.util.List;
  * @author argolite, TCSASSEMBLER
  * @version 1.0
  */
+@Controller
 public class ProviderTypeController {
     private final AgreementDocumentService agreementDocumentService;
     private final LookupService lookupService;

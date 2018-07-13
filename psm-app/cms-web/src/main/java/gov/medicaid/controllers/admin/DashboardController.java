@@ -27,6 +27,7 @@ import gov.medicaid.services.EventService;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +35,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+@Controller
 public class DashboardController {
     private final ProviderEnrollmentService providerProfileService;
     private final EventService eventService;

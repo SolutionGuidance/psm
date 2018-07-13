@@ -165,12 +165,8 @@
     <property name="validator" ref="UpdatePasswordFormValidator"/>
   </bean>
 
-  <bean id="ReportController"
-        class="gov.medicaid.controllers.admin.ReportController">
-  </bean>
-
   <context:component-scan
-      base-package="gov.medicaid.controllers.admin.report" />
+      base-package="gov.medicaid.controllers.admin" />
 
   <bean id="RegistrationFormValidator" class="gov.medicaid.controllers.validators.RegistrationFormValidator">
     <property name="registrationService" ref="RegistrationService"/>
@@ -237,32 +233,9 @@
     </property>
   </bean>
 
-  <bean id="AgreementDocumentController"
-        class="gov.medicaid.controllers.admin.AgreementDocumentController"/>
-  <bean id="AutomaticScreeningController"
-        class="gov.medicaid.controllers.admin.AutomaticScreeningController"/>
-  <bean id="DashboardController"
-        class="gov.medicaid.controllers.admin.DashboardController"/>
-  <bean id="ProviderTypeController"
-        class="gov.medicaid.controllers.admin.ProviderTypeController"/>
-  <bean id="ScreeningScheduleController"
-        class="gov.medicaid.controllers.admin.ScreeningScheduleController"/>
-  <bean id="UserController"
-        class="gov.medicaid.controllers.admin.UserController"/>
-
-  <bean id="EnrollmentController"
-        class="gov.medicaid.controllers.admin.EnrollmentController"
-        parent="BaseController"/>
-
-  <bean id="SystemAdminUserSearchController"
-        class="gov.medicaid.controllers.admin.SystemAdminUserSearchController"/>
-
   <bean id="UserValidator" class="gov.medicaid.controllers.admin.UserValidator">
     <property name="registrationService" ref="RegistrationService"/>
   </bean>
-
-  <bean id="SystemAdminUserController"
-        class="gov.medicaid.controllers.admin.SystemAdminUserController"/>
 
   <bean id="ErrorController"
         class="gov.medicaid.controllers.ErrorController"/>

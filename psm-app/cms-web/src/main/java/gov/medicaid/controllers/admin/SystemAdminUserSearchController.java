@@ -24,6 +24,7 @@ import gov.medicaid.entities.UserSearchCriteria;
 import gov.medicaid.services.PortalServiceException;
 
 import gov.medicaid.services.RegistrationService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,6 +46,7 @@ import java.util.List;
  * @since 1.0
  * @endpoint "/system/search/*"
  */
+@Controller
 @RequestMapping("/system/search/*")
 public class SystemAdminUserSearchController {
 

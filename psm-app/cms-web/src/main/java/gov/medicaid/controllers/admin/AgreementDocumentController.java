@@ -24,6 +24,7 @@ import gov.medicaid.entities.SearchResult;
 import gov.medicaid.services.AgreementDocumentService;
 import gov.medicaid.services.PortalServiceException;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,6 +47,7 @@ import java.security.Principal;
  * @author argolite, TCSASSEMBLER
  * @version 1.0
  */
+@Controller
 public class AgreementDocumentController {
     private final AgreementDocumentService agreementDocumentService;
 

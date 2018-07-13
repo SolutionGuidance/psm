@@ -262,14 +262,7 @@
 
   <bean id="EnrollmentController"
         class="gov.medicaid.controllers.admin.EnrollmentController"
-        parent="BaseController">
-    <property name="businessProcessService" ref="BusinessProcessService"/>
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-    <property name="eventService" ref="EventService"/>
-    <property name="lookupService" ref="LookupService"/>
-    <property name="providerTypeService" ref="ProviderTypeService"/>
-    <property name="exportService" ref="ExportService"/>
-  </bean>
+        parent="BaseController"/>
 
   <bean id="BaseSystemAdminController"
         class="gov.medicaid.controllers.admin.BaseSystemAdminController"

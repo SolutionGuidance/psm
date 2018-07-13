@@ -439,7 +439,7 @@ public interface ProviderEnrollmentService {
     Long[] renewalProfiles(
             CMSUser currentUser,
             Set<Long> profileIds
-    ) throws PortalServiceException;
+    );
 
     /**
      * Gets the COS associated with a profile.

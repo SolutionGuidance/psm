@@ -2514,7 +2514,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public Long[] renewalProfiles(
             CMSUser user,
             Set<Long> profileIds
-    ) throws PortalServiceException {
+    ) {
         List<Long> results = new ArrayList<Long>();
         for (Long profileId : profileIds) {
             try {

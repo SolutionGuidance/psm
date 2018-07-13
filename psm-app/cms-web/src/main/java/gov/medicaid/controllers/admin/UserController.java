@@ -18,7 +18,6 @@ package gov.medicaid.controllers.admin;
 
 import gov.medicaid.controllers.ControllerHelper;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
 
@@ -27,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -42,31 +40,10 @@ import javax.servlet.http.HttpServletRequest;
  * @version 1.0
  */
 public class UserController extends BaseServiceAdminController {
-    /**
-     * Represents the user service. it is managed with a getter and setter. It may have any value, but is expected to be
-     * set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to change after
-     * dependency injection.
-     */
-    private RegistrationService registrationService;
+    private final RegistrationService registrationService;
 
-    /**
-     * Empty constructor.
-     */
-    public UserController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException - If there are required injection fields that are not injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-
-        if (registrationService == null) {
-            throw new PortalServiceConfigurationException("userService must be configured.");
-        }
+    public UserController(RegistrationService registrationService) {
+        this.registrationService = registrationService;
     }
 
     /**
@@ -135,23 +112,5 @@ public class UserController extends BaseServiceAdminController {
         model.addObject("user", user);
 
         return model;
-    }
-
-    /**
-     * Gets the value of the field <code>registrationService</code>.
-     *
-     * @return the registrationService
-     */
-    public RegistrationService getRegistrationService() {
-        return registrationService;
-    }
-
-    /**
-     * Sets the value of the field <code>registrationService</code>.
-     *
-     * @param registrationService the registrationService to set
-     */
-    public void setRegistrationService(RegistrationService registrationService) {
-        this.registrationService = registrationService;
     }
 }

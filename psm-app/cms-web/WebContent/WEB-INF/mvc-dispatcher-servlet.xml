@@ -258,9 +258,7 @@
         parent="BaseServiceAdminController"/>
   <bean id="UserController"
         class="gov.medicaid.controllers.admin.UserController"
-        parent="BaseServiceAdminController">
-    <property name="registrationService" ref="RegistrationService"/>
-  </bean>
+        parent="BaseServiceAdminController"/>
 
   <bean id="EnrollmentController"
         class="gov.medicaid.controllers.admin.EnrollmentController"

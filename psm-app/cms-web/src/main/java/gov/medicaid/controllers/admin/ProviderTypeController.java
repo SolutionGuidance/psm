@@ -52,7 +52,7 @@ import java.util.List;
  * @author argolite, TCSASSEMBLER
  * @version 1.0
  */
-public class ProviderTypeController extends BaseServiceAdminController {
+public class ProviderTypeController {
     private final AgreementDocumentService agreementDocumentService;
     private final LookupService lookupService;
     private final ProviderTypeService providerTypeService;

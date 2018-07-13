@@ -237,28 +237,18 @@
     </property>
   </bean>
 
-  <bean id="BaseServiceAdminController"
-        class="gov.medicaid.controllers.admin.BaseServiceAdminController"
-        abstract="true">
-  </bean>
   <bean id="AgreementDocumentController"
-        class="gov.medicaid.controllers.admin.AgreementDocumentController"
-        parent="BaseServiceAdminController"/>
+        class="gov.medicaid.controllers.admin.AgreementDocumentController"/>
   <bean id="AutomaticScreeningController"
-        class="gov.medicaid.controllers.admin.AutomaticScreeningController"
-        parent="BaseServiceAdminController"/>
+        class="gov.medicaid.controllers.admin.AutomaticScreeningController"/>
   <bean id="DashboardController"
-        class="gov.medicaid.controllers.admin.DashboardController"
-        parent="BaseServiceAdminController"/>
+        class="gov.medicaid.controllers.admin.DashboardController"/>
   <bean id="ProviderTypeController"
-        class="gov.medicaid.controllers.admin.ProviderTypeController"
-        parent="BaseServiceAdminController"/>
+        class="gov.medicaid.controllers.admin.ProviderTypeController"/>
   <bean id="ScreeningScheduleController"
-        class="gov.medicaid.controllers.admin.ScreeningScheduleController"
-        parent="BaseServiceAdminController"/>
+        class="gov.medicaid.controllers.admin.ScreeningScheduleController"/>
   <bean id="UserController"
-        class="gov.medicaid.controllers.admin.UserController"
-        parent="BaseServiceAdminController"/>
+        class="gov.medicaid.controllers.admin.UserController"/>
 
   <bean id="EnrollmentController"
         class="gov.medicaid.controllers.admin.EnrollmentController"

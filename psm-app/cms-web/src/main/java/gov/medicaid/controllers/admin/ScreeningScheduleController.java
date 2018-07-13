@@ -38,7 +38,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @author argolite, TCSASSEMBLER
  * @version 1.0
  */
-public class ScreeningScheduleController extends BaseServiceAdminController {
+public class ScreeningScheduleController {
     private final ScreeningService screeningService;
 
     public ScreeningScheduleController(ScreeningService screeningService) {

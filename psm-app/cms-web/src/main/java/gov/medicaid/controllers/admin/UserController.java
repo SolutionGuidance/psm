@@ -39,7 +39,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author argolite, TCSASSEMBLER
  * @version 1.0
  */
-public class UserController extends BaseServiceAdminController {
+public class UserController {
     private final RegistrationService registrationService;
 
     public UserController(RegistrationService registrationService) {

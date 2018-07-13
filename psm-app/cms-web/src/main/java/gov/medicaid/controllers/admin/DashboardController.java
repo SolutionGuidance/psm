@@ -34,7 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-public class DashboardController extends BaseServiceAdminController {
+public class DashboardController {
     private final ProviderEnrollmentService providerProfileService;
     private final EventService eventService;
     private final LookupService lookupService;

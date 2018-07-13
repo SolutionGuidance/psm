@@ -46,7 +46,7 @@ import java.security.Principal;
  * @author argolite, TCSASSEMBLER
  * @version 1.0
  */
-public class AgreementDocumentController extends BaseServiceAdminController {
+public class AgreementDocumentController {
     private final AgreementDocumentService agreementDocumentService;
 
     public AgreementDocumentController(AgreementDocumentService agreementDocumentService) {

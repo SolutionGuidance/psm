@@ -268,7 +268,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             Enrollment ticket
     ) throws PortalServiceException {
         // update the profile with the given changes
-        purgeTicketDetails(user, ticket.getTicketId());
+        purgeTicketDetails(ticket.getTicketId());
         ticket.setDetails(ticket.getDetails().clone());
         saveTicket(user, ticket, true);
         approveTicket(user, ticket.getTicketId());
@@ -518,7 +518,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         } else {
             // delete - insert
             ProviderProfile profile = ticket.getDetails();
-            purgeTicketDetails(user, ticket.getTicketId());
+            purgeTicketDetails(ticket.getTicketId());
             ticket.setDetails(profile);
         }
 
@@ -706,10 +706,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 + "WHERE e.enrolled = 'Y'";
 
         StringBuilder countQuery = new StringBuilder("SELECT count(*) " + fromClause);
-        appendCriteria(countQuery, user, criteria);
+        appendCriteria(countQuery, criteria);
 
         Query count = getEm().createQuery(countQuery.toString());
-        bindParameters(count, user, criteria);
+        bindParameters(count, criteria);
         results.setTotal(((Number) count.getSingleResult()).intValue());
 
         StringBuilder fetchQuery = new StringBuilder(
@@ -718,11 +718,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                         + "ci.address.zipcode, ci.address.county, ci.phoneNumber, ci.faxNumber, "
                         + "e.backgroundStudyId, e.backgroundClearanceDate, e.agencyId) " + fromClause);
 
-        appendCriteria(fetchQuery, user, criteria);
+        appendCriteria(fetchQuery, criteria);
         appendSorting(fetchQuery, criteria);
 
         Query items = getEm().createQuery(fetchQuery.toString());
-        bindParameters(items, user, criteria);
+        bindParameters(items, criteria);
         if (criteria.getPageNumber() > 0) {
             int offset = (criteria.getPageNumber() - 1) * criteria.getPageSize();
             items.setFirstResult(offset);
@@ -1741,11 +1741,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     /**
      * Removes the ticket details.
      *
-     * @param user     the user performing the operation.
      * @param ticketId the ticket that will be cleared
      */
     private void purgeTicketDetails(
-            CMSUser user,
             long ticketId
     ) {
         ProviderProfile profile = getProviderDetailsByTicket(ticketId, true);
@@ -2205,12 +2203,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * Appends the provider search criteria to the current buffer.
      *
      * @param buffer   the query buffer
-     * @param user     the current user
      * @param criteria the search criteria
      */
     private void appendCriteria(
             StringBuilder buffer,
-            CMSUser user,
             PracticeSearchCriteria criteria
     ) {
         if (criteria.isAgency()) {
@@ -2242,12 +2238,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * Binds the provider search criteria to the query.
      *
      * @param query    the query to bind to
-     * @param user     the user performing the action
      * @param criteria the search criteria
      */
     private void bindParameters(
             Query query,
-            CMSUser user,
             PracticeSearchCriteria criteria
     ) {
         if (criteria.getProfileId() > 0) {

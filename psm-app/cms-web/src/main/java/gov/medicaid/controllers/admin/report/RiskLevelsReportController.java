@@ -1,5 +1,6 @@
 package gov.medicaid.controllers.admin.report;
 
+import com.google.common.collect.ImmutableList;
 import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentSearchCriteria;
@@ -23,7 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -34,11 +34,11 @@ import java.util.stream.Collectors;
 public class RiskLevelsReportController extends gov.medicaid.controllers.BaseController {
     private ProviderEnrollmentService enrollmentService;
 
-    public static final List<String> RISK_LEVELS = Arrays.asList(new String[] {
+    private static final List<String> RISK_LEVELS = ImmutableList.of(
         ViewStatics.LOW_RISK,
         ViewStatics.MODERATE_RISK,
         ViewStatics.HIGH_RISK
-    });
+    );
 
     public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
         this.enrollmentService = enrollmentService;

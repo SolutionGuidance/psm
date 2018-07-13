@@ -106,6 +106,10 @@ allprojects {
             testCompile 'org.codehaus.groovy:groovy-all:2.4.13'
             testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
         }
+
+        spotbugs {
+           excludeFilter = file("$projectDir/spotbugs-exclude.xml")
+        }
     }
 }
 

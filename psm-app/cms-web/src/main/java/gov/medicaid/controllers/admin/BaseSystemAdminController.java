@@ -16,7 +16,6 @@
 
 package gov.medicaid.controllers.admin;
 
-import gov.medicaid.services.RegistrationService;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -32,11 +31,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 public abstract class BaseSystemAdminController {
     /**
-     * Registration service.
-     */
-    private RegistrationService registrationService;
-
-    /**
      * Empty constructor.
      */
     protected BaseSystemAdminController() {
@@ -46,20 +40,4 @@ public abstract class BaseSystemAdminController {
      * Ensure the object is properly initialized
      */
     protected void init() {}
-
-    /**
-     * Gets the value of the field <code>registrationService</code>.
-     * @return the registrationService
-     */
-    public RegistrationService getRegistrationService() {
-        return registrationService;
-    }
-
-    /**
-     * Sets the value of the field <code>registrationService</code>.
-     * @param registrationService the registrationService to set
-     */
-    public void setRegistrationService(RegistrationService registrationService) {
-        this.registrationService = registrationService;
-    }
 }

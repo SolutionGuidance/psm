@@ -24,6 +24,7 @@ import gov.medicaid.entities.UserSearchCriteria;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceException;
+import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.Util;
 
 import org.springframework.validation.BindingResult;
@@ -62,6 +63,9 @@ public class SystemAdminUserController extends BaseSystemAdminController {
     private static final int DEFAULT_PAGE_SIZE = 10;
 
     private final LookupService lookupService;
+
+    private final RegistrationService registrationService;
+
     /**
      * The validator for user parameters.
      */
@@ -69,9 +73,11 @@ public class SystemAdminUserController extends BaseSystemAdminController {
 
     public SystemAdminUserController(
         LookupService lookupService,
+        RegistrationService registrationService,
         UserValidator userValidator
     ) {
         this.lookupService = lookupService;
+        this.registrationService = registrationService;
         this.userValidator = userValidator;
     }
 
@@ -224,7 +230,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
             mv.addObject("role", role);
             mv.addObject("availableRoles", lookupService.findAllLookups(Role.class));
         } else {
-            String userId = getRegistrationService().registerByAdmin(actor, user, password);
+            String userId = registrationService.registerByAdmin(actor, user, password);
             String viewName = "admin/user-account-details-system-admin";
             mv = loadUser(viewName, role, userId);
         }
@@ -273,7 +279,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
             mv.addObject("availableRoles", lookupService.findAllLookups(Role.class));
         } else {
             CMSUser actor = ControllerHelper.getCurrentUser();
-            String userId = getRegistrationService().updateByAdmin(actor, user, password);
+            String userId = registrationService.updateByAdmin(actor, user, password);
             String viewName = "admin/user-account-details-system-admin";
             mv = loadUser(viewName, role, userId);
         }
@@ -301,7 +307,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
         }
 
         CMSUser actor = ControllerHelper.getCurrentUser();
-        getRegistrationService().unregisterUsers(actor.getUserId(), userIds);
+        registrationService.unregisterUsers(actor.getUserId(), userIds);
     }
 
     /**
@@ -315,7 +321,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
     @ResponseBody
     public void disable(@RequestParam("userId") String userId) {
         CMSUser actor = ControllerHelper.getCurrentUser();
-        getRegistrationService().suspend(actor, userId);
+        registrationService.suspend(actor, userId);
     }
 
     /**
@@ -329,7 +335,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
     @ResponseBody
     public void reinstate(@RequestParam("userId") String userId) {
         CMSUser actor = ControllerHelper.getCurrentUser();
-        getRegistrationService().reinstate(actor, userId);
+        registrationService.reinstate(actor, userId);
     }
 
     /**
@@ -345,7 +351,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
     private ModelAndView loadUser(String viewName, String role, String userId) throws PortalServiceException {
         CMSUser user;
         if (!Util.isBlank(userId)) {
-            user = getRegistrationService().findByUserId(userId);
+            user = registrationService.findByUserId(userId);
         } else {
             user = new CMSUser();
             user.setRole(new Role());
@@ -381,7 +387,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
                 }
             }
         }
-        SearchResult<CMSUser> results = getRegistrationService().findUsersByCriteria(criteria);
+        SearchResult<CMSUser> results = registrationService.findUsersByCriteria(criteria);
         ModelAndView mv = new ModelAndView("admin/user-account-system-admin");
         if (criteria.isSearchBox()) {
             mv.setViewName("admin/search-result-system-admin");

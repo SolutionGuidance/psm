@@ -455,7 +455,9 @@ public class PresentationServiceBean extends BaseService implements Presentation
                 viewModel.addTabModel(ViewStatics.INDIVIDUAL_PCA_INFORMATION, page);
 
                 page = new UITabModel();
-                page.addForm(ViewStatics.LICENSE_INFO_FORM, new FormSettings());
+                FormSettings licenseInfoFormSettings = new FormSettings();
+                licenseInfoFormSettings.addSetting("requireRenewalDate", false);
+                page.addForm(ViewStatics.LICENSE_INFO_FORM, licenseInfoFormSettings);
                 viewModel.addTabModel(ViewStatics.TRAINING_INFORMATION, page);
 
                 page = new UITabModel();

@@ -22,6 +22,16 @@ public class DataCoverageStepDefinitions {
     public void enter_valid_license_information() {
         enrollmentSteps.enterLicenseInfo();
     }
+    
+    @When("^I enter valid personal care assistant license information with a renewal date$")
+    public void enter_valid_personal_care_assistant_license_information_with_renewal_date() {
+        enrollmentSteps.enterPersonCareAssistantLicenseInfoWithRenewalDate();
+    }
+    
+    @When("^I enter valid personal care assistant license information without a renewal date$")
+    public void enter_valid_personal_care_assistant_license_information_without_renewal_date() {
+        enrollmentSteps.enterPersonCareAssistantLicenseInfoWithoutRenewalDate();
+    }
 
     @When("^I enter license info where renewal date is before issue date$")
     public void enter_license_info_where_renewal_date_is_before_issue_date() {
@@ -68,6 +78,12 @@ public class DataCoverageStepDefinitions {
         enrollmentSteps.advanceFromIndividualLicenseInfoToPracticeInfo();
     }
 
+    @Then("^the personal care assistant license is accepted$")
+    public void personal_care_assistant_license_is_accepted() {
+        enrollmentSteps.
+                advanceFromPersonalCareAssistantLicenseInfoToPracticeInfo();
+    }
+    
     @Then("^the practice information is accepted$")
     public void practice_information_is_accepted() {
         enrollmentSteps.advanceFromIndividualPracticeInfoToSummaryPage();

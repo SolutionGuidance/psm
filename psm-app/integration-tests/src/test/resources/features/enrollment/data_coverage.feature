@@ -64,3 +64,17 @@ Feature: Data Coverage Checks
     When I enter my individual provider statement
     And I submit the enrollment
     Then the enrollment is successfully submitted
+
+  Scenario: Accepts personal care assistant license with renewal date
+    Given I have started an enrollment
+    And I am on the personal assistant enrollment page
+    When I enter valid personal care assistant license information with a renewal date
+    And I upload a valid license
+    Then the personal care assistant license is accepted
+
+  Scenario: Accepts personal care assistant license without renewal date
+    Given I have started an enrollment
+    And I am on the personal assistant enrollment page
+    When I enter valid personal care assistant license information without a renewal date
+    And I upload a valid license
+    Then the personal care assistant license is accepted

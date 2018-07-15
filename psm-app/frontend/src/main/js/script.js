@@ -2585,19 +2585,6 @@ function updateBeneficialOwnerTypes(val) {
 
 }
 
-function doIndividualLicenseSelect(el) {
-  var parentRow = $(el).closest('tr');
-  var licenseTypeFieldName = $(el).attr("name");
-  var renewalEndDateFieldName = licenseTypeFieldName.replace("licenseType", "renewalDate");
-
-  var renewalEndDate = $(parentRow).find('input[name="' + renewalEndDateFieldName + '"]').first();
-  if ($(el).val() == 'PCA Training Certificate') {
-    $(renewalEndDate).addClass('disabled').attr('disabled', 'disabled');
-  } else {
-    $(renewalEndDate).removeClass('disabled').removeAttr('disabled');
-  }
-}
-
 function doInServiceSelect(el) {
   var code = $(el).val();
   $(el).closest('.assuredServicePanel').find('.ext-services').addClass('hide');

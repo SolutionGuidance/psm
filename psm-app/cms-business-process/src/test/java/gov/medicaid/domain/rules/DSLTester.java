@@ -157,7 +157,7 @@ public class DSLTester {
         }
     }
 
-    public class EventListener extends DefaultAgendaEventListener {
+    public static class EventListener extends DefaultAgendaEventListener {
         @Override
         public void beforeActivationFired(final BeforeActivationFiredEvent event) {
             final Rule rule = event.getActivation().getRule();

@@ -41,7 +41,7 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
     }
 
     @RequestMapping(value = "/admin/reports/time-to-review", method = RequestMethod.GET)
-    public ModelAndView getTimeToReview() throws PortalServiceException {
+    public ModelAndView getTimeToReview() {
         ModelAndView mv = new ModelAndView("admin/reports/time_to_review");
         SearchResult<Enrollment> enrollments = getEnrollmentsFromDB();
         List<EnrollmentMonth> ems = groupEnrollments(enrollments.getItems());
@@ -84,7 +84,7 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
         }
     }
 
-    private SearchResult<Enrollment> getEnrollmentsFromDB() throws PortalServiceException {
+    private SearchResult<Enrollment> getEnrollmentsFromDB() {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         return enrollmentService.searchEnrollments(criteria);
     }

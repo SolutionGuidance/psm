@@ -97,12 +97,11 @@ public class ProviderDashboardController extends BaseController {
      * Opens the dashboard.
      *
      * @return the dashboard page and the needed models
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/"
      * @verb GET
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView viewDashboard() throws PortalServiceException {
+    public ModelAndView viewDashboard() {
         if (isOperations()) {
             return new ModelAndView("redirect:/landing");
         }
@@ -157,12 +156,11 @@ public class ProviderDashboardController extends BaseController {
      * Shows the default dashboard page.
      *
      * @return the dashboard page
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/list"
      * @verb GET
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView viewTicketList() throws PortalServiceException {
+    public ModelAndView viewTicketList() {
         return filterTicketList(createDefaultFilter());
     }
 
@@ -170,12 +168,11 @@ public class ProviderDashboardController extends BaseController {
      * Shows the drafts page.
      *
      * @return the drafts page
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/drafts"
      * @verb GET
      */
     @RequestMapping(value = "/drafts", method = RequestMethod.GET)
-    public ModelAndView viewDrafts() throws PortalServiceException {
+    public ModelAndView viewDrafts() {
         if (isOperations()) {
             return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Draft&showFilterPanel=true");
         }
@@ -186,12 +183,11 @@ public class ProviderDashboardController extends BaseController {
      * Shows the pending page.
      *
      * @return the pending page
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/pending"
      * @verb GET
      */
     @RequestMapping(value = "/pending", method = RequestMethod.GET)
-    public ModelAndView viewPending() throws PortalServiceException {
+    public ModelAndView viewPending() {
         if (isOperations()) {
             return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Pending&showFilterPanel=true");
         }
@@ -202,12 +198,11 @@ public class ProviderDashboardController extends BaseController {
      * Shows the approved page.
      *
      * @return the approved page
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/approved"
      * @verb GET
      */
     @RequestMapping(value = "/approved", method = RequestMethod.GET)
-    public ModelAndView viewApproved() throws PortalServiceException {
+    public ModelAndView viewApproved() {
         if (isOperations()) {
             return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Approved&showFilterPanel=true");
         }
@@ -218,12 +213,11 @@ public class ProviderDashboardController extends BaseController {
      * Shows the rejected page.
      *
      * @return the rejected page
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/rejected"
      * @verb GET
      */
     @RequestMapping(value = "/rejected", method = RequestMethod.GET)
-    public ModelAndView viewRejected() throws PortalServiceException {
+    public ModelAndView viewRejected() {
         if (isOperations()) {
             return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Rejected&showFilterPanel=true");
         }
@@ -250,14 +244,14 @@ public class ProviderDashboardController extends BaseController {
      * @param status only status of this type will be returned
      * @param criteria the search criteria
      * @return the view to show the results by status
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/filter"
      * @verb GET
      */
     @RequestMapping(value = "/filter", method = RequestMethod.GET)
-    public ModelAndView filterTicketsByStatus(@RequestParam("status") String status, ProviderSearchCriteria criteria)
-        throws PortalServiceException {
-
+    public ModelAndView filterTicketsByStatus(
+        @RequestParam("status") String status,
+        ProviderSearchCriteria criteria
+    ) {
         String view = "provider/dashboard/list_by_status";
         criteria.setStatuses(Arrays.asList(status));
         ModelAndView mv = searchTickets(criteria, view);
@@ -284,8 +278,10 @@ public class ProviderDashboardController extends BaseController {
      */
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/export", method = RequestMethod.GET)
-    public void exportTicketsByStatus(@RequestParam("status") String status, ProviderSearchCriteria criteria,
-        HttpServletResponse response) throws PortalServiceException, IOException {
+    public void exportTicketsByStatus(
+        @RequestParam("status") String status, ProviderSearchCriteria criteria,
+        HttpServletResponse response
+    ) throws PortalServiceException, IOException {
         criteria.setStatuses(Arrays.asList(status));
 
         // export all
@@ -307,12 +303,11 @@ public class ProviderDashboardController extends BaseController {
      *
      * @param criteria the filter
      * @return the dashboard page
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/list/filter"
      * @verb GET
      */
     @RequestMapping(value = "/list/filter", method = RequestMethod.GET)
-    public ModelAndView filterTicketList(ProviderSearchCriteria criteria) throws PortalServiceException {
+    public ModelAndView filterTicketList(ProviderSearchCriteria criteria) {
         return searchTickets(criteria, "provider/dashboard/list");
     }
 
@@ -322,9 +317,11 @@ public class ProviderDashboardController extends BaseController {
      * @param criteria the search criteria
      * @param view the view to render the results
      * @return the results and the view provided
-     * @throws PortalServiceException for any errors encountered
      */
-    private ModelAndView searchTickets(ProviderSearchCriteria criteria, String view) throws PortalServiceException {
+    private ModelAndView searchTickets(
+        ProviderSearchCriteria criteria,
+        String view
+    ) {
         String enrollmentNumber = criteria.getEnrollmentNumber();
         // enrollment number must be a valid long since ids are of that type.
         if (Util.isNotBlank(enrollmentNumber)) {

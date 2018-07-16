@@ -721,7 +721,6 @@ public class EnrollmentPageFlowController extends BaseController {
      *
      * @param criteria the lookup criteria
      * @return the lookup JSON
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/lookup"
      * @verb POST
      */
@@ -729,7 +728,7 @@ public class EnrollmentPageFlowController extends BaseController {
     @ResponseBody
     public SearchResult<PracticeLookup> lookup(
             PracticeSearchCriteria criteria
-    ) throws PortalServiceException {
+    ) {
         CMSUser user = ControllerHelper.getCurrentUser();
         SearchResult<PracticeLookup> results = getEnrollmentService().searchPractice(user, criteria);
         List<PracticeLookup> items = results.getItems();
@@ -747,7 +746,6 @@ public class EnrollmentPageFlowController extends BaseController {
      *
      * @param npi the provider NPI
      * @return the lookup JSON
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/lookupProvider"
      * @verb POST
      */
@@ -755,7 +753,7 @@ public class EnrollmentPageFlowController extends BaseController {
     @ResponseBody
     public List<ProviderLookup> lookupProvider(
             @RequestParam("npi") String npi
-    ) throws PortalServiceException {
+    ) {
         List<ProviderLookup> results = getEnrollmentService().lookupProvider(npi);
         if (results != null) {
             for (ProviderLookup item : results) {

@@ -148,12 +148,11 @@ public interface ProviderEnrollmentService {
      * @throws IllegalArgumentException if any argument is null, or the page
      *                                  size and page number settings are
      *                                  invalid
-     * @throws PortalServiceException   for any errors encountered
      */
     SearchResult<UserRequest> searchTickets(
             CMSUser user,
             ProviderSearchCriteria criteria
-    ) throws PortalServiceException;
+    );
 
     /**
      * This method gets all the enrollments that meet the search criteria. If none
@@ -164,11 +163,10 @@ public interface ProviderEnrollmentService {
      * @throws IllegalArgumentException if any argument is null, or the page
      *                                  size and page number settings are
      *                                  invalid
-     * @throws PortalServiceException   for any errors encountered
      */
     SearchResult<Enrollment> searchEnrollments(
             EnrollmentSearchCriteria criteria
-    ) throws PortalServiceException;
+    );
 
     /**
      * This method gets all the enrollments that are draft status at end of
@@ -180,11 +178,10 @@ public interface ProviderEnrollmentService {
      * @throws IllegalArgumentException if any argument is null, or the page
      *                                  size and page number settings are
      *                                  invalid
-     * @throws PortalServiceException   for any errors encountered
      */
     SearchResult<Enrollment> getDraftAtEomEnrollments(
             EnrollmentSearchCriteria criteria
-    ) throws PortalServiceException;
+    );
 
     /**
      * This method gets all the providers owned by the given user. If none
@@ -192,11 +189,10 @@ public interface ProviderEnrollmentService {
      *
      * @param user the user performing the action
      * @return the applicable providers
-     * @throws PortalServiceException for any errors encountered
      */
     List<ProfileHeader> findMyProfiles(
             CMSUser user
-    ) throws PortalServiceException;
+    );
 
     /**
      * Saves the given ticket as draft.
@@ -288,12 +284,11 @@ public interface ProviderEnrollmentService {
      * @param user     the user performing the search
      * @param criteria the criteria filter
      * @return the matching practice results
-     * @throws PortalServiceException for any errors encountered
      */
     SearchResult<PracticeLookup> searchPractice(
             CMSUser user,
             PracticeSearchCriteria criteria
-    ) throws PortalServiceException;
+    );
 
     /**
      * Creates a renewal ticket from the given profile id.
@@ -371,13 +366,12 @@ public interface ProviderEnrollmentService {
      * @param sourceSystem    the source of the imported profile
      * @param providerProfile the profile to be created
      * @return the internal profile id for the imported profile
-     * @throws PortalServiceException for any errors encountered
      */
     long importProfile(
             CMSUser user,
             SystemId sourceSystem,
             ProviderProfile providerProfile
-    ) throws PortalServiceException;
+    );
 
     /**
      * Retrieves the attachments with the given id.
@@ -410,20 +404,18 @@ public interface ProviderEnrollmentService {
      *
      * @param ticketId the ticket id
      * @return the notes for the ticket of for the referenced profile
-     * @throws PortalServiceException for any errors encountered
      */
-    List<Note> findNotes(long ticketId) throws PortalServiceException;
+    List<Note> findNotes(long ticketId);
 
     /**
      * Retrieves public data for enrolled providers by NPI.
      *
      * @param npi the npi to search for
      * @return the public lookup data
-     * @throws PortalServiceException for any errors encountered
      */
     List<ProviderLookup> lookupProvider(
             String npi
-    ) throws PortalServiceException;
+    );
 
     /**
      * Direct save (no logical checks) Used by business processes.
@@ -445,7 +437,7 @@ public interface ProviderEnrollmentService {
     Long[] renewalProfiles(
             CMSUser currentUser,
             Set<Long> profileIds
-    ) throws PortalServiceException;
+    );
 
     /**
      * Gets the COS associated with a profile.
@@ -543,12 +535,11 @@ public interface ProviderEnrollmentService {
      * @param profileNPI     the employee to be checked
      * @return true if there is an affiliation between the two arguments that
      * gives the first access to the latter
-     * @throws PortalServiceException for any errors encountered
      */
     boolean hasGroupAffiliation(
             String externalUserId,
             String profileNPI
-    ) throws PortalServiceException;
+    );
 
     /**
      * Returns true if there is a profile found in the database with the given
@@ -556,9 +547,8 @@ public interface ProviderEnrollmentService {
      *
      * @param profileNPI the NPI to be checked
      * @return true if a record matches
-     * @throws PortalServiceException for any errors encountered
      */
-    boolean existsProfile(String profileNPI) throws PortalServiceException;
+    boolean existsProfile(String profileNPI);
 
     /**
      * Callback from legacy system for setting the legacy ID.
@@ -578,12 +568,11 @@ public interface ProviderEnrollmentService {
      * @param profileId the profile id of the provider
      * @param ticketId  the request ticket id
      * @return the related entity to the profile
-     * @throws PortalServiceException for any errors encountered
      */
     Entity findEntityByProviderKey(
             Long profileId,
             Long ticketId
-    ) throws PortalServiceException;
+    );
 
     /**
      * Retrieves the related attachments for the given profile key.

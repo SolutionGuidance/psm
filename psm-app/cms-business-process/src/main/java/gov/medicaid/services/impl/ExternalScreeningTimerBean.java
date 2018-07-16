@@ -72,7 +72,7 @@ public class ExternalScreeningTimerBean extends BaseService {
         }
     }
 
-    private void runRescreenings() throws PortalServiceException {
+    private void runRescreenings() {
         for (UserRequest enrollment : getRescreenableEnrollments()) {
             logger.info(String.format(
                 "Running automatic re-screenings for enrollment " +
@@ -86,7 +86,7 @@ public class ExternalScreeningTimerBean extends BaseService {
         }
     }
 
-    private List<UserRequest> getRescreenableEnrollments() throws PortalServiceException {
+    private List<UserRequest> getRescreenableEnrollments() {
         ProviderSearchCriteria criteria = new ProviderSearchCriteria();
         criteria.setStatuses(Collections.singletonList(
             ViewStatics.APPROVED_STATUS

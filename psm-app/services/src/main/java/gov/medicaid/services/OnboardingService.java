@@ -57,7 +57,6 @@ public interface OnboardingService {
      * @param link the external account link to verify credentials for
      * @param password the credentials
      * @return true if the credentials provided are valid
-     * @throws PortalServiceException for any errors encountered
      */
-    boolean verifyCredentials(ExternalAccountLink link, String password) throws PortalServiceException;
+    boolean verifyCredentials(ExternalAccountLink link, String password);
 }

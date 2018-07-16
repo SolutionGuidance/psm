@@ -44,7 +44,7 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
         @RequestParam(value = "startDate", required = false) String startDateSubmitted,
         @RequestParam(value = "startDate", required = false) Date inputStartDate,
         @RequestParam(value = "endDate", required = false) Date inputEndDate
-    ) throws PortalServiceException {
+    ) {
         ModelAndView mv = new ModelAndView("admin/reports/applications_by_reviewer");
 
         Date startDate = startDateSubmitted != null
@@ -105,7 +105,7 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
     private List<Enrollment> getEnrollmentsFromDB(
         Date startDate,
         Date endDate
-    ) throws PortalServiceException {
+    ) {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         criteria.setCreateDateStart(startDate);
         criteria.setCreateDateEnd(endDate);

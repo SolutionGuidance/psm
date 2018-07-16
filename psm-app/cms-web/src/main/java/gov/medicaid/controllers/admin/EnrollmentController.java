@@ -448,13 +448,12 @@ public class EnrollmentController extends BaseController {
      * @return the model and view instance that contains the name of view to be
      * rendered and data to be used for rendering (not null)
      * @throws IllegalArgumentException if npi is null/empty
-     * @throws PortalServiceException   If there are any errors in the action
      * @endpoint "/agent/enrollment/status"
      */
     @RequestMapping(value = "/agent/enrollment/status")
     public ModelAndView getByNumber(
             @RequestParam("npi") String npi
-    ) throws PortalServiceException {
+    ) {
 
         if (npi == null || npi.trim().length() == 0) {
             throw new IllegalArgumentException("A valid NPI must be provided.");

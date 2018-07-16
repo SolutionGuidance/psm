@@ -38,7 +38,7 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
     }
 
     @RequestMapping(value = "/admin/reports/draft-applications", method = RequestMethod.GET)
-    public ModelAndView getDraftApplications() throws PortalServiceException {
+    public ModelAndView getDraftApplications() {
         ModelAndView mv = new ModelAndView("admin/reports/draft_applications");
         SearchResult<Enrollment> enrollments = getEnrollmentsFromDB();
         List<EnrollmentMonth> months = groupEnrollments(enrollments.getItems());
@@ -82,7 +82,7 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
         }
     }
 
-    private SearchResult<Enrollment> getEnrollmentsFromDB() throws PortalServiceException {
+    private SearchResult<Enrollment> getEnrollmentsFromDB() {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         criteria.setAscending(true);
         criteria.setSortColumn("created_at");

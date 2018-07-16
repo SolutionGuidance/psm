@@ -118,7 +118,7 @@ public class ProviderTypesReportController extends gov.medicaid.controllers.Base
 
     private List<Enrollment> getEnrollmentsFromDB(
         List<String> providerTypeCodes
-    ) throws PortalServiceException {
+    ) {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         criteria.setProviderTypes(providerTypeCodes);
         return enrollmentService.searchEnrollments(criteria).getItems();
@@ -134,7 +134,7 @@ public class ProviderTypesReportController extends gov.medicaid.controllers.Base
             });
     }
 
-    private List<Month> buildMonths(List<EnrollmentMonth> ems) throws PortalServiceException {
+    private List<Month> buildMonths(List<EnrollmentMonth> ems) {
         List<Month> months = new ArrayList<>();
 
         for (EnrollmentMonth em : ems) {
@@ -148,8 +148,7 @@ public class ProviderTypesReportController extends gov.medicaid.controllers.Base
         Map<ProviderType, List<Enrollment>> typeEnrollments;
         LocalDate month;
 
-        public Month(EnrollmentMonth em, ProviderEnrollmentService enrollmentService)
-            throws PortalServiceException {
+        public Month(EnrollmentMonth em, ProviderEnrollmentService enrollmentService) {
             typeEnrollments = new HashMap<>();
             month = em.getMonth();
 

@@ -87,10 +87,9 @@ public class MockMNITSPartnerServiceBean extends BaseService implements
      *
      * 3. Confirm that 1 and 2 are identical, or, that #2 works for #1, else
      * show access error
-     * @throws PortalServiceException for any errors encountered
      */
     public boolean authenticate(String externalUserId, String password,
-            String profileNPI, String referrer) throws PortalServiceException {
+            String profileNPI, String referrer) {
 
         if (!internalSecurityDomain.equals(referrer)) {
             getLogger().warning("Rejecting external login due to invalid domain: " + referrer);

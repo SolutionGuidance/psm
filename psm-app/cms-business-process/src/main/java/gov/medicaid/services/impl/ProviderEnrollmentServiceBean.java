@@ -816,26 +816,24 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             throw new IllegalArgumentException("User and the corresponding role cannot be null.");
         }
 
-        if (user.getProxyForNPI() == null) {
-            String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
-                    + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
-                    + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and p.ownerId = :ownerId "
-                    + "AND p.ticketId = 0 ORDER BY 5 DESC";
+        // If not the creator, then user has proxy access via the NPI ID.
+        boolean hasProxyForNpi = user.getProxyForNPI() != null;
 
-            Query items = getEm().createQuery(fetchQuery);
-            items.setParameter("ownerId", user.getUserId());
-            return items.getResultList();
-        } else {
-            // not the creator but given proxy access via the NPI ID
-            String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
-                    + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
-                    + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and e.npi = :npi "
-                    + "AND p.ticketId = 0 ORDER BY 5 DESC";
+        String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader("
+                + "e.profileId, e.npi, pt.description, p.effectiveDate, p.modifiedOn"
+                + ") FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
+                + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and "
+                + (hasProxyForNpi ? "e.npi = :npi " : "p.ownerId = :ownerId ")
+                + "AND p.ticketId = 0 ORDER BY 5 DESC";
 
-            Query items = getEm().createQuery(fetchQuery);
+        Query items = getEm().createQuery(fetchQuery);
+
+        if (hasProxyForNpi) {
             items.setParameter("npi", user.getProxyForNPI());
-            return items.getResultList();
+        } else {
+            items.setParameter("ownerId", user.getUserId());
         }
+        return items.getResultList();
     }
 
     /**

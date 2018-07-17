@@ -19,7 +19,8 @@ set -e
 # test data from the repo.  If you're deploying in earnest, you'll
 # want to adjust things.
 
-WILDFLY_DIR="./wildfly-10.1.0.Final"
+WILDFLY_VERSION="10.1.0.Final"
+WILDFLY_DIR="./wildfly-${WILDFLY_VERSION}"
 
 function download_and_sha1 {
 	base=$(basename $1)
@@ -127,10 +128,10 @@ fi
 # At this point, we are one dir above a checkout of the psm repo, so
 # we can download and install Wildfly
 echo "Downloading and installing Wildfly"
-download_and_sha1 "http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz" \
+download_and_sha1 "http://download.jboss.org/wildfly/${WILDFLY_VERSION}/wildfly-${WILDFLY_VERSION}.tar.gz" \
 				  9ee3c0255e2e6007d502223916cefad2a1a5e333
 rm -rf ${WILDFLY_DIR}
-tar -xzf wildfly-10.1.0.Final.tar.gz
+tar -xzf wildfly-${WILDFLY_VERSION}.tar.gz
 
 # Config postgres - setup user/pass and make db
 pushd /tmp > /dev/null # Prevent complaining about not being able to change to dir (permission denied)

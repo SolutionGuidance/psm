@@ -59,7 +59,7 @@ file.  See `docker/README.md` for details.
 The Provider Screening Module is a Java EE Enterprise Application. It depends
 on a correctly-configured Java EE Application Server. While it was originally
 written for the Java EE 6 profile, it is currently being ported to run on Java
-EE 7 Application Servers, starting with WildFly 10.
+EE 7 Application Servers, starting with WildFly 11.
 
 These requirements are based on our understanding of the application at this
 time, and will evolve as we understand it more.
@@ -82,7 +82,7 @@ This is just an overview; see installation instructions below.
   stretch.  If you prefer Debian testing, we have had success with
   Debian testing (aka buster).  A developer has also successfully
   installed the PSM on Red Hat 7.3 Enterprise Linux. If that's not
-  feasible for your environment, any of the supported WildFly 10.1
+  feasible for your environment, any of the supported WildFly 11
   operating systems should work, but our ability to help troubleshoot
   issues that come up may be limited.  Once we test this on a few more
   platforms, we will expand the list of compatible operating systems
@@ -90,7 +90,7 @@ This is just an overview; see installation instructions below.
 - **Java**: We're using OpenJDK 8, which is currently 8u121, but you should
   keep up with the latest releases and post if you have issues relating to
   upgrading.
-- **Java EE Application Server**: currently WildFly 10.1. We may support other
+- **Java EE Application Server**: currently WildFly 11. We may support other
   application servers in the future.
 
 ## Database
@@ -156,20 +156,20 @@ configuration for a development install.
 ## Configure WildFly
 
 Building and deploying the PSM application requies WildFly to be installed and
-configured. See also the [WildFly 10 Getting Started
-Guide](https://docs.jboss.org/author/display/WFLY10/Getting+Started+Guide).
+configured. See also the [WildFly Getting Started
+Guide](https://docs.jboss.org/author/display/WFLY/Getting+Started+Guide).
 
 1. Get WildFly: Visit
    [http://wildfly.org/downloads/](http://wildfly.org/downloads/). Download
-   the [10.1.0.Final full
-   distribution](http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz).
+   the [11.0.0.Final full
+   distribution](http://download.jboss.org/wildfly/11.0.0.Final/wildfly-11.0.0.Final.tar.gz).
 
    ```ShellSession
    $ cd {/path/to/this_psm_repo}
    $ # this should be a peer directory, so:
    $ cd ..
-   $ tar -xzf wildfly-10.1.0.Final.tar.gz
-   $ cd wildfly-10.1.0.Final
+   $ tar -xzf wildfly-11.0.0.Final.tar.gz
+   $ cd wildfly-11.0.0.Final
    ```
 
 1. Add a WildFly management console user named 'psm' with a password of 'psm':
@@ -267,7 +267,7 @@ $ ./bin/jboss-cli.sh --connect --command="deploy ../postgresql-{VERSION}.jar"
 If you get an error saying that the `.jar` file "is not a valid node
 type name", double-check that it's in the correct directory. If it is,
 then place the `.jar` file in
-`wildfly-10.1.0.Final/standalone/deployments` and then restart the
+`wildfly-11.0.0.Final/standalone/deployments` and then restart the
 WildFly server. The terminal logging for WildFly should then include
 an `INFO` line like:
 

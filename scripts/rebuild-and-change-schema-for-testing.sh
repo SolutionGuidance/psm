@@ -9,7 +9,7 @@
 # in your home directory:
 # https://www.postgresql.org/docs/current/static/libpq-pgpass.html
 
-WILDFLY_CLI=../../wildfly-10.1.0.Final/bin/jboss-cli.sh
+WILDFLY_CLI=../../wildfly-11.0.0.Final/bin/jboss-cli.sh
 
 RESPONSE=$(${WILDFLY_CLI} --connect --command=":read-attribute(name=server-state)")
 # Check whether WildFly is running.
@@ -19,7 +19,7 @@ RESPONSE=$(${WILDFLY_CLI} --connect --command=":read-attribute(name=server-state
 if echo $RESPONSE | grep "Failed"
 then
     echo "Please start WildFly in another terminal first:"
-    echo "wildfly-10.1.0.Final/bin/standalone.sh -c standalone-full.xml"
+    echo "wildfly-11.0.0.Final/bin/standalone.sh -c standalone-full.xml"
 else
     set -e
     cd ../psm-app

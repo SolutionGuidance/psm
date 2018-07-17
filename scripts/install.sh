@@ -19,7 +19,7 @@ set -e
 # test data from the repo.  If you're deploying in earnest, you'll
 # want to adjust things.
 
-WILDFLY_VERSION="10.1.0.Final"
+WILDFLY_VERSION="11.0.0.Final"
 WILDFLY_DIR="./wildfly-${WILDFLY_VERSION}"
 
 function download_and_sha1 {
@@ -129,7 +129,7 @@ fi
 # we can download and install Wildfly
 echo "Downloading and installing Wildfly"
 download_and_sha1 "http://download.jboss.org/wildfly/${WILDFLY_VERSION}/wildfly-${WILDFLY_VERSION}.tar.gz" \
-				  9ee3c0255e2e6007d502223916cefad2a1a5e333
+                  0e89fe0860a87bfd6b09379ee38d743642edfcfb
 rm -rf ${WILDFLY_DIR}
 tar -xzf wildfly-${WILDFLY_VERSION}.tar.gz
 

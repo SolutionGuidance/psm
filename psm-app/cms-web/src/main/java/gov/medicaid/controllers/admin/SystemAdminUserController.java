@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
@@ -297,15 +298,14 @@ public class SystemAdminUserController extends BaseSystemAdminController {
      *
      * @param role - the role being managed
      * @param userIds - the entity IDs
-     * @return the model and view instance that contains the name of view to be rendered and data to be used for
-     *         rendering (not null)
      *
      * @throws IllegalArgumentException - if role is not one of the four configured roles
      * @throws PortalServiceException - If there are any errors in the action
      * @endpoint "/system/user/delete"
      */
-    @RequestMapping(value = "/delete")
-    public ModelAndView delete(@RequestParam("role") String role, @RequestParam("userIds") String[] userIds)
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public void delete(@RequestParam("role") String role, @RequestParam("userIds") String[] userIds)
         throws PortalServiceException {
         checkRoleParameter(role);
         if (userIds == null) {
@@ -314,10 +314,6 @@ public class SystemAdminUserController extends BaseSystemAdminController {
 
         CMSUser actor = ControllerHelper.getCurrentUser();
         getRegistrationService().unregisterUsers(actor.getUserId(), userIds);
-        // we may need to add criteria if the client wants to preserve current filters
-        ModelAndView mv = loadUserManagement(role, null);
-
-        return mv;
     }
 
     /**

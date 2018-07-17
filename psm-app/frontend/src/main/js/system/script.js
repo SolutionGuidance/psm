@@ -1084,12 +1084,12 @@ function deleteUserAccounts(userIds, toUserAccounts) {
     }
   }
 
-  $.ajax({
+  postJson({
       url: $('#deleteAccountsURL').val() + urlParams,
       cache: false,
-      type: "GET",
+      type: "POST",
       dataType: "text",
-      success: function (data) {
+      success: function () {
           if (toUserAccounts) {
             window.location = $('#userAccountsURL').val();
           } else {

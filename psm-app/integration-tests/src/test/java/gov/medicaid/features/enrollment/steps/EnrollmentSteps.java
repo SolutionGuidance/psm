@@ -8,6 +8,7 @@ import gov.medicaid.features.enrollment.ui.LicenseInfoPage;
 import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
 import gov.medicaid.features.enrollment.ui.OrganizationSummaryPage;
 import gov.medicaid.features.enrollment.ui.OwnershipInfoPage;
+import gov.medicaid.features.enrollment.ui.PersonalCareAssistantPersonalInfoPage;
 import gov.medicaid.features.enrollment.ui.PersonalInfoPage;
 import gov.medicaid.features.enrollment.ui.PracticeInfoPage;
 import gov.medicaid.features.enrollment.ui.ProviderStatementPage;
@@ -62,12 +63,22 @@ public class EnrollmentSteps {
     private static final String PRACTICE_STATE_TAX_ID = "1234567";
     private static final String PRACTICE_YEAR_END = "12/31";
 
+    private static final String RESIDENTIAL_ADDRESS =
+            "456 N. Main Street";
+    private static final String RESIDENTIAL_CITY = "Duluth";
+    private static final String RESIDENTIAL_STATE_FULL = "Minnesota";
+    private static final String RESIDENTIAL_ZIP = "55802";
+    private static final String RESIDENTIAL_COUNTY = "St. Louis";
+
+
+
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
     private EnrollmentPage enrollmentPage;
     private SelectProviderTypePage selectProviderTypePage;
     private OrganizationInfoPage organizationInfoPage;
     private IndividualInfoPage individualInfoPage;
+    private PersonalCareAssistantPersonalInfoPage personCareAssistantPersonalInfoPage;
     private PersonalInfoPage personalInfoPage;
     private LicenseInfoPage licenseInfoPage;
     private PracticeInfoPage practiceInfoPage;
@@ -95,6 +106,12 @@ public class EnrollmentSteps {
         selectProviderTypePage.clickNext();
     }
 
+    public void selectPersonalCareAssistantlProviderType() {
+        selectProviderTypePage.selectProviderType("Personal Care Assistant");
+        licenseType = "Personal Care Assistant";
+        selectProviderTypePage.clickNext();
+    }
+
     @Step
     void enterIndividualPersonalInfo() {
         personalInfoPage.enterFirstName(FIRST_NAME);
@@ -105,6 +122,23 @@ public class EnrollmentSteps {
         personalInfoPage.enterDOB(DATE_OF_BIRTH);
         personalInfoPage.enterEmail(EMAIL);
         personalInfoPage.checkSameAsAbove();
+    }
+
+    @Step
+    void enterPersonCareAssistantIndividualPersonalInfo() {
+        personCareAssistantPersonalInfoPage.enterFirstName(FIRST_NAME);
+        personCareAssistantPersonalInfoPage.enterMiddleName(MIDDLE_NAME);
+        personCareAssistantPersonalInfoPage.enterLastName(LAST_NAME);
+        personCareAssistantPersonalInfoPage.
+                enterResidentialAddress(RESIDENTIAL_ADDRESS);
+        personCareAssistantPersonalInfoPage.enterCity(RESIDENTIAL_CITY);
+        personCareAssistantPersonalInfoPage.selectState(RESIDENTIAL_STATE_FULL);
+        personCareAssistantPersonalInfoPage.setZipcode(RESIDENTIAL_ZIP);
+        personCareAssistantPersonalInfoPage.selectCounty(RESIDENTIAL_COUNTY);
+        personCareAssistantPersonalInfoPage.enterSSN(SSN);
+        personCareAssistantPersonalInfoPage.enterDOB(DATE_OF_BIRTH);
+        personCareAssistantPersonalInfoPage.selectEighteenOrOlder();
+        personCareAssistantPersonalInfoPage.clickNext();
     }
 
     @Step
@@ -197,6 +231,23 @@ public class EnrollmentSteps {
     }
 
     @Step
+    public void enterPersonCareAssistantLicenseInfoWithRenewalDate() {
+        licenseInfoPage.addLicense();
+        licenseInfoPage.enterLicenseNumber(LICENSE_NUMBER);
+        licenseInfoPage.enterIssueDate(LICENSE_ISSUE_DATE);
+        licenseInfoPage.enterRenewalDate(LICENSE_RENEWAL_DATE);
+        licenseInfoPage.enterIssueState(LICENSE_ISSUING_STATE_FULL);
+    }
+
+    @Step
+    public void enterPersonCareAssistantLicenseInfoWithoutRenewalDate() {
+        licenseInfoPage.addLicense();
+        licenseInfoPage.enterLicenseNumber(LICENSE_NUMBER);
+        licenseInfoPage.enterIssueDate(LICENSE_ISSUE_DATE);
+        licenseInfoPage.enterIssueState(LICENSE_ISSUING_STATE_FULL);
+    }
+
+    @Step
     public void enterLicenseInfoWithRenewalDateBeforeIssueDate() {
         licenseInfoPage.addLicense();
         licenseInfoPage.addLicenseType(licenseType);
@@ -215,6 +266,12 @@ public class EnrollmentSteps {
     public void advanceFromIndividualLicenseInfoToPracticeInfo() {
         licenseInfoPage.clickNext();
         assertThat(licenseInfoPage.getTitle()).contains("Practice Information");
+    }
+
+    @Step
+    public void advanceFromPersonalCareAssistantLicenseInfoToPracticeInfo() {
+        licenseInfoPage.clickNext();
+        assertThat(licenseInfoPage.getTitle()).contains("Individual Agency Information");
     }
 
     @Step

@@ -22,7 +22,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_entityType"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="entityType">Entity Type<span class="required">*</span></label>
+                <label for="entityType">Entity Type <span class="required">*</span></label>
                 <select id="entityType" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${entityStructureTypes}">
@@ -128,7 +128,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_iboFirstName_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">First Name<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">First Name <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row">
@@ -140,13 +140,13 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_iboLastName_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Last Name<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Last Name <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row requireField">
                 <c:set var="formName" value="_17_iboSSN_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Social Security Number<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Social Security Number <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
             </div>
             <div class="clearFixed"></div>
@@ -155,7 +155,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_iboDOB_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Date of Birth<span class="required">*</span>
+                <label for="${formIdPrefix}_${formName}">Date of Birth <span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="dateWrapper floatL">
@@ -165,7 +165,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_iboHireDate_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Hire Date<span class="required">*</span>
+                <label for="${formIdPrefix}_${formName}">Hire Date <span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="dateWrapper floatL">
@@ -187,7 +187,7 @@
             <div class="row requiredField addressline1">
                 <c:set var="formName" value="_17_iboAddressLine1_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Home Residence Address<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Home Residence Address <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" title="Home Residence Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
 
@@ -252,7 +252,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_iboOtherInterestName_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider <span class="required">*</span></label>
                 <span class="floatL inputCnt">
                     <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
                     <span class="label">
@@ -264,14 +264,14 @@
 
                 <c:set var="formName" value="_17_iboOtherInterestPct_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}" class="inlineLabel">% of Ownership Interest<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}" class="inlineLabel">% of Ownership Interest <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput smallInput" name="${formName}" value="${formValue}" maxlength="6"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row requireField addressline1">
                 <c:set var="formName" value="_17_iboOtherAddressLine1_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Address of Other Provider<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Address of Other Provider <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
                 <div class="clearFixed"></div>
             </div>
@@ -384,7 +384,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_cboLegalName_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Full Legal Name<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Full Legal Name <span class="required">*</span></label>
                 <span class="floatL inputCnt">
                     <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
                     <span class="label">
@@ -406,7 +406,7 @@
             <div class="row requiredField addressline1">
                 <c:set var="formName" value="_17_cboAddressLine1_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Business Address<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Business Address <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" title="Business Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
 
@@ -470,7 +470,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_cboOtherInterestName_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider <span class="required">*</span></label>
                 <span class="floatL inputCnt">
                     <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
                     <span class="label">
@@ -482,14 +482,14 @@
 
                 <c:set var="formName" value="_17_cboOtherInterestPct_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}" class="inlineLabel">% of Ownership Interest<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}" class="inlineLabel">% of Ownership Interest <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput smallInput" name="${formName}" value="${formValue}" maxlength="6"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row requireField addressline1">
                 <c:set var="formName" value="_17_cboOtherAddressLine1_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Address of Other Provider<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Address of Other Provider <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
                 <div class="clearFixed"></div>
             </div>
@@ -594,7 +594,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_cboLegalName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Full Legal Name<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Full Legal Name <span class="required">*</span></label>
                 <span class="floatL inputCnt">
                     <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
                     <span class="label">
@@ -616,7 +616,7 @@
             <div class="row requiredField addressline1">
                 <c:set var="formName" value="_17_cboAddressLine1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Business Address<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Business Address <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" title="Business Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
 
@@ -680,7 +680,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_cboOtherInterestName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider <span class="required">*</span></label>
                 <span class="floatL inputCnt">
                     <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
                     <span class="label">
@@ -692,14 +692,14 @@
 
                 <c:set var="formName" value="_17_cboOtherInterestPct"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}"class="inlineLabel">% of Ownership Interest<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}"class="inlineLabel">% of Ownership Interest <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput smallInput" name="${formName}" value="${formValue}" maxlength="6"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row requireField addressline1">
                 <c:set var="formName" value="_17_cboOtherAddressLine1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Address of Other Provider<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Address of Other Provider <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
                 <div class="clearFixed"></div>
             </div>
@@ -792,7 +792,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_iboFirstName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">First Name<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">First Name <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row">
@@ -804,13 +804,13 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_iboLastName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Last Name<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Last Name <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row requireField">
                 <c:set var="formName" value="_17_iboSSN"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Social Security Number<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Social Security Number <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
             </div>
             <div class="clearFixed"></div>
@@ -819,7 +819,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_iboDOB"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Date of Birth<span class="required">*</span>
+                <label for="${formIdPrefix}_${formName}">Date of Birth <span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="dateWrapper floatL">
@@ -829,7 +829,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_iboHireDate"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Hire Date<span class="required">*</span>
+                <label for="${formIdPrefix}_${formName}">Hire Date <span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="dateWrapper floatL">
@@ -851,7 +851,7 @@
             <div class="row requiredField addressline1">
                 <c:set var="formName" value="_17_iboAddressLine1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Home Residence Address<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Home Residence Address <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" title="Home Residence Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
             </div>
 
@@ -916,7 +916,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_17_iboOtherInterestName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}" class="multiLine">Full Legal Name of Other Provider <span class="required">*</span></label>
                 <span class="floatL inputCnt">
                     <input id="${formIdPrefix}_${formName}" type="text" class="wholeInput fullLengthName" name="${formName}" value="${formValue}" maxlength="100"/><br/>
                     <span class="label">
@@ -927,14 +927,14 @@
                 </span>
 
                 <!-- TODO: Issue #564: Why doesn't this field have a name? -->
-                <label class="inlineLabel">% of Ownership Interest<span class="required">*</span></label>
+                <label class="inlineLabel">% of Ownership Interest <span class="required">*</span></label>
                 <input type="text" class="wholeInput smallInput" maxlength="6"/>
                 <div class="clearFixed"></div>
             </div>
             <div class="row requireField addressline1">
                 <c:set var="formName" value="_17_iboOtherAddressLine1"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Address of Other Provider<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Address of Other Provider <span class="required">*</span></label>
                 <input id="${formIdPrefix}_${formName}" type="text" title="Other Provider Address, Line 1" class="normalInput addressInputFor" name="${formName}" value="${formValue}" maxlength="28"/>
                 <div class="clearFixed"></div>
             </div>

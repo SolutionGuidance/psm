@@ -22,7 +22,7 @@
                 <thead>
                 <tr>
                     <th class="firstTheader">#<span class="sep"></span></th>
-                    <th class="alignCenter"><span class="multi">CLIA Number</span><span class="required">*</span><span class="sep"></span></th>
+                    <th class="alignCenter"><span class="multi">CLIA Number</span> <span class="required">*</span><span class="sep"></span></th>
                     <th class="alignCenter"><span class="multi">Copy of License/Certification</span><span class="sep"></span></th>
                     <th></th>
                 </tr>

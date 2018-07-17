@@ -23,7 +23,7 @@
 
 <div class="noteInputPanel">
     <div class="noteForm">
-        <label for="newNoteFied">Write a note</label><span class="required">*</span> <span>:</span>
+        <label for="newNoteFied">Write a note</label> <span class="required">*</span> <span>:</span>
         <div class="clear"></div>
         <textarea id="newNoteField" name="noteText" rows="5" cols="50"><c:out value="${param['noteText']}" /></textarea>
     </div>

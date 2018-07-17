@@ -19,6 +19,12 @@ public class IndividualEnrollmentStepDefinitions {
         enrollmentSteps.selectIndividualProviderType();
     }
 
+    @When("^I am on the personal assistant enrollment page$")
+    public void i_am_on_the_personal_care_assistant_enrollment_page() {
+        enrollmentSteps.selectPersonalCareAssistantlProviderType();
+        enrollmentSteps.enterPersonCareAssistantIndividualPersonalInfo();
+    }
+
     @When("I am on the individual provider license info page")
     public void i_am_on_the_individual_provider_license_info_page() {
         i_am_on_the_personal_info_page();

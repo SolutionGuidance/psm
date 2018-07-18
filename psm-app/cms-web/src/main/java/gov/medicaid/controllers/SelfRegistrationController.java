@@ -80,10 +80,10 @@ public class SelfRegistrationController extends BaseController {
      * @verb POST
      */
     @RequestMapping(value = "/accounts/new", method = RequestMethod.POST)
-    public ModelAndView processRegistrationForm(@ModelAttribute("registrant") RegistrationForm registrant,
-        BindingResult errors)
-        throws PortalServiceException, UnsupportedEncodingException {
-
+    public ModelAndView processRegistrationForm(
+        @ModelAttribute("registrant") RegistrationForm registrant,
+        BindingResult errors
+    ) throws PortalServiceException, UnsupportedEncodingException {
         validator.validate(registrant, errors);
 
         if (errors.hasErrors()) {
@@ -117,8 +117,10 @@ public class SelfRegistrationController extends BaseController {
      * @verb GET
      */
     @RequestMapping(value = "/accounts/confirm", method = RequestMethod.GET)
-    public ModelAndView viewRegisterSuccess(@RequestParam("id") String username, @RequestParam("token") String token)
-        throws PortalServiceException, UnsupportedEncodingException {
+    public ModelAndView viewRegisterSuccess(
+        @RequestParam("id") String username,
+        @RequestParam("token") String token
+    ) throws PortalServiceException, UnsupportedEncodingException {
 
         CMSUser user = registrationService.findByUsername(username);
         if (user == null) {

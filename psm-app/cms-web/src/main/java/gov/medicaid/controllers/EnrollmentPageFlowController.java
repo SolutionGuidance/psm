@@ -1339,7 +1339,6 @@ public class EnrollmentPageFlowController extends BaseController {
     ) {
         mv.addObject("_99_states", lookupService.findAllLookups(StateType.class));
         mv.addObject("_99_counties", lookupService.findAllLookups(CountyType.class));
-        mv.addObject("_99_legacyInd", enrollment.getProviderInformation().getLegacyTransfer());
 
         if (enrollment.getRequestType() != null) {
             mv.addObject("_99_requestType", enrollment.getRequestType().value());

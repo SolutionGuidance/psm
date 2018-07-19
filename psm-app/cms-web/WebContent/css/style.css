@@ -4913,10 +4913,6 @@ select.stateSelect, select.stateSelectFor {
   border-bottom: 1px solid #ddd;
 }
 
-.legacyInfo {
-  color: #d00;
-}
-
 .checkboxLabel,
 .radioLabel {
   width: auto !important;

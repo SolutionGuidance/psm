@@ -30,9 +30,6 @@
               <div class="head">
                 <h1>Enrollment Renewal</h1>
               </div>
-              <c:if test="${requestScope['_99_legacyInd'] eq 'Y'}">
-                <div class="legacyInfo">If you enrolled with DHS prior to November 1st 2013, the data fields below may not be correct. Please review your information and make the necessary corrections before you submit it.</div>
-              </c:if>
             </c:when>
             <c:otherwise>
               <div class="breadCrumb">

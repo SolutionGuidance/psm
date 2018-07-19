@@ -163,7 +163,6 @@ public final class XMLAdapter {
         VerificationStatusType verification = new VerificationStatusType();
         provider.setVerificationStatus(verification);
         if (profile.getEntity() != null) {
-            provider.setLegacyTransfer(profile.getEntity().getLegacyIndicator());
             verification.setNonExclusion(profile.getEntity().getNonExclusionVerifiedInd());
         }
 
@@ -249,9 +248,6 @@ public final class XMLAdapter {
         // verification fields
         VerificationStatusType verification = provider.getVerificationStatus();
         Entity entity = profile.getEntity();
-        if (entity != null) {
-            entity.setLegacyIndicator(provider.getLegacyTransfer());
-        }
         if (verification != null && entity != null) {
             entity.setNonExclusionVerifiedInd(verification.getNonExclusion());
         }

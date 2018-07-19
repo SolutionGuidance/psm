@@ -3,11 +3,14 @@ package gov.medicaid.api.interceptors;
 import ca.uhn.fhir.rest.api.server.RequestDetails;
 import ca.uhn.fhir.rest.server.exceptions.AuthenticationException;
 import ca.uhn.fhir.rest.server.interceptor.InterceptorAdapter;
+import com.google.common.annotations.VisibleForTesting;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.services.RegistrationService;
 import org.apache.commons.codec.binary.Base64;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.nio.charset.Charset;
 import java.util.Map;
 
 public class BasicSecurityInterceptor extends InterceptorAdapter {
@@ -69,28 +72,34 @@ public class BasicSecurityInterceptor extends InterceptorAdapter {
         return true;
     }
 
-    private String getUsernameFromBasicAuthHeader(String authHeader) throws AuthenticationException {
-        if (authHeader == null || authHeader.startsWith("Basic ") == false) {
-            throw generateAuthenticationException("Invalid or missing authorization header");
-        }
-        String base64 = authHeader.substring("Basic ".length());
-        String base64decoded = new String(Base64.decodeBase64(base64));
-        String[] parts = base64decoded.split(":", 2);
-        return parts[0];
+    @VisibleForTesting
+    String getUsernameFromBasicAuthHeader(String authHeader) throws AuthenticationException {
+        return decodeBasicAuthHeader(authHeader)[0];
     }
 
-    private String getPasswordFromBasicAuthHeader(String authHeader) throws AuthenticationException {
+    @VisibleForTesting
+    String getPasswordFromBasicAuthHeader(String authHeader) throws AuthenticationException {
+        return decodeBasicAuthHeader(authHeader)[1];
+    }
+
+    private String[] decodeBasicAuthHeader(String authHeader) throws AuthenticationException {
         if (authHeader == null || authHeader.startsWith("Basic ") == false) {
             throw generateAuthenticationException("Invalid or missing authorization header");
         }
         String base64 = authHeader.substring("Basic ".length());
-        String base64decoded = new String(Base64.decodeBase64(base64));
-        String[] parts = base64decoded.split(":", 2);
-        return parts[1];
+        String base64decoded = new String(
+            Base64.decodeBase64(base64),
+            Charset.forName("UTF-8")
+        );
+        return base64decoded.split(":", 2);
     }
 
     private AuthenticationException generateAuthenticationException(String message) {
-        return (new AuthenticationException(message))
-            .addAuthenticateHeaderForRealm("psm");
+        AuthenticationException exception = new AuthenticationException(message);
+        exception.addResponseHeader(
+            "WWW-Authenticate",
+            "Basic realm=\"PSM\", charset=\"UTF-8\""
+        );
+        return exception;
     }
 }

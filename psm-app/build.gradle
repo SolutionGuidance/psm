@@ -67,7 +67,7 @@ ext.libs = [
 
 ext.provided_libs = [
     ejb_api: 'javax.ejb:javax.ejb-api:3.2',
-    hibernate_core: 'org.hibernate:hibernate-core:5.0.10.Final',
+    hibernate_core: 'org.hibernate:hibernate-core:5.1.10.Final',
     hibernate_jpa: 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final',
     jsp_api: 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.0',
     servlet_api: 'javax.servlet:javax.servlet-api:3.1.0',

@@ -26,9 +26,8 @@ class RiskLevelsReportControllerTest extends Specification {
     }
 
     void setup() {
-        controller = new RiskLevelsReportController()
         enrollmentService = Mock(ProviderEnrollmentService)
-        controller.setEnrollmentService(enrollmentService)
+        controller = new RiskLevelsReportController(enrollmentService)
     }
 
     private toDate(d) {

@@ -169,30 +169,8 @@
         class="gov.medicaid.controllers.admin.ReportController">
   </bean>
 
-  <bean id="ApplicationsByReviewerReportController" class="gov.medicaid.controllers.admin.report.ApplicationsByReviewerReportController">
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-  </bean>
-
-  <bean id="DraftApplicationsReportController" class="gov.medicaid.controllers.admin.report.DraftApplicationsReportController">
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-  </bean>
-
-  <bean id="TimeToReviewReportController" class="gov.medicaid.controllers.admin.report.TimeToReviewReportController">
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-  </bean>
-
-  <bean id="ProviderTypesReportController" class="gov.medicaid.controllers.admin.report.ProviderTypesReportController">
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-    <property name="providerTypeService" ref="ProviderTypeService"/>
-  </bean>
-
-  <bean id="ReviewedDocumentsReportController" class="gov.medicaid.controllers.admin.report.ReviewedDocumentsReportController">
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-  </bean>
-
-  <bean id="RiskLevelsReportController" class="gov.medicaid.controllers.admin.report.RiskLevelsReportController">
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-  </bean>
+  <context:component-scan
+      base-package="gov.medicaid.controllers.admin.report" />
 
   <bean id="RegistrationFormValidator" class="gov.medicaid.controllers.validators.RegistrationFormValidator">
     <property name="registrationService" ref="RegistrationService"/>

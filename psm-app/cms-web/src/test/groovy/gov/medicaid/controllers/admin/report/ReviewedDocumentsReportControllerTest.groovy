@@ -23,9 +23,8 @@ class ReviewedDocumentsReportControllerTest extends Specification {
     }
 
     void setup() {
-        controller = new ReviewedDocumentsReportController()
         enrollmentService = Mock(ProviderEnrollmentService)
-        controller.setEnrollmentService(enrollmentService)
+        controller = new ReviewedDocumentsReportController(enrollmentService)
     }
 
     private toDate(d) {

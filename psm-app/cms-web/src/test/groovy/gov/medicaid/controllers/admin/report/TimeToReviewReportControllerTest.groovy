@@ -29,10 +29,8 @@ class TimeToReviewReportControllerTest extends Specification {
     }
 
     void setup() {
-        controller = new TimeToReviewReportController()
         service = Mock(ProviderEnrollmentService)
-
-        controller.setEnrollmentService(service)
+        controller = new TimeToReviewReportController(service)
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
     }

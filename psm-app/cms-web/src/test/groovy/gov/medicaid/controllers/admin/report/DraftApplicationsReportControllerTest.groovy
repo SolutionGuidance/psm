@@ -28,10 +28,8 @@ class DraftApplicationsReportControllerTest extends Specification {
     }
 
     void setup() {
-        controller = new DraftApplicationsReportController()
         service = Mock(ProviderEnrollmentService)
-
-        controller.setEnrollmentService(service)
+        controller = new DraftApplicationsReportController(service)
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
     }

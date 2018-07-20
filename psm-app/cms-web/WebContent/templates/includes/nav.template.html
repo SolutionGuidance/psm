@@ -7,34 +7,41 @@
             <a href="{{ctx}}/system/user/list">USER ACCOUNTS</a>
             {{#if hasArrow}}<span class="arrow"></span>{{/if}}
           </li>
-        {{else}}
+        {{else if isServiceAdministrator}}
           <li class="{{#if activeTabDashboard }} active {{/if}}">
             <a href="{{ctx}}/landing">DASHBOARD</a>
             {{#if activeTabDashboard }} <span class="arrow"></span> {{/if}}
           </li>
-
           <li class="{{#if activeTabEnrollments }} active {{/if}}">
             <a class="enrollmentsLink" href="{{ctx}}/provider/dashboard/drafts">ENROLLMENTS</a>
             {{#if activeTabEnrollments }} <span class="arrow"></span> {{/if}}
           </li>
-
-          {{#if isServiceAdministrator}}
-            <li class="{{#if activeTabScreenings }} active {{/if}}">
-              <a class="screeningsLink" href="{{ctx}}/agent/screenings">SCREENINGS</a>
-              {{#if activeTabScreenings }} <span class="arrow"></span> {{/if}}
-            </li>
-
-            <li class="{{#if activeTabReports }} active {{/if}}">
-              <a class="reportsLink" href="{{ctx}}/admin/reports">REPORTS</a>
-              {{#if activeTabReports }} <span class="arrow"></span> {{/if}}
-            </li>
-
-            <li class="{{#if activeTabFunctions }} active {{/if}}">
-              <a class="functionsLink" href="{{ctx}}/admin/viewProviderTypes">FUNCTIONS</a>
-              {{#if activeTabFunctions }} <span class="arrow"></span> {{/if}}
-            </li>
-          {{/if}}
-
+          <li class="{{#if activeTabScreenings }} active {{/if}}">
+            <a class="screeningsLink" href="{{ctx}}/agent/screenings">SCREENINGS</a>
+            {{#if activeTabScreenings }} <span class="arrow"></span> {{/if}}
+          </li>
+          <li class="{{#if activeTabReports }} active {{/if}}">
+            <a class="reportsLink" href="{{ctx}}/admin/reports">REPORTS</a>
+            {{#if activeTabReports }} <span class="arrow"></span> {{/if}}
+          </li>
+          <li class="{{#if activeTabFunctions }} active {{/if}}">
+            <a class="functionsLink" href="{{ctx}}/admin/viewProviderTypes">FUNCTIONS</a>
+            {{#if activeTabFunctions }} <span class="arrow"></span> {{/if}}
+          </li>
+          <li class="last {{#if activeTabProfile }} active {{/if}}">
+            <a href="{{ctx}}/myprofile" id="my_profile_tab">MY PROFILE</a>
+            {{#if activeTabProfile }} <span class="arrow"></span> {{/if}}
+          </li>
+        {{else}}
+          {{!-- Provider --}}
+          <li class="{{#if activeTabDashboard }} active {{/if}}">
+            <a href="{{ctx}}/landing">DASHBOARD</a>
+            {{#if activeTabDashboard }} <span class="arrow"></span> {{/if}}
+          </li>
+          <li class="{{#if activeTabEnrollments }} active {{/if}}">
+            <a class="enrollmentsLink" href="{{ctx}}/provider/dashboard/drafts">ENROLLMENTS</a>
+            {{#if activeTabEnrollments }} <span class="arrow"></span> {{/if}}
+          </li>
           <li class="last {{#if activeTabProfile }} active {{/if}}">
             <a href="{{ctx}}/myprofile" id="my_profile_tab">MY PROFILE</a>
             {{#if activeTabProfile }} <span class="arrow"></span> {{/if}}

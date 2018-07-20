@@ -9,8 +9,6 @@
 # removed.
 FROM jboss/wildfly:12.0.0.Final
 
-MAINTAINER Mark Bestavros <mbestavros@mitre.org>
-
 # Set environment variables, used throughout setup by shell scripts.
 ENV JBOSS_HOME /opt/jboss/wildfly
 ENV JBOSS_CLI ${JBOSS_HOME}/bin/jboss-cli.sh
@@ -20,12 +18,14 @@ ENV JBOSS_STANDALONE_XML ${JBOSS_STANDALONE}/configuration/standalone_xml_histor
 ENV EAR_NAME cms-portal-services.ear
 ENV EAR ${JBOSS_DEPLOYMENTS}/${EAR_NAME}
 ENV LAUNCH_JBOSS_IN_BACKGROUND true
+ENV PWORD psm
+ENV DBUSER psm
 
 USER root
 
 # Add Wildfly user 'psm' w/ password of 'psm', mirroring setup.
 RUN cd ${JBOSS_HOME} \
-		&& bin/add-user.sh psm psm
+		&& bin/add-user.sh ${DBUSER} ${PWORD}
 
 # Download Postgres JDBC driver and stage for deploy. If the driver is updated, 
 # the version number on this line should be the only one that needs to be changed.

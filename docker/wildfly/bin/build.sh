@@ -71,7 +71,7 @@ cp /tmp/psm-build/cms-portal-services/build/libs/${EAR_NAME} /mnt/psm-app/cms-po
 # We may need to rebuild the Liquibase database; it may have changed configuration. To
 # see more information about the Liquibase setup, see comments in setup.sh.
 echo "Rebuilding Liquibase database."
-./gradlew db:update -DdatabasePath=jdbc:postgresql://psm_db_1:5432/psm -DdatabaseUser=psm -DdatabasePassword=psm;
+./gradlew db:update -DdatabasePath=jdbc:postgresql://${DBNAME}:5432/psm -DdatabaseUser=${DBUSER} -DdatabasePassword=${PWORD};
 
 # Clean up the temporary build directory.
 rm -rf /tmp/psm-build

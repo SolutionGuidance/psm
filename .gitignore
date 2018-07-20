@@ -73,9 +73,3 @@ etl/leie/leie/api.html
 
 # NPM-installed dependencies
 node_modules/
-
-# MacOS-specific files
-.DS_Store
-
-# IntelliJ-specific files
-out/

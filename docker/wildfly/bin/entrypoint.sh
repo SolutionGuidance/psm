@@ -11,10 +11,7 @@ if ! grep --quiet docker /proc/1/cgroup; then
 		exit
 fi
 
-[ -z "$(ls -A /opt/jboss/wildfly)" ] && cp -r /opt/jboss/wildfly.static/* /opt/jboss/wildfly
-
-# NOTE: The echo statements included inline after the script invocations (after &&) ensure
-# that these steps are executed sequentially.
+[ -z "$(ls -A ${JBOSS_HOME})" ] && cp -r /opt/jboss/wildfly.static/* ${JBOSS_HOME}
 
 # Run the setup script. This performs first-time Wildfly setup if not already done.
 echo "Running setup.sh"

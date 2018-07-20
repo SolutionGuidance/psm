@@ -1,15 +1,8 @@
-<%--
-  - Author: TCSASSEMBLER
-  - Version: 1.0
-  - Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
-  -
-  - Description: it is used to render the enrollment search filter panel section.
---%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
 <table
   id="${searchTableId}"
   class="generalTable fixedWidthTable ${active_enrollment_tab eq 'notes' ? 'table-enrollment-notes-sort' : ''}"
-  >
+>
   <colgroup>
     <c:choose>
       <c:when test="${active_enrollment_tab=='notes'}">

@@ -48,7 +48,7 @@
         <div class="row">
             <label>Have you had civil money penalties or assessments imposed
                 under section 1128A of the Social Security
-                Act?<span class="required">*</span></label>
+                Act? <span class="required">*</span></label>
             <div>
                 <c:set var="formName"
                     value="_08_civilPenaltyInd"></c:set>

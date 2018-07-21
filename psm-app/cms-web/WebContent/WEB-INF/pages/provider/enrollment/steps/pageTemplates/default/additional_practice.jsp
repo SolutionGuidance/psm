@@ -27,13 +27,13 @@
             <thead>
                 <tr>
                     <th class="firstTheader">#<span class="sep"></span></th>
-                    <th>Group NPI / UMPI<span class="required">*</span><span class="sep"></span></th>
-                    <th>Group Name<span class="required">*</span><span class="sep"></span></th>
-                    <th>Effective Date<span class="required">*</span><span class="sep"></span></th>
-                    <th>Practice Address<span class="required">*</span><span class="sep"></span></th>
-                    <th>City<span class="required">*</span><span class="sep"></span></th>
-                    <th>State<span class="required">*</span><span class="sep"></span></th>
-                    <th>ZIP Code<span class="required">*</span><span class="sep"></span></th>
+                    <th>Group NPI / UMPI <span class="required-dark-background">*</span><span class="sep"></span></th>
+                    <th>Group Name <span class="required-dark-background">*</span><span class="sep"></span></th>
+                    <th>Effective Date <span class="required-dark-background">*</span><span class="sep"></span></th>
+                    <th>Practice Address <span class="required-dark-background">*</span><span class="sep"></span></th>
+                    <th>City <span class="required-dark-background">*</span><span class="sep"></span></th>
+                    <th>State <span class="required-dark-background">*</span><span class="sep"></span></th>
+                    <th>ZIP Code <span class="required-dark-background">*</span><span class="sep"></span></th>
                     <th>County<span class="sep"></span></th>
                     <th></th>
                 </tr>

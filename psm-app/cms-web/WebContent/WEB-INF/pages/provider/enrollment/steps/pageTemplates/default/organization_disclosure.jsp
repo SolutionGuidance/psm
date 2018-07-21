@@ -43,14 +43,14 @@
 
                 <div class="clear"></div>
                 <div class="hideSection">
-                    <label for="${formIdPrefix}_owner_full_name">Full Legal Name<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_owner_full_name">Full Legal Name <span class="required">*</span></label>
                     <input id="${formIdPrefix}_owner_full_name" class="normalInput" type="text"  maxlength="100"/>
 
-                    <label for="${formIdPrefix}_owner_ssn">Social Security Number<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_owner_ssn">Social Security Number <span class="required">*</span></label>
                     <input id="${formIdPrefix}_owner_ssn" class="normalInput" type="text" maxlength="9"/>
                     <div class="clear"></div>
 
-                    <label for="${formIdPrefix}_owner_reason">Reason for Answer yes<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_owner_reason">Reason for Answer yes <span class="required">*</span></label>
                     <span class="floatL inputCnt">
                         <input id="${formIdPrefix}_owner_reason" class="wholeInput reason" type="text"  maxlength="200"/>
                         <span class="label">(for example, conviction, money penalties, exclusion from Medicare or state health care programs)</span>
@@ -92,14 +92,14 @@
 
                 <div class="clear"></div>
                 <div class="hideSection">
-                    <label for="${formIdPrefix}_employee_full_name">Full Legal Name<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_employee_full_name">Full Legal Name <span class="required">*</span></label>
                     <input id="${formIdPrefix}_employee_full_name" class="normalInput" type="text" maxlength="100"/>
 
-                    <label for="${formIdPrefix}_employee_ssn">Social Security Number<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_employee_ssn">Social Security Number <span class="required">*</span></label>
                     <input id="${formIdPrefix}_employee_ssn" class="normalInput" type="text" maxlength="9"/>
                     <div class="clear"></div>
 
-                    <label for="${formIdPrefix}_employee_reason">Reason for anser yes<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_employee_reason">Reason for anser yes <span class="required">*</span></label>
                     <span class="floatL inputCnt">
                         <input id="${formIdPrefix}_employee_reason" class="wholeInput reason" type="text" maxlength="200"/>
                         <span class="label">(for example, conviction, money penalties, exclusion from Medicare or state health care programs)</span>

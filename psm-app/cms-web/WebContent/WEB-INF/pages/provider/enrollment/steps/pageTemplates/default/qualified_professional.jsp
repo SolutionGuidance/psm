@@ -16,7 +16,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_29_qpType_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">QP Type<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">QP Type <span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <select id="${formIdPrefix}_${formName}" name="${formName}">
                     <option value="">Please select</option>
@@ -28,7 +28,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_29_name_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Name<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Name <span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
@@ -42,7 +42,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_29_startDate_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Date of Employment<span class="required">*</span>
+                <label for="${formIdPrefix}_${formName}">Date of Employment <span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
@@ -74,7 +74,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_29_dob_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Date of Birth<span class="required">*</span>
+                <label for="${formIdPrefix}_${formName}">Date of Birth <span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
@@ -85,7 +85,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_29_ssn_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Social Security Number<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Social Security Number <span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="9"/>
             </div>
@@ -131,12 +131,12 @@
                 <span class="floatL"><b>&nbsp;</b></span>
                 <c:set var="formName" value="_29_city_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}" class="cityLabel">City<span class="required">*</span> : </label>
+                <label for="${formIdPrefix}_${formName}" class="cityLabel">City <span class="required">*</span> : </label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
 
                 <c:set var="formName" value="_29_state_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">State<span class="required">*</span> : </label>
+                <label for="${formIdPrefix}_${formName}">State <span class="required">*</span> : </label>
                 <select id="${formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">
@@ -146,7 +146,7 @@
 
                 <c:set var="formName" value="_29_zip_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">ZIP Code<span class="required">*</span> : </label>
+                <label for="${formIdPrefix}_${formName}">ZIP Code <span class="required">*</span> : </label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
 
                 <c:set var="formName" value="_29_county_${status.index - 1}"></c:set>
@@ -165,7 +165,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_29_bgsNumber_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">BGS ID NUMBER<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">BGS ID NUMBER <span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
@@ -176,7 +176,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_29_bgsClearanceDate_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">BGS Clearance Date<span class="required">*</span>
+                <label for="${formIdPrefix}_${formName}">BGS Clearance Date <span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
@@ -203,12 +203,12 @@
         <thead>
             <tr>
                 <th class="alignCenter">#<span class="sep"></span></th>
-                <th>Type of License/Certification<span class="required">*</span><span class="sep"></span></th>
-                <th>Upload License/Certification<span class="required">*</span><span class="sep"></span></th>
-                <th>License/Certification Number<span class="required">*</span><span class="sep"></span></th>
-                <th>Original Issue Date<span class="required">*</span><span class="sep"></span></th>
-                <th>Renewal End Date<span class="required">*</span><span class="sep"></span></th>
-                <th>Issuing State<span class="required">*</span><span class="sep"></span></th>
+                <th>Type of License/Certification <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Upload License/Certification <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>License/Certification Number <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Original Issue Date <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Renewal End Date <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Issuing State <span class="required-dark-background">*</span><span class="sep"></span></th>
             </tr>
         </thead>
         <tbody>
@@ -361,7 +361,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_29_qpType"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">QP Type<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">QP Type <span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <select id="${formIdPrefix}_${formName}" name="${formName}" class="qpTypeSelect">
                     <option value="">Please select</option>
@@ -373,7 +373,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_29_name"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Name<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Name <span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="nameInput normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
@@ -387,7 +387,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_29_startDate"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Date of Employment<span class="required">*</span>
+                <label for="${formIdPrefix}_${formName}">Date of Employment <span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
@@ -410,7 +410,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_29_dob"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Date of Birth<span class="required">*</span>
+                <label for="${formIdPrefix}_${formName}">Date of Birth <span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
@@ -421,7 +421,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_29_ssn"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Social Security Number<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Social Security Number <span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
             </div>
@@ -466,12 +466,12 @@
                 <span class="floatL"><b>&nbsp;</b></span>
                 <c:set var="formName" value="_29_city"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}" class="cityLabel">City<span class="required">*</span> : </label>
+                <label for="${formIdPrefix}_${formName}" class="cityLabel">City <span class="required">*</span> : </label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="cityInputFor" name="${formName}" value="${formValue}" maxlength="20"/>
 
                 <c:set var="formName" value="_29_state"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">State<span class="required">*</span> : </label>
+                <label for="${formIdPrefix}_${formName}">State <span class="required">*</span> : </label>
                 <select id="${formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">
@@ -481,7 +481,7 @@
 
                 <c:set var="formName" value="_29_zip"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">ZIP Code<span class="required">*</span> : </label>
+                <label for="${formIdPrefix}_${formName}">ZIP Code <span class="required">*</span> : </label>
                 <input id="${formIdPrefix}_${formName}" type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
 
                 <c:set var="formName" value="_29_county"></c:set>
@@ -500,7 +500,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_29_bgsNumber"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">BGS ID NUMBER<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">BGS ID NUMBER <span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
@@ -511,7 +511,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_29_bgsClearanceDate"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">BGS Clearance Date<span class="required">*</span>
+                <label for="${formIdPrefix}_${formName}">BGS Clearance Date <span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>
@@ -529,12 +529,12 @@
         <thead>
             <tr>
                 <th class="alignCenter">#<span class="sep"></span></th>
-                <th>Type of License/Certification<span class="required">*</span><span class="sep"></span></th>
-                <th>Upload License/Certification<span class="required">*</span><span class="sep"></span></th>
-                <th>License/Certification Number<span class="required">*</span><span class="sep"></span></th>
-                <th>Original Issue Date<span class="required">*</span><span class="sep"></span></th>
-                <th>Renewal End Date<span class="required">*</span><span class="sep"></span></th>
-                <th>Issuing State<span class="required">*</span><span class="sep"></span></th>
+                <th>Type of License/Certification <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Upload License/Certification <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>License/Certification Number <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Original Issue Date <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Renewal End Date <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Issuing State <span class="required-dark-background">*</span><span class="sep"></span></th>
             </tr>
         </thead>
         <tbody>

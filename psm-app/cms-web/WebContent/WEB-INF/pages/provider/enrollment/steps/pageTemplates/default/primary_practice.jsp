@@ -44,7 +44,7 @@
                 <div class="row">
                     <c:set var="formName" value="_06_name"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}">Primary Practice Name<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_${formName}">Primary Practice Name <span class="required">*</span></label>
                     <input id="${formIdPrefix}_${formName}" ${disableLinkedFields} type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
                 </div>
                 <div class="row">
@@ -67,7 +67,7 @@
                 <div class="row">
                     <c:set var="formName" value="_06_effectiveDate"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}">Effective Date<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_${formName}">Effective Date <span class="required">*</span></label>
                     <span class="dateWrapper floatL">
                         <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}" maxlength="10"/>
                     </span>
@@ -75,7 +75,7 @@
                 <div class="row addressline1">
                     <c:set var="formName" value="_06_addressLine1"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}">Practice Address<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_${formName}">Practice Address <span class="required">*</span></label>
                     <input id="${formIdPrefix}_${formName}" ${disableLinkedFields} type="text" title="Practice Address, Line 1" class="normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
                 </div>
                 <div class="row inlineBox addressline2">
@@ -128,7 +128,7 @@
                     </select>
                 </div>
                 <div class="row">
-                    <label>Practice Phone Number<span class="required">*</span></label>
+                    <label>Practice Phone Number <span class="required">*</span></label>
                     <c:set var="formName" value="_06_phone1"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input ${disableLinkedFields} type="text" title="Practice Phone Area Code" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
@@ -160,7 +160,7 @@
                     <input ${disableLinkedFields} type="text" title="Pratice fax Line Number" class="autotab smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
                 </div>
                 <div class="row reimbursementAddressRow">
-                    <label>Reimbursement Address<span class="required">*</span></label>
+                    <label>Reimbursement Address <span class="required">*</span></label>
                     <div class="inputContainer">
                         <div class="checkboxWrapper">
                             <c:set var="formName" value="_06_reimbursementSameAsPrimary"></c:set>

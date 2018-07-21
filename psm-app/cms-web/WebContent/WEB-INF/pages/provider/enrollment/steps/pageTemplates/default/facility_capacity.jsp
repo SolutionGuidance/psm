@@ -10,7 +10,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_27_numberOfBeds"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Number of Beds<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Number of Beds <span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
             </div>
@@ -20,7 +20,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_27_effectiveDate"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Effective Date<span class="required">*</span>
+                <label for="${formIdPrefix}_${formName}">Effective Date <span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <span class="floatL"><b>:</b></span>

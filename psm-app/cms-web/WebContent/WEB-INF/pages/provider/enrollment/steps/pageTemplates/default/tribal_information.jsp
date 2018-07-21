@@ -44,12 +44,12 @@
     <table class="generalTable">
         <thead>
             <tr>
-                <th class="reservationTableHeader">Reservation<span class="required">*</span><span class="sep"></span></th>
-                <th>Upload License/Certification<span class="required">*</span><span class="sep"></span></th>
-                <th>License/Certification #<span class="required">*</span><span class="sep"></span></th>
-                <th>Original Issue Date<span class="required">*</span><span class="sep"></span></th>
-                <th>Renewal End Date<span class="required">*</span><span class="sep"></span></th>
-                <th>Issuing State<span class="required">*</span><span class="sep"></span></th>
+                <th class="reservationTableHeader">Reservation <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Upload License/Certification <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>License/Certification # <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Original Issue Date <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Renewal End Date <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Issuing State <span class="required-dark-background">*</span><span class="sep"></span></th>
             </tr>
         </thead>
         <tbody>

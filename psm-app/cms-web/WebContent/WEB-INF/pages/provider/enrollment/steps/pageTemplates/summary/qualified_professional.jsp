@@ -83,7 +83,7 @@
 
         <div class="leftCol">
             <div class="row requireField">
-                <label>BGS ID NUMBER<span class="required">*</span></label>
+                <label>BGS ID NUMBER <span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_29_bgsNumber_${status.index - 1}"></c:set>
                 <span>${requestScope[formName]}</span>
@@ -93,7 +93,7 @@
 
         <div class="rightCol">
             <div class="row requireField">
-                <label>BGS Clearance Date<span class="required">*</span>
+                <label>BGS Clearance Date <span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
                 <c:set var="formName" value="_29_bgsClearanceDate_${status.index - 1}"></c:set>

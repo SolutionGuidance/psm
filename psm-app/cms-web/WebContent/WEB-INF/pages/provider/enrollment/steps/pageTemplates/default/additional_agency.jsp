@@ -23,7 +23,7 @@
             <thead>
                 <tr>
                     <th class="firstTheader">#<span class="sep"></span></th>
-                    <th>Organization/Agency Name<span class="required">*</span><span class="sep"></span></th>
+                    <th>Organization/Agency Name <span class="required-dark-background">*</span><span class="sep"></span></th>
                     <th>Agency NPI/UMPI<span class="sep"></span></th>
                     <th>Study Id<span class="sep"></span></th>
                     <th>Clearance Date<span class="sep"></span></th>

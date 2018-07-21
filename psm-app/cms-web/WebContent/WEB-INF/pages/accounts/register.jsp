@@ -39,7 +39,7 @@
                 <div class="section" id="updateProfile">
                   <div class="wholeCol">
                     <div class="row">
-                      <label for="registerUsername">Username<span class="required">*</span></label>
+                      <label for="registerUsername">Username <span class="required">*</span></label>
                       <c:set var="errorCls" value=""/>
                       <spring:bind path="username">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="row">
-                      <label for="registerFirstName">First Name<span class="required">*</span></label>
+                      <label for="registerFirstName">First Name <span class="required">*</span></label>
                       <c:set var="errorCls" value=""/>
                       <spring:bind path="firstName">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="row">
-                      <label for="registerLastName">Last Name<span class="required">*</span></label>
+                      <label for="registerLastName">Last Name <span class="required">*</span></label>
                       <c:set var="errorCls" value=""/>
                       <spring:bind path="lastName">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
@@ -73,7 +73,7 @@
                       <form:input id="registerLastName" path="lastName" cssClass="normalInput ${errorCls}"/>
                     </div>
                     <div class="row">
-                      <label for="registerEmail">Email<span class="required">*</span></label>
+                      <label for="registerEmail">Email <span class="required">*</span></label>
                       <c:set var="errorCls" value=""/>
                       <spring:bind path="email">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>

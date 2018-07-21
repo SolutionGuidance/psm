@@ -3473,7 +3473,7 @@ dialect 'mvel'
 
 end
 
-rule 'CMHC Members Must Be A Certified Mental Health Professional Or A Licensed Psychiatrist'
+rule 'CMHC Members Must Be A Certified Mental Health Rehab Professional'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -3486,14 +3486,13 @@ dialect 'mvel'
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         $provider: ProviderInformationType(providerType == ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value())
         MemberInformationType($memberList : groupMember, groupMember != null ) from $provider.memberInformation
-        GroupMemberType($specialties: specialties, providerType != ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value(), highestDegreeEarned != "DOCTORATE") from $memberList
-        not SpecialtiesType(specialtyName contains "Psychiatry") from $specialties
+        GroupMemberType(providerType != ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value()) from $memberList
         $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/MemberInformation",
             "00001",
-            "Members must be certified mental health professionals or licensed psychiatrists."
+            "Members must be certified mental health rehab professionals."
         );
 
 end

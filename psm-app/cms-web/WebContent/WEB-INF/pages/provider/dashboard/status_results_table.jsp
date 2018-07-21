@@ -141,6 +141,19 @@
       <c:url var="exportUrl" value="/provider/enrollment/exportTicket">
         <c:param name="id" value="${item.enrollmentId}" />
       </c:url>
+      <c:choose>
+        <c:when test="${item.status == 'Draft'}">
+          <c:url var="editUrl" value="/provider/enrollment/view">
+            <c:param name="id" value="${item.enrollmentId}" />
+          </c:url>
+        </c:when>
+        <c:when test="${item.status == 'Pending'}">
+          <c:url var="editUrl" value="/provider/enrollment/reopen">
+            <c:param name="id" value="${item.enrollmentId}" />
+          </c:url>
+        </c:when>
+      </c:choose>
+
       <c:set
         var="statusCls"
         value="${item.status == 'Rejected' ? 'red' : item.status == 'Approved' ? 'green' : ''}"
@@ -180,24 +193,14 @@
           <fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy" />
         </td>
         <td class="alignCenter">
-          <c:choose>
-            <c:when test="${item.status == 'Draft'}">
-              <a
-                class="actionLink"
-                href="${viewUrl}"
-              >
-                Edit
-              </a>
-            </c:when>
-            <c:otherwise>
-              <a
-                class="actionLink"
-                href="${viewUrl}"
-              >
-                View
-              </a>
-            </c:otherwise>
-          </c:choose>
+          <c:if test="${item.status != 'Draft'}">
+            <a
+              class="actionLink"
+              href="${viewUrl}"
+            >
+              View
+            </a>
+          </c:if>
           <c:choose>
             <c:when test="${item.status == 'Approved' && profileIds.contains(item.profileReferenceId)}">
               <c:url var="editUrl" value="/provider/profile/edit">
@@ -217,6 +220,14 @@
                 href="${renewUrl}"
               >
                 Renew
+              </a>
+            </c:when>
+            <c:when test="${item.status == 'Draft' || item.status == 'Pending'}">
+              <a
+                class="actionLink"
+                href="${editUrl}"
+              >
+                Edit
               </a>
             </c:when>
           </c:choose>

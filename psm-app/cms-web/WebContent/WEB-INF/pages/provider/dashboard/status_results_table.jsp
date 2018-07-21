@@ -135,10 +135,10 @@
 
   <tbody>
     <c:forEach var="item" items="${results.items}" varStatus="status">
-      <c:url var="viewTicketLink" value="/provider/enrollment/view">
+      <c:url var="viewUrl" value="/provider/enrollment/view">
         <c:param name="id" value="${item.enrollmentId}" />
       </c:url>
-      <c:url var="exportTicketLink" value="/provider/enrollment/exportTicket">
+      <c:url var="exportUrl" value="/provider/enrollment/exportTicket">
         <c:param name="id" value="${item.enrollmentId}" />
       </c:url>
       <c:set
@@ -184,7 +184,7 @@
             <c:when test="${item.status == 'Draft'}">
               <a
                 class="actionLink"
-                href="${viewTicketLink}"
+                href="${viewUrl}"
               >
                 Edit
               </a>
@@ -192,7 +192,7 @@
             <c:otherwise>
               <a
                 class="actionLink"
-                href="${viewTicketLink}"
+                href="${viewUrl}"
               >
                 View
               </a>
@@ -200,21 +200,21 @@
           </c:choose>
           <c:choose>
             <c:when test="${item.status == 'Approved' && profileIds.contains(item.profileReferenceId)}">
-              <c:url var="editLink" value="/provider/profile/edit">
+              <c:url var="editUrl" value="/provider/profile/edit">
                 <c:param name="profileId" value="${item.profileReferenceId}"/>
               </c:url>
-              <c:url var="renewLink" value="/provider/profile/renew">
+              <c:url var="renewUrl" value="/provider/profile/renew">
                 <c:param name="profileId" value="${item.profileReferenceId}"/>
               </c:url>
               <a
                 class="actionLink"
-                href="${editLink}"
+                href="${editUrl}"
               >
                 Edit
               </a>
               <a
                 class="actionLink"
-                href="${renewLink}"
+                href="${renewUrl}"
               >
                 Renew
               </a>
@@ -222,7 +222,7 @@
           </c:choose>
           <a
             class="actionLink"
-            href="${exportTicketLink}"
+            href="${exportUrl}"
           >
             Export to PDF
           </a>

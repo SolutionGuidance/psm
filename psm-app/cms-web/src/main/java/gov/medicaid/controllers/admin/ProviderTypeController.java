@@ -126,6 +126,7 @@ public class ProviderTypeController {
         ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
         model.addObject("providerType", providerType);
         model.addObject("agreements", providerType.getAgreementDocuments());
+        model.addObject("licenseTypes", providerType.getLicenseTypes());
         return model;
     }
 
@@ -260,6 +261,7 @@ public class ProviderTypeController {
         ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
         model.addObject("providerType", providerType);
         model.addObject("agreements", providerType.getAgreementDocuments());
+        model.addObject("licenseTypes", providerType.getLicenseTypes());
         return model;
     }
 

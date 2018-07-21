@@ -59,6 +59,16 @@
                         </div>
                       </div>
                     </div>
+                    <div class="tableHeader"><span>Applicable Licenses</span></div>
+                    <div class="wholeCol">
+                      <div class="row">
+                        <div class="col2">
+                          <c:forEach var="licenseType" items="${licenseTypes}">
+                            <div class="row">${licenseType.description}</div>
+                          </c:forEach>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="bl"></div>

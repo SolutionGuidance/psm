@@ -18,8 +18,6 @@ package gov.medicaid.controllers.validators;
 
 import gov.medicaid.controllers.forms.RegistrationForm;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.RegistrationService;
 
 import org.springframework.validation.Errors;
@@ -113,17 +111,12 @@ public class RegistrationFormValidator extends BaseValidator {
             }
         }
 
-        try {
-            // no two users should have the same login
-            if (!errors.hasFieldErrors("username")) {
-                CMSUser duplicate = registrationService.findByUsername(user.getUsername());
-                if (duplicate != null) {
-                    errors.rejectValue("username", "duplicate.username");
-                }
+        // no two users should have the same login
+        if (!errors.hasFieldErrors("username")) {
+            CMSUser duplicate = registrationService.findByUsername(user.getUsername());
+            if (duplicate != null) {
+                errors.rejectValue("username", "duplicate.username");
             }
-        } catch (PortalServiceException e) {
-            // nothing we can do if services are not working correctly.
-            throw new PortalServiceRuntimeException("Unable to complete request validation.", e);
         }
     }
 

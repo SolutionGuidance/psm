@@ -1954,19 +1954,6 @@ function openAgencyLookup(primary) {
   openModal('#practiceLookupModal');
 }
 
-function postJson(settings) {
-  var token = $("meta[name='_csrf']").attr("content");
-  var header = $("meta[name='_csrf_header']").attr("content");
-  $.extend(settings, {
-    type: "post",
-    dataType: "json",
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader(header, token);
-    },
-  })
-  $.ajax(settings);
-}
-
 function populatePracticeLookupResults() {
   var rs = practiceLookupResults;
   if (rs.total === 0) {

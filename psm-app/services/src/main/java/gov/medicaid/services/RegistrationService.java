@@ -36,18 +36,16 @@ public interface RegistrationService {
      * @param systemName the external system name to search the link for
      * @param username the username for the external system
      * @return the matching user, or null if not found
-     * @throws PortalServiceException for any errors encountered
      */
-    CMSUser findByExternalUsername(SystemId systemName, String username) throws PortalServiceException;
+    CMSUser findByExternalUsername(SystemId systemName, String username);
 
     /**
      * Retrieves the user with the given username.
      *
      * @param username the username to search for
      * @return the matching user, null if not found
-     * @throws PortalServiceException for any errors encountered
      */
-    CMSUser findByUsername(String username) throws PortalServiceException;
+    CMSUser findByUsername(String username);
 
     /**
      * Registers the given user.
@@ -69,41 +67,36 @@ public interface RegistrationService {
      * @param username the external user id
      * @param registrant the user profile
      * @return the generated user id
-     * @throws PortalServiceException for any errors encountered, or if any field is considered invalid by the
-     *             underlying implementations
      */
     String registerExternalUser(
             SystemId systemId,
             String username,
             CMSUser registrant
-    ) throws PortalServiceException;
+    );
 
     /**
      * Suspends the given user.
      *
      * @param principal the user performing the action
      * @param userId the user to be suspended
-     * @throws PortalServiceException for any errors encountered
      */
-    void suspend(CMSUser principal, String userId) throws PortalServiceException;
+    void suspend(CMSUser principal, String userId);
 
     /**
      * Reinstates the given user.
      *
      * @param principal the user performing the action
      * @param userId the user to be reinstated
-     * @throws PortalServiceException for any errors encountered
      */
-    void reinstate(CMSUser principal, String userId) throws PortalServiceException;
+    void reinstate(CMSUser principal, String userId);
 
     /**
      * Creates the account link. Ignores duplicates.
      *
      * @param userId the user id to be linked
      * @param link the account link details
-     * @throws PortalServiceException for any errors encountered
      */
-    void addAccountLink(String userId, ExternalAccountLink link) throws PortalServiceException;
+    void addAccountLink(String userId, ExternalAccountLink link);
 
     /**
      * Retrieves the account link.
@@ -112,10 +105,8 @@ public interface RegistrationService {
      * @param system the system linked to
      * @param externalAccountId the external user
      * @return the matching account link or null if not found
-     * @throws PortalServiceException for any errors encountered
      */
-    ExternalAccountLink findAccountLink(String userId, SystemId system, String externalAccountId)
-        throws PortalServiceException;
+    ExternalAccountLink findAccountLink(String userId, SystemId system, String externalAccountId);
 
     /**
      * Replaces the password of the given user.
@@ -142,9 +133,8 @@ public interface RegistrationService {
      *
      * @param userId the id to search for
      * @return the matching user, null if not found
-     * @throws PortalServiceException for any errors encountered
      */
-    CMSUser findByUserId(String userId) throws PortalServiceException;
+    CMSUser findByUserId(String userId);
 
     /**
      * Updates basic profile information for the given user.

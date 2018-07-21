@@ -1084,12 +1084,12 @@ function deleteUserAccounts(userIds, toUserAccounts) {
     }
   }
 
-  $.ajax({
+  postJson({
       url: $('#deleteAccountsURL').val() + urlParams,
       cache: false,
-      type: "GET",
+      type: "POST",
       dataType: "text",
-      success: function (data) {
+      success: function () {
           if (toUserAccounts) {
             window.location = $('#userAccountsURL').val();
           } else {
@@ -1154,6 +1154,20 @@ $(document).ready(function () {
         $('#searchUserAccountsForm, #advancedSearch').submit();
         return false;
       });
+
+    $(".suspendLink, .reinstateLink").on('click', function () {
+      var link = $(this);
+      postJson({
+        url: link.attr("href"),
+        cache: false,
+        type: "POST",
+        dataType: "text",
+        success: function () {
+          link.closest("tr").toggleClass("disabledUser enabledUser");
+        }
+      });
+      return false;
+    });
 
     $('.searchBox').live('click', function () {
         var val = $.trim($('#searchBoxFirstName').val());

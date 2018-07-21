@@ -20,7 +20,6 @@ import gov.medicaid.controllers.validators.BaseValidator;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.PortalServiceConfigurationException;
-import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
 
 import org.springframework.validation.Errors;
@@ -158,16 +157,12 @@ public class UserValidator extends BaseValidator implements Validator {
             }
         }
 
-        try {
-            // no two users should have the same login
-            if (!errors.hasFieldErrors("username")) {
-                CMSUser duplicate = registrationService.findByUsername(user.getUsername());
-                if (duplicate != null && !duplicate.getUserId().equals(user.getUserId())) {
-                    errors.rejectValue("username", "duplicate.username", "The requested username is already in use.");
-                }
+        // no two users should have the same login
+        if (!errors.hasFieldErrors("username")) {
+            CMSUser duplicate = registrationService.findByUsername(user.getUsername());
+            if (duplicate != null && !duplicate.getUserId().equals(user.getUserId())) {
+                errors.rejectValue("username", "duplicate.username", "The requested username is already in use.");
             }
-        } catch (PortalServiceException e) {
-            errors.rejectValue("userId", "generic.error", "Unable to process request, please try again later.");
         }
     }
 

@@ -23,11 +23,9 @@ import gov.medicaid.entities.RoleView;
 import gov.medicaid.entities.SystemId;
 import gov.medicaid.services.PartnerSystemService;
 import gov.medicaid.services.PortalServiceConfigurationException;
-import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.Util;
 
-import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -133,32 +131,27 @@ public class DefaultExternalAuthenticationProvider implements AuthenticationProv
      * @return the mapped details
      */
     private UserDetails loadProxyUser(String userNPI, String profileNPI) {
-        try {
-            CMSUser cmsUser = registrationService.findByExternalUsername(system, userNPI);
-            if (cmsUser == null) {
-                cmsUser = new CMSUser();
-                // set defaults
-                cmsUser.setLastName(userNPI);
-                registrationService.registerExternalUser(system, userNPI, cmsUser);
-            }
-
-            // set session based fields
-            if (userNPI.equals(profileNPI)) {
-                cmsUser.setExternalRoleView(RoleView.SELF);
-            } else {
-                cmsUser.setExternalRoleView(RoleView.EMPLOYER);
-            }
-            cmsUser.setProxyForNPI(profileNPI);
-            ExternalAccountLink link = registrationService.findAccountLink(
-                    cmsUser.getUserId(), system, userNPI);
-            cmsUser.setExternalAccountLink(link);
-
-            User springUserObject = new User(userNPI, "", true, true, true, true, EMPTY_AUTH);
-            return new CMSUserDetailsWrapper(springUserObject, cmsUser, system);
-        } catch (PortalServiceException e) {
-            throw new DataRetrievalFailureException("Database error.", e);
+        CMSUser cmsUser = registrationService.findByExternalUsername(system, userNPI);
+        if (cmsUser == null) {
+            cmsUser = new CMSUser();
+            // set defaults
+            cmsUser.setLastName(userNPI);
+            registrationService.registerExternalUser(system, userNPI, cmsUser);
         }
 
+        // set session based fields
+        if (userNPI.equals(profileNPI)) {
+            cmsUser.setExternalRoleView(RoleView.SELF);
+        } else {
+            cmsUser.setExternalRoleView(RoleView.EMPLOYER);
+        }
+        cmsUser.setProxyForNPI(profileNPI);
+        ExternalAccountLink link = registrationService.findAccountLink(
+                cmsUser.getUserId(), system, userNPI);
+        cmsUser.setExternalAccountLink(link);
+
+        User springUserObject = new User(userNPI, "", true, true, true, true, EMPTY_AUTH);
+        return new CMSUserDetailsWrapper(springUserObject, cmsUser, system);
     }
 
     /**

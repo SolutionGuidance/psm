@@ -168,6 +168,19 @@ function setUserHelpClickHandler(
     });
 };
 
+function postJson(settings) {
+  var token = $("meta[name='_csrf']").attr("content");
+  var header = $("meta[name='_csrf_header']").attr("content");
+  $.extend(settings, {
+    type: "post",
+    dataType: "json",
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader(header, token);
+    },
+  })
+  $.ajax(settings);
+}
+
 $(document).ready(function () {
 
   $('.searchPanel input[type="checkbox"]')

@@ -886,18 +886,6 @@ $(document).ready(function () {
     usNumberFormat: false,
     sortRestart: true
   });
-  $('.table-enrollment-sort').tablesorter({
-    headers: { 0: { sorter: false }, 8: { sorter: false } },
-    widgets: ['zebra', 'columns'],
-    usNumberFormat: false,
-    sortRestart: true
-  });
-  $('.table-enrollment-all-sort').tablesorter({
-    headers: { 0: { sorter: false }, 8: { sorter: false }, 9: { sorter: false } },
-    widgets: ['zebra', 'columns'],
-    usNumberFormat: false,
-    sortRestart: true
-  });
   $('#resultsTable').tablesorter({
     headers: { 0: { sorter: false }, 9: { sorter: false } },
     widgets: ['zebra', 'columns'],
@@ -1306,8 +1294,6 @@ $(document).ready(function () {
     if ($('#draftTable').length > 0)$('#draftTable').trigger("update");
     if ($('.dashboardTable').length > 0)$('.dashboardTable').trigger("update");
     if ($('#draftEnrollmentTable').length > 0)$('#draftEnrollmentTable').trigger("update");
-    if ($('.table-enrollment-sort').length > 0)$('.table-enrollment-sort').trigger("update");
-    if ($('.table-enrollment-all-sort').length > 0)$('.table-enrollment-all-sort').trigger("update");
     if ($('#resultsTable').length > 0)$('#resultsTable').trigger("update");
     if ($('#userAccountsTab .generalTable').length > 0)$('#userAccountsTab .generalTable').trigger("update");
     if ($('#userAccountResultsTable').length > 0)$('#userAccountResultsTable').trigger("update");

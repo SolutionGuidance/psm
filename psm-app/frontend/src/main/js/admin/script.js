@@ -994,18 +994,6 @@ $(document).ready(function () {
   /* START OF SERVICE AGENT SCRIPT ------------------------------------------------ */
 
   /*
-  $('.table-enrollment-sort').tablesorter({
-   headers:{0:{ sorter: false},8:{ sorter: false}},
-   widgets        : ['zebra', 'columns'],
-   usNumberFormat : false,
-   sortRestart    : true
-  });
-  $('.table-enrollment-all-sort').tablesorter({
-   headers:{0:{ sorter: false},8:{ sorter: false},9:{ sorter: false}},
-   widgets        : ['zebra', 'columns'],
-   usNumberFormat : false,
-   sortRestart    : true
-  });
   $('#resultsTable').tablesorter({
    headers:{0:{ sorter: false},9:{ sorter: false}},
    widgets        : ['zebra', 'columns'],

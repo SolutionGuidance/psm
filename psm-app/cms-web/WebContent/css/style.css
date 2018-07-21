@@ -505,12 +505,15 @@ input.date{
 .generalTable th.tablesorter-headerSortUp .sort{
   background:url(../i/icon-sort-down.png) no-repeat left center;
 }
-.generalTable tr td{
-  padding:5px 10px;
+.generalTable tr td {
+  padding: 5px 0px 5px 10px;
   vertical-align:middle;
 }
 .generalTable tr.even td{
   background:#ecf2f3;
+}
+.generalTable tr td.tdCheckbox {
+  padding-left: 0px;
 }
 .generalTable tr td.alignCenter{
   text-align:center;
@@ -2370,16 +2373,11 @@ input.date{
   width:60%;
 }
 
-#enrollmentSection #tabAll .generalTable tr td {
-  padding:5px;
-}
-
-#enrollmentSection #tabAll .generalTable tr th.twoline {
-  vertical-align:top;
+.generalTable tr th.twoline {
   line-height:13px;
 }
 
-#enrollmentSection #tabAll .generalTable tr th.twoline a {
+.generalTable tr th.twoline a {
   width:auto;
   display:inline-block;
   padding:2px 0;
@@ -2469,15 +2467,6 @@ input.date{
   text-indent:20px;
   /* text shadow */
   text-shadow:#ffffff 0 2px 0;
-}
-
-#searchResultsSection .tableContainer #resultsTable th,
-.table-enrollment-all-sort th {
-  padding:0 0 0 5px;
-}
-
-#searchResultsSection .tableContainer #resultsTable td{
-  padding:5px;
 }
 
 /* Advanced Search */
@@ -2769,6 +2758,12 @@ a.searchBtn {
 }
 
 /* writeNotesModal */
+
+.writeNotes,
+.viewNotes {
+  white-space: nowrap;
+}
+
 #writeNotesModal{
   width:564px;
 }
@@ -3665,9 +3660,6 @@ a.okBtn {
   padding-left: 5px;
 }
 
-#searchResultsSection .tableContainer #resultsTable td{
-  padding: 10px 5px;
-}
 .fileWrapper{
   width:100px;
 }
@@ -3876,12 +3868,6 @@ input.text{
 }
 #tabServiceAgents .detailPanel .row {
   padding: 2px 0;
-}
-#serviceAdminresultsTable th{
-  padding:0 0 0 5px;
-}
-#serviceAdminresultsTable td{
-  padding:10px 5px;
 }
 .detailPanel .green{
   font-size:14px;

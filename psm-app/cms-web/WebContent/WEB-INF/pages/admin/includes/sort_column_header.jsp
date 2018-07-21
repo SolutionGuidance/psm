@@ -1,5 +1,5 @@
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
-<th>
+<th class="${thClass}">
   <c:choose>
     <c:when test="${searchCriteria.sortColumn == sortFieldOfEntity}">
       <a

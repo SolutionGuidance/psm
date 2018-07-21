@@ -151,7 +151,7 @@ $(document).ready(function () {
               $("#notesSection").append('<span class="note_' + profileIdForWritingNotes + '" id="note_' + profileIdForWritingNotes + '_' + ($(".note_" + profileIdForWritingNotes).size() + 1) + '">' + input + '</span>');
               $("a[rel='" + profileIdForWritingNotes + "'].viewNotes").removeClass("disabledLink");
               $("a[rel='" + profileIdForWritingNotes + "'].viewNotes").removeClass("hide");
-              $("a[rel='" + profileIdForWritingNotes + "'].viewNotes").prev().removeClass("hide");
+              $("a[rel='" + profileIdForWritingNotes + "'].viewNotes").next().removeClass("hide");
             } else {
               alert(data.message);
             }

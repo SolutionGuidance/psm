@@ -103,7 +103,7 @@
       <c:set var="sortColumnTitle" value="Request Type"/>
       <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
 
-      <c:if test="${addStatusColumn=='yes'}">
+      <c:if test="${addStatusColumn == 'yes'}">
         <c:set var="sortFieldOfEntity" value="5"/>
         <c:set var="sortColumnTitle" value="Status"/>
         <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
@@ -116,9 +116,6 @@
       <c:set var="sortFieldOfEntity" value="6"/>
       <c:set var="sortColumnTitle" value="Status Date"/>
       <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
-      <c:if test="${active_enrollment_tab == 'all'}">
-        <th class="alignCenter">Notes<span class="sep"></span></th>
-      </c:if>
       <th class="alignCenter">Action</th>
     </tr>
   </thead>
@@ -176,35 +173,6 @@
           <c:otherwise><td>${item.riskLevel}</td></c:otherwise>
         </c:choose>
         <td><fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy"/></td>
-        <c:if test="${active_enrollment_tab == 'all'}">
-          <td class="alignCenter">
-            <a
-              href="javascript:;"
-              rel="${item.ticketId}"
-              class="writeNotes"
-              >
-              Write
-            </a>
-            <span class="sep <c:if test="${!(fn:length(item.notes)>0)}">hide</c:if>">|</span>
-            <a
-              href="javascript:;"
-              rel="${item.ticketId}"
-              class='viewNotes<c:if test="${!(fn:length(item.notes)>0)}"> hide disabledLink</c:if>'
-              >
-              View
-            </a>
-            <div id="notesSection" class="hide">
-              <c:forEach var="noteItem" items="${item.notes}" varStatus="noteStatus">
-                <span
-                  class="note_${item.ticketId}"
-                  id="note_${item.ticketId}_${noteStatus.count}"
-                  >
-                  ${noteItem.text}
-                </span>
-              </c:forEach>
-            </div>
-          </td>
-        </c:if>
         <td class="alignCenter nopad">
           <c:choose>
             <c:when test="${fn:toLowerCase(item.status)=='pending'}">
@@ -264,6 +232,26 @@
               <span class="sep">|</span>
             </c:otherwise>
           </c:choose>
+
+          <c:if test="${isServiceAdministrator}">
+            <a
+              href="javascript:;"
+              rel="${item.ticketId}"
+              class="writeNotes"
+            >
+              Add Note
+            </a>
+            <span class="sep">|</span>
+            <a
+              href="javascript:;"
+              rel="${item.ticketId}"
+              class='viewNotes<c:if test="${!(fn:length(item.notes)>0)}"> hide disabledLink</c:if>'
+            >
+              View Notes
+            </a>
+            <span class="sep <c:if test="${!(fn:length(item.notes)>0)}">hide</c:if>">|</span>
+          </c:if>
+
           <a rel="${item.ticketId}" class="printEnrollment" href="javascript:;">
             Print
           </a>
@@ -276,3 +264,19 @@
     </c:forEach>
   </tbody>
 </table>
+<%@ include file="/WEB-INF/pages/admin/includes/enrollment_notes_dialog.jsp" %>
+
+<c:if test="${isServiceAdministrator}">
+  <%-- This is how the view notes modal accesses and stores notes. --%>
+  <div id="notesSection" class="hide">
+    <c:forEach var="item" items="${searchResult.items}">
+      <c:forEach var="noteItem" items="${item.notes}" varStatus="noteStatus">
+        <%-- There needs to be no extra whitespace inside this span. --%>
+        <span
+          class="note_${item.ticketId}"
+          id="note_${item.ticketId}_${noteStatus.count}"
+        >${noteItem.text}</span>
+      </c:forEach>
+    </c:forEach>
+  </div>
+</c:if>

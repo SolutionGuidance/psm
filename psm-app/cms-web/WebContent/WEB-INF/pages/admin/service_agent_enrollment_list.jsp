@@ -66,6 +66,9 @@
               <c:otherwise>
                 <div class="tableWrapper">
                   <div class="tableContainer">
+                    <c:if test="${active_enrollment_tab == 'all'}">
+                      <c:set var="addStatusColumn" value="yes"/>
+                    </c:if>
                     <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_result_table.jsp" %>
                   </div>
                   <!-- /.tableContainer -->
@@ -90,8 +93,5 @@
       <!-- #footer -->
     </div>
     <!-- /#wrapper -->
-    <c:if test="${tabName == 'all'}">
-      <%@ include file="/WEB-INF/pages/admin/includes/enrollment_notes_dialog.jsp" %>
-    </c:if>
   </body>
 </html>

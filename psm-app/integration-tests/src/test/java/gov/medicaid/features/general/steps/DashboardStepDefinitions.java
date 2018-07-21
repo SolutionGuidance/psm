@@ -8,29 +8,24 @@ public class DashboardStepDefinitions {
     @Steps
     GeneralSteps generalSteps;
 
-    @When("^I am on the Draft page$")
-    public void i_am_on_the_draft_page() {
-        generalSteps.navigateToDraftPage();
+    @When("^I am on the provider Draft page$")
+    public void i_am_on_the_provider_draft_page() {
+        generalSteps.goToProviderDraftPage();
     }
 
-    @When("^I am on the Pending page$")
-    public void i_am_on_the_pending_page() {
-        generalSteps.navigateToPendingPage();
+    @When("^I am on the provider Pending page$")
+    public void i_am_on_the_provider_pending_page() {
+        generalSteps.goToProviderPendingPage();
     }
 
-    @When("^I am on the Approved page$")
-    public void i_am_on_the_approved_page() {
-        generalSteps.navigateToApprovedPage();
+    @When("^I am on the provider Approved page$")
+    public void i_am_on_the_provider_approved_page() {
+        generalSteps.goToProviderApprovedPage();
     }
 
-    @When("^I am on the Denied page$")
-    public void i_am_on_the_denied_page() {
-        generalSteps.navigateToDeniedPage();
-    }
-
-    @When("^I am on the Notes page$")
-    public void i_am_on_the_notes_page() {
-        generalSteps.navigateToNotesPage();
+    @When("^I am on the provider Denied page$")
+    public void i_am_on_the_provider_denied_page() {
+        generalSteps.goToProviderDeniedPage();
     }
 
     @When("^I open the filter panel$")

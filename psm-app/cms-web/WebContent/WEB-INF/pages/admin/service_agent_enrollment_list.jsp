@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:choose>
+    <c:when test="${tabName == 'all'}">
+      <c:set var="listType" value="All Enrollments"/>
+    </c:when>
     <c:when test="${tabName == 'approved'}">
       <c:set var="listType" value="Approved Enrollments"/>
     </c:when>
@@ -13,9 +16,6 @@
     </c:when>
     <c:when test="${tabName == 'draft'}">
       <c:set var="listType" value="Draft Enrollments"/>
-    </c:when>
-    <c:when test="${tabName == 'notes'}">
-      <c:set var="listType" value="Notes"/>
     </c:when>
   </c:choose>
   <c:set var="title" value="${listType}"/>
@@ -44,7 +44,7 @@
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_tab_section.jsp" %>
             <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_form.jsp" %>
             <!-- /.tabHead -->
-            <div class="tabContent" id="${tabName == 'notes' ? 'tabNotes' : ''}">
+            <div class="tabContent" id="${tabName == 'all' ? 'tabAll' : ''}">
               <div class="pagination">
                 <%@ include file="/WEB-INF/pages/admin/includes/page_left_navigation.jsp" %>
                 <%@ include file="/WEB-INF/pages/admin/includes/enrollment_buttons.jsp" %>
@@ -90,7 +90,7 @@
       <!-- #footer -->
     </div>
     <!-- /#wrapper -->
-    <c:if test="${tabName == 'notes'}">
+    <c:if test="${tabName == 'all'}">
       <%@ include file="/WEB-INF/pages/admin/includes/enrollment_notes_dialog.jsp" %>
     </c:if>
   </body>

@@ -55,32 +55,26 @@ public class GeneralSteps {
     }
 
     @Step
-    public void navigateToDraftPage() {
+    public void goToProviderDraftPage() {
         clickLinkAssertTitle(".enrollmentsLink", "Draft Enrollments");
     }
 
     @Step
-    public void navigateToPendingPage() {
-        navigateToDraftPage();
+    public void goToProviderPendingPage() {
+        goToProviderDraftPage();
         clickLinkAssertTitle(".pendingTab", "Pending Enrollments");
     }
 
     @Step
-    public void navigateToApprovedPage() {
-        navigateToDraftPage();
+    public void goToProviderApprovedPage() {
+        goToProviderDraftPage();
         clickLinkAssertTitle(".approvedTab", "Approved Enrollments");
     }
 
     @Step
-    public void navigateToDeniedPage() {
-        navigateToDraftPage();
+    public void goToProviderDeniedPage() {
+        goToProviderDraftPage();
         clickLinkAssertTitle(".deniedTab", "Denied Enrollments");
-    }
-
-    @Step
-    public void navigateToNotesPage() {
-        navigateToDraftPage();
-        clickLinkAssertTitle(".notesTab", "Notes");
     }
 
     @Step

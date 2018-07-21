@@ -4,7 +4,7 @@ Feature: Provider Search Checks
 
   Scenario: Provider Draft Page Filtered
     Given I am logged in as a provider
-    And I am on the Draft page
+    And I am on the provider Draft page
     When I open the filter panel
     And I filter by NPI '1111111112'
     Then I should have no errors
@@ -12,7 +12,7 @@ Feature: Provider Search Checks
 
   Scenario: Provider Pending Page Filtered
     Given I am logged in as a provider
-    And I am on the Pending page
+    And I am on the provider Pending page
     When I open the filter panel
     And I filter by NPI '1111111112'
     Then I should have no errors
@@ -20,7 +20,7 @@ Feature: Provider Search Checks
 
   Scenario: Provider Approved Page Filtered
     Given I am logged in as a provider
-    And I am on the Approved page
+    And I am on the provider Approved page
     When I open the filter panel
     And I filter by NPI '1111111112'
     Then I should have no errors
@@ -28,7 +28,7 @@ Feature: Provider Search Checks
 
   Scenario: Provider Denied Page Filtered
     Given I am logged in as a provider
-    And I am on the Denied page
+    And I am on the provider Denied page
     When I open the filter panel
     And I filter by NPI '1111111112'
     Then I should have no errors

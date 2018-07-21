@@ -1,11 +1,11 @@
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
 <table
   id="${searchTableId}"
-  class="generalTable fixedWidthTable ${active_enrollment_tab eq 'notes' ? 'table-enrollment-notes-sort' : ''}"
+  class="generalTable fixedWidthTable ${active_enrollment_tab == 'all' ? 'table-enrollment-all-sort' : ''}"
 >
   <colgroup>
     <c:choose>
-      <c:when test="${active_enrollment_tab=='notes'}">
+      <c:when test="${active_enrollment_tab == 'all'}">
         <col width="32"/>
         <col width="95"/>
         <col width="81"/>
@@ -60,8 +60,8 @@
       <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
 
       <c:choose>
-        <c:when test="${active_enrollment_tab=='notes'}">
-          <th class="towline">
+        <c:when test="${active_enrollment_tab == 'all'}">
+          <th class="twoline">
             <c:choose>
               <c:when test="${searchCriteria.sortColumn == '3'}">
                 <a class="sortable_column" rel="3" href="javascript:;">
@@ -116,7 +116,7 @@
       <c:set var="sortFieldOfEntity" value="6"/>
       <c:set var="sortColumnTitle" value="Status Date"/>
       <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
-      <c:if test="${active_enrollment_tab=='notes'}">
+      <c:if test="${active_enrollment_tab == 'all'}">
         <th class="alignCenter">Notes<span class="sep"></span></th>
       </c:if>
       <th class="alignCenter">Action</th>
@@ -176,7 +176,7 @@
           <c:otherwise><td>${item.riskLevel}</td></c:otherwise>
         </c:choose>
         <td><fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy"/></td>
-        <c:if test="${active_enrollment_tab=='notes'}">
+        <c:if test="${active_enrollment_tab == 'all'}">
           <td class="alignCenter">
             <a
               href="javascript:;"

@@ -1000,7 +1000,7 @@ $(document).ready(function () {
    usNumberFormat : false,
    sortRestart    : true
   });
-  $('.table-enrollment-notes-sort').tablesorter({
+  $('.table-enrollment-all-sort').tablesorter({
    headers:{0:{ sorter: false},8:{ sorter: false},9:{ sorter: false}},
    widgets        : ['zebra', 'columns'],
    usNumberFormat : false,

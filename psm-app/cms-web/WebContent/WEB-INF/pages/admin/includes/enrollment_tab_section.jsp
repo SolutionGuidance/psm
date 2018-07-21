@@ -3,6 +3,14 @@
   <div class="tabR">
     <div class="tabM">
       <a
+        class="tab allTab <c:if test="${active_enrollment_tab == 'all'}">active</c:if>"
+        href="${ctx}/provider/enrollments/all?showFilterPanel=true"
+      >
+        <span class="aR">
+          <span class="aM">All</span>
+        </span>
+      </a>
+      <a
         class="tab draftTab <c:if test="${active_enrollment_tab=='draft'}">active</c:if>"
         href="${ctx}/provider/enrollments/draft?statuses=Draft&showFilterPanel=true"
       >
@@ -32,14 +40,6 @@
       >
         <span class="aR">
           <span class="aM">Denied</span>
-        </span>
-      </a>
-      <a
-        class="tab notesTab <c:if test="${active_enrollment_tab=='notes'}">active</c:if>"
-        href="${ctx}/provider/enrollments/notes?statuses=&showFilterPanel=true"
-      >
-        <span class="aR">
-          <span class="aM">Notes</span>
         </span>
       </a>
       <a href="${ctx}/provider/enrollment/start" class="purpleBtn">

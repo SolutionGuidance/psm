@@ -2370,16 +2370,16 @@ input.date{
   width:60%;
 }
 
-#enrollmentSection #tabNotes .generalTable tr td{
+#enrollmentSection #tabAll .generalTable tr td {
   padding:5px;
 }
 
-#enrollmentSection #tabNotes .generalTable tr th.towline{
+#enrollmentSection #tabAll .generalTable tr th.twoline {
   vertical-align:top;
   line-height:13px;
 }
 
-#enrollmentSection #tabNotes .generalTable tr th.towline a{
+#enrollmentSection #tabAll .generalTable tr th.twoline a {
   width:auto;
   display:inline-block;
   padding:2px 0;
@@ -2472,7 +2472,7 @@ input.date{
 }
 
 #searchResultsSection .tableContainer #resultsTable th,
-.table-enrollment-notes-sort th{
+.table-enrollment-all-sort th {
   padding:0 0 0 5px;
 }
 

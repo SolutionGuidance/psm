@@ -1053,17 +1053,6 @@ $(document).ready(function () {
     closeModal();
   });
 
-  //Textarea
-  $('#writeNotesModal .textarea').live('focus', function () {
-    $(this).val('');
-  });
-
-  $('#writeNotesModal .textarea').live('blur', function () {
-      if ($(this).val() == '') {
-        $(this).val('Write your note here...');
-      }
-    });
-
   //Next Button
   $('.createEnrollmentBtn').live('click', function () {
     if ($('#createEnrollment .newEnrollment').attr('checked')) {
@@ -1086,16 +1075,6 @@ $(document).ready(function () {
       }
     }
   });
-
-  $('.writeNotes').live('click', function () {
-    closeModal();
-    loadModal('#writeNotesModal');
-  });
-
-  $('.viewNotes').live('click', function () {
-      closeModal();
-      loadModal('#viewNotesModal');
-    });
 
   $('.newEnrollmentSaveDraftBtn').live('click', function () {
       closeModal();

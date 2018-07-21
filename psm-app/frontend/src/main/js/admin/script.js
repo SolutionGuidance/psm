@@ -121,14 +121,14 @@ $(document).ready(function () {
   }
 
   var profileIdForWritingNotes = 0;
-  $('.writeNotes').live('click', function () {
+  $('.writeNotes').click(function () {
     closeModal();
     $('#writeNotesModal .textarea').val('Write your note here...');
     profileIdForWritingNotes = $(this).attr("rel");
     loadModal('#writeNotesModal');
   });
 
-  $('#saveNote').live('click', function () {
+  $('#saveNote').click(function () {
     if (!screenLock) {
       screenLock = true;
     }
@@ -148,10 +148,16 @@ $(document).ready(function () {
           success: function (data) {
             closeModal();
             if (data.success) {
-              $("#notesSection").append('<span class="note_' + profileIdForWritingNotes + '" id="note_' + profileIdForWritingNotes + '_' + ($(".note_" + profileIdForWritingNotes).size() + 1) + '">' + input + '</span>');
-              $("a[rel='" + profileIdForWritingNotes + "'].viewNotes").removeClass("disabledLink");
-              $("a[rel='" + profileIdForWritingNotes + "'].viewNotes").removeClass("hide");
-              $("a[rel='" + profileIdForWritingNotes + "'].viewNotes").next().removeClass("hide");
+              var nextCount = $(".note_" + profileIdForWritingNotes).size() + 1;
+              $("#notesSection").append(
+                '<span class="note_' + profileIdForWritingNotes +
+                '" id="note_' + profileIdForWritingNotes + '_' + nextCount +
+                '">' + input + '</span>'
+              );
+              var viewLink = $("a[rel='" + profileIdForWritingNotes + "'].viewNotes");
+              viewLink.removeClass("disabledLink");
+              viewLink.removeClass("hide");
+              viewLink.next().removeClass("hide");
             } else {
               alert(data.message);
             }
@@ -165,7 +171,7 @@ $(document).ready(function () {
 
   var enrollmentIdForNotes = 0;
   var currentShowingNoteCount = 1;
-  $('.viewNotes').live('click', function () {
+  $('.viewNotes').click(function () {
     if ($(this).hasClass('disabledLink')) {
       return false;
     }
@@ -177,12 +183,12 @@ $(document).ready(function () {
     loadModal('#viewNotesModal');
   });
 
-  $("#nextNote").live("click", function () {
+  $("#nextNote").click(function () {
     currentShowingNoteCount++;
     showNoteBody();
   });
 
-  $("#preNote").live("click", function () {
+  $("#prevNote").click(function () {
     currentShowingNoteCount--;
     showNoteBody();
   });
@@ -196,20 +202,20 @@ $(document).ready(function () {
     }
 
     if ($("#note_" + enrollmentIdForNotes + "_" + (currentShowingNoteCount - 1)).size() == 0) {
-      $("#preNote").hide();
+      $("#prevNote").hide();
     } else {
-      $("#preNote").show();
+      $("#prevNote").show();
     }
   }
 
   //Textarea
-  $('#writeNotesModal .textarea').live('focus', function () {
+  $('#writeNotesModal .textarea').on('focus', function () {
     if ($(this).val() == 'Write your note here...') {
       $(this).val('');
     }
   });
 
-  $('#writeNotesModal .textarea').live('blur', function () {
+  $('#writeNotesModal .textarea').on('blur', function () {
     if ($(this).val() == '') {
       $(this).val('Write your note here...');
     }
@@ -1184,17 +1190,6 @@ $(document).ready(function () {
     closeModal();
   });
 
-  //Textarea
-  $('#writeNotesModal .textarea').live('focus', function () {
-    $(this).val('');
-  });
-
-  $('#writeNotesModal .textarea').live('blur', function () {
-    if ($(this).val() == '') {
-      $(this).val('Write your note here...');
-    }
-  });
-
   //Next Button
   $('.createEnrollmentBtn').live('click', function () {
     if ($('#createEnrollment .newEnrollment').attr('checked')) {
@@ -1218,16 +1213,6 @@ $(document).ready(function () {
     }
   });
 
-  /*
-  $('.writeNotes').live('click',function(){
-   closeModal();
-   loadModal('#writeNotesModal');
-  });
-  $('.viewNotes').live('click',function(){
-   closeModal();
-   loadModal('#viewNotesModal');
-  });
-   */
   $('.newEnrollmentSaveDraftBtn').live('click', function () {
     closeModal();
     loadModal('#saveDraftModal');

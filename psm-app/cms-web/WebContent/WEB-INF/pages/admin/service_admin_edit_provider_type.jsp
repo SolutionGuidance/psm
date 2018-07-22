@@ -25,6 +25,9 @@
             Functions
           </div>
           <h1>Functions</h1>
+          <div class="tabSection">
+            <%@include file="/WEB-INF/pages/provider/enrollment/steps/errors.jsp" %>
+          </div>
           <div class="tabSection functionTab" id="enrollmentSection">
             <c:set var="functionsServiceActiveMenuProviderTypes" value="1"/>
             <h:handlebars template="admin/includes/functions_service_nav" context="${pageContext}" />
@@ -63,7 +66,7 @@
                       <div class="tableHeader"><span>Applicable Licenses</span></div>
                       <div class="wholeCol">
                         <div id="providerTypeLicensesContainer">
-                          <c:forEach var="selectedLicenseType" items="${selectedLicenseTypes}">
+                          <c:forEach var="selectedLicenseCode" items="${selectedLicenseCodes}">
                             <div class="providerTypeLicenseRow">
                               <label>
                                 <div class="providerTypeLicenseRowLabel">Applicable License:</div>

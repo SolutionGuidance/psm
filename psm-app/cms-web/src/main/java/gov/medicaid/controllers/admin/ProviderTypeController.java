@@ -24,6 +24,7 @@ import gov.medicaid.entities.LicenseType;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ProviderTypeSearchCriteria;
 import gov.medicaid.entities.SearchResult;
+import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.AgreementDocumentService;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceException;
@@ -41,8 +42,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 /**
  * <p>
@@ -173,32 +174,7 @@ public class ProviderTypeController {
     public ModelAndView beginEdit(@RequestParam("providerTypeId") String providerTypeId) throws PortalServiceException {
         ProviderType providerType = providerTypeService.get(providerTypeId);
 
-        // Retrieve agreements
-        AgreementDocumentSearchCriteria criteria = new AgreementDocumentSearchCriteria();
-        criteria.setPageNumber(1);
-        criteria.setPageSize(-1);
-        List<AgreementDocument> agreements = agreementDocumentService.search(criteria).getItems();
-        List<AgreementDocument> remainingAgreements = new ArrayList<AgreementDocument>(agreements);
-        Set<AgreementDocument> selectedAgreements = providerType.getAgreementDocuments();
-
-        for (AgreementDocument agreement: agreements) {
-            for (AgreementDocument selectedAgreement: selectedAgreements) {
-                if (selectedAgreement.getId() == agreement.getId()) {
-                    remainingAgreements.remove(agreement);
-                    break;
-                }
-            }
-        }
-        ModelAndView model = new ModelAndView("admin/service_admin_edit_provider_type");
-        model.addObject("providerType", providerType);
-        model.addObject("selectedAgreements", selectedAgreements);
-        model.addObject("remainingAgreements", remainingAgreements);
-
-        List<LicenseType> allLicenseTypes = lookupService.findAllLookups(LicenseType.class);
-
-        model.addObject("selectedLicenseTypes", providerType.getLicenseTypes());
-        model.addObject("allLicenseTypes", allLicenseTypes);
-        return model;
+        return edit(providerType);
     }
 
     /**
@@ -251,16 +227,35 @@ public class ProviderTypeController {
     @RequestMapping(value = "/admin/updateProviderType", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("providerType") ProviderType providerType, HttpServletRequest request)
         throws PortalServiceException {
-        providerTypeService.update(providerType);
-        // Retrieve
-        providerType = providerTypeService.get(providerType.getCode());
+
         long[] agreementIds = ServletRequestUtils.getLongParameters(request, "providerAgreements");
         String[] licenseIds = ServletRequestUtils.getStringParameters(request, "providerLicenses");
 
-        providerTypeService.updateProviderTypeAgreementSettings(providerType, agreementIds);
-        providerTypeService.updateProviderTypeLicenseSettings(providerType, licenseIds);
+        ProviderType typeByDesc = lookupService.findLookupByDescription(
+            ProviderType.class,
+            providerType.getDescription()
+        );
 
-        return view(providerType);
+        if (typeByDesc != null && !typeByDesc.getCode().equals(providerType.getCode())) {
+            FormError error = new FormError();
+            error.setFieldId("placeholder");
+            error.setMessage("Cannot have a duplicate description: " + providerType.getDescription());
+
+            return edit(
+                providerType,
+                agreementIds,
+                licenseIds,
+                Collections.singletonList(error)
+            );
+        } else {
+            providerTypeService.update(providerType);
+            providerType = providerTypeService.get(providerType.getCode());
+
+            providerTypeService.updateProviderTypeAgreementSettings(providerType, agreementIds);
+            providerTypeService.updateProviderTypeLicenseSettings(providerType, licenseIds);
+
+            return view(providerType);
+        }
     }
 
     /**
@@ -288,6 +283,57 @@ public class ProviderTypeController {
         model.addObject("providerType", providerType);
         model.addObject("agreements", providerType.getAgreementDocuments());
         model.addObject("licenseTypes", providerType.getLicenseTypes());
+        return model;
+    }
+
+    private ModelAndView edit(ProviderType providerType) throws PortalServiceException {
+        return edit(
+            providerType,
+            providerType.getAgreementDocuments()
+                .stream()
+                .mapToLong(AgreementDocument::getId)
+                .toArray(),
+            providerType.getLicenseTypes()
+                .stream()
+                .map(LicenseType::getCode)
+                .toArray(String[]::new),
+            null
+        );
+    }
+
+    private ModelAndView edit(
+        ProviderType providerType,
+        long[] selectedAgreementIds,
+        String[] selectedLicenseCodes,
+        List<FormError> errors
+    ) throws PortalServiceException {
+        // Retrieve agreements
+        AgreementDocumentSearchCriteria criteria = new AgreementDocumentSearchCriteria();
+        criteria.setPageNumber(1);
+        criteria.setPageSize(-1);
+        List<AgreementDocument> agreements = agreementDocumentService.search(criteria).getItems();
+        List<AgreementDocument> selectedAgreements = new ArrayList<AgreementDocument>();
+        List<AgreementDocument> remainingAgreements = new ArrayList<AgreementDocument>(agreements);
+
+        for (AgreementDocument agreement: agreements) {
+            for (long selectedAgreementId: selectedAgreementIds) {
+                if (selectedAgreementId == agreement.getId()) {
+                    selectedAgreements.add(agreement);
+                    remainingAgreements.remove(agreement);
+                    break;
+                }
+            }
+        }
+        ModelAndView model = new ModelAndView("admin/service_admin_edit_provider_type");
+        model.addObject("providerType", providerType);
+        model.addObject("selectedAgreements", selectedAgreements);
+        model.addObject("remainingAgreements", remainingAgreements);
+
+        List<LicenseType> allLicenseTypes = lookupService.findAllLookups(LicenseType.class);
+
+        model.addObject("selectedLicenseCodes", selectedLicenseCodes);
+        model.addObject("allLicenseTypes", allLicenseTypes);
+        model.addObject("errors", errors);
         return model;
     }
 }

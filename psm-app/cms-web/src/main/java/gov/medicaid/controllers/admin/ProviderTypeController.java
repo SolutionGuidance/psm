@@ -124,11 +124,7 @@ public class ProviderTypeController {
     @RequestMapping(value = "/admin/getProviderType", method = RequestMethod.GET)
     public ModelAndView get(@RequestParam("providerTypeId") String providerTypeId) throws PortalServiceException {
         ProviderType providerType = providerTypeService.get(providerTypeId);
-        ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
-        model.addObject("providerType", providerType);
-        model.addObject("agreements", providerType.getAgreementDocuments());
-        model.addObject("licenseTypes", providerType.getLicenseTypes());
-        return model;
+        return view(providerType);
     }
 
     /**
@@ -227,9 +223,7 @@ public class ProviderTypeController {
             // Retrieve
             providerType = providerTypeService.get(providerType.getCode());
 
-            ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
-            model.addObject("providerType", providerType);
-            return model;
+            return view(providerType);
         } else {
 
             ModelAndView mv = beginCreate();
@@ -266,11 +260,7 @@ public class ProviderTypeController {
         providerTypeService.updateProviderTypeAgreementSettings(providerType, agreementIds);
         providerTypeService.updateProviderTypeLicenseSettings(providerType, licenseIds);
 
-        ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
-        model.addObject("providerType", providerType);
-        model.addObject("agreements", providerType.getAgreementDocuments());
-        model.addObject("licenseTypes", providerType.getLicenseTypes());
-        return model;
+        return view(providerType);
     }
 
     /**
@@ -291,5 +281,13 @@ public class ProviderTypeController {
             providerTypeService.delete(providerTypeId);
         }
         return "success";
+    }
+
+    private ModelAndView view(ProviderType providerType) {
+        ModelAndView model = new ModelAndView("admin/service_admin_view_provider_type");
+        model.addObject("providerType", providerType);
+        model.addObject("agreements", providerType.getAgreementDocuments());
+        model.addObject("licenseTypes", providerType.getLicenseTypes());
+        return model;
     }
 }

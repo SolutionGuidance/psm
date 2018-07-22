@@ -19,7 +19,6 @@ package gov.medicaid.controllers.admin;
 import gov.medicaid.controllers.ControllerHelper;
 import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.AgreementDocumentSearchCriteria;
-import gov.medicaid.entities.AgreementDocumentType;
 import gov.medicaid.entities.LicenseType;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ProviderTypeSearchCriteria;
@@ -41,6 +40,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -139,25 +139,10 @@ public class ProviderTypeController {
      */
     @RequestMapping(value = "/admin/beginCreateProviderType", method = RequestMethod.GET)
     public ModelAndView beginCreate() throws PortalServiceException {
-        // Retrieve agreements
-        AgreementDocumentSearchCriteria criteria = new AgreementDocumentSearchCriteria();
-        criteria.setPageNumber(1);
-        criteria.setPageSize(-1);
-        criteria.setType(AgreementDocumentType.AGREEMENT);
-
-        List<AgreementDocument> agreements = agreementDocumentService.search(criteria).getItems();
-        // Retrieve addendums
-        criteria = new AgreementDocumentSearchCriteria();
-        criteria.setPageNumber(1);
-        criteria.setPageSize(-1);
-        criteria.setType(AgreementDocumentType.ADDENDUM);
-
-        List<AgreementDocument> addendums = agreementDocumentService.search(criteria).getItems();
-        ModelAndView model = new ModelAndView("admin/service_admin_create_provider_type");
-        model.addObject("agreements", agreements);
-        model.addObject("addendums", addendums);
-        model.addObject("providerType", new ProviderType());
-        return model;
+        return addCommonElements(
+            new ModelAndView("admin/service_admin_create_provider_type"),
+            new ProviderType()
+        );
     }
 
     /**
@@ -174,7 +159,9 @@ public class ProviderTypeController {
     public ModelAndView beginEdit(@RequestParam("providerTypeId") String providerTypeId) throws PortalServiceException {
         ProviderType providerType = providerTypeService.get(providerTypeId);
 
-        return edit(providerType);
+        return addCommonElements(
+            new ModelAndView("admin/service_admin_edit_provider_type"),
+            providerType);
     }
 
     /**
@@ -193,23 +180,36 @@ public class ProviderTypeController {
         throws PortalServiceException {
         boolean blank = Util.isBlank(providerType.getDescription());
         boolean exists = lookupService.findLookupByDescription(ProviderType.class, providerType.getDescription()) != null;
+
+        long[] agreementIds = ServletRequestUtils.getLongParameters(request, "providerAgreements");
+        String[] licenseIds = ServletRequestUtils.getStringParameters(request, "providerLicenses");
+
         if (!blank && !exists) {
             providerTypeService.create(providerType);
 
             // Retrieve
             providerType = providerTypeService.get(providerType.getCode());
 
+            providerTypeService.updateProviderTypeAgreementSettings(providerType, agreementIds);
+            providerTypeService.updateProviderTypeLicenseSettings(providerType, licenseIds);
+
             return view(providerType);
         } else {
+            FormError error = new FormError();
+            error.setFieldId("placeholder");
 
-            ModelAndView mv = beginCreate();
             if (blank) {
-                ControllerHelper.addError("Please specify a provider type.");
+                error.setMessage("Please specify a provider type.");
             } else if (exists) {
-                ControllerHelper.addError("Specified provider type already exists.");
+                error.setMessage("Specified provider type already exists.");
             }
-            mv.addObject("providerType", providerType);
-            return mv;
+
+            return addCommonElements(
+                new ModelAndView("admin/service_admin_create_provider_type"),
+                providerType,
+                agreementIds,
+                licenseIds,
+                Collections.singletonList(error));
         }
     }
 
@@ -241,7 +241,8 @@ public class ProviderTypeController {
             error.setFieldId("placeholder");
             error.setMessage("Cannot have a duplicate description: " + providerType.getDescription());
 
-            return edit(
+            return addCommonElements(
+                new ModelAndView("admin/service_admin_edit_provider_type"),
                 providerType,
                 agreementIds,
                 licenseIds,
@@ -286,22 +287,28 @@ public class ProviderTypeController {
         return model;
     }
 
-    private ModelAndView edit(ProviderType providerType) throws PortalServiceException {
-        return edit(
+    private ModelAndView addCommonElements(ModelAndView mv, ProviderType providerType) throws PortalServiceException {
+        return addCommonElements(
+            mv,
             providerType,
-            providerType.getAgreementDocuments()
-                .stream()
-                .mapToLong(AgreementDocument::getId)
-                .toArray(),
-            providerType.getLicenseTypes()
-                .stream()
-                .map(LicenseType::getCode)
-                .toArray(String[]::new),
+            providerType.getAgreementDocuments() == null ?
+                new long[0] :
+                providerType.getAgreementDocuments()
+                    .stream()
+                    .mapToLong(AgreementDocument::getId)
+                    .toArray(),
+            providerType.getLicenseTypes() == null ?
+                new String[0] :
+                providerType.getLicenseTypes()
+                    .stream()
+                    .map(LicenseType::getCode)
+                    .toArray(String[]::new),
             null
         );
     }
 
-    private ModelAndView edit(
+    private ModelAndView addCommonElements(
+        ModelAndView mv,
         ProviderType providerType,
         long[] selectedAgreementIds,
         String[] selectedLicenseCodes,
@@ -324,16 +331,15 @@ public class ProviderTypeController {
                 }
             }
         }
-        ModelAndView model = new ModelAndView("admin/service_admin_edit_provider_type");
-        model.addObject("providerType", providerType);
-        model.addObject("selectedAgreements", selectedAgreements);
-        model.addObject("remainingAgreements", remainingAgreements);
+        mv.addObject("providerType", providerType);
+        mv.addObject("selectedAgreements", selectedAgreements);
+        mv.addObject("remainingAgreements", remainingAgreements);
 
         List<LicenseType> allLicenseTypes = lookupService.findAllLookups(LicenseType.class);
 
-        model.addObject("selectedLicenseCodes", selectedLicenseCodes);
-        model.addObject("allLicenseTypes", allLicenseTypes);
-        model.addObject("errors", errors);
-        return model;
+        mv.addObject("selectedLicenseCodes", selectedLicenseCodes);
+        mv.addObject("allLicenseTypes", allLicenseTypes);
+        mv.addObject("errors", errors);
+        return mv;
     }
 }

@@ -25,40 +25,23 @@
             Functions
           </div>
           <h1>Functions</h1>
-
-          <c:if test="${not empty requestScope['flash_error']}">
-            <div class="clear"></div>
-            <div class="errorInfo formErrorMarker" style="display: block;">
-              <h3>Please correct the following errors:</h3>
-              <p class="bindingError"><c:out value="${requestScope['flash_error']}"></c:out></p>
-              <div class="tl"></div>
-              <div class="tr"></div>
-              <div class="bl"></div>
-              <div class="br"></div>
-            </div>
-            <div class="clear"></div>
-          </c:if>
+          <div class="tabSection">
+            <%@include file="/WEB-INF/pages/provider/enrollment/steps/errors.jsp" %>
+          </div>
           <div class="tabSection functionTab" id="enrollmentSection">
             <c:set var="functionsServiceActiveMenuProviderTypes" value="1"/>
             <h:handlebars template="admin/includes/functions_service_nav" context="${pageContext}" />
-
-
             <div class="tabContent" id="tabProviderTypes">
-              <form:form id="providerTypeForm" modelAttribute="providerType" action="${ctx}/admin/createProviderType" method="post">
-                <div id="addProviderPanel">
-                  <div class="sideBorder"><h3>Add Provider Type</h3></div>
-                  <%@ include file="/WEB-INF/pages/admin/includes/service_admin_create_edit_provider_type_common.jsp" %>
-                </div>
-              </form:form>
-              <!--/ #addProviderPanel -->
+              <div class="sideBorder"><h3>Add Provider Type</h3></div>
+              <c:set var="editCreateProviderTypeFormAction" value="${ctx}/admin/createProviderType" />
+              <%@ include file="/WEB-INF/pages/admin/includes/service_admin_create_edit_provider_type_common.jsp" %>
             </div>
           </div>
         </div>
-      </div>
       <!-- /#mainContent -->
-
+      </div>
       <h:handlebars template="includes/footer" context="${pageContext}"/>
-    </div>
     <!-- /#wrapper -->
+    </div>
   </body>
 </html>

@@ -80,7 +80,7 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
         }
 
         try {
-            if (providerType.getCode() == null) {
+            if (Util.isBlank(providerType.getCode())) {
                 providerType.setCode(generateCode(getLookupService().findAllLookups(ProviderType.class)));
             }
             getEm().persist(providerType);

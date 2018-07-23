@@ -30,6 +30,11 @@ public class GeneralSteps {
     }
 
     @Step
+    public void checkForFormError(String errorClass, String errorText) {
+        psmPage.checkForFormError(errorClass, errorText);
+    }
+
+    @Step
     public void navigateToRegisterNewAccountPage() {
         loginPage.open();
         loginPage.click$(".registerNewAccountLink");

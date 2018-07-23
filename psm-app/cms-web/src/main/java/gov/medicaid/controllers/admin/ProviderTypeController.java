@@ -206,7 +206,7 @@ public class ProviderTypeController {
             return view(providerType);
         } else {
             FormError error = new FormError();
-            error.setFieldId("placeholder");
+            error.setFieldId("providerTypeDescription");
 
             if (blank) {
                 error.setMessage("Please specify a provider type.");
@@ -248,7 +248,7 @@ public class ProviderTypeController {
 
         if (typeByDesc != null && !typeByDesc.getCode().equals(providerType.getCode())) {
             FormError error = new FormError();
-            error.setFieldId("placeholder");
+            error.setFieldId("providerTypeDescription");
             error.setMessage("Cannot have a duplicate description: " + providerType.getDescription());
 
             return addCommonElements(

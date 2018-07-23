@@ -5,14 +5,13 @@ buildscript {
         maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
-        classpath 'org.liquibase:liquibase-gradle-plugin:1.2.4'
+        classpath 'org.liquibase:liquibase-gradle-plugin:2.0.0'
         classpath 'gradle.plugin.org.openrepose:gradle-jaxb-plugin:2.4.1'
         classpath 'com.moowork.gradle:gradle-node-plugin:1.2.0'
         classpath 'kr.motd.gradle:sphinx-gradle-plugin:1.0.5'
         classpath ('net.serenity-bdd:serenity-gradle-plugin:1.8.20') {
             exclude group: 'com.google.inject', module:'guice'
         }
-        classpath 'org.postgresql:postgresql:42.2.2'
         classpath 'gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.2'
     }
 }
@@ -48,7 +47,9 @@ ext.libs = [
         exclude group: 'org.hibernate'
         exclude group: 'org.hibernate.javax.persistence'
     },
+    liquibase: 'org.liquibase:liquibase-core:3.5.5',
     openpdf: 'com.github.librepdf:openpdf:1.0.5',
+    postgres: 'org.postgresql:postgresql:42.2.2',
     spring_beans: "org.springframework:spring-beans:${spring_core_version}",
     spring_context: "org.springframework:spring-context:${spring_core_version}",
     spring_jdbc: "org.springframework:spring-jdbc:${spring_core_version}",
@@ -316,10 +317,19 @@ project(':cms-portal-services') {
 project(':db') {
     apply plugin: 'liquibase'
 
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        liquibaseRuntime libs.liquibase
+        liquibaseRuntime libs.postgres
+    }
+
     liquibase {
         activities {
             main {
-                changeLogFile 'db/changelog/db-changelog-master.xml'
+                changeLogFile 'changelog/db-changelog-master.xml'
                 url System.properties.get('databasePath')
                 username System.properties.get('databaseUser')
                 password System.properties.get('databasePassword')

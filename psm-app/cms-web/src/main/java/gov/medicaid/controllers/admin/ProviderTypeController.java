@@ -87,7 +87,15 @@ public class ProviderTypeController {
         criteria.setPageNumber(1);
         criteria.setPageSize(10);
         criteria.setSortColumn("description");
-        return search(criteria);
+
+        SearchResult<ProviderType> result = providerTypeService.search(criteria);
+        result.getItems().forEach(providerTypeService::updateProviderTypeCanDelete);
+        ModelAndView model = new ModelAndView("admin/service_admin_provider_types");
+        model.addObject("providerTypesSearchResult", result);
+        model.addObject("searchCriteria", criteria);
+        ControllerHelper.addPaginationDetails(result, model);
+        ControllerHelper.addPaginationLinks(result, model);
+        return model;
     }
 
     /**
@@ -104,6 +112,7 @@ public class ProviderTypeController {
     public ModelAndView search(@ModelAttribute("criteria") ProviderTypeSearchCriteria criteria)
         throws PortalServiceException {
         SearchResult<ProviderType> result = providerTypeService.search(criteria);
+        result.getItems().forEach(providerTypeService::updateProviderTypeCanDelete);
         ModelAndView model = new ModelAndView("admin/service_admin_provider_types");
         model.addObject("providerTypesSearchResult", result);
         model.addObject("searchCriteria", criteria);
@@ -125,6 +134,7 @@ public class ProviderTypeController {
     @RequestMapping(value = "/admin/getProviderType", method = RequestMethod.GET)
     public ModelAndView get(@RequestParam("providerTypeId") String providerTypeId) throws PortalServiceException {
         ProviderType providerType = providerTypeService.get(providerTypeId);
+        providerTypeService.updateProviderTypeCanDelete(providerType);
         return view(providerType);
     }
 
@@ -271,9 +281,9 @@ public class ProviderTypeController {
      */
     @RequestMapping(value = "/admin/deleteProviderTypes", method = RequestMethod.GET)
     @ResponseBody
-    public String delete(@RequestParam("providerTypeIds") long[] providerTypeIds, HttpServletRequest request)
+    public String delete(@RequestParam("providerTypeIds") String[] providerTypeIds, HttpServletRequest request)
         throws PortalServiceException {
-        for (long providerTypeId : providerTypeIds) {
+        for (String providerTypeId : providerTypeIds) {
             providerTypeService.delete(providerTypeId);
         }
         return "success";

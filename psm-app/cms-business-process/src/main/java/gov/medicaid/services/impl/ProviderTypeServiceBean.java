@@ -195,7 +195,8 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
      * @throws PortalServiceException - If there are any errors during the execution of this method
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void delete(long id) throws PortalServiceException {
+    @Override
+    public void delete(String id) throws PortalServiceException {
         try {
             ProviderType obj = getEm().find(ProviderType.class, id);
             if (obj == null) {
@@ -299,6 +300,20 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
                 new HashSet<>(getLicenseTypes(licenseCodes))
         );
         getEm().merge(providerType);
+    }
+
+    @Override
+    public void updateProviderTypeCanDelete(ProviderType providerType) {
+        providerType.setCanDelete(
+            0 == ((Number) (getEm().createQuery("SELECT count(*) FROM Entity WHERE providerType = :providerType")
+                     .setParameter("providerType", providerType)
+                     .getSingleResult()))
+                 .intValue() &&
+            0 == ((Number) (getEm().createQuery("SELECT count(*) FROM ProviderTypeSetting WHERE providerTypeCode = :providerTypeCode")
+                     .setParameter("providerTypeCode", providerType.getCode())
+                     .getSingleResult()))
+                 .intValue()
+        );
     }
 
     private List<AgreementDocument> getAgreementDocuments(long[] agreementIds) {

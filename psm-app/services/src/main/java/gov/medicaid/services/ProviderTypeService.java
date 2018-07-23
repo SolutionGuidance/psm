@@ -80,7 +80,7 @@ public interface ProviderTypeService {
      * @param id - the ID of the provider type to delete
      * @throws PortalServiceException - If there are any errors during the execution of this method
      */
-    void delete(long id) throws PortalServiceException;
+    void delete(String id) throws PortalServiceException;
 
     /**
      * This method gets all the provider types that meet the search criteria. If none available, the search result will
@@ -129,4 +129,11 @@ public interface ProviderTypeService {
             ProviderType providerType,
             String[] licenseIds
     );
+
+    /**
+     * Updates the ProviderType can delete setting.
+     *
+     * @param providerType providerType
+     */
+    void updateProviderTypeCanDelete(ProviderType providerType);
 }

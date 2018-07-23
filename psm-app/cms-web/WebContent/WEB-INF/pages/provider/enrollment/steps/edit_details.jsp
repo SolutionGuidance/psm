@@ -180,7 +180,7 @@
               <c:choose>
                 <c:when test="${viewModel.currentTab eq 'Notes'}">
                   <div class="buttonBox">
-                    <c:url var="cancelUrl" value="/provider/search/pending?statuses=Pending&showFilterPanel=true"/>
+                    <c:url var="cancelUrl" value="/provider/enrollments/pending?statuses=Pending&showFilterPanel=true"/>
                     <a class="greyBtn" href="${cancelUrl}">
                       Cancel
                     </a>
@@ -191,7 +191,7 @@
                 </c:when>
                 <c:when test="${isReopened}">
                   <div class="buttonBox">
-                    <c:url var="cancelUrl" value="/provider/search/pending?statuses=Pending&showFilterPanel=true"/>
+                    <c:url var="cancelUrl" value="/provider/enrollments/pending?statuses=Pending&showFilterPanel=true"/>
                     <a class="greyBtn" href="${cancelUrl}">
                       Cancel
                     </a>

@@ -162,7 +162,7 @@
               </div>
               <div class="buttonBox">
                 <a
-                  href="${ctx}/provider/search/pending?statuses=Pending&showFilterPanel=true"
+                  href="${ctx}/provider/enrollments/pending?statuses=Pending&showFilterPanel=true"
                   class="greyBtn"
                 >
                   Cancel

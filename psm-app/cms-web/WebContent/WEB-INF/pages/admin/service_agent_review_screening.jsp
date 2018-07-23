@@ -161,10 +161,27 @@
 
               </div>
               <div class="buttonBox">
-                <a href="${ctx}/provider/search/pending?statuses=Pending&showFilterPanel=true" class="greyBtn"><span class="text">Cancel</span></a>
-                <button class="greyBtn" type="submit">Approve</button>
-                <a href="${ctx}/agent/enrollment/rejectTicket?id=${id}" class="greyBtn"><span class="text">Reject</span></a>
-                <a href="${ctx}/provider/enrollment/reopen?id=${id}" class="greyBtn"><span class="text">Modify</span></a>
+                <a
+                  href="${ctx}/provider/search/pending?statuses=Pending&showFilterPanel=true"
+                  class="greyBtn"
+                >
+                  Cancel
+                </a>
+                <button class="greyBtn" type="submit">
+                  Approve
+                </button>
+                <a
+                  href="${ctx}/agent/enrollment/rejectTicket?id=${id}"
+                  class="greyBtn"
+                >
+                  Reject
+                </a>
+                <a
+                  href="${ctx}/provider/enrollment/reopen?id=${id}"
+                  class="greyBtn"
+                >
+                  Modify
+                </a>
               </div>
             </form>
           </div>

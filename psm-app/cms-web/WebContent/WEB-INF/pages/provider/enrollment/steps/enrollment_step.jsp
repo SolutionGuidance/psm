@@ -24,7 +24,7 @@
           <c:choose>
             <c:when test="${isRenewalEnrollment}">
               <div class="breadCrumb">
-                <a href="<c:url value="/provider/dashboard/drafts" />">Enrollments</a>
+                <%@ include file="/WEB-INF/pages/admin/includes/enrollments_link.jsp" %>
                 <span>Enrollment Renewal</span>
               </div>
               <div class="head">
@@ -36,7 +36,7 @@
             </c:when>
             <c:otherwise>
               <div class="breadCrumb">
-                <a href="<c:url value="/provider/dashboard/drafts" />">Enrollments</a>
+                <%@ include file="/WEB-INF/pages/admin/includes/enrollments_link.jsp" %>
                 <span>Register New Enrollment</span>
               </div>
               <div class="head">

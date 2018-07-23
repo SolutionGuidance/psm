@@ -21,7 +21,7 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <a href="<c:url value="/provider/dashboard/list" />">Enrollments</a>
+            <%@ include file="/WEB-INF/pages/admin/includes/enrollments_link.jsp" %>
             <span>View Enrollment Details</span>
           </div>
 

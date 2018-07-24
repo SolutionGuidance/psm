@@ -13,7 +13,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set value="Advanced Search (System Admin)" var="title"></c:set>
-  <c:set value="true" var="systemPage"></c:set>
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">

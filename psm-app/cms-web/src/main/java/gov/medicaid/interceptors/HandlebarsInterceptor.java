@@ -44,10 +44,17 @@ public class HandlebarsInterceptor extends HandlerInterceptorAdapter {
             CMSUser principalUser = principal.getUser();
             modelAndView.addObject("principalUser", principalUser);
 
+            String roleDescription = principalUser.getRole().getDescription();
+
             // <c:if test="${requestPrincipal.user.role.description eq 'Service Administrator'}">
-            if ("Service Administrator".equals(principalUser.getRole().getDescription())) {
+            if ("Service Administrator".equals(roleDescription)) {
                 modelAndView.addObject(
                         "isServiceAdministrator",
+                        true
+                );
+            } else if ("System Administrator".equals(roleDescription)) {
+                modelAndView.addObject(
+                        "isSystemAdministrator",
                         true
                 );
             }

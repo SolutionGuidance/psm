@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="{{ctx}}/css/reset.css" media="all" />
   <link rel="stylesheet" href="{{ctx}}/css/style.css" media="all" />
   <link rel="stylesheet" href="{{ctx}}/css/jquery.ui.css" media="all" />
-  {{#if adminPage}}
+  {{#if isServiceAdministrator}}
     <link rel="stylesheet" href="{{ctx}}/js/chosen/chosen.css" media="all"/>
     <link rel="stylesheet" href="{{ctx}}/js/jwysiwyg/jquery.wysiwyg.css"/>
   {{else if systemPage}}
@@ -21,7 +21,7 @@
   <script src="{{ctx}}/js/jquery.ui.widget.js"></script>
   <script src="{{ctx}}/js/jquery.ui.datepicker.js"></script>
   <script src="{{ctx}}/js/jquery.mask.min.js"></script>
-  {{#if adminPage}}
+  {{#if isServiceAdministrator}}
     <script src="{{ctx}}/js/jquery.validate.min.js"></script>
     <script src="{{ctx}}/js/chosen/chosen.jquery.min.js"></script>
     <script src="{{ctx}}/js/jwysiwyg/jquery.wysiwyg.js"></script>
@@ -50,7 +50,7 @@
 
   <script src="{{ctx}}/js/common.js"></script>
 
-  {{#if adminPage}}
+  {{#if isServiceAdministrator}}
     <script src="{{ctx}}/js/admin/script.js"></script>
   {{else if systemPage}}
     <script src="{{ctx}}/js/system/script.js"></script>

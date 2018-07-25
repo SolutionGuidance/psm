@@ -34,3 +34,21 @@ Feature: Form and Field Validations
     When I enter license info where renewal date is before issue date
     And I click 'next' on the license info page
     Then I should get a renewal date error
+
+  @issue_842
+  Scenario: Validate individual provider email address contact
+    Given I have started an enrollment
+    And I am on the personal info page
+    And I enter valid personal information
+    When I enter an empty email address on the personal info page
+    And I click 'next' on the personal info page
+    Then I should get a same as above email error
+
+  @issue_842
+  Scenario: Validate individual provider email address is required
+    Given I have started an enrollment
+    And I am on the personal info page
+    And I enter valid personal information
+    When I enter an empty email address on the personal info page
+    And I click 'next' on the personal info page
+    Then I should see email address is required

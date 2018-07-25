@@ -15,6 +15,9 @@ public class PersonalInfoPage extends PsmPage {
     private static final String PROVIDER_TOO_YOUNG_ERROR_MESSAGE =
             "Provider age should be 18 or above during enrollment.";
 
+    private static final String SAME_AS_ABOVE_EMAIL_ERROR_MESSAGE =
+            "Email Address is required when same as above is checked.";
+
     public void enterDOB(LocalDate dateOfBirth) {
         $("[name=_02_dob]").type(format(dateOfBirth));
     }
@@ -54,5 +57,15 @@ public class PersonalInfoPage extends PsmPage {
     public void checkForTooYoungError() throws Exception {
         assertThat($(".errorInfo > ._02_dob").getText())
                 .contains(PROVIDER_TOO_YOUNG_ERROR_MESSAGE);
+    }
+
+    public void checkForSameAsAboveEmailError() throws Exception {
+        assertThat($(".errorInfo > ._02_email").getText())
+                .contains(SAME_AS_ABOVE_EMAIL_ERROR_MESSAGE);
+    }
+
+    public void checkEmailAddressDisplaysAsRequired() throws Exception {
+        assertThat($("#requireEmailAddressLabel.required") != null);
+        assertThat($("requireEmailAddressLabel.required.hidden") == null);
     }
 }

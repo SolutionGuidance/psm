@@ -658,16 +658,16 @@ public class EnrollmentController extends BaseController {
         ModelAndView mv = new ModelAndView(viewName, "results", results);
         if (criteria.getStatuses() == null || criteria.getStatuses().isEmpty()) {
             mv.addObject("Status", "");
-            // populate notes
-
-            List<UserRequest> items = results.getItems();
-            if (items != null) {
-                for (UserRequest item : items) {
-                    item.setNotes(enrollmentService.findNotes(item.getTicketId()));
-                }
-            }
         } else {
             mv.addObject("Status", criteria.getStatuses().get(0));
+        }
+
+        // populate notes
+        List<UserRequest> items = results.getItems();
+        if (items != null) {
+            for (UserRequest item : items) {
+                item.setNotes(enrollmentService.findNotes(item.getTicketId()));
+            }
         }
 
         // load all actions that can be performed by user, JSP should check that processInstanceId are equal

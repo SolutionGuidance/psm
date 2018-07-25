@@ -22,7 +22,7 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <a href="<c:url value="/provider/dashboard/drafts" />">Enrollments</a>
+            <%@ include file="/WEB-INF/pages/admin/includes/enrollments_link.jsp" %>
             <span>Edit Enrollment</span>
           </div>
           <div class="head">
@@ -203,7 +203,14 @@
                 <c:otherwise>
                   <div class="buttonBox">
                     <input type="hidden" name="pageName" value="${pageName}"/>
-                    <c:url var="cancelUrl" value="/provider/dashboard/drafts"/>
+                    <c:choose>
+                      <c:when test="${isServiceAdministrator}">
+                        <c:url var="cancelUrl" value="/provider/enrollments/all"/>
+                      </c:when>
+                      <c:otherwise>
+                        <c:url var="cancelUrl" value="/provider/dashboard/drafts"/>
+                      </c:otherwise>
+                    </c:choose>
                     <a class="greyBtn" href="${cancelUrl}">
                       Cancel
                     </a>

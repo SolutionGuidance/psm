@@ -19,6 +19,31 @@ public class AdminStepDefinitions {
         generalSteps.login("admin", "admin");
     }
 
+    @When("^I am on the admin All Enrollments page$")
+    public void i_am_on_the_admin_all_enrollments_page() {
+        adminSteps.goToAdminAllEnrollmentsPage();
+    }
+
+    @When("^I am on the admin Draft page$")
+    public void i_am_on_the_admin_draft_page() {
+        adminSteps.goToAdminDraftPage();
+    }
+
+    @When("^I am on the admin Pending page$")
+    public void i_am_on_the_admin_pending_page() {
+        adminSteps.goToAdminPendingPage();
+    }
+
+    @When("^I am on the admin Approved page$")
+    public void i_am_on_the_admin_approved_page() {
+        adminSteps.goToAdminApprovedPage();
+    }
+
+    @When("^I am on the admin Denied page$")
+    public void i_am_on_the_admin_denied_page() {
+        adminSteps.goToAdminDeniedPage();
+    }
+
     @When("^I open the Write Note modal$")
     public void i_open_the_write_note_modal() {
         adminSteps.openWriteNoteModal();
@@ -26,20 +51,20 @@ public class AdminStepDefinitions {
 
     @When("^I am on the COS page$")
     public void i_am_on_the_cos_page() {
-        generalSteps.navigateToDraftPage();
+        adminSteps.goToAdminDraftPage();
         generalSteps.clickLinkAssertTitle(".cosLink", "Category of Service");
     }
 
     @When("^I am on the Print Enrollment page$")
     public void i_am_on_the_print_enrollment_page() {
-        generalSteps.navigateToDraftPage();
+        adminSteps.goToAdminAllEnrollmentsPage();
         // assert fails because print page is opened in a new window
         generalSteps.clickLinkAssertTitle(".printEnrollment", "View Enrollment");
     }
 
     @When("^I am on the Review Enrollment page$")
     public void i_am_on_the_review_enrollment_page() {
-        generalSteps.navigateToPendingPage();
+        adminSteps.goToAdminPendingPage();
         generalSteps.clickLinkAssertTitle(".reviewLink", "Review Enrollment");
     }
 

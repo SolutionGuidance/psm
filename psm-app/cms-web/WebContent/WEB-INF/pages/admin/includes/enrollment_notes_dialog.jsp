@@ -59,7 +59,7 @@
               <textarea id="viewNotesModalNotesBody" rows="6" cols="60" class="textarea disable" disabled="disabled"></textarea>
               <div class="buttons">
                 <div class="links">
-                  <a id="preNote" href="javascript:;">&laquo; Previous</a>
+                  <a id="prevNote" href="javascript:;">&laquo; Previous</a>
                   <a id="nextNote" href="javascript:;" class="nextLink">Next &raquo;</a>
                 </div>
                 <a href="javascript:;" class="greyBtn closeModal">CANCEL</a>

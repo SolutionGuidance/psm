@@ -4,9 +4,19 @@ Feature: Admin Search Checks
 
   # Issue 914
   @ignore
+  Scenario: Admin All Enrollments Page Filtered
+    Given I am logged in as an admin
+    And I am on the admin All Enrollments page
+    When I open the filter panel
+    And I filter by NPI '1111111112'
+    Then I should have no errors
+    And I should see search results
+
+  # Issue 914
+  @ignore
   Scenario: Admin Draft Page Filtered
     Given I am logged in as an admin
-    And I am on the Draft page
+    And I am on the admin Draft page
     When I open the filter panel
     And I filter by NPI '1111111112'
     Then I should have no errors
@@ -16,7 +26,7 @@ Feature: Admin Search Checks
   @ignore
   Scenario: Admin Pending Page Filtered
     Given I am logged in as an admin
-    And I am on the Pending page
+    And I am on the admin Pending page
     When I open the filter panel
     And I filter by NPI '1111111112'
     Then I should have no errors
@@ -26,7 +36,7 @@ Feature: Admin Search Checks
   @ignore
   Scenario: Admin Approved Page Filtered
     Given I am logged in as an admin
-    And I am on the Approved page
+    And I am on the admin Approved page
     When I open the filter panel
     And I filter by NPI '1111111112'
     Then I should have no errors
@@ -36,17 +46,7 @@ Feature: Admin Search Checks
   @ignore
   Scenario: Admin Denied Page Filtered
     Given I am logged in as an admin
-    And I am on the Denied page
-    When I open the filter panel
-    And I filter by NPI '1111111112'
-    Then I should have no errors
-    And I should see search results
-
-  # Issue 914
-  @ignore
-  Scenario: Admin Notes Page Filtered
-    Given I am logged in as an admin
-    And I am on the Notes page
+    And I am on the admin Denied page
     When I open the filter panel
     And I filter by NPI '1111111112'
     Then I should have no errors

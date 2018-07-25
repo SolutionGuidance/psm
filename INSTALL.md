@@ -369,12 +369,7 @@ EOF
    If you have a previous build deployed already, you can replace the
    deployment in the UI or add the `--force` switch after `deploy`.
 
-1. Create database schema and initial data.  Right now, we are midway
-   through a migration to Liquibase and so are using both Liquibase
-   migrations and SQL files to create the database. First, run the
-   migrations to create the first set of tables.  Then, use `seed.sql`
-   to create tables and data for the application, and `jbpm.sql` to
-   create tables and data for the embedded jBPM engine:
+1. Create database schema and initial data. There are two sets of tables in this project.  The first are application tables, and they are created and seeded using liquibase migrations.  The second set of tables are related to jbpm and these are loaded via a SQL script.  Run the commands below in any order to load both sets.
 
     ```shell
        > ./gradlew db:update
@@ -382,7 +377,6 @@ EOF
 
     ```ShellSession
     $ cat {/path/to/psm}/psm-app/db/jbpm.sql \
-          {/path/to/psm}/psm-app/db/seed.sql \
       | psql -h localhost -U psm psm
     ```
 
@@ -431,7 +425,7 @@ Updating the database requires running the Liquibase migrations to get
 the database into the up-to-date configuration. See
 [MIGRATIONS.md](docs/MIGRATIONS.md) for details.
 
-Migration scripts are stored in `psm-app/db/`. 
+Migration scripts are stored in `psm-app/db/`.
 
 
 1. To run the migrations:

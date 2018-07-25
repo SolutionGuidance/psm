@@ -15,14 +15,15 @@
 
   <colgroup>
     <col width="30"/>
-    <col width="140"/>
-    <col width="140"/>
-    <col width="150"/>
-    <col width="145"/>
+    <col width="120"/>
+    <col width="120"/>
+    <col width="130"/>
+    <col width="120"/>
+    <col width="120"/>
     <c:if test="${statusFilter != 'Draft'}">
-      <col width="145"/>
+      <col width="120"/>
     </c:if>
-    <col width="210"/>
+    <col width="*"/>
   </colgroup>
 
   <thead>
@@ -48,6 +49,15 @@
           <a href="javascript:changeSort(10);">
             Date Created
             <span class="${criteria.sortColumn == '10' ? 'sort' : 'nosort'}"></span>
+          </a>
+          <span class="sep"></span>
+        </div>
+      </th>
+      <th class="tablesorter-header ${sortDirCls}">
+        <div class="tablesorter-header-inner">
+          <a href="javascript:changeSort(8);">
+            Provider Type
+            <span class="${criteria.sortColumn == '8' ? 'sort' : 'nosort'}"></span>
           </a>
           <span class="sep"></span>
         </div>
@@ -116,6 +126,7 @@
         <td>
           <fmt:formatDate value="${item.createDate}" pattern="MM/dd/yyyy" />
         </td>
+        <td>${item.providerType}</td>
         <td>
           <c:out value="${item.requestType}" />
         </td>

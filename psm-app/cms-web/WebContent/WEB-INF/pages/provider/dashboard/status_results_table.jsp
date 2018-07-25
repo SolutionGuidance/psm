@@ -1,6 +1,6 @@
 <%--
-    JSP Fragment for provider status list results table.
- --%>
+    Provider status list results table (Draft, Pending, etc.).
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -27,11 +27,19 @@
   </colgroup>
 
   <thead>
-    <c:set var="sortDirCls" value="${criteria.ascending ? 'tablesorter-headerSortDown' : 'tablesorter-headerSortUp' }" />
+    <c:set
+      var="sortDirCls"
+      value="${criteria.ascending ? 'tablesorter-headerSortDown' : 'tablesorter-headerSortUp' }"
+    />
     <tr class="tablesorter-header">
       <th class="alignCenter">
         <div class="tablesorter-header-inner">
-          <input type="checkbox" title="Select All" class="selectAll" name="providerIds">
+          <input
+            type="checkbox"
+            title="Select All"
+            class="selectAll"
+            name="providerIds"
+          >
           <span class="sep"></span>
         </div>
       </th>
@@ -113,28 +121,33 @@
       <c:url var="exportTicketLink" value="/provider/enrollment/exportTicket">
         <c:param name="id" value="${item.ticketId}" />
       </c:url>
-      <c:set var="statusCls" value="${item.status == 'Rejected' ? 'red' : item.status == 'Approved' ? 'green' : ''}" />
-      <c:set var="riskCls" value="${item.riskLevel == 'High' ? 'red' : item.riskLevel == 'Limited' ? 'green' : ''}" />
+      <c:set
+        var="statusCls"
+        value="${item.status == 'Rejected' ? 'red' : item.status == 'Approved' ? 'green' : ''}"
+      />
+      <c:set
+        var="riskCls"
+        value="${item.riskLevel == 'High' ? 'red' : item.riskLevel == 'Limited' ? 'green' : ''}"
+      />
 
       <tr class="${status.index % 2 == 0 ? 'even' : 'odd'}">
         <td class="alignCenter">
-          <input type="checkbox" title="Provider ${item.ticketId}" name="providerIds" value="${item.ticketId}" />
+          <input
+            type="checkbox"
+            title="Provider ${item.ticketId}"
+            name="providerIds"
+            value="${item.ticketId}"
+          />
         </td>
-        <td>
-          <c:out value="${item.npi}" />
-        </td>
+        <td>${item.npi}</td>
         <td>
           <fmt:formatDate value="${item.createDate}" pattern="MM/dd/yyyy" />
         </td>
         <td>${item.providerType}</td>
-        <td>
-          <c:out value="${item.requestType}" />
-        </td>
+        <td>${item.requestType}</td>
 
         <c:if test="${statusFilter != 'Draft'}">
-          <td class="${riskCls}">
-            <c:out value="${item.riskLevel}" />
-          </td>
+          <td class="${riskCls}">${item.riskLevel}</td>
         </c:if>
 
         <td>

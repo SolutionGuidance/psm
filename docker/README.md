@@ -29,7 +29,7 @@ This command will build and run the full Docker setup.
 
 ### TEMPORARY: Database Configuration
 
-As of June 6, 2018, the PSM project is midway through migrating database systems to Liquibase. Because of this, there is one additional step required to fully set up the old portions of the database and get it working. Note that once the migration is complete, this step should no longer be necessary.
+As of June 27, 2018, the PSM project is midway through migrating database systems to Liquibase. Because of this, there is one additional step required to fully set up the old portions of the database and get it working. Note that once the migration is complete, this step should no longer be necessary.
 
 To do this last step, you need to manually connect to the database container and run a single command.
 
@@ -59,6 +59,14 @@ After running, the console should display results for a bunch of SQL operations.
 If the database is updated at any point, this step should be repeated to ensure any new data shows up.
 
 At this point, the application should be ready to go. To try the PSM app out, point your browser at [localhost:8080/cms/login](http://localhost:8080/cms/login). You can log in with username `p1` and password `p1`.
+
+## Running Docker after initial build
+
+Restarting the setup after the initial build is as simple as re-running the original Docker command while in the `psm/docker` directory:
+
+    $ docker-compose -p psm up --build
+
+No additional steps are required to start after initial set-up is done.
 
 ## Installing Docker
 

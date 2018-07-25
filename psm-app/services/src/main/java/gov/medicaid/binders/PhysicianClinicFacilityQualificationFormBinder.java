@@ -24,11 +24,11 @@ import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.CMSUser;
+import gov.medicaid.entities.CategoryOfService;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.License;
 import gov.medicaid.entities.LicenseType;
 import gov.medicaid.entities.ProviderProfile;
-import gov.medicaid.entities.ServiceCategory;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.util.Util;
@@ -57,7 +57,7 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
     /**
      * Ambulance service selection.
      */
-    private final List<ServiceCategory> categories = new ArrayList<ServiceCategory>();
+    private final List<CategoryOfService> categories = new ArrayList<CategoryOfService>();
 
     /**
      * License path.
@@ -70,7 +70,7 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
     public PhysicianClinicFacilityQualificationFormBinder() {
         super(NAMESPACE);
 
-        ServiceCategory cat = new ServiceCategory();
+        CategoryOfService cat = new CategoryOfService();
         cat.setCode("designationApproval");
         cat.setDescription("Hospital Based Clinic Designation:  approval letter from CMS");
         categories.add(cat);
@@ -90,7 +90,7 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
         List<FacilityQualificationType> facilityQualification = creds.getFacilityQualification();
 
-        for (ServiceCategory category : categories) {
+        for (CategoryOfService category : categories) {
             String type1Indicator = param(request, category.getCode() + "Indicator");
             if ("Y".equals(type1Indicator)) {
                 FacilityQualificationType service = nsGetService(facilityQualification, category.getDescription());
@@ -151,7 +151,7 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
         FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
         List<FacilityQualificationType> qualifications = creds.getFacilityQualification();
         for (FacilityQualificationType service : qualifications) {
-            for (ServiceCategory category : categories) {
+            for (CategoryOfService category : categories) {
                 if (category.getDescription().equals(service.getServiceType())) {
                     attr(mv, category.getCode() + "Indicator", "Y");
                     attr(mv, category.getCode(), service.getAttachmentObjectId());
@@ -216,7 +216,7 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
             if (path.endsWith("/ServiceType")) {
                 return createError("licenseNumber", index, message);
             } else if (path.endsWith("AttachmentObjectId")) {
-                for (ServiceCategory category : categories) {
+                for (CategoryOfService category : categories) {
                     if (category.getDescription().equals(service.getServiceType())) {
                         return createError(category.getCode(), message);
                     }

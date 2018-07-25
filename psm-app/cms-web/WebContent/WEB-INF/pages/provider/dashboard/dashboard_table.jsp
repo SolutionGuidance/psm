@@ -7,12 +7,13 @@
 <table class="generalTable dashboardTable fixedWidthTable">
 
   <colgroup>
-    <col width="125"/>
-    <col width="125"/>
-    <col width="145"/>
+    <col width="105"/>
     <col width="120"/>
-    <col width="120"/>
-    <col width="120"/>
+    <col width="135"/>
+    <col width="110"/>
+    <col width="85"/>
+    <col width="90"/>
+    <col width="110"/>
     <col width="*"/>
   </colgroup>
 
@@ -33,6 +34,15 @@
           <a href="javascript:changeSort(3);">
             Date Submitted
             <span class="${criteria.sortColumn == '3' ? 'sort' : 'nosort'}"></span>
+          </a>
+          <span class="sep"></span>
+        </div>
+      </th>
+      <th class="tablesorter-header ${sortDirCls}">
+        <div class="tablesorter-header-inner">
+          <a href="javascript:changeSort(8);">
+            Provider Type
+            <span class="${criteria.sortColumn == '8' ? 'sort' : 'nosort'}"></span>
           </a>
           <span class="sep"></span>
         </div>
@@ -102,6 +112,7 @@
         <td>
           <fmt:formatDate value="${item.submissionDate}" pattern="MM/dd/yyyy" />
         </td>
+        <td>${item.providerType}</td>
         <td>
           <c:out value="${item.requestType}" />
         </td>

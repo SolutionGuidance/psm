@@ -2063,4 +2063,15 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue949-remove-designated-contacts-enrollment-link">
+    <dropColumn tableName="designated_contacts"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="designated_contacts">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

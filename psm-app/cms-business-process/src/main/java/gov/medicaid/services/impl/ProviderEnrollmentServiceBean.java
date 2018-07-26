@@ -1488,7 +1488,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
 
         for (DesignatedContact designatedContact : contacts) {
-            designatedContact.setTicketId(details.getEnrollmentId());
             designatedContact.setProfileId(details.getProfileId());
 
             Person person = designatedContact.getPerson();
@@ -1747,7 +1746,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     private void fetchChildren(ProviderProfile profile) {
         profile.setEntity(findEntityByProviderKey(profile.getProfileId(), profile.getEnrollmentId()));
-        profile.setDesignatedContacts(findDesignatedContacts(profile.getProfileId(), profile.getEnrollmentId()));
+        profile.setDesignatedContacts(findDesignatedContacts(profile.getProfileId()));
         profile.setCertifications(findCertifications(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setAttachments(findAttachments(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setAffiliations(findAffiliations(profile.getProfileId()));
@@ -1947,13 +1946,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     @SuppressWarnings("unchecked")
     private List<DesignatedContact> findDesignatedContacts(
-            long profileId,
-            long ticketId
+            long profileId
     ) {
         Query query = getEm().createQuery(
-                "FROM DesignatedContact d WHERE ticketId = :ticketId AND profileId = :profileId");
+                "FROM DesignatedContact d WHERE profileId = :profileId");
         query.setParameter("profileId", profileId);
-        query.setParameter("ticketId", ticketId);
         return query.getResultList();
     }
 

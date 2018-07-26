@@ -1358,7 +1358,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
 
         for (Affiliation affiliation : affiliations) {
-            affiliation.setTicketId(details.getEnrollmentId());
             affiliation.setProfileId(details.getProfileId());
 
             if (affiliation.getTargetProfileId() == 0) { // manually entered affiliation
@@ -1751,7 +1750,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         profile.setDesignatedContacts(findDesignatedContacts(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setCertifications(findCertifications(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setAttachments(findAttachments(profile.getProfileId(), profile.getEnrollmentId()));
-        profile.setAffiliations(findAffiliations(profile.getProfileId(), profile.getEnrollmentId()));
+        profile.setAffiliations(findAffiliations(profile.getProfileId()));
         profile.setStatement(findStatementByProviderKey(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setOwnershipInformation(findOwnershipInformation(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setNotes(findNotes(profile.getProfileId(), profile.getEnrollmentId()));
@@ -1901,10 +1900,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the related affiliations to the profile
      */
     @SuppressWarnings("unchecked")
-    private List<Affiliation> findAffiliations(long profileId, long ticketId) {
-        Query query = getEm().createQuery("FROM Affiliation a WHERE ticketId = :ticketId AND profileId = :profileId");
+    private List<Affiliation> findAffiliations(long profileId) {
+        Query query = getEm().createQuery("FROM Affiliation a WHERE profileId = :profileId");
         query.setParameter("profileId", profileId);
-        query.setParameter("ticketId", ticketId);
 
         List<Affiliation> affiliations = query.getResultList();
         for (Affiliation affiliation : affiliations) {
@@ -2688,7 +2686,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         for (ProfileHeader profileHeader : profiles) {
 
             // find all practice locations
-            List<Affiliation> affiliations = findAffiliations(profileHeader.getProfileId(), 0);
+            List<Affiliation> affiliations = findAffiliations(profileHeader.getProfileId());
 
             // for every practice location
             for (Affiliation affiliation : affiliations) {

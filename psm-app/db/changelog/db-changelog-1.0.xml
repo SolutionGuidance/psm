@@ -2052,4 +2052,15 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue949-remove-affiliation-enrollment-link">
+    <dropColumn tableName="affiliations"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="affiliations">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

@@ -47,6 +47,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * This binder handles the provider type selection form.
@@ -291,37 +292,27 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         profile.setCivilPenaltyInd(provider.getHasCivilPenalty());
         profile.setPreviousExclusionInd(provider.getHasPreviousExclusion());
 
-        List<AcceptedAgreements> hList = profile.getAgreements();
-
         ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
                 provider
         );
         List<AgreementDocument> activeList = pt.getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
-        // Retain any previously accepted agreements that is no longer shown in the page
-        List<AcceptedAgreements> mergedList = filterOnlyInactive(hList, documentMap);
-        Map<String, AcceptedAgreements> agreementsMap = mapAgreementsByDocumentId(hList);
+        AcceptedAgreementsType acceptedAgreementTypes = XMLUtility.nsGetAcceptedAgreements(enrollment);
+        List<ProviderAgreementType> xList = acceptedAgreementTypes.getProviderAgreement();
 
-        AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(enrollment);
-        List<ProviderAgreementType> xList = acceptedAgreements.getProviderAgreement();
-
-        for (ProviderAgreementType xAgreement : xList) { // for every item checked by theuser
-            String documentId = xAgreement.getAgreementDocumentId();
-            if (agreementsMap.get(documentId) != null) {
-                // already accepted, just retain
-                mergedList.add(agreementsMap.get(documentId));
-
-            } else {
-                // newly accepted
+        List<AcceptedAgreements> acceptedAgreements =
+            xList.stream()
+            .map(xAgreement -> {
+                String documentId = xAgreement.getAgreementDocumentId();
                 AcceptedAgreements agreement = new AcceptedAgreements();
                 agreement.setAcceptedDate(new Date());
                 agreement.setAgreementDocument(documentMap.get(documentId));
-                mergedList.add(agreement);
-            }
-        }
+                return agreement;
+            })
+            .collect(Collectors.toList());
 
-        profile.setAgreements(mergedList);
+        ticket.setAgreements(acceptedAgreements);
 
         ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(enrollment);
         ProviderStatement hStatement = profile.getStatement();
@@ -350,44 +341,6 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
     }
 
     /**
-     * Maps the given list by id.
-     *
-     * @param list the list to be mapped
-     * @return the lookup map
-     */
-    private Map<String, AcceptedAgreements> mapAgreementsByDocumentId(List<AcceptedAgreements> list) {
-        Map<String, AcceptedAgreements> map = new HashMap<String, AcceptedAgreements>();
-        if (list != null) {
-            for (AcceptedAgreements item : list) {
-                map.put(String.valueOf(item.getAgreementDocument().getId()), item);
-            }
-        }
-        return map;
-    }
-
-    /**
-     * Filters the inactive agreements from the given list.
-     *
-     * @param accepted    the current agreements
-     * @param documentMap the active agreements
-     * @return the inactive agreements
-     */
-    private List<AcceptedAgreements> filterOnlyInactive(List<AcceptedAgreements> accepted,
-                                                        Map<String, AgreementDocument> documentMap) {
-        List<AcceptedAgreements> inactiveList = new ArrayList<AcceptedAgreements>();
-        if (accepted != null) {
-            for (AcceptedAgreements agreement : accepted) {
-                String documentId = String.valueOf(agreement.getAgreementDocument().getId());
-                if (documentMap.get(documentId) == null) { // no longer required for this provider
-                    inactiveList.add(agreement);
-                }
-
-            }
-        }
-        return inactiveList;
-    }
-
-    /**
      * Binds the fields of the persistence model to the front end xml.
      *
      * @param ticket     the persistent model
@@ -410,7 +363,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(enrollment);
         ArrayList<ProviderAgreementType> xlist = new ArrayList<ProviderAgreementType>();
 
-        List<AcceptedAgreements> hList = profile.getAgreements();
+        List<AcceptedAgreements> hList = ticket.getAgreements();
         for (AcceptedAgreements agreements : hList) {
             // bind only active items
             AgreementDocument document = agreements.getAgreementDocument();

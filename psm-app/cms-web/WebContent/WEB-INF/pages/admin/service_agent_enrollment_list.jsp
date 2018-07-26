@@ -19,7 +19,6 @@
     </c:when>
   </c:choose>
   <c:set var="title" value="${listType}"/>
-  <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">

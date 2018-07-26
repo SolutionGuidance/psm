@@ -20,7 +20,6 @@
       <c:set value="Create New User Account (System Admin)" var="title"></c:set>
     </c:otherwise>
   </c:choose>
-  <c:set value="true" var="systemPage"></c:set>
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">

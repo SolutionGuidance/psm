@@ -9,7 +9,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="View Enrollment - ${profile.status.description}"/>
-  <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">

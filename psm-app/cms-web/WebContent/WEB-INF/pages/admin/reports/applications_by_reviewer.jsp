@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="Applications by Reviewer"/>
-  <c:set var="adminPage" value="true" />
   <c:set var="includeD3" value="true" />
   <fmt:formatDate value="${startDate}" pattern="MM/dd/yyyy" var="searchStartDate" />
   <fmt:formatDate value="${endDate}" pattern="MM/dd/yyyy" var="searchEndDate" />

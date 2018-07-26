@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="Risk Levels"/>
-  <c:set var="adminPage" value="true" />
   <c:set var="reportPage" value="true" />
   <c:set var="includeD3" value="true" />
   <c:set var="pageScripts" value="${[ctx.concat('/js/admin/riskLevelsReport.js')]}" />

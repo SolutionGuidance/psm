@@ -10,7 +10,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="Dashboard"/>
-  <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">

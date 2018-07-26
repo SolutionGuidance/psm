@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="Screenings"/>
-  <c:set var="adminPage" value="true" />
   <c:set var="activeTabScreenings" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>

@@ -158,12 +158,6 @@ public class ProviderProfile implements Cloneable, Serializable {
     private List<Affiliation> affiliations;
 
     /**
-     * Documents the applicant agreed to.
-     */
-    @Transient
-    private List<AcceptedAgreements> agreements;
-
-    /**
      * Provider setup.
      */
     @Transient
@@ -366,14 +360,6 @@ public class ProviderProfile implements Cloneable, Serializable {
 
     public void setPreviousExclusionInd(String previousExclusionInd) {
         this.previousExclusionInd = previousExclusionInd;
-    }
-
-    public List<AcceptedAgreements> getAgreements() {
-        return agreements;
-    }
-
-    public void setAgreements(List<AcceptedAgreements> agreements) {
-        this.agreements = agreements;
     }
 
     public ProviderStatement getStatement() {

@@ -2194,4 +2194,15 @@
         constraintName="enrollments_profile_reference_id_fkey" />
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue949-remove-accepted-agreemet-profile-link">
+    <dropColumn tableName="accepted_agreements"
+      columnName="profile_id"/>
+    <rollback>
+      <addColumn tableName="accepted_agreements">
+        <column name="profile_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

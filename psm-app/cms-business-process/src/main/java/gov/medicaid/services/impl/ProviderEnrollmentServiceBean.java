@@ -85,6 +85,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -568,6 +569,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     ) throws PortalServiceException {
         checkTicketEntitlement(user, enrollmentId);
 
+        return getEnrollment(enrollmentId, entityGraphName);
+    }
+
+    private Optional<Enrollment> getEnrollment(
+            long enrollmentId,
+            String entityGraphName
+    ) throws PortalServiceException {
         Map<String, Object> hints = new HashMap<>();
         if (entityGraphName != null) {
             hints = hintEntityGraph(entityGraphName);
@@ -581,6 +589,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         if (enrollment == null) {
             return Optional.empty();
         }
+
+        fetchChildren(enrollment);
 
         ProviderProfile providerProfile = getProviderDetails(
                 enrollment.getProfileReferenceId(),
@@ -860,6 +870,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         Enrollment ticket = new Enrollment();
         ticket.setRequestType(findLookupByDescription(RequestType.class, ViewStatics.RENEWAL_REQUEST));
         ticket.setDetails(provider.clone());
+        ticket.setAgreements(Collections.emptyList());
         ticket.setReferenceTimestamp(provider.getModifiedOn());
         return ticket;
     }
@@ -881,6 +892,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         Enrollment ticket = new Enrollment();
         ticket.setRequestType(findLookupByDescription(RequestType.class, ViewStatics.UPDATE_REQUEST));
         ticket.setDetails(provider.clone());
+        ticket.setAgreements(Collections.emptyList());
         ticket.setReferenceTimestamp(provider.getModifiedOn());
         return ticket;
     }
@@ -1167,6 +1179,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
     }
 
+    private void saveRelatedEntities(Enrollment enrollment) {
+        insertAgreements(enrollment);
+    }
+
     /**
      * Inserts a brand new copy of the given provider profile.
      *
@@ -1206,9 +1222,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         // save statement
         insertStatement(details);
-
-        // save agreement documents
-        insertAgreements(details);
 
         // save ownership information
         insertOwnershipInfo(details);
@@ -1289,20 +1302,15 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
     }
 
-    /**
-     * Inserts the provider agreements.
-     *
-     * @param details the provider profile
-     */
-    private void insertAgreements(ProviderProfile details) {
-        List<AcceptedAgreements> agreements = details.getAgreements();
+    private void insertAgreements(Enrollment enrollment) {
+        List<AcceptedAgreements> agreements = enrollment.getAgreements();
+
         if (agreements == null || agreements.isEmpty()) {
             return;
         }
 
         for (AcceptedAgreements acceptedAgreements : agreements) {
-            acceptedAgreements.setProfileId(details.getProfileId());
-            acceptedAgreements.setTicketId(details.getEnrollmentId());
+            acceptedAgreements.setTicketId(enrollment.getEnrollmentId());
 
             acceptedAgreements.setId(0);
             getEm().persist(acceptedAgreements);
@@ -1556,6 +1564,15 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         getEm().persist(address);
     }
 
+    private void purgeChildren(Enrollment enrollment) {
+        List<AcceptedAgreements> agreements = enrollment.getAgreements();
+        if (agreements != null) {
+            for (AcceptedAgreements acceptedAgreements : agreements) {
+                getEm().remove(acceptedAgreements);
+            }
+        }
+    }
+
     /**
      * Deletes the given profile from the database.
      *
@@ -1594,13 +1611,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             }
 
             getEm().remove(ownership);
-        }
-
-        List<AcceptedAgreements> agreements = profile.getAgreements();
-        if (agreements != null) {
-            for (AcceptedAgreements acceptedAgreements : agreements) {
-                getEm().remove(acceptedAgreements);
-            }
         }
 
         if (profile.getStatement() != null) {
@@ -1708,6 +1718,15 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     }
 
     /**
+     * Retrieves the complex children of the given enrollment.
+     *
+     * @param enrollment the enrollment to be populated
+     */
+    private void fetchChildren(Enrollment enrollment) {
+        enrollment.setAgreements(findAgreements(enrollment.getEnrollmentId()));
+    }
+
+    /**
      * Retrieves the complex children of the given profile.
      *
      * @param profile the profile to be populated
@@ -1719,9 +1738,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         profile.setAttachments(findAttachments(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setAffiliations(findAffiliations(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setStatement(findStatementByProviderKey(profile.getProfileId(), profile.getEnrollmentId()));
-
         profile.setOwnershipInformation(findOwnershipInformation(profile.getProfileId(), profile.getEnrollmentId()));
-        profile.setAgreements(findAgreements(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setNotes(findNotes(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setPayToProviders(findPayToProviders(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setServices(findServices(profile.getProfileId(), profile.getEnrollmentId()));
@@ -1815,12 +1832,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     @SuppressWarnings("unchecked")
     private List<AcceptedAgreements> findAgreements(
-            long profileId,
             long ticketId
     ) {
         Query query = getEm().createQuery(
-                "FROM AcceptedAgreements a WHERE ticketId = :ticketId AND profileId = :profileId");
-        query.setParameter("profileId", profileId);
+                "FROM AcceptedAgreements a WHERE ticketId = :ticketId");
         query.setParameter("ticketId", ticketId);
         return query.getResultList();
     }
@@ -2295,38 +2310,44 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     private long saveTicket(
             CMSUser user,
-            Enrollment ticket,
+            Enrollment enrollment,
             boolean insertDetails
     ) throws PortalServiceException {
-        ticket.setLastUpdatedBy(user);
-        ProviderProfile details = ticket.getDetails();
-
-        // When save is used to add, there's no details in the db yet, and we need to respect the fk
+        enrollment.setLastUpdatedBy(user);
+        ProviderProfile details = enrollment.getDetails();
         if (details.getProfileId() != 0) {
-            ticket.setProfileReferenceId(details.getProfileId());
+            enrollment.setProfileReferenceId(details.getProfileId());
         }
-        ticket = getEm().merge(ticket);
+
+        Enrollment dbEnrollment = getEm().merge(enrollment);
+
+        fetchChildren(dbEnrollment);
+        purgeChildren(dbEnrollment);
+
+        enrollment.setEnrollmentId(dbEnrollment.getEnrollmentId());
+        saveRelatedEntities(enrollment.clone());
 
         if (insertDetails) {
-            insertProfile(ticket.getEnrollmentId(), details);
-            ticket.setProfileReferenceId(details.getProfileId());
-            getEm().merge(ticket);
+            insertProfile(dbEnrollment.getEnrollmentId(), details);
+            dbEnrollment.setProfileReferenceId(details.getProfileId());
+
+            getEm().merge(dbEnrollment);
         } else {
             // Currently the system manually handles persisting underlying relationships
             // of the provider profile, so to prevent hibernate from complaining that we're
             // changing IDs out from under it, we clone, delete, readd to update them
             //
-            // We also want to ensure that the ticket currently being saved is the one
+            // We also want to ensure that the enrollment currently being saved is the one the
             // with which provider profile associates
-            details.setEnrollmentId(ticket.getEnrollmentId());
+            details.setEnrollmentId(dbEnrollment.getEnrollmentId());
             getEm().merge(details);
             ProviderProfile profile = details.clone();
-            purgeTicketDetailsChildren(ticket.getProfileReferenceId());
+            purgeTicketDetailsChildren(dbEnrollment.getProfileReferenceId());
             saveRelatedEntities(profile);
-            ticket.setDetails(profile);
+            dbEnrollment.setDetails(profile);
         }
 
-        return ticket.getEnrollmentId();
+        return dbEnrollment.getEnrollmentId();
     }
 
     @Override
@@ -2430,10 +2451,14 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public Enrollment saveEnrollmentDetails(
             Enrollment enrollment
     ) throws PortalServiceException {
-        Enrollment ticket = getEm().find(Enrollment.class, enrollment.getEnrollmentId());
+        Enrollment ticket = getEnrollment(enrollment.getEnrollmentId(), null).get();
         ProviderProfile updatedProfile = enrollment.getDetails().clone();
 
         ProviderProfile dbProfile = getProviderDetails(ticket.getProfileReferenceId(), true);
+
+        purgeChildren(ticket);
+        saveRelatedEntities(enrollment.clone());
+
         if (dbProfile != null) {
             purgeChildren(dbProfile);
             updatedProfile.setProfileId(dbProfile.getProfileId());

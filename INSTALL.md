@@ -23,6 +23,7 @@ deployment guide will be part of our 1.0 release. ***
     - [Run automated tests](#run-automated-tests)
     - [Maintain and update environment](#maintain-and-update-environment)
     - [Run Database Migrations](#run-database-migrations)
+	- [Eclipse](#eclipse)
 - **[Production Deployment](#production-deployment)**
     - [NGINX](#nginx)
     - [Continuous Deployment](#continuous-deployment)
@@ -441,6 +442,17 @@ Migration scripts are stored in `psm-app/db/`.
     ```
 
 More material coming soon about how to run individual migrations.
+
+## Eclipse
+
+Eclipse IDE has some requirements on how gradle build is bootstraped
+so that it properly works in Eclipse and prepares the project for development.
+
+Eclipse-WTP is a plugin which is sufficiently adds necessary hooks into 
+the gradle build process to enable hot deployment during development. 
+
+[Eclipse WTP Gradle Plugin Docs](https://docs.gradle.org/current/dsl/org.gradle.plugins.ide.eclipse.model.EclipseWtpComponent.html)
+
 
 # Production Deployment
 

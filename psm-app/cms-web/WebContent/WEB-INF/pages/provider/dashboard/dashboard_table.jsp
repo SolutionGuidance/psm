@@ -1,23 +1,27 @@
 <%--
-    JSP Fragment for provider dashboard results table.
- --%>
+    Provider dashboard table.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <table class="generalTable dashboardTable fixedWidthTable">
 
   <colgroup>
-    <col width="125"/>
-    <col width="125"/>
-    <col width="145"/>
+    <col width="105"/>
     <col width="120"/>
-    <col width="120"/>
-    <col width="120"/>
+    <col width="135"/>
+    <col width="110"/>
+    <col width="85"/>
+    <col width="90"/>
+    <col width="110"/>
     <col width="*"/>
   </colgroup>
 
   <thead>
-    <c:set var="sortDirCls" value="${criteria.ascending ? 'tablesorter-headerSortDown' : 'tablesorter-headerSortUp' }" />
+    <c:set
+      var="sortDirCls"
+      value="${criteria.ascending ? 'tablesorter-headerSortDown' : 'tablesorter-headerSortUp' }"
+    />
     <tr class="tablesorter-header">
       <th class="tablesorter-header ${sortDirCls}">
         <div class="tablesorter-header-inner">
@@ -33,6 +37,15 @@
           <a href="javascript:changeSort(3);">
             Date Submitted
             <span class="${criteria.sortColumn == '3' ? 'sort' : 'nosort'}"></span>
+          </a>
+          <span class="sep"></span>
+        </div>
+      </th>
+      <th class="tablesorter-header ${sortDirCls}">
+        <div class="tablesorter-header-inner">
+          <a href="javascript:changeSort(8);">
+            Provider Type
+            <span class="${criteria.sortColumn == '8' ? 'sort' : 'nosort'}"></span>
           </a>
           <span class="sep"></span>
         </div>
@@ -92,25 +105,26 @@
       <c:url var="exportTicketLink" value="/provider/enrollment/exportTicket">
         <c:param name="id" value="${item.ticketId}" />
       </c:url>
-      <c:set var="statusCls" value="${item.status == 'Rejected' ? 'red' : item.status == 'Approved' ? 'green' : ''}" />
-      <c:set var="riskCls" value="${item.riskLevel == 'High' ? 'red' : item.riskLevel == 'Limited' ? 'green' : ''}" />
+      <c:set
+        var="statusCls"
+        value="${item.status == 'Rejected' ? 'red' : item.status == 'Approved' ? 'green' : ''}"
+      />
+      <c:set
+        var="riskCls"
+        value="${item.riskLevel == 'High' ? 'red' : item.riskLevel == 'Limited' ? 'green' : ''}"
+      />
 
       <tr>
-        <td class="primary">
-          <c:out value="${item.npi}" />
-        </td>
+        <td class="primary">${item.npi}</td>
         <td>
           <fmt:formatDate value="${item.submissionDate}" pattern="MM/dd/yyyy" />
         </td>
-        <td>
-          <c:out value="${item.requestType}" />
-        </td>
+        <td>${item.providerType}</td>
+        <td>${item.requestType}</td>
         <td class="${statusCls}">
-          <c:out value="${item.status == 'Rejected' ? 'Denied' : item.status}" />
+          ${item.status == 'Rejected' ? 'Denied' : item.status}
         </td>
-        <td class="${riskCls}">
-          <c:out value="${item.riskLevel}" />
-        </td>
+        <td class="${riskCls}">${item.riskLevel}</td>
         <td>
           <fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy" />
         </td>

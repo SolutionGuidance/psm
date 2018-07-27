@@ -23,6 +23,7 @@ of our 1.0 release.***
     - [Run automated tests](#run-automated-tests)
     - [Maintain and update environment](#maintain-and-update-environment)
     - [Run Database Migrations](#run-database-migrations)
+	- [Eclipse](#eclipse)
 - **[Production Deployment](#production-deployment)**
     - [NGINX](#nginx)
     - [Continuous Deployment](#continuous-deployment)
@@ -470,6 +471,7 @@ Migration scripts are stored in `psm-app/db/`.
 
 More material coming soon about how to run individual migrations.
 
+<<<<<<< HEAD
 ## Set up external data sources
 
 See the [Credentialing and Verification: Extract, Translate, and Load
@@ -484,6 +486,16 @@ we have a substitute for the sake of development and testing. See the [README
 for the mock
 wrapper](psm-app/cms-business-process/src/test/resources/dmf-api-mock/README.md)
 for more information.
+
+## Eclipse
+
+Eclipse IDE has some requirements on how gradle build is bootstraped
+so that it properly works in Eclipse and prepares the project for development.
+
+Eclipse-WTP is a plugin which is sufficiently adds necessary hooks into 
+the gradle build process to enable hot deployment during development. 
+
+[Eclipse WTP Gradle Plugin Docs](https://docs.gradle.org/current/dsl/org.gradle.plugins.ide.eclipse.model.EclipseWtpComponent.html)
 
 # Production Deployment
 

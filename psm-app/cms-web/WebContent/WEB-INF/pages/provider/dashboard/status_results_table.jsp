@@ -21,6 +21,9 @@
     <col width="130"/>
     <col width="120"/>
     <col width="120"/>
+    <c:if test="${statusFilter == 'All'}">
+      <col width="120"/>
+    </c:if>
     <c:if test="${statusFilter != 'Draft'}">
       <col width="120"/>
     </c:if>
@@ -89,6 +92,18 @@
           <span class="sep"></span>
         </div>
       </th>
+
+      <c:if test="${statusFilter == 'All'}">
+        <th class="tablesorter-header ${sortDirCls}">
+          <div class="tablesorter-header-inner">
+            <a href="javascript:changeSort(5);">
+              Status
+              <span class="${criteria.sortColumn == '5' ? 'sort' : 'nosort'}"></span>
+            </a>
+            <span class="sep"></span>
+          </div>
+        </th>
+      </c:if>
 
       <c:if test="${statusFilter != 'Draft'}">
         <th class="tablesorter-header ${sortDirCls}">
@@ -159,6 +174,11 @@
         <td>${item.providerType}</td>
         <td>${item.requestType}</td>
 
+        <c:if test="${statusFilter == 'All'}">
+          <td class="${statusCls}">
+            ${item.status == 'Rejected' ? 'Denied' : item.status}
+          </td>
+        </c:if>
         <c:if test="${statusFilter != 'Draft'}">
           <td class="${riskCls}">${item.riskLevel}</td>
         </c:if>

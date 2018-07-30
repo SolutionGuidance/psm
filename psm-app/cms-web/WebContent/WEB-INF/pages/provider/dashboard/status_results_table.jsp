@@ -14,19 +14,19 @@
 </c:choose>
 
   <colgroup>
-    <col width="30"/>
+    <col width="27"/>
+    <col width="90"/>
+    <col width="85"/>
+    <col width="90"/>
     <col width="120"/>
-    <col width="120"/>
-    <col width="120"/>
-    <col width="130"/>
-    <col width="120"/>
-    <col width="120"/>
+    <col width="85"/>
     <c:if test="${statusFilter == 'All'}">
-      <col width="120"/>
+      <col width="70"/>
     </c:if>
     <c:if test="${statusFilter != 'Draft'}">
-      <col width="120"/>
+      <col width="80"/>
     </c:if>
+    <col width="85"/>
     <col width="*"/>
   </colgroup>
 
@@ -56,37 +56,37 @@
           <span class="sep"></span>
         </div>
       </th>
-      <th class="tablesorter-header ${sortDirCls}">
+      <th class="tablesorter-header twoline ${sortDirCls}">
         <div class="tablesorter-header-inner">
           <a href="javascript:changeSort(10);">
-            Date Created
+            Date<br />Created
             <span class="${criteria.sortColumn == '10' ? 'sort' : 'nosort'}"></span>
           </a>
           <span class="sep"></span>
         </div>
       </th>
-      <th class="tablesorter-header ${sortDirCls}">
+      <th class="tablesorter-header twoline ${sortDirCls}">
         <div class="tablesorter-header-inner">
           <a href="javascript:changeSort(3);">
-            Date Submitted
+            Date<br />Submitted
             <span class="${criteria.sortColumn == '3' ? 'sort' : 'nosort'}"></span>
           </a>
           <span class="sep"></span>
         </div>
       </th>
-      <th class="tablesorter-header ${sortDirCls}">
+      <th class="tablesorter-header twoline ${sortDirCls}">
         <div class="tablesorter-header-inner">
           <a href="javascript:changeSort(8);">
-            Provider Type
+            Provider<br />Type
             <span class="${criteria.sortColumn == '8' ? 'sort' : 'nosort'}"></span>
           </a>
           <span class="sep"></span>
         </div>
       </th>
-      <th class="tablesorter-header ${sortDirCls}">
+      <th class="tablesorter-header twoline ${sortDirCls}">
         <div class="tablesorter-header-inner">
           <a href="javascript:changeSort(4);">
-            Request Type
+            Request<br />Type
             <span class="${criteria.sortColumn == '4' ? 'sort' : 'nosort'}"></span>
           </a>
           <span class="sep"></span>
@@ -106,10 +106,10 @@
       </c:if>
 
       <c:if test="${statusFilter != 'Draft'}">
-        <th class="tablesorter-header ${sortDirCls}">
+        <th class="tablesorter-header twoline ${sortDirCls}">
           <div class="tablesorter-header-inner">
             <a href="javascript:changeSort(11);">
-              Risk Level
+              Risk<br />Level
               <span class="${criteria.sortColumn == '11' ? 'sort' : 'nosort'}"></span>
             </a>
             <span class="sep"></span>
@@ -117,10 +117,10 @@
         </th>
       </c:if>
 
-      <th class="tablesorter-header ${sortDirCls}">
+      <th class="tablesorter-header twoline ${sortDirCls}">
         <div class="tablesorter-header-inner">
           <a href="javascript:changeSort(6);">
-            Status Date
+            Status<br />Date
             <span class="${criteria.sortColumn == '6' ? 'sort' : 'nosort'}"></span>
           </a>
           <span class="sep"></span>
@@ -156,7 +156,7 @@
       />
 
       <tr class="${status.index % 2 == 0 ? 'even' : 'odd'}">
-        <td class="alignCenter">
+        <td class="alignCenter tdCheckbox">
           <input
             type="checkbox"
             title="Provider ${item.ticketId}"

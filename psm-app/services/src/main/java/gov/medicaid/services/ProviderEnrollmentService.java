@@ -67,21 +67,6 @@ public interface ProviderEnrollmentService {
      * This is the service method to be called after the process has completed
      * and resulted in a rejected change.
      *
-     * @param user      the user who rejected the request
-     * @param profileId the profile to be suspended
-     * @param reason    the reason for rejecting the request
-     * @throws PortalServiceException for any errors encountered
-     */
-    void suspendProvider(
-            CMSUser user,
-            long profileId,
-            String reason
-    ) throws PortalServiceException;
-
-    /**
-     * This is the service method to be called after the process has completed
-     * and resulted in a rejected change.
-     *
      * @param user     the user who rejected the request
      * @param ticketId the ticket id that was rejected
      * @param reason   the reason for rejecting the request

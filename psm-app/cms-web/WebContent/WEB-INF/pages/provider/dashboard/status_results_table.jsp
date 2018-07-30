@@ -17,6 +17,7 @@
     <col width="30"/>
     <col width="120"/>
     <col width="120"/>
+    <col width="120"/>
     <col width="130"/>
     <col width="120"/>
     <col width="120"/>
@@ -57,6 +58,15 @@
           <a href="javascript:changeSort(10);">
             Date Created
             <span class="${criteria.sortColumn == '10' ? 'sort' : 'nosort'}"></span>
+          </a>
+          <span class="sep"></span>
+        </div>
+      </th>
+      <th class="tablesorter-header ${sortDirCls}">
+        <div class="tablesorter-header-inner">
+          <a href="javascript:changeSort(3);">
+            Date Submitted
+            <span class="${criteria.sortColumn == '3' ? 'sort' : 'nosort'}"></span>
           </a>
           <span class="sep"></span>
         </div>
@@ -142,6 +152,9 @@
         <td>${item.npi}</td>
         <td>
           <fmt:formatDate value="${item.createDate}" pattern="MM/dd/yyyy" />
+        </td>
+        <td>
+          <fmt:formatDate value="${item.submissionDate}" pattern="MM/dd/yyyy" />
         </td>
         <td>${item.providerType}</td>
         <td>${item.requestType}</td>

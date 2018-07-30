@@ -61,6 +61,7 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.Util;
 import gov.medicaid.services.util.XMLAdapter;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.NotImplementedException;
 
@@ -77,6 +78,7 @@ import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
@@ -972,29 +974,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         checkTicketEntitlement(user, ticket.getTicketId());
         ticket.setDetails(getProviderDetailsByTicket(ticket.getTicketId(), true));
         return ticket;
-    }
-
-    /**
-     * This is the service method to be called after the process has completed
-     * and resulted in a rejected change.
-     *
-     * @param user      the user who rejected the request
-     * @param profileId the profile to be suspended
-     * @param reason    the reason for rejecting the request
-     * @throws PortalServiceException for any errors encountered
-     */
-    @Override
-    public void suspendProvider(
-            CMSUser user,
-            long profileId,
-            String reason
-    ) throws PortalServiceException {
-        ProviderProfile profile = getProviderDetails(user, profileId);
-        Enrollment ticket = new Enrollment();
-        ticket.setRequestType(findLookupByDescription(RequestType.class, ViewStatics.SUSPENSION_REQUEST));
-        profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, ViewStatics.SUSPENDED));
-        ticket.setDetails(profile);
-        bypassJBPM(user, ticket);
     }
 
     /**
@@ -2349,31 +2328,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
 
         return ticket.getTicketId();
-    }
-
-    /**
-     * Bypass the process workflow and automatically approve the given ticket.
-     *
-     * @param user   the user performing the action
-     * @param ticket the ticket to be approved
-     * @throws PortalServiceException for any errors encountered
-     */
-    private void bypassJBPM(
-            CMSUser user,
-            Enrollment ticket
-    ) throws PortalServiceException {
-        saveAsDraft(user, ticket);
-
-        // bypass JBPM process and approve directly!
-        ticket.setSubmittedBy(user);
-        Date now = Calendar.getInstance().getTime();
-        ticket.setSubmissionDate(now);
-        ticket.setStatusDate(now);
-        ticket.setStatusNote("SYSTEM - AUTO SUBMIT");
-        ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.PENDING_STATUS));
-
-        saveTicket(user, ticket, false);
-        approveTicket(user, ticket.getTicketId());
     }
 
     @Override

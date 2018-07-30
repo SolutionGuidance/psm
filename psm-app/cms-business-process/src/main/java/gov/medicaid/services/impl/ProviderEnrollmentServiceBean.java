@@ -457,19 +457,17 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             throw new PortalServiceException("Invalid API call, please provide ticket details.");
         }
 
+        ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.DRAFT_STATUS));
+        ticket.setStatusDate(Calendar.getInstance().getTime());
+
         if (ticket.getTicketId() == 0) {
             ticket.setCreatedBy(user);
             ticket.setCreatedOn(Calendar.getInstance().getTime());
+            return saveTicket(user, ticket, true);
         } else {
-            // delete - insert
-            ProviderProfile profile = ticket.getDetails();
-            purgeTicketDetailsChildren(ticket.getTicketId());
-            ticket.setDetails(profile);
+            return saveTicket(user, ticket, false);
         }
 
-        ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.DRAFT_STATUS));
-        ticket.setStatusDate(Calendar.getInstance().getTime());
-        return saveTicket(user, ticket, true);
     }
 
     @Override
@@ -522,15 +520,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             profile.setCreatedOn(ticket.getStatusDate());
 
             profile.getEntity().setEnrolled("Y");
-
-            getEm().merge(profile);
-
-            // Currently the system manually handles persisting underlying relationships
-            // of the provider profile, so to prevent hibernate from complaining that we're
-            // changing IDs out from under it, we clone, delete, readd to update them
-            ProviderProfile updatedProfile = profile.clone();
-            purgeTicketDetailsChildren(ticket.getTicketId());
-            saveRelatedEntities(updatedProfile);
         } else if (ticket.getRequestType().getDescription().equals(ViewStatics.IMPORT_REQUEST)) {
             throw new PortalServiceException("Cannot handle import requests");
             /*
@@ -2338,6 +2327,15 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             insertProfile(ticket.getTicketId(), details);
             ticket.setProfileReferenceId(details.getProfileId());
             getEm().merge(ticket);
+        } else {
+            // Currently the system manually handles persisting underlying relationships
+            // of the provider profile, so to prevent hibernate from complaining that we're
+            // changing IDs out from under it, we clone, delete, readd to update them
+            getEm().merge(details);
+            ProviderProfile profile = details.clone();
+            purgeTicketDetailsChildren(ticket.getTicketId());
+            saveRelatedEntities(profile);
+            ticket.setDetails(profile);
         }
 
         return ticket.getTicketId();

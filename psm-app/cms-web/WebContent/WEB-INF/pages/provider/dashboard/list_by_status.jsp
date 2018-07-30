@@ -31,6 +31,12 @@
             <div class="tabHead">
               <div class="tabR">
                 <div class="tabM">
+                  <a class="tab allTab ${statusFilter == 'All' ? 'active' : ''}"
+                    href="<c:url value="/provider/dashboard/" />">
+                    <span class="aR">
+                      <span class="aM">All</span>
+                    </span>
+                  </a>
                   <a class="tab draftTab ${statusFilter eq 'Draft' ? 'active' : ''}"
                     href="<c:url value="/provider/dashboard/drafts" />">
                     <span class="aR">
@@ -78,7 +84,16 @@
                 </div>
               </div>
               <!-- /.pagination -->
-              <%@include file="list_by_status_filter.jsp" %>
+
+              <c:choose>
+                <c:when test="${statusFilter == 'All'}">
+                  <%@include file="dashboard_filter.jsp" %>
+                </c:when>
+                <c:otherwise>
+                  <%@include file="list_by_status_filter.jsp" %>
+                </c:otherwise>
+              </c:choose>
+
               <div class="tableContainer">
                 <%@include file="status_results_table.jsp" %>
               </div>

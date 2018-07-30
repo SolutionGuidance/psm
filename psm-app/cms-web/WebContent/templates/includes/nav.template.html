@@ -34,12 +34,8 @@
           </li>
         {{else}}
           {{!-- Provider --}}
-          <li class="{{#if activeTabDashboard }} active {{/if}}">
-            <a href="{{ctx}}/landing">DASHBOARD</a>
-            {{#if activeTabDashboard }} <span class="arrow"></span> {{/if}}
-          </li>
           <li class="{{#if activeTabEnrollments }} active {{/if}}">
-            <a class="enrollmentsLink" href="{{ctx}}/provider/dashboard/drafts">ENROLLMENTS</a>
+            <a class="enrollmentsLink" href="{{ctx}}/provider/dashboard/">ENROLLMENTS</a>
             {{#if activeTabEnrollments }} <span class="arrow"></span> {{/if}}
           </li>
           <li class="last {{#if activeTabProfile }} active {{/if}}">

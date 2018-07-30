@@ -3,13 +3,12 @@ package gov.medicaid.features.general.steps;
 import gov.medicaid.features.PsmPage;
 import gov.medicaid.features.enrollment.ui.EnrollmentListPage;
 import gov.medicaid.features.general.ui.AdvancedSearchPage;
-import gov.medicaid.features.general.ui.DashboardPage;
-
+import gov.medicaid.features.general.ui.AllEnrollmentsPage;
 import net.thucydides.core.annotations.Step;
 
 public class SearchSteps {
     PsmPage psmPage;
-    DashboardPage dashboardPage;
+    AllEnrollmentsPage allEnrollmentsPage;
     AdvancedSearchPage advancedSearchPage;
     EnrollmentListPage enrollmentListPage;
 
@@ -20,7 +19,7 @@ public class SearchSteps {
 
     @Step
     public void quickSearchByNpi(String npi) {
-        dashboardPage.quickSearch(npi);
+        allEnrollmentsPage.quickSearch(npi);
     }
 
     @Step

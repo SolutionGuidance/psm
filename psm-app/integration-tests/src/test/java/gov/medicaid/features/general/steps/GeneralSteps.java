@@ -1,7 +1,7 @@
 package gov.medicaid.features.general.steps;
 
 import gov.medicaid.features.PsmPage;
-import gov.medicaid.features.general.ui.DashboardPage;
+import gov.medicaid.features.general.ui.AllEnrollmentsPage;
 import gov.medicaid.features.general.ui.LoginPage;
 import gov.medicaid.features.general.ui.MyProfilePage;
 import gov.medicaid.features.general.ui.UpdatePasswordPage;
@@ -14,7 +14,7 @@ public class GeneralSteps {
 
     private PsmPage psmPage;
     private LoginPage loginPage;
-    private DashboardPage dashboardPage;
+    private AllEnrollmentsPage allEnrollmentsPage;
     private MyProfilePage profilePage;
     private UpdatePasswordPage updatePasswordPage;
 
@@ -50,13 +50,13 @@ public class GeneralSteps {
     }
 
     @Step
-    public void checkOnDashboard() {
-        dashboardPage.checkOnDashboard();
+    public void checkOnAllEnrollmentsPage() {
+        allEnrollmentsPage.checkOnAllEnrollmentsPage();
     }
 
     @Step
     public void goToProviderDraftPage() {
-        clickLinkAssertTitle(".enrollmentsLink", "Draft Enrollments");
+        clickLinkAssertTitle(".draftTab", "Draft Enrollments");
     }
 
     @Step
@@ -79,14 +79,14 @@ public class GeneralSteps {
 
     @Step
     public void openFilterPanel() {
-        if (dashboardPage.$(".filterBtn").getText().equals("Filter")) {
-            dashboardPage.click$(".filterBtn");
+        if (allEnrollmentsPage.$(".filterBtn").getText().equals("Filter")) {
+            allEnrollmentsPage.click$(".filterBtn");
         }
     }
 
     @Step
     public void clickMyProfile() {
-        dashboardPage.clickMyProfile();
+        allEnrollmentsPage.clickMyProfile();
     }
 
     @Step
@@ -118,6 +118,6 @@ public class GeneralSteps {
 
     @Step
     public void navigateToAdvancedSearchPage() {
-        dashboardPage.click$(".advancedSearchLink");
+        allEnrollmentsPage.click$(".advancedSearchLink");
     }
 }

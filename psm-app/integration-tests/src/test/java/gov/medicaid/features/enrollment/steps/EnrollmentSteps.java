@@ -13,7 +13,7 @@ import gov.medicaid.features.enrollment.ui.PersonalInfoPage;
 import gov.medicaid.features.enrollment.ui.PracticeInfoPage;
 import gov.medicaid.features.enrollment.ui.ProviderStatementPage;
 import gov.medicaid.features.enrollment.ui.SelectProviderTypePage;
-import gov.medicaid.features.general.ui.DashboardPage;
+import gov.medicaid.features.general.ui.AllEnrollmentsPage;
 import gov.medicaid.features.general.ui.LoginPage;
 import net.thucydides.core.annotations.Step;
 
@@ -73,7 +73,7 @@ public class EnrollmentSteps {
 
 
     private LoginPage loginPage;
-    private DashboardPage dashboardPage;
+    private AllEnrollmentsPage allEnrollmentsPage;
     private EnrollmentPage enrollmentPage;
     private SelectProviderTypePage selectProviderTypePage;
     private OrganizationInfoPage organizationInfoPage;
@@ -91,7 +91,7 @@ public class EnrollmentSteps {
     private SimpleDateFormat formFieldDateFormat = new SimpleDateFormat("MMddyyyy");
 
     public void createEnrollment() {
-        dashboardPage.clickOnNewEnrollment();
+        allEnrollmentsPage.clickOnNewEnrollment();
     }
 
     public void selectOrganizationalProviderType() {

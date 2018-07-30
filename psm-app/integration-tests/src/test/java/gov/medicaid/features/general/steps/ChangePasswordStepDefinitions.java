@@ -10,9 +10,9 @@ public class ChangePasswordStepDefinitions {
     @Steps
     GeneralSteps generalSteps;
 
-    @Given("^I am on the dashboard page$")
-    public void check_dashboard_page() {
-        generalSteps.checkOnDashboard();
+    @Given("^I am on the All Enrollments page$")
+    public void i_am_on_the_all_enrollments_page() {
+        generalSteps.checkOnAllEnrollmentsPage();
     }
 
     @When("^I click on My Profile$")

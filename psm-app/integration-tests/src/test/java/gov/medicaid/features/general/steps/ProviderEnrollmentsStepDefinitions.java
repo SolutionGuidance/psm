@@ -4,7 +4,7 @@ import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Steps;
 
 @SuppressWarnings("unused")
-public class DashboardStepDefinitions {
+public class ProviderEnrollmentsStepDefinitions {
     @Steps
     GeneralSteps generalSteps;
 

@@ -4,7 +4,7 @@ Feature: Provider changes their own Password
 @pull_568
 Scenario: Change Password Option
   Given I am logged in as a provider
-  And I am on the dashboard page
+  And I am on the All Enrollments page
   When I click on My Profile
   Then I should see the Change Password link
 

@@ -131,25 +131,7 @@
     <div id="modalBackground"></div>
     <div id="new-modal">
 
-      <div id="printModal" class="outLay">
-        <div class="inner">
-          <!-- title -->
-          <div class="modal-title">
-            <a href="javascript:;" class="greyBtn iconX">
-              Close
-            </a>
-            <a href="javascript:;" class="purpleBtn printBtn iconPrintWhite">
-              Print
-            </a>
-            <h3>Print Preview</h3>
-          </div>
-          <!-- End .modal-title -->
-          <!-- content -->
-          <div class="modal-content"></div>
-          <!-- End .content -->
-        </div>
-      </div>
-      <!-- /#printModal-->
+      <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/print_modal.jsp" %>
 
       <c:set var="userHelpModalId" value="user-help-modal"/>
       <h:handlebars template="includes/userhelp/user_help_modal" context="${pageContext}" />

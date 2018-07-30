@@ -463,7 +463,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         if (ticket.getTicketId() == 0) {
             ticket.setCreatedBy(user);
             ticket.setCreatedOn(Calendar.getInstance().getTime());
-            return saveTicket(user, ticket, true);
+            return saveTicket(user, ticket, ticket.getDetails().getProfileId() == 0);
         } else {
             return saveTicket(user, ticket, false);
         }
@@ -635,7 +635,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             long profileId,
             boolean fetchChildren
     ) {
-        Query query = getEm().createQuery("FROM ProviderProfile p WHERE profileId = :profileId AND ticketId = 0");
+        Query query = getEm().createQuery("FROM ProviderProfile p WHERE profileId = :profileId");
         query.setParameter("profileId", profileId);
         List rs = query.getResultList();
         if (rs.isEmpty()) {
@@ -2320,6 +2320,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     ) throws PortalServiceException {
         ticket.setLastUpdatedBy(user);
         ProviderProfile details = ticket.getDetails();
+        ticket.setProfileReferenceId(details.getProfileId());
         ticket = getEm().merge(ticket);
 
         if (insertDetails) {
@@ -2330,6 +2331,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             // Currently the system manually handles persisting underlying relationships
             // of the provider profile, so to prevent hibernate from complaining that we're
             // changing IDs out from under it, we clone, delete, readd to update them
+            //
+            // We also want to ensure that the ticket currently being saved is the one
+            // with which provider profile associates
+            details.setTicketId(ticket.getTicketId());
             getEm().merge(details);
             ProviderProfile profile = details.clone();
             purgeTicketDetailsChildren(ticket.getTicketId());

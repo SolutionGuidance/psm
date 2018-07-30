@@ -296,8 +296,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         results.setPageSize(criteria.getPageSize());
 
         String fromClause = "FROM ProviderProfile p LEFT JOIN p.riskLevel rl, Enrollment t LEFT JOIN t.requestType rt "
-                + "LEFT JOIN t.status ts, Entity e LEFT JOIN e.providerType pt WHERE p.ticketId = t.ticketId "
-                + "AND e.ticketId = p.ticketId AND p.profileId = e.profileId AND p.ticketId > 0 ";
+                + "LEFT JOIN t.status ts, Entity e LEFT JOIN e.providerType pt WHERE p.profileId = t.profileReferenceId "
+                + "AND p.profileId = e.profileId ";
 
         StringBuilder countQuery = new StringBuilder("SELECT count(*) " + fromClause);
         appendCriteria(countQuery, user, criteria);

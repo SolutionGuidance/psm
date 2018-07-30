@@ -23,9 +23,7 @@
     <c:if test="${statusFilter == 'All'}">
       <col width="70"/>
     </c:if>
-    <c:if test="${statusFilter != 'Draft'}">
-      <col width="80"/>
-    </c:if>
+    <col width="80"/>
     <col width="85"/>
     <col width="*"/>
   </colgroup>
@@ -105,18 +103,15 @@
         </th>
       </c:if>
 
-      <c:if test="${statusFilter != 'Draft'}">
-        <th class="tablesorter-header twoline ${sortDirCls}">
-          <div class="tablesorter-header-inner">
-            <a href="javascript:changeSort(11);">
-              Risk<br />Level
-              <span class="${criteria.sortColumn == '11' ? 'sort' : 'nosort'}"></span>
-            </a>
-            <span class="sep"></span>
-          </div>
-        </th>
-      </c:if>
-
+      <th class="tablesorter-header twoline ${sortDirCls}">
+        <div class="tablesorter-header-inner">
+          <a href="javascript:changeSort(11);">
+            Risk<br />Level
+            <span class="${criteria.sortColumn == '11' ? 'sort' : 'nosort'}"></span>
+          </a>
+          <span class="sep"></span>
+        </div>
+      </th>
       <th class="tablesorter-header twoline ${sortDirCls}">
         <div class="tablesorter-header-inner">
           <a href="javascript:changeSort(6);">
@@ -179,10 +174,8 @@
             ${item.status == 'Rejected' ? 'Denied' : item.status}
           </td>
         </c:if>
-        <c:if test="${statusFilter != 'Draft'}">
-          <td class="${riskCls}">${item.riskLevel}</td>
-        </c:if>
 
+        <td class="${riskCls}">${item.riskLevel}</td>
         <td>
           <fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy" />
         </td>

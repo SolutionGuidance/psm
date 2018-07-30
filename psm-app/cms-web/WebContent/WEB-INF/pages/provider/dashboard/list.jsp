@@ -50,7 +50,7 @@
             <!-- /.filterPanel -->
 
             <div class="tableContainer">
-              <%@include file="dashboard_table.jsp" %>
+              <%@include file="status_results_table.jsp" %>
             </div>
             <!-- /.tableContainer -->
 

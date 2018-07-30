@@ -5,6 +5,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:choose>
+  <c:when test="${statusFilter == 'All'}">
+    <table class="generalTable dashboardTable fixedWidthTable">
+  </c:when>
   <c:when test="${statusFilter != 'Draft'}">
     <table class="generalTable table-sort">
   </c:when>

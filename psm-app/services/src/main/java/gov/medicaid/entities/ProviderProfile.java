@@ -205,15 +205,6 @@ public class ProviderProfile implements Cloneable, Serializable {
     @Column(name = "bed_count_effective_date")
     private Date numberOfBedsEffectiveDate;
 
-    /**
-     * Only for approved profiles, the ticket that was used for this approved request.
-     */
-    @Column(
-            name = "reference_ticket_id",
-            nullable = false
-    )
-    private long referenceTicketId = 0;
-
     @Column(name = "owner_id")
     private String ownerId;
 
@@ -269,14 +260,6 @@ public class ProviderProfile implements Cloneable, Serializable {
 
     public void setTicketId(long ticketId) {
         this.ticketId = ticketId;
-    }
-
-    public long getReferenceTicketId() {
-        return referenceTicketId;
-    }
-
-    public void setReferenceTicketId(long referenceTicketId) {
-        this.referenceTicketId = referenceTicketId;
     }
 
     public List<Affiliation> getAffiliations() {

@@ -212,7 +212,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         // set audit
         profile.setModifiedBy(ticket.getSubmittedBy().getUserId());
         profile.setModifiedOn(ticket.getStatusDate());
-        profile.setReferenceTicketId(ticket.getTicketId());
 
         if (ticket.getRequestType().getDescription().equals(ViewStatics.ENROLLMENT_REQUEST)) {
             profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));

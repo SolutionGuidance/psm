@@ -199,65 +199,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             CMSUser user,
             long ticketId
     ) throws PortalServiceException {
-        Enrollment ticket = getTicketDetails(user, ticketId);
-        if (!ViewStatics.PENDING_STATUS.equals(ticket.getStatus().getDescription())
-                && !ViewStatics.PENDING_STATUS.equals(ticket.getStatus().getDescription())) {
-            throw new PortalServiceException("Cannot change status because it is not in pending state.");
-        }
-
-        // change status
-        ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.APPROVED_STATUS));
-        ticket.setStatusDate(Calendar.getInstance().getTime());
-
-        ProviderProfile profile = ticket.getDetails().clone();
-
-        // set audit
-        profile.setModifiedBy(ticket.getSubmittedBy().getUserId());
-        profile.setModifiedOn(ticket.getStatusDate());
-
-        if (ticket.getRequestType().getDescription().equals(ViewStatics.ENROLLMENT_REQUEST)) {
-            profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
-            profile.setOwnerId(ticket.getSubmittedBy().getUserId());
-            profile.setCreatedBy(ticket.getSubmittedBy().getUserId());
-            profile.setCreatedOn(ticket.getStatusDate());
-
-            profile.getEntity().setEnrolled("Y");
-
-            profile.setId(0);
-            profile.setTicketId(0);
-            getEm().persist(profile);
-
-            profile.setProfileId(profile.getId());
-
-            saveRelatedEntities(profile);
-        } else if (ticket.getRequestType().getDescription().equals(ViewStatics.IMPORT_REQUEST)) {
-            profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
-            profile.setOwnerId(ticket.getSubmittedBy().getUserId());
-            profile.getEntity().setEnrolled("Y");
-            insertProfile(0, profile);
-        } else {
-            if (profile.getProfileStatus() == null) {
-                profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
-            }
-            ProviderProfile baseProfile = getProviderDetails(profile.getProfileId(), true);
-            purge(baseProfile);
-            insertProfile(0, profile);
-        }
-
-        // notes are special because they can be added directly to the profile
-        // we handle them separately so they are merged during approval
-        promoteNotesToBase(profile.getProfileId(), profile.getTicketId());
-
-        promoteCOSToBase(user, profile.getProfileId(), profile.getTicketId());
-
-        ticket.setProfileReferenceId(profile.getProfileId());
-        saveTicket(user, ticket, false);
+        approveTicket(user, getTicketDetails(user, ticketId));
     }
 
     /**
      * This is the service method to be called after the process has completed
      * and resulted in an approved change, but the approver made some manual
-     * changes to the data so it has to be saved first.
+     * changes to the data so we don't reload from database before moving forward.
      *
      * @param user   the user who approved the request
      * @param ticket the ticket that will be approved (after saving it)
@@ -268,11 +216,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             CMSUser user,
             Enrollment ticket
     ) throws PortalServiceException {
-        // update the profile with the given changes
-        purgeTicketDetails(ticket.getTicketId());
-        ticket.setDetails(ticket.getDetails().clone());
-        saveTicket(user, ticket, true);
-        approveTicket(user, ticket.getTicketId());
+        approveTicket(user, ticket);
     }
 
     /**
@@ -519,7 +463,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         } else {
             // delete - insert
             ProviderProfile profile = ticket.getDetails();
-            purgeTicketDetails(ticket.getTicketId());
+            purgeTicketDetailsChildren(ticket.getTicketId());
             ticket.setDetails(profile);
         }
 
@@ -546,6 +490,69 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 enrollmentId,
                 "Enrollment with screenings"
         );
+    }
+
+    /**
+     * This is the service method to be called after the process has completed
+     * and resulted in an approved change.
+     */
+    private void approveTicket(
+            CMSUser user,
+            Enrollment ticket
+    ) throws PortalServiceException {
+        if (!ViewStatics.PENDING_STATUS.equals(ticket.getStatus().getDescription())
+                && !ViewStatics.PENDING_STATUS.equals(ticket.getStatus().getDescription())) {
+            throw new PortalServiceException("Cannot change status because it is not in pending state.");
+        }
+
+        // change status
+        ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.APPROVED_STATUS));
+        ticket.setStatusDate(Calendar.getInstance().getTime());
+
+        ProviderProfile profile = ticket.getDetails();
+
+        // set audit
+        profile.setModifiedBy(ticket.getSubmittedBy().getUserId());
+        profile.setModifiedOn(ticket.getStatusDate());
+
+        if (ticket.getRequestType().getDescription().equals(ViewStatics.ENROLLMENT_REQUEST)) {
+            profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
+            profile.setOwnerId(ticket.getSubmittedBy().getUserId());
+            profile.setCreatedBy(ticket.getSubmittedBy().getUserId());
+            profile.setCreatedOn(ticket.getStatusDate());
+
+            profile.getEntity().setEnrolled("Y");
+
+            getEm().merge(profile);
+
+            // Currently the system manually handles persisting underlying relationships
+            // of the provider profile, so to prevent hibernate from complaining that we're
+            // changing IDs out from under it, we clone, delete, readd to update them
+            ProviderProfile updatedProfile = profile.clone();
+            purgeTicketDetailsChildren(ticket.getTicketId());
+            saveRelatedEntities(updatedProfile);
+        } else if (ticket.getRequestType().getDescription().equals(ViewStatics.IMPORT_REQUEST)) {
+            throw new PortalServiceException("Cannot handle import requests");
+            /*
+                // commented out code because, while disabling, not deleting until we remove
+                // the whole process of requesting imports
+                profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
+                profile.setOwnerId(ticket.getSubmittedBy().getUserId());
+                profile.getEntity().setEnrolled("Y");
+                insertProfile(0, profile);
+            */
+        } else {
+            throw new PortalServiceException("Cannot handle request type: " +
+                    ticket.getRequestType().getDescription());
+        }
+
+        // notes are special because they can be added directly to the profile
+        // we handle them separately so they are merged during approval
+        promoteNotesToBase(profile.getProfileId(), profile.getTicketId());
+
+        promoteCOSToBase(user, profile.getProfileId(), profile.getTicketId());
+
+        saveTicket(user, ticket, false);
     }
 
     /**
@@ -1205,7 +1212,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         // persist parent
         details.setTicketId(ticketId);
 
-        details.setId(0);
+        //details.setId(0);
         getEm().persist(details);
 
         saveRelatedEntities(details);
@@ -1587,6 +1594,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param profile the profile to be deleted
      */
     private void purge(ProviderProfile profile) {
+        purgeChildren(profile);
+        getEm().remove(profile);
+    }
+
+    private void purgeChildren(ProviderProfile profile) {
         List<ProviderService> services = profile.getServices();
         if (services != null) {
             for (ProviderService providerService : services) {
@@ -1662,7 +1674,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             }
         }
         purgeEntity(profile.getEntity());
-        getEm().remove(profile);
     }
 
     /**
@@ -1719,12 +1730,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *
      * @param ticketId the ticket that will be cleared
      */
-    private void purgeTicketDetails(
+    private void purgeTicketDetailsChildren(
             long ticketId
     ) {
         ProviderProfile profile = getProviderDetailsByTicket(ticketId, true);
         if (profile != null) {
-            purge(profile);
+            purgeChildren(profile);
         }
     }
 
@@ -2325,6 +2336,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         if (insertDetails) {
             insertProfile(ticket.getTicketId(), details);
+            ticket.setProfileReferenceId(details.getProfileId());
+            getEm().merge(ticket);
         }
 
         return ticket.getTicketId();
@@ -2432,20 +2445,27 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @throws PortalServiceException
      */
     @Override
-    public void saveEnrollmentDetails(
+    public Enrollment saveEnrollmentDetails(
             Enrollment enrollment
     ) throws PortalServiceException {
         Enrollment ticket = getEm().find(Enrollment.class, enrollment.getTicketId());
         ProviderProfile updatedProfile = enrollment.getDetails().clone();
 
-        ProviderProfile profile = getProviderDetailsByTicket(ticket.getTicketId(), true);
-        if (profile != null) {
-            purge(profile);
+        ProviderProfile dbProfile = getProviderDetailsByTicket(ticket.getTicketId(), true);
+        if (dbProfile != null) {
+            purgeChildren(dbProfile);
+            updatedProfile.setProfileId(dbProfile.getProfileId());
+            updatedProfile.setTicketId(enrollment.getTicketId());
+            getEm().merge(updatedProfile);
+
+            saveRelatedEntities(updatedProfile);
+        } else {
+            insertProfile(ticket.getTicketId(), updatedProfile);
         }
 
         ticket.setDetails(updatedProfile);
-        getEm().merge(ticket);
-        insertProfile(ticket.getTicketId(), ticket.getDetails());
+
+        return ticket;
     }
 
     /**

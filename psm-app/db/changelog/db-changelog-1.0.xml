@@ -2001,4 +2001,27 @@
       primaryKey="control_no"
       tableName="provider_profiles" />
   </changeSet>
+  
+  <changeSet author="" id="issue949-remove-provider-profile-control-no">
+    <dropColumn tableName="provider_profiles"
+      columnName="profile_id"/>
+    <renameColumn tableName="provider_profiles"
+      oldColumnName="control_no"
+      newColumnName="profile_id"/>
+    <rollback>
+      <renameColumn tableName="provider_profiles"
+        newColumnName="control_no"
+        oldColumnName="profile_id"/>
+      <addColumn tableName="provider_profiles">
+        <column name="profile_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-entities">
+    <loadUpdateData file="seeds/20180731_entities.csv"
+      primaryKey="entity_id"
+      tableName="entities" />
+  </changeSet>
 </databaseChangeLog>

@@ -39,13 +39,13 @@ public class ProviderProfile implements Cloneable, Serializable {
     private long profileId;
 
     /**
-     * References the ticket for this request, if 0, this means it is already approved.
+     * References the enrollment for this request
      */
     @Column(
-            name = "ticket_id",
+            name = "enrollment_id",
             nullable = false
     )
-    private long ticketId = 0;
+    private long enrollmentId = 0;
 
     @Column(name = "effective_date")
     private Date effectiveDate;
@@ -240,12 +240,12 @@ public class ProviderProfile implements Cloneable, Serializable {
         this.profileId = profileId;
     }
 
-    public long getTicketId() {
-        return ticketId;
+    public long getEnrollmentId() {
+        return enrollmentId;
     }
 
-    public void setTicketId(long ticketId) {
-        this.ticketId = ticketId;
+    public void setEnrollmentId(long enrollmentId) {
+        this.enrollmentId = enrollmentId;
     }
 
     public List<Affiliation> getAffiliations() {

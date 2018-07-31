@@ -2154,4 +2154,15 @@
       primaryKey="enrollment_id"
       tableName="enrollments" />
   </changeSet>
+
+  <changeSet author="" id="issue949-rename-provider-profile-ticket-id">
+    <renameColumn tableName="provider_profiles"
+      oldColumnName="ticket_id"
+      newColumnName="enrollment_id"/>
+    <rollback>
+      <renameColumn tableName="provider_profiles"
+        newColumnName="enrollment_id"
+        oldColumnName="ticket_id"/>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

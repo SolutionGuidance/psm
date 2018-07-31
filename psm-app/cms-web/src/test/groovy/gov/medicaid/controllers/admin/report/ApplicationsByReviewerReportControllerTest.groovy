@@ -29,6 +29,7 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
     private makeEnrollment(id, createdOn, lastUpdatedBy, statusDate, status) {
         return new Enrollment([
             ticketId: id,
+            profileReferenceId: id,
             createdOn: toDate(createdOn),
             lastUpdatedBy: new CMSUser([username: lastUpdatedBy]),
             statusDate: toDate(statusDate),
@@ -91,7 +92,7 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
             makeEnrollment(1234, "2018-05-05 12:32:33 PST", "admin", "2018-05-08 5:03:55 PST", "TEST")
         ])
         1 * service.searchEnrollments(_) >> results
-        1 * service.getProviderDetailsByTicket(1234, true) >> makeProviderProfile("Provider", "Type");
+        1 * service.getProviderDetails(1234, true) >> makeProviderProfile("Provider", "Type");
 
         def response = new MockHttpServletResponse()
 

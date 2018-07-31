@@ -107,7 +107,7 @@ public class AutomaticScreeningController extends BaseController {
     private ScreeningDTO getScreeningDetails(AutomaticScreening screening) {
         Enrollment enrollment = screening.getEnrollment();
         ProviderProfile profile = providerEnrollmentService
-                .getProviderDetailsByTicket(enrollment.getTicketId(), true);
+                .getProviderDetails(enrollment.getTicketId(), true);
 
         ScreeningDTO dto = new ScreeningDTO();
         dto.date = Date.from(screening.getCreatedAt()

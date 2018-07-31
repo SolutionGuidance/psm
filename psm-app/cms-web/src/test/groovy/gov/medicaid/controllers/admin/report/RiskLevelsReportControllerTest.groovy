@@ -37,6 +37,7 @@ class RiskLevelsReportControllerTest extends Specification {
     private makeEnrollment(ticketId, statusDate) {
         return new Enrollment([
             ticketId: ticketId,
+            profileReferenceId: ticketId,
             statusDate: toDate(statusDate)
         ])
     }
@@ -62,13 +63,13 @@ class RiskLevelsReportControllerTest extends Specification {
     }
 
     private setupTestProviders() {
-        enrollmentService.getProviderDetailsByTicket(1, false) >> makeProvider(ViewStatics.LIMITED_RISK)
-        enrollmentService.getProviderDetailsByTicket(2, false) >> makeProvider(ViewStatics.LIMITED_RISK)
-        enrollmentService.getProviderDetailsByTicket(3, false) >> makeProvider(ViewStatics.MODERATE_RISK)
-        enrollmentService.getProviderDetailsByTicket(4, false) >> makeProvider(ViewStatics.HIGH_RISK)
-        enrollmentService.getProviderDetailsByTicket(5, false) >> makeProvider(ViewStatics.HIGH_RISK)
-        enrollmentService.getProviderDetailsByTicket(6, false) >> makeProvider(ViewStatics.MODERATE_RISK)
-        enrollmentService.getProviderDetailsByTicket(7, false) >> makeProvider(ViewStatics.LIMITED_RISK)
+        enrollmentService.getProviderDetails(1, false) >> makeProvider(ViewStatics.LIMITED_RISK)
+        enrollmentService.getProviderDetails(2, false) >> makeProvider(ViewStatics.LIMITED_RISK)
+        enrollmentService.getProviderDetails(3, false) >> makeProvider(ViewStatics.MODERATE_RISK)
+        enrollmentService.getProviderDetails(4, false) >> makeProvider(ViewStatics.HIGH_RISK)
+        enrollmentService.getProviderDetails(5, false) >> makeProvider(ViewStatics.HIGH_RISK)
+        enrollmentService.getProviderDetails(6, false) >> makeProvider(ViewStatics.MODERATE_RISK)
+        enrollmentService.getProviderDetails(7, false) >> makeProvider(ViewStatics.LIMITED_RISK)
     }
 
     def "csv with no enrollments - header"() {
@@ -148,7 +149,7 @@ class RiskLevelsReportControllerTest extends Specification {
             makeEnrollment(1, noonMiddleThisMonth),
         ])
         1 * enrollmentService.searchEnrollments(_) >> results
-        enrollmentService.getProviderDetailsByTicket(1, false) >>
+        enrollmentService.getProviderDetails(1, false) >>
             new ProviderProfile()
 
         when:

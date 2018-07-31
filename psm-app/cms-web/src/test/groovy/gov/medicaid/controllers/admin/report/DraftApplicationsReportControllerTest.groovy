@@ -100,7 +100,7 @@ class DraftApplicationsReportControllerTest extends Specification {
         given:
         1 * service.getDraftAtEomEnrollments(_) >> testEnrollmentData()
         (1..7).each {
-            1 * service.getProviderDetailsByTicket(it, true) >> makeProviderProfile("Provider", "Type");
+            1 * service.getProviderDetails(it, true) >> makeProviderProfile("Provider", "Type");
         }
 
         def response = new MockHttpServletResponse()

@@ -2148,4 +2148,10 @@
       primaryKey="entity_id"
       tableName="entities" />
   </changeSet>
+
+  <changeSet author="" id="issue949-enrollments">
+    <loadUpdateData file="seeds/20180731_enrollments.csv"
+      primaryKey="enrollment_id"
+      tableName="enrollments" />
+  </changeSet>
 </databaseChangeLog>

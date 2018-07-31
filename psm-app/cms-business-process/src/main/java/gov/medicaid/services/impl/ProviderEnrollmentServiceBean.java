@@ -579,8 +579,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             return Optional.empty();
         }
 
-        ProviderProfile providerProfile = getProviderDetailsByTicket(
-                enrollmentId,
+        ProviderProfile providerProfile = getProviderDetails(
+                enrollment.getProfileReferenceId(),
                 true
         );
         if (providerProfile == null) {
@@ -630,19 +630,23 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param fetchChildren true if the full object is needed
      * @return the profile with the given id
      */
-    @SuppressWarnings("rawtypes")
-    private ProviderProfile getProviderDetails(
+    @Override
+    public ProviderProfile getProviderDetails(
             long profileId,
             boolean fetchChildren
     ) {
-        Query query = getEm().createQuery("FROM ProviderProfile p WHERE profileId = :profileId");
+        TypedQuery<ProviderProfile> query =
+            getEm().createQuery(
+                "FROM ProviderProfile p WHERE profileId = :profileId",
+                ProviderProfile.class
+            );
         query.setParameter("profileId", profileId);
-        List rs = query.getResultList();
+        List<ProviderProfile> rs = query.getResultList();
         if (rs.isEmpty()) {
             return null;
         }
 
-        ProviderProfile profile = (ProviderProfile) rs.get(0);
+        ProviderProfile profile = rs.get(0);
         if (fetchChildren) {
             fetchChildren(profile);
         }
@@ -922,8 +926,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     ) throws PortalServiceException {
         checkTicketEntitlement(user, ticketId);
 
-        ProviderProfile profile = getProviderDetailsByTicket(ticketId, false);
-        insertNote(user, profile.getProfileId(), ticketId, text);
+        insertNote(user, getTicketDetails(user, ticketId).getProfileReferenceId(), ticketId, text);
     }
 
     /**
@@ -968,7 +971,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         Enrollment ticket = (Enrollment) rs.get(0); // should be unique per process instance
         checkTicketEntitlement(user, ticket.getTicketId());
-        ticket.setDetails(getProviderDetailsByTicket(ticket.getTicketId(), true));
+        ticket.setDetails(getProviderDetails(ticket.getProfileReferenceId(), true));
         return ticket;
     }
 
@@ -1049,32 +1052,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     }
 
     /**
-     * Retrieves the provider details for the given ticket.
-     *
-     * @param ticketId      the ticket to search for
-     * @param fetchChildren if true, the entire object tree is retrieved
-     * @return the ticket details
-     */
-    public ProviderProfile getProviderDetailsByTicket(
-            long ticketId,
-            boolean fetchChildren
-    ) {
-        TypedQuery<ProviderProfile> query =
-            getEm().createQuery("FROM ProviderProfile p WHERE ticketId = :ticketId", ProviderProfile.class);
-        query.setParameter("ticketId", ticketId);
-        List<ProviderProfile> rs = query.getResultList();
-        if (rs.isEmpty()) {
-            return null;
-        }
-
-        ProviderProfile profile = rs.get(0);
-        if (fetchChildren) {
-            fetchChildren(profile);
-        }
-        return profile;
-    }
-
-    /**
      * Inserts the given attachment and its contents.
      *
      * @param attachment the attachment to create
@@ -1145,7 +1122,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 }
             } else {
                 // not the creator but given proxy access via the NPI ID
-                long profileId = getProviderDetailsByTicket(ticketId, false).getProfileId();
+                long profileId = getTicketDetails(user, ticketId).getProfileReferenceId();
                 Entity entity = findEntityByProviderKey(profileId, ticketId);
                 if (!entity.getNpi().equals(user.getProxyForNPI())) {
                     throw new PortalServiceException("You have no access to the requested ticket.");
@@ -1719,9 +1696,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param ticketId the ticket that will be cleared
      */
     private void purgeTicketDetailsChildren(
-            long ticketId
+            long profileId
     ) {
-        ProviderProfile profile = getProviderDetailsByTicket(ticketId, true);
+        ProviderProfile profile = getProviderDetails(profileId, true);
         if (profile != null) {
             purgeChildren(profile);
         }
@@ -2337,7 +2314,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             details.setTicketId(ticket.getTicketId());
             getEm().merge(details);
             ProviderProfile profile = details.clone();
-            purgeTicketDetailsChildren(ticket.getTicketId());
+            purgeTicketDetailsChildren(ticket.getProfileReferenceId());
             saveRelatedEntities(profile);
             ticket.setDetails(profile);
         }
@@ -2434,10 +2411,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public List<Note> findNotes(long ticketId) {
         List<Note> pendingNotes = new ArrayList<>();
         pendingNotes.addAll(findNotes(0, ticketId));
-        ProviderProfile profile = getProviderDetailsByTicket(ticketId, false);
-        if (profile.getProfileId() > 0) {
-            pendingNotes.addAll(findNotes(profile.getProfileId(), ticketId));
-        }
         return pendingNotes;
     }
 
@@ -2453,7 +2426,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         Enrollment ticket = getEm().find(Enrollment.class, enrollment.getTicketId());
         ProviderProfile updatedProfile = enrollment.getDetails().clone();
 
-        ProviderProfile dbProfile = getProviderDetailsByTicket(ticket.getTicketId(), true);
+        ProviderProfile dbProfile = getProviderDetails(ticket.getProfileReferenceId(), true);
         if (dbProfile != null) {
             purgeChildren(dbProfile);
             updatedProfile.setProfileId(dbProfile.getProfileId());

@@ -107,7 +107,7 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
         results.stream()
             .forEach(e -> {
                 e.setDetails(
-                    enrollmentService.getProviderDetailsByTicket(e.getTicketId(), true)
+                    enrollmentService.getProviderDetails(e.getProfileReferenceId(), true)
                 );
             });
 

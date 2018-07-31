@@ -87,7 +87,7 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
         results.stream()
             .forEach(e -> {
                 e.setDetails(
-                    enrollmentService.getProviderDetailsByTicket(e.getTicketId(), true)
+                    enrollmentService.getProviderDetails(e.getTicketId(), true)
                 );
             });
         return results;

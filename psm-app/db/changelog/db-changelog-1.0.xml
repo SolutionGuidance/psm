@@ -1654,4 +1654,165 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue254-seed-roles">
+    <loadData file="seeds/20180723_roles.csv"
+      tableName="roles" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-cms-user">
+    <loadData file="seeds/20180723_cms_user.csv"
+      tableName="cms_user" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-cms-authentication">
+    <loadData file="seeds/20180723_cms_authentication.csv"
+      tableName="cms_authentication" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-qualified-professional-types">
+    <loadData file="seeds/20180723_qualified_professional_types.csv"
+      tableName="qualified_professional_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-provider-types">
+    <loadData file="seeds/20180723_provider_types.csv"
+      tableName="provider_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-profile-statuses">
+    <loadData file="seeds/20180723_profile_statuses.csv"
+      tableName="profile_statuses" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-entity-structure-types">
+    <loadData file="seeds/20180723_entity_structure_types.csv"
+      tableName="entity_structure_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-issuing-boards">
+    <loadData file="seeds/20180723_issuing_boards.csv"
+      tableName="issuing_boards" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-license-statuses">
+    <loadData file="seeds/20180723_license_statuses.csv"
+      tableName="license_statuses" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-pay-to-provider-types">
+    <loadData file="seeds/20180723_pay_to_provider_types.csv"
+      tableName="pay_to_provider_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-categories-of-service">
+    <loadData file="seeds/20180723_categories_of_service.csv"
+      tableName="categories_of_service" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-service-categories">
+    <loadData file="seeds/20180723_service_categories.csv"
+      tableName="service_categories" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-counties">
+    <loadData file="seeds/20180723_counties.csv"
+      tableName="counties" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-beneficial-owner-types">
+    <loadData file="seeds/20180723_beneficial_owner_types.csv"
+      tableName="beneficial_owner_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-beneficial-risk-levels">
+    <loadData file="seeds/20180723_risk_levels.csv"
+      tableName="risk_levels" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-degrees">
+    <loadData file="seeds/20180723_degrees.csv"
+      tableName="degrees" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-relationship-types">
+    <loadData file="seeds/20180723_relationship_types.csv"
+      tableName="relationship_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-enrollment-statuses">
+    <loadData file="seeds/20180723_enrollment_statuses.csv"
+      tableName="enrollment_statuses" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-license-types">
+    <loadData file="seeds/20180723_license_types.csv"
+      tableName="license_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-specialty-types">
+    <loadData file="seeds/20180723_specialty_types.csv"
+      tableName="specialty_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-request-types">
+    <loadData file="seeds/20180723_request_types.csv"
+      tableName="request_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-states">
+    <loadData file="seeds/20180723_states.csv"
+      tableName="states" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-provider-profiles">
+    <loadData file="seeds/20180723_provider_profiles.csv"
+      tableName="provider_profiles" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-agreement-documents">
+    <loadData file="seeds/20180723_agreement_documents.csv"
+      tableName="agreement_documents" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-enrollments">
+    <loadData file="seeds/20180723_enrollments.csv"
+      tableName="enrollments" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-provider-type-agreement-documents">
+    <loadData file="seeds/20180723_provider_type_agreement_documents.csv"
+      tableName="provider_type_agreement_documents" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-provider-type-license-types">
+    <loadData file="seeds/20180723_provider_type_license_types.csv"
+      tableName="provider_type_license_types" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-entities">
+    <loadData file="seeds/20180723_entities.csv"
+      tableName="entities" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-people">
+    <loadData file="seeds/20180723_people.csv"
+      tableName="people" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-documents">
+    <loadData file="seeds/20180723_documents.csv"
+      tableName="documents" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-screening-schedules">
+    <loadData file="seeds/20180723_screening_schedules.csv"
+      tableName="screening_schedules" />
+  </changeSet>
+
+  <changeSet author="" id="issue254-seed-provider-type-settings">
+    <loadData file="seeds/20180723_provider_type_settings.csv"
+      tableName="provider_type_settings" />
+  </changeSet>
+
 </databaseChangeLog>

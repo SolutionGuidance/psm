@@ -123,8 +123,8 @@ public class RiskLevelsReportController extends gov.medicaid.controllers.BaseCon
             month = em.getMonth();
 
             numByRiskLevel.putAll(em.getEnrollments().stream()
-                .map(Enrollment::getTicketId)
-                .map(id -> enrollmentService2.getProviderDetailsByTicket(id, false))
+                .map(Enrollment::getProfileReferenceId)
+                .map(id -> enrollmentService2.getProviderDetails(id, false))
                 .map(ProviderProfile::getRiskLevel)
                 .filter(Objects::nonNull)
                 .map(RiskLevel::getDescription)

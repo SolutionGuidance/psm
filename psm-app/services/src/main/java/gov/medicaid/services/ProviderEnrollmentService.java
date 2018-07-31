@@ -560,13 +560,13 @@ public interface ProviderEnrollmentService {
             Long ticketId);
 
     /**
-     * Retrieves the provider details for the given ticket.
+     * Retrieves the provider details.
      *
-     * @param ticketId      the ticket to search for
+     * @param profileId     the profile to search for
      * @param fetchChildren if true, the entire object tree is retrieved
      * @return the ticket details
      */
-    ProviderProfile getProviderDetailsByTicket(
-            long ticketId,
+    ProviderProfile getProviderDetails(
+            long profileId,
             boolean fetchChildren);
 }

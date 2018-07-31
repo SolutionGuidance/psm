@@ -15,7 +15,7 @@ import javax.persistence.Query
 class ProviderEnrollmentServiceBeanTest extends Specification {
     private static final long TICKET_ID = 1
     private static final String PROFILE_QUERY =
-            "FROM ProviderProfile p WHERE ticketId = :ticketId"
+            "FROM ProviderProfile p WHERE profileId = :profileId"
     private ProviderEnrollmentServiceBean service
     private EntityManager entityManager
     private CMSUser systemUser

@@ -2111,4 +2111,18 @@
       </column>
     </createTable>
   </changeSet>
+
+  <changeSet author="" id="issue949-remove-provider-reference-ticket-id">
+    <dropColumn tableName="provider_profiles"
+      columnName="reference_ticket_id"/>
+    <rollback>
+      <addColumn tableName="provider_profiles">
+        <column name="reference_ticket_id"
+          type="bigint"
+          defaultValue="0">
+          <constraints nullable="false"/>
+        </column>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

@@ -34,10 +34,10 @@ class RiskLevelsReportControllerTest extends Specification {
         Date.from(d.atZone(ZoneId.systemDefault()).toInstant())
     }
 
-    private makeEnrollment(ticketId, statusDate) {
+    private makeEnrollment(enrollmentId, statusDate) {
         return new Enrollment([
-            ticketId: ticketId,
-            profileReferenceId: ticketId,
+            enrollmentId: enrollmentId,
+            profileReferenceId: enrollmentId,
             statusDate: toDate(statusDate)
         ])
     }

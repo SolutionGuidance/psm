@@ -62,7 +62,7 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
                 for (Enrollment enrollment : month.getEnrollments()) {
                     csvPrinter.printRecord(
                         month.getMonth(),
-                        enrollment.getTicketId(),
+                        enrollment.getEnrollmentId(),
                         enrollment.getDetails().getEntity().getNpi(),
                         enrollment.getDetails().getEntity().getName(),
                         enrollment.getDetails().getEntity().getProviderType().getDescription(),
@@ -87,7 +87,7 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
         results.stream()
             .forEach(e -> {
                 e.setDetails(
-                    enrollmentService.getProviderDetails(e.getTicketId(), true)
+                    enrollmentService.getProviderDetails(e.getProfileReferenceId(), true)
                 );
             });
         return results;

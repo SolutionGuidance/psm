@@ -53,7 +53,7 @@ public class Enrollment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "enrollment_id")
-    private long ticketId;
+    private long enrollmentId;
 
     /**
      * Ticket status.
@@ -156,12 +156,12 @@ public class Enrollment implements Serializable {
     public Enrollment() {
     }
 
-    public long getTicketId() {
-        return ticketId;
+    public long getEnrollmentId() {
+        return enrollmentId;
     }
 
-    public void setTicketId(long ticketId) {
-        this.ticketId = ticketId;
+    public void setEnrollmentId(long enrollmentId) {
+        this.enrollmentId = enrollmentId;
     }
 
     public EnrollmentStatus getStatus() {

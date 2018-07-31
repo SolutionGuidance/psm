@@ -67,7 +67,8 @@ class DraftApplicationsReportControllerTest extends Specification {
 
     private makeEnrollment(id, createdOn, submissionDate) {
         return new Enrollment([
-            ticketId: id,
+            enrollmentId: id,
+            profileReferenceId: id,
             createdOn: toDate(createdOn),
             submissionDate: submissionDate != null ?  toDate(submissionDate) : null
         ])
@@ -141,7 +142,7 @@ class DraftApplicationsReportControllerTest extends Specification {
         then:
         mv["enrollmentMonths"].size == 4
         mv["enrollmentMonths"][0].month == middleThisMonth.withDayOfMonth(1)
-        mv["enrollmentMonths"][0].enrollments[0].ticketId == 4
+        mv["enrollmentMonths"][0].enrollments[0].enrollmentId == 4
         mv["enrollmentMonths"][2].month == middleThisMonth.withDayOfMonth(1).minusMonths(2)
         mv["enrollmentMonths"][2].enrollments[1].createdOn == toDate(middleThisMonth.minusMonths(2))
         mv["enrollmentMonths"][1].enrollments[0].submissionDate == null

@@ -68,7 +68,7 @@ public class AutomaticScreeningController extends BaseController {
         mv.setViewName("admin/automatic_screening_leie");
         mv.addObject(
                 "enrollment_id",
-                screening.getEnrollment().getTicketId()
+                screening.getEnrollment().getEnrollmentId()
         );
         mv.addObject(
                 "in_review",
@@ -89,7 +89,7 @@ public class AutomaticScreeningController extends BaseController {
         mv.setViewName("admin/automatic_screening_dmf");
         mv.addObject(
                 "enrollment_id",
-                screening.getEnrollment().getTicketId()
+                screening.getEnrollment().getEnrollmentId()
         );
         mv.addObject(
                 "in_review",
@@ -107,7 +107,7 @@ public class AutomaticScreeningController extends BaseController {
     private ScreeningDTO getScreeningDetails(AutomaticScreening screening) {
         Enrollment enrollment = screening.getEnrollment();
         ProviderProfile profile = providerEnrollmentService
-                .getProviderDetails(enrollment.getTicketId(), true);
+                .getProviderDetails(enrollment.getProfileReferenceId(), true);
 
         ScreeningDTO dto = new ScreeningDTO();
         dto.date = Date.from(screening.getCreatedAt()
@@ -122,7 +122,7 @@ public class AutomaticScreeningController extends BaseController {
         dto.reason = enrollment.getStatusNote();
         dto.screeningType = screening.getType();
         dto.result = screening.getResult();
-        dto.enrollmentId = enrollment.getTicketId();
+        dto.enrollmentId = enrollment.getEnrollmentId();
         return dto;
     }
 

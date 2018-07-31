@@ -107,7 +107,7 @@ class AutomaticScreeningControllerTest extends Specification {
         screening.enrollment = new Enrollment()
         screening.enrollment.status = new EnrollmentStatus()
         screening.enrollment.status.description = status
-        screening.enrollment.ticketId = ENROLLMENT_ID
+        screening.enrollment.enrollmentId = ENROLLMENT_ID
         screening.npiSearchTerm = NPI
         screening.result = AutomaticScreening.Result.PASS
 

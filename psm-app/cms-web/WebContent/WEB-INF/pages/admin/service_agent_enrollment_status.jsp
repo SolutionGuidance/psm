@@ -35,7 +35,7 @@
                   <div class="row">
                     <label>NPI / UMPI</label>
                     <span class="floatL"><b>:</b></span>
-                    <a href="${ctx}/provider/enrollment/view?id=${profile.ticketId}">${profile.npi}</a>
+                    <a href="${ctx}/provider/enrollment/view?id=${profile.enrollmentId}">${profile.npi}</a>
                   </div>
                   <div class="row">
                     <label>Date Submitted</label>

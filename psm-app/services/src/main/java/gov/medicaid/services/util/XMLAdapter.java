@@ -101,8 +101,8 @@ public final class XMLAdapter {
      */
     public static EnrollmentType toXML(Enrollment ticket) {
         EnrollmentType enrollment = new EnrollmentType();
-        if (ticket.getTicketId() > 0) {
-            enrollment.setObjectId(String.valueOf(ticket.getTicketId()));
+        if (ticket.getEnrollmentId() > 0) {
+            enrollment.setObjectId(String.valueOf(ticket.getEnrollmentId()));
         }
         if (ticket.getRequestType() != null) {
             enrollment.setRequestType(RequestType.fromValue(ticket.getRequestType().getDescription()));
@@ -228,7 +228,7 @@ public final class XMLAdapter {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         ProviderProfile profile = ticket.getDetails();
         profile.setProfileId(BinderUtils.getAsLong(provider.getObjectId()));
-        ticket.setTicketId(BinderUtils.getAsLong(enrollment.getObjectId()));
+        ticket.setEnrollmentId(BinderUtils.getAsLong(enrollment.getObjectId()));
 
         if (enrollment.getRiskLevel() != null) {
             RiskLevelType riskLevel = enrollment.getRiskLevel();

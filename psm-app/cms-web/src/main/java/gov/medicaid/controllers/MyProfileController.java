@@ -194,12 +194,12 @@ public class MyProfileController extends BaseController {
             List<UserRequest> drafts = results.getItems();
             if (drafts != null) {
                 for (UserRequest userRequest : drafts) {
-                    Validity validity = enrollmentService.getSubmissionValidity(userRequest.getTicketId(), profileId);
+                    Validity validity = enrollmentService.getSubmissionValidity(userRequest.getEnrollmentId(), profileId);
                     if (validity != Validity.STALE) {
                         ModelAndView mv = new ModelAndView("provider/profile/confirm_edit");
                         mv.addObject("requestType", ViewStatics.RENEWAL_REQUEST);
                         mv.addObject("profileId", profileId);
-                        mv.addObject("ticketId", userRequest.getTicketId());
+                        mv.addObject("enrollmentId", userRequest.getEnrollmentId());
                         return mv;
                     }
                 }
@@ -239,12 +239,12 @@ public class MyProfileController extends BaseController {
             List<UserRequest> drafts = results.getItems();
             if (drafts != null) {
                 for (UserRequest userRequest : drafts) {
-                    Validity validity = enrollmentService.getSubmissionValidity(userRequest.getTicketId(), profileId);
+                    Validity validity = enrollmentService.getSubmissionValidity(userRequest.getEnrollmentId(), profileId);
                     if (validity != Validity.STALE) {
                         ModelAndView mv = new ModelAndView("provider/profile/confirm_edit");
                         mv.addObject("requestType", ViewStatics.UPDATE_REQUEST);
                         mv.addObject("profileId", profileId);
-                        mv.addObject("ticketId", userRequest.getTicketId());
+                        mv.addObject("enrollmentId", userRequest.getEnrollmentId());
                         return mv;
                     }
                 }

@@ -28,7 +28,7 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
 
     private makeEnrollment(id, createdOn, lastUpdatedBy, statusDate, status) {
         return new Enrollment([
-            ticketId: id,
+            enrollmentId: id,
             profileReferenceId: id,
             createdOn: toDate(createdOn),
             lastUpdatedBy: new CMSUser([username: lastUpdatedBy]),
@@ -151,7 +151,7 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
         mv["startDate"] == null
         mv["endDate"] == null
         mv["enrollments"].size == 4
-        mv["enrollments"][0].ticketId == 1237
+        mv["enrollments"][0].enrollmentId == 1237
     }
 
     def "submitted mv with dates"() {

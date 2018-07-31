@@ -481,7 +481,7 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will get the profile enrollment with the given profile ID.
      *
-     * @param ticketId the ticket ID
+     * @param enrollmentId the ticket ID
      * @return the model and view instance that contains the name of view to be
      * rendered and data to be used for rendering (not null)
      * @throws PortalServiceException If there are any errors in the action
@@ -489,14 +489,14 @@ public class EnrollmentController extends BaseController {
      */
     @RequestMapping("/agent/enrollment/details")
     public ModelAndView getDetails(
-            @RequestParam("id") long ticketId,
+            @RequestParam("id") long enrollmentId,
             @RequestParam(value = "print", required = false) String isPrint
     ) throws PortalServiceException {
         if ("yes".equals(isPrint)) {
-            ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/reviewPrint?id=" + ticketId);
+            ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/reviewPrint?id=" + enrollmentId);
             return mv;
         } else {
-            ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/view?id=" + ticketId);
+            ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/view?id=" + enrollmentId);
             return mv;
         }
     }
@@ -505,7 +505,7 @@ public class EnrollmentController extends BaseController {
      * This action will save the note in current enrollment of the profile with
      * the given ID.
      *
-     * @param ticketId the ticket ID
+     * @param enrollmentId the ticket ID
      * @param note     the note
      * @return the operation status and message
      * @throws IllegalArgumentException if note is null/empty
@@ -514,7 +514,7 @@ public class EnrollmentController extends BaseController {
     @RequestMapping("/agent/enrollment/note")
     @ResponseBody
     public StatusDTO saveNote(
-            @RequestParam("id") long ticketId,
+            @RequestParam("id") long enrollmentId,
             @RequestParam("note") String note
     ) {
         if (note == null || note.trim().length() == 0) {
@@ -524,7 +524,7 @@ public class EnrollmentController extends BaseController {
         StatusDTO statusDTO = new StatusDTO();
         CMSUser user = ControllerHelper.getCurrentUser();
         try {
-            enrollmentService.addNoteToTicket(user, ticketId, note);
+            enrollmentService.addNoteToTicket(user, enrollmentId, note);
             statusDTO.setSuccess(true);
         } catch (PortalServiceException ex) {
             statusDTO.setMessage(USER_ERROR_MSG);
@@ -560,20 +560,20 @@ public class EnrollmentController extends BaseController {
     /**
      * Completes the review step of the screening process.
      *
-     * @param ticketId the ticket id
+     * @param enrollmentId the ticket id
      * @param dto      the manual verification changes (if any)
      * @param reject   true if the application is to be denied
      * @param reason   the reason for denial
      * @throws PortalServiceException for any errors encountered
      */
     private void completeReview(
-            long ticketId,
+            long enrollmentId,
             ApprovalDTO dto,
             boolean reject,
             String reason
     ) throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
-        Enrollment enrollment = enrollmentService.getTicketDetails(user, ticketId);
+        Enrollment enrollment = enrollmentService.getTicketDetails(user, enrollmentId);
 
         long processInstanceId = enrollment.getProcessInstanceId();
         if (processInstanceId <= 0) {
@@ -666,7 +666,7 @@ public class EnrollmentController extends BaseController {
         List<UserRequest> items = results.getItems();
         if (items != null) {
             for (UserRequest item : items) {
-                item.setNotes(enrollmentService.findNotes(item.getTicketId()));
+                item.setNotes(enrollmentService.findNotes(item.getEnrollmentId()));
             }
         }
 
@@ -718,7 +718,7 @@ public class EnrollmentController extends BaseController {
     /**
      * This action will load the COS associated with a ticket.
      *
-     * @param ticketId the ticket id
+     * @param enrollmentId the ticket id
      * @return the model and view instance that contains the name of view to be
      * rendered and data to be used for rendering (not null)
      * @throws PortalServiceException If there are any errors in the action
@@ -726,14 +726,14 @@ public class EnrollmentController extends BaseController {
      */
     @RequestMapping("/agent/enrollment/pendingcos")
     public ModelAndView viewPendingCategoryOfService(
-            @RequestParam("id") long ticketId
+            @RequestParam("id") long enrollmentId
     ) throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
-        Enrollment enrollment = enrollmentService.getTicketDetails(user, ticketId);
+        Enrollment enrollment = enrollmentService.getTicketDetails(user, enrollmentId);
         if (enrollment != null) {
             ModelAndView mv = new ModelAndView("admin/service_agent_enrollment_pending_cos", "enrollment", enrollment);
             List<ProviderCategoryOfService> existingServices = enrollmentService.getPendingCategoryOfServices(user,
-                    ticketId);
+                    enrollmentId);
             mv.addObject("existingServices", existingServices);
             // get the COS codes using lookup
             mv.addObject("codes", lookupService.findAllLookups(CategoryOfService.class));
@@ -803,7 +803,7 @@ public class EnrollmentController extends BaseController {
     /**
      * Saves the category of services.
      *
-     * @param ticketId       the ticket id
+     * @param enrollmentId       the ticket id
      * @param startDate      start date
      * @param endDate        end date
      * @param cos            the list of codes
@@ -820,7 +820,7 @@ public class EnrollmentController extends BaseController {
             method = RequestMethod.POST
     )
     public ModelAndView addPendingCategoryOfService(
-            @RequestParam("id") long ticketId,
+            @RequestParam("id") long enrollmentId,
             @RequestParam("startDate") Date startDate,
             @RequestParam("endDate") String endDate,
             @RequestParam("cos") String[] cos,
@@ -844,7 +844,7 @@ public class EnrollmentController extends BaseController {
                     // ignore
                 }
             }
-            categoryOfService.setTicketId(ticketId);
+            categoryOfService.setTicketId(enrollmentId);
             Date prevCatEndDate = null;
             if (prevCosId != 0) {
                 try {
@@ -855,7 +855,7 @@ public class EnrollmentController extends BaseController {
             }
             enrollmentService.addCOSToTicket(user, categoryOfService, prevCosId, prevCatEndDate);
         }
-        return new ModelAndView("redirect:/agent/enrollment/pendingcos?id=" + ticketId);
+        return new ModelAndView("redirect:/agent/enrollment/pendingcos?id=" + enrollmentId);
     }
 
     /**
@@ -881,7 +881,7 @@ public class EnrollmentController extends BaseController {
     /**
      * Deletes the pending Category of Service.
      *
-     * @param ticketId the ticket id
+     * @param enrollmentId the ticket id
      * @param id       cos id
      * @return the model and view instance that contains the name of view to be
      * rendered and data to be used for rendering (not null)
@@ -890,12 +890,12 @@ public class EnrollmentController extends BaseController {
      */
     @RequestMapping("/agent/enrollment/deletePendingCOS")
     public ModelAndView deletePendingCategoryOfService(
-            @RequestParam("ticketId") long ticketId,
+            @RequestParam("enrollmentId") long enrollmentId,
             @RequestParam("id") long id
     ) throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
-        enrollmentService.deleteCOSByTicket(user, ticketId, id);
-        return new ModelAndView("redirect:/agent/enrollment/pendingcos?id=" + ticketId);
+        enrollmentService.deleteCOSByTicket(user, enrollmentId, id);
+        return new ModelAndView("redirect:/agent/enrollment/pendingcos?id=" + enrollmentId);
     }
 
     public void setLookupService(LookupService lookupService) {

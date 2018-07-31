@@ -307,7 +307,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         results.setTotal(((Number) count.getSingleResult()).intValue());
 
         StringBuilder fetchQuery = new StringBuilder(
-                "SELECT NEW gov.medicaid.entities.UserRequest(t.ticketId, e.npi, t.submissionDate, "
+                "SELECT NEW gov.medicaid.entities.UserRequest(t.enrollmentId, e.npi, t.submissionDate, "
                         + "rt.description, ts.description, t.statusDate, rl.description, pt.description, "
                         + "e.name, t.createdOn, rl.sortIndex, t.processInstanceId, t.profileReferenceId) " + fromClause);
 
@@ -352,7 +352,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         String baseClause = "FROM Enrollment t " +
             "LEFT JOIN t.status ts, Entity e " +
             "LEFT JOIN e.providerType pt " +
-            "WHERE e.ticketId = t.ticketId " +
+            "WHERE e.ticketId = t.enrollmentId " +
             "AND ts.description in (:enrollmentStatuses) ";
 
         StringBuilder countQuery = new StringBuilder("SELECT count(*) " + baseClause);
@@ -460,7 +460,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.DRAFT_STATUS));
         ticket.setStatusDate(Calendar.getInstance().getTime());
 
-        if (ticket.getTicketId() == 0) {
+        if (ticket.getEnrollmentId() == 0) {
             ticket.setCreatedBy(user);
             ticket.setCreatedOn(Calendar.getInstance().getTime());
             return saveTicket(user, ticket, ticket.getDetails().getProfileId() == 0);
@@ -970,7 +970,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
 
         Enrollment ticket = (Enrollment) rs.get(0); // should be unique per process instance
-        checkTicketEntitlement(user, ticket.getTicketId());
+        checkTicketEntitlement(user, ticket.getEnrollmentId());
         ticket.setDetails(getProviderDetails(ticket.getProfileReferenceId(), true));
         return ticket;
     }
@@ -1113,9 +1113,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         if (!FULL_ACCESS.contains(user.getRole().getDescription())) {
             if (user.getProxyForNPI() == null) {
                 Query q = getEm().createQuery(
-                        "SELECT 1 FROM Enrollment t WHERE t.ticketId = :ticketId AND t.createdBy = :user");
+                        "SELECT 1 FROM Enrollment t WHERE t.enrollmentId = :enrollmentId AND t.createdBy = :user");
                 q.setParameter("user", user);
-                q.setParameter("ticketId", ticketId);
+                q.setParameter("enrollmentId", ticketId);
                 List rs = q.getResultList();
                 if (rs.isEmpty()) {
                     throw new PortalServiceException("Access Denied.");
@@ -2013,7 +2013,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             }
         }
         if (Util.isNotBlank(criteria.getEnrollmentNumber())) {
-            buffer.append("AND t.ticketId = :enrollmentNumber ");
+            buffer.append("AND t.enrollmentId = :enrollmentNumber ");
         }
         if (Util.isNotBlank(criteria.getProviderType())) {
             buffer.append("AND pt.description = :providerType ");
@@ -2302,7 +2302,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         ticket = getEm().merge(ticket);
 
         if (insertDetails) {
-            insertProfile(ticket.getTicketId(), details);
+            insertProfile(ticket.getEnrollmentId(), details);
             ticket.setProfileReferenceId(details.getProfileId());
             getEm().merge(ticket);
         } else {
@@ -2312,7 +2312,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             //
             // We also want to ensure that the ticket currently being saved is the one the
             // with which provider profile associates
-            details.setEnrollmentId(ticket.getTicketId());
+            details.setEnrollmentId(ticket.getEnrollmentId());
             getEm().merge(details);
             ProviderProfile profile = details.clone();
             purgeTicketDetailsChildren(ticket.getProfileReferenceId());
@@ -2320,7 +2320,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             ticket.setDetails(profile);
         }
 
-        return ticket.getTicketId();
+        return ticket.getEnrollmentId();
     }
 
     @Override
@@ -2392,7 +2392,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 "Enrollment t " +
                 "LEFT JOIN t.status ts, " +
                 "Entity e " +
-                "WHERE p.enrollmentId = t.ticketId " +
+                "WHERE p.enrollmentId = t.enrollmentId " +
                 "AND e.ticketId = p.enrollmentId " +
                 "AND p.profileId = e.profileId " +
                 "AND p.enrollmentId > 0 " +
@@ -2424,19 +2424,19 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public Enrollment saveEnrollmentDetails(
             Enrollment enrollment
     ) throws PortalServiceException {
-        Enrollment ticket = getEm().find(Enrollment.class, enrollment.getTicketId());
+        Enrollment ticket = getEm().find(Enrollment.class, enrollment.getEnrollmentId());
         ProviderProfile updatedProfile = enrollment.getDetails().clone();
 
         ProviderProfile dbProfile = getProviderDetails(ticket.getProfileReferenceId(), true);
         if (dbProfile != null) {
             purgeChildren(dbProfile);
             updatedProfile.setProfileId(dbProfile.getProfileId());
-            updatedProfile.setEnrollmentId(enrollment.getTicketId());
+            updatedProfile.setEnrollmentId(enrollment.getEnrollmentId());
             getEm().merge(updatedProfile);
 
             saveRelatedEntities(updatedProfile);
         } else {
-            insertProfile(ticket.getTicketId(), updatedProfile);
+            insertProfile(ticket.getEnrollmentId(), updatedProfile);
         }
 
         ticket.setDetails(updatedProfile);

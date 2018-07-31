@@ -60,7 +60,7 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
                 for (Enrollment enrollment : month.getEnrollments()) {
                     csvPrinter.printRecord(
                         month.getMonth(),
-                        enrollment.getTicketId(),
+                        enrollment.getEnrollmentId(),
                         enrollment.getCreatedOn(),
                         enrollment.getSubmissionDate()
                     );

@@ -93,7 +93,7 @@ public class ReviewedDocumentsReportController extends gov.medicaid.controllers.
             month = em.getMonth();
 
             for (Enrollment e : em.getEnrollments()) {
-                numDocuments += enrollmentService.findAttachments(null, e.getTicketId()).size();
+                numDocuments += enrollmentService.findAttachments(null, e.getEnrollmentId()).size();
             }
         }
 

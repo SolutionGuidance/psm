@@ -90,8 +90,8 @@
                     <c:forEach var="enrollment" items="${enrollments}">
                       <tr class="reportRow">
                         <td>
-                          <a href="${ctx}/provider/enrollment/view?id=${enrollment.ticketId}">
-                            ${enrollment.ticketId}
+                          <a href="${ctx}/provider/enrollment/view?id=${enrollment.enrollmentId}">
+                            ${enrollment.enrollmentId}
                           </a>
                         </td>
                         <td>${enrollment.details.entity.name}</td>

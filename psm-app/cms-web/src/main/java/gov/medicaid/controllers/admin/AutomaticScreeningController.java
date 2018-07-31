@@ -48,7 +48,7 @@ public class AutomaticScreeningController extends BaseServiceAdminController {
         mv.setViewName("admin/automatic_screening_leie");
         mv.addObject(
                 "enrollment_id",
-                screening.getEnrollment().getTicketId()
+                screening.getEnrollment().getEnrollmentId()
         );
         mv.addObject(
                 "in_review",

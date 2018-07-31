@@ -77,7 +77,7 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
                 "Status");
             for (Enrollment enrollment : enrollments) {
                 csvPrinter.printRecord(
-                    enrollment.getTicketId(),
+                    enrollment.getEnrollmentId(),
                     enrollment.getDetails().getEntity().getName(),
                     enrollment.getDetails().getEntity().getProviderType().getDescription(),
                     enrollment.getCreatedOn(),

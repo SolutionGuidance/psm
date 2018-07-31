@@ -85,9 +85,9 @@
         <td class="alignCenter tdCheckbox">
           <input
             type="checkbox"
-            title="Enrollment ${item.ticketId}"
+            title="Enrollment ${item.enrollmentId}"
             class="enrollmentRowCheckBox"
-            value="${item.ticketId}"
+            value="${item.enrollmentId}"
             />
         </td>
         <td>
@@ -135,23 +135,23 @@
         <td class="alignCenter nopad">
           <c:choose>
             <c:when test="${fn:toLowerCase(item.status)=='pending'}">
-              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.enrollmentId}">
                 View
               </a>
               <span class="sep">|</span>
-              <a href="${ctx}/provider/enrollment/reopen?id=${item.ticketId}">
+              <a href="${ctx}/provider/enrollment/reopen?id=${item.enrollmentId}">
                 Edit
               </a>
               <span class="sep">|</span>
               <c:if test="${isServiceAdministrator}">
-                <a class="cosLink" href="${ctx}/agent/enrollment/pendingcos?id=${item.ticketId}">
+                <a class="cosLink" href="${ctx}/agent/enrollment/pendingcos?id=${item.enrollmentId}">
                   COS
                 </a>
                 <span class="sep">|</span>
               </c:if>
               <c:forEach var="task" items="${tasks}">
                 <c:if test="${task.processInstanceId == item.processInstanceId}">
-                    <a class="reviewLink" href="${ctx}/agent/enrollment/screeningReview?id=${item.ticketId}">
+                    <a class="reviewLink" href="${ctx}/agent/enrollment/screeningReview?id=${item.enrollmentId}">
                       Review
                     </a>
                     <span class="sep">|</span>
@@ -159,19 +159,19 @@
               </c:forEach>
             </c:when>
             <c:when test="${fn:toLowerCase(item.status)=='draft'}">
-              <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a href="${ctx}/provider/enrollment/view?id=${item.enrollmentId}">
                 Edit
               </a>
               <span class="sep">|</span>
               <c:if test="${isServiceAdministrator}">
-                <a class="cosLink" href="${ctx}/agent/enrollment/pendingcos?id=${item.ticketId}">
+                <a class="cosLink" href="${ctx}/agent/enrollment/pendingcos?id=${item.enrollmentId}">
                   COS
                 </a>
                 <span class="sep">|</span>
               </c:if>
             </c:when>
             <c:when test="${fn:toLowerCase(item.status)=='approved'}">
-              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.enrollmentId}">
                 View
               </a>
               <span class="sep">|</span>
@@ -191,7 +191,7 @@
               <span class="sep">|</span>
             </c:when>
             <c:otherwise>
-              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.enrollmentId}">
                 View
               </a>
               <span class="sep">|</span>
@@ -201,7 +201,7 @@
           <c:if test="${isServiceAdministrator}">
             <a
               href="javascript:;"
-              rel="${item.ticketId}"
+              rel="${item.enrollmentId}"
               class="writeNotes"
             >
               Add Note
@@ -209,7 +209,7 @@
             <span class="sep">|</span>
             <a
               href="javascript:;"
-              rel="${item.ticketId}"
+              rel="${item.enrollmentId}"
               class='viewNotes<c:if test="${!(fn:length(item.notes)>0)}"> hide disabledLink</c:if>'
             >
               View Notes
@@ -217,11 +217,11 @@
             <span class="sep <c:if test="${!(fn:length(item.notes)>0)}">hide</c:if>">|</span>
           </c:if>
 
-          <a rel="${item.ticketId}" class="printEnrollment" href="javascript:;">
+          <a rel="${item.enrollmentId}" class="printEnrollment" href="javascript:;">
             Print
           </a>
           <span class="sep">|</span>
-          <a href="${ctx}/provider/enrollment/exportTicket?id=${item.ticketId}">
+          <a href="${ctx}/provider/enrollment/exportTicket?id=${item.enrollmentId}">
             Export
           </a>
         </td>
@@ -238,8 +238,8 @@
       <c:forEach var="noteItem" items="${item.notes}" varStatus="noteStatus">
         <%-- There needs to be no extra whitespace inside this span. --%>
         <span
-          class="note_${item.ticketId}"
-          id="note_${item.ticketId}_${noteStatus.count}"
+          class="note_${item.enrollmentId}"
+          id="note_${item.enrollmentId}_${noteStatus.count}"
         >${noteItem.text}</span>
       </c:forEach>
     </c:forEach>

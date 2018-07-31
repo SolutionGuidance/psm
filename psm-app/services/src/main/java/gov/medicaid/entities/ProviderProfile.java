@@ -35,14 +35,8 @@ import java.util.List;
 public class ProviderProfile implements Cloneable, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "control_no")
-    private long id;
-
-    @Column(
-            name = "profile_id",
-            nullable = false
-    )
-    private long profileId = 0;
+    @Column(name = "profile_id")
+    private long profileId;
 
     /**
      * References the ticket for this request, if 0, this means it is already approved.
@@ -236,14 +230,6 @@ public class ProviderProfile implements Cloneable, Serializable {
     private List<ProviderCategoryOfService> categoriesOfServiceTypes;
 
     public ProviderProfile() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public long getProfileId() {

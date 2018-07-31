@@ -95,7 +95,7 @@ public interface ProviderEnrollmentService {
     /**
      * This is the service method to be called after the process has completed
      * and resulted in an approved change, but the approver made some manual
-     * changes to the data so it has to be saved first.
+     * changes to the data so we don't reload from database first.
      *
      * @param user   the user who approved the request
      * @param ticket the ticket that will be approved (after saving it)
@@ -407,8 +407,9 @@ public interface ProviderEnrollmentService {
      *
      * @param enrollment the enrollment to be saved
      * @throws PortalServiceException for any errors encountered
+     * @return a new enrollment with the details
      */
-    void saveEnrollmentDetails(
+    Enrollment saveEnrollmentDetails(
             Enrollment enrollment
     ) throws PortalServiceException;
 

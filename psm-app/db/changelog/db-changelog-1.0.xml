@@ -2157,4 +2157,15 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue949-remove-provider-category-of-service-approvals-profile-link">
+    <dropColumn tableName="provider_category_of_service_approvals"
+      columnName="profile_id"/>
+    <rollback>
+      <addColumn tableName="provider_category_of_service_approvals">
+        <column name="profile_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

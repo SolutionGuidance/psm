@@ -699,20 +699,20 @@ public class EnrollmentController extends BaseController {
      */
     @RequestMapping("/agent/enrollment/cos")
     public ModelAndView viewCategoryOfService(
-            @RequestParam("id") long profileId
+            @RequestParam("id") long enrollmentId
     ) throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
-        ProviderProfile profile = enrollmentService.getProviderDetails(user, profileId);
-        if (profile != null) {
-            ModelAndView mv = new ModelAndView("admin/service_agent_enrollment_cos", "profile", profile);
-            List<ProviderCategoryOfService> existingServices = enrollmentService.getProviderCategoryOfServices(user,
-                    profileId);
+        Optional<Enrollment> enrollment = enrollmentService.getEnrollment(user, enrollmentId);
+        if (enrollment.isPresent()) {
+            ModelAndView mv = new ModelAndView("admin/service_agent_enrollment_cos", "enrollment", enrollment);
+            List<ProviderCategoryOfService> existingServices = enrollmentService.getPendingCategoryOfServices(user,
+                    enrollmentId);
             mv.addObject("existingServices", existingServices);
             // get the COS codes using lookup
             mv.addObject("codes", lookupService.findAllLookups(CategoryOfService.class));
             return mv;
         }
-        throw new PortalServiceException("Cannot find the profile for the given id.");
+        throw new PortalServiceException("Cannot find the enrollment for the given id.");
     }
 
     /**
@@ -786,16 +786,27 @@ public class EnrollmentController extends BaseController {
                     // ignore
                 }
             }
-            categoryOfService.setProfileId(profileId);
-            Date prevCatEndDate = null;
-            if (prevCosId != 0) {
-                try {
-                    prevCatEndDate = dateFormat.parse(prevCosEndDate);
-                } catch (ParseException e) {
-                    // ignore
-                }
-            }
-            enrollmentService.addCOSToProfile(user, categoryOfService, prevCosId, prevCatEndDate);
+
+            //This used to be code that could potentially have added categories of service to
+            //profiles, rather than enrollments, but this code doesn't look like it was actually
+            //used.  In the case that it is in the future, you have to figure out how to properly
+            //uncomment the following section and stop throwing the exception.
+
+            /*
+             * categoryOfService.setProfileId(profileId);
+             *
+             * Date prevCatEndDate = null;
+             * if (prevCosId != 0) {
+             *     try {
+             *         prevCatEndDate = dateFormat.parse(prevCosEndDate);
+             *     } catch (ParseException e) {
+             *         // ignore
+             *     }
+             * }
+             * enrollmentService.addCOSToProfile(user, categoryOfService, prevCosId, prevCatEndDate);
+             */
+
+            throw new PortalServiceException("Category of Services can no longer be added to profiles");
         }
         return new ModelAndView("redirect:/agent/enrollment/cos?id=" + profileId);
     }

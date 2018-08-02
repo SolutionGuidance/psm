@@ -180,7 +180,7 @@
               </a>
               <span class="sep">|</span>
               <c:if test="${isServiceAdministrator}">
-                <a class="cosLink" href="${ctx}/agent/enrollment/cos?id=${item.profileReferenceId}">
+                <a class="cosLink" href="${ctx}/agent/enrollment/cos?id=${item.enrollmentId}">
                   COS
                 </a>
                 <span class="sep">|</span>

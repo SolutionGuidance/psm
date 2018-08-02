@@ -146,9 +146,6 @@ public class ProviderProfile implements Cloneable, Serializable {
     private Entity entity;
 
     @Transient
-    private ProviderStatement statement;
-
-    @Transient
     private List<DesignatedContact> designatedContacts;
 
     /**
@@ -357,14 +354,6 @@ public class ProviderProfile implements Cloneable, Serializable {
 
     public void setPreviousExclusionInd(String previousExclusionInd) {
         this.previousExclusionInd = previousExclusionInd;
-    }
-
-    public ProviderStatement getStatement() {
-        return statement;
-    }
-
-    public void setStatement(ProviderStatement statement) {
-        this.statement = statement;
     }
 
     public List<PayToProvider> getPayToProviders() {

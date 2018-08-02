@@ -2168,4 +2168,15 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue949-remove-provider-statements-profile-link">
+    <dropColumn tableName="provider_statements"
+      columnName="profile_id"/>
+    <rollback>
+      <addColumn tableName="provider_statements">
+        <column name="profile_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

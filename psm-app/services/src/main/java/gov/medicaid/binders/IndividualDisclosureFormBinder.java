@@ -315,10 +315,10 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         ticket.setAgreements(acceptedAgreements);
 
         ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(enrollment);
-        ProviderStatement hStatement = profile.getStatement();
+        ProviderStatement hStatement = ticket.getStatement();
         if (hStatement == null) {
             hStatement = new ProviderStatement();
-            profile.setStatement(hStatement);
+            ticket.setStatement(hStatement);
         }
 
         hStatement.setName(xStatement.getName());
@@ -382,7 +382,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         acceptedAgreements.getProviderAgreement().clear();
         acceptedAgreements.getProviderAgreement().addAll(xlist);
 
-        ProviderStatement hStatement = profile.getStatement();
+        ProviderStatement hStatement = ticket.getStatement();
         if (hStatement != null) {
             ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(enrollment);
             xStatement.setName(hStatement.getName());

@@ -1229,7 +1229,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         for (PayToProvider payToProvider : payToProviders) {
             payToProvider.setProfileId(details.getProfileId());
-            payToProvider.setTicketId(details.getEnrollmentId());
             payToProvider.setId(0);
             getEm().persist(payToProvider);
         }
@@ -1707,7 +1706,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         profile.setStatement(findStatementByProviderKey(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setOwnershipInformation(findOwnershipInformation(profile.getProfileId()));
         profile.setNotes(findNotes(profile.getProfileId(), profile.getEnrollmentId()));
-        profile.setPayToProviders(findPayToProviders(profile.getProfileId(), profile.getEnrollmentId()));
+        profile.setPayToProviders(findPayToProviders(profile.getProfileId()));
         profile.setServices(findServices(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setCategoriesOfServiceTypes(findCategoriesOfService(profile.getProfileId(), profile.getEnrollmentId()));
     }
@@ -1754,12 +1753,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     @SuppressWarnings({"unchecked"})
     private List<PayToProvider> findPayToProviders(
-            long profileId,
-            long ticketId
+            long profileId
     ) {
-        Query query = getEm().createQuery("FROM PayToProvider o WHERE ticketId = :ticketId AND profileId = :profileId");
+        Query query = getEm().createQuery("FROM PayToProvider o WHERE profileId = :profileId");
         query.setParameter("profileId", profileId);
-        query.setParameter("ticketId", ticketId);
         return query.getResultList();
     }
 

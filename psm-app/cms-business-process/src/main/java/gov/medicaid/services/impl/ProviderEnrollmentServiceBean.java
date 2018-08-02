@@ -1414,7 +1414,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
 
         for (License license : certifications) {
-            license.setTicketId(details.getEnrollmentId());
             license.setProfileId(details.getProfileId());
 
             if (license.getAttachmentId() > 0) {
@@ -1703,7 +1702,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     private void fetchChildren(ProviderProfile profile) {
         profile.setEntity(findEntityByProviderKey(profile.getProfileId()));
         profile.setDesignatedContacts(findDesignatedContacts(profile.getProfileId()));
-        profile.setCertifications(findCertifications(profile.getProfileId(), profile.getEnrollmentId()));
+        profile.setCertifications(findCertifications(profile.getProfileId()));
         profile.setAttachments(findAttachments(profile.getProfileId()));
         profile.setAffiliations(findAffiliations(profile.getProfileId()));
         profile.setStatement(findStatementByProviderKey(profile.getProfileId(), profile.getEnrollmentId()));
@@ -1886,10 +1885,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the related certifications to the profile
      */
     @SuppressWarnings("unchecked")
-    private List<License> findCertifications(long profileId, long ticketId) {
-        Query query = getEm().createQuery("FROM License l WHERE ticketId = :ticketId AND profileId = :profileId");
+    private List<License> findCertifications(long profileId) {
+        Query query = getEm().createQuery("FROM License l WHERE profileId = :profileId");
         query.setParameter("profileId", profileId);
-        query.setParameter("ticketId", ticketId);
         return query.getResultList();
     }
 

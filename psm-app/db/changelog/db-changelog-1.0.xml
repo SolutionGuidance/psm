@@ -2255,4 +2255,15 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue949-remove-licenses-enrollment-link">
+    <dropColumn tableName="licenses"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="licenses">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

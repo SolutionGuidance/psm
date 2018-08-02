@@ -2288,4 +2288,15 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue949-remove-provider-services-enrollment-link">
+    <dropColumn tableName="provider_services"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="provider_services">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

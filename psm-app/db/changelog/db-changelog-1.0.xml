@@ -2244,4 +2244,15 @@
       primaryKey="document_id"
       tableName="documents" />
   </changeSet>
+
+  <changeSet author="" id="issue949-remove-entities-enrollment-link">
+    <dropColumn tableName="entities"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="entities">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

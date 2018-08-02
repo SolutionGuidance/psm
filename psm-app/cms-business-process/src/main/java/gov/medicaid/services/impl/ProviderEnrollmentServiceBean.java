@@ -296,7 +296,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         String fromClause = "FROM ProviderProfile p LEFT JOIN p.riskLevel rl, Enrollment t LEFT JOIN t.requestType rt "
                 + "LEFT JOIN t.status ts, Entity e LEFT JOIN e.providerType pt WHERE p.profileId = t.profileReferenceId "
-                + "AND p.profileId = e.profileId AND e.ticketId = t.enrollmentId ";
+                + "AND p.profileId = e.profileId ";
 
         StringBuilder countQuery = new StringBuilder("SELECT count(*) " + fromClause);
         appendCriteria(countQuery, user, criteria);
@@ -350,10 +350,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         results.setPageSize(criteria.getPageSize());
 
         String baseClause = "FROM Enrollment t " +
-            "LEFT JOIN t.status ts, Entity e " +
+            "LEFT JOIN ProviderProfile p ON t.profileReferenceId = p.profileId " +
+            "LEFT JOIN Entity e ON e.profileId = p.profileId " +
+            "LEFT JOIN t.status ts " +
             "LEFT JOIN e.providerType pt " +
-            "WHERE e.ticketId = t.enrollmentId " +
-            "AND ts.description in (:enrollmentStatuses) ";
+            "WHERE ts.description in (:enrollmentStatuses) ";
 
         StringBuilder countQuery = new StringBuilder("SELECT count(*) " + baseClause);
         appendCriteria(countQuery, criteria);
@@ -834,7 +835,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader("
                 + "e.profileId, e.npi, pt.description, p.effectiveDate, p.modifiedOn"
                 + ") FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
-                + "WHERE e.ticketId = p.enrollmentId AND p.profileId = e.profileId and "
+                + "WHERE p.profileId = e.profileId and "
                 + (hasProxyForNpi ? "e.npi = :npi " : "p.ownerId = :ownerId ")
                 + "ORDER BY 5 DESC";
 
@@ -1011,22 +1012,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the related entity to the profile
      */
     @Override
-    public Entity findEntityByProviderKey(Long profileId, Long ticketId) {
-        String queryStr = "FROM Entity e WHERE 1 = 1 ";
-        if (profileId != null) {
-            queryStr += " AND profileId = :profileId";
-        }
-        if (ticketId != null) {
-            queryStr += " AND ticketId = :ticketId";
-        }
+    public Entity findEntityByProviderKey(long profileId) {
+        String queryStr = "FROM Entity e WHERE profileId = :profileId";
         TypedQuery<Entity> query = getEm().createQuery(queryStr, Entity.class);
-
-        if (profileId != null) {
-            query.setParameter("profileId", profileId);
-        }
-        if (ticketId != null) {
-            query.setParameter("ticketId", ticketId);
-        }
+        query.setParameter("profileId", profileId);
 
         List<Entity> rs = query.getResultList();
         if (rs.isEmpty()) {
@@ -1122,7 +1111,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             } else {
                 // not the creator but given proxy access via the NPI ID
                 long profileId = getTicketDetails(user, ticketId).getProfileReferenceId();
-                Entity entity = findEntityByProviderKey(profileId, ticketId);
+                Entity entity = findEntityByProviderKey(profileId);
                 if (!entity.getNpi().equals(user.getProxyForNPI())) {
                     throw new PortalServiceException("You have no access to the requested ticket.");
                 }
@@ -1155,7 +1144,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 }
             } else {
                 // not the creator but given proxy access via the NPI ID
-                Entity entity = findEntityByProviderKey(profileId, 0L);
+                Entity entity = findEntityByProviderKey(profileId);
                 if (!entity.getNpi().equals(user.getProxyForNPI())) {
                     throw new PortalServiceException("You have no access to the requested profile.");
                 }
@@ -1452,7 +1441,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             String fullname = Util.defaultString(p.getFirstName()) + " " + Util.defaultString(p.getLastName());
             p.setName(fullname.trim());
         }
-        insertEntity(details.getProfileId(), details.getEnrollmentId(), entity);
+        insertEntity(details.getProfileId(), entity);
     }
 
     /**
@@ -1483,7 +1472,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param entity the entity to be created
      */
     private void insertNonProviderEntity(Entity entity) {
-        insertEntity(0, 0, entity);
+        insertEntity(0, entity);
     }
 
     /**
@@ -1493,13 +1482,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param ticketId  the ticket id (0 if not a provider)
      * @param entity    the entity to be inserted
      */
-    private void insertEntity(long profileId, long ticketId, Entity entity) {
+    private void insertEntity(long profileId, Entity entity) {
         if (entity == null) {
             return;
         }
 
         entity.setProfileId(profileId);
-        entity.setTicketId(ticketId);
 
         insertContactInformation(entity.getContactInformation());
 
@@ -1713,7 +1701,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param profile the profile to be populated
      */
     private void fetchChildren(ProviderProfile profile) {
-        profile.setEntity(findEntityByProviderKey(profile.getProfileId(), profile.getEnrollmentId()));
+        profile.setEntity(findEntityByProviderKey(profile.getProfileId()));
         profile.setDesignatedContacts(findDesignatedContacts(profile.getProfileId()));
         profile.setCertifications(findCertifications(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setAttachments(findAttachments(profile.getProfileId()));
@@ -1877,7 +1865,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 affiliation.setEntity(getEm().find(Entity.class, affiliation.getTargetEntityId()));
                 affiliation.setAffiliateLicenses(findAffiliateLicences(affiliation.getTargetEntityId()));
             } else {
-                affiliation.setEntity(findEntityByProviderKey(affiliation.getTargetProfileId(), 0L));
+                affiliation.setEntity(findEntityByProviderKey(affiliation.getTargetProfileId()));
             }
         }
         return affiliations;
@@ -2396,7 +2384,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 "LEFT JOIN t.status ts, " +
                 "Entity e " +
                 "WHERE p.enrollmentId = t.enrollmentId " +
-                "AND e.ticketId = p.enrollmentId " +
                 "AND p.profileId = e.profileId " +
                 "AND p.enrollmentId > 0 " +
                 "AND e.profileId = :profileId " +
@@ -2642,7 +2629,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     ) {
         String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
                 + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
-                + "WHERE e.ticketId = p.enrollmentId AND p.profileId = e.profileId and e.npi = :npi "
+                + "WHERE p.profileId = e.profileId and e.npi = :npi "
                 + "AND p.enrollmentId = 0 ORDER BY 5 DESC";
 
         Query items = getEm().createQuery(fetchQuery);
@@ -2682,7 +2669,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public boolean existsProfile(String profileNPI) {
         String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
                 + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
-                + "WHERE e.ticketId = p.enrollmentId AND p.profileId = e.profileId and e.npi = :npi "
+                + "WHERE p.profileId = e.profileId and e.npi = :npi "
                 + "AND p.enrollmentId = 0 ORDER BY 5 DESC";
 
         Query items = getEm().createQuery(fetchQuery);

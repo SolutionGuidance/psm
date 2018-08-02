@@ -1667,6 +1667,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     private void fetchChildren(Enrollment enrollment) {
         enrollment.setAgreements(findAgreements(enrollment.getEnrollmentId()));
         enrollment.setNotes(findNotes(enrollment.getEnrollmentId()));
+        enrollment.setCategoriesOfServiceTypes(findCategoriesOfService(enrollment.getEnrollmentId()));
     }
 
     /**
@@ -1684,7 +1685,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         profile.setOwnershipInformation(findOwnershipInformation(profile.getProfileId()));
         profile.setPayToProviders(findPayToProviders(profile.getProfileId()));
         profile.setServices(findServices(profile.getProfileId()));
-        profile.setCategoriesOfServiceTypes(findCategoriesOfService(profile.getProfileId(), profile.getEnrollmentId()));
     }
 
     /**
@@ -1696,18 +1696,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     @SuppressWarnings("unchecked")
     private List<ProviderCategoryOfService> findCategoriesOfService(
-            long profileId,
             long ticketId
     ) {
         Query query = getEm().createQuery(
-                "FROM ProviderCategoryOfService p WHERE ticketId = :ticketId AND profileId = :profileId");
-        if (ticketId > 0) { // COS tickets do not populate the original profile id even on UPDATE
-            query.setParameter("profileId", 0L);
-            query.setParameter("ticketId", ticketId);
-        } else {
-            query.setParameter("ticketId", ticketId);
-            query.setParameter("profileId", 0L);
-        }
+                "FROM ProviderCategoryOfService p WHERE ticketId = :ticketId");
+        query.setParameter("ticketId", ticketId);
         return query.getResultList();
     }
 
@@ -2167,10 +2160,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     ) throws PortalServiceException {
         List<ProviderCategoryOfService> services = new ArrayList<>();
         services.addAll(getPendingCategoryOfServices(user, ticketId));
-        services.addAll(getProviderCategoryOfServices(user, profileId));
         for (ProviderCategoryOfService service : services) {
-            service.setProfileId(profileId);
-            service.setTicketId(0);
+            service.setTicketId(ticketId);
             getEm().merge(service);
         }
     }
@@ -2393,25 +2384,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         return results.toArray(new Long[0]);
     }
 
-    /**
-     * Gets the COS associated with a profile.
-     *
-     * @param user      CMS user
-     * @param profileId profile id.
-     * @return the list of services
-     * @throws PortalServiceException for any errors encountered
-     */
-    @Override
-    public List<ProviderCategoryOfService> getProviderCategoryOfServices(
-            CMSUser user,
-            long profileId
-    ) throws PortalServiceException {
-        checkProfileEntitlement(user, profileId);
-        return queryCategoriesOfService("p.profileId = :id")
-                .setParameter("id", profileId)
-                .getResultList();
-    }
-
     private TypedQuery<ProviderCategoryOfService> queryCategoriesOfService(
             String condition
     ) {
@@ -2442,7 +2414,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             long prevCatServiceId,
             Date prevCatEndDate
     ) throws PortalServiceException {
-        checkProfileEntitlement(user, categoryOfService.getProfileId());
+        checkTicketEntitlement(user, categoryOfService.getTicketId());
         categoryOfService.setId(0);
         getEm().persist(categoryOfService);
         if (prevCatServiceId != 0) {

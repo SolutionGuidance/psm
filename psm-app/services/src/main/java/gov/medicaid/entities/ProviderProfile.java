@@ -220,9 +220,6 @@ public class ProviderProfile implements Cloneable, Serializable {
     @Column(name = "last_modified_at")
     private Date modifiedOn;
 
-    @Transient
-    private List<ProviderCategoryOfService> categoriesOfServiceTypes;
-
     public ProviderProfile() {
     }
 
@@ -562,13 +559,5 @@ public class ProviderProfile implements Cloneable, Serializable {
 
     public void setPhysicalAndOccupationalTherapyInd(String physicalAndOccupationalTherapyInd) {
         this.physicalAndOccupationalTherapyInd = physicalAndOccupationalTherapyInd;
-    }
-
-    public List<ProviderCategoryOfService> getCategoriesOfServiceTypes() {
-        return categoriesOfServiceTypes;
-    }
-
-    public void setCategoriesOfServiceTypes(List<ProviderCategoryOfService> categoriesOfServiceTypes) {
-        this.categoriesOfServiceTypes = categoriesOfServiceTypes;
     }
 }

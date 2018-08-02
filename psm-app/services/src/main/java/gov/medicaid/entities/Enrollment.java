@@ -156,6 +156,9 @@ public class Enrollment implements Cloneable, Serializable {
     @Transient
     private List<Note> notes;
 
+    @Transient
+    private List<ProviderCategoryOfService> categoriesOfServiceTypes;
+
     @OneToMany(
             mappedBy = "enrollment",
             cascade = CascadeType.ALL
@@ -246,6 +249,14 @@ public class Enrollment implements Cloneable, Serializable {
 
     public void setNotes(List<Note> notes) {
         this.notes = notes;
+    }
+
+    public List<ProviderCategoryOfService> getCategoriesOfServiceTypes() {
+        return categoriesOfServiceTypes;
+    }
+
+    public void setCategoriesOfServiceTypes(List<ProviderCategoryOfService> categoriesOfServiceTypes) {
+        this.categoriesOfServiceTypes = categoriesOfServiceTypes;
     }
 
     public long getProcessInstanceId() {

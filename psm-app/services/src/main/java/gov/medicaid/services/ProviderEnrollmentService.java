@@ -411,19 +411,6 @@ public interface ProviderEnrollmentService {
     );
 
     /**
-     * Gets the COS associated with a profile.
-     *
-     * @param user      CMS user
-     * @param profileId profile id.
-     * @return the list of services
-     * @throws PortalServiceException for any errors encountered
-     */
-    List<ProviderCategoryOfService> getProviderCategoryOfServices(
-            CMSUser user,
-            long profileId
-    ) throws PortalServiceException;
-
-    /**
      * Adds COS to the profile.
      *
      * @param user              the user performing the action

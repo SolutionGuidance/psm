@@ -1131,6 +1131,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     private void saveRelatedEntities(Enrollment enrollment) {
         insertAgreements(enrollment);
+        insertStatement(enrollment);
     }
 
     /**
@@ -1169,9 +1170,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         // save affiliations
         insertAffiliations(details, attachmentMapping);
-
-        // save statement
-        insertStatement(details);
 
         // save ownership information
         insertOwnershipInfo(details);
@@ -1270,7 +1268,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param details the provider profile
      */
     private void insertStatement(
-            ProviderProfile details
+            Enrollment details
     ) {
         ProviderStatement statement = details.getStatement();
         if (statement == null) {
@@ -1278,7 +1276,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
 
         statement.setTicketId(details.getEnrollmentId());
-        statement.setProfileId(details.getProfileId());
 
         statement.setId(0);
         getEm().persist(statement);
@@ -1513,6 +1510,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 getEm().remove(acceptedAgreements);
             }
         }
+
+        if (enrollment.getStatement() != null) {
+            getEm().remove(enrollment.getStatement());
+        }
     }
 
     /**
@@ -1553,10 +1554,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             }
 
             getEm().remove(ownership);
-        }
-
-        if (profile.getStatement() != null) {
-            getEm().remove(profile.getStatement());
         }
 
         List<Affiliation> affiliations = profile.getAffiliations();
@@ -1666,6 +1663,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     private void fetchChildren(Enrollment enrollment) {
         enrollment.setAgreements(findAgreements(enrollment.getEnrollmentId()));
+        enrollment.setStatement(findStatementByEnrollmentId(enrollment.getEnrollmentId()));
         enrollment.setNotes(findNotes(enrollment.getEnrollmentId()));
         enrollment.setCategoriesOfServiceTypes(findCategoriesOfService(enrollment.getEnrollmentId()));
     }
@@ -1681,7 +1679,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         profile.setCertifications(findCertifications(profile.getProfileId()));
         profile.setAttachments(findAttachments(profile.getProfileId()));
         profile.setAffiliations(findAffiliations(profile.getProfileId()));
-        profile.setStatement(findStatementByProviderKey(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setOwnershipInformation(findOwnershipInformation(profile.getProfileId()));
         profile.setPayToProviders(findPayToProviders(profile.getProfileId()));
         profile.setServices(findServices(profile.getProfileId()));
@@ -1778,13 +1775,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the related statement to the profile
      */
     @SuppressWarnings("rawtypes")
-    private ProviderStatement findStatementByProviderKey(
-            long profileId,
+    private ProviderStatement findStatementByEnrollmentId(
             long ticketId
     ) {
         Query query = getEm().createQuery(
-                "FROM ProviderStatement ps WHERE ticketId = :ticketId AND profileId = :profileId");
-        query.setParameter("profileId", profileId);
+                "FROM ProviderStatement ps WHERE ticketId = :ticketId");
         query.setParameter("ticketId", ticketId);
         List rs = query.getResultList();
         if (rs.isEmpty()) {

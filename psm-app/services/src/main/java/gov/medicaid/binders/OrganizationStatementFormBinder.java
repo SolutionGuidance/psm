@@ -28,7 +28,6 @@ import gov.medicaid.entities.AcceptedAgreements;
 import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.ProviderStatement;
 import gov.medicaid.entities.dto.FormError;
 
@@ -250,7 +249,6 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
      */
     public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        ProviderProfile profile = ticket.getDetails();
 
         Set<AgreementDocument> activeList = getProviderTypeService().getByDescription(
                 provider.getProviderType()
@@ -270,10 +268,10 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
         ticket.setAgreements(acceptedAgreements);
 
         ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(enrollment);
-        ProviderStatement hStatement = profile.getStatement();
+        ProviderStatement hStatement = ticket.getStatement();
         if (hStatement == null) {
             hStatement = new ProviderStatement();
-            profile.setStatement(hStatement);
+            ticket.setStatement(hStatement);
         }
 
         hStatement.setName(xStatement.getName());
@@ -302,7 +300,6 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
      */
     public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        ProviderProfile profile = ticket.getDetails();
 
         Set<AgreementDocument> activeList = getProviderTypeService().getByDescription(
             provider.getProviderType()
@@ -331,7 +328,7 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
         acceptedAgreements.getProviderAgreement().clear();
         acceptedAgreements.getProviderAgreement().addAll(xlist);
 
-        ProviderStatement hStatement = profile.getStatement();
+        ProviderStatement hStatement = ticket.getStatement();
         if (hStatement != null) {
             ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(enrollment);
             xStatement.setName(hStatement.getName());

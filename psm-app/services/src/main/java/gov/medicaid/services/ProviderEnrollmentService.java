@@ -552,12 +552,9 @@ public interface ProviderEnrollmentService {
      * Retrieves the related attachments for the given profile key.
      *
      * @param profileId the profile id of the provider
-     * @param ticketId  the request ticket id
      * @return the related attachments to the profile
      */
-    List<Document> findAttachments(
-            Long profileId,
-            Long ticketId);
+    List<Document> findAttachments(long profileId);
 
     /**
      * Retrieves the provider details.

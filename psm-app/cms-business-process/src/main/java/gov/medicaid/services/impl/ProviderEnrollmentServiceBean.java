@@ -239,9 +239,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     ) throws IOException, PortalServiceException {
         Document attachment = getEm().find(Document.class, attachmentId);
         if (attachment != null) {
-            if (attachment.getTicketId() > 0) {
-                checkTicketEntitlement(user, attachment.getTicketId());
-            } else if (attachment.getProfileId() > 0) {
+            if (attachment.getProfileId() > 0) {
                 checkProfileEntitlement(user, attachment.getProfileId());
             } else {
                 if (!attachment.getCreatedBy().equals(user.getUserId())) {
@@ -915,9 +913,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             attachment.setCreatedBy(user.getUserId());
         }
 
-        if (attachment.getTicketId() > 0) {
-            checkTicketEntitlement(user, attachment.getTicketId());
-        } else if (attachment.getProfileId() > 0) {
+        if (attachment.getProfileId() > 0) {
             checkProfileEntitlement(user, attachment.getProfileId());
         }
 
@@ -1043,26 +1039,14 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * Retrieves the related attachments for the given profile key.
      *
      * @param profileId the profile id of the provider
-     * @param ticketId  the request ticket id
      * @return the related attachments to the profile
      */
     @Override
-    public List<Document> findAttachments(Long profileId, Long ticketId) {
-        String queryStr = "FROM Document a WHERE 1 = 1 ";
-        if (profileId != null) {
-            queryStr += " AND profileId = :profileId";
-        }
-        if (ticketId != null) {
-            queryStr += " AND ticketId = :ticketId";
-        }
+    public List<Document> findAttachments(long profileId) {
+        String queryStr = "FROM Document a WHERE profileId = :profileId";
         TypedQuery<Document> query = getEm().createQuery(queryStr, Document.class);
 
-        if (profileId != null) {
-            query.setParameter("profileId", profileId);
-        }
-        if (ticketId != null) {
-            query.setParameter("ticketId", ticketId);
-        }
+        query.setParameter("profileId", profileId);
         return query.getResultList();
     }
 
@@ -1406,7 +1390,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
 
         for (Document attachment : attachments) {
-            attachment.setTicketId(details.getEnrollmentId());
             attachment.setProfileId(details.getProfileId());
 
             if (attachment.getId() > 0) {
@@ -1733,7 +1716,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         profile.setEntity(findEntityByProviderKey(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setDesignatedContacts(findDesignatedContacts(profile.getProfileId()));
         profile.setCertifications(findCertifications(profile.getProfileId(), profile.getEnrollmentId()));
-        profile.setAttachments(findAttachments(profile.getProfileId(), profile.getEnrollmentId()));
+        profile.setAttachments(findAttachments(profile.getProfileId()));
         profile.setAffiliations(findAffiliations(profile.getProfileId()));
         profile.setStatement(findStatementByProviderKey(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setOwnershipInformation(findOwnershipInformation(profile.getProfileId(), profile.getEnrollmentId()));
@@ -2352,9 +2335,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     ) throws PortalServiceException {
         Document attachment = getEm().find(Document.class, attachmentId);
         if (attachment != null) {
-            if (attachment.getTicketId() > 0) {
-                checkTicketEntitlement(user, attachment.getTicketId());
-            } else if (attachment.getProfileId() > 0) {
+            if (attachment.getProfileId() > 0) {
                 checkProfileEntitlement(user, attachment.getProfileId());
             } else {
                 if (!attachment.getCreatedBy().equals(user.getUserId())) {

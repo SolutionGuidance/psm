@@ -2074,4 +2074,21 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue949-remove-documents-enrollment-link">
+    <dropColumn tableName="documents"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="documents">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-documents">
+    <loadUpdateData file="seeds/20180802_documents.csv"
+      primaryKey="document_id"
+      tableName="documents" />
+  </changeSet>
 </databaseChangeLog>

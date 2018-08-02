@@ -17,3 +17,6 @@ url: "http://providerscreeningmodule.org" # the base hostname & protocol for you
 
 # Build settings
 markdown: kramdown
+
+# Exclude directories
+exclude: ['etl', 'psm-app', 'team-notes']

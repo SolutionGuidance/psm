@@ -535,10 +535,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                     ticket.getRequestType().getDescription());
         }
 
-        // notes are special because they can be added directly to the profile
-        // we handle them separately so they are merged during approval
-        promoteNotesToBase(profile.getProfileId(), profile.getEnrollmentId());
-
         promoteCOSToBase(user, profile.getProfileId(), profile.getEnrollmentId());
 
         saveTicket(user, ticket, false);
@@ -935,26 +931,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     ) throws PortalServiceException {
         checkTicketEntitlement(user, ticketId);
 
-        insertNote(user, getTicketDetails(user, ticketId).getProfileReferenceId(), ticketId, text);
-    }
-
-    /**
-     * Creates a note on a profile, the note will also be visible on all active
-     * requests.
-     *
-     * @param user      the user performing the action
-     * @param profileId the request identifier
-     * @param text      the note text
-     * @throws PortalServiceException for any errors encountered
-     */
-    @Override
-    public void addNoteToProfile(
-            CMSUser user,
-            long profileId,
-            String text
-    ) throws PortalServiceException {
-        checkProfileEntitlement(user, profileId);
-        insertNote(user, profileId, 0, text);
+        insertNote(user, ticketId, text);
     }
 
     /**
@@ -1704,6 +1681,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     private void fetchChildren(Enrollment enrollment) {
         enrollment.setAgreements(findAgreements(enrollment.getEnrollmentId()));
+        enrollment.setNotes(findNotes(enrollment.getEnrollmentId()));
     }
 
     /**
@@ -1719,7 +1697,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         profile.setAffiliations(findAffiliations(profile.getProfileId()));
         profile.setStatement(findStatementByProviderKey(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setOwnershipInformation(findOwnershipInformation(profile.getProfileId()));
-        profile.setNotes(findNotes(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setPayToProviders(findPayToProviders(profile.getProfileId()));
         profile.setServices(findServices(profile.getProfileId()));
         profile.setCategoriesOfServiceTypes(findCategoriesOfService(profile.getProfileId(), profile.getEnrollmentId()));
@@ -1811,21 +1788,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     ) {
         Query query = getEm().createQuery(
                 "FROM AcceptedAgreements a WHERE ticketId = :ticketId");
-        query.setParameter("ticketId", ticketId);
-        return query.getResultList();
-    }
-
-    /**
-     * Retrieves the related notes for the given profile key.
-     *
-     * @param profileId the profile id of the provider
-     * @param ticketId  the request ticket id
-     * @return the related notes to the profile
-     */
-    @SuppressWarnings("unchecked")
-    private List<Note> findNotes(long profileId, long ticketId) {
-        Query query = getEm().createQuery("FROM Note a WHERE ticketId = :ticketId AND profileId = :profileId");
-        query.setParameter("profileId", profileId);
         query.setParameter("ticketId", ticketId);
         return query.getResultList();
     }
@@ -2229,24 +2191,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     }
 
     /**
-     * This copies all notes attached to the ticket into the profile.
-     *
-     * @param profileId the profile associated to the note
-     * @param ticketId  the ticket associated
-     */
-    private void promoteNotesToBase(long profileId, long ticketId) {
-        List<Note> pendingNotes = new ArrayList<>();
-        pendingNotes.addAll(findNotes(0, ticketId));
-        pendingNotes.addAll(findNotes(profileId, ticketId));
-
-        for (Note note : pendingNotes) {
-            note.setProfileId(profileId);
-            note.setTicketId(0);
-            getEm().merge(note);
-        }
-    }
-
-    /**
      * Inserts the given note.
      *
      * @param user      the user creating the note
@@ -2256,12 +2200,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     private void insertNote(
             CMSUser user,
-            long profileId,
             long ticketId,
             String text
     ) {
         Note n = new Note();
-        n.setProfileId(profileId);
         n.setTicketId(ticketId);
         n.setText(text);
         n.setCreatedBy(user.getUserId());
@@ -2401,9 +2343,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     @Override
     public List<Note> findNotes(long ticketId) {
-        List<Note> pendingNotes = new ArrayList<>();
-        pendingNotes.addAll(findNotes(0, ticketId));
-        return pendingNotes;
+        TypedQuery<Note> query = getEm().createQuery("FROM Note a WHERE ticketId = :ticketId", Note.class);
+        query.setParameter("ticketId", ticketId);
+        return query.getResultList();
     }
 
     /**

@@ -942,8 +942,7 @@ public class EnrollmentPageFlowController extends BaseController {
             if (enrollmentId > 0) {
                 enrollmentService.addNoteToTicket(principal.getUser(), enrollmentId, text);
             } else {
-                long profileId = BinderUtils.getAsLong(enrollment.getProviderInformation().getObjectId());
-                enrollmentService.addNoteToProfile(principal.getUser(), profileId, text);
+                throw new PortalServiceException("Requires an enrollment to add a note");
             }
 
             return new ModelAndView("redirect:/provider/enrollment/jump?page=Notes");

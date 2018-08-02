@@ -33,12 +33,6 @@ public class Note implements Serializable {
     private long id;
 
     /**
-     * The owner profile.
-     */
-    @Column(name = "profile_id")
-    private long profileId;
-
-    /**
      * The owner ticket.
      */
     @Column(name = "ticket_id")
@@ -61,14 +55,6 @@ public class Note implements Serializable {
      */
     @Column(name = "created_at")
     private Date createdOn;
-
-    public long getProfileId() {
-        return profileId;
-    }
-
-    public void setProfileId(long profileId) {
-        this.profileId = profileId;
-    }
 
     public long getTicketId() {
         return ticketId;

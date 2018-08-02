@@ -1245,7 +1245,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
 
         ownership.setProfileId(details.getProfileId());
-        ownership.setTicketId(details.getEnrollmentId());
 
         ownership.setId(0);
         // save owners
@@ -1721,7 +1720,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         profile.setAttachments(findAttachments(profile.getProfileId()));
         profile.setAffiliations(findAffiliations(profile.getProfileId()));
         profile.setStatement(findStatementByProviderKey(profile.getProfileId(), profile.getEnrollmentId()));
-        profile.setOwnershipInformation(findOwnershipInformation(profile.getProfileId(), profile.getEnrollmentId()));
+        profile.setOwnershipInformation(findOwnershipInformation(profile.getProfileId()));
         profile.setNotes(findNotes(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setPayToProviders(findPayToProviders(profile.getProfileId(), profile.getEnrollmentId()));
         profile.setServices(findServices(profile.getProfileId(), profile.getEnrollmentId()));
@@ -1788,13 +1787,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     @SuppressWarnings("rawtypes")
     private OwnershipInformation findOwnershipInformation(
-            long profileId,
-            long ticketId
+            long profileId
     ) {
         Query query = getEm().createQuery(
-                "FROM OwnershipInformation o WHERE ticketId = :ticketId AND profileId = :profileId");
+                "FROM OwnershipInformation o WHERE profileId = :profileId");
         query.setParameter("profileId", profileId);
-        query.setParameter("ticketId", ticketId);
         List rs = query.getResultList();
         if (rs.isEmpty()) {
             return null;

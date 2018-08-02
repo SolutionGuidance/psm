@@ -2113,4 +2113,15 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue949-remove-ownership-info-enrollment-link">
+    <dropColumn tableName="ownership_info"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="ownership_info">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

@@ -43,12 +43,6 @@ public class OwnershipInformation implements Serializable {
     private long profileId;
 
     /**
-     * References the ticket for this request.
-     */
-    @Column(name = "ticket_id")
-    private long ticketId;
-
-    /**
      * Type of entity for disclosure.
      */
     @ManyToOne
@@ -99,24 +93,6 @@ public class OwnershipInformation implements Serializable {
      */
     public void setProfileId(long profileId) {
         this.profileId = profileId;
-    }
-
-    /**
-     * Gets the value of the field <code>ticketId</code>.
-     *
-     * @return the ticketId
-     */
-    public long getTicketId() {
-        return ticketId;
-    }
-
-    /**
-     * Sets the value of the field <code>ticketId</code>.
-     *
-     * @param ticketId the ticketId to set
-     */
-    public void setTicketId(long ticketId) {
-        this.ticketId = ticketId;
     }
 
     /**

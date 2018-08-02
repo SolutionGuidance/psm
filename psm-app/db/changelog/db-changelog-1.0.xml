@@ -2124,4 +2124,15 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue949-remove-pay-to-providers-enrollment-link">
+    <dropColumn tableName="pay_to_providers"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="pay_to_providers">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

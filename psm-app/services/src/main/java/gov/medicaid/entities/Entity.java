@@ -56,12 +56,6 @@ public abstract class Entity implements Serializable {
     private long profileId;
 
     /**
-     * References the ticket for this request.
-     */
-    @Column(name = "ticket_id")
-    private long ticketId;
-
-    /**
      * The full name.
      */
     private String name;
@@ -152,14 +146,6 @@ public abstract class Entity implements Serializable {
 
     public void setProfileId(long profileId) {
         this.profileId = profileId;
-    }
-
-    public long getTicketId() {
-        return ticketId;
-    }
-
-    public void setTicketId(long ticketId) {
-        this.ticketId = ticketId;
     }
 
     public String getEnrolled() {

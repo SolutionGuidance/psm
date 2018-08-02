@@ -100,7 +100,7 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
         criteria.setCreateDateStart(startDate);
         criteria.setCreateDateEnd(endDate);
         criteria.setAscending(true);
-        criteria.setSortColumn("created_at");
+        criteria.setSortColumn("t.createdOn");
 
         List<Enrollment> results = enrollmentService.searchEnrollments(criteria).getItems();
 

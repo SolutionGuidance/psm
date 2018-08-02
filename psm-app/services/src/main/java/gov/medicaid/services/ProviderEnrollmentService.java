@@ -544,8 +544,7 @@ public interface ProviderEnrollmentService {
      * @return the related entity to the profile
      */
     Entity findEntityByProviderKey(
-            Long profileId,
-            Long ticketId
+            long profileId
     );
 
     /**

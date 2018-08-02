@@ -97,7 +97,7 @@ public class RiskLevelsReportController extends gov.medicaid.controllers.BaseCon
     private List<Enrollment> getEnrollmentsFromDB() {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         criteria.setAscending(true);
-        criteria.setSortColumn("created_at");
+        criteria.setSortColumn("t.createdOn");
         return enrollmentService.searchEnrollments(criteria).getItems();
     }
 

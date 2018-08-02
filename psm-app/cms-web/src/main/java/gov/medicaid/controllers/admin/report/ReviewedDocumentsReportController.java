@@ -70,7 +70,7 @@ public class ReviewedDocumentsReportController extends gov.medicaid.controllers.
     private List<Enrollment> getEnrollmentsFromDB() {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         criteria.setAscending(true);
-        criteria.setSortColumn("created_at");
+        criteria.setSortColumn("t.createdOn");
         return enrollmentService.searchEnrollments(criteria).getItems();
     }
 

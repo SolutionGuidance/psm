@@ -75,7 +75,7 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
     private SearchResult<Enrollment> getEnrollmentsFromDB() {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         criteria.setAscending(true);
-        criteria.setSortColumn("created_at");
+        criteria.setSortColumn("t.createdOn");
         return enrollmentService.getDraftAtEomEnrollments(criteria);
     }
 

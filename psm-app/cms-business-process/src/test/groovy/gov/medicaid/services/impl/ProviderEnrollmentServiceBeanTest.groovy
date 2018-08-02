@@ -4,6 +4,7 @@ import gov.medicaid.entities.CMSUser
 import gov.medicaid.entities.Document
 import gov.medicaid.entities.Enrollment
 import gov.medicaid.entities.Entity
+import gov.medicaid.entities.Note
 import gov.medicaid.entities.ProviderProfile
 import gov.medicaid.entities.Role
 import spock.lang.Specification
@@ -58,6 +59,7 @@ class ProviderEnrollmentServiceBeanTest extends Specification {
         entityManager.createQuery(PROFILE_QUERY, ProviderProfile.class) >>
                 mockTypedQuery([new ProviderProfile()])
         entityManager.createQuery(_ as String) >> mockQuery([])
+        entityManager.createQuery(_ as String, Note.class) >> mockTypedQuery([] as List<Note>)
         entityManager.createQuery(_ as String, Entity.class) >> mockTypedQuery([] as List<Entity>)
         entityManager.createQuery(_ as String, Document.class) >> mockTypedQuery([] as List<Document>)
 

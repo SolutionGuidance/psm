@@ -150,6 +150,12 @@ public class Enrollment implements Cloneable, Serializable {
     @Transient
     private List<AcceptedAgreements> agreements;
 
+    /**
+     * Notes on enrollment.
+     */
+    @Transient
+    private List<Note> notes;
+
     @OneToMany(
             mappedBy = "enrollment",
             cascade = CascadeType.ALL
@@ -232,6 +238,14 @@ public class Enrollment implements Cloneable, Serializable {
 
     public void setAgreements(List<AcceptedAgreements> agreements) {
         this.agreements = agreements;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
     }
 
     public long getProcessInstanceId() {

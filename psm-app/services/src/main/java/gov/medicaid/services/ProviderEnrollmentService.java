@@ -330,21 +330,6 @@ public interface ProviderEnrollmentService {
     ) throws PortalServiceException;
 
     /**
-     * Creates a note on a profile, the note will also be visible on all active
-     * requests.
-     *
-     * @param user      the user performing the action
-     * @param profileId the request identifier
-     * @param text      the note text
-     * @throws PortalServiceException for any errors encountered
-     */
-    void addNoteToProfile(
-            CMSUser user,
-            long profileId,
-            String text
-    ) throws PortalServiceException;
-
-    /**
      * Used by data onboarding service to fully import a mapped profile.
      *
      * @param user            the user performing the operation

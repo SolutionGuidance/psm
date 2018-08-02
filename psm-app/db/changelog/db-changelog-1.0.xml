@@ -2299,4 +2299,15 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue949-remove-notes-profile-link">
+    <dropColumn tableName="notes"
+      columnName="profile_id"/>
+    <rollback>
+      <addColumn tableName="notes">
+        <column name="profile_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

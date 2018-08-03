@@ -2332,4 +2332,323 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue485-rename-enrollment-and-ticket-to-application-remove-fks">
+    <dropForeignKeyConstraint
+      baseTableName="enrollments"
+      constraintName="enrollments_profile_reference_id_fkey" />
+    <dropForeignKeyConstraint
+      baseTableName="provider_profiles"
+      constraintName="provider_profiles_enrollment_id_fkey" />
+    <dropForeignKeyConstraint
+      baseTableName="automatic_screenings"
+      constraintName="automatic_screenings_enrollment_id_fkey" />
+    <dropForeignKeyConstraint
+      baseTableName="enrollments"
+      constraintName="enrollments_changed_by_fkey" />
+    <dropForeignKeyConstraint
+      baseTableName="enrollments"
+      constraintName="enrollments_created_by_fkey" />
+    <dropForeignKeyConstraint
+      baseTableName="enrollments"
+      constraintName="enrollments_enrollment_status_code_fkey" />
+    <dropForeignKeyConstraint
+      baseTableName="enrollments"
+      constraintName="enrollments_request_type_code_fkey" />
+    <dropForeignKeyConstraint
+      baseTableName="enrollments"
+      constraintName="enrollments_submitted_by_fkey" />
+    <rollback>
+      <addForeignKeyConstraint
+        baseTableName="automatic_screenings"
+        baseColumnNames="enrollment_id"
+        constraintName="automatic_screenings_enrollment_id_fkey"
+        referencedColumnNames="enrollment_id"
+        referencedTableName="enrollments"/>
+      <addForeignKeyConstraint
+        baseTableName="enrollments"
+        baseColumnNames="changed_by"
+        constraintName="enrollments_changed_by_fkey"
+        referencedColumnNames="user_id"
+        referencedTableName="cms_user"/>
+      <addForeignKeyConstraint
+        baseTableName="enrollments"
+        baseColumnNames="created_by"
+        constraintName="enrollments_created_by_fkey"
+        referencedColumnNames="user_id"
+        referencedTableName="cms_user"/>
+      <addForeignKeyConstraint
+        baseTableName="enrollments"
+        baseColumnNames="enrollment_status_code"
+        constraintName="enrollments_enrollment_status_code_fkey"
+        referencedColumnNames="code"
+        referencedTableName="enrollment_statuses"/>
+      <addForeignKeyConstraint
+        baseTableName="enrollments"
+        baseColumnNames="request_type_code"
+        constraintName="enrollments_request_type_code_fkey"
+        referencedColumnNames="code"
+        referencedTableName="request_types"/>
+      <addForeignKeyConstraint
+        baseTableName="enrollments"
+        baseColumnNames="submitted_by"
+        constraintName="enrollments_submitted_by_fkey"
+        referencedColumnNames="user_id"
+        referencedTableName="cms_user"/>
+      <addForeignKeyConstraint
+        baseTableName="provider_profiles"
+        baseColumnNames="enrollment_id"
+        constraintName="provider_profiles_enrollment_id_fkey"
+        referencedColumnNames="enrollment_id"
+        referencedTableName="enrollments"/>
+      <addForeignKeyConstraint
+        baseTableName="enrollments"
+        baseColumnNames="profile_reference_id"
+        constraintName="enrollments_profile_reference_id_fkey"
+        referencedColumnNames="profile_id"
+        referencedTableName="provider_profiles"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue485-rename-enrollment-and-ticket-to-application-enrollments">
+    <dropPrimaryKey tableName="enrollments" />
+    <renameTable
+      newTableName="applications"
+      oldTableName="enrollments" />
+    <renameColumn
+      tableName="applications"
+      newColumnName="application_id"
+      oldColumnName="enrollment_id" />
+    <renameColumn
+      tableName="applications"
+      newColumnName="application_status_code"
+      oldColumnName="enrollment_status_code" />
+    <addPrimaryKey
+      tableName="applications"
+      columnNames="application_id" />
+    <rollback>
+      <dropPrimaryKey tableName="applications" />
+      <renameColumn
+        tableName="applications"
+        newColumnName="enrollment_status_code"
+        oldColumnName="application_status_code" />
+      <renameColumn
+        tableName="applications"
+        newColumnName="enrollment_id"
+        oldColumnName="application_id" />
+      <renameTable
+        newTableName="enrollments"
+        oldTableName="applications" />
+      <addPrimaryKey
+        tableName="enrollments"
+        columnNames="enrollment_id" />
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue485-rename-enrollment-and-ticket-to-application-accepted_agreements">
+    <renameColumn
+      tableName="accepted_agreements"
+      newColumnName="application_id"
+      oldColumnName="ticket_id" />
+    <rollback>
+      <renameColumn
+        tableName="accepted_agreements"
+        oldColumnName="application_id"
+        newColumnName="ticket_id" />
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue485-rename-enrollment-and-ticket-to-application-events">
+    <renameColumn
+      tableName="events"
+      newColumnName="application_id"
+      oldColumnName="ticket_id" />
+    <rollback>
+      <renameColumn
+        tableName="events"
+        oldColumnName="application_id"
+        newColumnName="ticket_id" />
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue485-rename-enrollment-and-ticket-to-application-notes">
+    <renameColumn
+      tableName="notes"
+      newColumnName="application_id"
+      oldColumnName="ticket_id" />
+    <rollback>
+      <renameColumn
+        tableName="notes"
+        oldColumnName="application_id"
+        newColumnName="ticket_id" />
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue485-rename-enrollment-and-ticket-to-application-provider_category_of_service_approvals">
+    <renameColumn
+      tableName="provider_category_of_service_approvals"
+      newColumnName="application_id"
+      oldColumnName="ticket_id" />
+    <rollback>
+      <renameColumn
+        tableName="provider_category_of_service_approvals"
+        oldColumnName="application_id"
+        newColumnName="ticket_id" />
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue485-rename-enrollment-and-ticket-to-application-provider_profiles">
+    <renameColumn
+      tableName="provider_profiles"
+      newColumnName="application_id"
+      oldColumnName="enrollment_id" />
+    <rollback>
+      <renameColumn
+        tableName="provider_profiles"
+        oldColumnName="application_id"
+        newColumnName="enrollment_id" />
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue485-rename-enrollment-and-ticket-to-application-provider_statements">
+    <renameColumn
+      tableName="provider_statements"
+      newColumnName="application_id"
+      oldColumnName="ticket_id" />
+    <rollback>
+      <renameColumn
+        tableName="provider_statements"
+        oldColumnName="application_id"
+        newColumnName="ticket_id" />
+    </rollback>
+  </changeSet>
+  
+  <changeSet author="" id="issue485-rename-enrollment-and-ticket-to-application-enrollment_statuses">
+    <dropPrimaryKey tableName="enrollment_statuses" />
+    <dropUniqueConstraint
+      tableName="enrollment_statuses"
+      constraintName="enrollment_statuses_description_key" />
+    <renameTable
+      newTableName="application_statuses"
+      oldTableName="enrollment_statuses" />
+    <addPrimaryKey
+      tableName="application_statuses"
+      columnNames="code" />
+    <addUniqueConstraint
+      tableName="application_statuses"
+      columnNames="description"
+      constraintName="application_statuses_description_key" />
+    <rollback>
+      <dropPrimaryKey tableName="application_statuses" />
+      <dropUniqueConstraint
+        tableName="application_statuses"
+        constraintName="application_statuses_description_key" />
+      <renameTable
+        newTableName="enrollment_statuses"
+        oldTableName="application_statuses" />
+      <addPrimaryKey
+        tableName="enrollment_statuses"
+        columnNames="code" />
+      <addUniqueConstraint
+        tableName="enrollment_statuses"
+        columnNames="description"
+        constraintName="enrollment_statuses_description_key" />
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue485-rename-enrollment-and-ticket-to-application-automatic_screenings">
+    <renameColumn
+      tableName="automatic_screenings"
+      newColumnName="application_id"
+      oldColumnName="enrollment_id" />
+    <rollback>
+      <renameColumn
+        tableName="automatic_screenings"
+        newColumnName="enrollment_id"
+        oldColumnName="application_id" />
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue485-rename-enrollment-and-ticket-to-application-add-fks">
+    <addForeignKeyConstraint
+      baseTableName="applications"
+      baseColumnNames="profile_reference_id"
+      constraintName="applications_profile_reference_id_fkey"
+      referencedColumnNames="profile_id"
+      referencedTableName="provider_profiles"/>
+    <addForeignKeyConstraint
+      baseTableName="provider_profiles"
+      baseColumnNames="application_id"
+      constraintName="provider_profiles_application_id_fkey"
+      referencedColumnNames="application_id"
+      referencedTableName="applications"/>
+    <addForeignKeyConstraint
+      baseTableName="automatic_screenings"
+      baseColumnNames="application_id"
+      constraintName="automatic_screenings_application_id_fkey"
+      referencedColumnNames="application_id"
+      referencedTableName="applications"/>
+    <addForeignKeyConstraint
+      baseTableName="applications"
+      baseColumnNames="changed_by"
+      constraintName="applications_changed_by_fkey"
+      referencedColumnNames="user_id"
+      referencedTableName="cms_user"/>
+    <addForeignKeyConstraint
+      baseTableName="applications"
+      baseColumnNames="created_by"
+      constraintName="applications_created_by_fkey"
+      referencedColumnNames="user_id"
+      referencedTableName="cms_user"/>
+    <addForeignKeyConstraint
+      baseTableName="applications"
+      baseColumnNames="application_status_code"
+      constraintName="applications_application_status_code_fkey"
+      referencedColumnNames="code"
+      referencedTableName="application_statuses"/>
+    <addForeignKeyConstraint
+      baseTableName="applications"
+      baseColumnNames="request_type_code"
+      constraintName="applications_request_type_code_fkey"
+      referencedColumnNames="code"
+      referencedTableName="request_types"/>
+    <addForeignKeyConstraint
+      baseTableName="applications"
+      baseColumnNames="submitted_by"
+      constraintName="applications_submitted_by_fkey"
+      referencedColumnNames="user_id"
+      referencedTableName="cms_user"/>
+    <rollback>
+      <dropForeignKeyConstraint
+        baseTableName="automatic_screenings"
+        constraintName="automatic_screenings_application_id_fkey" />
+      <dropForeignKeyConstraint
+        baseTableName="applications"
+        constraintName="applications_changed_by_fkey" />
+      <dropForeignKeyConstraint
+        baseTableName="applications"
+        constraintName="applications_created_by_fkey" />
+      <dropForeignKeyConstraint
+        baseTableName="applications"
+        constraintName="applications_application_status_code_fkey" />
+      <dropForeignKeyConstraint
+        baseTableName="applications"
+        constraintName="applications_request_type_code_fkey" />
+      <dropForeignKeyConstraint
+        baseTableName="applications"
+        constraintName="applications_submitted_by_fkey" />
+      <dropForeignKeyConstraint
+        baseTableName="provider_profiles"
+        constraintName="provider_profiles_application_id_fkey" />
+      <dropForeignKeyConstraint
+        baseTableName="applications"
+        constraintName="applications_profile_reference_id_fkey" />
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue485-rename-enrollment-and-ticket-to-application-request_types-data">
+    <loadUpdateData file="seeds/20180803_request_types.csv"
+      primaryKey="code"
+      tableName="request_types" />
+  </changeSet>
 </databaseChangeLog>

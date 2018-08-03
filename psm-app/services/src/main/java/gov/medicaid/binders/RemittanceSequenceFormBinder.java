@@ -76,8 +76,8 @@ public class RemittanceSequenceFormBinder extends BaseFormBinder {
      * @return
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         provider.setRemittanceSequenceNumber(param(request, "remittanceSequenceNumber"));
         return Collections.emptyList();
     }
@@ -88,9 +88,9 @@ public class RemittanceSequenceFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly true if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         attr(mv, "remittanceSequenceNumber", provider.getRemittanceSequenceNumber());
     }
 
@@ -101,7 +101,7 @@ public class RemittanceSequenceFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -142,8 +142,8 @@ public class RemittanceSequenceFormBinder extends BaseFormBinder {
      * @param enrollment the front end model
      * @param ticket the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
 
         Entity entity = profile.getEntity();
@@ -160,8 +160,8 @@ public class RemittanceSequenceFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
 
         Entity entity = profile.getEntity();

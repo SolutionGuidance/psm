@@ -75,9 +75,9 @@ public class IndividualAgencyFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollment);
+        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollmentType);
         agency.setObjectId(param(request, "objectId")); // if lookup is successful
         if (Util.isNotBlank(agency.getObjectId())) {
             String hash = param(request, "objectIdHash");
@@ -104,7 +104,7 @@ public class IndividualAgencyFormBinder extends BaseFormBinder {
         }
 
         agency.setContinuousEmploymentIndicator(param(request, "continuousEmployment"));
-        enrollment.getProviderInformation().setEmployedOrContractedByGroup(param(request, "additionalAgency"));
+        enrollmentType.getProviderInformation().setEmployedOrContractedByGroup(param(request, "additionalAgency"));
         return exceptions;
     }
 
@@ -135,8 +135,8 @@ public class IndividualAgencyFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly true if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
-        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollment);
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
+        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollmentType);
         attr(mv, "bound", "Y");
 
         attr(mv, "objectId", agency.getObjectId());
@@ -158,7 +158,7 @@ public class IndividualAgencyFormBinder extends BaseFormBinder {
         attr(mv, "clearanceDate", agency.getClearanceDate());
         attr(mv, "continuousEmployment", agency.getContinuousEmploymentIndicator());
 
-        attr(mv, "additionalAgency", enrollment.getProviderInformation().getEmployedOrContractedByGroup());
+        attr(mv, "additionalAgency", enrollmentType.getProviderInformation().getEmployedOrContractedByGroup());
     }
 
     /**
@@ -168,7 +168,7 @@ public class IndividualAgencyFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -216,9 +216,9 @@ public class IndividualAgencyFormBinder extends BaseFormBinder {
      * @param enrollment the front end model
      * @param ticket the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollment);
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
         List<Affiliation> groups = profile.getAffiliations();
         if (groups == null) {
@@ -288,8 +288,8 @@ public class IndividualAgencyFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
         List<Affiliation> groups = profile.getAffiliations();
 
@@ -303,7 +303,7 @@ public class IndividualAgencyFormBinder extends BaseFormBinder {
             throw new PortalServiceRuntimeException("Bad Data. Practice group cannot be an individual provider.");
         }
 
-        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollment);
+        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollmentType);
 
         Organization employer = (Organization) primary.getEntity();
         if ("Y".equals(employer.getEnrolled())) {

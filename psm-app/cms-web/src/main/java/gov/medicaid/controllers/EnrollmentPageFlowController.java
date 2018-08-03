@@ -193,9 +193,9 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/start", method = RequestMethod.GET)
     public String startEnrollment(Model model) throws PortalServiceException {
-        EnrollmentType enrollment = new EnrollmentType();
-        enrollment.setRequestType(RequestType.ENROLLMENT);
-        model.addAttribute("enrollment", enrollment);
+        EnrollmentType enrollmentType = new EnrollmentType();
+        enrollmentType.setRequestType(RequestType.ENROLLMENT);
+        model.addAttribute("enrollment", enrollmentType);
         return "redirect:/provider/enrollment/steps/type";
     }
 
@@ -215,9 +215,9 @@ public class EnrollmentPageFlowController extends BaseController {
             Model model
     ) throws PortalServiceException {
         Enrollment ticket = enrollmentService.renewProfile(ControllerHelper.getCurrentUser(), profileId);
-        EnrollmentType enrollment = XMLAdapter.toXML(ticket);
-        model.addAttribute("enrollment", enrollment);
-        return showPage(null, enrollment);
+        EnrollmentType enrollmentType = XMLAdapter.toXML(ticket);
+        model.addAttribute("enrollment", enrollmentType);
+        return showPage(null, enrollmentType);
     }
 
     /**
@@ -238,9 +238,9 @@ public class EnrollmentPageFlowController extends BaseController {
         Enrollment oldTicket = enrollmentService.getTicketDetails(ControllerHelper.getCurrentUser(), enrollmentId);
         long profileId = oldTicket.getProfileReferenceId();
         Enrollment ticket = enrollmentService.renewProfile(ControllerHelper.getCurrentUser(), profileId);
-        EnrollmentType enrollment = XMLAdapter.toXML(ticket);
-        model.addAttribute("enrollment", enrollment);
-        return showPage(null, enrollment);
+        EnrollmentType enrollmentType = XMLAdapter.toXML(ticket);
+        model.addAttribute("enrollment", enrollmentType);
+        return showPage(null, enrollmentType);
     }
 
     /**
@@ -285,7 +285,7 @@ public class EnrollmentPageFlowController extends BaseController {
 
             for (Long enrollmentId : tickets) {
                 Enrollment ticket = enrollmentService.getTicketDetails(user, enrollmentId);
-                EnrollmentType enrollment = XMLAdapter.toXML(ticket);
+                EnrollmentType enrollmentType = XMLAdapter.toXML(ticket);
                 if (enrollmentId.intValue() == 0) {
                     invalidDataTickets.add("" + enrollmentId);
                 } else {
@@ -295,7 +295,7 @@ public class EnrollmentPageFlowController extends BaseController {
                         serviceRequest.setSystemId(principal.getAuthenticatedBySystem().name());
                         serviceRequest.setUsername(principal.getUsername());
                         serviceRequest.setNpi(principal.getUser().getProxyForNPI());
-                        serviceRequest.setEnrollment(enrollment);
+                        serviceRequest.setEnrollment(enrollmentType);
                         SubmitTicketResponse serviceResponse = enrollmentWebService.submitEnrollment(serviceRequest);
 
                         if (!"SUCCESS".equals(serviceResponse.getStatus())) {
@@ -308,7 +308,7 @@ public class EnrollmentPageFlowController extends BaseController {
                             successfulList.add("" + enrollmentId);
                         }
                     } catch (Exception e) {
-                        failedList.add(enrollment.getProviderInformation().getNPI());
+                        failedList.add(enrollmentType.getProviderInformation().getNPI());
                         if (!successfulList.contains(enrollmentId)) {
                             enrollmentService.removeDraftTicket(user, enrollmentId);
                         }
@@ -368,9 +368,9 @@ public class EnrollmentPageFlowController extends BaseController {
             Model model
     ) throws PortalServiceException {
         Enrollment ticket = enrollmentService.editProfile(ControllerHelper.getCurrentUser(), profileId);
-        EnrollmentType enrollment = XMLAdapter.toXML(ticket);
-        model.addAttribute("enrollment", enrollment);
-        return showPage(null, enrollment);
+        EnrollmentType enrollmentType = XMLAdapter.toXML(ticket);
+        model.addAttribute("enrollment", enrollmentType);
+        return showPage(null, enrollmentType);
     }
 
     /**
@@ -389,15 +389,15 @@ public class EnrollmentPageFlowController extends BaseController {
             Model model
     ) throws PortalServiceException {
         CMSPrincipal principal = ControllerHelper.getPrincipal();
-        EnrollmentType enrollment = enrollmentWebService.getProfile(
+        EnrollmentType enrollmentType = enrollmentWebService.getProfile(
                 principal.getUsername(),
                 principal.getAuthenticatedBySystem().name(),
                 principal.getUser().getProxyForNPI(),
                 profileId
         );
 
-        model.addAttribute("enrollment", enrollment);
-        return showPage(null, enrollment);
+        model.addAttribute("enrollment", enrollmentType);
+        return showPage(null, enrollmentType);
     }
 
     /**
@@ -411,9 +411,9 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/steps/type", method = RequestMethod.GET)
     public ModelAndView selectProviderType(
-            @ModelAttribute("enrollment") EnrollmentType enrollment
+            @ModelAttribute("enrollment") EnrollmentType enrollmentType
     ) throws PortalServiceException {
-        return showPage(ViewStatics.PROVIDER_TYPE_PAGE, enrollment, null);
+        return showPage(ViewStatics.PROVIDER_TYPE_PAGE, enrollmentType, null);
     }
 
     /**
@@ -428,18 +428,18 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/steps/prev", method = RequestMethod.POST)
     public ModelAndView previousPage(
-            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            @ModelAttribute("enrollment") EnrollmentType enrollmentType,
             HttpServletRequest request
     ) throws PortalServiceException {
         String[] formNames = request.getParameterValues("formNames");
         String pageName = request.getParameter("pageName");
-        List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
+        List<BinderException> exceptions = bindRequest(formNames, enrollmentType, request);
         if (!exceptions.isEmpty()) {
-            ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
+            ModelAndView inputPage = showPage(pageName, enrollmentType, NO_ERRORS);
             return addErrorsToPage(inputPage, exceptions);
         }
 
-        return showPrevPage(pageName, enrollment);
+        return showPrevPage(pageName, enrollmentType);
     }
 
     /**
@@ -454,24 +454,24 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/steps/next", method = RequestMethod.POST)
     public ModelAndView nextPage(
-            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            @ModelAttribute("enrollment") EnrollmentType enrollmentType,
             HttpServletRequest request
     ) throws PortalServiceException {
         String pageName = request.getParameter("pageName");
         String[] formNames = request.getParameterValues("formNames");
-        List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
+        List<BinderException> exceptions = bindRequest(formNames, enrollmentType, request);
 
-        setPersonDefaults(enrollment);
+        setPersonDefaults(enrollmentType);
         if (!exceptions.isEmpty()) {
-            ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
+            ModelAndView inputPage = showPage(pageName, enrollmentType, NO_ERRORS);
             return addErrorsToPage(inputPage, exceptions);
         }
 
-        List<FormError> errors = validate(enrollment, pageName, formNames);
+        List<FormError> errors = validate(enrollmentType, pageName, formNames);
         if (errors.isEmpty()) {
-            return showNextPage(pageName, enrollment);
+            return showNextPage(pageName, enrollmentType);
         } else {
-            return showPage(pageName, enrollment, errors);
+            return showPage(pageName, enrollmentType, errors);
         }
     }
 
@@ -480,9 +480,9 @@ public class EnrollmentPageFlowController extends BaseController {
      *
      * @param enrollment the enrollment request.
      */
-    private void setPersonDefaults(EnrollmentType enrollment) {
-        if (enrollment.getRequestType() == RequestType.ENROLLMENT) {
-            ProviderInformationType provider = enrollment.getProviderInformation();
+    private void setPersonDefaults(EnrollmentType enrollmentType) {
+        if (enrollmentType.getRequestType() == RequestType.ENROLLMENT) {
+            ProviderInformationType provider = enrollmentType.getProviderInformation();
             if (provider != null) {
                 if (provider.getApplicantType() == ApplicantType.INDIVIDUAL) {
                     if (provider.getApplicantInformation() == null) {
@@ -518,19 +518,19 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/steps/rebind", method = RequestMethod.POST)
     public ModelAndView rebind(
-            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            @ModelAttribute("enrollment") EnrollmentType enrollmentType,
             HttpServletRequest request
     ) throws PortalServiceException {
         String pageName = request.getParameter("pageName");
         String[] formNames = request.getParameterValues("formNames");
-        List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
+        List<BinderException> exceptions = bindRequest(formNames, enrollmentType, request);
         if (!exceptions.isEmpty()) {
-            ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
+            ModelAndView inputPage = showPage(pageName, enrollmentType, NO_ERRORS);
             return addErrorsToPage(inputPage, exceptions);
         }
 
-        // List<FormError> errors = validate(enrollment, pageName, formNames);
-        return showPage(pageName, enrollment);
+        // List<FormError> errors = validate(enrollmentType, pageName, formNames);
+        return showPage(pageName, enrollmentType);
     }
 
     /**
@@ -544,9 +544,9 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public ModelAndView showPage(
-            @ModelAttribute("enrollment") EnrollmentType enrollment
+            @ModelAttribute("enrollment") EnrollmentType enrollmentType
     ) throws PortalServiceException {
-        return showPage(enrollment.getProgressPage(), enrollment);
+        return showPage(enrollmentType.getProgressPage(), enrollmentType);
     }
 
     /**
@@ -562,23 +562,23 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/page", method = RequestMethod.POST)
     public ModelAndView submitStepForm(
-            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            @ModelAttribute("enrollment") EnrollmentType enrollmentType,
             HttpServletRequest request,
             SessionStatus status
     ) throws PortalServiceException {
         if (null != request.getParameter("previous")) {
-            return previousPage(enrollment, request);
+            return previousPage(enrollmentType, request);
         } else if (null != request.getParameter("next")) {
-            return nextPage(enrollment, request);
+            return nextPage(enrollmentType, request);
         } else if (null != request.getParameter("submit") ||
                    null != request.getParameter("submitEnrollment")) {
-            return submit(enrollment, request, status);
+            return submit(enrollmentType, request, status);
         } else if (null != request.getParameter("save")) {
-            return save(enrollment, request, status);
+            return save(enrollmentType, request, status);
         } else if (null != request.getParameter("saveNote")) {
-            return saveNote(enrollment, request);
+            return saveNote(enrollmentType, request);
         } else if (null != request.getParameter("resubmitWithChanges")) {
-            return resubmitWithChanges(enrollment, request, status);
+            return resubmitWithChanges(enrollmentType, request, status);
         }
         throw new PortalServiceException("Submit action not recognized");
     }
@@ -598,8 +598,8 @@ public class EnrollmentPageFlowController extends BaseController {
             @RequestParam("id") long enrollmentId,
             HttpServletResponse response
     ) throws PortalServiceException, IOException {
-        EnrollmentType ticket = getTicket(enrollmentId);
-        export(ticket, response);
+        EnrollmentType enrollmentType = getTicket(enrollmentId);
+        export(enrollmentType, response);
     }
 
     /**
@@ -614,15 +614,15 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/export", method = RequestMethod.GET)
     public void export(
-            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            @ModelAttribute("enrollment") EnrollmentType enrollmentType,
             HttpServletResponse response
     ) throws PortalServiceException, IOException {
-        ModelAndView mv = showPage(ViewStatics.SUMMARY_INFORMATION, enrollment);
+        ModelAndView mv = showPage(ViewStatics.SUMMARY_INFORMATION, enrollmentType);
         response.reset();
         response.setContentType("application/pdf");
         String id = UUID.randomUUID().toString();
         response.setHeader("Content-Disposition", "attachment; filename=export_" + id + ".pdf");
-        exportService.export(ControllerHelper.getCurrentUser(), enrollment, mv.getModel(), response.getOutputStream());
+        exportService.export(ControllerHelper.getCurrentUser(), enrollmentType, mv.getModel(), response.getOutputStream());
     }
 
     /**
@@ -705,22 +705,22 @@ public class EnrollmentPageFlowController extends BaseController {
             @RequestParam("id") long enrollmentId,
             Model model
     ) throws PortalServiceException {
-        EnrollmentType enrollment = getTicket(enrollmentId);
-        model.addAttribute("enrollment", enrollment);
-        String page = enrollment.getProgressPage();
-        if (isSubmitted(enrollment.getStatus())) {
+        EnrollmentType enrollmentType = getTicket(enrollmentId);
+        model.addAttribute("enrollment", enrollmentType);
+        String page = enrollmentType.getProgressPage();
+        if (isSubmitted(enrollmentType.getStatus())) {
             page = null; // go to first page.
         }
 
         Role role = ControllerHelper.getCurrentUser().getRole();
         if (ViewStatics.ROLE_SERVICE_ADMINISTRATOR.equals(role.getDescription()) &&
-                ViewStatics.PENDING_STATUS.equals(enrollment.getStatus())) {
+                ViewStatics.PENDING_STATUS.equals(enrollmentType.getStatus())) {
             model.addAttribute("showReviewLink", true);
         } else {
             model.addAttribute("showReviewLink", false);
         }
 
-        return showPage(page, enrollment);
+        return showPage(page, enrollmentType);
     }
 
     /**
@@ -738,10 +738,10 @@ public class EnrollmentPageFlowController extends BaseController {
             @RequestParam("id") long enrollmentId,
             Model model
     ) throws PortalServiceException {
-        EnrollmentType enrollment = getTicket(enrollmentId);
-        enrollment.setReopenedForEdit("Y");
-        model.addAttribute("enrollment", enrollment);
-        return showPage(null, enrollment);
+        EnrollmentType enrollmentType = getTicket(enrollmentId);
+        enrollmentType.setReopenedForEdit("Y");
+        model.addAttribute("enrollment", enrollmentType);
+        return showPage(null, enrollmentType);
     }
 
     /**
@@ -775,10 +775,10 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/jump", method = RequestMethod.GET)
     public ModelAndView jump(
-            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            @ModelAttribute("enrollment") EnrollmentType enrollmentType,
             @RequestParam("page") String toPageName
     ) throws PortalServiceException {
-        return showPage(toPageName, enrollment);
+        return showPage(toPageName, enrollmentType);
     }
 
     /**
@@ -794,24 +794,24 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/jump", method = RequestMethod.POST)
     public ModelAndView jump(
-            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            @ModelAttribute("enrollment") EnrollmentType enrollmentType,
             @RequestParam("page") String toPageName,
             HttpServletRequest request
     ) throws PortalServiceException {
         String fromPage = request.getParameter("pageName");
         String[] formNames = request.getParameterValues("formNames");
 
-        List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
+        List<BinderException> exceptions = bindRequest(formNames, enrollmentType, request);
         if (!exceptions.isEmpty()) {
-            ModelAndView inputPage = showPage(fromPage, enrollment, NO_ERRORS);
+            ModelAndView inputPage = showPage(fromPage, enrollmentType, NO_ERRORS);
             return addErrorsToPage(inputPage, exceptions);
         }
 
-        List<FormError> errors = validate(enrollment, fromPage, formNames);
+        List<FormError> errors = validate(enrollmentType, fromPage, formNames);
         if (errors.isEmpty()) {
-            return showPage(toPageName, enrollment);
+            return showPage(toPageName, enrollmentType);
         } else {
-            return showPage(fromPage, enrollment, errors);
+            return showPage(fromPage, enrollmentType, errors);
         }
     }
 
@@ -827,7 +827,7 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/saveNote", method = RequestMethod.POST)
     public ModelAndView saveNote(
-            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            @ModelAttribute("enrollment") EnrollmentType enrollmentType,
             HttpServletRequest request
     ) throws PortalServiceException {
         CMSPrincipal principal = ControllerHelper.getPrincipal();
@@ -847,16 +847,17 @@ public class EnrollmentPageFlowController extends BaseController {
         }
 
         if (errors.isEmpty()) {
-            long enrollmentId = BinderUtils.getAsLong(enrollment.getObjectId());
+            long enrollmentId = BinderUtils.getAsLong(enrollmentType.getObjectId());
             if (enrollmentId > 0) {
                 enrollmentService.addNoteToTicket(principal.getUser(), enrollmentId, text);
             } else {
-                throw new PortalServiceException("Requires an enrollment to add a note");
+                long profileId = BinderUtils.getAsLong(enrollmentType.getProviderInformation().getObjectId());
+                enrollmentService.addNoteToProfile(principal.getUser(), profileId, text);
             }
 
             return new ModelAndView("redirect:/provider/enrollment/jump?page=Notes");
         } else {
-            return showPage("Notes", enrollment, errors);
+            return showPage("Notes", enrollmentType, errors);
         }
     }
 
@@ -873,16 +874,16 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView save(
-            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            @ModelAttribute("enrollment") EnrollmentType enrollmentType,
             HttpServletRequest request,
             SessionStatus status
     ) throws PortalServiceException {
         String pageName = request.getParameter("pageName");
         String[] formNames = request.getParameterValues("formNames");
 
-        List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
+        List<BinderException> exceptions = bindRequest(formNames, enrollmentType, request);
         if (!exceptions.isEmpty()) {
-            ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
+            ModelAndView inputPage = showPage(pageName, enrollmentType, NO_ERRORS);
             return addErrorsToPage(inputPage, exceptions);
         }
 
@@ -890,7 +891,7 @@ public class EnrollmentPageFlowController extends BaseController {
         // validate when saving the first page
         if (ViewStatics.INDIVIDUAL_PCA_INFORMATION.equals(pageName)
                 || ViewStatics.PERSONAL_INFORMATION.equals(pageName) || ViewStatics.ORGANIZATION_INFO.equals(pageName)) {
-            errors = validate(enrollment, pageName, formNames);
+            errors = validate(enrollmentType, pageName, formNames);
         }
 
         if (errors.isEmpty()) {
@@ -899,7 +900,7 @@ public class EnrollmentPageFlowController extends BaseController {
                     principal.getUsername(),
                     principal.getAuthenticatedBySystem().name(),
                     principal.getUser().getProxyForNPI(),
-                    enrollment
+                    enrollmentType
             );
 
             ControllerHelper.flashPopup("saveAsDraftModal");
@@ -908,7 +909,7 @@ public class EnrollmentPageFlowController extends BaseController {
             status.setComplete();
             return mv;
         } else {
-            return showPage(pageName, enrollment, errors);
+            return showPage(pageName, enrollmentType, errors);
         }
     }
 
@@ -925,27 +926,27 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/submit", method = RequestMethod.POST)
     public ModelAndView submit(
-            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            @ModelAttribute("enrollment") EnrollmentType enrollmentType,
             HttpServletRequest request,
             SessionStatus status
     ) throws PortalServiceException {
         String pageName = request.getParameter("pageName");
         String[] formNames = request.getParameterValues("formNames");
 
-        List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
+        List<BinderException> exceptions = bindRequest(formNames, enrollmentType, request);
         if (!exceptions.isEmpty()) {
-            ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
+            ModelAndView inputPage = showPage(pageName, enrollmentType, NO_ERRORS);
             return addErrorsToPage(inputPage, exceptions);
         }
 
-        List<FormError> errors = validate(enrollment, pageName, formNames);
+        List<FormError> errors = validate(enrollmentType, pageName, formNames);
         if (errors.isEmpty()) {
             SubmitTicketRequest serviceRequest = new SubmitTicketRequest();
             CMSPrincipal principal = ControllerHelper.getPrincipal();
             serviceRequest.setSystemId(principal.getAuthenticatedBySystem().name());
             serviceRequest.setUsername(principal.getUsername());
             serviceRequest.setNpi(principal.getUser().getProxyForNPI());
-            serviceRequest.setEnrollment(enrollment);
+            serviceRequest.setEnrollment(enrollmentType);
             SubmitTicketResponse serviceResponse = enrollmentWebService.submitEnrollment(serviceRequest);
 
             ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/view");
@@ -953,7 +954,7 @@ public class EnrollmentPageFlowController extends BaseController {
             if (!"SUCCESS".equals(serviceResponse.getStatus())) {
                 if (Validity.SUPERSEDED.name().equals(serviceResponse.getStatus())) {
                     ControllerHelper.popup("supersededTicket");
-                    return showPage(enrollment.getProgressPage(), enrollment);
+                    return showPage(enrollmentType.getProgressPage(), enrollmentType);
                 } else {
                     mv.addObject("id", serviceResponse.getTicketNumber());
                     return mv;
@@ -962,14 +963,14 @@ public class EnrollmentPageFlowController extends BaseController {
                 mv.addObject("id", serviceResponse.getTicketNumber());
                 ControllerHelper.flashPopup("submitEnrollmentModal");
 
-                notificationService.sendEnrollmentNotification(enrollment, EmailTemplate.PENDING_ENROLLMENT);
+                notificationService.sendEnrollmentNotification(enrollmentType, EmailTemplate.PENDING_ENROLLMENT);
 
                 // Issue #215 - add hook for successful submission
 
                 return mv;
             }
         } else {
-            return showPage(pageName, enrollment, errors);
+            return showPage(pageName, enrollmentType, errors);
         }
     }
 
@@ -986,27 +987,27 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/resubmitWithChanges", method = RequestMethod.POST)
     public ModelAndView resubmitWithChanges(
-            @ModelAttribute("enrollment") EnrollmentType enrollment,
+            @ModelAttribute("enrollment") EnrollmentType enrollmentType,
             HttpServletRequest request,
             SessionStatus status
     ) throws PortalServiceException {
         String pageName = request.getParameter("pageName");
         String[] formNames = request.getParameterValues("formNames");
 
-        List<BinderException> exceptions = bindRequest(formNames, enrollment, request);
+        List<BinderException> exceptions = bindRequest(formNames, enrollmentType, request);
         if (!exceptions.isEmpty()) {
-            ModelAndView inputPage = showPage(pageName, enrollment, NO_ERRORS);
+            ModelAndView inputPage = showPage(pageName, enrollmentType, NO_ERRORS);
             return addErrorsToPage(inputPage, exceptions);
         }
 
-        List<FormError> errors = validate(enrollment, pageName, formNames);
+        List<FormError> errors = validate(enrollmentType, pageName, formNames);
         if (errors.isEmpty()) {
             CMSPrincipal principal = ControllerHelper.getPrincipal();
             String resubmissionStatus = enrollmentWebService.resubmitEnrollment(
                     principal.getUsername(),
                     principal.getAuthenticatedBySystem().name(),
                     principal.getUser().getProxyForNPI(),
-                    enrollment
+                    enrollmentType
             );
 
             ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/view");
@@ -1014,23 +1015,23 @@ public class EnrollmentPageFlowController extends BaseController {
             if (!"SUCCESS".equals(resubmissionStatus)) {
                 if (Validity.SUPERSEDED.name().equals(resubmissionStatus)) {
                     ControllerHelper.popup("supersededTicket");
-                    return showPage(enrollment.getProgressPage(), enrollment);
+                    return showPage(enrollmentType.getProgressPage(), enrollmentType);
                 } else {
-                    mv.addObject("id", enrollment.getObjectId());
+                    mv.addObject("id", enrollmentType.getObjectId());
                     return mv;
                 }
             } else {
-                mv.addObject("id", enrollment.getObjectId());
+                mv.addObject("id", enrollmentType.getObjectId());
                 ControllerHelper.flashPopup("submitEnrollmentModal");
 
-                notificationService.sendEnrollmentNotification(enrollment, EmailTemplate.MODIFIED_ENROLLMENT);
+                notificationService.sendEnrollmentNotification(enrollmentType, EmailTemplate.MODIFIED_ENROLLMENT);
 
                 // Issue #215 - add hook for successful resubmission
 
                 return mv;
             }
         } else {
-            return showPage(pageName, enrollment, errors);
+            return showPage(pageName, enrollmentType, errors);
         }
     }
 
@@ -1058,9 +1059,9 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     private ModelAndView showPrevPage(
             String pageName,
-            EnrollmentType enrollment
+            EnrollmentType enrollmentType
     ) throws PortalServiceException {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         ViewModel viewModel = presentationService.getProviderViewModel(provider);
         List<String> pages = viewModel.getTabNames();
 
@@ -1072,7 +1073,7 @@ public class EnrollmentPageFlowController extends BaseController {
             prevPage = page;
         }
 
-        enrollment.setProgressPage(prevPage);
+        enrollmentType.setProgressPage(prevPage);
         return new ModelAndView("redirect:/provider/enrollment/page");
     }
 
@@ -1086,9 +1087,9 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     private ModelAndView showPage(
             String pageName,
-            EnrollmentType enrollment
+            EnrollmentType enrollmentType
     ) throws PortalServiceException {
-        return showPage(pageName, enrollment, NO_ERRORS);
+        return showPage(pageName, enrollmentType, NO_ERRORS);
     }
 
     /**
@@ -1102,10 +1103,10 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     private ModelAndView showPage(
             String pageName,
-            EnrollmentType enrollment,
+            EnrollmentType enrollmentType,
             List<FormError> errors
     ) throws PortalServiceException {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         ViewModel viewModel = presentationService.getProviderViewModel(provider);
 
         if (pageName == null) {
@@ -1116,15 +1117,15 @@ public class EnrollmentPageFlowController extends BaseController {
 
         } else if (!ViewStatics.PROVIDER_TYPE_PAGE.equals(pageName) && !ViewStatics.NOTES_PAGE.equals(pageName)
                 && !viewModel.getTabNames().contains(pageName)) {
-            if (pageName.equals(enrollment.getProgressPage())) { // no loops
-                return showPage(null, enrollment, errors);
+            if (pageName.equals(enrollmentType.getProgressPage())) { // no loops
+                return showPage(null, enrollmentType, errors);
             }
 
             ControllerHelper.flashError("Requested page is not available for this enrollment.");
-            return showPage(enrollment.getProgressPage(), enrollment, errors, viewModel);
+            return showPage(enrollmentType.getProgressPage(), enrollmentType, errors, viewModel);
         }
 
-        return showPage(pageName, enrollment, errors, viewModel);
+        return showPage(pageName, enrollmentType, errors, viewModel);
     }
 
     /**
@@ -1139,16 +1140,16 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     private ModelAndView showPage(
             String pageName,
-            EnrollmentType enrollment,
+            EnrollmentType enrollmentType,
             List<FormError> errors,
             ViewModel viewModel
     ) throws PortalServiceException {
 
         viewModel.setCurrentTab(pageName);
-        enrollment.setProgressPage(pageName);
+        enrollmentType.setProgressPage(pageName);
 
         ModelAndView mv = new ModelAndView();
-        mv.setViewName(determineViewName(enrollment));
+        mv.setViewName(determineViewName(enrollmentType));
 
         mv.addObject("errors", errors);
         mv.addObject("pageName", pageName);
@@ -1157,8 +1158,8 @@ public class EnrollmentPageFlowController extends BaseController {
         mv.addObject("viewRegistry", formViewRegistry);
         mv.addObject("summaryViewRegistry", summaryViewRegistry);
 
-        RequestType requestType = enrollment.getRequestType();
-        boolean reopened = "Y".equals(enrollment.getReopenedForEdit());
+        RequestType requestType = enrollmentType.getRequestType();
+        boolean reopened = "Y".equals(enrollmentType.getReopenedForEdit());
         mv.addObject("isReopened", reopened);
         if (requestType != null) { // imported data?x
             switch (requestType) {
@@ -1170,7 +1171,7 @@ public class EnrollmentPageFlowController extends BaseController {
                     break;
             }
         }
-        bindTicketDetailsToPage(mv, enrollment);
+        bindTicketDetailsToPage(mv, enrollmentType);
 
         // ticket details
 
@@ -1178,13 +1179,13 @@ public class EnrollmentPageFlowController extends BaseController {
         Map<String, UITabModel> pageModels = viewModel.getTabModels();
 
         boolean readOnly = false;
-        if (isSubmitted(enrollment.getStatus()) && !reopened) {
+        if (isSubmitted(enrollmentType.getStatus()) && !reopened) {
             readOnly = true;
         } else {
-            long enrollmentId = BinderUtils.getAsLong(enrollment.getObjectId());
+            long enrollmentId = BinderUtils.getAsLong(enrollmentType.getObjectId());
             if (enrollmentId > 0) {
-                long profileId = BinderUtils.getAsLong(enrollment.getProviderInformation().getObjectId());
-                Validity validity = enrollmentService.getSubmissionValidity(enrollmentId, profileId);
+                long profileId = BinderUtils.getAsLong(enrollmentType.getProviderInformation().getObjectId());
+                Validity validity = getEnrollmentService().getSubmissionValidity(enrollmentId, profileId);
                 if (validity == Validity.STALE) {
                     ControllerHelper.popup("staleTicket");
                 }
@@ -1192,7 +1193,7 @@ public class EnrollmentPageFlowController extends BaseController {
         }
 
         CMSUser user = ControllerHelper.getCurrentUser();
-        getBinder(ViewStatics.PROVIDER_TYPE_FORM).bindToPage(user, enrollment, modelMap, readOnly);
+        getBinder(ViewStatics.PROVIDER_TYPE_FORM).bindToPage(user, enrollmentType, modelMap, readOnly);
 
         if (ViewStatics.SUMMARY_INFORMATION.equals(pageName)) {
 
@@ -1201,13 +1202,13 @@ public class EnrollmentPageFlowController extends BaseController {
                 UITabModel pageModel = pageModels.get(page);
                 List<String> formNames = pageModel.getFormNames();
                 for (String form : formNames) {
-                    getBinder(form).bindToPage(user, enrollment, modelMap, true);
+                    getBinder(form).bindToPage(user, enrollmentType, modelMap, true);
                 }
             }
 
         } else if (ViewStatics.NOTES_PAGE.equals(pageName)) {
 
-            long enrollmentId = BinderUtils.getAsLong(enrollment.getObjectId());
+            long enrollmentId = BinderUtils.getAsLong(enrollmentType.getObjectId());
             // always get from database as notes are directly managed
             if (enrollmentId > 0) {
                 List<Note> allNotes = enrollmentService.findNotes(enrollmentId);
@@ -1224,7 +1225,7 @@ public class EnrollmentPageFlowController extends BaseController {
                 List<String> formNames = pageModel.getFormNames();
                 if (formNames != null) {
                     for (String form : formNames) {
-                        getBinder(form).bindToPage(user, enrollment, modelMap, readOnly);
+                        getBinder(form).bindToPage(user, enrollmentType, modelMap, readOnly);
                     }
                 }
             }
@@ -1243,26 +1244,26 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     private void bindTicketDetailsToPage(
             ModelAndView mv,
-            EnrollmentType enrollment
+            EnrollmentType enrollmentType
     ) {
         mv.addObject("_99_states", lookupService.findAllLookups(StateType.class));
         mv.addObject("_99_counties", lookupService.findAllLookups(CountyType.class));
 
-        if (enrollment.getRequestType() != null) {
-            mv.addObject("_99_requestType", enrollment.getRequestType().value());
+        if (enrollmentType.getRequestType() != null) {
+            mv.addObject("_99_requestType", enrollmentType.getRequestType().value());
         }
-        mv.addObject("_99_requestStatus", enrollment.getStatus());
+        mv.addObject("_99_requestStatus", enrollmentType.getStatus());
 
-        if (enrollment.getSubmittedOn() != null) {
-            mv.addObject("_99_submittedOn", BinderUtils.formatCalendarTS(enrollment.getSubmittedOn()));
-        }
-
-        if (enrollment.getStatusDate() != null) {
-            mv.addObject("_99_statusDate", BinderUtils.formatCalendarTS(enrollment.getStatusDate()));
+        if (enrollmentType.getSubmittedOn() != null) {
+            mv.addObject("_99_submittedOn", BinderUtils.formatCalendarTS(enrollmentType.getSubmittedOn()));
         }
 
-        if (enrollment.getRiskLevel() != null) {
-            mv.addObject("_99_riskLevel", enrollment.getRiskLevel().value());
+        if (enrollmentType.getStatusDate() != null) {
+            mv.addObject("_99_statusDate", BinderUtils.formatCalendarTS(enrollmentType.getStatusDate()));
+        }
+
+        if (enrollmentType.getRiskLevel() != null) {
+            mv.addObject("_99_riskLevel", enrollmentType.getRiskLevel().value());
         }
     }
 
@@ -1288,17 +1289,17 @@ public class EnrollmentPageFlowController extends BaseController {
      * @param enrollment the enrollment model
      * @return the jsp view for the page
      */
-    private String determineViewName(EnrollmentType enrollment) {
-        String status = enrollment.getStatus();
-        if (enrollment.getRequestType() == null) {
+    private String determineViewName(EnrollmentType enrollmentType) {
+        String status = enrollmentType.getStatus();
+        if (enrollmentType.getRequestType() == null) {
             return "provider/enrollment/steps/view_profile_details";
         } else if (isSubmitted(status)) {
-            if ("Y".equals(enrollment.getReopenedForEdit())) {
+            if ("Y".equals(enrollmentType.getReopenedForEdit())) {
                 return "provider/enrollment/steps/edit_details";
             }
 
             return "provider/enrollment/steps/view_details";
-        } else if (enrollment.getRequestType() == RequestType.UPDATE) {
+        } else if (enrollmentType.getRequestType() == RequestType.UPDATE) {
             return "provider/enrollment/steps/edit_details";
         } else {
             return "provider/enrollment/steps/enrollment_step";
@@ -1327,9 +1328,9 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     private ModelAndView showNextPage(
             String pageName,
-            EnrollmentType enrollment
+            EnrollmentType enrollmentType
     ) throws PortalServiceException {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         ViewModel viewModel = presentationService.getProviderViewModel(provider);
         List<String> pages = viewModel.getTabNames();
 
@@ -1350,7 +1351,7 @@ public class EnrollmentPageFlowController extends BaseController {
             nextPage = pages.iterator().next();
         }
 
-        enrollment.setProgressPage(nextPage);
+        enrollmentType.setProgressPage(nextPage);
         return new ModelAndView("redirect:/provider/enrollment/page");
     }
 
@@ -1364,15 +1365,15 @@ public class EnrollmentPageFlowController extends BaseController {
      * @throws PortalServiceException for any errors encountered
      */
     private List<FormError> validate(
-            EnrollmentType enrollment,
+            EnrollmentType enrollmentType,
             String pageName,
             String[] formNames
     ) throws PortalServiceException {
         List<FormError> errors = new ArrayList<>();
         if (formNames != null) {
-            ValidationResponse results = presentationService.checkForErrors(enrollment, Arrays.asList(pageName));
+            ValidationResponse results = presentationService.checkForErrors(enrollmentType, Arrays.asList(pageName));
             for (String form : formNames) {
-                errors.addAll(getBinder(form).translateErrors(enrollment, results.getValidationResult()));
+                errors.addAll(getBinder(form).translateErrors(enrollmentType, results.getValidationResult()));
             }
 
             OperationStatusType status = results.getValidationResult().getStatus();
@@ -1399,18 +1400,18 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     private List<BinderException> bindRequest(
             String[] formNames,
-            EnrollmentType enrollment,
+            EnrollmentType enrollmentType,
             HttpServletRequest request
     ) throws PortalServiceException {
 
         List<BinderException> exceptions = new ArrayList<>();
 
-        bindFiles(enrollment, request);
+        bindFiles(enrollmentType, request);
 
         CMSUser user = ControllerHelper.getCurrentUser();
         if (formNames != null) { // submitted forms
             for (String form : formNames) {
-                exceptions.addAll(getBinder(form).bindFromPage(user, enrollment, request));
+                exceptions.addAll(getBinder(form).bindFromPage(user, enrollmentType, request));
             }
         }
 
@@ -1425,7 +1426,7 @@ public class EnrollmentPageFlowController extends BaseController {
      * @throws PortalServiceException for any errors encountered
      */
     private void bindFiles(
-            EnrollmentType enrollment,
+            EnrollmentType enrollmentType,
             HttpServletRequest request
     ) throws PortalServiceException {
         Optional<MultipartHttpServletRequest> unwrappedRequest
@@ -1448,7 +1449,7 @@ public class EnrollmentPageFlowController extends BaseController {
                             attachment);
                     request.setAttribute(file.getKey(), "" + attachmentId);
 
-                    AttachedDocumentsType at = XMLUtility.nsGetAttachments(enrollment.getProviderInformation());
+                    AttachedDocumentsType at = XMLUtility.nsGetAttachments(enrollmentType.getProviderInformation());
                     DocumentType doc = new DocumentType();
                     doc.setObjectId("" + attachmentId);
                     doc.setName(attachment.getFilename());

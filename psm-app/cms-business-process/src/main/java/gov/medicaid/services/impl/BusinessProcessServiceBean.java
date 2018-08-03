@@ -168,7 +168,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
      * @throws Exception for any errors encountered
      */
     private long enroll(
-            EnrollmentType enrollment
+            EnrollmentType enrollmentType
     ) throws Exception {
         StatefulKnowledgeSession ksession = null;
         UserTransaction utx = context.getUserTransaction();
@@ -188,7 +188,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             Map<String, Object> params = new HashMap<>();
             EnrollmentProcess processModel = new XMLSerializingEnrollmentProcess();
             processModel.setSessionId(ksession.getId());
-            processModel.setEnrollment(enrollment);
+            processModel.setEnrollment(enrollmentType);
             params.put("model", processModel);
             ksession.insert(processModel);
             ksession.addEventListener(new EnrollmentMonitor());
@@ -319,13 +319,13 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
 
             EnrollmentProcess processModel = getEnrollmentForReview(client, taskId);
             ksession = reloadSessionById(utx, client, processModel);
-            EnrollmentType enrollment = processModel.getEnrollment();
+            EnrollmentType enrollmentType = processModel.getEnrollment();
 
             // track changes made by approvers.
             if (updates != null) {
-                ProviderInformationType oldData = enrollment.getProviderInformation();
+                ProviderInformationType oldData = enrollmentType.getProviderInformation();
                 // replace the current profile
-                enrollment.setProviderInformation(updates);
+                enrollmentType.setProviderInformation(updates);
                 EditHistoryType editHistory = new EditHistoryType();
                 editHistory.setEditedBy(approver);
                 editHistory.setEditedByRole(roles.toString());
@@ -381,14 +381,14 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     }
 
     public void updateRequest(
-            EnrollmentType ticket,
+            EnrollmentType enrollmentTypeIn,
             CMSUser user
     ) throws Exception {
         UserTransaction utx = context.getUserTransaction();
-        final ProviderInformationType updates = ticket.getProviderInformation();
+        final ProviderInformationType updates = enrollmentTypeIn.getProviderInformation();
 
         if (user.getRole().getDescription().equals(ViewStatics.ROLE_PROVIDER)) {
-            if (!user.getUserId().equals(ticket.getSubmittedBy())) {
+            if (!user.getUserId().equals(enrollmentTypeIn.getSubmittedBy())) {
                 throw new PortalServiceException("Only the submitter and administrators are allowed to modify pending submissions.");
             }
         }
@@ -404,7 +404,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
         List<TaskSummary> tasks = client.getTasksAssignedAsPotentialOwner(username, adminRole, "en-UK", -1, -1);
         long taskId = 0;
         for (TaskSummary taskSummary : tasks) {
-            if (ticket.getProcessInstanceId() == taskSummary.getProcessInstanceId()) {
+            if (enrollmentTypeIn.getProcessInstanceId() == taskSummary.getProcessInstanceId()) {
                 taskId = taskSummary.getId();
                 break;
             }
@@ -418,13 +418,13 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             client.claim(taskId, username);
 
             EnrollmentProcess processModel = getEnrollmentForReview(client, taskId);
-            EnrollmentType enrollment = processModel.getEnrollment();
+            EnrollmentType enrollmentType = processModel.getEnrollment();
 
             // track changes made by approvers.
             if (updates != null) {
-                ProviderInformationType oldData = enrollment.getProviderInformation();
+                ProviderInformationType oldData = enrollmentType.getProviderInformation();
                 // replace the current profile
-                enrollment.setProviderInformation(updates);
+                enrollmentType.setProviderInformation(updates);
                 EditHistoryType editHistory = new EditHistoryType();
                 editHistory.setEditedBy(user.getUserId());
                 editHistory.setEditedByRole(user.getRole().getDescription());

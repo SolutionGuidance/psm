@@ -155,13 +155,13 @@ public class NotificationServiceBean extends BaseService implements Notification
 
     @Override
     public void sendEnrollmentNotification(
-        EnrollmentType enrollment,
+        EnrollmentType enrollmentType,
         EmailTemplate emailType
     ) throws PortalServiceException {
         Map<String, Object> vars = new HashMap<>();
-        String contact_name = enrollment.getContactInformation().getName();
+        String contact_name = enrollmentType.getContactInformation().getName();
         vars.put("submitter", contact_name);
-        String emailAddress = enrollment.getContactInformation().getEmailAddress();
+        String emailAddress = enrollmentType.getContactInformation().getEmailAddress();
         if (emailAddress != null && emailAddress.trim().length() > 0) {
             sendNotification(emailAddress, emailType, vars);
         } else {

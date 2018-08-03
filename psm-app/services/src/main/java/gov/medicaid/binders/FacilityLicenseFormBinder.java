@@ -75,10 +75,10 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollmentType);
 
         String[] selectedCategories = request.getParameterValues(id() + "serviceCategory");
         if (selectedCategories != null) {
@@ -156,10 +156,10 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         List<LicenseType> xLicenses = licenseInfo.getLicense();
         synchronized (xLicenses) {
             int i = 0;
@@ -173,7 +173,7 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
                 attr(mv, "renewalDate", i, license.getRenewalDate());
                 attr(mv, "issuingState", i, license.getIssuingState());
                 attr(mv, "attachmentId", i, license.getAttachmentObjectId());
-                attr(mv, "filename", i, getAttachmentName(enrollment, license.getAttachmentObjectId()));
+                attr(mv, "filename", i, getAttachmentName(enrollmentType, license.getAttachmentObjectId()));
                 i++;
             }
             attr(mv, "attachmentSize", i);
@@ -220,8 +220,8 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
      * @param attachmentObjectId the id
      * @return the name related
      */
-    private String getAttachmentName(EnrollmentType enrollment, String attachmentObjectId) {
-        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(enrollment.getProviderInformation());
+    private String getAttachmentName(EnrollmentType enrollmentType, String attachmentObjectId) {
+        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(enrollmentType.getProviderInformation());
         List<DocumentType> list = attachments.getAttachment();
         synchronized (list) {
             for (DocumentType documentType : list) {
@@ -240,13 +240,13 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
 
-        FacilityCredentialsType licenseInformation = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType licenseInformation = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         List<LicenseType> licenses = filter(licenseInformation.getLicense(), ViewStatics.DISCRIMINATOR_LICENSE);
         Map<Integer, Integer> indexMapping = mapIndexes(licenseInformation.getLicense(), licenses);
         synchronized (ruleErrors) {
@@ -332,8 +332,8 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
      * @param enrollment the front end model
      * @param ticket the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollment);
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
+        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
         if (profile.getCertifications() == null) {
             profile.setCertifications(new ArrayList<License>());
@@ -364,7 +364,7 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
             profile.getCertifications().add(hLicense);
         }
 
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         CategoriesOfServiceType categories = provider.getCategoriesOfService();
         ArrayList<ProviderService> services = new ArrayList<ProviderService>();
         profile.setServices(services);
@@ -387,8 +387,8 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
-        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollment);
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
+        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
         List<License> certifications = profile.getCertifications();
         if (certifications == null) {
@@ -416,7 +416,7 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
         }
 
         List<ProviderService> services = profile.getServices();
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         if (services != null) {
             CategoriesOfServiceType categoriesOfService = new CategoriesOfServiceType();
             provider.setCategoriesOfService(categoriesOfService);

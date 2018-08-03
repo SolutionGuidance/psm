@@ -46,7 +46,7 @@ public interface FormBinder {
      * @throws BinderException if the format of the fields could not be bound properly
      * @throws PortalServiceException for any errors encountered
      */
-    List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) throws PortalServiceException;
+    List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) throws PortalServiceException;
 
     /**
      * Binds the model to the request attributes.
@@ -55,7 +55,7 @@ public interface FormBinder {
      * @param mv the model and view to bind to
      * @param readOnly true if the binding is for a read only view
      */
-    void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly);
+    void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly);
 
     /**
      * Translates the validation results to form error messages where applicable.
@@ -64,7 +64,7 @@ public interface FormBinder {
      *
      * @return the list of errors related to this form
      */
-    List<FormError> translateErrors(EnrollmentType enrollment, ValidationResultType validationResult);
+    List<FormError> translateErrors(EnrollmentType enrollmentType, ValidationResultType validationResult);
 
     /**
      * Binds the fields of the form to the persistence model.
@@ -73,7 +73,7 @@ public interface FormBinder {
      * @param ticket the persistent model
      * @throws PortalServiceException for any errors encountered
      */
-    void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) throws PortalServiceException;
+    void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) throws PortalServiceException;
 
     /**
      * Binds the fields of the persistence model to the front end xml.
@@ -81,7 +81,7 @@ public interface FormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment);
+    void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType);
 
     /**
      * Renders the PDF representation of the form.
@@ -91,5 +91,5 @@ public interface FormBinder {
      * @param model the view model
      * @throws DocumentException if the document could not be written
      */
-    void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model) throws DocumentException;
+    void renderPDF(EnrollmentType enrollmentType, Document document, Map<String, Object> model) throws DocumentException;
 }

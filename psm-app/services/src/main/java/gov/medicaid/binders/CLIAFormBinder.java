@@ -72,9 +72,9 @@ public class CLIAFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollment);
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         List<CLIACertificateType> licenseList = new ArrayList<CLIACertificateType>(licenseInfo.getCLIACertificate());
         licenseInfo.getCLIACertificate().clear();
 
@@ -123,16 +123,16 @@ public class CLIAFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         List<CLIACertificateType> xLicenses = licenseInfo.getCLIACertificate();
         synchronized (xLicenses) {
             int i = 0;
             for (CLIACertificateType license : xLicenses) {
                 attr(mv, "licenseNumber", i, license.getCertificateNumber());
                 attr(mv, "attachmentId", i, license.getAttachmentObjectId());
-                attr(mv, "filename", i, getAttachmentName(enrollment, license.getAttachmentObjectId()));
+                attr(mv, "filename", i, getAttachmentName(enrollmentType, license.getAttachmentObjectId()));
                 i++;
             }
             attr(mv, "attachmentSize", i);
@@ -146,8 +146,8 @@ public class CLIAFormBinder extends BaseFormBinder {
      * @param attachmentObjectId the id
      * @return the name related
      */
-    private String getAttachmentName(EnrollmentType enrollment, String attachmentObjectId) {
-        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(enrollment.getProviderInformation());
+    private String getAttachmentName(EnrollmentType enrollmentType, String attachmentObjectId) {
+        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(enrollmentType.getProviderInformation());
         List<DocumentType> list = attachments.getAttachment();
         synchronized (list) {
             for (DocumentType documentType : list) {
@@ -166,7 +166,7 @@ public class CLIAFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to this form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -238,8 +238,8 @@ public class CLIAFormBinder extends BaseFormBinder {
      * @param enrollment the front end model
      * @param ticket the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollment);
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
+        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
         if (profile.getCertifications() == null) {
             profile.setCertifications(new ArrayList<License>());
@@ -271,8 +271,8 @@ public class CLIAFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
-        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollment);
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
+        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
         List<License> certifications = profile.getCertifications();
         if (certifications == null) {

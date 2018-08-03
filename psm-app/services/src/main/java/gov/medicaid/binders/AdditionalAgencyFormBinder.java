@@ -71,10 +71,10 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
 
-        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollment);
+        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollmentType);
         agency.getAffiliation().clear();
 
         int i = 0;
@@ -113,9 +113,9 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly true if the binding is for a read only view
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollment);
+        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollmentType);
         List<GroupAffiliationType> xList = agency.getAffiliation();
         int i = 0;
         for (GroupAffiliationType location : xList) {
@@ -142,7 +142,7 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -219,8 +219,8 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
      * @param enrollment the front end model
      * @param ticket the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollment);
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
+        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollmentType);
         List<Affiliation> hList = new ArrayList<Affiliation>();
         List<GroupAffiliationType> xList = agency.getAffiliation();
         for (GroupAffiliationType location : xList) {
@@ -256,7 +256,7 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
         List<Affiliation> hList = filterOtherAgencies(profile.getAffiliations());
         List<GroupAffiliationType> xList = new ArrayList<GroupAffiliationType>();
@@ -276,7 +276,7 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
             xList.add(location);
         }
 
-        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollment);
+        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollmentType);
         agency.getAffiliation().clear();
         agency.getAffiliation().addAll(xList);
     }

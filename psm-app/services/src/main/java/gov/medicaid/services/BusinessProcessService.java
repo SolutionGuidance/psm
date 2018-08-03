@@ -91,7 +91,7 @@ public interface BusinessProcessService {
      * @throws Exception for any errors encountered
      */
     void updateRequest(
-            EnrollmentType ticket,
+            EnrollmentType enrollmentType,
             CMSUser user
     ) throws Exception;
 }

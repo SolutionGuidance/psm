@@ -56,7 +56,7 @@ public interface EnrollmentWebService {
             String username,
             String systemId,
             String npi,
-            EnrollmentType enrollment
+            EnrollmentType enrollmentType
     ) throws PortalServiceException;
 
     /**
@@ -101,6 +101,6 @@ public interface EnrollmentWebService {
             String username,
             String systemId,
             String npi,
-            EnrollmentType enrollment
+            EnrollmentType enrollmentType
     ) throws PortalServiceException;
 }

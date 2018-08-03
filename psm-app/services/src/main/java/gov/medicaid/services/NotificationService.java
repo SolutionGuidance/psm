@@ -37,7 +37,7 @@ public interface NotificationService {
     ) throws PortalServiceException;
 
     void sendEnrollmentNotification(
-        EnrollmentType enrollment,
+        EnrollmentType enrollmentType,
         EmailTemplate emailType
     ) throws PortalServiceException;
 }

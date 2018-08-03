@@ -56,5 +56,5 @@ public interface PresentationService {
      * @param tabs the tabs to validate, if null or empty, the entire ticket is checked
      * @return the set of error messages found, empty if the ticket is valid
      */
-    ValidationResponse checkForErrors(EnrollmentType enrollment, List<String> tabs);
+    ValidationResponse checkForErrors(EnrollmentType enrollmentType, List<String> tabs);
 }

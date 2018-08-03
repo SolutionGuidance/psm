@@ -115,7 +115,7 @@ public abstract class BaseFormBinder implements FormBinder {
      *
      * @return the list of errors related to this form
      */
-    public List<FormError> translateErrors(EnrollmentType enrollment, ValidationResultType validationResult) {
+    public List<FormError> translateErrors(EnrollmentType enrollmentType, ValidationResultType validationResult) {
         OperationStatusType status = validationResult.getStatus();
         if ("SUCCESS".equals(status.getStatusCode())) {
             return NO_ERRORS;
@@ -126,7 +126,7 @@ public abstract class BaseFormBinder implements FormBinder {
             return NO_ERRORS;
         }
 
-        return selectErrors(enrollment, messages);
+        return selectErrors(enrollmentType, messages);
     }
 
     /**
@@ -136,7 +136,7 @@ public abstract class BaseFormBinder implements FormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected abstract List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages);
+    protected abstract List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages);
 
     /**
      * Retrieves the simple string parameter with the given name.
@@ -523,7 +523,7 @@ public abstract class BaseFormBinder implements FormBinder {
      * @param model the view model
      * @throws DocumentException
      */
-    public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model) throws DocumentException {
+    public void renderPDF(EnrollmentType enrollmentType, Document document, Map<String, Object> model) throws DocumentException {
     }
 
     /**

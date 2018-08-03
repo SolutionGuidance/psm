@@ -76,10 +76,10 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollmentType);
         individual.setLastName(param(request, "lastName"));
         individual.setFirstName(param(request, "firstName"));
         individual.setMiddleName(param(request, "middleName"));
@@ -95,13 +95,13 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
         ContactInformationType contact = XMLUtility.nsGetContactInformation(individual);
         contact.setEmailAddress(param(request, "email"));
 
-        ContactInformationType enrollmentContact = XMLUtility.nsGetContactInformation(enrollment);
+        ContactInformationType enrollmentContact = XMLUtility.nsGetContactInformation(enrollmentType);
         if (param(request, "useProviderAsContact") != null) {
-            enrollment.setContactSameAsApplicant("Y");
+            enrollmentType.setContactSameAsApplicant("Y");
             enrollmentContact.setName(BinderUtils.getFullName(individual));
             enrollmentContact.setEmailAddress(contact.getEmailAddress());
         } else {
-            enrollment.setContactSameAsApplicant("N");
+            enrollmentType.setContactSameAsApplicant("N");
             enrollmentContact.setName(param(request, "contactName"));
             enrollmentContact.setEmailAddress(param(request, "contactEmail"));
             enrollmentContact.setPhoneNumber(
@@ -122,12 +122,12 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         attr(mv, "npi", provider.getNPI());
 
-        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
+        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollmentType);
         attr(mv, "lastName", individual.getLastName());
         attr(mv, "firstName", individual.getFirstName());
         attr(mv, "middleName", individual.getMiddleName());
@@ -137,8 +137,8 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
         ContactInformationType contact = XMLUtility.nsGetContactInformation(individual);
         attr(mv, "email", contact.getEmailAddress());
 
-        ContactInformationType enrollmentContact = XMLUtility.nsGetContactInformation(enrollment);
-        if ("Y".equals(enrollment.getContactSameAsApplicant())) {
+        ContactInformationType enrollmentContact = XMLUtility.nsGetContactInformation(enrollmentType);
+        if ("Y".equals(enrollmentType.getContactSameAsApplicant())) {
             attr(mv, "useProviderAsContact", "Y");
             attr(mv, "showEmailRequired", Boolean.TRUE);
         } else {
@@ -160,7 +160,7 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
      *
      * @return the list of errors related to this form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -212,13 +212,13 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
      * @param ticket the persistent model
      * @throws PortalServiceException for any errors encountered
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) throws PortalServiceException {
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) throws PortalServiceException {
         ProviderProfile profile = ticket.getDetails();
         if (profile == null || !(profile.getEntity() instanceof Person)) {
             throw new PortalServiceException("Provider type should be bound first.");
         }
 
-        ProviderInformationType providerInfo = enrollment.getProviderInformation();
+        ProviderInformationType providerInfo = enrollmentType.getProviderInformation();
         if (providerInfo != null) {
             Person person = (Person) profile.getEntity();
             person.setNpi(providerInfo.getNPI());
@@ -251,7 +251,7 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
             }
         }
 
-        bindEnrollmentContactToHibernate(enrollment, profile);
+        bindEnrollmentContactToHibernate(enrollmentType, profile);
     }
 
     /**
@@ -259,9 +259,9 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
      * @param enrollment the frontend model
      * @param profile the hibernate model
      */
-    private void bindEnrollmentContactToHibernate(EnrollmentType enrollment, ProviderProfile profile) {
+    private void bindEnrollmentContactToHibernate(EnrollmentType enrollmentType, ProviderProfile profile) {
         List<DesignatedContact> designatedContacts = profile.getDesignatedContacts();
-        if ("Y".equals(enrollment.getContactSameAsApplicant())) {
+        if ("Y".equals(enrollmentType.getContactSameAsApplicant())) {
             if (designatedContacts != null) {
                 for (Iterator<DesignatedContact> iter = designatedContacts.iterator(); iter.hasNext();) {
                     DesignatedContact designatedContact = iter.next();
@@ -286,14 +286,14 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
                     }
 
                     Person person = designatedContact.getPerson();
-                    person.setName(enrollment.getContactInformation().getName());
+                    person.setName(enrollmentType.getContactInformation().getName());
 
                     if (person.getContactInformation() == null) {
                         person.setContactInformation(new ContactInformation());
                     }
-                    person.getContactInformation().setEmail(enrollment.getContactInformation().getEmailAddress());
+                    person.getContactInformation().setEmail(enrollmentType.getContactInformation().getEmailAddress());
                     person.getContactInformation().setPhoneNumber(
-                            enrollment.getContactInformation().getPhoneNumber()
+                            enrollmentType.getContactInformation().getPhoneNumber()
                     );
                     found = true;
                 }
@@ -305,11 +305,11 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
                 Person person = new Person();
                 designatedContact.setPerson(person);
 
-                person.setName(enrollment.getContactInformation().getName());
+                person.setName(enrollmentType.getContactInformation().getName());
                 person.setContactInformation(new ContactInformation());
-                person.getContactInformation().setEmail(enrollment.getContactInformation().getEmailAddress());
+                person.getContactInformation().setEmail(enrollmentType.getContactInformation().getEmailAddress());
                 person.getContactInformation().setPhoneNumber(
-                        enrollment.getContactInformation().getPhoneNumber()
+                        enrollmentType.getContactInformation().getPhoneNumber()
                 );
                 profile.getDesignatedContacts().add(designatedContact);
             }
@@ -322,19 +322,19 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
         if (profile != null) {
             Entity entity = profile.getEntity();
             if (entity != null) {
                 Person person = (Person) entity;
-                IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
+                IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollmentType);
                 individual.setLastName(person.getLastName());
                 individual.setFirstName(person.getFirstName());
                 individual.setMiddleName(person.getMiddleName());
                 individual.setSocialSecurityNumber(person.getSsn());
                 individual.setDateOfBirth(BinderUtils.toCalendar(person.getDob()));
-                enrollment.getProviderInformation().setNPI(person.getNpi());
+                enrollmentType.getProviderInformation().setNPI(person.getNpi());
 
                 ContactInformation hContact = person.getContactInformation();
                 if (hContact != null) {
@@ -349,7 +349,7 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
             if (designatedContacts != null) {
                 for (DesignatedContact designatedContact : designatedContacts) {
                     if (designatedContact.getType() == DesignatedContactType.ENROLLMENT) {
-                        ContactInformationType xContact = XMLUtility.nsGetContactInformation(enrollment);
+                        ContactInformationType xContact = XMLUtility.nsGetContactInformation(enrollmentType);
                         Person hPerson = designatedContact.getPerson();
                         xContact.setName(hPerson.getName());
                         if (hPerson.getContactInformation() != null) {
@@ -361,13 +361,13 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
                 }
             }
 
-            enrollment.setContactSameAsApplicant(found ? "N" : "Y");
+            enrollmentType.setContactSameAsApplicant(found ? "N" : "Y");
             if (!found) {
                 // copy if same as applicant
                 if (entity != null) {
                     Person person = (Person) entity;
                     ContactInformation hContact = person.getContactInformation();
-                    ContactInformationType contact = XMLUtility.nsGetContactInformation(enrollment);
+                    ContactInformationType contact = XMLUtility.nsGetContactInformation(enrollmentType);
                     if (hContact != null) {
                         contact.setEmailAddress(hContact.getEmail());
                     }
@@ -385,7 +385,7 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
      * @param model the view model
      */
     @Override
-    public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model) throws DocumentException {
+    public void renderPDF(EnrollmentType enrollmentType, Document document, Map<String, Object> model) throws DocumentException {
         String ns = NAMESPACE;
         if (!"Y".equals(PDFHelper.value(model, ns, "bound"))) {
             return;
@@ -405,7 +405,7 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
         PDFHelper.addLabelValueCell(personalInfo, "Individual Practitioner's Email", PDFHelper.value(model, ns, "email"));
         document.add(personalInfo);
 
-        if (!"Y".equals(enrollment.getContactSameAsApplicant())) {
+        if (!"Y".equals(enrollmentType.getContactSameAsApplicant())) {
             PdfPTable contactInfo = new PdfPTable(2); // 2 columns of key value pairs
             PDFHelper.setTableAsFullPage(contactInfo);
 

@@ -72,8 +72,8 @@ public class PracticeTypeFormBinder extends BaseFormBinder {
      *
      * @return
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         provider.setMaintainsOwnPrivatePractice(param(request, "maintainsOwnPrivatePractice"));
         provider.setEmployedOrContractedByGroup(param(request, "employedOrContractedByGroup"));
         return Collections.emptyList();
@@ -85,9 +85,9 @@ public class PracticeTypeFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         attr(mv, "maintainsOwnPrivatePractice", provider.getMaintainsOwnPrivatePractice());
         attr(mv, "employedOrContractedByGroup", provider.getEmployedOrContractedByGroup());
     }
@@ -99,7 +99,7 @@ public class PracticeTypeFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -138,9 +138,9 @@ public class PracticeTypeFormBinder extends BaseFormBinder {
      * @param enrollment the front end model
      * @param ticket the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        if (enrollment.getProviderInformation() != null) {
-            ProviderInformationType provider = enrollment.getProviderInformation();
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
+        if (enrollmentType.getProviderInformation() != null) {
+            ProviderInformationType provider = enrollmentType.getProviderInformation();
             ProviderProfile profile = ticket.getDetails();
             profile.setMaintainsOwnPrivatePractice(provider.getMaintainsOwnPrivatePractice());
             profile.setEmployedOrContractedByGroup(provider.getEmployedOrContractedByGroup());
@@ -153,17 +153,17 @@ public class PracticeTypeFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
         if (profile != null) {
-            ProviderInformationType pInfo = XMLUtility.nsGetProvider(enrollment);
+            ProviderInformationType pInfo = XMLUtility.nsGetProvider(enrollmentType);
             pInfo.setMaintainsOwnPrivatePractice(profile.getMaintainsOwnPrivatePractice());
             pInfo.setEmployedOrContractedByGroup(profile.getEmployedOrContractedByGroup());
         }
     }
 
     @Override
-    public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
+    public void renderPDF(EnrollmentType enrollmentType, Document document, Map<String, Object> model)
         throws DocumentException {
         String ns = NAMESPACE;
         PdfPTable practiceInfo = new PdfPTable(2);

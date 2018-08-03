@@ -59,8 +59,8 @@ public class FacilityEligibilityFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         creds.setPhysicalAndOccupationTherapyServices(param(request, "therapyIndicator"));
 
         creds.setTitle18NumberOfBeds((int) BinderUtils.getAsLong(param(request, "title18BedCount")));
@@ -77,9 +77,9 @@ public class FacilityEligibilityFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly true if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         attr(mv, "therapyIndicator", creds.getPhysicalAndOccupationTherapyServices());
         attr(mv, "title18BedCount", creds.getTitle18NumberOfBeds());
         attr(mv, "title19BedCount", creds.getTitle19NumberOfBeds());
@@ -94,7 +94,7 @@ public class FacilityEligibilityFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -128,13 +128,13 @@ public class FacilityEligibilityFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @throws PortalServiceException
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) throws PortalServiceException {
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) throws PortalServiceException {
         ProviderProfile profile = ticket.getDetails();
         if (profile == null || !(profile.getEntity() instanceof Organization)) {
             throw new PortalServiceException("Provider type should be bound first.");
         }
 
-        FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         profile.setPhysicalAndOccupationalTherapyInd(credentials.getPhysicalAndOccupationTherapyServices());
         profile.setTitle18NumberOfBeds(credentials.getTitle18NumberOfBeds());
         profile.setTitle19NumberOfBeds(credentials.getTitle19NumberOfBeds());
@@ -148,9 +148,9 @@ public class FacilityEligibilityFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
-        FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         credentials.setPhysicalAndOccupationTherapyServices(profile.getPhysicalAndOccupationalTherapyInd());
         credentials.setTitle18NumberOfBeds(profile.getTitle18NumberOfBeds());
         credentials.setTitle19NumberOfBeds(profile.getTitle19NumberOfBeds());

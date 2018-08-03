@@ -70,11 +70,11 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
      * @return
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
 
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollmentType);
         individual.setLastName(param(request, "lastName"));
         individual.setFirstName(param(request, "firstName"));
         individual.setMiddleName(param(request, "middleName"));
@@ -107,13 +107,13 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         attr(mv, "umpi", provider.getNPI());
         attr(mv, "adultInd", provider.getEighteenAndAbove());
 
-        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
+        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollmentType);
         attr(mv, "lastName", individual.getLastName());
         attr(mv, "firstName", individual.getFirstName());
         attr(mv, "middleName", individual.getMiddleName());
@@ -139,7 +139,7 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
      *
      * @return the list of errors related to this form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -205,13 +205,13 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
      * @param ticket the persistent model
      * @throws PortalServiceException for any errors encountered
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) throws PortalServiceException {
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) throws PortalServiceException {
         ProviderProfile profile = ticket.getDetails();
         if (profile == null || !(profile.getEntity() instanceof Person)) {
             throw new PortalServiceException("Provider type should be bound first.");
         }
 
-        ProviderInformationType providerInfo = enrollment.getProviderInformation();
+        ProviderInformationType providerInfo = enrollmentType.getProviderInformation();
         if (providerInfo != null) {
             Person person = (Person) profile.getEntity();
             person.setNpi(providerInfo.getNPI());
@@ -244,20 +244,20 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
         if (profile != null) {
             Entity entity = profile.getEntity();
             if (entity != null) {
                 Person person = (Person) entity;
-                IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
+                IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollmentType);
                 individual.setLastName(person.getLastName());
                 individual.setFirstName(person.getFirstName());
                 individual.setMiddleName(person.getMiddleName());
                 individual.setSocialSecurityNumber(person.getSsn());
                 individual.setDateOfBirth(BinderUtils.toCalendar(person.getDob()));
-                enrollment.getProviderInformation().setNPI(person.getNpi());
-                enrollment.getProviderInformation().setEighteenAndAbove(profile.getAdultInd());
+                enrollmentType.getProviderInformation().setNPI(person.getNpi());
+                enrollmentType.getProviderInformation().setEighteenAndAbove(profile.getAdultInd());
 
                 ContactInformation hContact = person.getContactInformation();
                 if (hContact != null) {

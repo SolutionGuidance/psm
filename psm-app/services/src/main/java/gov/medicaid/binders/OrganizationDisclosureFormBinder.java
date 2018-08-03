@@ -88,8 +88,8 @@ public class OrganizationDisclosureFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         provider.setHasCriminalConviction(param(request, "criminalConvictionInd"));
         provider.setHasCivilPenalty(param(request, "civilPenaltyInd"));
         provider.setHasPreviousExclusion(param(request, "previousExclusionInd"));
@@ -106,11 +106,11 @@ public class OrganizationDisclosureFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly true if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         // for renewal the form should be blank
-        if (enrollment.getRequestType() == RequestType.RENEWAL && provider.getRenewalShowBlankStatement() == null) {
+        if (enrollmentType.getRequestType() == RequestType.RENEWAL && provider.getRenewalShowBlankStatement() == null) {
             attr(mv, "renewalBlankInit", "Y");
         } else {
             attr(mv, "criminalConvictionInd", provider.getHasCriminalConviction());
@@ -129,7 +129,7 @@ public class OrganizationDisclosureFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -176,8 +176,8 @@ public class OrganizationDisclosureFormBinder extends BaseFormBinder {
      * @param enrollment the front end model
      * @param ticket the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
 
         profile.setCriminalConvictionInd(provider.getHasCriminalConviction());
@@ -194,8 +194,8 @@ public class OrganizationDisclosureFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
 
         provider.setHasCriminalConviction(profile.getCriminalConvictionInd());

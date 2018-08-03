@@ -182,8 +182,8 @@ public class XMLUtility {
      * @return the element (created if not found)
      */
     public static ProviderInformationType nsGetProvider(EnrollmentProcess model) {
-        EnrollmentType enrollment = model.getEnrollment();
-        return nsGetProvider(enrollment);
+        EnrollmentType enrollmentType = model.getEnrollment();
+        return nsGetProvider(enrollmentType);
     }
 
     /**
@@ -192,11 +192,11 @@ public class XMLUtility {
      * @param enrollment the model to get it from
      * @return the element (created if not found)
      */
-    public static ProviderInformationType nsGetProvider(EnrollmentType enrollment) {
-        if (enrollment.getProviderInformation() == null) {
-            enrollment.setProviderInformation(new ProviderInformationType());
+    public static ProviderInformationType nsGetProvider(EnrollmentType enrollmentType) {
+        if (enrollmentType.getProviderInformation() == null) {
+            enrollmentType.setProviderInformation(new ProviderInformationType());
         }
-        return enrollment.getProviderInformation();
+        return enrollmentType.getProviderInformation();
     }
 
     /**
@@ -282,8 +282,8 @@ public class XMLUtility {
      * @param enrollment the object to get the property from
      * @return the required property
      */
-    public static IndividualApplicantType nsGetIndividual(EnrollmentType enrollment) {
-        ApplicantInformationType applicant = nsGetApplicant(enrollment);
+    public static IndividualApplicantType nsGetIndividual(EnrollmentType enrollmentType) {
+        ApplicantInformationType applicant = nsGetApplicant(enrollmentType);
         if (applicant.getPersonalInformation() == null) {
             applicant.setPersonalInformation(new IndividualApplicantType());
         }
@@ -297,8 +297,8 @@ public class XMLUtility {
      * @param enrollment the object to get the property from
      * @return the required property
      */
-    private static ApplicantInformationType nsGetApplicant(EnrollmentType enrollment) {
-        ProviderInformationType provider = nsGetProvider(enrollment);
+    private static ApplicantInformationType nsGetApplicant(EnrollmentType enrollmentType) {
+        ProviderInformationType provider = nsGetProvider(enrollmentType);
         if (provider.getApplicantInformation() == null) {
             provider.setApplicantInformation(new ApplicantInformationType());
         }
@@ -324,11 +324,11 @@ public class XMLUtility {
      * @param enrollment the object to get the property from
      * @return the required property
      */
-    public static ContactInformationType nsGetContactInformation(EnrollmentType enrollment) {
-        if (enrollment.getContactInformation() == null) {
-            enrollment.setContactInformation(new ContactInformationType());
+    public static ContactInformationType nsGetContactInformation(EnrollmentType enrollmentType) {
+        if (enrollmentType.getContactInformation() == null) {
+            enrollmentType.setContactInformation(new ContactInformationType());
         }
-        return enrollment.getContactInformation();
+        return enrollmentType.getContactInformation();
     }
 
     /**
@@ -365,8 +365,8 @@ public class XMLUtility {
      * @param enrollment the object to get the property from
      * @return the required property
      */
-    public static PracticeInformationType nsGetPracticeInformation(EnrollmentType enrollment) {
-        ProviderInformationType provider = nsGetProvider(enrollment);
+    public static PracticeInformationType nsGetPracticeInformation(EnrollmentType enrollmentType) {
+        ProviderInformationType provider = nsGetProvider(enrollmentType);
         if (provider.getPracticeInformation() == null) {
             provider.setPracticeInformation(new PracticeInformationType());
         }
@@ -428,8 +428,8 @@ public class XMLUtility {
      * @param enrollment the object to get the property from
      * @return the required property
      */
-    public static AcceptedAgreementsType nsGetAcceptedAgreements(EnrollmentType enrollment) {
-        ProviderInformationType provider = nsGetProvider(enrollment);
+    public static AcceptedAgreementsType nsGetAcceptedAgreements(EnrollmentType enrollmentType) {
+        ProviderInformationType provider = nsGetProvider(enrollmentType);
         if (provider.getAcceptedAgreements() == null) {
             provider.setAcceptedAgreements(new AcceptedAgreementsType());
         }
@@ -442,8 +442,8 @@ public class XMLUtility {
      * @param enrollment the object to get the property from
      * @return the required property
      */
-    public static ProviderStatementType nsGetProviderStatement(EnrollmentType enrollment) {
-        ProviderInformationType provider = nsGetProvider(enrollment);
+    public static ProviderStatementType nsGetProviderStatement(EnrollmentType enrollmentType) {
+        ProviderInformationType provider = nsGetProvider(enrollmentType);
         if (provider.getProviderStatement() == null) {
             provider.setProviderStatement(new ProviderStatementType());
         }
@@ -456,8 +456,8 @@ public class XMLUtility {
      * @param enrollment the object to get the property from
      * @return the required property
      */
-    public static AgencyInformationType nsGetAgencyInformation(EnrollmentType enrollment) {
-        ProviderInformationType provider = nsGetProvider(enrollment);
+    public static AgencyInformationType nsGetAgencyInformation(EnrollmentType enrollmentType) {
+        ProviderInformationType provider = nsGetProvider(enrollmentType);
         if (provider.getAgencyInformation() == null) {
             provider.setAgencyInformation(new AgencyInformationType());
         }
@@ -497,8 +497,8 @@ public class XMLUtility {
      * @param enrollment the object to get the property from
      * @return the required property
      */
-    public static OrganizationApplicantType nsGetOrganization(EnrollmentType enrollment) {
-        ApplicantInformationType applicant = nsGetApplicant(enrollment);
+    public static OrganizationApplicantType nsGetOrganization(EnrollmentType enrollmentType) {
+        ApplicantInformationType applicant = nsGetApplicant(enrollmentType);
         if (applicant.getOrganizationInformation() == null) {
             applicant.setOrganizationInformation(new OrganizationApplicantType());
         }
@@ -525,8 +525,8 @@ public class XMLUtility {
      * @param enrollment the object to get the property from
      * @return the required property
      */
-    public static MemberInformationType nsGetMembershipInformation(EnrollmentType enrollment) {
-        ProviderInformationType provider = nsGetProvider(enrollment);
+    public static MemberInformationType nsGetMembershipInformation(EnrollmentType enrollmentType) {
+        ProviderInformationType provider = nsGetProvider(enrollmentType);
         if (provider.getMemberInformation() == null) {
             provider.setMemberInformation(new MemberInformationType());
         }
@@ -539,8 +539,8 @@ public class XMLUtility {
      * @param enrollment the object to get the property from
      * @return the required property
      */
-    public static OwnershipInformationType nsGetOwnershipInformation(EnrollmentType enrollment) {
-        ProviderInformationType provider = nsGetProvider(enrollment);
+    public static OwnershipInformationType nsGetOwnershipInformation(EnrollmentType enrollmentType) {
+        ProviderInformationType provider = nsGetProvider(enrollmentType);
         if (provider.getOwnershipInformation() == null) {
             provider.setOwnershipInformation(new OwnershipInformationType());
         }
@@ -553,8 +553,8 @@ public class XMLUtility {
      * @param enrollment the object to get the property from
      * @return the required property
      */
-    public static ProviderSetupInformationType nsGetProviderSetup(EnrollmentType enrollment) {
-        ProviderInformationType provider = nsGetProvider(enrollment);
+    public static ProviderSetupInformationType nsGetProviderSetup(EnrollmentType enrollmentType) {
+        ProviderInformationType provider = nsGetProvider(enrollmentType);
         if (provider.getProviderSetupInformation() == null) {
             provider.setProviderSetupInformation(new ProviderSetupInformationType());
         }
@@ -567,8 +567,8 @@ public class XMLUtility {
      * @param enrollment the object to get the property from
      * @return the required property
      */
-    public static FacilityCredentialsType nsGetFacilityCredentials(EnrollmentType enrollment) {
-        ProviderInformationType provider = nsGetProvider(enrollment);
+    public static FacilityCredentialsType nsGetFacilityCredentials(EnrollmentType enrollmentType) {
+        ProviderInformationType provider = nsGetProvider(enrollmentType);
         if (provider.getFacilityCredentials() == null) {
             provider.setFacilityCredentials(new FacilityCredentialsType());
         }
@@ -581,8 +581,8 @@ public class XMLUtility {
      * @param enrollment the object to get the property from
      * @return the required property
      */
-    public static QualifiedProfessionalsType nsGetQualifiedProfessionals(EnrollmentType enrollment) {
-        ProviderInformationType provider = nsGetProvider(enrollment);
+    public static QualifiedProfessionalsType nsGetQualifiedProfessionals(EnrollmentType enrollmentType) {
+        ProviderInformationType provider = nsGetProvider(enrollmentType);
         if (provider.getQualifiedProfessionals() == null) {
             provider.setQualifiedProfessionals(new QualifiedProfessionalsType());
         }

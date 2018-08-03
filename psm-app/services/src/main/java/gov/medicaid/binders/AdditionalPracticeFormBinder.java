@@ -76,7 +76,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
         AdditionalPracticeLocationsType locations = new AdditionalPracticeLocationsType();
 
@@ -116,7 +116,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
             i++;
         }
 
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollmentType);
         if (user.getExternalRoleView() == RoleView.EMPLOYER) {
             retainLocations(practice, locations, user.getExternalAccountLink().getExternalUserId());
         }
@@ -151,7 +151,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly true if the binding is for a read only view
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
         if (user.getExternalRoleView() == RoleView.EMPLOYER) {
             attr(mv, "allowAdd", "N");
@@ -159,7 +159,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
             attr(mv, "allowAdd", "Y");
         }
 
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollmentType);
         AdditionalPracticeLocationsType locations = XMLUtility.nsGetOtherLocations(practice);
         List<PracticeLocationType> xList = locations.getPracticeLocation();
         int i = 0;
@@ -197,7 +197,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -287,8 +287,8 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
      * @param enrollment the front end model
      * @param ticket the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollmentType);
         AdditionalPracticeLocationsType locations = XMLUtility.nsGetOtherLocations(practice);
 
         List<Affiliation> hList = new ArrayList<Affiliation>();
@@ -328,7 +328,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
         List<Affiliation> hList = filterOtherLocations(profile.getAffiliations());
         List<PracticeLocationType> xList = new ArrayList<PracticeLocationType>();
@@ -350,7 +350,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
             xList.add(location);
         }
 
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollmentType);
         AdditionalPracticeLocationsType locations = XMLUtility.nsGetOtherLocations(practice);
         locations.getPracticeLocation().clear();
         locations.getPracticeLocation().addAll(xList);

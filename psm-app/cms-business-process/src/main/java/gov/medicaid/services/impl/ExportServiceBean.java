@@ -197,14 +197,14 @@ public class ExportServiceBean extends BaseService implements ExportService {
      * @throws PortalServiceException
      *             for any other errors encountered
      */
-    public void export(CMSUser currentUser, EnrollmentType enrollment, Map<String, Object> model,
+    public void export(CMSUser currentUser, EnrollmentType enrollmentType, Map<String, Object> model,
             OutputStream outputStream) throws PortalServiceException, IOException {
 
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, outputStream);
             document.open();
-            renderTicket(enrollment, document, model);
+            renderTicket(enrollmentType, document, model);
             document.close();
         } catch (DocumentException e) {
             throw new PortalServiceException("Export failed, see log for additional details.", e);
@@ -227,13 +227,13 @@ public class ExportServiceBean extends BaseService implements ExportService {
      * @throws PortalServiceException
      *             for any other errors encountered
      */
-    private void renderTicket(EnrollmentType enrollment, Document document, Map<String, Object> model)
+    private void renderTicket(EnrollmentType enrollmentType, Document document, Map<String, Object> model)
             throws PortalServiceException, DocumentException, IOException {
 
         CMSConfigurator config = new CMSConfigurator();
         PresentationService presentationService = config.getPresentationService();
         Map<String, FormBinder> registry = config.getBinderRegistry();
-        ViewModel viewModel = presentationService.getProviderViewModel(enrollment.getProviderInformation());
+        ViewModel viewModel = presentationService.getProviderViewModel(enrollmentType.getProviderInformation());
 
         Map<String, UITabModel> pageModels = viewModel.getTabModels();
 
@@ -252,7 +252,7 @@ public class ExportServiceBean extends BaseService implements ExportService {
             for (String form : formNames) {
                 FormBinder binder = registry.get(form);
                 if (binder != null) {
-                    binder.renderPDF(enrollment, document, model);
+                    binder.renderPDF(enrollmentType, document, model);
                 }
             }
         }

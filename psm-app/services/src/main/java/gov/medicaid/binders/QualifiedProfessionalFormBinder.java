@@ -82,11 +82,11 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
      * @throws BinderException
      *             if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
 
-        QualifiedProfessionalsType qps = XMLUtility.nsGetQualifiedProfessionals(enrollment);
+        QualifiedProfessionalsType qps = XMLUtility.nsGetQualifiedProfessionals(enrollmentType);
         List<QualifiedProfessionalType> qpList = qps.getQualifiedProfessional();
 
         // track all attachments related to affiliation licenses
@@ -206,11 +206,11 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
      * @param readOnly
      *            if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
 
-        QualifiedProfessionalsType qps = XMLUtility.nsGetQualifiedProfessionals(enrollment);
+        QualifiedProfessionalsType qps = XMLUtility.nsGetQualifiedProfessionals(enrollmentType);
         List<QualifiedProfessionalType> qpList = qps.getQualifiedProfessional();
 
         int qpIndex = 0;
@@ -245,7 +245,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
                 attr(mv, "issuingState_" + qpIndex, licenseIndex, license.getIssuingState());
                 attr(mv, "attachmentId_" + qpIndex, licenseIndex, license.getAttachmentObjectId());
                 attr(mv, "filename_" + qpIndex, licenseIndex,
-                        getAttachmentName(enrollment, license.getAttachmentObjectId()));
+                        getAttachmentName(enrollmentType, license.getAttachmentObjectId()));
                 licenseIndex++;
             }
 
@@ -302,8 +302,8 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
      *            the id
      * @return the name related
      */
-    private String getAttachmentName(EnrollmentType enrollment, String attachmentObjectId) {
-        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(enrollment.getProviderInformation());
+    private String getAttachmentName(EnrollmentType enrollmentType, String attachmentObjectId) {
+        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(enrollmentType.getProviderInformation());
         List<DocumentType> list = attachments.getAttachment();
         synchronized (list) {
             for (DocumentType documentType : list) {
@@ -325,7 +325,7 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -451,8 +451,8 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
      * @param ticket
      *            the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        QualifiedProfessionalsType xQPs = XMLUtility.nsGetQualifiedProfessionals(enrollment);
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
+        QualifiedProfessionalsType xQPs = XMLUtility.nsGetQualifiedProfessionals(enrollmentType);
 
         ProviderProfile profile = ticket.getDetails();
         if (profile.getAffiliations() == null) {
@@ -514,10 +514,10 @@ public class QualifiedProfessionalFormBinder extends BaseFormBinder {
      * @param enrollment
      *            the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
         List<Affiliation> hQPs = filterQPs(profile.getAffiliations());
-        QualifiedProfessionalsType xQPs = XMLUtility.nsGetQualifiedProfessionals(enrollment);
+        QualifiedProfessionalsType xQPs = XMLUtility.nsGetQualifiedProfessionals(enrollmentType);
 
         for (Affiliation hQP : hQPs) {
             QualifiedProfessionalType xQP = new QualifiedProfessionalType();

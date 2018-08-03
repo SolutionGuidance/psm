@@ -74,9 +74,9 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        OwnershipInformationType ownership = XMLUtility.nsGetOwnershipInformation(enrollment);
+        OwnershipInformationType ownership = XMLUtility.nsGetOwnershipInformation(enrollmentType);
 
         ownership.setEntityType(param(request, "entityType"));
         ownership.setEntitySubType(param(request, "entitySubType"));
@@ -160,7 +160,7 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
             i++;
         }
 
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         provider.setOwnershipInformation(ownership);
         return exceptions;
     }
@@ -187,9 +187,9 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        OwnershipInformationType ownershipInformation = XMLUtility.nsGetOwnershipInformation(enrollment);
+        OwnershipInformationType ownershipInformation = XMLUtility.nsGetOwnershipInformation(enrollmentType);
 
         attr(mv, "entityType", ownershipInformation.getEntityType());
         attr(mv, "entitySubType", ownershipInformation.getEntitySubType());
@@ -305,13 +305,13 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
      *
      * @return the list of errors related to this form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
 
-        OwnershipInformationType ownershipInformation = XMLUtility.nsGetOwnershipInformation(enrollment);
+        OwnershipInformationType ownershipInformation = XMLUtility.nsGetOwnershipInformation(enrollmentType);
         synchronized (ruleErrors) {
             for (StatusMessageType ruleError : ruleErrors) {
                 int count = errors.size();
@@ -321,7 +321,7 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
                 }
 
                 int entityIndex = 0;
-                OwnershipInformationType ownership = XMLUtility.nsGetOwnershipInformation(enrollment);
+                OwnershipInformationType ownership = XMLUtility.nsGetOwnershipInformation(enrollmentType);
                 List<BeneficialOwnerType> boList = ownership.getBeneficialOwner();
                 for (BeneficialOwnerType beneficialOwnerType : boList) {
                     if ("Y".equals(beneficialOwnerType.getPersonInd())) {
@@ -460,9 +460,9 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
      * @param ticket the persistent model
      * @throws PortalServiceException for any errors encountered
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) throws PortalServiceException {
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) throws PortalServiceException {
         ProviderProfile profile = ticket.getDetails();
-        OwnershipInformationType ownership = XMLUtility.nsGetOwnershipInformation(enrollment);
+        OwnershipInformationType ownership = XMLUtility.nsGetOwnershipInformation(enrollmentType);
         OwnershipInformation o = new OwnershipInformation();
         ArrayList<BeneficialOwner> beneficialOwners = new ArrayList<BeneficialOwner>();
         o.setBeneficialOwners(beneficialOwners);
@@ -524,11 +524,11 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
         OwnershipInformation ownership = profile.getOwnershipInformation();
         if (ownership != null) {
-            OwnershipInformationType xOwnership = XMLUtility.nsGetOwnershipInformation(enrollment);
+            OwnershipInformationType xOwnership = XMLUtility.nsGetOwnershipInformation(enrollmentType);
 
             if (ownership.getEntityType() != null) {
                 xOwnership.setEntityType(ownership.getEntityType().getDescription());
@@ -594,6 +594,6 @@ public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinde
     }
 
     @Override
-    public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
+    public void renderPDF(EnrollmentType enrollmentType, Document document, Map<String, Object> model)
         throws DocumentException {}
 }

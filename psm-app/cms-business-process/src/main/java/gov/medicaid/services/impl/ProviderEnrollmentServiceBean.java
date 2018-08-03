@@ -177,8 +177,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             throw new PortalServiceException("Cannot change status because it is not in pending state.");
         }
 
-        EnrollmentType enrollment = XMLAdapter.toXML(ticket);
-        notificationService.sendEnrollmentNotification(enrollment, EmailTemplate.REJECTED_ENROLLMENT);
+        EnrollmentType enrollmentType = XMLAdapter.toXML(ticket);
+        notificationService.sendEnrollmentNotification(enrollmentType, EmailTemplate.REJECTED_ENROLLMENT);
 
         ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.REJECTED_STATUS));
         ticket.setStatusNote(reason);
@@ -2333,12 +2333,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public Enrollment saveEnrollmentDetails(
             Enrollment enrollment
     ) throws PortalServiceException {
-        Enrollment ticket = getEnrollment(enrollment.getEnrollmentId(), null).get();
+        Enrollment dbEnrollment = getEnrollment(enrollment.getEnrollmentId(), null).get();
         ProviderProfile updatedProfile = enrollment.getDetails().clone();
 
-        ProviderProfile dbProfile = getProviderDetails(ticket.getProfileReferenceId(), true);
+        ProviderProfile dbProfile = getProviderDetails(dbEnrollment.getProfileReferenceId(), true);
 
-        purgeChildren(ticket);
+        purgeChildren(dbEnrollment);
         saveRelatedEntities(enrollment.clone());
 
         if (dbProfile != null) {
@@ -2349,13 +2349,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
             saveRelatedEntities(updatedProfile);
         } else {
-            updatedProfile.setOwnerId(ticket.getSubmittedBy().getUserId());
-            insertProfile(ticket.getEnrollmentId(), updatedProfile);
+            updatedProfile.setOwnerId(dbEnrollment.getSubmittedBy().getUserId());
+            insertProfile(dbEnrollment.getEnrollmentId(), updatedProfile);
         }
 
-        ticket.setDetails(updatedProfile);
+        dbEnrollment.setDetails(updatedProfile);
 
-        return ticket;
+        return dbEnrollment;
     }
 
     /**

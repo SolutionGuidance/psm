@@ -65,9 +65,9 @@ public class FacilityTypeFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         credentials.setFacilityType(param(request, "facilityType"));
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
         if ("A county contracted provider".equals(credentials.getFacilityType())) {
@@ -114,10 +114,10 @@ public class FacilityTypeFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly true if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         attr(mv, "facilityType", credentials.getFacilityType());
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
         List<DocumentType> attachment = attachments.getAttachment();
@@ -150,7 +150,7 @@ public class FacilityTypeFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -190,13 +190,13 @@ public class FacilityTypeFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @throws PortalServiceException
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) throws PortalServiceException {
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) throws PortalServiceException {
         ProviderProfile profile = ticket.getDetails();
         if (profile == null || !(profile.getEntity() instanceof Organization)) {
             throw new PortalServiceException("Provider type should be bound first.");
         }
 
-        FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         Organization org = (Organization) profile.getEntity();
         org.setProviderSubType(credentials.getFacilityType());
     }
@@ -207,9 +207,9 @@ public class FacilityTypeFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
-        FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         if (profile.getEntity() instanceof Organization) {
             Organization org = (Organization) profile.getEntity();
             credentials.setFacilityType(org.getProviderSubType());

@@ -56,9 +56,9 @@ public class FacilityCapacityFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         String beds = param(request, "numberOfBeds");
         if (StringUtils.isNumeric(beds)) {
             creds.setNumberOfBeds((int) BinderUtils.getAsLong(beds));
@@ -80,9 +80,9 @@ public class FacilityCapacityFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly true if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         if (creds.getNumberOfBeds() != null) {
             attr(mv, "numberOfBeds", creds.getNumberOfBeds());
         }
@@ -96,7 +96,7 @@ public class FacilityCapacityFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -135,9 +135,9 @@ public class FacilityCapacityFormBinder extends BaseFormBinder {
      * @param enrollment the front end model
      * @param ticket the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
         ProviderProfile profile = ticket.getDetails();
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         profile.setNumberOfBeds(creds.getNumberOfBeds());
         profile.setNumberOfBedsEffectiveDate(BinderUtils.toDate(creds.getNumberOfBedsEffectiveDate()));
     }
@@ -148,9 +148,9 @@ public class FacilityCapacityFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         creds.setNumberOfBeds(profile.getNumberOfBeds());
         creds.setNumberOfBedsEffectiveDate(BinderUtils.toCalendar(profile.getNumberOfBedsEffectiveDate()));
     }

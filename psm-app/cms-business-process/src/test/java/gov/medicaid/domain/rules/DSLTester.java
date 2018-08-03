@@ -135,12 +135,12 @@ public class DSLTester {
     public static void main(String[] args) throws Exception {
         DSLTester tester = new DSLTester();
         ValidationRequest request = new ValidationRequest();
-        EnrollmentType enrollment = new EnrollmentType();
+        EnrollmentType enrollmentType = new EnrollmentType();
         ProviderInformationType provider = new ProviderInformationType();
         provider.setApplicantType(ApplicantType.INDIVIDUAL);
-        enrollment.setProviderInformation(provider);
+        enrollmentType.setProviderInformation(provider);
         provider.setProviderType("Audiologist");
-        request.setEnrollment(enrollment);
+        request.setEnrollment(enrollmentType);
         ValidationResponse response = tester.checkForErrors(request);
         ValidationResultType validationResult = response.getValidationResult();
         OperationStatusType status = validationResult.getStatus();

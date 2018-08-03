@@ -79,10 +79,10 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         List<SignedContractType> oldContracts = new ArrayList<SignedContractType>(creds.getSignedContract());
         List<SignedContractType> contracts = creds.getSignedContract();
         contracts.clear();
@@ -141,9 +141,9 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         List<SignedContractType> xContracts = creds.getSignedContract();
         for (int j = 0; j < ALL_CONTRACTS.length; j++) {
             String option = ALL_CONTRACTS[j];
@@ -154,7 +154,7 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
                     attr(mv, "beginDate", j, contract.getBeginDate());
                     attr(mv, "endDate", j, contract.getEndDate());
                     attr(mv, "attachmentId", j, contract.getCopyAttachmentId());
-                    attr(mv, "filename", j, getAttachmentName(enrollment, contract.getCopyAttachmentId()));
+                    attr(mv, "filename", j, getAttachmentName(enrollmentType, contract.getCopyAttachmentId()));
                     break;
                 } else {
                     attr(mv, "certificateInd", j, "N");
@@ -171,8 +171,8 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
      * @param attachmentObjectId the id
      * @return the name related
      */
-    private String getAttachmentName(EnrollmentType enrollment, String attachmentObjectId) {
-        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(enrollment.getProviderInformation());
+    private String getAttachmentName(EnrollmentType enrollmentType, String attachmentObjectId) {
+        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(enrollmentType.getProviderInformation());
         List<DocumentType> list = attachments.getAttachment();
         synchronized (list) {
             for (DocumentType documentType : list) {
@@ -191,14 +191,14 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
 
         synchronized (ruleErrors) {
-            Map<Integer, Integer> indexMap = mapByName(XMLUtility.nsGetFacilityCredentials(enrollment).getSignedContract());
+            Map<Integer, Integer> indexMap = mapByName(XMLUtility.nsGetFacilityCredentials(enrollmentType).getSignedContract());
             for (StatusMessageType ruleError : ruleErrors) {
                 int count = errors.size();
                 String path = ruleError.getRelatedElementPath();
@@ -300,8 +300,8 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
      * @param enrollment the front end model
      * @param ticket the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
         if (profile.getCertifications() == null) {
             profile.setCertifications(new ArrayList<License>());
@@ -329,8 +329,8 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
         List<License> certifications = profile.getCertifications();
         if (certifications == null) {

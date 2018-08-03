@@ -62,9 +62,9 @@ public class TCMContractFormBinder extends BaseFormBinder {
      * @return
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollmentType);
         CountyContractType countyInfo = new CountyContractType();
         credentials.setContractWithCounty(countyInfo);
 
@@ -101,9 +101,9 @@ public class TCMContractFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly true if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
         List<DocumentType> attachment = attachments.getAttachment();
         for (DocumentType doc : attachment) {
@@ -141,7 +141,7 @@ public class TCMContractFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -174,7 +174,7 @@ public class TCMContractFormBinder extends BaseFormBinder {
      * @param enrollment the front end model
      * @param ticket the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
     }
 
     /**
@@ -183,6 +183,6 @@ public class TCMContractFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
     }
 }

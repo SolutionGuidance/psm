@@ -79,20 +79,20 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
 
         provider.setNPI(param(request, "npi"));
         try {
-            enrollment.setEffectiveDate(BinderUtils.getAsCalendar(param(request, "effectiveDate")));
+            enrollmentType.setEffectiveDate(BinderUtils.getAsCalendar(param(request, "effectiveDate")));
         } catch (BinderException e) {
             e.setAttribute(name("effectiveDate"), param(request, "effectiveDate"));
             exceptions.add(e);
         }
-        enrollment.setPersonWhoAccomplishedForm(param(request, "personCompletingForm"));
+        enrollmentType.setPersonWhoAccomplishedForm(param(request, "personCompletingForm"));
 
-        OrganizationApplicantType org = XMLUtility.nsGetOrganization(enrollment);
+        OrganizationApplicantType org = XMLUtility.nsGetOrganization(enrollmentType);
         org.setName(param(request, "name"));
         org.setLegalName(param(request, "legalName"));
         org.setFEIN(param(request, "fein"));
@@ -142,7 +142,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
             alternateAddresses.getAddress().add(ten99Address);
         }
 
-        ContactInformationType enrollmentContact = XMLUtility.nsGetContactInformation(enrollment);
+        ContactInformationType enrollmentContact = XMLUtility.nsGetContactInformation(enrollmentType);
         enrollmentContact.setPhoneNumber(BinderUtils.concatPhone(param(request, "contactPhone1"), param(request, "contactPhone2"),
             param(request, "contactPhone3"), param(request, "contactPhone4")));
         enrollmentContact.setFaxNumber(BinderUtils.concatPhone(param(request, "contactFax1"), param(request, "contactFax2"),
@@ -159,16 +159,16 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         attr(mv, "npi", provider.getNPI());
         attr(mv, "orgCountyName", provider.getCounty());
 
-        attr(mv, "effectiveDate", enrollment.getEffectiveDate());
-        attr(mv, "personCompletingForm", enrollment.getPersonWhoAccomplishedForm());
+        attr(mv, "effectiveDate", enrollmentType.getEffectiveDate());
+        attr(mv, "personCompletingForm", enrollmentType.getPersonWhoAccomplishedForm());
 
-        OrganizationApplicantType org = XMLUtility.nsGetOrganization(enrollment);
+        OrganizationApplicantType org = XMLUtility.nsGetOrganization(enrollmentType);
         attr(mv, "name", org.getName());
         attr(mv, "legalName", org.getLegalName());
         attr(mv, "fein", org.getFEIN());
@@ -220,7 +220,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
             }
         }
 
-        ContactInformationType enrollmentContact = XMLUtility.nsGetContactInformation(enrollment);
+        ContactInformationType enrollmentContact = XMLUtility.nsGetContactInformation(enrollmentType);
         attr(mv, "contactName", enrollmentContact.getName());
         attr(mv, "contactEmail", enrollmentContact.getEmailAddress());
         String[] contactPhone = BinderUtils.splitPhone(enrollmentContact.getPhoneNumber());
@@ -247,13 +247,13 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
      *
      * @return the list of errors related to this form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
 
-        OrganizationApplicantType org = XMLUtility.nsGetOrganization(enrollment);
+        OrganizationApplicantType org = XMLUtility.nsGetOrganization(enrollmentType);
 
         synchronized (ruleErrors) {
             for (StatusMessageType ruleError : ruleErrors) {
@@ -382,16 +382,16 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
      * @param ticket the persistent model
      * @throws PortalServiceException for any errors encountered
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) throws PortalServiceException {
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) throws PortalServiceException {
         ProviderProfile profile = ticket.getDetails();
         if (profile == null || !(profile.getEntity() instanceof Organization)) {
             throw new PortalServiceException("Provider type should be bound first.");
         }
 
-        profile.setEffectiveDate(BinderUtils.toDate(enrollment.getEffectiveDate()));
-        profile.setAccomplishedBy(enrollment.getPersonWhoAccomplishedForm());
+        profile.setEffectiveDate(BinderUtils.toDate(enrollmentType.getEffectiveDate()));
+        profile.setAccomplishedBy(enrollmentType.getPersonWhoAccomplishedForm());
 
-        ProviderInformationType providerInfo = enrollment.getProviderInformation();
+        ProviderInformationType providerInfo = enrollmentType.getProviderInformation();
         if (providerInfo != null) {
             Organization organization = (Organization) profile.getEntity();
             organization.setNpi(providerInfo.getNPI());
@@ -437,7 +437,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                 }
             }
 
-            bindEnrollmentContactToHibernate(enrollment, profile);
+            bindEnrollmentContactToHibernate(enrollmentType, profile);
         }
 
     }
@@ -448,16 +448,16 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
         if (profile != null) {
-            enrollment.setEffectiveDate(BinderUtils.toCalendar(profile.getEffectiveDate()));
-            enrollment.setPersonWhoAccomplishedForm(profile.getAccomplishedBy());
+            enrollmentType.setEffectiveDate(BinderUtils.toCalendar(profile.getEffectiveDate()));
+            enrollmentType.setPersonWhoAccomplishedForm(profile.getAccomplishedBy());
 
             Entity entity = profile.getEntity();
             if (entity != null) {
                 Organization organization = (Organization) entity;
-                OrganizationApplicantType org = XMLUtility.nsGetOrganization(enrollment);
+                OrganizationApplicantType org = XMLUtility.nsGetOrganization(enrollmentType);
                 org.setName(organization.getName());
                 org.setLegalName(organization.getLegalName());
                 org.setFEIN(organization.getFein());
@@ -465,9 +465,9 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                 org.setStateMedicaidID(organization.getStateMedicaidId());
                 org.setFiscalYearEnd(organization.getFiscalYearEnd());
                 org.setSubType(organization.getProviderSubType());
-                enrollment.getProviderInformation().setNPI(organization.getNpi());
-                enrollment.getProviderInformation().setCounty(profile.getCounty());
-                enrollment.setEffectiveDate(BinderUtils.toCalendar(profile.getEffectiveDate()));
+                enrollmentType.getProviderInformation().setNPI(organization.getNpi());
+                enrollmentType.getProviderInformation().setCounty(profile.getCounty());
+                enrollmentType.setEffectiveDate(BinderUtils.toCalendar(profile.getEffectiveDate()));
 
                 ContactInformation hContact = organization.getContactInformation();
                 if (hContact != null) {
@@ -478,7 +478,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                 }
 
                 AlternateAddressesType alternateAddresses = new AlternateAddressesType();
-                enrollment.getProviderInformation().setAlternateAddresses(alternateAddresses);
+                enrollmentType.getProviderInformation().setAlternateAddresses(alternateAddresses);
                 if ("N".equals(organization.getBillingSameAsPrimary())) {
                     alternateAddresses.getAddress().add(BinderUtils.bindAddress(organization.getBillingAddress()));
                     org.setBillingAddressIndex(alternateAddresses.getAddress().size());
@@ -498,7 +498,7 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
             if (designatedContacts != null) {
                 for (DesignatedContact designatedContact : designatedContacts) {
                     if (designatedContact.getType() == DesignatedContactType.ENROLLMENT) {
-                        ContactInformationType xContact = XMLUtility.nsGetContactInformation(enrollment);
+                        ContactInformationType xContact = XMLUtility.nsGetContactInformation(enrollmentType);
                         Person hPerson = designatedContact.getPerson();
                         xContact.setName(hPerson.getName());
                         if (hPerson.getContactInformation() != null) {
@@ -517,9 +517,9 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
      * @param enrollment the frontend model
      * @param profile the hibernate model
      */
-    private void bindEnrollmentContactToHibernate(EnrollmentType enrollment, ProviderProfile profile) {
+    private void bindEnrollmentContactToHibernate(EnrollmentType enrollmentType, ProviderProfile profile) {
         List<DesignatedContact> designatedContacts = profile.getDesignatedContacts();
-        if ("Y".equals(enrollment.getContactSameAsApplicant())) {
+        if ("Y".equals(enrollmentType.getContactSameAsApplicant())) {
             if (designatedContacts != null) {
                 for (Iterator<DesignatedContact> iter = designatedContacts.iterator(); iter.hasNext();) {
                     DesignatedContact designatedContact = iter.next();
@@ -544,14 +544,14 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                     }
 
                     Person person = designatedContact.getPerson();
-                    person.setName(enrollment.getContactInformation().getName());
+                    person.setName(enrollmentType.getContactInformation().getName());
 
                     if (person.getContactInformation() == null) {
                         person.setContactInformation(new ContactInformation());
                     }
-                    person.getContactInformation().setEmail(enrollment.getContactInformation().getEmailAddress());
-                    person.getContactInformation().setPhoneNumber(enrollment.getContactInformation().getPhoneNumber());
-                    person.getContactInformation().setFaxNumber(enrollment.getContactInformation().getFaxNumber());
+                    person.getContactInformation().setEmail(enrollmentType.getContactInformation().getEmailAddress());
+                    person.getContactInformation().setPhoneNumber(enrollmentType.getContactInformation().getPhoneNumber());
+                    person.getContactInformation().setFaxNumber(enrollmentType.getContactInformation().getFaxNumber());
                     found = true;
                 }
             }
@@ -562,18 +562,18 @@ public class OrganizationInfoFormBinder extends BaseFormBinder implements FormBi
                 Person person = new Person();
                 designatedContact.setPerson(person);
 
-                person.setName(enrollment.getContactInformation().getName());
+                person.setName(enrollmentType.getContactInformation().getName());
                 person.setContactInformation(new ContactInformation());
-                person.getContactInformation().setEmail(enrollment.getContactInformation().getEmailAddress());
-                person.getContactInformation().setPhoneNumber(enrollment.getContactInformation().getPhoneNumber());
-                person.getContactInformation().setFaxNumber(enrollment.getContactInformation().getFaxNumber());
+                person.getContactInformation().setEmail(enrollmentType.getContactInformation().getEmailAddress());
+                person.getContactInformation().setPhoneNumber(enrollmentType.getContactInformation().getPhoneNumber());
+                person.getContactInformation().setFaxNumber(enrollmentType.getContactInformation().getFaxNumber());
                 profile.getDesignatedContacts().add(designatedContact);
             }
         }
     }
 
     @Override
-    public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
+    public void renderPDF(EnrollmentType enrollmentType, Document document, Map<String, Object> model)
         throws DocumentException {
 
         String ns = NAMESPACE;

@@ -67,8 +67,8 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
      *
      * @return
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         provider.setProviderType(param(request, "providerType"));
 
         ProviderType pt = getLookupService()
@@ -90,16 +90,16 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly true if the binding is for a read only view
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         attr(mv, "providerType", provider.getProviderType());
 
         if (readOnly) {
             return;
         }
 
-        if (Util.isBlank(provider.getProviderType()) || enrollment.getRequestType() == null
-            || enrollment.getRequestType() == RequestType.ENROLLMENT) {
+        if (Util.isBlank(provider.getProviderType()) || enrollmentType.getRequestType() == null
+            || enrollmentType.getRequestType() == RequestType.ENROLLMENT) {
             // can still change applicant type.
             mv.put("individualProviderTypes", sortCollection(getProviderTypeService().getProviderTypes(ApplicantType.INDIVIDUAL)));
             mv.put("organizationProviderTypes", sortCollection(getProviderTypeService().getProviderTypes(ApplicantType.ORGANIZATION)));
@@ -139,7 +139,7 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = null;
         List<StatusMessageType> messageList = messages.getStatusMessage();
         for (StatusMessageType statusMessageType : messageList) {
@@ -163,9 +163,9 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
      * @param enrollment the front end model
      * @param ticket the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        if (enrollment.getProviderInformation() != null) {
-            String providerType = enrollment.getProviderInformation().getProviderType();
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
+        if (enrollmentType.getProviderInformation() != null) {
+            String providerType = enrollmentType.getProviderInformation().getProviderType();
             if (ticket.getDetails() == null) {
                 ticket.setDetails(new ProviderProfile());
             }
@@ -182,10 +182,10 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
         if (profile != null) {
-            ProviderInformationType pInfo = XMLUtility.nsGetProvider(enrollment);
+            ProviderInformationType pInfo = XMLUtility.nsGetProvider(enrollmentType);
             if (profile.getEntity() != null && profile.getEntity().getProviderType() != null) {
                 ProviderType pt = profile.getEntity().getProviderType();
                 pInfo.setProviderType(pt.getDescription());

@@ -65,7 +65,7 @@ public interface ExportService {
      * @throws PortalServiceException
      *             for any other errors encountered
      */
-    void export(CMSUser currentUser, EnrollmentType enrollment, Map<String, Object> model, OutputStream outputStream)
+    void export(CMSUser currentUser, EnrollmentType enrollmentType, Map<String, Object> model, OutputStream outputStream)
             throws PortalServiceException, IOException;
 
 }

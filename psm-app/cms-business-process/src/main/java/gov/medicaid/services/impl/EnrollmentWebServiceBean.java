@@ -132,10 +132,10 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
             String username,
             String systemId,
             String npi,
-            EnrollmentType enrollment
+            EnrollmentType enrollmentType
     ) throws PortalServiceException {
         CMSUser user = findUser(username, systemId, npi);
-        return saveTicket(user, enrollment, true);
+        return saveTicket(user, enrollmentType, true);
     }
 
     /**
@@ -183,8 +183,8 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
      * @throws PortalServiceException for any errors encountered
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public long saveTicket(CMSUser user, EnrollmentType enrollment, boolean resetToDraft) throws PortalServiceException {
-        long ticketId = BinderUtils.getAsLong(enrollment.getObjectId());
+    public long saveTicket(CMSUser user, EnrollmentType enrollmentType, boolean resetToDraft) throws PortalServiceException {
+        long ticketId = BinderUtils.getAsLong(enrollmentType.getObjectId());
         Enrollment ticket;
         if (ticketId > 0) {
             // update existing ticket
@@ -195,9 +195,9 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
                     throw new PortalServiceException("Cannot modify submitted ticket.");
                 }
             }
-            ticket = XMLAdapter.mergeFromXML(user, enrollment, ticketDetails);
+            ticket = XMLAdapter.mergeFromXML(user, enrollmentType, ticketDetails);
         } else {
-            ticket = XMLAdapter.fromXML(user, enrollment);
+            ticket = XMLAdapter.fromXML(user, enrollmentType);
         }
 
         if (resetToDraft) {
@@ -220,12 +220,12 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED) // allow SAVE even if SUBMIT fails
     public SubmitTicketResponse submitEnrollment(SubmitTicketRequest request) throws PortalServiceException {
         try {
-            EnrollmentType enrollment = request.getEnrollment();
+            EnrollmentType enrollmentType = request.getEnrollment();
             CMSUser user = findUser(request.getUsername(), request.getSystemId(), request.getNpi());
             // transaction #1
-            long ticketId = saveTicket(user, enrollment, true);
+            long ticketId = saveTicket(user, enrollmentType, true);
 
-            long profileId = BinderUtils.getAsLong(enrollment.getProviderInformation().getObjectId());
+            long profileId = BinderUtils.getAsLong(enrollmentType.getProviderInformation().getObjectId());
             Validity validity = providerEnrollmentService.getSubmissionValidity(ticketId, profileId);
 
             SubmitTicketResponse response = new SubmitTicketResponse();
@@ -269,17 +269,17 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
             String username,
             String systemId,
             String npi,
-            EnrollmentType enrollment
+            EnrollmentType enrollmentType
     ) throws PortalServiceException {
         CMSUser user = findUser(username, systemId, npi);
 
-        long ticketId = BinderUtils.getAsLong(enrollment.getObjectId());
-        long profileId = BinderUtils.getAsLong(enrollment.getProviderInformation().getObjectId());
+        long ticketId = BinderUtils.getAsLong(enrollmentType.getObjectId());
+        long profileId = BinderUtils.getAsLong(enrollmentType.getProviderInformation().getObjectId());
         Validity validity = providerEnrollmentService.getSubmissionValidity(ticketId, profileId);
 
         if (validity == Validity.VALID) {
             try {
-                saveTicket(user, enrollment, false); // retain status
+                saveTicket(user, enrollmentType, false); // retain status
                 // synchronize with DB
                 Enrollment ticket = providerEnrollmentService.getEnrollmentWithScreenings(user, ticketId).
                     orElseThrow(() -> new PortalServiceException("Couldn't find ticket"));

@@ -81,10 +81,10 @@ public class ScreeningHandler extends GenericHandler {
 
         // known facts for screening
         ksession.insert(processModel.getPostSubmissionInformation());
-        EnrollmentType enrollment = processModel.getEnrollment();
-        ksession.insert(enrollment);
-        ksession.insert(enrollment.getProviderInformation());
-        ksession.insert(enrollment.getProviderInformation().getVerificationStatus());
+        EnrollmentType enrollmentType = processModel.getEnrollment();
+        ksession.insert(enrollmentType);
+        ksession.insert(enrollmentType.getProviderInformation());
+        ksession.insert(enrollmentType.getProviderInformation().getVerificationStatus());
         ksession.insert(processModel.getProcessResults().getScreeningResults());
         ksession.insert(validationResult);
         List<LookupEntry> allLookupEntries = GlobalLookups.getInstance().getAllLookupEntries();
@@ -122,12 +122,12 @@ public class ScreeningHandler extends GenericHandler {
 
             */
             Enrollment updatedTicket =
-                providerService.saveEnrollmentDetails(XMLAdapter.fromXML(systemUser, enrollment));
-            ProviderInformationType providerInformation = enrollment.getProviderInformation();
+                providerService.saveEnrollmentDetails(XMLAdapter.fromXML(systemUser, enrollmentType));
+            ProviderInformationType providerInformation = enrollmentType.getProviderInformation();
             String reviewer = providerInformation.getReviewedBy(); // transient field (should really add to DB)
             ProviderInformationType updatedInfo = XMLAdapter.toXML(updatedTicket).getProviderInformation();
             updatedInfo.setReviewedBy(reviewer);
-            enrollment.setProviderInformation(updatedInfo);
+            enrollmentType.setProviderInformation(updatedInfo);
         } catch (PortalServiceException e) {
             logger.log(java.util.logging.Level.SEVERE, e.getMessage(), e);
         }

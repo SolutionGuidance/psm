@@ -71,8 +71,8 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollmentType);
         practice.setObjectId(param(request, "objectId")); // if lookup is successful
         if (Util.isNotBlank(practice.getObjectId())) {
             String hash = param(request, "objectIdHash");
@@ -130,8 +130,8 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly true if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollmentType);
         attr(mv, "bound", "Y");
 
         attr(mv, "objectId", practice.getObjectId());
@@ -164,7 +164,7 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -226,8 +226,8 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
      * @param enrollment the front end model
      * @param ticket the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
         List<Affiliation> groups = profile.getAffiliations();
         if (groups == null) {
@@ -271,7 +271,7 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
         List<Affiliation> groups = profile.getAffiliations();
 
@@ -285,7 +285,7 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
             throw new PortalServiceRuntimeException("Bad Data. Practice group cannot be an individual provider.");
         }
 
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollmentType);
 
         Organization employer = (Organization) primary.getEntity();
         if ("Y".equals(employer.getEnrolled())) {
@@ -336,10 +336,10 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
      */
     protected boolean canModifyExistingPractice(
             CMSUser user,
-            EnrollmentType enrollment
+            EnrollmentType enrollmentType
     ) {
         if (user.getExternalRoleView() == RoleView.EMPLOYER) {
-            PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+            PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollmentType);
             if (user.getExternalAccountLink().getExternalUserId().equals(practice.getGroupNPI())) {
                 return true;
             }

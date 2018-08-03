@@ -100,14 +100,14 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
      * @param request    the request containing the form fields
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         provider.setHasCriminalConviction(param(request, "criminalConvictionInd"));
         provider.setHasCivilPenalty(param(request, "civilPenaltyInd"));
         provider.setHasPreviousExclusion(param(request, "previousExclusionInd"));
         provider.setRenewalShowBlankStatement(param(request, "renewalBlankInit"));
-        ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
+        ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollmentType);
         statement.setName(param(request, "name"));
         statement.setTitle(param(request, "title"));
 
@@ -137,7 +137,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
             }
         }
 
-        AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(enrollment);
+        AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(enrollmentType);
         List<ProviderAgreementType> providerAgreement = acceptedAgreements.getProviderAgreement();
         synchronized (providerAgreement) {
             providerAgreement.clear();
@@ -154,14 +154,14 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
      * @param mv         the model and view to bind to
      * @param readOnly   true if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         ProviderType pt = getProviderTypeService().getByDescription(provider.getProviderType());
         Set<AgreementDocument> docs = pt.getAgreementDocuments();
 
         // for renewal the form should be blank
-        if (enrollment.getRequestType() == RequestType.RENEWAL && provider.getRenewalShowBlankStatement() == null) {
+        if (enrollmentType.getRequestType() == RequestType.RENEWAL && provider.getRenewalShowBlankStatement() == null) {
             attr(mv, "renewalBlankInit", "Y");
 
             int i = 0;
@@ -179,7 +179,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
             attr(mv, "civilPenaltyInd", provider.getHasCivilPenalty());
             attr(mv, "previousExclusionInd", provider.getHasPreviousExclusion());
 
-            ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
+            ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollmentType);
             attr(mv, "name", statement.getName());
             attr(mv, "title", statement.getTitle());
 
@@ -223,7 +223,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
      * @param messages   the messages to select from
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -270,8 +270,8 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
      * @param enrollment the front end model
      * @param ticket     the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
 
         profile.setCriminalConvictionInd(provider.getHasCriminalConviction());
@@ -294,7 +294,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
 
         ticket.setAgreements(acceptedAgreements);
 
-        ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(enrollment);
+        ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(enrollmentType);
         ProviderStatement hStatement = ticket.getStatement();
         if (hStatement == null) {
             hStatement = new ProviderStatement();
@@ -325,8 +325,8 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
      * @param ticket     the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
 
         provider.setHasCriminalConviction(profile.getCriminalConvictionInd());
@@ -337,7 +337,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         Set<AgreementDocument> activeList = pt.getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
-        AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(enrollment);
+        AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(enrollmentType);
         ArrayList<ProviderAgreementType> xlist = new ArrayList<ProviderAgreementType>();
 
         List<AcceptedAgreements> hList = ticket.getAgreements();
@@ -361,14 +361,14 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
 
         ProviderStatement hStatement = ticket.getStatement();
         if (hStatement != null) {
-            ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(enrollment);
+            ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(enrollmentType);
             xStatement.setName(hStatement.getName());
             xStatement.setTitle(hStatement.getTitle());
         }
     }
 
     @Override
-    public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
+    public void renderPDF(EnrollmentType enrollmentType, Document document, Map<String, Object> model)
             throws DocumentException {
 
         // Provider Statement Section

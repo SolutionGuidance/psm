@@ -78,10 +78,10 @@ public class HighestDegreeFormBinder extends BaseFormBinder {
      *
      * @throws BinderException for binding errors
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollmentType);
         individual.setHighestDegreeEarned(param(request, "highestDegreeEarned"));
         try {
             individual.setDegreeAwardDate(BinderUtils.getAsCalendar(param(request, "degreeAwardDate")));
@@ -110,10 +110,10 @@ public class HighestDegreeFormBinder extends BaseFormBinder {
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollmentType);
         attr(mv, "highestDegreeEarned", individual.getHighestDegreeEarned());
         attr(mv, "degreeAwardDate", individual.getDegreeAwardDate());
 
@@ -139,7 +139,7 @@ public class HighestDegreeFormBinder extends BaseFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -179,13 +179,13 @@ public class HighestDegreeFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @throws PortalServiceException for binding errors
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) throws PortalServiceException {
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) throws PortalServiceException {
         ProviderProfile profile = ticket.getDetails();
         if (profile == null || !(profile.getEntity() instanceof Person)) {
             throw new PortalServiceException("Provider type should be bound first.");
         }
 
-        ProviderInformationType providerInfo = enrollment.getProviderInformation();
+        ProviderInformationType providerInfo = enrollmentType.getProviderInformation();
         if (providerInfo != null) {
             Person person = (Person) profile.getEntity();
             ApplicantInformationType ai = providerInfo.getApplicantInformation();
@@ -206,13 +206,13 @@ public class HighestDegreeFormBinder extends BaseFormBinder {
      * @param ticket the persistent model
      * @param enrollment the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
         if (profile != null) {
             Entity entity = profile.getEntity();
             if (entity != null) {
                 Person person = (Person) entity;
-                IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
+                IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollmentType);
                 if (person.getDegree() != null) {
                     individual.setHighestDegreeEarned(person.getDegree().getDescription());
                 }

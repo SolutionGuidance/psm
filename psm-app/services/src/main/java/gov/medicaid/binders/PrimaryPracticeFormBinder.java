@@ -72,13 +72,13 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
      * @throws BinderException
      *             if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-        if (!canModifyExistingPractice(user, enrollment)) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+        if (!canModifyExistingPractice(user, enrollmentType)) {
             return new ArrayList<BinderException>();
         }
-        List<BinderException> exceptions = super.bindFromPage(user, enrollment, request);
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        List<BinderException> exceptions = super.bindFromPage(user, enrollmentType, request);
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollmentType);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
         if (!"Y".equals(provider.getMaintainsOwnPrivatePractice())) { // assumes practice type is bound first
             practice.setStateMedicaidId(param(request, "stateMedicaidId"));
             if (param(request, "reimbursementSameAsPrimary") != null) {
@@ -121,12 +121,12 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
      * @param readOnly
      *            true if the binding is for a read only view
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
-        if (!canModifyExistingPractice(user, enrollment)) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
+        if (!canModifyExistingPractice(user, enrollmentType)) {
             return;
         }
-        super.bindToPage(user, enrollment, mv, readOnly);
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+        super.bindToPage(user, enrollmentType, mv, readOnly);
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollmentType);
 
         attr(mv, "stateMedicaidId", practice.getStateMedicaidId());
         attr(mv, "reimbursementSameAsPrimary", practice.getReimbursementSameAsPrimary());
@@ -150,8 +150,8 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
-        List<FormError> errors = new ArrayList<FormError>(super.selectErrors(enrollment, messages));
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
+        List<FormError> errors = new ArrayList<FormError>(super.selectErrors(enrollmentType, messages));
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
@@ -204,9 +204,9 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
      * @param ticket
      *            the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        super.bindToHibernate(enrollment, ticket);
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
+        super.bindToHibernate(enrollmentType, ticket);
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollmentType);
 
         ProviderProfile profile = ticket.getDetails();
         Affiliation primary = findPrimaryGroup(profile.getAffiliations());
@@ -235,9 +235,9 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
      * @param enrollment
      *            the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
-        super.bindFromHibernate(ticket, enrollment);
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
+        super.bindFromHibernate(ticket, enrollmentType);
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollmentType);
         ProviderProfile profile = ticket.getDetails();
         Affiliation primary = findPrimaryGroup(profile.getAffiliations());
         if (primary == null) {
@@ -264,9 +264,9 @@ public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
     }
 
     @Override
-    public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
+    public void renderPDF(EnrollmentType enrollmentType, Document document, Map<String, Object> model)
             throws DocumentException {
-        super.renderPDF(enrollment, document, model);
+        super.renderPDF(enrollmentType, document, model);
         PdfPTable practiceInfo = new PdfPTable(2);
         PDFHelper.setTableAsFullPage(practiceInfo);
         String ns = NAMESPACE;

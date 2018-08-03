@@ -605,8 +605,8 @@ public class EnrollmentController extends BaseController {
             return null;
         }
 
-        EnrollmentType enrollment = businessProcessService.getTaskModel(taskId).getEnrollment();
-        ProviderInformationType provider = enrollment.getProviderInformation();
+        EnrollmentType enrollmentType = businessProcessService.getTaskModel(taskId).getEnrollment();
+        ProviderInformationType provider = enrollmentType.getProviderInformation();
         VerificationStatusType status = provider.getVerificationStatus();
         if ("Y".equals(dto.getNonExclusionVerified())) { // modify only if set to Y
             status.setNonExclusion("Y");

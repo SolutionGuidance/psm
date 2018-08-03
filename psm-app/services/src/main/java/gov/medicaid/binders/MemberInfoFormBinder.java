@@ -75,9 +75,9 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
      * @throws BinderException
      *             if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        MemberInformationType membership = XMLUtility.nsGetMembershipInformation(enrollment);
+        MemberInformationType membership = XMLUtility.nsGetMembershipInformation(enrollmentType);
         membership.getGroupMember().clear();
 
         int i = 0;
@@ -123,9 +123,9 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
      * @param readOnly
      *            if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        MemberInformationType membership = XMLUtility.nsGetMembershipInformation(enrollment);
+        MemberInformationType membership = XMLUtility.nsGetMembershipInformation(enrollmentType);
 
         List<GroupMemberType> members = membership.getGroupMember();
         int i = 0;
@@ -142,7 +142,7 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
             i++;
         }
         attr(mv, "memberSize", members.size());
-        if (enrollment.getProviderInformation().getProviderType().equals(gov.medicaid.domain.model.ProviderType.PHARMACY.value())) {
+        if (enrollmentType.getProviderInformation().getProviderType().equals(gov.medicaid.domain.model.ProviderType.PHARMACY.value())) {
             mv.put("onlyPharmacist", true);
         } else {
             mv.put("individualMemberProviderTypes", sortCollection(getProviderTypeService().getProviderTypes(ApplicantType.INDIVIDUAL)));
@@ -160,7 +160,7 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
      *
      * @return the list of errors related to this form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -254,10 +254,10 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
      * @throws PortalServiceException
      *             for any errors encountered
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) throws PortalServiceException {
+    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) throws PortalServiceException {
         ProviderProfile profile = ticket.getDetails();
 
-        MemberInformationType membership = XMLUtility.nsGetMembershipInformation(enrollment);
+        MemberInformationType membership = XMLUtility.nsGetMembershipInformation(enrollmentType);
         if (profile.getAffiliations() == null) {
             profile.setAffiliations(new ArrayList<Affiliation>());
         }
@@ -314,11 +314,11 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
      * @param enrollment
      *            the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
+    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
         ProviderProfile profile = ticket.getDetails();
         if (profile != null) {
             List<Affiliation> affiliations = profile.getAffiliations();
-            MemberInformationType membership = XMLUtility.nsGetMembershipInformation(enrollment);
+            MemberInformationType membership = XMLUtility.nsGetMembershipInformation(enrollmentType);
             if (affiliations != null) {
                 for (Affiliation affiliation : filterMembers(affiliations)) {
                     GroupMemberType member = new GroupMemberType();
@@ -340,7 +340,7 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
     }
 
     @Override
-    public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
+    public void renderPDF(EnrollmentType enrollmentType, Document document, Map<String, Object> model)
             throws DocumentException {
         String ns = NAMESPACE;
         if ("Y".equals(PDFHelper.value(model, ns, "bound"))) {

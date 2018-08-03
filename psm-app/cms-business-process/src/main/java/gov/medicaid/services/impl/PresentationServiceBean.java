@@ -723,7 +723,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
      * @return the set of error messages found, empty if the ticket is valid
      */
     @Override
-    public ValidationResponse checkForErrors(EnrollmentType ticket, List<String> tabs) {
+    public ValidationResponse checkForErrors(EnrollmentType enrollmentType, List<String> tabs) {
         ValidationRequest request = new ValidationRequest();
         if (tabs != null && !tabs.isEmpty()) {
             request.setPartial("Y");
@@ -752,7 +752,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
                 }
             }
         }
-        request.setEnrollment(ticket);
+        request.setEnrollment(enrollmentType);
         return checkForErrors(request);
     }
 

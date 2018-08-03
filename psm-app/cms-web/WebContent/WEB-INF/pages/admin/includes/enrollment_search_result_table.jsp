@@ -143,12 +143,6 @@
                 Edit
               </a>
               <span class="sep">|</span>
-              <c:if test="${isServiceAdministrator}">
-                <a class="cosLink" href="${ctx}/agent/enrollment/pendingcos?id=${item.ticketId}">
-                  COS
-                </a>
-                <span class="sep">|</span>
-              </c:if>
               <c:forEach var="task" items="${tasks}">
                 <c:if test="${task.processInstanceId == item.processInstanceId}">
                     <a class="reviewLink" href="${ctx}/agent/enrollment/screeningReview?id=${item.ticketId}">
@@ -163,12 +157,6 @@
                 Edit
               </a>
               <span class="sep">|</span>
-              <c:if test="${isServiceAdministrator}">
-                <a class="cosLink" href="${ctx}/agent/enrollment/pendingcos?id=${item.ticketId}">
-                  COS
-                </a>
-                <span class="sep">|</span>
-              </c:if>
             </c:when>
             <c:when test="${fn:toLowerCase(item.status)=='approved'}">
               <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
@@ -179,12 +167,6 @@
                 Edit
               </a>
               <span class="sep">|</span>
-              <c:if test="${isServiceAdministrator}">
-                <a class="cosLink" href="${ctx}/agent/enrollment/cos?id=${item.profileReferenceId}">
-                  COS
-                </a>
-                <span class="sep">|</span>
-              </c:if>
               <a href="${ctx}/provider/profile/renew?profileId=${item.profileReferenceId}">
                 Renew
               </a>

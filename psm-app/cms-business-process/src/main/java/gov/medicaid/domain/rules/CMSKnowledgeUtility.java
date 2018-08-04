@@ -25,8 +25,6 @@ import javax.transaction.UserTransaction;
  * This class is used to configure and execute CMS Business rules.
  *
  * v1.1 - WAS Porting - pass reference to user transaction when invoking BPMN
- * @author TCSASSEMBLER
- * @version 1.1
  */
 public class CMSKnowledgeUtility {
 

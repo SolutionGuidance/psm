@@ -44,8 +44,6 @@ import java.util.stream.Collectors;
 /**
  * Handles dashboard functions.
  *
- * @author TCSASSEMBLER
- * @version 1.0
  * @endpoint "/provider/dashboard/*"
  */
 @Controller

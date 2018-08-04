@@ -32,9 +32,6 @@ import java.util.Date;
 /**
  * Wraps the user details from the external authentication mechanism into one that tracks the external account source
  * and the corresponding internal CMS user record.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class CMSUserDetailsWrapper implements UserDetails, CMSPrincipal {
 

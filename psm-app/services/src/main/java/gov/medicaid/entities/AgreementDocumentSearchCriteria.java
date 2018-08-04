@@ -18,9 +18,6 @@ package gov.medicaid.entities;
 
 /**
  * This represents the search criteria for agreement document.
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 public class AgreementDocumentSearchCriteria extends SearchCriteria {
 

@@ -50,9 +50,6 @@ import java.util.Map;
 
 /**
  * Base class for the form binders.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public abstract class BaseFormBinder implements FormBinder {
 

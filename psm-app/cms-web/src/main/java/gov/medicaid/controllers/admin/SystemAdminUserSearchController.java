@@ -41,9 +41,6 @@ import java.util.List;
  * <b>Thread Safety</b> This class is mutable and not thread safe, but used in thread safe manner by framework.
  * </p>
  *
- * @author argolite, TCSASSEMBLER
- * @version 1.1
- * @since 1.0
  * @endpoint "/system/search/*"
  */
 @Controller
@@ -94,7 +91,6 @@ public class SystemAdminUserSearchController {
      *
      * @param rolesList the roles list
      * @return the all roles string
-     * @since 1.1
      */
     private String getRolesStr(List<String> rolesList) {
         if (null == rolesList) {

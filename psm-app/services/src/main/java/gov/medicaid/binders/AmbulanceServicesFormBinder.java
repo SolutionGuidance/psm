@@ -44,9 +44,6 @@ import java.util.Map;
 
 /**
  * This binder handles the ambulance services licenses.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class AmbulanceServicesFormBinder extends BaseFormBinder {
 

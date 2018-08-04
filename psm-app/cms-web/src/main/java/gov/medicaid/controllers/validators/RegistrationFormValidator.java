@@ -25,9 +25,6 @@ import org.springframework.validation.Errors;
 
 /**
  * Registration request validator.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @Component
 public class RegistrationFormValidator extends BaseValidator {

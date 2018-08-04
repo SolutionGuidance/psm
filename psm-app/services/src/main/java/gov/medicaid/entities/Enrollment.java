@@ -38,9 +38,6 @@ import java.util.List;
 
 /**
  * Represents a ticket/enrollment.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @javax.persistence.Entity
 @Table(name = "enrollments")

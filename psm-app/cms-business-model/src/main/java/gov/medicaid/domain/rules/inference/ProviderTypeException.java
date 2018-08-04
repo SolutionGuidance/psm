@@ -18,9 +18,6 @@ package gov.medicaid.domain.rules.inference;
 
 /**
  * This class is used by the rules logically insert exceptions based on the provider type.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class ProviderTypeException {
 

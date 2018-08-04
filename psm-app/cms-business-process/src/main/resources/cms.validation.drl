@@ -48,13 +48,6 @@ function Calendar get18YearsFromNow() {
 
 rule '1099 Address Index Must Reference An Existing Address'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -72,13 +65,6 @@ end
 
 rule 'Actual Street Address Is Required For Education Plans'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
      when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -97,13 +83,6 @@ end
 
 rule 'Additional Location Address Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -123,13 +102,6 @@ end
 
 rule 'Additional Location Address Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -150,13 +122,6 @@ end
 
 rule 'Additional Location Disclosure Indicator Must Be Answered In Y,N'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         IsOrganization( )
         ProviderInformationType(agreeToDiscloseLocations != null, agreeToDiscloseLocations != "Y", agreeToDiscloseLocations != "N" )
@@ -211,13 +176,6 @@ end
 
 rule 'Additional Location Group Name Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -237,13 +195,6 @@ end
 
 rule 'Additional Location Group Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -263,13 +214,6 @@ end
 
 rule 'Additional Location Group NPI Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -289,13 +233,6 @@ end
 
 rule 'Additional Location Group NPI Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -331,13 +268,6 @@ end
 
 rule 'Additional Location Indicator Must Be Answered In Y,N'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         IsOrganization( )
         $provider: ProviderInformationType(additionalLocationIndicator != null, additionalLocationIndicator != "Y", additionalLocationIndicator != "N" )
@@ -353,13 +283,6 @@ end
 
 rule 'Additional Location Indicator Should Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         IsOrganization( )
         $provider: ProviderInformationType( additionalLocationIndicator != null )
@@ -376,13 +299,6 @@ end
 
 rule 'Additional Location Provider Number Cannot Be Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         IsOrganization( )
         $provider: ProviderInformationType($additionalLocations : additionalLocations.providerNumber, additionalLocations != null)
@@ -401,13 +317,6 @@ end
 
 rule 'Additional Location Provider Number Is Required I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization( )
@@ -424,13 +333,6 @@ end
 
 rule 'Additional Location Provider Number Is Required II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization( )
@@ -448,13 +350,6 @@ end
 
 rule 'Additional Location Provider Number Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         IsOrganization( )
         $provider: ProviderInformationType($additionalLocations : additionalLocations.providerNumber, additionalLocations != null)
@@ -472,13 +367,6 @@ end
 
 rule 'Additional Location Provider Number Should Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization( )
@@ -496,13 +384,6 @@ end
 
 rule 'Additional Locations Are Asked For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
 salience 10
     when
     then
@@ -556,13 +437,6 @@ end
 
 rule 'Address Line 1 Should Not Be A PO BOX'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $entry: AddressEntry(errorOnLine1 != "Y")
         LookupEntry($value : value, type == "POBoxWordRegex")
@@ -583,13 +457,6 @@ end
 
 rule 'Adult Day Treatment Application Is Required For Day Treatment'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.DAY_TREATMENT.value())
@@ -606,13 +473,6 @@ end
 
 rule 'Affiliated Agency Name Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -631,13 +491,6 @@ end
 
 rule 'Affiliated Agency Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -711,13 +564,6 @@ end
 
 rule 'Affiliated Agency StudyId Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -736,13 +582,6 @@ end
 
 rule 'Affiliated Agency StudyId Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -761,13 +600,6 @@ end
 
 rule 'Agency Address Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -785,13 +617,6 @@ dialect 'mvel'
 end
 
 rule 'Agency Address Must Be Valid'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
@@ -876,13 +701,6 @@ end
 
 rule 'Agency ContactName Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -899,13 +717,6 @@ end
 
 rule 'Agency Eligibility Is Asked For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
 salience 10
     when
     then
@@ -915,13 +726,6 @@ end
 
 rule 'Agency Eligibility Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_ELIGIBILITY.value())
         IsOrganization($provider : provider)
@@ -939,13 +743,6 @@ end
 
 rule 'Agency Eligibility Should Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_ELIGIBILITY.value())
         IsOrganization($provider : provider)
@@ -963,13 +760,6 @@ end
 
 rule 'Agency Fax Number Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -986,13 +776,6 @@ end
 
 rule 'Agency Fax Number Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -1009,13 +792,6 @@ end
 
 rule 'Agency Id Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -1032,13 +808,6 @@ end
 
 rule 'Agency Id Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -1054,13 +823,6 @@ dialect 'mvel'
 end
 
 rule 'Agency Information Is Required For PCA'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_INFORMATION.value())
@@ -1076,13 +838,6 @@ dialect 'mvel'
 end
 
 rule 'Agency Name Is Required For Agency Applications'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
@@ -1101,13 +856,6 @@ end
 
 rule 'Agency Name Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -1123,13 +871,6 @@ dialect 'mvel'
 end
 
 rule 'Agency Name Maximum Length Check'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
 dialect 'mvel'
     when
         IsOrganization($provider: provider)
@@ -1193,13 +934,6 @@ end
 
 rule 'Agency Study Id Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -1216,13 +950,6 @@ end
 
 rule 'Agency Study Id Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -1239,13 +966,6 @@ end
 
 rule 'All Addresses City Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $entry: AddressEntry(errorOnCity != "Y")
         AddressType(city == null || city matches "^[\\s]*$") from $entry.address
@@ -1264,13 +984,6 @@ end
 
 rule 'All Addresses City Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         $entry: AddressEntry(errorOnCity != "Y")
         AddressType(city != null, city not matches "^[\\s]*$", city not matches "^.{0,100}$") from $entry.address
@@ -1289,13 +1002,6 @@ end
 
 rule 'All Addresses County Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         $entry: AddressEntry(errorOnCounty != "Y")
         AddressType(county != null, county not matches "^[\\s]*$", county not matches "^.{0,100}$") from $entry.address
@@ -1314,13 +1020,6 @@ end
 
 rule 'All Addresses Line 1 Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         $entry: AddressEntry(errorOnLine1 != "Y")
         AddressType(addressLine1 != null, addressLine1 not matches "^[\\s]*$",  addressLine1 not matches "^.{0,28}$") from $entry.address
@@ -1339,13 +1038,6 @@ end
 
 rule 'Address must not be empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $entry: AddressEntry(errorOnLine1 != "Y")
         AddressType(addressLine2 == null || addressLine2 matches "^[\\s]*$", addressLine1 == null || addressLine1 matches "^[\\s]*$") from $entry.address
@@ -1364,13 +1056,6 @@ end
 
 rule 'All Addresses Line 2 Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         $entry: AddressEntry(errorOnLine2 != "Y")
         AddressType(addressLine2 != null, addressLine2 not matches "^[\\s]*$",  addressLine2 not matches "^.{0,28}$") from $entry.address
@@ -1389,13 +1074,6 @@ end
 
 rule 'All Addresses State Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $entry: AddressEntry(errorOnState != "Y")
         AddressType(state == null || state matches "^[\\s]*$") from $entry.address
@@ -1414,13 +1092,6 @@ end
 
 rule 'All Addresses State Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         $entry: AddressEntry(errorOnState != "Y")
         AddressType(state != null, state not matches "^[\\s]*$", state not matches "^.{0,2}$") from $entry.address
@@ -1439,13 +1110,6 @@ end
 
 rule 'All Addresses Zip Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $entry: AddressEntry(errorOnZip != "Y")
         AddressType(zipCode == null || zipCode matches "^[\\s]*$") from $entry.address
@@ -1464,13 +1128,6 @@ end
 
 rule 'All Addresses Zip Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         $entry: AddressEntry(errorOnZip != "Y")
         AddressType(zipCode != null, zipCode not matches "^[\\s]*$", zipCode not matches "^.{0,10}$") from $entry.address
@@ -1489,13 +1146,6 @@ end
 
 rule 'All Alternate Addresses Attention To Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         $provider: ProviderInformationType( )
         AlternateAddressesType($addresses: address) from $provider.alternateAddresses
@@ -1513,14 +1163,6 @@ end
 
 rule 'All Alternate Addresses Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.1
- * @since Provider Enrollment Drools Front End Validation Part 3
- * v1.1 - should be applied on all cases
- */
     when
         $provider: ProviderInformationType( )
         AlternateAddressesType($addresses: address) from $provider.alternateAddresses
@@ -1537,13 +1179,6 @@ end
 
 rule 'All Phone Number Entries Must Be In A Valid Format'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         $entry: PhoneNumberEntry(phoneNumber not matches "([0-9]{3}) ([0-9]{3})-([0-9]{4})( ext [0-9]{1,3})?", validated != "Y")
         $report: ErrorReporter()
@@ -1560,13 +1195,6 @@ end
 
 rule 'Applicant Type should be INDIVIDUAL or ORGANIZATION'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         ProviderInformationType(applicantType == null)
         $report: ErrorReporter()
@@ -1581,13 +1209,6 @@ end
 
 rule 'Articles Of Incorporation Showing Non-Profit Status Is Required For The Specified Provider Types II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType in (ProviderType.COMMUNITY_HEALTH_CLINIC.value(), ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value()))
@@ -1605,13 +1226,6 @@ end
 
 rule 'Articles Of Incorporation Showing Non-Profit Status Is Required For The Specified Provider Types'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType in (ProviderType.COMMUNITY_HEALTH_CLINIC.value(), ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value()))
@@ -1628,13 +1242,6 @@ end
 
 rule 'Assert alternate addresses'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
 salience 10
      when
         $provider: ProviderInformationType(alternateAddresses == null)
@@ -1646,13 +1253,6 @@ end
 
 rule 'Assert empty profile for individual applicants if personal data is not provided'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         IsIndividual($provider : provider)
         $applicantInformation: ApplicantInformationType(personalInformation  == null) from $provider.applicantInformation
@@ -1663,13 +1263,6 @@ dialect 'mvel'
 end
 
 rule 'Assert empty profile for organizations if data is not provided'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 salience 10
 dialect 'mvel'
     when
@@ -1683,13 +1276,6 @@ end
 
 rule 'Assert enrollment contact information'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         $enrollment: EnrollmentType(contactInformation == null)
     then
@@ -1700,13 +1286,6 @@ end
 
 rule 'Assert Full Validation Mode For Individuals'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         not LookupEntry( type == "UISection" )
         IsIndividual()
@@ -1722,13 +1301,6 @@ end
 
 rule 'Assert Full Validation Mode For Organizations'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         not LookupEntry( type == "UISection" )
         IsOrganization()
@@ -1747,13 +1319,6 @@ end
 
 rule 'Assert Partial Validation For Only Requested UI sections'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         $section : LookupEntry( type == "UISection" )
     then
@@ -1763,13 +1328,6 @@ end
 
 rule 'Assert provider applicant information'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
 salience 10
     when
         $provider: ProviderInformationType(applicantInformation == null)
@@ -1781,13 +1339,6 @@ end
 
 rule 'Assigned Agency Id Is Asked Only For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 salience 10
     when
     then
@@ -1797,13 +1348,6 @@ end
 
 rule 'Assigned Agency Id Must Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         ProviderInformationType(assignedAgencyId != null, assignedAgencyId not matches "^[\\s]*$")
         IsOrganization($provider : provider)
@@ -1820,13 +1364,6 @@ end
 
 rule 'At Least 1 Qualified Professional Must Be Provided'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -1845,13 +1382,6 @@ end
 
 rule 'At Least One Beneficial Owner Is Required I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -1869,13 +1399,6 @@ end
 
 rule 'At Least One Beneficial Owner Is Required II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -1894,13 +1417,6 @@ end
 
 rule 'At Least One Contract, Certification Must Be Provided For County Contracted Mental Health Rehab I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType in
@@ -1921,13 +1437,6 @@ end
 
 rule 'At Least One Contract, Certification Must Be Provided For County Contracted Mental Health Rehab II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType in
@@ -1949,13 +1458,6 @@ end
 
 rule 'At least one licensed physician member is required for Family Planning Agency'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         $provider: ProviderInformationType(providerType == ProviderType.FAMILY_PLANNING_AGENCY.value())
@@ -1974,13 +1476,6 @@ end
 rule 'At least One Member Info Is Required I'
 dialect 'mvel'
 activation-group "member-info-license-required"
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -1999,13 +1494,6 @@ end
 rule 'At least One Member Info Is Required II'
 dialect 'mvel'
 activation-group "member-info-license-required"
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2024,13 +1512,6 @@ end
 
 rule 'At Least One Pay-To Provider Is Required I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_SETUP.value())
         IsOrganization($provider : provider)
@@ -2048,13 +1529,6 @@ end
 
 rule 'At Least One Pay-To Provider Is Required II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_SETUP.value())
         IsOrganization($provider : provider)
@@ -2073,13 +1547,6 @@ end
 
 rule 'Authorized Representative Name Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
         IsOrganization($provider : provider)
@@ -2096,13 +1563,6 @@ end
 
 rule 'Authorized Representative Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
         IsOrganization($provider : provider)
@@ -2119,13 +1579,6 @@ end
 
 rule 'Authorized Representative Title Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
         IsOrganization($provider : provider)
@@ -2142,13 +1595,6 @@ end
 
 rule 'Authorized Representative Title Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
         IsOrganization($provider : provider)
@@ -2165,13 +1611,6 @@ end
 
 rule 'Background Study Is Required For Personal Care Provider Organizations'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value())
@@ -2224,13 +1663,6 @@ end
 
 rule 'Beneficial Owner Business Address is Required for Entity Owners'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2250,13 +1682,6 @@ end
 
 rule 'Beneficial Owner Business Address Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2277,13 +1702,6 @@ end
 
 rule 'Beneficial Owner Date Of Birth Cannot Be A Future Date'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2324,13 +1742,6 @@ end
 
 rule 'Beneficial Owner Date Of Birth is Required for Person Owners'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2350,13 +1761,6 @@ end
 
 rule 'Beneficial Owner Entity Info Is Required For Entity Owners'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2375,13 +1779,6 @@ end
 
 rule 'Beneficial Owner FEIN Is Required For Entity Owners'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2401,13 +1798,6 @@ end
 
 rule 'Beneficial Owner First Name is Required for Person Owners'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2427,13 +1817,6 @@ end
 
 rule 'Beneficial Owner First Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2453,13 +1836,6 @@ end
 
 rule 'Beneficial Owner Full Legal Name Is Required For Entity Owners'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2479,13 +1855,6 @@ end
 
 rule 'Beneficial Owner Full Legal Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2540,13 +1909,6 @@ end
 
 rule 'Beneficial Owner Last Name is Required for Person Owners'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2566,13 +1928,6 @@ end
 
 rule 'Beneficial Owner Last Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2592,13 +1947,6 @@ end
 
 rule 'Beneficial Owner Middle Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2618,13 +1966,6 @@ end
 
 rule 'Beneficial Owner Other Interest  Provider Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2643,13 +1984,6 @@ end
 
 rule 'Beneficial Owner Other Interest Ownership Interest Percent Is Required If Other Interest Indicator Is Y'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2668,13 +2002,6 @@ end
 
 rule 'Beneficial Owner Other Interest Provider Address Is Required If Other Interest Indicator Is Y'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2693,13 +2020,6 @@ end
 
 rule 'Beneficial Owner Other Interest Provider Address Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2719,13 +2039,6 @@ end
 
 rule 'Beneficial Owner Other Interest Provider Name Is Required If Other Interest Indicator Is Y'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2744,13 +2057,6 @@ end
 
 rule 'Beneficial Owner Person Indicator Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2769,13 +2075,6 @@ end
 
 rule 'Beneficial Owner Personal Information is Required for Person Owners'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2795,13 +2094,6 @@ end
 
 rule 'Beneficial Owner Relationship Type Must Be One Of the Following Values'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2820,13 +2112,6 @@ end
 
 rule 'Beneficial Owner Residential Address is Required for Person Owners'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2846,13 +2131,6 @@ end
 
 rule 'Beneficial Owner Residential Address Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2873,13 +2151,6 @@ end
 
 rule 'Beneficial Owner SSN is Required for Person Owners'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2918,13 +2189,6 @@ end
 
 rule 'Beneficial Owner Type Description Is Required If Owner Type is Other'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2943,13 +2207,6 @@ end
 
 rule 'Beneficial Owner Type Description Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2968,13 +2225,6 @@ end
 
 rule 'Beneficial Owner Type Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -2993,13 +2243,6 @@ end
 
 rule 'Billing Address Index Must Reference An Existing Address'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -3017,13 +2260,6 @@ end
 
 rule 'Billing Address Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( maintainsOwnPrivatePractice == "Y" )
@@ -3040,13 +2276,6 @@ end
 
 rule 'Billing Address Must Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( maintainsOwnPrivatePractice != "Y" )
@@ -3063,13 +2292,6 @@ end
 
 rule 'Billing Address Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -3086,13 +2308,6 @@ end
 
 rule 'CCMHR Members Must All Be Enrolled'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         $provider: ProviderInformationType(providerType == ProviderType.COUNTY_CONTRACTED_MENTAL_HEALTH_REHAB.value())
@@ -3110,13 +2325,6 @@ end
 
 rule 'Certificate of compliance Is Required For CMHR treatment facility'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.CHILDRENS_MENTAL_HEALTH_RESIDENTIAL_TREATMENT_FACILITY.value())
@@ -3151,13 +2359,6 @@ end
 
 rule 'Class A License For Private Duty Nursing Services Is Required For PHN Org'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.PUBLIC_HEALTH_NURSING_ORGANIZATION.value())
@@ -3175,13 +2376,6 @@ end
 
 rule 'Class A Professional Home Care License Is Required For Home Health Agency'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.HOME_HEALTH_AGENCY.value())
@@ -3199,13 +2393,6 @@ end
 
 rule 'CLIA Attachment Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -3244,13 +2431,6 @@ end
 
 rule 'CLIA Certifications Are Asked For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 salience 10
     when
     then
@@ -3264,9 +2444,6 @@ salience 10
         insertLogical(new ProviderTypeException("AskCLIACertificationsInfo", ProviderType.AMBULATORY_SURGICAL_CENTER.value()));
 end
 
-/**
- * Added by cyberjag - PESP-306
- */
 rule 'CLIA Certification is required'
 dialect 'mvel'
     when
@@ -3285,13 +2462,6 @@ end
 
 rule 'CLIA Certifications Must Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider : provider)
@@ -3310,13 +2480,6 @@ end
 
 rule 'CLIA Copy Attachment Id Must Reference A Valid Attachment I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -3337,13 +2500,6 @@ end
 
 rule 'CLIA Copy Attachment Id Must Reference A Valid Attachment II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -3365,13 +2521,6 @@ end
 
 rule 'CLIA Number Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -3392,13 +2541,6 @@ end
 
 rule 'CLIA Number Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -3418,13 +2560,6 @@ end
 
 rule 'CMHC Members Must Be A Certified Mental Health Rehab Professional'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         $provider: ProviderInformationType(providerType == ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value())
@@ -3442,13 +2577,6 @@ end
 
 rule 'Community Health Board Indicator Must Be Answered In Y,N'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider: provider )
@@ -3465,13 +2593,6 @@ end
 
 rule 'Complete Provider Name Is Required For Education Plans'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -3488,13 +2609,6 @@ dialect 'mvel'
 end
 
 rule 'Complete Provider Name Maximum Length Check'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
 dialect 'mvel'
     when
         IsOrganization($provider: provider)
@@ -3512,13 +2626,6 @@ end
 
 rule 'Contact Fax Number Must Be In A Valid Format'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         $enrollment: EnrollmentType()
         ContactInformationType($faxNumber: faxNumber, faxNumber != null) from $enrollment.contactInformation
@@ -3533,13 +2640,6 @@ end
 
 rule 'Contact Phone Number Must Be In A Valid Format'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         $enrollment: EnrollmentType()
         ContactInformationType($phoneNumber: phoneNumber, phoneNumber != null) from $enrollment.contactInformation
@@ -3554,13 +2654,6 @@ end
 
 rule 'Contract with county is required for CMHR treatment facility'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider: provider, provider.providerType == ProviderType.CHILDRENS_MENTAL_HEALTH_RESIDENTIAL_TREATMENT_FACILITY.value())
@@ -3577,13 +2670,6 @@ dialect 'mvel'
 end
 
 rule 'Contract With County Is Required II'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 8
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
@@ -3603,13 +2689,6 @@ dialect 'mvel'
 end
 
 rule 'Contract With County Is Required'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
@@ -3629,13 +2708,6 @@ dialect 'mvel'
 end
 
 rule 'Contract With County Must be left empty'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
@@ -3657,13 +2729,6 @@ end
 
 rule 'Contract,Certificate Begin Date Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider: provider)
@@ -3701,13 +2766,6 @@ end
 
 rule 'Contract, Certificate Copy Attachment Id Must Reference A Valid Attachment I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider: provider)
@@ -3727,13 +2785,6 @@ end
 
 rule 'Contract, Certificate Copy Attachment Id Must Reference A Valid Attachment II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider: provider)
@@ -3792,13 +2843,6 @@ end
 
 rule 'Contract, Certificate Name Must Be One Of The Accepted Values'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider: provider)
@@ -3825,13 +2869,6 @@ end
 
 rule 'Contracts And Certificates Should Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType not in
@@ -3852,13 +2889,6 @@ end
 
 rule 'Copy Of Childrens Mental Health Residential Treatment county contract Is Required For CMHR Treatment Facility'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider: provider, provider.providerType == ProviderType.CHILDRENS_MENTAL_HEALTH_RESIDENTIAL_TREATMENT_FACILITY.value())
@@ -3876,13 +2906,6 @@ end
 
 rule 'Copy Of Contract Must Reference A Valid Attachment I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -3902,13 +2925,6 @@ end
 
 rule 'Copy Of Contract Must Reference A Valid Attachment II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -3929,13 +2945,6 @@ end
 
 rule 'Copy Of Contract With County Is Required If Eligible Program Type Is A County Contracted Provider'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_ELIGIBILITY.value())
         IsOrganization($provider : provider)
@@ -3954,13 +2963,6 @@ end
 
 rule 'Copy Of Contract With County Is Required If Facility Type Is A County Contracted Provider'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider : provider, provider.providerType == ProviderType.DAY_TREATMENT.value())
@@ -3978,13 +2980,6 @@ end
 
 rule 'Copy Of Contract,Certificate Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider: provider)
@@ -4003,13 +2998,6 @@ end
 
 rule 'Copy Of DHS Contract Is Required If Community Health Board Is Y'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider: provider )
@@ -4028,13 +3016,6 @@ end
 
 rule 'Copy Of Program Contract Must Reference A Valid Attachment I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_ELIGIBILITY.value())
         IsOrganization()
@@ -4054,13 +3035,6 @@ end
 
 rule 'Copy Of Program Contract Must Reference A Valid Attachment II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -4081,13 +3055,6 @@ end
 
 rule 'Copy Of Selected Contract Cover Sheet Must Be Provided'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -4107,13 +3074,6 @@ end
 
 rule 'Copy Of Selected Contract Cover Sheet Must Reference A Valid Attachment I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -4134,13 +3094,6 @@ end
 
 rule 'Copy Of Selected Contract Cover Sheet Must Reference A Valid Attachment II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -4231,13 +3184,6 @@ end
 
 rule 'Date of Birth is Required for Individual Applicant'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -4254,13 +3200,6 @@ end
 
 rule 'Day Training And Habilitation License Is required for Day Training And Habilitation, Day Activity Center'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.DAY_TRAINING_AND_HABILITATION_DAY_ACTIVITY_CENTER.value())
@@ -4278,13 +3217,6 @@ end
 
 rule 'DBA Name Is Required For PCPO'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider, provider.providerType == ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value())
@@ -4333,13 +3265,6 @@ end
 
 
 rule 'DBA Name Maximum Length Check'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         IsOrganization($provider: provider, provider.providerType == ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value())
@@ -4355,13 +3280,6 @@ dialect 'mvel'
 end
 
 rule 'Define Agency Applications'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
 dialect 'mvel'
 salience 10
     when
@@ -4372,13 +3290,6 @@ end
 
 rule 'Define Categories Of Service For Home And Community Based Services'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
 salience 10
     when
     then
@@ -4413,13 +3324,6 @@ end
 
 rule 'Define Clinical Services Options For Adult Day Treatment Application'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
 salience 10
     when
     then
@@ -4435,13 +3339,6 @@ end
 
 rule 'Define Dual License Additional Category For Clinical Social Worker'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
 salience 10
     when
         ProviderInformationType($providerType: providerType, providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
@@ -4452,13 +3349,6 @@ end
 
 rule 'Define Dual License Additional Category For Psychologist'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
 salience 10
     when
         ProviderInformationType($providerType: providerType, providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
@@ -4470,13 +3360,6 @@ end
 
 rule 'Define Education Plan Organizations'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
 salience 10
     when
     then
@@ -4486,13 +3369,6 @@ end
 
 rule 'Define Eligible Recipients For Adult Day Treatment Application'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
 salience 10
     when
     then
@@ -4502,13 +3378,6 @@ end
 
 rule 'Define Exceptions For Certification Certificate of Clinical Competence (CCC)'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
 salience 10
     when
     then
@@ -4527,13 +3396,6 @@ salience 10
 end
 
 rule 'Define Non-Practice Organizations'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 dialect 'mvel'
 salience 10
     when
@@ -4594,13 +3456,6 @@ end
 
 rule 'Define Possible Specialties For Dentist'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
 salience 10
     when
         ProviderInformationType($providerType: providerType, providerType == ProviderType.DENTIST.value())
@@ -4617,13 +3472,6 @@ end
 
 rule 'Define Possible Specialties For Licensed Psychologists'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
 salience 10
     when
         ProviderInformationType($providerType: providerType, providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
@@ -4634,13 +3482,6 @@ end
 
 rule 'Define Possible Specialties For Nurse Midwife'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
 salience 10
     when
         ProviderInformationType($providerType: providerType, providerType == ProviderType.NURSE_MIDWIFE.value())
@@ -4651,13 +3492,6 @@ end
 
 rule 'Define Possible Specialties For Nurse Practitioner'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 salience 10
     when
         ProviderInformationType($providerType: providerType, providerType == ProviderType.NURSE_PRACTITIONER.value())
@@ -4675,13 +3509,6 @@ end
 
 rule 'Define Possible Specialties For Occupational Therapist'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 salience 10
     when
         ProviderInformationType($providerType: providerType, providerType == ProviderType.OCCUPATIONAL_THERAPIST.value())
@@ -4692,13 +3519,6 @@ end
 
 rule 'Define Possible Specialties For Physician'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
 salience 10
     when
         ProviderInformationType($providerType: providerType, providerType == ProviderType.PHYSICIAN.value())
@@ -4748,13 +3568,6 @@ end
 
 rule 'Define Private Practice Indicator Exception For Allied Dental Professionals'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 salience 10
     when
     then
@@ -4764,13 +3577,6 @@ end
 
 rule 'Define Private Practice Indicator Exception For Community Health Care Workers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 salience 10
     when
     then
@@ -4780,13 +3586,6 @@ end
 
 rule 'Define Private Practice Indicator Exception For Physician Assistant'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 salience 10
     when
     then
@@ -4796,13 +3595,6 @@ end
 
 rule 'Define Provider Types That Can Enter Specialty Certifications'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
 salience 10
     when
         ProviderInformationType($providerType: providerType,
@@ -4826,13 +3618,6 @@ end
 
 rule 'Define Service Unit Options For Adult Day Treatment Application'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
 salience 10
     when
     then
@@ -4844,13 +3629,6 @@ end
 
 rule 'Define Supervision Options For Adult Day Treatment Application'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
 salience 10
     when
     then
@@ -4895,13 +3673,6 @@ end
 
 rule 'DHS-4646 Is Required For These Provider Types I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
         $provider: ProviderInformationType(providerType == ProviderType.CHILD_AND_TEEN_CHECKUP_CLINIC.value())
@@ -4919,13 +3690,6 @@ end
 
 rule 'DHS-4646 Is Required For These Provider Types II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
         $provider: ProviderInformationType(providerType == ProviderType.CHILD_AND_TEEN_CHECKUP_CLINIC.value())
@@ -4942,13 +3706,6 @@ end
 
 rule 'DHS-5748 Must Be Signed For These Provider Types I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
         $provider: ProviderInformationType(providerType == ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value())
@@ -4965,13 +3722,6 @@ end
 
 rule 'DHS-5748 Must Be Signed For These Provider Types II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
         $provider: ProviderInformationType(providerType == ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value())
@@ -4989,13 +3739,6 @@ end
 
 rule 'Disclosure Question 1 Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
         IsIndividual()
@@ -5012,13 +3755,6 @@ end
 
 rule 'Disclosure Question 1 Must Be Answered In Y,N'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
         IsIndividual()
@@ -5035,13 +3771,6 @@ end
 
 rule 'Disclosure Question 2 Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
         IsIndividual()
@@ -5058,13 +3787,6 @@ end
 
 rule 'Disclosure Question 2 Must Be Answered In Y,N'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
         IsIndividual()
@@ -5081,13 +3803,6 @@ end
 
 rule 'Disclosure Question 3 Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
         IsIndividual()
@@ -5104,13 +3819,6 @@ end
 
 rule 'Disclosure Question 3 Must Be Answered In Y,N'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
         IsIndividual()
@@ -5127,13 +3835,6 @@ end
 
 rule 'Doing Business As Is Required For Organizations'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider, provider.providerType not in (
@@ -5157,13 +3858,6 @@ dialect 'mvel'
 end
 
 rule 'Doing Business As Maximum Length Check'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 dialect 'mvel'
     when
         IsOrganization($provider: provider, provider.providerType not in (
@@ -5203,13 +3897,6 @@ end
 
 rule 'Eighteen Years Old And Above Must Be Answered For Specified Provider Types'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value())
         IsIndividual($provider : provider, provider.providerType == ProviderType.PERSONAL_CARE_ASSISTANT.value())
@@ -5226,13 +3913,6 @@ end
 
 rule 'Eighteen Years Old And Above Must Be Answered In Y,N'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value())
         IsIndividual()
@@ -5249,13 +3929,6 @@ end
 
 rule 'Eligible Program Type Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_ELIGIBILITY.value())
         IsOrganization($provider : provider)
@@ -5273,13 +3946,6 @@ end
 
 rule 'Eligible Program Type Must Be One Of The Following Values'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_ELIGIBILITY.value())
         IsOrganization($provider : provider)
@@ -5298,13 +3964,6 @@ end
 
 rule 'Email Address Format Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         IsIndividual($provider : provider)
         $individual: IndividualApplicantType()
@@ -5323,13 +3982,6 @@ end
 
 rule 'Email Address Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         IsIndividual($provider : provider)
         $individual: IndividualApplicantType()
@@ -5425,13 +4077,6 @@ end
 
 rule 'Enrollment Contact Email Address Format Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         $enrollment: EnrollmentType()
         ContactInformationType(emailAddress != null, emailAddress not matches "^[\\s]*$",
@@ -5449,13 +4094,6 @@ end
 
 rule 'Enrollment Contact Email Address Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         $enrollment: EnrollmentType()
         ContactInformationType(emailAddress not matches "^.{0,100}$") from $enrollment.contactInformation
@@ -5471,13 +4109,6 @@ end
 
 rule 'Enrollment Contact Name  Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         $enrollment: EnrollmentType()
         ContactInformationType(name != null, name not matches "^.{0,100}$") from $enrollment.contactInformation
@@ -5493,14 +4124,6 @@ end
 
 rule 'Enrollment Contact Name is required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.1
- * @since Provider Enrollment Drools Front End Validation Part 1
- * v1.1 added organization support
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value() || value == UISection.ORGANIZATION_INFORMATION.value())
         $enrollment: EnrollmentType()
@@ -5516,13 +4139,6 @@ dialect 'mvel'
 end
 
 rule 'Enrollment Contact Phone Number Is Required For Organizations'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
@@ -5593,13 +4209,6 @@ end
 
 rule 'Entity Description Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -5616,13 +4225,6 @@ end
 
 rule 'Entity Sub Type Must Be One Of the Following Values For A Professional Association'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -5641,13 +4243,6 @@ end
 
 rule 'Entity Type Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -5665,13 +4260,6 @@ end
 
 rule 'Entity Type Must Be One Of the Following Values'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -5689,13 +4277,6 @@ end
 
 rule 'Facility Capacity Is Asked For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 salience 10
     when
     then
@@ -5705,13 +4286,6 @@ end
 
 rule 'Facility Credentials Are Asked For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 salience 10
     when
     then
@@ -5757,13 +4331,6 @@ end
 
 rule 'Facility Credentials Are Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider : provider)
@@ -5781,13 +4348,6 @@ end
 
 rule 'Facility License Copy Attachment Id Must Reference A Valid Attachment I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -5808,13 +4368,6 @@ end
 
 rule 'Facility License Copy Attachment Id Must Reference A Valid Attachment II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -5836,13 +4389,6 @@ end
 
 rule 'Facility License Copy Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -5862,13 +4408,6 @@ end
 
 rule 'Facility License Issuing State Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -5888,13 +4427,6 @@ end
 
 rule 'Facility License Issuing State Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -5914,13 +4446,6 @@ end
 
 rule 'Facility License Number Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -5940,13 +4465,6 @@ end
 
 rule 'Facility License Number Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -6088,13 +4606,6 @@ end
 
 rule 'Facility License Type Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -6114,13 +4625,6 @@ end
 
 rule 'Facility Licenses Must Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider : provider)
@@ -6138,13 +4642,6 @@ end
 
 rule 'Facility Type Is Required For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider : provider, provider.providerType == ProviderType.DAY_TREATMENT.value())
@@ -6161,13 +4658,6 @@ end
 
 rule 'Facility Type Must Be One Of The Following Values'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider : provider, provider.providerType == ProviderType.DAY_TREATMENT.value())
@@ -6185,13 +4675,6 @@ end
 
 rule 'Fax Number Must Be In A Valid Format'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         IsIndividual($provider : provider)
         $individual: IndividualApplicantType()
@@ -6208,13 +4691,6 @@ end
 
 rule 'First Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         IsIndividual($provider : provider)
         IndividualApplicantType(firstName != null, firstName not matches "^.{0,50}$")
@@ -6230,13 +4706,6 @@ end
 
 rule 'Fiscal Year End Is Required For Education Plans'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -6286,13 +4755,6 @@ end
 
 rule 'Fiscal Year End Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( maintainsOwnPrivatePractice == "Y" )
@@ -6309,13 +4771,6 @@ end
 
 rule 'Fiscal Year End Must Be In A Valid Format'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -6332,13 +4787,6 @@ end
 
 rule 'Fiscal Year End Must Be In The Patter MM,DD'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -6356,13 +4804,6 @@ end
 
 rule 'Fiscal Year End Should Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( maintainsOwnPrivatePractice != "Y" )
@@ -6379,13 +4820,6 @@ end
 
 rule 'For Corporation, LLC, Limit The Beneficial Owner Types To The Following'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -6406,13 +4840,6 @@ end
 
 rule 'For Entity Owners, Beneficial Owner Type Must Be One Of the Following Values'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -6433,13 +4860,6 @@ end
 
 rule 'For Hospital Based, Limit The Beneficial Owner Types To The Following'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -6460,13 +4880,6 @@ end
 
 rule 'For Non-Profit Organizations, Limit The Beneficial Owner Types To The Following'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -6487,13 +4900,6 @@ end
 
 rule 'For Partnership, Limit The Beneficial Owner Types To The Following'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -6513,21 +4919,7 @@ dialect 'mvel'
 end
 
 rule 'For Person Owners, Beneficial Owner Type Must Be One Of the Following Values'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -6548,13 +4940,6 @@ end
 
 rule 'For Public, Limit The Beneficial Owner Types To The Following'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -6575,13 +4960,6 @@ end
 
 rule 'For Sole Proprietorship, Limit The Beneficial Owner Types To The Following'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -6602,13 +4980,6 @@ end
 
 rule 'For State Owned, Limit The Beneficial Owner Types To The Following'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -6629,13 +5000,6 @@ end
 
 rule 'Group Affiliation Address Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.MAILING_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -6654,13 +5018,6 @@ end
 
 rule 'Group Affiliation Address Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.MAILING_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -6680,13 +5037,6 @@ end
 
 rule 'Group Affiliation Group Name Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.MAILING_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -6705,13 +5055,6 @@ end
 
 rule 'Group Affiliation Group Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.MAILING_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -6730,13 +5073,6 @@ end
 
 rule 'Group Affiliation Group NPI Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.MAILING_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -6790,13 +5126,6 @@ end
 
 rule 'HCFA Medicare Certification Is Required For Home Health Agency'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.HOME_HEALTH_AGENCY.value())
@@ -6814,13 +5143,6 @@ end
 
 rule 'Head Start Agency Certification Is Required For Head Start'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.HEAD_START.value())
@@ -7006,13 +5328,6 @@ end
 
 rule 'Highest Degree Earned Should Only Be Asked For Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 salience -10
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
@@ -7030,13 +5345,6 @@ end
 
 rule 'Independent or Portable X-ray Certificationfrom CMS Is Required For X-Ray Services'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.X_RAY_SERVICES.value())
@@ -7053,13 +5361,6 @@ dialect 'mvel'
 end
 
 rule 'Individual Member Info Is Asked For Rehabilitation Agency If CORF Certificate Is Provided'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
 salience 10
     when
@@ -7074,13 +5375,6 @@ end
 
 rule 'Individual Member Info Is Asked For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 salience 10
     when
     then
@@ -7117,13 +5411,6 @@ end
 
 rule 'Infer individual'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
 salience 20
     when
         $provider: ProviderInformationType(applicantType == ApplicantType.INDIVIDUAL)
@@ -7134,13 +5421,6 @@ end
 
 rule 'Infer IndividualApplicantType for individuals'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         IsIndividual($provider : provider)
         $applicantInformation: ApplicantInformationType( ) from $provider.applicantInformation
@@ -7151,13 +5431,6 @@ dialect 'mvel'
 end
 
 rule 'Infer Organization'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 salience 20
 dialect 'mvel'
     when
@@ -7169,13 +5442,6 @@ end
 
 rule 'Infer OrganizationApplicantType for organizations'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         IsOrganization($provider : provider)
         $applicantInformation: ApplicantInformationType( ) from $provider.applicantInformation
@@ -7187,13 +5453,6 @@ end
 
 rule 'Issuing Board Is Required For Specialty Certification'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType()
@@ -7212,13 +5471,6 @@ end
 
 rule 'Issuing State Is Required If There Is No Exeption Defined For License'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType()
@@ -7238,13 +5490,6 @@ end
 
 rule 'Issuing State Is Required If There Is No Exeption Defined For Tribal License'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType()
@@ -7265,13 +5510,6 @@ end
 
 rule 'Last Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         IsIndividual($provider : provider)
         IndividualApplicantType(lastName != null, lastName not matches "^.{0,50}$")
@@ -7287,13 +5525,6 @@ end
 
 rule 'Leave Agency Information Empty If Not PCA'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_INFORMATION.value())
         ProviderInformationType(agencyInformation != null, providerType != ProviderType.PERSONAL_CARE_ASSISTANT.value())
@@ -7309,13 +5540,6 @@ end
 
 rule 'Legal Name Is Required For Organizations'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider, provider.providerType not in (
@@ -7336,13 +5560,6 @@ dialect 'mvel'
 end
 
 rule 'Legal Name Maximum Length Check'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 dialect 'mvel'
     when
         IsOrganization($provider: provider, provider.providerType not in (
@@ -7364,13 +5581,6 @@ end
 
 rule 'License Copy Attachment Id Must Reference A Valid Attachment I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType()
@@ -7390,13 +5600,6 @@ end
 
 rule 'License Copy Attachment Id Must Reference A Valid Attachment II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -7455,13 +5658,6 @@ end
 
 rule 'License Issuing State Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType()
@@ -7518,13 +5714,6 @@ end
 
 rule 'License Number Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)
@@ -7601,13 +5790,6 @@ end
 
 rule 'License Original Issue Date Is Required If There Is No Exeption Defined For License'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)
@@ -7627,13 +5809,6 @@ end
 
 rule 'License Original Issue Date Is Required If There Is No Exeption Defined For Certificate Type'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)
@@ -7653,13 +5828,6 @@ end
 
 rule 'License Renewal Date Is Required If There Is No Exeption Defined For License'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType()
@@ -7699,13 +5867,6 @@ end
 
 rule 'License Specialty Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)
@@ -7724,13 +5885,6 @@ end
 
 rule 'License Specialty Should Be Left Empty For Provider Types That do not allow Specialty Certificates'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)
@@ -7750,13 +5904,6 @@ end
 
 rule 'License Type Is Required For Provider Types That do not allow Specialty Certificates'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)
@@ -7776,13 +5923,6 @@ end
 
 rule 'License Type Is Required If Defined Specialty Certificate Behavior Is AND'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)
@@ -7802,13 +5942,6 @@ end
 
 rule 'License Type Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)
@@ -7827,13 +5960,6 @@ end
 
 rule 'Limit Additional Categories Requested To Defined Provider Types'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)
@@ -7871,14 +5997,6 @@ end
 
 rule 'Maximum of 2 Alternate Mailing Addresses are allowed'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.1
- * @since Provider Enrollment Drools Front End Validation Part 3
- * v1.1 - should be applied on all cases
- */
     when
         $provider: ProviderInformationType( )
         AlternateAddressesType( address.size() > 2 ) from $provider.alternateAddresses
@@ -7894,13 +6012,6 @@ end
 
 rule 'Medicare Approval Letter Is Required For Rehabilitation Agencies'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.REHABILITATION_AGENCY.value())
@@ -7918,13 +6029,6 @@ end
 
 rule 'Medicare Approval Letter Is Required For Rural Health Clinics'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.RURAL_HEALTH_CLINIC.value())
@@ -7942,13 +6046,6 @@ end
 
 rule 'Medicare Certification For Home Health Aide And Skilled Nursing Services Is Required For PHN Org'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.PUBLIC_HEALTH_NURSING_ORGANIZATION.value())
@@ -7966,13 +6063,6 @@ end
 
 rule 'Medicare Certification Is Required For Ambulatory Surgical Center'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.AMBULATORY_SURGICAL_CENTER.value())
@@ -7990,13 +6080,6 @@ end
 
 rule 'Member Date Of Birth Cannot Be A Future Date'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -8036,13 +6119,6 @@ end
 
 rule 'Member Date Of Birth Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -8081,13 +6157,6 @@ end
 
 rule 'Member Name Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -8106,13 +6175,6 @@ end
 
 rule 'Member Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         IsOrganization($provider : provider)
         MemberInformationType($memberList : groupMember, groupMember != null ) from $provider.memberInformation
@@ -8130,13 +6192,6 @@ end
 
 rule 'Member NPI Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -8188,13 +6243,6 @@ end
 
 rule 'Member Provider Type Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         IsOrganization($provider : provider)
         MemberInformationType($memberList : groupMember, groupMember != null) from $provider.memberInformation
@@ -8213,13 +6261,6 @@ end
 
 rule 'Member Provider Type Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -8238,13 +6279,6 @@ end
 
 rule 'Member SSN Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -8318,13 +6352,6 @@ end
 
 rule 'Middle Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         IsIndividual($provider : provider)
         IndividualApplicantType(middleName != null, middleName not matches "^.{0,50}$")
@@ -8340,13 +6367,6 @@ end
 
 rule 'Minimum of 2 licensed and enrolled CRNAs working at the clinic Is Required For CRNA group'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST_GROUP.value())
@@ -8366,13 +6386,6 @@ end
 
 rule 'Name Of Person Accomplishing Form Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -8390,13 +6403,6 @@ end
 
 rule 'Name Of Person Accomplishing Form Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -8413,13 +6419,6 @@ end
 
 rule 'Notification For Authorization Request And Service Agreements Must Reference An Existing Address'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.MAILING_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -8437,13 +6436,6 @@ end
 
 rule 'Notification For Credentials Enrollment Status Must Reference An Existing Address'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.MAILING_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -8461,13 +6453,6 @@ end
 
 rule 'Notification For Provider Correspondence Must Reference An Existing Address'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.MAILING_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -8485,13 +6470,6 @@ end
 
 rule 'Notification For Reimbursement Check Must Reference An Existing Address'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.MAILING_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -8509,13 +6487,6 @@ end
 
 rule 'Notification For Remittance Advice Must Reference An Existing Address'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.MAILING_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -8533,13 +6504,6 @@ end
 
 rule 'NPI Is Required for Unless An Exception Is Defined'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value() || value == UISection.ORGANIZATION_INFORMATION.value())
         $provider: ProviderInformationType($npi : NPI, $npi == null || $npi matches "^[\\s]*$" )
@@ -8632,13 +6596,6 @@ end
 
 
 rule 'Number Of Beds Effective Date Should Be Left Empty'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
@@ -8656,13 +6613,6 @@ dialect 'mvel'
 end
 
 rule 'Number Of Beds Is Required'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
@@ -8681,13 +6631,6 @@ dialect 'mvel'
 end
 
 rule 'Number Of Beds Should Be Left Empty'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
@@ -8707,13 +6650,6 @@ end
 
 rule 'Off-site Approval Letter From Medicare Is Required For Independent Diagnostic Testing Facility'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.INDEPENDENT_DIAGNOSTIC_TESTING_FACILITY.value())
@@ -8731,13 +6667,6 @@ end
 
 rule 'Organization Address Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -8757,13 +6686,6 @@ end
 
 rule 'Organization Address Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -8781,13 +6703,6 @@ dialect 'mvel'
 end
 
 rule 'Organization Contact Information Is Required'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
@@ -8805,13 +6720,6 @@ end
 
 rule 'Organization County Is Required For Education Plans'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -8859,13 +6767,6 @@ end
 
 rule 'Organization County Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -8882,13 +6783,6 @@ end
 
 rule 'Organization Disclosure Question 1 Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_DISCLOSURE.value())
         IsOrganization($provider : provider)
@@ -8905,13 +6799,6 @@ dialect 'mvel'
 end
 
 rule 'Organization Disclosure Question 1 Must Be Answered In Y,N'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_DISCLOSURE.value())
@@ -8929,13 +6816,6 @@ end
 
 rule 'Organization Disclosure Question 2 Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_DISCLOSURE.value())
         IsOrganization($provider : provider)
@@ -8952,13 +6832,6 @@ dialect 'mvel'
 end
 
 rule 'Organization Disclosure Question 2 Must Be Answered In Y,N'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_DISCLOSURE.value())
@@ -8976,13 +6849,6 @@ end
 
 rule 'Organization Disclosure Question 3 Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_DISCLOSURE.value())
         IsOrganization($provider : provider)
@@ -8999,13 +6865,6 @@ dialect 'mvel'
 end
 
 rule 'Organization Disclosure Question 3 Must Be Answered In Y,N'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_DISCLOSURE.value())
@@ -9023,13 +6882,6 @@ end
 
 rule 'Organization Disclosure Question 4 Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_DISCLOSURE.value())
         IsOrganization($provider : provider)
@@ -9046,13 +6898,6 @@ dialect 'mvel'
 end
 
 rule 'Organization Disclosure Question 4 Must Be Answered In Y,N'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_DISCLOSURE.value())
@@ -9070,13 +6915,6 @@ end
 
 rule 'Organization Disclosure Question 5 Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_DISCLOSURE.value())
         IsOrganization($provider : provider)
@@ -9093,13 +6931,6 @@ dialect 'mvel'
 end
 
 rule 'Organization Disclosure Question 5 Must Be Answered In Y,N'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_DISCLOSURE.value())
@@ -9117,13 +6948,6 @@ end
 
 rule 'Organization Disclosure Question 6 Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_DISCLOSURE.value())
         IsOrganization($provider : provider)
@@ -9140,13 +6964,6 @@ dialect 'mvel'
 end
 
 rule 'Organization Disclosure Question 6 Must Be Answered In Y,N'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_DISCLOSURE.value())
@@ -9164,13 +6981,6 @@ end
 
 rule 'Organization Fax Number Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization()
@@ -9187,13 +6997,6 @@ end
 
 rule 'Organization FEIN Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization()
@@ -9210,13 +7013,6 @@ end
 
 rule 'Organization FEIN Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization()
@@ -9232,13 +7028,6 @@ end
 
 rule 'Organization Fiscal Year End Must Be In The Format MM DD'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         ProviderInformationType(fiscalYearEnd != null, fiscalYearEnd not matches "^[\\d]{2}/[\\d]{2}$")
@@ -9254,13 +7043,6 @@ end
 
 rule 'Organization Name Is Required For Organizations'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -9278,13 +7060,6 @@ dialect 'mvel'
 end
 
 rule 'Organization Name Maximum Length Check'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 dialect 'mvel'
     when
         IsOrganization($provider: provider)
@@ -9303,13 +7078,6 @@ end
 
 rule 'Organization Phone Number Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization()
@@ -9327,13 +7095,6 @@ end
 
 rule 'Organization Phone Number Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization()
@@ -9390,13 +7151,6 @@ end
 
 rule 'Organization Practice Address Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
@@ -9415,13 +7169,6 @@ end
 
 rule 'Organization Provider Statement Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
         IsOrganization($provider : provider)
@@ -9438,13 +7185,6 @@ end
 
 rule 'Organization State Tax ID Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization()
@@ -9461,13 +7201,6 @@ end
 
 rule 'Organizational Provider Disclosure Is Asked For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 salience 10
     when
     then
@@ -9509,13 +7242,6 @@ salience 10
 end
 
 rule 'Owned Property Address Is Required'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
@@ -9534,13 +7260,6 @@ dialect 'mvel'
 end
 
 rule 'Owned Property Address Must Be Valid'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
@@ -9560,13 +7279,6 @@ dialect 'mvel'
 end
 
 rule 'Owned Property Name Is Required'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
@@ -9585,13 +7297,6 @@ dialect 'mvel'
 end
 
 rule 'Owned Property Name Maximum Length Check'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
@@ -9611,13 +7316,6 @@ end
 
 rule 'Ownership Information Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -9635,13 +7333,6 @@ end
 
 rule 'Ownership Information Is Asked For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 salience 10
     when
     then
@@ -9698,13 +7389,6 @@ end
 
 rule 'Ownership Interest Percent Is Required If Beneficial Owner Type Is Owner - 5% or more'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -9722,13 +7406,6 @@ dialect 'mvel'
 end
 
 rule 'Ownership Type Is Required'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
@@ -9747,13 +7424,6 @@ dialect 'mvel'
 end
 
 rule 'Ownership Type Must Be One Of The Supported Values'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
@@ -9773,13 +7443,6 @@ end
 
 rule 'Pay-To Contact Name Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_SETUP.value())
         IsOrganization($provider : provider)
@@ -9798,13 +7461,6 @@ end
 
 rule 'Pay-To Contact Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_SETUP.value())
         IsOrganization($provider : provider)
@@ -9861,13 +7517,6 @@ end
 
 rule 'Pay-To Name Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_SETUP.value())
         IsOrganization($provider : provider)
@@ -9886,13 +7535,6 @@ end
 
 rule 'Pay-To Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_SETUP.value())
         IsOrganization($provider : provider)
@@ -9965,13 +7607,6 @@ end
 
 rule 'Pay-To Phone Number Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_SETUP.value())
         IsOrganization($provider : provider)
@@ -9990,13 +7625,6 @@ end
 
 rule 'Pay-To Phone Number Must Be In A Valid Format'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_SETUP.value())
         IsOrganization($provider : provider)
@@ -10014,13 +7642,6 @@ end
 
 rule 'Pay-To Providers Should Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_SETUP.value())
         IsOrganization($provider : provider)
@@ -10039,13 +7660,6 @@ end
 
 rule 'Pay-To Type Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_SETUP.value())
         IsOrganization($provider : provider)
@@ -10064,13 +7678,6 @@ end
 
 rule 'Pay-To Type Must Be One Of the Following Values'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_SETUP.value())
         IsOrganization($provider : provider)
@@ -10170,13 +7777,6 @@ end
 
 rule 'PCA Billing Person Designation Is Asked For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 salience 10
     when
     then
@@ -10186,13 +7786,6 @@ end
 
 rule 'PCA Billing Person Is Required I'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization( $provider : provider )
@@ -10210,13 +7803,6 @@ end
 
 rule 'PCA Billing Person Is Required II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization( $provider : provider )
@@ -10235,13 +7821,6 @@ end
 
 rule 'PCA Billing Person Name Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization( $provider : provider )
@@ -10261,13 +7840,6 @@ end
 
 rule 'PCA Billing Person Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization( $provider : provider )
@@ -10287,13 +7859,6 @@ end
 
 rule 'PCA Billing Person SSN Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization( $provider : provider )
@@ -10332,13 +7897,6 @@ end
 
 rule 'PCA Billing Person Title Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization( $provider : provider )
@@ -10358,13 +7916,6 @@ end
 
 rule 'PCA Billing Person Title Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization( $provider : provider )
@@ -10383,13 +7934,6 @@ dialect 'mvel'
 end
 
 rule 'PCA Training certification is required for PCA.'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
@@ -10407,13 +7951,6 @@ dialect 'mvel'
 end
 
 rule 'Pharmacist license or specialty certification is required for pharmacists.'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
@@ -10432,13 +7969,6 @@ end
 
 rule 'Pharmacy License Is Required For Pharmacy'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.PHARMACY.value())
@@ -10455,13 +7985,6 @@ dialect 'mvel'
 end
 
 rule 'PHN Copy Of Contract With County Is Required If County Indicator is N'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
@@ -10481,13 +8004,6 @@ dialect 'mvel'
 end
 
 rule 'PHN County Indicator Is Required'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
@@ -10507,13 +8023,6 @@ dialect 'mvel'
 end
 
 rule 'PHN County Name Is Required If County Indicator Is Y'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
@@ -10533,13 +8042,6 @@ dialect 'mvel'
 end
 
 rule 'PHN County Name Maximum Length Check'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
@@ -10560,13 +8062,6 @@ end
 
 rule 'PHN Form Is Asked For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 salience 10
     when
     then
@@ -10576,13 +8071,6 @@ end
 
 rule 'Phone Number Must Be In A Valid Format'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         IsIndividual($provider : provider)
         $individual: IndividualApplicantType()
@@ -10598,13 +8086,6 @@ end
 
 rule 'Physical Rehabilitative Provider Members Must Have One Of The Following Types'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         $provider: ProviderInformationType(providerType == ProviderType.BILLING_ENTITY_FOR_PHYSICAL_REHABILITATIVE_PROVIDERS.value())
@@ -10631,13 +8112,6 @@ end
 
 rule 'Practice Address Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -10675,13 +8149,6 @@ end
 
 rule 'Practice Address Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -10699,13 +8166,6 @@ end
 
 rule 'Practice Contact Information Is Required.'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -10722,13 +8182,6 @@ end
 
 rule 'Practice FAX Number Must Be In A Valid Format'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -10745,13 +8198,6 @@ end
 
 rule 'Practice FEIN Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -10768,13 +8214,6 @@ end
 
 rule 'Practice FEIN Should Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( maintainsOwnPrivatePractice != "Y" )
@@ -10867,13 +8306,6 @@ end
 
 rule 'Practice Information Must Be Provided For Individual Applicants'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -10890,13 +8322,6 @@ end
 
 rule 'Practice Phone Number Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -10914,13 +8339,6 @@ end
 
 rule 'Practice Phone Number Must Be In A Valid Format'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -10937,13 +8355,6 @@ end
 
 rule 'Primary Practice Name Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( maintainsOwnPrivatePractice != "Y" )
@@ -10960,13 +8371,6 @@ end
 
 rule 'Primary Practice Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( maintainsOwnPrivatePractice != "Y" )
@@ -11014,13 +8418,6 @@ end
 
 rule 'Private Practice Name Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( maintainsOwnPrivatePractice == "Y" )
@@ -11037,13 +8434,6 @@ end
 
 rule 'Private Practice Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( maintainsOwnPrivatePractice == "Y" )
@@ -11060,13 +8450,6 @@ end
 
 rule 'Professional Association Type Is Required If Entity Is A Professional Association'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
         IsOrganization($provider : provider)
@@ -11085,13 +8468,6 @@ end
 
 rule 'Provider Cannot Be In Private Practice'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType(maintainsOwnPrivatePractice == "Y")
@@ -11108,13 +8484,6 @@ end
 
 rule 'Provider Setup Is Asked For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
 salience 10
     when
     then
@@ -11126,13 +8495,6 @@ end
 
 rule 'Provider Statement Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
         IsIndividual($provider : provider)
@@ -11149,13 +8511,6 @@ end
 
 rule 'Provider Statement Name Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
         IsIndividual($provider : provider)
@@ -11172,13 +8527,6 @@ end
 
 rule 'Provider Statement Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
         IsIndividual($provider : provider)
@@ -11195,13 +8543,6 @@ end
 
 rule 'Provider Statement Title Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
         IsIndividual($provider : provider)
@@ -11218,13 +8559,6 @@ end
 
 rule 'Provider Statement Title Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
         IsIndividual($provider : provider)
@@ -11241,13 +8575,6 @@ end
 
 rule 'Provider Type Cannot Be A Community Health Board'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization( )
@@ -11265,13 +8592,6 @@ end
 
 rule 'Provider Type is required for all requests'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         ProviderInformationType(providerType == null || providerType matches "^[\\s]*$")
         $report: ErrorReporter()
@@ -11286,13 +8606,6 @@ end
 
 rule 'Provider Type should be one of the configured types'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         ProviderInformationType($providerType: providerType, providerType != null, providerType not matches "^[\\s]*$")
         not LookupEntry(type == "ProviderType", value == $providerType)
@@ -11308,13 +8621,6 @@ end
 
 rule 'Provider Types Not Eligible To Obtain NPI Should Leave It Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value())
         $provider: ProviderInformationType(NPI != null, providerType in ("TBD"))
@@ -11385,13 +8691,6 @@ end
 
 rule 'QP BGS Number Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -11410,13 +8709,6 @@ end
 
 rule 'QP BGS Number Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -11773,13 +9065,6 @@ end
 
 rule 'QP License Type Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -11800,13 +9085,6 @@ end
 
 rule 'QP Name Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -11825,13 +9103,6 @@ end
 
 rule 'QP Name Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -11884,13 +9155,6 @@ end
 
 rule 'QP SSN Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -11927,13 +9191,6 @@ end
 
 rule 'QP Type Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -11952,13 +9209,6 @@ end
 
 rule 'QP Type Must Be One Of Enumerated Values Configured'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -11977,13 +9227,6 @@ end
 
 rule 'Qualification Type Is Required For Federally Qualified Health Center'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.FEDERALLY_QUALIFIED_HEALTH_CENTER.value())
@@ -12000,13 +9243,6 @@ end
 
 rule 'Qualification Type Must Be One Of The Following Values'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.FEDERALLY_QUALIFIED_HEALTH_CENTER.value())
@@ -12030,13 +9266,6 @@ end
 
 rule 'Qualified Professional Is Asked For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 salience 10
     when
     then
@@ -12046,13 +9275,6 @@ end
 
 rule 'Qualified Professional Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -12070,13 +9292,6 @@ end
 
 rule 'Qualified Professional Must Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.QUALIFIED_PROFESSIONALS.value())
         IsOrganization( $provider : provider )
@@ -12093,13 +9308,6 @@ dialect 'mvel'
 end
 
 rule 'Real Property Ownership Must Be Left Empty'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.OWNERSHIP_INFORMATION.value())
@@ -12119,13 +9327,6 @@ end
 
 rule 'Regional Treatment Center Certification Is Required For Regional Treatment Centers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.REGIONAL_TREATMENT_CENTER.value())
@@ -12143,13 +9344,6 @@ end
 
 rule 'Reimbursement Address Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( maintainsOwnPrivatePractice != "Y" )
@@ -12166,13 +9360,6 @@ end
 
 rule 'Reimbursement Address Must Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( maintainsOwnPrivatePractice == "Y" )
@@ -12189,13 +9376,6 @@ end
 
 rule 'Reimbursement Address Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         IsIndividual($provider : provider)
@@ -12234,13 +9414,6 @@ end
 
 rule 'Remittance Sequence Number Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( maintainsOwnPrivatePractice == "Y", remittanceSequenceNumber == null || remittanceSequenceNumber matches "^[\\s]*$")
@@ -12256,13 +9429,6 @@ end
 
 rule 'Remittance Sequence Number Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         $provider: ProviderInformationType(remittanceSequenceNumber != null, remittanceSequenceNumber not matches "^.{0,100}$")
         $report: ErrorReporter()
@@ -12277,13 +9443,6 @@ end
 
 rule 'Remittance Sequence Number Should Be Left Empty For Organization'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         $provider: ProviderInformationType(remittanceSequenceNumber != null, remittanceSequenceNumber != "")
@@ -12300,13 +9459,6 @@ end
 
 rule 'Remittance Sequence Number Should Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( maintainsOwnPrivatePractice != "Y", remittanceSequenceNumber != null, remittanceSequenceNumber != "")
@@ -12322,13 +9474,6 @@ end
 
 rule 'Effective Date Is Required For Organizations'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider, provider.providerType not in (
@@ -12413,13 +9558,6 @@ end
 
 rule 'Require Highest Degree Earned For this Provider'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         IndividualApplicantType(highestDegreeEarned  == null || highestDegreeEarned matches "^[\\s]*$")
@@ -12436,13 +9574,6 @@ end
 
 rule 'Residential Address Cannot Be A PO Box'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value())
         IsIndividual()
@@ -12462,13 +9593,6 @@ end
 
 rule 'Residential Address Is Required For The Specified Provider Types II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value())
         IsIndividual($provider : provider, provider.providerType == ProviderType.PERSONAL_CARE_ASSISTANT.value())
@@ -12485,13 +9609,6 @@ end
 
 rule 'Residential Address Is Required For The Specified Provider Types'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value())
         IsIndividual($provider : provider, provider.providerType == ProviderType.PERSONAL_CARE_ASSISTANT.value())
@@ -12508,13 +9625,6 @@ end
 
 rule 'Residential Address Must Be Valid'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value())
         IsIndividual()
@@ -12531,13 +9641,6 @@ end
 
 rule 'Residential Property Ownership Is Asked For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 salience 10
     when
     then
@@ -12547,13 +9650,6 @@ end
 
 rule 'Rule 29 License Is required for Community Mental Health Center'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value())
@@ -12571,13 +9667,6 @@ end
 
 rule 'Rule 36 Licensed Facility Is Required For Intensive Residential Treatment Facility'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.INTENSIVE_RESIDENTIAL_TREATMENT_FACILITY.value())
@@ -12595,13 +9684,6 @@ end
 
 rule 'Rule 5 License Is Required For CMHR treatment facility'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.CHILDRENS_MENTAL_HEALTH_RESIDENTIAL_TREATMENT_FACILITY.value())
@@ -12619,13 +9701,6 @@ end
 
 rule 'Selected Clinical Services Must Be One Of The Defined Options'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_ELIGIBILITY.value())
         IsOrganization($provider : provider)
@@ -12646,13 +9721,6 @@ end
 
 rule 'Selected Service Categories Must Be One Of Defined Values For This Provider Type'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization($provider: provider)
@@ -12672,13 +9740,6 @@ end
 
 rule 'Selected Service Units Must Be One Of The Defined Options'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_ELIGIBILITY.value())
         IsOrganization($provider : provider)
@@ -12699,13 +9760,6 @@ end
 
 rule 'Selected Supervision And Qualification Must Be One Of The Defined Options'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_ELIGIBILITY.value())
         IsOrganization($provider : provider)
@@ -12726,13 +9780,6 @@ end
 
 rule 'Selected Target Population Must Be One Of The Defined Options'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.AGENCY_ELIGIBILITY.value())
         IsOrganization($provider : provider)
@@ -12753,13 +9800,6 @@ end
 
 rule 'Setup validation reporting'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         not ErrorReporter()
         $validation: ValidationResultType()
@@ -12770,13 +9810,6 @@ end
 
 rule 'Sliding Fee Schedule Is Required For The Specified Provider Typers II'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType in (ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value()))
@@ -12794,13 +9827,6 @@ end
 
 rule 'Sliding Fee Schedule Is Required For The Specified Provider Typers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 9
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType in (ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value()))
@@ -12816,13 +9842,6 @@ dialect 'mvel'
 end
 
 rule 'Specialty certification from PHS is required for pharmacists working at a PHS Indian Hospital.'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 10
- */
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
@@ -12841,13 +9860,6 @@ end
 
 rule 'Specialty Type And License Type Cannot Both Be Provided If the Specialty Certificate Behavior Defined is XOR'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)
@@ -12867,13 +9879,6 @@ end
 
 rule 'Specialty Type Is Required If Defined Specialty Certificate Behavior Is AND'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)
@@ -12893,13 +9898,6 @@ end
 
 rule 'Specialty Type Or License Type Must Be Provided If the Defined Specialty Certificate Behavior is OR, XOR'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 1
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType($providerType: providerType)
@@ -12919,13 +9917,6 @@ end
 
 rule 'Specified Providers Must Have A license in the state of practice'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType(
@@ -12967,13 +9958,6 @@ end
 
 rule 'State Tax Id Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -12990,13 +9974,6 @@ end
 
 rule 'State Tax Id Should Be Left Empty'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.PRACTICE_INFORMATION.value())
         $provider: ProviderInformationType( maintainsOwnPrivatePractice != "Y" )
@@ -13013,13 +9990,6 @@ end
 
 rule 'TaxPayer Name Is Required For PCPO'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization(provider.providerType == ProviderType.PERSONAL_CARE_PROVIDER_ORGANIZATION.value())
@@ -13088,13 +10058,6 @@ end
 
 rule 'TCM Contract With County Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -13114,13 +10077,6 @@ end
 
 rule 'TCM Cover Sheet Type Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -13140,13 +10096,6 @@ end
 
 rule 'TCM Cover Sheet Type Must Be One Of The Following'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
@@ -13166,13 +10115,6 @@ end
 
 rule 'TCM Form Is Asked For The Specified Providers'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 7
- */
 salience 10
     when
     then
@@ -13182,13 +10124,6 @@ end
 
 rule 'Trading Partner Type Is Required For EDI Trading Partner'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         ProviderInformationType(providerType == ProviderType.EDI_TRADING_PARTNER.value())
@@ -13205,13 +10140,6 @@ end
 
 rule 'Trading Partner Type Must Be One Of Enumerated Types'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization()
@@ -13229,13 +10157,6 @@ end
 
 rule 'Tribal Code Is Required If Employed By a PHS Indian Hospital'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -13252,13 +10173,6 @@ end
 
 rule 'Tribal Code Should be left Empty If Not Employed By a PHS Indian Hospital'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
         $provider: ProviderInformationType( )
@@ -13275,13 +10189,6 @@ end
 
 rule 'UMPI Maximum Length Check'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         ProviderInformationType(UMPI != null, UMPI not matches "^.{0,10}$")
         $report: ErrorReporter()
@@ -13296,13 +10203,6 @@ end
 
 rule 'Verification of IHS status Is Required For Indian Health Service Facility'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
     when
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         $provider: ProviderInformationType(providerType == ProviderType.INDIAN_HEALTH_SERVICE_FACILITY.value())
@@ -13405,9 +10305,6 @@ salience 10
         insertLogical(new CertificateException("RenewalEndDate", "PCA Training Certificate", (String) "*"));
 end
 
-/**
- * Added by cyberjag - Fix for PESP-297
-**/
 rule 'CMS 1539 Form Is Required For Renal Dialysis Facility'
 dialect 'mvel'
     when
@@ -13440,9 +10337,6 @@ dialect 'mvel'
         );
 end
 
-/**
- * Added by cyberjag - Fix for PESP-307
-**/
 rule 'Provider age should be 18 or above during enrollment'
 dialect 'mvel'
     when
@@ -13530,9 +10424,6 @@ dialect 'mvel'
         );
 end
 
-/**
- * Added by cyberjag - Fix for PESP-282
- */
 rule 'Dental License is required for Dentist'
 dialect 'mvel'
     when
@@ -13549,9 +10440,6 @@ dialect 'mvel'
         );
 end
 
-/**
- * Added by cyberjag - Fix for PESP-259
- */
 rule "Acupuncturist License in the state of practice is required for Acupuncturist"
     when
         LookupEntry(type == "FieldGroup", value == UISection.LICENSE_INFORMATION.value())
@@ -13974,9 +10862,6 @@ rule "Copy of license as a podiatrist from the MN Board of Podiatric Medicine or
         );
 end
 
-/**
- * Added by cyberjag - Fix for PESP-308
- */
 rule 'Minimum of 2 licensed chiropractors working at the clinic'
 activation-group "member-info-license-required"
 dialect 'mvel'
@@ -14030,9 +10915,6 @@ activation-group "duplicate-member-npi"
         );
 end
 
-/**
- * Added by cyberjag - Fix for PESP-308
-**/
 rule 'Birth Center license from the MN Department of Health is Required for Birthing Center'
 dialect 'mvel'
     when
@@ -14113,9 +10995,6 @@ activation-group "billing-entity-for-phy-svc-members"
         );
 end
 
-/**
- * Added by cyberjag - PESP-313
- */
 rule 'Billing Entity for Mental Health - Cannot accept any other providers except LICSW, LMFT, LP, LPCC, or CNS with mental health specialty.'
 dialect 'mvel'
 activation-group "billing-entity-for-mh"

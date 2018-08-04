@@ -18,10 +18,6 @@ package gov.medicaid.domain.rules.inference;
 
 /**
  * Represents a possible selection for the provider's specialty.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
  */
 public class ProviderSpecialty {
 

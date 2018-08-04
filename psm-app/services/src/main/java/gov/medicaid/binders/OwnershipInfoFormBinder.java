@@ -51,9 +51,6 @@ import java.util.Map;
 
 /**
  * This binder handles the organization information form.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class OwnershipInfoFormBinder extends BaseFormBinder implements FormBinder {
 

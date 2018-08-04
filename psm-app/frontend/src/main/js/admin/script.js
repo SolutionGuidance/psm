@@ -1,7 +1,5 @@
 /*
  Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- @author TCSASSEBMLER
- @version 1.0
  */
 $(document).ready(function () {
   /**

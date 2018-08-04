@@ -24,9 +24,6 @@ import gov.medicaid.entities.UserSearchCriteria;
 
 /**
  * This service defines the self service registration.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public interface RegistrationService {
 

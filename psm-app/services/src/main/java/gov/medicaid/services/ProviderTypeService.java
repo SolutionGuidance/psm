@@ -31,9 +31,6 @@ import java.util.List;
  * <p>
  * <b>Thread Safety</b> Implementations should be effectively thread-safe.
  * </p>
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 @WebService
 public interface ProviderTypeService {

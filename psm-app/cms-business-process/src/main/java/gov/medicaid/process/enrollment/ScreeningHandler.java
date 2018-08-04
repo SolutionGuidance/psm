@@ -41,9 +41,6 @@ import java.util.logging.Logger;
 
 /**
  * This handler is responsible all screening rules.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class ScreeningHandler extends GenericHandler {
     /**

@@ -58,9 +58,6 @@ import java.util.Map;
 
 /**
  * Defines registration related logic.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @Stateless
 @Local(RegistrationService.class)

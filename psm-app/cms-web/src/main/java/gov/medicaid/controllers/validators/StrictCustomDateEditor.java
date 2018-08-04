@@ -22,9 +22,6 @@ import java.text.SimpleDateFormat;
 
 /**
  * This is a strict binder for MM/dd/yyyy date fields.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class StrictCustomDateEditor extends CustomDateEditor {
 

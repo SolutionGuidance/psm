@@ -34,8 +34,6 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Handles self-registration flow.
  *
- * @author TCSASSEMBLER
- * @version 1.0
  * @endpoint "/accounts/*"
  */
 @Controller

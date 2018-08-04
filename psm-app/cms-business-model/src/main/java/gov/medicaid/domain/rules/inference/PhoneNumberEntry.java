@@ -19,9 +19,6 @@ package gov.medicaid.domain.rules.inference;
 /**
  * This class is used by the rules to perform validation on a phone number within a context, since a phone number may
  * appear in different levels of a profile.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class PhoneNumberEntry {
 

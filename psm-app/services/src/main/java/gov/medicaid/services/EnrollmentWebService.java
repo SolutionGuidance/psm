@@ -22,8 +22,6 @@ import gov.medicaid.domain.model.SubmitTicketResponse;
 
 /**
  * Web service facade for enrollment requests.
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public interface EnrollmentWebService {
     /**

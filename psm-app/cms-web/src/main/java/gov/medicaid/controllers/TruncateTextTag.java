@@ -14,8 +14,6 @@ import java.io.IOException;
 /**
  * This tag library will truncate a text to a specified limit and append an ellipsis.
  *
- * @author j3_guile
- * @version 1.0
  * since PESP
  */
 public class TruncateTextTag extends SimpleTagSupport {

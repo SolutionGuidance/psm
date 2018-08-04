@@ -23,9 +23,6 @@ import org.springframework.validation.Errors;
 
 /**
  * Account link validator.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @Component
 public class AccountLinkFormValidator extends BaseValidator {

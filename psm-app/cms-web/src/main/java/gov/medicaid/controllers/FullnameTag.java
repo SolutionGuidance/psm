@@ -19,9 +19,6 @@ import java.io.IOException;
 
 /**
  * This tag library will print the full name of the user given the id.
- *
- * @author j3_guile
- * @version 1.0
  */
 public class FullnameTag extends SimpleTagSupport {
 

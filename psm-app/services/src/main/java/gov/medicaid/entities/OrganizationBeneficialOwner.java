@@ -21,9 +21,6 @@ import javax.persistence.Table;
 
 /**
  * A corporate beneficial owner.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @javax.persistence.Entity
 @Table(name = "organization_beneficial_owners")

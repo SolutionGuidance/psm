@@ -8,8 +8,6 @@
     <documentation xml:lang="en">
       This defines the aggregate schema used by the enrollment business process.
 
-      @author TCSASSEMBLER
-      @version 1.0
     </documentation>
   </annotation>
   <import schemaLocation="Entities.xsd"

@@ -43,8 +43,6 @@ import javax.transaction.UserTransaction;
  * This class is used to configure and execute CMS Business rules.
  *
  * v1.1 - WAS Porting - pass reference to user transaction when invoking BPMN, add flag to use guvnor
- * @author TCSASSEMBLER
- * @version 1.1
  */
 public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
 

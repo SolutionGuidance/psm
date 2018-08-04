@@ -21,9 +21,6 @@ import java.util.Map;
 
 /**
  * Form settings.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class FormSettings {
 

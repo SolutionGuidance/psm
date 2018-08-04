@@ -23,9 +23,6 @@ import java.util.Map;
 
 /**
  * Front end model for each tab.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class UITabModel {
 

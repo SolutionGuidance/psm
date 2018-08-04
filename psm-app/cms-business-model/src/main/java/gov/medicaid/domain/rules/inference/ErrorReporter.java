@@ -23,9 +23,6 @@ import gov.medicaid.domain.model.ValidationResultType;
 
 /**
  * This is a wrapper to the validation result entity to allow quickly adding messages from the rules.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class ErrorReporter {
 

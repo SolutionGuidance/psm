@@ -33,9 +33,6 @@ import java.util.List;
  * <p>
  * <b>Thread Safety</b> This class is mutable and not thread safe, but used in thread safe manner by framework.
  * </p>
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 @Component
 public class UserValidator extends BaseValidator implements Validator {

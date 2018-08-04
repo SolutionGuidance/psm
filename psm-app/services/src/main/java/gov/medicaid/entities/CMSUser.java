@@ -33,9 +33,6 @@ import java.io.Serializable;
 
 /**
  * Represents a user entity.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 
 @javax.persistence.Entity

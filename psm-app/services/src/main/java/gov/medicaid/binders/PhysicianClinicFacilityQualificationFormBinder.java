@@ -43,9 +43,6 @@ import java.util.Map;
 
 /**
  * This binder handles the facility qualification licenses.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBinder {
 

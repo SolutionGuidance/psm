@@ -23,9 +23,6 @@ import java.util.List;
 
 /**
  * This service defines the API used to synchronize application users with the Identity provider.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public interface IdentityProviderDAO {
 

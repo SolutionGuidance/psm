@@ -48,9 +48,6 @@ import java.util.Map;
  * This bean is mutable and not thread-safe as it deals with non-thread-safe entities. However, in the context of being
  * used in a container, it is thread-safe.
  * </p>
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)

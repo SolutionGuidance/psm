@@ -18,10 +18,6 @@ package gov.medicaid.controllers.dto;
 
 /**
  * This class is used to perform manual verification.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Medicaid Provider Screening Portal - Service Agent Controllers
  */
 public class ApprovalDTO {
     /**

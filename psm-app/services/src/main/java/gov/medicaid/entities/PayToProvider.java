@@ -28,9 +28,6 @@ import java.util.Date;
 
 /**
  * Represents a pay-to provider.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @javax.persistence.Entity
 @Table(name = "pay_to_providers")

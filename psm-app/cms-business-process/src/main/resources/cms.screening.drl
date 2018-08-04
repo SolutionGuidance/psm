@@ -5,12 +5,6 @@ import gov.medicaid.domain.rules.inference.*
 
 rule 'Setup validation reporting'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         not ErrorReporter()
         $validation: ValidationResultType()
@@ -21,12 +15,6 @@ end
 
 rule 'Assert provider agreements'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 salience 100
     when
         $provider: ProviderInformationType( )
@@ -39,12 +27,6 @@ end
 
 rule 'Assert provider documents'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 salience 100
     when
         $provider: ProviderInformationType( )
@@ -57,12 +39,6 @@ end
 
 rule 'Assert provider licenses'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 salience 100
     when
         $provider: ProviderInformationType()
@@ -74,32 +50,9 @@ salience 100
 end
 
 
-/*
-rule 'Provider Agreement (DHS-4138) Is Required'
-dialect 'mvel'
-    when
-        $provider: ProviderInformationType()
-        $acceptedAgreements: AcceptedAgreementsType( ) from $provider.acceptedAgreements;
-        not ProviderAgreementType(acceptedDate != null, agreementDocumentTitle == DocumentNames.PROVIDER_AGREEMENT_DHS_4138.value()) from $acceptedAgreements.providerAgreement;
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/AcceptedAgreements",
-            "00002",
-            "Provider Agreement(DHS-4138) Is Required."
-        );
-
-end
- */
 
 rule 'Department of Health Registration As Audiologist Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.AUDIOLOGIST.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
@@ -116,12 +69,6 @@ end
 
 rule 'Audiologists That Will Also Be Registered As Hearing Aid Dispensers Must Also Provide HAD Registration'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.AUDIOLOGIST.value())
         $licenseInformation: LicenseInformationType(additionalServiceCategoryRequest contains ServiceCategoryNames.HEARING_AIDS.value()) from $provider.licenseInformation;
@@ -138,12 +85,6 @@ end
 
 rule 'FEIN for the employer should not be listed for Individual Audiologist or Hearing Aid Dispenser'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.AUDIOLOGIST.value() || providerType == ProviderType.HEARING_AID_DISPENSER.value())
         PracticeInformationType(groupNPI != null, FEIN != null) from $provider.practiceInformation
@@ -159,12 +100,6 @@ end
 
 rule 'Tribal Code Must Be One Of The Recognized Values'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType()
         LicenseInformationType($tribalCode : tribalCode, tribalCode != null) from $provider.licenseInformation;
@@ -181,12 +116,6 @@ end
 
 rule 'Traditional Midwife License from the MN Board of Medical Practice Is Present'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "traditional-midwife-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_PROFESSIONAL_MIDWIFE.value())
@@ -198,12 +127,6 @@ end
 
 rule 'Traditional Midwife License Not Issued by MN Is Acceptable If Working On A Reservation Is Present'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "traditional-midwife-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_PROFESSIONAL_MIDWIFE.value())
@@ -215,12 +138,6 @@ end
 
 rule 'A Traditional Midwife License Or Equivalent Certificate Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 salience -10
 activation-group "traditional-midwife-license-activation"
     when
@@ -237,12 +154,6 @@ end
 
 rule 'Copy of MnSCU Certification Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
@@ -259,12 +170,6 @@ end
 
 rule 'MHCP Applicant Assurance Statement Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value())
         $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments;
@@ -281,12 +186,6 @@ end
 
 rule 'MnSCU Certification Must Be Issued By the Approved Institutions'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
@@ -305,12 +204,6 @@ end
 rule 'Individual Applicant Risk Level Is Limited With Some Exceptions'
 dialect 'mvel'
 salience 20
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $enrollment: EnrollmentInformationType(riskLevel == null)
         ProviderInformationType(applicantType == ApplicantType.INDIVIDUAL, providerType != ProviderType.PHYSICAL_THERAPIST.value())
@@ -323,12 +216,6 @@ end
 
 rule 'Applicant Must Not Be In the Excluded Providers List'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         VerificationStatusType(nonExclusion != "Y")
         $report: ErrorReporter()
@@ -363,12 +250,6 @@ end
 
 rule 'Registered Nurse Certificate Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType in (ProviderType.CLINICAL_NURSE_SPECIALIST.value(), ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value()))
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
@@ -385,12 +266,6 @@ end
 
 rule 'If the applicant is working on a reservation, any state license is acceptable including those issued by a reservation'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "registered-nurse-license-activation"
     when
         $provider: ProviderInformationType(providerType in (ProviderType.CLINICAL_NURSE_SPECIALIST.value(), ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value()))
@@ -414,12 +289,6 @@ end
 
 rule 'If the state is an NLC state, licenses issued by residence state is acceptable only if the residence state is also an NLC state'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "registered-nurse-license-activation"
     when
         $provider: ProviderInformationType(providerType in (ProviderType.CLINICAL_NURSE_SPECIALIST.value(), ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value()))
@@ -437,12 +306,6 @@ end
 
 rule 'RN License Must Be Issued By An Accepted Board'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 salience -10
 activation-group "registered-nurse-license-activation"
     when
@@ -462,12 +325,6 @@ end
 
 rule 'Clinical Nurse Specialist Certificate Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.CLINICAL_NURSE_SPECIALIST.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
@@ -484,12 +341,6 @@ end
 
 rule 'CRNA Certification from the AANA for Nurse Anesthetists Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_REGISTERED_NURSE_ANESTHETIST.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
@@ -506,12 +357,6 @@ end
 
 rule 'Chiropractic Examiner License Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.CHIROPRACTOR.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
@@ -528,12 +373,6 @@ end
 
 rule 'Podiatrist License Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.PODIATRIST.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
@@ -550,12 +389,6 @@ end
 
 rule 'Marriage And Family Therapist License From The Practice State Is Provided'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "marriage-and-family-therapy-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_MARRIAGE_AND_FAMILY_THERAPIST.value())
@@ -567,12 +400,6 @@ end
 
 rule 'MN Accepts LMFT from ND As Substitute For MFT License And The Person Must Have A Masters in Social Work'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "marriage-and-family-therapy-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_MARRIAGE_AND_FAMILY_THERAPIST.value())
@@ -586,12 +413,6 @@ end
 
 rule 'MN Accepts LPCC from ND As Substitute For MFT License And The Person Must Have A Masters in Social Work'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "marriage-and-family-therapy-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_MARRIAGE_AND_FAMILY_THERAPIST.value())
@@ -605,12 +426,6 @@ end
 
 rule 'Marriage And Family Therapist License Or Equivalent Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 salience -10
 activation-group "marriage-and-family-therapy-license-activation"
     when
@@ -628,12 +443,6 @@ end
 
 rule 'LPCC License From the MN is Provided'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "professional-clinical-counserlor-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value())
@@ -645,12 +454,6 @@ end
 
 rule 'MN Accepts LPCC License from Virginia'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "professional-clinical-counserlor-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value())
@@ -662,12 +465,6 @@ end
 
 rule 'MN Accepts LPCC License from other states or from a reservation for providers working on a reservation'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "professional-clinical-counserlor-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value())
@@ -679,12 +476,6 @@ end
 
 rule 'Professional Clinical Counselor License Or Equivalent Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 salience -10
 activation-group "professional-clinical-counserlor-license-activation"
     when
@@ -701,12 +492,6 @@ end
 
 rule 'ND Licensed LPCC Should be enrolled as Marriage and Family Therapist'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "professional-clinical-counserlor-license-activation"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PROFESSIONAL_CLINICAL_COUNSELOR.value())
@@ -724,12 +509,6 @@ end
 
 rule 'Physician License or Equivalent Is required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "physician-license-or-equivalent-is-required"
 salience -10
     when
@@ -746,12 +525,6 @@ end
 
 rule 'Physician License From MN is Accepted'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "physician-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.PHYSICIAN.value())
@@ -763,12 +536,6 @@ end
 
 rule 'Physician License From Other States Or A Reservation Is Accepted If Working On A Reservation'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "physician-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.PHYSICIAN.value())
@@ -780,12 +547,6 @@ end
 
 rule 'Physicians with Specialization is required to have Certification for that Specialization'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.PHYSICIAN.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation
@@ -803,12 +564,6 @@ end
 
 rule 'Psychologist License From MN is Accepted'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "psychologist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
@@ -820,12 +575,6 @@ end
 
 rule 'Psychologist License From Other States Or A Reservation Is Accepted If Working On A Reservation'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "psychologist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
@@ -837,12 +586,6 @@ end
 
 rule 'Psychologist License From State of Practice Or Equivalent Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "psychologist-license-or-equivalent-is-required"
 salience -10
     when
@@ -859,12 +602,6 @@ end
 
 rule 'MDH Psychologist Registration Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
         $licenseInformation: LicenseInformationType() from $provider.licenseInformation
@@ -881,12 +618,6 @@ end
 
 rule 'If Neuropsychology Is Entered As Specialty, Supporting Documentation Must Be Provided'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "psychologist-neuropsychology-supporting-document-is-required"
 salience -10
     when
@@ -904,12 +635,6 @@ end
 
 rule 'Received A Diploma From American Board of Clinical Neuropsychology (ABCN)'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "psychologist-neuropsychology-supporting-document-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
@@ -921,12 +646,6 @@ end
 
 rule 'Received A Diploma From American Board of Professional Neuropsychology (ABPN)'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "psychologist-neuropsychology-supporting-document-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
@@ -938,12 +657,6 @@ end
 
 rule 'Received A Diploma From American Academy of Pediatric Neuropsychology (AAPN)'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "psychologist-neuropsychology-supporting-document-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
@@ -955,12 +668,6 @@ end
 
 rule 'Earned a doctoral degree in psychology from an accredited university training program and completed experience requirements'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "psychologist-neuropsychology-supporting-document-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
@@ -975,12 +682,6 @@ end
 
 rule 'Been licensed or credentialed by another state board'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "psychologist-neuropsychology-supporting-document-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_PSYCHOLOGIST.value())
@@ -992,12 +693,6 @@ end
 
 rule 'Acupuncturist License or Equivalent is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "acupuncturist-license-or-equivalent-is-required"
 salience -10
     when
@@ -1014,13 +709,6 @@ end
 
 rule 'Certification from NBCOT is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.OCCUPATIONAL_THERAPIST.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
@@ -1037,12 +725,6 @@ end
 
 rule 'Clinical Social Worker License Or Equivalent Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "clinical-social-worker-license-or-equivalent-is-required"
 salience -10
     when
@@ -1059,13 +741,6 @@ end
 
 rule 'Collaborative Practice Dental Hygienist Assurance Statement is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.ALLIED_DENTAL_PROFESSIONAL.value())
         $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments;
@@ -1082,13 +757,6 @@ end
 
 rule 'Copy of Collaborative Agreement that meets MN requirements Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.ALLIED_DENTAL_PROFESSIONAL.value())
         $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments;
@@ -1105,12 +773,6 @@ end
 
 rule 'Copy Of Hearing Instrument Dispenser Certificate Or Equivalent Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 salience -10
 activation-group "hearing-instrument-dispenser-certificate-or-equivalent-is-required"
     when
@@ -1127,13 +789,6 @@ end
 
 rule 'Copy of License of Dentist who signed Collaborative Agreement Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.ALLIED_DENTAL_PROFESSIONAL.value())
         $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments;
@@ -1150,12 +805,6 @@ end
 
 rule 'Copy Of Masters Degree In A Related Field Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value())
         $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments;
@@ -1172,12 +821,6 @@ end
 
 rule 'Copy Of Masters Degree In Social Work Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
         $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments;
@@ -1194,13 +837,6 @@ end
 
 rule 'Dental Hygienist License or Equivalent is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 activation-group "dental-hygienist-license-or-equivalent-is-required"
 salience -10
     when
@@ -1217,12 +853,6 @@ end
 
 rule 'Dental License From MN Is Accepted'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "dental-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.DENTIST.value())
@@ -1234,12 +864,6 @@ end
 
 rule 'Dental License Or Equivalent Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 salience -10
 activation-group "dental-license-or-equivalent-is-required"
     when
@@ -1256,12 +880,6 @@ end
 
 rule 'DHS-6095 Is Required For CPRP'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value())
         $attachedDocuments: AttachedDocumentsType( ) from $provider.attachedDocuments;
@@ -1278,12 +896,6 @@ end
 
 rule 'Dietician Or Nutritionist License Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "dietician-or-nutritionist-license-or-equivalent-is-required"
 salience -10
     when
@@ -1300,12 +912,6 @@ end
 
 rule 'Dietician, Nutritionist License From The State Of Practice Is Accepted'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "dietician-or-nutritionist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_DIETICIAN_OR_LICENSED_NUTRITIONIST.value())
@@ -1318,12 +924,6 @@ end
 
 rule 'HAD Certificate From State Of Practice Is Accepted'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "hearing-instrument-dispenser-certificate-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.HEARING_AID_DISPENSER.value())
@@ -1336,12 +936,6 @@ end
 
 rule 'IA Independent Social Worker License Is Acceptable'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "clinical-social-worker-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
@@ -1353,12 +947,6 @@ end
 
 rule 'If Practice is in WI, Audiologist Certificate from WI Is Acceptable'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "hearing-instrument-dispenser-certificate-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.HEARING_AID_DISPENSER.value())
@@ -1372,12 +960,6 @@ end
 
 rule 'LICSW With Dual License To Offer MFT Service Must Also Present An MFT License'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
         $licenseInformation: LicenseInformationType(additionalServiceCategoryRequest contains ServiceCategoryNames.MARRIAGE_AND_FAMILY_THERAPY.value()) from $provider.licenseInformation;
@@ -1394,13 +976,6 @@ end
 
 rule 'MN Acupuncturist License is Accepted'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 activation-group "acupuncturist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.ACUPUNCTURIST.value())
@@ -1412,13 +987,6 @@ end
 
 rule 'MN Dental Hygienist License is Accepted'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 activation-group "dental-hygienist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.ALLIED_DENTAL_PROFESSIONAL.value())
@@ -1430,13 +998,6 @@ end
 
 rule 'MN Department of Health Certification As Speech Pathologist Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.SPEECH_LANGUAGE_PATHOLOGIST.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
@@ -1453,12 +1014,6 @@ end
 
 rule 'MN Independent Clinical Social Worker License Is Acceptable'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "clinical-social-worker-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
@@ -1470,13 +1025,6 @@ end
 
 rule 'MN Physical Therapist License is Accepted'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 activation-group "physical-therapist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.PHYSICAL_THERAPIST.value())
@@ -1488,13 +1036,6 @@ end
 
 rule 'MN Physician Assistant License is Accepted'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 activation-group "physician-assistant-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.PHYSICIAN_ASSISTANT.value())
@@ -1506,12 +1047,6 @@ end
 
 rule 'ND Independent Clinical Social Worker License Is Acceptable'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "clinical-social-worker-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
@@ -1523,12 +1058,6 @@ end
 
 rule 'Nurse Midwife Specialty Certification Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.NURSE_MIDWIFE.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
@@ -1545,13 +1074,6 @@ end
 
 rule 'Nurse Practitioner Certificate Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.NURSE_PRACTITIONER.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
@@ -1568,13 +1090,6 @@ end
 
 rule 'Occupational Therapist License Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $provider: ProviderInformationType(providerType == ProviderType.OCCUPATIONAL_THERAPIST.value())
         $licenseInformation: LicenseInformationType( ) from $provider.licenseInformation;
@@ -1591,13 +1106,6 @@ end
 
 rule 'Only OT in private practice are eligible for MHCP enrollment'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $provider: ProviderInformationType(maintainsOwnPrivatePractice != "Y", providerType == ProviderType.OCCUPATIONAL_THERAPIST.value())
         $report: ErrorReporter()
@@ -1612,13 +1120,6 @@ end
 
 rule 'Only PT in private practice are eligible for MHCP enrollment'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $provider: ProviderInformationType(maintainsOwnPrivatePractice != "Y", providerType == ProviderType.PHYSICAL_THERAPIST.value())
         $report: ErrorReporter()
@@ -1633,12 +1134,6 @@ end
 
 rule 'Optometrist License From the State Of Practice Is Accepted'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "optometrist-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.OPTOMETRIST.value())
@@ -1651,12 +1146,6 @@ end
 
 rule 'Optometrist License Or Equivalent Is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "optometrist-or-equivalent-is-required"
 salience -10
     when
@@ -1673,12 +1162,6 @@ end
 
 rule 'Oral Surgeon Certificate Is Required If Selected Specialty Includes Oral Surgery'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
     when
         $provider: ProviderInformationType(  providerType == ProviderType.DENTIST.value())
         SpecialtiesType(specialtyName contains SpecialtyNames.ORAL_SURGERY.value()) from $provider.specialties
@@ -1696,12 +1179,6 @@ end
 
 rule 'Out Of State Optometrist License Is Acceptable If Working On A Reserveration'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "optometrist-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.OPTOMETRIST.value())
@@ -1714,13 +1191,6 @@ end
 
 rule 'Out of State Acupuncturist License Is Accepted If Working On A Reservation'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 activation-group "acupuncturist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.ACUPUNCTURIST.value())
@@ -1732,13 +1202,6 @@ end
 
 rule 'Out of State Dental Hygienist License Is Accepted If Working On A Reservation'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 activation-group "dental-hygienist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.ALLIED_DENTAL_PROFESSIONAL.value())
@@ -1750,12 +1213,6 @@ end
 
 rule 'Out of State Dental License is Accepted If Working On A Reservation'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "dental-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.DENTIST.value())
@@ -1767,12 +1224,6 @@ end
 
 rule 'Out Of State Dietician, Nutritionist License Is Acceptable If Working On A Reserveration'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "dietician-or-nutritionist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_DIETICIAN_OR_LICENSED_NUTRITIONIST.value())
@@ -1785,12 +1236,6 @@ end
 
 rule 'Out of State HAD License Is Acceptable If Working On A Reservation'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "hearing-instrument-dispenser-certificate-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.HEARING_AID_DISPENSER.value())
@@ -1802,12 +1247,6 @@ end
 
 rule 'Out Of State ICSW License Is Acceptable If Working On A Reserveration'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "clinical-social-worker-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
@@ -1819,12 +1258,6 @@ end
 
 rule 'Out of State Physical Therapist License Is Accepted If Working On A Reservation'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "physical-therapist-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.PHYSICAL_THERAPIST.value())
@@ -1836,13 +1269,6 @@ end
 
 rule 'Out of State Physician License Is Accepted If Working On A Reservation'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 activation-group "physician-assistant-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.PHYSICIAN_ASSISTANT.value())
@@ -1855,13 +1281,6 @@ end
 rule 'Physical Therapist Applicant Risk Level Is Moderate'
 dialect 'mvel'
 salience 20
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
     when
         $enrollment: EnrollmentInformationType(riskLevel == null)
         ProviderInformationType(providerType == ProviderType.PHYSICAL_THERAPIST.value())
@@ -1874,13 +1293,6 @@ end
 
 rule 'Physical Therapist License or Equivalent is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 activation-group "physical-therapist-license-or-equivalent-is-required"
 salience -10
     when
@@ -1897,13 +1309,6 @@ end
 
 rule 'Physician Assistant License or Equivalent is Required'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 3
- */
 activation-group "physician-assistant-license-or-equivalent-is-required"
 salience -10
     when
@@ -1920,12 +1325,6 @@ end
 
 rule 'Psychosocial Rehabilitation Practitioner Certificate Is Accepted'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "national-certification-is-required-for-cprp"
     when
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value())
@@ -1937,12 +1336,6 @@ end
 
 rule 'Rehabilitation Counselor Certificate Is Accepted'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "national-certification-is-required-for-cprp"
     when
         $provider: ProviderInformationType(providerType == ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value())
@@ -1954,12 +1347,6 @@ end
 
 rule 'SD Clinical Social Worker License Is Acceptable'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "clinical-social-worker-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
@@ -1971,12 +1358,6 @@ end
 
 rule 'WI Clinical Social Worker License Is Acceptable'
 dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- */
 activation-group "clinical-social-worker-license-or-equivalent-is-required"
     when
         $provider: ProviderInformationType(providerType == ProviderType.LICENSED_INDEPENDENT_CLINICAL_SOCIAL_WORKER.value())
@@ -1986,9 +1367,6 @@ activation-group "clinical-social-worker-license-or-equivalent-is-required"
 
 end
 
-/**
- * Added by cyberjag - PESP-309
- */
 rule 'Organizational Providers Risk Level Is Limited With Some Exceptions'
 dialect 'mvel'
 salience 20

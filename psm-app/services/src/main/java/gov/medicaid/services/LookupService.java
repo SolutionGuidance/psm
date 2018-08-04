@@ -23,9 +23,6 @@ import java.util.List;
 
 /**
  * Defines the lookup related services.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public interface LookupService {
     /**

@@ -21,9 +21,6 @@ import java.util.List;
 
 /**
  * Projection results from search of tickets.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class UserRequest {
 

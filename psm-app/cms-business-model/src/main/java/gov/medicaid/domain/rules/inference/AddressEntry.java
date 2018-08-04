@@ -21,10 +21,6 @@ import gov.medicaid.domain.model.AddressType;
 /**
  * This class is used by the rules to perform validation on an address within a context, since an address may appear in
  * different levels of a profile.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
  */
 public class AddressEntry {
 

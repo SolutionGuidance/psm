@@ -18,10 +18,6 @@ package gov.medicaid.domain.rules.inference;
 
 /**
  * Represents a possible dual license selection for a provider type.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 2
  */
 public class AdditionalCategory {
 

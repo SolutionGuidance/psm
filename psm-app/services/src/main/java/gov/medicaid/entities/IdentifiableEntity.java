@@ -20,9 +20,6 @@ import java.io.Serializable;
 
 /**
  * This serves as the base class for all persisted entities.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public abstract class IdentifiableEntity implements Serializable {
 

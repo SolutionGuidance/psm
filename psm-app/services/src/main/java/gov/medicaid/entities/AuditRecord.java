@@ -27,9 +27,6 @@ import java.util.List;
 
 /**
  * Represents an audit record header.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @javax.persistence.Entity
 @Table(name = "audit_records")

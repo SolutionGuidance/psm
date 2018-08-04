@@ -26,9 +26,6 @@ import java.util.List;
 
 /**
  * Common utility methods.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class Util {
 

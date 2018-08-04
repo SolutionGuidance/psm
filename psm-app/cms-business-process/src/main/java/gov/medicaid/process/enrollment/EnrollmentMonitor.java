@@ -29,9 +29,6 @@ import org.drools.runtime.process.NodeInstance;
 
 /**
  * This tracks the progress of the enrollment process.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class EnrollmentMonitor implements ProcessEventListener {
 

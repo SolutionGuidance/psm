@@ -20,9 +20,6 @@ import java.io.Serializable;
 
 /**
  * Account link creation form.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class AccountLinkForm implements Serializable {
 

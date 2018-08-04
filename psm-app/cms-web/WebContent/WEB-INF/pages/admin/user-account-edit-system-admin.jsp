@@ -1,8 +1,6 @@
 <%--
  Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
 
- @author TCSASSEMBLER
- @version 1.0
 
  The edit user account page.
 --%>

@@ -41,8 +41,6 @@ import java.util.Set;
  * CMS configurator.
  *
  * v1.1 - WAS Porting - setting JNDI on persistence.xml for entity manager is JBOSS specific
- * @author TCSASSEMBLER
- * @version 1.1
  */
 public class CMSConfigurator {
 

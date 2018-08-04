@@ -18,9 +18,6 @@ package gov.medicaid.entities;
 
 /**
  * Represents supported designated contact values.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public enum DesignatedContactType {
     /**

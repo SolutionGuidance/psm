@@ -33,9 +33,6 @@ import java.util.ArrayList;
 
 /**
  * User details implementation for use of the remember me services.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class CMSRememberMeUserDetailsService implements UserDetailsService {
 

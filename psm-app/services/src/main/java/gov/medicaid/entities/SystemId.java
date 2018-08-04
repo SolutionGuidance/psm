@@ -18,9 +18,6 @@ package gov.medicaid.entities;
 
 /**
  * Represents a user status.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public enum SystemId {
 

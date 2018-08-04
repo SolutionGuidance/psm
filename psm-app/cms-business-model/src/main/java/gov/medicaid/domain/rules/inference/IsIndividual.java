@@ -20,9 +20,6 @@ import gov.medicaid.domain.model.ProviderInformationType;
 
 /**
  * This class is used by the rules to differentiate individual from organizational requests.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class IsIndividual {
 

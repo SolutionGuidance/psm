@@ -18,9 +18,6 @@ package gov.medicaid.entities;
 
 /**
  * Represents supported templates.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public enum EmailTemplate {
 

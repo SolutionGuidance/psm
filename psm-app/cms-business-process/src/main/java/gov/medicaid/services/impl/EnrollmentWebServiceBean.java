@@ -50,8 +50,6 @@ import javax.ejb.TransactionManagementType;
  * Web service facade for enrollment requests.
  *
  * v1.1 - WAS Porting - split transaction of save and submit, so JBPM errors still saves the request
- * @author TCSASSEMBLER
- * @version 1.1
  */
 @Stateless
 @Local(EnrollmentWebService.class)

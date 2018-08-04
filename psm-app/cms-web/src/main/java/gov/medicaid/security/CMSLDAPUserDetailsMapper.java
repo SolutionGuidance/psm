@@ -54,9 +54,6 @@ import java.util.logging.Logger;
 
 /**
  * Simple extension to the {@link LdapUserDetailsMapper} that ensures the LDAP users are also present in the database.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class CMSLDAPUserDetailsMapper extends LdapUserDetailsMapper {
 

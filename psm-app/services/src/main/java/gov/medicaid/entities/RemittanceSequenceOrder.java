@@ -18,9 +18,6 @@ package gov.medicaid.entities;
 
 /**
  * Represents supported Remittance sequence order.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public enum RemittanceSequenceOrder {
 

@@ -11,9 +11,6 @@ import java.io.Serializable;
 
 /**
  * Represents services allowed for the given provider.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 
 @javax.persistence.Entity

@@ -20,9 +20,6 @@ import javax.persistence.Table;
 
 /**
  * Lookup entity for enrollment status (Draft/Pending/Approved/Rejected).
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @javax.persistence.Entity
 @Table(name = "enrollment_statuses")

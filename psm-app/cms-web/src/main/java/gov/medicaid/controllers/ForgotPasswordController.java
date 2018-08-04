@@ -31,8 +31,6 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Handles requests to regenerated passwords.
  *
- * @author TCSASSEMBLER
- * @version 1.0
  * @endpoint "/forgotpassword"
  */
 @Controller

@@ -41,9 +41,6 @@ import java.util.Map;
 
 /**
  * This is a mock onboarding service implementation used to demo profile imports.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @Stateless
 @Local(OnboardingService.class)

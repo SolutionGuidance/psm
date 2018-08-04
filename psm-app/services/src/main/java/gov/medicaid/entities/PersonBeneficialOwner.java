@@ -25,9 +25,6 @@ import java.util.Date;
 
 /**
  * A person beneficial owner.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @javax.persistence.Entity
 @Table(name = "person_beneficial_owners")

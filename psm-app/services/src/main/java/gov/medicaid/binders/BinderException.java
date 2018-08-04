@@ -18,9 +18,6 @@ package gov.medicaid.binders;
 
 /**
  * Exception for invalid data formats.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class BinderException extends Exception {
 

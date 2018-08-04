@@ -20,9 +20,6 @@ package gov.medicaid.entities;
 
 /**
  * Projection results from search of enrolled providers.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class ProviderLookup {
 

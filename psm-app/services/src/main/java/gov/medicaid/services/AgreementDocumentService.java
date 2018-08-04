@@ -26,9 +26,6 @@ import gov.medicaid.entities.SearchResult;
  * This represents the service API to manage agreement documents.</p>
  * <p>
  * Implementations should be effectively thread-safe.</p>
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 public interface AgreementDocumentService {
     /**

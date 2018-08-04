@@ -23,9 +23,6 @@ import org.springframework.validation.Errors;
 
 /**
  * Password reset request validator.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @Component
 public class ForgotPasswordFormValidator extends BaseValidator {

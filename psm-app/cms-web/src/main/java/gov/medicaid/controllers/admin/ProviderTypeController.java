@@ -52,9 +52,6 @@ import java.util.List;
  * <p>
  * This class is mutable and not thread safe, but used in thread safe manner by framework.
  * </p>
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 @Controller
 public class ProviderTypeController {

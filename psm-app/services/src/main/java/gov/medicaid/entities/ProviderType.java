@@ -32,9 +32,6 @@ import java.util.Set;
 
 /**
  * Represents a provider type.
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 @javax.persistence.Entity
 @Table(name = "provider_types")

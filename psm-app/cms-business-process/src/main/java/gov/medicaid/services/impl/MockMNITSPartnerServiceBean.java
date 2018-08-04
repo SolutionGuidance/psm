@@ -31,9 +31,6 @@ import java.util.List;
 
 /**
  * Implementation of a partner service.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @Stateless
 @Local(PartnerSystemService.class)

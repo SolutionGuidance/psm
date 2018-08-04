@@ -37,9 +37,6 @@ import static java.lang.Math.min;
 
 /**
  * Utility class for front end controllers.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class ControllerHelper {
 

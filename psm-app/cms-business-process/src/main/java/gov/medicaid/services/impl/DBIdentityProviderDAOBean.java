@@ -32,9 +32,6 @@ import java.util.List;
 /**
  * This is an EJB implementation for the {@link IdentityProviderDAO} which connects directly to the database
  * servers.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @Stateless
 @Local(IdentityProviderDAO.class)

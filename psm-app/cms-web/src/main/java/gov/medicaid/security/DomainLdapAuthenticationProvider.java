@@ -26,9 +26,6 @@ import java.util.logging.Logger;
 
 /**
  * LDAP authenticator that only handles the CMS domain requests.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class DomainLdapAuthenticationProvider extends LdapAuthenticationProvider {
 

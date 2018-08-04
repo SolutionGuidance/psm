@@ -19,9 +19,6 @@ package gov.medicaid.entities;
 
 /**
  * Represents a provider type search criteria.
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 public class ProviderTypeSearchCriteria extends SearchCriteria {
 

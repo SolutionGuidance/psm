@@ -18,8 +18,6 @@ package gov.medicaid.entities;
 
 /**
  * Validity status for tickets.
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public enum Validity {
 

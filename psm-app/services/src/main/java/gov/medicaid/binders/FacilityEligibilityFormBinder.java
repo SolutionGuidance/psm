@@ -36,9 +36,6 @@ import java.util.Map;
 
 /**
  * This binder handles the facility eligibility.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class FacilityEligibilityFormBinder extends BaseFormBinder {
 

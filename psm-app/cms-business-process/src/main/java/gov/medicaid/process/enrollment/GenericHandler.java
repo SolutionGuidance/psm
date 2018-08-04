@@ -22,9 +22,6 @@ import org.drools.runtime.process.WorkItemManager;
 
 /**
  * This is a generic handler for BPMN work items.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public abstract class GenericHandler implements WorkItemHandler {
 

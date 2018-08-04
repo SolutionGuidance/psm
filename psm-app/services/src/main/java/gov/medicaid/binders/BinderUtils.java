@@ -39,9 +39,6 @@ import java.util.List;
 
 /**
  * Utility methods for binding data.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class BinderUtils {
 

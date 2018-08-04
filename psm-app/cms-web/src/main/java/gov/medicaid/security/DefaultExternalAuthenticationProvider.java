@@ -40,9 +40,6 @@ import java.util.ArrayList;
 
 /**
  * Mock authentication provider for demonstrating possible integration point.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class DefaultExternalAuthenticationProvider implements AuthenticationProvider {
 

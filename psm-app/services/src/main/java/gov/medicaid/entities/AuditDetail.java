@@ -24,9 +24,6 @@ import javax.persistence.Table;
 
 /**
  * Audit record details.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @javax.persistence.Entity
 @Table(name = "audit_details")

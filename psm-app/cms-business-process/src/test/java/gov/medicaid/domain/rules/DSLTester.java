@@ -46,9 +46,6 @@ import java.util.List;
 
 /**
  * Simple test case for the Domain Specific Language Rules.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class DSLTester {
 

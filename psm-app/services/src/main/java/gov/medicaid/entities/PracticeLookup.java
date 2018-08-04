@@ -22,9 +22,6 @@ import java.util.Date;
 
 /**
  * Projection results from search of enrolled practices.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class PracticeLookup {
 

@@ -25,8 +25,6 @@ import javax.transaction.UserTransaction;
  * Knowledge delegate definition.
  *
  * v1.1 - WAS Porting - pass reference to user transaction when invoking BPMN
- * @author TCSASSEMBLER
- * @version 1.1
  */
 public interface KnowledgeDelegate {
 

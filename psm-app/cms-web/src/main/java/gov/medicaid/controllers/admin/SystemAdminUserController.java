@@ -45,9 +45,6 @@ import java.util.Arrays;
  * <b>Thread Safety</b> This class is mutable and not thread safe, but used in thread safe manner by framework.
  * </p>
  *
- * @author argolite, TCSASSEMBLER
- * @version 1.1
- * @since 1.0
  * @endpoint "/system/user/*"
  */
 @Controller

@@ -47,9 +47,6 @@ import java.util.logging.Logger;
  * This is a port of org.jbpm.process.workitem.wsht.CommandBasedWSHumanTaskHandler to use local connections.
  *
  * See https://community.jboss.org/thread/201834
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class LocalHumanTaskHandler extends GenericHandler {
 
@@ -203,9 +200,6 @@ public class LocalHumanTaskHandler extends GenericHandler {
 
     /**
      * Callback for completed human task.
-     *
-     * @author TCSASSEMBLER
-     * @version 1.0
      */
     private class TaskCompletedHandler extends AbstractBaseResponseHandler implements EventResponseHandler {
 

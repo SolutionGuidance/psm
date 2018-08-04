@@ -28,8 +28,6 @@ import java.util.List;
  * <p>
  * Implementations should be effectively thread-safe.
  * </p>
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 public interface EventService {
 

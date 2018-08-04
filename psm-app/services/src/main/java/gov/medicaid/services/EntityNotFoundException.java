@@ -20,9 +20,6 @@ import javax.ejb.ApplicationException;
 
 /**
  * This exception is thrown by update and delete methods if an entity was not found.
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 @ApplicationException
 public class EntityNotFoundException extends PortalServiceException {

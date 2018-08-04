@@ -19,9 +19,6 @@ package gov.medicaid.services;
 /**
  * This exception is thrown by implementations' init methods if there are required injection fields that are not
  * injected.
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 public class PortalServiceConfigurationException extends RuntimeException {
 

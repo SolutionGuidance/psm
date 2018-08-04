@@ -27,9 +27,6 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Custom authentication filter that supports additional fields in the login form.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class CustomAuthenticationProcessingFilter extends UsernamePasswordAuthenticationFilter {
 

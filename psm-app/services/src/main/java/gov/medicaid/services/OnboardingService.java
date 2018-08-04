@@ -24,9 +24,6 @@ import java.util.List;
 
 /**
  * This service defines the interface for importing external data.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public interface OnboardingService {
 

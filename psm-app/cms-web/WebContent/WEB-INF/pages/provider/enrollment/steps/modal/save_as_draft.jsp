@@ -1,8 +1,6 @@
 <%--
     JSP Fragment for common save as draft modal.
 
-    @author j3_guile
-    @version 1.0
  --%>
 <!-- /#saveAsDraftModal-->
 <div id="saveAsDraftModal" class="outLay">

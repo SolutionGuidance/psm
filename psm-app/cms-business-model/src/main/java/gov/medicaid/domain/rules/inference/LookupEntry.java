@@ -18,8 +18,6 @@ package gov.medicaid.domain.rules.inference;
 
 /**
  * This is a container for lookup entries referenced by the rules.
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class LookupEntry {
 

@@ -22,9 +22,6 @@ import java.util.List;
 
 /**
  * Interface for external services related activities.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public interface PartnerSystemService {
 

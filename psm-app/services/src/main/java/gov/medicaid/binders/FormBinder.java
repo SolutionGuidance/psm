@@ -33,9 +33,6 @@ import java.util.Map;
 
 /**
  * A form binder is a delegate that processes fields specific to the form.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public interface FormBinder {
 

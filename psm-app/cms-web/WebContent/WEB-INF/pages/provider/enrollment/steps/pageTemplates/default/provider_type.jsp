@@ -1,8 +1,6 @@
 <%--
     JSP Fragment for provider type selection form.
 
-    @author j3_guile
-    @version 1.0
  --%>
 
 <%@page import="gov.medicaid.binders.ProviderTypeFormBinder"%>

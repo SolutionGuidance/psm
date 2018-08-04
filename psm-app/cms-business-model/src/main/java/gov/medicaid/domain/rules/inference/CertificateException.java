@@ -19,9 +19,6 @@ package gov.medicaid.domain.rules.inference;
 
 /**
  * This class is used by the rules logically insert exceptions.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class CertificateException {
 

@@ -22,9 +22,6 @@ import org.springframework.validation.Validator;
 
 /**
  * Base class for validators.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public abstract class BaseValidator implements Validator {
 

@@ -30,9 +30,6 @@ import java.math.BigDecimal;
 
 /**
  * Base class for beneficial owners of organizations.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @javax.persistence.Entity
 @Inheritance(strategy = InheritanceType.JOINED)

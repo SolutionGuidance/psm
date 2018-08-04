@@ -1,8 +1,6 @@
 <%--
     JSP Fragment for ownership form.
 
-    @author j3_guile
-    @version 1.0
  --%>
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>

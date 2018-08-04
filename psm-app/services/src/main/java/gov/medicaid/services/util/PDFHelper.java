@@ -26,9 +26,6 @@ import java.util.Map;
 
 /**
  * Common utility methods.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class PDFHelper {
 

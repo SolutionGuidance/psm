@@ -41,9 +41,6 @@ import java.util.Map;
 
 /**
  * This binder handles the organization disclosure.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class FederalQualificationFormBinder extends BaseFormBinder {
 

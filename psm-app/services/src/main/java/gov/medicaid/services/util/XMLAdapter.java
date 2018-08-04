@@ -53,9 +53,6 @@ import java.util.Map;
 
 /**
  * Translates the hibernate model to the business process model.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public final class XMLAdapter {
 

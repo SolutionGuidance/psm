@@ -1,8 +1,6 @@
 <%--
     JSP Fragment for common practice lookup modal.
 
-    @author j3_guile
-    @version 1.0
  --%>
 <!-- /#practiceLookupModal-->
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>

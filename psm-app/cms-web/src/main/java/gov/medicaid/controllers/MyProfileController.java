@@ -42,8 +42,6 @@ import java.util.List;
 /**
  * Handles account maintenance.
  *
- * @author TCSASSEMBLER
- * @version 1.0
  * @endpoint "/provider/profile/*"
  */
 @Controller

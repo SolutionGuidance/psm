@@ -34,9 +34,6 @@ import java.util.logging.Logger;
 
 /**
  * Database authenticator that only handles the CMS domain requests.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class DomainDatabaseAuthenticationProvider implements AuthenticationProvider {
 

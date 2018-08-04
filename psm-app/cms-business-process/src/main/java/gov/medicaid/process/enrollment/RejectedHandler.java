@@ -35,9 +35,6 @@ import java.util.Date;
 
 /**
  * This initializes the application model.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class RejectedHandler extends GenericHandler {
 

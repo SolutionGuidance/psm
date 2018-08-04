@@ -27,9 +27,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Handles display of the default page for the users.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @Controller
 public class LandingController extends BaseController {

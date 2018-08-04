@@ -18,9 +18,6 @@ package gov.medicaid.entities;
 
 /**
  * Represents the agreement document type.
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 public enum AgreementDocumentType {
     /**

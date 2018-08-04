@@ -44,9 +44,6 @@ import java.util.Map;
 
 /**
  * This binder handles the provider type selection form.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class PrimaryPracticeFormBinder extends AbstractPracticeFormBinder {
 

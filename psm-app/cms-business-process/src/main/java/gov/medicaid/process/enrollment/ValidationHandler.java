@@ -26,9 +26,6 @@ import java.util.logging.Logger;
 
 /**
  * This is a mock handler for front-end validation.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class ValidationHandler extends GenericHandler {
     private final Logger logger = Logger.getLogger(getClass().getName());

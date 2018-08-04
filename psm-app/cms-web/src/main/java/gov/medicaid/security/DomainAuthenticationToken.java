@@ -20,9 +20,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 
 /**
  * An authentication token that supports the domain field.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class DomainAuthenticationToken extends UsernamePasswordAuthenticationToken {
 

@@ -55,9 +55,6 @@ import java.util.Map;
 
 /**
  * Defines the UI related services.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @Stateless
 @Local(PresentationService.class)

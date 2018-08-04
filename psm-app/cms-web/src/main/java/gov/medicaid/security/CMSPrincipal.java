@@ -24,9 +24,6 @@ import java.util.Date;
 
 /**
  * Defines an extension to the security principal supporting linked user accounts.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public interface CMSPrincipal extends Principal {
 

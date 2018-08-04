@@ -44,9 +44,6 @@ import java.util.Set;
 
 /**
  * Interface for enrollment related activities.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public interface ProviderEnrollmentService {
 

@@ -31,9 +31,6 @@ import java.util.Map;
  * <p>
  * <b>Thread Safety</b> Implementations should be effectively thread-safe.
  * </p>
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public interface ExportService {
 

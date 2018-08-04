@@ -31,9 +31,6 @@ import java.util.Date;
 
 /**
  * Represents a person or organization.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @javax.persistence.Entity
 @Inheritance(strategy = InheritanceType.JOINED)

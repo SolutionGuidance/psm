@@ -54,9 +54,6 @@ import java.util.Properties;
 /**
  * This is an EJB implementation for the {@link IdentityProviderDAO} which connects directly to configurable LDAP
  * servers.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @Stateless
 @Local(IdentityProviderDAO.class)

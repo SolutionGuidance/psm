@@ -20,9 +20,6 @@ import javax.ejb.ApplicationException;
 
 /**
  * This is the top-level exception. It is thrown by all methods if there is an error.
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 @ApplicationException
 public class PortalServiceException extends Exception {

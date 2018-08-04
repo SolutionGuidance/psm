@@ -20,8 +20,6 @@ import java.io.StringWriter;
 
 /**
  * This class is used to ensure backward compatibility of request models thru XML serialization.
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class XMLSerializingEnrollmentProcess extends EnrollmentProcess implements Externalizable {
 

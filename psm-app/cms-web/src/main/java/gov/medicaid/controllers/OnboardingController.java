@@ -41,8 +41,6 @@ import java.util.List;
 /**
  * Handles data import flows.
  *
- * @author TCSASSEMBLER
- * @version 1.0
  * @endpoint "/provider/onboarding/*"
  */
 @Controller

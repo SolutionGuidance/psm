@@ -36,9 +36,6 @@ import java.util.List;
 
 /**
  * Defines the UI related services.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @Stateless
 @Local(LookupService.class)

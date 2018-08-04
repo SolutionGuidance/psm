@@ -20,9 +20,6 @@ import java.util.Date;
 
 /**
  * Search result container for profiles.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class ProfileHeader {
 

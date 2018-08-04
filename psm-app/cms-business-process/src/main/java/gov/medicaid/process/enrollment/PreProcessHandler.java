@@ -32,9 +32,6 @@ import java.util.logging.Logger;
 
 /**
  * This initializes the application model.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class PreProcessHandler extends GenericHandler {
     private final Logger logger = Logger.getLogger(getClass().getName());

@@ -21,9 +21,6 @@ import java.util.List;
 
 /**
  * Represents a provider search criteria.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class ProviderSearchCriteria extends SearchCriteria {
 

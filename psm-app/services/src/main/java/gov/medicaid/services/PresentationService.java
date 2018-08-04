@@ -26,9 +26,6 @@ import java.util.List;
 
 /**
  * Defines the UI related services.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public interface PresentationService {
 

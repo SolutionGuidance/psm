@@ -58,9 +58,6 @@ import java.util.List;
 
 /**
  * Utility methods for manipulating the process model.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class XMLUtility {
 

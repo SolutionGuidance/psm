@@ -20,9 +20,6 @@ import java.util.List;
 
 /**
  * Represents a user search criteria.
- *
- * @author argolite, TCSASSEMBLER
- * @version 1.0
  */
 public class UserSearchCriteria extends SearchCriteria {
 
@@ -59,19 +56,16 @@ public class UserSearchCriteria extends SearchCriteria {
     /**
      * Specifies that the search should be "AND" related.
      * Defaults to false to preserve existing behavior.
-     * @since Medicaid Provider Screening Portal - System Admin Controllers
      */
     private boolean and = true;
 
     /**
      * Indicates to show the filter panel or not.
-     * @since v1.2 - Medicaid Provider Screening Portal - System Admin Front End Assembly
      */
     private boolean showFilterPanel;
 
     /**
      * Represents the search is from search box or not.
-     * @since v1.2 - Medicaid Provider Screening Portal - System Admin Front End Assembly
      */
     private boolean searchBox;
 

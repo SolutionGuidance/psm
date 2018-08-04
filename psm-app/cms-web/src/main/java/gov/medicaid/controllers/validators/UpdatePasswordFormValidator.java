@@ -23,9 +23,6 @@ import org.springframework.validation.Errors;
 
 /**
  * Validator for updating passwords.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @Component
 public class UpdatePasswordFormValidator extends BaseValidator {

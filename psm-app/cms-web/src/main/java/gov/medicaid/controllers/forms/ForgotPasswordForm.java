@@ -18,9 +18,6 @@ package gov.medicaid.controllers.forms;
 
 /**
  * Forgot password form.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class ForgotPasswordForm {
 

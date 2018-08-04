@@ -18,9 +18,6 @@ package gov.medicaid.entities.dto;
 
 /**
  * Holder for validation errors.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class FormError {
 

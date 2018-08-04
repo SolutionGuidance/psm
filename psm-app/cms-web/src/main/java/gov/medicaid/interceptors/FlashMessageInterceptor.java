@@ -24,9 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Moves flash messages to request scope.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class FlashMessageInterceptor implements HandlerInterceptor {
 

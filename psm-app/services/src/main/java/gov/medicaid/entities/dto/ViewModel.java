@@ -24,9 +24,6 @@ import java.util.Map;
 
 /**
  * View model for the provider.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class ViewModel {
 

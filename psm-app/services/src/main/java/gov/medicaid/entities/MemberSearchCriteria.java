@@ -18,9 +18,6 @@ package gov.medicaid.entities;
 
 /**
  * Represents a member search criteria.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class MemberSearchCriteria extends SearchCriteria {
 

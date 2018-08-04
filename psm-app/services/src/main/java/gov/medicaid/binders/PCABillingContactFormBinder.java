@@ -39,9 +39,6 @@ import java.util.Map;
 
 /**
  * This binder handles the personal information form.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class PCABillingContactFormBinder extends BaseFormBinder implements FormBinder {
 

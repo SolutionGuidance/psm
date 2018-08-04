@@ -23,9 +23,6 @@ import java.io.Serializable;
 
 /**
  * Represents a lookup entity.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 @MappedSuperclass
 public class LookupEntity implements Serializable {

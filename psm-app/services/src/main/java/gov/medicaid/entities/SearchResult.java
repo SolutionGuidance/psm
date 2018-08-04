@@ -21,8 +21,6 @@ import java.util.List;
 /**
  * Represents the search results.
  *
- * @author TCSASSEMBLER
- * @version 1.0
  * @param <T> the type of the result list
  */
 public class SearchResult<T> {

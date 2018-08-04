@@ -18,9 +18,6 @@ package gov.medicaid.entities;
 
 /**
  * This serves as the base class for all search criteria objects.
- *
- * @author sampath01, TCSASSEMBLER
- * @version 1.0
  */
 public abstract class SearchCriteria {
 

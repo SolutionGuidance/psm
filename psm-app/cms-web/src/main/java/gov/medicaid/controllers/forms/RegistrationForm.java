@@ -20,9 +20,6 @@ import java.io.Serializable;
 
 /**
  * Contains all the fields needed during registration.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class RegistrationForm implements Serializable {
 

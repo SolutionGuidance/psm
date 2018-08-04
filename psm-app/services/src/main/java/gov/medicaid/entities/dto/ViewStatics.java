@@ -19,9 +19,6 @@ package gov.medicaid.entities.dto;
 
 /**
  * Constants shared throught the front-end application.
- *
- * @author TCSASSEMBLER
- * @version 1.0
  */
 public class ViewStatics {
 

@@ -48,9 +48,6 @@ import java.util.Map.Entry;
  * <li>added new EntityType and EDITradingPartnerType</li>
  * </ul>
  * </p>
- *
- * @author TCSASSEMBLER
- * @version 1.5
  */
 public class GlobalLookups {
 

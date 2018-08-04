@@ -280,6 +280,31 @@ important that the codebase continue to be publishable under that
 license.  To make that possible, here are some guidelines on including
 3rd party code in the codebase.
 
+The default method of getting your code added to the codebase is to
+include the following header as the first part of your file (example
+below is for java):
+
+````
+/*
+ * Copyright 20XX The MITRE Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+````
+
+See [#300](https://github.com/SolutionGuidance/psm/issues/300) for more
+context.
+
 If you submit code that you wrote or that you have authority to submit
 from your employer or institution, you give it to us under version 2
 of the Apache Software License.  If the material you submit is already

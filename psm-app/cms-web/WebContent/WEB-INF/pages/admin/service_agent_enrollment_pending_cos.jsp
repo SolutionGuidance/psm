@@ -1,6 +1,4 @@
 <%--
-  - Author: cyberjag
-  - Version: 1.0
   - Copyright (C) 2013 TopCoder Inc., All Rights Reserved.
   -
   - Description: This is the cos service agent page.

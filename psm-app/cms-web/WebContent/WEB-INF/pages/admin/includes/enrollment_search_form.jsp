@@ -1,6 +1,4 @@
 <%--
-  - Author: TCSASSEMBLER
-  - Version: 1.0
   - Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
   -
   - Description: it is used to build the enrollment search form.

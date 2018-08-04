@@ -1,6 +1,4 @@
  <%--
-  - Author: TCSASSEMBLER
-  - Version: 1.0
   - Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
   -
   - Description: This is the admin provider types edit page.

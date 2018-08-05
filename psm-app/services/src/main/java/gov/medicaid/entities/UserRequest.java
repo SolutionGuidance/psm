@@ -97,9 +97,14 @@ public class UserRequest {
      */
     private long profileReferenceId;
 
+    /**
+     * Whether this enrollmentId is the active one.
+     */
+    private boolean active;
+
     public UserRequest(long enrollmentId, String npi, Date submissionDate, String requestType, String status,
         Date statusDate, String riskLevel, String providerType, String providerName, Date createDate,
-        Integer riskLevelSortProperty, long processInstanceId, long profileReferenceId) {
+        Integer riskLevelSortProperty, long processInstanceId, long profileReferenceId, boolean active) {
         this.enrollmentId = enrollmentId;
         this.npi = npi;
         this.submissionDate = submissionDate;
@@ -113,6 +118,7 @@ public class UserRequest {
         this.riskLevelSortProperty = riskLevelSortProperty;
         this.processInstanceId = processInstanceId;
         this.profileReferenceId = profileReferenceId;
+        this.active = active;
     }
 
     /**
@@ -242,5 +248,13 @@ public class UserRequest {
      */
     public long getProfileReferenceId() {
         return profileReferenceId;
+    }
+
+    /**
+     * Gets the value of the field <code>active</code>.
+     * @return active
+     */
+    public boolean isActive() {
+        return active;
     }
 }

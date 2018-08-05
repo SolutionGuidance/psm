@@ -285,4 +285,8 @@ public class Enrollment implements Serializable {
         automaticScreening.setEnrollment(this);
         automaticScreenings.add(automaticScreening);
     }
+
+    public boolean isActive() {
+        return details != null && details.getEnrollmentId() == this.enrollmentId;
+    }
 }

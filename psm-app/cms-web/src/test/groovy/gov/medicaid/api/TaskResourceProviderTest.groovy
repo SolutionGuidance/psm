@@ -98,7 +98,8 @@ class TaskResourceProviderTest extends Specification {
                 null,
                 null,
                 0,
-                0
+                0,
+                true
         )
         searchResults.items = [userRequest]
         mockEnrollmentService.searchTickets(_, _) >> searchResults

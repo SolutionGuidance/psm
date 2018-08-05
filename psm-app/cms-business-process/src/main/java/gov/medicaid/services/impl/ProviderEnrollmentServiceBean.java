@@ -308,7 +308,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         StringBuilder fetchQuery = new StringBuilder(
                 "SELECT NEW gov.medicaid.entities.UserRequest(t.enrollmentId, e.npi, t.submissionDate, "
                         + "rt.description, ts.description, t.statusDate, rl.description, pt.description, "
-                        + "e.name, t.createdOn, rl.sortIndex, t.processInstanceId, t.profileReferenceId) " + fromClause);
+                        + "e.name, t.createdOn, rl.sortIndex, t.processInstanceId, t.profileReferenceId, "
+                        + "t.enrollmentId = p.enrollmentId) " + fromClause);
 
         appendCriteria(fetchQuery, user, criteria);
         appendSorting(fetchQuery, criteria);

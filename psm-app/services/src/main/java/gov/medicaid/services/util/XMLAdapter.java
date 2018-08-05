@@ -108,6 +108,8 @@ public final class XMLAdapter {
             enrollment.setRequestType(RequestType.fromValue(ticket.getRequestType().getDescription()));
         }
 
+        enrollment.setActive(ticket.isActive());
+
         enrollment.setProcessInstanceId(ticket.getProcessInstanceId());
         enrollment.setProgressPage(ticket.getProgressPage());
         if (ticket.getSubmittedBy() != null) {

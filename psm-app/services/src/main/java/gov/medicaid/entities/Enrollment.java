@@ -342,6 +342,10 @@ public class Enrollment implements Cloneable, Serializable {
         automaticScreenings.add(automaticScreening);
     }
 
+    public boolean isActive() {
+        return details != null && details.getEnrollmentId() == this.enrollmentId;
+    }
+
     /**
      * Full clone of this object.
      *

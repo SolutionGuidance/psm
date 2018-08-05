@@ -98,25 +98,13 @@ public class UserRequest {
     private long profileReferenceId;
 
     /**
-     * Constructor using the fields.
-     *
-     * @param enrollmentId assigned to the field with the same name
-     * @param npi assigned to the field with the same name
-     * @param submissionDate assigned to the field with the same name
-     * @param requestType assigned to the field with the same name
-     * @param status assigned to the field with the same name
-     * @param statusDate assigned to the field with the same name
-     * @param riskLevel assigned to the field with the same name
-     * @param providerType assigned to the field with the same name
-     * @param providerName assigned to the field with the same name
-     * @param createDate assigned to the field with the same name
-     * @param riskLevelSortProperty assigned to the field with the same name
-     * @param processInstanceId assigned to the field with the same name
-     * @param profileReferenceId assigned to the field with the same name
+     * Whether this enrollmentId is the active one.
      */
+    private boolean active;
+
     public UserRequest(long enrollmentId, String npi, Date submissionDate, String requestType, String status,
         Date statusDate, String riskLevel, String providerType, String providerName, Date createDate,
-        Integer riskLevelSortProperty, long processInstanceId, long profileReferenceId) {
+        Integer riskLevelSortProperty, long processInstanceId, long profileReferenceId, boolean active) {
         this.enrollmentId = enrollmentId;
         this.npi = npi;
         this.submissionDate = submissionDate;
@@ -130,6 +118,7 @@ public class UserRequest {
         this.riskLevelSortProperty = riskLevelSortProperty;
         this.processInstanceId = processInstanceId;
         this.profileReferenceId = profileReferenceId;
+        this.active = active;
     }
 
     /**
@@ -259,5 +248,13 @@ public class UserRequest {
      */
     public long getProfileReferenceId() {
         return profileReferenceId;
+    }
+
+    /**
+     * Gets the value of the field <code>active</code>.
+     * @return active
+     */
+    public boolean isActive() {
+        return active;
     }
 }

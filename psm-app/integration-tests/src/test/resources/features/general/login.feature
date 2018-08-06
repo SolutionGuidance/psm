@@ -6,5 +6,5 @@ Feature: Log into the Application as Provider
     Given I have the application open in my browser
     And I enter my username and password
     When I click on Login
-    Then I should see my dashboard page
+    Then I should be logged in
 

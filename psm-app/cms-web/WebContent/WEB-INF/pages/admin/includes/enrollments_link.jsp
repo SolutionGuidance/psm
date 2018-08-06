@@ -5,7 +5,7 @@
     </a>
   </c:when>
   <c:otherwise>
-    <a href="<c:url value="/provider/dashboard/drafts" />">
+    <a href="<c:url value="/provider/dashboard/" />">
       Enrollments
     </a>
   </c:otherwise>

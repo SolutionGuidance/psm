@@ -308,7 +308,10 @@ public class ProviderDashboardController extends BaseController {
      */
     @RequestMapping(value = "/list/filter", method = RequestMethod.GET)
     public ModelAndView filterTicketList(ProviderSearchCriteria criteria) {
-        return searchTickets(criteria, "provider/dashboard/list");
+        ModelAndView mv = searchTickets(criteria, "provider/dashboard/list_by_status");
+        mv.addObject("statusFilter", "All");
+        mv.addObject("listType", "All Enrollments");
+        return mv;
     }
 
     /**

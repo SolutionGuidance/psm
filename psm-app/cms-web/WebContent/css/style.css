@@ -4763,7 +4763,7 @@ p.confirm {
 }
 
 .fixedWidthTable tr td {
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* PESP-160, PESP-162 */

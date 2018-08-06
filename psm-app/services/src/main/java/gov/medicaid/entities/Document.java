@@ -40,9 +40,6 @@ public class Document implements Cloneable, Serializable {
     @Column(name = "profile_id")
     private long profileId;
 
-    @Column(name = "ticket_id")
-    private long ticketId;
-
     private String type;
 
     private String filename;
@@ -115,14 +112,6 @@ public class Document implements Cloneable, Serializable {
 
     public void setProfileId(long profileId) {
         this.profileId = profileId;
-    }
-
-    public long getTicketId() {
-        return ticketId;
-    }
-
-    public void setTicketId(long ticketId) {
-        this.ticketId = ticketId;
     }
 
     public String getContentId() {

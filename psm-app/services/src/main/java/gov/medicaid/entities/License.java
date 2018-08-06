@@ -44,12 +44,6 @@ public class License implements Serializable {
     private long profileId;
 
     /**
-     * The owner ticket.
-     */
-    @Column(name = "ticket_id")
-    private long ticketId;
-
-    /**
      * The affiliate id if it belongs to a QP.
      */
     @Column(name = "affiliate_id")
@@ -178,14 +172,6 @@ public class License implements Serializable {
 
     public void setProfileId(long profileId) {
         this.profileId = profileId;
-    }
-
-    public long getTicketId() {
-        return ticketId;
-    }
-
-    public void setTicketId(long ticketId) {
-        this.ticketId = ticketId;
     }
 
     public String getObjectType() {

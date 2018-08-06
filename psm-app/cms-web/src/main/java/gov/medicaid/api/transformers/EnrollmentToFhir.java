@@ -14,7 +14,7 @@ public class EnrollmentToFhir implements Function<Enrollment, Task> {
         );
 
         Task task = new Task();
-        task.setId(Long.toString(enrollment.getTicketId()));
+        task.setId(Long.toString(enrollment.getEnrollmentId()));
         task.setStatus(
                 new EnrollmentStatusToFhir().apply(enrollment.getStatus())
         );

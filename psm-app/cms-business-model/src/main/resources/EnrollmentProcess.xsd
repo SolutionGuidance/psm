@@ -44,6 +44,7 @@
                    type="tns:EditHistoryType"
                    maxOccurs="unbounded"
                    minOccurs="0"/>
+          <element name="Active" type="boolean" maxOccurs="1" minOccurs="1" />
         </sequence>
       </extension>
     </complexContent>

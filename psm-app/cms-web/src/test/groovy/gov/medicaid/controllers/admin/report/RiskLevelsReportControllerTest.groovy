@@ -34,9 +34,10 @@ class RiskLevelsReportControllerTest extends Specification {
         Date.from(d.atZone(ZoneId.systemDefault()).toInstant())
     }
 
-    private makeEnrollment(ticketId, statusDate) {
+    private makeEnrollment(enrollmentId, statusDate) {
         return new Enrollment([
-            ticketId: ticketId,
+            enrollmentId: enrollmentId,
+            profileReferenceId: enrollmentId,
             statusDate: toDate(statusDate)
         ])
     }
@@ -62,13 +63,13 @@ class RiskLevelsReportControllerTest extends Specification {
     }
 
     private setupTestProviders() {
-        enrollmentService.getProviderDetailsByTicket(1, false) >> makeProvider(ViewStatics.LOW_RISK)
-        enrollmentService.getProviderDetailsByTicket(2, false) >> makeProvider(ViewStatics.LOW_RISK)
-        enrollmentService.getProviderDetailsByTicket(3, false) >> makeProvider(ViewStatics.MODERATE_RISK)
-        enrollmentService.getProviderDetailsByTicket(4, false) >> makeProvider(ViewStatics.HIGH_RISK)
-        enrollmentService.getProviderDetailsByTicket(5, false) >> makeProvider(ViewStatics.HIGH_RISK)
-        enrollmentService.getProviderDetailsByTicket(6, false) >> makeProvider(ViewStatics.MODERATE_RISK)
-        enrollmentService.getProviderDetailsByTicket(7, false) >> makeProvider(ViewStatics.LOW_RISK)
+        enrollmentService.getProviderDetails(1, false) >> makeProvider(ViewStatics.LOW_RISK)
+        enrollmentService.getProviderDetails(2, false) >> makeProvider(ViewStatics.LOW_RISK)
+        enrollmentService.getProviderDetails(3, false) >> makeProvider(ViewStatics.MODERATE_RISK)
+        enrollmentService.getProviderDetails(4, false) >> makeProvider(ViewStatics.HIGH_RISK)
+        enrollmentService.getProviderDetails(5, false) >> makeProvider(ViewStatics.HIGH_RISK)
+        enrollmentService.getProviderDetails(6, false) >> makeProvider(ViewStatics.MODERATE_RISK)
+        enrollmentService.getProviderDetails(7, false) >> makeProvider(ViewStatics.LOW_RISK)
     }
 
     def "csv with no enrollments - header"() {
@@ -148,7 +149,7 @@ class RiskLevelsReportControllerTest extends Specification {
             makeEnrollment(1, noonMiddleThisMonth),
         ])
         1 * enrollmentService.searchEnrollments(_) >> results
-        enrollmentService.getProviderDetailsByTicket(1, false) >>
+        enrollmentService.getProviderDetails(1, false) >>
             new ProviderProfile()
 
         when:

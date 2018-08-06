@@ -260,7 +260,7 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Starts the renewal process using an old ticket.
      *
-     * @param ticketId the profile to renew
+     * @param enrollmentId the profile to renew
      * @param model    the request model
      * @return the enrollment start page.
      * @throws PortalServiceException for any errors encountered
@@ -269,10 +269,10 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/renewTicket", method = RequestMethod.GET)
     public ModelAndView startRenewalUsingTicket(
-            @RequestParam("id") long ticketId,
+            @RequestParam("id") long enrollmentId,
             Model model
     ) throws PortalServiceException {
-        Enrollment oldTicket = enrollmentService.getTicketDetails(ControllerHelper.getCurrentUser(), ticketId);
+        Enrollment oldTicket = enrollmentService.getTicketDetails(ControllerHelper.getCurrentUser(), enrollmentId);
         long profileId = oldTicket.getProfileReferenceId();
         Enrollment ticket = enrollmentService.renewProfile(ControllerHelper.getCurrentUser(), profileId);
         EnrollmentType enrollment = XMLAdapter.toXML(ticket);
@@ -283,7 +283,7 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Starts the renewal process using an old ticket.
      *
-     * @param ticketIds the profile(s) to renew
+     * @param enrollmentId the profile(s) to renew
      * @return the enrollment start page.
      * @endpoint "/provider/enrollment/bulkRenewTickets"
      * @verb POST
@@ -291,7 +291,7 @@ public class EnrollmentPageFlowController extends BaseController {
     @RequestMapping(value = "/bulkRenewTickets", method = RequestMethod.POST)
     @ResponseBody
     public StatusDTO bulkRenewTickets(
-            @RequestParam("ids") long[] ticketIds
+            @RequestParam("ids") long[] enrollmentIds
     ) {
         Set<Long> profileIds = new HashSet<>();
         StatusDTO results = new StatusDTO();
@@ -303,28 +303,28 @@ public class EnrollmentPageFlowController extends BaseController {
             List<String> invalidTickets = new ArrayList<>();
             List<String> invalidDataTickets = new ArrayList<>();
 
-            for (long ticketId : ticketIds) {
-                Enrollment oldTicket = enrollmentService.getTicketDetails(user, ticketId);
+            for (long enrollmentId : enrollmentIds) {
+                Enrollment oldTicket = enrollmentService.getTicketDetails(user, enrollmentId);
                 if (oldTicket.getStatus() != null
                         && oldTicket.getStatus().getDescription().equals(ViewStatics.APPROVED_STATUS)) {
                     long profileId = oldTicket.getProfileReferenceId();
                     if (profileId > 0) {
                         profileIds.add(profileId);
                     } else {
-                        invalidDataTickets.add("" + ticketId);
+                        invalidDataTickets.add("" + enrollmentId);
                     }
                 } else {
-                    invalidTickets.add("" + ticketId);
+                    invalidTickets.add("" + enrollmentId);
                 }
             }
 
             Long[] tickets = enrollmentService.renewalProfiles(user, profileIds);
 
-            for (Long ticketId : tickets) {
-                Enrollment ticket = enrollmentService.getTicketDetails(user, ticketId);
+            for (Long enrollmentId : tickets) {
+                Enrollment ticket = enrollmentService.getTicketDetails(user, enrollmentId);
                 EnrollmentType enrollment = XMLAdapter.toXML(ticket);
-                if (ticketId.intValue() == 0) {
-                    invalidDataTickets.add("" + ticketId);
+                if (enrollmentId.intValue() == 0) {
+                    invalidDataTickets.add("" + enrollmentId);
                 } else {
                     try {
                         SubmitTicketRequest serviceRequest = new SubmitTicketRequest();
@@ -337,17 +337,17 @@ public class EnrollmentPageFlowController extends BaseController {
 
                         if (!"SUCCESS".equals(serviceResponse.getStatus())) {
                             if (Validity.SUPERSEDED.name().equals(serviceResponse.getStatus())) {
-                                supersededList.add("" + ticketId);
+                                supersededList.add("" + enrollmentId);
                             } else {
-                                failedList.add("" + ticketId);
+                                failedList.add("" + enrollmentId);
                             }
                         } else {
-                            successfulList.add("" + ticketId);
+                            successfulList.add("" + enrollmentId);
                         }
                     } catch (Exception e) {
                         failedList.add(enrollment.getProviderInformation().getNPI());
-                        if (!successfulList.contains(ticketId)) {
-                            enrollmentService.removeDraftTicket(user, ticketId);
+                        if (!successfulList.contains(enrollmentId)) {
+                            enrollmentService.removeDraftTicket(user, enrollmentId);
                         }
                     }
                 }
@@ -641,7 +641,7 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Shows the print preview for the given ticket.
      *
-     * @param ticketId the ticket to be exported
+     * @param enrollmentId the ticket to be exported
      * @return the print preview
      * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/preview"
@@ -649,16 +649,16 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/preview", method = RequestMethod.GET)
     public ModelAndView showPreview(
-            @RequestParam("id") long ticketId
+            @RequestParam("id") long enrollmentId
     ) throws PortalServiceException {
-        EnrollmentType ticket = getTicket(ticketId);
+        EnrollmentType ticket = getTicket(enrollmentId);
         return showPrint(ticket);
     }
 
     /**
      * Shows the print preview for the given ticket.
      *
-     * @param ticketId the ticket to be exported
+     * @param enrollmentId the ticket to be exported
      * @return the print preview
      * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/reviewPrint"
@@ -666,9 +666,9 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/reviewPrint", method = RequestMethod.GET)
     public ModelAndView reviewPrint(
-            @RequestParam("id") long ticketId
+            @RequestParam("id") long enrollmentId
     ) throws PortalServiceException {
-        EnrollmentType ticket = getTicket(ticketId);
+        EnrollmentType ticket = getTicket(enrollmentId);
         ModelAndView mv = showPage(ViewStatics.SUMMARY_INFORMATION, ticket);
         mv.setViewName("admin/service_agent_view_enrollment_details");
         return mv;
@@ -677,7 +677,7 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Exports the ticket with the given id.
      *
-     * @param ticketId the ticket to be exported
+     * @param enrollmentId the ticket to be exported
      * @param response the servlet response
      * @throws IOException            for read/write errors
      * @throws PortalServiceException for any errors encountered
@@ -686,10 +686,10 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/exportTicket", method = RequestMethod.GET)
     public void exportTicket(
-            @RequestParam("id") long ticketId,
+            @RequestParam("id") long enrollmentId,
             HttpServletResponse response
     ) throws PortalServiceException, IOException {
-        EnrollmentType ticket = getTicket(ticketId);
+        EnrollmentType ticket = getTicket(enrollmentId);
         export(ticket, response);
     }
 
@@ -784,7 +784,7 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Loads the given enrollment by id.
      *
-     * @param ticketId the enrollment ticket id
+     * @param enrollmentId the enrollment ticket id
      * @param model    the view model
      * @return the edit ticket page
      * @throws PortalServiceException for any errors encountered
@@ -793,10 +793,10 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/view", method = RequestMethod.GET)
     public ModelAndView viewTicket(
-            @RequestParam("id") long ticketId,
+            @RequestParam("id") long enrollmentId,
             Model model
     ) throws PortalServiceException {
-        EnrollmentType enrollment = getTicket(ticketId);
+        EnrollmentType enrollment = getTicket(enrollmentId);
         model.addAttribute("enrollment", enrollment);
         String page = enrollment.getProgressPage();
         if (isSubmitted(enrollment.getStatus())) {
@@ -817,7 +817,7 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Loads the given enrollment by id.
      *
-     * @param ticketId the enrollment ticket id
+     * @param enrollmentId the enrollment ticket id
      * @param model    the view model
      * @return the edit ticket page
      * @throws PortalServiceException for any errors encountered
@@ -826,10 +826,10 @@ public class EnrollmentPageFlowController extends BaseController {
      */
     @RequestMapping(value = "/reopen", method = RequestMethod.GET)
     public ModelAndView modifySubmittedTicket(
-            @RequestParam("id") long ticketId,
+            @RequestParam("id") long enrollmentId,
             Model model
     ) throws PortalServiceException {
-        EnrollmentType enrollment = getTicket(ticketId);
+        EnrollmentType enrollment = getTicket(enrollmentId);
         enrollment.setReopenedForEdit("Y");
         model.addAttribute("enrollment", enrollment);
         return showPage(null, enrollment);
@@ -838,19 +838,19 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Retrieves the ticket.
      *
-     * @param ticketId ticket identifier
+     * @param enrollmentId ticket identifier
      * @return the ticket
      * @throws PortalServiceException for any errors encountered
      */
     private EnrollmentType getTicket(
-            long ticketId
+            long enrollmentId
     ) throws PortalServiceException {
         CMSPrincipal principal = ControllerHelper.getPrincipal();
         return enrollmentWebService.getTicketDetails(
                 principal.getUsername(),
                 principal.getAuthenticatedBySystem().name(),
                 principal.getUser().getProxyForNPI(),
-                ticketId
+                enrollmentId
         );
     }
 
@@ -938,12 +938,11 @@ public class EnrollmentPageFlowController extends BaseController {
         }
 
         if (errors.isEmpty()) {
-            long ticketId = BinderUtils.getAsLong(enrollment.getObjectId());
-            if (ticketId > 0) {
-                enrollmentService.addNoteToTicket(principal.getUser(), ticketId, text);
+            long enrollmentId = BinderUtils.getAsLong(enrollment.getObjectId());
+            if (enrollmentId > 0) {
+                enrollmentService.addNoteToTicket(principal.getUser(), enrollmentId, text);
             } else {
-                long profileId = BinderUtils.getAsLong(enrollment.getProviderInformation().getObjectId());
-                enrollmentService.addNoteToProfile(principal.getUser(), profileId, text);
+                throw new PortalServiceException("Requires an enrollment to add a note");
             }
 
             return new ModelAndView("redirect:/provider/enrollment/jump?page=Notes");
@@ -1273,10 +1272,10 @@ public class EnrollmentPageFlowController extends BaseController {
         if (isSubmitted(enrollment.getStatus()) && !reopened) {
             readOnly = true;
         } else {
-            long ticketId = BinderUtils.getAsLong(enrollment.getObjectId());
-            if (ticketId > 0) {
+            long enrollmentId = BinderUtils.getAsLong(enrollment.getObjectId());
+            if (enrollmentId > 0) {
                 long profileId = BinderUtils.getAsLong(enrollment.getProviderInformation().getObjectId());
-                Validity validity = getEnrollmentService().getSubmissionValidity(ticketId, profileId);
+                Validity validity = getEnrollmentService().getSubmissionValidity(enrollmentId, profileId);
                 if (validity == Validity.STALE) {
                     ControllerHelper.popup("staleTicket");
                 }
@@ -1299,10 +1298,10 @@ public class EnrollmentPageFlowController extends BaseController {
 
         } else if (ViewStatics.NOTES_PAGE.equals(pageName)) {
 
-            long ticketId = BinderUtils.getAsLong(enrollment.getObjectId());
+            long enrollmentId = BinderUtils.getAsLong(enrollment.getObjectId());
             // always get from database as notes are directly managed
-            if (ticketId > 0) {
-                List<Note> allNotes = enrollmentService.findNotes(ticketId);
+            if (enrollmentId > 0) {
+                List<Note> allNotes = enrollmentService.findNotes(enrollmentId);
                 mv.addObject("profileNotes", allNotes);
             } else {
                 throw new PortalServiceRuntimeException("Missing ticket Id. Only saved requests can have notes.");

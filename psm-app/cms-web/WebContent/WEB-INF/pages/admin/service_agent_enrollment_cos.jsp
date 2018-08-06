@@ -26,13 +26,13 @@
             <span>Enrollment Category of Service</span>
           </div>
           <div class="head">
-            <h1>Category Of Service - ${profile.entity.providerType.description} - ${profile.entity.name}</h1>
+            <h1>Category Of Service - ${enrollment.profile.entity.providerType.description} - ${enrollment.profile.entity.name}</h1>
           </div>
           <div class="tabSection">
             <c:set var="actionPath" value="${ctx}/agent/enrollment/addCOS"/>
             <form action="${actionPath}" method="post" id="cosForm">
               <sec:csrfInput />
-              <input type="hidden" name="id" value="${profile.profileId}" />
+              <input type="hidden" name="id" value="${enrollment.enrollmentId}" />
               <div class="detailPanel">
                 <c:forEach var="cos" items="${existingServices}" varStatus="loop">
                   <div class="section">
@@ -61,7 +61,7 @@
                         <c:if test="${loop.last}">
                           <a href="javascript:;" onclick="copyCOS(${cos.id});" class="greyBtn"><span class="text">Clone</span></a>
                         </c:if>
-                        <a href="javascript:;" onclick="deleteCOS(${cos.id}, ${profile.profileId});" class="greyBtn"><span class="text">Delete</span></a>
+                        <a href="javascript:;" onclick="deleteCOS(${cos.id}, ${enrollment.enrollmentId});" class="greyBtn"><span class="text">Delete</span></a>
                       </div>
                     </div>
                   </div>

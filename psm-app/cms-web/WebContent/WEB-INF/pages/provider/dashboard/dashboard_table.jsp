@@ -97,13 +97,13 @@
   <tbody>
     <c:forEach var="item" items="${results.items}" varStatus="status">
       <c:url var="viewTicketLink" value="/provider/enrollment/view">
-        <c:param name="id" value="${item.ticketId}" />
+        <c:param name="id" value="${item.enrollmentId}" />
       </c:url>
       <c:url var="previewTicketLink" value="/provider/enrollment/preview">
-        <c:param name="id" value="${item.ticketId}" />
+        <c:param name="id" value="${item.enrollmentId}" />
       </c:url>
       <c:url var="exportTicketLink" value="/provider/enrollment/exportTicket">
-        <c:param name="id" value="${item.ticketId}" />
+        <c:param name="id" value="${item.enrollmentId}" />
       </c:url>
       <c:set
         var="statusCls"

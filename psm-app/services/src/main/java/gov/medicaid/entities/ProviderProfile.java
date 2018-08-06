@@ -35,23 +35,17 @@ import java.util.List;
 public class ProviderProfile implements Cloneable, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "control_no")
-    private long id;
-
-    @Column(
-            name = "profile_id",
-            nullable = false
-    )
-    private long profileId = 0;
+    @Column(name = "profile_id")
+    private long profileId;
 
     /**
-     * References the ticket for this request, if 0, this means it is already approved.
+     * References the enrollment for this request
      */
     @Column(
-            name = "ticket_id",
+            name = "enrollment_id",
             nullable = false
     )
-    private long ticketId = 0;
+    private long enrollmentId = 0;
 
     @Column(name = "effective_date")
     private Date effectiveDate;
@@ -152,9 +146,6 @@ public class ProviderProfile implements Cloneable, Serializable {
     private Entity entity;
 
     @Transient
-    private ProviderStatement statement;
-
-    @Transient
     private List<DesignatedContact> designatedContacts;
 
     /**
@@ -162,12 +153,6 @@ public class ProviderProfile implements Cloneable, Serializable {
      */
     @Transient
     private List<Affiliation> affiliations;
-
-    /**
-     * Documents the applicant agreed to.
-     */
-    @Transient
-    private List<AcceptedAgreements> agreements;
 
     /**
      * Provider setup.
@@ -205,15 +190,6 @@ public class ProviderProfile implements Cloneable, Serializable {
     @Column(name = "bed_count_effective_date")
     private Date numberOfBedsEffectiveDate;
 
-    /**
-     * Only for approved profiles, the ticket that was used for this approved request.
-     */
-    @Column(
-            name = "reference_ticket_id",
-            nullable = false
-    )
-    private long referenceTicketId = 0;
-
     @Column(name = "owner_id")
     private String ownerId;
 
@@ -241,18 +217,7 @@ public class ProviderProfile implements Cloneable, Serializable {
     @Column(name = "last_modified_at")
     private Date modifiedOn;
 
-    @Transient
-    private List<ProviderCategoryOfService> categoriesOfServiceTypes;
-
     public ProviderProfile() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public long getProfileId() {
@@ -263,20 +228,12 @@ public class ProviderProfile implements Cloneable, Serializable {
         this.profileId = profileId;
     }
 
-    public long getTicketId() {
-        return ticketId;
+    public long getEnrollmentId() {
+        return enrollmentId;
     }
 
-    public void setTicketId(long ticketId) {
-        this.ticketId = ticketId;
-    }
-
-    public long getReferenceTicketId() {
-        return referenceTicketId;
-    }
-
-    public void setReferenceTicketId(long referenceTicketId) {
-        this.referenceTicketId = referenceTicketId;
+    public void setEnrollmentId(long enrollmentId) {
+        this.enrollmentId = enrollmentId;
     }
 
     public List<Affiliation> getAffiliations() {
@@ -397,22 +354,6 @@ public class ProviderProfile implements Cloneable, Serializable {
 
     public void setPreviousExclusionInd(String previousExclusionInd) {
         this.previousExclusionInd = previousExclusionInd;
-    }
-
-    public List<AcceptedAgreements> getAgreements() {
-        return agreements;
-    }
-
-    public void setAgreements(List<AcceptedAgreements> agreements) {
-        this.agreements = agreements;
-    }
-
-    public ProviderStatement getStatement() {
-        return statement;
-    }
-
-    public void setStatement(ProviderStatement statement) {
-        this.statement = statement;
     }
 
     public List<PayToProvider> getPayToProviders() {
@@ -607,13 +548,5 @@ public class ProviderProfile implements Cloneable, Serializable {
 
     public void setPhysicalAndOccupationalTherapyInd(String physicalAndOccupationalTherapyInd) {
         this.physicalAndOccupationalTherapyInd = physicalAndOccupationalTherapyInd;
-    }
-
-    public List<ProviderCategoryOfService> getCategoriesOfServiceTypes() {
-        return categoriesOfServiceTypes;
-    }
-
-    public void setCategoriesOfServiceTypes(List<ProviderCategoryOfService> categoriesOfServiceTypes) {
-        this.categoriesOfServiceTypes = categoriesOfServiceTypes;
     }
 }

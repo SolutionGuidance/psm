@@ -1982,4 +1982,201 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue949-remove-provider-reference-ticket-id">
+    <dropColumn tableName="provider_profiles"
+      columnName="reference_ticket_id"/>
+    <rollback>
+      <addColumn tableName="provider_profiles">
+        <column name="reference_ticket_id"
+          type="bigint"
+          defaultValue="0">
+          <constraints nullable="false"/>
+        </column>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-provider-profiles">
+    <loadUpdateData file="seeds/20180731_provider_profiles.csv"
+      primaryKey="control_no"
+      tableName="provider_profiles" />
+  </changeSet>
+  
+  <changeSet author="" id="issue949-remove-provider-profile-control-no">
+    <dropColumn tableName="provider_profiles"
+      columnName="profile_id"/>
+    <renameColumn tableName="provider_profiles"
+      oldColumnName="control_no"
+      newColumnName="profile_id"/>
+    <rollback>
+      <renameColumn tableName="provider_profiles"
+        newColumnName="control_no"
+        oldColumnName="profile_id"/>
+      <addColumn tableName="provider_profiles">
+        <column name="profile_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-entities">
+    <loadUpdateData file="seeds/20180731_entities.csv"
+      primaryKey="entity_id"
+      tableName="entities" />
+  </changeSet>
+
+  <changeSet author="" id="issue949-enrollments">
+    <loadUpdateData file="seeds/20180731_enrollments.csv"
+      primaryKey="enrollment_id"
+      tableName="enrollments" />
+  </changeSet>
+
+  <changeSet author="" id="issue949-rename-provider-profile-ticket-id">
+    <renameColumn tableName="provider_profiles"
+      oldColumnName="ticket_id"
+      newColumnName="enrollment_id"/>
+    <rollback>
+      <renameColumn tableName="provider_profiles"
+        newColumnName="enrollment_id"
+        oldColumnName="ticket_id"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-remove-accepted-agreemet-profile-link">
+    <dropColumn tableName="accepted_agreements"
+      columnName="profile_id"/>
+    <rollback>
+      <addColumn tableName="accepted_agreements">
+        <column name="profile_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-remove-affiliation-enrollment-link">
+    <dropColumn tableName="affiliations"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="affiliations">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-remove-designated-contacts-enrollment-link">
+    <dropColumn tableName="designated_contacts"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="designated_contacts">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-remove-documents-enrollment-link">
+    <dropColumn tableName="documents"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="documents">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-documents">
+    <loadUpdateData file="seeds/20180802_documents.csv"
+      primaryKey="document_id"
+      tableName="documents" />
+  </changeSet>
+
+  <changeSet author="" id="issue949-remove-entities-enrollment-link">
+    <dropColumn tableName="entities"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="entities">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-remove-licenses-enrollment-link">
+    <dropColumn tableName="licenses"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="licenses">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-remove-ownership-info-enrollment-link">
+    <dropColumn tableName="ownership_info"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="ownership_info">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-remove-pay-to-providers-enrollment-link">
+    <dropColumn tableName="pay_to_providers"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="pay_to_providers">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-remove-provider-services-enrollment-link">
+    <dropColumn tableName="provider_services"
+      columnName="ticket_id"/>
+    <rollback>
+      <addColumn tableName="provider_services">
+        <column name="ticket_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-remove-notes-profile-link">
+    <dropColumn tableName="notes"
+      columnName="profile_id"/>
+    <rollback>
+      <addColumn tableName="notes">
+        <column name="profile_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-remove-provider-category-of-service-approvals-profile-link">
+    <dropColumn tableName="provider_category_of_service_approvals"
+      columnName="profile_id"/>
+    <rollback>
+      <addColumn tableName="provider_category_of_service_approvals">
+        <column name="profile_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-remove-provider-statements-profile-link">
+    <dropColumn tableName="provider_statements"
+      columnName="profile_id"/>
+    <rollback>
+      <addColumn tableName="provider_statements">
+        <column name="profile_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

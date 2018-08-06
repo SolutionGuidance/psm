@@ -67,7 +67,7 @@ public class TaskResourceProvider implements IResourceProvider {
 
         return results.getItems()
                 .stream()
-                .map(result -> enrollmentIdToTask(result.getTicketId()))
+                .map(result -> enrollmentIdToTask(result.getEnrollmentId()))
                 .collect(Collectors.toList());
     }
 

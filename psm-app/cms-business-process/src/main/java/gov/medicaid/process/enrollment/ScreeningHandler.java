@@ -25,6 +25,7 @@ import gov.medicaid.domain.rules.CMSKnowledgeUtility;
 import gov.medicaid.domain.rules.GlobalLookups;
 import gov.medicaid.domain.rules.inference.LookupEntry;
 import gov.medicaid.entities.CMSUser;
+import gov.medicaid.entities.Enrollment;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
@@ -93,11 +94,11 @@ public class ScreeningHandler extends GenericHandler {
 
         // merge rule changes to the model
         try {
-            providerService.saveEnrollmentDetails(XMLAdapter.fromXML(systemUser, enrollment));
-            long ticketId = Long.parseLong(enrollment.getObjectId());
+            Enrollment updatedTicket =
+                providerService.saveEnrollmentDetails(XMLAdapter.fromXML(systemUser, enrollment));
             ProviderInformationType providerInformation = enrollment.getProviderInformation();
             String reviewer = providerInformation.getReviewedBy(); // transient field (should really add to DB)
-            ProviderInformationType updatedInfo = XMLAdapter.toXML(providerService.getTicketDetails(systemUser, ticketId)).getProviderInformation();
+            ProviderInformationType updatedInfo = XMLAdapter.toXML(updatedTicket).getProviderInformation();
             updatedInfo.setReviewedBy(reviewer);
             enrollment.setProviderInformation(updatedInfo);
         } catch (PortalServiceException e) {

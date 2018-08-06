@@ -77,10 +77,10 @@ public class ExternalScreeningTimerBean extends BaseService {
             logger.info(String.format(
                 "Running automatic re-screenings for enrollment " +
                     "with enrollment_id %d.",
-                enrollment.getTicketId()
+                enrollment.getEnrollmentId()
             ));
             leieExternalScreener.screen(
-                enrollment.getTicketId(),
+                enrollment.getEnrollmentId(),
                 enrollment.getNpi()
             );
         }

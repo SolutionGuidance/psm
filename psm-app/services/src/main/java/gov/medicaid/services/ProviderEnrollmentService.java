@@ -67,21 +67,6 @@ public interface ProviderEnrollmentService {
      * This is the service method to be called after the process has completed
      * and resulted in a rejected change.
      *
-     * @param user      the user who rejected the request
-     * @param profileId the profile to be suspended
-     * @param reason    the reason for rejecting the request
-     * @throws PortalServiceException for any errors encountered
-     */
-    void suspendProvider(
-            CMSUser user,
-            long profileId,
-            String reason
-    ) throws PortalServiceException;
-
-    /**
-     * This is the service method to be called after the process has completed
-     * and resulted in a rejected change.
-     *
      * @param user     the user who rejected the request
      * @param ticketId the ticket id that was rejected
      * @param reason   the reason for rejecting the request
@@ -110,7 +95,7 @@ public interface ProviderEnrollmentService {
     /**
      * This is the service method to be called after the process has completed
      * and resulted in an approved change, but the approver made some manual
-     * changes to the data so it has to be saved first.
+     * changes to the data so we don't reload from database first.
      *
      * @param user   the user who approved the request
      * @param ticket the ticket that will be approved (after saving it)
@@ -345,21 +330,6 @@ public interface ProviderEnrollmentService {
     ) throws PortalServiceException;
 
     /**
-     * Creates a note on a profile, the note will also be visible on all active
-     * requests.
-     *
-     * @param user      the user performing the action
-     * @param profileId the request identifier
-     * @param text      the note text
-     * @throws PortalServiceException for any errors encountered
-     */
-    void addNoteToProfile(
-            CMSUser user,
-            long profileId,
-            String text
-    ) throws PortalServiceException;
-
-    /**
      * Used by data onboarding service to fully import a mapped profile.
      *
      * @param user            the user performing the operation
@@ -422,8 +392,9 @@ public interface ProviderEnrollmentService {
      *
      * @param enrollment the enrollment to be saved
      * @throws PortalServiceException for any errors encountered
+     * @return a new enrollment with the details
      */
-    void saveEnrollmentDetails(
+    Enrollment saveEnrollmentDetails(
             Enrollment enrollment
     ) throws PortalServiceException;
 
@@ -438,19 +409,6 @@ public interface ProviderEnrollmentService {
             CMSUser currentUser,
             Set<Long> profileIds
     );
-
-    /**
-     * Gets the COS associated with a profile.
-     *
-     * @param user      CMS user
-     * @param profileId profile id.
-     * @return the list of services
-     * @throws PortalServiceException for any errors encountered
-     */
-    List<ProviderCategoryOfService> getProviderCategoryOfServices(
-            CMSUser user,
-            long profileId
-    ) throws PortalServiceException;
 
     /**
      * Adds COS to the profile.
@@ -558,29 +516,25 @@ public interface ProviderEnrollmentService {
      * @return the related entity to the profile
      */
     Entity findEntityByProviderKey(
-            Long profileId,
-            Long ticketId
+            long profileId
     );
 
     /**
      * Retrieves the related attachments for the given profile key.
      *
      * @param profileId the profile id of the provider
-     * @param ticketId  the request ticket id
      * @return the related attachments to the profile
      */
-    List<Document> findAttachments(
-            Long profileId,
-            Long ticketId);
+    List<Document> findAttachments(long profileId);
 
     /**
-     * Retrieves the provider details for the given ticket.
+     * Retrieves the provider details.
      *
-     * @param ticketId      the ticket to search for
+     * @param profileId     the profile to search for
      * @param fetchChildren if true, the entire object tree is retrieved
      * @return the ticket details
      */
-    ProviderProfile getProviderDetailsByTicket(
-            long ticketId,
+    ProviderProfile getProviderDetails(
+            long profileId,
             boolean fetchChildren);
 }

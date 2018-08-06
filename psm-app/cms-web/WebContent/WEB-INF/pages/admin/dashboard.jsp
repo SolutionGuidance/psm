@@ -56,7 +56,7 @@
                     <c:forEach items="${profiles}" var="item">
                       <tr>
                         <td>
-                          <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">${item.npi}</a>
+                          <a href="${ctx}/provider/enrollment/view?id=${item.enrollmentId}">${item.npi}</a>
                         </td>
                         <td>${item.providerType}</td>
                         <td>${item.providerName}</td>

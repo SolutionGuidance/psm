@@ -31,9 +31,9 @@ class ReviewedDocumentsReportControllerTest extends Specification {
         Date.from(d.atZone(ZoneId.systemDefault()).toInstant())
     }
 
-    private makeEnrollment(ticketId, statusDate) {
+    private makeEnrollment(profielId, statusDate) {
         return new Enrollment([
-            ticketId: ticketId,
+            profileReferenceId: profielId,
             statusDate: toDate(statusDate)
         ])
     }
@@ -54,13 +54,13 @@ class ReviewedDocumentsReportControllerTest extends Specification {
 
     // It doesn't matter that it doesn't actually return documents
     private setupTestDocuments() {
-        enrollmentService.findAttachments(null, 1) >> (0..<2)
-        enrollmentService.findAttachments(null, 2) >> (0..<1)
-        enrollmentService.findAttachments(null, 3) >> (0..<4)
-        enrollmentService.findAttachments(null, 4) >> (0..<1)
-        enrollmentService.findAttachments(null, 5) >> (0..<2)
-        enrollmentService.findAttachments(null, 6) >> (0..<0)
-        enrollmentService.findAttachments(null, 7) >> (0..<8)
+        enrollmentService.findAttachments(1) >> (0..<2)
+        enrollmentService.findAttachments(2) >> (0..<1)
+        enrollmentService.findAttachments(3) >> (0..<4)
+        enrollmentService.findAttachments(4) >> (0..<1)
+        enrollmentService.findAttachments(5) >> (0..<2)
+        enrollmentService.findAttachments(6) >> (0..<0)
+        enrollmentService.findAttachments(7) >> (0..<8)
     }
 
     def "csv with no enrollments - header"() {

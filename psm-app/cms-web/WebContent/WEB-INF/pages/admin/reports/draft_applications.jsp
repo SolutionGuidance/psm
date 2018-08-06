@@ -50,8 +50,8 @@
                   <c:forEach var="enrollment" items="${enrollmentMonth.enrollments}">
                   <tr class="reportRow">
                     <td class="reportDatum nonedisplay" reportField="month" reportValue="${enrollmentMonth.month}"></td>
-                    <td class="reportDatum" reportField="ticketId" reportValue="${enrollment.ticketId}">
-                      ${enrollment.ticketId}
+                    <td class="reportDatum" reportField="enrollmentId" reportValue="${enrollment.enrollmentId}">
+                      ${enrollment.enrollmentId}
                     </td>
                     <td class="reportDatum" reportField="createdOn" reportValue="${enrollment.createdOn}">
                       <fmt:formatDate value="${enrollment.createdOn}" pattern="dd MMMM yyyy" />

@@ -81,7 +81,7 @@ public class RejectedHandler extends GenericHandler {
         try {
             Enrollment ticket = providerService.getTicketByProcessInstanceId(user, processId);
             String statusReason = model.getEnrollmentStatus().getStatusReason();
-            providerService.rejectTicket(user, ticket.getTicketId(), statusReason);
+            providerService.rejectTicket(user, ticket.getEnrollmentId(), statusReason);
 
             Event e = new Event();
             e.setCreatedBy(actorId);
@@ -89,7 +89,7 @@ public class RejectedHandler extends GenericHandler {
             e.setId(0);
             e.setNpi(model.getEnrollment().getProviderInformation().getNPI());
             e.setStatus("03");
-            e.setTicketId(ticket.getTicketId());
+            e.setTicketId(ticket.getEnrollmentId());
             entityManager.persist(e);
 
             item.getResults().put("model", model);

@@ -16,7 +16,7 @@ class EnrollmentAcceptsEftToFhirTest extends Specification {
     def setup() {
         transformer = new EnrollmentAcceptsEftToFhir()
         enrollment = new Enrollment()
-        enrollment.ticketId = 123
+        enrollment.enrollmentId = 123
         enrollment.status = new EnrollmentStatus()
         enrollment.status.description = "Pending"
         enrollment.details = new ProviderProfile()

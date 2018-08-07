@@ -2165,4 +2165,19 @@
         oldColumnName="ticket_id"/>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue949-migrate-enrollment-profile-ids">
+    <sql>
+      UPDATE enrollments e
+      SET profile_reference_id = p.profile_id
+      FROM provider_profiles p
+      WHERE p.enrollment_id = e.enrollment_id;
+
+      UPDATE entities en
+      SET profile_id = p.profile_id
+      FROM provider_profiles p
+      WHERE p.enrollment_id = en.ticket_id;
+    </sql>
+    <rollback/>
+  </changeSet>
 </databaseChangeLog>

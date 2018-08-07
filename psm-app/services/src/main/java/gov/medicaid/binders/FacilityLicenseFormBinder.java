@@ -26,12 +26,12 @@ import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.CMSUser;
+import gov.medicaid.entities.CategoryOfService;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.License;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.ProviderService;
 import gov.medicaid.entities.ProviderType;
-import gov.medicaid.entities.ServiceCategory;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.util.Util;
@@ -189,9 +189,9 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
         List<String> selectedCategories = categories.getCategoryName();
         int i = 0;
 
-        List<ServiceCategory> services = getLookupService().findAllLookups(ServiceCategory.class);
+        List<CategoryOfService> services = getLookupService().findAllLookups(CategoryOfService.class);
         attr(mv, "serviceCategories", services);
-        for (ServiceCategory cat : services) {
+        for (CategoryOfService cat : services) {
             attr(mv, "category", i, cat.getDescription());
             if (selectedCategories.contains(cat.getDescription())) {
                 attr(mv, "category_selected", i, "Y");
@@ -373,7 +373,7 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
         if (categories != null) {
             List<String> names = categories.getCategoryName();
             for (String string : names) {
-                ServiceCategory cat = getLookupService().findLookupByDescription(ServiceCategory.class, string);
+                CategoryOfService cat = getLookupService().findLookupByDescription(CategoryOfService.class, string);
                 if (cat != null) {
                     ProviderService ps = new ProviderService();
                     ps.setCategory(cat);

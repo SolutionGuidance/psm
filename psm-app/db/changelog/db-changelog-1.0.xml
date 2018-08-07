@@ -1982,4 +1982,43 @@
     </rollback>
   </changeSet>
 
+  <changeSet author="" id="issue986-modify-provider-services-service-categories-fkey">
+    <dropForeignKeyConstraint
+        baseTableName="provider_services"
+        constraintName="provider_services_service_category_code_fkey" />
+    <renameColumn
+        columnDataType="varchar(2)"
+        newColumnName="category_of_service_code"
+        oldColumnName="service_category_code"
+        tableName="provider_services"/>
+    <addForeignKeyConstraint
+        baseColumnNames="category_of_service_code"
+        baseTableName="provider_services"
+        constraintName="provider_services_category_of_service_code_fkey"
+        referencedColumnNames="code"
+        referencedTableName="categories_of_service" />
+    <rollback>
+      <dropForeignKeyConstraint
+          baseTableName="provider_services"
+          constraintName="provider_services_category_of_service_code_fkey" />
+      <renameColumn
+          columnDataType="varchar(2)"
+          newColumnName="service_category_code"
+          oldColumnName="category_of_service_code"
+          tableName="provider_services"/>
+      <addForeignKeyConstraint
+          baseColumnNames="service_category_code"
+          baseTableName="provider_services"
+          constraintName="provider_services_service_category_code_fkey"
+          referencedColumnNames="code"
+          referencedTableName="service_categories" />
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue986-drop-table-service-categories">
+    <dropTable tableName="service_categories"/>
+    <rollback changeSetId="issue254-create-table-service-categories" changeSetAuthor="" />
+    <rollback changeSetId="issue254-seed-service-categories" changeSetAuthor="" />
+  </changeSet>
+
 </databaseChangeLog>

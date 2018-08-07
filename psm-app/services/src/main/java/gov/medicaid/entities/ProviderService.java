@@ -25,8 +25,8 @@ public class ProviderService implements Serializable {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "service_category_code")
-    private ServiceCategory category;
+    @JoinColumn(name = "category_of_service_code")
+    private CategoryOfService category;
 
     @Column(name = "profile_id", nullable = false)
     private long profileId = 0;
@@ -34,11 +34,11 @@ public class ProviderService implements Serializable {
     @Column(name = "ticket_id", nullable = false)
     private long ticketId = 0;
 
-    public ServiceCategory getCategory() {
+    public CategoryOfService getCategory() {
         return category;
     }
 
-    public void setCategory(ServiceCategory category) {
+    public void setCategory(CategoryOfService category) {
         this.category = category;
     }
 

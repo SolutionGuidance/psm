@@ -49,12 +49,6 @@ public class AdminStepDefinitions {
         adminSteps.openWriteNoteModal();
     }
 
-    @When("^I am on the COS page$")
-    public void i_am_on_the_cos_page() {
-        adminSteps.goToAdminDraftPage();
-        generalSteps.clickLinkAssertTitle(".cosLink", "Category of Service");
-    }
-
     @When("^I am on the Print Enrollment page$")
     public void i_am_on_the_print_enrollment_page() {
         adminSteps.goToAdminAllEnrollmentsPage();

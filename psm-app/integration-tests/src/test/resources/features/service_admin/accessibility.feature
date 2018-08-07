@@ -46,13 +46,6 @@ Feature: General Accessibility Checks for Admins
     Then I should have no accessibility issues
     And I should see enrollments
 
-  # fails: COS input field needs label or title
-  @ignore
-  Scenario: Admin COS Page
-    Given I am logged in as an admin
-    And I am on the COS page
-    Then I should have no accessibility issues
-
   # fails: print page is opened in a new window
   @ignore
   Scenario: Admin Print Enrollment Page

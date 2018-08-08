@@ -297,7 +297,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         String fromClause = "FROM ProviderProfile p LEFT JOIN p.riskLevel rl, Enrollment t LEFT JOIN t.requestType rt "
                 + "LEFT JOIN t.status ts, Entity e LEFT JOIN e.providerType pt WHERE p.profileId = t.profileReferenceId "
-                + "AND p.profileId = e.profileId ";
+                + "AND p.profileId = e.profileId AND e.ticketId = t.enrollmentId ";
 
         StringBuilder countQuery = new StringBuilder("SELECT count(*) " + fromClause);
         appendCriteria(countQuery, user, criteria);
@@ -513,7 +513,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         profile.setModifiedBy(ticket.getSubmittedBy().getUserId());
         profile.setModifiedOn(ticket.getStatusDate());
 
-        if (ticket.getRequestType().getDescription().equals(ViewStatics.ENROLLMENT_REQUEST)) {
+        if (ticket.getRequestType().getDescription().equals(ViewStatics.ENROLLMENT_REQUEST) ||
+                ticket.getRequestType().getDescription().equals(ViewStatics.RENEWAL_REQUEST) ||
+                ticket.getRequestType().getDescription().equals(ViewStatics.UPDATE_REQUEST)) {
             profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
             profile.setOwnerId(ticket.getSubmittedBy().getUserId());
             profile.setCreatedBy(ticket.getSubmittedBy().getUserId());
@@ -825,7 +827,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 + ") FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
                 + "WHERE e.ticketId = p.enrollmentId AND p.profileId = e.profileId and "
                 + (hasProxyForNpi ? "e.npi = :npi " : "p.ownerId = :ownerId ")
-                + "AND p.enrollmentId = 0 ORDER BY 5 DESC";
+                + "ORDER BY 5 DESC";
 
         Query items = getEm().createQuery(fetchQuery);
 
@@ -1147,7 +1149,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             if (user.getProxyForNPI() == null) {
                 Query q = getEm().createQuery(
                         "SELECT 1 FROM ProviderProfile p WHERE p.profileId = :profileId "
-                                + "AND p.enrollmentId = 0 AND p.ownerId = :username");
+                                + "AND p.ownerId = :username");
                 q.setParameter("username", user.getUserId());
                 q.setParameter("profileId", profileId);
                 List rs = q.getResultList();

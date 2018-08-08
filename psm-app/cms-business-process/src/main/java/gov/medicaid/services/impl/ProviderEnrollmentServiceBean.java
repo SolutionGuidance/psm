@@ -2297,7 +2297,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     ) throws PortalServiceException {
         ticket.setLastUpdatedBy(user);
         ProviderProfile details = ticket.getDetails();
-        ticket.setProfileReferenceId(details.getProfileId());
+
+        // When save is used to add, there's no details in the db yet, and we need to respect the fk
+        if (details.getProfileId() != 0) {
+            ticket.setProfileReferenceId(details.getProfileId());
+        }
         ticket = getEm().merge(ticket);
 
         if (insertDetails) {

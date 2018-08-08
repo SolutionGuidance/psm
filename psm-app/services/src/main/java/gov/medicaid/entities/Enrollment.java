@@ -81,11 +81,8 @@ public class Enrollment implements Serializable {
     /**
      * The profile id that was created by this ticket.
      */
-    @Column(
-            name = "profile_reference_id",
-            nullable = false
-    )
-    private long profileReferenceId = 0;
+    @Column(name = "profile_reference_id")
+    private Long profileReferenceId;
 
     /**
      * The current page.
@@ -244,11 +241,11 @@ public class Enrollment implements Serializable {
         this.createdBy = createdBy;
     }
 
-    public long getProfileReferenceId() {
+    public Long getProfileReferenceId() {
         return profileReferenceId;
     }
 
-    public void setProfileReferenceId(long profileReferenceId) {
+    public void setProfileReferenceId(Long profileReferenceId) {
         this.profileReferenceId = profileReferenceId;
     }
 

@@ -2166,18 +2166,32 @@
     </rollback>
   </changeSet>
 
-  <changeSet author="" id="issue949-migrate-enrollment-profile-ids">
-    <sql>
-      UPDATE enrollments e
-      SET profile_reference_id = p.profile_id
-      FROM provider_profiles p
-      WHERE p.enrollment_id = e.enrollment_id;
-
-      UPDATE entities en
-      SET profile_id = p.profile_id
-      FROM provider_profiles p
-      WHERE p.enrollment_id = en.ticket_id;
-    </sql>
-    <rollback/>
+  <changeSet author="" id="issue949-add-fks">
+    <dropNotNullConstraint
+      columnName="profile_reference_id"
+      tableName="enrollments" />
+    <addForeignKeyConstraint
+      baseTableName="provider_profiles"
+      baseColumnNames="enrollment_id"
+      constraintName="provider_profiles_enrollment_id_fkey"
+      referencedColumnNames="enrollment_id"
+      referencedTableName="enrollments"/>
+    <addForeignKeyConstraint
+      baseTableName="enrollments"
+      baseColumnNames="profile_reference_id"
+      constraintName="enrollments_profile_reference_id_fkey"
+      referencedColumnNames="profile_id"
+      referencedTableName="provider_profiles"/>
+    <rollback>
+      <addNotNullConstraint
+        columnName="profile_reference_id"
+        tableName="enrollments" />
+      <dropForeignKeyConstraint
+        baseTableName="provider_profiles"
+        constraintName="provider_profiles_enrollment_id_fkey" />
+      <dropForeignKeyConstraint
+        baseTableName="enrollments"
+        constraintName="enrollments_profile_reference_id_fkey" />
+    </rollback>
   </changeSet>
 </databaseChangeLog>

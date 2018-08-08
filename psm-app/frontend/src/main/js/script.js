@@ -1871,25 +1871,6 @@ function changeSort(idx) {
   $('#paginationForm').submit();
 }
 
-/**
-* Changes the page size to the given value
-* @param size the new page size
-*/
-function changePageSize(size) {
-  $('#paginationForm input[name=pageSize]').val(size);
-  $('#paginationForm input[name=pageNumber]').val(1);
-  $('#paginationForm').submit();
-}
-
-/**
-* Changes the page number to the given value
-* @param page the new page number
-*/
-function changePageNumber(page) {
-  $('#paginationForm input[name=pageNumber]').val(page);
-  $('#paginationForm').submit();
-}
-
 var isPrimaryPracticeLookup = false;
 var isPrivatePracticeForm = false;
 var practiceLookupResults = {};

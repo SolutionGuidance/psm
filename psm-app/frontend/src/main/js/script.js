@@ -1833,22 +1833,6 @@ function stripTable() {
   $('table tr:nth-child(even)').addClass('even');
 }
 
-var screenLock = false; // prevent double click on submit flows
-/**
-* Submits the form with the given id.
-* @param id the id of the form to be submitted
-*/
-function submitFormById(id, url) {
-  if (url) {
-    $('#' + id).attr("action", url);
-  }
-
-  if (!screenLock) {
-    screenLock = true;
-    $('#' + id).submit();
-  }
-}
-
 /**
 * Changes the sort column to the specified index
 * @param idx the result index

@@ -1288,23 +1288,6 @@ jQuery.validator.addMethod("exactlength", function (value, element, param) {
   return this.optional(element) || value.length == param;
 }, jQuery.format("Please enter exactly {0} characters."));
 
-var screenLock = false; // prevent double click on submit flows
-
-/**
- * Submits the form with the given id.
- * @param id the id of the form to be submitted
- */
-function submitFormById(id, url) {
-  if (url) {
-    $('#' + id).attr("action", url);
-  }
-
-  if (!screenLock) {
-    screenLock = true;
-    $('#' + id).submit();
-  }
-}
-
 function renewSelections(url) {
   var selected = [];
   $("input.enrollmentRowCheckBox:checked").each(function () {

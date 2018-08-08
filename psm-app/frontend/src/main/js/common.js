@@ -202,6 +202,24 @@ function changePageNumber(page) {
   form.submit();
 }
 
+// prevent double clicks from doing double submits
+var screenLock = false;
+
+/**
+ * Submits the form with the given id.
+ * @param id the id of the form to be submitted
+ */
+function submitFormById(id, url) {
+  if (url) {
+    $('#' + id).attr("action", url);
+  }
+
+  if (!screenLock) {
+    screenLock = true;
+    $('#' + id).submit();
+  }
+}
+
 $(document).ready(function () {
 
   $('.searchPanel input[type="checkbox"]')

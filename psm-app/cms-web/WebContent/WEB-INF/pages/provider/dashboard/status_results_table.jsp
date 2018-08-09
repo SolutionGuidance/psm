@@ -202,7 +202,7 @@
             </a>
           </c:if>
           <c:choose>
-            <c:when test="${item.status == 'Approved' && profileIds.contains(item.profileReferenceId)}">
+            <c:when test="${item.active && item.status == 'Approved' && profileIds.contains(item.profileReferenceId)}">
               <c:url var="editUrl" value="/provider/profile/edit">
                 <c:param name="profileId" value="${item.profileReferenceId}"/>
               </c:url>
@@ -222,7 +222,7 @@
                 Renew
               </a>
             </c:when>
-            <c:when test="${item.status == 'Draft' || item.status == 'Pending'}">
+            <c:when test="${item.active && (item.status == 'Draft' || item.status == 'Pending')}">
               <a
                 class="actionLink"
                 href="${editUrl}"

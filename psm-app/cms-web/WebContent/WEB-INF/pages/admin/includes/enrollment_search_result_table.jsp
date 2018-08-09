@@ -144,22 +144,24 @@
               >
                 View
               </a>
-              <a
-                class="actionLink"
-                href="${ctx}/provider/enrollment/reopen?id=${item.enrollmentId}"
-              >
-                Edit
-              </a>
-              <c:forEach var="task" items="${tasks}">
-                <c:if test="${task.processInstanceId == item.processInstanceId}">
-                    <a
-                      class="actionLink reviewLink"
-                      href="${ctx}/agent/enrollment/screeningReview?id=${item.enrollmentId}"
-                    >
-                      Review
-                    </a>
-                </c:if>
-              </c:forEach>
+              <c:if test="${item.active}">
+                <a
+                  class="actionLink"
+                  href="${ctx}/provider/enrollment/reopen?id=${item.enrollmentId}"
+                >
+                  Edit
+                </a>
+                <c:forEach var="task" items="${tasks}">
+                  <c:if test="${task.processInstanceId == item.processInstanceId}">
+                      <a
+                        class="actionLink reviewLink"
+                        href="${ctx}/agent/enrollment/screeningReview?id=${item.enrollmentId}"
+                      >
+                        Review
+                      </a>
+                  </c:if>
+                </c:forEach>
+              </c:if>
             </c:when>
             <c:when test="${fn:toLowerCase(item.status)=='draft'}">
               <a
@@ -176,18 +178,20 @@
               >
                 View
               </a>
-              <a
-                class="actionLink"
-                href="${ctx}/provider/profile/edit?profileId=${item.profileReferenceId}"
-              >
-                Edit
-              </a>
-              <a
-                class="actionLink
-                href="${ctx}/provider/profile/renew?profileId=${item.profileReferenceId}"
-              >
-                Renew
-              </a>
+              <c:if test="${item.active}">
+                <a
+                  class="actionLink"
+                  href="${ctx}/provider/profile/edit?profileId=${item.profileReferenceId}"
+                >
+                  Edit
+                </a>
+                <a
+                  class="actionLink
+                  href="${ctx}/provider/profile/renew?profileId=${item.profileReferenceId}"
+                >
+                  Renew
+                </a>
+              </c:if>
             </c:when>
             <c:otherwise>
               <a

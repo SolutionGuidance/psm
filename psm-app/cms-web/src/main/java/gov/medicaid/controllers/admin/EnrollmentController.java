@@ -685,6 +685,10 @@ public class EnrollmentController extends BaseController {
         }
         mv.addObject("searchCriteria", criteria);
         supplyLookupValues(mv);
+
+        ControllerHelper.addPaginationDetails(results, mv);
+        ControllerHelper.addPaginationLinks(results, mv);
+
         return mv;
     }
 

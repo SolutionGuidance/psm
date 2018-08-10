@@ -50,25 +50,44 @@
                       <tbody>
                         <c:forEach var="item" items="${searchResult.items}">
                           <tr>
-                            <td style="text-align: center;">${item.npi}
+                            <td class="alignCenter">${item.npi}</td>
+                            <td class="alignCenter">
+                              <fmt:formatDate
+                                value="${item.submissionDate}"
+                                pattern="MM/dd/yyyy"
+                              />
                             </td>
-                            <td style="text-align: center;"><fmt:formatDate value="${item.submissionDate}" pattern="MM/dd/yyyy"/></td>
-                            <td style="text-align: center;">${item.providerType}</td>
-                            <td style="text-align: center;">${item.providerName}</td>
-                            <td style="text-align: center;">${item.requestType}</td>
-                            <td style="text-align: center;">
-                              <c:choose>
-                              <c:when test="${fn:toLowerCase(item.status)=='approved'}"><span class="green">Approved</span></c:when>
-                              <c:when test="${fn:toLowerCase(item.status)=='rejected'}"><span class="red">Denied</span></c:when>
-                              <c:otherwise>${item.status}</c:otherwise>
-                              </c:choose>
-                            </td>
+                            <td class="alignCenter">${item.providerType}</td>
+                            <td class="alignCenter">${item.providerName}</td>
+                            <td class="alignCenter">${item.requestType}</td>
                             <c:choose>
-                            <c:when test="${fn:toLowerCase(item.riskLevel)=='limited'}"><td class="green">Limited</td></c:when>
-                            <c:when test="${fn:toLowerCase(item.riskLevel)=='high'}"><td class="red">High</td></c:when>
-                            <c:otherwise><td style="text-align: center;">${item.riskLevel}</td></c:otherwise>
+                              <c:when test="${fn:toLowerCase(item.status)=='approved'}">
+                                <td class="green alignCenter">Approved</td>
+                              </c:when>
+                              <c:when test="${fn:toLowerCase(item.status)=='rejected'}">
+                                <td class="red alignCenter">Denied</td>
+                              </c:when>
+                              <c:otherwise>
+                                <td class="alignCenter">${item.status}</td>
+                              </c:otherwise>
                             </c:choose>
-                            <td style="text-align: center;"><fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy"/></td>
+                            <c:choose>
+                              <c:when test="${fn:toLowerCase(item.riskLevel)=='limited'}">
+                                <td class="green alignCenter">Limited</td>
+                              </c:when>
+                              <c:when test="${fn:toLowerCase(item.riskLevel)=='high'}">
+                                <td class="red alignCenter">High</td>
+                              </c:when>
+                              <c:otherwise>
+                                <td class="alignCenter">${item.riskLevel}</td>
+                              </c:otherwise>
+                            </c:choose>
+                            <td class="alignCenter">
+                              <fmt:formatDate
+                                value="${item.statusDate}"
+                                pattern="MM/dd/yyyy"
+                              />
+                            </td>
                           </tr>
                         </c:forEach>
                       </tbody>

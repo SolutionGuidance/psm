@@ -47,6 +47,7 @@ public class LeieExternalScreener {
         Enrollment enrollment = getEnrollment(enrollmentId);
         LeieAutomaticScreening screening = new LeieAutomaticScreening();
         screening.setNpiSearchTerm(npi);
+        enrollment.addAutomaticScreening(screening);
 
         try {
             Bundle providerSearchResults = searchLeieForProvider(npi);
@@ -60,7 +61,6 @@ public class LeieExternalScreener {
             screening.setResult(AutomaticScreening.Result.ERROR);
         }
 
-        enrollment.addAutomaticScreening(screening);
         entityManager.merge(enrollment);
 
         return screening.getResult();

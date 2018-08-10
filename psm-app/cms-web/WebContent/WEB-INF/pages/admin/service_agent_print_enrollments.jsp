@@ -64,7 +64,7 @@
                               </c:choose>
                             </td>
                             <c:choose>
-                            <c:when test="${fn:toLowerCase(item.riskLevel)=='limited'}"><td class="green">Low</td></c:when>
+                            <c:when test="${fn:toLowerCase(item.riskLevel)=='limited'}"><td class="green">Limited</td></c:when>
                             <c:when test="${fn:toLowerCase(item.riskLevel)=='high'}"><td class="red">High</td></c:when>
                             <c:otherwise><td style="text-align: center;">${item.riskLevel}</td></c:otherwise>
                             </c:choose>

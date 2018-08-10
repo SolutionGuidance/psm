@@ -56,7 +56,7 @@
                 <form:select id="dashboardFilterRiskLevel" path="riskLevel" cssClass="longSelect">
                     <form:option value="">All</form:option>
                     <form:option value="NULL">Not screened yet</form:option>
-                    <form:option value="Low">Low</form:option>
+                    <form:option value="Limited">Limited</form:option>
                     <form:option value="Moderate">Moderate</form:option>
                     <form:option value="High">High</form:option>
                 </form:select>

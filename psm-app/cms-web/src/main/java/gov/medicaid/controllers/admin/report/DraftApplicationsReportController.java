@@ -3,7 +3,6 @@ package gov.medicaid.controllers.admin.report;
 import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentSearchCriteria;
-import gov.medicaid.entities.SearchResult;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 
@@ -30,8 +29,8 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
     @RequestMapping(value = "/admin/reports/draft-applications", method = RequestMethod.GET)
     public ModelAndView getDraftApplications() {
         ModelAndView mv = new ModelAndView("admin/reports/draft_applications");
-        SearchResult<Enrollment> enrollments = getEnrollmentsFromDB();
-        List<EnrollmentMonth> months = groupEnrollments(enrollments.getItems());
+        List<Enrollment> enrollments = getEnrollmentsFromDB();
+        List<EnrollmentMonth> months = groupEnrollments(enrollments);
 
         mv.addObject("enrollmentMonths", months);
         return mv;
@@ -43,9 +42,9 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", csvFileName));
 
-        SearchResult<Enrollment> enrollments = getEnrollmentsFromDB();
+        List<Enrollment> enrollments = getEnrollmentsFromDB();
 
-        List<EnrollmentMonth> months = groupEnrollments(enrollments.getItems());
+        List<EnrollmentMonth> months = groupEnrollments(enrollments);
 
         try {
             CSVPrinter csvPrinter = new CSVPrinter(response.getWriter(), CSVFormat.DEFAULT);
@@ -53,6 +52,9 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
             csvPrinter.printRecord(
                 "Month in Draft",
                 "Application ID",
+                "NPI",
+                "Provider Name",
+                "Provider Type",
                 "Creation Date",
                 "Submission Date"
             );
@@ -61,6 +63,9 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
                     csvPrinter.printRecord(
                         month.getMonth(),
                         enrollment.getTicketId(),
+                        enrollment.getDetails().getEntity().getNpi(),
+                        enrollment.getDetails().getEntity().getName(),
+                        enrollment.getDetails().getEntity().getProviderType().getDescription(),
                         enrollment.getCreatedOn(),
                         enrollment.getSubmissionDate()
                     );
@@ -72,11 +77,20 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
         }
     }
 
-    private SearchResult<Enrollment> getEnrollmentsFromDB() {
+    private List<Enrollment> getEnrollmentsFromDB() {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         criteria.setAscending(true);
         criteria.setSortColumn("created_at");
-        return enrollmentService.getDraftAtEomEnrollments(criteria);
+
+        List<Enrollment> results = enrollmentService.getDraftAtEomEnrollments(criteria).getItems();
+
+        results.stream()
+            .forEach(e -> {
+                e.setDetails(
+                    enrollmentService.getProviderDetailsByTicket(e.getTicketId(), true)
+                );
+            });
+        return results;
     }
 
     private List<EnrollmentMonth> groupEnrollments(List<Enrollment> enrollments) {

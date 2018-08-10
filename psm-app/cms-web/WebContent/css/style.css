@@ -2222,6 +2222,10 @@ input.date{
   padding:0 0 8px 0;
 }
 
+.dashboardPanel .wideTableData{
+  width:100%;
+}
+
 /* table title */
 .dashboardPanel .tableData .tableTitle{
   height:36px;

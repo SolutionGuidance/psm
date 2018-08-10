@@ -16,6 +16,7 @@
 
 package gov.medicaid.controllers.admin;
 
+import gov.medicaid.controllers.ControllerHelper;
 import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.AgreementDocumentSearchCriteria;
 import gov.medicaid.entities.AgreementDocumentType;
@@ -98,6 +99,8 @@ public class AgreementDocumentController extends BaseServiceAdminController {
         ModelAndView model = new ModelAndView("admin/service_admin_agreement_documents");
         model.addObject("agreementDocumentsSearchResult", result);
         model.addObject("searchCriteria", criteria);
+        ControllerHelper.addPaginationDetails(result, model);
+        ControllerHelper.addPaginationLinks(result, model);
         return model;
     }
 

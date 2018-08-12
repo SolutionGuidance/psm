@@ -78,9 +78,11 @@
                     <span class="text">${param.filterViewState eq 'visible' ? 'Hide Filter' : 'Filter'}</span>
                     <span class="arrow"></span>
                   </a>
-                  <a href="javascript:submitFormById('paginationForm','${exportResultsURL}')" class="greyBtn iconPdf">
-                    Export to PDF
-                  </a>
+                  <c:if test="${statusFilter != 'All'}">
+                    <a href="javascript:submitFormById('paginationForm','${exportResultsURL}')" class="greyBtn iconPdf">
+                      Export to PDF
+                    </a>
+                  </c:if>
                 </div>
               </div>
               <!-- /.pagination -->

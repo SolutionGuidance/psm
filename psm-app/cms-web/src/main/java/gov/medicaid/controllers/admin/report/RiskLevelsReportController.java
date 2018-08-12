@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @Controller
 public class RiskLevelsReportController extends gov.medicaid.controllers.BaseController {
     private static final List<String> RISK_LEVELS = ImmutableList.of(
-        ViewStatics.LOW_RISK,
+        ViewStatics.LIMITED_RISK,
         ViewStatics.MODERATE_RISK,
         ViewStatics.HIGH_RISK
     );

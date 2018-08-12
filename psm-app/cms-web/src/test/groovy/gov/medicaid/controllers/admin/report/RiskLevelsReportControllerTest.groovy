@@ -62,13 +62,13 @@ class RiskLevelsReportControllerTest extends Specification {
     }
 
     private setupTestProviders() {
-        enrollmentService.getProviderDetailsByTicket(1, false) >> makeProvider(ViewStatics.LOW_RISK)
-        enrollmentService.getProviderDetailsByTicket(2, false) >> makeProvider(ViewStatics.LOW_RISK)
+        enrollmentService.getProviderDetailsByTicket(1, false) >> makeProvider(ViewStatics.LIMITED_RISK)
+        enrollmentService.getProviderDetailsByTicket(2, false) >> makeProvider(ViewStatics.LIMITED_RISK)
         enrollmentService.getProviderDetailsByTicket(3, false) >> makeProvider(ViewStatics.MODERATE_RISK)
         enrollmentService.getProviderDetailsByTicket(4, false) >> makeProvider(ViewStatics.HIGH_RISK)
         enrollmentService.getProviderDetailsByTicket(5, false) >> makeProvider(ViewStatics.HIGH_RISK)
         enrollmentService.getProviderDetailsByTicket(6, false) >> makeProvider(ViewStatics.MODERATE_RISK)
-        enrollmentService.getProviderDetailsByTicket(7, false) >> makeProvider(ViewStatics.LOW_RISK)
+        enrollmentService.getProviderDetailsByTicket(7, false) >> makeProvider(ViewStatics.LIMITED_RISK)
     }
 
     def "csv with no enrollments - header"() {
@@ -87,7 +87,7 @@ class RiskLevelsReportControllerTest extends Specification {
         records.size == 1
         records[0].size() == 4
         records[0][0] == "Month"
-        records[0][1] == ViewStatics.LOW_RISK
+        records[0][1] == ViewStatics.LIMITED_RISK
         records[0][2] == ViewStatics.MODERATE_RISK
         records[0][3] == ViewStatics.HIGH_RISK
     }
@@ -135,7 +135,7 @@ class RiskLevelsReportControllerTest extends Specification {
         then:
         mv["months"].size == 4
         mv["months"][0].month == noonMiddleThisMonth.withDayOfMonth(1).toLocalDate()
-        mv["months"][0].getNum(ViewStatics.LOW_RISK) == 2
+        mv["months"][0].getNum(ViewStatics.LIMITED_RISK) == 2
         mv["months"][0].getNum(ViewStatics.HIGH_RISK) == 0
         mv["months"][2].month == noonMiddleThisMonth.minusMonths(2).withDayOfMonth(1).toLocalDate()
         mv["months"][2].getNum(ViewStatics.MODERATE_RISK) == 1
@@ -157,7 +157,7 @@ class RiskLevelsReportControllerTest extends Specification {
         then:
         mv["months"].size == 1
         mv["months"][0].month == noonMiddleThisMonth.withDayOfMonth(1).toLocalDate()
-        mv["months"][0].getNum(ViewStatics.LOW_RISK) == 0
+        mv["months"][0].getNum(ViewStatics.LIMITED_RISK) == 0
         mv["months"][0].getNum(ViewStatics.MODERATE_RISK) == 0
         mv["months"][0].getNum(ViewStatics.HIGH_RISK) == 0
     }

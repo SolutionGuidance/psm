@@ -186,7 +186,7 @@ public class ViewStatics {
     /**
      * Low risk.
      */
-    public static final String LOW_RISK = "Limited";
+    public static final String LIMITED_RISK = "Limited";
 
     /**
      * High risk.

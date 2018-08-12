@@ -189,7 +189,15 @@
                     <div class="tabFoot">
                       <div class="tabR">
                         <div class="tabM">
-                          <%@ include file="/WEB-INF/pages/admin/includes/page_navigation.jsp" %>
+                          <div class="pagination">
+                            <%@ include file="/WEB-INF/pages/admin/includes/page_left_navigation.jsp" %>
+                            <div class="right">
+                              <h:handlebars
+                                template="includes/pagination_links"
+                                context="${pageContext}"
+                              />
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>

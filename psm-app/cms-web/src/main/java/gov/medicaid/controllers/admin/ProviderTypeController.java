@@ -120,12 +120,7 @@ public class ProviderTypeController extends BaseServiceAdminController {
         criteria.setPageNumber(1);
         criteria.setPageSize(10);
         criteria.setSortColumn("description");
-
-        SearchResult<ProviderType> result = providerTypeService.search(criteria);
-        ModelAndView model = new ModelAndView("admin/service_admin_provider_types");
-        model.addObject("providerTypesSearchResult", result);
-        model.addObject("searchCriteria", criteria);
-        return model;
+        return search(criteria);
     }
 
     /**
@@ -145,6 +140,8 @@ public class ProviderTypeController extends BaseServiceAdminController {
         ModelAndView model = new ModelAndView("admin/service_admin_provider_types");
         model.addObject("providerTypesSearchResult", result);
         model.addObject("searchCriteria", criteria);
+        ControllerHelper.addPaginationDetails(result, model);
+        ControllerHelper.addPaginationLinks(result, model);
         return model;
     }
 

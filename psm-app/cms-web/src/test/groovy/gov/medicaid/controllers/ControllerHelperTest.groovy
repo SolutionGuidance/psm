@@ -4,9 +4,9 @@ import gov.medicaid.entities.SearchResult
 import org.springframework.web.servlet.ModelAndView
 import spock.lang.Specification
 
-import static gov.medicaid.controllers.ProviderDashboardController.MAX_PAGE_LINKS_TO_SHOW
+import static gov.medicaid.controllers.ControllerHelper.MAX_PAGE_LINKS_TO_SHOW
 
-class ProviderDashboardControllerTest extends Specification {
+class ControllerHelperTest extends Specification {
 
     def "current page details are added to model"(
             int pageNumber,
@@ -19,7 +19,7 @@ class ProviderDashboardControllerTest extends Specification {
         def results = generateResults(pageNumber, pageSize)
         results.setItems([true] * itemsOnPage)
         def mv = new ModelAndView()
-        def controller = new ProviderDashboardController()
+        def controller = new ControllerHelper()
 
         when:
         controller.addPaginationDetails(results, mv)
@@ -52,7 +52,7 @@ class ProviderDashboardControllerTest extends Specification {
         def results = generateResults(pageNumber, pageSize)
         results.setTotal(totalItems)
         def mv = new ModelAndView()
-        def controller = new ProviderDashboardController()
+        def controller = new ControllerHelper()
 
         when:
         controller.addPaginationLinks(results, mv)

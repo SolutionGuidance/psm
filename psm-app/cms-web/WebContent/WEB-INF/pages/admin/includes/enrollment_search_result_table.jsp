@@ -121,7 +121,7 @@
         <c:choose>
           <c:when test="${fn:toLowerCase(item.riskLevel)=='limited'}">
             <td class="green">
-              Low
+              Limited
             </td>
           </c:when>
           <c:when test="${fn:toLowerCase(item.riskLevel)=='high'}">

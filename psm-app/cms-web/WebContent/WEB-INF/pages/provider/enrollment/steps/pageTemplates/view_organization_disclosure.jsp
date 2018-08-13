@@ -27,11 +27,6 @@
                     <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_19_title']}</span>
                 </div>
-                <div class="row">
-                    <label>Date</label>
-                    <span class="floatL"><b>:</b></span>
-                    <span>${requestScope['_19_date']}</span>
-                </div>
             </div>
         </div>
         <div class="row">&nbsp;</div>

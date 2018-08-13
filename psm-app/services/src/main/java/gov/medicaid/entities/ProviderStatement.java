@@ -22,7 +22,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
 
 @javax.persistence.Entity
 @Table(name = "provider_statements")
@@ -44,8 +43,6 @@ public class ProviderStatement implements Serializable {
     private String name;
 
     private String title;
-
-    private Date date;
 
     public long getId() {
         return id;
@@ -69,14 +66,6 @@ public class ProviderStatement implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public long getProfileId() {

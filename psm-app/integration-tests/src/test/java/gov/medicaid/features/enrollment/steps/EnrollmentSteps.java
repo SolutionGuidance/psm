@@ -470,10 +470,9 @@ public class EnrollmentSteps {
     }
 
     @Step
-    void signAndDateProviderStatement() {
+    void signProviderStatement() {
         providerStatementPage.enterProviderName(LAST_NAME);
         providerStatementPage.enterProviderTitle("Title");
-        providerStatementPage.enterValidDate();
     }
 
     @Step

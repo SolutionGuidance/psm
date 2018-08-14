@@ -128,46 +128,59 @@ $(document).ready(function () {
     loadModal('#writeNotesModal');
   });
 
-  $("#saveNote").click(function saveNote() {
-    if (!screenLock) {
-      screenLock = true;
-    }
+  $("#saveNote").click(
+    (function IIFE() {
+      // prevent double clicks from doing multiple saves
+      var saveNoteEnabled = true;
 
-    $.ajax({
-      url: ctx + "/agent/enrollment/note?id=" + profileIdForWritingNotes,
-      data: { id: profileIdForWritingNotes, note: input },
-      cache: false,
-      type: "GET",
-      dataType: "json",
-      success: function onSuccess(data) {
-        closeModal();
-        if (data.success) {
-          var nextCount = $(".note_" + profileIdForWritingNotes).size() + 1;
-          $("#notesSection").append(
-            '<span class="note_' +
-              profileIdForWritingNotes +
-              '" id="note_' +
-              profileIdForWritingNotes +
-              "_" +
-              nextCount +
-              '">' +
-              input +
-              "</span>"
-          );
-          var viewLink = $("a[rel='" + profileIdForWritingNotes + "'].viewNotes");
-          viewLink.removeClass("disabledLink");
-          viewLink.removeClass("hide");
-          viewLink.next().removeClass("hide");
-        } else {
-          alert(data.message);
+      return function saveNote() {
+        if (saveNoteEnabled) {
+          saveNoteEnabled = false;
         }
-      },
 
-      complete: function onComplete() {
-        screenLock = false;
-      },
-    });
-  });
+        var input = $.trim($("#writeNotesModal .textarea").val());
+        if (input == "" || input == "Write your note here...") {
+          alert("Please input notes.");
+          return false;
+        }
+
+        $.ajax({
+          url: ctx + "/agent/enrollment/note?id=" + profileIdForWritingNotes,
+          data: { id: profileIdForWritingNotes, note: input },
+          cache: false,
+          type: "GET",
+          dataType: "json",
+          success: function onSuccess(data) {
+            closeModal();
+            if (data.success) {
+              var nextCount = $(".note_" + profileIdForWritingNotes).size() + 1;
+              var noteClass = "note_" + profileIdForWritingNotes;
+              var noteId = "note_" + profileIdForWritingNotes + "_" + nextCount;
+              $("#notesSection").append(
+                '<span class="' + noteClass +
+                  '" id="' + noteId +
+                  '">' +
+                  input +
+                  "</span>"
+              );
+              var viewLink = $(
+                "a[rel='" + profileIdForWritingNotes + "'].viewNotes"
+              );
+              viewLink.removeClass("disabledLink");
+              viewLink.removeClass("hide");
+              viewLink.next().removeClass("hide");
+            } else {
+              alert(data.message);
+            }
+          },
+
+          complete: function onComplete() {
+            saveNoteEnabled = true;
+          },
+        });
+      };
+    })()
+  );
 
   var enrollmentIdForNotes = 0;
   var currentShowingNoteCount = 1;

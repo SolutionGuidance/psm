@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  roles:
+    - { role: psm, tags: ["psm"] }
+  vars:
+    psm_db_name: psm
+    psm_db_password: psm
+    psm_db_username: psm
+    psm_jdbc_version: 42.1.4
+    psm_prefix: /usr/local/psm
+    psm_wildfly_version: 11.0.0.Final
+    psm_wildfly_dir: "{{ psm_prefix }}/wildfly-{{ psm_wildfly_version }}"
+    psm_wildfly_cli: "{{ psm_wildfly_dir }}/bin/jboss-cli.sh"

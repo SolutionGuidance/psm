@@ -202,23 +202,26 @@ function changePageNumber(page) {
   form.submit();
 }
 
-// prevent double clicks from doing double submits
-var screenLock = false;
-
 /**
  * Submits the form with the given id.
  * @param id the id of the form to be submitted
  */
-function submitFormById(id, url) {
-  if (url) {
-    $('#' + id).attr("action", url);
-  }
+var submitFormById = (function IIFE() {
+  // prevent double clicks from doing double submits
+  var submitEnabled = true;
 
-  if (!screenLock) {
-    screenLock = true;
-    $('#' + id).submit();
-  }
-}
+  return function submitFormById(id, url) {
+    if (submitEnabled) {
+      submitEnabled = false;
+      var form = $("#" + id);
+      if (url) {
+        form.attr("action", url);
+      }
+
+      form.submit();
+    }
+  };
+})();
 
 $(document).ready(function () {
 

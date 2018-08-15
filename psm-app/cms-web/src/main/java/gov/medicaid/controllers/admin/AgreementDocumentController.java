@@ -94,14 +94,7 @@ public class AgreementDocumentController extends BaseServiceAdminController {
         criteria.setPageSize(10);
         criteria.setSortColumn("title");
         criteria.setAscending(true);
-
-        SearchResult<AgreementDocument> result = agreementDocumentService.search(criteria);
-        ModelAndView model = new ModelAndView("admin/service_admin_agreement_documents");
-        model.addObject("agreementDocumentsSearchResult", result);
-        model.addObject("searchCriteria", criteria);
-        ControllerHelper.addPaginationDetails(result, model);
-        ControllerHelper.addPaginationLinks(result, model);
-        return model;
+        return search(criteria);
     }
 
     /**
@@ -123,6 +116,8 @@ public class AgreementDocumentController extends BaseServiceAdminController {
         ModelAndView model = new ModelAndView("admin/service_admin_agreement_documents");
         model.addObject("agreementDocumentsSearchResult", result);
         model.addObject("searchCriteria", criteria);
+        ControllerHelper.addPaginationDetails(result, model);
+        ControllerHelper.addPaginationLinks(result, model);
         return model;
     }
 

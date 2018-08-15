@@ -70,9 +70,7 @@
               <c:url var="exportResultsURL" value="/provider/dashboard/export"/>
 
               <div class="pagination">
-                <div class="left">
-                  <h:handlebars template="includes/pagination_details" context="${pageContext}" />
-                </div>
+                <%@ include file="/WEB-INF/pages/includes/pagination_details_wrapper.jsp" %>
                 <div class="right">
                   <a href="javascript:;" class="blueBtn filterBtn ${param.filterViewState eq 'visible' ? 'hideFilter' : 'showFilter'}">
                     <span class="text">${param.filterViewState eq 'visible' ? 'Hide Filter' : 'Filter'}</span>
@@ -103,15 +101,7 @@
               <div class="tabFoot">
                 <div class="tabR">
                   <div class="tabM">
-                    <div class="pagination">
-                      <div class="left">
-                        <h:handlebars template="includes/pagination_details" context="${pageContext}" />
-                      </div>
-                      <div class="right">
-                        <h:handlebars template="includes/pagination_links" context="${pageContext}" />
-                      </div>
-                    </div>
-                    <!-- /.pagination -->
+                    <%@ include file="/WEB-INF/pages/includes/pagination_details_and_links.jsp" %>
                   </div>
                 </div>
               </div>

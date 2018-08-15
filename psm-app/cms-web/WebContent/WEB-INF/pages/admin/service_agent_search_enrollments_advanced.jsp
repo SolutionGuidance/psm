@@ -153,12 +153,7 @@
             <c:otherwise>
               <div class="tabContent">
                 <div class="pagination">
-                  <div class="left topPagination">
-                    <h:handlebars
-                      template="includes/pagination_details"
-                      context="${pageContext}"
-                    />
-                  </div>
+                  <%@ include file="/WEB-INF/pages/includes/pagination_details_wrapper.jsp" %>
                   <div class="right">
                     <a id="exportEnrollmentsToPDF" href="javascript:;" class="greyBtn iconPdf">Export to PDF</a>
                     <a id="printEnrollments" href="javascript:;" class="greyBtn iconPrint">Print</a>
@@ -174,20 +169,7 @@
                 <div class="tabFoot">
                   <div class="tabR">
                     <div class="tabM">
-                      <div class="pagination">
-                        <div class="left topPagination">
-                          <h:handlebars
-                            template="includes/pagination_details"
-                            context="${pageContext}"
-                          />
-                        </div>
-                        <div class="right">
-                          <h:handlebars
-                            template="includes/pagination_links"
-                            context="${pageContext}"
-                          />
-                        </div>
-                      </div>
+                      <%@ include file="/WEB-INF/pages/includes/pagination_details_and_links.jsp" %>
                     </div>
                   </div>
                 </div>

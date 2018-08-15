@@ -345,18 +345,6 @@ $(document).ready(function () {
     }
   }
 
-  $(".pageSizeSelect").change(function () {
-    $('#searchFormPageNumber').val("1");
-    $('#searchFormPageSize').val($(this).val());
-    $('#searchForm').submit();
-  });
-
-  $(".pagination-page-number-clickable").click(function () {
-    $('#searchFormPageNumber').val($(this).attr("rel"));
-    $('#searchForm').submit();
-    return false;
-  });
-
   $(".sortable_column").click(function () {
     var newSortColumn = $(this).attr("rel");
     var oldSortColumn = $("#searchFormSortColumn").val();

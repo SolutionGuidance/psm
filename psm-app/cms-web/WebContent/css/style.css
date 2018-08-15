@@ -3890,10 +3890,6 @@ input.text{
   cursor: default;
   text-decoration: none;
 }
-.pagination-page-number-disabled{
-  color: #707070;
-  cursor: default;
-}
 .generalTable th span.sort-down{
   display:inline-block;
   width:7px;

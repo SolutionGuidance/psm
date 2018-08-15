@@ -384,13 +384,11 @@ public class SystemAdminUserController extends BaseSystemAdminController {
             criteria.setRoles(Arrays.asList(role));
             criteria.setPageNumber(1);
             criteria.setPageSize(DEFAULT_PAGE_SIZE);
-        } else {
-            if (criteria.getPageSize() == 0) { // it means we do not set page size and page number
-                criteria.setPageNumber(1);
-                criteria.setPageSize(DEFAULT_PAGE_SIZE);
-                if (null == criteria.getRoles() || criteria.getRoles().isEmpty()) {
-                    criteria.setRoles(Arrays.asList(role));
-                }
+        } else if (criteria.getPageSize() == 0) { // it means we do not set page size and page number
+            criteria.setPageNumber(1);
+            criteria.setPageSize(DEFAULT_PAGE_SIZE);
+            if (null == criteria.getRoles() || criteria.getRoles().isEmpty()) {
+                criteria.setRoles(Arrays.asList(role));
             }
         }
         SearchResult<CMSUser> results = getRegistrationService().findUsersByCriteria(criteria);

@@ -1,7 +1,12 @@
 <%-- The system admin user accounts table. --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 <c:set var="hasFilterPanel" value="true" />
-<%@ include file="/WEB-INF/pages/admin/includes/top-pagination-section.jsp" %>
+<c:if test="${results.total > 0}">
+  <div class="pagination">
+    <%@ include file="/WEB-INF/pages/admin/includes/top-pagination-section.jsp" %>
+    <%@ include file="/WEB-INF/pages/admin/includes/system_admin_buttons.jsp" %>
+  </div>
+</c:if>
 <%@ include file="/WEB-INF/pages/admin/includes/filter-panel.jsp" %>
 <c:choose>
   <c:when test="${results.total == 0}">

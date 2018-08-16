@@ -384,7 +384,10 @@ public class SystemAdminUserController extends BaseSystemAdminController {
             criteria.setRoles(Arrays.asList(role));
             criteria.setPageNumber(1);
             criteria.setPageSize(DEFAULT_PAGE_SIZE);
-        } else if (criteria.getPageSize() == 0) { // it means we do not set page size and page number
+        } else if (criteria.getPageNumber() == 0) {
+            // To detect if pageNumber and pageSize were not set, we check for
+            // pageNumber == 0 (the Java default for int). (pageSize is set to
+            // 0 when 'show all' option is selected.)
             criteria.setPageNumber(1);
             criteria.setPageSize(DEFAULT_PAGE_SIZE);
             if (null == criteria.getRoles() || criteria.getRoles().isEmpty()) {
@@ -399,6 +402,8 @@ public class SystemAdminUserController extends BaseSystemAdminController {
         mv.addObject("results", results);
         mv.addObject("role", role);
         mv.addObject("criteria", criteria);
+        ControllerHelper.addPaginationDetails(results, mv);
+        ControllerHelper.addPaginationLinks(results, mv);
         return mv;
     }
 

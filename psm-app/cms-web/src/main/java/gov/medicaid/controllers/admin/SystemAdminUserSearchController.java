@@ -83,6 +83,8 @@ public class SystemAdminUserSearchController extends BaseSystemAdminController {
         mv.addObject("results", results);
         mv.addObject("criteria", criteria);
         mv.addObject("roles", getRolesStr(criteria.getRoles()));
+        ControllerHelper.addPaginationDetails(results, mv);
+        ControllerHelper.addPaginationLinks(results, mv);
         return mv;
     }
 

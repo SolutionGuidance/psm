@@ -10,7 +10,7 @@
   <div class="tabContent">
     <c:if test="${results.total > 0}">
       <div class="pagination">
-        <%@ include file="/WEB-INF/pages/admin/includes/top-pagination-section.jsp" %>
+        <%@ include file="/WEB-INF/pages/includes/pagination_details_wrapper.jsp" %>
         <%@ include file="/WEB-INF/pages/admin/includes/system_admin_buttons.jsp" %>
       </div>
     </c:if>
@@ -100,7 +100,15 @@
         <!-- /.tableContainer -->
       </c:otherwise>
     </c:choose>
-    <%@ include file="/WEB-INF/pages/admin/includes/bottom-pagination-section.jsp" %>
+    <c:if test="${results.total > 0}">
+      <div class="tabFoot">
+        <div class="tabR">
+          <div class="tabM">
+            <%@ include file="/WEB-INF/pages/includes/pagination_details_and_links.jsp" %>
+          </div>
+        </div>
+      </div>
+    </c:if>
   </div>
 </div>
 <!-- /.tabSection -->

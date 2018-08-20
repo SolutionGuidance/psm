@@ -13,7 +13,7 @@
       { label: "ID", key: "req_id" },
       { label: "Description", key: "description" },
       { label: "Status", key: "status" },
-      { label: "Issues", key: "issues" }
+      { label: "Issue Tickets", key: "issues" }
     ];
 
     // Header row.

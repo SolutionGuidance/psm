@@ -1,0 +1,224 @@
+body {
+  /* Fonts are Bulma CSS defaults https://bulma.io/ */
+  font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+  overflow-x: hidden;
+  color: #363636;
+}
+
+body > h1,
+h2,
+.heading-sub-caption {
+  text-align: center;
+}
+
+svg {
+  background: white;
+}
+
+.container {
+  position: relative;
+  min-height: 650px;
+}
+
+.container > .chart {
+  position: absolute;
+  height: 100%;
+  top: 15px;
+  bottom: 15px;
+}
+
+#burn-down-chart {
+  /* 1340 + xAxisTopHeight (65) */
+  min-height: 1405px;
+}
+
+#features-pie-chart {
+  min-height: 400px;
+}
+
+#burn-down-chart,
+#features-pie-chart {
+  position: relative;
+  width: 100%;
+  left: inherit;
+  right: inherit;
+}
+
+.legend, .controls {
+  font-size: 16px;
+  margin-left: 32px;
+}
+
+.legend {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.legend > p {
+  margin: 4px;
+  display: inline-block;
+}
+
+.controls > input, .color {
+  height: 16px;
+  width: 16px;
+  margin-right: 2px;
+  display: inline-block;
+}
+
+.color {
+  vertical-align: middle;
+}
+
+.not-started {
+  background: #a6cee3;
+  fill: #a6cee3;
+}
+
+.in-progress {
+  background: #1f78b4;
+  fill: #1f78b4;
+}
+
+.completed {
+  background: #b2df8a;
+  fill: #b2df8a;
+}
+
+.axis .domain, .axis .tick {
+  stroke: #000;
+  fill: none;
+}
+
+.bar {
+  stroke: #444;
+  cursor: pointer;
+}
+
+text.description {
+  stroke-width: 0;
+  dominant-baseline: central;
+  alignment-baseline: middle;
+  pointer-events: none;
+  font-size: 11px;
+  fill: #000;
+}
+
+.pie-label-line {
+  opacity: 0.3;
+  stroke: black;
+  stroke-width: 2px;
+  fill: none;
+}
+
+.tooltip {
+  background: #eee;
+  box-shadow: 0 0 5px #999999;
+  color: #363636;
+  display: none;
+  font-size: 12px;
+  left: 600px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 250px;
+  max-width: 150px;
+  z-index: 10;
+}
+
+.tooltipRequirements,
+.tooltipPercentDone {
+  margin-top: 0.5rem;
+}
+
+.darkBackground {
+  position: fixed;
+  display: none;
+  background: rgba(100,100,100,50%);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.overlay {
+  position: absolute;
+  background: #fff;
+  box-shadow: 0 0 5px #999999;
+  color: #363636;
+  display: block;
+  font-size: 12px;
+  top: 5%;
+  left: 5%;
+  height: 84%;
+  width: 84%;
+  z-index: 20;
+  padding: 2%;
+  overflow: scroll;
+  cursor: default;
+}
+
+.overlayFeatureDescription {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.requirementsTable {
+  border-top: 1px solid #999;
+  border-collapse: collapse;
+}
+
+.requirementsTableCell {
+  border-bottom: 1px solid #999;
+  margin: 0;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.reqIdCell,
+.statusCell {
+  white-space: nowrap;
+}
+
+.issueLink {
+  text-decoration: none;
+}
+
+.completedIssueLink {
+  text-decoration: line-through;
+  color: #4949ef;
+}
+
+.overlayCloseButton {
+  border: 1px solid #999;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  display: inline-block;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.future-mask {
+  pointer-events: none;
+  fill: white;
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 700px) {
+  .legend, .controls {
+    margin-left: 8px;
+  }
+  #burn-down-chart,
+  #features-pie-chart {
+    position: relative;
+    width: 100%;
+    left: inherit;
+    right: inherit;
+  }
+}

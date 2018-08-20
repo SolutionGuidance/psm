@@ -6,7 +6,7 @@ body {
 }
 
 body > h1,
-h2,
+.chartHeader,
 .heading-sub-caption {
   text-align: center;
 }

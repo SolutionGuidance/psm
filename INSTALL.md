@@ -520,7 +520,6 @@ Each task is a freestyle project, triggered by the GitHub pull request plugin.
 - unit tests: runs the following gradle targets, and collect JUnit reports:
   - `cms-business-model:test`
   - `cms-business-process:test`
-  - `cms-portal-services:test`
   - `cms-web:test`
   - `services:test`
 - integration tests: runs the `cms-portal-services:build` gradle target,

@@ -13,16 +13,20 @@
 
     return [
       {
-        label: "Completed",
-        count: getFeatureCount("Completed", featureIds, features)
-      },
-      {
         label: "In Progress",
         count: getFeatureCount("InProgress", featureIds, features)
       },
       {
         label: "Not Started",
         count: getFeatureCount("NotStarted", featureIds, features)
+      },
+      {
+        label: "Ongoing",
+        count: getFeatureCount("Ongoing", featureIds, features)
+      },
+      {
+        label: "Completed",
+        count: getFeatureCount("Completed", featureIds, features)
       }
     ];
   }
@@ -91,7 +95,8 @@
         return {
           "Not Started": "not-started",
           "In Progress": "in-progress",
-          "Completed": "completed"
+          "Completed": "completed",
+          "Ongoing": "ongoing"
         }[d.data.label];
       })
       .attr("d", arc);

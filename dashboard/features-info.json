@@ -1686,7 +1686,6 @@
                 759,
                 879,
                 889,
-                925,
                 926
             ],
             "startDate": null,
@@ -2187,7 +2186,6 @@
                 620,
                 949,
                 950,
-                951,
                 952,
                 956
             ],
@@ -3061,7 +3059,8 @@
                 914,
                 933,
                 957,
-                968
+                968,
+                1021
             ],
             "startDate": null,
             "completedDate": null,
@@ -5700,6 +5699,314 @@
         }
     },
     "issues": {
+        "1032": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1032,
+            "url": "https://github.com/solutionguidance/psm/issues/1032",
+            "title": "Prevent stale anti-CSRF tokens on login page",
+            "description": "Anti-CSRF tokens were introduced in #503 as a security measure (and as part of upgrading to a more recent version of Spring). At the time, I went with the default behavior and applied it evenly to all non-`GET` requests.\r\n\r\nThe login page has a slightly different UX and threat profile than the rest of the forms, though. In particular, with most forms, the anti-CSRF token's expiration time is equal to or greater than the login session timeout, so that you are logged out for inactivity before a page's token expires. The login page, on the other hand, should be able to be loaded, wait for a long time, and then successfully log in, rather than face an expired token error.\r\n\r\n[The Spring docs specifically call this out](https://docs.spring.io/spring-security/site/docs/current/reference/html/csrf.html#csrf-login):\r\n\r\n> A common technique to protect the log in form is by using a JavaScript function to obtain a valid CSRF token before the form submission. By doing this, there is no need to think about session timeouts ... because the session is created right before the form submission ..., so the user can stay on the login page and submit the username/password when he wants.\r\n\r\nApply this technique, or one like it, to the login page, so as to prevent stale CSRF token errors on login.\r\n\r\nFound by @kfogel during a demo.",
+            "status": "NotStarted",
+            "startDate": "2018-08-14",
+            "completedDate": null,
+            "labels": [
+                "backend",
+                "bug",
+                "security",
+                "ux"
+            ]
+        },
+        "1031": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1031,
+            "url": "https://github.com/solutionguidance/psm/issues/1031",
+            "title": "Bookmark link - Authenication filter should redirect properly if the PSM is accessed via a bookmark",
+            "description": "There is no redirect to behavior implemented in PSM.\r\n\r\nThe filter which checks to login, should properly redirect back to link from where the user landed from.\r\n",
+            "status": "NotStarted",
+            "startDate": "2018-08-14",
+            "completedDate": null,
+            "labels": []
+        },
+        "1030": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1030,
+            "url": "https://github.com/solutionguidance/psm/issues/1030",
+            "title": "Source code",
+            "description": "I was looking to get a peek into the source code regarding specifying the database which the app draws information from, and how the app queries information from the database. I can't seem to find it in the psm-app anywhere. Any further information about the source code organization or the database architecture would be extremely helpful. \r\n\r\nThank you!",
+            "status": "NotStarted",
+            "startDate": "2018-08-14",
+            "completedDate": null,
+            "labels": []
+        },
+        "1029": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1029,
+            "url": "https://github.com/solutionguidance/psm/issues/1029",
+            "title": "Improve enrollment submission page response time",
+            "description": "The time between submitting a new enrollment application (clicking \"Submit\" on the last page of the enrollment application sequence) and getting a success response can take multiple seconds. In addition to being a bad user experience, it also can provoke the double-submission bug (#1027).\r\n\r\nThis is due, in no small part, to running all the post-submission processing on an application during the web request, which is a poor practice. This includes spinning up jBPM, going through all the steps in our business process - including checking the LEIE and, soon, other external data sources - and sending an email acknowledging the submission.\r\n\r\nAs much of that work as possible should be deferred. Checking the LEIE and sending an acknowledgement email can happen asynchronously; all we should do in the web request thread is record the submission and return success.\r\n\r\nRelated issues:\r\n- #968 NPE on submitting a personal care assistant enrollment application\r\n- #971 Remove jBPM\r\n- #1027 Protect forms against multiple submission ",
+            "status": "NotStarted",
+            "startDate": "2018-08-14",
+            "completedDate": null,
+            "labels": [
+                "backend",
+                "enhancement"
+            ]
+        },
+        "1028": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1028,
+            "url": "https://github.com/solutionguidance/psm/issues/1028",
+            "title": "Improve \"Save as Above\" behavior",
+            "description": "@kfogel  [writes in Zulip](https://chat.opentechstrategies.com/#narrow/stream/6-Provider-Screening/subject/demos/near/51898):\r\n> Click \"same as above\" in Contact Info doesn't reassuringly fill in the bottom fields with that same info, which would be the normal behavior for that kind of field.",
+            "status": "NotStarted",
+            "startDate": "2018-08-14",
+            "completedDate": null,
+            "labels": [
+                "ux"
+            ]
+        },
+        "1027": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1027,
+            "url": "https://github.com/solutionguidance/psm/issues/1027",
+            "title": "Protect forms against multiple submission",
+            "description": "Double-submit, multiple submissions, or duplicate form submissions is a class of error that results in the user clicking a form button (such as \"next\" or \"submit\") twice. This can be because of an accidental double-click, or, in the case of a slow response, if the user thinks \"oh, did my click not work? I'll try again.\"\r\n\r\nIf the PSM form being submitted is the last step of the enrollment application sequence, the response can take multiple seconds, as behind the scenes we're doing a lot of work. Clicking \"Submit\" again during that time leads to an error, as the first (discarded) response says \"success!\" and the second (displayed) response says \"Error: Cannot modify submitted ticket.\"\r\n\r\nProtect against multiple submission so as to prevent this error.",
+            "status": "NotStarted",
+            "startDate": "2018-08-14",
+            "completedDate": null,
+            "labels": [
+                "backend",
+                "bug",
+                "enhancement",
+                "ux"
+            ]
+        },
+        "1022": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1022,
+            "url": "https://github.com/solutionguidance/psm/issues/1022",
+            "title": "Add PDF export to provider all applications page",
+            "description": "PR #1010 removed the PDF export button from the provider > enrollments > all page because that functionality was not working.  The code supports exporting applications with a given status like \"Draft\" or \"Pending\" but not yet for \"All\" statuses.  Make that work and add the button back.",
+            "status": "NotStarted",
+            "startDate": "2018-08-13",
+            "completedDate": null,
+            "labels": [
+                "ux"
+            ]
+        },
+        "1021": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1021,
+            "url": "https://github.com/solutionguidance/psm/issues/1021",
+            "title": "Remove date field from provider disclosure forms",
+            "description": "The final page of the enrollment application process involves a digital signature by the provider. Previously, this included a form element that required the user to enter the current date.\r\n\r\n@jvasile [says](https://chat.opentechstrategies.com/#narrow/stream/6-Provider-Screening/subject/demos/near/51766):\r\n\r\n> We should never ask the user to enter a date if there is only one possible right answer for that date.\r\n\r\n(He also says not to worry about any supposed legal requirements around it; we'll establish what the legal reqs actually are and meet them, but meanwhile we shouldn't be implementing UX anti-patterns based on probabilistic impressions of legal requirements.)\r\n\r\nRemove the date field from the provider disclosure forms, so as to improve the user experience, avoid unnecessary pseudo-legalisms, and improve the demo workflow.\r\n\r\n(This also obviates #301, which I will close as a duplicate of this.)",
+            "status": "NotStarted",
+            "startDate": "2018-08-13",
+            "completedDate": null,
+            "labels": [
+                "Z-REQ-PSM-FR-7.14",
+                "backend",
+                "bug",
+                "enhancement",
+                "quick-fix",
+                "review",
+                "ux"
+            ]
+        },
+        "1020": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1020,
+            "url": "https://github.com/solutionguidance/psm/issues/1020",
+            "title": "Seperate UI state from server side logic",
+            "description": "The UI specific state like hide/show filters are being passed as a query param in URL to server. This is not right.\r\nTypically this state should be part of browser/client side. Either use cookie or local storage to achieve this behavior. \r\n\r\nThere are several frameworks which can help too. eg; Redux.\r\n\r\n",
+            "status": "NotStarted",
+            "startDate": "2018-08-13",
+            "completedDate": null,
+            "labels": []
+        },
+        "1014": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1014,
+            "url": "https://github.com/solutionguidance/psm/issues/1014",
+            "title": "Print and Export to PDF buttons on applications tables",
+            "description": "Summary:\r\n- Print button in service admin applications tables (under enrollments) shouldn't fail\r\n- Export to PDF button in service admin applications tables (under enrollments) shouldn't fail\r\n- Remove the checkboxes on the applications tables (for both provider and service admin), or let them have some effect like limiting what shows up in the PDFs and print screens.\r\n\r\nLog in as a service admin, go to the applications tables under \"ENROLLMENTS\", then select some checkboxes and click the print button at the top of the table.  Always see a page that says no results are found (service_agent_print_enrollments.jsp).\r\n\r\n![screenshot_2018-08-10 enrollment](https://user-images.githubusercontent.com/1091693/43968741-0043a838-9c96-11e8-9f79-d02403e737dc.png)\r\n\r\nDo the same thing on the search results pages (advanced or quick) and you see a page with a list of *all* the applications, not just the ones you checked.\r\n\r\n![screenshot_2018-08-10 enrollment 2](https://user-images.githubusercontent.com/1091693/43970911-1fce5804-9c9d-11e8-8850-433b6c229e45.png)\r\n\r\nSimilar results occur for \"Export to PDF\" button.  On the ENROLLMENTS pages you get an empty PDF, and on the search results pages you get a PDF with *all* the applications listed.\r\n\r\nWhen logged in as a provider, on the ENROLLMENTS pages you can successfully export a pdf that lists all the applications for the current status (Draft, Pending, etc.), the checkboxes have no effect.  On the search results pages it is the same as for an admin, you get a pdf or a printable screen with *all* the applications, regardless of checked boxes.\r\n\r\nSo it seems then that the checkboxes in these tables currently serve no purpose.  I was assuming they would affect the output of those buttons, but that is not the current behavior.",
+            "status": "NotStarted",
+            "startDate": "2018-08-10",
+            "completedDate": null,
+            "labels": [
+                "bug",
+                "ux"
+            ]
+        },
+        "1007": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1007,
+            "url": "https://github.com/solutionguidance/psm/issues/1007",
+            "title": "Glitches in pagination widget for service admin tables",
+            "description": "This pagination widget for the tables in the service admin \"Enrollments\" section (soon to be \"Applications\" section)\r\n\r\n![screenshot_2018-08-06 all enrollments](https://user-images.githubusercontent.com/1091693/43742472-0f31ec2c-99a0-11e8-83b0-e91fb968e902.png)\r\n\r\nhas a bug where clicking one of the numbers can produce a server error.  (I got it when I clicked \"4\".)  See below for the error.  Moreover, it doesn't look right.  It should look like the corresponding pagination widget from the provider login:\r\n\r\n![screenshot_2018-08-06 all enrollments 1](https://user-images.githubusercontent.com/1091693/43742516-41b5521a-99a0-11e8-8ab0-44eda9fae544.png)\r\n\r\nIf practical, we should reuse the Handlebars template pagination widget that we're using for the provider login to fix these problems with the admin widget.  (See PR #526)\r\n\r\n<details>\r\n  <summary>The server error log</summary>\r\n\r\n```\r\nServer Error\r\n\r\nException: org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors\r\nField error in object 'criteria' on field 'pageNumber': rejected value [4.0]; codes [typeMismatch.criteria.pageNumber,typeMismatch.pageNumber,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [criteria.pageNumber,pageNumber]; arguments []; default message [pageNumber]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'pageNumber'; nested exception is java.lang.NumberFormatException: For input string: \"4.0\"]\r\n\tat org.springframework.web.method.annotation.ModelAttributeMethodProcessor.resolveArgument(ModelAttributeMethodProcessor.java:117)\r\n\tat org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121)\r\n\tat org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:158)\r\n\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:128)\r\n\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)\r\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)\r\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)\r\n\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)\r\n\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)\r\n\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)\r\n\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)\r\n\tat org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)\r\n\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:687)\r\n\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)\r\n\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:790)\r\n\tat io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:74)\r\n\tat io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:129)\r\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:317)\r\n\tat org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:127)\r\n\tat org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91)\r\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)\r\n\tat org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:114)\r\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)\r\n\tat org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)\r\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)\r\n\tat org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)\r\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)\r\n\tat org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:158)\r\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)\r\n\tat org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:170)\r\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)\r\n\tat org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)\r\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)\r\n\tat org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)\r\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)\r\n\tat org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)\r\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)\r\n\tat org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:100)\r\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)\r\n\tat org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:64)\r\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)\r\n\tat org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)\r\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)\r\n\tat org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)\r\n\tat org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:331)\r\n\tat org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:214)\r\n\tat org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:177)\r\n\tat org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:347)\r\n\tat org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:263)\r\n\tat io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61)\r\n\tat io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131)\r\n\tat org.springframework.web.multipart.support.MultipartFilter.doFilterInternal(MultipartFilter.java:122)\r\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n\tat io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61)\r\n\tat io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131)\r\n\tat io.undertow.servlet.handlers.FilterHandler.handleRequest(FilterHandler.java:84)\r\n\tat io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:62)\r\n\tat io.undertow.servlet.handlers.ServletChain$1.handleRequest(ServletChain.java:68)\r\n\tat io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36)\r\n\tat org.wildfly.extension.undertow.security.SecurityContextAssociationHandler.handleRequest(SecurityContextAssociationHandler.java:78)\r\n\tat io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)\r\n\tat io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:132)\r\n\tat io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:57)\r\n\tat io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)\r\n\tat io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:46)\r\n\tat io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:64)\r\n\tat io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:60)\r\n\tat io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:77)\r\n\tat io.undertow.security.handlers.NotificationReceiverHandler.handleRequest(NotificationReceiverHandler.java:50)\r\n\tat io.undertow.security.handlers.AbstractSecurityContextAssociationHandler.handleRequest(AbstractSecurityContextAssociationHandler.java:43)\r\n\tat io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)\r\n\tat org.wildfly.extension.undertow.security.jacc.JACCContextIdHandler.handleRequest(JACCContextIdHandler.java:61)\r\n\tat io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)\r\n\tat org.wildfly.extension.undertow.deployment.GlobalRequestControllerHandler.handleRequest(GlobalRequestControllerHandler.java:68)\r\n\tat io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)\r\n\tat io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:292)\r\n\tat io.undertow.servlet.handlers.ServletInitialHandler.access$100(ServletInitialHandler.java:81)\r\n\tat io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:138)\r\n\tat io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:135)\r\n\tat io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:48)\r\n\tat io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43)\r\n\tat org.wildfly.extension.undertow.security.SecurityContextThreadSetupAction.lambda$create$0(SecurityContextThreadSetupAction.java:105)\r\n\tat org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1514)\r\n\tat org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1514)\r\n\tat org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1514)\r\n\tat org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1514)\r\n\tat org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1514)\r\n\tat io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:272)\r\n\tat io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:81)\r\n\tat io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:104)\r\n\tat io.undertow.server.Connectors.executeRootHandler(Connectors.java:360)\r\n\tat io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:830)\r\n\tat org.jboss.threads.ContextClassLoaderSavingRunnable.run(ContextClassLoaderSavingRunnable.java:35)\r\n\tat org.jboss.threads.EnhancedQueueExecutor.safeRun(EnhancedQueueExecutor.java:1985)\r\n\tat org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1487)\r\n\tat org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1378)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\n\r\n```\r\n</details>\r\n",
+            "status": "Completed",
+            "startDate": "2018-08-06",
+            "completedDate": "2018-08-12",
+            "labels": []
+        },
+        "1001": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1001,
+            "url": "https://github.com/solutionguidance/psm/issues/1001",
+            "title": "Need HTTPS (TLS) for projectpsm.org site.",
+            "description": "Right now, http://projectpsm.org/ is a plain-HTTP site.  It should be HTTPS; that's where the web is moving, and it's increasingly a strike against a site to not default to an encrypted connection.  Browsers and search engines are starting to show warnings for plain-HTTP sites, for example.\r\n\r\nNot sure what's involved in setting this up for projectpsm.org, but now at least we have a place to discuss it.",
+            "status": "NotStarted",
+            "startDate": "2018-08-02",
+            "completedDate": null,
+            "labels": []
+        },
+        "1000": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1000,
+            "url": "https://github.com/solutionguidance/psm/issues/1000",
+            "title": "Prioritize UX issues to help focus current efforts",
+            "description": "I have done a sweep through existing issues, assigning 'ux' and 'bug' labels as needed, and created a list of these issues (that have 'ux' and usually also 'bug' labels) that divides them into priority groupings for current efforts.  I'll put the list in a comment below.  Feel free to edit it to re-prioritize or add new issues to the list, as needed.\r\n\r\n",
+            "status": "NotStarted",
+            "startDate": "2018-08-01",
+            "completedDate": null,
+            "labels": []
+        },
+        "999": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 999,
+            "url": "https://github.com/solutionguidance/psm/issues/999",
+            "title": "Users cannot edit their user account information",
+            "description": "As @cecilia-donnelly mentions in issue #181 ([comment](https://github.com/SolutionGuidance/psm/issues/181#issuecomment-339806535)):\r\n\r\n> providers can't edit their user information within the PSM. When providers navigate to \"My Profile,\" they don't see their entered information and don't have any way to edit it. See @jcunard's screenshots [on the list](https://groups.google.com/forum/#!topic/psm-dev/q-XGEsndkhA). I'd argue that at least for now, until we have SSO, users should be able to edit their account information within the PSM.",
+            "status": "NotStarted",
+            "startDate": "2018-08-01",
+            "completedDate": null,
+            "labels": [
+                "ux"
+            ]
+        },
+        "994": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 994,
+            "url": "https://github.com/solutionguidance/psm/issues/994",
+            "title": "./gradlew db:update frozen at 0%",
+            "description": "Set up wildfly and psm in /opt, and when ./gradlew db:update is run, it gets stuck at this output:\r\n\r\n> Task :db:update\r\nliquibase-plugin: Running the 'main' activity...\r\n<------------> 0% EXECUTING [time]\r\n> :db:update\r\n\r\nCould it be a problem with my gradle.properties? It is structured as so:\r\n\r\nsystemProp.databaseUser=psm\r\nsystemProp.databasePassword=psm\r\nsystemProp.databasePath=jdbc:postgresql://psm.scioutfit.com:9990/psm\r\n\r\nAny help would be appreciated. Running Ubuntu 14.\r\n",
+            "status": "Completed",
+            "startDate": "2018-07-26",
+            "completedDate": "2018-07-27",
+            "labels": []
+        },
+        "991": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 991,
+            "url": "https://github.com/solutionguidance/psm/issues/991",
+            "title": "When updating an enrollment, disallow provider type changes",
+            "description": "When editing/renewing/resubmitting enrollments, it currently allows a change in provider type, which has certain drawbacks.\r\n\r\nWhen thinking about how service admins use the system, there is a report specifically about enrollments by provider type over time.  Allowing people to change it during the renew/edit/fix process could change how that report.\r\n\r\nThat may mean that in terms of people reviewing enrollments, provider type is central to their mindset when looking at an enrollment to review (maybe they even have different reviewers that specialize in different provider types), so effectively if someone were to change the provider type, it restarts the whole review process. We might as well make that explicit, and then it simplifies the branching logic changes substantially.",
+            "status": "NotStarted",
+            "startDate": "2018-07-25",
+            "completedDate": null,
+            "labels": []
+        },
+        "988": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 988,
+            "url": "https://github.com/solutionguidance/psm/issues/988",
+            "title": "Add geckodriver to integration-tests/README.md (Firefox/Serenity Configuration)",
+            "description": "In the section: 'Firefox' add the following configuration information:\r\n\r\nFor Firefox 57 (and greater) use the geckodriver located at: \r\nhttps://github.com/mozilla/geckodriver/releases \r\n\r\nSerenity Properties:\r\nwebdriver=webdriver.gecko.driver\r\nwebdriver.gecko.driver= [full path location]/geckodriver\r\n\r\nNote! Tested on the following environment:\r\nFirefox version:  61.0.1 (64-bit) Arch Linux build\r\nOS: Linux 4.17.8-1 (Arch Linux)\r\ngeckodriver-v0.21.0-linux64.tar.gz",
+            "status": "NotStarted",
+            "startDate": "2018-07-24",
+            "completedDate": null,
+            "labels": []
+        },
+        "986": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 986,
+            "url": "https://github.com/solutionguidance/psm/issues/986",
+            "title": "Consolidate \"service categories\" and \"categories of service\"",
+            "description": "When doing #254 we realized that somewhere along the line two versions of the same table got made with identical seed data.  We should drop one of them and consolidate the code so that it only uses the chosen table.\r\n\r\nThis is a sub-issue to #57.\r\nThis will require #980 to be merged before it can be completed, since both involve seed data.",
+            "status": "Completed",
+            "startDate": "2018-07-23",
+            "completedDate": "2018-08-07",
+            "labels": []
+        },
+        "985": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 985,
+            "url": "https://github.com/solutionguidance/psm/issues/985",
+            "title": "./gradlew db:update stuck at 0%",
+            "description": "Trying to run the ./gradlew db:update command, and it gets stuck at 0% progress. Fixed prior JDBC error by installing blank postgresql 9.4 database. Running on Debian 8. We think it may be a problem with the wrapper, any help or insight would be appreciated. ",
+            "status": "Completed",
+            "startDate": "2018-07-23",
+            "completedDate": "2018-08-13",
+            "labels": []
+        },
+        "981": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 981,
+            "url": "https://github.com/solutionguidance/psm/issues/981",
+            "title": "Update liquibase gradle plugin to 2.0",
+            "description": "After learning that the current version of liquibase we use has a [fairly obscure bug](https://liquibase.jira.com/browse/CORE-2711) we discovered that the liquibase gradle plugin just got a major revision in the past week.\r\n\r\nThe revision decouples the liquibase version from the plugin version.  This will allow us to get past the bug that is blocking #980 ",
+            "status": "Completed",
+            "startDate": "2018-07-23",
+            "completedDate": "2018-07-31",
+            "labels": []
+        },
+        "980": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 980,
+            "url": "https://github.com/solutionguidance/psm/issues/980",
+            "title": "Improve the way seed data is migrated",
+            "description": "We moved to liquibase migrations as part of #254 and selected a changeSet called `loadUpdateData` as our method of choice for managing seed data.  It was nice because you could add or update seed data by simply editing a csv and liquibase would magically update or insert new data when migrations were run.\r\n\r\nUnfortunately, like all magic, it came at a cost.\r\n\r\nIn short, this kind of \"hot migration\" broke some migration metaphors, meaning that if we changed table structure or dropped a table we would potentially need to edit or modify the seed data changeSets.  They also made inconsistent rollback numbering, which was a pain for developers who rely on rollbacks.\r\n\r\nWe're going to move to the less dynamic `loadData` changeSet type.  This still uses csvs, but it will only get loaded once per migration.\r\n\r\nThis needs to be done before #57 is really possible.",
+            "status": "Completed",
+            "startDate": "2018-07-23",
+            "completedDate": "2018-07-31",
+            "labels": []
+        },
+        "979": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 979,
+            "url": "https://github.com/solutionguidance/psm/issues/979",
+            "title": "Remove Forgot Password link for suspended accounts",
+            "description": "Related to #33 and #943 \r\n\r\nWhen a user has a suspended account, it looks identical to them having forgotten their username or password, and so the same UI is presented.  That nay need to change to make use of this exceptional case to present a different UI.\r\n\r\nThere should be some discussion around what exactly that UI should look like, and what information should be presented to the user about why they couldn't login.  It may be best to continue along how the application works now, obfuscating the reason for the failure.",
+            "status": "NotStarted",
+            "startDate": "2018-07-21",
+            "completedDate": null,
+            "labels": [
+                "ux"
+            ]
+        },
+        "978": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 978,
+            "url": "https://github.com/solutionguidance/psm/issues/978",
+            "title": "Email user on suspension/reinstatement of account",
+            "description": "There should be some discussion around this, because it may or may not be in the admins best interest to have this action communicated to a user.  This should also probably get tied up in automatic suspensions due to various other factors, such as repeated failed login attempts referenced in [this comment](https://github.com/SolutionGuidance/psm/issues/33#issuecomment-378392128).\r\n\r\nRelated to issue #33 ",
+            "status": "NotStarted",
+            "startDate": "2018-07-21",
+            "completedDate": null,
+            "labels": []
+        },
         "977": {
             "owner": "solutionguidance",
             "repos": "psm",
@@ -5758,7 +6065,8 @@
                 "Z-REQ-PSM-FR-8.1",
                 "Z-REQ-PSM-FR-8.2",
                 "backend",
-                "bug"
+                "bug",
+                "ux"
             ]
         },
         "957": {
@@ -5774,7 +6082,9 @@
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "Z-REQ-PSM-FR-7.8",
-                "Z-REQ-PSM-FR-7.9"
+                "Z-REQ-PSM-FR-7.9",
+                "bug",
+                "ux"
             ]
         },
         "956": {
@@ -5788,7 +6098,9 @@
             "startDate": "2018-07-12",
             "completedDate": null,
             "labels": [
-                "Z-REQ-PSM-FR-4.3"
+                "Z-REQ-PSM-FR-4.3",
+                "bug",
+                "ux"
             ]
         },
         "954": {
@@ -5834,7 +6146,8 @@
             "completedDate": null,
             "labels": [
                 "Z-REQ-PSM-FR-4.3",
-                "Z-REQ-PSM-FR-6.8"
+                "Z-REQ-PSM-FR-6.8",
+                "ux"
             ]
         },
         "951": {
@@ -5848,8 +6161,8 @@
             "startDate": "2018-07-11",
             "completedDate": null,
             "labels": [
-                "Z-REQ-PSM-FR-4.3",
-                "Z-REQ-PSM-FR-6.8"
+                "Z-REQ-PSM-FR-6.8",
+                "ux"
             ]
         },
         "950": {
@@ -5865,7 +6178,8 @@
             "labels": [
                 "Z-REQ-PSM-FR-4.3",
                 "Z-REQ-PSM-FR-6.8",
-                "next"
+                "next",
+                "ux"
             ]
         },
         "949": {
@@ -5874,13 +6188,14 @@
             "number": 949,
             "url": "https://github.com/solutionguidance/psm/issues/949",
             "title": "Give providers the ability to \"edit and resubmit\" applications",
-            "description": "Implement a provider-initiated \"edit and resubmit\" feature for pending, accepted, and denied applications.  At minimum, this can be a link in the actions column in the enrollments table(s).  Clicking the link changes the application's status to 'draft', allowing further edits, re-submission, and re-screening. For the user it appears as the same application in the UI, but now in 'draft' status (or 'pending' if immediately re-submitted after edits).  The application gets a new submission date when it is submitted.\r\n\r\n(Why would an approved provider edit and resubmit? For revalidation they need to resubmit periodically, and also if something changes that requires an update and re-screen.)\r\n\r\nAn option:  If an application was 'approved' we could keep it as 'approved' and open a new copy as 'draft'. That would avoid the situation of a provider being approved but their application not appearing as approved, but as draft.  On the other hand it is more consistent to have it work the same as with the other statuses.\r\n\r\nWe considered having an 'in review' status and/or a way to lock and prevent an application from being \"edit and resubmit\"-ted while it was under manual review.  But it seems simpler and better to just allow providers to initiate edits at any time, even if currently in review, since the changes (and re-review) would need to be done in any case.\r\n\r\nRelated issues:\r\n * #408 - Provider name change feature\r\n * #416 - Let user update license/certification or contact info for existing enrollment\r\n * #423 - Clarify workflow around draft and submitted enrollments\r\n * #424 - Clarify provider users versus members in group enrollments\r\n\r\nTangentially related issues:\r\n * #407 - Enrollment termination feature\r\n * #620 - Cannot delete additional practice location\r\n * #701 - Can only save enrollment as draft once",
+            "description": "Implement a provider-initiated \"edit and resubmit\" feature for pending, accepted, and denied applications.  At minimum, this can be a link in the actions column in the enrollments table(s).  Clicking the link changes the application's status to 'draft', allowing further edits, re-submission, and re-screening. For the user it appears as the same application in the UI, but now in 'draft' status (or 'pending' if immediately re-submitted after edits).  The application gets a new submission date when it is submitted.\r\n\r\n(Why would an approved provider edit and resubmit? For revalidation they need to resubmit periodically, and also if something changes that requires an update and re-screen.)\r\n\r\nAn option:  If an application was 'approved' we could keep it as 'approved' and open a new copy as 'draft'. That would avoid the situation of a provider being approved but their application not appearing as approved, but as draft.  On the other hand it is more consistent to have it work the same as with the other statuses.\r\n\r\nWe considered having an 'in review' status and/or a way to lock and prevent an application from being \"edit and resubmit\"-ted while it was under manual review.  But it seems simpler and better to just allow providers to initiate edits at any time, even if currently in review, since the changes (and re-review) would need to be done in any case.\r\n\r\nRelated issues:\r\n * #408 - Provider name change feature\r\n * #416 - Let user update license/certification or contact info for existing enrollment\r\n * #423 - Clarify workflow around draft and submitted enrollments\r\n * #424 - Clarify provider users versus members in group enrollments\r\n\r\nTangentially related issues:\r\n * #404 - Make enrollment renewals possible/easier\r\n * #407 - Enrollment termination feature\r\n * #620 - Cannot delete additional practice location\r\n * #701 - Can only save enrollment as draft once",
             "status": "NotStarted",
             "startDate": "2018-07-11",
             "completedDate": null,
             "labels": [
                 "Z-REQ-PSM-FR-4.3",
-                "in progress"
+                "in progress",
+                "ux"
             ]
         },
         "946": {
@@ -5909,7 +6224,9 @@
             "startDate": "2018-07-08",
             "completedDate": null,
             "labels": [
-                "Z-REQ-PSM-SQ-1.5"
+                "Z-REQ-PSM-SQ-1.5",
+                "bug",
+                "ux"
             ]
         },
         "934": {
@@ -5942,7 +6259,9 @@
             "completedDate": null,
             "labels": [
                 "Z-REQ-PSM-FR-4.7",
-                "Z-REQ-PSM-FR-7.14"
+                "Z-REQ-PSM-FR-7.14",
+                "bug",
+                "ux"
             ]
         },
         "931": {
@@ -6027,8 +6346,8 @@
                 "Z-REQ-PSM-FR-3.13",
                 "Z-REQ-PSM-FR-3.17",
                 "Z-REQ-PSM-FR-3.18",
-                "Z-REQ-PSM-FR-3.5",
-                "Z-REQ-PSM-FR-4.7"
+                "Z-REQ-PSM-FR-4.7",
+                "ux"
             ]
         },
         "924": {
@@ -6100,7 +6419,8 @@
                 "Z-REQ-PSM-FR-7.13",
                 "Z-REQ-PSM-FR-7.14",
                 "Z-REQ-PSM-IU-2.5",
-                "bug"
+                "bug",
+                "ux"
             ]
         },
         "913": {
@@ -6110,9 +6430,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/913",
             "title": "ProjectPSM.org should link to demo site(s).",
             "description": "Whatever non-private demo sites we have, we should link to them from http://projectpsm.org/.\r\n\r\n@PaulMorris, assigning to you, but CC'ing @jvasile to check that he agrees with this.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-06-28",
-            "completedDate": null,
+            "completedDate": "2018-07-18",
             "labels": [
                 "Z-REQ-PSM-SQ-1.1",
                 "Z-REQ-PSM-SQ-1.2"
@@ -6382,7 +6702,9 @@
                 "Z-REQ-PSM-FR-4.2",
                 "Z-REQ-PSM-FR-7.14",
                 "Z-REQ-PSM-IU-3.1",
-                "Z-REQ-PSM-SA-4.0"
+                "Z-REQ-PSM-SA-4.0",
+                "bug",
+                "ux"
             ]
         },
         "863": {
@@ -6409,12 +6731,14 @@
             "url": "https://github.com/solutionguidance/psm/issues/862",
             "title": "Standardize on 'Low' vs 'Limited' risk level",
             "description": "Currently the tables under Enrollments use \"Low\" as a risk level, while the \"Risk Levels\" report uses \"Limited\" rather than \"Low\".  \"Limited\" is used in the source code.  Decide which term to use in the UI and use it everywhere for consistency.  (PRs #838 and #858 add the \"Risk Levels\" report.)",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-06-04",
-            "completedDate": null,
+            "completedDate": "2018-08-13",
             "labels": [
                 "Z-REQ-PSM-FR-3.4",
-                "Z-REQ-PSM-FR-7.14"
+                "Z-REQ-PSM-FR-7.14",
+                "bug",
+                "ux"
             ]
         },
         "854": {
@@ -6510,7 +6834,9 @@
             "startDate": "2018-05-29",
             "completedDate": null,
             "labels": [
-                "Z-REQ-PSM-FR-7.14"
+                "Z-REQ-PSM-FR-7.14",
+                "bug",
+                "ux"
             ]
         },
         "833": {
@@ -6524,7 +6850,9 @@
             "startDate": "2018-05-23",
             "completedDate": null,
             "labels": [
-                "Z-REQ-PSM-FR-7.14"
+                "Z-REQ-PSM-FR-7.14",
+                "bug",
+                "ux"
             ]
         },
         "824": {
@@ -6601,7 +6929,9 @@
                 "Z-REQ-PSM-AD-3.2",
                 "Z-REQ-PSM-AD-3.4",
                 "Z-REQ-PSM-AD-3.5",
-                "Z-REQ-PSM-AD-3.6"
+                "Z-REQ-PSM-AD-3.6",
+                "bug",
+                "ux"
             ]
         },
         "820": {
@@ -6622,7 +6952,9 @@
                 "Z-REQ-PSM-AD-3.4",
                 "Z-REQ-PSM-AD-3.5",
                 "Z-REQ-PSM-AD-3.6",
-                "Z-REQ-PSM-FR-7.14"
+                "Z-REQ-PSM-FR-7.14",
+                "in progress",
+                "ux"
             ]
         },
         "818": {
@@ -6684,9 +7016,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/804",
             "title": "Drifting dropdown in admin dashboard",
             "description": "On the \"Pending\" tab of the \"Enrollments\" page, when logged in as a service admin, the dropdown governing how many results to show has moved behind the NPI/UMPI label:\r\n\r\n![screenshot-2018-5-3 enrollment](https://user-images.githubusercontent.com/1497818/39602703-95a2f2ec-4eeb-11e8-96e3-a32eba7385c8.png)\r\n\r\nI've only seen this in Firefox.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-05-03",
-            "completedDate": null,
+            "completedDate": "2018-08-16",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "bug",
@@ -6706,6 +7038,7 @@
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "backend",
+                "bug",
                 "tech-debt",
                 "ux"
             ]
@@ -6944,9 +7277,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/766",
             "title": "Rework the admin enrollments \"Notes\" tab",
             "description": "For service admins, the \"Enrollments\" > \"Notes\" tab just adds a \"Notes\" column that can have \"Add Note\" and \"Read Notes\" links. It would be better to remove the \"Notes\" tab and add this notes functionality to the other tabs (draft, pending, approved, etc.). \r\n\r\nFor one thing \"Notes\" is a thing that is not like the others -- not an enrollment/application status. And why should you have to go to a separate tab to add a note to an enrollment -- you'd lose your context and have to find the enrollment again.\r\n\r\nThe implementation could be to add an \"Add Note\" link to the \"Actions\" column, if there are no notes for an enrollment, and a \"Notes (n)\" link if there are notes (with \"n\" being the number of notes).  Both links would bring up the notes modal that allows adding/reading/editing notes.  \r\n\r\n(Another approach would be to have a separate \"Notes\" column rather than add the notes links to the Actions column, but given space considerations, I think putting these links in the Actions column makes more sense.)\r\n\r\nThis is related to the UI (re-)design work in #758.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-04-16",
-            "completedDate": null,
+            "completedDate": "2018-07-25",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "ux"
@@ -7108,7 +7441,8 @@
             "labels": [
                 "Z-REQ-PSM-FR-7.1",
                 "Z-REQ-PSM-FR-7.14",
-                "in progress"
+                "in progress",
+                "ux"
             ]
         },
         "746": {
@@ -7123,7 +7457,9 @@
             "completedDate": null,
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
-                "Z-REQ-PSM-IU-2.5"
+                "Z-REQ-PSM-IU-2.5",
+                "bug",
+                "ux"
             ]
         },
         "740": {
@@ -7193,7 +7529,9 @@
             "completedDate": null,
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
-                "Z-REQ-PSM-IA-4.2"
+                "Z-REQ-PSM-IA-4.2",
+                "bug",
+                "ux"
             ]
         },
         "728": {
@@ -7226,7 +7564,8 @@
                 "Z-REQ-PSM-FR-3.5",
                 "backend",
                 "enhancement",
-                "state-question"
+                "state-question",
+                "ux"
             ]
         },
         "722": {
@@ -7240,7 +7579,8 @@
             "startDate": "2018-03-19",
             "completedDate": null,
             "labels": [
-                "Z-REQ-PSM-FR-7.14"
+                "Z-REQ-PSM-FR-7.14",
+                "ux"
             ]
         },
         "721": {
@@ -7269,7 +7609,9 @@
             "completedDate": null,
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
-                "Z-REQ-PSM-SQ-1.5"
+                "Z-REQ-PSM-SQ-1.5",
+                "bug",
+                "ux"
             ]
         },
         "709": {
@@ -7300,6 +7642,7 @@
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "bug",
+                "review",
                 "ux"
             ]
         },
@@ -7331,7 +7674,8 @@
                 "Z-REQ-PSM-FR-7.14",
                 "Z-REQ-PSM-FR-7.7",
                 "bug",
-                "next"
+                "review",
+                "ux"
             ]
         },
         "700": {
@@ -7425,7 +7769,9 @@
             "startDate": "2018-02-28",
             "completedDate": null,
             "labels": [
-                "Z-REQ-PSM-FR-7.14"
+                "Z-REQ-PSM-FR-7.14",
+                "bug",
+                "ux"
             ]
         },
         "691": {
@@ -7471,7 +7817,9 @@
             "startDate": "2018-02-21",
             "completedDate": null,
             "labels": [
-                "Z-REQ-PSM-FR-7.2"
+                "Z-REQ-PSM-FR-7.2",
+                "review",
+                "ux"
             ]
         },
         "675": {
@@ -7507,6 +7855,7 @@
                 "Z-REQ-PSM-FR-9.1",
                 "accessibility",
                 "bug",
+                "review",
                 "ux"
             ]
         },
@@ -7517,11 +7866,12 @@
             "url": "https://github.com/solutionguidance/psm/issues/668",
             "title": "Rearrange the provider dashboard pages",
             "description": "The provider \"Dashboard > Dashboard\" and \"Enrollments > Dashboard\" pages are very similar, so similar that it's odd to have them in separate tabs in the main navigation bar (as \"Dashboard\" and \"Enrollments\").  Some reworking seems in order.\r\n\r\nProposal: make the \"Dashboard > Dashboard\" page an \"All\" tab (next to \"Draft\" \"Pending\" etc.). And then just have two tabs in the main navigation (either \"Dashboard\" or \"Enrollments\" and \"My Profile\").  Then the tables for the \"All\", \"Draft\", etc. tabs could be a merged version combining the features of the current two kinds of tables.\r\n\r\nHere are some screenshots showing the similarity:\r\n\r\n![screenshot-2018-2-12-provider-dashboard](https://user-images.githubusercontent.com/1091693/36164940-f7cea6c8-10bb-11e8-93b5-fc5fd70f5192.png)\r\n\r\n![screenshot-2018-2-12-provider-enrollments](https://user-images.githubusercontent.com/1091693/36164950-fed47556-10bb-11e8-9991-01a949f49a8f.png)\r\n",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-02-13",
-            "completedDate": null,
+            "completedDate": "2018-08-06",
             "labels": [
-                "Z-REQ-PSM-FR-7.14"
+                "Z-REQ-PSM-FR-7.14",
+                "ux"
             ]
         },
         "666": {
@@ -7536,7 +7886,9 @@
             "completedDate": null,
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
-                "Z-REQ-PSM-FR-9.1"
+                "Z-REQ-PSM-FR-9.1",
+                "bug",
+                "ux"
             ]
         },
         "659": {
@@ -7546,9 +7898,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/659",
             "title": "Add provider type to provider dashboard table",
             "description": "Currently, the provider dashboard shows enrollments with little to differentiate them (especially if they all have the same NPI):\r\n\r\n![screenshot from 2018-02-08 17-44-22](https://user-images.githubusercontent.com/1497818/36004317-b8d52e46-0cf7-11e8-88cd-ddec4238f6cb.png)\r\n\r\nLet's add a \"provider type\" column to this dashboard.  The most likely reason for a provider to have multiple applications is if they are applying under different provider types, so that should be the best differentiator.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-02-08",
-            "completedDate": null,
+            "completedDate": "2018-07-27",
             "labels": [
                 "Z-REQ-PSM-FR-7.14"
             ]
@@ -7566,7 +7918,9 @@
             "labels": [
                 "Z-REQ-PSM-II-4.5",
                 "Z-REQ-PSM-SQ-1.5",
-                "state-question"
+                "bug",
+                "state-question",
+                "ux"
             ]
         },
         "653": {
@@ -7731,6 +8085,7 @@
                 "Z-REQ-PSM-FR-2.16",
                 "Z-REQ-PSM-FR-4.3",
                 "Z-REQ-PSM-FR-7.14",
+                "bug",
                 "ux"
             ]
         },
@@ -7746,7 +8101,8 @@
             "completedDate": null,
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
-                "bug"
+                "bug",
+                "ux"
             ]
         },
         "618": {
@@ -7845,7 +8201,8 @@
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "Z-REQ-PSM-FR-7.2",
-                "docs"
+                "docs",
+                "ux"
             ]
         },
         "604": {
@@ -8054,7 +8411,9 @@
                 "Z-REQ-PSM-FR-4.3",
                 "Z-REQ-PSM-IA-4.2",
                 "accessibility",
-                "tech-debt"
+                "bug",
+                "tech-debt",
+                "ux"
             ]
         },
         "563": {
@@ -8231,6 +8590,7 @@
                 "Z-REQ-PSM-AD-5.1",
                 "Z-REQ-PSM-AD-5.12",
                 "Z-REQ-PSM-AD-5.13",
+                "bug",
                 "security"
             ]
         },
@@ -8256,13 +8616,12 @@
             "number": 520,
             "url": "https://github.com/solutionguidance/psm/issues/520",
             "title": "Upgrade to WildFly 11",
-            "description": "Last week, [WildFly 11 was released](http://wildfly.org/news/2017/10/23/WildFly11-Final-Released/). We should:\r\n\r\n- [x] Start using it locally\r\n- [ ] Update the build to use the new provided libraries\r\n- [ ] Open and fix any issues we encounter\r\n- [x] Start using it in CI\r\n- [ ] Update our docs and install scripts for the new version\r\n",
-            "status": "NotStarted",
+            "description": "Last week, [WildFly 11 was released](http://wildfly.org/news/2017/10/23/WildFly11-Final-Released/). We should:\r\n\r\n- [x] Start using it locally\r\n- [x] Update the build to use the new provided libraries\r\n- [x] Open and fix any issues we encounter\r\n- [x] Start using it in CI\r\n- [x] Update our docs and install scripts for the new version\r\n",
+            "status": "Completed",
             "startDate": "2017-11-01",
-            "completedDate": null,
+            "completedDate": "2018-07-19",
             "labels": [
                 "Z-REQ-PSM-SQ-1.3",
-                "in progress",
                 "infra",
                 "task"
             ]
@@ -8527,6 +8886,7 @@
                 "Z-REQ-PSM-AD-5.3",
                 "Z-REQ-PSM-FR-4.8",
                 "backend",
+                "bug",
                 "enhancement",
                 "security",
                 "ux"
@@ -8594,7 +8954,9 @@
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "Z-REQ-PSM-SQ-1.5",
-                "tech-debt"
+                "in progress",
+                "tech-debt",
+                "ux"
             ]
         },
         "482": {
@@ -8911,7 +9273,8 @@
                 "Z-REQ-PSM-FR-7.5",
                 "Z-REQ-PSM-IA-4.2",
                 "backend",
-                "bug"
+                "bug",
+                "ux"
             ]
         },
         "431": {
@@ -9052,7 +9415,8 @@
                 "Z-REQ-PSM-FR-7.11",
                 "Z-REQ-PSM-FR-7.14",
                 "backend",
-                "bug"
+                "bug",
+                "ux"
             ]
         },
         "419": {
@@ -9084,7 +9448,8 @@
             "labels": [
                 "Z-REQ-PSM-AD-3.3",
                 "backend",
-                "bug"
+                "bug",
+                "ux"
             ]
         },
         "416": {
@@ -9102,7 +9467,8 @@
                 "Z-REQ-PSM-FR-3.13",
                 "Z-REQ-PSM-FR-4.3",
                 "backend",
-                "enhancement"
+                "enhancement",
+                "ux"
             ]
         },
         "415": {
@@ -9203,7 +9569,8 @@
                 "Z-REQ-PSM-FR-2.16",
                 "Z-REQ-PSM-FR-4.3",
                 "backend",
-                "enhancement"
+                "enhancement",
+                "ux"
             ]
         },
         "407": {
@@ -9303,9 +9670,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/399",
             "title": "Language: \"enrollment\" or \"application\"?",
             "description": "Currently, we mostly refer to \"enrollments\" in the user-facing messaging of the PSM:\r\n\r\n> New Enrollments\r\n\r\n> You can now begin the enrollment process.\r\n\r\n> Create New Enrollment\r\n\r\n@kfogel [pointed out](https://github.com/OpenTechStrategies/psm/pull/382#discussion_r135871331) that many users will think in terms of \"applying\" and creating an \"application\" rather than creating an \"enrollment\". What language should we use, and should we use different language for providers than for other types of users?",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2017-09-11",
-            "completedDate": null,
+            "completedDate": "2018-08-01",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "Z-REQ-PSM-SQ-1.5",
@@ -10001,8 +10368,10 @@
             "completedDate": null,
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
+                "bug",
                 "quick-fix",
-                "state-question"
+                "state-question",
+                "ux"
             ]
         },
         "320": {
@@ -10152,13 +10521,14 @@
             "url": "https://github.com/solutionguidance/psm/issues/301",
             "title": "When service admin edits pending enrollment, PSM inappropriately checks provider statement date",
             "description": "To reproduce:\r\n\r\n* Create and submit an enrollment so that it's in the Pending state. (To do this, you'll need to state the current date in the Provider Statement screen.)\r\n* Wait till at least the next day.\r\n* Log in as a service administrator.\r\n* Navigate to [the pending enrollments view](http://localhost:8080/cms/provider/search/pending?statuses=Pending&showFilterPanel=true) and click the Edit link for the pending enrollment, e.g., `cms/provider/enrollment/reopen?id=33` .\r\n* Click on the Provider Statement tab, e.g., `javascript:submitFormById('enrollmentForm',%20'/cms/provider/enrollment/jump?page=Provider+Statement')`.\r\n* Click on any other tab, such as License Info.\r\n\r\nWhat should happen:\r\n\r\nThe PSM should allow you to go to that other tab to view the enrollment details.\r\n\r\nWhat happens instead:\r\n\r\nAlthough the URL changes (to, for instance, `cms/provider/enrollment/jump?page=License+Information`), the screen doesn't change away from the Provider Statement tab. An error message displays:\r\n\r\n> Please correct the following errors:\r\n> Provider statement signature date cannot be a past date.\r\n\r\nThis is inappropriate; we shouldn't be asking the service administrator to change the date that the provider attested to the accuracy of their submission.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2017-07-26",
-            "completedDate": null,
+            "completedDate": "2018-08-13",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "backend",
-                "bug"
+                "bug",
+                "ux"
             ]
         },
         "300": {
@@ -10222,9 +10592,9 @@
             "labels": [
                 "Z-REQ-PSM-FR-2.7",
                 "Z-REQ-PSM-FR-7.14",
-                "backend",
                 "bug",
-                "quick-fix"
+                "quick-fix",
+                "ux"
             ]
         },
         "292": {
@@ -10313,6 +10683,7 @@
             "completedDate": null,
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
+                "bug",
                 "quick-fix",
                 "ux"
             ]
@@ -10430,7 +10801,9 @@
                 "Z-REQ-PSM-FR-2.4",
                 "Z-REQ-PSM-FR-7.14",
                 "backend",
-                "task"
+                "bug",
+                "task",
+                "ux"
             ]
         },
         "262": {
@@ -10495,15 +10868,14 @@
             "url": "https://github.com/solutionguidance/psm/issues/259",
             "title": "Community Mental Health Center refers to missing provider type ",
             "description": "If you create an enrollment application with the Community Mental Health Center provider type, and try to add an individual member, you will likely get an error:\r\n\r\n> Members must be certified mental health professionals or licensed psychiatrists.\r\n\r\n![screenshot 2017-07-10 18 30 29](https://user-images.githubusercontent.com/1494855/28043000-e1f75576-659d-11e7-8745-8ee1c3ae3b9b.png)\r\n\r\nAfter going through the entire list of provider types on that screen, the only provider type it likes is \"Certified Mental Health Rehab Prof - CPRP\". Presumably that's the former option specified in the error, where is the latter option?\r\n\r\nWe should either add \"Licensed Psychiatrist\" as a provider type, or we should update the error. (And it would be nice if the drop down only had allowed provider types, instead of showing all of the individual provider types and chastising you if you choose the wrong one!)",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2017-07-10",
-            "completedDate": null,
+            "completedDate": "2018-07-21",
             "labels": [
                 "Z-REQ-PSM-FR-2.7",
                 "Z-REQ-PSM-FR-7.14",
                 "backend",
-                "bug",
-                "review"
+                "bug"
             ]
         },
         "255": {
@@ -10814,7 +11186,8 @@
                 "Z-REQ-PSM-FR-7.14",
                 "backend",
                 "bug",
-                "in progress"
+                "in progress",
+                "ux"
             ]
         },
         "210": {
@@ -11033,7 +11406,8 @@
                 "Z-REQ-PSM-AD-5.7",
                 "bug",
                 "infra",
-                "task"
+                "task",
+                "ux"
             ]
         },
         "177": {
@@ -11097,7 +11471,8 @@
             "labels": [
                 "Z-REQ-PSM-IU-2.5",
                 "backend",
-                "bug"
+                "bug",
+                "ux"
             ]
         },
         "172": {
@@ -11246,6 +11621,7 @@
                 "Z-REQ-PSM-FR-7.14",
                 "bug",
                 "quick-fix",
+                "review",
                 "ux"
             ]
         },
@@ -11352,13 +11728,12 @@
             "url": "https://github.com/solutionguidance/psm/issues/156",
             "title": "Provider enrollment: hard to see red asterisks on blue background",
             "description": "When a provider is performing a new enrollment, in step 2 (license info), it's hard to see the red asterisks (indicating that at least one license or certification is required), because they're small and on the blue background of the column headers.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2017-06-16",
-            "completedDate": null,
+            "completedDate": "2018-07-21",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "quick-fix",
-                "review",
                 "ux"
             ]
         },
@@ -11492,13 +11867,12 @@
             "url": "https://github.com/solutionguidance/psm/issues/139",
             "title": "Split BeneficialOwnership subclasses into their own Tables",
             "description": "BeneficialOwnership entity has two subclasses, PersonBeneficialOwner and OrganizationBeneficialOwner.\r\n\r\nThere is one table that has the union of the fields needed for this. We kept that as is for expediancy in converting over to H5, but single-table inheritance is not as clear as joined table inheritance, and is not consistent with Entity and its derivatives. \r\n\r\nPlease update the table and change these classes.\r\n\r\nProgress on #36 and comments from PR #133 ",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2017-06-14",
-            "completedDate": null,
+            "completedDate": "2018-07-31",
             "labels": [
                 "Z-REQ-PSM-SQ-1.5",
                 "backend",
-                "review",
                 "tech-debt"
             ]
         },
@@ -12032,14 +12406,13 @@
             "url": "https://github.com/solutionguidance/psm/issues/33",
             "title": "Complete or remove the ability to suspend user accounts",
             "description": "There is an attribute of a user, `status`, which can be either `ACTIVE` or `DISABLED`. New users default to `ACTIVE`, there is no UI that I can find that allows the status to be altered, and AFAICT nothing ever reads this value.\r\n\r\nWhy is it here? Do we still want it? Either fully implement the ability to suspend an account, or remove the dead code and unused database column.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2017-05-19",
-            "completedDate": null,
+            "completedDate": "2018-07-21",
             "labels": [
                 "Z-REQ-PSM-AD-5.14",
                 "Z-REQ-PSM-AD-5.4",
                 "backend",
-                "review",
                 "tech-debt"
             ]
         },

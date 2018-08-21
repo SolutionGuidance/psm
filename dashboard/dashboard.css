@@ -85,6 +85,11 @@ svg {
   fill: #b2df8a;
 }
 
+.ongoing {
+  background: #6a3d9a;
+  fill: #6a3d9a;
+}
+
 .axis .domain, .axis .tick {
   stroke: #000;
   fill: none;

@@ -6,7 +6,7 @@
             "subfeatures": [],
             "startDate": "2017-04-01",
             "completedDate": "2017-09-30",
-            "status": "InProgress",
+            "status": "Completed",
             "requirements": [
                 "psm-FR-1.4",
                 "psm-FR-1.6",
@@ -28,7 +28,7 @@
             "subfeatures": [],
             "startDate": "2017-04-01",
             "completedDate": "2017-09-30",
-            "status": "InProgress",
+            "status": "Completed",
             "requirements": [
                 "psm-FR-1.2",
                 "psm-FR-3.12",
@@ -46,7 +46,7 @@
             "subfeatures": [],
             "startDate": "2017-04-01",
             "completedDate": "2017-09-30",
-            "status": "InProgress",
+            "status": "Completed",
             "requirements": [
                 "psm-FR-2.20",
                 "psm-FR-2.4",
@@ -59,7 +59,7 @@
             "subfeatures": [],
             "startDate": "2018-01-01",
             "completedDate": "2018-03-31",
-            "status": "InProgress",
+            "status": "Completed",
             "requirements": [
                 "psm-FR-3.11",
                 "psm-FR-8.2",
@@ -73,7 +73,7 @@
             "subfeatures": [],
             "startDate": "2018-01-01",
             "completedDate": "2018-03-31",
-            "status": "InProgress",
+            "status": "Completed",
             "requirements": [
                 "psm-SQ-1.2",
                 "psm-SQ-1.4"
@@ -85,7 +85,7 @@
             "subfeatures": [],
             "startDate": "2018-01-01",
             "completedDate": "2018-03-31",
-            "status": "InProgress",
+            "status": "Completed",
             "requirements": [
                 "psm-AD-2.1",
                 "psm-FR-7.14"
@@ -113,7 +113,7 @@
             ],
             "startDate": "2017-06-01",
             "completedDate": "2019-06-30",
-            "status": "Completed",
+            "status": "InProgress",
             "requirements": [
                 "psm-FR-3.13",
                 "psm-FR-3.14",
@@ -134,7 +134,7 @@
             ],
             "startDate": "2018-02-01",
             "completedDate": "2018-09-30",
-            "status": "Completed",
+            "status": "InProgress",
             "requirements": [
                 "psm-FR-9.4",
                 "psm-FR-9.5",
@@ -149,7 +149,7 @@
             "subfeatures": [],
             "startDate": "2018-04-01",
             "completedDate": "2018-06-30",
-            "status": "InProgress",
+            "status": "Completed",
             "requirements": [
                 "psm-AD-2.3",
                 "psm-FR-7.14"
@@ -174,7 +174,7 @@
             ],
             "startDate": "2018-04-01",
             "completedDate": "2018-06-30",
-            "status": "InProgress",
+            "status": "Completed",
             "requirements": [
                 "psm-AD-1.1",
                 "psm-AD-1.3",
@@ -199,7 +199,7 @@
             ],
             "startDate": "2018-04-01",
             "completedDate": "2018-06-30",
-            "status": "InProgress",
+            "status": "Completed",
             "requirements": [
                 "psm-AD-1.2",
                 "psm-AD-1.3",
@@ -219,7 +219,7 @@
             ],
             "startDate": "2018-04-01",
             "completedDate": "2018-06-30",
-            "status": "InProgress",
+            "status": "Completed",
             "requirements": [
                 "psm-FR-4.7",
                 "psm-FR-7.3"
@@ -231,7 +231,7 @@
             "subfeatures": [],
             "startDate": "2018-04-01",
             "completedDate": "2018-06-30",
-            "status": "InProgress",
+            "status": "Completed",
             "requirements": [
                 "psm-IA-2.2"
             ]
@@ -242,7 +242,7 @@
             "subfeatures": [],
             "startDate": "2018-04-01",
             "completedDate": "2018-06-30",
-            "status": "InProgress",
+            "status": "Completed",
             "requirements": [
                 "psm-FR-3.11",
                 "psm-FR-4.7",
@@ -256,7 +256,7 @@
             "subfeatures": [],
             "startDate": "2018-04-01",
             "completedDate": "2018-06-30",
-            "status": "InProgress",
+            "status": "Completed",
             "requirements": [
                 "psm-FR-7.14"
             ]
@@ -273,7 +273,7 @@
             ],
             "startDate": "2018-07-01",
             "completedDate": "2018-08-31",
-            "status": "Completed",
+            "status": "NotStarted",
             "requirements": [
                 "psm-FR-2.16",
                 "psm-FR-3.11",
@@ -288,7 +288,7 @@
             "subfeatures": [],
             "startDate": "2018-07-01",
             "completedDate": "2018-09-30",
-            "status": "Completed",
+            "status": "NotStarted",
             "requirements": [
                 "psm-AD-5.14",
                 "psm-AD-5.3",
@@ -306,7 +306,7 @@
             ],
             "startDate": "2017-04-01",
             "completedDate": "2018-09-30",
-            "status": "Completed",
+            "status": "InProgress",
             "requirements": [
                 "psm-AD-1.4",
                 "psm-AD-5.1",
@@ -331,7 +331,7 @@
             "subfeatures": [],
             "startDate": "2018-07-01",
             "completedDate": "2018-09-30",
-            "status": "Completed",
+            "status": "NotStarted",
             "requirements": [
                 "psm-FR-1.5",
                 "psm-FR-3.4",
@@ -352,7 +352,7 @@
             ],
             "startDate": "2018-07-01",
             "completedDate": "2018-09-30",
-            "status": "Completed",
+            "status": "NotStarted",
             "requirements": [
                 "psm-FR-1.5",
                 "psm-FR-2.18",
@@ -376,7 +376,7 @@
             ],
             "startDate": "2018-07-01",
             "completedDate": "2018-08-31",
-            "status": "Completed",
+            "status": "NotStarted",
             "requirements": [
                 "psm-FR-2.12",
                 "psm-FR-2.2",
@@ -627,7 +627,7 @@
             ],
             "startDate": "2017-08-01",
             "completedDate": "2019-03-31",
-            "status": "Completed",
+            "status": "InProgress",
             "requirements": [
                 "psm-FR-9.1",
                 "psm-IU-3.1",
@@ -642,7 +642,7 @@
             "subfeatures": [],
             "startDate": "2017-10-01",
             "completedDate": "2019-06-30",
-            "status": "Completed",
+            "status": "InProgress",
             "requirements": [
                 "psm-AD-2.1",
                 "psm-AD-2.4",
@@ -655,7 +655,7 @@
             "subfeatures": [],
             "startDate": "2017-06-01",
             "completedDate": "2019-06-30",
-            "status": "Completed",
+            "status": "InProgress",
             "requirements": [
                 "psm-SQ-1.1",
                 "psm-SQ-1.5"
@@ -872,7 +872,7 @@
             ],
             "startDate": "2017-10-01",
             "completedDate": "2019-09-30",
-            "status": "Completed",
+            "status": "InProgress",
             "requirements": [
                 "psm-IA-2.1",
                 "psm-SC-4.5",
@@ -891,7 +891,7 @@
             ],
             "startDate": "2018-02-01",
             "completedDate": "2019-09-30",
-            "status": "Completed",
+            "status": "Ongoing",
             "requirements": [
                 "psm-FR-9.5",
                 "psm-IA-1.1",
@@ -914,7 +914,7 @@
             "subfeatures": [],
             "startDate": "2017-04-01",
             "completedDate": "2019-09-30",
-            "status": "Completed",
+            "status": "Ongoing",
             "requirements": [
                 "psm-SQ-1.3"
             ]
@@ -925,7 +925,7 @@
             "subfeatures": [],
             "startDate": "2017-04-01",
             "completedDate": "2019-09-30",
-            "status": "Completed",
+            "status": "Ongoing",
             "requirements": [
                 "psm-AD-2.5",
                 "psm-II-4.3",
@@ -939,7 +939,7 @@
             "subfeatures": [],
             "startDate": "2017-04-01",
             "completedDate": "2019-09-30",
-            "status": "Completed",
+            "status": "Ongoing",
             "requirements": [
                 "psm-FR-4.5",
                 "psm-IA-1.2",
@@ -952,7 +952,7 @@
             "subfeatures": [],
             "startDate": "2017-04-01",
             "completedDate": "2019-09-30",
-            "status": "Completed",
+            "status": "Ongoing",
             "requirements": []
         },
         "psm-feature-002": {
@@ -961,7 +961,7 @@
             "subfeatures": [],
             "startDate": "2017-04-01",
             "completedDate": "2019-09-30",
-            "status": "Completed",
+            "status": "Ongoing",
             "requirements": [
                 "psm-FR-7.15",
                 "psm-FR-7.2"
@@ -973,7 +973,7 @@
             "subfeatures": [],
             "startDate": "2018-01-01",
             "completedDate": "2019-09-30",
-            "status": "Completed",
+            "status": "Ongoing",
             "requirements": [
                 "psm-FR-7.1"
             ]
@@ -984,7 +984,7 @@
             "subfeatures": [],
             "startDate": "2017-04-01",
             "completedDate": "2019-09-30",
-            "status": "Completed",
+            "status": "Ongoing",
             "requirements": [
                 "psm-FR-9.5",
                 "psm-IA-3.9",
@@ -1009,7 +1009,7 @@
             ],
             "startDate": "2017-04-01",
             "completedDate": "2019-09-30",
-            "status": "Completed",
+            "status": "Ongoing",
             "requirements": [
                 "psm-FR-3.15",
                 "psm-FR-3.17",
@@ -6810,17 +6810,16 @@
             "url": "https://github.com/solutionguidance/psm/issues/846",
             "title": "Add new fields to FHIR API",
             "description": "I'm splitting this out from #623 to allow us to more easily track our progress.\r\n\r\nThese new fields will be added as `input` elements on the FHIR Task resource:\r\n\r\n- [x] EFT acceptance indicator\r\n- [x] provider date of birth\r\n- [x] telecom\r\n- [x] address\r\n\r\nTagging @slifty @mbestavros @notpace.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-05-29",
-            "completedDate": null,
+            "completedDate": "2018-08-21",
             "labels": [
                 "Z-REQ-PSM-FR-9.4",
                 "Z-REQ-PSM-IA-1.2",
                 "Z-REQ-PSM-IA-3.1",
                 "Z-REQ-PSM-IA-3.9",
                 "Z-REQ-PSM-IU-2.2",
-                "Z-REQ-PSM-IU-2.3",
-                "in progress"
+                "Z-REQ-PSM-IU-2.3"
             ]
         },
         "842": {
@@ -7636,13 +7635,12 @@
             "url": "https://github.com/solutionguidance/psm/issues/708",
             "title": "Rendering issues in Facility Credentials screen",
             "description": "When creating an application as a Head Start provider type, the page has some layout issues:\r\n\r\n![15eaf75a-7582-4b2c-9498-c243362e9343](https://user-images.githubusercontent.com/1494855/37310168-7e0a49a0-2619-11e8-9d7f-3fa87713ae42.png)\r\n\r\nIn particular, the dividing lines are not consistent and extend partially into the white area, and \"License/Certification\" is on its own line. Additionally (not shown) once you add a license, the allowed types do not fit into the space provided.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-03-12",
-            "completedDate": null,
+            "completedDate": "2018-08-21",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "bug",
-                "review",
                 "ux"
             ]
         },
@@ -7813,12 +7811,11 @@
             "url": "https://github.com/solutionguidance/psm/issues/681",
             "title": "Rename built user docs to \"user help\" or \"user FAQ\"",
             "description": "Per @jcunard's suggestion, change the title of the documentation from \"user manual\" to \"user help\" or \"user FAQs.\"  This should be simple to do in `conf.py`.\r\n\r\n![screenshot-2018-2-21 welcome to provider screening module s documentation provider screening module user manual 1 0 docum](https://user-images.githubusercontent.com/1497818/36499379-a934e058-1706-11e8-88b9-225c8abc836e.png)\r\n",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-02-21",
-            "completedDate": null,
+            "completedDate": "2018-08-21",
             "labels": [
                 "Z-REQ-PSM-FR-7.2",
-                "review",
                 "ux"
             ]
         },
@@ -11614,14 +11611,13 @@
             "url": "https://github.com/solutionguidance/psm/issues/163",
             "title": "dropdown menus too short and narrow",
             "description": "![provider-type-too-small](https://user-images.githubusercontent.com/842790/27238684-d720e500-529b-11e7-8e42-578360d9bc8c.png)\r\n\r\nIn several places in the provider enrollment workflow, the application displays a dropdown menu whose height is too short and cuts off the bottom of the letters in the value chosen.\r\n\r\nI'm using Firefox 45.9.0 on Debian.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2017-06-16",
-            "completedDate": null,
+            "completedDate": "2018-08-21",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "bug",
                 "quick-fix",
-                "review",
                 "ux"
             ]
         },

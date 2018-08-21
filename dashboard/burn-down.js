@@ -114,7 +114,12 @@
   }
 
   function sortFeatures(a, b) {
-    if (a.completedDate === b.completedDate) {
+    // Ongoing features are last in the sort order.
+    if (a.status === "Ongoing" && b.status !== "Ongoing") {
+      return 1;
+    } else if (b.status === "Ongoing" && a.status !== "Ongoing") {
+      return -1;
+    } else if (a.completedDate === b.completedDate) {
       return a.startDate > b.startDate ? 1 : -1;
     } else {
       return a.completedDate > b.completedDate ? 1 : -1;
@@ -247,10 +252,12 @@
 
     function barClass(d) {
       var statusClass = " not-started";
-      if (d.startDate !== null) {
-        statusClass = " in-progress";
+      if (d.status === "Ongoing") {
+        statusClass = " ongoing";
       } else if (d.status === "Completed") {
         statusClass = " completed";
+      } else if (d.status === "InProgress" ||  d.startDate !== null) {
+        statusClass = " in-progress";
       }
       return "bar" + (statusClass || "");
     }
@@ -278,7 +285,7 @@
       .attr("height", barHeight);
 
     rowsGroup
-      .selectAll(["rect.in-progress", "rect.completed"])
+      .selectAll(["rect.in-progress", "rect.completed", "rect.ongoing"])
       .data(featuresArray)
       .enter()
       .append("rect")
@@ -391,7 +398,12 @@
     }
 
     chartG
-      .selectAll(["rect.completed", "rect.in-progress", "rect.not-started"])
+      .selectAll([
+        "rect.completed",
+        "rect.in-progress",
+        "rect.not-started",
+        "rect.ongoing"
+      ])
       .on("mouseover", function(d) {
         tooltip.select(".tooltipDescription").html(d.description);
         tooltip.select(".tooltipRequirements").html(d.requirements.join(", "));

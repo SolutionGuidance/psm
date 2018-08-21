@@ -170,6 +170,10 @@ public class ControllerHelper {
                 "pageSize" + String.valueOf(pageSize),
                 true
         );
+        mv.addObject(
+                "totalItems",
+                results.getTotal()
+        );
     }
 
     private static int getFirstPage(int pageNumber, int totalPages) {

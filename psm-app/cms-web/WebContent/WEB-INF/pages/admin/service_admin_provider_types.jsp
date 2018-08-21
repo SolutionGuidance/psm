@@ -43,7 +43,7 @@
                 <form:hidden id="searchFormProviderType" path="typeName" />
               </form:form>
               <div class="pagination">
-                <%@ include file="/WEB-INF/pages/admin/includes/page_left_navigation.jsp" %>
+                <%@ include file="/WEB-INF/pages/includes/pagination_details_wrapper.jsp" %>
                 <div class="right">
                   <c:choose>
                   <c:when test="${searchCriteria.showFilterPanel}">
@@ -142,15 +142,7 @@
                   <div class="tabFoot">
                     <div class="tabR">
                       <div class="tabM">
-                        <div class="pagination">
-                          <%@ include file="/WEB-INF/pages/admin/includes/page_left_navigation.jsp" %>
-                          <div class="right">
-                            <h:handlebars
-                              template="includes/pagination_links"
-                              context="${pageContext}"
-                            />
-                          </div>
-                        </div>
+                        <%@ include file="/WEB-INF/pages/includes/pagination_details_and_links.jsp" %>
                       </div>
                     </div>
                   </div>

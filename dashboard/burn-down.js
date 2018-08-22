@@ -12,7 +12,8 @@
     var columns = [
       { label: "ID", key: "req_id" },
       { label: "Description", key: "description" },
-      { label: "Status", key: "status" },
+      // Status of requirements is not currently implemented.
+      // { label: "Status", key: "status" },
       { label: "Issue Tickets", key: "issues" }
     ];
 

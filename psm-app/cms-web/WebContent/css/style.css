@@ -2017,33 +2017,6 @@ input.date{
   margin:0 4px 0 0;
 }
 
-/* .bottomSection */
-.providerPanel .bottomSection{
-  min-height:10px;
-  margin:0 10px;
-  padding:10px 0 4px 0;
-  border-top:#d2d2d2 solid 1px;
-}
-
-.providerPanel .bottomSection .providerPic{
-  width:auto;
-  height:76px;
-  float:left;
-  display:inline;
-  margin:0 7px;
-}
-
-.providerPanel .bottomSection input.date{
-  width:95px;
-  height:20px;
-  padding-left:5px;
-  line-height:20px;
-  float:left;
-  margin:4px 7px 0;
-  border:1px solid #7ea5c8;
-  background:url(../i/input-bg.png) repeat-x left top;
-}
-
 /* radioPanel */
 .radioPanel{
   width:100%;
@@ -4641,10 +4614,6 @@ input[type=checkbox]{
 #printModal span.text{
   padding: 0 20px;
   line-height: 18px;
-  display: block;
-}
-#printModal span.providerPic{
-  padding: 0 10px;
   display: block;
 }
 

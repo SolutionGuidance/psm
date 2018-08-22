@@ -212,24 +212,6 @@
             </c:forEach>
             <div class="clearFixed"></div>
         </div>
-        <div class="bottomSection">
-            <div class="row">
-                <label>Date<span
-                    class="required">*</span></label>
-                <span class="dateWrapper">
-                    <c:set var="formName"
-                        value="_08_date"></c:set>
-                    <c:set var="formValue"
-                        value="${requestScope[formName]}"></c:set>
-                    <input
-                        class="date"
-                        type="text"
-                        name="${formName}"
-                        value="${formValue}"/>
-                </span>
-            </div>
-            <div class="clearFixed"></div>
-        </div>
     </div>
     <div class="tl"></div>
     <div class="tr"></div>

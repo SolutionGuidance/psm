@@ -19,6 +19,7 @@ package gov.medicaid.controllers.admin;
 import gov.medicaid.entities.ScreeningSchedule;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ScreeningService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,7 +39,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @author argolite, TCSASSEMBLER
  * @version 1.0
  */
-public class ScreeningScheduleController extends BaseServiceAdminController {
+@Controller
+public class ScreeningScheduleController {
     private final ScreeningService screeningService;
 
     public ScreeningScheduleController(ScreeningService screeningService) {

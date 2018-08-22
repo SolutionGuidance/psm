@@ -51,12 +51,12 @@ import gov.medicaid.services.BusinessProcessService;
 import gov.medicaid.services.EventService;
 import gov.medicaid.services.ExportService;
 import gov.medicaid.services.LookupService;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.ProviderTypeService;
 import org.jbpm.task.query.TaskSummary;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -67,7 +67,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
@@ -88,6 +87,7 @@ import java.util.UUID;
  * <b>Thread Safety</b> This class is mutable and not thread safe, but used in thread safe manner by framework.
  * </p>
  */
+@Controller
 public class EnrollmentController extends BaseController {
 
     /**
@@ -100,42 +100,27 @@ public class EnrollmentController extends BaseController {
      */
     private static final String APPROVAL_TASK_NAME = "Screening Review";
 
-    private ProviderEnrollmentService enrollmentService;
+    private final ProviderEnrollmentService enrollmentService;
+    private final BusinessProcessService businessProcessService;
+    private final EventService eventService;
+    private final LookupService lookupService;
+    private final ProviderTypeService providerTypeService;
+    private final ExportService exportService;
 
-    private BusinessProcessService businessProcessService;
-
-    private EventService eventService;
-
-    private LookupService lookupService;
-
-    private ProviderTypeService providerTypeService;
-
-    /**
-     * Used for PDF export.
-     */
-    private ExportService exportService;
-
-    /**
-     * This method checks that all required injection fields have been provided.
-     *
-     * @throws PortalServiceConfigurationException If there are required
-     *                                             injection fields that are not
-     *                                             injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (enrollmentService == null) {
-            throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
-        }
-
-        if (eventService == null) {
-            throw new PortalServiceConfigurationException("eventService must be configured.");
-        }
-
-        if (lookupService == null) {
-            throw new PortalServiceConfigurationException("lookupService must be configured.");
-        }
+    public EnrollmentController(
+        ProviderEnrollmentService enrollmentService,
+        BusinessProcessService businessProcessService,
+        EventService eventService,
+        LookupService lookupService,
+        ProviderTypeService providerTypeService,
+        ExportService exportService
+    ) {
+        this.enrollmentService = enrollmentService;
+        this.businessProcessService = businessProcessService;
+        this.eventService = eventService;
+        this.lookupService = lookupService;
+        this.providerTypeService = providerTypeService;
+        this.exportService = exportService;
     }
 
     /**
@@ -553,10 +538,6 @@ public class EnrollmentController extends BaseController {
         return "redirect:/ops/viewDashboard";
     }
 
-    public void setEventService(EventService eventService) {
-        this.eventService = eventService;
-    }
-
     /**
      * Completes the review step of the screening process.
      *
@@ -900,31 +881,5 @@ public class EnrollmentController extends BaseController {
         CMSUser user = ControllerHelper.getCurrentUser();
         enrollmentService.deleteCOSByTicket(user, ticketId, id);
         return new ModelAndView("redirect:/agent/enrollment/pendingcos?id=" + ticketId);
-    }
-
-    public void setLookupService(LookupService lookupService) {
-        this.lookupService = lookupService;
-    }
-
-    public void setProviderTypeService(
-            ProviderTypeService providerTypeService
-    ) {
-        this.providerTypeService = providerTypeService;
-    }
-
-    public void setEnrollmentService(
-            ProviderEnrollmentService enrollmentService
-    ) {
-        this.enrollmentService = enrollmentService;
-    }
-
-    public void setBusinessProcessService(
-            BusinessProcessService businessProcessService
-    ) {
-        this.businessProcessService = businessProcessService;
-    }
-
-    public void setExportService(ExportService exportService) {
-        this.exportService = exportService;
     }
 }

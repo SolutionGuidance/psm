@@ -165,12 +165,8 @@
     <property name="validator" ref="UpdatePasswordFormValidator"/>
   </bean>
 
-  <bean id="ReportController"
-        class="gov.medicaid.controllers.admin.ReportController">
-  </bean>
-
   <context:component-scan
-      base-package="gov.medicaid.controllers.admin.report" />
+      base-package="gov.medicaid.controllers.admin" />
 
   <bean id="RegistrationFormValidator" class="gov.medicaid.controllers.validators.RegistrationFormValidator">
     <property name="registrationService" ref="RegistrationService"/>
@@ -237,72 +233,8 @@
     </property>
   </bean>
 
-  <bean id="BaseServiceAdminController"
-        class="gov.medicaid.controllers.admin.BaseServiceAdminController"
-        abstract="true">
-  </bean>
-  <bean id="AgreementDocumentController"
-        class="gov.medicaid.controllers.admin.AgreementDocumentController"
-        parent="BaseServiceAdminController">
-    <property name="agreementDocumentService" ref="AgreementDocumentService"/>
-  </bean>
-  <bean id="AutomaticScreeningController"
-        class="gov.medicaid.controllers.admin.AutomaticScreeningController"
-        parent="BaseServiceAdminController">
-    <constructor-arg ref="ScreeningService"/>
-  </bean>
-  <bean id="DashboardController"
-        class="gov.medicaid.controllers.admin.DashboardController"
-        parent="BaseServiceAdminController">
-    <property name="providerProfileService" ref="ProviderEnrollmentService"/>
-    <property name="eventService" ref="EventService"/>
-  </bean>
-  <bean id="ProviderTypeController"
-        class="gov.medicaid.controllers.admin.ProviderTypeController"
-        parent="BaseServiceAdminController">
-    <property name="agreementDocumentService" ref="AgreementDocumentService"/>
-    <property name="providerTypeService" ref="ProviderTypeService"/>
-    <property name="lookupService" ref="LookupService"/>
-  </bean>
-  <bean id="ScreeningScheduleController"
-        class="gov.medicaid.controllers.admin.ScreeningScheduleController"
-        parent="BaseServiceAdminController"/>
-  <bean id="UserController"
-        class="gov.medicaid.controllers.admin.UserController"
-        parent="BaseServiceAdminController">
-    <property name="registrationService" ref="RegistrationService"/>
-  </bean>
-
-  <bean id="EnrollmentController"
-        class="gov.medicaid.controllers.admin.EnrollmentController"
-        parent="BaseController">
-    <property name="businessProcessService" ref="BusinessProcessService"/>
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-    <property name="eventService" ref="EventService"/>
-    <property name="lookupService" ref="LookupService"/>
-    <property name="providerTypeService" ref="ProviderTypeService"/>
-    <property name="exportService" ref="ExportService"/>
-  </bean>
-
-  <bean id="BaseSystemAdminController"
-        class="gov.medicaid.controllers.admin.BaseSystemAdminController"
-        abstract="true">
-    <property name="registrationService" ref="RegistrationService"/>
-    <property name="lookupService" ref="LookupService"/>
-  </bean>
-
-  <bean id="SystemAdminUserSearchController"
-        class="gov.medicaid.controllers.admin.SystemAdminUserSearchController"
-        parent="BaseSystemAdminController"/>
-
   <bean id="UserValidator" class="gov.medicaid.controllers.admin.UserValidator">
     <property name="registrationService" ref="RegistrationService"/>
-  </bean>
-
-  <bean id="SystemAdminUserController"
-        class="gov.medicaid.controllers.admin.SystemAdminUserController"
-        parent="BaseSystemAdminController">
-    <property name="userValidator" ref="UserValidator"/>
   </bean>
 
   <bean id="ErrorController"

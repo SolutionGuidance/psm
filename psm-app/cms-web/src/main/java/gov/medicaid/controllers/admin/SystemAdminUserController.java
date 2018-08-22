@@ -22,10 +22,12 @@ import gov.medicaid.entities.Role;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.UserSearchCriteria;
 import gov.medicaid.entities.dto.ViewStatics;
-import gov.medicaid.services.PortalServiceConfigurationException;
+import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceException;
+import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.Util;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +35,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.annotation.PostConstruct;
 
 import java.util.Arrays;
 
@@ -50,8 +50,9 @@ import java.util.Arrays;
  * @since 1.0
  * @endpoint "/system/user/*"
  */
+@Controller
 @RequestMapping("/system/user/*")
-public class SystemAdminUserController extends BaseSystemAdminController {
+public class SystemAdminUserController {
 
     /**
      * Maximum password length.
@@ -63,28 +64,23 @@ public class SystemAdminUserController extends BaseSystemAdminController {
      */
     private static final int DEFAULT_PAGE_SIZE = 10;
 
+    private final LookupService lookupService;
+
+    private final RegistrationService registrationService;
+
     /**
      * The validator for user parameters.
      */
-    private UserValidator userValidator;
+    private final UserValidator userValidator;
 
-    /**
-     * Empty constructor.
-     */
-    public SystemAdminUserController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException - If there are required injection fields that are not injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (userValidator == null) {
-            throw new PortalServiceConfigurationException("userValidator must be configured.");
-        }
+    public SystemAdminUserController(
+        LookupService lookupService,
+        RegistrationService registrationService,
+        UserValidator userValidator
+    ) {
+        this.lookupService = lookupService;
+        this.registrationService = registrationService;
+        this.userValidator = userValidator;
     }
 
     /**
@@ -234,9 +230,9 @@ public class SystemAdminUserController extends BaseSystemAdminController {
             mv = new ModelAndView("admin/user-account-edit-system-admin");
             mv.addObject("user", user);
             mv.addObject("role", role);
-            mv.addObject("availableRoles", getLookupService().findAllLookups(Role.class));
+            mv.addObject("availableRoles", lookupService.findAllLookups(Role.class));
         } else {
-            String userId = getRegistrationService().registerByAdmin(actor, user, password);
+            String userId = registrationService.registerByAdmin(actor, user, password);
             String viewName = "admin/user-account-details-system-admin";
             mv = loadUser(viewName, role, userId);
         }
@@ -282,10 +278,10 @@ public class SystemAdminUserController extends BaseSystemAdminController {
             mv = new ModelAndView("admin/user-account-edit-system-admin");
             mv.addObject("role", role);
             mv.addObject("user", user);
-            mv.addObject("availableRoles", getLookupService().findAllLookups(Role.class));
+            mv.addObject("availableRoles", lookupService.findAllLookups(Role.class));
         } else {
             CMSUser actor = ControllerHelper.getCurrentUser();
-            String userId = getRegistrationService().updateByAdmin(actor, user, password);
+            String userId = registrationService.updateByAdmin(actor, user, password);
             String viewName = "admin/user-account-details-system-admin";
             mv = loadUser(viewName, role, userId);
         }
@@ -313,7 +309,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
         }
 
         CMSUser actor = ControllerHelper.getCurrentUser();
-        getRegistrationService().unregisterUsers(actor.getUserId(), userIds);
+        registrationService.unregisterUsers(actor.getUserId(), userIds);
     }
 
     /**
@@ -327,7 +323,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
     @ResponseBody
     public void disable(@RequestParam("userId") String userId) {
         CMSUser actor = ControllerHelper.getCurrentUser();
-        getRegistrationService().suspend(actor, userId);
+        registrationService.suspend(actor, userId);
     }
 
     /**
@@ -341,7 +337,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
     @ResponseBody
     public void reinstate(@RequestParam("userId") String userId) {
         CMSUser actor = ControllerHelper.getCurrentUser();
-        getRegistrationService().reinstate(actor, userId);
+        registrationService.reinstate(actor, userId);
     }
 
     /**
@@ -357,7 +353,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
     private ModelAndView loadUser(String viewName, String role, String userId) throws PortalServiceException {
         CMSUser user;
         if (!Util.isBlank(userId)) {
-            user = getRegistrationService().findByUserId(userId);
+            user = registrationService.findByUserId(userId);
         } else {
             user = new CMSUser();
             user.setRole(new Role());
@@ -366,7 +362,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
         ModelAndView mv = new ModelAndView(viewName);
         mv.addObject("user", user);
         mv.addObject("role", role);
-        mv.addObject("availableRoles", getLookupService().findAllLookups(Role.class));
+        mv.addObject("availableRoles", lookupService.findAllLookups(Role.class));
         return mv;
     }
 
@@ -393,7 +389,7 @@ public class SystemAdminUserController extends BaseSystemAdminController {
                 }
             }
         }
-        SearchResult<CMSUser> results = getRegistrationService().findUsersByCriteria(criteria);
+        SearchResult<CMSUser> results = registrationService.findUsersByCriteria(criteria);
         ModelAndView mv = new ModelAndView("admin/user-account-system-admin");
         if (criteria.isSearchBox()) {
             mv.setViewName("admin/search-result-system-admin");
@@ -417,23 +413,5 @@ public class SystemAdminUserController extends BaseSystemAdminController {
                 && !ViewStatics.ROLE_SYSTEM_ADMINISTRATOR.equals(role)) {
             throw new IllegalArgumentException("Unrecognized 'role' argument was provided.");
         }
-    }
-
-    /**
-     * Gets the value of the field <code>userValidator</code>.
-     *
-     * @return the userValidator
-     */
-    public UserValidator getUserValidator() {
-        return userValidator;
-    }
-
-    /**
-     * Sets the value of the field <code>userValidator</code>.
-     *
-     * @param userValidator the userValidator to set
-     */
-    public void setUserValidator(UserValidator userValidator) {
-        this.userValidator = userValidator;
     }
 }

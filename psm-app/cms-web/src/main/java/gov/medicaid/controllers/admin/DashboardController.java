@@ -23,65 +23,32 @@ import gov.medicaid.entities.Event;
 import gov.medicaid.entities.ProviderSearchCriteria;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.UserRequest;
-import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.EventService;
 import gov.medicaid.services.LookupService;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
-
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
-
 import java.util.List;
 
-public class DashboardController extends BaseServiceAdminController {
-    /**
-     * Represents the provider profile service. it is managed with a getter and setter. It may have any value, but is
-     * expected to be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to
-     * change after dependency injection.
-     */
-    private ProviderEnrollmentService providerProfileService;
+@Controller
+public class DashboardController {
+    private final ProviderEnrollmentService providerProfileService;
+    private final EventService eventService;
+    private final LookupService lookupService;
 
-    /**
-     * Represents the event service. it is managed with a getter and setter. It may have any value, but is expected to
-     * be set to a non-null/empty value by dependency injection. It is fully mutable, but not expected to change after
-     * dependency injection.
-     */
-    private EventService eventService;
-
-    /**
-     * For lookup values.
-     */
-    private LookupService lookupService;
-
-    /**
-     * Empty constructor.
-     */
-    public DashboardController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException If there are required injection fields that are not injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-
-        if (providerProfileService == null) {
-            throw new PortalServiceConfigurationException("providerProfileService must be configured.");
-        }
-
-        if (eventService == null) {
-            throw new PortalServiceConfigurationException("eventService must be configured.");
-        }
-        lookupService = new CMSConfigurator().getLookupService();
+    public DashboardController(
+        ProviderEnrollmentService providerProfileService,
+        EventService eventService,
+        LookupService lookupService
+    ) {
+        this.providerProfileService = providerProfileService;
+        this.eventService = eventService;
+        this.lookupService = lookupService;
     }
 
     /**
@@ -147,39 +114,5 @@ public class DashboardController extends BaseServiceAdminController {
         model.addObject("notifications", notifications);
 
         return model;
-    }
-
-    /**
-     * Getter of eventService.
-     *
-     * @return the eventService
-     */
-    public EventService getEventService() {
-        return eventService;
-    }
-
-    /**
-     * Set the eventService.
-     *
-     * @param eventService the eventService to set
-     */
-    public void setEventService(EventService eventService) {
-        this.eventService = eventService;
-    }
-
-    /**
-     * Gets the value of the field <code>providerProfileService</code>.
-     * @return the providerProfileService
-     */
-    public ProviderEnrollmentService getProviderProfileService() {
-        return providerProfileService;
-    }
-
-    /**
-     * Sets the value of the field <code>providerProfileService</code>.
-     * @param providerProfileService the providerProfileService to set
-     */
-    public void setProviderProfileService(ProviderEnrollmentService providerProfileService) {
-        this.providerProfileService = providerProfileService;
     }
 }

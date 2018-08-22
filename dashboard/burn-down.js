@@ -1,6 +1,15 @@
 (function() {
   "use strict";
 
+  function formatStatus(status) {
+    return {
+      NotStarted: "Not Started",
+      InProgress: "In Progress",
+      Completed: "Completed",
+      Ongoing: "Ongoing"
+    }[status];
+  }
+
   function makeFeatureTable(targetSelector, reqsData, issuesData) {
     var table = d3
       .select(targetSelector)
@@ -45,12 +54,8 @@
       return d.value;
     }
 
-    function formatStatus(d) {
-      return {
-        NotStarted: "Not Started",
-        InProgress: "In Progress",
-        Completed: "Completed"
-      }[d.value];
+    function formatRequirementStatus(d) {
+      return formatStatus(d.value);
     }
 
     function formatIssues(d) {
@@ -103,7 +108,7 @@
         var formatter = {
           req_id: plainValue,
           description: plainValue,
-          status: formatStatus,
+          status: formatRequirementStatus,
           issues: formatIssues
         }[d.key];
 
@@ -379,7 +384,9 @@
         .text("Close")
         .on("click", hideDarkBackground);
 
-      overlay.append("h2").text("Feature: " + d.feature_id);
+      overlay
+        .append("h2")
+        .text("Feature: " + d.feature_id + " (" + formatStatus(d.status) + ")");
 
       overlay
         .append("div")

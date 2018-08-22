@@ -273,7 +273,7 @@
             ],
             "startDate": "2018-07-01",
             "completedDate": "2018-08-31",
-            "status": "NotStarted",
+            "status": "InProgress",
             "requirements": [
                 "psm-FR-2.16",
                 "psm-FR-3.11",
@@ -288,7 +288,7 @@
             "subfeatures": [],
             "startDate": "2018-07-01",
             "completedDate": "2018-09-30",
-            "status": "NotStarted",
+            "status": "InProgress",
             "requirements": [
                 "psm-AD-5.14",
                 "psm-AD-5.3",
@@ -331,7 +331,7 @@
             "subfeatures": [],
             "startDate": "2018-07-01",
             "completedDate": "2018-09-30",
-            "status": "NotStarted",
+            "status": "InProgress",
             "requirements": [
                 "psm-FR-1.5",
                 "psm-FR-3.4",
@@ -352,7 +352,7 @@
             ],
             "startDate": "2018-07-01",
             "completedDate": "2018-09-30",
-            "status": "NotStarted",
+            "status": "InProgress",
             "requirements": [
                 "psm-FR-1.5",
                 "psm-FR-2.18",
@@ -376,7 +376,7 @@
             ],
             "startDate": "2018-07-01",
             "completedDate": "2018-08-31",
-            "status": "NotStarted",
+            "status": "InProgress",
             "requirements": [
                 "psm-FR-2.12",
                 "psm-FR-2.2",

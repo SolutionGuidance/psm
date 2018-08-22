@@ -24,6 +24,7 @@
             <div class="detailPanel screeningsDateRange">
               <form
                 action="${ctx}/agent/screenings"
+                class="paginationForm"
                 :method "get"
               >
                 <div class="row rowDateRange">

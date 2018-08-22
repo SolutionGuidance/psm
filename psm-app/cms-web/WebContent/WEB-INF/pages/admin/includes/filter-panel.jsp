@@ -8,7 +8,7 @@
 </c:if>
 <form:form
   id="searchUserAccountsForm"
-  cssClass="${cssClz}"
+  cssClass="${cssClz} paginationForm"
   action="${ctx}/system/user/search?role=${role}"
   modelAttribute="criteria"
   method="post"

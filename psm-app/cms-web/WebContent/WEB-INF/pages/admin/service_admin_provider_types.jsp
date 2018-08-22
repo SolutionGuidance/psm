@@ -35,6 +35,7 @@
 
                 <form:form
                   id="searchForm"
+                  cssClass="paginationForm"
                   action="${ctx}/admin/viewProviderTypes"
                   modelAttribute="searchCriteria"
                   method="post"

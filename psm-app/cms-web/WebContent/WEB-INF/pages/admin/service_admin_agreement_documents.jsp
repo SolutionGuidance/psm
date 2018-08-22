@@ -34,6 +34,7 @@
 
                 <form:form
                   id="searchForm"
+                  cssClass="paginationForm"
                   action="${ctx}/admin/viewAgreementDocuments"
                   modelAttribute="searchCriteria"
                   method="post"

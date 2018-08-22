@@ -8,6 +8,7 @@
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
 <form:form
   id="searchForm"
+  cssClass="paginationForm"
   action="${enrollmentSearchFormAction}"
   modelAttribute="searchCriteria"
   method="get">

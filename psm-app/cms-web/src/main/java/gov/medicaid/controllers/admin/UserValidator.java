@@ -20,6 +20,7 @@ import gov.medicaid.controllers.validators.BaseValidator;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.RegistrationService;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -36,6 +37,7 @@ import java.util.List;
  * @author argolite, TCSASSEMBLER
  * @version 1.0
  */
+@Component
 public class UserValidator extends BaseValidator implements Validator {
 
     /**

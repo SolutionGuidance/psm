@@ -20,6 +20,7 @@ import gov.medicaid.controllers.forms.RegistrationForm;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.services.RegistrationService;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
 /**
@@ -28,6 +29,7 @@ import org.springframework.validation.Errors;
  * @author TCSASSEMBLER
  * @version 1.0
  */
+@Component
 public class RegistrationFormValidator extends BaseValidator {
 
     /**

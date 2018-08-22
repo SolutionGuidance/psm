@@ -36,7 +36,6 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -137,21 +136,22 @@ public class LookupServiceBean implements LookupService {
      *            the return type
      * @return the matched lookup
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     public <T extends LookupEntity> T findLookupByDescription(Class<T> cls, String description) {
         if (Util.isBlank(description)) {
             return null;
         }
-        Query query = em.createQuery("FROM " + cls.getName() + " WHERE description = :description");
-        query.setParameter("description", description);
-        List rs = query.getResultList();
+        List<T> rs = em.createQuery(
+            "FROM " + cls.getName() + " WHERE description = :description",
+            cls)
+            .setParameter("description", description)
+            .getResultList();
         if (rs.isEmpty()) {
             return null;
         }
         if (rs.size() > 1) {
             throw new IllegalStateException("Lookup table contains non unique element.");
         }
-        return (T) rs.get(0);
+        return rs.get(0);
     }
 
     /**
@@ -165,21 +165,21 @@ public class LookupServiceBean implements LookupService {
      *            the return type
      * @return the matched lookup
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     public <T extends LookupEntity> T findLookupByCode(Class<T> cls, String code) {
         if (Util.isBlank(code)) {
             return null;
         }
-        Query query = em.createQuery("FROM " + cls.getName() + " WHERE code = :code");
-        query.setParameter("code", code);
-        List rs = query.getResultList();
+        List<T> rs = em
+            .createQuery("FROM " + cls.getName() + " WHERE code = :code", cls)
+            .setParameter("code", code)
+            .getResultList();
         if (rs.isEmpty()) {
             return null;
         }
         if (rs.size() > 1) {
             throw new IllegalStateException("Lookup table contains non unique element.");
         }
-        return (T) rs.get(0);
+        return rs.get(0);
     }
 
     /**
@@ -229,9 +229,8 @@ public class LookupServiceBean implements LookupService {
      *            the return type
      * @return the matched lookups
      */
-    @SuppressWarnings("unchecked")
     public <T extends LookupEntity> List<T> findAllLookups(Class<T> cls) {
-        return em.createQuery("FROM " + cls.getName()).getResultList();
+        return em.createQuery("FROM " + cls.getName(), cls).getResultList();
     }
 
     /**

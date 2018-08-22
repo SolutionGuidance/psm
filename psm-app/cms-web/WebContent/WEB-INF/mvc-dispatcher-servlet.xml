@@ -176,7 +176,6 @@
     </property>
   </bean>
 
-  <bean id="UserValidator" class="gov.medicaid.controllers.admin.UserValidator">
-    <property name="registrationService" ref="RegistrationService"/>
-  </bean>
+  <bean id="UserValidator"
+        class="gov.medicaid.controllers.admin.UserValidator"/>
 </beans>

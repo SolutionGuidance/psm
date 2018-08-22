@@ -32,7 +32,12 @@
               <div id="agreementPanel">
                 <c:set var="searchResult" value="${agreementDocumentsSearchResult}"/>
 
-                <form:form id="searchForm" action="${ctx}/admin/viewAgreementDocuments" modelAttribute="searchCriteria" method="post">
+                <form:form
+                  id="searchForm"
+                  action="${ctx}/admin/viewAgreementDocuments"
+                  modelAttribute="searchCriteria"
+                  method="post"
+                >
                   <form:hidden id="searchFormPageSize" path="pageSize" />
                   <form:hidden id="searchFormPageNumber" path="pageNumber" />
                   <form:hidden id="searchFormSortColumn" path="sortColumn" />

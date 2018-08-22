@@ -61,7 +61,6 @@ public class FacilityEligibilityFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
         creds.setPhysicalAndOccupationTherapyServices(param(request, "therapyIndicator"));
@@ -71,7 +70,7 @@ public class FacilityEligibilityFormBinder extends BaseFormBinder {
         creds.setDualCertifiedNumberOfBeds((int) BinderUtils.getAsLong(param(request, "dualCertBedCount")));
         creds.setICFNumberOfBeds((int) BinderUtils.getAsLong(param(request, "icfBedCount")));
 
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**

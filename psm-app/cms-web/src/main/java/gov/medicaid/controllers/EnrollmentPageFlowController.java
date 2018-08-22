@@ -113,8 +113,7 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Empty list of errors.
      */
-    @SuppressWarnings("unchecked")
-    public static final List<FormError> NO_ERRORS = (List<FormError>) Collections.EMPTY_LIST;
+    private static final List<FormError> NO_ERRORS = Collections.emptyList();
 
     /**
      * The enrollment service.

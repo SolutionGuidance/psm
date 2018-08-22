@@ -241,10 +241,9 @@ public class LookupServiceBean implements LookupService {
      *            the corporate structure type
      * @return the matched lookups
      */
-    @SuppressWarnings("unchecked")
     public List<BeneficialOwnerType> findBeneficialOwnerTypes(String entityType) {
         EntityStructureType entity = findLookupByDescription(EntityStructureType.class, entityType);
-        List<BeneficialOwnerType> results = Collections.EMPTY_LIST;
+        List<BeneficialOwnerType> results = Collections.emptyList();
         if (entity != null) {
             results = findRelatedLookup(BeneficialOwnerType.class, entity.getCode(),
                     ViewStatics.REL_BENEFICIAL_OWNER_TYPE);

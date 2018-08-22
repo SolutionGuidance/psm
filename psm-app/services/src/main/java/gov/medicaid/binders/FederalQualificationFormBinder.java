@@ -66,7 +66,6 @@ public class FederalQualificationFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
@@ -111,7 +110,7 @@ public class FederalQualificationFormBinder extends BaseFormBinder {
             deleteAttachment(attachments, DocumentNames.COVER_PAGE_OF_PUBLIC_LAW_93_638_STATUS_CONTRACT.value());
         }
 
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     private void deleteAttachment(AttachedDocumentsType attachments2, String name) {

@@ -69,7 +69,6 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
      *
      * @return
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         provider.setProviderType(param(request, "providerType"));
@@ -84,7 +83,7 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
             }
         }
 
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**

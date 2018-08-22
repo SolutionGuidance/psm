@@ -19,7 +19,7 @@ public class EnrollmentListPage extends PsmPage {
         // For providers
         if ($("#listByStatusNpi").isPresent()) {
             $("#listByStatusNpi").sendKeys(npi);
-            $("#paginationForm").submit();
+            $("#filterForm").submit();
         } else { // For admins
             $("#enrollmentSearchFilterNpiInput").sendKeys(npi);
             $("#showSearchEnrollmentsResultBtn").click();

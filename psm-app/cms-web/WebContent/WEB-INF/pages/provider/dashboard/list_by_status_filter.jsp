@@ -3,7 +3,7 @@
 <c:url var="filterResultsURL" value="/provider/dashboard/filter"/>
 <form:form
   action="${filterResultsURL}"
-  id="paginationForm"
+  id="filterForm"
   method="get"
   commandName="criteria"
 >

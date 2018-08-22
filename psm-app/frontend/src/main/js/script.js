@@ -1854,21 +1854,21 @@ function submitFormById(id, url) {
 * @param idx the result index
 */
 function changeSort(idx) {
-  var cur = $('#paginationForm input[name=sortColumn]').val();
-  var dir = $('#paginationForm input[name=ascending]').val();
+  var cur = $('#filterForm input[name=sortColumn]').val();
+  var dir = $('#filterForm input[name=ascending]').val();
   if (cur == idx) {
     // switch direction only
     if (dir === 'true') {
-      $('#paginationForm input[name=ascending]').val('false');
+      $('#filterForm input[name=ascending]').val('false');
     } else {
-      $('#paginationForm input[name=ascending]').val('true');
+      $('#filterForm input[name=ascending]').val('true');
     }
   } else {
-    $('#paginationForm input[name=sortColumn]').val(idx);
-    $('#paginationForm input[name=ascending]').val('false');
+    $('#filterForm input[name=sortColumn]').val(idx);
+    $('#filterForm input[name=ascending]').val('false');
   }
 
-  $('#paginationForm').submit();
+  $('#filterForm').submit();
 }
 
 var isPrimaryPracticeLookup = false;

@@ -11,6 +11,10 @@ body > h1,
   text-align: center;
 }
 
+.page-content-dashboard {
+  font-weight: normal;
+}
+
 svg {
   background: white;
 }
@@ -163,6 +167,11 @@ text.description {
   padding: 2%;
   overflow: scroll;
   cursor: default;
+}
+
+.overlayH2,
+.overlayH3 {
+  font-weight: 500;
 }
 
 .overlayFeatureDescription {

@@ -386,6 +386,7 @@
 
       overlay
         .append("h2")
+        .attr("class", "overlayH2")
         .text("Feature: " + d.feature_id + " (" + formatStatus(d.status) + ")");
 
       overlay
@@ -393,7 +394,10 @@
         .attr("class", "overlayFeatureDescription")
         .text(d.description);
 
-      overlay.append("h3").text("Requirements");
+      overlay
+        .append("h3")
+        .attr("class", "overlayH3")
+        .text("Requirements");
 
       var reqs = d.requirements.map(function(reqId) {
         return data.requirements[reqId];

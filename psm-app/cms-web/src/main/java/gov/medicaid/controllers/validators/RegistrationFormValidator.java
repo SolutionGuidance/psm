@@ -53,12 +53,10 @@ public class RegistrationFormValidator extends BaseValidator {
     /**
      * The registration service used for data checks.
      */
-    private RegistrationService registrationService;
+    private final RegistrationService registrationService;
 
-    /**
-     * Empty constructor.
-     */
-    public RegistrationFormValidator() {
+    public RegistrationFormValidator(RegistrationService registrationService) {
+        this.registrationService = registrationService;
     }
 
     /**
@@ -119,14 +117,4 @@ public class RegistrationFormValidator extends BaseValidator {
             }
         }
     }
-
-    /**
-     * Sets the value of the field <code>registrationService</code>.
-     *
-     * @param registrationService the registrationService to set
-     */
-    public void setRegistrationService(RegistrationService registrationService) {
-        this.registrationService = registrationService;
-    }
-
 }

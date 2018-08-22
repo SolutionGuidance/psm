@@ -112,9 +112,8 @@
   <context:component-scan
       base-package="gov.medicaid.controllers" />
 
-  <bean id="RegistrationFormValidator" class="gov.medicaid.controllers.validators.RegistrationFormValidator">
-    <property name="registrationService" ref="RegistrationService"/>
-  </bean>
+  <bean id="RegistrationFormValidator"
+        class="gov.medicaid.controllers.validators.RegistrationFormValidator"/>
 
   <bean id="AccountLinkFormValidator"
         class="gov.medicaid.controllers.validators.AccountLinkFormValidator"/>

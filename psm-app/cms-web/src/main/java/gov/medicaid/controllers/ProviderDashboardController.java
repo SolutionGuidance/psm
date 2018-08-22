@@ -66,8 +66,6 @@ public class ProviderDashboardController extends BaseController {
      * Used to export results to PDF.
      */
     private ExportService exportService;
-    static final int MAX_PAGE_LINKS_TO_SHOW = 4;
-    private static final int PREVIOUS_PAGES_TO_SHOW = 2;
 
     /**
      * Empty constructor.

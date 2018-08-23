@@ -60,7 +60,10 @@
                 </tr>
               </thead>
               <tbody>
-                <c:forEach var="item" items="${results.items}">
+                <c:forEach
+                  var="item"
+                  items="${results.items}"
+                >
                   <tr>
                     <td class="alignCenter">
                       <input
@@ -80,7 +83,9 @@
                     <td>${item.email}</td>
                     <td>${item.role.description}</td>
                     <td class="alignCenter">
-                      <a href="<c:url value='/admin/user/edit?role=${item.role.description}&userId=${item.userId}' />">
+                      <a
+                        href="<c:url value='/admin/user/edit?role=${item.role.description}&userId=${item.userId}' />"
+                      >
                         Edit
                       </a>
                       <span class="sep">|</span>

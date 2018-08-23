@@ -185,22 +185,31 @@
         <td class="alignCenter">
           <c:choose>
             <c:when test="${item.status == 'Draft'}">
-              <a href="${viewTicketLink}">
+              <a
+                href="${viewTicketLink}"
+              >
                 Edit
               </a>
             </c:when>
             <c:otherwise>
-              <a href="${viewTicketLink}">
+              <a
+                href="${viewTicketLink}"
+              >
                 View
               </a>
             </c:otherwise>
           </c:choose>
           <span class="sep">|</span>
-          <a href="${previewTicketLink}" class="printModalBtn printMe">
+          <a
+            href="${previewTicketLink}"
+            class="printModalBtn printMe"
+          >
             Print
           </a>
           <span class="sep">|</span>
-          <a href="${exportTicketLink}">
+          <a
+            href="${exportTicketLink}"
+          >
             Export to PDF
           </a>
         </td>

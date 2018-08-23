@@ -126,17 +126,48 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <c:forEach var="item" items="${searchResult.items}">
+                        <c:forEach
+                          var="item"
+                          items="${searchResult.items}"
+                        >
                           <tr>
                             <td class="alignCenter">
                               <input id="providerType_${item.code}" <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="providerTypeCheckBox" value="${item.code}" type="checkbox" name="providerType"/>
                             </td>
                             <td><label for="providerType_${item.code}">${item.description}</label></td>
-                            <td class="alignCenter"><a href="${ctx}/admin/getProviderType?providerTypeId=${item.code}" class="viewProviderLink">View</a><span class="sep">|</span><a href="${ctx}/admin/beginEditProviderType?providerTypeId=${item.code}" class="editProviderLink">Edit</a>
+                            <td class="alignCenter">
+                              <a
+                                href="${ctx}/admin/getProviderType?providerTypeId=${item.code}"
+                                class="viewProviderLink"
+                              >
+                                View
+                              </a>
+                              <span class="sep">|</span>
+                              <a
+                                href="${ctx}/admin/beginEditProviderType?providerTypeId=${item.code}"
+                                class="editProviderLink"
+                              >
+                                Edit
+                              </a>
                               <span class="sep">|</span>
                               <c:choose>
-                              <c:when test="${item.canDelete}"><a rel="${item.code}" href="javascript:;" class="deleteProviderTypeBtn">Delete</a></c:when>
-                              <c:otherwise><a href="javascript:;" class="disabledBtn">Delete</a></c:otherwise>
+                                <c:when test="${item.canDelete}">
+                                  <a
+                                    rel="${item.code}"
+                                    href="javascript:;"
+                                    class="deleteProviderTypeBtn"
+                                  >
+                                    Delete
+                                  </a>
+                                </c:when>
+                                <c:otherwise>
+                                  <a
+                                    href="javascript:;"
+                                    class="disabledBtn"
+                                  >
+                                    Delete
+                                  </a>
+                                </c:otherwise>
                               </c:choose>
                             </td>
                           </tr>

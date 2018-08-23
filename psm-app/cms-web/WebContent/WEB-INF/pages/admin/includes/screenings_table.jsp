@@ -40,7 +40,10 @@
   </thead>
 
   <tbody>
-    <c:forEach var="screening" items="${screenings}">
+    <c:forEach
+      var="screening"
+      items="${screenings}"
+    >
       <tr>
         <td>${screening.date}</td>
         <td>${screening.npi}</td>
@@ -50,9 +53,17 @@
         <td>${screening.reason}</td>
         <td>${screening.result}</td>
         <td class="alignCenter nopad">
-          <a href="#">Auto Screen</a>
+          <a
+            href="#"
+          >
+            Auto Screen
+          </a>
           <span class="sep">|</span>
-          <a href="#">Manual Screen</a>
+          <a
+            href="#"
+          >
+            Manual Screen
+          </a>
         </td>
       </tr>
     </c:forEach>

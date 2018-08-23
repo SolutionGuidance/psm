@@ -87,7 +87,10 @@
                         <th>Status</th>
                       </tr>
                     </thead>
-                    <c:forEach var="enrollment" items="${enrollments}">
+                    <c:forEach
+                      var="enrollment"
+                      items="${enrollments}"
+                    >
                       <tr class="reportRow">
                         <td>
                           <a href="${ctx}/provider/enrollment/view?id=${enrollment.ticketId}">

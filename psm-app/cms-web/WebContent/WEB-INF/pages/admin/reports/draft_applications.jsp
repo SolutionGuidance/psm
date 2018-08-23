@@ -50,7 +50,10 @@
                       <th>Submission Date</th>
                     </tr>
                   </thead>
-                  <c:forEach var="enrollment" items="${enrollmentMonth.enrollments}">
+                  <c:forEach
+                    var="enrollment"
+                    items="${enrollmentMonth.enrollments}"
+                  >
                   <tr class="reportRow">
                     <td class="reportDatum nonedisplay" reportField="month" reportValue="${enrollmentMonth.month}"></td>
                     <td class="reportDatum" reportField="ticketId" reportValue="${enrollment.ticketId}">

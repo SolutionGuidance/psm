@@ -80,7 +80,10 @@
   </thead>
 
   <tbody>
-    <c:forEach var="item" items="${searchResult.items}">
+    <c:forEach
+      var="item"
+      items="${searchResult.items}"
+    >
       <tr>
         <td class="alignCenter tdCheckbox">
           <input
@@ -135,17 +138,25 @@
         <td class="alignCenter nopad">
           <c:choose>
             <c:when test="${fn:toLowerCase(item.status)=='pending'}">
-              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a
+                class="viewLink"
+                href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
+              >
                 View
               </a>
               <span class="sep">|</span>
-              <a href="${ctx}/provider/enrollment/reopen?id=${item.ticketId}">
+              <a
+                href="${ctx}/provider/enrollment/reopen?id=${item.ticketId}"
+              >
                 Edit
               </a>
               <span class="sep">|</span>
               <c:forEach var="task" items="${tasks}">
                 <c:if test="${task.processInstanceId == item.processInstanceId}">
-                    <a class="reviewLink" href="${ctx}/agent/enrollment/screeningReview?id=${item.ticketId}">
+                    <a
+                      class="reviewLink"
+                      href="${ctx}/agent/enrollment/screeningReview?id=${item.ticketId}"
+                    >
                       Review
                     </a>
                     <span class="sep">|</span>
@@ -153,27 +164,39 @@
               </c:forEach>
             </c:when>
             <c:when test="${fn:toLowerCase(item.status)=='draft'}">
-              <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a
+                href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
+              >
                 Edit
               </a>
               <span class="sep">|</span>
             </c:when>
             <c:when test="${fn:toLowerCase(item.status)=='approved'}">
-              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a
+                class="viewLink"
+                href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
+              >
                 View
               </a>
               <span class="sep">|</span>
-              <a href="${ctx}/provider/profile/edit?profileId=${item.profileReferenceId}">
+              <a
+                href="${ctx}/provider/profile/edit?profileId=${item.profileReferenceId}"
+              >
                 Edit
               </a>
               <span class="sep">|</span>
-              <a href="${ctx}/provider/profile/renew?profileId=${item.profileReferenceId}">
+              <a
+                href="${ctx}/provider/profile/renew?profileId=${item.profileReferenceId}"
+              >
                 Renew
               </a>
               <span class="sep">|</span>
             </c:when>
             <c:otherwise>
-              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a
+                class="viewLink"
+                href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
+              >
                 View
               </a>
               <span class="sep">|</span>
@@ -199,11 +222,17 @@
             <span class="sep <c:if test="${!(fn:length(item.notes)>0)}">hide</c:if>">|</span>
           </c:if>
 
-          <a rel="${item.ticketId}" class="printEnrollment" href="javascript:;">
+          <a
+            rel="${item.ticketId}"
+            class="printEnrollment"
+            href="javascript:;"
+          >
             Print
           </a>
           <span class="sep">|</span>
-          <a href="${ctx}/provider/enrollment/exportTicket?id=${item.ticketId}">
+          <a
+            href="${ctx}/provider/enrollment/exportTicket?id=${item.ticketId}"
+          >
             Export
           </a>
         </td>

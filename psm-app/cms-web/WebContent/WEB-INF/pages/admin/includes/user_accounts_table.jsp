@@ -45,7 +45,10 @@
           </tr>
         </thead>
         <tbody>
-          <c:forEach var="item" items="${results.items}">
+          <c:forEach
+            var="item"
+            items="${results.items}"
+          >
             <tr
               <c:choose>
                 <c:when test="${item.status == 'DISABLED'}">
@@ -73,7 +76,9 @@
               <td>${item.firstName}</td>
               <td>${item.email}</td>
               <td class="alignCenter">
-                <a href="<c:url value='/system/user/edit?role=${role}&userId=${item.userId}' />">
+                <a
+                  href="<c:url value='/system/user/edit?role=${role}&userId=${item.userId}' />"
+                >
                   Edit
                 </a>
                 <span class="sep">|</span>

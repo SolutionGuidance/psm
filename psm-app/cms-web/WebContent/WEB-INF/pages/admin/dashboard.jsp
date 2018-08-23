@@ -63,7 +63,10 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <c:forEach items="${profiles}" var="item">
+                    <c:forEach
+                      items="${profiles}"
+                      var="item"
+                    >
                       <tr>
                         <td>${item.npi}</td>
                         <td>${item.providerType}</td>
@@ -72,7 +75,9 @@
                         <td><fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy"/></td>
                         <td>${item.status}</td>
                         <td>
-                          <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+                          <a
+                            href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
+                          >
                             View
                           </a>
                         </td>

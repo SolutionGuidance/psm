@@ -72,7 +72,10 @@
                           <th class="providerTypesNum">Applications Reviewed</th>
                         </tr>
                       </thead>
-                      <c:forEach var="providerType" items="${month.providerTypes}">
+                      <c:forEach
+                        var="providerType"
+                        items="${month.providerTypes}"
+                      >
                         <tr class="reportRow">
                           <td
                             class="reportDatum"

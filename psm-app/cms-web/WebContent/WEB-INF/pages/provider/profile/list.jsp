@@ -58,9 +58,23 @@
                       <td><c:out value="${profile.providerType}"/></td>
                       <td><fmt:formatDate value="${profile.lastModifiedDate}" pattern="MM/dd/yyyy"/></td>
                       <td class="alignCenter">
-                        <a href="${viewProfileLink}">View</a><span class="sep">|</span>
-                        <a href="${editProfileLink}">Edit</a><span class="sep">|</span>
-                        <a href="${renewProfileLink}">Renew</a>
+                        <a
+                          href="${viewProfileLink}"
+                        >
+                          View
+                        </a>
+                        <span class="sep">|</span>
+                        <a
+                          href="${editProfileLink}"
+                        >
+                          Edit
+                        </a>
+                        <span class="sep">|</span>
+                        <a
+                          href="${renewProfileLink}"
+                        >
+                          Renew
+                        </a>
                       </td>
                     </tr>
                   </c:forEach>

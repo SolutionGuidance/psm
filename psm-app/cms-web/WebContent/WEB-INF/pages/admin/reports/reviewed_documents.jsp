@@ -45,7 +45,10 @@
                     <th>Number of Documents</th>
                   </tr>
                 </thead>
-                <c:forEach var="month" items="${months}">
+                <c:forEach
+                  var="month"
+                  items="${months}"
+                >
                   <tr class="reportRow">
                     <td
                       class="reportDatum"

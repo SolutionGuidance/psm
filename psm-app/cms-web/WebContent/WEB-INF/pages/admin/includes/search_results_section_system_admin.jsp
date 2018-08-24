@@ -77,16 +77,18 @@
                         name="providers"
                       />
                     </td>
-                    <td>
-                      <a href="<c:url value='/admin/user/details?role=${item.role.description}&userId=${item.userId}' />">
-                        ${item.username}
-                      </a>
-                    </td>
+                    <td>${item.username}</td>
                     <td>${item.lastName}</td>
                     <td>${item.firstName}</td>
                     <td>${item.email}</td>
                     <td>${item.role.description}</td>
                     <td class="alignCenter">
+                      <a
+                        class="actionLink"
+                        href="<c:url value='/admin/user/details?role=${item.role.description}&userId=${item.userId}' />"
+                      >
+                        View
+                      </a>
                       <a
                         class="actionLink"
                         href="<c:url value='/admin/user/edit?role=${item.role.description}&userId=${item.userId}' />"

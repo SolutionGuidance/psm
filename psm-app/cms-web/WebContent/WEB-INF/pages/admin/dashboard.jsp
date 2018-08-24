@@ -76,6 +76,7 @@
                         <td>${item.status}</td>
                         <td>
                           <a
+                            class="actionLink"
                             href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
                           >
                             View

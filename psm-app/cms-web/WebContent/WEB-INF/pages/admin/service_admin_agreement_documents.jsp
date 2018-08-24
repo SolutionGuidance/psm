@@ -185,17 +185,16 @@
                               <td class="alignCenter">
                                 <a
                                   href="${ctx}/admin/editAgreementDocument?agreementId=${item.id}"
-                                  class="editAgreementLink"
+                                  class="actionLink editAgreementLink"
                                 >
                                   Edit
                                 </a>
-                                <span class="sep">|</span>
                                 <c:choose>
                                   <c:when test="${item.canDelete}">
                                     <a
                                       rel="${item.id}"
                                       href="javascript:;"
-                                      class="deleteAgreementDocumentBtn"
+                                      class="actionLink deleteAgreementDocumentBtn"
                                     >
                                       Delete
                                     </a>
@@ -203,7 +202,7 @@
                                   <c:otherwise>
                                     <a
                                       href="javascript:;"
-                                      class="disabledBtn"
+                                      class="actionLink disabledBtn"
                                     >
                                       Delete
                                     </a>

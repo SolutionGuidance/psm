@@ -186,6 +186,7 @@
           <c:choose>
             <c:when test="${item.status == 'Draft'}">
               <a
+                class="actionLink"
                 href="${viewTicketLink}"
               >
                 Edit
@@ -193,21 +194,21 @@
             </c:when>
             <c:otherwise>
               <a
+                class="actionLink"
                 href="${viewTicketLink}"
               >
                 View
               </a>
             </c:otherwise>
           </c:choose>
-          <span class="sep">|</span>
           <a
             href="${previewTicketLink}"
-            class="printModalBtn printMe"
+            class="actionLink printModalBtn printMe"
           >
             Print
           </a>
-          <span class="sep">|</span>
           <a
+            class="actionLink"
             href="${exportTicketLink}"
           >
             Export to PDF

@@ -139,67 +139,63 @@
           <c:choose>
             <c:when test="${fn:toLowerCase(item.status)=='pending'}">
               <a
-                class="viewLink"
+                class="actionLink viewLink"
                 href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
               >
                 View
               </a>
-              <span class="sep">|</span>
               <a
+                class="actionLink"
                 href="${ctx}/provider/enrollment/reopen?id=${item.ticketId}"
               >
                 Edit
               </a>
-              <span class="sep">|</span>
               <c:forEach var="task" items="${tasks}">
                 <c:if test="${task.processInstanceId == item.processInstanceId}">
                     <a
-                      class="reviewLink"
+                      class="actionLink reviewLink"
                       href="${ctx}/agent/enrollment/screeningReview?id=${item.ticketId}"
                     >
                       Review
                     </a>
-                    <span class="sep">|</span>
                 </c:if>
               </c:forEach>
             </c:when>
             <c:when test="${fn:toLowerCase(item.status)=='draft'}">
               <a
+                class="actionLink"
                 href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
               >
                 Edit
               </a>
-              <span class="sep">|</span>
             </c:when>
             <c:when test="${fn:toLowerCase(item.status)=='approved'}">
               <a
-                class="viewLink"
+                class="actionLink viewLink"
                 href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
               >
                 View
               </a>
-              <span class="sep">|</span>
               <a
+                class="actionLink"
                 href="${ctx}/provider/profile/edit?profileId=${item.profileReferenceId}"
               >
                 Edit
               </a>
-              <span class="sep">|</span>
               <a
+                class="actionLink
                 href="${ctx}/provider/profile/renew?profileId=${item.profileReferenceId}"
               >
                 Renew
               </a>
-              <span class="sep">|</span>
             </c:when>
             <c:otherwise>
               <a
-                class="viewLink"
+                class="actionLink viewLink"
                 href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
               >
                 View
               </a>
-              <span class="sep">|</span>
             </c:otherwise>
           </c:choose>
 
@@ -207,30 +203,28 @@
             <a
               href="javascript:;"
               rel="${item.ticketId}"
-              class="writeNotes"
+              class="actionLink writeNotes"
             >
               Add Note
             </a>
-            <span class="sep">|</span>
             <a
               href="javascript:;"
               rel="${item.ticketId}"
-              class='viewNotes<c:if test="${!(fn:length(item.notes)>0)}"> hide disabledLink</c:if>'
+              class='actionLink viewNotes <c:if test="${!(fn:length(item.notes)>0)}">hide disabledLink</c:if>'
             >
               View Notes
             </a>
-            <span class="sep <c:if test="${!(fn:length(item.notes)>0)}">hide</c:if>">|</span>
           </c:if>
 
           <a
             rel="${item.ticketId}"
-            class="printEnrollment"
+            class="actionLink printEnrollment"
             href="javascript:;"
           >
             Print
           </a>
-          <span class="sep">|</span>
           <a
+            class="actionLink"
             href="${ctx}/provider/enrollment/exportTicket?id=${item.ticketId}"
           >
             Export

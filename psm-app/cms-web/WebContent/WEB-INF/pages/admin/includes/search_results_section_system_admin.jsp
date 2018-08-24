@@ -84,14 +84,14 @@
                     <td>${item.role.description}</td>
                     <td class="alignCenter">
                       <a
+                        class="actionLink"
                         href="<c:url value='/admin/user/edit?role=${item.role.description}&userId=${item.userId}' />"
                       >
                         Edit
                       </a>
-                      <span class="sep">|</span>
                       <a
                         href="javascript:;"
-                        class="deleteLink"
+                        class="actionLink deleteLink"
                       >
                         Delete
                       </a>

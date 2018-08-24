@@ -138,24 +138,22 @@
                             <td class="alignCenter">
                               <a
                                 href="${ctx}/admin/getProviderType?providerTypeId=${item.code}"
-                                class="viewProviderLink"
+                                class="actionLink viewProviderLink"
                               >
                                 View
                               </a>
-                              <span class="sep">|</span>
                               <a
                                 href="${ctx}/admin/beginEditProviderType?providerTypeId=${item.code}"
-                                class="editProviderLink"
+                                class="actionLink editProviderLink"
                               >
                                 Edit
                               </a>
-                              <span class="sep">|</span>
                               <c:choose>
                                 <c:when test="${item.canDelete}">
                                   <a
                                     rel="${item.code}"
                                     href="javascript:;"
-                                    class="deleteProviderTypeBtn"
+                                    class="actionLink deleteProviderTypeBtn"
                                   >
                                     Delete
                                   </a>
@@ -163,7 +161,7 @@
                                 <c:otherwise>
                                   <a
                                     href="javascript:;"
-                                    class="disabledBtn"
+                                    class="actionLink disabledBtn"
                                   >
                                     Delete
                                   </a>

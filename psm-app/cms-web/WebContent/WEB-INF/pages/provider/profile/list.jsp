@@ -59,18 +59,19 @@
                       <td><fmt:formatDate value="${profile.lastModifiedDate}" pattern="MM/dd/yyyy"/></td>
                       <td class="alignCenter">
                         <a
+                          class="actionLink"
                           href="${viewProfileLink}"
                         >
                           View
                         </a>
-                        <span class="sep">|</span>
                         <a
+                          class="actionLink"
                           href="${editProfileLink}"
                         >
                           Edit
                         </a>
-                        <span class="sep">|</span>
                         <a
+                          class="actionLink"
                           href="${renewProfileLink}"
                         >
                           Renew

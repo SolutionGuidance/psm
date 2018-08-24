@@ -12,9 +12,6 @@ a {
 a:hover{
   text-decoration:none;
 }
-.hide{
-  display:none;
-}
 input,select,textarea{
   font-family:Arial, Helvetica, sans-serif;
 }
@@ -515,6 +512,15 @@ input.date{
 .generalTable .sep {
   color: #6e6e6e;
   margin:0 5px;
+}
+.actionLink {
+  display: inline-block;
+  padding: 0px 4px;
+  margin: 2px 1px;
+  text-decoration: none;
+}
+.actionLink:hover {
+  text-decoration: underline;
 }
 .red{
   color: #d00;
@@ -3844,7 +3850,8 @@ input.text{
   padding: 3px;
   color: #d00;
 }
-.disabledBtn{
+.disabledBtn,
+.disabledBtn:hover {
   color: #707070;
   cursor: default;
   text-decoration: none;
@@ -4862,4 +4869,8 @@ select.stateSelect, select.stateSelectFor {
 .radioLabel {
   width: auto !important;
   float: none !important;
+}
+
+.hide {
+  display:none;
 }

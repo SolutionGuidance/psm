@@ -54,12 +54,13 @@
         <td>${screening.result}</td>
         <td class="alignCenter nopad">
           <a
+            class="actionLink"
             href="#"
           >
             Auto Screen
           </a>
-          <span class="sep">|</span>
           <a
+            class="actionLink"
             href="#"
           >
             Manual Screen

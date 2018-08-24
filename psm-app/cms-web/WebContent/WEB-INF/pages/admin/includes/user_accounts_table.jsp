@@ -77,27 +77,26 @@
               <td>${item.email}</td>
               <td class="alignCenter">
                 <a
+                  class="actionLink"
                   href="<c:url value='/system/user/edit?role=${role}&userId=${item.userId}' />"
                 >
                   Edit
                 </a>
-                <span class="sep">|</span>
                 <a
                   href="<c:url value='/system/user/reinstate?userId=${item.userId}' />"
-                  class="reinstateLink"
+                  class="actionLink reinstateLink"
                 >
                   Reinstate
                 </a>
                 <a
                   href="<c:url value='/system/user/suspend?userId=${item.userId}' />"
-                  class="suspendLink"
+                  class="actionLink suspendLink"
                 >
                   Suspend
                 </a>
-                <span class="sep">|</span>
                 <a
                   href="javascript:;"
-                  class="deleteLink"
+                  class="actionLink deleteLink"
                 >
                   Delete
                 </a>

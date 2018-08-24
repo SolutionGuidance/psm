@@ -14,7 +14,7 @@
   </c:when>
   <c:otherwise>
     <div class="tableContainer">
-      <table class="generalTable">
+      <table class="generalTable linedTable">
         <colgroup>
           <col width="30"/>
           <col width="145"/>
@@ -45,17 +45,23 @@
           </tr>
         </thead>
         <tbody>
-          <c:forEach var="item" items="${results.items}">
-            <tr
-              <c:choose>
-                <c:when test="${item.status == 'DISABLED'}">
-                  class="disabledUser"
-                </c:when>
-                <c:when test="${item.status == 'ACTIVE'}">
-                  class="enabledUser"
-                </c:when>
-              </c:choose>
-            >
+          <c:forEach
+            var="item"
+            items="${results.items}"
+            varStatus="status"
+          >
+            <c:choose>
+              <c:when test="${item.status == 'DISABLED'}">
+                <c:set var="userStatusClass" value="disabledUser" />
+              </c:when>
+              <c:when test="${item.status == 'ACTIVE'}">
+                <c:set var="userStatusClass" value="enabledUser" />
+              </c:when>
+              <c:otherwise>
+                <c:set var="userStatusClass" value="" />
+              </c:otherwise>
+            </c:choose>
+            <tr class="${userStatusClass} ${status.index % 2 == 0 ? 'odd' : 'even'}">
               <td class="alignCenter">
                 <input
                   type="checkbox"
@@ -64,35 +70,38 @@
                   name="providers"
                 />
               </td>
-              <td>
-                <a href="<c:url value='/system/user/details?role=${role}&userId=${item.userId}' />">
-                  ${item.username}
-                </a>
-              </td>
+              <td>${item.username}</td>
               <td>${item.lastName}</td>
               <td>${item.firstName}</td>
               <td>${item.email}</td>
               <td class="alignCenter">
-                <a href="<c:url value='/system/user/edit?role=${role}&userId=${item.userId}' />">
+                <a
+                  class="actionLink"
+                  href="<c:url value='/system/user/details?role=${role}&userId=${item.userId}' />"
+                >
+                  View
+                </a>
+                <a
+                  class="actionLink"
+                  href="<c:url value='/system/user/edit?role=${role}&userId=${item.userId}' />"
+                >
                   Edit
                 </a>
-                <span class="sep">|</span>
                 <a
                   href="<c:url value='/system/user/reinstate?userId=${item.userId}' />"
-                  class="reinstateLink"
+                  class="actionLink reinstateLink"
                 >
                   Reinstate
                 </a>
                 <a
                   href="<c:url value='/system/user/suspend?userId=${item.userId}' />"
-                  class="suspendLink"
+                  class="actionLink suspendLink"
                 >
                   Suspend
                 </a>
-                <span class="sep">|</span>
                 <a
                   href="javascript:;"
-                  class="deleteLink"
+                  class="actionLink deleteLink"
                 >
                   Delete
                 </a>

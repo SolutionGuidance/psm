@@ -121,7 +121,10 @@
                 <c:otherwise>
                   <div class="tableWrapper">
                     <div class="tableContainer">
-                      <table class="generalTable" id="agreementTable">
+                      <table
+                        class="generalTable linedTable"
+                        id="agreementTable"
+                      >
                         <thead>
                           <tr>
                             <th class="alignCenter">
@@ -172,18 +175,48 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <c:forEach var="item" items="${searchResult.items}">
-                            <tr>
+                          <c:forEach
+                            var="item"
+                            items="${searchResult.items}"
+                            varStatus="status"
+                          >
+                            <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
                               <td class="alignCenter">
                                 <input id="agreement_type_${item.id}" <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="agreementDocumentCheckBox" value="${item.id}" type="checkbox" name="agreementType"/>
                               </td>
-                              <td><a href="${ctx}/admin/getAgreementDocument?agreementId=${item.id}" class="viewAgreementLink">${item.title}</a></td>
+                              <td>${item.title}</td>
                               <td><label for="agreement_type_${item.id}">${item.type}</label></td>
-                              <td class="alignCenter"><a href="${ctx}/admin/editAgreementDocument?agreementId=${item.id}" class="editAgreementLink">Edit</a>
-                                <span class="sep">|</span>
+                              <td class="alignCenter">
+                                <a
+                                  href="${ctx}/admin/getAgreementDocument?agreementId=${item.id}"
+                                  class="actionLink viewAgreementLink"
+                                >
+                                  View
+                                </a>
+                                <a
+                                  href="${ctx}/admin/editAgreementDocument?agreementId=${item.id}"
+                                  class="actionLink editAgreementLink"
+                                >
+                                  Edit
+                                </a>
                                 <c:choose>
-                                <c:when test="${item.canDelete}"><a rel="${item.id}" href="javascript:;" class="deleteAgreementDocumentBtn">Delete</a></c:when>
-                                <c:otherwise><a href="javascript:;" class="disabledBtn">Delete</a></c:otherwise>
+                                  <c:when test="${item.canDelete}">
+                                    <a
+                                      rel="${item.id}"
+                                      href="javascript:;"
+                                      class="actionLink deleteAgreementDocumentBtn"
+                                    >
+                                      Delete
+                                    </a>
+                                  </c:when>
+                                  <c:otherwise>
+                                    <a
+                                      href="javascript:;"
+                                      class="actionLink disabledBtn"
+                                    >
+                                      Delete
+                                    </a>
+                                  </c:otherwise>
                                 </c:choose>
                               </td>
                             </tr>

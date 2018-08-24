@@ -24,7 +24,10 @@
       <c:otherwise>
         <div class="tableContainer">
           <div class="tableMain">
-            <table class="generalTable" id="userAccountResultsTable">
+            <table
+              class="generalTable linedTable"
+              id="userAccountResultsTable"
+            >
               <colgroup>
                 <col width="35"/>
                 <col width="125"/>
@@ -60,8 +63,12 @@
                 </tr>
               </thead>
               <tbody>
-                <c:forEach var="item" items="${results.items}">
-                  <tr>
+                <c:forEach
+                  var="item"
+                  items="${results.items}"
+                  varStatus="status"
+                >
+                  <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
                     <td class="alignCenter">
                       <input
                         type="checkbox"
@@ -70,23 +77,27 @@
                         name="providers"
                       />
                     </td>
-                    <td>
-                      <a href="<c:url value='/admin/user/details?role=${item.role.description}&userId=${item.userId}' />">
-                        ${item.username}
-                      </a>
-                    </td>
+                    <td>${item.username}</td>
                     <td>${item.lastName}</td>
                     <td>${item.firstName}</td>
                     <td>${item.email}</td>
                     <td>${item.role.description}</td>
                     <td class="alignCenter">
-                      <a href="<c:url value='/admin/user/edit?role=${item.role.description}&userId=${item.userId}' />">
+                      <a
+                        class="actionLink"
+                        href="<c:url value='/admin/user/details?role=${item.role.description}&userId=${item.userId}' />"
+                      >
+                        View
+                      </a>
+                      <a
+                        class="actionLink"
+                        href="<c:url value='/admin/user/edit?role=${item.role.description}&userId=${item.userId}' />"
+                      >
                         Edit
                       </a>
-                      <span class="sep">|</span>
                       <a
                         href="javascript:;"
-                        class="deleteLink"
+                        class="actionLink deleteLink"
                       >
                         Delete
                       </a>

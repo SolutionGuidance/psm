@@ -41,7 +41,7 @@
                 <div class="noData">No matched data found.</div>
               </c:when>
               <c:otherwise>
-                <table class="generalTable fixedWidthTable">
+                <table class="generalTable fixedWidthTable linedTable">
                   <colgroup>
                     <col width="100"/>
                     <col width="*"/>
@@ -63,8 +63,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <c:forEach items="${profiles}" var="item">
-                      <tr>
+                    <c:forEach
+                      items="${profiles}"
+                      var="item"
+                      varStatus="status"
+                    >
+                      <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
                         <td>${item.npi}</td>
                         <td>${item.providerType}</td>
                         <td>${item.providerName}</td>
@@ -72,7 +76,10 @@
                         <td><fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy"/></td>
                         <td>${item.status}</td>
                         <td>
-                          <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+                          <a
+                            class="actionLink"
+                            href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
+                          >
                             View
                           </a>
                         </td>

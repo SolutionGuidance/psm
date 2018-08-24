@@ -12,9 +12,6 @@ a {
 a:hover{
   text-decoration:none;
 }
-.hide{
-  display:none;
-}
 input,select,textarea{
   font-family:Arial, Helvetica, sans-serif;
 }
@@ -501,7 +498,7 @@ input.date{
 }
 .generalTable tr td {
   padding: 5px 0px 5px 10px;
-  vertical-align:middle;
+  vertical-align: middle;
 }
 .generalTable tr.even td{
   background:#ecf2f3;
@@ -515,6 +512,19 @@ input.date{
 .generalTable .sep {
   color: #6e6e6e;
   margin:0 5px;
+}
+.linedTable tr td {
+  line-height: 1.1em;
+  border-top: 1px solid #ddd;
+}
+.actionLink {
+  display: inline-block;
+  padding: 0px 4px;
+  margin: 2px 1px;
+  text-decoration: none;
+}
+.actionLink:hover {
+  text-decoration: underline;
 }
 .red{
   color: #d00;
@@ -2178,7 +2188,7 @@ input.date{
   width:66%;
   float:left;
   display:inline;
-  padding:0 0 8px 0;
+  padding: 0px;
 }
 
 .dashboardPanel .wideTableData{
@@ -3844,8 +3854,9 @@ input.text{
   padding: 3px;
   color: #d00;
 }
-.disabledBtn{
-  color: #707070;
+.disabledBtn,
+.disabledBtn:hover {
+  color: #696969;
   cursor: default;
   text-decoration: none;
 }
@@ -4776,11 +4787,6 @@ div.row > .h-adr > .p-postal-code {
   width: auto;
 }
 
-td.nopad {
-  padding: 0px !important;
-}
-
-
 .row.addressline1 {
   padding-bottom : 0px;
 }
@@ -4862,4 +4868,8 @@ select.stateSelect, select.stateSelectFor {
 .radioLabel {
   width: auto !important;
   float: none !important;
+}
+
+.hide {
+  display:none;
 }

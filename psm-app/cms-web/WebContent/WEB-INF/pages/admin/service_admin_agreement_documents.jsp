@@ -184,9 +184,15 @@
                               <td class="alignCenter">
                                 <input id="agreement_type_${item.id}" <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="agreementDocumentCheckBox" value="${item.id}" type="checkbox" name="agreementType"/>
                               </td>
-                              <td><a href="${ctx}/admin/getAgreementDocument?agreementId=${item.id}" class="viewAgreementLink">${item.title}</a></td>
+                              <td>${item.title}</td>
                               <td><label for="agreement_type_${item.id}">${item.type}</label></td>
                               <td class="alignCenter">
+                                <a
+                                  href="${ctx}/admin/getAgreementDocument?agreementId=${item.id}"
+                                  class="actionLink viewAgreementLink"
+                                >
+                                  View
+                                </a>
                                 <a
                                   href="${ctx}/admin/editAgreementDocument?agreementId=${item.id}"
                                   class="actionLink editAgreementLink"

@@ -53,7 +53,7 @@
         <td>${screening.screeningType}</td>
         <td>${screening.reason}</td>
         <td>${screening.result}</td>
-        <td class="alignCenter nopad">
+        <td class="alignCenter">
           <a
             class="actionLink"
             href="#"

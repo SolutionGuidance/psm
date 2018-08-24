@@ -136,7 +136,7 @@
           <c:otherwise><td>${item.riskLevel}</td></c:otherwise>
         </c:choose>
         <td><fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy"/></td>
-        <td class="alignCenter nopad">
+        <td class="alignCenter">
           <c:choose>
             <c:when test="${fn:toLowerCase(item.status)=='pending'}">
               <a

@@ -4787,11 +4787,6 @@ div.row > .h-adr > .p-postal-code {
   width: auto;
 }
 
-td.nopad {
-  padding: 0px !important;
-}
-
-
 .row.addressline1 {
   padding-bottom : 0px;
 }

@@ -193,7 +193,7 @@
                 >
                   Cancel
                 </a>
-                <button class="greyBtn" type="submit">
+                <button class="approveBtn greyBtn" type="submit">
                   Approve
                 </button>
                 <a

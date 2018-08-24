@@ -24,7 +24,6 @@ import gov.medicaid.entities.UserRequest;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.security.CMSPrincipal;
 import gov.medicaid.services.ExportService;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.Util;
@@ -34,7 +33,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
@@ -57,35 +55,15 @@ public class ProviderDashboardController extends BaseController {
      */
     private static final int DEFAULT_PAGE_SIZE = 10;
 
-    /**
-     * Service used to perform operations.
-     */
-    private ProviderEnrollmentService enrollmentService;
+    private final ProviderEnrollmentService enrollmentService;
+    private final ExportService exportService;
 
-    /**
-     * Used to export results to PDF.
-     */
-    private ExportService exportService;
-    static final int MAX_PAGE_LINKS_TO_SHOW = 4;
-    private static final int PREVIOUS_PAGES_TO_SHOW = 2;
-
-    /**
-     * Empty constructor.
-     */
-    public ProviderDashboardController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException - If there are required injection fields that are not injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (enrollmentService == null) {
-            throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
-        }
+    public ProviderDashboardController(
+        ProviderEnrollmentService enrollmentService,
+        ExportService exportService
+    ) {
+        this.enrollmentService = enrollmentService;
+        this.exportService = exportService;
     }
 
     /**
@@ -344,22 +322,4 @@ public class ProviderDashboardController extends BaseController {
         mv.addObject("criteria", criteria);
         return mv;
     }
-
-    /**
-     * Sets the value of the field <code>enrollmentService</code>.
-     *
-     * @param enrollmentService the enrollmentService to set
-     */
-    public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
-    }
-
-    /**
-     * Sets the value of the field <code>exportService</code>.
-     * @param exportService the exportService to set
-     */
-    public void setExportService(ExportService exportService) {
-        this.exportService = exportService;
-    }
-
 }

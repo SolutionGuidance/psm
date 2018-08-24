@@ -24,7 +24,6 @@ import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.SystemId;
 import gov.medicaid.security.CMSPrincipal;
 import gov.medicaid.services.OnboardingService;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.Util;
@@ -36,8 +35,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.annotation.PostConstruct;
 
 import java.util.List;
 
@@ -51,45 +48,18 @@ import java.util.List;
 @Controller
 @RequestMapping("/provider/onboarding/*")
 public class OnboardingController extends BaseController {
+    private final OnboardingService onboardingService;
+    private final RegistrationService registrationService;
+    private final AccountLinkFormValidator validator;
 
-    /**
-     * Onboarding data service.
-     */
-    private OnboardingService onboardingService;
-
-    /**
-     * Registration service.
-     */
-    private RegistrationService registrationService;
-
-    /**
-     * Account link validator.
-     */
-    private AccountLinkFormValidator validator;
-
-    /**
-     * Empty constructor.
-     */
-    public OnboardingController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException - If there are required injection fields that are not injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (onboardingService == null) {
-            throw new PortalServiceConfigurationException("onboardingService is not configured correctly.");
-        }
-        if (registrationService == null) {
-            throw new PortalServiceConfigurationException("registrationService is not configured correctly.");
-        }
-        if (validator == null) {
-            throw new PortalServiceConfigurationException("validator is not configured correctly.");
-        }
+    public OnboardingController(
+        OnboardingService onboardingService,
+        RegistrationService registrationService,
+        AccountLinkFormValidator validator
+    ) {
+        this.onboardingService = onboardingService;
+        this.registrationService = registrationService;
+        this.validator = validator;
     }
 
     /**
@@ -269,32 +239,5 @@ public class OnboardingController extends BaseController {
         link.setExternalUserId(accountLinkForm.getAccountId());
         link.setSystemId(SystemId.valueOf(accountLinkForm.getSystemId()));
         return link;
-    }
-
-    /**
-     * Sets the value of the field <code>onboardingService</code>.
-     *
-     * @param onboardingService the onboardingService to set
-     */
-    public void setOnboardingService(OnboardingService onboardingService) {
-        this.onboardingService = onboardingService;
-    }
-
-    /**
-     * Sets the value of the field <code>registrationService</code>.
-     *
-     * @param registrationService the registrationService to set
-     */
-    public void setRegistrationService(RegistrationService registrationService) {
-        this.registrationService = registrationService;
-    }
-
-    /**
-     * Sets the value of the field <code>validator</code>.
-     *
-     * @param validator the validator to set
-     */
-    public void setValidator(AccountLinkFormValidator validator) {
-        this.validator = validator;
     }
 }

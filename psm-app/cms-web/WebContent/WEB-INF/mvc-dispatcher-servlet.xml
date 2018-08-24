@@ -109,64 +109,8 @@
     </property>
   </bean>
 
-  <bean id="BaseController"
-        class="gov.medicaid.controllers.BaseController"
-        abstract="true">
-  </bean>
-
-  <bean id="SelfRegistrationController"
-        class="gov.medicaid.controllers.SelfRegistrationController"
-        parent="BaseController">
-    <property name="registrationService" ref="RegistrationService"/>
-    <property name="validator" ref="RegistrationFormValidator"/>
-  </bean>
-
-  <bean id="ForgotPasswordController"
-        class="gov.medicaid.controllers.ForgotPasswordController"
-        parent="BaseController">
-    <property name="registrationService" ref="RegistrationService"/>
-    <property name="validator" ref="ForgotPasswordFormValidator"/>
-  </bean>
-
-  <bean id="LandingController"
-        class="gov.medicaid.controllers.LandingController"/>
-
-  <bean id="EnrollmentPageFlowController"
-        class="gov.medicaid.controllers.EnrollmentPageFlowController"
-        parent="BaseController">
-    <property name="enrollmentWebService" ref="EnrollmentWebService"/>
-    <property name="presentationService" ref="PresentationService"/>
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-    <property name="exportService" ref="ExportService"/>
-    <property name="lookupService" ref="LookupService"/>
-    <property name="notificationService" ref="NotificationService"/>
-  </bean>
-
-  <bean id="ProviderDashboardController"
-        class="gov.medicaid.controllers.ProviderDashboardController"
-        parent="BaseController">
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-    <property name="exportService" ref="ExportService"/>
-  </bean>
-
-  <bean id="OnboardingController"
-        class="gov.medicaid.controllers.OnboardingController"
-        parent="BaseController">
-    <property name="onboardingService" ref="OnboardingService"/>
-    <property name="registrationService" ref="RegistrationService"/>
-    <property name="validator" ref="AccountLinkFormValidator"/>
-  </bean>
-
-  <bean id="MyProfileController"
-        class="gov.medicaid.controllers.MyProfileController"
-        parent="BaseController">
-    <property name="enrollmentService" ref="ProviderEnrollmentService"/>
-    <property name="registrationService" ref="RegistrationService"/>
-    <property name="validator" ref="UpdatePasswordFormValidator"/>
-  </bean>
-
   <context:component-scan
-      base-package="gov.medicaid.controllers.admin" />
+      base-package="gov.medicaid.controllers" />
 
   <bean id="RegistrationFormValidator" class="gov.medicaid.controllers.validators.RegistrationFormValidator">
     <property name="registrationService" ref="RegistrationService"/>
@@ -236,7 +180,4 @@
   <bean id="UserValidator" class="gov.medicaid.controllers.admin.UserValidator">
     <property name="registrationService" ref="RegistrationService"/>
   </bean>
-
-  <bean id="ErrorController"
-        class="gov.medicaid.controllers.ErrorController"/>
 </beans>

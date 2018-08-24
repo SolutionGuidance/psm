@@ -186,7 +186,7 @@ function postJson(settings) {
 * @param size the new page size
 */
 function changePageSize(size) {
-  var form = $('#paginationForm, #searchForm');
+  var form = $('form.paginationForm').first();
   form.find('input[name=pageSize]').val(size);
   form.find('input[name=pageNumber]').val(1);
   form.submit();
@@ -197,7 +197,7 @@ function changePageSize(size) {
 * @param page the new page number
 */
 function changePageNumber(page) {
-  var form = $('#paginationForm, #searchForm');
+  var form = $('form.paginationForm').first();
   form.find('input[name=pageNumber]').val(page);
   form.submit();
 }

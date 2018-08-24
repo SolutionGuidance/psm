@@ -59,25 +59,25 @@
             <!-- /.tabHead -->
             <c:if test='${role eq "Provider" }'>
               <div class="tabContent" id="tabProviders">
-                <%@ include file="/WEB-INF/pages/admin/includes/accountsTab.jsp" %>
+                <%@ include file="/WEB-INF/pages/admin/includes/user_accounts_table.jsp" %>
               </div>
             </c:if>
             <!-- /#tabProviders -->
             <c:if test='${role eq "Service Agent" }'>
               <div class="tabContent " id="tabServiceAgents">
-                <%@ include file="/WEB-INF/pages/admin/includes/accountsTab.jsp" %>
+                <%@ include file="/WEB-INF/pages/admin/includes/user_accounts_table.jsp" %>
               </div>
             </c:if>
             <!-- /#tabServiceAgents -->
             <c:if test='${role eq "Service Administrator" }'>
               <div class="tabContent " id="tabServiceAdministrators">
-                <%@ include file="/WEB-INF/pages/admin/includes/accountsTab.jsp" %>
+                <%@ include file="/WEB-INF/pages/admin/includes/user_accounts_table.jsp" %>
               </div>
             </c:if>
             <!-- /#tabServiceAdministrators -->
             <c:if test='${role eq "System Administrator" }'>
               <div class="tabContent " id="tabSystemAdministrators">
-                <%@ include file="/WEB-INF/pages/admin/includes/accountsTab.jsp" %>
+                <%@ include file="/WEB-INF/pages/admin/includes/user_accounts_table.jsp" %>
               </div>
             </c:if>
             <!-- /#tabSystemAdministrators -->

@@ -84,6 +84,8 @@ public class SystemAdminUserSearchController {
         mv.addObject("results", results);
         mv.addObject("criteria", criteria);
         mv.addObject("roles", getRolesStr(criteria.getRoles()));
+        ControllerHelper.addPaginationDetails(results, mv);
+        ControllerHelper.addPaginationLinks(results, mv);
         return mv;
     }
 

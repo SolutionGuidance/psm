@@ -333,9 +333,6 @@ input,select,textarea{
   margin-top:8px;
   margin-right:8px;
 }
-.tabContent .pagination .pagiBox a.page, .tabContent .pagination .pagiBox a.prev, .tabContent .pagination .pagiBox a.next{
-  float:left;
-}
 .tabContent .pagination .filterBtn {
   width:68px;
 }
@@ -367,9 +364,6 @@ input,select,textarea{
   margin-right: 8px;
   font-weight:bold;
   margin-top:0px;
-}
-.floatR{
-  float:right;
 }
 
 .filterPanel{
@@ -3993,14 +3987,6 @@ input.passwordNormalInput{
 /* delete UserAccount Modal buttonArea padding ie7 bug */
 #new-modal #deleteUserAccountModal .inner .buttonArea{
   padding-top:35px;
-}
-
-/* pagiBox pagi bug */
-*+html .tabContent .pagination .right .pagiBox .pagi{
-  width:143px;
-}/* ie7 */
-.tabContent .pagination .right .pagiBox .pagi{
-  width:auto;
 }
 
 .enabledUser .reinstateLink {

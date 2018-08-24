@@ -7,7 +7,8 @@
 
 <form:form
   action="${filterResultsURL}"
-  id="paginationForm"
+  id="filterForm"
+  cssClass="paginationForm"
   method="get"
   commandName="criteria"
 >

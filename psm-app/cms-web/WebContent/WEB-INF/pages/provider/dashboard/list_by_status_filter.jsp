@@ -1,7 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 
 <c:url var="filterResultsURL" value="/provider/dashboard/filter"/>
-<form:form action="${filterResultsURL}" id="paginationForm" method="get" commandName="criteria">
+<form:form
+  action="${filterResultsURL}"
+  id="filterForm"
+  cssClass="paginationForm"
+  method="get"
+  commandName="criteria"
+>
   <div class="filterPanel" style="display: ${param.filterViewState eq 'visible' ? 'block' : 'none'};">
     <div class="floatW">
       <input type="hidden" id="filterViewStateId" name="filterViewState" value="${param.filterViewState eq 'visible' ? 'visible' : 'hidden'}"/>

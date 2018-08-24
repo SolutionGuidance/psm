@@ -33,7 +33,13 @@
 
                 <c:set var="searchResult" value="${providerTypesSearchResult}"/>
 
-                <form:form id="searchForm" action="${ctx}/admin/viewProviderTypes" modelAttribute="searchCriteria" method="post">
+                <form:form
+                  id="searchForm"
+                  cssClass="paginationForm"
+                  action="${ctx}/admin/viewProviderTypes"
+                  modelAttribute="searchCriteria"
+                  method="post"
+                >
                 <form:hidden id="searchFormPageSize" path="pageSize" />
                 <form:hidden id="searchFormPageNumber" path="pageNumber" />
                 <form:hidden id="searchFormSortColumn" path="sortColumn" />

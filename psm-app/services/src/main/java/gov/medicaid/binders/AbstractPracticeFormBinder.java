@@ -73,7 +73,6 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
         practice.setObjectId(param(request, "objectId")); // if lookup is successful
@@ -99,7 +98,7 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
                 param(request, "fax3"), ""));
         }
 
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**

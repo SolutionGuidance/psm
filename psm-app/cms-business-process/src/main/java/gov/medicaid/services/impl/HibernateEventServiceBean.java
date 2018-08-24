@@ -29,8 +29,6 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.PersistenceException;
-import javax.persistence.Query;
-
 import java.util.List;
 
 /**
@@ -108,7 +106,6 @@ public class HibernateEventServiceBean extends BaseService implements EventServi
      * @throws IllegalStateException if maxResults is not positive
      * @throws PortalServiceException if there are any errors during the execution of this method
      */
-    @SuppressWarnings("unchecked")
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public List<Event> getLatest() throws PortalServiceException {
         try {
@@ -118,16 +115,11 @@ public class HibernateEventServiceBean extends BaseService implements EventServi
             // Create query string:
             String queryString = "SELECT entity FROM Event entity ORDER BY entity.createdOn DESC";
 
-            // Get query object:
-            Query query = getEm().createQuery(queryString);
-            // Set page size:
-            query.setFirstResult(0);
-            query.setMaxResults(maxResults);
-
-            // Execute query:
-            List<Event> events = query.getResultList();
-
-            return events;
+            return getEm()
+                .createQuery(queryString, Event.class)
+                .setFirstResult(0)
+                .setMaxResults(maxResults)
+                .getResultList();
         } catch (PersistenceException e) {
             throw new PortalServiceException("Could not complete database operation.", e);
         }

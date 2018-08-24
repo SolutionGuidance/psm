@@ -55,8 +55,7 @@ public abstract class BaseFormBinder implements FormBinder {
     /**
      * Empty list of errors.
      */
-    @SuppressWarnings("unchecked")
-    public static final List<FormError> NO_ERRORS = (List<FormError>) Collections.EMPTY_LIST;
+    static final List<FormError> NO_ERRORS = Collections.emptyList();
 
     /**
      * Hash key for hidden input security.

@@ -71,10 +71,9 @@ public class MockMNITSPartnerServiceBean extends BaseService implements
      * @throws PortalServiceException
      *             for any errors encountered
      */
-    @SuppressWarnings("unchecked")
     public List<ProviderProfile> findProfiles(String externalUserId)
             throws PortalServiceException {
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**

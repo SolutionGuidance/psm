@@ -90,7 +90,6 @@ public class OrganizationDisclosureFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         provider.setHasCriminalConviction(param(request, "criminalConvictionInd"));
@@ -100,7 +99,7 @@ public class OrganizationDisclosureFormBinder extends BaseFormBinder {
         provider.setEmployeeHasCivilPenalty(param(request, "empCivilPenaltyInd"));
         provider.setEmployeeHasPreviousExclusion(param(request, "empPreviousExclusionInd"));
         provider.setRenewalShowBlankStatement(param(request, "renewalBlankInit"));
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**

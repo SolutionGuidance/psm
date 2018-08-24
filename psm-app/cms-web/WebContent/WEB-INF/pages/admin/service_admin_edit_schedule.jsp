@@ -41,7 +41,6 @@
                           <form:label path="dayOfMonth">
                             Day of month to automatically rescreen
                           </form:label>
-                          <span class="floatL"><b>:</b></span>
                           <form:select path="dayOfMonth">
                             <c:forEach begin="1" end="28" varStatus="loop">
                               <form:option value="${loop.index}">
@@ -54,7 +53,6 @@
                           <form:label path="hourOfDay">
                             Hour of day to automatically rescreen
                           </form:label>
-                          <span class="floatL"><b>:</b></span>
                           <form:select path="hourOfDay">
                             <c:forEach begin="0" end="23" varStatus="loop">
                               <form:option value="${loop.index}">

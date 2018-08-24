@@ -85,14 +85,12 @@
                     <div class="leftCol">
                       <div class="row">
                         <label for="agreementDocumentTitleFilterText">Title</label>
-                        <span class="floatL"><b>:</b></span>
                         <input id="agreementDocumentTitleFilterText" value="${searchCriteria.title}" type="text" class="normalInput"/>
                       </div>
                     </div>
                     <div class="rightCol">
                       <div class="row">
                         <label for="agreementDocumentTypeFilterText">Agreement Type</label>
-                        <span class="floatL"><b>:</b></span>
                         <select id="agreementDocumentTypeFilterText">
                           <option value="">---SELECT---</option>
                           <option <c:if test="${searchCriteria.type=='AGREEMENT'}">selected="selected"</c:if> value="AGREEMENT">AGREEMENT</option>

@@ -45,7 +45,6 @@
                   <div class="section">
                     <div class="wholeCol">
                       <label>Provider Type</label>
-                      <span class="floatL"><b>:</b></span>
                       <span class="marginLeft10">${providerType.description}</span>
                     </div>
                     <div class="tableHeader"><span>Agreements and Addendums</span></div>

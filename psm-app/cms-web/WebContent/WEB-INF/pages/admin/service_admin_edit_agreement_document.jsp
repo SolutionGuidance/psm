@@ -52,12 +52,10 @@
                       <div class="wholeCol">
                         <div class="row">
                           <label for="editAgreementDocumentAgreementTitle">Agreement Title</label>
-                          <span class="floatL"><b>:</b></span>
                           <form:input id="editAgreementDocumentAgreementTitle" path="title" cssClass="text longInput"/>
                         </div>
                         <div class="row">
                           <label>Content</label>
-                          <span class="floatL"><b>:</b></span>
                           <form:textarea path="text" rows="20" cols="50" cssClass="longTextArea text"/>
                         </div>
                       </div>

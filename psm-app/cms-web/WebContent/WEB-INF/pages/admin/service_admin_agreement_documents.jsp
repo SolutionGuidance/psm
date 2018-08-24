@@ -121,7 +121,10 @@
                 <c:otherwise>
                   <div class="tableWrapper">
                     <div class="tableContainer">
-                      <table class="generalTable" id="agreementTable">
+                      <table
+                        class="generalTable linedTable"
+                        id="agreementTable"
+                      >
                         <thead>
                           <tr>
                             <th class="alignCenter">
@@ -175,8 +178,9 @@
                           <c:forEach
                             var="item"
                             items="${searchResult.items}"
+                            varStatus="status"
                           >
-                            <tr>
+                            <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
                               <td class="alignCenter">
                                 <input id="agreement_type_${item.id}" <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="agreementDocumentCheckBox" value="${item.id}" type="checkbox" name="agreementType"/>
                               </td>

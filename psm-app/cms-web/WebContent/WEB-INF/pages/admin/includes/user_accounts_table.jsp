@@ -14,7 +14,7 @@
   </c:when>
   <c:otherwise>
     <div class="tableContainer">
-      <table class="generalTable">
+      <table class="generalTable linedTable">
         <colgroup>
           <col width="30"/>
           <col width="145"/>
@@ -48,17 +48,20 @@
           <c:forEach
             var="item"
             items="${results.items}"
+            varStatus="status"
           >
-            <tr
-              <c:choose>
-                <c:when test="${item.status == 'DISABLED'}">
-                  class="disabledUser"
-                </c:when>
-                <c:when test="${item.status == 'ACTIVE'}">
-                  class="enabledUser"
-                </c:when>
-              </c:choose>
-            >
+            <c:choose>
+              <c:when test="${item.status == 'DISABLED'}">
+                <c:set var="userStatusClass" value="disabledUser" />
+              </c:when>
+              <c:when test="${item.status == 'ACTIVE'}">
+                <c:set var="userStatusClass" value="enabledUser" />
+              </c:when>
+              <c:otherwise>
+                <c:set var="userStatusClass" value="" />
+              </c:otherwise>
+            </c:choose>
+            <tr class="${userStatusClass} ${status.index % 2 == 0 ? 'odd' : 'even'}">
               <td class="alignCenter">
                 <input
                   type="checkbox"

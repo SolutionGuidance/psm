@@ -38,7 +38,7 @@
               <div class="tableTitle">
                 <h2>Reviewed Documents</h2>
               </div>
-              <table class="generalTable">
+              <table class="generalTable linedTable">
                 <thead>
                   <tr>
                     <th>Month</th>
@@ -48,8 +48,9 @@
                 <c:forEach
                   var="month"
                   items="${months}"
+                  varStatus="status"
                 >
-                  <tr class="reportRow">
+                  <tr class="reportRow ${status.index % 2 == 0 ? 'odd' : 'even'}">
                     <td
                       class="reportDatum"
                       reportField="month"

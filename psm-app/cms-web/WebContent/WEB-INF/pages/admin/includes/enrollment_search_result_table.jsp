@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
 <table
   id="${searchTableId}"
-  class="generalTable fixedWidthTable"
+  class="generalTable linedTable"
 >
   <colgroup>
     <col width="27"/>
@@ -83,8 +83,9 @@
     <c:forEach
       var="item"
       items="${searchResult.items}"
+      varStatus="status"
     >
-      <tr>
+      <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
         <td class="alignCenter tdCheckbox">
           <input
             type="checkbox"

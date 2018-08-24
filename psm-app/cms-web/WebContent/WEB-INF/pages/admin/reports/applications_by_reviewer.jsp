@@ -75,7 +75,7 @@
             <c:when test="${fn:length(enrollments) gt 0}">
               <div class="reportTable tableData">
                 <div class="tableData">
-                  <table class="generalTable">
+                  <table class="generalTable linedTable">
                     <thead>
                       <tr>
                         <th>Application ID</th>
@@ -90,8 +90,9 @@
                     <c:forEach
                       var="enrollment"
                       items="${enrollments}"
+                      varStatus="status"
                     >
-                      <tr class="reportRow">
+                      <tr class="reportRow ${status.index % 2 == 0 ? 'odd' : 'even'}">
                         <td>
                           <a href="${ctx}/provider/enrollment/view?id=${enrollment.ticketId}">
                             ${enrollment.ticketId}

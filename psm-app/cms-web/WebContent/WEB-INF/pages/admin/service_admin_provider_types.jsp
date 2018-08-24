@@ -95,7 +95,10 @@
               <c:otherwise>
                 <div class="tableWrapper">
                   <div class="tableContainer">
-                    <table class="generalTable" id="draftEnrollmentTable">
+                    <table
+                      class="generalTable linedTable"
+                      id="draftEnrollmentTable"
+                    >
                       <thead>
                         <tr>
                           <th class="alignCenter">
@@ -129,8 +132,9 @@
                         <c:forEach
                           var="item"
                           items="${searchResult.items}"
+                          varStatus="status"
                         >
-                          <tr>
+                          <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
                             <td class="alignCenter">
                               <input id="providerType_${item.code}" <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="providerTypeCheckBox" value="${item.code}" type="checkbox" name="providerType"/>
                             </td>

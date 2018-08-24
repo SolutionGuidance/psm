@@ -6,13 +6,13 @@
 
 <c:choose>
   <c:when test="${statusFilter == 'All'}">
-    <table class="generalTable dashboardTable fixedWidthTable">
+    <table class="generalTable linedTable dashboardTable fixedWidthTable">
   </c:when>
   <c:when test="${statusFilter != 'Draft'}">
-    <table class="generalTable table-sort">
+    <table class="generalTable linedTable table-sort">
   </c:when>
   <c:otherwise>
-    <table class="generalTable" id="draftTable">
+    <table class="generalTable linedTable" id="draftTable">
   </c:otherwise>
 </c:choose>
 

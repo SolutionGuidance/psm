@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
 <table
   id="screeningsTable"
-  class="generalTable"
+  class="generalTable linedTable"
 >
   <thead>
     <tr>
@@ -43,8 +43,9 @@
     <c:forEach
       var="screening"
       items="${screenings}"
+      varStatus="status"
     >
-      <tr>
+      <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
         <td>${screening.date}</td>
         <td>${screening.npi}</td>
         <td>${screening.providerName}</td>

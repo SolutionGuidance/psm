@@ -24,7 +24,10 @@
       <c:otherwise>
         <div class="tableContainer">
           <div class="tableMain">
-            <table class="generalTable" id="userAccountResultsTable">
+            <table
+              class="generalTable linedTable"
+              id="userAccountResultsTable"
+            >
               <colgroup>
                 <col width="35"/>
                 <col width="125"/>
@@ -63,8 +66,9 @@
                 <c:forEach
                   var="item"
                   items="${results.items}"
+                  varStatus="status"
                 >
-                  <tr>
+                  <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
                     <td class="alignCenter">
                       <input
                         type="checkbox"

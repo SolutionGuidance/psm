@@ -39,7 +39,7 @@
                 <div class="tableTitle">
                   <h2>${enrollmentMonth.month}</h2>
                 </div>
-                <table class="generalTable">
+                <table class="generalTable linedTable">
                   <thead>
                     <tr>
                       <th>Application ID</th>
@@ -53,8 +53,9 @@
                   <c:forEach
                     var="enrollment"
                     items="${enrollmentMonth.enrollments}"
+                    varStatus="status"
                   >
-                  <tr class="reportRow">
+                  <tr class="reportRow ${status.index % 2 == 0 ? 'odd' : 'even'}">
                     <td class="reportDatum nonedisplay" reportField="month" reportValue="${enrollmentMonth.month}"></td>
                     <td class="reportDatum" reportField="ticketId" reportValue="${enrollment.ticketId}">
                       <a href="${ctx}/provider/enrollment/view?id=${enrollment.ticketId}">

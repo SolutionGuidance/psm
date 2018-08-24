@@ -498,7 +498,7 @@ input.date{
 }
 .generalTable tr td {
   padding: 5px 0px 5px 10px;
-  vertical-align:middle;
+  vertical-align: middle;
 }
 .generalTable tr.even td{
   background:#ecf2f3;
@@ -512,6 +512,10 @@ input.date{
 .generalTable .sep {
   color: #6e6e6e;
   margin:0 5px;
+}
+.linedTable tr td {
+  line-height: 1.1em;
+  border-top: 1px solid #ddd;
 }
 .actionLink {
   display: inline-block;
@@ -2184,7 +2188,7 @@ input.date{
   width:66%;
   float:left;
   display:inline;
-  padding:0 0 8px 0;
+  padding: 0px;
 }
 
 .dashboardPanel .wideTableData{
@@ -3852,7 +3856,7 @@ input.text{
 }
 .disabledBtn,
 .disabledBtn:hover {
-  color: #707070;
+  color: #696969;
   cursor: default;
   text-decoration: none;
 }

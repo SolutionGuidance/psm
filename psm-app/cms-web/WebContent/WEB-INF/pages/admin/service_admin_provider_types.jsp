@@ -71,7 +71,6 @@
                   <div class="leftCol">
                     <div class="row">
                       <label for="providerTypeFilterText">Provider Type</label>
-                      <span class="floatL"><b>:</b></span>
                       <input id="providerTypeFilterText" type="text" class="normalInput" value="${searchCriteria.typeName}"/>
                     </div>
                   </div>

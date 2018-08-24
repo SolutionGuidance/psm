@@ -202,6 +202,27 @@ function changePageNumber(page) {
   form.submit();
 }
 
+/**
+ * Submits the form with the given id.
+ * @param id the id of the form to be submitted
+ */
+var submitFormById = (function IIFE() {
+  // prevent double clicks from doing double submits
+  var submitEnabled = true;
+
+  return function submitFormById(id, url) {
+    if (submitEnabled) {
+      submitEnabled = false;
+      var form = $("#" + id);
+      if (url) {
+        form.attr("action", url);
+      }
+
+      form.submit();
+    }
+  };
+})();
+
 $(document).ready(function () {
 
   $('.searchPanel input[type="checkbox"]')

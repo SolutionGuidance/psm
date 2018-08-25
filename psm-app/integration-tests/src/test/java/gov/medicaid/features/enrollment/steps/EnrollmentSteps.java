@@ -15,6 +15,8 @@ import gov.medicaid.features.enrollment.ui.ProviderStatementPage;
 import gov.medicaid.features.enrollment.ui.SelectProviderTypePage;
 import gov.medicaid.features.general.ui.AllEnrollmentsPage;
 import gov.medicaid.features.general.ui.LoginPage;
+import gov.medicaid.features.general.ui.MyProfilePage;
+
 import net.thucydides.core.annotations.Step;
 
 import java.io.IOException;
@@ -73,6 +75,7 @@ public class EnrollmentSteps {
 
 
     private LoginPage loginPage;
+    private MyProfilePage myProfilePage;
     private AllEnrollmentsPage allEnrollmentsPage;
     private EnrollmentPage enrollmentPage;
     private SelectProviderTypePage selectProviderTypePage;
@@ -493,5 +496,29 @@ public class EnrollmentSteps {
     @Step
     void enterEmptyEmailAddress() {
         personalInfoPage.enterEmail("");
+    }
+
+    void renewIndividualEnrollment(String npi) {
+        myProfilePage.clickActionFor(npi, ".renewLink");
+        advanceFromIndividualPersonalInfoToLicenseInfo();
+        advanceFromIndividualLicenseInfoToPracticeInfo();
+        advanceFromIndividualPracticeInfoToSummaryPage();
+        advanceFromIndividualSummaryToProviderStatementPage();
+        checkNoOnProviderDisclosureQuestions();
+        signProviderStatement();
+        submitEnrollment();
+    }
+
+    @Step
+    void renewOrganizationalEnrollment(String npi) {
+        myProfilePage.clickActionFor(npi, ".renewLink");
+        advanceFromOrganizationInfoToLicenseInfo();
+        advanceFromOrganizationLicenseInfoToIndividualMemberInfo();
+        advanceFromOrganizationIndividualMemberInfoToOwnershipInfo();
+        setNoToAllDisclosures();
+        advanceFromOrganizationOwnershipInfoToSummaryPage();
+        advanceFromOrganizationSummaryToProviderStatementPage();
+        signProviderStatement();
+        submitEnrollment();
     }
 }

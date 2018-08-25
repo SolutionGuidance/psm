@@ -71,7 +71,7 @@
                           Edit
                         </a>
                         <a
-                          class="actionLink"
+                          class="actionLink renewLink"
                           href="${renewProfileLink}"
                         >
                           Renew

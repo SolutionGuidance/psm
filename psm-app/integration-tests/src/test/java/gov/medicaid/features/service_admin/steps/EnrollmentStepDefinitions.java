@@ -2,6 +2,7 @@ package gov.medicaid.features.service_admin.steps;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 import net.thucydides.core.annotations.Steps;
 
@@ -19,9 +20,13 @@ public class EnrollmentStepDefinitions {
         enrollmentSteps.approveEnrollment();
     }
 
+    @When("^I view the Reviewed Enrollment$")
+    public void i_view_the_reviewed_enrollment() {
+        enrollmentSteps.navigateToMostRecentEnrollment();
+    }
+
     @Then("^The Enrollment should be in the '(.+)' state$")
     public void the_enrollment_should_be_in_the_state(String state) throws Exception {
-        enrollmentSteps.navigateToMostRecentEnrollment();
         enrollmentSteps.verifyState(state);
     }
 }

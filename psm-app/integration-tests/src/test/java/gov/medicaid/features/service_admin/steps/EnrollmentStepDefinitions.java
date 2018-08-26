@@ -20,6 +20,11 @@ public class EnrollmentStepDefinitions {
         enrollmentSteps.approveEnrollment();
     }
 
+    @Given("^I Reject the Enrollment$")
+    public void i_reject_the_enrollment() {
+        enrollmentSteps.rejectEnrollment();
+    }
+
     @When("^I view the Reviewed Enrollment$")
     public void i_view_the_reviewed_enrollment() {
         enrollmentSteps.navigateToMostRecentEnrollment();

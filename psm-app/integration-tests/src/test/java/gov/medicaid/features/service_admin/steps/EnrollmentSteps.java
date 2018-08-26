@@ -31,6 +31,12 @@ public class EnrollmentSteps {
     }
 
     @Step
+    public void rejectEnrollment() {
+        approvedEnrollmentId = enrollmentReviewPage.getEnrollmentId();
+        enrollmentReviewPage.reject();
+    }
+
+    @Step
     public void navigateToMostRecentEnrollment() {
         assertThat(approvedEnrollmentId).isNotNull();
         viewEnrollmentPage.open("view.enrollment", withParameters(approvedEnrollmentId));

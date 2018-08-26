@@ -17,4 +17,8 @@ public class EnrollmentReviewPage extends PsmPage {
         new Checkbox($("[name=notInDmfVerified]")).setChecked(true);
         $(".approveBtn").click();
     }
+
+    public void reject() {
+        $(".rejectBtn").click();
+    }
 }

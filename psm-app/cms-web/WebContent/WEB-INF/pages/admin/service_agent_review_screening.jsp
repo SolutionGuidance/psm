@@ -198,7 +198,7 @@
                 </button>
                 <a
                   href="${ctx}/agent/enrollment/rejectTicket?id=${id}"
-                  class="greyBtn"
+                  class="rejectBtn greyBtn"
                 >
                   Reject
                 </a>

@@ -183,8 +183,7 @@ force-pushing to mostly occur in active PR branches.
 
 ### Cross-forum linking
 
-If you have
-a
+If you have a
 [chat](https://chat.opentechstrategies.com/#narrow/stream/Provider.20Screening) conversation
 related to an issue, please not only mention the issue by number in
 the chat but also -- assuming your chat adds useful information or

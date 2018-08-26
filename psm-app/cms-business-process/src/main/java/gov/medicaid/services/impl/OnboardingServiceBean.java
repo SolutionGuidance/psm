@@ -35,8 +35,6 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
-import javax.persistence.Query;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -92,7 +90,6 @@ public class OnboardingServiceBean extends BaseService implements OnboardingServ
      * @return the list of matched profiles
      * @throws PortalServiceException for any errors encountered
      */
-    @SuppressWarnings("unchecked")
     public List<ProviderProfile> findProfiles(ExternalAccountLink link) throws PortalServiceException {
         PartnerSystemService partner = partnerSystemServices.get(link.getSystemId());
         List<ProviderProfile> matches = partner.findProfiles(link.getExternalUserId());
@@ -104,10 +101,11 @@ public class OnboardingServiceBean extends BaseService implements OnboardingServ
         for (ProviderProfile providerProfile : profiles) {
             String str = "FROM ExternalProfileLink e WHERE e.systemId = :system AND e.externalProfileId = :profileId";
 
-            Query query = getEm().createQuery(str);
-            query.setParameter("system", link.getSystemId());
-            query.setParameter("profileId", "" + providerProfile.getProfileId());
-            List<ExternalProfileLink> rs = query.getResultList();
+            List<ExternalProfileLink> rs = getEm()
+                .createQuery(str, ExternalProfileLink.class)
+                .setParameter("system", link.getSystemId())
+                .setParameter("profileId", "" + providerProfile.getProfileId())
+                .getResultList();
             if (!rs.isEmpty()) {
                 toRemove.add(providerProfile);
             }

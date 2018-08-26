@@ -105,12 +105,12 @@ public class EnrollmentStepDefinitions {
     @When("^I enter my individual provider statement$")
     public void i_enter_my_provider_statement() {
         enrollmentSteps.checkNoOnProviderDisclosureQuestions();
-        enrollmentSteps.signAndDateProviderStatement();
+        enrollmentSteps.signProviderStatement();
     }
 
     @When("^I enter my organization provider statement$")
     public void i_enter_my_organization_provider_statement() {
-        enrollmentSteps.signAndDateProviderStatement();
+        enrollmentSteps.signProviderStatement();
     }
 
     @When("^I submit the enrollment$")

@@ -90,12 +90,6 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
         ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
         statement.setName(param(request, "name"));
         statement.setTitle(param(request, "title"));
-        try {
-            statement.setSignDate(BinderUtils.getAsCalendar(param(request, "date")));
-        } catch (BinderException e) {
-            e.setAttribute(name("date"), param(request, "date"));
-            exceptions.add(e);
-        }
 
         List<AgreementDocument> docs = getLookupService().getProviderTypeWithAgreementDocuments(
                 provider
@@ -170,7 +164,6 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
             ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
             attr(mv, "name", statement.getName());
             attr(mv, "title", statement.getTitle());
-            attr(mv, "date", statement.getSignDate());
 
             AcceptedAgreementsType acceptedAgreements = provider.getAcceptedAgreements();
 
@@ -233,8 +226,6 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
                     errors.add(createError("name", ruleError.getMessage()));
                 } else if (path.equals(STATEMENT + "Title")) {
                     errors.add(createError("title", ruleError.getMessage()));
-                } else if (path.equals(STATEMENT + "SignDate")) {
-                    errors.add(createError("date", ruleError.getMessage()));
                 }
 
                 if (errors.size() > count) { // caught
@@ -299,7 +290,6 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
 
         hStatement.setName(xStatement.getName());
         hStatement.setTitle(xStatement.getTitle());
-        hStatement.setDate(BinderUtils.toDate(xStatement.getSignDate()));
     }
 
     /**
@@ -398,7 +388,6 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
             ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(enrollment);
             xStatement.setName(hStatement.getName());
             xStatement.setTitle(hStatement.getTitle());
-            xStatement.setSignDate(BinderUtils.toCalendar(hStatement.getDate()));
         }
     }
 }

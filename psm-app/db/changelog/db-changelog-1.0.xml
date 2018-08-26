@@ -2021,4 +2021,12 @@
     <rollback changeSetId="issue254-seed-service-categories" changeSetAuthor="" />
   </changeSet>
 
+  <changeSet author="" id="issue1021-remove-sign-date">
+    <dropColumn tableName="provider_statements" columnName="date"/>
+    <rollback>
+      <addColumn tableName="provider_statements">
+        <column name="date" type="date"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

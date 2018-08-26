@@ -1066,7 +1066,7 @@ function deleteUserAccounts(userIds, toUserAccounts) {
 }
 
 function setSearchConditions() {
-  if (('undefined' != typeof searchedResult) && (searchedResult)) {
+  if (searchedResult) {
     $('#initSearchBox').val(true);
     $('#searchUserAccountsForm input[name="and"]').val(false);
     $('#searchUserAccountsForm input[name="firstName"]').val(searchFirstName);
@@ -1075,33 +1075,6 @@ function setSearchConditions() {
 }
 
 $(document).ready(function () {
-    $('.pagiBox .pagi .page').live('click', function () {
-        $('#pageNumber').val($(this).html());
-        setSearchConditions();
-        $('#searchUserAccountsForm, #advancedSearch').submit();
-      });
-
-    $('.pagiBox .pagi .next').live('click', function () {
-        var pageNumber = parseInt($('.pagiBox .pagi .current').html()) + 1;
-        $('#pageNumber').val(pageNumber);
-        setSearchConditions();
-        $('#searchUserAccountsForm, #advancedSearch').submit();
-      });
-
-    $('.pagiBox .pagi .prev').live('click', function () {
-        var pageNumber = parseInt($('.pagiBox .pagi .current').html()) - 1;
-        $('#pageNumber').val(pageNumber);
-        setSearchConditions();
-        $('#searchUserAccountsForm, #advancedSearch').submit();
-      });
-
-    $('.pagination select').live('change', function () {
-        $('#pageNumber').val("1");
-        $('#pageSize').val($(this).val());
-        setSearchConditions();
-        $('#searchUserAccountsForm, #advancedSearch').submit();
-      });
-
     $(".sortable_column").live('click', function () {
         var newSortColumn = $(this).attr("rel");
         var oldSortColumn = $("#sortColumn").val();

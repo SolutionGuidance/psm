@@ -1833,61 +1833,26 @@ function stripTable() {
   $('table tr:nth-child(even)').addClass('even');
 }
 
-var screenLock = false; // prevent double click on submit flows
-/**
-* Submits the form with the given id.
-* @param id the id of the form to be submitted
-*/
-function submitFormById(id, url) {
-  if (url) {
-    $('#' + id).attr("action", url);
-  }
-
-  if (!screenLock) {
-    screenLock = true;
-    $('#' + id).submit();
-  }
-}
-
 /**
 * Changes the sort column to the specified index
 * @param idx the result index
 */
 function changeSort(idx) {
-  var cur = $('#paginationForm input[name=sortColumn]').val();
-  var dir = $('#paginationForm input[name=ascending]').val();
+  var cur = $('#filterForm input[name=sortColumn]').val();
+  var dir = $('#filterForm input[name=ascending]').val();
   if (cur == idx) {
     // switch direction only
     if (dir === 'true') {
-      $('#paginationForm input[name=ascending]').val('false');
+      $('#filterForm input[name=ascending]').val('false');
     } else {
-      $('#paginationForm input[name=ascending]').val('true');
+      $('#filterForm input[name=ascending]').val('true');
     }
   } else {
-    $('#paginationForm input[name=sortColumn]').val(idx);
-    $('#paginationForm input[name=ascending]').val('false');
+    $('#filterForm input[name=sortColumn]').val(idx);
+    $('#filterForm input[name=ascending]').val('false');
   }
 
-  $('#paginationForm').submit();
-}
-
-/**
-* Changes the page size to the given value
-* @param size the new page size
-*/
-function changePageSize(size) {
-  $('#paginationForm input[name=pageSize]').val(size);
-  $('#paginationForm input[name=pageNumber]').val(1);
-  $('#paginationForm').submit();
-}
-
-/**
-* Changes the page number to the given value
-* @param page the new page number
-*/
-function changePageNumber(page) {
-  $('#paginationForm input[name=pageNumber]').val(page);
-  $('#paginationForm').submit();
+  $('#filterForm').submit();
 }
 
 var isPrimaryPracticeLookup = false;

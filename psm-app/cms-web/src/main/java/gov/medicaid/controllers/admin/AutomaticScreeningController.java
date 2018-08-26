@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/agent/")
-public class AutomaticScreeningController extends BaseServiceAdminController {
+public class AutomaticScreeningController {
     private final ScreeningService screeningService;
 
     public AutomaticScreeningController(ScreeningService screeningService) {

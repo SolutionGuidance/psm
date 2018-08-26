@@ -83,7 +83,6 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
@@ -103,7 +102,7 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
                 removeService(facilityQualification, category.getDescription());
             }
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**

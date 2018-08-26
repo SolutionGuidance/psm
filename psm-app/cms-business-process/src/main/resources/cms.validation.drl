@@ -2117,63 +2117,6 @@ dialect 'mvel'
 
 end
 
-rule 'Authorized Representative Signature Date Cannot Be In The Future'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
-        IsOrganization($provider : provider)
-        ProviderStatementType($signDate: signDate, signDate != null) from $provider.providerStatement
-        eval($signDate.after(Calendar.getInstance()))
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/ProviderStatement/SignDate",
-            "00001",
-            "Authorized representative signature date cannot be a future date."
-        );
-
-end
-
-rule 'Authorized Representative Signature Date Cannot be past date'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
-        IsOrganization($provider : provider)
-        ProviderStatementType($signDate: signDate, signDate != null) from $provider.providerStatement
-        eval($signDate.before(getNow()))
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/ProviderStatement/SignDate",
-            "00001",
-            "Authorized representative signature date cannot be a past date."
-        );
-end
-
-
-rule 'Authorized Representative Signature Date Is Required'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
-        IsOrganization($provider : provider)
-        ProviderStatementType(signDate == null) from $provider.providerStatement
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/ProviderStatement/SignDate",
-            "00001",
-            "Authorized representative signature date is required."
-        );
-
-end
-
 rule 'Authorized Representative Title Is Required'
 dialect 'mvel'
 /*
@@ -11246,63 +11189,6 @@ dialect 'mvel'
             "/ProviderInformation/ProviderStatement/Name",
             "00001",
             "Provider statement name length cannot exceed 100 characters."
-        );
-
-end
-
-rule 'Provider Statement Signature Date Cannot Be In The Future'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
-        IsIndividual($provider : provider)
-        ProviderStatementType($signDate: signDate, signDate != null) from $provider.providerStatement
-        eval($signDate.after(Calendar.getInstance()))
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/ProviderStatement/SignDate",
-            "00001",
-            "Provider statement signature date cannot be a future date."
-        );
-
-end
-
-rule 'Provider Statement Signature Date Cannot be past date'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
-        IsIndividual($provider : provider)
-        ProviderStatementType($signDate: signDate, signDate != null) from $provider.providerStatement
-        eval($signDate.before(getNow()))
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/ProviderStatement/SignDate",
-            "00001",
-            "Provider statement signature date cannot be a past date."
-        );
-end
-
-
-rule 'Provider Statement Signature Date Is Required'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
-        IsIndividual($provider : provider)
-        ProviderStatementType(signDate == null) from $provider.providerStatement
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/ProviderStatement/SignDate",
-            "00001",
-            "Provider statement signature date is required."
         );
 
 end

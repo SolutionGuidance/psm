@@ -67,7 +67,7 @@
                 <tr>
                     <th class="firstTheader">#<span class="sep"></span></th>
                     <th class="alignCenter"><span class="multi">Type of License<br/>/Certification</span> <span class="required-dark-background">*</span><span class="sep"></span></th>
-                    <th class="alignCenter"><span class="multi">License/Certification Number</span> <span class="required-dark-background">*</span><span class="sep"></span></th>
+                    <th class="alignCenter"><span class="multi">License/Certification<br/> Number</span> <span class="required-dark-background">*</span><span class="sep"></span></th>
                     <th class="alignCenter"><span class="multi">Original Issue Date<br/> (MM/DD/YYYY)</span> <span class="required-dark-background">*</span><span class="sep"></span></th>
                     <th class="alignCenter"><span class="multi">Renewal End Date<br/> (MM/DD/YYYY)</span> <span class="required-dark-background">*</span><span class="sep"></span></th>
                     <th class="alignCenter">Issuing State <span class="required-dark-background">*</span><span class="sep"></span></th>

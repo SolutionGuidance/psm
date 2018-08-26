@@ -520,7 +520,6 @@ Each task is a freestyle project, triggered by the GitHub pull request plugin.
 - unit tests: runs the following gradle targets, and collect JUnit reports:
   - `cms-business-model:test`
   - `cms-business-process:test`
-  - `cms-portal-services:test`
   - `cms-web:test`
   - `services:test`
 - integration tests: runs the `cms-portal-services:build` gradle target,
@@ -533,6 +532,9 @@ Each task is a freestyle project, triggered by the GitHub pull request plugin.
   reports:
   - `checkstyleMain`
   - `checkstyleTest`
+- jscs: runs the `frontend:npm_run_lint-ci` gradle target, and collects the
+  Checkstyle reports. If running locally and interactively, use the
+  `frontend:npm_run_lint` target, instead.
 
 Currently, for security reasons, we do not run Jenkins on PRs that
 originate outside this repository.  To run the tests on PRs from

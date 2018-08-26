@@ -7,79 +7,47 @@ If you use Emacs org mode, this file will be easier to read.
 The audience for this section is mostly @jvasile, or others who are
 familiar with how the PSM has developed over time.
 
-** provider side
-   This still looks similar to previous versions, and can follow earlier
-   scripts.
+The provider side looks similar to previous versions, most
+differences are on the admin side, and we should show more information.
 
-** admin side
-   This looks different, and we should show more information.
-
-*** Review workflow (Enrollments tab)
-    - When you choose to "review" an application, you'll see that only
-      the external sources that are hooked up appear.  You can mention
-      that the others are coming soon.  This means that fewer
-      distracting errors will appear, and fewer boxes will need to be
-      checked.
-    - Click on the "PASS," "FAIL," or "ERROR" in the Automatic Screening
-      column to see a more comprehensible results page.
-
-*** Reports tab
-    - See the list of initial reports -- note that more can be added,
-      and we expect to update and improve these.
-    - "Applications by Reviewer"
-      - only shows the applications that have been either Approved or
-        Denied -- doesn't show pending or drafts
-    - "Draft Applications"
-      - shows number of drafts over time (currently the "Submitted Date"
-        column should be removed)
-    - "Time to Review"
-      - the most-requested report -- shows how long it takes an
-        application to go through the process.  Ideally this would show
-        that the state is moving providers from submission to review in
-        decreasing or stable amounts of time.
-    - "Provider Types"
-      - number of applications by provider type, over time
-    - "Reviewed Documents"
-      - number of documents (licenses) reviewed over time
-    - "Risk Levels"
-      - number of applications reviewed in each risk level over time
-
-*** Screenings tab
-    *Warning*: Most of this page is not yet wired up!  Expect buttons not
-    to be functional, and set that expectation with audiences.
-    - It shows the screening tests we've run on applications so far,
-      either as part of the regular submission process or as regular
-      re-screening over time
-
-* For MESC 2017  (`wip-leie` branch as of 7 August 2017)
+* For MESC 2018
+  (`master` branch as of 10 August 2018)
 
   Use demo.psm.solutionguidance.com or a local copy.
 
   For this demo, you should have a copy of the LEIE API running at
   localhost:5000 (that is, on the same box that is running the PSM on
-  port 8080).  The demo copy of the PSM should have the following users:
+  port 8080).  The demo copy of the PSM should have the following users
+  and applications:
   
-  - excluded1 (an excluded provider)
   - provider1 (a valid provider)
+  - excluded1 (an excluded provider)
   - admin (a reviewer)
 
-  - A draft DME enrollment with valid NPI
-  - A draft audiologist enrollment with excluded NPI
+  - A draft Durable Medical Equipment (DME) application with a valid NPI
+    (user: provider1) and multiple owners
+  - A draft Audiologist application with excluded NPI (user: excluded1)
 
   This demo assumes that much of the provider information has already
   been filled in -- that is, that we're re-opening an application in
   progress and continuing it.  This is to save time during the demo.  To
   insert this information, run:
-  
-  $ psql psm
-  psm=# DROP OWNED BY ${psm_user};
-  $ \i team-notes/demo-db-dbd7cf5.sql
+
+  $ psql -h localhost -U psm -d psm
+  psm=> DROP OWNED BY ${psm_user};
+  $ \i team-notes/demo-db-201808-master.sql
+
+  $ cd {path-to-psm}/psm-app
+  $ ./gradlew db:update
 
   If you use the pre-filled data, make sure the provider statement date
   is today's date.
 
   # add a fake exclusion to LEIE data, to avoid demo-ing with a real
-  person's name:
+  person's name.  Do this after running `etl.py` and before running
+  `serve.py`.
+
+  $ cd {path-to-cavetl}/leie/leie
   
   $ sqlite3 leie.sqlite3 <<EOF
 INSERT INTO exclusion(
@@ -115,92 +83,130 @@ EOF
 
 * DEMO PLAN:
 
-  1. Show an organizational provider enrollment with a valid provider:
+  1. Show an organizational provider application with a valid provider:
   
      - Log in as provider1
-     - DME enrollment already exists
+     - Durable Medical Equipment (DME) application already exists
+       - Click "Edit" under "Actions" column
        - "Previous page" goes one back
-       - Point out multiple owners without going back further and
-         entering data, to avoid the bug and save time
-
-     - Click "Next", then submit the enrollment
+       - Point out multiple owners without going back further or
+         entering data, to save time. (And possibly avoid a bug that
+         may or may not still exist. In August 2018, Paul was able
+         to navigate all the way to the beginning without entering
+         or changing any inputs, without hitting any issues.)
+       - Given time and interest, click the "?" next to "Type" for an
+         owner to show the user help modal pop-up.
+     - Click "Next", then submit the application
   
-     - Back on the dashboard, note that DME is automatically flagged as
-       "High" risk (based on provider type)
+     - Back at the applications table, note that DME is automatically
+       flagged as "High" risk (based on DME provider type)
   
-  2. Show an individual provider enrollment with multiple locations:
+  2. Show an individual provider application with multiple locations:
      - Log in as excluded1
-     - "Audiologist" enrollment exists
-     - Click in then "previous" all the way back to the beginning, to show the screens
+     - "Audiologist" application exists
+     - Click "Edit" and then "Previous" all the way back to the beginning,
+       to show the screens
      - Has an excluded NPI: 1234567893 (this is a fake one that doesn't
        show a real provider's name) 
-     - Validation tests, if there's time: try a DOB in the future and
-       show the error shows up when you click "next" (but not immediately on
-       tabbing away from the field)  
-       - See the "provider must be at least 18yo error, too! (for fun)
      - License info
        - Indian reservation question is MN-specific, but we can ask
          similar questions for other states
        - Upload the fake license:
          docs/sample-generic-provider-license.pdf (should
          already be there)
-     - Practice Info:
+     - Validation tests, if there's time: on the license info page, enter
+       a Renewal End Date that's earlier than Original Issue Date and
+       click next to show the error (there's no error immediately on
+       tabbing away from the field).
+    - Practice Info:
        - For "Are you employed and/or independently contracted by a group
          practice?" choose Yes
          - At bottom of page, click "Add Another Practice Location"
            - Group NPI can be the same as the initial Provider NPI, and we
              can use the same NPI for multiple locations
 
-      - Submit the enrollment
+      - Submit the application
 
       - Back on the dashboard, note that Audiologists are "Limited" risk
-        (the lowest possible level).  This is true even though we happen
+        (the lowest level).  This is true even though we happen
         to know that the NPI we used is one that is excluded -- risk
         levels right now are *only* based on provider type.
 
-  3. Admin flow:
+  3. Admin review flow:
      - Login as "admin"
-     - Navigate to "Enrollments" tab, then "Pending" subtab
+     - Navigate to "ENROLLMENTS" tab, then "Pending" subtab (or just use
+       the "All" tab and look for "pending" in the Status column).
      - Look at available "Actions"
-     - Export downloads it as a PDF, COS is "Categories of Service" (not
-       fully implemented/work in progress), Edit and Print are what it
-       says on the tin
+     - Export downloads it as a PDF. Edit, Print, and Add Note are what it
+       says on the tin (but the Notes UI is up for revision).
      - Review is what we're interested in.
-     - Click "Review" on the Audiologist enrollment
-       - We see that most of these have not been checked
+     - Click "Review" on the Audiologist application
+       - Only current external sources appear (LEIE), mention others coming
        - Note particularly "Applicant Must Not Be In the Excluded
          Providers List." in the list of errors
-       - View Log for "EXCLUDED PROVIDER VERIFICATION IN OIG (checked
-         means not in exclusion list)."
+       - We can click on the "FAIL" (other values are "PASS," and "ERROR")
+         in the Auto Screening column to see full results in new browser tab
+       - Click "FAIL" to view results for "EXCLUDED PROVIDER VERIFICATION
+         IN OIG (checked means not in exclusion list)."
          - Results show up in a new tab
-         - "Status: SUCCESS" -- we got a response from the LEIE
-         - Results below show that we found this person in the LEIE,
-           therefore he is excluded and we should reject this enrollment. 
+         - "This provider appears in the LEIE and should be rejected."
+         - Results below show more details, and the matching LEIE records.
        - Go back to original tab
-         - If interested, show that we're not doing automated screening
+         - If interested, say that we're not doing automated screening
            for other external sources (yet).
-         - Can view the license file if we have time/interest
-       - "Reject" and the enrollment will show up in the "Denied" tab.  We
-         no longer have the ability to re-review
+         - Can view the license file if there's time/interest
+       - Click "Reject" button and the application will show up in the
+         "Denied" tab. (And in the "All" tab, but now with "Denied" in
+         Status column.) We no longer have the ability to re-review
 
      - Now, the non-excluded provider version:
-       - Go back to the "Pending" tab
-       - Review the DME enrollment
+       - Go back to the "Pending" tab (or use the "All" tab, looking for
+         "Pending" in Status column)
+       - Review the DME application
        - Note that "EXCLUDED PROVIDER VERIFICATION IN OIG (checked means
          not in exclusion list)" is already checked -- this person is
          not in the LEIE!
-         - Click "View Log" and see "Success - no records were matched."
-          (i.e., we searched and didn't find anything)
-       - For now, we'd manually check the other sources -- check all
-         checkboxes 
+         - Click "PASS" link and see "This provider does not appear in the
+         LEIE and may be approved." With more details below.
+       - If there were other screening sources, we'd manually check their
+         checkboxes.
        - Later, other sources can be added to this list
-       - "Approve" the DME enrollment and it will show up in the "Approved"
-         tab (after a "request has been sent" message)
-         - Note, the "request has been sent" doesn't actually do
-           anything yet -- possibly a chance for discussion about what
-           it *should* do
+       - Click "Approve" button for the DME application, and see "request
+         has been sent" message, the provider will be sent a confirmation
+         email. The application will show up in the "Approved" tab (and
+         the "All" tab as "Approved").
+         
+  4. Admin Reports tab
+     - See the list of initial reports -- note that more can be added,
+       and we expect to update and improve these.
+     - "Applications by Reviewer"
+       - only shows the applications that have been either Approved or
+         Denied -- doesn't show pending or drafts
+     - "Draft Applications"
+       - shows number of drafts over time. If a table row has a submitted
+         date then the application is no longer a draft, but it was one
+         during that month, so it is included in the report.
+     - "Time to Review"
+       - the most-requested report -- shows how long it takes an
+         application to go through the process.  Ideally this would show
+         that the state is moving providers from submission to review in
+         decreasing or stable amounts of time.
+     - "Provider Types"
+       - number of applications by provider type, over time
+     - "Reviewed Documents"
+       - number of documents (licenses) reviewed over time
+     - "Risk Levels"
+       - number of applications reviewed in each risk level over time
 
-
+  5. Admin Screenings tab
+     *Warning*: Almost all of this page is not yet wired up! It is
+     basically read-only. Buttons, links, tabs, any interactivity, etc.
+     is not functional, so set that expectation with audiences.
+     You can show/hide the filter panel; that's pretty much it.
+     - It shows the screening tests we've run on applications so far,
+       either as part of the regular submission process or as regular
+       re-screening over time. Eventually it will allow filtering to show
+       only re-screenings or only initial screenings, etc.
 
 * Notes about the demo, as background:
   - Valid provider:

@@ -10,7 +10,6 @@
     <div class="section">
         <div class="wholeCol">
             <label for="createEditProviderTypeProviderType">Provider Type</label>
-            <span class="floatL"><b>:</b></span>
             <form:input id="createEditProviderTypeProviderType" path="description" cssClass="text"/>
         </div>
         <div class="tableHeader"><span>Agreements and Addendums</span></div>

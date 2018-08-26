@@ -63,7 +63,6 @@ public class CTCCFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
@@ -80,7 +79,7 @@ public class CTCCFormBinder extends BaseFormBinder {
             creds.setCommunityHealthBoard("N");
         }
 
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     private void replaceDocument(AttachedDocumentsType attachments, String id, String value) {

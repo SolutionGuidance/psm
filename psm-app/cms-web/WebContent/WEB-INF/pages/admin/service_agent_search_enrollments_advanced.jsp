@@ -153,7 +153,7 @@
             <c:otherwise>
               <div class="tabContent">
                 <div class="pagination">
-                  <%@ include file="/WEB-INF/pages/admin/includes/page_left_navigation.jsp" %>
+                  <%@ include file="/WEB-INF/pages/includes/pagination_details_wrapper.jsp" %>
                   <div class="right">
                     <a id="exportEnrollmentsToPDF" href="javascript:;" class="greyBtn iconPdf">Export to PDF</a>
                     <a id="printEnrollments" href="javascript:;" class="greyBtn iconPrint">Print</a>
@@ -169,7 +169,7 @@
                 <div class="tabFoot">
                   <div class="tabR">
                     <div class="tabM">
-                      <%@ include file="/WEB-INF/pages/admin/includes/page_navigation.jsp" %>
+                      <%@ include file="/WEB-INF/pages/includes/pagination_details_and_links.jsp" %>
                     </div>
                   </div>
                 </div>

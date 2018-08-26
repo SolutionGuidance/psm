@@ -164,6 +164,10 @@ Guide](https://docs.jboss.org/author/display/WFLY/Getting+Started+Guide).
    [http://wildfly.org/downloads/](http://wildfly.org/downloads/). Download
    the [11.0.0.Final full
    distribution](http://download.jboss.org/wildfly/11.0.0.Final/wildfly-11.0.0.Final.tar.gz).
+   (Wildfly's downloads page doesn't offer checksums or signatures,
+   but [this
+   workaround](https://github.com/wildfly/wildfly.org/issues/87#issuecomment-412181885)
+   can help you verify authenticity.)
 
    ```ShellSession
    $ cd {/path/to/this_psm_repo}
@@ -286,7 +290,7 @@ $ sudo -u postgres createdb --owner=psm psm
 
 If you get an error saying `role "postgres" does not exist`, this is likely due
 to Mac OS X not assigning "postgres" as a superuser. You will need to access
-your postgres database to find the superuser name and substitute it into the scripts.
+your postgres database to find the superuser name and substitute it into the scripts:
 
 ```ShellSession
 $ sudo -u {superuser name} createuser --pwprompt psm
@@ -294,13 +298,13 @@ $ sudo -u {superuser name} createdb --owner=psm psm
 ```
 
 After creating the databases, add the data sources to the application
-server. In the first line of the command below, replace `VERSION` with
-the version of the PostgreSQL JDBC driver you downloaded and `PWORD`
-with the password you assigned to your `psm` database user, and paste
-it into your terminal:
+server.  Run the command below from the WildFly directory, replacing
+`VERSION` with the version of the PostgreSQL JDBC driver you
+downloaded and `PWORD` with the password you assigned to your `psm`
+database user:
 
 ```ShellSession
-$ VERSION=42.1.4; PWORD=psm; ./bin/jboss-cli.sh --connect <<EOF
+$ VERSION=42.2.4; PWORD=psm; ./bin/jboss-cli.sh --connect <<EOF
 xa-data-source add \
   --name=TaskServiceDS \
   --jndi-name=java:/jdbc/TaskServiceDS \
@@ -370,7 +374,7 @@ EOF
    If you have a previous build deployed already, you can replace the
    deployment in the UI or add the `--force` switch after `deploy`.
 
-1. Create database schema and initial data. There are two sets of tables in this project.  The first are application tables, and they are created and seeded using liquibase migrations.  The second set of tables are related to jbpm and these are loaded via a SQL script.  Run the commands below in any order to load both sets.
+1. Create database schema and initial data. There are two sets of tables in this project.  The first are application tables, and they are created and seeded using liquibase migrations.  The second set of tables are related to jbpm and these are loaded via a SQL script.  In the `psm-app` subdirectory, run the commands below in any order to load both sets:
 
     ```shell
        > ./gradlew db:update

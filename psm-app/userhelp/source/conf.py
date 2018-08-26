@@ -50,7 +50,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Provider Screening Module user help'
-copyright = u'2017, (TBD)'
+copyright = u'2017, 2018 The MITRE Corporation'
 author = u'Solution Guidance Corporation'
 
 # The version info for the project you're documenting, acts as replacement for

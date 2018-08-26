@@ -181,6 +181,22 @@ automatically.  If you're working with someone else on a shared branch
 you should talk with them before changing shared history.  We expect
 force-pushing to mostly occur in active PR branches.
 
+### Cross-forum linking
+
+If you have a
+[chat](https://chat.opentechstrategies.com/#narrow/stream/Provider.20Screening) conversation
+related to an issue, please not only mention the issue by number in
+the chat but also -- assuming your chat adds useful information or
+comes to some decision about the issue -- link back to the chat *from*
+the issue.  Zulip chat offers the ability to get a link to a specific
+place in a conversation: see "Copy link to conversation" under the
+downward-pointing triangle menu in the upper right corner of any
+individual post in the chat window.
+
+The last line of
+[this comment](https://github.com/solutionguidance/psm-dashboard/issues/33#issuecomment-414365184) provides
+an example of linking from an issue back to a chat about that issue.
+
 ### Commit Messages
 
 #### Follow Best Practices

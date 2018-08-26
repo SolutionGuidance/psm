@@ -65,7 +65,7 @@
                           View
                         </a>
                         <a
-                          class="actionLink"
+                          class="editLink actionLink"
                           href="${editProfileLink}"
                         >
                           Edit

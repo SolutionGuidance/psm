@@ -175,4 +175,14 @@ public class EnrollmentStepDefinitions {
     public void i_renew_organizational_enrollment(String npi) {
         enrollmentSteps.renewOrganizationalEnrollment(npi);
     }
+
+    @When("^I update Individual Enrollment '(.+)'$")
+    public void i_update_individual_enrollment(String npi) {
+        enrollmentSteps.updateIndividualEnrollment(npi);
+    }
+
+    @When("^I update Organizational Enrollment '(.+)'$")
+    public void i_update_organizational_enrollment(String npi) {
+        enrollmentSteps.updateOrganizationalEnrollment(npi);
+    }
 }

@@ -521,4 +521,18 @@ public class EnrollmentSteps {
         signProviderStatement();
         submitEnrollment();
     }
+
+    @Step
+    void updateIndividualEnrollment(String npi) {
+        myProfilePage.clickActionFor(npi, ".editLink");
+        personalInfoPage.enterFirstName(FIRST_NAME + " Edited");
+        submitEnrollment();
+    }
+
+    @Step
+    void updateOrganizationalEnrollment(String npi) {
+        myProfilePage.clickActionFor(npi, ".editLink");
+        organizationInfoPage.setDoingBusinessAs("Test DBA Edited");
+        submitEnrollment();
+    }
 }

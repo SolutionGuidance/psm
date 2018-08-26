@@ -1,4 +1,5 @@
-Feature: Enrollment Workflow
+@update
+Feature: Enrollment Update Workflow
   Users wish to execute workflow functions
 
   Scenario: Provider Create Individual Workflow Enrollment
@@ -15,7 +16,7 @@ Feature: Enrollment Workflow
     And I submit the enrollment
     Then I should have no errors
 
-  Scenario: Admin Approve Organizational Workflow Enrollment
+  Scenario: Admin Approve Organizational Enrollment
     Given I am logged in as an admin
     And I am on the admin Pending page
     When I am on the Review Enrollment Page for '1234567893'
@@ -24,7 +25,7 @@ Feature: Enrollment Workflow
     Then I should have no errors
     And The Enrollment should be in the 'Approved' state
 
-  Scenario: Admin Approve Individual Workflow Enrollment
+  Scenario: Admin Approve Individual Enrollment
     Given I am logged in as an admin
     And I am on the admin Pending page
     When I am on the Review Enrollment Page for '0000000006'
@@ -33,10 +34,10 @@ Feature: Enrollment Workflow
     Then I should have no errors
     And The Enrollment should be in the 'Approved' state
 
-  Scenario: Provider Renew Individual Enrollment
+  Scenario: Provider Update Individual Enrollment
     Given I am logged in as a provider
     And I click on My Profile
-    When I renew Individual Enrollment '0000000006'
+    When I update Individual Enrollment '0000000006'
     Then I should have no errors
     And The Enrollment should be in the 'Pending' state
 
@@ -49,10 +50,10 @@ Feature: Enrollment Workflow
     Then I should have no errors
     And The Enrollment should be in the 'Approved' state
 
-  Scenario: Provider Renew Organizational Enrollment
+  Scenario: Provider Update Organizational Enrollment
     Given I am logged in as a provider
     And I click on My Profile
-    When I renew Organizational Enrollment '1234567893'
+    When I update Organizational Enrollment '1234567893'
     Then I should have no errors
     And The Enrollment should be in the 'Pending' state
 

@@ -2,6 +2,10 @@ package gov.medicaid.features.enrollment.ui;
 
 import gov.medicaid.features.PsmPage;
 
+import net.serenitybdd.core.annotations.findby.By;
+
+import org.openqa.selenium.WebElement;
+
 public class ProviderStatementPage extends PsmPage {
     public void checkNoCriminalConviction() {
         click($("[name=_08_criminalConvictionInd][value='N']"));
@@ -33,6 +37,10 @@ public class ProviderStatementPage extends PsmPage {
 
     public void enterProviderTitle(String providerTitle) {
         $("[name=_08_title], [name=_19_title]").type(providerTitle);
+    }
+
+    public void acceptAllAgreements() {
+        getDriver().findElements(By.cssSelector(".checkbox")).forEach(WebElement::click);
     }
 
     public void clickSubmitButton() {

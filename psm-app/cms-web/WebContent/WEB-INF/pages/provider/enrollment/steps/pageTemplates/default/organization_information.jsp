@@ -62,7 +62,7 @@
 
                         <c:set var="formName" value="_15_state"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <label for="{formIdPrefix}_${formName}">State <span class="required">*</span></label>
+                        <label for="{formIdPrefix}_${formName}">State/Territory <span class="required">*</span></label>
                         <select id="{formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                             <option value="">Please select</option>
                             <c:forEach var="opt" items="${requestScope['_99_states']}">
@@ -196,7 +196,7 @@
 
                         <c:set var="formName" value="_15_state"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <label for="{formIdPrefix}_${formName}">State <span class="required">*</span></label>
+                        <label for="{formIdPrefix}_${formName}">State/Territory <span class="required">*</span></label>
                         <select id="{formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                             <option value="">Please select</option>
                             <c:forEach var="opt" items="${requestScope['_99_states']}">
@@ -398,7 +398,7 @@
 
                         <c:set var="formName" value="_15_state"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <label for="{formIdPrefix}_${formName}">State <span class="required">*</span></label>
+                        <label for="{formIdPrefix}_${formName}">State/Territory <span class="required">*</span></label>
                         <select id="{formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                             <option value="">Please select</option>
                             <c:forEach var="opt" items="${requestScope['_99_states']}">
@@ -557,7 +557,7 @@
 
                     <c:set var="formName" value="_15_state"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="{formIdPrefix}_${formName}">State <span class="required">*</span></label>
+                    <label for="{formIdPrefix}_${formName}">State/Territory <span class="required">*</span></label>
                     <select id="{formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                         <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_99_states']}">
@@ -672,7 +672,7 @@
                 <th>ATTN <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <th>Address <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <th>City <span class="required-dark-background">*</span><span class="sep"></span></th>
-                <th>State <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>State/Territory <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <th>ZIP Code <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <th>County<span class="sep"></span></th>
             </tr>
@@ -711,7 +711,7 @@
                     <td>
                         <c:set var="formName" value="_15_billingState"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <select ${disableLinkedFields} title="Billing State" name="${formName}" class="${linkedFieldClass}">
+                        <select ${disableLinkedFields} title="Billing State/Territory" name="${formName}" class="${linkedFieldClass}">
                             <option value="">Please select</option>
                             <c:forEach var="opt" items="${requestScope['_99_states']}">
                                 <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
@@ -767,7 +767,7 @@
                     <td>
                         <c:set var="formName" value="_15_ten99State"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <select ${disableLinkedFields} title="1099 State" name="${formName}" class="${linkedFieldClass}">
+                        <select ${disableLinkedFields} title="1099 State/Territory" name="${formName}" class="${linkedFieldClass}">
                             <option value="">Please select</option>
                             <c:forEach var="opt" items="${requestScope['_99_states']}">
                                 <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>

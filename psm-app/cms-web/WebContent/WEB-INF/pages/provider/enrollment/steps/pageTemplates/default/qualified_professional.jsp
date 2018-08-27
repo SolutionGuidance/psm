@@ -136,7 +136,7 @@
 
                 <c:set var="formName" value="_29_state_${status.index - 1}"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">State <span class="required">*</span> : </label>
+                <label for="${formIdPrefix}_${formName}">State/Territory <span class="required">*</span> : </label>
                 <select id="${formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">
@@ -208,7 +208,7 @@
                 <th>License/Certification Number <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <th>Original Issue Date <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <th>Renewal End Date <span class="required-dark-background">*</span><span class="sep"></span></th>
-                <th>Issuing State <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Issuing State/Territory <span class="required-dark-background">*</span><span class="sep"></span></th>
             </tr>
         </thead>
         <tbody>
@@ -269,7 +269,7 @@
                 <td class="licenseStateInput">
                     <c:set var="formName" value="_29_issuingState_${status.index - 1}_${licenseRow.index - 1}"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <select title="Issuing State" name="${formName}">
+                    <select title="Issuing State/Territory" name="${formName}">
                         <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_99_states']}">
                             <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
@@ -325,7 +325,7 @@
                     <td class="licenseStateInput">
                         <c:set var="formName" value="_29_issuingState_${status.index - 1}_1"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <select title="Issuing State" name="${formName}">
+                        <select title="Issuing State/Territory" name="${formName}">
                             <option value="">Please select</option>
                             <c:forEach var="opt" items="${requestScope['_29_licenseStates']}">
                                 <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
@@ -471,7 +471,7 @@
 
                 <c:set var="formName" value="_29_state"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">State <span class="required">*</span> : </label>
+                <label for="${formIdPrefix}_${formName}">State/Territory <span class="required">*</span> : </label>
                 <select id="${formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">
@@ -534,7 +534,7 @@
                 <th>License/Certification Number <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <th>Original Issue Date <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <th>Renewal End Date <span class="required-dark-background">*</span><span class="sep"></span></th>
-                <th>Issuing State <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Issuing State/Territory <span class="required-dark-background">*</span><span class="sep"></span></th>
             </tr>
         </thead>
         <tbody>
@@ -586,7 +586,7 @@
                 <td class="licenseStateInput">
                     <c:set var="formName" value="_29_issuingState"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <select title="Issuing State" name="${formName}">
+                    <select title="Issuing State/Territory" name="${formName}">
                         <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_29_licenseStates']}">
                             <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
@@ -637,7 +637,7 @@
                 <td class="licenseStateInput">
                     <c:set var="formName" value="_29_issuingState"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <select title="Issuing State" name="${formName}">
+                    <select title="Issuing State/Territory" name="${formName}">
                         <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_29_licenseStates']}">
                             <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>

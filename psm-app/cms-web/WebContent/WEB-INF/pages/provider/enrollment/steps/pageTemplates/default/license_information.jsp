@@ -43,7 +43,7 @@
                             </c:choose>
                         </c:otherwise>
                 </c:choose>
-                <th>Issuing State <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Issuing State/Territory <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <th></th>
             </tr>
         </thead>
@@ -109,7 +109,7 @@
                     <td>
                         <c:set var="formName" value="_03_issuingState_${status.index - 1}"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <select title="Issuing State (License ${status.index})" name="${formName}">
+                        <select title="Issuing State/Territory (License ${status.index})" name="${formName}">
                             <option value="">Please select</option>
                             <c:forEach var="opt" items="${requestScope['_03_licenseStates']}">
                                 <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
@@ -187,7 +187,7 @@
                 <td>
                     <c:set var="formName" value="_03_issuingState"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <select title="Issuing State" name="${formName}">
+                    <select title="Issuing State/Territory" name="${formName}">
                         <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_03_licenseStates']}">
                             <option value="${opt.code}"><c:out value="${opt.description}" /></option>

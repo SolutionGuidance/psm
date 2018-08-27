@@ -22,10 +22,11 @@
           <div class="clearFixed"></div>
 
             <div class="detailPanel screeningsDateRange">
-              <form
+              <form id="screening_form"              
                 action="${ctx}/agent/screenings"
-                :method "get"
+                method="get"
               >
+                <input type="text" name="status" id="status" value='<c:out value="${tabName}"/>'/>                
                 <div class="row rowDateRange">
                   <span class="dateWrapper floatL">
                     <input
@@ -36,7 +37,7 @@
                       placeholder="Start Date"
                       class="date"
                       type="text"
-                      value=""
+                      value="${startDate}"
                     />
                   </span>
                   <span class="floatL">-</span>
@@ -49,7 +50,7 @@
                       placeholder="End Date"
                       class="date"
                       type="text"
-                      value=""
+                      value="${endDate}"
                     />
                   </span>
                   <input

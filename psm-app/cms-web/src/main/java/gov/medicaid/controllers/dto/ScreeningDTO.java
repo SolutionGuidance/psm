@@ -1,19 +1,20 @@
 package gov.medicaid.controllers.dto;
 
 import gov.medicaid.entities.AutomaticScreening;
-
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class ScreeningDTO {
-    public LocalDateTime date;
+    public Date date;
     public String npi;
     public String providerName;
     public String providerType;
     public String screeningType;
     public String reason;
     public AutomaticScreening.Result result;
+    public long ticketId;
+    public long screeningId;
 
-    public LocalDateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -40,4 +41,13 @@ public class ScreeningDTO {
     public AutomaticScreening.Result getResult() {
         return result;
     }
+
+    public long getTicketId() {
+        return ticketId;
+    }
+
+    public long getScreeningId() {
+        return screeningId;
+    }
+
 }

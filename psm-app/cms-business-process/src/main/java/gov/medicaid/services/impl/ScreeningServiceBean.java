@@ -17,10 +17,13 @@
 package gov.medicaid.services.impl;
 
 import gov.medicaid.entities.AutomaticScreening;
+import gov.medicaid.entities.AutomaticScreening.Result;
 import gov.medicaid.entities.ScreeningSchedule;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ScreeningService;
-
+import gov.medicaid.services.util.Util;
+import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang3.EnumUtils;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -28,8 +31,16 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.PersistenceException;
+import javax.persistence.TypedQuery;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * This class provides an implementation of the ScreeningDAO as a local EJB.
@@ -51,6 +62,11 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
      * Constant id for the screening schedule.
      */
     private static final long SCREENING_SCHEDULE_ID = 1;
+
+    /**
+     * Constant for date format used in queries
+     */
+    private static final String DATE_PATTERN = "MM/dd/yyyy";
 
     /**
      * Default empty constructor.
@@ -79,7 +95,7 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
      *
      * @param screeningSchedule - the screening schedule
      * @throws IllegalArgumentException - If screeningSchedule is null
-     * @throws PortalServiceException   - If there are any errors during the execution of this method
+     * @throws PortalServiceException - If there are any errors during the execution of this method
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void saveScreeningSchedule(ScreeningSchedule screeningSchedule) throws PortalServiceException {
@@ -97,22 +113,61 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
     }
 
     @Override
-    public Optional<AutomaticScreening> findScreening(
-            long screeningId
-    ) {
+    public Optional<AutomaticScreening> findScreening(long screeningId) {
         return Optional.ofNullable(
-                getEm().find(
-                        AutomaticScreening.class,
-                        screeningId,
-                        hintEntityGraph("Screening with matches")
-                )
-        );
+                getEm().find(AutomaticScreening.class, screeningId, hintEntityGraph("Screening with matches")));
     }
 
+    /*
+     * This method is for getting all screenings.
+     * @param params - Filter condition based on date or status or both
+     * @return list of screenings matching filter condition
+     */
+
     @Override
-    public List<AutomaticScreening> getAllScreenings() {
-        return getEm()
-                .createQuery("FROM AutomaticScreening", AutomaticScreening.class)
-                .getResultList();
+    public List<AutomaticScreening> getAllScreenings(Map<String, String> params)
+            throws PortalServiceException {
+        List<String> clauseList = new ArrayList<>();
+        String start = MapUtils.getString(params, "startDate");
+        String end = MapUtils.getString(params, "endDate");
+        String status = MapUtils.getString(params, "status");
+        Map<String, Object> bindParams = new HashMap<>();
+
+        // Clause for Status filter
+        if (Util.isNotBlank(status) && EnumUtils.isValidEnum(Result.class, status.toUpperCase())) {
+            clauseList.add("result in (:status)");
+            bindParams.put("status", Result.valueOf(status.toUpperCase()));
+        }
+
+        // Clause for Date Range filter
+        if (Util.isNotBlank(start) && Util.isNotBlank(end)) {
+            SimpleDateFormat format = new SimpleDateFormat(DATE_PATTERN);
+            try {
+                Date frmDate = format.parse(start);
+                Date enDate = format.parse(end);
+                clauseList.add("created_at BETWEEN :stDate AND :edDate");
+                bindParams.put("stDate", frmDate);
+                bindParams.put("edDate", enDate);
+            } catch (ParseException e) {
+                throw new PortalServiceException("Could not complete database operation.", e);
+            }
+        }
+
+        // TODO: Add page parameters here
+
+        // Build Clause dynamically from inputs
+        String clause = clauseList.stream().map(i -> i.toString()).collect(Collectors.joining(" And "));
+        StringBuilder sql = new StringBuilder("FROM AutomaticScreening");
+        if (clause.length() > 0) {
+            sql.append(" WHERE ");
+            sql.append(clause);
+        }
+
+        // Query
+        TypedQuery<AutomaticScreening> query = getEm().createQuery(sql.toString(), AutomaticScreening.class);
+        bindParams.forEach((k, v) -> query.setParameter(k, v));
+
+        return query.getResultList();
     }
+
 }

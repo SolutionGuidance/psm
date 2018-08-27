@@ -42,7 +42,7 @@
   <tbody>
     <c:forEach var="screening" items="${screenings}">
       <tr>
-        <td>${screening.date}</td>
+        <td><fmt:formatDate value="${screening.date}" pattern="MM/dd/yyyy"/></td>
         <td>${screening.npi}</td>
         <td>${screening.providerName}</td>
         <td>${screening.providerType}</td>
@@ -50,9 +50,11 @@
         <td>${screening.reason}</td>
         <td>${screening.result}</td>
         <td class="alignCenter nopad">
-          <a href="#">Auto Screen</a>
+          <a href="${ctx}/provider/enrollment/view?id=${screening.ticketId}">View</a>
+          <span class="sep">|</span>        
+          <a href="${ctx}/agent/automatic-screening/${screening.screeningId}">Auto Screen</a>
           <span class="sep">|</span>
-          <a href="#">Manual Screen</a>
+          <a href="${ctx}/agent/enrollment/screeningReview?id=${screening.ticketId}">Manual Screen</a>
         </td>
       </tr>
     </c:forEach>

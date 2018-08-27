@@ -6,6 +6,7 @@ import gov.medicaid.entities.EnrollmentStatus
 import gov.medicaid.entities.LeieAutomaticScreening
 import gov.medicaid.entities.dto.ViewStatics
 import gov.medicaid.services.PortalServiceRuntimeException
+import gov.medicaid.services.ProviderEnrollmentService
 import gov.medicaid.services.ScreeningService
 import spock.lang.Specification
 
@@ -17,16 +18,21 @@ class AutomaticScreeningControllerTest extends Specification {
     private static final long ENROLLMENT_ID = 1
 
     AutomaticScreeningController controller
-    ScreeningService service
+    ScreeningService screeningService
+    ProviderEnrollmentService providerEnrollmentService
 
     def setup() {
-        service = Mock(ScreeningService)
-        controller = new AutomaticScreeningController(service)
+        screeningService = Mock(ScreeningService)
+        providerEnrollmentService = Mock(ProviderEnrollmentService)
+        controller = new AutomaticScreeningController(
+                screeningService,
+                providerEnrollmentService
+        )
     }
 
     def 'An invalid screening ID throws'() {
         given:
-        service.findScreening(_) >> Optional.empty()
+        screeningService.findScreening(_) >> Optional.empty()
 
         when:
         controller.viewScreening(1)
@@ -37,7 +43,7 @@ class AutomaticScreeningControllerTest extends Specification {
 
     def 'A non-LEIE screening throws'() {
         given:
-        service.findScreening(_) >> Optional.of(new AutomaticScreening() {
+        screeningService.findScreening(_) >> Optional.of(new AutomaticScreening() {
             String getType() { return "" }
         })
 
@@ -113,6 +119,6 @@ class AutomaticScreeningControllerTest extends Specification {
         screening.npiSearchTerm = NPI
         screening.result = AutomaticScreening.Result.PASS
 
-        service.findScreening(_) >> Optional.of(screening)
+        screeningService.findScreening(_) >> Optional.of(screening)
     }
 }

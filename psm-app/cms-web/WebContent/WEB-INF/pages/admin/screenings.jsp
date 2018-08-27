@@ -24,10 +24,17 @@
 
             <div class="detailPanel screeningsDateRange">
               <form
+                id="screening_form"
                 action="${ctx}/agent/screenings"
                 class="paginationForm"
-                :method "get"
+                method="get"
               >
+                <input
+                  type="hidden"
+                  id="status"
+                  name="status"
+                  value="${activeTab}"
+                />
                 <div class="row rowDateRange">
                   <span class="dateWrapper floatL">
                     <input
@@ -38,7 +45,7 @@
                       placeholder="Start Date"
                       class="date"
                       type="text"
-                      value=""
+                      value="${startDate}"
                     />
                   </span>
                   <span class="floatL">-</span>
@@ -51,7 +58,7 @@
                       placeholder="End Date"
                       class="date"
                       type="text"
-                      value=""
+                      value="${endDate}"
                     />
                   </span>
                   <input

@@ -46,7 +46,12 @@
       varStatus="status"
     >
       <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
-        <td>${screening.date}</td>
+        <td>
+          <fmt:formatDate
+            value="${screening.date}"
+            pattern="MM/dd/yyyy"
+          />
+        </td>
         <td>${screening.npi}</td>
         <td>${screening.providerName}</td>
         <td>${screening.providerType}</td>
@@ -56,15 +61,21 @@
         <td class="alignCenter">
           <a
             class="actionLink"
-            href="#"
+            href="${ctx}/provider/enrollment/view?id=${screening.enrollmentId}"
           >
-            Auto Screen
+            View
           </a>
           <a
             class="actionLink"
-            href="#"
+            href="${ctx}/agent/automatic-screening/${screening.screeningId}"
           >
-            Manual Screen
+            Run Again
+          </a>
+          <a
+            class="actionLink"
+            href="${ctx}/agent/enrollment/screeningReview?id=${screening.enrollmentId}"
+          >
+            Review
           </a>
         </td>
       </tr>

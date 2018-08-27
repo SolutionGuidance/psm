@@ -230,7 +230,8 @@ public class LookupServiceBean implements LookupService {
      * @return the matched lookups
      */
     public <T extends LookupEntity> List<T> findAllLookups(Class<T> cls) {
-        return em.createQuery("FROM " + cls.getName(), cls).getResultList();
+        String query = "FROM " + cls.getName() + " ORDER BY description";
+        return em.createQuery(query, cls).getResultList();
     }
 
     /**

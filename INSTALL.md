@@ -90,9 +90,8 @@ This is just an overview; see installation instructions below.
 
 ## Database
 
-We're testing with PostgreSQL 9.6.2.  PostgreSQL 10 has recently been
-released and we intend to verify compatibility with it; we'd be happy
-to hear from anyone who has run the PSM with PostgreSQL 10.x.
+We're testing with PostgreSQL 10.x and 9.6.x.  You should be fine with
+anything in the 10.x series or the 9.6.x series.
 
 - **Storage**: We suggest starting by planning 10 GB for the database,
   and having a plan to expand or reprovision later.  We will update
@@ -134,9 +133,9 @@ configuration for a development install.
    Leave the terminal session open; leave the SMTP server running as
    you continue the install process.
 
-1. [PostgreSQL 9.6](https://www.postgresql.org/). We are testing with
-   PostgreSQL 9.6.2. Check that you have PostgreSQL installed.  If you
-   do not, it is available on Debian via `sudo apt install postgresql-9.6`,
+1. [PostgreSQL](https://www.postgresql.org/). We are testing with
+   PostgreSQL 10.x and 9.6.x. Check that you have PostgreSQL installed.  If you
+   do not, it is available on Debian via `sudo apt install postgresql`,
    or you can download it from https://www.postgresql.org.
 
 1. The PSM code repository. Currently we suggest you run the PSM from

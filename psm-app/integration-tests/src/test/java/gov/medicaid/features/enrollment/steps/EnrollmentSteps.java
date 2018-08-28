@@ -489,4 +489,9 @@ public class EnrollmentSteps {
     void closeSubmitModal() {
         enrollmentDetailsPage.closeSubmitModal();
     }
+
+    @Step
+    void enterEmptyEmailAddress() {
+        personalInfoPage.enterEmail("");
+    }
 }

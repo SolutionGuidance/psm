@@ -214,7 +214,7 @@ $(document).ready(function () {
   $('.stepWidget .lastStep').css('width', $('.stepWidget').width() - $('.stepWidget .personal').width() - $('.stepWidget .license').width() - $('.stepWidget .practice').width() - $('.stepWidget .payment').width() - $('.stepWidget .summary').width() - $('.stepWidget .ownership').width() - 2);
 
   //Save As Above
-  $('#sameAsAbove').live('click', function () {
+  $('#sameAsAbove').click(function () {
     contactFormElements = [
       '#contactName',
       '#contactEmail',
@@ -227,10 +227,14 @@ $(document).ready(function () {
       contactFormElements.forEach(function (element) {
         $(element).val('').addClass("disabled").prop('disabled', true);
       });
+
+      $('#requireEmailAddressLabel').removeClass('hidden');
     } else {
       contactFormElements.forEach(function (element) {
         $(element).val('').removeClass("disabled").prop('disabled', false);
       });
+
+      $('#requireEmailAddressLabel').addClass('hidden');
     }
   });
 

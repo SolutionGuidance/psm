@@ -1,9 +1,9 @@
        Installation instructions for the Provider Screening Module
        ===========================================================
 
-***NOTE: These developer installation instructions are a work in
-progress. We welcome suggestions on improving them. A production
-deployment guide will be part of our 1.0 release. ***
+***NOTE: We welcome [improvements](CONTRIBUTING.md) to these
+installation instructions.  A production deployment guide will be part
+of our 1.0 release.***
 
 **Contents**
 
@@ -34,26 +34,20 @@ much of its core functionality is implemented and it is deployable for
 development purposes.
 
 The PSM was originally developed to run in the open source web
-application server Apache JBoss (now called WildFly).  Somewhat late
-in the PSM's development, it was retargeted to the IBM WebSphere
-Application Server (WAS) 8.5, in order to better support a particular
-state's MMIS environment.  We have retargeted the PSM to WildFly
-(formerly JBoss), though still keeping all of the functionality
-additions made while the PSM was in its WebSphere interregnum.
+application server Apache JBoss (now called WildFly), then retargeted
+to the IBM WebSphere Application Server (WAS) 8.5 in order to better
+support a particular state's MMIS environment.  After inheriting the
+code, we retargeted to WildFly (formerly JBoss), though still keeping
+all of the functionality that was added while the PSM was in its
+WebSphere interregnum.
 
-This `INSTALL.md` file will be continuously improved as we work.  When
-it loses the warning at the top, that will mean we expect the PSM to
-be deployable in WildFly for production users.  We are currently
-evaluating the additional resources it would take to continue
-development support for WebSphere deployment.
+If you are using Debian GNU/Linux or Red Hat Enterprise Linux, it may
+easiest for you to run the automated installation script
+in [scripts/install.sh](scripts/install.sh).
 
-If you are using Red Hat Enterprise Linux, it will be easiest for you
-to run the automated installation script: `rhel-install.sh` in the
-root of this repository.
-
-You can use Docker to run the current development version of the PSM.
-That would obviate all the manual configuration steps listed in this
-file.  See `docker/README.md` for details.
+You can also use Docker to run the current development version of the
+PSM.  That would obviate all the manual configuration steps listed in
+this file.  See [docker/README.md](docker/README.md) for details.
 
 # Requirements Overview
 

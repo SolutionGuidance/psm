@@ -327,9 +327,11 @@ permalink: /screenshots/
 <p>
   Clicking "review" for an application takes us to the application review page,
   where we can see the results of automated screenings by various external
-  services.  Currently that includes the LEIE, a list of excluded providers.
-  Here we are reviewing an "Audiologist" application that failed the LEIE
-  screening:
+  services.  Currently these include the LEIE (List of Excluded Individuals
+  and Entities) and the DMF (Death Master File).  These screenings check whether
+  providers are excluded or deceased. Additional screenings will be added in the
+  future. Here we are reviewing an "Audiologist" application that failed the
+  LEIE screening and there was an error with the DMF screening:
 </p>
 <p>
   <a
@@ -344,7 +346,8 @@ permalink: /screenshots/
 
 <p>
   Clicking the "FAIL" result link brings up a page with more details about the
-  failed screening:
+  failed LEIE screening, and clicking the "ERROR" result link shows more details
+  about the error with the DMF screening:
 </p>
 <p>
   <a
@@ -355,6 +358,15 @@ permalink: /screenshots/
       src="/psm-screenshots/service-admin/review-audiologist/leie-result-fail-audiologist.thumb.png"
     />
   </a>
+  <a
+    href="/psm-screenshots/service-admin/review-audiologist/dmf-result-error-audiologist.png"
+    class="screenshot-thumbnail"
+  >
+    <img
+      src="/psm-screenshots/service-admin/review-audiologist/dmf-result-error-audiologist.thumb.png"
+    />
+  </a>
+
 </p>
 
 <p>
@@ -375,8 +387,8 @@ permalink: /screenshots/
 
 <p>
   Clicking "Review" for a "Durable Medical Equipment" application shows that it
-  passed the LEIE screening, and the "Verified" checkbox is already checked for
-  that screening:
+  passed both the LEIE and DMF screenings. The "Verified" checkboxes are
+  automatically checked for passing screenings:
 </p>
 <p>
   <a
@@ -390,8 +402,8 @@ permalink: /screenshots/
 </p>
 
 <p>
-  Clicking the "PASS" result link brings up a page with more details about the
-  successful screening:
+  Clicking the "PASS" result links brings up pages with more details about the
+  successful screenings:
 </p>
 <p>
   <a
@@ -402,6 +414,15 @@ permalink: /screenshots/
       src="/psm-screenshots/service-admin/review-dme/leie-results-pass-dme.thumb.png"
     />
   </a>
+  <a
+    href="/psm-screenshots/service-admin/review-dme/dmf-results-pass-dme.png"
+    class="screenshot-thumbnail"
+  >
+    <img
+      src="/psm-screenshots/service-admin/review-dme/dmf-results-pass-dme.thumb.png"
+    />
+  </a>
+
 </p>
 
 <p>
@@ -725,7 +746,7 @@ permalink: /screenshots/
 
 <p>
   A user help modal describes the difference between an agreement and an
-  addendum.
+  addendum:
 </p>
 <p>
   <a

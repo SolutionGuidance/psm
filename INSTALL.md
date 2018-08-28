@@ -42,7 +42,7 @@ all of the functionality that was added while the PSM was in its
 WebSphere interregnum.
 
 If you are using Debian GNU/Linux or Red Hat Enterprise Linux, it may
-easiest for you to run the automated installation script
+be easiest for you to run the automated installation script
 in [scripts/install.sh](scripts/install.sh).
 
 You can also use Docker to run the current development version of the

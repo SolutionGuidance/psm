@@ -441,6 +441,21 @@ Migration scripts are stored in `psm-app/db/`.
 
 More material coming soon about how to run individual migrations.
 
+## Set up external data sources
+
+See the [Credentialing and Verification: Extract, Translate, and Load
+repository](https://github.com/SolutionGuidance/cavetl) for information on
+using the API wrappers around the various external data sources the PSM
+integrates with.
+
+### Death Master File test data
+
+As the Social Security Administration limits access to the Death Master file,
+we have a substitute for the sake of development and testing. See the [README
+for the mock
+wrapper](psm-app/cms-business-process/src/test/resources/dmf-api-mock/README.md)
+for more information.
+
 # Production Deployment
 
 If you want to deploy this in earnest, there will be additional steps

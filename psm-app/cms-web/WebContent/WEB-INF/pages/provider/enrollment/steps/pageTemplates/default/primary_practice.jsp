@@ -97,7 +97,7 @@
                     <c:set var="formName" value="_06_state"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <label for="${formIdPrefix}_${formName}">
-                      State
+                      State/Territory
                       <span class="required">*</span>
                     </label>
                     <select id="${formIdPrefix}_${formName}" ${disableLinkedFields} class="stateSelectFor" name="${formName}">
@@ -195,7 +195,7 @@
                             <c:set var="formName" value="_06_reimbursementState"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                             <label for="${formIdPrefix}_${formName}" class="smallLabel">
-                              State
+                              State/Territory
                               <span class="required">*</span>
                             </label>
                             <select id="${formIdPrefix}_${formName}" ${reimbursementAddressMarkup} class="${disableReimbursementAddress ? 'disabled' : '' } stateSelect" name="${formName}">

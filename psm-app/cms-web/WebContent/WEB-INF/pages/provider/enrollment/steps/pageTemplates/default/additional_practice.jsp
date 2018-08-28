@@ -32,7 +32,7 @@
                     <th>Effective Date <span class="required-dark-background">*</span><span class="sep"></span></th>
                     <th>Practice Address <span class="required-dark-background">*</span><span class="sep"></span></th>
                     <th>City <span class="required-dark-background">*</span><span class="sep"></span></th>
-                    <th>State <span class="required-dark-background">*</span><span class="sep"></span></th>
+                    <th>State/Territory <span class="required-dark-background">*</span><span class="sep"></span></th>
                     <th>ZIP Code <span class="required-dark-background">*</span><span class="sep"></span></th>
                     <th>County<span class="sep"></span></th>
                     <th></th>
@@ -147,7 +147,7 @@
                 </td>
                 <td><input type="text" title="Practice City" class="smallInput"  maxlength="18"/></td>
                 <td>
-                    <select title="Practice State">
+                    <select title="Practice State/Territory">
                         <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_99_states']}">
                             <option value="${opt.code}"><c:out value="${opt.description}" /></option>

@@ -42,7 +42,7 @@
                 <input id="practiceLookupCity" type="text" class="normalInput inputM" name="city"/>
               </span>
               <span>
-                <label for="practiceLookupState">State:</label>
+                <label for="practiceLookupState">State/Territory:</label>
                 <input id="practiceLookupState" type="text" class="normalInput inputM" name="state"/>
               </span>
               <span class="last">
@@ -74,7 +74,7 @@
                   <th class="alignCenter">NPI / UMPI<span class="sep"></span></th>
                   <th class="alignCenter">Address<span class="sep"></span></th>
                   <th class="alignCenter">City<span class="sep"></span></th>
-                  <th class="alignCenter">State<span class="sep"></span></th>
+                  <th class="alignCenter">State/Territory<span class="sep"></span></th>
                   <th class="alignCenter">ZIP</th>
                 </tr>
               </thead>

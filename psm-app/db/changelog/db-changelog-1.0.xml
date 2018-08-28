@@ -2091,4 +2091,9 @@
       </addColumn>
     </rollback>
   </changeSet>
+
+  <changeSet author="" id="issue62-seed-territories">
+    <loadData file="seeds/20180827_territories.csv"
+              tableName="states" />
+  </changeSet>
 </databaseChangeLog>

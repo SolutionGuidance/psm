@@ -63,13 +63,18 @@ $(document).ready(function () {
     if ($("#enrollmentFilterPanel").size() > 0 || $("#quickEnrollmentFilterPanel").size() > 0) {
       $(".requestTypeValue").remove();
       $(".riskLevelValue").remove();
+      $("#npiSearchField").val($.trim($("#enrollmentSearchFilterNpiInput").val()));
+      $("#submissionDateStartSearchField").val($("#enrollmentSearchFilterSubmissionDateStartInput").val());
+      $("#submissionDateEndSearchField").val($("#enrollmentSearchFilterSubmissionDateEndInput").val());
+      $("#providerTypeSearchField").val($("#enrollmentSearchFilterProviderTypeInput").val());
+      $("#providerNameSearchField").val($.trim($("#enrollmentSearchFilterProviderNameInput").val()));
 
-      if ($("#requestTypeInput").val() != '') {
-        $('#searchForm').append('<input name="requestTypes[0]" value="' + $("#requestTypeInput").val() + '" type="hidden" />');
+      if ($("#enrollmentSearchFilterRequestTypeInput").val() != '') {
+        $('#searchForm').append('<input name="requestTypes[0]" value="' + $("#enrollmentSearchFilterRequestTypeInput").val() + '" type="hidden" />');
       }
 
-      if ($("#riskLevelInput").val() != '') {
-        $('#searchForm').append('<input name="riskLevels[0]" value="' + $("#riskLevelInput").val() + '" type="hidden" />');
+      if ($("#enrollmentSearchFilterRiskLevelInput").val() != '') {
+        $('#searchForm').append('<input name="riskLevels[0]" value="' + $("#enrollmentSearchFilterRiskLevelInput").val() + '" type="hidden" />');
       }
     }
 

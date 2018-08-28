@@ -4,7 +4,9 @@
   class="generalTable linedTable"
 >
   <colgroup>
-    <col width="27"/>
+    <c:if test="${active_enrollment_tab=='approved'}">
+      <col width="27"/>
+    </c:if>
     <col width="90"/>
     <col width="85"/>
     <col width="100"/>
@@ -15,28 +17,23 @@
     </c:if>
     <col width="80"/>
     <col width="85"/>
-    <c:choose>
-      <c:when test="${addStatusColumn=='yes'}">
-        <col width="214"/>
-      </c:when>
-      <c:otherwise>
-        <col width="284"/>
-      </c:otherwise>
-    </c:choose>
+    <col width="*"/>
   </colgroup>
 
   <thead>
     <tr>
-      <th class="alignCenter">
-        <input
-          type="checkbox"
-          title="Select All Enrollments"
-          id="enrollmentSelectAll"
-          name="enrollmentRowCheckBox"
-          class="selectAll"
-          />
-        <span class="sep"></span>
-      </th>
+      <c:if test="${active_enrollment_tab=='approved'}">
+        <th class="alignCenter">
+          <input
+            type="checkbox"
+            title="Select All Enrollments"
+            id="enrollmentSelectAll"
+            name="enrollmentRowCheckBox"
+            class="selectAll"
+            />
+          <span class="sep"></span>
+        </th>
+      </c:if>
       <c:set var="sortFieldOfEntity" value="2"/>
       <c:set var="sortColumnTitle" value="NPI/UMPI"/>
       <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
@@ -86,14 +83,16 @@
       varStatus="status"
     >
       <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
-        <td class="alignCenter tdCheckbox">
-          <input
-            type="checkbox"
-            title="Enrollment ${item.ticketId}"
-            class="enrollmentRowCheckBox"
-            value="${item.ticketId}"
-            />
-        </td>
+        <c:if test="${active_enrollment_tab=='approved'}">
+          <td class="alignCenter tdCheckbox">
+            <input
+              type="checkbox"
+              title="Enrollment ${item.ticketId}"
+              class="enrollmentRowCheckBox"
+              value="${item.ticketId}"
+              />
+          </td>
+        </c:if>
         <td>
           ${item.npi}
         </td>

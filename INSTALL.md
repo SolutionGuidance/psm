@@ -171,6 +171,22 @@ Guide](https://docs.jboss.org/author/display/WFLY/Getting+Started+Guide).
    $ cd wildfly-11.0.0.Final
    ```
 
+1. Check that you're really running Java 1.8.
+
+   Some systems have multiple versions of Java installed on them.  You
+   want `java` to invoke Java 1.8 -- it should look something like this:
+
+   ```ShellSession
+   $ java -version
+   openjdk version "1.8.0_171"
+   OpenJDK Runtime Environment (build 1.8.0_171-8u171-b11-2-b11)
+   OpenJDK 64-Bit Server VM (build 25.171-b11, mixed mode)
+   ```
+
+   If you have multiple Java versions on your system and the default
+   is not 1.8, you could try setting up the [jEnv](http://www.jenv.be/)
+   wrapper to control which version of Java you get.
+
 1. Add a WildFly management console user named 'psm' with a password of 'psm':
 
    ```ShellSession

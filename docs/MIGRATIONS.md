@@ -8,8 +8,8 @@ Changes to the database are registered inside of `ChangeLog` files. Each change 
 ## Running Migrations
 To run migrations:
 
-Create or edit the file `psm-app/gradle.properties` as shown in
-`psm-app/gradle.properties.template.`
+Create or edit the file `psm-app/gradle.properties` if needed,
+based on `psm-app/gradle.properties.template.`
 
 Note the format for the URL property `systemProp.DatabasePath`:
 

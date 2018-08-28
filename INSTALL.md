@@ -383,10 +383,30 @@ EOF
    If you have a previous build deployed already, you can replace the
    deployment in the UI or add the `--force` switch after `deploy`.
 
+1. Set up the database access configuration.
+
+    ```ShellSession
+    $ cd psm-app
+    $ ls gradle.properties
+    ls: cannot access 'gradle.properties': No such file or directory
+
+    ### Okay, it doesn't exist, so we can safely create it.      ###
+    ### But if it *does* exist, don't do this next step, because ###
+    ### we don't necessarily want to overwrite it, we just want  ###
+    ### to make sure it has the right content.                   ###
+
+    $ cp gradle.properties.template gradle.properties
+
+    ### Now edit the file to add correct values for 
+    ### `systemProp.databaseUser` and `systemProp.databasePassword`. ###
+    $ {your-favorite-editor} gradle.properties
+    ```
+
 1. Create database schema and initial data. There are two sets of tables in this project.  The first are application tables, and they are created and seeded using liquibase migrations.  The second set of tables are related to jbpm and these are loaded via a SQL script.  In the `psm-app` subdirectory, run the commands below in any order to load both sets:
 
-    ```shell
-       > ./gradlew db:update
+
+    ```ShellSession
+    $ ./gradlew db:update
     ```
 
     ```ShellSession

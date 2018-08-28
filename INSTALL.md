@@ -122,7 +122,7 @@ configuration for a development install.
 1. A [Java 8](https://www.java.com) JRE and JDK. Run `java -version`
    to check your Java version; "1.8" refers to Java 8. We are testing
    with OpenJDK 8, which you can install on Debian-like systems with
-   `sudo apt-get install openjdk-8-jdk-headless`.
+   `sudo apt install openjdk-8-jdk-headless`.
 1. An SMTP server. For development, consider the built-in Python SMTP
    debugging server (works on Python 2 or Python 3). In your terminal,
    run:
@@ -136,7 +136,7 @@ configuration for a development install.
 
 1. [PostgreSQL 9.6](https://www.postgresql.org/). We are testing with
    PostgreSQL 9.6.2. Check that you have PostgreSQL installed.  If you
-   do not, it is available on Debian via `sudo apt-get install postgresql-9.6`,
+   do not, it is available on Debian via `sudo apt install postgresql-9.6`,
    or you can download it from https://www.postgresql.org.
 
 1. The PSM code repository. Currently we suggest you run the PSM from

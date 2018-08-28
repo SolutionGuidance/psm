@@ -77,6 +77,10 @@ ext.provided_libs = [
 
 allprojects {
     apply plugin: 'checkstyle'
+    
+    repositories {
+        mavenCentral()
+    }
 
     checkstyle {
         toolVersion = '8.2'
@@ -87,20 +91,16 @@ allprojects {
 [
     'cms-business-model',
     'cms-business-process',
-    'cms-portal-services',
     'cms-web',
     'services',
 ].each { name ->
     project(":$name") {
         apply plugin: 'groovy'
         apply plugin: 'com.github.spotbugs'
+        apply plugin: 'eclipse-wtp'        
 
         configurations {
             testCompile.extendsFrom compileOnly
-        }
-
-        repositories {
-            mavenCentral()
         }
 
         dependencies {
@@ -233,6 +233,16 @@ project(':cms-web') {
             into 'js'
         }
     }
+    
+    task copyDeps(type: Copy) {        
+        from(configurations.frontend) 
+        into(file('WebContent/js'))
+    }
+    
+    eclipseWtp.dependsOn copyDeps
+    
+    
+    
 }
 
 project(':cms-business-model') {
@@ -241,6 +251,7 @@ project(':cms-business-model') {
     sourceCompatibility = 1.6
     targetCompatibility = 1.6
     compileJava.dependsOn xjc
+    eclipseWtp.dependsOn xjc
     System.setProperty('javax.xml.accessExternalSchema', 'file')
 
     dependencies {
@@ -280,6 +291,8 @@ project(':cms-business-model') {
 
 project(':cms-portal-services') {
     apply plugin: 'ear'
+    apply plugin: 'eclipse-wtp'
+
     dependencies {
         deploy project(path: ':cms-web', configuration: 'archives')
         deploy project(':cms-business-process')
@@ -311,6 +324,11 @@ project(':cms-portal-services') {
 
     ear {
         appDirName 'EarContent'
+    }
+    
+    eclipse.wtp.facet {
+        facets = []
+        facet name: 'jst.ear', version: '5.0'
     }
 }
 

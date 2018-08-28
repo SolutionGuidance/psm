@@ -26,3 +26,30 @@ Feature: Enrollments for different Provider Types
     And I am going to use NPI '1906926187'
     When I create and submit an enrollment using the county contracted mental health rehab workflow
     Then I should have no errors
+
+  Scenario: Approve Durable Medical Equipment Enrollment
+    Given I am logged in as an admin
+    And I am on the admin Pending page
+    When I am on the Review Enrollment Page for '0762668180'
+    And I Approve the Enrollment
+    And I view the Reviewed Enrollment
+    Then I should have no errors
+    And The Enrollment should be in the 'Approved' state
+
+  Scenario: Approve Child and Teen Checkup Clinic Enrollment
+    Given I am logged in as an admin
+    And I am on the admin Pending page
+    When I am on the Review Enrollment Page for '1747598328'
+    And I Approve the Enrollment
+    And I view the Reviewed Enrollment
+    Then I should have no errors
+    And The Enrollment should be in the 'Approved' state
+
+  Scenario: Approve County Contracted Mental Health Rehab Enrollment
+    Given I am logged in as an admin
+    And I am on the admin Pending page
+    When I am on the Review Enrollment Page for '1906926187'
+    And I Approve the Enrollment
+    And I view the Reviewed Enrollment
+    Then I should have no errors
+    And The Enrollment should be in the 'Approved' state

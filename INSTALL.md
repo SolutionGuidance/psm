@@ -90,13 +90,13 @@ This is just an overview; see installation instructions below.
 
 ## Database
 
-We're testing with latest stable PostgreSQL, currently 9.6.2. PostgreSQL 10
-will be released shortly and we hope/intend to verify compatibility with that.
+We're testing with PostgreSQL 9.6.2.  PostgreSQL 10 has recently been
+released and we intend to verify compatibility with it; we'd be happy
+to hear from anyone who has run the PSM with PostgreSQL 10.x.
 
-- **Storage**: TBA. We haven't started integrating with any external data
-  sources yet, which will likely be the largest driver of storage requirements.
-  We suggest starting with 10 GB for the database, and have a plan to expand or
-  reprovision later.
+- **Storage**: We suggest starting by planning 10 GB for the database,
+  and having a plan to expand or reprovision later.  We will update
+  this section as we gain more data on production storage requirements.
 
 The application requires the application server to be configured with two data sources:
 

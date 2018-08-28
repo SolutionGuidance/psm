@@ -7,13 +7,11 @@ import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.NotificationService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
-
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.Local;
@@ -23,7 +21,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
 import java.io.StringWriter;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,7 +30,8 @@ import java.util.Map;
 @Local(NotificationService.class)
 public class NotificationServiceBean extends BaseService implements NotificationService {
     /**
-     * Represents the velocity engine, it is initialized during post construct and never modified after.
+     * Represents the velocity engine, it is initialized during post construct and
+     * never modified after.
      */
     private VelocityEngine velocityEngine;
 
@@ -43,8 +41,9 @@ public class NotificationServiceBean extends BaseService implements Notification
     private CMSConfigurator config;
 
     /**
-     * Represents the mail session. It is injected by the container it is used in the business methods. It may have any
-     * value, fully mutable, but not expected to change after dependency injection
+     * Represents the mail session. It is injected by the container it is used in
+     * the business methods. It may have any value, fully mutable, but not expected
+     * to change after dependency injection
      */
     @Resource(mappedName = "java:/Mail")
     private Session session;
@@ -72,10 +71,7 @@ public class NotificationServiceBean extends BaseService implements Notification
         return velocityEngine;
     }
 
-    private String populateTemplate(
-        EmailTemplate emailType,
-        Map<String, Object> vars
-    ) {
+    private String populateTemplate(EmailTemplate emailType, Map<String, Object> vars) {
         Template template = velocityEngine.getTemplate(config.getEmailTemplateFile(emailType));
         StringWriter writer = new StringWriter();
         VelocityContext velocityContext = new VelocityContext();
@@ -87,11 +83,7 @@ public class NotificationServiceBean extends BaseService implements Notification
         return writer.toString();
     }
 
-    private void saveNotification(
-        String emailAddress,
-        EmailTemplate emailType,
-        Map<String, Object> vars
-    ) {
+    private void saveNotification(String emailAddress, EmailTemplate emailType, Map<String, Object> vars) {
         // TODO: We never want to store plaintext passwords
         // The right way to do this would be to never email plaintext passwords.
         // For now we are going to do this, which is not really appropriate since it
@@ -119,33 +111,32 @@ public class NotificationServiceBean extends BaseService implements Notification
     }
 
     @Override
-    public void sendNotification(
-        String emailAddress,
-        EmailTemplate emailType,
-        Map<String, Object> vars
-    ) throws PortalServiceException {
-      MimeMessage message = new MimeMessage(session);
-      try {
-          message.setRecipient(RecipientType.TO, new InternetAddress(emailAddress));
-          message.setSubject(config.getEmailSubject(emailType));
-          message.setText(populateTemplate(emailType, vars));
+    public void sendNotification(String emailAddress, EmailTemplate emailType, Map<String, Object> vars)
+            throws PortalServiceException {
+        MimeMessage message = new MimeMessage(session);
+        try {
+            message.setRecipient(RecipientType.TO, new InternetAddress(emailAddress));
+            message.setSubject(config.getEmailSubject(emailType));
+            message.setText(populateTemplate(emailType, vars));
 
-          saveNotification(emailAddress, emailType, vars);
-          Transport.send(message);
+            saveNotification(emailAddress, emailType, vars);
+            Transport.send(message);
         } catch (Exception e) {
-          throw new PortalServiceException("Error while sending notification.", e);
+            throw new PortalServiceException("Error while sending notification.", e);
         }
     }
 
     @Override
-    public void sendEnrollmentNotification(
-        EnrollmentType enrollment,
-        EmailTemplate emailType
-    ) throws PortalServiceException {
+    public void sendEnrollmentNotification(EnrollmentType enrollment, EmailTemplate emailType)
+            throws PortalServiceException {
         Map<String, Object> vars = new HashMap<>();
         String contact_name = enrollment.getContactInformation().getName();
         vars.put("submitter", contact_name);
         String emailAddress = enrollment.getContactInformation().getEmailAddress();
-        sendNotification(emailAddress, emailType, vars);
+        if (emailAddress != null && emailAddress.trim().length() > 0) {
+            sendNotification(emailAddress, emailType, vars);
+        } else {
+            getLogger().warning("Skipping notification as email address was missing");
+        }
     }
 }

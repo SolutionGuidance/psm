@@ -49,6 +49,11 @@ $on-laptop:        800px;
 	text-align: center;
 }
 
+.screenshot-thumbnail {
+  border: 1px solid $grey-color-light;
+  display: inline-block;
+}
+
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
         "base",

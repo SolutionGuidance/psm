@@ -28,6 +28,7 @@ import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentStatus;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.process.enrollment.AcceptedHandler;
+import gov.medicaid.process.enrollment.DmfScreeningHandler;
 import gov.medicaid.process.enrollment.EnrollmentMonitor;
 import gov.medicaid.process.enrollment.ExcludedProvidersScreeningHandler;
 import gov.medicaid.process.enrollment.PreProcessHandler;
@@ -140,6 +141,13 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
                 "Check Excluded Provider List in OIG",
                 new ExcludedProvidersScreeningHandler(
                         config.getLeieApiBaseUrl(),
+                        config.getPortalEntityManager()
+                )
+        );
+        handlers.put(
+                "Check DMF",
+                new DmfScreeningHandler(
+                        config.getDmfApiBaseUrl(),
                         config.getPortalEntityManager()
                 )
         );
@@ -478,7 +486,8 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     ) throws PortalServiceException {
         UserTransaction ut = context.getUserTransaction();
         try {
-            Enrollment ticket = providerService.getTicketDetails(user, ticketId);
+            Enrollment ticket = providerService.getEnrollmentWithScreenings(user, ticketId).
+                orElseThrow(() -> new PortalServiceException("Couldn't find ticket"));
 
             if (!ViewStatics.DRAFT_STATUS.equals(ticket.getStatus().getDescription())) {
                 throw new PortalServiceException("Cannot submit ticket because it is not in draft status.");

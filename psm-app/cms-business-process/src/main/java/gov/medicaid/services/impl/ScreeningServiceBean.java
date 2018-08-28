@@ -103,8 +103,7 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
         return Optional.ofNullable(
                 getEm().find(
                         AutomaticScreening.class,
-                        screeningId,
-                        hintEntityGraph("Screening with matches")
+                        screeningId
                 )
         );
     }
@@ -114,5 +113,10 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
         return getEm()
                 .createQuery("FROM AutomaticScreening", AutomaticScreening.class)
                 .getResultList();
+    }
+
+    @Override
+    public void saveScreening(AutomaticScreening screening) {
+        getEm().merge(screening);
     }
 }

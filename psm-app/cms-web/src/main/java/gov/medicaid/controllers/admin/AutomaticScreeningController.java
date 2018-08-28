@@ -2,10 +2,12 @@ package gov.medicaid.controllers.admin;
 
 import gov.medicaid.controllers.dto.ScreeningDTO;
 import gov.medicaid.entities.AutomaticScreening;
+import gov.medicaid.entities.DmfAutomaticScreening;
 import gov.medicaid.entities.LeieAutomaticScreening;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.ScreeningService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +37,8 @@ public class AutomaticScreeningController {
 
         if (screening instanceof LeieAutomaticScreening) {
             return showLeieScreening((LeieAutomaticScreening) screening);
+        } else if (screening instanceof DmfAutomaticScreening) {
+            return showDmfScreening((DmfAutomaticScreening) screening);
         } else {
             throw new PortalServiceRuntimeException(
                     "Unknown automatic screening type " +
@@ -64,6 +68,26 @@ public class AutomaticScreeningController {
         return mv;
     }
 
+    private ModelAndView showDmfScreening(DmfAutomaticScreening screening) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("admin/automatic_screening_dmf");
+        mv.addObject(
+                "enrollment_id",
+                screening.getEnrollment().getTicketId()
+        );
+        mv.addObject(
+                "in_review",
+                ViewStatics.PENDING_STATUS.equals(
+                        screening.getEnrollment()
+                                .getStatus()
+                                .getDescription())
+        );
+        mv.addObject("screening_result", screening.getResult().toString());
+        mv.addObject("screening_date", screening.getCreatedAt());
+        mv.addObject("results", screening.getMatches());
+        return mv;
+    }
+
     private ScreeningDTO getScreeningDetails(AutomaticScreening screening) {
         // TODO: Accessing provider details is WIP.
         // Entity entity = screening.getEnrollment().getDetails().getEntity();
@@ -77,7 +101,8 @@ public class AutomaticScreeningController {
         dto.providerName = "...";
         dto.providerType = "...";
         dto.reason = "New Enrollment";
-        dto.screeningType = "LEIE";
+
+        dto.screeningType = screening.getType();
         dto.result = screening.getResult();
         return dto;
     }

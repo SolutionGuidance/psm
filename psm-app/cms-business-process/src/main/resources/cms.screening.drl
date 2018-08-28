@@ -341,6 +341,26 @@ dialect 'mvel'
 
 end
 
+rule 'Applicant Must Not Be In the Death Master File'
+dialect 'mvel'
+/*
+ * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
+ *
+ * @author TCSASSEMBLER
+ * @version 1.0
+ */
+    when
+        VerificationStatusType(notInDmf != "Y")
+        $report: ErrorReporter()
+    then
+        $report.addError(
+            "/ProviderInformation/ApplicationInformationType",
+            "00002",
+            "Applicant Must Not Be In the Death Master File."
+        );
+
+end
+
 rule 'Registered Nurse Certificate Is Required'
 dialect 'mvel'
 /*

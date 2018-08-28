@@ -4,7 +4,6 @@ import com.deque.axe.AXE;
 import net.thucydides.core.pages.PageObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -45,12 +44,6 @@ public class PsmPage extends PageObject {
         click($(selector));
     }
 
-    public WebElement getTableRowForProviderType(String providerType) {
-        WebElement td = $("//td[contains(text(),'" + providerType + "')]");
-        WebElement row = td.findElement(By.xpath(".."));
-        return row;
-    }
-
     public void checkAccessibility() {
         WebDriver driver = getDriver();
 
@@ -72,8 +65,21 @@ public class PsmPage extends PageObject {
     }
 
     public void hasNoServerError() {
-        String headerText = $("#wrapper h1").getText();
-        assertThat(headerText).isNotEqualTo("Error");
+        if ($("#wrapper h1").isPresent()) {
+            String headerText = $("#wrapper h1").getText();
+            assertThat(headerText).isNotEqualTo("Error");
+        }
+    }
+
+    public void switchToWindowOrFail(String title) {
+        for (String handle : getDriver().getWindowHandles()) {
+            getDriver().switchTo().window(handle);
+            if (getTitle().equals(title)) {
+                return;
+            }
+        }
+
+        throw new RuntimeException("Switching windows failed, title was: " + getTitle());
     }
 
     private static Optional<URL> getAxeCoreUrl(WebDriver driver) {

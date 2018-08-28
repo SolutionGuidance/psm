@@ -61,4 +61,6 @@ public interface ScreeningService {
     );
 
     List<AutomaticScreening> getAllScreenings();
+
+    void saveScreening(AutomaticScreening screening);
 }

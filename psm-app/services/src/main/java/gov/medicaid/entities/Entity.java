@@ -74,9 +74,6 @@ public abstract class Entity implements Serializable {
 
     private String npi;
 
-    @Column(name = "nonexclusion_verified")
-    private String nonExclusionVerifiedInd;
-
     /**
      * The provider type (if enrolled).
      */
@@ -176,14 +173,6 @@ public abstract class Entity implements Serializable {
 
     public void setProviderType(ProviderType providerType) {
         this.providerType = providerType;
-    }
-
-    public String getNonExclusionVerifiedInd() {
-        return nonExclusionVerifiedInd;
-    }
-
-    public void setNonExclusionVerifiedInd(String nonExclusionVerifiedInd) {
-        this.nonExclusionVerifiedInd = nonExclusionVerifiedInd;
     }
 
     public String getBackgroundStudyId() {

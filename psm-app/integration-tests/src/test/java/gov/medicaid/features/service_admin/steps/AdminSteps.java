@@ -1,12 +1,14 @@
 package gov.medicaid.features.service_admin.steps;
 
 import gov.medicaid.features.PsmPage;
+import gov.medicaid.features.enrollment.ui.EnrollmentListPage;
 import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
-
 import gov.medicaid.features.general.steps.GeneralSteps;
-import net.thucydides.core.annotations.Step;
+import gov.medicaid.features.service_admin.ui.ServiceAgentReviewScreeningPage;
 
+import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -20,6 +22,8 @@ public class AdminSteps {
 
     private PsmPage psmPage;
     private OrganizationInfoPage organizationInfoPage;
+    private EnrollmentListPage enrollmentListPage;
+    private ServiceAgentReviewScreeningPage reviewScreeningPage;
 
     @Step
     public void goToAdminAllEnrollmentsPage() {
@@ -58,7 +62,7 @@ public class AdminSteps {
 
     @Step
     public void advanceFromPendingPageToViewOrganizationInfoPage() {
-        WebElement row = psmPage.getTableRowForProviderType("Head Start");
+        WebElement row = enrollmentListPage.getTableRowForProviderType("Head Start");
         WebElement viewLink = row.findElement(By.className("viewLink"));
         psmPage.click(viewLink);
         assertThat(psmPage.getTitle().contains("Organization Information"));
@@ -67,5 +71,20 @@ public class AdminSteps {
     @Step
     public void checkOnPersonalInformationPage() {
         assertThat(organizationInfoPage.isPersonalEnrollment());
+    }
+
+    @Step
+    public void advanceFromPendingPageToReview(String npi) {
+        enrollmentListPage.advanceToReview(npi);
+    }
+
+    @Step
+    public void openDmfDetailsPage() {
+        reviewScreeningPage.clickOnDmfDetails();
+    }
+
+    @Step
+    public boolean npiRowExists(String npi) {
+        return enrollmentListPage.getTableRowForNpi(npi) != null;
     }
 }

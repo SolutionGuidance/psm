@@ -55,8 +55,7 @@ public class PersonalInfoPage extends PsmPage {
     }
 
     public void checkForTooYoungError() throws Exception {
-        assertThat($(".errorInfo > ._02_dob").getText())
-                .contains(PROVIDER_TOO_YOUNG_ERROR_MESSAGE);
+        checkForFormError("_02_dob", PROVIDER_TOO_YOUNG_ERROR_MESSAGE);
     }
 
     public void checkForSameAsAboveEmailError() throws Exception {

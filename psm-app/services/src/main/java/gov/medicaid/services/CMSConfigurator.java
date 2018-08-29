@@ -227,6 +227,15 @@ public class CMSConfigurator {
     }
 
     /**
+     * Retrieves the provider type service.
+     *
+     * @return the provider type service from the JNDI tree.
+     */
+    public ProviderTypeService getProviderTypeService() {
+        return (ProviderTypeService) fromContext("jndi.ProviderTypeService", false);
+    }
+
+    /**
      * Retrieves the object from the JNDI tree.
      *
      * @param jndiName the JNDI name configuration property

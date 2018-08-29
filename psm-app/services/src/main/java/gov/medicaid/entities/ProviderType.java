@@ -26,10 +26,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
-import javax.persistence.NamedEntityGraphs;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Represents a provider type.
@@ -39,16 +38,13 @@ import java.util.List;
  */
 @javax.persistence.Entity
 @Table(name = "provider_types")
-@NamedEntityGraphs({
-        @NamedEntityGraph(
-                name = "ProviderType with AgreementDocuments",
-                attributeNodes = {@NamedAttributeNode("agreementDocuments")}
-        ),
-        @NamedEntityGraph(
-                name = "ProviderType with LicenseTypes",
-                attributeNodes = {@NamedAttributeNode("licenseTypes")}
-        )
-})
+@NamedEntityGraph(
+    name = "ProviderType with AgreementDocuments and LicenseTypes",
+    attributeNodes = {
+        @NamedAttributeNode("agreementDocuments"),
+        @NamedAttributeNode("licenseTypes")
+    }
+)
 public class ProviderType extends LookupEntity {
 
     /**
@@ -79,7 +75,7 @@ public class ProviderType extends LookupEntity {
                     referencedColumnName = "agreement_document_id"
             )
     )
-    private List<AgreementDocument> agreementDocuments;
+    private Set<AgreementDocument> agreementDocuments;
 
     @ManyToMany
     @JoinTable(
@@ -93,7 +89,7 @@ public class ProviderType extends LookupEntity {
                     referencedColumnName = "code"
             )
     )
-    private List<LicenseType> licenseTypes;
+    private Set<LicenseType> licenseTypes;
 
    /**
      * Gets the value of the field <code>applicantType</code>.
@@ -119,19 +115,19 @@ public class ProviderType extends LookupEntity {
         this.canDelete = canDelete;
     }
 
-    public List<AgreementDocument> getAgreementDocuments() {
+    public Set<AgreementDocument> getAgreementDocuments() {
         return agreementDocuments;
     }
 
-    public void setAgreementDocuments(List<AgreementDocument> agreementDocuments) {
+    public void setAgreementDocuments(Set<AgreementDocument> agreementDocuments) {
         this.agreementDocuments = agreementDocuments;
     }
 
-    public List<LicenseType> getLicenseTypes() {
+    public Set<LicenseType> getLicenseTypes() {
         return licenseTypes;
     }
 
-    public void setLicenseTypes(List<LicenseType> licenseTypes) {
+    public void setLicenseTypes(Set<LicenseType> licenseTypes) {
         this.licenseTypes = licenseTypes;
     }
 

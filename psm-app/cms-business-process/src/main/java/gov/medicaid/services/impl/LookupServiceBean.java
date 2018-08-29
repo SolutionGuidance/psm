@@ -16,13 +16,9 @@
 
 package gov.medicaid.services.impl;
 
-import gov.medicaid.domain.model.ApplicantType;
-import gov.medicaid.domain.model.ProviderInformationType;
-import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.BeneficialOwnerType;
 import gov.medicaid.entities.EntityStructureType;
 import gov.medicaid.entities.LookupEntity;
-import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.util.Util;
@@ -33,14 +29,10 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
-import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Defines the UI related services.
@@ -64,65 +56,6 @@ public class LookupServiceBean implements LookupService {
      * Empty constructor.
      */
     public LookupServiceBean() {
-    }
-
-    public List<ProviderType> getAllProviderTypes() {
-        return em.createQuery(
-                "FROM ProviderType",
-                ProviderType.class
-        ).getResultList();
-    }
-
-    /**
-     * Retrieves the provider types filtered by applicant type.
-     *
-     * @param applicantType
-     *            individual or organizations
-     * @return the filtered provider types
-     */
-    public List<ProviderType> getProviderTypes(ApplicantType applicantType) {
-        return em.createQuery(
-                "FROM ProviderType WHERE applicantType = :type",
-                ProviderType.class
-        ).setParameter(
-                "type",
-                applicantType
-        ).getResultList();
-    }
-
-    @Override
-    public ProviderType getProviderTypeWithAgreementDocuments(
-            ProviderInformationType providerInformationType
-    ) {
-        return getProviderTypeWithNamedEntityGraph(
-                providerInformationType,
-                "ProviderType with AgreementDocuments"
-        );
-    }
-
-    @Override
-    public ProviderType getProviderTypeWithLicenseTypes(
-            ProviderInformationType providerInformationType
-    ) {
-        return getProviderTypeWithNamedEntityGraph(
-                providerInformationType,
-                "ProviderType with LicenseTypes"
-        );
-    }
-
-    private ProviderType getProviderTypeWithNamedEntityGraph(
-            ProviderInformationType providerInformationType,
-            String entityGraphName
-    ) {
-        EntityGraph graph = em.getEntityGraph(entityGraphName);
-        return em.createQuery(
-                "FROM ProviderType WHERE description = :description",
-                ProviderType.class
-        ).setParameter(
-                "description", providerInformationType.getProviderType()
-        ).setHint(
-                "javax.persistence.loadgraph", graph
-        ).getSingleResult();
     }
 
     /**
@@ -253,32 +186,5 @@ public class LookupServiceBean implements LookupService {
             results = findAllLookups(gov.medicaid.entities.BeneficialOwnerType.class);
         }
         return results;
-    }
-
-    @Override
-    public void updateProviderTypeAgreementSettings(
-            ProviderType providerType,
-            long[] agreementIds
-    ) {
-        providerType.setAgreementDocuments(
-                getAgreementDocuments(agreementIds)
-        );
-        em.merge(providerType);
-    }
-
-    private List<AgreementDocument> getAgreementDocuments(long[] agreementIds) {
-        if (agreementIds.length == 0) {
-            return new ArrayList<>();
-        } else {
-            return em.createQuery(
-                    "FROM AgreementDocument WHERE id IN :ids",
-                    AgreementDocument.class
-            ).setParameter(
-                    "ids",
-                    Arrays.stream(agreementIds)
-                            .boxed()
-                            .collect(Collectors.toList())
-            ).getResultList();
-        }
     }
 }

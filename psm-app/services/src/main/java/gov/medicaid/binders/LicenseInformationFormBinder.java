@@ -172,7 +172,7 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
             attr(mv, "attachmentSize", i);
         }
 
-        ProviderType pt = getLookupService().getProviderTypeWithLicenseTypes(provider);
+        ProviderType pt = getProviderTypeService().getByDescription(provider.getProviderType());
 
         if (!readOnly) {
             attr(mv, "licenseTypes", pt.getLicenseTypes());

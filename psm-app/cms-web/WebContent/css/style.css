@@ -1275,7 +1275,7 @@ input.date{
   width:160px;
 }
 
-.tableData table .remove{
+.remove{
   width:16px;
   height:16px;
   display:block;
@@ -1286,7 +1286,7 @@ input.date{
   background-position:0 0;
 }
 
-.tableData table .remove:hover{
+.remove:hover{
   background-position:0 -16px;
 }
 
@@ -3547,6 +3547,34 @@ a.okBtn {
 ,#deleteAgreementModal .buttons .deleteOKBtn {
   margin:0 10px 0 170px;
 }
+
+.providerTypeLicenseRow {
+  width:100%;
+  clear:both;
+}
+
+.providerTypeLicenseRow label {
+  width:100%;
+}
+
+.providerTypeLicenseRow .providerTypeLicenseRowLabel {
+  float:left;
+}
+
+.providerTypeLicenseRow .providerTypeLicenses {
+  float:left;
+  width:400px;
+}
+
+.providerTypeLicenseRow .remove {
+  float:left;
+  margin-top:10px;
+}
+
+#licenseTemplate {
+  display:none;
+}
+
 #editModal .modalBody .buttons .saveBtn {
   width:auto;
 }

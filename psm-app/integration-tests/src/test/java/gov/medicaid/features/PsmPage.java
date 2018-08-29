@@ -82,6 +82,11 @@ public class PsmPage extends PageObject {
         throw new RuntimeException("Switching windows failed, title was: " + getTitle());
     }
 
+    public void checkForFormError(String errorClass, String errorText) {
+        assertThat($(".errorInfo > ." + errorClass).getText())
+            .contains(errorText);
+    }
+
     private static Optional<URL> getAxeCoreUrl(WebDriver driver) {
         return Optional
                 .ofNullable(driver.getCurrentUrl())

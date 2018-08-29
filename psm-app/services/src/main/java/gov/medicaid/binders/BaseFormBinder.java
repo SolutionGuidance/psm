@@ -35,10 +35,14 @@ import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderTypeService;
+
 import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -77,6 +81,11 @@ public abstract class BaseFormBinder implements FormBinder {
      * Enrollment service.
      */
     private ProviderEnrollmentService enrollmentService;
+
+    /**
+     * ProviderType service.
+     */
+    private ProviderTypeService providerTypeService;
 
     /**
      * The form namespace.
@@ -249,7 +258,7 @@ public abstract class BaseFormBinder implements FormBinder {
      * @param key the attribute key (this will prepend the namespace)
      * @param values the values to be set
      */
-    protected void attr(Map<String, Object> mv, String key, List<? extends LookupEntity> values) {
+    protected void attr(Map<String, Object> mv, String key, Collection<? extends LookupEntity> values) {
         mv.put(name(key), values);
     }
 
@@ -342,6 +351,7 @@ public abstract class BaseFormBinder implements FormBinder {
         CMSConfigurator config = new CMSConfigurator();
         lookupService = config.getLookupService();
         enrollmentService = config.getEnrollmentService();
+        providerTypeService = config.getProviderTypeService();
         serverHashKey = config.getServerHashKey();
         systemUser = config.getSystemUser();
     }
@@ -362,6 +372,24 @@ public abstract class BaseFormBinder implements FormBinder {
      */
     public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
         this.enrollmentService = enrollmentService;
+    }
+
+    /**
+     * Gets the value of the field <code>providerTypeService</code>.
+     *
+     * @return the providerTypeService
+     */
+    public ProviderTypeService getProviderTypeService() {
+        return providerTypeService;
+    }
+
+    /**
+     * Sets the value of the field <code>providerTypeService</code>.
+     *
+     * @param providerTypeService the providerTypeService to set
+     */
+    public void setProviderTypeService(ProviderTypeService providerTypeService) {
+        this.providerTypeService = providerTypeService;
     }
 
     /**

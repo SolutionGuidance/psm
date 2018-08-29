@@ -6,7 +6,8 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
   <changeSet author="" id="issue254-create-hibernate-sequence">
-    <createSequence sequenceName="hibernate_sequence"/>
+    <createSequence sequenceName="hibernate_sequence"
+      minValue="2000" />
     <rollback>
       <dropSequence sequenceName="hibernate_sequence"/>
     </rollback>

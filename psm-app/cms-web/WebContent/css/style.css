@@ -3739,6 +3739,7 @@ input.text{
   line-height: 20px;
   margin: 4px 7px 0;
   padding-left: 5px;
+  width: 700px;
 }
 .rightBoxes{
   float:left;

@@ -17,17 +17,14 @@
             <div class="wholeCol">
             <div class="row">
                 <label>Name of Facility</label>
-                <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_name']}</span>
             </div>
             <div class="row">
                 <label>NPI</label>
-                <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_npi']}</span>
             </div>
             <div class="row">
                 <label>Street Address</label>
-                <span class="floatL"><b>:</b></span>
                 <span>
                     <c:if test="${not empty requestScope['_15_addressLine1']}"><c:out value="${requestScope['_15_addressLine1']}" /><br /></c:if>
                     <c:out value="${requestScope['_15_addressLine2']}" /><br />
@@ -42,34 +39,28 @@
                   Federal Employer ID
                   (<abbr title="Federal Employer Identification Number">FEIN</abbr>)
                 </label>
-                <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_fein']}</span>
             </div>
             <div class="row">
                 <label>TaxPayer Name</label>
-                <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_legalName']}</span>
             </div>
             <div class="row">
                 <label>State Tax ID</label>
-                <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_stateTaxId']}</span>
             </div>
             <div class="row">
                 <label>Fiscal Year End</label>
-                <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_fye1']}</span>
             </div>
             <div class="row">
                 <label>Office Phone Number</label>
-                <span class="floatL"><b>:</b></span>
                 <span>
                 ${requestScope['_15_phone1']}<c:if test="${requestScope['_15_phone2'] ne ''}"> - </c:if>${requestScope['_15_phone2']}<c:if test="${requestScope['_15_phone3'] ne ''}"> - </c:if>${requestScope['_15_phone3']}<c:if test="${requestScope['_15_phone4'] ne ''}"> ext. </c:if>${requestScope['_15_phone4']}
                 </span>
             </div>
             <div class="row">
                 <label>Office Fax Number</label>
-                <span class="floatL"><b>:</b></span>
                 <span>
                 ${requestScope['_15_fax1']}<c:if test="${requestScope['_15_fax2'] ne ''}"> - </c:if>${requestScope['_15_fax2']}<c:if test="${requestScope['_15_fax3'] ne ''}"> - </c:if>${requestScope['_15_fax3']}
                 </span>
@@ -84,17 +75,14 @@
             <div class="wholeCol">
             <div class="row">
                 <label>Complete Provider Name</label>
-                <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_name']}</span>
             </div>
             <div class="row">
                 <label>NPI</label>
-                <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_npi']}</span>
             </div>
             <div class="row">
                 <label>Actual Street Address</label>
-                <span class="floatL"><b>:</b></span>
                 <span>
                     <c:if test="${not empty requestScope['_15_addressLine1']}"><c:out value="${requestScope['_15_addressLine1']}" /><br /></c:if>
                     <c:out value="${requestScope['_15_addressLine2']}" /><br />
@@ -106,7 +94,6 @@
             </div>
             <div class="row">
                 <label>County</label>
-                <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_orgCountyName']}</span>
             </div>
             <div class="row">
@@ -114,41 +101,34 @@
                   Federal Employer ID
                   (<abbr title="Federal Employer Identification Number">FEIN</abbr>)
                 </label>
-                <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_fein']}</span>
             </div>
             <div class="row">
                 <label>Legal Name According to the IRS</label>
-                <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_legalName']}</span>
             </div>
             <div class="row">
                 <label>State Tax ID</label>
-                <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_stateTaxId']}</span>
             </div>
             <div class="row">
                 <label>Fiscal Year End</label>
-                <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_fye1']}</span>
             </div>
             <div class="row">
                 <label>Phone Number</label>
-                <span class="floatL"><b>:</b></span>
                 <span>
                 ${requestScope['_15_phone1']}<c:if test="${requestScope['_15_phone2'] ne ''}"> - </c:if>${requestScope['_15_phone2']}<c:if test="${requestScope['_15_phone3'] ne ''}"> - </c:if>${requestScope['_15_phone3']}<c:if test="${requestScope['_15_phone4'] ne ''}"> ext. </c:if>${requestScope['_15_phone4']}
                 </span>
             </div>
             <div class="row">
                 <label>Fax Number</label>
-                <span class="floatL"><b>:</b></span>
                 <span>
                 ${requestScope['_15_fax1']}<c:if test="${requestScope['_15_fax2'] ne ''}"> - </c:if>${requestScope['_15_fax2']}<c:if test="${requestScope['_15_fax3'] ne ''}"> - </c:if>${requestScope['_15_fax3']}
                 </span>
             </div>
             <div class="row">
                 <label>Requested Enrollment Date</label>
-                <span class="floatL"><b>:</b></span>
                 <span>${requestScope['_15_effectiveDate']}</span>
             </div>
             </div>
@@ -161,12 +141,10 @@
             <div class="leftCol">
                 <div class="row">
                     <label>Type</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_15_subType']}</span>
                 </div>
                 <div class="row">
                     <label>Organization Name</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_15_name']}</span>
                 </div>
                 <div class="row">
@@ -174,22 +152,18 @@
                     Federal Employer ID
                     (<abbr title="Federal Employer Identification Number">FEIN</abbr>)
                   </label>
-                  <span class="floatL"><b>:</b></span>
                   <span>${requestScope['_15_fein']}</span>
                 </div>
                 <div class="row">
                     <label>State Tax Id</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_15_stateTaxId']}</span>
                 </div>
                 <div class="row">
                     <label>Legal Name</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_15_legalName']}</span>
                 </div>
                 <div class="row">
                     <label>Address</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>
                         <c:if test="${not empty requestScope['_15_addressLine1']}"><c:out value="${requestScope['_15_addressLine1']}" /><br /></c:if>
                         <c:out value="${requestScope['_15_addressLine2']}" /><br />
@@ -201,7 +175,6 @@
                 </div>
                 <div class="row">
                     <label>Phone Number</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>
                         ${requestScope['_15_phone1']}<c:if test="${requestScope['_15_phone2'] ne ''}"> - </c:if>${requestScope['_15_phone2']}<c:if test="${requestScope['_15_phone3'] ne ''}"> - </c:if>${requestScope['_15_phone3']}<c:if test="${requestScope['_15_phone4'] ne ''}"> ext. </c:if>${requestScope['_15_phone4']}
                     </span>
@@ -215,25 +188,21 @@
                 </div>
                 <div class="row">
                     <label>Legal Name</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_15_legalName']}</span>
                 </div>
                 <div class="row">
                     <label>Fax Number</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>
                     ${requestScope['_15_fax1']}<c:if test="${requestScope['_15_fax2'] ne ''}"> - </c:if>${requestScope['_15_fax2']}<c:if test="${requestScope['_15_fax3'] ne ''}"> - </c:if>${requestScope['_15_fax3']}
                     </span>
                 </div>
                 <div class="row">
                     <label>UMPI</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_15_npi']}</span>
                 </div>
                 <c:if test="${showNameOfPersonFillingTheForm}">
                     <div class="row">
                         <label>Name of person completing this form</label>
-                        <span class="floatL"><b>:</b></span>
                         <span>${requestScope['_15_personCompletingForm']}</span>
                     </div>
                 </c:if>
@@ -253,17 +222,14 @@
                             <label>NPI</label>
                         </c:otherwise>
                     </c:choose>
-                    <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_15_npi']}</span>
                 </div>
                 <div class="row">
                     <label>${askDBAName ? 'DBA Name' : 'Doing Business As'}</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_15_name']}</span>
                 </div>
                 <div class="row">
                     <label>Practice Address</label>
-                    <span class="floatL"><b>:</b></span>
                     <h:address name="practice"
                         streetAddress="${requestScope['_15_addressLine1']}"
                         extendedAddress="${requestScope['_15_addressLine2']}"
@@ -274,7 +240,6 @@
                 </div>
                 <div class="row">
                     <label>Office Phone Number</label>
-                    <span class="floatL"><b>:</b></span>
 
                     <span>
                         ${requestScope['_15_phone1']}<c:if test="${requestScope['_15_phone2'] ne ''}"> - </c:if>${requestScope['_15_phone2']}<c:if test="${requestScope['_15_phone3'] ne ''}"> - </c:if>${requestScope['_15_phone3']}<c:if test="${requestScope['_15_phone4'] ne ''}"> ext. </c:if>${requestScope['_15_phone4']}
@@ -285,13 +250,11 @@
                     Federal Employer ID
                     (<abbr title="Federal Employer Identification Number">FEIN</abbr>)
                   </label>
-                  <span class="floatL"><b>:</b></span>
                   <span>${requestScope['_15_fein']}</span>
                 </div>
                 <c:if test="${askFiscalYear}">
                     <div class="row">
                         <label>Fiscal Year End</label>
-                        <span class="floatL"><b>:</b></span>
                         <span>${requestScope['_15_fye1']}</span>
                     </div>
                 </c:if>
@@ -301,13 +264,11 @@
                 <c:if test="${askEffectiveDate}">
                     <div class="row">
                         <label>Effective Date</label>
-                        <span class="floatL"><b>:</b></span>
                         <span>${requestScope['_15_effectiveDate']}</span>
                     </div>
                 </c:if>
                 <div class="row">
                     <label>${askTaxPayerName ? 'Taxpayer Name' : 'Legal Name'}</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_15_legalName']}</span>
                 </div>
                 <div class="row">
@@ -316,14 +277,12 @@
                 </div>
                 <div class="row">
                     <label>Office Fax Number</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>
                         ${requestScope['_15_fax1']}<c:if test="${requestScope['_15_fax2'] ne ''}"> - </c:if>${requestScope['_15_fax2']}<c:if test="${requestScope['_15_fax3'] ne ''}"> - </c:if>${requestScope['_15_fax3']}
                     </span>
                 </div>
                 <div class="row">
                     <label>State Tax ID</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_15_stateTaxId']}</span>
                 </div>
             </div>
@@ -336,7 +295,6 @@
     <div class="leftCol">
         <div class="row">
             <label>Billing Address</label>
-            <span class="floatL"><b>:</b></span>
             <c:if test="${requestScope['_15_billingSameAsPrimary'] eq 'Y'}">Same As Above</c:if>
             <c:if test="${requestScope['_15_billingSameAsPrimary'] ne 'Y'}">
                 <span>
@@ -351,7 +309,6 @@
         </div>
         <div class="row">
             <label>1099 Address</label>
-            <span class="floatL"><b>:</b></span>
             <c:if test="${requestScope['_15_ten99SameAsPrimary'] eq 'Y'}">Same As Above</c:if>
             <c:if test="${requestScope['_15_ten99SameAsPrimary'] ne 'Y'}">
                 <span>
@@ -372,26 +329,22 @@
     <div class="leftCol">
         <div class="row">
             <label>Contact Name</label>
-            <span class="floatL"><b>:</b></span>
             <span class="address">${requestScope['_15_contactName']}</span>
         </div>
         <div class="row">
             <label>Contact Phone Number</label>
-            <span class="floatL"><b>:</b></span>
             <span>
             ${requestScope['_15_contactPhone1']}<c:if test="${requestScope['_15_contactPhone2'] ne ''}"> - </c:if>${requestScope['_15_contactPhone2']}<c:if test="${requestScope['_15_contactPhone3'] ne ''}"> - </c:if>${requestScope['_15_contactPhone3']}<c:if test="${requestScope['_15_contactPhone4'] ne ''}"> ext. </c:if>${requestScope['_15_contactPhone4']}
             </span>
         </div>
         <div class="row">
             <label>Contact Fax Number</label>
-            <span class="floatL"><b>:</b></span>
             <span>
             ${requestScope['_15_contactFax1']}<c:if test="${requestScope['_15_contactFax2'] ne ''}"> - </c:if>${requestScope['_15_contactFax2']}<c:if test="${requestScope['_15_contactFax3'] ne ''}"> - </c:if>${requestScope['_15_contactFax3']}
             </span>
         </div>
         <div class="row">
             <label>Contact Email Address</label>
-            <span class="floatL"><b>:</b></span>
             <span>${requestScope['_15_contactEmail']}</span>
         </div>
     </div>

@@ -38,17 +38,8 @@ $(document).ready(function () {
     $("#exportForm").submit();
   });
 
-  $("#printEnrollments").click(function () {
-    setupSearchFormCriteria();
-    $("#printForm").html($('#searchForm').html());
-    $('#printForm .searchFormPageNumber').val("1");
-    $('#printForm .searchFormPageSize').val("-1");
-    $("#printForm").submit();
-  });
-
   function setupSearchFormCriteria() {
     $("#exportForm").html('');
-    $("#printForm").html('');
     $("#npiSearchField").val($.trim($("#npiInput").val()));
     $("#submissionDateStartSearchField").val($("#submissionDateStartInput").val());
     $("#submissionDateEndSearchField").val($("#submissionDateEndInput").val());

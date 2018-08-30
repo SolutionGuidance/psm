@@ -42,9 +42,3 @@
   modelAttribute="searchCriteria"
   method="get">
 </form:form>
-<form:form id="printForm"
-  action="${ctx}/provider/print?print=yes"
-  target="_blank"
-  modelAttribute="searchCriteria"
-  method="get">
-</form:form>

@@ -412,23 +412,6 @@ public class EnrollmentController extends BaseController {
         return doSearch("admin/service_agent_search_enrollments_" + view, criteria);
     }
 
-    @RequestMapping({
-            "/agent/enrollment/print",
-            "/provider/print"
-    })
-    public ModelAndView print(
-            @ModelAttribute("criteria") ProviderSearchCriteria criteria,
-            HttpServletResponse response
-    ) throws PortalServiceException {
-
-        nocache(response);
-        if (criteria == null) {
-            throw new IllegalArgumentException("A valid criteria must be provided.");
-        }
-
-        return doSearch("admin/service_agent_print_enrollments", criteria);
-    }
-
     /**
      * This method is used to supply the lookup values.
      *

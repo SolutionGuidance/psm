@@ -40,32 +40,21 @@
   </thead>
 
   <tbody>
-    <c:forEach
-      var="screening"
-      items="${screenings}"
-      varStatus="status"
-    >
+    <c:forEach var="screening" items="${screenings}" varStatus="status">
       <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
-        <td>${screening.date}</td>
+        <td><fmt:formatDate value="${screening.date}" pattern="MM/dd/yyyy"/></td>
         <td>${screening.npi}</td>
         <td>${screening.providerName}</td>
         <td>${screening.providerType}</td>
         <td>${screening.screeningType}</td>
         <td>${screening.reason}</td>
         <td>${screening.result}</td>
-        <td class="alignCenter">
-          <a
-            class="actionLink"
-            href="#"
-          >
-            Auto Screen
-          </a>
-          <a
-            class="actionLink"
-            href="#"
-          >
-            Manual Screen
-          </a>
+        <td class="alignCenter nopad">
+          <a class="actionLink" href="${ctx}/provider/enrollment/view?id=${screening.ticketId}">View</a>
+          <span class="sep">|</span>        
+          <a class="actionLink" href="${ctx}/agent/automatic-screening/${screening.screeningId}">Auto Screen</a>
+          <span class="sep">|</span>
+          <a class="actionLink" href="${ctx}/agent/enrollment/screeningReview?id=${screening.ticketId}">Manual Screen</a>
         </td>
       </tr>
     </c:forEach>

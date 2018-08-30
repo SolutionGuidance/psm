@@ -18,10 +18,9 @@ package gov.medicaid.services;
 
 import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.ScreeningSchedule;
-
 import javax.jws.WebService;
-
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -52,15 +51,20 @@ public interface ScreeningService {
      * @throws IllegalArgumentException - If screeningSchedule is null
      * @throws PortalServiceException - If there are any errors during the execution of this method
      */
-    void saveScreeningSchedule(
-            ScreeningSchedule screeningSchedule
-    ) throws PortalServiceException;
+    void saveScreeningSchedule(ScreeningSchedule screeningSchedule) throws PortalServiceException;
 
-    Optional<AutomaticScreening> findScreening(
-            long screeningId
-    );
+    /**
+     * @param screeningId
+     * @return matching Screenings or null if not found
+     */
+    Optional<AutomaticScreening> findScreening(long screeningId);
 
-    List<AutomaticScreening> getAllScreenings();
+    /**
+     * @param params - Key-value pair of parameters for sql query
+     * @return list of matched screenings or empty list
+     * @throws PortalServiceException
+     */
+    List<AutomaticScreening> getAllScreenings(Map<String, String> params) throws PortalServiceException;
 
     void saveScreening(AutomaticScreening screening);
 }

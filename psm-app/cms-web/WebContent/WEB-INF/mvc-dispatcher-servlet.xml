@@ -112,17 +112,6 @@
   <context:component-scan
       base-package="gov.medicaid.controllers" />
 
-  <bean id="RegistrationFormValidator" class="gov.medicaid.controllers.validators.RegistrationFormValidator">
-    <property name="registrationService" ref="RegistrationService"/>
-  </bean>
-
-  <bean id="AccountLinkFormValidator"
-        class="gov.medicaid.controllers.validators.AccountLinkFormValidator"/>
-  <bean id="ForgotPasswordFormValidator"
-        class="gov.medicaid.controllers.validators.ForgotPasswordFormValidator"/>
-  <bean id="UpdatePasswordFormValidator"
-        class="gov.medicaid.controllers.validators.UpdatePasswordFormValidator"/>
-
   <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
 
   <bean id="JSPController"
@@ -175,9 +164,5 @@
     <property name="jndiName">
       <value>${jndi.ProviderTypeService}</value>
     </property>
-  </bean>
-
-  <bean id="UserValidator" class="gov.medicaid.controllers.admin.UserValidator">
-    <property name="registrationService" ref="RegistrationService"/>
   </bean>
 </beans>

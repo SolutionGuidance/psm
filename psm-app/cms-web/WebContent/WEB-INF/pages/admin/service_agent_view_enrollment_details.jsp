@@ -20,7 +20,6 @@
           <div class="head">
             <h1>View Enrollment Details</h1>
             <a class="greyBtn iconPdf" href="<c:url value="/provider/enrollment/export" />">Export to PDF</a>
-            <a class="greyBtn iconPrint" href="javascript:window.print();">Print</a>
           </div>
           <div id="printModal" class="tabSection">
 

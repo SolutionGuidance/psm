@@ -2096,4 +2096,17 @@
     <loadData file="seeds/20180827_territories.csv"
               tableName="states" />
   </changeSet>
+
+  <changeSet author="" id="issue250-add-banner-table">
+    <createTable tableName="banner_texts">
+      <column name="servlet_path"
+              type="text">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="page_text"
+              type="text">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
 </databaseChangeLog>

@@ -27,11 +27,6 @@ $(document).ready(function () {
   //        addressLoadModal('#printModal');
   //    });
 
-  $('.printMe').click(function () {
-    printThis($(this).attr("href"));
-    return false;
-  });
-
   $('.editInfo').click(function () {
       $(this).parents('.tabContent').find('.editInfo').hide();
       $(this).parents('.tabContent').find('.plainInformation').hide();

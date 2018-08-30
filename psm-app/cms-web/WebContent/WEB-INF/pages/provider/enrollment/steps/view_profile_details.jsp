@@ -30,9 +30,6 @@
             <a class="greyBtn iconPdf" href="<c:url value="/provider/enrollment/export" />">
               Export to PDF
             </a>
-            <a class="greyBtn printModalBtn iconPrint" href="javascript:printThis();">
-              Print
-            </a>
           </div>
 
           <div class="tabSection">

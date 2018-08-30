@@ -2159,22 +2159,6 @@ function removeModal() {
   $('#new-modal>div').hide();
 }
 
-function printThis(url) {
-  $.ajax({
-    url: url || '/cms/provider/enrollment/print',
-    type: "get",
-    dataType: "html",
-    success: function (response, textStatus, jqXHR) {
-      $('#printModal .modal-content').html(response);
-      openModal('#printModal');
-    },
-
-    error: function (jqXHR, textStatus, errorThrown) {
-      alert("There was an error encountered while getting print preview.");
-    }
-  });
-}
-
 function updateSpecialties() {
   // gather specialties
   var i = 0;

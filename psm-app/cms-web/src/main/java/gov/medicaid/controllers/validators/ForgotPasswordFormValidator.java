@@ -18,6 +18,7 @@ package gov.medicaid.controllers.validators;
 
 import gov.medicaid.controllers.forms.UpdatePasswordForm;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
 /**
@@ -26,6 +27,7 @@ import org.springframework.validation.Errors;
  * @author TCSASSEMBLER
  * @version 1.0
  */
+@Component
 public class ForgotPasswordFormValidator extends BaseValidator {
 
     /**

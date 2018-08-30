@@ -218,6 +218,24 @@ public class CMSConfigurator {
     }
 
     /**
+     * Retrieves the enrollment service.
+     *
+     * @return the enrollment service from the JNDI tree.
+     */
+    public ScreeningService getScreeningService() {
+        return (ScreeningService) fromContext("jndi.ScreeningService", false);
+    }
+
+    /**
+     * Retrieves the provider type service.
+     *
+     * @return the provider type service from the JNDI tree.
+     */
+    public ProviderTypeService getProviderTypeService() {
+        return (ProviderTypeService) fromContext("jndi.ProviderTypeService", false);
+    }
+
+    /**
      * Retrieves the object from the JNDI tree.
      *
      * @param jndiName the JNDI name configuration property
@@ -311,6 +329,13 @@ public class CMSConfigurator {
         return globalSettings.getProperty(
                 "external-sources.leie",
                 "http://localhost:5000/"
+        );
+    }
+
+    public String getDmfApiBaseUrl() {
+        return globalSettings.getProperty(
+                "external-sources.dmf",
+                "http://localhost:5001/"
         );
     }
 

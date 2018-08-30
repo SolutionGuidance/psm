@@ -19,7 +19,7 @@
             <th>Effective Date<span class="sep"></span></th>
             <th>Practice Address<span class="sep"></span></th>
             <th>City<span class="sep"></span></th>
-            <th>State<span class="sep"></span></th>
+            <th>State/Territory<span class="sep"></span></th>
             <th>ZIP Code<span class="sep"></span></th>
             <th>County<span class="sep"></span></th>
         </tr>

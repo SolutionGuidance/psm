@@ -2021,4 +2021,79 @@
     <rollback changeSetId="issue254-seed-service-categories" changeSetAuthor="" />
   </changeSet>
 
+  <changeSet author="" id="issue1021-remove-sign-date">
+    <dropColumn tableName="provider_statements" columnName="date"/>
+    <rollback>
+      <addColumn tableName="provider_statements">
+        <column name="date" type="date"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue759-create-table-dmf-automatic-screenings-table">
+    <createTable tableName="dmf_automatic_screenings">
+      <column name="automatic_screening_id"
+        type="bigint">
+        <constraints primaryKey="true"
+          foreignKeyName="dmf_automatic_screenings_automatic_screening_id_fkey"
+          references="automatic_screenings(automatic_screening_id)"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="dmf_automatic_screenings"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue759-create-table-dmf-automatic-screening-matches-table">
+    <createTable tableName="dmf_automatic_screening_matches">
+      <column name="dmf_automatic_screening_match_id"
+        type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="dmf_automatic_screening_id"
+        type="bigint">
+        <constraints nullable="false"
+          foreignKeyName="dmf_automatic_screening_match_dmf_automatic_screening_id_fkey"
+          references="dmf_automatic_screenings(automatic_screening_id)" />
+      </column>
+      <column name="ssn"
+        type="text" >
+        <constraints nullable="false"/>
+      </column>
+      <column name="result"
+        type="text" >
+        <constraints nullable="false"/>
+      </column>
+      <column name="name"
+        type="text" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="dmf_automatic_screening_matches"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue759-add-automatic-screening-manual-confirmation">
+    <addColumn tableName="automatic_screenings">
+      <column name="manual_confirmation" type="boolean"/>
+    </addColumn>
+    <rollback>
+      <dropColumn columnName="manual_confirmation" tableName="automatic_screenings"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue759-drop-entities-verif">
+    <dropColumn tableName="entities"
+      columnName="nonexclusion_verified"/>
+    <rollback>
+      <addColumn tableName="entities">
+        <column name="nonexclusion_verified"
+          type="varchar(1)" />
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue62-seed-territories">
+    <loadData file="seeds/20180827_territories.csv"
+              tableName="states" />
+  </changeSet>
 </databaseChangeLog>

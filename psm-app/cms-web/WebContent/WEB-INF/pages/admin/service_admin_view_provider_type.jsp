@@ -45,7 +45,6 @@
                   <div class="section">
                     <div class="wholeCol">
                       <label>Provider Type</label>
-                      <span class="floatL"><b>:</b></span>
                       <span class="marginLeft10">${providerType.description}</span>
                     </div>
                     <div class="tableHeader"><span>Agreements and Addendums</span></div>
@@ -56,6 +55,16 @@
                             <div class="row">
                               <span>${agreement.title}</span>
                             </div>
+                          </c:forEach>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tableHeader"><span>Applicable Licenses</span></div>
+                    <div class="wholeCol">
+                      <div class="row">
+                        <div class="col2">
+                          <c:forEach var="licenseType" items="${licenseTypes}">
+                            <div class="row">${licenseType.description}</div>
                           </c:forEach>
                         </div>
                       </div>

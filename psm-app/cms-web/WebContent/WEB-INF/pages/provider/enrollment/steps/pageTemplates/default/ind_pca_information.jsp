@@ -54,7 +54,7 @@
 
                 <c:set var="formName" value="_10_state"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">State <span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">State/Territory <span class="required">*</span></label>
                 <select id="${formIdPrefix}_${formName}" class="stateSelectFor" name="${formName}">
                     <option value="">Please select</option>
                     <c:forEach var="opt" items="${requestScope['_99_states']}">

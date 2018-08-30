@@ -65,15 +65,19 @@
                 </div>
                 <c:choose>
                   <c:when test="${month.providerTypes.size() > 0}">
-                    <table class="generalTable">
+                    <table class="generalTable linedTable">
                       <thead>
                         <tr>
                           <th>Provider Type</th>
                           <th class="providerTypesNum">Applications Reviewed</th>
                         </tr>
                       </thead>
-                      <c:forEach var="providerType" items="${month.providerTypes}">
-                        <tr class="reportRow">
+                      <c:forEach
+                        var="providerType"
+                        items="${month.providerTypes}"
+                        varStatus="status"
+                      >
+                        <tr class="reportRow ${status.index % 2 == 0 ? 'odd' : 'even'}">
                           <td
                             class="reportDatum"
                             reportField="providerType"

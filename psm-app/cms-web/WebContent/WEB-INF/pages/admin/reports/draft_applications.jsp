@@ -35,24 +35,36 @@
 
           <div class="reportTable dashboardPanel">
             <c:forEach var="enrollmentMonth" items="${enrollmentMonths}">
-              <div class="tableData">
+              <div class="wideTableData tableData">
                 <div class="tableTitle">
                   <h2>${enrollmentMonth.month}</h2>
                 </div>
-                <table class="generalTable">
+                <table class="generalTable linedTable">
                   <thead>
                     <tr>
                       <th>Application ID</th>
+                      <th>NPI</th>
+                      <th>Provider Name</th>
+                      <th>Provider Type</th>
                       <th>Creation Date</th>
                       <th>Submission Date</th>
                     </tr>
                   </thead>
-                  <c:forEach var="enrollment" items="${enrollmentMonth.enrollments}">
-                  <tr class="reportRow">
+                  <c:forEach
+                    var="enrollment"
+                    items="${enrollmentMonth.enrollments}"
+                    varStatus="status"
+                  >
+                  <tr class="reportRow ${status.index % 2 == 0 ? 'odd' : 'even'}">
                     <td class="reportDatum nonedisplay" reportField="month" reportValue="${enrollmentMonth.month}"></td>
                     <td class="reportDatum" reportField="ticketId" reportValue="${enrollment.ticketId}">
-                      ${enrollment.ticketId}
+                      <a href="${ctx}/provider/enrollment/view?id=${enrollment.ticketId}">
+                        ${enrollment.ticketId}
+                      </a>
                     </td>
+                    <td>${enrollment.details.entity.npi}</td>
+                    <td>${enrollment.details.entity.name}</td>
+                    <td>${enrollment.details.entity.providerType.description}</td>
                     <td class="reportDatum" reportField="createdOn" reportValue="${enrollment.createdOn}">
                       <fmt:formatDate value="${enrollment.createdOn}" pattern="dd MMMM yyyy" />
                     </td>

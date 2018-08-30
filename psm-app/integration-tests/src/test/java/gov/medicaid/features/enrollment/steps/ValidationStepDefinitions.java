@@ -46,6 +46,16 @@ public class ValidationStepDefinitions {
         organizationInfoPage.clickNext();
     }
 
+    @When("^I check 'same as above' on the personal info page$")
+    public void i_check_same_as_above_on_the_personal_info_page() {
+        personalInfoPage.checkSameAsAbove();
+    }
+
+    @When("^I enter an empty email address on the personal info page$")
+    public void i_enter_an_empty_email_address_on_the_personal_info_page() {
+        enrollmentSteps.enterEmptyEmailAddress();
+    }
+
     @Then("^I should get an FEIN error$")
     public void i_should_get_an_fein_error() throws Exception {
         enrollmentSteps.checkForFeinError();
@@ -60,4 +70,14 @@ public class ValidationStepDefinitions {
     public void should_get_a_renewal_date_error() throws Exception {
         enrollmentSteps.checkForRenewalDateError();
     }
+
+    @Then("^I should get a same as above email error$")
+    public void should_get_a_same_as_above_email_error() throws Exception {
+        personalInfoPage.checkForSameAsAboveEmailError();
+    }
+
+    @Then("^I should see email address is required$")
+    public void should_see_email_address_is_required() throws Exception {
+        personalInfoPage.checkEmailAddressDisplaysAsRequired();
+}
 }

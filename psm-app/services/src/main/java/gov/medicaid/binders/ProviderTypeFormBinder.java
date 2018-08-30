@@ -69,7 +69,6 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
      *
      * @return
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         provider.setProviderType(param(request, "providerType"));
@@ -84,7 +83,7 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
             }
         }
 
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**
@@ -104,16 +103,16 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
         if (Util.isBlank(provider.getProviderType()) || enrollment.getRequestType() == null
             || enrollment.getRequestType() == RequestType.ENROLLMENT) {
             // can still change applicant type.
-            mv.put("individualProviderTypes", sortCollection(getLookupService().getProviderTypes(ApplicantType.INDIVIDUAL)));
-            mv.put("organizationProviderTypes", sortCollection(getLookupService().getProviderTypes(ApplicantType.ORGANIZATION)));
+            mv.put("individualProviderTypes", sortCollection(getProviderTypeService().getProviderTypes(ApplicantType.INDIVIDUAL)));
+            mv.put("organizationProviderTypes", sortCollection(getProviderTypeService().getProviderTypes(ApplicantType.ORGANIZATION)));
         } else {
             // already set as org or individual
             ProviderType pt = getLookupService()
                 .findLookupByDescription(ProviderType.class, provider.getProviderType());
             if (pt.getApplicantType() == ApplicantType.INDIVIDUAL) {
-                mv.put("individualProviderTypes", sortCollection(getLookupService().getProviderTypes(ApplicantType.INDIVIDUAL)));
+                mv.put("individualProviderTypes", sortCollection(getProviderTypeService().getProviderTypes(ApplicantType.INDIVIDUAL)));
             } else {
-                mv.put("organizationProviderTypes", sortCollection(getLookupService().getProviderTypes(ApplicantType.ORGANIZATION)));
+                mv.put("organizationProviderTypes", sortCollection(getProviderTypeService().getProviderTypes(ApplicantType.ORGANIZATION)));
             }
         }
     }

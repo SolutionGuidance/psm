@@ -74,12 +74,11 @@ public class PracticeTypeFormBinder extends BaseFormBinder {
      *
      * @return
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         provider.setMaintainsOwnPrivatePractice(param(request, "maintainsOwnPrivatePractice"));
         provider.setEmployedOrContractedByGroup(param(request, "employedOrContractedByGroup"));
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**

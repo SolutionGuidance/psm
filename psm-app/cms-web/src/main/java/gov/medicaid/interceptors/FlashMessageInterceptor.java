@@ -16,7 +16,6 @@
 
 package gov.medicaid.interceptors;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,7 +28,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author TCSASSEMBLER
  * @version 1.0
  */
-@Controller
 public class FlashMessageInterceptor implements HandlerInterceptor {
 
     /**

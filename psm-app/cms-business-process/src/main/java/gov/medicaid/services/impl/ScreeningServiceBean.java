@@ -119,7 +119,8 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
     }
 
     /*
-     * This method is for getting all screenings.
+     * This method is for getting all screenings or by filter.
+     *
      * @param params - Filter condition based on date or status or both
      * @return list of screenings matching filter condition
      */
@@ -170,4 +171,8 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
         return query.getResultList();
     }
 
+    @Override
+    public void saveScreening(AutomaticScreening screening) {
+        getEm().merge(screening);
+    }
 }

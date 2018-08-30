@@ -12,6 +12,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -46,6 +47,9 @@ public abstract class AutomaticScreening {
     @Column(nullable = false)
     private Result result;
 
+    @Column(name = "manual_confirmation")
+    private Boolean manualConfirmation;
+
     public long getAutomaticScreeningId() {
         return automaticScreeningId;
     }
@@ -77,4 +81,14 @@ public abstract class AutomaticScreening {
     public void setResult(Result result) {
         this.result = result;
     }
+
+    public Boolean getManualConfirmation() {
+        return manualConfirmation;
+    }
+
+    public void setManualConfirmation(Boolean manualConfirmation) {
+        this.manualConfirmation = manualConfirmation;
+    }
+
+    public abstract String getType();
 }

@@ -1,9 +1,9 @@
        Installation instructions for the Provider Screening Module
        ===========================================================
 
-***NOTE: These developer installation instructions are a work in
-progress. We welcome suggestions on improving them. A production
-deployment guide will be part of our 1.0 release. ***
+***NOTE: We welcome [improvements](CONTRIBUTING.md) to these
+installation instructions.  A production deployment guide will be part
+of our 1.0 release.***
 
 **Contents**
 
@@ -29,30 +29,25 @@ deployment guide will be part of our 1.0 release. ***
 
 # Background and Current Deployment Status
 
-2018-06-01: The PSM is not yet ready for production deployment,
-but is ready for development deployment.
+**Status**: The PSM is not yet ready for production deployment, but
+much of its core functionality is implemented and it is deployable for
+development purposes.
 
 The PSM was originally developed to run in the open source web
-application server Apache JBoss (now called WildFly).  Somewhat late
-in the PSM's development, it was retargeted to the IBM WebSphere
-Application Server (WAS) 8.5, in order to better support a particular
-state's MMIS environment.  We have retargeted the PSM to WildFly
-(formerly JBoss), though still keeping all of the functionality
-additions made while the PSM was in its WebSphere interregnum.
+application server Apache JBoss (now called WildFly), then retargeted
+to the IBM WebSphere Application Server (WAS) 8.5 in order to better
+support a particular state's MMIS environment.  After inheriting the
+code, we retargeted to WildFly (formerly JBoss), though still keeping
+all of the functionality that was added while the PSM was in its
+WebSphere interregnum.
 
-This `INSTALL.md` file will be continuously improved as we work.  When
-it loses the warning at the top, that will mean we expect the PSM to
-be deployable in WildFly for production users.  We are currently
-evaluating the additional resources it would take to continue
-development support for WebSphere deployment.
+If you are using Debian GNU/Linux or Red Hat Enterprise Linux, it may
+be easiest for you to run the automated installation script
+in [scripts/install.sh](scripts/install.sh).
 
-If you are using Red Hat Enterprise Linux, it will be easiest for you
-to run the automated installation script: `rhel-install.sh` in the
-root of this repository.
-
-You can use Docker to run the current development version of the PSM.
-That would obviate all the manual configuration steps listed in this
-file.  See `docker/README.md` for details.
+You can also use Docker to run the current development version of the
+PSM.  That would obviate all the manual configuration steps listed in
+this file.  See [docker/README.md](docker/README.md) for details.
 
 # Requirements Overview
 
@@ -95,13 +90,12 @@ This is just an overview; see installation instructions below.
 
 ## Database
 
-We're testing with latest stable PostgreSQL, currently 9.6.2. PostgreSQL 10
-will be released shortly and we hope/intend to verify compatibility with that.
+We're testing with PostgreSQL 10.x and 9.6.x.  You should be fine with
+anything in the 10.x series or the 9.6.x series.
 
-- **Storage**: TBA. We haven't started integrating with any external data
-  sources yet, which will likely be the largest driver of storage requirements.
-  We suggest starting with 10 GB for the database, and have a plan to expand or
-  reprovision later.
+- **Storage**: We suggest starting by planning 10 GB for the database,
+  and having a plan to expand or reprovision later.  We will update
+  this section as we gain more data on production storage requirements.
 
 The application requires the application server to be configured with two data sources:
 
@@ -139,9 +133,9 @@ configuration for a development install.
    Leave the terminal session open; leave the SMTP server running as
    you continue the install process.
 
-1. [PostgreSQL 9.6](https://www.postgresql.org/). We are testing with
-   PostgreSQL 9.6.2. Check that you have PostgreSQL installed.  If you
-   do not, it is available on Debian via `sudo apt install postgresql-9.6`,
+1. [PostgreSQL](https://www.postgresql.org/). We are testing with
+   PostgreSQL 10.x and 9.6.x. Check that you have PostgreSQL installed.  If you
+   do not, it is available on Debian via `sudo apt install postgresql`,
    or you can download it from https://www.postgresql.org.
 
 1. The PSM code repository. Currently we suggest you run the PSM from
@@ -163,6 +157,10 @@ Guide](https://docs.jboss.org/author/display/WFLY/Getting+Started+Guide).
    [http://wildfly.org/downloads/](http://wildfly.org/downloads/). Download
    the [11.0.0.Final full
    distribution](http://download.jboss.org/wildfly/11.0.0.Final/wildfly-11.0.0.Final.tar.gz).
+   (Wildfly's downloads page doesn't offer checksums or signatures,
+   but [this
+   workaround](https://github.com/wildfly/wildfly.org/issues/87#issuecomment-412181885)
+   can help you verify authenticity.)
 
    ```ShellSession
    $ cd {/path/to/this_psm_repo}
@@ -171,6 +169,22 @@ Guide](https://docs.jboss.org/author/display/WFLY/Getting+Started+Guide).
    $ tar -xzf wildfly-11.0.0.Final.tar.gz
    $ cd wildfly-11.0.0.Final
    ```
+
+1. Check that you're really running Java 1.8.
+
+   Some systems have multiple versions of Java installed on them.  You
+   want `java` to invoke Java 1.8 -- it should look something like this:
+
+   ```ShellSession
+   $ java -version
+   openjdk version "1.8.0_171"
+   OpenJDK Runtime Environment (build 1.8.0_171-8u171-b11-2-b11)
+   OpenJDK 64-Bit Server VM (build 25.171-b11, mixed mode)
+   ```
+
+   If you have multiple Java versions on your system and the default
+   is not 1.8, you could try setting up the [jEnv](http://www.jenv.be/)
+   wrapper to control which version of Java you get.
 
 1. Add a WildFly management console user named 'psm' with a password of 'psm':
 
@@ -285,7 +299,7 @@ $ sudo -u postgres createdb --owner=psm psm
 
 If you get an error saying `role "postgres" does not exist`, this is likely due
 to Mac OS X not assigning "postgres" as a superuser. You will need to access
-your postgres database to find the superuser name and substitute it into the scripts.
+your postgres database to find the superuser name and substitute it into the scripts:
 
 ```ShellSession
 $ sudo -u {superuser name} createuser --pwprompt psm
@@ -293,13 +307,13 @@ $ sudo -u {superuser name} createdb --owner=psm psm
 ```
 
 After creating the databases, add the data sources to the application
-server. In the first line of the command below, replace `VERSION` with
-the version of the PostgreSQL JDBC driver you downloaded and `PWORD`
-with the password you assigned to your `psm` database user, and paste
-it into your terminal:
+server.  Run the command below from the WildFly directory, replacing
+`VERSION` with the version of the PostgreSQL JDBC driver you
+downloaded and `PWORD` with the password you assigned to your `psm`
+database user:
 
 ```ShellSession
-$ VERSION=42.1.4; PWORD=psm; ./bin/jboss-cli.sh --connect <<EOF
+$ VERSION=42.2.4; PWORD=psm; ./bin/jboss-cli.sh --connect <<EOF
 xa-data-source add \
   --name=TaskServiceDS \
   --jndi-name=java:/jdbc/TaskServiceDS \
@@ -369,10 +383,30 @@ EOF
    If you have a previous build deployed already, you can replace the
    deployment in the UI or add the `--force` switch after `deploy`.
 
-1. Create database schema and initial data. There are two sets of tables in this project.  The first are application tables, and they are created and seeded using liquibase migrations.  The second set of tables are related to jbpm and these are loaded via a SQL script.  Run the commands below in any order to load both sets.
+1. Set up the database access configuration.
 
-    ```shell
-       > ./gradlew db:update
+    ```ShellSession
+    $ cd psm-app
+    $ ls gradle.properties
+    ls: cannot access 'gradle.properties': No such file or directory
+
+    ### Okay, it doesn't exist, so we can safely create it.      ###
+    ### But if it *does* exist, don't do this next step, because ###
+    ### we don't necessarily want to overwrite it, we just want  ###
+    ### to make sure it has the right content.                   ###
+
+    $ cp gradle.properties.template gradle.properties
+
+    ### Now edit the file to add correct values for 
+    ### `systemProp.databaseUser` and `systemProp.databasePassword`. ###
+    $ {your-favorite-editor} gradle.properties
+    ```
+
+1. Create database schema and initial data. There are two sets of tables in this project.  The first are application tables, and they are created and seeded using liquibase migrations.  The second set of tables are related to jbpm and these are loaded via a SQL script.  In the `psm-app` subdirectory, run the commands below in any order to load both sets:
+
+
+    ```ShellSession
+    $ ./gradlew db:update
     ```
 
     ```ShellSession
@@ -435,6 +469,21 @@ Migration scripts are stored in `psm-app/db/`.
     ```
 
 More material coming soon about how to run individual migrations.
+
+## Set up external data sources
+
+See the [Credentialing and Verification: Extract, Translate, and Load
+repository](https://github.com/SolutionGuidance/cavetl) for information on
+using the API wrappers around the various external data sources the PSM
+integrates with.
+
+### Death Master File test data
+
+As the Social Security Administration limits access to the Death Master file,
+we have a substitute for the sake of development and testing. See the [README
+for the mock
+wrapper](psm-app/cms-business-process/src/test/resources/dmf-api-mock/README.md)
+for more information.
 
 # Production Deployment
 
@@ -520,7 +569,6 @@ Each task is a freestyle project, triggered by the GitHub pull request plugin.
 - unit tests: runs the following gradle targets, and collect JUnit reports:
   - `cms-business-model:test`
   - `cms-business-process:test`
-  - `cms-portal-services:test`
   - `cms-web:test`
   - `services:test`
 - integration tests: runs the `cms-portal-services:build` gradle target,
@@ -533,6 +581,9 @@ Each task is a freestyle project, triggered by the GitHub pull request plugin.
   reports:
   - `checkstyleMain`
   - `checkstyleTest`
+- jscs: runs the `frontend:npm_run_lint-ci` gradle target, and collects the
+  Checkstyle reports. If running locally and interactively, use the
+  `frontend:npm_run_lint` target, instead.
 
 Currently, for security reasons, we do not run Jenkins on PRs that
 originate outside this repository.  To run the tests on PRs from

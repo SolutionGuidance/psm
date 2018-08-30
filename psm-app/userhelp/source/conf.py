@@ -49,8 +49,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Provider Screening Module user manual'
-copyright = u'2017, (TBD)'
+project = u'Provider Screening Module user help'
+copyright = u'2017, 2018 The MITRE Corporation'
 author = u'Solution Guidance Corporation'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -166,7 +166,7 @@ latex_toplevel_sectioning = 'chapter'
 # -- Options for Epub output ----------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = "Provider Service Module user manual"
+epub_title = "Provider Service Module user help"
 epub_author = "Solution Guidance Corporation"
 epub_publisher = "Solution Guidance Corporation https://github.com/SolutionGuidance/psm/"
 epub_copyright = copyright

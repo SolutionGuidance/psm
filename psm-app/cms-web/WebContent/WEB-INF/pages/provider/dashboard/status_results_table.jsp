@@ -6,13 +6,13 @@
 
 <c:choose>
   <c:when test="${statusFilter == 'All'}">
-    <table class="generalTable dashboardTable fixedWidthTable">
+    <table class="generalTable linedTable dashboardTable fixedWidthTable">
   </c:when>
   <c:when test="${statusFilter != 'Draft'}">
-    <table class="generalTable table-sort">
+    <table class="generalTable linedTable table-sort">
   </c:when>
   <c:otherwise>
-    <table class="generalTable" id="draftTable">
+    <table class="generalTable linedTable" id="draftTable">
   </c:otherwise>
 </c:choose>
 
@@ -185,22 +185,32 @@
         <td class="alignCenter">
           <c:choose>
             <c:when test="${item.status == 'Draft'}">
-              <a href="${viewTicketLink}">
+              <a
+                class="actionLink"
+                href="${viewTicketLink}"
+              >
                 Edit
               </a>
             </c:when>
             <c:otherwise>
-              <a href="${viewTicketLink}">
+              <a
+                class="actionLink"
+                href="${viewTicketLink}"
+              >
                 View
               </a>
             </c:otherwise>
           </c:choose>
-          <span class="sep">|</span>
-          <a href="${previewTicketLink}" class="printModalBtn printMe">
+          <a
+            href="${previewTicketLink}"
+            class="actionLink printModalBtn printMe"
+          >
             Print
           </a>
-          <span class="sep">|</span>
-          <a href="${exportTicketLink}">
+          <a
+            class="actionLink"
+            href="${exportTicketLink}"
+          >
             Export to PDF
           </a>
         </td>

@@ -44,12 +44,10 @@
                       </div>
                       <div class="row">
                         <label>Day of month to automatically rescreen</label>
-                        <span class="floatL"><b>:</b></span>
                         <span class="marginLeft10">${schedule.dayOfMonth}</span>
                       </div>
                       <div class="row">
                         <label>Hour of day to automatically rescreen</label>
-                        <span class="floatL"><b>:</b></span>
                         <span class="marginLeft10">${schedule.hourOfDay}:00</span>
                       </div>
                     </div>

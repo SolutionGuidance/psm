@@ -147,7 +147,7 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
         if (enrollment.getProviderInformation().getProviderType().equals(gov.medicaid.domain.model.ProviderType.PHARMACY.value())) {
             mv.put("onlyPharmacist", true);
         } else {
-            mv.put("individualMemberProviderTypes", sortCollection(getLookupService().getProviderTypes(ApplicantType.INDIVIDUAL)));
+            mv.put("individualMemberProviderTypes", sortCollection(getProviderTypeService().getProviderTypes(ApplicantType.INDIVIDUAL)));
         }
 
     }

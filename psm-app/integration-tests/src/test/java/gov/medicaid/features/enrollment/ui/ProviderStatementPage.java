@@ -2,8 +2,6 @@ package gov.medicaid.features.enrollment.ui;
 
 import gov.medicaid.features.PsmPage;
 
-import java.time.LocalDate;
-
 public class ProviderStatementPage extends PsmPage {
     public void checkNoCriminalConviction() {
         click($("[name=_08_criminalConvictionInd][value='N']"));
@@ -35,11 +33,6 @@ public class ProviderStatementPage extends PsmPage {
 
     public void enterProviderTitle(String providerTitle) {
         $("[name=_08_title], [name=_19_title]").type(providerTitle);
-    }
-
-    public void enterValidDate() {
-        String currentDate = LocalDate.now().format(DATE_FORMATTER);
-        $("[name=_08_date], [name=_19_date]").type(currentDate);
     }
 
     public void clickSubmitButton() {

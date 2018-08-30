@@ -63,13 +63,18 @@ $(document).ready(function () {
     if ($("#enrollmentFilterPanel").size() > 0 || $("#quickEnrollmentFilterPanel").size() > 0) {
       $(".requestTypeValue").remove();
       $(".riskLevelValue").remove();
+      $("#npiSearchField").val($.trim($("#enrollmentSearchFilterNpiInput").val()));
+      $("#submissionDateStartSearchField").val($("#enrollmentSearchFilterSubmissionDateStartInput").val());
+      $("#submissionDateEndSearchField").val($("#enrollmentSearchFilterSubmissionDateEndInput").val());
+      $("#providerTypeSearchField").val($("#enrollmentSearchFilterProviderTypeInput").val());
+      $("#providerNameSearchField").val($.trim($("#enrollmentSearchFilterProviderNameInput").val()));
 
-      if ($("#requestTypeInput").val() != '') {
-        $('#searchForm').append('<input name="requestTypes[0]" value="' + $("#requestTypeInput").val() + '" type="hidden" />');
+      if ($("#enrollmentSearchFilterRequestTypeInput").val() != '') {
+        $('#searchForm').append('<input name="requestTypes[0]" value="' + $("#enrollmentSearchFilterRequestTypeInput").val() + '" type="hidden" />');
       }
 
-      if ($("#riskLevelInput").val() != '') {
-        $('#searchForm').append('<input name="riskLevels[0]" value="' + $("#riskLevelInput").val() + '" type="hidden" />');
+      if ($("#enrollmentSearchFilterRiskLevelInput").val() != '') {
+        $('#searchForm').append('<input name="riskLevels[0]" value="' + $("#enrollmentSearchFilterRiskLevelInput").val() + '" type="hidden" />');
       }
     }
 
@@ -128,33 +133,44 @@ $(document).ready(function () {
     loadModal('#writeNotesModal');
   });
 
-  $('#saveNote').click(function () {
-    if (!screenLock) {
-      screenLock = true;
-    }
+  $("#saveNote").click(
+    (function IIFE() {
+      // prevent double clicks from doing multiple saves
+      var saveNoteEnabled = true;
 
-    var input = $.trim($('#writeNotesModal .textarea').val());
-    if (input == '' || input == 'Write your note here...') {
-      alert("Please input notes.")
-      return false;
-    }
+      return function saveNote() {
+        if (saveNoteEnabled) {
+          saveNoteEnabled = false;
+        }
 
-    $.ajax({
+        var input = $.trim($("#writeNotesModal .textarea").val());
+        if (input == "" || input == "Write your note here...") {
+          alert("Please input notes.");
+          return false;
+        }
+
+        $.ajax({
           url: ctx + "/agent/enrollment/note?id=" + profileIdForWritingNotes,
-          data: { "id": profileIdForWritingNotes, "note": input },
+          data: { id: profileIdForWritingNotes, note: input },
           cache: false,
           type: "GET",
           dataType: "json",
-          success: function (data) {
+          success: function onSuccess(data) {
             closeModal();
             if (data.success) {
               var nextCount = $(".note_" + profileIdForWritingNotes).size() + 1;
+              var noteClass = "note_" + profileIdForWritingNotes;
+              var noteId = "note_" + profileIdForWritingNotes + "_" + nextCount;
               $("#notesSection").append(
-                '<span class="note_' + profileIdForWritingNotes +
-                '" id="note_' + profileIdForWritingNotes + '_' + nextCount +
-                '">' + input + '</span>'
+                '<span class="' + noteClass +
+                  '" id="' + noteId +
+                  '">' +
+                  input +
+                  "</span>"
               );
-              var viewLink = $("a[rel='" + profileIdForWritingNotes + "'].viewNotes");
+              var viewLink = $(
+                "a[rel='" + profileIdForWritingNotes + "'].viewNotes"
+              );
               viewLink.removeClass("disabledLink");
               viewLink.removeClass("hide");
               viewLink.next().removeClass("hide");
@@ -163,11 +179,13 @@ $(document).ready(function () {
             }
           },
 
-          complete: function () {
-            screenLock = false;
-          }
+          complete: function onComplete() {
+            saveNoteEnabled = true;
+          },
         });
-  });
+      };
+    })()
+  );
 
   var enrollmentIdForNotes = 0;
   var currentShowingNoteCount = 1;
@@ -345,18 +363,6 @@ $(document).ready(function () {
     }
   }
 
-  $(".pageSizeSelect").change(function () {
-    $('#searchFormPageNumber').val("1");
-    $('#searchFormPageSize').val($(this).val());
-    $('#searchForm').submit();
-  });
-
-  $(".pagination-page-number-clickable").click(function () {
-    $('#searchFormPageNumber').val($(this).attr("rel"));
-    $('#searchForm').submit();
-    return false;
-  });
-
   $(".sortable_column").click(function () {
     var newSortColumn = $(this).attr("rel");
     var oldSortColumn = $("#searchFormSortColumn").val();
@@ -446,6 +452,17 @@ $(document).ready(function () {
             $('#searchForm').submit();
           }
         });
+  });
+
+  // For provider type editing/adding
+  $('.providerTypeLicenseRow .remove').on('click', function () {
+    $(this).closest('.providerTypeLicenseRow').remove();
+  });
+
+  $('#addProviderTypeLicense').on('click', function () {
+    var newLicenseRow = $('#licenseTemplate').clone(true, true);
+    newLicenseRow.removeAttr('id');
+    $('#providerTypeLicensesContainer').append(newLicenseRow);
   });
 
   // delete agreement documents part
@@ -1299,23 +1316,6 @@ function stripTable() {
 jQuery.validator.addMethod("exactlength", function (value, element, param) {
   return this.optional(element) || value.length == param;
 }, jQuery.format("Please enter exactly {0} characters."));
-
-var screenLock = false; // prevent double click on submit flows
-
-/**
- * Submits the form with the given id.
- * @param id the id of the form to be submitted
- */
-function submitFormById(id, url) {
-  if (url) {
-    $('#' + id).attr("action", url);
-  }
-
-  if (!screenLock) {
-    screenLock = true;
-    $('#' + id).submit();
-  }
-}
 
 function renewSelections(url) {
   var selected = [];

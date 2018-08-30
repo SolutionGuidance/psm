@@ -67,7 +67,6 @@ public class FacilityTypeFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
@@ -94,7 +93,7 @@ public class FacilityTypeFormBinder extends BaseFormBinder {
             credentials.setContractWithCounty(null);
         }
 
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     private void deleteAttachment(AttachedDocumentsType attachments2, String name) {

@@ -37,7 +37,9 @@ class AutomaticScreeningControllerTest extends Specification {
 
     def 'A non-LEIE screening throws'() {
         given:
-        service.findScreening(_) >> Optional.of(new AutomaticScreening() {})
+        service.findScreening(_) >> Optional.of(new AutomaticScreening() {
+            String getType() { return "" }
+        })
 
         when:
         controller.viewScreening(1)
@@ -68,7 +70,7 @@ class AutomaticScreeningControllerTest extends Specification {
         modelView.model["screening_result"] == "PASS"
         modelView.model["screening_date"] == TIMESTAMP
         modelView.model["search_term"] == NPI
-        modelView.model["exclusions"].size == 0
+        modelView.model["exclusions"].size() == 0
     }
 
     def 'A pending enrollment is marked as in review'() {

@@ -1,10 +1,12 @@
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
 <table
   id="${searchTableId}"
-  class="generalTable fixedWidthTable"
+  class="generalTable linedTable"
 >
   <colgroup>
-    <col width="27"/>
+    <c:if test="${active_enrollment_tab=='approved'}">
+      <col width="27"/>
+    </c:if>
     <col width="90"/>
     <col width="85"/>
     <col width="100"/>
@@ -15,28 +17,23 @@
     </c:if>
     <col width="80"/>
     <col width="85"/>
-    <c:choose>
-      <c:when test="${addStatusColumn=='yes'}">
-        <col width="214"/>
-      </c:when>
-      <c:otherwise>
-        <col width="284"/>
-      </c:otherwise>
-    </c:choose>
+    <col width="*"/>
   </colgroup>
 
   <thead>
     <tr>
-      <th class="alignCenter">
-        <input
-          type="checkbox"
-          title="Select All Enrollments"
-          id="enrollmentSelectAll"
-          name="enrollmentRowCheckBox"
-          class="selectAll"
-          />
-        <span class="sep"></span>
-      </th>
+      <c:if test="${active_enrollment_tab=='approved'}">
+        <th class="alignCenter">
+          <input
+            type="checkbox"
+            title="Select All Enrollments"
+            id="enrollmentSelectAll"
+            name="enrollmentRowCheckBox"
+            class="selectAll"
+            />
+          <span class="sep"></span>
+        </th>
+      </c:if>
       <c:set var="sortFieldOfEntity" value="2"/>
       <c:set var="sortColumnTitle" value="NPI/UMPI"/>
       <%@ include file="/WEB-INF/pages/admin/includes/sort_column_header.jsp"%>
@@ -80,16 +77,22 @@
   </thead>
 
   <tbody>
-    <c:forEach var="item" items="${searchResult.items}">
-      <tr>
-        <td class="alignCenter tdCheckbox">
-          <input
-            type="checkbox"
-            title="Enrollment ${item.ticketId}"
-            class="enrollmentRowCheckBox"
-            value="${item.ticketId}"
-            />
-        </td>
+    <c:forEach
+      var="item"
+      items="${searchResult.items}"
+      varStatus="status"
+    >
+      <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
+        <c:if test="${active_enrollment_tab=='approved'}">
+          <td class="alignCenter tdCheckbox">
+            <input
+              type="checkbox"
+              title="Enrollment ${item.ticketId}"
+              class="enrollmentRowCheckBox"
+              value="${item.ticketId}"
+              />
+          </td>
+        </c:if>
         <td>
           ${item.npi}
         </td>
@@ -121,7 +124,7 @@
         <c:choose>
           <c:when test="${fn:toLowerCase(item.riskLevel)=='limited'}">
             <td class="green">
-              Low
+              Limited
             </td>
           </c:when>
           <c:when test="${fn:toLowerCase(item.riskLevel)=='high'}">
@@ -132,51 +135,67 @@
           <c:otherwise><td>${item.riskLevel}</td></c:otherwise>
         </c:choose>
         <td><fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy"/></td>
-        <td class="alignCenter nopad">
+        <td class="alignCenter">
           <c:choose>
             <c:when test="${fn:toLowerCase(item.status)=='pending'}">
-              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a
+                class="actionLink viewLink"
+                href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
+              >
                 View
               </a>
-              <span class="sep">|</span>
-              <a href="${ctx}/provider/enrollment/reopen?id=${item.ticketId}">
+              <a
+                class="actionLink"
+                href="${ctx}/provider/enrollment/reopen?id=${item.ticketId}"
+              >
                 Edit
               </a>
-              <span class="sep">|</span>
               <c:forEach var="task" items="${tasks}">
                 <c:if test="${task.processInstanceId == item.processInstanceId}">
-                    <a class="reviewLink" href="${ctx}/agent/enrollment/screeningReview?id=${item.ticketId}">
+                    <a
+                      class="actionLink reviewLink"
+                      href="${ctx}/agent/enrollment/screeningReview?id=${item.ticketId}"
+                    >
                       Review
                     </a>
-                    <span class="sep">|</span>
                 </c:if>
               </c:forEach>
             </c:when>
             <c:when test="${fn:toLowerCase(item.status)=='draft'}">
-              <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a
+                class="actionLink"
+                href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
+              >
                 Edit
               </a>
-              <span class="sep">|</span>
             </c:when>
             <c:when test="${fn:toLowerCase(item.status)=='approved'}">
-              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a
+                class="actionLink viewLink"
+                href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
+              >
                 View
               </a>
-              <span class="sep">|</span>
-              <a href="${ctx}/provider/profile/edit?profileId=${item.profileReferenceId}">
+              <a
+                class="actionLink"
+                href="${ctx}/provider/profile/edit?profileId=${item.profileReferenceId}"
+              >
                 Edit
               </a>
-              <span class="sep">|</span>
-              <a href="${ctx}/provider/profile/renew?profileId=${item.profileReferenceId}">
+              <a
+                class="actionLink
+                href="${ctx}/provider/profile/renew?profileId=${item.profileReferenceId}"
+              >
                 Renew
               </a>
-              <span class="sep">|</span>
             </c:when>
             <c:otherwise>
-              <a class="viewLink" href="${ctx}/provider/enrollment/view?id=${item.ticketId}">
+              <a
+                class="actionLink viewLink"
+                href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
+              >
                 View
               </a>
-              <span class="sep">|</span>
             </c:otherwise>
           </c:choose>
 
@@ -184,26 +203,30 @@
             <a
               href="javascript:;"
               rel="${item.ticketId}"
-              class="writeNotes"
+              class="actionLink writeNotes"
             >
               Add Note
             </a>
-            <span class="sep">|</span>
             <a
               href="javascript:;"
               rel="${item.ticketId}"
-              class='viewNotes<c:if test="${!(fn:length(item.notes)>0)}"> hide disabledLink</c:if>'
+              class='actionLink viewNotes <c:if test="${!(fn:length(item.notes)>0)}">hide disabledLink</c:if>'
             >
               View Notes
             </a>
-            <span class="sep <c:if test="${!(fn:length(item.notes)>0)}">hide</c:if>">|</span>
           </c:if>
 
-          <a rel="${item.ticketId}" class="printEnrollment" href="javascript:;">
+          <a
+            rel="${item.ticketId}"
+            class="actionLink printEnrollment"
+            href="javascript:;"
+          >
             Print
           </a>
-          <span class="sep">|</span>
-          <a href="${ctx}/provider/enrollment/exportTicket?id=${item.ticketId}">
+          <a
+            class="actionLink"
+            href="${ctx}/provider/enrollment/exportTicket?id=${item.ticketId}"
+          >
             Export
           </a>
         </td>

@@ -470,10 +470,9 @@ public class EnrollmentSteps {
     }
 
     @Step
-    void signAndDateProviderStatement() {
+    void signProviderStatement() {
         providerStatementPage.enterProviderName(LAST_NAME);
         providerStatementPage.enterProviderTitle("Title");
-        providerStatementPage.enterValidDate();
     }
 
     @Step
@@ -489,5 +488,10 @@ public class EnrollmentSteps {
     @Step
     void closeSubmitModal() {
         enrollmentDetailsPage.closeSubmitModal();
+    }
+
+    @Step
+    void enterEmptyEmailAddress() {
+        personalInfoPage.enterEmail("");
     }
 }

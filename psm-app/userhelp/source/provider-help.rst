@@ -23,7 +23,7 @@ If an `enrollment <enrollment.html>`__ is a draft (you haven't submitted
 it yet), then yes, you can click on the draft enrollment and edit your
 name. If you have already submitted the enrollment, then it is not
 possible to edit your name as associated with that enrollment; you'll
-need to contact the state Medicaid office directly.
+need to contact the state/territory Medicaid office directly.
 
 Currently it is not possible for you to change your name for your
 account; you will need to contact a system administrator at your state
@@ -39,7 +39,7 @@ Once an enrollment has been approved, you cannot change the contact
 information in it via this system (although `a future version of the PSM
 will allow you to do
 this <https://github.com/SolutionGuidance/psm/issues/416>`__); please
-contact the state Medicaid office directly.
+contact the state/territory Medicaid office directly.
 
 How do I update my license/certification information for an approved enrollment (e.g., if I have renewed my license)?
 ---------------------------------------------------------------------------------------------------------------------
@@ -48,4 +48,4 @@ Once an enrollment has been approved, you cannot change the license and
 certification information in it via this system (although `a future
 version of the PSM will allow you to do
 this <https://github.com/SolutionGuidance/psm/issues/416>`__); please
-contact the state Medicaid office directly.
+contact the state/territory Medicaid office directly.

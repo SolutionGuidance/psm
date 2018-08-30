@@ -31,7 +31,7 @@
 
           <c:set var="hasFilterPanel" value="true" />
 
-          <%@ include file="/WEB-INF/pages/admin/includes/search-result-section.jsp" %>
+          <%@ include file="/WEB-INF/pages/admin/includes/search_results_section_system_admin.jsp" %>
 
           <!-- /.tabSection -->
         </div>

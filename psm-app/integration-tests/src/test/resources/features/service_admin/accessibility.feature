@@ -46,13 +46,6 @@ Feature: General Accessibility Checks for Admins
     Then I should have no accessibility issues
     And I should see enrollments
 
-  # fails: COS input field needs label or title
-  @ignore
-  Scenario: Admin COS Page
-    Given I am logged in as an admin
-    And I am on the COS page
-    Then I should have no accessibility issues
-
   # fails: print page is opened in a new window
   @ignore
   Scenario: Admin Print Enrollment Page
@@ -75,4 +68,12 @@ Feature: General Accessibility Checks for Admins
   Scenario: Admin Screenings Page
     Given I am logged in as an admin
     And I am on the Screenings page
+    Then I should have no accessibility issues
+
+  # This depends implicitly on the individual enrollment submission tests
+  Scenario: Admin Review Enrollment DMF Page
+    Given I am logged in as an admin
+    And I am on the Pending page
+    And I open the Review Enrollment page for NPI '0000000006'
+    And I open the DMF Details page
     Then I should have no accessibility issues

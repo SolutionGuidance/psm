@@ -146,6 +146,10 @@ public class NotificationServiceBean extends BaseService implements Notification
         String contact_name = enrollment.getContactInformation().getName();
         vars.put("submitter", contact_name);
         String emailAddress = enrollment.getContactInformation().getEmailAddress();
-        sendNotification(emailAddress, emailType, vars);
+        if (emailAddress != null && emailAddress.trim().length() > 0) {
+            sendNotification(emailAddress, emailType, vars);
+        } else {
+            getLogger().warning("Skipping notification as email address was missing");
+        }
     }
 }

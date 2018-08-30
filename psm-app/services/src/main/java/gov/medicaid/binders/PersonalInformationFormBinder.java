@@ -142,6 +142,7 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
         ContactInformationType enrollmentContact = XMLUtility.nsGetContactInformation(enrollment);
         if ("Y".equals(enrollment.getContactSameAsApplicant())) {
             attr(mv, "useProviderAsContact", "Y");
+            attr(mv, "showEmailRequired", Boolean.TRUE);
         } else {
             attr(mv, "contactName", enrollmentContact.getName());
             attr(mv, "contactEmail", enrollmentContact.getEmailAddress());
@@ -150,6 +151,7 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
             attr(mv, "contactPhone2", phone[1]);
             attr(mv, "contactPhone3", phone[2]);
             attr(mv, "contactPhone4", phone[3]);
+            attr(mv, "showEmailRequired", Boolean.FALSE);
         }
     }
 

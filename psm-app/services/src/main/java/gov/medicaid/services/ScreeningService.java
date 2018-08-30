@@ -66,4 +66,5 @@ public interface ScreeningService {
      */
     List<AutomaticScreening> getAllScreenings(Map<String, String> params) throws PortalServiceException;
 
+    void saveScreening(AutomaticScreening screening);
 }

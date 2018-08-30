@@ -53,11 +53,6 @@ public abstract class BaseController {
     }
 
     /**
-     * Ensure the object is properly initialized
-     */
-    protected void init() {}
-
-    /**
      * Sets up custom editors.
      *
      * @param binder the current binder registry

@@ -12,9 +12,6 @@ a {
 a:hover{
   text-decoration:none;
 }
-.hide{
-  display:none;
-}
 input,select,textarea{
   font-family:Arial, Helvetica, sans-serif;
 }
@@ -333,9 +330,6 @@ input,select,textarea{
   margin-top:8px;
   margin-right:8px;
 }
-.tabContent .pagination .pagiBox a.page, .tabContent .pagination .pagiBox a.prev, .tabContent .pagination .pagiBox a.next{
-  float:left;
-}
 .tabContent .pagination .filterBtn {
   width:68px;
 }
@@ -367,9 +361,6 @@ input,select,textarea{
   margin-right: 8px;
   font-weight:bold;
   margin-top:0px;
-}
-.floatR{
-  float:right;
 }
 
 .filterPanel{
@@ -507,7 +498,7 @@ input.date{
 }
 .generalTable tr td {
   padding: 5px 0px 5px 10px;
-  vertical-align:middle;
+  vertical-align: middle;
 }
 .generalTable tr.even td{
   background:#ecf2f3;
@@ -521,6 +512,19 @@ input.date{
 .generalTable .sep {
   color: #6e6e6e;
   margin:0 5px;
+}
+.linedTable tr td {
+  line-height: 1.1em;
+  border-top: 1px solid #ddd;
+}
+.actionLink {
+  display: inline-block;
+  padding: 0px 4px;
+  margin: 2px 1px;
+  text-decoration: none;
+}
+.actionLink:hover {
+  text-decoration: underline;
 }
 .red{
   color: #d00;
@@ -961,12 +965,8 @@ input.date{
   width:10%;
 }
 
-.firstRegistrant .wholeCol select{
-  width:265px;
-  float:left;
-  margin:4px 7px 0;
-  height:20px;
-  line-height:20px;
+.firstRegistrant .wholeCol select {
+  margin: 0px 7px;
 }
 
 /* buttonBox */
@@ -1244,8 +1244,6 @@ input.date{
   width:212px;
   float:left;
   margin:4px 7px 0;
-  height:20px;
-  line-height:20px;
 }
 
 .newEnrollmentPanel .checkbox{
@@ -1277,7 +1275,7 @@ input.date{
   width:160px;
 }
 
-.tableData table .remove{
+.remove{
   width:16px;
   height:16px;
   display:block;
@@ -1288,7 +1286,7 @@ input.date{
   background-position:0 0;
 }
 
-.tableData table .remove:hover{
+.remove:hover{
   background-position:0 -16px;
 }
 
@@ -1483,7 +1481,7 @@ input.date{
 .practicePanel .inlineBox select,
 .practicePanel .reimbursementAddressRow select{
   width:120px;
-  margin:6px 27px 0px 7px;
+  margin: 0px 27px 0px 7px;
 }
 
 .practicePanel .addPracticeLocations input.normalInput{
@@ -1526,9 +1524,7 @@ input.date{
 .practicePanel select{
   width:212px;
   float:left;
-  margin:4px 7px 0;
-  height:20px;
-  line-height:20px;
+  margin: 0px 7px;
 }
 
 .practicePanel .addPracticeLocations select{
@@ -2025,33 +2021,6 @@ input.date{
   margin:0 4px 0 0;
 }
 
-/* .bottomSection */
-.providerPanel .bottomSection{
-  min-height:10px;
-  margin:0 10px;
-  padding:10px 0 4px 0;
-  border-top:#d2d2d2 solid 1px;
-}
-
-.providerPanel .bottomSection .providerPic{
-  width:auto;
-  height:76px;
-  float:left;
-  display:inline;
-  margin:0 7px;
-}
-
-.providerPanel .bottomSection input.date{
-  width:95px;
-  height:20px;
-  padding-left:5px;
-  line-height:20px;
-  float:left;
-  margin:4px 7px 0;
-  border:1px solid #7ea5c8;
-  background:url(../i/input-bg.png) repeat-x left top;
-}
-
 /* radioPanel */
 .radioPanel{
   width:100%;
@@ -2219,7 +2188,11 @@ input.date{
   width:66%;
   float:left;
   display:inline;
-  padding:0 0 8px 0;
+  padding: 0px;
+}
+
+.dashboardPanel .wideTableData{
+  width:100%;
 }
 
 /* table title */
@@ -3574,6 +3547,34 @@ a.okBtn {
 ,#deleteAgreementModal .buttons .deleteOKBtn {
   margin:0 10px 0 170px;
 }
+
+.providerTypeLicenseRow {
+  width:100%;
+  clear:both;
+}
+
+.providerTypeLicenseRow label {
+  width:100%;
+}
+
+.providerTypeLicenseRow .providerTypeLicenseRowLabel {
+  float:left;
+}
+
+.providerTypeLicenseRow .providerTypeLicenses {
+  float:left;
+  width:400px;
+}
+
+.providerTypeLicenseRow .remove {
+  float:left;
+  margin-top:10px;
+}
+
+#licenseTemplate {
+  display:none;
+}
+
 #editModal .modalBody .buttons .saveBtn {
   width:auto;
 }
@@ -3881,14 +3882,11 @@ input.text{
   padding: 3px;
   color: #d00;
 }
-.disabledBtn{
-  color: #707070;
+.disabledBtn,
+.disabledBtn:hover {
+  color: #696969;
   cursor: default;
   text-decoration: none;
-}
-.pagination-page-number-disabled{
-  color: #707070;
-  cursor: default;
 }
 .generalTable th span.sort-down{
   display:inline-block;
@@ -4028,14 +4026,6 @@ input.passwordNormalInput{
 /* delete UserAccount Modal buttonArea padding ie7 bug */
 #new-modal #deleteUserAccountModal .inner .buttonArea{
   padding-top:35px;
-}
-
-/* pagiBox pagi bug */
-*+html .tabContent .pagination .right .pagiBox .pagi{
-  width:143px;
-}/* ie7 */
-.tabContent .pagination .right .pagiBox .pagi{
-  width:auto;
 }
 
 .enabledUser .reinstateLink {
@@ -4651,10 +4641,6 @@ input[type=checkbox]{
   line-height: 18px;
   display: block;
 }
-#printModal span.providerPic{
-  padding: 0 10px;
-  display: block;
-}
 
 /* END OF ORGANIZATION PROVIDER TYPE STYLES ------------------------------------- */
 
@@ -4829,11 +4815,6 @@ div.row > .h-adr > .p-postal-code {
   width: auto;
 }
 
-td.nopad {
-  padding: 0px !important;
-}
-
-
 .row.addressline1 {
   padding-bottom : 0px;
 }
@@ -4915,4 +4896,8 @@ select.stateSelect, select.stateSelectFor {
 .radioLabel {
   width: auto !important;
   float: none !important;
+}
+
+.hide {
+  display:none;
 }

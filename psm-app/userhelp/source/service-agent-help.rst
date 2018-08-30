@@ -7,19 +7,19 @@ Module.
 Who is allowed to be a service agent?
 -------------------------------------
 
-The state Medicaid office decides on criteria for service agents.
+The state/territory Medicaid office decides on criteria for service agents.
 
 Is it acceptable for me to fill out and sign the Provider Statement on the provider's behalf?
 ---------------------------------------------------------------------------------------------
 
-Please confer with the state Medicaid office.
+Please confer with the state/territory Medicaid office.
 
-When the state accepts or rejects an enrollment I've submitted, how do I find out? Is it my responsibility to notify the provider?
-----------------------------------------------------------------------------------------------------------------------------------
+When the state/territory accepts or rejects an enrollment I've submitted, how do I find out? Is it my responsibility to notify the provider?
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 Right now, this site does not notify you via email or paper mail when
-the state accepts or rejects an enrollment you have submitted. `This
-will change in a future version of the Provider Screening
+the state/territory accepts or rejects an enrollment you have submitted.
+`This will change in a future version of the Provider Screening
 Module. <https://github.com/SolutionGuidance/psm/issues/341>`__
 
 When you log into the PSM, you'll see any enrollments you've submitted
@@ -59,8 +59,8 @@ How do I update the license/certification information for an approved enrollment
 -----------------------------------------------------------------------------------------------------------------------------------
 
 Currently, the PSM does not allow you to update information for an
-approved enrollment. You'll need to contact the state Medicaid office
-directly. `A future version of the PSM will let you do
+approved enrollment. You'll need to contact the state/territory Medicaid
+office directly. `A future version of the PSM will let you do
 this. <https://github.com/SolutionGuidance/psm/issues/416>`__
 
 How do I terminate an enrollment (e.g., if a provider retires or dies)?
@@ -68,5 +68,5 @@ How do I terminate an enrollment (e.g., if a provider retires or dies)?
 
 Currently the PSM does not give you a way to terminate an approved
 enrollment, but `a future version of the PSM
-will <https://github.com/SolutionGuidance/psm/issues/407>`__. Please
-contact the state Medicaid office directly to terminate an enrollment.
+will <https://github.com/SolutionGuidance/psm/issues/407>`__. Please contact
+the state/territory Medicaid office directly to terminate an enrollment.

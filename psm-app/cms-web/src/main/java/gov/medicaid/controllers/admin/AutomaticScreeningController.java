@@ -2,6 +2,7 @@ package gov.medicaid.controllers.admin;
 
 import gov.medicaid.controllers.dto.ScreeningDTO;
 import gov.medicaid.entities.AutomaticScreening;
+import gov.medicaid.entities.DmfAutomaticScreening;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.LeieAutomaticScreening;
 import gov.medicaid.entities.ProviderProfile;
@@ -50,6 +51,8 @@ public class AutomaticScreeningController extends BaseServiceAdminController {
 
         if (screening instanceof LeieAutomaticScreening) {
             return showLeieScreening((LeieAutomaticScreening) screening);
+        } else if (screening instanceof DmfAutomaticScreening) {
+            return showDmfScreening((DmfAutomaticScreening) screening);
         } else {
             throw new PortalServiceRuntimeException(
                     "Unknown automatic screening type " +
@@ -76,6 +79,26 @@ public class AutomaticScreeningController extends BaseServiceAdminController {
         mv.addObject("screening_date", screening.getCreatedAt());
         mv.addObject("search_term", screening.getNpiSearchTerm());
         mv.addObject("exclusions", screening.getMatches());
+        return mv;
+    }
+
+    private ModelAndView showDmfScreening(DmfAutomaticScreening screening) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("admin/automatic_screening_dmf");
+        mv.addObject(
+                "enrollment_id",
+                screening.getEnrollment().getTicketId()
+        );
+        mv.addObject(
+                "in_review",
+                ViewStatics.PENDING_STATUS.equals(
+                        screening.getEnrollment()
+                                .getStatus()
+                                .getDescription())
+        );
+        mv.addObject("screening_result", screening.getResult().toString());
+        mv.addObject("screening_date", screening.getCreatedAt());
+        mv.addObject("results", screening.getMatches());
         return mv;
     }
 

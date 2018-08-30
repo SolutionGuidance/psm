@@ -203,7 +203,7 @@ public class FacilityLicenseFormBinder extends BaseFormBinder {
 
         attr(mv, "categorySize", services.size());
 
-        ProviderType pt = getLookupService().getProviderTypeWithLicenseTypes(provider);
+        ProviderType pt = getProviderTypeService().getByDescription(provider.getProviderType());
 
         if (!readOnly) {
             attr(mv, "licenseTypes", pt.getLicenseTypes());

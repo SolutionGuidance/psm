@@ -387,7 +387,6 @@
       <element name="Name" type="string"/>
       <element name="Title" type="string"/>
       <element name="Signature" type="base64Binary"/>
-      <element name="SignDate" type="date"/>
     </sequence>
   </complexType>
   <complexType name="ValidationResultType">
@@ -738,6 +737,7 @@
   <complexType name="VerificationStatusType">
     <sequence>
       <element name="NonExclusion" type="string"/>
+      <element name="NotInDmf" type="string"/>
     </sequence>
   </complexType>
   <complexType name="SpecialtiesType">

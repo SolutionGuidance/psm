@@ -72,6 +72,33 @@
                             />
                         </td>
                       </tr>
+                      <tr>
+                        <td>DEATH MASTER FILE CHECK (checked means not in death master file)</td>
+                        <td></td>
+                        <td>
+                          <c:choose>
+                            <c:when test="${not empty dmfScreeningId}">
+                              <a class="autoScreeningResultLink"
+                                  href="<c:url value="/agent/automatic-screening/${dmfScreeningId}"/>"
+                                  target="_blank">
+                                ${dmfScreeningResult}
+                              </a>
+                            </c:when>
+                            <c:otherwise>
+                              ${dmfScreeningResult}
+                            </c:otherwise>
+                          </c:choose>
+                        </td>
+                        <td>
+                          <input
+                            type="checkbox"
+                            title="Not In DMF Verified"
+                            name="notInDmfVerified"
+                            value="Y"
+                            ${dmfScreeningPassed ? 'checked' : ''}
+                            />
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
 

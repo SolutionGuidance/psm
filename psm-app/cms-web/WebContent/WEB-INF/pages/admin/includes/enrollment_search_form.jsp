@@ -6,7 +6,9 @@
   - Description: it is used to build the enrollment search form.
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
-<form:form id="searchForm"
+<form:form
+  id="searchForm"
+  cssClass="paginationForm"
   action="${enrollmentSearchFormAction}"
   modelAttribute="searchCriteria"
   method="get">

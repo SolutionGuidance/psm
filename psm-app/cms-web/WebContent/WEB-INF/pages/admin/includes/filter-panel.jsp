@@ -6,7 +6,13 @@
 <c:if test="${!criteria.showFilterPanel}">
     <c:set var="cssClz" value="filterPanel hide" />
 </c:if>
-<form:form id="searchUserAccountsForm" cssClass="${cssClz}" action="${ctx}/system/user/search?role=${role}" modelAttribute="criteria" method="post">
+<form:form
+  id="searchUserAccountsForm"
+  cssClass="${cssClz} paginationForm"
+  action="${ctx}/system/user/search?role=${role}"
+  modelAttribute="criteria"
+  method="post"
+>
     <div class="floatW">
         <div class="leftCol">
             <div class="row">

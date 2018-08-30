@@ -21,7 +21,7 @@
             <h1>View Enrollment Details</h1>
             <a class="greyBtn iconPdf" href="<c:url value="/provider/enrollment/export" />">Export to PDF</a>
           </div>
-          <div id="printModal" class="tabSection">
+          <div class="tabSection">
 
             <div class="detailPanel" style="width: 940px;">
               <div class="section">
@@ -63,7 +63,6 @@
               <div class="br"></div>
             </div>
 
-            <%@include file="/WEB-INF/pages/provider/enrollment/print_modal.jsp" %>
           </div>
           <!-- /.tabSection -->
         </div>

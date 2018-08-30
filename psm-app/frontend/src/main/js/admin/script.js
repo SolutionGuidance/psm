@@ -521,11 +521,6 @@ $(document).ready(function () {
 
   /*new js*/
 
-  $('.printModalBtn').click(function () {
-      addressCloseModal();
-      addressLoadModal('#printModal');
-    });
-
   setUserHelpClickHandler(
     'a.agreementsAddendumsHelpLink',
     '/help/service-admin-help.html',
@@ -570,10 +565,6 @@ $(document).ready(function () {
 
   $('.tabHead,.tabFoot').each(function () {
     $(this).css('width', ($('.contentWidth').width() - 2) + 'px');
-  });
-
-  $('#new-modal #printModal .modal-content .tabHead,#new-modal #printModal .modal-content .tabFoot').each(function () {
-    $(this).css('width', ($('#new-modal #printModal .modal-content .tabContent').width() - 2) + 'px');
   });
 
   $('.detailPanel,.filterPanel .floatW').each(function () {

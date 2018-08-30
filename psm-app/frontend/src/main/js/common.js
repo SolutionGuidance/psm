@@ -252,8 +252,7 @@ $(document).ready(function () {
     .css("position", "relative")
     .css('top', "-1px");
 
-  $(".closeModal, .modalCloseButton, #new-modal #printModal .modal-title a.greyBtn")
-    .click(addressCloseModal);
+  $(".closeModal, .modalCloseButton").click(addressCloseModal);
 
   $(".submitEnrollmentModalBtn").click(function () {
     addressCloseModal();

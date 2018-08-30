@@ -46,13 +46,6 @@ Feature: General Accessibility Checks for Admins
     Then I should have no accessibility issues
     And I should see enrollments
 
-  # fails: print page is opened in a new window
-  @ignore
-  Scenario: Admin Print Enrollment Page
-    Given I am logged in as an admin
-    And I am on the Print Enrollment page
-    Then I should have no accessibility issues
-
   Scenario: Admin Review Enrollment Page
     Given I am logged in as an admin
     And I am on the Review Enrollment page

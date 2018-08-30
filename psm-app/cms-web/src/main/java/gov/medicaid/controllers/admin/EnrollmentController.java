@@ -498,16 +498,9 @@ public class EnrollmentController extends BaseController {
      */
     @RequestMapping("/agent/enrollment/details")
     public ModelAndView getDetails(
-            @RequestParam("id") long ticketId,
-            @RequestParam(value = "print", required = false) String isPrint
+            @RequestParam("id") long ticketId
     ) throws PortalServiceException {
-        if ("yes".equals(isPrint)) {
-            ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/reviewPrint?id=" + ticketId);
-            return mv;
-        } else {
-            ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/view?id=" + ticketId);
-            return mv;
-        }
+        return new ModelAndView("redirect:/provider/enrollment/view?id=" + ticketId);
     }
 
     /**

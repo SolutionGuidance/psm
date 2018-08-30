@@ -618,25 +618,6 @@ public class EnrollmentPageFlowController extends BaseController {
     }
 
     /**
-     * Shows the print preview for the given ticket.
-     *
-     * @param ticketId the ticket to be exported
-     * @return the print preview
-     * @throws PortalServiceException for any errors encountered
-     * @endpoint "/provider/enrollment/reviewPrint"
-     * @verb GET
-     */
-    @RequestMapping(value = "/reviewPrint", method = RequestMethod.GET)
-    public ModelAndView reviewPrint(
-            @RequestParam("id") long ticketId
-    ) throws PortalServiceException {
-        EnrollmentType ticket = getTicket(ticketId);
-        ModelAndView mv = showPage(ViewStatics.SUMMARY_INFORMATION, ticket);
-        mv.setViewName("admin/service_agent_view_enrollment_details");
-        return mv;
-    }
-
-    /**
      * Exports the ticket with the given id.
      *
      * @param ticketId the ticket to be exported

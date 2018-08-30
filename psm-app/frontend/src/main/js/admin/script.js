@@ -30,11 +30,6 @@ $(document).ready(function () {
     window.print();
   }
 
-  $(".printEnrollment").click(function () {
-    var url = ctx + '/agent/enrollment/details?id=' + $(this).attr('rel') + '&print=yes';
-    window.open(url, '', 'height=800, width=800, top=50, left=50, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
-  });
-
   $("#exportEnrollmentsToPDF").click(function () {
     setupSearchFormCriteria();
     $("#exportForm").html($('#searchForm').html());

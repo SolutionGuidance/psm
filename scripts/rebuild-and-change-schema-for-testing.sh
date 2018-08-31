@@ -9,7 +9,9 @@
 # in your home directory:
 # https://www.postgresql.org/docs/current/static/libpq-pgpass.html
 
-RESPONSE=$(../../wildfly-10.1.0.Final/bin/jboss-cli.sh --connect --command=":read-attribute(name=server-state)")
+WILDFLY_CLI=../../wildfly-11.0.0.Final/bin/jboss-cli.sh
+
+RESPONSE=$(${WILDFLY_CLI} --connect --command=":read-attribute(name=server-state)")
 # Check whether WildFly is running.
 # TODO: use something like
 # http://www.mastertheboss.com/jboss-server/jboss-monitoring/monitor-wildfly-with-your-bash-skills
@@ -17,7 +19,7 @@ RESPONSE=$(../../wildfly-10.1.0.Final/bin/jboss-cli.sh --connect --command=":rea
 if echo $RESPONSE | grep "Failed"
 then
     echo "Please start WildFly in another terminal first:"
-    echo "wildfly-10.1.0.Final/bin/standalone.sh -c standalone-full.xml"
+    echo "wildfly-11.0.0.Final/bin/standalone.sh -c standalone-full.xml"
 else
     set -e
     cd ../psm-app
@@ -30,9 +32,9 @@ else
     # Once we have a new dev enrollment schema:
     # psql -h localhost -U psm psm < psm-app/db/dev_enrollment.sql
     echo "Deploying new EAR"
-    ../wildfly-10.1.0.Final/bin/jboss-cli.sh --connect \
+    ${WILDFLY_CLI} --connect \
        --command="deploy --force
        psm-app/cms-portal-services/build/libs/cms-portal-services.ear"
     echo "Ready to test at http://localhost:8080/cms/ ."
-    echo "To stop WildFly server:  wildfly-10.1.0.Final/bin/jboss-cli.sh --connect --command=:shutdown "
+    echo "To stop WildFly server:  ${WILDFLY_CLI} --connect --command=:shutdown "
 fi

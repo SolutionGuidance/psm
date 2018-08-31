@@ -25,12 +25,7 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.util.Util;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import org.apache.commons.codec.binary.Base64;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Local;
@@ -49,7 +44,12 @@ import javax.naming.directory.ModificationItem;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
-import org.apache.commons.codec.binary.Base64;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * This is an EJB implementation for the {@link IdentityProviderDAO} which connects directly to configurable LDAP

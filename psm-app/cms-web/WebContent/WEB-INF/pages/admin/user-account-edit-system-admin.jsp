@@ -20,7 +20,6 @@
       <c:set value="Create New User Account (System Admin)" var="title"></c:set>
     </c:otherwise>
   </c:choose>
-  <c:set value="true" var="systemPage"></c:set>
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -114,6 +113,16 @@
                       <label for="email">Email</label>
                       <span class="floatL"><b>:</b></span>
                       <form:input id="email" cssClass="normalInput" path="email" />
+                    </div>
+                    <div class="row">
+                      <label for="apiRead">API Read Access</label>
+                      <span class="floatL"><b>:</b></span>
+                      <form:checkbox id="apiRead" path="apiRead" />
+                    </div>
+                    <div class="row">
+                      <label for="apiWrite">API Write Access</label>
+                      <span class="floatL"><b>:</b></span>
+                      <form:checkbox id="apiWrite" path="apiWrite" />
                     </div>
                     <div class="row">
                       <label for="userRole">User Role</label>

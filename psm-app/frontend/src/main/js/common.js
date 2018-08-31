@@ -168,6 +168,61 @@ function setUserHelpClickHandler(
     });
 };
 
+function postJson(settings) {
+  var token = $("meta[name='_csrf']").attr("content");
+  var header = $("meta[name='_csrf_header']").attr("content");
+  $.extend(settings, {
+    type: "post",
+    dataType: "json",
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader(header, token);
+    },
+  })
+  $.ajax(settings);
+}
+
+/**
+* Changes the page size to the given value
+* @param size the new page size
+*/
+function changePageSize(size) {
+  var form = $('form.paginationForm').first();
+  form.find('input[name=pageSize]').val(size);
+  form.find('input[name=pageNumber]').val(1);
+  form.submit();
+}
+
+/**
+* Changes the page number to the given value
+* @param page the new page number
+*/
+function changePageNumber(page) {
+  var form = $('form.paginationForm').first();
+  form.find('input[name=pageNumber]').val(page);
+  form.submit();
+}
+
+/**
+ * Submits the form with the given id.
+ * @param id the id of the form to be submitted
+ */
+var submitFormById = (function IIFE() {
+  // prevent double clicks from doing double submits
+  var submitEnabled = true;
+
+  return function submitFormById(id, url) {
+    if (submitEnabled) {
+      submitEnabled = false;
+      var form = $("#" + id);
+      if (url) {
+        form.attr("action", url);
+      }
+
+      form.submit();
+    }
+  };
+})();
+
 $(document).ready(function () {
 
   $('.searchPanel input[type="checkbox"]')

@@ -66,12 +66,12 @@
                 <thead>
                 <tr>
                     <th class="firstTheader">#<span class="sep"></span></th>
-                    <th class="alignCenter"><span class="multi">Type of License<br/>/Certification</span><span class="required">*</span><span class="sep"></span></th>
-                    <th class="alignCenter"><span class="multi">License/Certification Number</span><span class="required">*</span><span class="sep"></span></th>
-                    <th class="alignCenter"><span class="multi">Original Issue Date<br/> (MM/DD/YYYY)</span><span class="required">*</span><span class="sep"></span></th>
-                    <th class="alignCenter"><span class="multi">Renewal End Date<br/> (MM/DD/YYYY)</span><span class="required">*</span><span class="sep"></span></th>
-                    <th class="alignCenter">Issuing State<span class="required">*</span><span class="sep"></span></th>
-                    <th class="alignCenter"><span class="multi">Copy of License<br/>/Certification</span><span class="sep"></span></th>
+                    <th class="alignCenter"><span class="multi">Type of License<br/>/Certification</span> <span class="required-dark-background">*</span><span class="sep"></span></th>
+                    <th class="alignCenter"><span class="multi">License/Certification<br/> Number</span> <span class="required-dark-background">*</span><span class="sep"></span></th>
+                    <th class="alignCenter"><span class="multi">Original Issue Date<br/> (MM/DD/YYYY)</span> <span class="required-dark-background">*</span><span class="sep"></span></th>
+                    <th class="alignCenter"><span class="multi">Renewal End Date<br/> (MM/DD/YYYY)</span> <span class="required-dark-background">*</span><span class="sep"></span></th>
+                    <th class="alignCenter">Issuing State/Territory <span class="required-dark-background">*</span><span class="sep"></span></th>
+                    <th class="alignCenter"><span class="multi">Copy of License<br/>/Certification</span> <span class="sep"></span></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -110,7 +110,7 @@
                     <td>
                         <c:set var="formName" value="_21_issuingState_${status.index - 1}"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <select title="Issuing State (License ${status.index})" name="${formName}" class="licenseStates">
+                        <select title="Issuing State/Territory (License ${status.index})" name="${formName}" class="licenseStates">
                             <option value="">Please select</option>
                             <c:choose>
                                 <c:when test="${formValue == 'MEDICARE'}">
@@ -190,7 +190,7 @@
                 <td>
                     <c:set var="formName" value="_21_issuingState"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <select title="Issuing State" name="${formName}" class="licenseStates">
+                    <select title="Issuing State/Territory" name="${formName}" class="licenseStates">
                         <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_99_states']}">
                             <option value="${opt.code}"><c:out value="${opt.description}" /></option>

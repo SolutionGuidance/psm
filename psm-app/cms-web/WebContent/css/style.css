@@ -12,9 +12,6 @@ a {
 a:hover{
   text-decoration:none;
 }
-.hide{
-  display:none;
-}
 input,select,textarea{
   font-family:Arial, Helvetica, sans-serif;
 }
@@ -109,7 +106,7 @@ input,select,textarea{
 }
 .nav ul{
   float:left;
-  width:50%;
+  width:60%;
 }
 .nav ul li{
   display: inline;
@@ -138,7 +135,7 @@ input,select,textarea{
 }
 .mainNav .searchWidget{
   float:right;
-  width:49%;
+  width:39%;
 }
 .mainNav .searchWidget a{
   float:right;
@@ -333,9 +330,6 @@ input,select,textarea{
   margin-top:8px;
   margin-right:8px;
 }
-.tabContent .pagination .pagiBox a.page, .tabContent .pagination .pagiBox a.prev, .tabContent .pagination .pagiBox a.next{
-  float:left;
-}
 .tabContent .pagination .filterBtn {
   width:68px;
 }
@@ -367,9 +361,6 @@ input,select,textarea{
   margin-right: 8px;
   font-weight:bold;
   margin-top:0px;
-}
-.floatR{
-  float:right;
 }
 
 .filterPanel{
@@ -505,12 +496,15 @@ input.date{
 .generalTable th.tablesorter-headerSortUp .sort{
   background:url(../i/icon-sort-down.png) no-repeat left center;
 }
-.generalTable tr td{
-  padding:5px 10px;
-  vertical-align:middle;
+.generalTable tr td {
+  padding: 5px 0px 5px 10px;
+  vertical-align: middle;
 }
 .generalTable tr.even td{
   background:#ecf2f3;
+}
+.generalTable tr td.tdCheckbox {
+  padding-left: 0px;
 }
 .generalTable tr td.alignCenter{
   text-align:center;
@@ -518,6 +512,19 @@ input.date{
 .generalTable .sep {
   color: #6e6e6e;
   margin:0 5px;
+}
+.linedTable tr td {
+  line-height: 1.1em;
+  border-top: 1px solid #ddd;
+}
+.actionLink {
+  display: inline-block;
+  padding: 0px 4px;
+  margin: 2px 1px;
+  text-decoration: none;
+}
+.actionLink:hover {
+  text-decoration: underline;
 }
 .red{
   color: #d00;
@@ -958,12 +965,8 @@ input.date{
   width:10%;
 }
 
-.firstRegistrant .wholeCol select{
-  width:265px;
-  float:left;
-  margin:4px 7px 0;
-  height:20px;
-  line-height:20px;
+.firstRegistrant .wholeCol select {
+  margin: 0px 7px;
 }
 
 /* buttonBox */
@@ -1136,6 +1139,11 @@ input.date{
   color:#e60000;
 }
 
+.required-dark-background{
+  color:#f66;
+  font-size:120%;
+}
+
 /* newEnrollmentPanel */
 .newEnrollmentPanel{
   width:100%;
@@ -1236,8 +1244,6 @@ input.date{
   width:212px;
   float:left;
   margin:4px 7px 0;
-  height:20px;
-  line-height:20px;
 }
 
 .newEnrollmentPanel .checkbox{
@@ -1269,7 +1275,7 @@ input.date{
   width:160px;
 }
 
-.tableData table .remove{
+.remove{
   width:16px;
   height:16px;
   display:block;
@@ -1280,7 +1286,7 @@ input.date{
   background-position:0 0;
 }
 
-.tableData table .remove:hover{
+.remove:hover{
   background-position:0 -16px;
 }
 
@@ -1475,7 +1481,7 @@ input.date{
 .practicePanel .inlineBox select,
 .practicePanel .reimbursementAddressRow select{
   width:120px;
-  margin:6px 27px 0px 7px;
+  margin: 0px 27px 0px 7px;
 }
 
 .practicePanel .addPracticeLocations input.normalInput{
@@ -1518,9 +1524,7 @@ input.date{
 .practicePanel select{
   width:212px;
   float:left;
-  margin:4px 7px 0;
-  height:20px;
-  line-height:20px;
+  margin: 0px 7px;
 }
 
 .practicePanel .addPracticeLocations select{
@@ -2017,33 +2021,6 @@ input.date{
   margin:0 4px 0 0;
 }
 
-/* .bottomSection */
-.providerPanel .bottomSection{
-  min-height:10px;
-  margin:0 10px;
-  padding:10px 0 4px 0;
-  border-top:#d2d2d2 solid 1px;
-}
-
-.providerPanel .bottomSection .providerPic{
-  width:auto;
-  height:76px;
-  float:left;
-  display:inline;
-  margin:0 7px;
-}
-
-.providerPanel .bottomSection input.date{
-  width:95px;
-  height:20px;
-  padding-left:5px;
-  line-height:20px;
-  float:left;
-  margin:4px 7px 0;
-  border:1px solid #7ea5c8;
-  background:url(../i/input-bg.png) repeat-x left top;
-}
-
 /* radioPanel */
 .radioPanel{
   width:100%;
@@ -2211,7 +2188,11 @@ input.date{
   width:66%;
   float:left;
   display:inline;
-  padding:0 0 8px 0;
+  padding: 0px;
+}
+
+.dashboardPanel .wideTableData{
+  width:100%;
 }
 
 /* table title */
@@ -2370,16 +2351,11 @@ input.date{
   width:60%;
 }
 
-#enrollmentSection #tabNotes .generalTable tr td{
-  padding:5px;
-}
-
-#enrollmentSection #tabNotes .generalTable tr th.towline{
-  vertical-align:top;
+.generalTable tr th.twoline {
   line-height:13px;
 }
 
-#enrollmentSection #tabNotes .generalTable tr th.towline a{
+.generalTable tr th.twoline a {
   width:auto;
   display:inline-block;
   padding:2px 0;
@@ -2443,70 +2419,6 @@ input.date{
   color:#999999;
 }
 
-/* helpSection */
-.helpSection{
-  width:100%;
-  border:1px solid #d2d2d2;
-  position:relative;
-}
-
-/* header */
-.helpSection .sectionHeader{
-  height:36px;
-  border-bottom:#bdbdbd solid 1px;
-  background:url(../i/panel-head.png) repeat-x left top;
-}
-
-.helpSection .sectionHeader span{
-  padding:0 0 0 20px;
-  font-size:16px;
-  line-height:36px;
-  /* text shadow */
-  text-shadow:#ffffff 0 2px 0;
-}
-
-.helpSection .sectionHeader strong{
-  padding:0 0 0 52px;
-  font-size:14px;
-  line-height:36px;
-  /* text shadow */
-  text-shadow:#ffffff 0 1px 0;
-}
-
-.helpSection .sectionHeader a{
-  padding:0 0 0 18px;
-  font-size:14px;
-  line-height:36px;
-  /* text shadow */
-  text-shadow:#ffffff 0 1px 0;
-}
-
-/* section */
-.helpSection .row{
-  margin:0 0 16px 0;
-  padding:0 0 22px 0;
-  border-bottom:#dedcdc solid 1px;
-}
-
-.helpSection .last{
-  margin:0;
-}
-
-.helpSection .row strong{
-  display:block;
-  margin:0 0 6px 0;
-  font-size:18px;
-  line-height:24px;
-}
-
-.helpSection .row li{
-  width:33%;
-  float:left;
-  display:inline;
-  font-size:14px;
-  line-height:27px;
-}
-
 /* My Profile */
 #myProfile{
   margin:0 0 100px 0;
@@ -2533,15 +2445,6 @@ input.date{
   text-indent:20px;
   /* text shadow */
   text-shadow:#ffffff 0 2px 0;
-}
-
-#searchResultsSection .tableContainer #resultsTable th,
-.table-enrollment-notes-sort th{
-  padding:0 0 0 5px;
-}
-
-#searchResultsSection .tableContainer #resultsTable td{
-  padding:5px;
 }
 
 /* Advanced Search */
@@ -2696,27 +2599,6 @@ span.label, span.label strong {
   margin:0 0 60px 0;
 }
 
-/* Help Content */
-#mainContent.helpPage{
-  padding:0 0 34px 0;
-}
-
-.helpContent{
-  margin:13px 0 20px 0;
-  padding:17px 28px 32px 20px;
-  border:#d2d2d2 solid 1px;
-}
-
-.helpContent p{
-  padding:10px 22px 10px 0;
-  line-height:21px;
-}
-
-.helpContent .placeHolder{
-  margin:8px 0 15px 0;
-}
-
-
 /*new css*/
 
 .searchPanel{
@@ -2854,6 +2736,12 @@ a.searchBtn {
 }
 
 /* writeNotesModal */
+
+.writeNotes,
+.viewNotes {
+  white-space: nowrap;
+}
+
 #writeNotesModal{
   width:564px;
 }
@@ -3167,52 +3055,6 @@ a.searchBtn {
   background-image:url(../i/bg-modal-footer.png);
   background-repeat:repeat-x;
   background-position:0 -14px;
-}
-
-/* Tiny Scrollbar */
-#scrollbar{
-  margin:18px 0 50px 0;
-}
-#scrollbar .viewport{
-  height:586px;
-  margin:0 30px 0 20px;
-  overflow:hidden;
-  position:relative;
-}
-#scrollbar .overview{
-  list-style:none;
-  position:absolute;
-  left:0;
-  top:0;
-  padding:0;
-  margin:0;
-}
-
-#scrollbar .scrollbar{
-  width:7px;
-  position:relative;
-  float:right;
-}
-#scrollbar .track{
-  height:100%;
-  width:13px;
-  position:relative;
-  padding:0 1px;
-}
-
-#scrollbar .thumb{
-  background:transparent url(../i/bg-scrollbar-thumb-y.png) no-repeat 50% 100%;
-  height:161px;
-  width:7px;
-  cursor:pointer;
-  overflow:hidden;
-  position:absolute;
-  top:0;
-  left:-5px;
-}
-
-#scrollbar .disable{
-  display:none;
 }
 
 #new-modal{
@@ -3668,19 +3510,18 @@ a.okBtn {
 .serviceAdminTable{
   font-size:11px;
 }
-/* approveModal & rejectOKModal & screenModal & editModal & deleteProviderTypesModal & deleteHelpTopicModal & deleteAgreementModal */
-#noSelectedItemsModal,#approveModal,#rejectOKModal,#screenModal,#editModal,#deleteProviderTypesModal,#deleteHelpTopicModal,#deleteAgreementModal
+#noSelectedItemsModal,#approveModal,#rejectOKModal,#screenModal,#editModal,#deleteProviderTypesModal,#deleteAgreementModal
 {
   width:564px;
 }
 
 #noSelectedItemsModal .container,#approveModal .container,#rejectOKModal .container,#screenModal .container,#editModal .container
-,#deleteProviderTypesModal .container,#deleteHelpTopicModal .container,#deleteAgreementModal .container
+,#deleteProviderTypesModal .container,#deleteAgreementModal .container
 {
   padding:20px 0 10px 0;
 }
 
-#noSelectedItemsModal p,#approveModal p,#rejectOKModal p,#screenModal p,#editModal p,#deleteProviderTypesModal p,#deleteHelpTopicModal p
+#noSelectedItemsModal p,#approveModal p,#rejectOKModal p,#screenModal p,#editModal p,#deleteProviderTypesModal p
 ,#deleteAgreementModal p {
   width:100%;
   height:50px;
@@ -3690,11 +3531,11 @@ a.okBtn {
   vertical-align: middle;
   text-align:center;
 }
-#noSelectedItemsModal p,#approveModal p,#rejectOKModal p,#deleteProviderTypesModal p,#deleteHelpTopicModal p,#deleteAgreementModal p {
+#noSelectedItemsModal p,#approveModal p,#rejectOKModal p,#deleteProviderTypesModal p,#deleteAgreementModal p {
   line-height:50px;
 }
 #noSelectedItemsModal .buttons,#approveModal .buttons,#rejectOKModal .buttons,#screenModal .buttons,#editModal .buttons,#deleteProviderTypesModal .buttons
-,#deleteHelpTopicModal .buttons,#deleteAgreementModal .buttons {
+,#deleteAgreementModal .buttons {
   height:25px;
   padding:20px 0 30px 0;
   text-align:center;
@@ -3702,10 +3543,38 @@ a.okBtn {
 #approveModal .buttons .saveBtn,#rejectOKModal .buttons .saveBtn,#screenModal .buttons .saveBtn{
   margin:0 10px 0 210px;
 }
-#editModal .buttons .saveBtn,#deleteProviderTypesModal .buttons .saveBtn,#deleteProviderTypesModal .buttons .deleteOKBtn,#deleteHelpTopicModal .buttons .deleteOKBtn
+#editModal .buttons .saveBtn,#deleteProviderTypesModal .buttons .saveBtn,#deleteProviderTypesModal .buttons .deleteOKBtn
 ,#deleteAgreementModal .buttons .deleteOKBtn {
   margin:0 10px 0 170px;
 }
+
+.providerTypeLicenseRow {
+  width:100%;
+  clear:both;
+}
+
+.providerTypeLicenseRow label {
+  width:100%;
+}
+
+.providerTypeLicenseRow .providerTypeLicenseRowLabel {
+  float:left;
+}
+
+.providerTypeLicenseRow .providerTypeLicenses {
+  float:left;
+  width:400px;
+}
+
+.providerTypeLicenseRow .remove {
+  float:left;
+  margin-top:10px;
+}
+
+#licenseTemplate {
+  display:none;
+}
+
 #editModal .modalBody .buttons .saveBtn {
   width:auto;
 }
@@ -3797,9 +3666,6 @@ a.okBtn {
   padding-left: 5px;
 }
 
-#searchResultsSection .tableContainer #resultsTable td{
-  padding: 10px 5px;
-}
 .fileWrapper{
   width:100px;
 }
@@ -3926,20 +3792,17 @@ input.text{
 .functionTab p{
   width:98%;
 }
-.functionTab .helpSection{
-  float:left;
-}
 #changeScreenSchedulePanel .newEnrollmentPanel,
-#addHelpTopicPanel .newEnrollmentPanel,
-#editHelpTopicPanel .newEnrollmentPanel,
 #addAgreementPanel .newEnrollmentPanel,
 #editAgreementPanel .newEnrollmentPanel{
   border-top:0;
 }
-#addHelpTopicPanel label,#editHelpTopicPanel label,#addAgreementPanel label,#editAgreementPanel label{
+#addAgreementPanel label,
+#editAgreementPanel label{
   width:10%;
 }
-#addHelpTopicPanel .text,#editHelpTopicPanel .text,#addAgreementPanel .text,#editAgreementPanel .text{
+#addAgreementPanel .text,
+#editAgreementPanel .text{
   background: url("../i/input-bg.png") repeat-x scroll left top transparent;
   border: 1px solid #7EA5C8;
   font-size:12px;
@@ -3947,10 +3810,11 @@ input.text{
   padding:2px 5px;
   margin-left:10px;
 }
-#addHelpTopicPanel textarea.text,#editHelpTopicPanel textarea.text,#addAgreementPanel textarea.text,#editAgreementPanel textarea.text{
+#addAgreementPanel textarea.text,
+#editAgreementPanel textarea.text{
   margin-top:10px;
 }
-#viewHelpTopicPanel p,#viewAgreementPanel p{
+#viewAgreementPanel p{
   line-height:18px;
 }
 #enrollmentSection #tabAgreement .pagination .left{
@@ -4011,12 +3875,6 @@ input.text{
 #tabServiceAgents .detailPanel .row {
   padding: 2px 0;
 }
-#serviceAdminresultsTable th{
-  padding:0 0 0 5px;
-}
-#serviceAdminresultsTable td{
-  padding:10px 5px;
-}
 .detailPanel .green{
   font-size:14px;
 }
@@ -4024,14 +3882,11 @@ input.text{
   padding: 3px;
   color: #d00;
 }
-.disabledBtn{
-  color: #707070;
+.disabledBtn,
+.disabledBtn:hover {
+  color: #696969;
   cursor: default;
   text-decoration: none;
-}
-.pagination-page-number-disabled{
-  color: #707070;
-  cursor: default;
 }
 .generalTable th span.sort-down{
   display:inline-block;
@@ -4066,9 +3921,38 @@ form .error{
 .screeningResultFail {
   color: #d00;
 }
+.screeningsDateRange {
+  margin: 20px 0px 0px;
+}
+.screeningsTabFilterPanel {
+  min-height: 0;
+}
+.screeningsTabDatesBtn {
+  margin-top: 4px;
+  margin-left: 10px;
+}
 
-.lineGraphContainer {
-  height: 750px;
+.legend {
+  margin: 1.5rem 3rem;
+}
+.legendItem {
+  display: inline-block;
+  padding: 0px;
+  margin: 4px;
+  font-size: 12px;
+}
+.legendColorSwatch {
+  display: inline-block;
+  padding: 0;
+  margin: 0 5px 0 8px;
+  height: 13px;
+  width: 13px;
+}
+.legendItemText {
+  display: inline-block;
+}
+.lineGraphNote {
+  margin: 12px;
 }
 
 /* END OF SERVICE ADMIN STYLES -------------------------------------------------- */
@@ -4144,12 +4028,11 @@ input.passwordNormalInput{
   padding-top:35px;
 }
 
-/* pagiBox pagi bug */
-*+html .tabContent .pagination .right .pagiBox .pagi{
-  width:143px;
-}/* ie7 */
-.tabContent .pagination .right .pagiBox .pagi{
-  width:auto;
+.enabledUser .reinstateLink {
+  display:none;
+}
+.disabledUser .suspendLink {
+  display:none;
 }
 
 
@@ -4758,10 +4641,6 @@ input[type=checkbox]{
   line-height: 18px;
   display: block;
 }
-#printModal span.providerPic{
-  padding: 0 10px;
-  display: block;
-}
 
 /* END OF ORGANIZATION PROVIDER TYPE STYLES ------------------------------------- */
 
@@ -4870,7 +4749,7 @@ p.confirm {
 }
 
 .fixedWidthTable tr td {
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* PESP-160, PESP-162 */
@@ -4935,11 +4814,6 @@ div.row > .h-adr > .p-postal-code {
   float: left;
   width: auto;
 }
-
-td.nopad {
-  padding: 0px !important;
-}
-
 
 .row.addressline1 {
   padding-bottom : 0px;
@@ -5018,12 +4892,12 @@ select.stateSelect, select.stateSelectFor {
   border-bottom: 1px solid #ddd;
 }
 
-.legacyInfo {
-  color: #d00;
-}
-
 .checkboxLabel,
 .radioLabel {
   width: auto !important;
   float: none !important;
+}
+
+.hide {
+  display:none;
 }

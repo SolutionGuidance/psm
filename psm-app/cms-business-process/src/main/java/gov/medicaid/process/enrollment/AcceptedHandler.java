@@ -16,8 +16,6 @@
 
 package gov.medicaid.process.enrollment;
 
-import java.util.Date;
-
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.EnrollmentProcess;
 import gov.medicaid.entities.CMSUser;
@@ -30,14 +28,13 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.XMLAdapter;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.drools.runtime.process.WorkItem;
+import org.drools.runtime.process.WorkItemManager;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import org.drools.runtime.process.WorkItem;
-import org.drools.runtime.process.WorkItemManager;
+import java.util.Date;
 
 /**
  * This initializes the application model.
@@ -107,9 +104,7 @@ public class AcceptedHandler extends GenericHandler {
 
             item.getResults().put("model", model);
             manager.completeWorkItem(item.getId(), item.getResults());
-            Map<String, Object> vars = new HashMap<String, Object>();
-            String emailAddress = model.getEnrollment().getContactInformation().getEmailAddress();
-            notificationService.sendNotification(emailAddress, EmailTemplate.APPROVED_ENROLLMENT, vars);
+            notificationService.sendEnrollmentNotification(model.getEnrollment(), EmailTemplate.APPROVED_ENROLLMENT);
 
             // Issue #215 - add hook for approval
         } catch (PortalServiceException e) {

@@ -209,32 +209,12 @@ $(document).ready(function () {
       $('input[name="' + $(this).attr('name') + '"].selectAll').attr('checked', false);
     }
   });
-  /*
-  $('.tabSection .tab').click(function(e){
-  $(this).parent().find('.active').removeClass('active');
-  $('.tabContent').hide();
-  $('#new-modal #printModal .modal-content .tabContent').show();
-  $(this).addClass('active');
-  $($(this).attr('href')).show();
-  if($(this).attr('href') == "#tabHelpTopics"){
-  $('#scrollbar').tinyscrollbar({sizethumb:161});
-  }
-  if($(this).attr('href') == '#tabProviderTypes'){
-  $('.addProviderBtn').show();
-  }
-  else{
-  $('.addProviderBtn').hide();
-  }
-  e.preventDefault();
-  return false;
-  })
-  */
 
   //new script
   $('.stepWidget .lastStep').css('width', $('.stepWidget').width() - $('.stepWidget .personal').width() - $('.stepWidget .license').width() - $('.stepWidget .practice').width() - $('.stepWidget .payment').width() - $('.stepWidget .summary').width() - $('.stepWidget .ownership').width() - 2);
 
   //Save As Above
-  $('#sameAsAbove').live('click', function () {
+  $('#sameAsAbove').click(function () {
     contactFormElements = [
       '#contactName',
       '#contactEmail',
@@ -247,10 +227,14 @@ $(document).ready(function () {
       contactFormElements.forEach(function (element) {
         $(element).val('').addClass("disabled").prop('disabled', true);
       });
+
+      $('#requireEmailAddressLabel').removeClass('hidden');
     } else {
       contactFormElements.forEach(function (element) {
         $(element).val('').removeClass("disabled").prop('disabled', false);
       });
+
+      $('#requireEmailAddressLabel').addClass('hidden');
     }
   });
 
@@ -906,18 +890,6 @@ $(document).ready(function () {
     usNumberFormat: false,
     sortRestart: true
   });
-  $('.table-enrollment-sort').tablesorter({
-    headers: { 0: { sorter: false }, 8: { sorter: false } },
-    widgets: ['zebra', 'columns'],
-    usNumberFormat: false,
-    sortRestart: true
-  });
-  $('.table-enrollment-notes-sort').tablesorter({
-    headers: { 0: { sorter: false }, 8: { sorter: false }, 9: { sorter: false } },
-    widgets: ['zebra', 'columns'],
-    usNumberFormat: false,
-    sortRestart: true
-  });
   $('#resultsTable').tablesorter({
     headers: { 0: { sorter: false }, 9: { sorter: false } },
     widgets: ['zebra', 'columns'],
@@ -943,139 +915,6 @@ $(document).ready(function () {
       }
     }
   });
-  //Scrollbar
-  if ($('#scrollbar').length) {
-    $('#scrollbar').tinyscrollbar({ sizethumb: 161 });
-    $('#letterA').click(function () {
-      $('#scrollbar').tinyscrollbar_update(0);
-      return false;
-    });
-
-    $('#letterB').click(function () {
-      $('#scrollbar').tinyscrollbar_update(150);
-      return false;
-    });
-
-    $('#letterC').click(function () {
-      $('#scrollbar').tinyscrollbar_update(300);
-      return false;
-    });
-
-    $('#letterD').click(function () {
-      $('#scrollbar').tinyscrollbar_update(450);
-      return false;
-    });
-
-    $('#letterE').click(function () {
-      $('#scrollbar').tinyscrollbar_update(600);
-      return false;
-    });
-
-    $('#letterF').click(function () {
-      $('#scrollbar').tinyscrollbar_update(750);
-      return false;
-    });
-
-    $('#letterG').click(function () {
-      $('#scrollbar').tinyscrollbar_update(900);
-      return false;
-    });
-
-    $('#letterH').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1050);
-      return false;
-    });
-
-    $('#letterI').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1200);
-      return false;
-    });
-
-    $('#letterJ').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1350);
-      return false;
-    });
-
-    $('#letterK').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1500);
-      return false;
-    });
-
-    $('#letterL').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1650);
-      return false;
-    });
-
-    $('#letterM').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1800);
-      return false;
-    });
-
-    $('#letterN').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1950);
-      return false;
-    });
-
-    $('#letterO').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2100);
-      return false;
-    });
-
-    $('#letterP').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2250);
-      return false;
-    });
-
-    $('#letterQ').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2400);
-      return false;
-    });
-
-    $('#letterR').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2550);
-      return false;
-    });
-
-    $('#letterS').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2700);
-      return false;
-    });
-
-    $('#letterT').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2850);
-      return false;
-    });
-
-    $('#letterU').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3000);
-      return false;
-    });
-
-    $('#letterV').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3150);
-      return false;
-    });
-
-    $('#letterW').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3300);
-      return false;
-    });
-
-    $('#letterX').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3300);
-      return false;
-    });
-
-    $('#letterY').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3300);
-      return false;
-    });
-
-    $('#letterZ').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3300);
-      return false;
-    });
-  }
   //Check All
   $('#advancedSearch .checkRow span.label').live('click', function () {
     if ($(this).prev().attr('checked')) {
@@ -1218,17 +1057,6 @@ $(document).ready(function () {
     closeModal();
   });
 
-  //Textarea
-  $('#writeNotesModal .textarea').live('focus', function () {
-    $(this).val('');
-  });
-
-  $('#writeNotesModal .textarea').live('blur', function () {
-      if ($(this).val() == '') {
-        $(this).val('Write your note here...');
-      }
-    });
-
   //Next Button
   $('.createEnrollmentBtn').live('click', function () {
     if ($('#createEnrollment .newEnrollment').attr('checked')) {
@@ -1251,16 +1079,6 @@ $(document).ready(function () {
       }
     }
   });
-
-  $('.writeNotes').live('click', function () {
-    closeModal();
-    loadModal('#writeNotesModal');
-  });
-
-  $('.viewNotes').live('click', function () {
-      closeModal();
-      loadModal('#viewNotesModal');
-    });
 
   $('.newEnrollmentSaveDraftBtn').live('click', function () {
       closeModal();
@@ -1289,7 +1107,6 @@ $(document).ready(function () {
 
   if ($.browser.msie && ($.browser.version == "7.0")) {
     $('#createEnrollment input[type="radio"],#advancedSearch input[type="checkbox"]').css('margin', '5px 3px auto 3px');
-    $('.helpSection .row li').css('width', $('.helpSection .row ul').width() / 3);
   }
 
   /* END OF SERVICE AGENT SCRIPT -------------------------------------------------- */
@@ -1376,39 +1193,6 @@ $(document).ready(function () {
     $('#changeScreenSchedulePanel').show();
   });
 
-  $('.addHelpTopicBtn').live('click', function () {
-      $('#helpTopicsPanel').hide();
-      $('#viewHelpTopicPanel').hide();
-      $('#editHelpTopicPanel').hide();
-      $('#addHelpTopicPanel').show();
-    });
-
-  $('.editHelpTopicBtn').live('click', function () {
-      $('#helpTopicsPanel').hide();
-      $('#viewHelpTopicPanel').hide();
-      $('#addHelpTopicPanel').hide();
-      $('#editHelpTopicPanel').show();
-    });
-
-  $('.cancelAddHelpTopicBtn,.backToHelpTopicBtn,.deleteOKBtn').live('click', function () {
-      closeModal();
-      $('#viewHelpTopicPanel').hide();
-      $('#editHelpTopicPanel').hide();
-      $('#addHelpTopicPanel').hide();
-      $('#helpTopicsPanel').show();
-    });
-
-  $('.saveAddHelpTopicBtn,.cancelEditHelpTopicBtn,#helpTopicsPanel .overview li a').live('click', function () {
-      $('#viewHelpTopicPanel').show();
-      $('#editHelpTopicPanel').hide();
-      $('#addHelpTopicPanel').hide();
-      $('#helpTopicsPanel').hide();
-    });
-
-  $('.deleteHelpTopicBtn').live('click', function () {
-      loadModal('#deleteHelpTopicModal');
-    })
-
   $('.deleteAgreementBtn').live('click', function () {
       loadModal('#deleteAgreementModal');
     });
@@ -1493,8 +1277,6 @@ $(document).ready(function () {
     if ($('#draftTable').length > 0)$('#draftTable').trigger("update");
     if ($('.dashboardTable').length > 0)$('.dashboardTable').trigger("update");
     if ($('#draftEnrollmentTable').length > 0)$('#draftEnrollmentTable').trigger("update");
-    if ($('.table-enrollment-sort').length > 0)$('.table-enrollment-sort').trigger("update");
-    if ($('.table-enrollment-notes-sort').length > 0)$('.table-enrollment-notes-sort').trigger("update");
     if ($('#resultsTable').length > 0)$('#resultsTable').trigger("update");
     if ($('#userAccountsTab .generalTable').length > 0)$('#userAccountsTab .generalTable').trigger("update");
     if ($('#userAccountResultsTable').length > 0)$('#userAccountResultsTable').trigger("update");
@@ -2055,69 +1837,26 @@ function stripTable() {
   $('table tr:nth-child(even)').addClass('even');
 }
 
-var screenLock = false; // prevent double click on submit flows
-/**
-* Submits the form with the given id.
-* @param id the id of the form to be submitted
-*/
-function submitFormById(id, url) {
-  if (url) {
-    $('#' + id).attr("action", url);
-  }
-
-  if (!screenLock) {
-    screenLock = true;
-    $('#' + id).submit();
-  }
-}
-
 /**
 * Changes the sort column to the specified index
 * @param idx the result index
 */
 function changeSort(idx) {
-  var cur = $('#paginationForm input[name=sortColumn]').val();
-  var dir = $('#paginationForm input[name=ascending]').val();
+  var cur = $('#filterForm input[name=sortColumn]').val();
+  var dir = $('#filterForm input[name=ascending]').val();
   if (cur == idx) {
     // switch direction only
     if (dir === 'true') {
-      $('#paginationForm input[name=ascending]').val('false');
+      $('#filterForm input[name=ascending]').val('false');
     } else {
-      $('#paginationForm input[name=ascending]').val('true');
+      $('#filterForm input[name=ascending]').val('true');
     }
   } else {
-    $('#paginationForm input[name=sortColumn]').val(idx);
-    $('#paginationForm input[name=ascending]').val('false');
+    $('#filterForm input[name=sortColumn]').val(idx);
+    $('#filterForm input[name=ascending]').val('false');
   }
 
-  $('#paginationForm').submit();
-}
-
-/**
-* Changes the page size to the given value
-* @param size the new page size
-*/
-function changePageSize(size) {
-  $('#paginationForm input[name=pageSize]').val(size);
-  $('#paginationForm input[name=pageNumber]').val(1);
-  $('#paginationForm').submit();
-}
-
-/**
-* Changes the page number to the given value
-* @param page the new page number
-*/
-function changePageNumber(page) {
-  $('#paginationForm input[name=pageNumber]').val(page);
-  $('#paginationForm').submit();
-}
-
-function disableElement(el, cond) {
-  if (cond) {
-    $('#' + el).prop('disabled', true);
-  } else {
-    $('#' + el).prop('disabled', false);
-  }
+  $('#filterForm').submit();
 }
 
 var isPrimaryPracticeLookup = false;
@@ -2147,19 +1886,6 @@ function openAgencyLookup(primary) {
   // show popup
   removeModal();
   openModal('#practiceLookupModal');
-}
-
-function postJson(settings) {
-  var token = $("meta[name='_csrf']").attr("content");
-  var header = $("meta[name='_csrf_header']").attr("content");
-  $.extend(settings, {
-    type: "post",
-    dataType: "json",
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader(header, token);
-    },
-  })
-  $.ajax(settings);
 }
 
 function populatePracticeLookupResults() {
@@ -2591,19 +2317,6 @@ function updateBeneficialOwnerTypes(val) {
     }
   });
 
-}
-
-function doIndividualLicenseSelect(el) {
-  var parentRow = $(el).closest('tr');
-  var licenseTypeFieldName = $(el).attr("name");
-  var renewalEndDateFieldName = licenseTypeFieldName.replace("licenseType", "renewalDate");
-
-  var renewalEndDate = $(parentRow).find('input[name="' + renewalEndDateFieldName + '"]').first();
-  if ($(el).val() == 'PCA Training Certificate') {
-    $(renewalEndDate).addClass('disabled').attr('disabled', 'disabled');
-  } else {
-    $(renewalEndDate).removeClass('disabled').removeAttr('disabled');
-  }
 }
 
 function doInServiceSelect(el) {

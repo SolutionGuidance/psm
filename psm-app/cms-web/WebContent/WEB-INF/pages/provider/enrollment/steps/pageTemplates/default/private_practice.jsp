@@ -43,7 +43,7 @@
                 <div class="row">
                     <c:set var="formName" value="_05_name"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}">Private Practice Name<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_${formName}">Private Practice Name <span class="required">*</span></label>
                     <input id="${formIdPrefix}_${formName}" ${disableLinkedFields} type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
                 </div>
                 <div class="row">
@@ -59,7 +59,7 @@
                 <div class="row">
                     <c:set var="formName" value="_05_effectiveDate"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}">Effective Date<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_${formName}">Effective Date <span class="required">*</span></label>
                     <span class="dateWrapper">
                         <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
                     </span>
@@ -67,7 +67,7 @@
                 <div class="row addressline1">
                     <c:set var="formName" value="_05_addressLine1"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}">Practice Address<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_${formName}">Practice Address <span class="required">*</span></label>
                     <input id="${formIdPrefix}_${formName}" ${disableLinkedFields} type="text" title="Practice Address, Line 1" class="normalInput" name="${formName}" value="${formValue}" maxlength="28"/>
                 </div>
                 <div class="row inlineBox addressline2">
@@ -80,12 +80,12 @@
                     <span class="label">&nbsp;</span>
                     <c:set var="formName" value="_05_city"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}" class="cityLabel">City<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_${formName}" class="cityLabel">City <span class="required">*</span></label>
                     <input id="${formIdPrefix}_${formName}" ${disableLinkedFields} type="text"  class="cityInputFor" name="${formName}" value="${formValue}" maxlength="18"/>
 
                     <c:set var="formName" value="_05_state"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}">State<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_${formName}">State/Territory <span class="required">*</span></label>
                     <select id="${formIdPrefix}_${formName}" ${disableLinkedFields} class="stateSelectFor" name="${formName}">
                         <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_99_states']}">
@@ -95,7 +95,7 @@
 
                     <c:set var="formName" value="_05_zip"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <label for="${formIdPrefix}_${formName}">ZIP Code<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_${formName}">ZIP Code <span class="required">*</span></label>
                     <input id="${formIdPrefix}_${formName}" ${disableLinkedFields} type="text" class="zipInputFor" name="${formName}" value="${formValue}" maxlength="10"/>
 
                     <c:set var="formName" value="_05_county"></c:set>
@@ -109,7 +109,7 @@
                     </select>
                 </div>
                 <div class="row">
-                    <label>Practice Phone Number<span class="required">*</span></label>
+                    <label>Practice Phone Number <span class="required">*</span></label>
                     <c:set var="formName" value="_05_phone1"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input ${disableLinkedFields} type="text" title="Practice Phone Area Code" class="autotab smallInput" name="${formName}" value="${formValue}" maxlength="3"/>
@@ -141,7 +141,7 @@
                     <input ${disableLinkedFields} type="text" title="Practice Fax Line Number" class="autotab smallInputP" name="${formName}" value="${formValue}" maxlength="4"/>
                 </div>
                 <div class="row reimbursementAddressRow">
-                    <label for="${formIdPrefix}_${formName}">Billing Address<span class="required">*</span></label>
+                    <label for="${formIdPrefix}_${formName}">Billing Address <span class="required">*</span></label>
                     <div class="inputContainer">
                         <div class="checkboxWrapper">
                             <c:set var="formName" value="_05_billingSameAsPrimary"></c:set>
@@ -167,12 +167,12 @@
                         <div class="addreddWrapper">
                             <c:set var="formName" value="_05_billingCity"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <label for="${formIdPrefix}_${formName}" class="smallLabel">City<span class="required">*</span></label>
+                            <label for="${formIdPrefix}_${formName}" class="smallLabel">City <span class="required">*</span></label>
                             <input id="${formIdPrefix}_${formName}" ${billingAddressMarkup} type="text" class="${disableBillingAddress ? 'disabled' : '' } cityInput" name="${formName}" value="${formValue}" maxlength="20"/>
 
                             <c:set var="formName" value="_05_billingState"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <label for="${formIdPrefix}_${formName}" class="smallLabel">State<span class="required">*</span></label>
+                            <label for="${formIdPrefix}_${formName}" class="smallLabel">State/Territory <span class="required">*</span></label>
                             <select id="${formIdPrefix}_${formName}" ${billingAddressMarkup} class="${disableBillingAddress ? 'disabled' : '' } stateSelect" name="${formName}">
                                 <option value="">Please select</option>
                                 <c:forEach var="opt" items="${requestScope['_99_states']}">
@@ -182,7 +182,7 @@
 
                             <c:set var="formName" value="_05_billingZip"></c:set>
                             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                            <label for="${formIdPrefix}_${formName}" class="smallLabel">ZIP Code<span class="required">*</span></label>
+                            <label for="${formIdPrefix}_${formName}" class="smallLabel">ZIP Code <span class="required">*</span></label>
                             <input id="${formIdPrefix}_${formName}" ${billingAddressMarkup} type="text" class="${disableBillingAddress ? 'disabled' : '' } zipInputFor" id="privateReimbursementZip" name="${formName}" value="${formValue}" maxlength="10"/>
 
                             <c:set var="formName" value="_05_billingCounty"></c:set>
@@ -212,7 +212,7 @@
                     <input id="${formIdPrefix}_${formName}" ${disableLinkedFields} type="text" class="normalInput taxIdMasked" name="${formName}" value="${formValue}" maxlength="7"/>
                 </div>
                 <div class="row">
-                    <label>Fiscal Year End<span class="required">*</span></label>
+                    <label>Fiscal Year End <span class="required">*</span></label>
                     <c:set var="formName" value="_05_fye1"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <input ${disableLinkedFields} type="text" title="Fiscal Year End Month" class="fiscalMonthInput smallInput" name="${formName}" value="${formValue}" maxlength="2"/>
@@ -223,7 +223,7 @@
                     <span class="shrtFldInfo">MM/DD</span>
                 </div>
                 <div class="row">
-                    <label>Do you accept <abbr title="Electronic Funds Transfer">EFT</abbr>?<span class="required">*</span></label>
+                    <label>Do you accept <abbr title="Electronic Funds Transfer">EFT</abbr>? <span class="required">*</span></label>
                     <c:set var="formName" value="_05_eftAccepted"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <div class="rowWrapper">
@@ -248,7 +248,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label>Remittance Sequence<span class="required">*</span></label>
+                    <label>Remittance Sequence <span class="required">*</span></label>
                     <c:set var="formName" value="_05_remittanceSequence"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                     <div class="rowWrapper">

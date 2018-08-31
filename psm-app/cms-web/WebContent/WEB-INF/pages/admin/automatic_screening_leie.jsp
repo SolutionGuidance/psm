@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="LEIE Automatic Screening Details"/>
-  <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -11,7 +10,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
-            <c:set var="activeTab2" value="true"/>
+            <c:set var="activeTabEnrollments" value="true"/>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->

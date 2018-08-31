@@ -13,7 +13,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set value="User Account Details (System Admin)" var="title"></c:set>
-  <c:set value="true" var="systemPage"></c:set>
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -67,6 +66,16 @@
                     <label>Email</label>
                     <span class="floatL"><b>:</b></span>
                     <span>${user.email}</span>
+                  </div>
+                  <div class="row">
+                    <label>API Read Access</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${user.apiRead ? "Yes" : "No"}</span>
+                  </div>
+                  <div class="row">
+                    <label>API Write Access</label>
+                    <span class="floatL"><b>:</b></span>
+                    <span>${user.apiWrite ? "Yes" : "No"}</span>
                   </div>
                   <div class="row">
                     <label>User Role</label>

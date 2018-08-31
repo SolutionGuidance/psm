@@ -35,16 +35,15 @@ import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.entities.dto.ViewStatics;
-import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.util.Util;
+
+import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the provider type selection form.
@@ -116,24 +115,20 @@ public class IndividualAgencyFormBinder extends BaseFormBinder {
      * @param agency the practice to attach to
      */
     private void attachLinkedGroup(AgencyInformationType agency) {
-        try {
-            PracticeSearchCriteria criteria = new PracticeSearchCriteria();
-            criteria.setProfileId(Long.parseLong(agency.getObjectId()));
-            criteria.setAgency(true);
+        PracticeSearchCriteria criteria = new PracticeSearchCriteria();
+        criteria.setProfileId(Long.parseLong(agency.getObjectId()));
+        criteria.setAgency(true);
 
-            SearchResult<PracticeLookup> results = getEnrollmentService().searchPractice(getSystemUser(), criteria);
-            PracticeLookup linkedPractice = results.getItems().get(0);
+        SearchResult<PracticeLookup> results = getEnrollmentService().searchPractice(getSystemUser(), criteria);
+        PracticeLookup linkedPractice = results.getItems().get(0);
 
-            agency.setName(linkedPractice.getName());
-            agency.setAgencyId(linkedPractice.getAgencyId());
-            agency.setNPI(linkedPractice.getNpi());
-            agency.setFaxNumber(linkedPractice.getFaxNumber());
-            agency.setContactName(linkedPractice.getContactName());
-            agency.setBackgroundStudyId(linkedPractice.getBgsId());
-            agency.setClearanceDate(BinderUtils.toCalendar(linkedPractice.getClearanceDate()));
-        } catch (PortalServiceException e) {
-            throw new PortalServiceRuntimeException("Cannot verify linked practice.", e);
-        }
+        agency.setName(linkedPractice.getName());
+        agency.setAgencyId(linkedPractice.getAgencyId());
+        agency.setNPI(linkedPractice.getNpi());
+        agency.setFaxNumber(linkedPractice.getFaxNumber());
+        agency.setContactName(linkedPractice.getContactName());
+        agency.setBackgroundStudyId(linkedPractice.getBgsId());
+        agency.setClearanceDate(BinderUtils.toCalendar(linkedPractice.getClearanceDate()));
     }
 
     /**

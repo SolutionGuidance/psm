@@ -17,12 +17,12 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
-            <c:set var="activeTab" value="2"></c:set>
+            <c:set var="activeTabEnrollments" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <a href="<c:url value="/provider/dashboard/drafts" />">Enrollments</a>
+            <%@ include file="/WEB-INF/pages/admin/includes/enrollments_link.jsp" %>
             <span>Edit Enrollment</span>
           </div>
           <div class="head">
@@ -180,7 +180,7 @@
               <c:choose>
                 <c:when test="${viewModel.currentTab eq 'Notes'}">
                   <div class="buttonBox">
-                    <c:url var="cancelUrl" value="/provider/search/pending?statuses=Pending&showFilterPanel=true"/>
+                    <c:url var="cancelUrl" value="/provider/enrollments/pending?statuses=Pending&showFilterPanel=true"/>
                     <a class="greyBtn" href="${cancelUrl}">
                       Cancel
                     </a>
@@ -191,7 +191,7 @@
                 </c:when>
                 <c:when test="${isReopened}">
                   <div class="buttonBox">
-                    <c:url var="cancelUrl" value="/provider/search/pending?statuses=Pending&showFilterPanel=true"/>
+                    <c:url var="cancelUrl" value="/provider/enrollments/pending?statuses=Pending&showFilterPanel=true"/>
                     <a class="greyBtn" href="${cancelUrl}">
                       Cancel
                     </a>
@@ -203,11 +203,18 @@
                 <c:otherwise>
                   <div class="buttonBox">
                     <input type="hidden" name="pageName" value="${pageName}"/>
-                    <c:url var="cancelUrl" value="/provider/dashboard/drafts"/>
+                    <c:choose>
+                      <c:when test="${isServiceAdministrator}">
+                        <c:url var="cancelUrl" value="/provider/enrollments/all"/>
+                      </c:when>
+                      <c:otherwise>
+                        <c:url var="cancelUrl" value="/provider/dashboard/drafts"/>
+                      </c:otherwise>
+                    </c:choose>
                     <a class="greyBtn" href="${cancelUrl}">
                       Cancel
                     </a>
-                    <button class="purpleBtn" type="submit" name="submit">
+                    <button class="purpleBtn" type="submit" name="submitEnrollment">
                       Submit Enrollment
                     </button>
                     <button class="greyBtn" type="submit" name="save">

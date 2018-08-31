@@ -1,10 +1,10 @@
 package gov.medicaid.controllers.admin.report;
 
-import java.io.IOException;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletResponse;
+import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
+import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.EnrollmentSearchCriteria;
+import gov.medicaid.services.PortalServiceException;
+import gov.medicaid.services.ProviderEnrollmentService;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -13,36 +13,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.EnrollmentSearchCriteria;
-import gov.medicaid.entities.SearchResult;
-import gov.medicaid.services.PortalServiceConfigurationException;
-import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import javax.servlet.http.HttpServletResponse;
 
-import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
+import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class DraftApplicationsReportController extends gov.medicaid.controllers.BaseController {
-    private ProviderEnrollmentService enrollmentService;
+    private final ProviderEnrollmentService enrollmentService;
 
-    public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
+    public DraftApplicationsReportController(ProviderEnrollmentService enrollmentService) {
         this.enrollmentService = enrollmentService;
     }
 
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (enrollmentService == null) {
-            throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
-        }
-    }
-
     @RequestMapping(value = "/admin/reports/draft-applications", method = RequestMethod.GET)
-    public ModelAndView getDraftApplications() throws PortalServiceException {
+    public ModelAndView getDraftApplications() {
         ModelAndView mv = new ModelAndView("admin/reports/draft_applications");
-        SearchResult<Enrollment> enrollments = getEnrollmentsFromDB();
-        List<EnrollmentMonth> months = groupEnrollments(enrollments.getItems());
+        List<Enrollment> enrollments = getEnrollmentsFromDB();
+        List<EnrollmentMonth> months = groupEnrollments(enrollments);
 
         mv.addObject("enrollmentMonths", months);
         return mv;
@@ -54,9 +42,9 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", csvFileName));
 
-        SearchResult<Enrollment> enrollments = getEnrollmentsFromDB();
+        List<Enrollment> enrollments = getEnrollmentsFromDB();
 
-        List<EnrollmentMonth> months = groupEnrollments(enrollments.getItems());
+        List<EnrollmentMonth> months = groupEnrollments(enrollments);
 
         try {
             CSVPrinter csvPrinter = new CSVPrinter(response.getWriter(), CSVFormat.DEFAULT);
@@ -64,6 +52,9 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
             csvPrinter.printRecord(
                 "Month in Draft",
                 "Application ID",
+                "NPI",
+                "Provider Name",
+                "Provider Type",
                 "Creation Date",
                 "Submission Date"
             );
@@ -72,6 +63,9 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
                     csvPrinter.printRecord(
                         month.getMonth(),
                         enrollment.getTicketId(),
+                        enrollment.getDetails().getEntity().getNpi(),
+                        enrollment.getDetails().getEntity().getName(),
+                        enrollment.getDetails().getEntity().getProviderType().getDescription(),
                         enrollment.getCreatedOn(),
                         enrollment.getSubmissionDate()
                     );
@@ -83,11 +77,20 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
         }
     }
 
-    private SearchResult<Enrollment> getEnrollmentsFromDB() throws PortalServiceException {
+    private List<Enrollment> getEnrollmentsFromDB() {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         criteria.setAscending(true);
         criteria.setSortColumn("created_at");
-        return enrollmentService.getDraftAtEomEnrollments(criteria);
+
+        List<Enrollment> results = enrollmentService.getDraftAtEomEnrollments(criteria).getItems();
+
+        results.stream()
+            .forEach(e -> {
+                e.setDetails(
+                    enrollmentService.getProviderDetailsByTicket(e.getTicketId(), true)
+                );
+            });
+        return results;
     }
 
     private List<EnrollmentMonth> groupEnrollments(List<Enrollment> enrollments) {

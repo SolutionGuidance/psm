@@ -11,7 +11,7 @@
             <div class="row requireField">
                 <c:set var="formName" value="_28_contractAttachment"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="${formIdPrefix}_${formName}">Upload copy of contract<span class="required">*</span></label>
+                <label for="${formIdPrefix}_${formName}">Upload copy of contract <span class="required">*</span></label>
                 <span class="floatL"><b>:</b></span>
                 <c:if test="${not empty formValue}">
                     <c:url var="downloadLink" value="/provider/enrollment/attachment">

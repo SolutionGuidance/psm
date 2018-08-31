@@ -25,8 +25,8 @@ public class LoginStepDefinitions {
         loginPage.login();
     }
 
-    @Then("^I should see my dashboard page$")
-    public void i_should_see_my_dashboard_page() {
+    @Then("^I should be logged in$")
+    public void i_should_be_logged_in() {
         loginPage.checkUserLoggedIn("p1");
     }
 }

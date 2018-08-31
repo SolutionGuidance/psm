@@ -11,8 +11,10 @@ window.addEventListener("load", function drawDraftsLineGraph() {
     };
   });
 
+  var color = d3.schemeCategory10[0];
+
   var lines = [
-    reportUtils.makeLineData("Draft Applications", "#0d4478", draftsPoints),
+    reportUtils.makeLineData("Draft Applications", color, draftsPoints),
   ];
 
   reportUtils.drawMonthsLineGraph(

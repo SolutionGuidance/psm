@@ -45,7 +45,6 @@ public interface PartnerSystemService {
      * @param referrer
      * @param profileNPI
      * @return true if the credentials are valid
-     * @throws PortalServiceException for any errors encountered
      */
-    boolean authenticate(String externalUserId, String password, String profileNPI, String referrer) throws PortalServiceException;
+    boolean authenticate(String externalUserId, String password, String profileNPI, String referrer);
 }

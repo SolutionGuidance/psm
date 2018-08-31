@@ -9,7 +9,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="Category of Service"/>
-  <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -19,7 +18,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
-            <c:set var="activeTab" value="1"></c:set>
+            <c:set var="activeTabDashboard" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <div class="breadCrumb">

@@ -32,15 +32,14 @@ import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.entities.dto.ViewStatics;
-import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.util.Util;
+
+import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the provider type selection form.
@@ -333,19 +332,15 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
      * @param location the practice location
      */
     private void attachLinkedGroup(GroupAffiliationType location) {
-        try {
-            PracticeSearchCriteria criteria = new PracticeSearchCriteria();
-            criteria.setProfileId(Long.parseLong(location.getObjectId()));
-            criteria.setAgency(true);
-            SearchResult<PracticeLookup> results = getEnrollmentService().searchPractice(getSystemUser(), criteria);
-            PracticeLookup linkedPractice = results.getItems().get(0);
+        PracticeSearchCriteria criteria = new PracticeSearchCriteria();
+        criteria.setProfileId(Long.parseLong(location.getObjectId()));
+        criteria.setAgency(true);
+        SearchResult<PracticeLookup> results = getEnrollmentService().searchPractice(getSystemUser(), criteria);
+        PracticeLookup linkedPractice = results.getItems().get(0);
 
-            location.setName(linkedPractice.getName());
-            location.setNPI(linkedPractice.getNpi());
-            location.setStudyId(linkedPractice.getBgsId());
-            location.setClearanceDate(BinderUtils.toCalendar(linkedPractice.getClearanceDate()));
-        } catch (PortalServiceException e) {
-            throw new PortalServiceRuntimeException("Cannot verify linked agency.", e);
-        }
+        location.setName(linkedPractice.getName());
+        location.setNPI(linkedPractice.getNpi());
+        location.setStudyId(linkedPractice.getBgsId());
+        location.setClearanceDate(BinderUtils.toCalendar(linkedPractice.getClearanceDate()));
     }
 }

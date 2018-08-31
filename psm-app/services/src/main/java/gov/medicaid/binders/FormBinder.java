@@ -16,6 +16,9 @@
 
 package gov.medicaid.binders;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ValidationResultType;
 import gov.medicaid.entities.CMSUser;
@@ -23,13 +26,10 @@ import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.PortalServiceException;
 
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A form binder is a delegate that processes fields specific to the form.

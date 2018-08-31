@@ -58,6 +58,8 @@
     <class>gov.medicaid.entities.CountyType</class>
     <class>gov.medicaid.entities.Degree</class>
     <class>gov.medicaid.entities.DesignatedContact</class>
+    <class>gov.medicaid.entities.DmfAutomaticScreening</class>
+    <class>gov.medicaid.entities.DmfAutomaticScreeningMatch</class>
     <class>gov.medicaid.entities.Document</class>
     <class>gov.medicaid.entities.Enrollment</class>
     <class>gov.medicaid.entities.EnrollmentStatus</class>
@@ -66,7 +68,6 @@
     <class>gov.medicaid.entities.Event</class>
     <class>gov.medicaid.entities.ExternalAccountLink</class>
     <class>gov.medicaid.entities.ExternalProfileLink</class>
-    <class>gov.medicaid.entities.HelpItem</class>
     <class>gov.medicaid.entities.IssuingBoard</class>
     <class>gov.medicaid.entities.LeieAutomaticScreening</class>
     <class>gov.medicaid.entities.LeieAutomaticScreeningMatch</class>
@@ -95,12 +96,11 @@
     <class>gov.medicaid.entities.Role</class>
     <class>gov.medicaid.entities.ScreeningSchedule</class>
     <class>gov.medicaid.entities.SentNotification</class>
-    <class>gov.medicaid.entities.ServiceCategory</class>
     <class>gov.medicaid.entities.SpecialtyType</class>
     <class>gov.medicaid.entities.StateType</class>
 
     <properties>
-      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect" />
       <property name="hibernate.hbm2ddl.auto" value="none" />
       <property name="hibernate.show_sql" value="true" />
       <property name="hibernate.format_sql" value="true" />

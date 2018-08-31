@@ -18,10 +18,9 @@ package gov.medicaid.controllers.validators;
 
 import gov.medicaid.controllers.forms.RegistrationForm;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.RegistrationService;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
 /**
@@ -30,6 +29,7 @@ import org.springframework.validation.Errors;
  * @author TCSASSEMBLER
  * @version 1.0
  */
+@Component
 public class RegistrationFormValidator extends BaseValidator {
 
     /**
@@ -55,12 +55,10 @@ public class RegistrationFormValidator extends BaseValidator {
     /**
      * The registration service used for data checks.
      */
-    private RegistrationService registrationService;
+    private final RegistrationService registrationService;
 
-    /**
-     * Empty constructor.
-     */
-    public RegistrationFormValidator() {
+    public RegistrationFormValidator(RegistrationService registrationService) {
+        this.registrationService = registrationService;
     }
 
     /**
@@ -113,27 +111,12 @@ public class RegistrationFormValidator extends BaseValidator {
             }
         }
 
-        try {
-            // no two users should have the same login
-            if (!errors.hasFieldErrors("username")) {
-                CMSUser duplicate = registrationService.findByUsername(user.getUsername());
-                if (duplicate != null) {
-                    errors.rejectValue("username", "duplicate.username");
-                }
+        // no two users should have the same login
+        if (!errors.hasFieldErrors("username")) {
+            CMSUser duplicate = registrationService.findByUsername(user.getUsername());
+            if (duplicate != null) {
+                errors.rejectValue("username", "duplicate.username");
             }
-        } catch (PortalServiceException e) {
-            // nothing we can do if services are not working correctly.
-            throw new PortalServiceRuntimeException("Unable to complete request validation.", e);
         }
     }
-
-    /**
-     * Sets the value of the field <code>registrationService</code>.
-     *
-     * @param registrationService the registrationService to set
-     */
-    public void setRegistrationService(RegistrationService registrationService) {
-        this.registrationService = registrationService;
-    }
-
 }

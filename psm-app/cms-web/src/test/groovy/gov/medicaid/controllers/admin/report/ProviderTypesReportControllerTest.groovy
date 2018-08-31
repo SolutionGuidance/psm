@@ -27,9 +27,9 @@ class ProviderTypesReportControllerTest extends Specification {
     }
 
     void setup() {
-        controller = new ProviderTypesReportController()
         enrollmentService = Mock(ProviderEnrollmentService)
         providerTypeService = Mock(ProviderTypeService)
+        controller = new ProviderTypesReportController(enrollmentService, providerTypeService)
 
         providerTypeService.search(_) >>
                 new SearchResult<ProviderType>(
@@ -42,9 +42,6 @@ class ProviderTypesReportControllerTest extends Specification {
                     ]
                 ]
                 )
-
-        controller.setEnrollmentService(enrollmentService)
-        controller.setProviderTypeService(providerTypeService)
     }
 
     private toDate(d) {
@@ -99,7 +96,7 @@ class ProviderTypesReportControllerTest extends Specification {
         then:
         records[0][0] == "Month Reviewed"
         records[0][1] == "Provider Type"
-        records[0][2] == "Number Reviewed"
+        records[0][2] == "Applications Reviewed"
         records.size == 1
         records[0].size() == 3
     }

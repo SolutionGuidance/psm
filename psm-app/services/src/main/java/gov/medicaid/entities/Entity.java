@@ -72,16 +72,7 @@ public abstract class Entity implements Serializable {
     @Column(name = "legal_name")
     private String legalName;
 
-    @Column(name = "legacy_indicator")
-    private String legacyIndicator;
-
-    @Column(name = "legacy_id")
-    private String legacyId;
-
     private String npi;
-
-    @Column(name = "nonexclusion_verified")
-    private String nonExclusionVerifiedInd;
 
     /**
      * The provider type (if enrolled).
@@ -136,14 +127,6 @@ public abstract class Entity implements Serializable {
         this.legalName = legalName;
     }
 
-    public String getLegacyIndicator() {
-        return legacyIndicator;
-    }
-
-    public void setLegacyIndicator(String legacyIndicator) {
-        this.legacyIndicator = legacyIndicator;
-    }
-
     public String getNpi() {
         return npi;
     }
@@ -192,14 +175,6 @@ public abstract class Entity implements Serializable {
         this.providerType = providerType;
     }
 
-    public String getNonExclusionVerifiedInd() {
-        return nonExclusionVerifiedInd;
-    }
-
-    public void setNonExclusionVerifiedInd(String nonExclusionVerifiedInd) {
-        this.nonExclusionVerifiedInd = nonExclusionVerifiedInd;
-    }
-
     public String getBackgroundStudyId() {
         return backgroundStudyId;
     }
@@ -224,11 +199,4 @@ public abstract class Entity implements Serializable {
         this.providerSubType = providerSubType;
     }
 
-    public String getLegacyId() {
-        return legacyId;
-    }
-
-    public void setLegacyId(String legacyId) {
-        this.legacyId = legacyId;
-    }
 }

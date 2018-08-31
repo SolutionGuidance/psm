@@ -29,10 +29,8 @@ class TimeToReviewReportControllerTest extends Specification {
     }
 
     void setup() {
-        controller = new TimeToReviewReportController()
         service = Mock(ProviderEnrollmentService)
-
-        controller.setEnrollmentService(service)
+        controller = new TimeToReviewReportController(service)
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
     }
@@ -51,7 +49,7 @@ class TimeToReviewReportControllerTest extends Specification {
 
         then:
         records[0][0] == "Month"
-        records[0][1] == "Number Reviewed"
+        records[0][1] == "Applications Reviewed"
         records[0][2] == "Mean Review Time"
         records[0][3] == "Median Review Time"
         records.size == 1

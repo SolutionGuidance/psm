@@ -7,6 +7,7 @@
 
 <c:set var="hideRenewalDate" value="${viewModel.tabModels['Personal Information'].formSettings['Personal Information Form'].settings['hideRenewalDate']}"></c:set>
 <c:set var="hideLicenseNumber" value="${viewModel.tabModels['Personal Information'].formSettings['Personal Information Form'].settings['hideLicenseNumber']}"></c:set>
+<c:set var="requireRenewalDate" value="${viewModel.tabModels['Training Information'].formSettings['License Information Form'].settings['requireRenewalDate']}"></c:set>
 
 <div class="tableData" id="tableLicense">
     <input type="hidden" name="formNames" value="<%= ViewStatics.LICENSE_INFO_FORM %>">
@@ -15,27 +16,34 @@
         <thead>
             <tr>
                 <th class="alignCenter">#<span class="sep"></span></th>
-                <th>Type of License/Certification<span class="required">*</span><span class="sep"></span></th>
-                <th>Upload License/Certification <span class="required">*</span><span class="sep"></span></th>
+                <th>Type of License/Certification <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Upload License/Certification <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <c:choose>
                     <c:when test="${hideLicenseNumber}">
                         <th width="0"> </th>
                     </c:when>
                     <c:otherwise>
-                        <th>License/Certification #<span class="required">*</span><span class="sep"></span></th>
+                        <th>License/Certification # <span class="required-dark-background">*</span><span class="sep"></span></th>
                     </c:otherwise>
                 </c:choose>
 
-                <th>Original Issue Date<span class="required">*</span><span class="sep"></span></th>
+                <th>Original Issue Date <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <c:choose>
                      <c:when test="${hideRenewalDate}">
                         <th width="0"> </th>
                         </c:when>
                         <c:otherwise>
-                            <th>Renewal End Date<span class="required">*</span><span class="sep"></span></th>
+                            <c:choose>
+                                <c:when test="${requireRenewalDate == false}">
+                                    <th>Renewal End Date<span class="sep"></span></th>
+                                </c:when>
+                                <c:otherwise>
+                                    <th>Renewal End Date <span class="required-dark-background">*</span><span class="sep"></span></th>
+                                </c:otherwise>
+                            </c:choose>
                         </c:otherwise>
                 </c:choose>
-                <th>Issuing State<span class="required">*</span><span class="sep"></span></th>
+                <th>Issuing State/Territory <span class="required-dark-background">*</span><span class="sep"></span></th>
                 <th></th>
             </tr>
         </thead>
@@ -48,15 +56,12 @@
                     <td>
                         <c:set var="formName" value="_03_licenseType_${status.index - 1}"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <select title="Type of License (License ${status.index})" onchange="doIndividualLicenseSelect(this);" class="bigSelect" name="${formName}">
+                        <select title="Type of License (License ${status.index})" class="bigSelect" name="${formName}">
                             <option value="">Please select</option>
                             <c:forEach var="opt" items="${requestScope['_03_licenseTypes']}">
                                 <option ${formValue eq opt.description ? 'selected' : ''} value="${opt.description}"><c:out value="${opt.description}" /></option>
                             </c:forEach>
                         </select>
-                        <c:if test="${formValue eq 'PCA Training Certificate'}">
-                            <c:set var="disableRenewalDate" value="${true}"></c:set>
-                        </c:if>
                     </td>
                     <td>
                         <c:set var="formName" value="_03_attachment_${status.index - 1}" />
@@ -96,7 +101,7 @@
                                 <span class="dateWrapper">
                                     <c:set var="formName" value="_03_renewalDate_${status.index - 1}"></c:set>
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                                    <input type="text" title="Renewal End Date (License ${status.index})" class="date ${disableRenewalDate ? 'disabled' : ''}" ${disableRenewalDate ? 'disabled="disabled"' : ''} name="${formName}" value="${formValue}"/>
+                                    <input type="text" title="Renewal End Date (License ${status.index})" class="date" name="${formName}" value="${formValue}"/>
                                 </span>
                             </td>
                          </c:otherwise>
@@ -104,7 +109,7 @@
                     <td>
                         <c:set var="formName" value="_03_issuingState_${status.index - 1}"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <select title="Issuing State (License ${status.index})" name="${formName}">
+                        <select title="Issuing State/Territory (License ${status.index})" name="${formName}">
                             <option value="">Please select</option>
                             <c:forEach var="opt" items="${requestScope['_03_licenseStates']}">
                                 <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>
@@ -118,7 +123,7 @@
     </table>
     <div class="clearFixed"></div>
     <div class="tableBottom">
-        <a href="javascript:;" id="addLicense">+ Add Another License/Certification</a>
+        <a href="javascript:;" id="addLicense">+ Add A License/Certification</a>
     </div>
     <div class="tl"></div>
     <div class="tr"></div>
@@ -134,7 +139,7 @@
                 <td>
                     <c:set var="formName" value="_03_licenseType"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <select title="Type of License" onchange="doIndividualLicenseSelect(this);" class="bigSelect" name="${formName}">
+                    <select title="Type of License" class="bigSelect" name="${formName}">
                         <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_03_licenseTypes']}">
                             <option value="${opt.description}"><c:out value="${opt.description}" /></option>
@@ -182,7 +187,7 @@
                 <td>
                     <c:set var="formName" value="_03_issuingState"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <select title="Issuing State" name="${formName}">
+                    <select title="Issuing State/Territory" name="${formName}">
                         <option value="">Please select</option>
                         <c:forEach var="opt" items="${requestScope['_03_licenseStates']}">
                             <option value="${opt.code}"><c:out value="${opt.description}" /></option>

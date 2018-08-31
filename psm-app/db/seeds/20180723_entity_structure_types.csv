@@ -1,0 +1,10 @@
+code,description
+"01","Sole Proprietorship"
+"02","Partnership"
+"03","Corporation"
+"04","Non-Profit"
+"05","Hospital Based"
+"06","State"
+"07","Public"
+"08","Professional Association"
+"99","Other"

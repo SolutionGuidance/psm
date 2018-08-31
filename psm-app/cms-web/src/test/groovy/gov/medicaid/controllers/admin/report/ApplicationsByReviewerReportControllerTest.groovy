@@ -7,8 +7,12 @@ import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.springframework.mock.web.MockHttpServletResponse
 
+import gov.medicaid.entities.CMSUser
 import gov.medicaid.entities.Enrollment
 import gov.medicaid.entities.EnrollmentStatus
+import gov.medicaid.entities.Person
+import gov.medicaid.entities.ProviderProfile
+import gov.medicaid.entities.ProviderType
 import gov.medicaid.entities.SearchResult
 import gov.medicaid.services.ProviderEnrollmentService
 import spock.lang.Specification
@@ -26,9 +30,18 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
         return new Enrollment([
             ticketId: id,
             createdOn: toDate(createdOn),
-            lastUpdatedBy: lastUpdatedBy,
+            lastUpdatedBy: new CMSUser([username: lastUpdatedBy]),
             statusDate: toDate(statusDate),
             status: new EnrollmentStatus([description: status])
+        ])
+    }
+
+    private makeProviderProfile(providerName, providerType) {
+        return new ProviderProfile([
+            entity: new Person([
+                name: providerName,
+                providerType: new ProviderType([description: providerType])
+            ])
         ])
     }
 
@@ -41,10 +54,8 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
     }
 
     void setup() {
-        controller = new ApplicationsByReviewerReportController()
         service = Mock(ProviderEnrollmentService)
-
-        controller.setEnrollmentService(service)
+        controller = new ApplicationsByReviewerReportController(service)
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
     }
@@ -63,21 +74,24 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
 
         then:
         records[0][0] == "Application ID"
-        records[0][1] == "Submission Date"
-        records[0][2] == "Reviewed By"
-        records[0][3] == "Review Date"
-        records[0][4] == "Status"
+        records[0][1] == "Provider Name"
+        records[0][2] == "Provider Type"
+        records[0][3] == "Submission Date"
+        records[0][4] == "Reviewed By"
+        records[0][5] == "Review Date"
+        records[0][6] == "Status"
         records.size == 1
-        records[0].size() == 5
+        records[0].size() == 7
     }
 
     def "csv with an enrollments"() {
         given:
         def results = new SearchResult<Enrollment>()
         results.setItems([
-            makeEnrollment(1234, "2018-05-05 12:32:33 PST", "ADMIN", "2018-05-08 5:03:55 PST", "TEST")
+            makeEnrollment(1234, "2018-05-05 12:32:33 PST", "admin", "2018-05-08 5:03:55 PST", "TEST")
         ])
         1 * service.searchEnrollments(_) >> results
+        1 * service.getProviderDetailsByTicket(1234, true) >> makeProviderProfile("Provider", "Type");
 
         def response = new MockHttpServletResponse()
 
@@ -88,21 +102,23 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
 
         then:
         records.size == 2
-        records[1].size() == 5
+        records[1].size() == 7
         records[1][0] == "1234"
-        records[1][1] == "Sat May 05 20:32:33 UTC 2018"
-        records[1][2] == "ADMIN"
-        records[1][3] == "Tue May 08 13:03:55 UTC 2018"
-        records[1][4] == "TEST"
+        records[1][1] == "Provider"
+        records[1][2] == "Type"
+        records[1][3] == "Sat May 05 20:32:33 UTC 2018"
+        records[1][4] == "admin"
+        records[1][5] == "Tue May 08 13:03:55 UTC 2018"
+        records[1][6] == "TEST"
     }
 
     private testData() {
         def results = new SearchResult<Enrollment>()
         results.setItems([
-            makeEnrollment(1234, "2018-05-05 12:32:33 PST", "ADMIN", "2018-05-08 5:03:55 PST", "TEST"),
+            makeEnrollment(1234, "2018-05-05 12:32:33 PST", "admin", "2018-05-08 5:03:55 PST", "TEST"),
             makeEnrollment(1235, "2018-05-04 12:32:33 PST", "p1", "2018-05-09 5:03:55 PST", "APPROVED"),
             makeEnrollment(1236, "2018-05-03 12:32:33 PST", "p1", "2018-05-10 5:03:55 PST", "DRAFT"),
-            makeEnrollment(1237, "2018-05-02 12:32:33 PST", "ADMIN", "2018-05-11 5:03:55 PST", "TEST")
+            makeEnrollment(1237, "2018-05-02 12:32:33 PST", "admin", "2018-05-11 5:03:55 PST", "TEST")
         ].sort{it.getCreatedOn()})
         results
     }

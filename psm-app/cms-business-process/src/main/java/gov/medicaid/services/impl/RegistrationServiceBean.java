@@ -16,6 +16,8 @@
 
 package gov.medicaid.services.impl;
 
+import com.topcoder.util.keygenerator.random.RandomStringGenerator;
+
 import gov.medicaid.binders.BinderUtils;
 import gov.medicaid.dao.IdentityProviderDAO;
 import gov.medicaid.entities.AuditDetail;
@@ -36,13 +38,6 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.Util;
 
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -54,7 +49,12 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import com.topcoder.util.keygenerator.random.RandomStringGenerator;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Defines registration related logic.
@@ -113,11 +113,10 @@ public class RegistrationServiceBean extends BaseService implements Registration
      * @param systemName the external system name to search the link for
      * @param username the username for the external system
      * @return the matching user, or null if not found
-     * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings("rawtypes")
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-    public CMSUser findByExternalUsername(SystemId systemName, String username) throws PortalServiceException {
+    public CMSUser findByExternalUsername(SystemId systemName, String username) {
         String str = "SELECT u FROM CMSUser u, ExternalAccountLink e WHERE e.systemId = :system "
             + "AND e.externalUserId = :username AND u.userId = e.userId AND u.username IS NULL";
 
@@ -136,11 +135,10 @@ public class RegistrationServiceBean extends BaseService implements Registration
      *
      * @param username the username to search for
      * @return the matching user, null if not found
-     * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings("rawtypes")
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-    public CMSUser findByUsername(String username) throws PortalServiceException {
+    public CMSUser findByUsername(String username) {
         Query q = getEm().createQuery("FROM CMSUser u WHERE u.username = :username");
         q.setParameter("username", username);
         List rs = q.getResultList();
@@ -195,12 +193,9 @@ public class RegistrationServiceBean extends BaseService implements Registration
      * @param username the external user id
      * @param registrant the user profile
      * @return the generated user id
-     * @throws PortalServiceException for any errors encountered, or if any field is considered invalid by the
-     *             underlying implementations
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public String registerExternalUser(SystemId systemId, String username, CMSUser registrant)
-        throws PortalServiceException {
+    public String registerExternalUser(SystemId systemId, String username, CMSUser registrant) {
 
         // create only in database (no LDAP account)
         String userId = createUser(null, registrant);
@@ -218,10 +213,9 @@ public class RegistrationServiceBean extends BaseService implements Registration
      *
      * @param principal the user performing the action
      * @param userId the user to be suspended
-     * @throws PortalServiceException for any errors encountered
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void suspend(CMSUser principal, String userId) throws PortalServiceException {
+    public void suspend(CMSUser principal, String userId) {
         changeStatus(principal, userId, UserStatus.DISABLED);
     }
 
@@ -230,10 +224,9 @@ public class RegistrationServiceBean extends BaseService implements Registration
      *
      * @param principal the user performing the action
      * @param userId the user to be reinstated
-     * @throws PortalServiceException for any errors encountered
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void reinstate(CMSUser principal, String userId) throws PortalServiceException {
+    public void reinstate(CMSUser principal, String userId) {
         changeStatus(principal, userId, UserStatus.ACTIVE);
     }
 
@@ -242,10 +235,9 @@ public class RegistrationServiceBean extends BaseService implements Registration
      *
      * @param userId the user id to be linked
      * @param link the account link details
-     * @throws PortalServiceException for any errors encountered
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void addAccountLink(String userId, ExternalAccountLink link) throws PortalServiceException {
+    public void addAccountLink(String userId, ExternalAccountLink link) {
         ExternalAccountLink existing = findAccountLink(userId, link.getSystemId(), link.getExternalUserId());
         if (existing == null) {
             link.setId(0);
@@ -600,6 +592,8 @@ public class RegistrationServiceBean extends BaseService implements Registration
         changes.setLastName(user.getLastName());
         changes.setMiddleName(user.getMiddleName());
         changes.setEmail(user.getEmail());
+        changes.setApiRead(user.getApiRead());
+        changes.setApiWrite(user.getApiWrite());
 
         if (user.getStatus() != null) {
             changes.setStatus(user.getStatus());
@@ -819,6 +813,13 @@ public class RegistrationServiceBean extends BaseService implements Registration
      * @throws PortalServiceException for any errors encountered
      */
     public boolean authenticate(String username, String password) throws PortalServiceException {
+        CMSUser user = findByUsername(username);
+        if (user == null) {
+            throw new PortalServiceException("User not found");
+        }
+        if (user.getStatus() != UserStatus.ACTIVE) {
+            throw new PortalServiceException("User is disabled");
+        }
         return identityProvider.authenticate(username, password);
     }
 }

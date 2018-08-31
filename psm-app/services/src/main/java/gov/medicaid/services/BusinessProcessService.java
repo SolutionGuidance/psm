@@ -21,9 +21,9 @@ import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.entities.CMSUser;
 
-import java.util.List;
-
 import org.jbpm.task.query.TaskSummary;
+
+import java.util.List;
 
 /**
  * Defines the interface for enrollment.
@@ -38,15 +38,6 @@ public interface BusinessProcessService {
      * @throws PortalServiceException for any errors encountered
      */
     void submitTicket(CMSUser user, long ticketId) throws PortalServiceException;
-
-    /**
-     * Starts a new enrollment process.
-     *
-     * @param enrollment the enrollment requested
-     * @return the process instance id
-     * @throws Exception for any errors encountered
-     */
-    long enroll(EnrollmentType enrollment) throws Exception;
 
     /**
      * Retrieves the available tasks for the given user and roles.
@@ -91,32 +82,6 @@ public interface BusinessProcessService {
     ) throws Exception;
 
     /**
-     * Starts the renewal process.
-     *
-     * @param ticket         the renewal request
-     * @param currentProfile the current profile for this provider
-     * @return the process instance id.
-     * @throws Exception for any errors encountered
-     */
-    long renew(
-            EnrollmentType ticket,
-            EnrollmentType currentProfile
-    ) throws Exception;
-
-    /**
-     * Starts the update process.
-     *
-     * @param ticket         the update request
-     * @param currentProfile the current profile for this provider
-     * @return the process instance id.
-     * @throws Exception for any errors encountered
-     */
-    long update(
-            EnrollmentType ticket,
-            EnrollmentType currentProfile
-    ) throws Exception;
-
-    /**
      * Updates a pending process.
      *
      * @param ticket   the update request
@@ -126,7 +91,6 @@ public interface BusinessProcessService {
      */
     void updateRequest(
             EnrollmentType ticket,
-            String user,
-            String userRole
+            CMSUser user
     ) throws Exception;
 }

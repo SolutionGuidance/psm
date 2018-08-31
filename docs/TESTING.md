@@ -191,3 +191,25 @@ To make it easier to test branches, we have a script to refresh a
 development environment with a new Gradle build and a fresh new
 database: `scripts/rebuild-and-change-schema-for-testing.sh`.  Make
 sure to run it from within `scripts/`.
+
+## Before Submitting a PR
+
+Before you submit a PR, you should have thoroughly tested your change,
+as mentioned in the CONTRIBUTING file.  In particular, that means:
+
+- Build and deploy the new code.
+- Log in as a provider type user (e.g., "p1" in the sample data) and
+  complete and submit an application for enrollment (called an
+  "Enrollment" in the UI and the code).  Can you submit with no errors?
+- Log in as a service admin type user (e.g., "admin" in the sample data)
+  and review the application you just submitted.  Can you approve and/or
+  reject the application with no errors?
+
+It's encouraged to include screenshots and a description of how to test
+the change in your PR message.
+
+If you want to submit a PR for discussion before completing it or before
+doing all this testing, include the string "WIP" (for "Work in
+Progress") in your PR title.  This will show other team members that
+your PR isn't ready for review yet.  When it is ready, remove "WIP" from
+the title.

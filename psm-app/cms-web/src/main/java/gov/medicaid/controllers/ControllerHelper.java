@@ -16,9 +16,8 @@
 
 package gov.medicaid.controllers;
 
-import javax.servlet.http.HttpSession;
-
 import gov.medicaid.entities.CMSUser;
+import gov.medicaid.entities.SearchResult;
 import gov.medicaid.interceptors.FlashMessageInterceptor;
 import gov.medicaid.security.CMSPrincipal;
 
@@ -27,6 +26,14 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 /**
  * Utility class for front end controllers.
@@ -35,6 +42,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * @version 1.0
  */
 public class ControllerHelper {
+
+    static final int MAX_PAGE_LINKS_TO_SHOW = 4;
+    private static final int PREVIOUS_PAGES_TO_SHOW = 2;
 
     /**
      * Private constructor.
@@ -117,5 +127,67 @@ public class ControllerHelper {
     public static void addError(String message) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         attr.getRequest().setAttribute(FlashMessageInterceptor.FLASH_ERROR, message);
+    }
+
+    public static void addPaginationLinks(SearchResult<?> results, ModelAndView mv) {
+        int pageNumber = results.getPageNumber();
+        int totalPages = results.getTotalPages();
+
+        mv.addObject("thereArePages", totalPages > 0);
+        mv.addObject("currentPage", pageNumber);
+
+        int firstPage = getFirstPage(pageNumber, totalPages);
+        int lastPage = min(firstPage + MAX_PAGE_LINKS_TO_SHOW, totalPages);
+
+        List<Integer> prevPages = new ArrayList<>();
+        List<Integer> nextPages = new ArrayList<>();
+        for (Integer i = firstPage; i <= lastPage; i++) {
+            if (i < pageNumber) {
+                prevPages.add(i);
+            } else if (i > pageNumber) {
+                nextPages.add(i);
+            }
+        }
+        mv.addObject("prevPages", prevPages);
+        mv.addObject("nextPages", nextPages);
+    }
+
+    public static void addPaginationDetails(SearchResult<?> results, ModelAndView mv) {
+        int pageNumber = results.getPageNumber();
+        int pageSize = results.getPageSize();
+        int itemsOnPage = results.getTotalItems();
+        int lastItemOfPreviousPage = (pageNumber - 1) * pageSize;
+
+        mv.addObject(
+                "pageStartItem",
+                itemsOnPage == 0 ? 0 : lastItemOfPreviousPage + 1
+        );
+        mv.addObject(
+                "pageEndItem",
+                lastItemOfPreviousPage + itemsOnPage
+        );
+        mv.addObject(
+                "pageSize" + String.valueOf(pageSize),
+                true
+        );
+        mv.addObject(
+                "totalItems",
+                results.getTotal()
+        );
+    }
+
+    private static int getFirstPage(int pageNumber, int totalPages) {
+        int firstPage;
+        if (nearEndOfPages(pageNumber, totalPages)) {
+            firstPage = totalPages - MAX_PAGE_LINKS_TO_SHOW;
+        } else {
+            firstPage = pageNumber - PREVIOUS_PAGES_TO_SHOW;
+        }
+        return max(1, firstPage);
+    }
+
+    private static boolean nearEndOfPages(int pageNumber, int totalPages) {
+        final int MAX_FIRST_PAGE = totalPages - MAX_PAGE_LINKS_TO_SHOW;
+        return pageNumber > MAX_FIRST_PAGE;
     }
 }

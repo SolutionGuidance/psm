@@ -42,16 +42,16 @@ status is active at |nppes_link| (link opens in a new tab).
 What are the steps in the enrollment process?
 ---------------------------------------------
 
--  A provider, a service agent, or a state Medicaid agency staffer
+-  A provider, a service agent, or a state/territory Medicaid agency staffer
    creates and submits a new enrollment application for a particular
    provider. (A user can save a draft application and come back later to
    finish and submit it.)
 
--  A state Medicaid agency staffer reviews the enrollment, using links
-   provided by the PSM to verify enrollment details, and decides whether
+-  A state/territory Medicaid agency staffer reviews the enrollment, using
+   links provided by the PSM to verify enrollment details, and decides whether
    to approve or reject the submission.
 
--  After an enrollment has been approved, a state Medicaid agency
+-  After an enrollment has been approved, a state/territory Medicaid agency
    staffer can select and renew it.
 
 Who can view enrollments?
@@ -60,7 +60,7 @@ Who can view enrollments?
 A provider can view their own enrollments (including draft, rejected,
 approved, and pending enrollments).
 
-A service agent or state Medicaid agency staffer can view all
+A service agent or state/territory Medicaid agency staffer can view all
 enrollments (including draft, rejected, approved, and pending
 enrollments). (`The PSM may limit this ability in a future
 version. <https://github.com/SolutionGuidance/psm/issues/10>`__)
@@ -70,14 +70,14 @@ currently allows a system admin to view enrollments, but will remove
 that capability in a future
 version. <https://github.com/SolutionGuidance/psm/issues/10>`__
 
-Which enrollment information can a provider, service agent, or state Medicaid agency staffer modify or delete?
---------------------------------------------------------------------------------------------------------------
+Which enrollment information can a provider, service agent, or state/territory Medicaid agency staffer modify or delete?
+------------------------------------------------------------------------------------------------------------------------
 
 A provider can modify a draft enrollment, but can't delete it. A
 provider also cannot delete or modify an enrollment after submitting it
 (once it is "pending", "approved", or "denied").
 
-A service agent or state Medicaid agency staffer can modify a draft or
+A service agent or state/territory Medicaid agency staffer can modify a draft or
 pending enrollment, but cannot delete any enrollments.
 
 How will a provider learn when their enrollment changes status?
@@ -95,7 +95,7 @@ changes. <https://github.com/SolutionGuidance/psm/issues/341>`__)
 Can I create an enrollment for someone else?
 --------------------------------------------
 
-A service agent or a state Medicaid agency staffer can create an
+A service agent or a state/territory Medicaid agency staffer can create an
 enrollment for someone else.
 
 Can I start an enrollment now and finish it later, or do I have to start and submit it all in one session?
@@ -110,10 +110,10 @@ under Enrollments.
 Can I start a draft enrollment and then have someone else finish it for me?
 ---------------------------------------------------------------------------
 
-Service agents and state Medicaid agency staffers can finish draft
+Service agents and state/territory Medicaid agency staffers can finish draft
 enrollments started by other people. A provider can save a draft
 enrollment and then phone or otherwise contact a service agent or the
-state Medicaid agency to ask them to help finish it for you. One
+state/territory Medicaid agency to ask them to help finish it for you. One
 provider cannot access, and therefore cannot finish and submit, a draft
 enrollment started by another provider.
 
@@ -134,15 +134,15 @@ You can only edit an enrollment if its status is still "Draft"
 Can I change something in a pending enrollment after I submit it?
 -----------------------------------------------------------------
 
-You'll need to directly contact the state Medicaid office; once you've
-submitted an enrollment, you can't update it in the PSM.
+You'll need to directly contact the state/territory Medicaid office;
+once you've submitted an enrollment, you can't update it in the PSM.
 
 How will I find out when my enrollment is accepted or rejected?
 ---------------------------------------------------------------
 
 Right now, this site does not notify you via email or paper mail when
-the state accepts or rejects an enrollment you have submitted. `This
-will change in a future version of the Provider Screening
+the state/territory accepts or rejects an enrollment you have submitted.
+`This will change in a future version of the Provider Screening
 Module. <https://github.com/SolutionGuidance/psm/issues/341>`__
 
 When you log into the PSM, you'll see any enrollments you've submitted
@@ -162,7 +162,7 @@ You should:
 -  Check the |nppes_link| (link opens in a new tab) to ensure your NPI
    status is active
 
--  Check the state Medicaid provider guidelines
+-  Check the state/territory Medicaid provider guidelines
 
 .. |nppes_link| raw:: html
 
@@ -275,8 +275,8 @@ enrollment. On the member entry screen, click the link to add an
 additional member. Repeat as necessary to add all the individuals who
 will provide services under the umbrella of the organization.
 
-When an organizational provider owns a number of separately located facilities in the state, does each facility need to enroll separately?
-------------------------------------------------------------------------------------------------------------------------------------------
+When an organizational provider owns a number of separately located facilities in the state/territory, does each facility need to enroll separately?
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
 If the organizational provider (often a corporation) owns multiple
 locations, each one must be enrolled separately.
@@ -284,7 +284,7 @@ locations, each one must be enrolled separately.
 What do I do if none of the provider types seem to describe what I do (what this provider does)?
 ------------------------------------------------------------------------------------------------
 
-Contact your state Medicaid office directly.
+Contact your state/territory Medicaid office directly.
 
 How can I update an existing organizational enrollment to add a new provider (e.g., if a clinic hires a new physician)?
 -----------------------------------------------------------------------------------------------------------------------
@@ -305,7 +305,7 @@ If an enrollment is a draft (you haven't submitted it yet), then yes,
 you can click on the draft enrollment and edit the member list. If you
 have already submitted the enrollment, then it is not possible to remove
 an individual member via the PSM, and you will need to directly contact
-your state Medicaid office.
+your state/territory Medicaid office.
 
 How do I view license/certification files?
 ------------------------------------------
@@ -325,7 +325,7 @@ probably automatically open a program to view the file, such as:
 What if I know from past experience that someone else with the same name, address, or NPI has previously been excluded from Medicaid and that automatic checks are likely to flag this enrollment as a result?
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Contact your state Medicaid office directly.
+Contact your state/territory Medicaid office directly.
 
 How do I end (terminate) my own active enrollment?
 --------------------------------------------------
@@ -333,4 +333,5 @@ How do I end (terminate) my own active enrollment?
 Currently the PSM does not give you a way to terminate an approved
 enrollment, but `a future version of the PSM
 will <https://github.com/SolutionGuidance/psm/issues/407>`__. Please
-contact the state Medicaid office directly to terminate an enrollment.
+contact the state/territory Medicaid office directly to terminate an
+enrollment.

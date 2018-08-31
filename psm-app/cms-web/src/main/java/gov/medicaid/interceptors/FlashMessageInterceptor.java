@@ -16,12 +16,11 @@
 
 package gov.medicaid.interceptors;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Moves flash messages to request scope.
@@ -29,7 +28,6 @@ import org.springframework.web.servlet.ModelAndView;
  * @author TCSASSEMBLER
  * @version 1.0
  */
-@Controller
 public class FlashMessageInterceptor implements HandlerInterceptor {
 
     /**

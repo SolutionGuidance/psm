@@ -1,9 +1,18 @@
 package gov.medicaid.services.impl;
 
-import java.io.StringWriter;
+import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.entities.EmailTemplate;
+import gov.medicaid.entities.SentNotification;
+import gov.medicaid.services.CMSConfigurator;
+import gov.medicaid.services.NotificationService;
+import gov.medicaid.services.PortalServiceConfigurationException;
+import gov.medicaid.services.PortalServiceException;
 
-import java.util.Date;
-import java.util.Map;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -15,18 +24,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
-import org.apache.velocity.runtime.RuntimeConstants;
-import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-
-import gov.medicaid.entities.EmailTemplate;
-import gov.medicaid.entities.SentNotification;
-import gov.medicaid.services.CMSConfigurator;
-import gov.medicaid.services.NotificationService;
-import gov.medicaid.services.PortalServiceConfigurationException;
-import gov.medicaid.services.PortalServiceException;
+import java.io.StringWriter;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Stateless
 @Local(NotificationService.class)
@@ -133,6 +134,22 @@ public class NotificationServiceBean extends BaseService implements Notification
           Transport.send(message);
         } catch (Exception e) {
           throw new PortalServiceException("Error while sending notification.", e);
+        }
+    }
+
+    @Override
+    public void sendEnrollmentNotification(
+        EnrollmentType enrollment,
+        EmailTemplate emailType
+    ) throws PortalServiceException {
+        Map<String, Object> vars = new HashMap<>();
+        String contact_name = enrollment.getContactInformation().getName();
+        vars.put("submitter", contact_name);
+        String emailAddress = enrollment.getContactInformation().getEmailAddress();
+        if (emailAddress != null && emailAddress.trim().length() > 0) {
+            sendNotification(emailAddress, emailType, vars);
+        } else {
+            getLogger().warning("Skipping notification as email address was missing");
         }
     }
 }

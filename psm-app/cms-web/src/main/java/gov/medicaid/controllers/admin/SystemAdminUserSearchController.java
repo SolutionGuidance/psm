@@ -23,15 +23,15 @@ import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.UserSearchCriteria;
 import gov.medicaid.services.PortalServiceException;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
+import gov.medicaid.services.RegistrationService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * This controller class that provides for user search - simple and advanced.
@@ -46,18 +46,19 @@ import org.springframework.web.servlet.ModelAndView;
  * @since 1.0
  * @endpoint "/system/search/*"
  */
+@Controller
 @RequestMapping("/system/search/*")
-public class SystemAdminUserSearchController extends BaseSystemAdminController {
+public class SystemAdminUserSearchController {
 
     /**
      * The generic error message to be presented to the user.
      */
     private static final String USER_ERROR_MSG = "There was a problem processing your request, please contact support.";
 
-    /**
-     * Empty constructor.
-     */
-    public SystemAdminUserSearchController() {
+    private final RegistrationService registrationService;
+
+    public SystemAdminUserSearchController(RegistrationService registrationService) {
+        this.registrationService = registrationService;
     }
 
     /**
@@ -78,11 +79,13 @@ public class SystemAdminUserSearchController extends BaseSystemAdminController {
             throw new IllegalArgumentException("Argument 'criteria' cannot be null.");
         }
 
-        SearchResult<CMSUser> results = getRegistrationService().findUsersByCriteria(criteria);
+        SearchResult<CMSUser> results = registrationService.findUsersByCriteria(criteria);
         ModelAndView mv = new ModelAndView("admin/advanced-search-results-system-admin");
         mv.addObject("results", results);
         mv.addObject("criteria", criteria);
         mv.addObject("roles", getRolesStr(criteria.getRoles()));
+        ControllerHelper.addPaginationDetails(results, mv);
+        ControllerHelper.addPaginationLinks(results, mv);
         return mv;
     }
 
@@ -124,19 +127,11 @@ public class SystemAdminUserSearchController extends BaseSystemAdminController {
         StatusDTO statusDTO = new StatusDTO();
         try {
             CMSUser actor = ControllerHelper.getCurrentUser();
-            getRegistrationService().unregisterUsers(actor.getUserId(), userIds);
+            registrationService.unregisterUsers(actor.getUserId(), userIds);
             statusDTO.setSuccess(true);
         } catch (PortalServiceException ex) {
             statusDTO.setMessage(USER_ERROR_MSG);
         }
         return statusDTO;
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
     }
 }

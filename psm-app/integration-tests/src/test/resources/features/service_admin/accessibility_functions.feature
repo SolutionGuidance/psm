@@ -27,11 +27,6 @@ Feature: Admin Functions Tab Pages
     And I am on the Functions Edit Screening Schedule page
     Then I should have no accessibility issues
 
-  Scenario: Admin Functions Help Topics Page
-    Given I am logged in as an admin
-    And I am on the Functions Help Topics page
-    Then I should have no accessibility issues
-
   Scenario: Admin Functions Agreements and Addendums Page
     Given I am logged in as an admin
     And I am on the Functions Agreements and Addendums page

@@ -28,9 +28,9 @@ If you are not a healthcare provider:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You probably want to create an account to be a "service agent" (someone
-who helps get providers enrolled) or a "service admin" (a state employee
-who approves and rejects enrollments). Please speak with the state
-Medicaid office for an account.
+who helps get providers enrolled) or a "service admin" (a state/territory
+employee who approves and rejects enrollments). Please speak with the
+state/territory Medicaid office for an account.
 
 How do I log in?
 ----------------
@@ -48,14 +48,14 @@ website will email you a new password to use to log in.
 I registered using an old email address I don't have access to anymore, and I've forgotten my password. How can I log in?
 -------------------------------------------------------------------------------------------------------------------------
 
-You will need to contact your state Medicaid office directly to get your
-account information changed and to get a new password.
+You will need to contact your state/territory Medicaid office directly to get
+your account information changed and to get a new password.
 
 Someone stole my identity and created an account or took over my existing account. How do I get control of my account back?
 ---------------------------------------------------------------------------------------------------------------------------
 
 To get your account back after identity theft, you will need to contact
-your state Medicaid office directly.
+your state/territory Medicaid office directly.
 
 Can I change my username or password?
 -------------------------------------
@@ -77,4 +77,4 @@ I stopped using the PSM for a while and when I came back I had to log in again. 
 Yes.  For security purposes, the PSM will automatically log you out
 after you haven't interacted with the application for a given amount of
 time.  The default is 30 minutes, but it may be as little as 15 minutes
-depending on the guidelines in your state.
+depending on the guidelines in your state/territory.

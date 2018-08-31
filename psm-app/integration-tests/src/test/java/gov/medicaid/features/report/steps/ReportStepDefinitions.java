@@ -60,6 +60,24 @@ public class ReportStepDefinitions {
         );
     }
 
+    @Given("^I am on the reviewed documents page$")
+    public void i_am_on_the_reviewed_documents_page() {
+        i_am_on_the_reports_page();
+        generalSteps.clickLinkAssertTitle(
+                ".reviewedDocumentsLink",
+                "Reviewed Documents"
+        );
+    }
+
+    @Given("^I am on the risk levels page$")
+    public void i_am_on_the_risk_levels_page() {
+        i_am_on_the_reports_page();
+        generalSteps.clickLinkAssertTitle(
+                ".riskLevelsLink",
+                "Risk Levels"
+        );
+    }
+
     @Then("^I should have no errors$")
     public void i_should_have_no_errors() {
         generalSteps.hasNoServerError();

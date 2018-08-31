@@ -36,15 +36,14 @@ import gov.medicaid.entities.RoleView;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.entities.dto.ViewStatics;
-import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.util.Util;
+
+import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the provider type selection form.
@@ -410,25 +409,20 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
      * @param location the practice location
      */
     private void attachLinkedGroup(PracticeLocationType location) {
-        try {
-            PracticeSearchCriteria criteria = new PracticeSearchCriteria();
-            criteria.setProfileId(Long.parseLong(location.getObjectId()));
-            SearchResult<PracticeLookup> results = getEnrollmentService().searchPractice(getSystemUser(), criteria);
-            PracticeLookup linkedPractice = results.getItems().get(0);
+        PracticeSearchCriteria criteria = new PracticeSearchCriteria();
+        criteria.setProfileId(Long.parseLong(location.getObjectId()));
+        SearchResult<PracticeLookup> results = getEnrollmentService().searchPractice(getSystemUser(), criteria);
+        PracticeLookup linkedPractice = results.getItems().get(0);
 
-            location.setGroupName(linkedPractice.getName());
-            location.setGroupNPI(linkedPractice.getNpi());
-            location.setAddress(new AddressType());
+        location.setGroupName(linkedPractice.getName());
+        location.setGroupNPI(linkedPractice.getNpi());
+        location.setAddress(new AddressType());
 
-            AddressType address = location.getAddress();
-            address.setAddressLine2(linkedPractice.getAddressLine2());
-            address.setCity(linkedPractice.getCity());
-            address.setState(linkedPractice.getState());
-            address.setZipCode(linkedPractice.getZip());
-            address.setCounty(linkedPractice.getCounty());
-
-        } catch (PortalServiceException e) {
-            throw new PortalServiceRuntimeException("Cannot verify linked practice.", e);
-        }
+        AddressType address = location.getAddress();
+        address.setAddressLine2(linkedPractice.getAddressLine2());
+        address.setCity(linkedPractice.getCity());
+        address.setState(linkedPractice.getState());
+        address.setZipCode(linkedPractice.getZip());
+        address.setCounty(linkedPractice.getCounty());
     }
 }

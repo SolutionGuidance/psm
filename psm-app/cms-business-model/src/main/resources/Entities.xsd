@@ -59,7 +59,6 @@
       <element name="AdditionalLocations" type="tns:AdditionalLocationsType" maxOccurs="1" minOccurs="0"/>
       <element name="AgencyInformation" type="tns:AgencyInformationType" maxOccurs="1" minOccurs="0"/>
       <element name="ReviewedBy" type="string" maxOccurs="1" minOccurs="0"/>
-      <element name="LegacyTransfer" type="string" maxOccurs="1" minOccurs="0"/>
       <element name="RenewalShowBlankStatement" type="string" maxOccurs="1" minOccurs="0"/>
     </sequence>
   </complexType>
@@ -388,7 +387,6 @@
       <element name="Name" type="string"/>
       <element name="Title" type="string"/>
       <element name="Signature" type="base64Binary"/>
-      <element name="SignDate" type="date"/>
     </sequence>
   </complexType>
   <complexType name="ValidationResultType">
@@ -739,6 +737,7 @@
   <complexType name="VerificationStatusType">
     <sequence>
       <element name="NonExclusion" type="string"/>
+      <element name="NotInDmf" type="string"/>
     </sequence>
   </complexType>
   <complexType name="SpecialtiesType">

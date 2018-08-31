@@ -114,7 +114,8 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
             long enrollmentId
     ) throws PortalServiceException {
         CMSUser user = findUser(username, systemId, npi);
-        Enrollment ticket = providerEnrollmentService.getTicketDetails(user, enrollmentId);
+        Enrollment ticket = providerEnrollmentService.getEnrollmentWithScreenings(user, enrollmentId).
+            orElseThrow(() -> new PortalServiceException("Couldn't find ticket"));
         return XMLAdapter.toXML(ticket);
     }
 
@@ -188,7 +189,8 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
         Enrollment ticket;
         if (ticketId > 0) {
             // update existing ticket
-            Enrollment ticketDetails = providerEnrollmentService.getTicketDetails(user, ticketId);
+            Enrollment ticketDetails = providerEnrollmentService.getEnrollmentWithScreenings(user, ticketId).
+                orElseThrow(() -> new PortalServiceException("Couldn't find ticket"));
             if (resetToDraft) {
                 if (!ViewStatics.DRAFT_STATUS.equals(ticketDetails.getStatus().getDescription())) {
                     throw new PortalServiceException("Cannot modify submitted ticket.");
@@ -280,8 +282,9 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
             try {
                 saveTicket(user, enrollment, false); // retain status
                 // synchronize with DB
-                Enrollment ticket = providerEnrollmentService.getTicketDetails(user, ticketId);
-                businessProcessService.updateRequest(XMLAdapter.toXML(ticket), user.getUserId(), user.getRole().getDescription());
+                Enrollment ticket = providerEnrollmentService.getEnrollmentWithScreenings(user, ticketId).
+                    orElseThrow(() -> new PortalServiceException("Couldn't find ticket"));
+                businessProcessService.updateRequest(XMLAdapter.toXML(ticket), user);
             } catch (Exception e) {
                 throw new PortalServiceException("Resubmit failed.", e);
             }

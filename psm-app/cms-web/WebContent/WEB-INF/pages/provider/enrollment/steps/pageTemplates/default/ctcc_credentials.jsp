@@ -21,7 +21,7 @@
     <div class="section line hiddenSection" style="display: ${formValue eq 'Y' ? 'block' : 'none'};">
         <div class="">
             <div class="row requireField">
-                <label for="dhsContract">Please upload a copy of contract with DHS<span class="required">*</span></label>
+                <label for="dhsContract">Please upload a copy of contract with DHS <span class="required">*</span></label>
 
                 <c:set var="formName" value="_30_dhsContract"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>

@@ -10,7 +10,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="Dashboard"/>
-  <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -19,7 +18,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
-            <c:set var="activeTab" value="1"></c:set>
+            <c:set var="activeTabDashboard" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
 
@@ -42,7 +41,16 @@
                 <div class="noData">No matched data found.</div>
               </c:when>
               <c:otherwise>
-                <table class="generalTable fixedWidthTable">
+                <table class="generalTable fixedWidthTable linedTable">
+                  <colgroup>
+                    <col width="100"/>
+                    <col width="*"/>
+                    <col width="100"/>
+                    <col width="95"/>
+                    <col width="85"/>
+                    <col width="75"/>
+                    <col width="60"/>
+                  </colgroup>
                   <thead>
                     <tr>
                       <th class="alignCenter">NPI / UMPI<span class="sep"></span></th>
@@ -51,19 +59,30 @@
                       <th class="alignCenter">Request Type<span class="sep"></span></th>
                       <th class="alignCenter">Date<span class="sep"></span></th>
                       <th class="alignCenter">Status<span class="sep"></span></th>
+                      <th class="alignCenter">Action<span class="sep"></span></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <c:forEach items="${profiles}" var="item">
-                      <tr>
-                        <td>
-                          <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">${item.npi}</a>
-                        </td>
+                    <c:forEach
+                      items="${profiles}"
+                      var="item"
+                      varStatus="status"
+                    >
+                      <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
+                        <td>${item.npi}</td>
                         <td>${item.providerType}</td>
                         <td>${item.providerName}</td>
                         <td>${item.requestType}</td>
                         <td><fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy"/></td>
                         <td>${item.status}</td>
+                        <td>
+                          <a
+                            class="actionLink"
+                            href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
+                          >
+                            View
+                          </a>
+                        </td>
                       </tr>
                     </c:forEach>
                   </tbody>

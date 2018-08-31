@@ -16,6 +16,10 @@
 
 package gov.medicaid.binders;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.PdfPTable;
+
 import gov.medicaid.domain.model.AddressType;
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.PracticeInformationType;
@@ -33,15 +37,11 @@ import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.util.PDFHelper;
 import gov.medicaid.services.util.Util;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.pdf.PdfPTable;
 
 /**
  * This binder handles the provider type selection form.
@@ -315,7 +315,8 @@ public class PrivatePracticeFormBinder extends AbstractPracticeFormBinder {
             PDFHelper.addLabelValueCell(practiceInfo, "State Tax ID", PDFHelper.value(model, ns, "stateTaxId"));
             PDFHelper.addLabelValueCell(practiceInfo, "Fiscal Year End", PDFHelper.getFiscalYear(model, ns));
             PDFHelper.addLabelValueCell(practiceInfo, "Accepts EFT", PDFHelper.getBoolean(model, ns, "eftAccepted"));
-            PDFHelper.addLabelValueCell(practiceInfo, "Remittance Sequence", PDFHelper.value(model, ns, "remittanceSequence"));
+            PDFHelper.addLabelValueCell(practiceInfo, "Remittance Sequence", RemittanceSequenceOrder.
+                    valueOf(PDFHelper.value(model, ns, "remittanceSequence")).getDescription());
         }
 
         document.add(practiceInfo);

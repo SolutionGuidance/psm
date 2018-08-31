@@ -47,6 +47,7 @@
       <property name="option" value="alone"/>
       <property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT, INSTANCE_INIT"/>
     </module>
+    <module name="ModifierOrder"/>
     <module name="RedundantModifier"/>
     <module name="AvoidStarImport"/>
     <module name="IllegalImport"/>
@@ -54,5 +55,12 @@
     <module name="OneStatementPerLine"/>
     <module name="PackageDeclaration"/>
     <module name="StringLiteralEquality"/>
+    <module name="ImportOrder">
+      <property name="groups" value="*,javax,java"/>
+      <property name="ordered" value="true"/>
+      <property name="separated" value="false"/>
+      <property name="option" value="bottom"/>
+      <property name="sortStaticImportsAlphabetically" value="true"/>
+    </module>
   </module>
 </module>

@@ -35,16 +35,15 @@ import gov.medicaid.entities.RoleView;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.entities.dto.ViewStatics;
-import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.util.Util;
+
+import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the provider type selection form.
@@ -74,7 +73,6 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
         practice.setObjectId(param(request, "objectId")); // if lookup is successful
@@ -100,7 +98,7 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
                 param(request, "fax3"), ""));
         }
 
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**
@@ -108,28 +106,24 @@ public abstract class AbstractPracticeFormBinder extends BaseFormBinder {
      * @param practice the practice to attach to
      */
     private void attachLinkedGroup(PracticeInformationType practice) {
-        try {
-            PracticeSearchCriteria criteria = new PracticeSearchCriteria();
-            criteria.setProfileId(Long.parseLong(practice.getObjectId()));
-            SearchResult<PracticeLookup> results = getEnrollmentService().searchPractice(getSystemUser(), criteria);
-            PracticeLookup linkedPractice = results.getItems().get(0);
+        PracticeSearchCriteria criteria = new PracticeSearchCriteria();
+        criteria.setProfileId(Long.parseLong(practice.getObjectId()));
+        SearchResult<PracticeLookup> results = getEnrollmentService().searchPractice(getSystemUser(), criteria);
+        PracticeLookup linkedPractice = results.getItems().get(0);
 
-            practice.setName(linkedPractice.getName());
-            practice.setGroupNPI(linkedPractice.getNpi());
-            AddressType address = XMLUtility.nsGetAddress(practice);
-            address.setAddressLine1(linkedPractice.getAddressLine1());
-            address.setAddressLine2(linkedPractice.getAddressLine2());
-            address.setCity(linkedPractice.getCity());
-            address.setState(linkedPractice.getState());
-            address.setZipCode(linkedPractice.getZip());
-            address.setCounty(linkedPractice.getCounty());
+        practice.setName(linkedPractice.getName());
+        practice.setGroupNPI(linkedPractice.getNpi());
+        AddressType address = XMLUtility.nsGetAddress(practice);
+        address.setAddressLine1(linkedPractice.getAddressLine1());
+        address.setAddressLine2(linkedPractice.getAddressLine2());
+        address.setCity(linkedPractice.getCity());
+        address.setState(linkedPractice.getState());
+        address.setZipCode(linkedPractice.getZip());
+        address.setCounty(linkedPractice.getCounty());
 
-            ContactInformationType contact = XMLUtility.nsGetContactInformation(practice);
-            contact.setPhoneNumber(linkedPractice.getPhoneNumber());
-            contact.setFaxNumber(linkedPractice.getFaxNumber());
-        } catch (PortalServiceException e) {
-            throw new PortalServiceRuntimeException("Cannot verify linked practice.", e);
-        }
+        ContactInformationType contact = XMLUtility.nsGetContactInformation(practice);
+        contact.setPhoneNumber(linkedPractice.getPhoneNumber());
+        contact.setFaxNumber(linkedPractice.getFaxNumber());
     }
 
     /**

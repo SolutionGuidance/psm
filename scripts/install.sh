@@ -19,6 +19,9 @@ set -e
 # test data from the repo.  If you're deploying in earnest, you'll
 # want to adjust things.
 
+WILDFLY_VERSION="11.0.0.Final"
+WILDFLY_DIR="./wildfly-${WILDFLY_VERSION}"
+
 function download_and_sha1 {
 	base=$(basename $1)
 	[ -e $base ] || curl -OL $1
@@ -40,7 +43,7 @@ function seed_db {
 }
 
 function start_jboss {
-	./wildfly-10.1.0.Final/bin/standalone.sh \
+	${WILDFLY_DIR}/bin/standalone.sh \
 		-c standalone-full.xml \
 		-b 0.0.0.0 \
 		-bmanagement 0.0.0.0 &
@@ -114,8 +117,8 @@ fi
 # /tmp/pass.txt.  If, however, the password is in the xml config from
 # a prior run, just use that password.
 pword=""
-if grep -q user-name.psm..user-name wildfly-10.1.0.Final/standalone/configuration/standalone-full.xml; then
-	pword=$(grep -m 1 -A 1 user-name.psm..user-name wildfly-10.1.0.Final/standalone/configuration/standalone-full.xml | \
+if grep -q user-name.psm..user-name ${WILDFLY_DIR}/standalone/configuration/standalone-full.xml; then
+	pword=$(grep -m 1 -A 1 user-name.psm..user-name ${WILDFLY_DIR}/standalone/configuration/standalone-full.xml | \
 		grep password | \
 		sed "s/.*<password>//" | \
 		sed "s/<.password>//")
@@ -125,10 +128,10 @@ fi
 # At this point, we are one dir above a checkout of the psm repo, so
 # we can download and install Wildfly
 echo "Downloading and installing Wildfly"
-download_and_sha1 "http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz" \
-				  9ee3c0255e2e6007d502223916cefad2a1a5e333
-rm -rf "wildfly-10.1.0.Final"
-tar -xzf wildfly-10.1.0.Final.tar.gz
+download_and_sha1 "http://download.jboss.org/wildfly/${WILDFLY_VERSION}/wildfly-${WILDFLY_VERSION}.tar.gz" \
+                  0e89fe0860a87bfd6b09379ee38d743642edfcfb
+rm -rf ${WILDFLY_DIR}
+tar -xzf wildfly-${WILDFLY_VERSION}.tar.gz
 
 # Config postgres - setup user/pass and make db
 pushd /tmp > /dev/null # Prevent complaining about not being able to change to dir (permission denied)
@@ -139,12 +142,12 @@ sudo -upostgres psql -c "create database psm with owner psm encoding=utf8 templa
 popd > /dev/null
 
 # Set up user and run wildfly server
-JBOSS_CLI=./wildfly-10.1.0.Final/bin/jboss-cli.sh
-./wildfly-10.1.0.Final/bin/add-user.sh psm "${pword}"
+JBOSS_CLI=${WILDFLY_DIR}/bin/jboss-cli.sh
+${WILDFLY_DIR}/bin/add-user.sh psm "${pword}"
 start_jboss
 
 # Configure wildfly service bindings
-if ! grep -Fq "<remote-destination host=\"localhost\" port=\"1025\"/>" ./wildfly-10.1.0.Final/standalone/configuration/standalone-full.xml; then
+if ! grep -Fq "<remote-destination host=\"localhost\" port=\"1025\"/>" ${WILDFLY_DIR}/standalone/configuration/standalone-full.xml; then
 	echo Tell Wildfly to use localhost:1025 for mail service.
 	${JBOSS_CLI} --connect << EOF
 /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp:write-attribute(name=port,value=1025)
@@ -161,7 +164,7 @@ ${JBOSS_CLI} --connect --command="deploy --force postgresql-$JDBC_VERSION.jar"
 
 echo Configure Wildfly to use Postgres
 if ! grep -Fq 'TaskServiceDS' \
-	 ./wildfly-10.1.0.Final/standalone/configuration/standalone-full.xml; then
+	 ${WILDFLY_DIR}/standalone/configuration/standalone-full.xml; then
 ${JBOSS_CLI} --connect <<EOF
 xa-data-source add \
   --name=TaskServiceDS \
@@ -179,7 +182,7 @@ xa-data-source add \
 EOF
 fi
 
-if ! grep -Fq 'MitaDS' ./wildfly-10.1.0.Final/standalone/configuration/standalone-full.xml; then
+if ! grep -Fq 'MitaDS' ${WILDFLY_DIR}/standalone/configuration/standalone-full.xml; then
 ${JBOSS_CLI} --connect <<EOF
 xa-data-source add \
   --name=MitaDS \

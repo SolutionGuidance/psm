@@ -41,7 +41,7 @@
                 <div class="section" id="updateProfile">
                   <div class="wholeCol">
                     <div class="row">
-                      <label for="forgotPasswordUsername">Username<span class="required">*</span></label>
+                      <label for="forgotPasswordUsername">Username <span class="required">*</span></label>
                       <c:set var="errorCls" value=""/>
                       <spring:bind path="username">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>
@@ -49,7 +49,7 @@
                       <form:input id="forgotPasswordUsername" path="username" cssClass="normalInput ${errorCls}"/>
                     </div>
                     <div class="row">
-                      <label for="forgotPasswordEmail">Email<span class="required">*</span></label>
+                      <label for="forgotPasswordEmail">Email <span class="required">*</span></label>
                       <c:set var="errorCls" value=""/>
                       <spring:bind path="email">
                         <c:if test="${status.error}"><c:set var="errorCls" value="errorInput"/></c:if>

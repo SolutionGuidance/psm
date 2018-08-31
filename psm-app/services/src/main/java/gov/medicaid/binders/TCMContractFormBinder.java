@@ -28,12 +28,12 @@ import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.dto.FormError;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the organization disclosure.
@@ -64,7 +64,6 @@ public class TCMContractFormBinder extends BaseFormBinder {
      * @return
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         FacilityCredentialsType credentials = XMLUtility.nsGetFacilityCredentials(enrollment);
@@ -95,7 +94,7 @@ public class TCMContractFormBinder extends BaseFormBinder {
             replaceDocument(attachments, attachmentId, "DHS-5702");
         }
 
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**

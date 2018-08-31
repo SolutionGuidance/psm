@@ -2,8 +2,6 @@ package gov.medicaid.features.enrollment.ui;
 
 import cucumber.api.PendingException;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 public class OrganizationInfoPage extends EnrollmentPage {
     private static final String ORGANIZATION_FEIN_ERROR_MESSAGE =
             "Organization FEIN length must be 9 characters.";
@@ -34,6 +32,10 @@ public class OrganizationInfoPage extends EnrollmentPage {
         } else {
             throw new PendingException("Issue #346 - Capture contact phone # for individual provider enrollments");
         }
+    }
+
+    public void verifyContactEmailAccepted() {
+        $("#contactEmail").sendKeys("contact_email");
     }
 
     public void verifyMedicaidNumberAccepted() {
@@ -96,8 +98,11 @@ public class OrganizationInfoPage extends EnrollmentPage {
         $("[name='_15_contactPhone1']").sendKeys(contactPhone);
     }
 
+    public void setContactEmail(String contactEmail) {
+        $("[name='_15_contactEmail']").sendKeys(contactEmail);
+    }
+
     public void checkForFeinError() throws Exception {
-        assertThat($(".errorInfo > ._15_fein").getText())
-                .contains(ORGANIZATION_FEIN_ERROR_MESSAGE);
+        checkForFormError("_15_fein", ORGANIZATION_FEIN_ERROR_MESSAGE);
     }
 }

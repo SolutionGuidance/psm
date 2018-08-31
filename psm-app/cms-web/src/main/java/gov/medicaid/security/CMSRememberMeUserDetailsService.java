@@ -20,18 +20,16 @@ import gov.medicaid.controllers.dto.CMSUserDetailsWrapper;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.SystemId;
 import gov.medicaid.services.PortalServiceConfigurationException;
-import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
 
-import java.util.ArrayList;
-
-import javax.annotation.PostConstruct;
-
-import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+
+import javax.annotation.PostConstruct;
+
+import java.util.ArrayList;
 
 /**
  * User details implementation for use of the remember me services.
@@ -85,22 +83,18 @@ public class CMSRememberMeUserDetailsService implements UserDetailsService {
      * @return the user principal
      */
     public UserDetails loadUserByUsername(String userId) {
-        try {
-            CMSUser cmsUser = registrationService.findByUsername(userId);
-            if (cmsUser == null) {
-                return null;
-            }
-
-            // we do not remembering external users
-            if (cmsUser.getUsername() == null) {
-                return null;
-            }
-
-            User user = new User(cmsUser.getUsername(), "", true, true, true, true, EMPTY_AUTH);
-            return new CMSUserDetailsWrapper(user, cmsUser, SystemId.CMS_ONLINE);
-        } catch (PortalServiceException e) {
-            throw new DataRetrievalFailureException("Database error.", e);
+        CMSUser cmsUser = registrationService.findByUsername(userId);
+        if (cmsUser == null) {
+            return null;
         }
+
+        // we do not remembering external users
+        if (cmsUser.getUsername() == null) {
+            return null;
+        }
+
+        User user = new User(cmsUser.getUsername(), "", true, true, true, true, EMPTY_AUTH);
+        return new CMSUserDetailsWrapper(user, cmsUser, SystemId.CMS_ONLINE);
     }
 
 }

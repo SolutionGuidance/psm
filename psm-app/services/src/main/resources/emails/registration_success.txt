@@ -1,8 +1,9 @@
 Dear $registrant.firstName,
 
-You have been successfully registered to CMS.
+You have successfully registered to use the PSM.  Welcome!
+
 Your username is: $registrant.username
 Please use this password to login: $password
 
 Regards,
-CMS Team
+PSM Team

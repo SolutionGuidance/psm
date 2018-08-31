@@ -24,7 +24,6 @@ import gov.medicaid.entities.UserRequest;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.security.CMSPrincipal;
 import gov.medicaid.services.ExportService;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.Util;
@@ -34,17 +33,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
-
-import static java.lang.Math.max;
-import static java.lang.Math.min;
 
 /**
  * Handles dashboard functions.
@@ -62,47 +55,26 @@ public class ProviderDashboardController extends BaseController {
      */
     private static final int DEFAULT_PAGE_SIZE = 10;
 
-    /**
-     * Service used to perform operations.
-     */
-    private ProviderEnrollmentService enrollmentService;
+    private final ProviderEnrollmentService enrollmentService;
+    private final ExportService exportService;
 
-    /**
-     * Used to export results to PDF.
-     */
-    private ExportService exportService;
-    static final int MAX_PAGE_LINKS_TO_SHOW = 4;
-    private static final int PREVIOUS_PAGES_TO_SHOW = 2;
-
-    /**
-     * Empty constructor.
-     */
-    public ProviderDashboardController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException - If there are required injection fields that are not injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (enrollmentService == null) {
-            throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
-        }
+    public ProviderDashboardController(
+        ProviderEnrollmentService enrollmentService,
+        ExportService exportService
+    ) {
+        this.enrollmentService = enrollmentService;
+        this.exportService = exportService;
     }
 
     /**
      * Opens the dashboard.
      *
      * @return the dashboard page and the needed models
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/"
      * @verb GET
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView viewDashboard() throws PortalServiceException {
+    public ModelAndView viewDashboard() {
         if (isOperations()) {
             return new ModelAndView("redirect:/landing");
         }
@@ -157,12 +129,11 @@ public class ProviderDashboardController extends BaseController {
      * Shows the default dashboard page.
      *
      * @return the dashboard page
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/list"
      * @verb GET
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView viewTicketList() throws PortalServiceException {
+    public ModelAndView viewTicketList() {
         return filterTicketList(createDefaultFilter());
     }
 
@@ -170,14 +141,13 @@ public class ProviderDashboardController extends BaseController {
      * Shows the drafts page.
      *
      * @return the drafts page
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/drafts"
      * @verb GET
      */
     @RequestMapping(value = "/drafts", method = RequestMethod.GET)
-    public ModelAndView viewDrafts() throws PortalServiceException {
+    public ModelAndView viewDrafts() {
         if (isOperations()) {
-            return new ModelAndView("redirect:/agent/enrollment/search/draft?statuses=Draft&showFilterPanel=true");
+            return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Draft&showFilterPanel=true");
         }
         return filterTicketsByStatus(ViewStatics.DRAFT_STATUS, createDefaultFilter());
     }
@@ -186,14 +156,13 @@ public class ProviderDashboardController extends BaseController {
      * Shows the pending page.
      *
      * @return the pending page
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/pending"
      * @verb GET
      */
     @RequestMapping(value = "/pending", method = RequestMethod.GET)
-    public ModelAndView viewPending() throws PortalServiceException {
+    public ModelAndView viewPending() {
         if (isOperations()) {
-            return new ModelAndView("redirect:/agent/enrollment/search/draft?statuses=Pending&showFilterPanel=true");
+            return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Pending&showFilterPanel=true");
         }
         return filterTicketsByStatus(ViewStatics.PENDING_STATUS, createDefaultFilter());
     }
@@ -202,14 +171,13 @@ public class ProviderDashboardController extends BaseController {
      * Shows the approved page.
      *
      * @return the approved page
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/approved"
      * @verb GET
      */
     @RequestMapping(value = "/approved", method = RequestMethod.GET)
-    public ModelAndView viewApproved() throws PortalServiceException {
+    public ModelAndView viewApproved() {
         if (isOperations()) {
-            return new ModelAndView("redirect:/agent/enrollment/search/draft?statuses=Approved&showFilterPanel=true");
+            return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Approved&showFilterPanel=true");
         }
         return filterTicketsByStatus(ViewStatics.APPROVED_STATUS, createDefaultFilter());
     }
@@ -218,14 +186,13 @@ public class ProviderDashboardController extends BaseController {
      * Shows the rejected page.
      *
      * @return the rejected page
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/rejected"
      * @verb GET
      */
     @RequestMapping(value = "/rejected", method = RequestMethod.GET)
-    public ModelAndView viewRejected() throws PortalServiceException {
+    public ModelAndView viewRejected() {
         if (isOperations()) {
-            return new ModelAndView("redirect:/agent/enrollment/search/draft?statuses=Rejected&showFilterPanel=true");
+            return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Rejected&showFilterPanel=true");
         }
         return filterTicketsByStatus(ViewStatics.REJECTED_STATUS, createDefaultFilter());
     }
@@ -250,18 +217,24 @@ public class ProviderDashboardController extends BaseController {
      * @param status only status of this type will be returned
      * @param criteria the search criteria
      * @return the view to show the results by status
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/filter"
      * @verb GET
      */
     @RequestMapping(value = "/filter", method = RequestMethod.GET)
-    public ModelAndView filterTicketsByStatus(@RequestParam("status") String status, ProviderSearchCriteria criteria)
-        throws PortalServiceException {
-
+    public ModelAndView filterTicketsByStatus(
+        @RequestParam("status") String status,
+        ProviderSearchCriteria criteria
+    ) {
         String view = "provider/dashboard/list_by_status";
         criteria.setStatuses(Arrays.asList(status));
         ModelAndView mv = searchTickets(criteria, view);
         mv.addObject("statusFilter", status);
+        if (ViewStatics.REJECTED_STATUS.equals(status)) {
+            mv.addObject("listType", "Denied Enrollments");
+        } else {
+            mv.addObject("listType", status + " Enrollments");
+        }
+
         return mv;
     }
 
@@ -278,8 +251,10 @@ public class ProviderDashboardController extends BaseController {
      */
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/export", method = RequestMethod.GET)
-    public void exportTicketsByStatus(@RequestParam("status") String status, ProviderSearchCriteria criteria,
-        HttpServletResponse response) throws PortalServiceException, IOException {
+    public void exportTicketsByStatus(
+        @RequestParam("status") String status, ProviderSearchCriteria criteria,
+        HttpServletResponse response
+    ) throws PortalServiceException, IOException {
         criteria.setStatuses(Arrays.asList(status));
 
         // export all
@@ -301,13 +276,15 @@ public class ProviderDashboardController extends BaseController {
      *
      * @param criteria the filter
      * @return the dashboard page
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/dashboard/list/filter"
      * @verb GET
      */
     @RequestMapping(value = "/list/filter", method = RequestMethod.GET)
-    public ModelAndView filterTicketList(ProviderSearchCriteria criteria) throws PortalServiceException {
-        return searchTickets(criteria, "provider/dashboard/list");
+    public ModelAndView filterTicketList(ProviderSearchCriteria criteria) {
+        ModelAndView mv = searchTickets(criteria, "provider/dashboard/list_by_status");
+        mv.addObject("statusFilter", "All");
+        mv.addObject("listType", "All Enrollments");
+        return mv;
     }
 
     /**
@@ -316,9 +293,11 @@ public class ProviderDashboardController extends BaseController {
      * @param criteria the search criteria
      * @param view the view to render the results
      * @return the results and the view provided
-     * @throws PortalServiceException for any errors encountered
      */
-    private ModelAndView searchTickets(ProviderSearchCriteria criteria, String view) throws PortalServiceException {
+    private ModelAndView searchTickets(
+        ProviderSearchCriteria criteria,
+        String view
+    ) {
         String enrollmentNumber = criteria.getEnrollmentNumber();
         // enrollment number must be a valid long since ids are of that type.
         if (Util.isNotBlank(enrollmentNumber)) {
@@ -335,88 +314,12 @@ public class ProviderDashboardController extends BaseController {
         ModelAndView mv = new ModelAndView(view);
         mv.addObject("results", results);
 
-        addPaginationDetails(results, mv);
-        addPaginationLinks(results, mv);
+        ControllerHelper.addPaginationDetails(results, mv);
+        ControllerHelper.addPaginationLinks(results, mv);
 
         // revert changes to input
         criteria.setEnrollmentNumber(enrollmentNumber);
         mv.addObject("criteria", criteria);
         return mv;
     }
-
-    void addPaginationLinks(SearchResult<?> results, ModelAndView mv) {
-        int pageNumber = results.getPageNumber();
-        int totalPages = results.getTotalPages();
-
-        mv.addObject("thereArePages", totalPages > 0);
-        mv.addObject("currentPage", pageNumber);
-
-        int firstPage = getFirstPage(pageNumber, totalPages);
-        int lastPage = min(firstPage + MAX_PAGE_LINKS_TO_SHOW, totalPages);
-
-        List<Integer> prevPages = new ArrayList<>();
-        List<Integer> nextPages = new ArrayList<>();
-        for (Integer i = firstPage; i <= lastPage; i++) {
-            if (i < pageNumber) {
-                prevPages.add(i);
-            } else if (i > pageNumber) {
-                nextPages.add(i);
-            }
-        }
-        mv.addObject("prevPages", prevPages);
-        mv.addObject("nextPages", nextPages);
-    }
-
-    void addPaginationDetails(SearchResult<?> results, ModelAndView mv) {
-        int pageNumber = results.getPageNumber();
-        int pageSize = results.getPageSize();
-        int itemsOnPage = results.getTotalItems();
-        int lastItemOfPreviousPage = (pageNumber - 1) * pageSize;
-
-        mv.addObject(
-                "pageStartItem",
-                itemsOnPage == 0 ? 0 : lastItemOfPreviousPage + 1
-        );
-        mv.addObject(
-                "pageEndItem",
-                lastItemOfPreviousPage + itemsOnPage
-        );
-        mv.addObject(
-                "pageSize" + String.valueOf(pageSize),
-                true
-        );
-    }
-
-    private int getFirstPage(int pageNumber, int totalPages) {
-        int firstPage;
-        if (nearEndOfPages(pageNumber, totalPages)) {
-            firstPage = totalPages - MAX_PAGE_LINKS_TO_SHOW;
-        } else {
-            firstPage = pageNumber - PREVIOUS_PAGES_TO_SHOW;
-        }
-        return max(1, firstPage);
-    }
-
-    private boolean nearEndOfPages(int pageNumber, int totalPages) {
-        final int MAX_FIRST_PAGE = totalPages - MAX_PAGE_LINKS_TO_SHOW;
-        return pageNumber > MAX_FIRST_PAGE;
-    }
-
-    /**
-     * Sets the value of the field <code>enrollmentService</code>.
-     *
-     * @param enrollmentService the enrollmentService to set
-     */
-    public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
-    }
-
-    /**
-     * Sets the value of the field <code>exportService</code>.
-     * @param exportService the exportService to set
-     */
-    public void setExportService(ExportService exportService) {
-        this.exportService = exportService;
-    }
-
 }

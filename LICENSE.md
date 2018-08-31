@@ -1,4 +1,5 @@
 Copyright 2012-2013 TopCoder, Inc.
+Copyright 2016, 2017, 2018 The MITRE Corporation
 
 This code was developed under U.S. government contract NNH10CD71C.
 

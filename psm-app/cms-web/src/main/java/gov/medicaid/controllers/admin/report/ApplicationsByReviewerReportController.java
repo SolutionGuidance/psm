@@ -1,43 +1,32 @@
 package gov.medicaid.controllers.admin.report;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletResponse;
+import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.EnrollmentSearchCriteria;
+import gov.medicaid.services.PortalServiceException;
+import gov.medicaid.services.ProviderEnrollmentService;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.EnrollmentSearchCriteria;
-import gov.medicaid.services.PortalServiceConfigurationException;
-import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class ApplicationsByReviewerReportController extends gov.medicaid.controllers.BaseController {
-    private ProviderEnrollmentService enrollmentService;
+    private final ProviderEnrollmentService enrollmentService;
 
-    public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
+    public ApplicationsByReviewerReportController(ProviderEnrollmentService enrollmentService) {
         this.enrollmentService = enrollmentService;
-    }
-
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (enrollmentService == null) {
-            throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
-        }
     }
 
     @RequestMapping(value = "/admin/reports/applications-by-reviewer", method = RequestMethod.GET)
@@ -45,7 +34,7 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
         @RequestParam(value = "startDate", required = false) String startDateSubmitted,
         @RequestParam(value = "startDate", required = false) Date inputStartDate,
         @RequestParam(value = "endDate", required = false) Date inputEndDate
-    ) throws PortalServiceException {
+    ) {
         ModelAndView mv = new ModelAndView("admin/reports/applications_by_reviewer");
 
         Date startDate = startDateSubmitted != null
@@ -80,6 +69,8 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
 
             csvPrinter.printRecord(
                 "Application ID",
+                "Provider Name",
+                "Provider Type",
                 "Submission Date",
                 "Reviewed By",
                 "Review Date",
@@ -87,8 +78,10 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
             for (Enrollment enrollment : enrollments) {
                 csvPrinter.printRecord(
                     enrollment.getTicketId(),
+                    enrollment.getDetails().getEntity().getName(),
+                    enrollment.getDetails().getEntity().getProviderType().getDescription(),
                     enrollment.getCreatedOn(),
-                    enrollment.getLastUpdatedBy(),
+                    enrollment.getLastUpdatedBy().getUsername(),
                     enrollment.getStatusDate(),
                     enrollment.getStatus().getDescription()
                 );
@@ -102,12 +95,22 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
     private List<Enrollment> getEnrollmentsFromDB(
         Date startDate,
         Date endDate
-    ) throws PortalServiceException {
+    ) {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         criteria.setCreateDateStart(startDate);
         criteria.setCreateDateEnd(endDate);
         criteria.setAscending(true);
         criteria.setSortColumn("created_at");
-        return enrollmentService.searchEnrollments(criteria).getItems();
+
+        List<Enrollment> results = enrollmentService.searchEnrollments(criteria).getItems();
+
+        results.stream()
+            .forEach(e -> {
+                e.setDetails(
+                    enrollmentService.getProviderDetailsByTicket(e.getTicketId(), true)
+                );
+            });
+
+        return results;
     }
 }

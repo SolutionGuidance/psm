@@ -60,7 +60,6 @@ import gov.medicaid.services.EnrollmentWebService;
 import gov.medicaid.services.ExportService;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.NotificationService;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.PresentationService;
@@ -80,7 +79,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletRequestWrapper;
 import javax.servlet.http.HttpServletRequest;
@@ -113,85 +111,49 @@ public class EnrollmentPageFlowController extends BaseController {
     /**
      * Empty list of errors.
      */
-    @SuppressWarnings("unchecked")
-    public static final List<FormError> NO_ERRORS = (List<FormError>) Collections.EMPTY_LIST;
+    private static final List<FormError> NO_ERRORS = Collections.emptyList();
 
-    /**
-     * The enrollment service.
-     */
-    private EnrollmentWebService enrollmentWebService;
-
-    /**
-     * The enrollment service.
-     */
-    private PresentationService presentationService;
-
-    /**
-     * Provider enrollment service.
-     */
-    private ProviderEnrollmentService enrollmentService;
-
-    private NotificationService notificationService;
-
-    /**
-     * Used for exporting PDFs.
-     */
-    private ExportService exportService;
-
-    /**
-     * Used for lookup values.
-     */
-    private LookupService lookupService;
+    private final EnrollmentWebService enrollmentWebService;
+    private final PresentationService presentationService;
+    private final ProviderEnrollmentService enrollmentService;
+    private final NotificationService notificationService;
+    private final ExportService exportService;
+    private final LookupService lookupService;
 
     /**
      * Registry of binders.
      */
-    private Map<String, FormBinder> binderRegistry = null;
+    private final Map<String, FormBinder> binderRegistry;
 
     /**
      * Registry of forms.
      */
-    private Map<String, String> formViewRegistry = null;
+    private final Map<String, String> formViewRegistry;
 
     /**
      * Registry of form displays.
      */
-    private Map<String, String> summaryViewRegistry = null;
+    private final Map<String, String> summaryViewRegistry;
 
     /**
      * Hash key for hidden input security.
      */
-    private String serverHashKey;
+    private final String serverHashKey;
 
-    /**
-     * Empty constructor.
-     */
-    public EnrollmentPageFlowController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact
-     * provided.
-     *
-     * @throws PortalServiceConfigurationException If there are required
-     *                                             injection fields that are not
-     *                                             injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (enrollmentWebService == null) {
-            throw new PortalServiceConfigurationException("enrollmentWebService is not configured correctly.");
-        }
-        if (presentationService == null) {
-            throw new PortalServiceConfigurationException("presentationService is not configured correctly.");
-        }
-        if (exportService == null) {
-            throw new PortalServiceConfigurationException("exportService is not configured correctly.");
-        }
-        if (notificationService == null) {
-          throw new PortalServiceConfigurationException("notificationService is not configured correctly.");
-        }
+    public EnrollmentPageFlowController(
+        EnrollmentWebService enrollmentWebService,
+        PresentationService presentationService,
+        ProviderEnrollmentService enrollmentService,
+        NotificationService notificationService,
+        ExportService exportService,
+        LookupService lookupService
+    ) {
+        this.enrollmentWebService = enrollmentWebService;
+        this.presentationService = presentationService;
+        this.enrollmentService = enrollmentService;
+        this.notificationService = notificationService;
+        this.exportService = exportService;
+        this.lookupService = lookupService;
 
         CMSConfigurator config = new CMSConfigurator();
         binderRegistry = config.getBinderRegistry();
@@ -607,7 +569,8 @@ public class EnrollmentPageFlowController extends BaseController {
             return previousPage(enrollment, request);
         } else if (null != request.getParameter("next")) {
             return nextPage(enrollment, request);
-        } else if (null != request.getParameter("submit")) {
+        } else if (null != request.getParameter("submit") ||
+                   null != request.getParameter("submitEnrollment")) {
             return submit(enrollment, request, status);
         } else if (null != request.getParameter("save")) {
             return save(enrollment, request, status);
@@ -720,7 +683,6 @@ public class EnrollmentPageFlowController extends BaseController {
      *
      * @param criteria the lookup criteria
      * @return the lookup JSON
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/lookup"
      * @verb POST
      */
@@ -728,9 +690,9 @@ public class EnrollmentPageFlowController extends BaseController {
     @ResponseBody
     public SearchResult<PracticeLookup> lookup(
             PracticeSearchCriteria criteria
-    ) throws PortalServiceException {
+    ) {
         CMSUser user = ControllerHelper.getCurrentUser();
-        SearchResult<PracticeLookup> results = getEnrollmentService().searchPractice(user, criteria);
+        SearchResult<PracticeLookup> results = enrollmentService.searchPractice(user, criteria);
         List<PracticeLookup> items = results.getItems();
         if (items != null) {
             for (PracticeLookup item : items) {
@@ -746,7 +708,6 @@ public class EnrollmentPageFlowController extends BaseController {
      *
      * @param npi the provider NPI
      * @return the lookup JSON
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/enrollment/lookupProvider"
      * @verb POST
      */
@@ -754,8 +715,8 @@ public class EnrollmentPageFlowController extends BaseController {
     @ResponseBody
     public List<ProviderLookup> lookupProvider(
             @RequestParam("npi") String npi
-    ) throws PortalServiceException {
-        List<ProviderLookup> results = getEnrollmentService().lookupProvider(npi);
+    ) {
+        List<ProviderLookup> results = enrollmentService.lookupProvider(npi);
         if (results != null) {
             for (ProviderLookup item : results) {
                 String hash = Util.hash("" + item.getProfileId(), serverHashKey);
@@ -1055,9 +1016,7 @@ public class EnrollmentPageFlowController extends BaseController {
                 mv.addObject("id", serviceResponse.getTicketNumber());
                 ControllerHelper.flashPopup("submitEnrollmentModal");
 
-                Map<String, Object> vars = new HashMap<>();
-                String emailAddress = enrollment.getContactInformation().getEmailAddress();
-                notificationService.sendNotification(emailAddress, EmailTemplate.PENDING_ENROLLMENT, vars);
+                notificationService.sendEnrollmentNotification(enrollment, EmailTemplate.PENDING_ENROLLMENT);
 
                 // Issue #215 - add hook for successful submission
 
@@ -1118,9 +1077,7 @@ public class EnrollmentPageFlowController extends BaseController {
                 mv.addObject("id", enrollment.getObjectId());
                 ControllerHelper.flashPopup("submitEnrollmentModal");
 
-                Map<String, Object> vars = new HashMap<>();
-                String emailAddress = enrollment.getContactInformation().getEmailAddress();
-                notificationService.sendNotification(emailAddress, EmailTemplate.MODIFIED_ENROLLMENT, vars);
+                notificationService.sendEnrollmentNotification(enrollment, EmailTemplate.MODIFIED_ENROLLMENT);
 
                 // Issue #215 - add hook for successful resubmission
 
@@ -1281,7 +1238,7 @@ public class EnrollmentPageFlowController extends BaseController {
             long ticketId = BinderUtils.getAsLong(enrollment.getObjectId());
             if (ticketId > 0) {
                 long profileId = BinderUtils.getAsLong(enrollment.getProviderInformation().getObjectId());
-                Validity validity = getEnrollmentService().getSubmissionValidity(ticketId, profileId);
+                Validity validity = enrollmentService.getSubmissionValidity(ticketId, profileId);
                 if (validity == Validity.STALE) {
                     ControllerHelper.popup("staleTicket");
                 }
@@ -1344,7 +1301,6 @@ public class EnrollmentPageFlowController extends BaseController {
     ) {
         mv.addObject("_99_states", lookupService.findAllLookups(StateType.class));
         mv.addObject("_99_counties", lookupService.findAllLookups(CountyType.class));
-        mv.addObject("_99_legacyInd", enrollment.getProviderInformation().getLegacyTransfer());
 
         if (enrollment.getRequestType() != null) {
             mv.addObject("_99_requestType", enrollment.getRequestType().value());
@@ -1571,72 +1527,5 @@ public class EnrollmentPageFlowController extends BaseController {
         } else {
             return Optional.empty();
         }
-    }
-
-    /**
-     * Sets the value of the field <code>enrollmentWebService</code>.
-     *
-     * @param enrollmentWebService the enrollmentWebService to set
-     */
-    public void setEnrollmentWebService(EnrollmentWebService enrollmentWebService) {
-        this.enrollmentWebService = enrollmentWebService;
-    }
-
-    /**
-     * Sets the value of the field <code>presentationService</code>.
-     *
-     * @param presentationService the presentationService to set
-     */
-    public void setPresentationService(PresentationService presentationService) {
-        this.presentationService = presentationService;
-    }
-
-    /**
-     * Sets the value of the field <code>binderRegistry</code>.
-     *
-     * @param binderRegistry the binderRegistry to set
-     */
-    public void setBinderRegistry(Map<String, FormBinder> binderRegistry) {
-        this.binderRegistry = binderRegistry;
-    }
-
-    /**
-     * Gets the value of the field <code>enrollmentService</code>.
-     *
-     * @return the enrollmentService
-     */
-    public ProviderEnrollmentService getEnrollmentService() {
-        return enrollmentService;
-    }
-
-    /**
-     * Sets the value of the field <code>enrollmentService</code>.
-     *
-     * @param enrollmentService the enrollmentService to set
-     */
-    public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
-    }
-
-    /**
-     * Sets the value of the field <code>exportService</code>.
-     *
-     * @param exportService the exportService to set
-     */
-    public void setExportService(ExportService exportService) {
-        this.exportService = exportService;
-    }
-
-    /**
-     * Sets the value of the field <code>lookupService</code>.
-     *
-     * @param lookupService the lookupService to set
-     */
-    public void setLookupService(LookupService lookupService) {
-        this.lookupService = lookupService;
-    }
-
-    public void setNotificationService(NotificationService notificationService) {
-        this.notificationService = notificationService;
     }
 }

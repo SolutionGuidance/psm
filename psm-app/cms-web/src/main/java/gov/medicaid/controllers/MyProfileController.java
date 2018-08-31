@@ -26,15 +26,9 @@ import gov.medicaid.entities.UserRequest;
 import gov.medicaid.entities.Validity;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.security.CMSPrincipal;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.RegistrationService;
-
-import java.util.Arrays;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -43,6 +37,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Handles account maintenance.
@@ -54,45 +51,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/provider/profile/*")
 public class MyProfileController extends BaseController {
+    private final ProviderEnrollmentService enrollmentService;
+    private final RegistrationService registrationService;
+    private final UpdatePasswordFormValidator validator;
 
-    /**
-     * Enrollment service.
-     */
-    private ProviderEnrollmentService enrollmentService;
-
-    /**
-     * Registration service.
-     */
-    private RegistrationService registrationService;
-
-    /**
-     * Request validator.
-     */
-    private UpdatePasswordFormValidator validator;
-
-    /**
-     * Empty constructor.
-     */
-    public MyProfileController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException - If there are required injection fields that are not injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (enrollmentService == null) {
-            throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
-        }
-        if (registrationService == null) {
-            throw new PortalServiceConfigurationException("registrationService is not configured correctly.");
-        }
-        if (validator == null) {
-            throw new PortalServiceConfigurationException("validator is not configured correctly.");
-        }
+    public MyProfileController(
+        ProviderEnrollmentService enrollmentService,
+        RegistrationService registrationService,
+        UpdatePasswordFormValidator validator
+    ) {
+        this.enrollmentService = enrollmentService;
+        this.registrationService = registrationService;
+        this.validator = validator;
     }
 
     /**
@@ -154,12 +124,11 @@ public class MyProfileController extends BaseController {
      * Displays the my profile page.
      *
      * @return the my profile model and view
-     * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/profile/"
      * @verb GET
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView viewDashboard() throws PortalServiceException {
+    public ModelAndView viewDashboard() {
         CMSPrincipal principal = ControllerHelper.getPrincipal();
         List<ProfileHeader> profiles = enrollmentService.findMyProfiles(principal.getUser());
         ModelAndView mv = new ModelAndView("provider/profile/list");
@@ -255,32 +224,5 @@ public class MyProfileController extends BaseController {
             mv.addObject("profileId", profileId);
             return mv;
         }
-    }
-
-    /**
-     * Sets the value of the field <code>enrollmentService</code>.
-     *
-     * @param enrollmentService the enrollmentService to set
-     */
-    public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
-    }
-
-    /**
-     * Sets the value of the field <code>registrationService</code>.
-     *
-     * @param registrationService the registrationService to set
-     */
-    public void setRegistrationService(RegistrationService registrationService) {
-        this.registrationService = registrationService;
-    }
-
-    /**
-     * Sets the value of the field <code>validator</code>.
-     *
-     * @param validator the validator to set
-     */
-    public void setValidator(UpdatePasswordFormValidator validator) {
-        this.validator = validator;
     }
 }

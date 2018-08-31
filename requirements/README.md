@@ -5,37 +5,6 @@ What's here:
 * RTM.xlsx
   Requirements Traceability Matrix: master spreadsheet of all requirements.
 
-* csv-exports/*.csv
-  CSV files for each reqs category (FR, II, IA, etc).
-
-  These CSV exports were made by manually running LibreOffice Calc on
-  RTML.xlsx multiple times, once for each sheet (tab) in the file,
-  which is a somewhat cumbersome process.  The CSV files should be
-  carefully kept up-to-date with changes to RTM.xlsx so that the CSV
-  remains a reliable data source (other programs rely on this).
-
-* csv-exports/columns.txt
-  Lists the columns (which are the same across all the CSV files).
-
-* psm_reqs.py
-  A Python module for working with PSM requirements.
-
-* reqs2any
-  A script to convert requirements from CSV to some other format.
-  This script depends on the psm_reqs.py module above.
-
-* show-reqs
-  A script that drives `reqs2any` to produce either elisp output or
-  human-readable output (pass "elisp" or "human" as arg to choose).
-
-* psm-reqs.el
-  Elisp for working with requirements in Emacs.  Start by invoking
-  `psm-load-reqs` on a file created by `./show-reqs elisp`, to load
-  all the requirements information into Emacs.  After that, the
-  interactive entry point is `psm-show-req`.  I suggest binding it to
-  a key.  Invoke it while in a req ID to display information about
-  that req.
-
 # Sources of requirements
 
 The requirements here come from documents related to the PSM that have

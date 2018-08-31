@@ -8,8 +8,8 @@ Changes to the database are registered inside of `ChangeLog` files. Each change 
 ## Running Migrations
 To run migrations:
 
-Create or edit the file `psm-app/gradle.properties` as shown in
-`psm-app/gradle.properties.template.`
+Create or edit the file `psm-app/gradle.properties` if needed,
+based on `psm-app/gradle.properties.template.`
 
 Note the format for the URL property `systemProp.DatabasePath`:
 
@@ -41,6 +41,14 @@ The reasoning for this [is explained on this liquibase blog post](http://www.liq
 ```
 The goal of a Liquibase change log file is to track the linear sequence of changes required to take a database from a starting point to the current state, and it is built up one change at a time throughtout development. By following the “always append changes” rule you will ensure that all databases are consistent since all will have gone through the exact same set of changes.
 ```
+
+## Adding Seed Data
+
+Liquibase makes it easy to insert seed data into tables. There is a separate migration file for seed data: `db/changelog/db-changelog-seed.xml`. Seed data itself is stored in the `db/seeds/` directory through csvs.  The first row of a seed data CSV should contain the field names with corresponding data.
+
+The changeset type for seed data is [`loadUpdateData`](https://www.liquibase.org/documentation/changes/load_update_data.html) which makes it easy to add or modify seed data to reflect the contents of the seed CSV.
+
+Liquibase is smart enough to parse certain key words, e.g. a value of "NULL" will insert null for that column.
 
 ## Validating Migrations
 

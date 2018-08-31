@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="Applications by Reviewer"/>
-  <c:set var="adminPage" value="true" />
   <c:set var="includeD3" value="true" />
   <fmt:formatDate value="${startDate}" pattern="MM/dd/yyyy" var="searchStartDate" />
   <fmt:formatDate value="${endDate}" pattern="MM/dd/yyyy" var="searchEndDate" />
@@ -14,6 +13,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
+            <c:set var="activeTabReports" value="true" />
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <div class="breadCrumb">
@@ -73,23 +73,35 @@
           </div>
           <c:choose>
             <c:when test="${fn:length(enrollments) gt 0}">
-              <div class="reportTable tableData dashboardPanel">
+              <div class="reportTable tableData">
                 <div class="tableData">
-                  <table class="generalTable">
+                  <table class="generalTable linedTable">
                     <thead>
                       <tr>
                         <th>Application ID</th>
+                        <th>Provider Name</th>
+                        <th>Provider Type</th>
                         <th>Submission Date</th>
                         <th>Reviewed By</th>
                         <th>Review Date</th>
                         <th>Status</th>
                       </tr>
                     </thead>
-                    <c:forEach var="enrollment" items="${enrollments}">
-                      <tr class="reportRow">
-                        <td>${enrollment.ticketId}</td>
+                    <c:forEach
+                      var="enrollment"
+                      items="${enrollments}"
+                      varStatus="status"
+                    >
+                      <tr class="reportRow ${status.index % 2 == 0 ? 'odd' : 'even'}">
+                        <td>
+                          <a href="${ctx}/provider/enrollment/view?id=${enrollment.ticketId}">
+                            ${enrollment.ticketId}
+                          </a>
+                        </td>
+                        <td>${enrollment.details.entity.name}</td>
+                        <td>${enrollment.details.entity.providerType.description}</td>
                         <td><fmt:formatDate value="${enrollment.createdOn}" pattern="dd MMMM yyyy" /></td>
-                        <td>${enrollment.lastUpdatedBy}</td>
+                        <td>${enrollment.lastUpdatedBy.username}</td>
                         <td><fmt:formatDate value="${enrollment.statusDate}" pattern="dd MMMM yyyy" /></td>
                         <td>${enrollment.status.description}</td>
                       </tr>

@@ -37,6 +37,7 @@ directory. The major ones are:
 * `cms-web` 
 
    MVC, web controller, UI, HTML, CSS.
+   (See [`REPORTS.md`](REPORTS.md) for design related to PSM reports.)
 
 * `cms-portal-services` 
  
@@ -116,7 +117,6 @@ The PSM has four types of users, each with their own permission level:
     - Functions:
         - View and edit provider types
         - Edit screening schedule
-        - Add and edit help topics
         - Add and edit agreements/addendums
         - View, create, edit, and delete other service agents
 

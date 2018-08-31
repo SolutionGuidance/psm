@@ -4,6 +4,8 @@
 
 <%-- BUGR-9673 (optional NPI for some provider types) --%>
 <c:set var="requireNPI" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Personal Information Form'].settings['requireNPI']}"></c:set>
+<c:set var="showEmailRequired" value="${requestScope['_02_showEmailRequired']}"/>
+
 
 <div class="newEnrollmentPanel">
     <div class="section">
@@ -64,10 +66,13 @@
                     <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}" maxlength="10"/>
                 </span>
             </div>
-            <div class="row">
+            <div class="row ${showEmailRequired ? 'requireField' : ''}">
                 <c:set var="formName" value="_02_email"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="emailAddress">Email Address</label>
+                <label for="emailAddress">
+                    Email Address                  
+                    <span id="requireEmailAddressLabel" class="${showEmailRequired ? '' : 'hidden'} required">*</span>                    
+                </label>
                 <input id="emailAddress" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="50"/>
             </div>
             <div class="clearFixed"></div>
@@ -101,7 +106,7 @@
             <div class="row">
                 <c:set var="formName" value="_02_contactEmail"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="contactEmail">Contact Email Address</label>
+                <label for="contactEmail">Contact Email Address <span class="required">*</span></label>
                 <input id="contactEmail" ${disableContact} type="text" class="${disableContact} normalInput" name="${formName}" value="${formValue}" maxlength="50"/>
             </div>
             <div class="row">

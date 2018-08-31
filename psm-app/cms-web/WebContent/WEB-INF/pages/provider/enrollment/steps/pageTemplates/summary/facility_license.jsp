@@ -17,7 +17,7 @@
             <th>License/Certification #<span class="sep"></span></th>
             <th>Original Issue Date<span class="sep"></span></th>
             <th>Renewal End Date<span class="sep"></span></th>
-            <th>Issuing State<span class="sep"></span></th>
+            <th>Issuing State/Territory<span class="sep"></span></th>
         </tr>
     </thead>
     <tbody>

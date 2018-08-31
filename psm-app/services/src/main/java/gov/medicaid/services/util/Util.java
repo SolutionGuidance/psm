@@ -18,11 +18,11 @@ package gov.medicaid.services.util;
 
 import gov.medicaid.services.PortalServiceConfigurationException;
 
+import org.apache.commons.codec.binary.Base64;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-
-import org.apache.commons.codec.binary.Base64;
 
 /**
  * Common utility methods.

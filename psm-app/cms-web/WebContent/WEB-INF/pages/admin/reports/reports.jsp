@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="Reports"/>
-  <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -11,6 +10,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
+            <c:set var="activeTabReports" value="true" />
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <div class="breadCrumb">
@@ -48,6 +48,20 @@
                   class="providerTypesLink"
                 >
                   Provider Types
+                </a>
+              </div>
+              <div class="row">
+                <a href="${ctx}/admin/reports/reviewed-documents/"
+                  class="reviewedDocumentsLink"
+                >
+                  Reviewed Documents
+                </a>
+              </div>
+              <div class="row">
+                <a href="${ctx}/admin/reports/risk-levels/"
+                  class="riskLevelsLink"
+                >
+                  Risk Levels
                 </a>
               </div>
             </div>

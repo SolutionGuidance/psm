@@ -63,6 +63,12 @@ public class CMSUser implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(name = "api_read", nullable = false)
+    private boolean apiRead;
+
+    @Column(name = "api_write", nullable = false)
+    private boolean apiWrite;
+
     @Transient
     private String businessPhonePart1;
 
@@ -273,6 +279,22 @@ public class CMSUser implements Serializable {
      */
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public boolean getApiRead() {
+        return apiRead;
+    }
+
+    public void setApiRead(boolean apiRead) {
+        this.apiRead = apiRead;
+    }
+
+    public boolean getApiWrite() {
+        return apiWrite;
+    }
+
+    public void setApiWrite(boolean apiWrite) {
+        this.apiWrite = apiWrite;
     }
 
     /**

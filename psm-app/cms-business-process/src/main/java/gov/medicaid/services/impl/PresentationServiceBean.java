@@ -39,10 +39,7 @@ import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.PresentationService;
 import gov.medicaid.services.util.Util;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import org.drools.runtime.StatefulKnowledgeSession;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -51,7 +48,10 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
-import org.drools.runtime.StatefulKnowledgeSession;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Defines the UI related services.
@@ -73,6 +73,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
      *            the provider to determine how to display
      * @return the model having some instructions on how to present the given provider
      */
+    @Override
     public ViewModel getProviderViewModel(ProviderProfile provider) {
         if (provider == null) {
             throw new IllegalArgumentException("provider cannot be null.");
@@ -360,6 +361,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
      *            the provider to determine how to display
      * @return the model having some instructions on how to present the given provider
      */
+    @Override
     public ViewModel getProviderViewModel(ProviderInformationType provider) {
         if (provider == null) {
             throw new IllegalArgumentException("provider cannot be null.");
@@ -455,7 +457,9 @@ public class PresentationServiceBean extends BaseService implements Presentation
                 viewModel.addTabModel(ViewStatics.INDIVIDUAL_PCA_INFORMATION, page);
 
                 page = new UITabModel();
-                page.addForm(ViewStatics.LICENSE_INFO_FORM, new FormSettings());
+                FormSettings licenseInfoFormSettings = new FormSettings();
+                licenseInfoFormSettings.addSetting("requireRenewalDate", false);
+                page.addForm(ViewStatics.LICENSE_INFO_FORM, licenseInfoFormSettings);
                 viewModel.addTabModel(ViewStatics.TRAINING_INFORMATION, page);
 
                 page = new UITabModel();
@@ -720,6 +724,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
      *            the tabs to validate, if null or empty, the entire ticket is checked
      * @return the set of error messages found, empty if the ticket is valid
      */
+    @Override
     public ValidationResponse checkForErrors(EnrollmentType ticket, List<String> tabs) {
         ValidationRequest request = new ValidationRequest();
         if (tabs != null && !tabs.isEmpty()) {

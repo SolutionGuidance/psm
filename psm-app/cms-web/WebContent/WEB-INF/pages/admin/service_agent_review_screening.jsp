@@ -9,7 +9,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="Review Enrollment"/>
-  <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -18,7 +17,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
-            <c:set var="activeTab" value="2"></c:set>
+            <c:set var="activeTabEnrollments" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->
@@ -70,6 +69,33 @@
                             name="nonExclusionVerified"
                             value="Y"
                             ${leieScreeningPassed ? 'checked' : ''}
+                            />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>DEATH MASTER FILE CHECK (checked means not in death master file)</td>
+                        <td></td>
+                        <td>
+                          <c:choose>
+                            <c:when test="${not empty dmfScreeningId}">
+                              <a class="autoScreeningResultLink"
+                                  href="<c:url value="/agent/automatic-screening/${dmfScreeningId}"/>"
+                                  target="_blank">
+                                ${dmfScreeningResult}
+                              </a>
+                            </c:when>
+                            <c:otherwise>
+                              ${dmfScreeningResult}
+                            </c:otherwise>
+                          </c:choose>
+                        </td>
+                        <td>
+                          <input
+                            type="checkbox"
+                            title="Not In DMF Verified"
+                            name="notInDmfVerified"
+                            value="Y"
+                            ${dmfScreeningPassed ? 'checked' : ''}
                             />
                         </td>
                       </tr>
@@ -161,10 +187,27 @@
 
               </div>
               <div class="buttonBox">
-                <a href="${ctx}/provider/search/pending?statuses=Pending&showFilterPanel=true" class="greyBtn"><span class="text">Cancel</span></a>
-                <button class="greyBtn" type="submit">Approve</button>
-                <a href="${ctx}/agent/enrollment/rejectTicket?id=${id}" class="greyBtn"><span class="text">Reject</span></a>
-                <a href="${ctx}/provider/enrollment/reopen?id=${id}" class="greyBtn"><span class="text">Modify</span></a>
+                <a
+                  href="${ctx}/provider/enrollments/pending?statuses=Pending&showFilterPanel=true"
+                  class="greyBtn"
+                >
+                  Cancel
+                </a>
+                <button class="greyBtn" type="submit">
+                  Approve
+                </button>
+                <a
+                  href="${ctx}/agent/enrollment/rejectTicket?id=${id}"
+                  class="greyBtn"
+                >
+                  Reject
+                </a>
+                <a
+                  href="${ctx}/provider/enrollment/reopen?id=${id}"
+                  class="greyBtn"
+                >
+                  Modify
+                </a>
               </div>
             </form>
           </div>

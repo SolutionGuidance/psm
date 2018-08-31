@@ -16,14 +16,14 @@
 
 package gov.medicaid.security;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.TextEscapeUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Custom authentication filter that supports additional fields in the login form.
@@ -47,7 +47,10 @@ public class CustomAuthenticationProcessingFilter extends UsernamePasswordAuthen
 
         String username = obtainUsername(request);
         String password = obtainPassword(request);
-        String domain = request.getParameter("domain");
+
+        // We currently only support one domain.  When more are supported the
+        // domain can be passed as a parameter on the request. See issue #911.
+        String domain = "CMS_ONLINE";
 
         if (username == null) {
             username = "";
@@ -59,17 +62,11 @@ public class CustomAuthenticationProcessingFilter extends UsernamePasswordAuthen
 
         username = username.trim();
 
-        DomainAuthenticationToken authRequest;
-        if (domain == null || "MN_ITS".equalsIgnoreCase(domain)) {
-            domain = "MN_ITS";
-            String token = request.getParameter("token");
-            String userNPI = request.getParameter("userNPI");
-            String profileNPI = request.getParameter("profileNPI");
-            String referrer = request.getParameter("referrer");
-            authRequest = new DomainAuthenticationToken(userNPI, profileNPI, token, referrer, domain);
-        } else {
-            authRequest = new DomainAuthenticationToken(username, password, domain);
-        }
+        DomainAuthenticationToken authRequest = new DomainAuthenticationToken(
+                username,
+                password,
+                domain
+        );
 
         // Place the last username attempted into HttpSession for views
         HttpSession session = request.getSession(false);

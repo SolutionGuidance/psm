@@ -12,15 +12,18 @@ window.addEventListener("load", function drawTimeToReviewLineGraph() {
     []
   );
 
+  var meanColor = d3.schemeCategory10[0];
+  var medianColor = d3.schemeCategory10[1];
+
   var lines = [
-    reportUtils.makeLineData("Median", "orange", medianPoints),
-    reportUtils.makeLineData("Mean", "#0d4478", meanPoints),
+    reportUtils.makeLineData("Mean", meanColor, meanPoints),
+    reportUtils.makeLineData("Median", medianColor, medianPoints),
   ];
 
   reportUtils.drawMonthsLineGraph(
     "#timeToReviewLineGraph",
     "",
-    "Time to Review in Days (Mean in Blue and Median in Orange)",
+    "Time to Review in Days",
     lines,
     reportUtils.getAxisDomains(lines)
   );

@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="Provider Types"/>
-  <c:set var="adminPage" value="true" />
+  <c:set var="reportPage" value="true" />
   <c:set var="includeD3" value="true" />
+  <c:set var="pageScripts" value="${[ctx.concat('/js/admin/providerTypesReport.js')]}" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
 
   <body>
@@ -13,6 +14,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
+            <c:set var="activeTabReports" value="true" />
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <div class="breadCrumb">
@@ -50,6 +52,11 @@
               </form>
             </div>
           </div>
+
+          <div id="providerTypesLineGraph" class="lineGraphContainer">
+            <em>Loading...</em>
+          </div>
+
           <div class="reportTable dashboardPanel">
             <c:forEach var="month" items="${months}">
               <div class="tableData">
@@ -58,17 +65,33 @@
                 </div>
                 <c:choose>
                   <c:when test="${month.providerTypes.size() > 0}">
-                    <table class="generalTable">
+                    <table class="generalTable linedTable">
                       <thead>
                         <tr>
                           <th>Provider Type</th>
-                          <th class="providerTypesNum">Number Reviewed</th>
+                          <th class="providerTypesNum">Applications Reviewed</th>
                         </tr>
                       </thead>
-                      <c:forEach var="providerType" items="${month.providerTypes}">
-                        <tr>
-                          <td>${providerType.description}</td>
-                          <td>${month.getEnrollments(providerType).size()}</td>
+                      <c:forEach
+                        var="providerType"
+                        items="${month.providerTypes}"
+                        varStatus="status"
+                      >
+                        <tr class="reportRow ${status.index % 2 == 0 ? 'odd' : 'even'}">
+                          <td
+                            class="reportDatum"
+                            reportField="providerType"
+                            reportValue="${providerType.description}"
+                          >
+                            ${providerType.description}
+                          </td>
+                          <td
+                            class="reportDatum"
+                            reportField="applicationsReviewed"
+                            reportValue="${month.getEnrollments(providerType).size()}"
+                          >
+                            ${month.getEnrollments(providerType).size()}
+                          </td>
                         </tr>
                       </c:forEach>
                     </table>

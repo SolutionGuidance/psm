@@ -19,17 +19,13 @@ package gov.medicaid.controllers.admin;
 import gov.medicaid.controllers.validators.BaseValidator;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.dto.ViewStatics;
-import gov.medicaid.services.PortalServiceConfigurationException;
-import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import java.util.Arrays;
 import java.util.List;
-
-import javax.annotation.PostConstruct;
-
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 
 /**
  * This is the validator for User instances.
@@ -41,6 +37,7 @@ import org.springframework.validation.Validator;
  * @author argolite, TCSASSEMBLER
  * @version 1.0
  */
+@Component
 public class UserValidator extends BaseValidator implements Validator {
 
     /**
@@ -79,24 +76,10 @@ public class UserValidator extends BaseValidator implements Validator {
     /**
      * Represents the user service used for validation.
      */
-    private RegistrationService registrationService;
+    private final RegistrationService registrationService;
 
-    /**
-     * Empty constructor.
-     */
-    public UserValidator() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException - If there are required injection fields that are not injected
-     */
-    @PostConstruct
-    protected void init() {
-        if (registrationService == null) {
-            throw new PortalServiceConfigurationException("registrationService must be configured.");
-        }
+    public UserValidator(RegistrationService registrationService) {
+        this.registrationService = registrationService;
     }
 
     /**
@@ -158,32 +141,12 @@ public class UserValidator extends BaseValidator implements Validator {
             }
         }
 
-        try {
-            // no two users should have the same login
-            if (!errors.hasFieldErrors("username")) {
-                CMSUser duplicate = registrationService.findByUsername(user.getUsername());
-                if (duplicate != null && !duplicate.getUserId().equals(user.getUserId())) {
-                    errors.rejectValue("username", "duplicate.username", "The requested username is already in use.");
-                }
+        // no two users should have the same login
+        if (!errors.hasFieldErrors("username")) {
+            CMSUser duplicate = registrationService.findByUsername(user.getUsername());
+            if (duplicate != null && !duplicate.getUserId().equals(user.getUserId())) {
+                errors.rejectValue("username", "duplicate.username", "The requested username is already in use.");
             }
-        } catch (PortalServiceException e) {
-            errors.rejectValue("userId", "generic.error", "Unable to process request, please try again later.");
         }
-    }
-
-    /**
-     * Gets the value of the field <code>registrationService</code>.
-     * @return the registrationService
-     */
-    public RegistrationService getRegistrationService() {
-        return registrationService;
-    }
-
-    /**
-     * Sets the value of the field <code>registrationService</code>.
-     * @param registrationService the registrationService to set
-     */
-    public void setRegistrationService(RegistrationService registrationService) {
-        this.registrationService = registrationService;
     }
 }

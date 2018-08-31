@@ -33,11 +33,10 @@ import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.AutomaticScreening.Result;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.CategoryOfService;
+import gov.medicaid.entities.DmfAutomaticScreening;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentStatus;
 import gov.medicaid.entities.Event;
-import gov.medicaid.entities.HelpItem;
-import gov.medicaid.entities.HelpSearchCriteria;
 import gov.medicaid.entities.LeieAutomaticScreening;
 import gov.medicaid.entities.ProviderCategoryOfService;
 import gov.medicaid.entities.ProviderProfile;
@@ -52,14 +51,14 @@ import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.BusinessProcessService;
 import gov.medicaid.services.EventService;
 import gov.medicaid.services.ExportService;
-import gov.medicaid.services.HelpService;
 import gov.medicaid.services.LookupService;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.ProviderTypeService;
+
 import org.jbpm.task.query.TaskSummary;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -70,8 +69,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -91,6 +90,7 @@ import java.util.UUID;
  * <b>Thread Safety</b> This class is mutable and not thread safe, but used in thread safe manner by framework.
  * </p>
  */
+@Controller
 public class EnrollmentController extends BaseController {
 
     /**
@@ -103,47 +103,27 @@ public class EnrollmentController extends BaseController {
      */
     private static final String APPROVAL_TASK_NAME = "Screening Review";
 
-    private ProviderEnrollmentService enrollmentService;
+    private final ProviderEnrollmentService enrollmentService;
+    private final BusinessProcessService businessProcessService;
+    private final EventService eventService;
+    private final LookupService lookupService;
+    private final ProviderTypeService providerTypeService;
+    private final ExportService exportService;
 
-    private BusinessProcessService businessProcessService;
-
-    private HelpService helpService;
-
-    private EventService eventService;
-
-    private LookupService lookupService;
-
-    private ProviderTypeService providerTypeService;
-
-    /**
-     * Used for PDF export.
-     */
-    private ExportService exportService;
-
-    /**
-     * This method checks that all required injection fields have been provided.
-     *
-     * @throws PortalServiceConfigurationException If there are required
-     *                                             injection fields that are not
-     *                                             injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (enrollmentService == null) {
-            throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
-        }
-        if (helpService == null) {
-            throw new PortalServiceConfigurationException("helpService must be configured.");
-        }
-
-        if (eventService == null) {
-            throw new PortalServiceConfigurationException("eventService must be configured.");
-        }
-
-        if (lookupService == null) {
-            throw new PortalServiceConfigurationException("lookupService must be configured.");
-        }
+    public EnrollmentController(
+        ProviderEnrollmentService enrollmentService,
+        BusinessProcessService businessProcessService,
+        EventService eventService,
+        LookupService lookupService,
+        ProviderTypeService providerTypeService,
+        ExportService exportService
+    ) {
+        this.enrollmentService = enrollmentService;
+        this.businessProcessService = businessProcessService;
+        this.eventService = eventService;
+        this.lookupService = lookupService;
+        this.providerTypeService = providerTypeService;
+        this.exportService = exportService;
     }
 
     /**
@@ -174,7 +154,7 @@ public class EnrollmentController extends BaseController {
         criteria.setShowFilterPanel(true);
         statuses.add("Draft");
         criteria.setStatuses(statuses);
-        return doSearch(criteria, "draft");
+        return doSearch("admin/service_agent_enrollments_draft", criteria);
     }
 
     /**
@@ -209,53 +189,6 @@ public class EnrollmentController extends BaseController {
     }
 
     /**
-     * This action will load the help page.
-     *
-     * @return the model and view instance that contains the name of view to be
-     * rendered and data to be used for rendering (not null)
-     * @throws PortalServiceException If there are any errors in the action
-     * @endpoint "/agent/enrollment/viewHelp"
-     * @verb GET
-     */
-    @RequestMapping(
-            value = "/agent/enrollment/viewHelp",
-            method = RequestMethod.GET
-    )
-    public ModelAndView getHelp() throws PortalServiceException {
-        // Get all help topics with help service
-        HelpSearchCriteria criteria = new HelpSearchCriteria();
-        criteria.setPageNumber(1);
-        criteria.setPageSize(-1);
-        SearchResult<HelpItem> result = helpService.search(criteria);
-        ModelAndView model = new ModelAndView("admin/help");
-        model.addObject("helpItems", result.getItems());
-        return model;
-    }
-
-    /**
-     * This action will get the entity with the given ID.
-     *
-     * @param id the entity ID
-     * @return the model and view instance that contains the name of view to be
-     * rendered and data to be used for rendering (not null)
-     * @throws PortalServiceException If there are any errors in the action
-     * @endpoint "/agent/enrollment/viewHelpItem"
-     * @verb GET
-     */
-    @RequestMapping(
-            value = "/agent/enrollment/viewHelpItem",
-            method = RequestMethod.GET
-    )
-    public ModelAndView getHelpItem(
-            @RequestParam("helpItemId") long id
-    ) throws PortalServiceException {
-        HelpItem helpItem = helpService.get(id);
-        ModelAndView model = new ModelAndView("admin/help_detail");
-        model.addObject("helpItem", helpItem);
-        return model;
-    }
-
-    /**
      * Rejects the ticket.
      *
      * @param id the ticket id
@@ -269,7 +202,7 @@ public class EnrollmentController extends BaseController {
     ) throws PortalServiceException {
         CMSUser user = ControllerHelper.getCurrentUser();
         enrollmentService.rejectTicket(user, id, "Manual Reject by the agent");
-        ModelAndView mv = new ModelAndView("redirect:/provider/search/rejected?statuses=Rejected&showFilterPanel=true");
+        ModelAndView mv = new ModelAndView("redirect:/provider/enrollments/rejected?statuses=Rejected&showFilterPanel=true");
         return mv;
     }
 
@@ -331,6 +264,7 @@ public class EnrollmentController extends BaseController {
                         }
                     }
                     addLeieResults(mv, enrollment);
+                    addDmfResults(mv, enrollment);
                     mv.addObject("id", id);
                     break;
                 }
@@ -361,6 +295,26 @@ public class EnrollmentController extends BaseController {
         screening.ifPresent(leieAutomaticScreening -> mv.addObject(
                 "leieScreeningId",
                 leieAutomaticScreening.getAutomaticScreeningId()
+        ));
+    }
+
+    private void addDmfResults(ModelAndView mv, Enrollment enrollment) {
+        Optional<DmfAutomaticScreening> screening = getMostRecentAutomaticScreeningResult(
+                DmfAutomaticScreening.class,
+                enrollment
+        );
+        Optional<Result> result = screening.map(AutomaticScreening::getResult);
+        mv.addObject(
+                "dmfScreeningPassed",
+                Result.PASS.equals(result.orElse(null))
+        );
+        mv.addObject(
+                "dmfScreeningResult",
+                result.map(Enum::toString).orElse("Not performed")
+        );
+        screening.ifPresent(dmfAutomaticScreening -> mv.addObject(
+                "dmfScreeningId",
+                dmfAutomaticScreening.getAutomaticScreeningId()
         ));
     }
 
@@ -399,7 +353,7 @@ public class EnrollmentController extends BaseController {
             throw new IllegalArgumentException("A valid criteria must be provided.");
         }
 
-        ModelAndView results = doSearch(criteria, "print");
+        ModelAndView results = doSearch("admin/service_agent_print_enrollments", criteria);
         SearchResult<UserRequest> items = (SearchResult<UserRequest>) results.getModel().get("results");
 
         response.reset();
@@ -410,16 +364,36 @@ public class EnrollmentController extends BaseController {
     }
 
     /**
-     * This action will search for profile enrollments.
+     * This action will list enrollments.
      *
      * @param criteria the search criteria
      * @param view     the view name
      * @return the model and view instance that contains the name of view to be
      * rendered and data to be used for rendering (not null)
      * @throws PortalServiceException If there are any errors in the action
-     * @endpoint "/agent/enrollment/search/{view}"
-     * @endpoint "/provider/search/{view}"
+     * @endpoint "/agent/enrollment/list/{view}"
+     * @endpoint "/provider/enrollments/{view}"
      */
+    @RequestMapping({
+            "/agent/enrollment/list/{view}",
+            "/provider/enrollments/{view}"
+    })
+    public ModelAndView list(
+            @ModelAttribute("criteria") ProviderSearchCriteria criteria,
+            @PathVariable("view") String view,
+            HttpServletResponse response
+    ) throws PortalServiceException {
+
+        nocache(response);
+        if (criteria == null) {
+            throw new IllegalArgumentException("A valid criteria must be provided.");
+        }
+
+        ModelAndView mv = doSearch("admin/service_agent_enrollment_list", criteria);
+        mv.addObject("tabName", view);
+        return mv;
+    }
+
     @RequestMapping({
             "/agent/enrollment/search/{view}",
             "/provider/search/{view}"
@@ -435,7 +409,24 @@ public class EnrollmentController extends BaseController {
             throw new IllegalArgumentException("A valid criteria must be provided.");
         }
 
-        return doSearch(criteria, view);
+        return doSearch("admin/service_agent_search_enrollments_" + view, criteria);
+    }
+
+    @RequestMapping({
+            "/agent/enrollment/print",
+            "/provider/print"
+    })
+    public ModelAndView print(
+            @ModelAttribute("criteria") ProviderSearchCriteria criteria,
+            HttpServletResponse response
+    ) throws PortalServiceException {
+
+        nocache(response);
+        if (criteria == null) {
+            throw new IllegalArgumentException("A valid criteria must be provided.");
+        }
+
+        return doSearch("admin/service_agent_print_enrollments", criteria);
     }
 
     /**
@@ -466,13 +457,12 @@ public class EnrollmentController extends BaseController {
      * @return the model and view instance that contains the name of view to be
      * rendered and data to be used for rendering (not null)
      * @throws IllegalArgumentException if npi is null/empty
-     * @throws PortalServiceException   If there are any errors in the action
      * @endpoint "/agent/enrollment/status"
      */
     @RequestMapping(value = "/agent/enrollment/status")
     public ModelAndView getByNumber(
             @RequestParam("npi") String npi
-    ) throws PortalServiceException {
+    ) {
 
         if (npi == null || npi.trim().length() == 0) {
             throw new IllegalArgumentException("A valid NPI must be provided.");
@@ -563,24 +553,13 @@ public class EnrollmentController extends BaseController {
      */
     @RequestMapping("/agent/enrollment/approve")
     public String approve(@RequestParam("id") long id, ApprovalDTO dto) {
-        StatusDTO statusDTO = new StatusDTO();
-
         try {
             completeReview(id, dto, false, "");
-            statusDTO.setSuccess(true);
             ControllerHelper.flashInfo("Approval request has been sent, you will be notified once it is processed.");
         } catch (PortalServiceException ex) {
             ControllerHelper.flashError(USER_ERROR_MSG);
         }
         return "redirect:/ops/viewDashboard";
-    }
-
-    public void setHelpService(HelpService helpService) {
-        this.helpService = helpService;
-    }
-
-    public void setEventService(EventService eventService) {
-        this.eventService = eventService;
     }
 
     /**
@@ -656,6 +635,9 @@ public class EnrollmentController extends BaseController {
         if ("Y".equals(dto.getNonExclusionVerified())) { // modify only if set to Y
             status.setNonExclusion("Y");
         }
+        if ("Y".equals(dto.getNotInDmfVerified())) { // modify only if set to Y
+            status.setNotInDmf("Y");
+        }
 
         return provider;
     }
@@ -669,8 +651,8 @@ public class EnrollmentController extends BaseController {
      * @throws PortalServiceException for any errors encountered
      */
     private ModelAndView doSearch(
-            ProviderSearchCriteria criteria,
-            String view
+            String viewName,
+            ProviderSearchCriteria criteria
     ) throws PortalServiceException {
         if (criteria.getPageNumber() == 0 && criteria.getPageSize() == 0) {
             criteria.setPageNumber(1);
@@ -681,19 +663,19 @@ public class EnrollmentController extends BaseController {
         SearchResult<UserRequest> results = enrollmentService
                 .searchTickets(ControllerHelper.getCurrentUser(), criteria);
 
-        ModelAndView mv = new ModelAndView("admin/service_agent_enrollments_" + view, "results", results);
+        ModelAndView mv = new ModelAndView(viewName, "results", results);
         if (criteria.getStatuses() == null || criteria.getStatuses().isEmpty()) {
             mv.addObject("Status", "");
-            // populate notes
-
-            List<UserRequest> items = results.getItems();
-            if (items != null) {
-                for (UserRequest item : items) {
-                    item.setNotes(enrollmentService.findNotes(item.getTicketId()));
-                }
-            }
         } else {
             mv.addObject("Status", criteria.getStatuses().get(0));
+        }
+
+        // populate notes
+        List<UserRequest> items = results.getItems();
+        if (items != null) {
+            for (UserRequest item : items) {
+                item.setNotes(enrollmentService.findNotes(item.getTicketId()));
+            }
         }
 
         // load all actions that can be performed by user, JSP should check that processInstanceId are equal
@@ -711,6 +693,10 @@ public class EnrollmentController extends BaseController {
         }
         mv.addObject("searchCriteria", criteria);
         supplyLookupValues(mv);
+
+        ControllerHelper.addPaginationDetails(results, mv);
+        ControllerHelper.addPaginationLinks(results, mv);
+
         return mv;
     }
 
@@ -922,31 +908,5 @@ public class EnrollmentController extends BaseController {
         CMSUser user = ControllerHelper.getCurrentUser();
         enrollmentService.deleteCOSByTicket(user, ticketId, id);
         return new ModelAndView("redirect:/agent/enrollment/pendingcos?id=" + ticketId);
-    }
-
-    public void setLookupService(LookupService lookupService) {
-        this.lookupService = lookupService;
-    }
-
-    public void setProviderTypeService(
-            ProviderTypeService providerTypeService
-    ) {
-        this.providerTypeService = providerTypeService;
-    }
-
-    public void setEnrollmentService(
-            ProviderEnrollmentService enrollmentService
-    ) {
-        this.enrollmentService = enrollmentService;
-    }
-
-    public void setBusinessProcessService(
-            BusinessProcessService businessProcessService
-    ) {
-        this.businessProcessService = businessProcessService;
-    }
-
-    public void setExportService(ExportService exportService) {
-        this.exportService = exportService;
     }
 }

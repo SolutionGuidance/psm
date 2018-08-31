@@ -49,11 +49,11 @@ import gov.medicaid.domain.model.SpecialtiesType;
 import gov.medicaid.domain.model.ValidationResultType;
 import gov.medicaid.domain.model.VerificationStatusType;
 
-import java.util.Calendar;
-import java.util.List;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
+
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * Utility methods for manipulating the process model.

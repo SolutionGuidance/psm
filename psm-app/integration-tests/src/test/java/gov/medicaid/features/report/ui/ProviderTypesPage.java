@@ -4,12 +4,12 @@ import gov.medicaid.features.PsmPage;
 
 import net.thucydides.core.annotations.DefaultUrl;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import java.util.Optional;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DefaultUrl("http://localhost:8080/cms/admin/reports/provider-types")
 public class ProviderTypesPage extends PsmPage {

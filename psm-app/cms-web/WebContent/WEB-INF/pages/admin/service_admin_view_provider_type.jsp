@@ -10,7 +10,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="View Provider Type - Functions (Service Admin)"/>
-  <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -19,7 +18,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
-            <c:set var="activeTab" value="4"></c:set>
+            <c:set var="activeTabFunctions" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <div class="breadCrumb">
@@ -46,7 +45,6 @@
                   <div class="section">
                     <div class="wholeCol">
                       <label>Provider Type</label>
-                      <span class="floatL"><b>:</b></span>
                       <span class="marginLeft10">${providerType.description}</span>
                     </div>
                     <div class="tableHeader"><span>Agreements and Addendums</span></div>
@@ -57,6 +55,16 @@
                             <div class="row">
                               <span>${agreement.title}</span>
                             </div>
+                          </c:forEach>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tableHeader"><span>Applicable Licenses</span></div>
+                    <div class="wholeCol">
+                      <div class="row">
+                        <div class="col2">
+                          <c:forEach var="licenseType" items="${licenseTypes}">
+                            <div class="row">${licenseType.description}</div>
                           </c:forEach>
                         </div>
                       </div>

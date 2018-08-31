@@ -1,15 +1,13 @@
 package gov.medicaid.controllers.admin.report;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletResponse;
+import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
+import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.EnrollmentSearchCriteria;
+import gov.medicaid.entities.ProviderType;
+import gov.medicaid.entities.ProviderTypeSearchCriteria;
+import gov.medicaid.services.PortalServiceException;
+import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderTypeService;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -19,38 +17,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
-import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.EnrollmentSearchCriteria;
-import gov.medicaid.entities.ProviderType;
-import gov.medicaid.entities.ProviderTypeSearchCriteria;
-import gov.medicaid.services.PortalServiceConfigurationException;
-import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
-import gov.medicaid.services.ProviderTypeService;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class ProviderTypesReportController extends gov.medicaid.controllers.BaseController {
-    private ProviderEnrollmentService enrollmentService;
-    private ProviderTypeService providerTypeService;
+    private final ProviderEnrollmentService enrollmentService;
+    private final ProviderTypeService providerTypeService;
 
-    public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
+    public ProviderTypesReportController(
+        ProviderEnrollmentService enrollmentService,
+        ProviderTypeService providerTypeService
+    ) {
         this.enrollmentService = enrollmentService;
-    }
-
-    public void setProviderTypeService(ProviderTypeService providerTypeService) {
         this.providerTypeService = providerTypeService;
-    }
-
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (enrollmentService == null) {
-            throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
-        }
-        if (providerTypeService == null) {
-            throw new PortalServiceConfigurationException("providerTypeService is not configured correctly.");
-        }
     }
 
     @RequestMapping(value = "/admin/reports/provider-types", method = RequestMethod.GET)
@@ -98,7 +85,7 @@ public class ProviderTypesReportController extends gov.medicaid.controllers.Base
         try {
             CSVPrinter csvPrinter = new CSVPrinter(response.getWriter(), CSVFormat.DEFAULT);
 
-            csvPrinter.printRecord("Month Reviewed", "Provider Type", "Number Reviewed");
+            csvPrinter.printRecord("Month Reviewed", "Provider Type", "Applications Reviewed");
 
             for (Month month : months) {
                 for (ProviderType providerType : month.getProviderTypes()) {
@@ -118,7 +105,7 @@ public class ProviderTypesReportController extends gov.medicaid.controllers.Base
 
     private List<Enrollment> getEnrollmentsFromDB(
         List<String> providerTypeCodes
-    ) throws PortalServiceException {
+    ) {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         criteria.setProviderTypes(providerTypeCodes);
         return enrollmentService.searchEnrollments(criteria).getItems();
@@ -134,7 +121,7 @@ public class ProviderTypesReportController extends gov.medicaid.controllers.Base
             });
     }
 
-    private List<Month> buildMonths(List<EnrollmentMonth> ems) throws PortalServiceException {
+    private List<Month> buildMonths(List<EnrollmentMonth> ems) {
         List<Month> months = new ArrayList<>();
 
         for (EnrollmentMonth em : ems) {
@@ -148,8 +135,7 @@ public class ProviderTypesReportController extends gov.medicaid.controllers.Base
         Map<ProviderType, List<Enrollment>> typeEnrollments;
         LocalDate month;
 
-        public Month(EnrollmentMonth em, ProviderEnrollmentService enrollmentService)
-            throws PortalServiceException {
+        public Month(EnrollmentMonth em, ProviderEnrollmentService enrollmentService) {
             typeEnrollments = new HashMap<>();
             month = em.getMonth();
 

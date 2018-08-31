@@ -26,12 +26,12 @@ import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormError;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the organization disclosure.
@@ -90,7 +90,6 @@ public class OrganizationDisclosureFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         provider.setHasCriminalConviction(param(request, "criminalConvictionInd"));
@@ -100,7 +99,7 @@ public class OrganizationDisclosureFormBinder extends BaseFormBinder {
         provider.setEmployeeHasCivilPenalty(param(request, "empCivilPenaltyInd"));
         provider.setEmployeeHasPreviousExclusion(param(request, "empPreviousExclusionInd"));
         provider.setRenewalShowBlankStatement(param(request, "renewalBlankInit"));
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**

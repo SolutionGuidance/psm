@@ -10,7 +10,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="View Agreement Document - Functions (Service Admin)"/>
-  <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -19,7 +18,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
-            <c:set var="activeTab" value="4"></c:set>
+            <c:set var="activeTabFunctions" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <div class="breadCrumb">

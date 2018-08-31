@@ -16,13 +16,13 @@
 
 package gov.medicaid.services.util;
 
-import java.util.Map;
-
 import com.lowagie.text.FontFactory;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
+
+import java.util.Map;
 
 /**
  * Common utility methods.
@@ -121,7 +121,7 @@ public class PDFHelper {
      * @param value the value text
      */
     public static void addCell(PdfPTable table, String value) {
-        PdfPCell val = new PdfPCell(new Phrase(": " + Util.defaultString(value), FontFactory.getFont(
+        PdfPCell val = new PdfPCell(new Phrase(Util.defaultString(value), FontFactory.getFont(
             FontFactory.HELVETICA, 7)));
         val.setBorder(Rectangle.NO_BORDER);
         val.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);

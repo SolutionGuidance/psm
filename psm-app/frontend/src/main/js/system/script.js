@@ -186,9 +186,6 @@ $(document).ready(function () {
     $('#new-modal #printModal .modal-content .tabContent').show();
     $(this).addClass('active');
     $($(this).attr('href')).show();
-    if ($(this).attr('href') == "#tabHelpTopics") {
-      $('#scrollbar').tinyscrollbar({ sizethumb: 161 });
-    }
 
     if ($(this).attr('href') == '#tabProviderTypes') {
       $('.addProviderBtn').show();
@@ -567,18 +564,6 @@ $(document).ready(function () {
     usNumberFormat: false,
     sortRestart: true
   });
-  $('.table-enrollment-sort').tablesorter({
-    headers: { 0: { sorter: false }, 8: { sorter: false } },
-    widgets: ['zebra', 'columns'],
-    usNumberFormat: false,
-    sortRestart: true
-  });
-  $('.table-enrollment-notes-sort').tablesorter({
-    headers: { 0: { sorter: false }, 8: { sorter: false }, 9: { sorter: false } },
-    widgets: ['zebra', 'columns'],
-    usNumberFormat: false,
-    sortRestart: true
-  });
   $('#resultsTable').tablesorter({
     headers: { 0: { sorter: false }, 9: { sorter: false } },
     widgets: ['zebra', 'columns'],
@@ -604,139 +589,6 @@ $(document).ready(function () {
       }
     }
   });
-  //Scrollbar
-  if ($('#scrollbar').length) {
-    $('#scrollbar').tinyscrollbar({ sizethumb: 161 });
-    $('#letterA').click(function () {
-      $('#scrollbar').tinyscrollbar_update(0);
-      return false;
-    });
-
-    $('#letterB').click(function () {
-      $('#scrollbar').tinyscrollbar_update(150);
-      return false;
-    });
-
-    $('#letterC').click(function () {
-      $('#scrollbar').tinyscrollbar_update(300);
-      return false;
-    });
-
-    $('#letterD').click(function () {
-      $('#scrollbar').tinyscrollbar_update(450);
-      return false;
-    });
-
-    $('#letterE').click(function () {
-      $('#scrollbar').tinyscrollbar_update(600);
-      return false;
-    });
-
-    $('#letterF').click(function () {
-      $('#scrollbar').tinyscrollbar_update(750);
-      return false;
-    });
-
-    $('#letterG').click(function () {
-      $('#scrollbar').tinyscrollbar_update(900);
-      return false;
-    });
-
-    $('#letterH').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1050);
-      return false;
-    });
-
-    $('#letterI').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1200);
-      return false;
-    });
-
-    $('#letterJ').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1350);
-      return false;
-    });
-
-    $('#letterK').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1500);
-      return false;
-    });
-
-    $('#letterL').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1650);
-      return false;
-    });
-
-    $('#letterM').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1800);
-      return false;
-    });
-
-    $('#letterN').click(function () {
-      $('#scrollbar').tinyscrollbar_update(1950);
-      return false;
-    });
-
-    $('#letterO').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2100);
-      return false;
-    });
-
-    $('#letterP').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2250);
-      return false;
-    });
-
-    $('#letterQ').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2400);
-      return false;
-    });
-
-    $('#letterR').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2550);
-      return false;
-    });
-
-    $('#letterS').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2700);
-      return false;
-    });
-
-    $('#letterT').click(function () {
-      $('#scrollbar').tinyscrollbar_update(2850);
-      return false;
-    });
-
-    $('#letterU').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3000);
-      return false;
-    });
-
-    $('#letterV').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3150);
-      return false;
-    });
-
-    $('#letterW').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3300);
-      return false;
-    });
-
-    $('#letterX').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3300);
-      return false;
-    });
-
-    $('#letterY').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3300);
-      return false;
-    });
-
-    $('#letterZ').click(function () {
-      $('#scrollbar').tinyscrollbar_update(3300);
-      return false;
-    });
-  }
   //Check All
   $('#advancedSearch .checkRow span.label').live('click', function () {
     if ($(this).prev().attr('checked')) {
@@ -890,17 +742,6 @@ $(document).ready(function () {
     closeModal();
   });
 
-  //Textarea
-  $('#writeNotesModal .textarea').live('focus', function () {
-    $(this).val('');
-  });
-
-  $('#writeNotesModal .textarea').live('blur', function () {
-    if ($(this).val() == '') {
-      $(this).val('Write your note here...');
-    }
-  });
-
   //Next Button
   $('.createEnrollmentBtn').live('click', function () {
     if ($('#createEnrollment .newEnrollment').attr('checked')) {
@@ -922,16 +763,6 @@ $(document).ready(function () {
         window.location.href = 'renewal-enrollment-payment-service-agent-personal.html';
       }
     }
-  });
-
-  $('.writeNotes').live('click', function () {
-    closeModal();
-    loadModal('#writeNotesModal');
-  });
-
-  $('.viewNotes').live('click', function () {
-    closeModal();
-    loadModal('#viewNotesModal');
   });
 
   $('.newEnrollmentSaveDraftBtn').live('click', function () {
@@ -961,7 +792,6 @@ $(document).ready(function () {
 
   if ($.browser.msie && ($.browser.version == "7.0")) {
     $('#createEnrollment input[type="radio"],#advancedSearch input[type="checkbox"]').css('margin', '5px 3px auto 3px');
-    $('.helpSection .row li').css('width', $('.helpSection .row ul').width() / 3);
   }
 
   /* END OF SERVICE AGENT SCRIPT -------------------------------------------------- */
@@ -1047,39 +877,6 @@ $(document).ready(function () {
     $('#screenSchedulePanel').hide();
     $('#changeScreenSchedulePanel').show();
   });
-
-  $('.addHelpTopicBtn').live('click', function () {
-    $('#helpTopicsPanel').hide();
-    $('#viewHelpTopicPanel').hide();
-    $('#editHelpTopicPanel').hide();
-    $('#addHelpTopicPanel').show();
-  });
-
-  $('.editHelpTopicBtn').live('click', function () {
-    $('#helpTopicsPanel').hide();
-    $('#viewHelpTopicPanel').hide();
-    $('#addHelpTopicPanel').hide();
-    $('#editHelpTopicPanel').show();
-  });
-
-  $('.cancelAddHelpTopicBtn,.backToHelpTopicBtn,.deleteOKBtn').live('click', function () {
-    closeModal();
-    $('#viewHelpTopicPanel').hide();
-    $('#editHelpTopicPanel').hide();
-    $('#addHelpTopicPanel').hide();
-    $('#helpTopicsPanel').show();
-  });
-
-  $('.saveAddHelpTopicBtn,.cancelEditHelpTopicBtn,#helpTopicsPanel .overview li a').live('click', function () {
-    $('#viewHelpTopicPanel').show();
-    $('#editHelpTopicPanel').hide();
-    $('#addHelpTopicPanel').hide();
-    $('#helpTopicsPanel').hide();
-  });
-
-  $('.deleteHelpTopicBtn').live('click', function () {
-    loadModal('#deleteHelpTopicModal');
-  })
 
   $('.deleteAgreementBtn').live('click', function () {
     loadModal('#deleteAgreementModal');
@@ -1187,8 +984,6 @@ $(document).ready(function () {
     if ($('#draftTable').length > 0)$('#draftTable').trigger("update");
     if ($('.dashboardTable').length > 0)$('.dashboardTable').trigger("update");
     if ($('#draftEnrollmentTable').length > 0)$('#draftEnrollmentTable').trigger("update");
-    if ($('.table-enrollment-sort').length > 0)$('.table-enrollment-sort').trigger("update");
-    if ($('.table-enrollment-notes-sort').length > 0)$('.table-enrollment-notes-sort').trigger("update");
     if ($('#resultsTable').length > 0)$('#resultsTable').trigger("update");
     if ($('#userAccountsTab .generalTable').length > 0)$('#userAccountsTab .generalTable').trigger("update");
     if ($('#userAccountResultsTable').length > 0)$('#userAccountResultsTable').trigger("update");
@@ -1254,12 +1049,12 @@ function deleteUserAccounts(userIds, toUserAccounts) {
     }
   }
 
-  $.ajax({
+  postJson({
       url: $('#deleteAccountsURL').val() + urlParams,
       cache: false,
-      type: "GET",
+      type: "POST",
       dataType: "text",
-      success: function (data) {
+      success: function () {
           if (toUserAccounts) {
             window.location = $('#userAccountsURL').val();
           } else {
@@ -1271,7 +1066,7 @@ function deleteUserAccounts(userIds, toUserAccounts) {
 }
 
 function setSearchConditions() {
-  if (('undefined' != typeof searchedResult) && (searchedResult)) {
+  if (searchedResult) {
     $('#initSearchBox').val(true);
     $('#searchUserAccountsForm input[name="and"]').val(false);
     $('#searchUserAccountsForm input[name="firstName"]').val(searchFirstName);
@@ -1280,33 +1075,6 @@ function setSearchConditions() {
 }
 
 $(document).ready(function () {
-    $('.pagiBox .pagi .page').live('click', function () {
-        $('#pageNumber').val($(this).html());
-        setSearchConditions();
-        $('#searchUserAccountsForm, #advancedSearch').submit();
-      });
-
-    $('.pagiBox .pagi .next').live('click', function () {
-        var pageNumber = parseInt($('.pagiBox .pagi .current').html()) + 1;
-        $('#pageNumber').val(pageNumber);
-        setSearchConditions();
-        $('#searchUserAccountsForm, #advancedSearch').submit();
-      });
-
-    $('.pagiBox .pagi .prev').live('click', function () {
-        var pageNumber = parseInt($('.pagiBox .pagi .current').html()) - 1;
-        $('#pageNumber').val(pageNumber);
-        setSearchConditions();
-        $('#searchUserAccountsForm, #advancedSearch').submit();
-      });
-
-    $('.pagination select').live('change', function () {
-        $('#pageNumber').val("1");
-        $('#pageSize').val($(this).val());
-        setSearchConditions();
-        $('#searchUserAccountsForm, #advancedSearch').submit();
-      });
-
     $(".sortable_column").live('click', function () {
         var newSortColumn = $(this).attr("rel");
         var oldSortColumn = $("#sortColumn").val();
@@ -1324,6 +1092,20 @@ $(document).ready(function () {
         $('#searchUserAccountsForm, #advancedSearch').submit();
         return false;
       });
+
+    $(".suspendLink, .reinstateLink").on('click', function () {
+      var link = $(this);
+      postJson({
+        url: link.attr("href"),
+        cache: false,
+        type: "POST",
+        dataType: "text",
+        success: function () {
+          link.closest("tr").toggleClass("disabledUser enabledUser");
+        }
+      });
+      return false;
+    });
 
     $('.searchBox').live('click', function () {
         var val = $.trim($('#searchBoxFirstName').val());

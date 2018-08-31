@@ -67,36 +67,21 @@ public class CMSConfigurator {
      * Reads the configuration and stores it.
      */
     public CMSConfigurator() {
-        InputStream stream = getClass().getResourceAsStream(DEFAULT_CMS_CONFIG_FILE);
-        if (stream == null) {
-            throw new PortalServiceConfigurationException(
-                "Could not find application configuration, make sure it is in the classpath.");
-        }
+        synchronized (CMSConfigurator.class) {
+            if (globalSettings == null) {
+                try (InputStream stream = getClass().getResourceAsStream(DEFAULT_CMS_CONFIG_FILE)) {
+                    if (stream == null) {
+                        throw new PortalServiceConfigurationException(
+                            "Could not find application configuration, make sure it is in the classpath.");
+                    }
 
-        if (globalSettings == null) {
-            synchronized (CMSConfigurator.class) {
-                globalSettings = new Properties();
-                try {
+                    globalSettings = new Properties();
                     globalSettings.load(stream);
                 } catch (IOException e) {
                     throw new PortalServiceConfigurationException(
-                        "Could not read application configuration, make sure it is in the classpath.");
-                } finally {
-                    if (stream != null) {
-                        try {
-                            stream.close();
-                        } catch (IOException e) {
-                            throw new PortalServiceConfigurationException("Unable to close configuration.");
-                        }
-                    }
-                }
-            }
-        } else {
-            if (stream != null) {
-                try {
-                    stream.close();
-                } catch (IOException e) {
-                    throw new PortalServiceConfigurationException("Unable to close configuration.");
+                        "Error reading application configuration.",
+                        e
+                    );
                 }
             }
         }
@@ -233,6 +218,24 @@ public class CMSConfigurator {
     }
 
     /**
+     * Retrieves the enrollment service.
+     *
+     * @return the enrollment service from the JNDI tree.
+     */
+    public ScreeningService getScreeningService() {
+        return (ScreeningService) fromContext("jndi.ScreeningService", false);
+    }
+
+    /**
+     * Retrieves the provider type service.
+     *
+     * @return the provider type service from the JNDI tree.
+     */
+    public ProviderTypeService getProviderTypeService() {
+        return (ProviderTypeService) fromContext("jndi.ProviderTypeService", false);
+    }
+
+    /**
      * Retrieves the object from the JNDI tree.
      *
      * @param jndiName the JNDI name configuration property
@@ -326,6 +329,13 @@ public class CMSConfigurator {
         return globalSettings.getProperty(
                 "external-sources.leie",
                 "http://localhost:5000/"
+        );
+    }
+
+    public String getDmfApiBaseUrl() {
+        return globalSettings.getProperty(
+                "external-sources.dmf",
+                "http://localhost:5001/"
         );
     }
 

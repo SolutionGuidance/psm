@@ -27,12 +27,12 @@ import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.dto.FormError;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the organization disclosure.
@@ -61,7 +61,6 @@ public class PCPOInsuranceFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
@@ -85,7 +84,7 @@ public class PCPOInsuranceFormBinder extends BaseFormBinder {
         if (attachmentId != null) {
             replaceDocument(attachments, attachmentId, DocumentNames.SURETY_BOND.value());
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     private void replaceDocument(AttachedDocumentsType attachments, String id, String value) {

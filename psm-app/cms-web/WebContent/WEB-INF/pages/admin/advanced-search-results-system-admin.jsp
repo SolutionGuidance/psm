@@ -13,7 +13,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set value="Advanced Search (System Admin)" var="title"></c:set>
-  <c:set value="true" var="systemPage"></c:set>
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -36,17 +35,14 @@
                   <div class="leftCol">
                     <div class="row">
                       <label>Username</label>
-                      <span class="floatL"><b>:</b></span>
                       <form:input cssClass="normalInput" path="username"/>
                     </div>
                     <div class="row">
                       <label>Last Name</label>
-                      <span class="floatL"><b>:</b></span>
                       <form:input cssClass="normalInput" path="lastName"/>
                     </div>
                     <div class="row">
                       <label>First Name</label>
-                      <span class="floatL"><b>:</b></span>
                       <form:input cssClass="normalInput" path="firstName"/>
                     </div>
                   </div>
@@ -54,14 +50,12 @@
                   <div class="rightCol">
                     <div class="row checkRow">
                       <label>Email</label>
-                      <span class="floatL"><b>:</b></span>
                       <div class="checkWrapper">
                         <form:input cssClass="normalInput" path="email"/>
                       </div>
                     </div>
                     <div class="row checkRow">
                       <label>Role</label>
-                      <span class="floatL"><b>:</b></span>
                       <div class="checkMain">
                         <div class="checkWrapper">
                           <input type="checkbox" name="requestType" class="checkAll" <c:if test="${fn:length(criteria.roles) eq 4}">checked="checked"</c:if> />
@@ -101,7 +95,7 @@
         </div>
 
         <c:set var="hasFilterPanel" value="false" />
-        <%@ include file="/WEB-INF/pages/admin/includes/search-result-section.jsp" %>
+        <%@ include file="/WEB-INF/pages/admin/includes/search_results_section_system_admin.jsp" %>
 
         <!-- /.tabSection -->
       </div>

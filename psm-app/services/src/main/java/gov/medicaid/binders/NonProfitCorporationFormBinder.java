@@ -27,12 +27,12 @@ import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.dto.FormError;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -62,7 +62,6 @@ public class NonProfitCorporationFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         String attachmentId = (String) request.getAttribute(NAMESPACE + "articlesOfIncorporation");
@@ -70,7 +69,7 @@ public class NonProfitCorporationFormBinder extends BaseFormBinder {
             replaceDocument(XMLUtility.nsGetAttachments(provider), attachmentId, DocumentNames.ARTICLES_OF_INCORPORATION.value());
         }
 
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**

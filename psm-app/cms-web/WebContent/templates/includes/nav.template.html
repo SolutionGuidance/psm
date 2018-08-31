@@ -2,42 +2,50 @@
   <div class="navR">
     <div class="navM">
       <ul>
-        {{#if systemPage}}
+        {{#if isSystemAdministrator}}
           <li class="active">
             <a href="{{ctx}}/system/user/list">USER ACCOUNTS</a>
             {{#if hasArrow}}<span class="arrow"></span>{{/if}}
           </li>
-        {{else}}
-          <li class="{{#if activeTab1 }} active {{/if}}">
+        {{else if isServiceAdministrator}}
+          <li class="{{#if activeTabDashboard }} active {{/if}}">
             <a href="{{ctx}}/landing">DASHBOARD</a>
-            {{#if activeTab1 }} <span class="arrow"></span> {{/if}}
+            {{#if activeTabDashboard }} <span class="arrow"></span> {{/if}}
           </li>
-
-          <li class="{{#if activeTab2 }} active {{/if}}">
-            <a class="enrollmentsLink" href="{{ctx}}/provider/dashboard/drafts">ENROLLMENTS</a>
-            {{#if activeTab2 }} <span class="arrow"></span> {{/if}}
+          <li class="{{#if activeTabEnrollments }} active {{/if}}">
+            <a class="enrollmentsLink" href="{{ctx}}/provider/enrollments/all?showFilterPanel=true">ENROLLMENTS</a>
+            {{#if activeTabEnrollments }} <span class="arrow"></span> {{/if}}
           </li>
-
-          {{#if isServiceAdministrator}}
-          <li class="{{#if activeTab5 }} active {{/if}}">
+          <li class="{{#if activeTabScreenings }} active {{/if}}">
+            <a class="screeningsLink" href="{{ctx}}/agent/screenings">SCREENINGS</a>
+            {{#if activeTabScreenings }} <span class="arrow"></span> {{/if}}
+          </li>
+          <li class="{{#if activeTabReports }} active {{/if}}">
             <a class="reportsLink" href="{{ctx}}/admin/reports">REPORTS</a>
-            {{#if activeTab5 }} <span class="arrow"></span> {{/if}}
+            {{#if activeTabReports }} <span class="arrow"></span> {{/if}}
           </li>
-
-          <li class="{{#if activeTab4 }} active {{/if}}">
+          <li class="{{#if activeTabFunctions }} active {{/if}}">
             <a class="functionsLink" href="{{ctx}}/admin/viewProviderTypes">FUNCTIONS</a>
-            {{#if activeTab4 }} <span class="arrow"></span> {{/if}}
+            {{#if activeTabFunctions }} <span class="arrow"></span> {{/if}}
           </li>
-          {{/if}}
-
-          <li class="last {{#if activeTab3 }} active {{/if}}">
+          <li class="last {{#if activeTabProfile }} active {{/if}}">
             <a href="{{ctx}}/myprofile" id="my_profile_tab">MY PROFILE</a>
-            {{#if activeTab3 }} <span class="arrow"></span> {{/if}}
+            {{#if activeTabProfile }} <span class="arrow"></span> {{/if}}
+          </li>
+        {{else}}
+          {{!-- Provider --}}
+          <li class="{{#if activeTabEnrollments }} active {{/if}}">
+            <a class="enrollmentsLink" href="{{ctx}}/provider/dashboard/">ENROLLMENTS</a>
+            {{#if activeTabEnrollments }} <span class="arrow"></span> {{/if}}
+          </li>
+          <li class="last {{#if activeTabProfile }} active {{/if}}">
+            <a href="{{ctx}}/myprofile" id="my_profile_tab">MY PROFILE</a>
+            {{#if activeTabProfile }} <span class="arrow"></span> {{/if}}
           </li>
         {{/if}}
       </ul>
 
-      {{#if systemPage}}
+      {{#if isSystemAdministrator}}
         <div class="searchWidget">
           <a class="advancedSearchLink" href="{{ctx}}/system/advanced-search-system-admin">Advanced Search</a>
           <form id="searchBoxForm" class="inputContainer" action="{{ctx}}/system/user/search?role=Provider"  method="post">
@@ -58,9 +66,16 @@
         <div class="searchWidget">
           <a class="advancedSearchLink" href="{{ctx}}/provider/search/advanced">Advanced Search</a>
           <div class="inputContainer">
-            <form action="{{ctx}}/provider/search/quick" method="get">
+            <form action="{{ctx}}/provider/search/quick" method="get" class="quickSearchForm">
               <button class="search" title="Search" aria-label="Search"></button>
-              <input type="text" name="npi" placeholder="Search Keyword" value="{{#if param.npi }}{{param.npi}}{{/if}}" title="Search Keyword" />
+              <input
+                type="text"
+                name="npi"
+                placeholder="Search Keyword"
+                class="quickSearchNpi"
+                value="{{#if quickSearchNpi }}{{quickSearchNpi}}{{/if}}"
+                title="Search Keyword"
+              />
             </form>
           </div>
         </div>

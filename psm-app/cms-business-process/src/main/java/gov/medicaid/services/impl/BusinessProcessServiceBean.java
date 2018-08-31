@@ -26,9 +26,9 @@ import gov.medicaid.domain.rules.CMSKnowledgeUtility;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.EnrollmentStatus;
-import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.process.enrollment.AcceptedHandler;
+import gov.medicaid.process.enrollment.DmfScreeningHandler;
 import gov.medicaid.process.enrollment.EnrollmentMonitor;
 import gov.medicaid.process.enrollment.ExcludedProvidersScreeningHandler;
 import gov.medicaid.process.enrollment.PreProcessHandler;
@@ -144,6 +144,13 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
                         config.getPortalEntityManager()
                 )
         );
+        handlers.put(
+                "Check DMF",
+                new DmfScreeningHandler(
+                        config.getDmfApiBaseUrl(),
+                        config.getPortalEntityManager()
+                )
+        );
         handlers.put("Auto Screening", new ScreeningHandler());
         handlers.put("Accept Application", new AcceptedHandler(notificationService));
 
@@ -159,7 +166,9 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
      * @return the process instance id
      * @throws Exception for any errors encountered
      */
-    public long enroll(EnrollmentType enrollment) throws Exception {
+    private long enroll(
+            EnrollmentType enrollment
+    ) throws Exception {
         StatefulKnowledgeSession ksession = null;
         UserTransaction utx = context.getUserTransaction();
         boolean owner = false;
@@ -199,7 +208,7 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     }
 
     private void resubmit(
-            String user,
+            CMSUser user,
             EnrollmentProcess processModel
     ) throws Exception {
         StatefulKnowledgeSession ksession = null;
@@ -236,33 +245,6 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
 
     private EntityManagerFactory getEmf() {
         return emf;
-    }
-
-    /**
-     * Starts the renewal process.
-     *
-     * @param ticket         the renewal request
-     * @param currentProfile the current profile for this provider
-     * @return the process instance id.
-     * @throws Exception for any errors encountered
-     */
-    public long renew(
-            EnrollmentType ticket,
-            EnrollmentType currentProfile
-    ) throws Exception {
-        return enroll(ticket);
-    }
-
-    /**
-     * Starts the update process.
-     *
-     * @param ticket         the update request
-     * @param currentProfile the current profile for this provider
-     * @return the process instance id.
-     * @throws Exception for any errors encountered
-     */
-    public long update(EnrollmentType ticket, EnrollmentType currentProfile) throws Exception {
-        return enroll(ticket);
     }
 
     /**
@@ -399,14 +381,13 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
 
     public void updateRequest(
             EnrollmentType ticket,
-            String user,
-            String userRole
+            CMSUser user
     ) throws Exception {
         UserTransaction utx = context.getUserTransaction();
         final ProviderInformationType updates = ticket.getProviderInformation();
 
-        if (userRole.equals(ViewStatics.ROLE_PROVIDER)) {
-            if (!user.equals(ticket.getSubmittedBy())) {
+        if (user.getRole().getDescription().equals(ViewStatics.ROLE_PROVIDER)) {
+            if (!user.getUserId().equals(ticket.getSubmittedBy())) {
                 throw new PortalServiceException("Only the submitter and administrators are allowed to modify pending submissions.");
             }
         }
@@ -444,15 +425,15 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
                 // replace the current profile
                 enrollment.setProviderInformation(updates);
                 EditHistoryType editHistory = new EditHistoryType();
-                editHistory.setEditedBy(user);
-                editHistory.setEditedByRole(userRole);
+                editHistory.setEditedBy(user.getUserId());
+                editHistory.setEditedByRole(user.getRole().getDescription());
                 editHistory.setEditedOn(Calendar.getInstance());
                 editHistory.setEditNote("Resubmitted");
                 editHistory.setProviderInformation(oldData);
                 processModel.getEnrollment().getSubmissionEditHistory().add(editHistory);
             }
 
-            processModel.getEnrollment().getProviderInformation().setReviewedBy(user);
+            processModel.getEnrollment().getProviderInformation().setReviewedBy(user.getUserId());
             // reset verification whenever the request is resubmitted
             processModel.getEnrollment().getProviderInformation().setVerificationStatus(new VerificationStatusType());
 
@@ -505,32 +486,21 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
     ) throws PortalServiceException {
         UserTransaction ut = context.getUserTransaction();
         try {
-            Enrollment ticket = providerService.getTicketDetails(user, ticketId);
+            Enrollment ticket = providerService.getEnrollmentWithScreenings(user, ticketId).
+                orElseThrow(() -> new PortalServiceException("Couldn't find ticket"));
 
             if (!ViewStatics.DRAFT_STATUS.equals(ticket.getStatus().getDescription())) {
                 throw new PortalServiceException("Cannot submit ticket because it is not in draft status.");
             }
 
             ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.PENDING_STATUS));
-            ticket.setSubmittedBy(user.getUserId());
+            ticket.setSubmittedBy(user);
             ticket.setSubmissionDate(Calendar.getInstance().getTime());
             ticket.setStatusDate(Calendar.getInstance().getTime());
 
             try {
-                if (ViewStatics.ENROLLMENT_REQUEST.equals(ticket.getRequestType().getDescription())) {
+                if (isEnrollmentRequest(ticket)) {
                     long processInstance = enroll(XMLAdapter.toXML(ticket));
-                    ticket.setProcessInstanceId(processInstance);
-
-                } else if (ViewStatics.RENEWAL_REQUEST.equals(ticket.getRequestType().getDescription())) {
-                    ProviderProfile baseProfile = providerService.getProviderDetails(user, ticket.getDetails()
-                            .getProfileId());
-                    long processInstance = renew(XMLAdapter.toXML(ticket), XMLAdapter.toXML(baseProfile));
-                    ticket.setProcessInstanceId(processInstance);
-
-                } else if (ViewStatics.UPDATE_REQUEST.equals(ticket.getRequestType().getDescription())) {
-                    ProviderProfile baseProfile = providerService.getProviderDetails(user, ticket.getDetails()
-                            .getProfileId());
-                    long processInstance = update(XMLAdapter.toXML(ticket), XMLAdapter.toXML(baseProfile));
                     ticket.setProcessInstanceId(processInstance);
                 }
             } catch (Exception e) {
@@ -538,12 +508,23 @@ public class BusinessProcessServiceBean extends BaseService implements BusinessP
             }
 
             ut.begin();
-            ticket.setLastUpdatedBy(user.getUserId());
+            ticket.setLastUpdatedBy(user);
             getEm().merge(ticket);
             ut.commit();
         } catch (Exception e) {
             throw new PortalServiceException("Submission caused an error, see logs for details.", e);
         }
+    }
+
+    private boolean isEnrollmentRequest(Enrollment ticket) {
+        List<String> enrollmentRequestTypes = Arrays.asList(
+                ViewStatics.ENROLLMENT_REQUEST,
+                ViewStatics.RENEWAL_REQUEST,
+                ViewStatics.UPDATE_REQUEST
+        );
+        return enrollmentRequestTypes.contains(
+                ticket.getRequestType().getDescription()
+        );
     }
 
     /**

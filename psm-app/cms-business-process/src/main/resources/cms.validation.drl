@@ -2117,63 +2117,6 @@ dialect 'mvel'
 
 end
 
-rule 'Authorized Representative Signature Date Cannot Be In The Future'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
-        IsOrganization($provider : provider)
-        ProviderStatementType($signDate: signDate, signDate != null) from $provider.providerStatement
-        eval($signDate.after(Calendar.getInstance()))
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/ProviderStatement/SignDate",
-            "00001",
-            "Authorized representative signature date cannot be a future date."
-        );
-
-end
-
-rule 'Authorized Representative Signature Date Cannot be past date'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
-        IsOrganization($provider : provider)
-        ProviderStatementType($signDate: signDate, signDate != null) from $provider.providerStatement
-        eval($signDate.before(getNow()))
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/ProviderStatement/SignDate",
-            "00001",
-            "Authorized representative signature date cannot be a past date."
-        );
-end
-
-
-rule 'Authorized Representative Signature Date Is Required'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 5
- */
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_PROVIDER_STATEMENT.value())
-        IsOrganization($provider : provider)
-        ProviderStatementType(signDate == null) from $provider.providerStatement
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/ProviderStatement/SignDate",
-            "00001",
-            "Authorized representative signature date is required."
-        );
-
-end
-
 rule 'Authorized Representative Title Is Required'
 dialect 'mvel'
 /*
@@ -3473,7 +3416,7 @@ dialect 'mvel'
 
 end
 
-rule 'CMHC Members Must Be A Certified Mental Health Professional Or A Licensed Psychiatrist'
+rule 'CMHC Members Must Be A Certified Mental Health Rehab Professional'
 dialect 'mvel'
 /*
  * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
@@ -3486,14 +3429,13 @@ dialect 'mvel'
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
         $provider: ProviderInformationType(providerType == ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value())
         MemberInformationType($memberList : groupMember, groupMember != null ) from $provider.memberInformation
-        GroupMemberType($specialties: specialties, providerType != ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value(), highestDegreeEarned != "DOCTORATE") from $memberList
-        not SpecialtiesType(specialtyName contains "Psychiatry") from $specialties
+        GroupMemberType(providerType != ProviderType.CERTIFIED_MENTAL_HEALTH_REHAB_PROF_CPRP.value()) from $memberList
         $report: ErrorReporter()
     then
         $report.addError(
             "/ProviderInformation/MemberInformation",
             "00001",
-            "Members must be certified mental health professionals or licensed psychiatrists."
+            "Members must be certified mental health rehab professionals."
         );
 
 end
@@ -5448,6 +5390,39 @@ dialect 'mvel'
         );
 end
 
+rule 'Enrollment Personal Email Address is Required when Same As Above is Checked'
+dialect 'mvel'
+    when
+        $enrollment: EnrollmentType(ContactSameAsApplicant == "Y");
+        ContactInformationType(emailAddress == null || emailAddress
+            matches "^[\\s]*$" ) from $enrollment.contactInformation
+        $report: ErrorReporter()
+    then
+        $report.addError(
+            "/ProviderInformation/ApplicantInformation/PersonalInformation/ContactInformation/EmailAddress",
+            "00001",
+            "Personal Email Address is required when same as above is checked."
+        );
+end
+
+
+rule 'Enrollment Contact Email Address is Required'
+dialect 'mvel'
+    when
+        $enrollment: EnrollmentType(ContactSameAsApplicant == "N" || ContactSameAsApplicant == null)
+        ContactInformationType(emailAddress == null || emailAddress
+            matches "^[\\s]*$" ) from $enrollment.contactInformation 
+        $report: ErrorReporter()
+    then
+        $report.addError(
+            "/ContactInformation/EmailAddress",
+            "00001",
+            "Contact Email Address is required."
+        );
+
+end
+
+
 rule 'Enrollment Contact Email Address Format Check'
 dialect 'mvel'
 /*
@@ -6061,7 +6036,7 @@ dialect 'mvel'
         $report.addError(
             "/ProviderInformation/FacilityCredentials/License[" + index+ "]/OriginalIssueDate",
             "00001",
-            "Facility license original issue date cannot be earlier than Effective Date."
+            "Facility license original issue date must be earlier than Effective Date."
         );
 end
 
@@ -11214,63 +11189,6 @@ dialect 'mvel'
             "/ProviderInformation/ProviderStatement/Name",
             "00001",
             "Provider statement name length cannot exceed 100 characters."
-        );
-
-end
-
-rule 'Provider Statement Signature Date Cannot Be In The Future'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
-        IsIndividual($provider : provider)
-        ProviderStatementType($signDate: signDate, signDate != null) from $provider.providerStatement
-        eval($signDate.after(Calendar.getInstance()))
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/ProviderStatement/SignDate",
-            "00001",
-            "Provider statement signature date cannot be a future date."
-        );
-
-end
-
-rule 'Provider Statement Signature Date Cannot be past date'
-dialect 'mvel'
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
-        IsIndividual($provider : provider)
-        ProviderStatementType($signDate: signDate, signDate != null) from $provider.providerStatement
-        eval($signDate.before(getNow()))
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/ProviderStatement/SignDate",
-            "00001",
-            "Provider statement signature date cannot be a past date."
-        );
-end
-
-
-rule 'Provider Statement Signature Date Is Required'
-dialect 'mvel'
-/*
- * Copyright (C) 2012 TopCoder Inc., All Rights Reserved.
- *
- * @author TCSASSEMBLER
- * @version 1.0
- * @since Provider Enrollment Drools Front End Validation Part 4
- */
-    when
-        LookupEntry(type == "FieldGroup", value == UISection.PROVIDER_STATEMENT.value())
-        IsIndividual($provider : provider)
-        ProviderStatementType(signDate == null) from $provider.providerStatement
-        $report: ErrorReporter()
-    then
-        $report.addError(
-            "/ProviderInformation/ProviderStatement/SignDate",
-            "00001",
-            "Provider statement signature date is required."
         );
 
 end

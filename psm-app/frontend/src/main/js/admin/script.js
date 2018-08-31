@@ -63,13 +63,18 @@ $(document).ready(function () {
     if ($("#enrollmentFilterPanel").size() > 0 || $("#quickEnrollmentFilterPanel").size() > 0) {
       $(".requestTypeValue").remove();
       $(".riskLevelValue").remove();
+      $("#npiSearchField").val($.trim($("#enrollmentSearchFilterNpiInput").val()));
+      $("#submissionDateStartSearchField").val($("#enrollmentSearchFilterSubmissionDateStartInput").val());
+      $("#submissionDateEndSearchField").val($("#enrollmentSearchFilterSubmissionDateEndInput").val());
+      $("#providerTypeSearchField").val($("#enrollmentSearchFilterProviderTypeInput").val());
+      $("#providerNameSearchField").val($.trim($("#enrollmentSearchFilterProviderNameInput").val()));
 
-      if ($("#requestTypeInput").val() != '') {
-        $('#searchForm').append('<input name="requestTypes[0]" value="' + $("#requestTypeInput").val() + '" type="hidden" />');
+      if ($("#enrollmentSearchFilterRequestTypeInput").val() != '') {
+        $('#searchForm').append('<input name="requestTypes[0]" value="' + $("#enrollmentSearchFilterRequestTypeInput").val() + '" type="hidden" />');
       }
 
-      if ($("#riskLevelInput").val() != '') {
-        $('#searchForm').append('<input name="riskLevels[0]" value="' + $("#riskLevelInput").val() + '" type="hidden" />');
+      if ($("#enrollmentSearchFilterRiskLevelInput").val() != '') {
+        $('#searchForm').append('<input name="riskLevels[0]" value="' + $("#enrollmentSearchFilterRiskLevelInput").val() + '" type="hidden" />');
       }
     }
 
@@ -121,51 +126,70 @@ $(document).ready(function () {
   }
 
   var profileIdForWritingNotes = 0;
-  $('.writeNotes').live('click', function () {
+  $('.writeNotes').click(function () {
     closeModal();
     $('#writeNotesModal .textarea').val('Write your note here...');
     profileIdForWritingNotes = $(this).attr("rel");
     loadModal('#writeNotesModal');
   });
 
-  $('#saveNote').live('click', function () {
-    if (!screenLock) {
-      screenLock = true;
-    }
+  $("#saveNote").click(
+    (function IIFE() {
+      // prevent double clicks from doing multiple saves
+      var saveNoteEnabled = true;
 
-    var input = $.trim($('#writeNotesModal .textarea').val());
-    if (input == '' || input == 'Write your note here...') {
-      alert("Please input notes.")
-      return false;
-    }
+      return function saveNote() {
+        if (saveNoteEnabled) {
+          saveNoteEnabled = false;
+        }
 
-    $.ajax({
+        var input = $.trim($("#writeNotesModal .textarea").val());
+        if (input == "" || input == "Write your note here...") {
+          alert("Please input notes.");
+          return false;
+        }
+
+        $.ajax({
           url: ctx + "/agent/enrollment/note?id=" + profileIdForWritingNotes,
-          data: { "id": profileIdForWritingNotes, "note": input },
+          data: { id: profileIdForWritingNotes, note: input },
           cache: false,
           type: "GET",
           dataType: "json",
-          success: function (data) {
+          success: function onSuccess(data) {
             closeModal();
             if (data.success) {
-              $("#notesSection").append('<span class="note_' + profileIdForWritingNotes + '" id="note_' + profileIdForWritingNotes + '_' + ($(".note_" + profileIdForWritingNotes).size() + 1) + '">' + input + '</span>');
-              $("a[rel='" + profileIdForWritingNotes + "'].viewNotes").removeClass("disabledLink");
-              $("a[rel='" + profileIdForWritingNotes + "'].viewNotes").removeClass("hide");
-              $("a[rel='" + profileIdForWritingNotes + "'].viewNotes").prev().removeClass("hide");
+              var nextCount = $(".note_" + profileIdForWritingNotes).size() + 1;
+              var noteClass = "note_" + profileIdForWritingNotes;
+              var noteId = "note_" + profileIdForWritingNotes + "_" + nextCount;
+              $("#notesSection").append(
+                '<span class="' + noteClass +
+                  '" id="' + noteId +
+                  '">' +
+                  input +
+                  "</span>"
+              );
+              var viewLink = $(
+                "a[rel='" + profileIdForWritingNotes + "'].viewNotes"
+              );
+              viewLink.removeClass("disabledLink");
+              viewLink.removeClass("hide");
+              viewLink.next().removeClass("hide");
             } else {
               alert(data.message);
             }
           },
 
-          complete: function () {
-            screenLock = false;
-          }
+          complete: function onComplete() {
+            saveNoteEnabled = true;
+          },
         });
-  });
+      };
+    })()
+  );
 
   var enrollmentIdForNotes = 0;
   var currentShowingNoteCount = 1;
-  $('.viewNotes').live('click', function () {
+  $('.viewNotes').click(function () {
     if ($(this).hasClass('disabledLink')) {
       return false;
     }
@@ -177,12 +201,12 @@ $(document).ready(function () {
     loadModal('#viewNotesModal');
   });
 
-  $("#nextNote").live("click", function () {
+  $("#nextNote").click(function () {
     currentShowingNoteCount++;
     showNoteBody();
   });
 
-  $("#preNote").live("click", function () {
+  $("#prevNote").click(function () {
     currentShowingNoteCount--;
     showNoteBody();
   });
@@ -196,20 +220,20 @@ $(document).ready(function () {
     }
 
     if ($("#note_" + enrollmentIdForNotes + "_" + (currentShowingNoteCount - 1)).size() == 0) {
-      $("#preNote").hide();
+      $("#prevNote").hide();
     } else {
-      $("#preNote").show();
+      $("#prevNote").show();
     }
   }
 
   //Textarea
-  $('#writeNotesModal .textarea').live('focus', function () {
+  $('#writeNotesModal .textarea').on('focus', function () {
     if ($(this).val() == 'Write your note here...') {
       $(this).val('');
     }
   });
 
-  $('#writeNotesModal .textarea').live('blur', function () {
+  $('#writeNotesModal .textarea').on('blur', function () {
     if ($(this).val() == '') {
       $(this).val('Write your note here...');
     }
@@ -223,51 +247,6 @@ $(document).ready(function () {
               }
         }
       });
-
-  $("#updateScreeningScheduleForm").validate({
-    errorElement: 'p',
-    rules: {
-      interval: {
-            required: true,
-            digits: true
-          },
-      upcomingScreeningDateHourPart: {
-          required: true,
-          digits: true,
-          range: [1, 12]
-        },
-      upcomingScreeningDateMinutePart: {
-          required: true,
-          digits: true,
-          range: [0, 59]
-        }
-    },
-    messages: {
-      interval: {
-          required: "The field 'interval' is required.",
-          digits: "Please enter only digits for 'interval'."
-        },
-      upcomingScreeningDateHourPart: {
-          required: "The hour part of the 'Upcoming screening Time' is required.",
-          digits: "Please enter only digits for 'hour' part of the 'Upcoming screening Time'.",
-          range: "Please enter a value between 1 and 12 for 'hour' part of the 'Upcoming screening Time'."
-        },
-      upcomingScreeningDateMinutePart: {
-            required: "The minute part of the 'Upcoming screening Time' is required.",
-            digits: "Please enter only digits for 'minute' part of the 'Upcoming screening Time'.",
-            range: "Please enter a value between 0 and 59 for 'minute' part of the 'Upcoming screening Time'."
-          }
-    },
-    errorPlacement: function (error, element) {
-        if (element.attr("name") == 'interval') {
-          $(error).insertAfter("#intervalRow");
-        } else if (element.attr("name") == 'upcomingScreeningDateHourPart' || element.attr("name") == 'upcomingScreeningDateMinutePart') {
-          $(error).insertAfter("#screeningTimeRow");
-        } else {
-          error.insertAfter(element);
-        }
-      }
-  });
 
   $("#userForm").validate({
       rules: {
@@ -384,18 +363,6 @@ $(document).ready(function () {
     }
   }
 
-  $(".pageSizeSelect").change(function () {
-    $('#searchFormPageNumber').val("1");
-    $('#searchFormPageSize').val($(this).val());
-    $('#searchForm').submit();
-  });
-
-  $(".pagination-page-number-clickable").click(function () {
-    $('#searchFormPageNumber').val($(this).attr("rel"));
-    $('#searchForm').submit();
-    return false;
-  });
-
   $(".sortable_column").click(function () {
     var newSortColumn = $(this).attr("rel");
     var oldSortColumn = $("#searchFormSortColumn").val();
@@ -487,6 +454,17 @@ $(document).ready(function () {
         });
   });
 
+  // For provider type editing/adding
+  $('.providerTypeLicenseRow .remove').on('click', function () {
+    $(this).closest('.providerTypeLicenseRow').remove();
+  });
+
+  $('#addProviderTypeLicense').on('click', function () {
+    var newLicenseRow = $('#licenseTemplate').clone(true, true);
+    newLicenseRow.removeAttr('id');
+    $('#providerTypeLicensesContainer').append(newLicenseRow);
+  });
+
   // delete agreement documents part
   var deleteAgreementDocumentIds = [];
 
@@ -532,17 +510,6 @@ $(document).ready(function () {
             $('#searchForm').submit();
           }
         });
-  });
-
-  $('.saveScheduleBtn').click(function (event) {
-    event.preventDefault();
-    var upcomingScreeningDateDatePart = $("#upcomingScreeningDateDatePart").val();
-    var upcomingScreeningDateHourPart = $("#upcomingScreeningDateHourPart").val();
-    var upcomingScreeningDateMinutePart = $("#upcomingScreeningDateMinutePart").val();
-    var upcomingScreeningDateSelect = $("#upcomingScreeningDateSelect").val();
-    var dateString = upcomingScreeningDateDatePart + " " + upcomingScreeningDateHourPart + ":" + upcomingScreeningDateMinutePart + " " + upcomingScreeningDateSelect;
-    $("#upcomingScreeningDateField").val(dateString);
-    $('#updateScreeningScheduleForm').submit();
   });
 
   jQuery.ajaxSetup({
@@ -1050,18 +1017,6 @@ $(document).ready(function () {
   /* START OF SERVICE AGENT SCRIPT ------------------------------------------------ */
 
   /*
-  $('.table-enrollment-sort').tablesorter({
-   headers:{0:{ sorter: false},8:{ sorter: false}},
-   widgets        : ['zebra', 'columns'],
-   usNumberFormat : false,
-   sortRestart    : true
-  });
-  $('.table-enrollment-notes-sort').tablesorter({
-   headers:{0:{ sorter: false},8:{ sorter: false},9:{ sorter: false}},
-   widgets        : ['zebra', 'columns'],
-   usNumberFormat : false,
-   sortRestart    : true
-  });
   $('#resultsTable').tablesorter({
    headers:{0:{ sorter: false},9:{ sorter: false}},
    widgets        : ['zebra', 'columns'],
@@ -1089,177 +1044,6 @@ $(document).ready(function () {
     }
   });
 
-  function helpPageClick(currentLink) {
-    $(".helpHeaderLink").removeAttr("disabled").removeAttr("style");
-    currentLink.attr("disabled", "disabled");
-    currentLink.css("color", "black").css("font-weight", "bold").css("text-decoration", "none").css("cursor", "default");
-  }
-
-  //Scrollbar
-  if ($('#scrollbar').length) {
-    $('#scrollbar').tinyscrollbar({ sizethumb: 161 });
-    $('#allHelp').click(function () {
-      $('#scrollbar').tinyscrollbar_update(0);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterA').click(function () {
-      $('#scrollbar').tinyscrollbar_update(0);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterB').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowB').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterC').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowC').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterD').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowD').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterE').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowE').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterF').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowF').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterG').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowG').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterH').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowH').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterI').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowI').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterJ').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowJ').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterK').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowK').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterL').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowL').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterM').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowM').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterN').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowN').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterO').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowO').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterP').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowP').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterQ').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowQ').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterR').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowR').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterS').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowS').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterT').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowT').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterU').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowU').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterV').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowV').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterW').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowW').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterX').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowX').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterY').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowY').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-
-    $('#letterZ').click(function () {
-      $('#scrollbar').tinyscrollbar_update($('.rowZ').position().top);
-      helpPageClick($(this));
-      return false;
-    });
-  }
   //Check All
   $('#advancedSearch .checkRow span.label').live('click', function () {
     if ($(this).prev().attr('checked')) {
@@ -1423,17 +1207,6 @@ $(document).ready(function () {
     closeModal();
   });
 
-  //Textarea
-  $('#writeNotesModal .textarea').live('focus', function () {
-    $(this).val('');
-  });
-
-  $('#writeNotesModal .textarea').live('blur', function () {
-    if ($(this).val() == '') {
-      $(this).val('Write your note here...');
-    }
-  });
-
   //Next Button
   $('.createEnrollmentBtn').live('click', function () {
     if ($('#createEnrollment .newEnrollment').attr('checked')) {
@@ -1457,16 +1230,6 @@ $(document).ready(function () {
     }
   });
 
-  /*
-  $('.writeNotes').live('click',function(){
-   closeModal();
-   loadModal('#writeNotesModal');
-  });
-  $('.viewNotes').live('click',function(){
-   closeModal();
-   loadModal('#viewNotesModal');
-  });
-   */
   $('.newEnrollmentSaveDraftBtn').live('click', function () {
     closeModal();
     loadModal('#saveDraftModal');
@@ -1494,24 +1257,9 @@ $(document).ready(function () {
 
   if ($.browser.msie && ($.browser.version == "7.0")) {
     $('#createEnrollment input[type="radio"],#advancedSearch input[type="checkbox"]').css('margin', '5px 3px auto 3px');
-    $('.helpSection .row li').css('width', $('.helpSection .row ul').width() / 3);
   }
 
   /* END OF SERVICE AGENT SCRIPT -------------------------------------------------- */
-
-  $("#helpTopicForm").validate({
-        rules: {
-          title: {
-                required: true,
-                maxlength: 45
-              },
-          description: {
-              required: true,
-              maxlength: 2048
-            }
-
-        }
-      });
 
   $("#agreementDocumentForm").validate({
         rules: {
@@ -1526,22 +1274,6 @@ $(document).ready(function () {
 
         }
       });
-
-  $('.deleteHelpTopicBtn').live('click', function () {
-    loadModal('#deleteHelpTopicModal');
-  });
-
-  $('#deleteHelpTopicModal .deleteOKBtn').click(function () {
-    $.ajax({
-          url: $(this).attr('rel'),
-          cache: false,
-          type: "GET",
-          dataType: "text",
-          success: function (data) {
-            window.location.href = ctx + "/admin/searchHelp";
-          }
-        });
-  });
 
   $('.deleteProviderTypesOnViewBtn').live('click', function () {
     loadModal('#deleteProviderTypesModal');
@@ -1584,23 +1316,6 @@ function stripTable() {
 jQuery.validator.addMethod("exactlength", function (value, element, param) {
   return this.optional(element) || value.length == param;
 }, jQuery.format("Please enter exactly {0} characters."));
-
-var screenLock = false; // prevent double click on submit flows
-
-/**
- * Submits the form with the given id.
- * @param id the id of the form to be submitted
- */
-function submitFormById(id, url) {
-  if (url) {
-    $('#' + id).attr("action", url);
-  }
-
-  if (!screenLock) {
-    screenLock = true;
-    $('#' + id).submit();
-  }
-}
 
 function renewSelections(url) {
   var selected = [];

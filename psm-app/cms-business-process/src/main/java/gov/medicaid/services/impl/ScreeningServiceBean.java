@@ -28,6 +28,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.PersistenceException;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -69,7 +70,7 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
             ScreeningSchedule schedule = getEm().find(ScreeningSchedule.class, SCREENING_SCHEDULE_ID);
             return schedule;
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -77,9 +78,8 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
      * This method saves the screening schedule.
      *
      * @param screeningSchedule - the screening schedule
-     *
      * @throws IllegalArgumentException - If screeningSchedule is null
-     * @throws PortalServiceException - If there are any errors during the execution of this method
+     * @throws PortalServiceException   - If there are any errors during the execution of this method
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void saveScreeningSchedule(ScreeningSchedule screeningSchedule) throws PortalServiceException {
@@ -87,10 +87,12 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
             throw new IllegalArgumentException("Argument 'screeningSchedule' cannot be null.");
         }
 
+        screeningSchedule.setId(SCREENING_SCHEDULE_ID);
+
         try {
             getEm().merge(screeningSchedule);
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -101,9 +103,20 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
         return Optional.ofNullable(
                 getEm().find(
                         AutomaticScreening.class,
-                        screeningId,
-                        hintEntityGraph("Screening with matches")
+                        screeningId
                 )
         );
+    }
+
+    @Override
+    public List<AutomaticScreening> getAllScreenings() {
+        return getEm()
+                .createQuery("FROM AutomaticScreening", AutomaticScreening.class)
+                .getResultList();
+    }
+
+    @Override
+    public void saveScreening(AutomaticScreening screening) {
+        getEm().merge(screening);
     }
 }

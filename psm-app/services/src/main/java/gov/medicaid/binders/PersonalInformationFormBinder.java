@@ -16,6 +16,10 @@
 
 package gov.medicaid.binders;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.PdfPTable;
+
 import gov.medicaid.domain.model.ApplicantInformationType;
 import gov.medicaid.domain.model.ContactInformationType;
 import gov.medicaid.domain.model.EnrollmentType;
@@ -35,16 +39,12 @@ import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.util.PDFHelper;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.pdf.PdfPTable;
 
 /**
  * This binder handles the personal information form.
@@ -142,6 +142,7 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
         ContactInformationType enrollmentContact = XMLUtility.nsGetContactInformation(enrollment);
         if ("Y".equals(enrollment.getContactSameAsApplicant())) {
             attr(mv, "useProviderAsContact", "Y");
+            attr(mv, "showEmailRequired", Boolean.TRUE);
         } else {
             attr(mv, "contactName", enrollmentContact.getName());
             attr(mv, "contactEmail", enrollmentContact.getEmailAddress());
@@ -150,6 +151,7 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
             attr(mv, "contactPhone2", phone[1]);
             attr(mv, "contactPhone3", phone[2]);
             attr(mv, "contactPhone4", phone[3]);
+            attr(mv, "showEmailRequired", Boolean.FALSE);
         }
     }
 
@@ -405,14 +407,16 @@ public class PersonalInformationFormBinder extends BaseFormBinder implements For
         PDFHelper.addLabelValueCell(personalInfo, "Individual Practitioner's Email", PDFHelper.value(model, ns, "email"));
         document.add(personalInfo);
 
-        PdfPTable contactInfo = new PdfPTable(2); // 2 columns of key value pairs
-        PDFHelper.setTableAsFullPage(contactInfo);
+        if (!"Y".equals(enrollment.getContactSameAsApplicant())) {
+            PdfPTable contactInfo = new PdfPTable(2); // 2 columns of key value pairs
+            PDFHelper.setTableAsFullPage(contactInfo);
 
-        contactInfo.addCell(PDFHelper.createHeaderCell("Contact Information", 2));
-        PDFHelper.addLabelValueCell(contactInfo, "Contact Name", PDFHelper.value(model, ns, "contactName"));
-        PDFHelper.addLabelValueCell(contactInfo, "Contact Email Address", PDFHelper.value(model, ns, "contactEmail"));
-        PDFHelper.addLabelValueCell(contactInfo, "Contact Phone Number", PDFHelper.getPhone(model, ns, "contactPhone"));
+            contactInfo.addCell(PDFHelper.createHeaderCell("Contact Information", 2));
+            PDFHelper.addLabelValueCell(contactInfo, "Contact Name", PDFHelper.value(model, ns, "contactName"));
+            PDFHelper.addLabelValueCell(contactInfo, "Contact Email Address", PDFHelper.value(model, ns, "contactEmail"));
+            PDFHelper.addLabelValueCell(contactInfo, "Contact Phone Number", PDFHelper.getPhone(model, ns, "contactPhone"));
 
-        document.add(contactInfo);
+            document.add(contactInfo);
+        }
     }
 }

@@ -48,7 +48,7 @@
         <div class="row">
             <label>Have you had civil money penalties or assessments imposed
                 under section 1128A of the Social Security
-                Act?<span class="required">*</span></label>
+                Act? <span class="required">*</span></label>
             <div>
                 <c:set var="formName"
                     value="_08_civilPenaltyInd"></c:set>
@@ -210,24 +210,6 @@
                     <c:if test="${formValue eq 'Y'}"><span>(Updated)</span></c:if>
                 </div>
             </c:forEach>
-            <div class="clearFixed"></div>
-        </div>
-        <div class="bottomSection">
-            <div class="row">
-                <label>Date<span
-                    class="required">*</span></label>
-                <span class="dateWrapper">
-                    <c:set var="formName"
-                        value="_08_date"></c:set>
-                    <c:set var="formValue"
-                        value="${requestScope[formName]}"></c:set>
-                    <input
-                        class="date"
-                        type="text"
-                        name="${formName}"
-                        value="${formValue}"/>
-                </span>
-            </div>
             <div class="clearFixed"></div>
         </div>
     </div>

@@ -17,6 +17,7 @@
 package gov.medicaid.services.impl;
 
 import gov.medicaid.binders.BinderUtils;
+import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.entities.AcceptedAgreements;
 import gov.medicaid.entities.Address;
 import gov.medicaid.entities.Affiliation;
@@ -59,6 +60,7 @@ import gov.medicaid.services.NotificationService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.Util;
+import gov.medicaid.services.util.XMLAdapter;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.NotImplementedException;
 
@@ -171,10 +173,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             throw new PortalServiceException("Cannot change status because it is not in pending state.");
         }
 
-        CMSUser submittingUser = getUserByEnrollment(ticket);
-        Map<String, Object> vars = new HashMap<>();
-        String emailAddress = submittingUser.getEmail();
-        notificationService.sendNotification(emailAddress, EmailTemplate.REJECTED_ENROLLMENT, vars);
+        EnrollmentType enrollment = XMLAdapter.toXML(ticket);
+        notificationService.sendEnrollmentNotification(enrollment, EmailTemplate.REJECTED_ENROLLMENT);
 
         ticket.setStatus(findLookupByDescription(EnrollmentStatus.class, ViewStatics.REJECTED_STATUS));
         ticket.setStatusNote(reason);
@@ -182,25 +182,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         saveTicket(user, ticket, false);
     }
 
-    /**
-     * Look up the user who submitted an enrollment
-     *
-     * TODO: this is not the appropriate location for this functionality
-     * If / when a refactor to how we do our models is done, this should
-     * live inside of the Enrollment model.
-     *
-     * @param  enrollment The enrollment object whose creator we want to look up
-     * @return            The CMS user object associated with the user who made the enrollment
-     */
-    private CMSUser getUserByEnrollment(Enrollment enrollment) {
-        return getEm().createQuery(
-            "FROM CMSUser where username = :username",
-            CMSUser.class
-        ).setParameter(
-            "username",
-            enrollment.getSubmittedBy()
-        ).getSingleResult();
-    }
 
     /**
      * This is the service method to be called after the process has completed
@@ -229,14 +210,14 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         ProviderProfile profile = ticket.getDetails().clone();
 
         // set audit
-        profile.setModifiedBy(ticket.getSubmittedBy());
+        profile.setModifiedBy(ticket.getSubmittedBy().getUserId());
         profile.setModifiedOn(ticket.getStatusDate());
         profile.setReferenceTicketId(ticket.getTicketId());
 
         if (ticket.getRequestType().getDescription().equals(ViewStatics.ENROLLMENT_REQUEST)) {
             profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
-            profile.setOwnerId(ticket.getSubmittedBy());
-            profile.setCreatedBy(ticket.getSubmittedBy());
+            profile.setOwnerId(ticket.getSubmittedBy().getUserId());
+            profile.setCreatedBy(ticket.getSubmittedBy().getUserId());
             profile.setCreatedOn(ticket.getStatusDate());
 
             profile.getEntity().setEnrolled("Y");
@@ -250,7 +231,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             saveRelatedEntities(profile);
         } else if (ticket.getRequestType().getDescription().equals(ViewStatics.IMPORT_REQUEST)) {
             profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
-            profile.setOwnerId(ticket.getSubmittedBy());
+            profile.setOwnerId(ticket.getSubmittedBy().getUserId());
             profile.getEntity().setEnrolled("Y");
             insertProfile(0, profile);
         } else {
@@ -287,7 +268,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             Enrollment ticket
     ) throws PortalServiceException {
         // update the profile with the given changes
-        purgeTicketDetails(user, ticket.getTicketId());
+        purgeTicketDetails(ticket.getTicketId());
         ticket.setDetails(ticket.getDetails().clone());
         saveTicket(user, ticket, true);
         approveTicket(user, ticket.getTicketId());
@@ -323,9 +304,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             }
 
             BinaryContent content = getEm().find(BinaryContent.class, attachment.getContentId());
-            InputStream input = null;
-            try {
-                input = content.getContent().getBinaryStream();
+            try (InputStream input = content.getContent().getBinaryStream()) {
                 response.setContentType(attachment.getType());
                 response.setHeader(
                         "Content-Disposition",
@@ -334,10 +313,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 IOUtils.copy(input, response.getOutputStream());
             } catch (SQLException e) {
                 throw new IOException("Cannot read binary content from database.", e);
-            } finally {
-                if (input != null) {
-                    input.close();
-                }
             }
         }
     }
@@ -352,14 +327,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @throws IllegalArgumentException if any argument is null, or the page
      *                                  size and page number settings are
      *                                  invalid
-     * @throws PortalServiceException   for any errors encountered
      */
     @SuppressWarnings("unchecked")
     @Override
     public SearchResult<UserRequest> searchTickets(
             CMSUser user,
             ProviderSearchCriteria criteria
-    ) throws PortalServiceException {
+    ) {
         if (criteria == null) {
             throw new IllegalArgumentException("Criteria cannot be null.");
         }
@@ -372,7 +346,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         checkSortColumn(criteria, TICKET_COL_CNT);
 
-        SearchResult<UserRequest> results = new SearchResult<UserRequest>();
+        SearchResult<UserRequest> results = new SearchResult<>();
         results.setPageNumber(criteria.getPageNumber());
         results.setPageSize(criteria.getPageSize());
 
@@ -416,13 +390,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @throws IllegalArgumentException if any argument is null, or the page
      *                                  size and page number settings are
      *                                  invalid
-     * @throws PortalServiceException   for any errors encountered
      */
     @SuppressWarnings("unchecked")
     @Override
     public SearchResult<Enrollment> searchEnrollments(
             EnrollmentSearchCriteria criteria
-    ) throws PortalServiceException {
+    ) {
         if (criteria == null) {
             throw new IllegalArgumentException("Criteria cannot be null.");
         }
@@ -475,13 +448,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @throws IllegalArgumentException if any argument is null, or the page
      *                                  size and page number settings are
      *                                  invalid
-     * @throws PortalServiceException   for any errors encountered
      */
     @SuppressWarnings("unchecked")
     @Override
     public SearchResult<Enrollment> getDraftAtEomEnrollments(
             EnrollmentSearchCriteria criteria
-    ) throws PortalServiceException {
+    ) {
         if (criteria == null) {
             throw new IllegalArgumentException("Criteria cannot be null.");
         }
@@ -541,12 +513,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
 
         if (ticket.getTicketId() == 0) {
-            ticket.setCreatedBy(user.getUserId());
+            ticket.setCreatedBy(user);
             ticket.setCreatedOn(Calendar.getInstance().getTime());
         } else {
             // delete - insert
             ProviderProfile profile = ticket.getDetails();
-            purgeTicketDetails(user, ticket.getTicketId());
+            purgeTicketDetails(ticket.getTicketId());
             ticket.setDetails(profile);
         }
 
@@ -685,13 +657,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *
      * @param npi the National Provider Identifier to search by
      * @return the matching practice results
-     * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     @Override
     public List<ProviderLookup> lookupProvider(
             String npi
-    ) throws PortalServiceException {
+    ) {
         String fetchQuery =
                 "SELECT NEW gov.medicaid.entities.ProviderLookup(e.profileId, e.npi, e.name, e.providerType.description) "
                 + "FROM Entity e WHERE e.npi = :npi AND ticketId = 0 AND e.enrolled = 'Y'";
@@ -708,14 +679,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param user     the user performing the search
      * @param criteria the criteria filter
      * @return the matching practice results
-     * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings("unchecked")
     @Override
     public SearchResult<PracticeLookup> searchPractice(
             CMSUser user,
             PracticeSearchCriteria criteria
-    ) throws PortalServiceException {
+    ) {
         if (criteria == null) {
             throw new IllegalArgumentException("Criteria cannot be null.");
         }
@@ -728,7 +698,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         checkSortColumn(criteria, PRACTICE_COL_CNT);
 
-        SearchResult<PracticeLookup> results = new SearchResult<PracticeLookup>();
+        SearchResult<PracticeLookup> results = new SearchResult<>();
         results.setPageNumber(criteria.getPageNumber());
         results.setPageSize(criteria.getPageSize());
 
@@ -736,10 +706,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 + "WHERE e.enrolled = 'Y'";
 
         StringBuilder countQuery = new StringBuilder("SELECT count(*) " + fromClause);
-        appendCriteria(countQuery, user, criteria);
+        appendCriteria(countQuery, criteria);
 
         Query count = getEm().createQuery(countQuery.toString());
-        bindParameters(count, user, criteria);
+        bindParameters(count, criteria);
         results.setTotal(((Number) count.getSingleResult()).intValue());
 
         StringBuilder fetchQuery = new StringBuilder(
@@ -748,11 +718,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                         + "ci.address.zipcode, ci.address.county, ci.phoneNumber, ci.faxNumber, "
                         + "e.backgroundStudyId, e.backgroundClearanceDate, e.agencyId) " + fromClause);
 
-        appendCriteria(fetchQuery, user, criteria);
+        appendCriteria(fetchQuery, criteria);
         appendSorting(fetchQuery, criteria);
 
         Query items = getEm().createQuery(fetchQuery.toString());
-        bindParameters(items, user, criteria);
+        bindParameters(items, criteria);
         if (criteria.getPageNumber() > 0) {
             int offset = (criteria.getPageNumber() - 1) * criteria.getPageSize();
             items.setFirstResult(offset);
@@ -778,7 +748,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             return;
         }
 
-        Map<Long, PracticeLookup> map = new HashMap<Long, PracticeLookup>();
+        Map<Long, PracticeLookup> map = new HashMap<>();
         for (PracticeLookup practiceLookup : resultList) {
             map.put(practiceLookup.getProfileId(), practiceLookup);
         }
@@ -787,7 +757,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 "SELECT NEW gov.medicaid.entities.ContactData(dc.profileId, dc.person.name) "
                 + "FROM DesignatedContact dc WHERE dc.type = 'ENROLLMENT' AND dc.profileId IN (:profileIds)";
         Query q = getEm().createQuery(fetchQuery);
-        q.setParameter("profileIds", new ArrayList<Long>(map.keySet()));
+        q.setParameter("profileIds", new ArrayList<>(map.keySet()));
         List<ContactData> rs = q.getResultList();
         for (ContactData contactData : rs) {
             PracticeLookup match = map.get(contactData.getProfileId());
@@ -808,7 +778,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             return;
         }
 
-        Map<Long, ProviderLookup> map = new HashMap<Long, ProviderLookup>();
+        Map<Long, ProviderLookup> map = new HashMap<>();
         for (ProviderLookup practiceLookup : resultList) {
             map.put(practiceLookup.getProfileId(), practiceLookup);
         }
@@ -817,7 +787,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 "SELECT NEW gov.medicaid.entities.ContactData(dc.profileId, dc.person.name, dc.person.contactInformation.phoneNumber) "
                 + "FROM DesignatedContact dc WHERE dc.type = 'ENROLLMENT' AND dc.profileId IN (:profileIds)";
         Query q = getEm().createQuery(fetchQuery);
-        q.setParameter("profileIds", new ArrayList<Long>(map.keySet()));
+        q.setParameter("profileIds", new ArrayList<>(map.keySet()));
         List<ContactData> rs = q.getResultList();
         for (ContactData contactData : rs) {
             ProviderLookup match = map.get(contactData.getProfileId());
@@ -838,35 +808,32 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *
      * @param user the user performing the action
      * @return - the applicable providers
-     * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings("unchecked")
     @Override
-    public List<ProfileHeader> findMyProfiles(CMSUser user) throws PortalServiceException {
+    public List<ProfileHeader> findMyProfiles(CMSUser user) {
         if (user == null || user.getRole() == null) {
             throw new IllegalArgumentException("User and the corresponding role cannot be null.");
         }
 
-        if (user.getProxyForNPI() == null) {
-            String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
-                    + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
-                    + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and p.ownerId = :ownerId "
-                    + "AND p.ticketId = 0 ORDER BY 5 DESC";
+        // If not the creator, then user has proxy access via the NPI ID.
+        boolean hasProxyForNpi = user.getProxyForNPI() != null;
 
-            Query items = getEm().createQuery(fetchQuery);
-            items.setParameter("ownerId", user.getUserId());
-            return items.getResultList();
-        } else {
-            // not the creator but given proxy access via the NPI ID
-            String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader(e.profileId, e.npi, pt.description, "
-                    + "p.effectiveDate, p.modifiedOn) FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
-                    + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and e.npi = :npi "
-                    + "AND p.ticketId = 0 ORDER BY 5 DESC";
+        String fetchQuery = "SELECT NEW gov.medicaid.entities.ProfileHeader("
+                + "e.profileId, e.npi, pt.description, p.effectiveDate, p.modifiedOn"
+                + ") FROM ProviderProfile p, Entity e LEFT JOIN e.providerType pt "
+                + "WHERE e.ticketId = p.ticketId AND p.profileId = e.profileId and "
+                + (hasProxyForNpi ? "e.npi = :npi " : "p.ownerId = :ownerId ")
+                + "AND p.ticketId = 0 ORDER BY 5 DESC";
 
-            Query items = getEm().createQuery(fetchQuery);
+        Query items = getEm().createQuery(fetchQuery);
+
+        if (hasProxyForNpi) {
             items.setParameter("npi", user.getProxyForNPI());
-            return items.getResultList();
+        } else {
+            items.setParameter("ownerId", user.getUserId());
         }
+        return items.getResultList();
     }
 
     /**
@@ -1038,14 +1005,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param sourceSystem the source of the imported profile
      * @param profile      the profile to be created
      * @return the assigned internal id
-     * @throws PortalServiceException for any errors encountered
      */
     @Override
     public long importProfile(
             CMSUser user,
             SystemId sourceSystem,
             ProviderProfile profile
-    ) throws PortalServiceException {
+    ) {
         throw new NotImplementedException("Profile import is not yet supported.");
     }
 
@@ -1078,9 +1044,61 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         if (rs.isEmpty()) {
             return null;
         }
-        return (Entity) rs.get(0);
+        return rs.get(0);
     }
 
+    /**
+     * Retrieves the related attachments for the given profile key.
+     *
+     * @param profileId the profile id of the provider
+     * @param ticketId  the request ticket id
+     * @return the related attachments to the profile
+     */
+    @Override
+    public List<Document> findAttachments(Long profileId, Long ticketId) {
+        String queryStr = "FROM Document a WHERE 1 = 1 ";
+        if (profileId != null) {
+            queryStr += " AND profileId = :profileId";
+        }
+        if (ticketId != null) {
+            queryStr += " AND ticketId = :ticketId";
+        }
+        TypedQuery<Document> query = getEm().createQuery(queryStr, Document.class);
+
+        if (profileId != null) {
+            query.setParameter("profileId", profileId);
+        }
+        if (ticketId != null) {
+            query.setParameter("ticketId", ticketId);
+        }
+        return query.getResultList();
+    }
+
+    /**
+     * Retrieves the provider details for the given ticket.
+     *
+     * @param ticketId      the ticket to search for
+     * @param fetchChildren if true, the entire object tree is retrieved
+     * @return the ticket details
+     */
+    public ProviderProfile getProviderDetailsByTicket(
+            long ticketId,
+            boolean fetchChildren
+    ) {
+        TypedQuery<ProviderProfile> query =
+            getEm().createQuery("FROM ProviderProfile p WHERE ticketId = :ticketId", ProviderProfile.class);
+        query.setParameter("ticketId", ticketId);
+        List<ProviderProfile> rs = query.getResultList();
+        if (rs.isEmpty()) {
+            return null;
+        }
+
+        ProviderProfile profile = rs.get(0);
+        if (fetchChildren) {
+            fetchChildren(profile);
+        }
+        return profile;
+    }
 
     /**
      * Inserts the given attachment and its contents.
@@ -1144,8 +1162,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         if (!FULL_ACCESS.contains(user.getRole().getDescription())) {
             if (user.getProxyForNPI() == null) {
                 Query q = getEm().createQuery(
-                        "SELECT 1 FROM Enrollment t WHERE t.ticketId = :ticketId AND t.createdBy = :username");
-                q.setParameter("username", user.getUserId());
+                        "SELECT 1 FROM Enrollment t WHERE t.ticketId = :ticketId AND t.createdBy = :user");
+                q.setParameter("user", user);
                 q.setParameter("ticketId", ticketId);
                 List rs = q.getResultList();
                 if (rs.isEmpty()) {
@@ -1342,11 +1360,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * Inserts the provider profile statement.
      *
      * @param details the provider profile
-     * @throws PortalServiceException for any errors encountered
      */
     private void insertStatement(
             ProviderProfile details
-    ) throws PortalServiceException {
+    ) {
         ProviderStatement statement = details.getStatement();
         if (statement == null) {
             return;
@@ -1421,7 +1438,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     private Map<Long, Long> insertAttachments(
             ProviderProfile details
     ) throws PortalServiceException {
-        HashMap<Long, Long> mapping = new HashMap<Long, Long>();
+        HashMap<Long, Long> mapping = new HashMap<>();
 
         List<Document> attachments = details.getAttachments();
         if (attachments == null || attachments.isEmpty()) {
@@ -1722,45 +1739,15 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     /**
      * Removes the ticket details.
      *
-     * @param user     the user performing the operation.
      * @param ticketId the ticket that will be cleared
-     * @throws PortalServiceException for any errors encountered
      */
     private void purgeTicketDetails(
-            CMSUser user,
             long ticketId
-    ) throws PortalServiceException {
+    ) {
         ProviderProfile profile = getProviderDetailsByTicket(ticketId, true);
         if (profile != null) {
             purge(profile);
         }
-    }
-
-    /**
-     * Retrieves the provider details for the given ticket.
-     *
-     * @param ticketId      the ticket to search for
-     * @param fetchChildren if true, the entire object tree is retrieved
-     * @return the ticket details
-     * @throws PortalServiceException for any errors encountered
-     */
-    @SuppressWarnings("rawtypes")
-    private ProviderProfile getProviderDetailsByTicket(
-            long ticketId,
-            boolean fetchChildren
-    ) throws PortalServiceException {
-        Query query = getEm().createQuery("FROM ProviderProfile p WHERE ticketId = :ticketId");
-        query.setParameter("ticketId", ticketId);
-        List rs = query.getResultList();
-        if (rs.isEmpty()) {
-            return null;
-        }
-
-        ProviderProfile profile = (ProviderProfile) rs.get(0);
-        if (fetchChildren) {
-            fetchChildren(profile);
-        }
-        return profile;
     }
 
     /**
@@ -1799,11 +1786,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         Query query = getEm().createQuery(
                 "FROM ProviderCategoryOfService p WHERE ticketId = :ticketId AND profileId = :profileId");
         if (ticketId > 0) { // COS tickets do not populate the original profile id even on UPDATE
-            query.setParameter("profileId", new Long(0));
+            query.setParameter("profileId", 0L);
             query.setParameter("ticketId", ticketId);
         } else {
             query.setParameter("ticketId", ticketId);
-            query.setParameter("profileId", new Long(0));
+            query.setParameter("profileId", 0L);
         }
         return query.getResultList();
     }
@@ -1952,21 +1939,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     }
 
     /**
-     * Retrieves the related attachments for the given profile key.
-     *
-     * @param profileId the profile id of the provider
-     * @param ticketId  the request ticket id
-     * @return the related attachments to the profile
-     */
-    @SuppressWarnings("unchecked")
-    private List<Document> findAttachments(long profileId, long ticketId) {
-        Query query = getEm().createQuery("FROM Document a WHERE ticketId = :ticketId AND profileId = :profileId");
-        query.setParameter("profileId", profileId);
-        query.setParameter("ticketId", ticketId);
-        return query.getResultList();
-    }
-
-    /**
      * Retrieves the related certifications for the given profile key.
      *
      * @param profileId the profile id of the provider
@@ -2063,7 +2035,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             ProviderSearchCriteria criteria
     ) {
         if (!FULL_ACCESS.contains(user.getRole().getDescription())) {
-            buffer.append("AND t.createdBy = :username ");
+            buffer.append("AND t.createdBy = :user ");
         }
         if (criteria.getProfileId() > 0) {
             buffer.append("AND e.profileId = :profileId ");
@@ -2151,7 +2123,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             ProviderSearchCriteria criteria
     ) {
         if (!FULL_ACCESS.contains(user.getRole().getDescription())) {
-            query.setParameter("username", user.getUserId());
+            query.setParameter("user", user);
         }
         if (criteria.getProfileId() > 0) {
             query.setParameter("profileId", criteria.getProfileId());
@@ -2229,12 +2201,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * Appends the provider search criteria to the current buffer.
      *
      * @param buffer   the query buffer
-     * @param user     the current user
      * @param criteria the search criteria
      */
     private void appendCriteria(
             StringBuilder buffer,
-            CMSUser user,
             PracticeSearchCriteria criteria
     ) {
         if (criteria.isAgency()) {
@@ -2266,12 +2236,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * Binds the provider search criteria to the query.
      *
      * @param query    the query to bind to
-     * @param user     the user performing the action
      * @param criteria the search criteria
      */
     private void bindParameters(
             Query query,
-            CMSUser user,
             PracticeSearchCriteria criteria
     ) {
         if (criteria.getProfileId() > 0) {
@@ -2307,7 +2275,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             long profileId,
             long ticketId
     ) throws PortalServiceException {
-        List<ProviderCategoryOfService> services = new ArrayList<ProviderCategoryOfService>();
+        List<ProviderCategoryOfService> services = new ArrayList<>();
         services.addAll(getPendingCategoryOfServices(user, ticketId));
         services.addAll(getProviderCategoryOfServices(user, profileId));
         for (ProviderCategoryOfService service : services) {
@@ -2324,7 +2292,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param ticketId  the ticket associated
      */
     private void promoteNotesToBase(long profileId, long ticketId) {
-        List<Note> pendingNotes = new ArrayList<Note>();
+        List<Note> pendingNotes = new ArrayList<>();
         pendingNotes.addAll(findNotes(0, ticketId));
         pendingNotes.addAll(findNotes(profileId, ticketId));
 
@@ -2373,7 +2341,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             Enrollment ticket,
             boolean insertDetails
     ) throws PortalServiceException {
-        ticket.setLastUpdatedBy(user.getUserId());
+        ticket.setLastUpdatedBy(user);
         ProviderProfile details = ticket.getDetails();
         ticket = getEm().merge(ticket);
 
@@ -2398,7 +2366,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         saveAsDraft(user, ticket);
 
         // bypass JBPM process and approve directly!
-        ticket.setSubmittedBy(user.getUserId());
+        ticket.setSubmittedBy(user);
         Date now = Calendar.getInstance().getTime();
         ticket.setSubmissionDate(now);
         ticket.setStatusDate(now);
@@ -2495,8 +2463,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     }
 
     @Override
-    public List<Note> findNotes(long ticketId) throws PortalServiceException {
-        List<Note> pendingNotes = new ArrayList<Note>();
+    public List<Note> findNotes(long ticketId) {
+        List<Note> pendingNotes = new ArrayList<>();
         pendingNotes.addAll(findNotes(0, ticketId));
         ProviderProfile profile = getProviderDetailsByTicket(ticketId, false);
         if (profile.getProfileId() > 0) {
@@ -2537,8 +2505,8 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public Long[] renewalProfiles(
             CMSUser user,
             Set<Long> profileIds
-    ) throws PortalServiceException {
-        List<Long> results = new ArrayList<Long>();
+    ) {
+        List<Long> results = new ArrayList<>();
         for (Long profileId : profileIds) {
             try {
                 Enrollment ticket = renewProfile(user, profileId);
@@ -2709,7 +2677,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @param profileNPI     the employee to be checked
      * @return true if there is an affiliation between the two arguments that
      * gives the first access to the latter
-     * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -2754,7 +2721,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *
      * @param profileNPI the NPI to be checked
      * @return true if a record matches
-     * @throws PortalServiceException for any errors encountered
      */
     @Override
     public boolean existsProfile(String profileNPI) {
@@ -2766,97 +2732,5 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         Query items = getEm().createQuery(fetchQuery);
         items.setParameter("npi", profileNPI);
         return !items.getResultList().isEmpty();
-    }
-
-    /**
-     * Callback from legacy system for setting the legacy ID.
-     *
-     * @param ticketId the ticket id
-     * @param legacyId the legacy id
-     * @throws PortalServiceException for any errors encountered
-     */
-    @Override
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public void updateLegacyId(
-            long ticketId,
-            String legacyId
-    ) throws PortalServiceException {
-        Enrollment ticket = getTicketDetails(getSystemUser(), ticketId);
-        long profileId = ticket.getProfileReferenceId();
-        ProviderProfile provider = getProviderDetails(getSystemUser(), profileId);
-        provider.getEntity().setLegacyId(legacyId);
-        getEm().merge(provider.getEntity());
-    }
-
-    /**
-     * Purges any trace of a legacy record
-     *
-     * @param legacyId the legacy id
-     * @throws PortalServiceException for any records found
-     */
-    @SuppressWarnings("unchecked")
-    public boolean purgeLegacyRecord(
-            String legacyId
-    ) throws PortalServiceException {
-        if (Util.isBlank(legacyId)) {
-            return false;
-        }
-        Query query = getEm().createQuery("FROM Entity e WHERE e.legacyId = :legacyId");
-        query.setParameter("legacyId", legacyId);
-        List<Entity> rs = query.getResultList();
-        boolean purged = false;
-        for (Entity entity : rs) {
-            long profileId = entity.getProfileId();
-            long ticketId = entity.getTicketId();
-            if (ticketId == 0) {
-                ProviderProfile details = getProviderDetails(profileId, true);
-                if (details != null) {
-                    purge(details);
-                    purged = true;
-                }
-            }
-        }
-        return purged;
-    }
-
-    /**
-     * Adds the beneficial owner records to the provider with the given legacy
-     * id.
-     *
-     * @param legacyId  the legacy id
-     * @param ownership the ownership information
-     */
-    @SuppressWarnings("unchecked")
-    public void addBeneficialOwners(
-            String legacyId,
-            OwnershipInformation ownership
-    ) {
-        Query query = getEm().createQuery("FROM Entity e WHERE e.legacyId = :legacyId");
-        query.setParameter("legacyId", legacyId);
-        List<Entity> rs = new ArrayList<Entity>(query.getResultList());
-        for (Entity entity : rs) {
-            long profileId = entity.getProfileId();
-            long ticketId = entity.getTicketId();
-            OwnershipInformation ownershipInformation = findOwnershipInformation(profileId, ticketId);
-
-            if (ownershipInformation != null) {
-                ownershipInformation.getBeneficialOwners().addAll(ownership.getBeneficialOwners());
-                for (BeneficialOwner owner : ownershipInformation.getBeneficialOwners()) {
-                    if (owner.getId() == 0) {
-                        insertAddress(owner.getAddress());
-                        insertAddress(owner.getOtherProviderAddress());
-                        owner.setId(0);
-                        getEm().persist(owner);
-                    }
-                }
-                getEm().merge(ownershipInformation);
-            } else {
-                ownership.setProfileId(profileId);
-                ownership.setTicketId(ticketId);
-                ownership.setId(0);
-                insertBeneficialOwners(ownership);
-                getEm().persist(ownership);
-            }
-        }
     }
 }

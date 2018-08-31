@@ -30,6 +30,11 @@ public class ApprovalDTO {
     private String nonExclusionVerified;
 
     /**
+     * If Y, user has verified that user is not in the Death Master File.
+     */
+    private String notInDmfVerified;
+
+    /**
      * Empty constructor.
      */
     public ApprovalDTO() {
@@ -53,6 +58,14 @@ public class ApprovalDTO {
      */
     public void setNonExclusionVerified(String nonExclusionVerified) {
         this.nonExclusionVerified = nonExclusionVerified;
+    }
+
+    public String getNotInDmfVerified() {
+        return notInDmfVerified;
+    }
+
+    public void setNotInDmfVerified(String notInDmfVerified) {
+        this.notInDmfVerified = notInDmfVerified;
     }
 
 }

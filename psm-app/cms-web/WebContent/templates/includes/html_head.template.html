@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="{{ctx}}/css/reset.css" media="all" />
   <link rel="stylesheet" href="{{ctx}}/css/style.css" media="all" />
   <link rel="stylesheet" href="{{ctx}}/css/jquery.ui.css" media="all" />
-  {{#if adminPage}}
+  {{#if isServiceAdministrator}}
     <link rel="stylesheet" href="{{ctx}}/js/chosen/chosen.css" media="all"/>
     <link rel="stylesheet" href="{{ctx}}/js/jwysiwyg/jquery.wysiwyg.css"/>
-  {{else if systemPage}}
+  {{else if isSystemAdministrator}}
     <link rel="stylesheet" href="{{ctx}}/js/chosen/chosen.css" media="all"/>
   {{/if}}
   <script src="{{ctx}}/js/jquery-1.7.1.min.js"></script>
@@ -21,8 +21,7 @@
   <script src="{{ctx}}/js/jquery.ui.widget.js"></script>
   <script src="{{ctx}}/js/jquery.ui.datepicker.js"></script>
   <script src="{{ctx}}/js/jquery.mask.min.js"></script>
-  {{#if adminPage}}
-    <script src="{{ctx}}/js/jquery.tinyscrollbar.min.js"></script>
+  {{#if isServiceAdministrator}}
     <script src="{{ctx}}/js/jquery.validate.min.js"></script>
     <script src="{{ctx}}/js/chosen/chosen.jquery.min.js"></script>
     <script src="{{ctx}}/js/jwysiwyg/jquery.wysiwyg.js"></script>
@@ -30,7 +29,7 @@
     <script src="{{ctx}}/js/jwysiwyg/controls/wysiwyg.image.js"></script>
     <script src="{{ctx}}/js/jwysiwyg/controls/wysiwyg.link.js" ></script>
     <script src="{{ctx}}/js/jwysiwyg/controls/wysiwyg.table.js" ></script>
-  {{else if systemPage}}
+  {{else if isSystemAdministrator}}
     <script src="{{ctx}}/js/chosen/chosen.jquery.min.js"></script>
   {{else}}
     <script src="{{ctx}}/js/jquery.compare.js"></script>
@@ -42,7 +41,7 @@
 
   <script>
     var ctx = "{{ctx}}";
-    {{#if systemPage}}
+    {{#if isSystemAdministrator}}
       var roles = "{{role}}";
       var searchedResult = "{{searchedResult}}";
       var searchFirstName = "{{searchFirstName}}";
@@ -51,9 +50,9 @@
 
   <script src="{{ctx}}/js/common.js"></script>
 
-  {{#if adminPage}}
+  {{#if isServiceAdministrator}}
     <script src="{{ctx}}/js/admin/script.js"></script>
-  {{else if systemPage}}
+  {{else if isSystemAdministrator}}
     <script src="{{ctx}}/js/system/script.js"></script>
   {{else}}
     <script src="{{ctx}}/js/script.js"></script>

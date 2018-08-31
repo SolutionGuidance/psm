@@ -1,9 +1,9 @@
 Dear $registrant.firstName,
 
-Your CMS account is now ready:
+Welcome!  Your PSM account is now ready:
 
 Your username is: $registrant.username
 Please use this password to login: $password
 
 Regards,
-CMS Team
+PSM Team

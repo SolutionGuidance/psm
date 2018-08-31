@@ -16,6 +16,10 @@
 
 package gov.medicaid.binders;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.PdfPTable;
+
 import gov.medicaid.domain.model.AcceptedAgreementsType;
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ProviderAgreementType;
@@ -34,19 +38,17 @@ import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.util.PDFHelper;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.pdf.PdfPTable;
+import java.util.Set;
 
 /**
  * This binder handles the provider type selection form.
@@ -110,17 +112,9 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
         statement.setName(param(request, "name"));
         statement.setTitle(param(request, "title"));
-        try {
-            statement.setSignDate(BinderUtils.getAsCalendar(param(request, "date")));
-        } catch (BinderException e) {
-            e.setAttribute(name("date"), param(request, "date"));
-            exceptions.add(e);
-        }
 
-        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
-                provider
-        );
-        List<AgreementDocument> docs = pt.getAgreementDocuments();
+        ProviderType pt = getProviderTypeService().getByDescription(provider.getProviderType());
+        Set<AgreementDocument> docs = pt.getAgreementDocuments();
 
         List<ProviderAgreementType> xList = new ArrayList<ProviderAgreementType>();
         HashSet<String> agreed = new HashSet<String>();
@@ -165,10 +159,8 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
     public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
-                provider
-        );
-        List<AgreementDocument> docs = pt.getAgreementDocuments();
+        ProviderType pt = getProviderTypeService().getByDescription(provider.getProviderType());
+        Set<AgreementDocument> docs = pt.getAgreementDocuments();
 
         // for renewal the form should be blank
         if (enrollment.getRequestType() == RequestType.RENEWAL && provider.getRenewalShowBlankStatement() == null) {
@@ -192,7 +184,6 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
             ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollment);
             attr(mv, "name", statement.getName());
             attr(mv, "title", statement.getTitle());
-            attr(mv, "date", statement.getSignDate());
 
             AcceptedAgreementsType acceptedAgreements = provider.getAcceptedAgreements();
 
@@ -261,8 +252,6 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
                     errors.add(createError("name", ruleError.getMessage()));
                 } else if (path.equals(STATEMENT + "Title")) {
                     errors.add(createError("title", ruleError.getMessage()));
-                } else if (path.equals(STATEMENT + "SignDate")) {
-                    errors.add(createError("date", ruleError.getMessage()));
                 }
 
                 if (errors.size() > count) { // caught
@@ -293,10 +282,8 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
 
         List<AcceptedAgreements> hList = profile.getAgreements();
 
-        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
-                provider
-        );
-        List<AgreementDocument> activeList = pt.getAgreementDocuments();
+        ProviderType pt = getProviderTypeService().getByDescription(provider.getProviderType());
+        Set<AgreementDocument> activeList = pt.getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
         // Retain any previously accepted agreements that is no longer shown in the page
@@ -332,7 +319,6 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
 
         hStatement.setName(xStatement.getName());
         hStatement.setTitle(xStatement.getTitle());
-        hStatement.setDate(BinderUtils.toDate(xStatement.getSignDate()));
     }
 
     /**
@@ -341,7 +327,7 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
      * @param list the list to be mapped
      * @return the lookup map
      */
-    private Map<String, AgreementDocument> mapDocumentsById(List<AgreementDocument> list) {
+    private Map<String, AgreementDocument> mapDocumentsById(Collection<AgreementDocument> list) {
         Map<String, AgreementDocument> map = new HashMap<String, AgreementDocument>();
         for (AgreementDocument item : list) {
             map.put(String.valueOf(item.getId()), item);
@@ -401,10 +387,8 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
         provider.setHasCivilPenalty(profile.getCivilPenaltyInd());
         provider.setHasPreviousExclusion(profile.getPreviousExclusionInd());
 
-        ProviderType pt = getLookupService().getProviderTypeWithAgreementDocuments(
-                provider
-        );
-        List<AgreementDocument> activeList = pt.getAgreementDocuments();
+        ProviderType pt = getProviderTypeService().getByDescription(provider.getProviderType());
+        Set<AgreementDocument> activeList = pt.getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
         AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(enrollment);
@@ -434,7 +418,6 @@ public class IndividualDisclosureFormBinder extends BaseFormBinder {
             ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(enrollment);
             xStatement.setName(hStatement.getName());
             xStatement.setTitle(hStatement.getTitle());
-            xStatement.setSignDate(BinderUtils.toCalendar(hStatement.getDate()));
         }
     }
 

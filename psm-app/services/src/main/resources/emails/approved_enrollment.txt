@@ -1,1 +1,6 @@
-Enrollment Approved
+Dear $submitter,
+
+Congratulations!  Your application for enrollment has been approved.
+
+Regards,
+PSM Team

@@ -27,12 +27,12 @@ import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.PortalServiceException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the facility eligibility.
@@ -61,7 +61,6 @@ public class FacilityEligibilityFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
         creds.setPhysicalAndOccupationTherapyServices(param(request, "therapyIndicator"));
@@ -71,7 +70,7 @@ public class FacilityEligibilityFormBinder extends BaseFormBinder {
         creds.setDualCertifiedNumberOfBeds((int) BinderUtils.getAsLong(param(request, "dualCertBedCount")));
         creds.setICFNumberOfBeds((int) BinderUtils.getAsLong(param(request, "icfBedCount")));
 
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**

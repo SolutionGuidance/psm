@@ -1,11 +1,36 @@
-# PSM Contribution Guidelines
+# PSM Participation and Contribution Guidelines
 
-This document contains information of use to developers looking to
-improve the PSM's codebase.  See [README.md](README.md) for an
-introduction to this project, and if you're thinking of contributing
-you might also want to look at [DESIGN.md](DESIGN.md). All discussions
-about PSM work fall under our [code of
-conduct](docs/CODE_OF_CONDUCT.md).
+This document explains how to engage with the PSM development team,
+either just to discuss something or to contribute to development
+yourself.  See [README.md](README.md) for an introduction to this
+project, and if you're thinking of contributing you might also want to
+look at [DESIGN.md](DESIGN.md). All discussions about PSM work fall
+under our [code of conduct](docs/CODE_OF_CONDUCT.md).
+
+## Communicating with the PSM Project
+
+We welcome questions, suggestions, and code contributions.  You can:
+
+* Post in the `psm-dev` discussion group at
+  https://groups.google.com/forum/#!forum/psm-dev.  The forum archives
+  are public, and anyone can post.  The posting guidelines are fairly
+  loose -- as long as your question is about the PSM, it's on-topic.
+
+* File a new issue ticket at https://github.com/SolutionGuidance/psm/issues.
+
+* Submit a [pull
+  request](https://help.github.com/articles/about-pull-requests/) to
+  the [repository](https://github.com/SolutionGuidance/psm/).
+  (Guidelines for code contributions are given later in this document.)
+
+* Chat with us in real time in our [Zulip chat
+  room](https://chat.opentechstrategies.com/#narrow/stream/Provider.20Screening).
+  You'll need to set up an account (which is free) to join the
+  conversation.
+
+Note that submitting issues or pull requests requires a
+[GitHub](https://github.com/) account, which anyone can create (there
+is no charge).
 
 ## Submitting and Reviewing Code
 
@@ -156,6 +181,22 @@ automatically.  If you're working with someone else on a shared branch
 you should talk with them before changing shared history.  We expect
 force-pushing to mostly occur in active PR branches.
 
+### Cross-forum linking
+
+If you have a
+[chat](https://chat.opentechstrategies.com/#narrow/stream/Provider.20Screening) conversation
+related to an issue, please not only mention the issue by number in
+the chat but also -- assuming your chat adds useful information or
+comes to some decision about the issue -- link back to the chat *from*
+the issue.  Zulip chat offers the ability to get a link to a specific
+place in a conversation: see "Copy link to conversation" under the
+downward-pointing triangle menu in the upper right corner of any
+individual post in the chat window.
+
+The last line of
+[this comment](https://github.com/solutionguidance/psm-dashboard/issues/33#issuecomment-414365184) provides
+an example of linking from an issue back to a chat about that issue.
+
 ### Commit Messages
 
 #### Follow Best Practices
@@ -225,6 +266,12 @@ For example, see commit efbf5413e, which made whitespace adjustments to
 [persistence.xml](psm-app/cms-business-process/src/main/resources/META-INF/persistence.xml),
 and was followed immediately by a substantive change to the same file
 in commit 2fd2dd21e.
+
+### Code style
+
+Please see our style guide for more language-specific conventions:
+
+- [Java code style](docs/code-style-java.md)
 
 ### Licensing Your Contribution
 The PSM is published under the terms of version 2 of the

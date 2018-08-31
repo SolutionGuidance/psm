@@ -15,7 +15,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
-            <c:set var="activeTab" value="3"/>
+            <c:set var="activeTabProfile" value="true"/>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->
@@ -58,9 +58,24 @@
                       <td><c:out value="${profile.providerType}"/></td>
                       <td><fmt:formatDate value="${profile.lastModifiedDate}" pattern="MM/dd/yyyy"/></td>
                       <td class="alignCenter">
-                        <a href="${viewProfileLink}">View</a><span class="sep">|</span>
-                        <a href="${editProfileLink}">Edit</a><span class="sep">|</span>
-                        <a href="${renewProfileLink}">Renew</a>
+                        <a
+                          class="actionLink"
+                          href="${viewProfileLink}"
+                        >
+                          View
+                        </a>
+                        <a
+                          class="actionLink"
+                          href="${editProfileLink}"
+                        >
+                          Edit
+                        </a>
+                        <a
+                          class="actionLink"
+                          href="${renewProfileLink}"
+                        >
+                          Renew
+                        </a>
                       </td>
                     </tr>
                   </c:forEach>

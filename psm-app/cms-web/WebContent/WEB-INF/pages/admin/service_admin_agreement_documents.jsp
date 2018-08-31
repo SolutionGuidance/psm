@@ -10,7 +10,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="Agreements & Addendums - Functions (Service Admin)"/>
-  <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -19,7 +18,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
-            <c:set var="activeTab" value="4"></c:set>
+            <c:set var="activeTabFunctions" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <div class="breadCrumb">
@@ -31,10 +30,15 @@
             <h:handlebars template="admin/includes/functions_service_nav" context="${pageContext}" />
             <div class="tabContent" id="tabAgreement">
               <div id="agreementPanel">
-                <c:set var="itemsName" value="Agreement and AddendumTypes"/>
                 <c:set var="searchResult" value="${agreementDocumentsSearchResult}"/>
 
-                <form:form id="searchForm" action="${ctx}/admin/viewAgreementDocuments" modelAttribute="searchCriteria" method="post">
+                <form:form
+                  id="searchForm"
+                  cssClass="paginationForm"
+                  action="${ctx}/admin/viewAgreementDocuments"
+                  modelAttribute="searchCriteria"
+                  method="post"
+                >
                   <form:hidden id="searchFormPageSize" path="pageSize" />
                   <form:hidden id="searchFormPageNumber" path="pageNumber" />
                   <form:hidden id="searchFormSortColumn" path="sortColumn" />
@@ -59,7 +63,7 @@
                   </div>
                 </div>
                 <div class="pagination">
-                  <%@ include file="/WEB-INF/pages/admin/includes/page_left_navigation.jsp" %>
+                  <%@ include file="/WEB-INF/pages/includes/pagination_details_wrapper.jsp" %>
                   <div class="right">
                     <c:choose>
                     <c:when test="${searchCriteria.showFilterPanel}">
@@ -81,14 +85,12 @@
                     <div class="leftCol">
                       <div class="row">
                         <label for="agreementDocumentTitleFilterText">Title</label>
-                        <span class="floatL"><b>:</b></span>
                         <input id="agreementDocumentTitleFilterText" value="${searchCriteria.title}" type="text" class="normalInput"/>
                       </div>
                     </div>
                     <div class="rightCol">
                       <div class="row">
                         <label for="agreementDocumentTypeFilterText">Agreement Type</label>
-                        <span class="floatL"><b>:</b></span>
                         <select id="agreementDocumentTypeFilterText">
                           <option value="">---SELECT---</option>
                           <option <c:if test="${searchCriteria.type=='AGREEMENT'}">selected="selected"</c:if> value="AGREEMENT">AGREEMENT</option>
@@ -117,7 +119,10 @@
                 <c:otherwise>
                   <div class="tableWrapper">
                     <div class="tableContainer">
-                      <table class="generalTable" id="agreementTable">
+                      <table
+                        class="generalTable linedTable"
+                        id="agreementTable"
+                      >
                         <thead>
                           <tr>
                             <th class="alignCenter">
@@ -168,18 +173,48 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <c:forEach var="item" items="${searchResult.items}">
-                            <tr>
+                          <c:forEach
+                            var="item"
+                            items="${searchResult.items}"
+                            varStatus="status"
+                          >
+                            <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
                               <td class="alignCenter">
                                 <input id="agreement_type_${item.id}" <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="agreementDocumentCheckBox" value="${item.id}" type="checkbox" name="agreementType"/>
                               </td>
-                              <td><a href="${ctx}/admin/getAgreementDocument?agreementId=${item.id}" class="viewAgreementLink">${item.title}</a></td>
+                              <td>${item.title}</td>
                               <td><label for="agreement_type_${item.id}">${item.type}</label></td>
-                              <td class="alignCenter"><a href="${ctx}/admin/editAgreementDocument?agreementId=${item.id}" class="editAgreementLink">Edit</a>
-                                <span class="sep">|</span>
+                              <td class="alignCenter">
+                                <a
+                                  href="${ctx}/admin/getAgreementDocument?agreementId=${item.id}"
+                                  class="actionLink viewAgreementLink"
+                                >
+                                  View
+                                </a>
+                                <a
+                                  href="${ctx}/admin/editAgreementDocument?agreementId=${item.id}"
+                                  class="actionLink editAgreementLink"
+                                >
+                                  Edit
+                                </a>
                                 <c:choose>
-                                <c:when test="${item.canDelete}"><a rel="${item.id}" href="javascript:;" class="deleteAgreementDocumentBtn">Delete</a></c:when>
-                                <c:otherwise><a href="javascript:;" class="disabledBtn">Delete</a></c:otherwise>
+                                  <c:when test="${item.canDelete}">
+                                    <a
+                                      rel="${item.id}"
+                                      href="javascript:;"
+                                      class="actionLink deleteAgreementDocumentBtn"
+                                    >
+                                      Delete
+                                    </a>
+                                  </c:when>
+                                  <c:otherwise>
+                                    <a
+                                      href="javascript:;"
+                                      class="actionLink disabledBtn"
+                                    >
+                                      Delete
+                                    </a>
+                                  </c:otherwise>
                                 </c:choose>
                               </td>
                             </tr>
@@ -191,7 +226,7 @@
                     <div class="tabFoot">
                       <div class="tabR">
                         <div class="tabM">
-                          <%@ include file="/WEB-INF/pages/admin/includes/page_navigation.jsp" %>
+                          <%@ include file="/WEB-INF/pages/includes/pagination_details_and_links.jsp" %>
                         </div>
                       </div>
                     </div>

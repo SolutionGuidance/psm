@@ -16,6 +16,9 @@
 
 package gov.medicaid.services.impl;
 
+import gov.medicaid.domain.model.ApplicantType;
+import gov.medicaid.entities.AgreementDocument;
+import gov.medicaid.entities.LicenseType;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ProviderTypeSearchCriteria;
 import gov.medicaid.entities.SearchResult;
@@ -30,10 +33,15 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityGraph;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This class provides an implementation of the <code>ProviderTypeDAO</code> as a local EJB.
@@ -72,13 +80,13 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
         }
 
         try {
-            if (providerType.getCode() == null) {
+            if (Util.isBlank(providerType.getCode())) {
                 providerType.setCode(generateCode(getLookupService().findAllLookups(ProviderType.class)));
             }
             getEm().persist(providerType);
             return providerType.getCode();
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -134,7 +142,7 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
             }
             getEm().merge(providerType);
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -152,11 +160,32 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
             return getEm().find(
                     ProviderType.class,
                     id,
-                    hintEntityGraph("ProviderType with AgreementDocuments")
+                    hintEntityGraph("ProviderType with AgreementDocuments and LicenseTypes")
             );
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
+    }
+
+    /**
+     * This method gets a provider type by its description. If not found, returns null.
+     *
+     * @param description - the description of the provider type to retrieve
+     * @return - the requested provider type, null if not found
+     *
+     * @throws PortalServiceException - If there are any errors during the execution of this method
+     */
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public ProviderType getByDescription(String description) {
+        EntityGraph graph = getEm().getEntityGraph(
+            "ProviderType with AgreementDocuments and LicenseTypes"
+        );
+        return getEm().createQuery(
+            "FROM ProviderType WHERE description = :description",
+            ProviderType.class
+        ).setParameter("description", description)
+        .setHint("javax.persistence.loadgraph", graph)
+        .getSingleResult();
     }
 
     /**
@@ -166,7 +195,8 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
      * @throws PortalServiceException - If there are any errors during the execution of this method
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void delete(long id) throws PortalServiceException {
+    @Override
+    public void delete(String id) throws PortalServiceException {
         try {
             ProviderType obj = getEm().find(ProviderType.class, id);
             if (obj == null) {
@@ -174,7 +204,7 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
             }
             getEm().remove(obj);
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -224,6 +254,96 @@ public class ProviderTypeServiceBean extends BaseService implements ProviderType
 
         results.setItems(items.getResultList());
         return results;
+    }
+
+    public List<ProviderType> getAllProviderTypes() {
+        return getEm().createQuery(
+                "FROM ProviderType",
+                ProviderType.class
+        ).getResultList();
+    }
+
+    /**
+     * Retrieves the provider types filtered by applicant type.
+     *
+     * @param applicantType
+     *            individual or organizations
+     * @return the filtered provider types
+     */
+    public List<ProviderType> getProviderTypes(ApplicantType applicantType) {
+        return getEm().createQuery(
+                "FROM ProviderType WHERE applicantType = :type",
+                ProviderType.class
+        ).setParameter(
+                "type",
+                applicantType
+        ).getResultList();
+    }
+
+    @Override
+    public void updateProviderTypeAgreementSettings(
+            ProviderType providerType,
+            long[] agreementIds
+    ) {
+        providerType.setAgreementDocuments(
+                new HashSet<>(getAgreementDocuments(agreementIds))
+        );
+        getEm().merge(providerType);
+    }
+
+    @Override
+    public void updateProviderTypeLicenseSettings(
+            ProviderType providerType,
+            String[] licenseCodes
+    ) {
+        providerType.setLicenseTypes(
+                new HashSet<>(getLicenseTypes(licenseCodes))
+        );
+        getEm().merge(providerType);
+    }
+
+    @Override
+    public void updateProviderTypeCanDelete(ProviderType providerType) {
+        providerType.setCanDelete(
+            0 == ((Number) (getEm().createQuery("SELECT count(*) FROM Entity WHERE providerType = :providerType")
+                     .setParameter("providerType", providerType)
+                     .getSingleResult()))
+                 .intValue() &&
+            0 == ((Number) (getEm().createQuery("SELECT count(*) FROM ProviderTypeSetting WHERE providerTypeCode = :providerTypeCode")
+                     .setParameter("providerTypeCode", providerType.getCode())
+                     .getSingleResult()))
+                 .intValue()
+        );
+    }
+
+    private List<AgreementDocument> getAgreementDocuments(long[] agreementIds) {
+        if (agreementIds.length == 0) {
+            return new ArrayList<>();
+        } else {
+            return getEm().createQuery(
+                    "FROM AgreementDocument WHERE id IN :ids",
+                    AgreementDocument.class
+            ).setParameter(
+                    "ids",
+                    Arrays.stream(agreementIds)
+                            .boxed()
+                            .collect(Collectors.toList())
+            ).getResultList();
+        }
+    }
+
+    private List<LicenseType> getLicenseTypes(String[] licenseCodes) {
+        if (licenseCodes.length == 0) {
+            return new ArrayList<>();
+        } else {
+            return getEm().createQuery(
+                    "FROM LicenseType WHERE code IN :codes",
+                    LicenseType.class
+            ).setParameter(
+                    "codes",
+                    Arrays.asList(licenseCodes)
+            ).getResultList();
+        }
     }
 
     /**

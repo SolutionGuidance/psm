@@ -16,6 +16,11 @@
 
 package gov.medicaid.binders;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
+
 import gov.medicaid.domain.model.ApplicantType;
 import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.GroupMemberType;
@@ -34,18 +39,13 @@ import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.util.PDFHelper;
 import gov.medicaid.services.util.Util;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.pdf.PdfPCell;
-import com.lowagie.text.pdf.PdfPTable;
 
 /**
  * This binder handles the organization information form.
@@ -147,7 +147,7 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
         if (enrollment.getProviderInformation().getProviderType().equals(gov.medicaid.domain.model.ProviderType.PHARMACY.value())) {
             mv.put("onlyPharmacist", true);
         } else {
-            mv.put("individualMemberProviderTypes", sortCollection(getLookupService().getProviderTypes(ApplicantType.INDIVIDUAL)));
+            mv.put("individualMemberProviderTypes", sortCollection(getProviderTypeService().getProviderTypes(ApplicantType.INDIVIDUAL)));
         }
 
     }

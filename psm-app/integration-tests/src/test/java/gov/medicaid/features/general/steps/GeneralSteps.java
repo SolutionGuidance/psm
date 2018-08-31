@@ -1,7 +1,7 @@
 package gov.medicaid.features.general.steps;
 
 import gov.medicaid.features.PsmPage;
-import gov.medicaid.features.general.ui.DashboardPage;
+import gov.medicaid.features.general.ui.AllEnrollmentsPage;
 import gov.medicaid.features.general.ui.LoginPage;
 import gov.medicaid.features.general.ui.MyProfilePage;
 import gov.medicaid.features.general.ui.UpdatePasswordPage;
@@ -14,7 +14,7 @@ public class GeneralSteps {
 
     private PsmPage psmPage;
     private LoginPage loginPage;
-    private DashboardPage dashboardPage;
+    private AllEnrollmentsPage allEnrollmentsPage;
     private MyProfilePage profilePage;
     private UpdatePasswordPage updatePasswordPage;
 
@@ -27,6 +27,11 @@ public class GeneralSteps {
     @Step
     public void hasNoServerError() {
         psmPage.hasNoServerError();
+    }
+
+    @Step
+    public void checkForFormError(String errorClass, String errorText) {
+        psmPage.checkForFormError(errorClass, errorText);
     }
 
     @Step
@@ -50,49 +55,43 @@ public class GeneralSteps {
     }
 
     @Step
-    public void checkOnDashboard() {
-        dashboardPage.checkOnDashboard();
+    public void checkOnAllEnrollmentsPage() {
+        allEnrollmentsPage.checkOnAllEnrollmentsPage();
     }
 
     @Step
-    public void navigateToDraftPage() {
-        dashboardPage.click$(".enrollmentsLink");
+    public void goToProviderDraftPage() {
+        clickLinkAssertTitle(".draftTab", "Draft Enrollments");
     }
 
     @Step
-    public void navigateToPendingPage() {
-        navigateToDraftPage();
-        dashboardPage.click$(".pendingTab");
+    public void goToProviderPendingPage() {
+        goToProviderDraftPage();
+        clickLinkAssertTitle(".pendingTab", "Pending Enrollments");
     }
 
     @Step
-    public void navigateToApprovedPage() {
-        navigateToDraftPage();
-        dashboardPage.click$(".approvedTab");
+    public void goToProviderApprovedPage() {
+        goToProviderDraftPage();
+        clickLinkAssertTitle(".approvedTab", "Approved Enrollments");
     }
 
     @Step
-    public void navigateToDeniedPage() {
-        navigateToDraftPage();
-        dashboardPage.click$(".deniedTab");
-    }
-
-    @Step
-    public void navigateToNotesPage() {
-        navigateToDraftPage();
-        dashboardPage.click$(".notesTab");
+    public void goToProviderDeniedPage() {
+        goToProviderDraftPage();
+        clickLinkAssertTitle(".deniedTab", "Denied Enrollments");
     }
 
     @Step
     public void openFilterPanel() {
-        if (dashboardPage.$(".filterBtn").getText().equals("Filter")) {
-            dashboardPage.click$(".filterBtn");
+        if (allEnrollmentsPage.$(".filterBtn").getText().equals("Filter")) {
+            allEnrollmentsPage.click$(".filterBtn");
         }
     }
 
     @Step
     public void clickMyProfile() {
-        dashboardPage.clickMyProfile();
+        allEnrollmentsPage.clickMyProfile();
     }
 
     @Step
@@ -124,6 +123,6 @@ public class GeneralSteps {
 
     @Step
     public void navigateToAdvancedSearchPage() {
-        dashboardPage.click$(".advancedSearchLink");
+        allEnrollmentsPage.click$(".advancedSearchLink");
     }
 }

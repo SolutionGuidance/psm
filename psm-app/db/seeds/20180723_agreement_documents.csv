@@ -1,0 +1,5 @@
+agreement_document_id,type,title,version,body,created_by,created_at
+"1","01","Agreement (1)","0","This is the content of the agreement.","system","'NOW'"
+"2","02","Addendum (2)","0","This is the content of the addendum.","system","'NOW'"
+"3","01","Child And Teen Checkup Agreement (DHS-4646)","0","This is a required document.","system","'NOW'"
+"4","01","Applicant Assurance Statement - Community Mental Health Center (DHS-5748)","0","This is a required document.","system","'NOW'"

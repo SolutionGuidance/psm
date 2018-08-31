@@ -20,7 +20,7 @@
         <div class="hiddenSection" style="display: ${formValue eq 'Y' ? 'block' : 'none'}">
             <div class="leftCol">
                 <div class="row requireField">
-                    <label for="beginDate_adultRehabilitativeMentalHealthServices_${formName}">Begin Date<span class="required">*</span>
+                    <label for="beginDate_adultRehabilitativeMentalHealthServices_${formName}">Begin Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
                     <span class="floatL"><b>:</b></span>
@@ -34,7 +34,7 @@
             </div>
             <div class="rightCol">
                 <div class="row requireField">
-                    <label for="endDate_adultRehabilitativeMentalHealthServices_${formName}">End Date<span class="required">*</span>
+                    <label for="endDate_adultRehabilitativeMentalHealthServices_${formName}">End Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
                     <span class="floatL"><b>:</b></span>
@@ -81,7 +81,7 @@
         <div class="hiddenSection" style="display: ${formValue eq 'Y' ? 'block' : 'none'}">
             <div class="leftCol">
                 <div class="row requireField">
-                    <label for="ctss_beginDate_${formName}">Begin Date<span class="required">*</span>
+                    <label for="ctss_beginDate_${formName}">Begin Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
                     <span class="floatL"><b>:</b></span>
@@ -95,7 +95,7 @@
             </div>
             <div class="rightCol">
                 <div class="row requireField">
-                    <label for="ctss_endDate_${formName}">End Date<span class="required">*</span>
+                    <label for="ctss_endDate_${formName}">End Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
                     <span class="floatL"><b>:</b></span>
@@ -142,7 +142,7 @@
         <div class="hiddenSection" style="display: ${formValue eq 'Y' ? 'block' : 'none'}">
             <div class="leftCol">
                 <div class="row requireField">
-                    <label for="adultCrisisAssessment_beginDate_${formName}">Begin Date<span class="required">*</span>
+                    <label for="adultCrisisAssessment_beginDate_${formName}">Begin Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
                     <span class="floatL"><b>:</b></span>
@@ -156,7 +156,7 @@
             </div>
             <div class="rightCol">
                 <div class="row requireField">
-                    <label for="adultCrisisAssessment_endDate_${formName}">End Date<span class="required">*</span>
+                    <label for="adultCrisisAssessment_endDate_${formName}">End Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
                     <span class="floatL"><b>:</b></span>
@@ -203,7 +203,7 @@
         <div class="hiddenSection" style="display: ${formValue eq 'Y' ? 'block' : 'none'}">
             <div class="leftCol">
                 <div class="row requireField">
-                    <label for="adultCrisisStabilization_beginDate_${formName}">Begin Date<span class="required">*</span>
+                    <label for="adultCrisisStabilization_beginDate_${formName}">Begin Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
                     <span class="floatL"><b>:</b></span>
@@ -217,7 +217,7 @@
             </div>
             <div class="rightCol">
                 <div class="row requireField">
-                    <label for="adultCrisisStabilization_endDate_${formName}">End Date<span class="required">*</span>
+                    <label for="adultCrisisStabilization_endDate_${formName}">End Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
                     <span class="floatL"><b>:</b></span>
@@ -264,7 +264,7 @@
         <div class="hiddenSection" style="display: ${formValue eq 'Y' ? 'block' : 'none'}">
             <div class="leftCol">
                 <div class="row requireField">
-                    <label for="adultCrisisShortTermResidential_beginDate_${formName}">Begin Date<span class="required">*</span>
+                    <label for="adultCrisisShortTermResidential_beginDate_${formName}">Begin Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
                     <span class="floatL"><b>:</b></span>
@@ -278,7 +278,7 @@
             </div>
             <div class="rightCol">
                 <div class="row requireField">
-                    <label for="adultCrisisShortTermResidential_endDate_${formName}">End Date<span class="required">*</span>
+                    <label for="adultCrisisShortTermResidential_endDate_${formName}">End Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
                     <span class="floatL"><b>:</b></span>

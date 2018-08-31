@@ -10,7 +10,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="Provider Types - Functions (Service Admin)"/>
-  <c:set var="adminPage" value="true" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -19,7 +18,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
-            <c:set var="activeTab" value="4"></c:set>
+            <c:set var="activeTabFunctions" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <div class="breadCrumb">
@@ -32,10 +31,15 @@
             <div class="tabContent" id="tabProviderTypes">
               <div id="providerTablePanel">
 
-                <c:set var="itemsName" value="Provider Types"/>
                 <c:set var="searchResult" value="${providerTypesSearchResult}"/>
 
-                <form:form id="searchForm" action="${ctx}/admin/viewProviderTypes" modelAttribute="searchCriteria" method="post">
+                <form:form
+                  id="searchForm"
+                  cssClass="paginationForm"
+                  action="${ctx}/admin/viewProviderTypes"
+                  modelAttribute="searchCriteria"
+                  method="post"
+                >
                 <form:hidden id="searchFormPageSize" path="pageSize" />
                 <form:hidden id="searchFormPageNumber" path="pageNumber" />
                 <form:hidden id="searchFormSortColumn" path="sortColumn" />
@@ -45,7 +49,7 @@
                 <form:hidden id="searchFormProviderType" path="typeName" />
               </form:form>
               <div class="pagination">
-                <%@ include file="/WEB-INF/pages/admin/includes/page_left_navigation.jsp" %>
+                <%@ include file="/WEB-INF/pages/includes/pagination_details_wrapper.jsp" %>
                 <div class="right">
                   <c:choose>
                   <c:when test="${searchCriteria.showFilterPanel}">
@@ -67,7 +71,6 @@
                   <div class="leftCol">
                     <div class="row">
                       <label for="providerTypeFilterText">Provider Type</label>
-                      <span class="floatL"><b>:</b></span>
                       <input id="providerTypeFilterText" type="text" class="normalInput" value="${searchCriteria.typeName}"/>
                     </div>
                   </div>
@@ -91,7 +94,10 @@
               <c:otherwise>
                 <div class="tableWrapper">
                   <div class="tableContainer">
-                    <table class="generalTable" id="draftEnrollmentTable">
+                    <table
+                      class="generalTable linedTable"
+                      id="draftEnrollmentTable"
+                    >
                       <thead>
                         <tr>
                           <th class="alignCenter">
@@ -122,17 +128,47 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <c:forEach var="item" items="${searchResult.items}">
-                          <tr>
+                        <c:forEach
+                          var="item"
+                          items="${searchResult.items}"
+                          varStatus="status"
+                        >
+                          <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
                             <td class="alignCenter">
                               <input id="providerType_${item.code}" <c:if test="${!item.canDelete}">disabled="disabled"</c:if> class="providerTypeCheckBox" value="${item.code}" type="checkbox" name="providerType"/>
                             </td>
                             <td><label for="providerType_${item.code}">${item.description}</label></td>
-                            <td class="alignCenter"><a href="${ctx}/admin/getProviderType?providerTypeId=${item.code}" class="viewProviderLink">View</a><span class="sep">|</span><a href="${ctx}/admin/beginEditProviderType?providerTypeId=${item.code}" class="editProviderLink">Edit</a>
-                              <span class="sep">|</span>
+                            <td class="alignCenter">
+                              <a
+                                href="${ctx}/admin/getProviderType?providerTypeId=${item.code}"
+                                class="actionLink viewProviderLink"
+                              >
+                                View
+                              </a>
+                              <a
+                                href="${ctx}/admin/beginEditProviderType?providerTypeId=${item.code}"
+                                class="actionLink editProviderLink"
+                              >
+                                Edit
+                              </a>
                               <c:choose>
-                              <c:when test="${item.canDelete}"><a rel="${item.code}" href="javascript:;" class="deleteProviderTypeBtn">Delete</a></c:when>
-                              <c:otherwise><a href="javascript:;" class="disabledBtn">Delete</a></c:otherwise>
+                                <c:when test="${item.canDelete}">
+                                  <a
+                                    rel="${item.code}"
+                                    href="javascript:;"
+                                    class="actionLink deleteProviderTypeBtn"
+                                  >
+                                    Delete
+                                  </a>
+                                </c:when>
+                                <c:otherwise>
+                                  <a
+                                    href="javascript:;"
+                                    class="actionLink disabledBtn"
+                                  >
+                                    Delete
+                                  </a>
+                                </c:otherwise>
                               </c:choose>
                             </td>
                           </tr>
@@ -144,7 +180,7 @@
                   <div class="tabFoot">
                     <div class="tabR">
                       <div class="tabM">
-                        <%@ include file="/WEB-INF/pages/admin/includes/page_navigation.jsp" %>
+                        <%@ include file="/WEB-INF/pages/includes/pagination_details_and_links.jsp" %>
                       </div>
                     </div>
                   </div>

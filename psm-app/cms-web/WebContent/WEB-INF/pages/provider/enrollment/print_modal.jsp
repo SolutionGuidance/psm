@@ -76,11 +76,6 @@
 	                        <span class="floatL"><b>:</b></span>
 	                        <span></span>
 	                    </div>
-	                    <div class="row">
-	                        <label>Date</label>
-	                        <span class="floatL"><b>:</b></span>
-	                        <span>${requestScope['_08_date']}</span>
-	                    </div>
                     </div>
                     <div class="clear"></div>
                 </div>

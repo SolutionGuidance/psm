@@ -14,7 +14,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set value="Advanced Search (System Admin)" var="title"></c:set>
-  <c:set value="true" var="systemPage"></c:set>
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -38,17 +37,14 @@
                   <div class="leftCol">
                     <div class="row">
                       <label for="${formIdPrefix}_username">Username</label>
-                      <span class="floatL"><b>:</b></span>
                       <input id="${formIdPrefix}_username" type="text" class="normalInput" name="username"/>
                     </div>
                     <div class="row">
                       <label for="${formIdPrefix}_last_name">Last Name</label>
-                      <span class="floatL"><b>:</b></span>
                       <input id="${formIdPrefix}_last_name" type="text" class="normalInput" name="lastName"/>
                     </div>
                     <div class="row">
                       <label for="${formIdPrefix}">First Name</label>
-                      <span class="floatL"><b>:</b></span>
                       <input id="${formIdPrefix}_first_name" type="text" class="normalInput" name="firstName"/>
                     </div>
                   </div>
@@ -56,14 +52,12 @@
                   <div class="rightCol">
                     <div class="row checkRow">
                       <label for="${formIdPrefix}_email">Email</label>
-                      <span class="floatL"><b>:</b></span>
                       <div class="checkWrapper">
                         <input id="${formIdPrefix}_email" type="text" class="normalInput" name="email"/>
                       </div>
                     </div>
                     <div class="row checkRow">
                       <label>Role</label>
-                      <span class="floatL"><b>:</b></span>
                       <div class="checkMain">
                         <div class="checkWrapper">
                           <input id="${formIdPrefix}_role_all" type="checkbox" id="requestType" class="checkAll" />

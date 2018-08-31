@@ -1,13 +1,11 @@
 package gov.medicaid.controllers.admin.report;
 
-import java.io.IOException;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletResponse;
+import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
+import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.EnrollmentSearchCriteria;
+import gov.medicaid.entities.SearchResult;
+import gov.medicaid.services.PortalServiceException;
+import gov.medicaid.services.ProviderEnrollmentService;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -16,33 +14,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.EnrollmentSearchCriteria;
-import gov.medicaid.entities.SearchResult;
-import gov.medicaid.services.PortalServiceConfigurationException;
-import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import javax.servlet.http.HttpServletResponse;
 
-import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
+import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class TimeToReviewReportController extends gov.medicaid.controllers.BaseController {
-    private ProviderEnrollmentService enrollmentService;
+    private final ProviderEnrollmentService enrollmentService;
 
-    public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
+    public TimeToReviewReportController(ProviderEnrollmentService enrollmentService) {
         this.enrollmentService = enrollmentService;
     }
 
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (enrollmentService == null) {
-            throw new PortalServiceConfigurationException("enrollmentService is not configured correctly.");
-        }
-    }
-
     @RequestMapping(value = "/admin/reports/time-to-review", method = RequestMethod.GET)
-    public ModelAndView getTimeToReview() throws PortalServiceException {
+    public ModelAndView getTimeToReview() {
         ModelAndView mv = new ModelAndView("admin/reports/time_to_review");
         SearchResult<Enrollment> enrollments = getEnrollmentsFromDB();
         List<EnrollmentMonth> ems = groupEnrollments(enrollments.getItems());
@@ -67,7 +56,7 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
 
             csvPrinter.printRecord(
                 "Month",
-                "Number Reviewed",
+                "Applications Reviewed",
                 "Mean Review Time",
                 "Median Review Time"
             );
@@ -85,7 +74,7 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
         }
     }
 
-    private SearchResult<Enrollment> getEnrollmentsFromDB() throws PortalServiceException {
+    private SearchResult<Enrollment> getEnrollmentsFromDB() {
         EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
         return enrollmentService.searchEnrollments(criteria);
     }

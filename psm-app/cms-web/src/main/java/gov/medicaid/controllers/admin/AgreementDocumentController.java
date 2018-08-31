@@ -16,25 +16,25 @@
 
 package gov.medicaid.controllers.admin;
 
+import gov.medicaid.controllers.ControllerHelper;
 import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.AgreementDocumentSearchCriteria;
 import gov.medicaid.entities.AgreementDocumentType;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.services.AgreementDocumentService;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 
-import java.security.Principal;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
-
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+
+import java.security.Principal;
 
 /**
  * <p>
@@ -47,33 +47,12 @@ import org.springframework.web.servlet.ModelAndView;
  * @author argolite, TCSASSEMBLER
  * @version 1.0
  */
-public class AgreementDocumentController extends BaseServiceAdminController {
-    /**
-     * Represents the agreement document service. It is managed with a getter and setter. It may have any value, but is
-     * expected to be set to a non-null/empty value by dependency injection It is fully mutable, but not expected to
-     * change after dependency injection.
-     */
-    private AgreementDocumentService agreementDocumentService;
+@Controller
+public class AgreementDocumentController {
+    private final AgreementDocumentService agreementDocumentService;
 
-    /**
-     * Empty constructor.
-     */
-    public AgreementDocumentController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException If there are required injection fields that are not injected
-     */
-    @Override
-    @PostConstruct
-    protected void init() {
-        super.init();
-
-        if (agreementDocumentService == null) {
-            throw new PortalServiceConfigurationException("agreementDocumentService must be configured.");
-        }
+    public AgreementDocumentController(AgreementDocumentService agreementDocumentService) {
+        this.agreementDocumentService = agreementDocumentService;
     }
 
     /**
@@ -93,12 +72,7 @@ public class AgreementDocumentController extends BaseServiceAdminController {
         criteria.setPageSize(10);
         criteria.setSortColumn("title");
         criteria.setAscending(true);
-
-        SearchResult<AgreementDocument> result = agreementDocumentService.search(criteria);
-        ModelAndView model = new ModelAndView("admin/service_admin_agreement_documents");
-        model.addObject("agreementDocumentsSearchResult", result);
-        model.addObject("searchCriteria", criteria);
-        return model;
+        return search(criteria);
     }
 
     /**
@@ -120,6 +94,8 @@ public class AgreementDocumentController extends BaseServiceAdminController {
         ModelAndView model = new ModelAndView("admin/service_admin_agreement_documents");
         model.addObject("agreementDocumentsSearchResult", result);
         model.addObject("searchCriteria", criteria);
+        ControllerHelper.addPaginationDetails(result, model);
+        ControllerHelper.addPaginationLinks(result, model);
         return model;
     }
 
@@ -261,23 +237,5 @@ public class AgreementDocumentController extends BaseServiceAdminController {
             agreementDocumentService.delete(agreementId);
         }
         return "success";
-    }
-
-    /**
-     * Getter of agreementDocumentService.
-     *
-     * @return the agreementDocumentService
-     */
-    public AgreementDocumentService getAgreementDocumentService() {
-        return agreementDocumentService;
-    }
-
-    /**
-     * Set the agreementDocumentService.
-     *
-     * @param agreementDocumentService the agreementDocumentService to set
-     */
-    public void setAgreementDocumentService(AgreementDocumentService agreementDocumentService) {
-        this.agreementDocumentService = agreementDocumentService;
     }
 }

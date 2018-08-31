@@ -25,11 +25,6 @@ import gov.medicaid.services.EntityNotFoundException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.util.Util;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -39,6 +34,11 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -85,7 +85,7 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
 
             return agreementDocument.getId();
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -114,7 +114,7 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
 
             GlobalLookups.refresh();
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -131,7 +131,7 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
         try {
             return getEm().find(AgreementDocument.class, agreementDocumentId);
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -153,7 +153,7 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
 
             getEm().remove(item);
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 
@@ -222,7 +222,7 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
 
             return searchResults;
         } catch (PersistenceException e) {
-            throw new PortalServiceException("Could not database complete operation.", e);
+            throw new PortalServiceException("Could not complete database operation.", e);
         }
     }
 

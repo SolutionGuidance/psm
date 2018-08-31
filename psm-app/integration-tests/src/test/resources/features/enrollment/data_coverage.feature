@@ -6,7 +6,7 @@ Feature: Data Coverage Checks
   Scenario: Captures Contact Info for Organization
     Given I have started an enrollment
     When  I am on the organization page
-    Then I should be asked to enter Applicant Name, Contact Person, Contact phone
+    Then I should be asked to enter Applicant Name, Contact Person, Contact phone, Contact email
 
   @psm-FR-2.9
   Scenario: Captures Medicaid number for Organization's contact

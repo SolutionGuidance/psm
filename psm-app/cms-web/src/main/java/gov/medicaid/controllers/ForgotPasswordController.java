@@ -18,11 +18,8 @@ package gov.medicaid.controllers;
 
 import gov.medicaid.controllers.forms.ForgotPasswordForm;
 import gov.medicaid.controllers.validators.ForgotPasswordFormValidator;
-import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
-
-import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -41,37 +38,15 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/forgotpassword")
 public class ForgotPasswordController extends BaseController {
+    private final RegistrationService registrationService;
+    private final ForgotPasswordFormValidator validator;
 
-    /**
-     * The registration service.
-     */
-    private RegistrationService registrationService;
-
-    /**
-     * The request validator.
-     */
-    private ForgotPasswordFormValidator validator;
-
-    /**
-     * Empty constructor.
-     */
-    public ForgotPasswordController() {
-    }
-
-    /**
-     * This method checks that all required injection fields are in fact provided.
-     *
-     * @throws PortalServiceConfigurationException - If there are required injection fields that are not injected
-     */
-    @PostConstruct
-    protected void init() {
-        super.init();
-        if (registrationService == null) {
-            throw new PortalServiceConfigurationException("registrationService is not configured correctly.");
-        }
-        if (validator == null) {
-            throw new PortalServiceConfigurationException("validator is not configured correctly.");
-        }
+    public ForgotPasswordController(
+        RegistrationService registrationService,
+        ForgotPasswordFormValidator validator
+    ) {
+        this.registrationService = registrationService;
+        this.validator = validator;
     }
 
     /**
@@ -127,23 +102,4 @@ public class ForgotPasswordController extends BaseController {
             return new ModelAndView("redirect:/login");
         }
     }
-
-    /**
-     * Sets the value of the field <code>registrationService</code>.
-     *
-     * @param registrationService the registrationService to set
-     */
-    public void setRegistrationService(RegistrationService registrationService) {
-        this.registrationService = registrationService;
-    }
-
-    /**
-     * Sets the value of the field <code>validator</code>.
-     *
-     * @param validator the validator to set
-     */
-    public void setValidator(ForgotPasswordFormValidator validator) {
-        this.validator = validator;
-    }
-
 }

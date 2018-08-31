@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <c:set var="title" value="Time to Review"/>
-  <c:set var="adminPage" value="true" />
   <c:set var="reportPage" value="true" />
   <c:set var="includeD3" value="true" />
   <c:set var="pageScripts" value="${[ctx.concat('/js/admin/timeToReviewReport.js')]}" />
@@ -15,6 +14,7 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
+            <c:set var="activeTabReports" value="true" />
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <div class="breadCrumb">
@@ -33,22 +33,32 @@
            <em>Loading...</em>
           </div>
 
+          <p>
+            Applications are reported for the month they are reviewed,
+            after the review process is complete, to ensure that past
+            data remains stable.
+          </p>
+
           <div class="reportTable dashboardPanel">
             <div class="tableData">
               <div class="tableTitle">
                 <h2>Time to Review</h2>
               </div>
-              <table class="generalTable">
+              <table class="generalTable linedTable">
                 <thead>
                   <tr>
                     <th>Month</th>
-                    <th>Number Reviewed</th>
+                    <th>Applications Reviewed</th>
                     <th>Mean Review Time</th>
                     <th>Median Review Time</th>
                   </tr>
                 </thead>
-                <c:forEach var="month" items="${months}">
-                  <tr class="reportRow">
+                <c:forEach
+                  var="month"
+                  items="${months}"
+                  varStatus="status"
+                >
+                  <tr class="reportRow ${status.index % 2 == 0 ? 'odd' : 'even'}">
                     <td
                       class="reportDatum"
                       reportField="month"

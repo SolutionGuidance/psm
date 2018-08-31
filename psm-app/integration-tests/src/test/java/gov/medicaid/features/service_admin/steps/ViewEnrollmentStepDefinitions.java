@@ -14,7 +14,7 @@ public class ViewEnrollmentStepDefinitions {
 
     @When("^I am on the View Enrollment Organization Info page$")
     public void i_am_on_the_view_enrollment_organization_info_page() {
-        generalSteps.navigateToPendingPage();
+        adminSteps.goToAdminPendingPage();
         adminSteps.advanceFromPendingPageToViewOrganizationInfoPage();
     }
 

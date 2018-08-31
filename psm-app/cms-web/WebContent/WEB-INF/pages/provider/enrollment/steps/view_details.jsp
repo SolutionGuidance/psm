@@ -16,12 +16,12 @@
         <div class="contentWidth">
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
-            <c:set var="activeTab" value="2"></c:set>
+            <c:set var="activeTabEnrollments" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <a href="<c:url value="/provider/dashboard/list" />">Enrollments</a>
+            <%@ include file="/WEB-INF/pages/admin/includes/enrollments_link.jsp" %>
             <span>View Enrollment Details</span>
           </div>
 
@@ -39,9 +39,6 @@
               </a>
             </c:if>
           </div>
-          <c:if test="${requestScope['_99_legacyInd'] eq 'Y'}">
-            <div class="legacyInfo">If you enrolled with DHS prior to November 1st 2013, the data fields below may not be correct. Please review your information and make the necessary corrections before you submit it.</div>
-          </c:if>
 
           <div class="tabSection">
             <div class="detailPanel" style="width: 940px;">

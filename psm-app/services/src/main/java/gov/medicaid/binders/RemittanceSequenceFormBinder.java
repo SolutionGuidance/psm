@@ -28,12 +28,12 @@ import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.RemittanceSequenceOrder;
 import gov.medicaid.entities.dto.FormError;
 
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the organization disclosure.
@@ -78,11 +78,10 @@ public class RemittanceSequenceFormBinder extends BaseFormBinder {
      * @return
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         provider.setRemittanceSequenceNumber(param(request, "remittanceSequenceNumber"));
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**

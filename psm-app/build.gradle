@@ -5,14 +5,14 @@ buildscript {
         maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
-        classpath 'org.liquibase:liquibase-gradle-plugin:1.2.4'
+        classpath 'org.liquibase:liquibase-gradle-plugin:2.0.0'
         classpath 'gradle.plugin.org.openrepose:gradle-jaxb-plugin:2.4.1'
         classpath 'com.moowork.gradle:gradle-node-plugin:1.2.0'
         classpath 'kr.motd.gradle:sphinx-gradle-plugin:1.0.5'
         classpath ('net.serenity-bdd:serenity-gradle-plugin:1.8.20') {
             exclude group: 'com.google.inject', module:'guice'
         }
-        classpath 'org.postgresql:postgresql:42.2.2'
+        classpath 'gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.2'
     }
 }
 
@@ -31,9 +31,11 @@ ext.libs = [
     commons_fileupload: 'commons-fileupload:commons-fileupload:1.3.3',
     commons_io: 'commons-io:commons-io:2.6',
     commons_lang3: 'org.apache.commons:commons-lang3:3.7',
+    guava: 'com.google.guava:guava:25.1-jre',
     hapi_fhir_client: "ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:${hapi_fhir_version}",
     hapi_fhir_server: "ca.uhn.hapi.fhir:hapi-fhir-server:${hapi_fhir_version}",
     hapi_fhir_structures: "ca.uhn.hapi.fhir:hapi-fhir-structures-dstu3:${hapi_fhir_version}",
+    gson: "com.google.code.gson:gson:2.8.1",
     handlebars: 'com.github.jknack:handlebars:4.0.6',
     handlebars_springmvc: 'com.github.jknack:handlebars-springmvc:4.0.6',
     jbpm_human_task_core: dependencies.create("org.jbpm:jbpm-human-task-core:${jbpm_version}") {
@@ -46,7 +48,10 @@ ext.libs = [
         exclude group: 'org.hibernate'
         exclude group: 'org.hibernate.javax.persistence'
     },
+    liquibase: 'org.liquibase:liquibase-core:3.5.5',
+    okhttp3: "com.squareup.okhttp3:okhttp:3.8.1",
     openpdf: 'com.github.librepdf:openpdf:1.0.5',
+    postgres: 'org.postgresql:postgresql:42.2.2',
     spring_beans: "org.springframework:spring-beans:${spring_core_version}",
     spring_context: "org.springframework:spring-context:${spring_core_version}",
     spring_jdbc: "org.springframework:spring-jdbc:${spring_core_version}",
@@ -65,7 +70,7 @@ ext.libs = [
 
 ext.provided_libs = [
     ejb_api: 'javax.ejb:javax.ejb-api:3.2',
-    hibernate_core: 'org.hibernate:hibernate-core:5.0.10.Final',
+    hibernate_core: 'org.hibernate:hibernate-core:5.1.10.Final',
     hibernate_jpa: 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final',
     jsp_api: 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.0',
     servlet_api: 'javax.servlet:javax.servlet-api:3.1.0',
@@ -90,6 +95,7 @@ allprojects {
 ].each { name ->
     project(":$name") {
         apply plugin: 'groovy'
+        apply plugin: 'com.github.spotbugs'
 
         configurations {
             testCompile.extendsFrom compileOnly
@@ -102,6 +108,10 @@ allprojects {
         dependencies {
             testCompile 'org.codehaus.groovy:groovy-all:2.4.13'
             testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
+        }
+
+        spotbugs {
+           excludeFilter = file("$projectDir/spotbugs-exclude.xml")
         }
     }
 }
@@ -144,9 +154,12 @@ project(':cms-business-process') {
         compile libs.commons_codec
         compile libs.commons_io
         compile libs.commons_lang3
+        compile libs.guava
+        compile libs.gson
         compile libs.hapi_fhir_client
         compile libs.hapi_fhir_structures
         compile libs.jbpm_human_task_core
+        compile libs.okhttp3
         compile libs.openpdf
         compile libs.spring_security_core
         compile libs.velocity
@@ -185,6 +198,7 @@ project(':cms-web') {
         compile libs.hapi_fhir_server
         compile libs.hapi_fhir_structures
         compile libs.commons_csv
+        compile libs.guava
         compile libs.spring_beans
         compile libs.spring_ldap
         compile libs.spring_security_acl
@@ -307,10 +321,19 @@ project(':cms-portal-services') {
 project(':db') {
     apply plugin: 'liquibase'
 
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        liquibaseRuntime libs.liquibase
+        liquibaseRuntime libs.postgres
+    }
+
     liquibase {
         activities {
             main {
-                changeLogFile 'db/changelog/db-changelog-master.xml'
+                changeLogFile 'changelog/db-changelog-master.xml'
                 url System.properties.get('databasePath')
                 username System.properties.get('databaseUser')
                 password System.properties.get('databasePassword')

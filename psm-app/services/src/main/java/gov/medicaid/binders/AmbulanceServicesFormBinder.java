@@ -25,22 +25,22 @@ import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.CMSUser;
+import gov.medicaid.entities.CategoryOfService;
 import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.License;
 import gov.medicaid.entities.LicenseType;
 import gov.medicaid.entities.ProviderProfile;
-import gov.medicaid.entities.ServiceCategory;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.util.Util;
+
+import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * This binder handles the ambulance services licenses.
@@ -58,7 +58,7 @@ public class AmbulanceServicesFormBinder extends BaseFormBinder {
     /**
      * Ambulance service selection.
      */
-    private final List<ServiceCategory> categories = new ArrayList<ServiceCategory>();
+    private final List<CategoryOfService> categories = new ArrayList<CategoryOfService>();
 
     /**
      * Initializes the available options for ambulance services.
@@ -77,17 +77,17 @@ public class AmbulanceServicesFormBinder extends BaseFormBinder {
     public AmbulanceServicesFormBinder() {
         super(NAMESPACE);
 
-        ServiceCategory cat = new ServiceCategory();
+        CategoryOfService cat = new CategoryOfService();
         cat.setCode("basicServices");
         cat.setDescription(DocumentNames.AMBULANCE_SERVICES_BASIC_SERVICE.value());
         categories.add(cat);
 
-        ServiceCategory cat2 = new ServiceCategory();
+        CategoryOfService cat2 = new CategoryOfService();
         cat2.setCode("advancedLifeSupport");
         cat2.setDescription(DocumentNames.AMBULANCE_SERVICES_ADVANCED_LIFE_SUPPORT.value());
         categories.add(cat2);
 
-        ServiceCategory cat3 = new ServiceCategory();
+        CategoryOfService cat3 = new CategoryOfService();
         cat3.setCode("airTransport");
         cat3.setDescription(DocumentNames.AMBULANCE_SERVICES_AIR_TRANSPORT_WITH_FAA_AIR_WORTHINESS_CERTIFICATE.value());
         categories.add(cat3);
@@ -100,14 +100,13 @@ public class AmbulanceServicesFormBinder extends BaseFormBinder {
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    @SuppressWarnings("unchecked")
     public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
         List<AmbulanceServicesType> servicesList = creds.getAmbulanceServices();
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
 
-        for (ServiceCategory category : categories) {
+        for (CategoryOfService category : categories) {
             String type1Indicator = param(request, category.getCode() + "Indicator");
             if ("Y".equals(type1Indicator)) {
                 AmbulanceServicesType service = nsGetService(servicesList, category.getDescription());
@@ -120,7 +119,7 @@ public class AmbulanceServicesFormBinder extends BaseFormBinder {
                 removeService(servicesList, category.getDescription());
             }
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**
@@ -168,7 +167,7 @@ public class AmbulanceServicesFormBinder extends BaseFormBinder {
         FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
         List<AmbulanceServicesType> ambulanceServices = creds.getAmbulanceServices();
         for (AmbulanceServicesType service : ambulanceServices) {
-            for (ServiceCategory category : categories) {
+            for (CategoryOfService category : categories) {
                 if (category.getDescription().equals(service.getServiceType())) {
                     attr(mv, category.getCode() + "Indicator", "Y");
                     attr(mv, category.getCode(), service.getAttachmentObjectId());
@@ -233,7 +232,7 @@ public class AmbulanceServicesFormBinder extends BaseFormBinder {
             if (path.endsWith("/ServiceType")) {
                 return createError("licenseNumber", index, message);
             } else if (path.endsWith("AttachmentObjectId")) {
-                for (ServiceCategory category : categories) {
+                for (CategoryOfService category : categories) {
                     if (category.getDescription().equals(service.getServiceType())) {
                         return createError(category.getCode(), message);
                     }

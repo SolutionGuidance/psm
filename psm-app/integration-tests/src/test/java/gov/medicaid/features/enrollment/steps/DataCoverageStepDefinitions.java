@@ -23,6 +23,16 @@ public class DataCoverageStepDefinitions {
         enrollmentSteps.enterLicenseInfo();
     }
 
+    @When("^I enter valid personal care assistant license information with a renewal date$")
+    public void enter_valid_personal_care_assistant_license_information_with_renewal_date() {
+        enrollmentSteps.enterPersonCareAssistantLicenseInfoWithRenewalDate();
+    }
+
+    @When("^I enter valid personal care assistant license information without a renewal date$")
+    public void enter_valid_personal_care_assistant_license_information_without_renewal_date() {
+        enrollmentSteps.enterPersonCareAssistantLicenseInfoWithoutRenewalDate();
+    }
+
     @When("^I enter license info where renewal date is before issue date$")
     public void enter_license_info_where_renewal_date_is_before_issue_date() {
         enrollmentSteps.enterLicenseInfoWithRenewalDateBeforeIssueDate();
@@ -39,10 +49,11 @@ public class DataCoverageStepDefinitions {
     }
 
     @Then("^I should be asked to enter Applicant Name, Contact Person, Contact phone$")
-    public void i_should_be_asked_to_enter_Applicant_Name_Contact_Person_Contact_phone() {
+    public void i_should_be_asked_to_enter_Applicant_Name_Contact_Person_Contact_phone_Contact_email() {
         organizationInfoPage.verifyApplicantNameAccepted();
         organizationInfoPage.verifyContactNameAccepted();
         organizationInfoPage.verifyContactPhoneAccepted();
+        organizationInfoPage.verifyContactEmailAccepted();
     }
 
     @Then("^I should be asked to enter Medicaid number$")
@@ -65,6 +76,12 @@ public class DataCoverageStepDefinitions {
     @Then("^the license is accepted$")
     public void license_is_accepted() {
         enrollmentSteps.advanceFromIndividualLicenseInfoToPracticeInfo();
+    }
+
+    @Then("^the personal care assistant license is accepted$")
+    public void personal_care_assistant_license_is_accepted() {
+        enrollmentSteps.
+                advanceFromPersonalCareAssistantLicenseInfoToPracticeInfo();
     }
 
     @Then("^the practice information is accepted$")

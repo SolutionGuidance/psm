@@ -25,19 +25,19 @@ import gov.medicaid.domain.rules.CMSKnowledgeUtility;
 import gov.medicaid.domain.rules.GlobalLookups;
 import gov.medicaid.domain.rules.inference.LookupEntry;
 import gov.medicaid.entities.CMSUser;
+import gov.medicaid.entities.Enrollment;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ScreeningService;
 import gov.medicaid.services.util.XMLAdapter;
-
-import java.util.List;
-import java.util.logging.Logger;
-
-import javax.persistence.EntityManager;
 
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
+
+import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * This handler is responsible all screening rules.
@@ -46,16 +46,12 @@ import org.drools.runtime.process.WorkItemManager;
  * @version 1.0
  */
 public class ScreeningHandler extends GenericHandler {
-
     /**
      * Provider service.
      */
     private final ProviderEnrollmentService providerService;
 
-    /**
-     * Entity manager.
-     */
-    private final EntityManager entityManager;
+    private final ScreeningService screeningService;
 
     private final Logger logger = Logger.getLogger(getClass().getName());
 
@@ -67,7 +63,7 @@ public class ScreeningHandler extends GenericHandler {
     public ScreeningHandler() {
         CMSConfigurator config = new CMSConfigurator();
         this.providerService = config.getEnrollmentService();
-        this.entityManager = config.getPortalEntityManager();
+        this.screeningService = config.getScreeningService();
         systemUser = config.getSystemUser();
     }
 
@@ -104,9 +100,14 @@ public class ScreeningHandler extends GenericHandler {
         try {
             providerService.saveEnrollmentDetails(XMLAdapter.fromXML(systemUser, enrollment));
             long ticketId = Long.parseLong(enrollment.getObjectId());
+            Enrollment ticket = providerService.getEnrollmentWithScreenings(systemUser, ticketId).
+                orElseThrow(() -> new PortalServiceException("Couldn't find ticket"));
+            XMLAdapter
+                .mergeFromXML(ticket.getAutomaticScreenings(), enrollment)
+                .forEach(screeningService::saveScreening);
             ProviderInformationType providerInformation = enrollment.getProviderInformation();
             String reviewer = providerInformation.getReviewedBy(); // transient field (should really add to DB)
-            ProviderInformationType updatedInfo = XMLAdapter.toXML(providerService.getTicketDetails(systemUser, ticketId)).getProviderInformation();
+            ProviderInformationType updatedInfo = XMLAdapter.toXML(ticket).getProviderInformation();
             updatedInfo.setReviewedBy(reviewer);
             enrollment.setProviderInformation(updatedInfo);
         } catch (PortalServiceException e) {

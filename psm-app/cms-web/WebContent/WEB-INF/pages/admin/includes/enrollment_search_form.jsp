@@ -6,7 +6,9 @@
   - Description: it is used to build the enrollment search form.
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
-<form:form id="searchForm"
+<form:form
+  id="searchForm"
+  cssClass="paginationForm"
   action="${enrollmentSearchFormAction}"
   modelAttribute="searchCriteria"
   method="get">
@@ -41,7 +43,7 @@
   method="get">
 </form:form>
 <form:form id="printForm"
-  action="${ctx}/provider/search/print?print=yes"
+  action="${ctx}/provider/print?print=yes"
   target="_blank"
   modelAttribute="searchCriteria"
   method="get">

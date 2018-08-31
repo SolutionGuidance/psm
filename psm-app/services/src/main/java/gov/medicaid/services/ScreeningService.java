@@ -16,11 +16,12 @@
 
 package gov.medicaid.services;
 
-import javax.jws.WebService;
-
 import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.ScreeningSchedule;
 
+import javax.jws.WebService;
+
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -58,4 +59,8 @@ public interface ScreeningService {
     Optional<AutomaticScreening> findScreening(
             long screeningId
     );
+
+    List<AutomaticScreening> getAllScreenings();
+
+    void saveScreening(AutomaticScreening screening);
 }

@@ -44,12 +44,12 @@
     <table class="generalTable">
         <thead>
             <tr>
-                <th class="reservationTableHeader">Reservation<span class="required">*</span><span class="sep"></span></th>
-                <th>Upload License/Certification<span class="required">*</span><span class="sep"></span></th>
-                <th>License/Certification #<span class="required">*</span><span class="sep"></span></th>
-                <th>Original Issue Date<span class="required">*</span><span class="sep"></span></th>
-                <th>Renewal End Date<span class="required">*</span><span class="sep"></span></th>
-                <th>Issuing State<span class="required">*</span><span class="sep"></span></th>
+                <th class="reservationTableHeader">Reservation <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Upload License/Certification <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>License/Certification # <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Original Issue Date <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Renewal End Date <span class="required-dark-background">*</span><span class="sep"></span></th>
+                <th>Issuing State/Territory <span class="required-dark-background">*</span><span class="sep"></span></th>
             </tr>
         </thead>
         <tbody>
@@ -100,7 +100,7 @@
                 <td>
                     <c:set var="formName" value="_13_issuingState_0"></c:set>
                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                    <select title="Issuing State" name="${formName}">
+                    <select title="Issuing State/Territory" name="${formName}">
                         <option value="">Please select</option>
                            <c:forEach var="opt" items="${requestScope['_13_issuingStates']}">
                                <option ${formValue eq opt.code ? 'selected' : ''} value="${opt.code}"><c:out value="${opt.description}" /></option>

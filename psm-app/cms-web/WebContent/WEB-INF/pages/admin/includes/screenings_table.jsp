@@ -75,7 +75,11 @@
           </a>
           <a
             class="actionLink"
-            href="${ctx}/agent/automatic-screening/${screening.screeningId}"
+            href="javascript:alert('Manually re-running a screening is not currently supported.');"
+            <%--
+              The href for this link:
+              href="${ctx}/agent/automatic-screening/${screening.screeningId}"
+            --%>
           >
             Run Again
           </a>

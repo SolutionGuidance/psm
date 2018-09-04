@@ -17,12 +17,20 @@
         Provider
         <span class="sep"></span>
       </th>
-      <th>
-        Provider Type
+      <%--
+        Just using 'style' below for now since this will be reworked when we add
+        sortable columns to this table, and these spans will probably go away.
+      --%>
+      <th class="twoline">
+        <span style="display: inline-block;">
+          Provider<br>Type
+        </span>
         <span class="sep"></span>
       </th>
-      <th>
-        Screening Type
+      <th class="twoline">
+        <span style="display: inline-block;">
+          Screening<br>Type
+        </span>
         <span class="sep"></span>
       </th>
       <th>

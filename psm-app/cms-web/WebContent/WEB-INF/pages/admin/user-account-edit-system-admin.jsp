@@ -81,52 +81,42 @@
                   <div class="wholeCol">
                     <div class="row">
                       <label for="newUsername">Username</label>
-                      <span class="floatL"><b>:</b></span>
                       <form:input id="newUsername" cssClass="normalInput" path="username" />
                     </div>
                     <div class="row">
                       <label for="newPassword">Password</label>
-                      <span class="floatL"><b>:</b></span>
                       <input type="password" id="newPassword" class="passwordNormalInput" value="" name="password" />
                     </div>
                     <div class="row">
                       <label for="newConfirmPassword">Confirm Password</label>
-                      <span class="floatL"><b>:</b></span>
                       <input type="password" id="newConfirmPassword" class="passwordNormalInput" value="" name="password2"/>
                     </div>
                     <div class="row">
                       <label for="firstName">First Name</label>
-                      <span class="floatL"><b>:</b></span>
                       <form:input id="firstName" cssClass="normalInput" path="firstName" />
                     </div>
                     <div class="row">
                       <label for="middleName">Middle Name</label>
-                      <span class="floatL"><b>:</b></span>
                       <form:input id="middleName" cssClass="normalInput" path="middleName" />
                     </div>
                     <div class="row">
                       <label for="lastName">Last Name</label>
-                      <span class="floatL"><b>:</b></span>
                       <form:input id="lastName" cssClass="normalInput" path="lastName" />
                     </div>
                     <div class="row">
                       <label for="email">Email</label>
-                      <span class="floatL"><b>:</b></span>
                       <form:input id="email" cssClass="normalInput" path="email" />
                     </div>
                     <div class="row">
                       <label for="apiRead">API Read Access</label>
-                      <span class="floatL"><b>:</b></span>
                       <form:checkbox id="apiRead" path="apiRead" />
                     </div>
                     <div class="row">
                       <label for="apiWrite">API Write Access</label>
-                      <span class="floatL"><b>:</b></span>
                       <form:checkbox id="apiWrite" path="apiWrite" />
                     </div>
                     <div class="row">
                       <label for="userRole">User Role</label>
-                      <span class="floatL"><b>:</b></span>
                       <form:select id="userRole" cssClass="userRoleSelect" path="role.description">
                         <form:option value="" >Please Select</form:option>
                         <c:forEach items="${availableRoles }" var="r">

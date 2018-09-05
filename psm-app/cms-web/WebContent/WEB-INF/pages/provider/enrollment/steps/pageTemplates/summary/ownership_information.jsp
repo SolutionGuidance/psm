@@ -22,25 +22,21 @@
                 <div class="leftCol">
                     <div class="row">
                         <label>Type</label>
-                        <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_17_iboType_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>
                     </div>
                     <div class="row">
                         <label>Date of Birth</label>
-                        <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_17_iboDOB_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>
                     </div>
                     <div class="row">
                         <label>Social Security Number</label>
-                        <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_17_iboSSN_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>
                     </div>
                     <div class="row">
                         <label>Home Residence Address</label>
-                        <span class="floatL"><b>:</b></span>
 
                         <c:set var="streetAddress" value="_17_iboAddressLine1_${status.index - 1}" />
                         <c:set var="extendedAddress" value="_17_iboAddressLine2_${status.index - 1}" />
@@ -60,7 +56,6 @@
                 <div class="rightCol">
                     <div class="row">
                         <label>Name</label>
-                        <span class="floatL"><b>:</b></span>
                         <span>
                             <c:set var="formName" value="_17_iboFirstName_${status.index - 1}"></c:set>
                             ${requestScope[formName]}&nbsp;<c:set var="formName" value="_17_iboMiddleName_${status.index - 1}"></c:set><c:if test="${not empty requestScope[formName]}"><c:out value="${requestScope[formName]}"></c:out></c:if>
@@ -69,13 +64,11 @@
                     </div>
                     <div class="row">
                         <label>Hire Date</label>
-                        <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_17_iboHireDate_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>
                     </div>
                     <div class="row">
                         <label class="multiLine">Relationship to any other listed person</label>
-                        <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_17_iboRelationship_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>
                     </div>
@@ -99,19 +92,16 @@
                 <div class="leftCol">
                     <div class="row">
                         <label>Type</label>
-                        <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_17_cboType_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>
                     </div>
                     <div class="row">
                         <label>Full Legal Name</label>
-                        <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_17_cboLegalName_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>
                     </div>
                     <div class="row">
                         <label>Business Address</label>
-                        <span class="floatL"><b>:</b></span>
 
                         <c:set var="streetAddress" value="_17_cboAddressLine1_${status.index - 1}" />
                         <c:set var="extendedAddress" value="_17_cboAddressLine2_${status.index - 1}" />
@@ -133,7 +123,6 @@
                         <label>
                           <abbr title="Federal Employer Identification Number">FEIN</abbr>
                         </label>
-                        <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_17_cboFEIN_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>
                     </div>

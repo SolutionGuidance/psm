@@ -35,12 +35,10 @@
                 <div class="leftCol">
                   <div class="row">
                     <label for="npiInput">Enrollment #</label>
-                    <span class="floatL"><b>:</b></span>
                     <input id="npiInput" type="text" class="normalInput" value="${searchCriteria.npi}"/>
                   </div>
                   <div class="row">
                     <label>Date Submitted</label>
-                    <span class="floatL"><b>:</b></span>
                     <span class="dateWrapper floatL">
                       <input id="submissionDateStartInput" title="Submission Date Start" value='<fmt:formatDate value="${searchCriteria.submissionDateStart}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
                     </span>
@@ -51,7 +49,6 @@
                   </div>
                   <div class="row">
                     <label for="providerTypeInput">Provider Type</label>
-                    <span class="floatL"><b>:</b></span>
                     <select id="providerTypeInput" class="longSelect">
                       <option value="">All</option>
                       <c:forEach var="item" items="${providerTypesLookup}">
@@ -61,7 +58,6 @@
                   </div>
                   <div class="row">
                     <label for="providerNameInput">Provider Name</label>
-                    <span class="floatL"><b>:</b></span>
                     <input id="providerNameInput" value="${searchCriteria.providerName}" type="text" class="normalInput"/>
                   </div>
                 </div>
@@ -69,7 +65,6 @@
                 <div class="rightCol">
                   <div class="row checkRow">
                     <label>Request Type</label>
-                    <span class="floatL"><b>:</b></span>
                     <div class="checkWrapper">
                       <label class="checkboxLabel">
                         <input type="checkbox" name="requestType" class="checkAll" />
@@ -85,7 +80,6 @@
                   </div>
                   <div class="row checkRow">
                     <label>Status</label>
-                    <span class="floatL"><b>:</b></span>
                     <div class="checkWrapper">
                       <label class="checkboxLabel">
                         <input type="checkbox" name="enrollmentStatus" class="checkAll" />
@@ -101,7 +95,6 @@
                   </div>
                   <div class="row checkRow">
                     <label>Risk Level</label>
-                    <span class="floatL"><b>:</b></span>
                     <div class="checkWrapper">
                       <label class="checkboxLabel">
                         <input type="checkbox" name="riskLevel" class="checkAll" />

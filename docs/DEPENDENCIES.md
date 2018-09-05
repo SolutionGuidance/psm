@@ -5,6 +5,16 @@ licenses.  Dependencies are listed in the `ext.libs` array in
 build.gradle.  Sources for license and subdependency information given
 inline.
 
+In addition to the list below, the ["Gradle License Report"](https://github.com/jk1/Gradle-License-Report)
+plugin will generate HTML reports about dependencies.
+Generate the reports with:
+
+    ./gradlew generateLicenseReport
+
+Reports live in {project}/build/reports/dependency-license/ .
+
+## Dependencies list
+
 - commons\_codec: 'commons-codec:commons-codec:1.6' _(Apache License, Version 2.0)_
   - Test Dependencies
     - junit >>junit 4.10 _(Eclipse Public License 1.0)_

@@ -1,15 +1,16 @@
-import spock.lang.*
+import spock.lang.Specification
+import spock.lang.Unroll
 
 @Unroll
 class HelloSpec extends Specification {
-  def "tests run properly (#a == #b)"(int a, int b) {
-    expect:
-    a == b
+    void "tests run properly (#a == #b)"(int a, int b) {
+        expect:
+        a == b
 
-    where:
-    a | b
-    1 | 1
-    2 | 2
-    3 | 3
-  }
+        where:
+        a | b
+        1 | 1
+        2 | 2
+        3 | 3
+    }
 }

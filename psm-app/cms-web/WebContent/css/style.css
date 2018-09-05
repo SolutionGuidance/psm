@@ -2452,16 +2452,16 @@ input.date{
   padding:15px 10px;
 }
 
-#advancedSearch .leftCol{
-  width:45%;
-  float:left;
-  display:inline;
+#advancedSearch .leftCol {
+  width: 40%;
+  float: left;
+  display: inline;
 }
 
-#advancedSearch .rightCol{
-  width:50%;
-  float:left;
-  display:inline;
+#advancedSearch .rightCol {
+  width: 58%;
+  float: left;
+  display: inline;
 }
 
 #advancedSearch .buttons{
@@ -2488,8 +2488,8 @@ input.date{
   line-height:30px;
 }
 
-#advancedSearch label{
-  width:102px;
+#advancedSearch label {
+  width: 90px;
 }
 
 #advancedSearch input[type=text]{
@@ -2531,19 +2531,16 @@ input.date{
   padding:0;
 }
 
-
-#advancedSearch .checkRow .checkWrapper{
-  width:360px;
-  float:left;
-  display:inline;
+#advancedSearch .checkRow .checkWrapper {
+  float: left;
+  display: inline;
+  margin-bottom: 5px;
 }
 
-
-#advancedSearch .checkRow span.label{
-  width:94px;
-  float:left;
-  display:inline;
-  cursor:pointer;
+#advancedSearch .checkRow span.label {
+  float: left;
+  display: inline;
+  cursor: pointer;
 }
 span.label, span.label strong {
   font-weight: normal !important;

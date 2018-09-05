@@ -2453,13 +2453,13 @@ input.date{
 }
 
 #advancedSearch .leftCol {
-  width: 45%;
+  width: 40%;
   float: left;
   display: inline;
 }
 
 #advancedSearch .rightCol {
-  width: 50%;
+  width: 58%;
   float: left;
   display: inline;
 }
@@ -2489,7 +2489,7 @@ input.date{
 }
 
 #advancedSearch label {
-  width: 102px;
+  width: 90px;
 }
 
 #advancedSearch input[type=text]{
@@ -2531,16 +2531,13 @@ input.date{
   padding:0;
 }
 
-
 #advancedSearch .checkRow .checkWrapper {
-  width: 360px;
   float: left;
   display: inline;
+  margin-bottom: 5px;
 }
 
-
 #advancedSearch .checkRow span.label {
-  width: 94px;
   float: left;
   display: inline;
   cursor: pointer;

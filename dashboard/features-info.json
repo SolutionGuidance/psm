@@ -272,7 +272,7 @@
                 "Separate this into a management module"
             ],
             "startDate": "2018-07-01",
-            "completedDate": "2018-08-31",
+            "completedDate": "2018-09-30",
             "status": "InProgress",
             "requirements": [
                 "psm-FR-2.16",
@@ -375,7 +375,7 @@
                 "Allow provider to assign billing rights to another provider"
             ],
             "startDate": "2018-07-01",
-            "completedDate": "2018-08-31",
+            "completedDate": "2018-09-30",
             "status": "InProgress",
             "requirements": [
                 "psm-FR-2.12",
@@ -5447,7 +5447,8 @@
                 752,
                 878,
                 912,
-                913
+                913,
+                1050
             ],
             "startDate": null,
             "completedDate": null,
@@ -5538,7 +5539,8 @@
                 851,
                 878,
                 915,
-                930
+                930,
+                1050
             ],
             "startDate": null,
             "completedDate": null,
@@ -5699,6 +5701,172 @@
         }
     },
     "issues": {
+        "1082": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1082,
+            "url": "https://github.com/solutionguidance/psm/issues/1082",
+            "title": "Use generated dependency reports",
+            "description": "PR #1073 added a way to generate HTML reports about the PSM's dependencies using the [\"Gradle License Report\"](https://github.com/jk1/Gradle-License-Report).  As @jasonaowen wrote there:\r\n\r\n> If the reports this generates are useful, we should probably also delete the surely-out-of-date hand-made reports in [DEPENDENCIES.md](https://github.com/SolutionGuidance/psm/blob/147-license-report-plugin/docs/DEPENDENCIES.md), but I leave that decision to @kfogel or @jvasile.\r\n\r\nFirst, decide whether and how to use these generated reports and how this impacts DEPENDENCIES.md, and then implement that decision.",
+            "status": "NotStarted",
+            "startDate": "2018-09-05",
+            "completedDate": null,
+            "labels": [
+                "docs"
+            ]
+        },
+        "1065": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1065,
+            "url": "https://github.com/solutionguidance/psm/issues/1065",
+            "title": "Multiple providers with same NPI in sample data",
+            "description": "@kfogel writes [on zulip](https://chat.opentechstrategies.com/#narrow/stream/6-Provider-Screening/subject/demos/near/53546) that in our sample data used for demos, several providers have the same NPI (e.g. 0000000006), \"which is a bit of sample data inconsistency that we should fix\".",
+            "status": "NotStarted",
+            "startDate": "2018-08-29",
+            "completedDate": null,
+            "labels": []
+        },
+        "1062": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1062,
+            "url": "https://github.com/solutionguidance/psm/issues/1062",
+            "title": "Allow provider type configuration or workflow",
+            "description": "Right now, there are different workflows for specific provider types (like Personal Care Assistant).  Those workflows should be separated from the provider types, and given their own names, for which provider types can then be linked to.\r\n\r\nThe rules surroudning those workflows should be changed to be related to the workflow, and not to the provider type as they are now.",
+            "status": "NotStarted",
+            "startDate": "2018-08-28",
+            "completedDate": null,
+            "labels": []
+        },
+        "1061": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1061,
+            "url": "https://github.com/solutionguidance/psm/issues/1061",
+            "title": "Allow the creation of organization provider types",
+            "description": "Right now, when adding a new provider type (see #41), it does so as an individual type.  There should be an option to select an organization type.",
+            "status": "NotStarted",
+            "startDate": "2018-08-28",
+            "completedDate": null,
+            "labels": []
+        },
+        "1060": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1060,
+            "url": "https://github.com/solutionguidance/psm/issues/1060",
+            "title": "Break out provider_type_settings and allow configuration",
+            "description": "There are several relations encoded in provider_type_settings.  Those should be broken out into their own tables like provider_type_agreement_documents and provider_type_license_types, then configuration screens added for them (most likely as part of editing the provider type)",
+            "status": "NotStarted",
+            "startDate": "2018-08-28",
+            "completedDate": null,
+            "labels": []
+        },
+        "1054": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1054,
+            "url": "https://github.com/solutionguidance/psm/issues/1054",
+            "title": "Merge `linedTable` and `generalTable` CSS styles",
+            "description": "In PR #1049 we introduced a `linedTable` CSS class to draw lines between table rows of certain tables and increase the line-height in table cells a bit.  This let us only affect those tables we were working on in that PR. \r\n\r\nBut eventually it probably makes sense to merge the `linedTable` styles into the `generalTable` class styles, so all tables have those styles for consistency and to simplify things.  We didn't do this at the time because we'd want to check how those new styles would affect the many `generalTable` instances, and there wasn't bandwidth to do that.",
+            "status": "NotStarted",
+            "startDate": "2018-08-24",
+            "completedDate": null,
+            "labels": [
+                "tech-debt"
+            ]
+        },
+        "1053": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1053,
+            "url": "https://github.com/solutionguidance/psm/issues/1053",
+            "title": "Slightly wonky error message on failed login",
+            "description": "<img width=\"509\" alt=\"image\" src=\"https://user-images.githubusercontent.com/208884/44606885-a47ac680-a7bc-11e8-87d9-d0f7878d7252.png\">\r\n\r\nWe should probably not be exposing java object namespaces in our user errors.  Instead, just say \"Invalid username and/or password\" and leave out the rest.",
+            "status": "NotStarted",
+            "startDate": "2018-08-24",
+            "completedDate": null,
+            "labels": []
+        },
+        "1050": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1050,
+            "url": "https://github.com/solutionguidance/psm/issues/1050",
+            "title": "Add more integration tests",
+            "description": "This is a catchall issue for generally adding more integration tests.  The current codebase has some tests, but could use more to get it to a point where most use cases are at least touched, if not thoroughly explored.  For PRs that need groundwork laid for this, this issue can be used.",
+            "status": "NotStarted",
+            "startDate": "2018-08-24",
+            "completedDate": null,
+            "labels": [
+                "Z-REQ-PSM-SQ-1.2",
+                "Z-REQ-PSM-SQ-1.4",
+                "in progress"
+            ]
+        },
+        "1048": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1048,
+            "url": "https://github.com/solutionguidance/psm/issues/1048",
+            "title": "Breadcrumb navbar sections are not clickable.",
+            "description": "The components of the breadcrumb navigation bar are not clickable.  This leaves the \"Previous\" button (currently situated unfortunately only at the bottom of the screen, as per issue #1047) as the only way to navigate back to a previous part of the application. \r\n\r\nThe components in the breadcrumb bar should be clickable.  Even after issue #1047 is fixed and there's a Previous button available up top, a specific breadcrumb component is the most natural target to click on for someone who wants to go to that specific page.\r\n\r\nFor example, in the attached screenshot, if I want to go back to \"Personal Info\", why should I have to click a Previous button twice?  The target is right there -- I can see it in the breadcrumb bar.\r\n\r\n![psm-breadcrumb-trail-visible-previous-button-hidden-2018-08-23](https://user-images.githubusercontent.com/401111/44548364-7bd2ce00-a6e3-11e8-872f-012f498a1a5c.png)\r\n",
+            "status": "NotStarted",
+            "startDate": "2018-08-23",
+            "completedDate": null,
+            "labels": [
+                "enhancement",
+                "ux"
+            ]
+        },
+        "1047": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1047,
+            "url": "https://github.com/solutionguidance/psm/issues/1047",
+            "title": "\"Previous\" button at bottom is too far from breadcrumb trail at top.",
+            "description": "The \"Previous\" button at the bottom of the screen navigates you back through the breadcrumb bar components at the top.  While it's fine to have a \"Previous\" button at the bottom, there should also be one at the top, near the \"map\" (the breadcrumb bar) being navigated.  On a tall page, the breadcrumb trail will be off-screen when one is scrolled to the bottom, so if one is forced to scroll to the bottom in order to get to the \"Previous\" button, one loses sight of one's map -- not a good UX.\r\n\r\nNow, it might be that once issue #1048 is fixed, and assuming we make sure the browser's native Back button works everywhere, we don't even need a Previous button at all.  Getting rid of it would be a fine way to close this issue -- but while we have it, we should have it where it's needed.\r\n\r\n![psm-breadcrumb-trail-visible-previous-button-hidden-2018-08-23](https://user-images.githubusercontent.com/401111/44548400-99079c80-a6e3-11e8-8030-3ccc567a9a66.png)\r\n\r\nNow scroll to the bottom, where \"Previous\" button is, and lose sight of the top breadcrumb bar:\r\n\r\n![psm-breadcrumb-trail-hidden-previous-button-visible-2018-08-23](https://user-images.githubusercontent.com/401111/44548407-9b69f680-a6e3-11e8-8fa1-100e150ddcb9.png)\r\n",
+            "status": "NotStarted",
+            "startDate": "2018-08-23",
+            "completedDate": null,
+            "labels": [
+                "enhancement",
+                "ux"
+            ]
+        },
+        "1046": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1046,
+            "url": "https://github.com/solutionguidance/psm/issues/1046",
+            "title": "Get rid of Print links, just use Export-to-PDF (printing often errors anyway)",
+            "description": "From a provider's home page (I logged in with p1/p1 and went to https://demo.psm.solutionguidance.com/cms/provider/dashboard/), all pending applications are shown, and under the Action column are separate links to Print and to Export To PDF.\r\n\r\nThe Print button fails -- if you click it, you just get an error popup:\r\n\r\n![psm-provider-print-failure-2018-08-23](https://user-images.githubusercontent.com/401111/44546464-a02bac00-a6dd-11e8-9752-0d1afc2a9190.png)\r\n\r\nThe Export-to-PDF link works just fine (there are some issues with the formatting of the resultant PDF's content, and I've filed issue #1045 about that, but the PDF export itself is clearly working).\r\n\r\nSince Export-to-PDF works, is there any reason we need a Print link at all?  I'm inclined to just get rid of it everywhere -- both on the provider side and on the admin side -- and just offer Export-to-PDF (there are some places where Export-to-PDF has issues itself, as described in issue #1014, but that's a separate matter and doesn't affect the question of whether or not we should just get rid of Print).\r\n\r\nSee [Zulip chat conversation](https://chat.opentechstrategies.com/#narrow/stream/6-Provider-Screening/subject/Checkins/near/52405) about this.  Consensus is: let's get rid of Print.",
+            "status": "NotStarted",
+            "startDate": "2018-08-23",
+            "completedDate": null,
+            "labels": [
+                "bug",
+                "in progress",
+                "ux"
+            ]
+        },
+        "1045": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1045,
+            "url": "https://github.com/solutionguidance/psm/issues/1045",
+            "title": "Exported PDF of an enrollment has confusingly-aligned colons.",
+            "description": "See attached PDF.  Is there any reason to have those right-aligned colons where they are, between the field name and the field value?  (Maybe it's an accessibility thing that I'm just not familiar with?)\r\n\r\n[psm-provider-application-pdf-export-2018-08-23.pdf](https://github.com/SolutionGuidance/psm/files/2315823/psm-provider-application-pdf-export-2018-08-23.pdf)\r\n",
+            "status": "Completed",
+            "startDate": "2018-08-23",
+            "completedDate": "2018-08-25",
+            "labels": [
+                "accessibility",
+                "bug",
+                "ux"
+            ]
+        },
         "1032": {
             "owner": "solutionguidance",
             "repos": "psm",
@@ -5712,6 +5880,7 @@
             "labels": [
                 "backend",
                 "bug",
+                "in progress",
                 "security",
                 "ux"
             ]
@@ -5807,16 +5976,15 @@
             "url": "https://github.com/solutionguidance/psm/issues/1021",
             "title": "Remove date field from provider disclosure forms",
             "description": "The final page of the enrollment application process involves a digital signature by the provider. Previously, this included a form element that required the user to enter the current date.\r\n\r\n@jvasile [says](https://chat.opentechstrategies.com/#narrow/stream/6-Provider-Screening/subject/demos/near/51766):\r\n\r\n> We should never ask the user to enter a date if there is only one possible right answer for that date.\r\n\r\n(He also says not to worry about any supposed legal requirements around it; we'll establish what the legal reqs actually are and meet them, but meanwhile we shouldn't be implementing UX anti-patterns based on probabilistic impressions of legal requirements.)\r\n\r\nRemove the date field from the provider disclosure forms, so as to improve the user experience, avoid unnecessary pseudo-legalisms, and improve the demo workflow.\r\n\r\n(This also obviates #301, which I will close as a duplicate of this.)",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-08-13",
-            "completedDate": null,
+            "completedDate": "2018-08-22",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "backend",
                 "bug",
                 "enhancement",
                 "quick-fix",
-                "review",
                 "ux"
             ]
         },
@@ -5837,11 +6005,11 @@
             "repos": "psm",
             "number": 1014,
             "url": "https://github.com/solutionguidance/psm/issues/1014",
-            "title": "Print and Export to PDF buttons on applications tables",
+            "title": "Admin UI: Print and Export-To-PDF buttons fail (either showing no applications or showing too many).",
             "description": "Summary:\r\n- Print button in service admin applications tables (under enrollments) shouldn't fail\r\n- Export to PDF button in service admin applications tables (under enrollments) shouldn't fail\r\n- Remove the checkboxes on the applications tables (for both provider and service admin), or let them have some effect like limiting what shows up in the PDFs and print screens.\r\n\r\nLog in as a service admin, go to the applications tables under \"ENROLLMENTS\", then select some checkboxes and click the print button at the top of the table.  Always see a page that says no results are found (service_agent_print_enrollments.jsp).\r\n\r\n![screenshot_2018-08-10 enrollment](https://user-images.githubusercontent.com/1091693/43968741-0043a838-9c96-11e8-9f79-d02403e737dc.png)\r\n\r\nDo the same thing on the search results pages (advanced or quick) and you see a page with a list of *all* the applications, not just the ones you checked.\r\n\r\n![screenshot_2018-08-10 enrollment 2](https://user-images.githubusercontent.com/1091693/43970911-1fce5804-9c9d-11e8-8850-433b6c229e45.png)\r\n\r\nSimilar results occur for \"Export to PDF\" button.  On the ENROLLMENTS pages you get an empty PDF, and on the search results pages you get a PDF with *all* the applications listed.\r\n\r\nWhen logged in as a provider, on the ENROLLMENTS pages you can successfully export a pdf that lists all the applications for the current status (Draft, Pending, etc.), the checkboxes have no effect.  On the search results pages it is the same as for an admin, you get a pdf or a printable screen with *all* the applications, regardless of checked boxes.\r\n\r\nSo it seems then that the checkboxes in these tables currently serve no purpose.  I was assuming they would affect the output of those buttons, but that is not the current behavior.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-08-10",
-            "completedDate": null,
+            "completedDate": "2018-08-28",
             "labels": [
                 "bug",
                 "ux"
@@ -6057,9 +6225,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/968",
             "title": "NPE on submitting a personal care assistant enrollment application ",
             "description": "The forms for the \"Personal Care Assistant\" provider type do not include a contact email address. When we try to send an email notification for successfully submitting an enrollment application, we get a null pointer exception.\r\n\r\nMore broadly, we should degrade more gracefully. Rather than (or at least, in addition to) updating the PCA forms to include an email address, we should check for missing email addresses before sending the notification, log a warning, and then not send an email notification. In particular, we should not show an error page instead of a success page if the enrollment has been successfully submitted but for the notification.\r\n\r\nSee also issue #341 Notify submitter & drafter via contact email when enrollment status changes",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-07-16",
-            "completedDate": null,
+            "completedDate": "2018-08-28",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "Z-REQ-PSM-FR-8.1",
@@ -6412,9 +6580,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/914",
             "title": "Filtering enrollments as admin user returns no search results",
             "description": "When filtering by anything (npi, provider name, etc) or just hitting filter with all fields empty, no results are returned.  Quick search works with an exact NPI match.\r\n\r\nReproduce by going to the enrollments, tab, opening the filter dialog, and hitting filter.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-06-28",
-            "completedDate": null,
+            "completedDate": "2018-08-28",
             "labels": [
                 "Z-REQ-PSM-FR-7.13",
                 "Z-REQ-PSM-FR-7.14",
@@ -6829,9 +6997,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/842",
             "title": "Show error on personal email address",
             "description": "As of PR #832, the contact email address will be required (which is a consequence of #341, which uses that email address to send notifications to users).  For individual enrollment applications, the contact email is sometimes autofilled from the \"Email Address\" input by using the \"Same as Above\" checkbox.  That \"Email Address\" field is *not* required in and of itself.\r\n\r\n@frankduncan noticed that if a user fills in information, leaving the Email Address input empty (allowed) and checking the \"Same as Above\" checkbox, the ensuing error is unclear.  The \"Same as Above\" checkbox means that the Email Address is suddenly required, because it fills the Contact Email field, which is required.  I hope this is comprehensible.\r\n\r\nI thought that the thing to do was to add an error to the new Contact Email rule which would change the error text if the \"Same as Above\" checkbox was checked, so that the red highlighting would appear around the \"Email Address\" field and the error text would read \"Email Address is required when Same as Above is checked.\"  While doing that, I found that the rules currently don't appear to have any concept of the Email Address field at all, meaning that adding an error reporter on that field has no effect.\r\n\r\nI believe that the way to add this element to the rules is by adding it to the \"PersonalInformation\" fieldset, which appears to be generated from the JAXB \"PersonType\".  I don't know how to alter these JAXB objects, though.\r\n\r\nIt would be simpler to do this in Javascript, but I *would* like to be consistent in how we create error messages for users, so the right thing seems to be to handle this in the rules.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-05-29",
-            "completedDate": null,
+            "completedDate": "2018-08-28",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "bug",
@@ -7432,7 +7600,7 @@
             "repos": "psm",
             "number": 749,
             "url": "https://github.com/solutionguidance/psm/issues/749",
-            "title": "Placeholder text for input fields",
+            "title": "Placeholder text for input fields (e.g., to show expected date format)",
             "description": "As @jasonaowen mentions [here](https://github.com/SolutionGuidance/psm/pull/732#pullrequestreview-108762216), now that #732 has landed and we're using a different input masking library that assumes there will be placeholder text in the input fields, it would be good to add placeholder text to them.",
             "status": "NotStarted",
             "startDate": "2018-04-02",
@@ -7763,9 +7931,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/692",
             "title": "Action column may wrap to two lines",
             "description": "On service admin \"Pending\", \"Approved\", and \"Notes\" pages content in the action column wraps to two lines:\r\n\r\n![screenshot-2018-2-28 enrollment](https://user-images.githubusercontent.com/1091693/36810821-dea037e0-1c99-11e8-987f-9379e1b17b2e.png)\r\n\r\nAlso can happen on the results of the advanced search page:\r\n\r\n![screenshot-2018-2-28 advanced search](https://user-images.githubusercontent.com/1091693/36810676-615f618e-1c99-11e8-8b47-397ec4fe58ad.png)",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-02-28",
-            "completedDate": null,
+            "completedDate": "2018-08-24",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "bug",
@@ -7843,16 +8011,15 @@
             "url": "https://github.com/solutionguidance/psm/issues/672",
             "title": "Empty link text for providers with no NPI",
             "description": "Some provider types, such as Personal Care Assistants, do not have an NPI. After creating such an enrollment, the dashboard and enrollments pages render that enrollment with an empty link to the enrollment:\r\n\r\n![pca-empty-link](https://user-images.githubusercontent.com/1494855/36226993-9501cee8-119d-11e8-90d4-500088c9db5e.png)\r\n\r\nThis is both a usability problem and an accessibility problem.\r\n\r\nWe previously addressed a similar case in #573 by making the NPI plain text and moving the link to view the application to the literal string \"View\", alongside (in that case) \"Edit\" and \"Renew\"; in this case it would be next to \"Print\" and \"Export to PDF\".",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-02-14",
-            "completedDate": null,
+            "completedDate": "2018-08-24",
             "labels": [
                 "Z-REQ-PSM-AD-2.4",
                 "Z-REQ-PSM-FR-7.14",
                 "Z-REQ-PSM-FR-9.1",
                 "accessibility",
                 "bug",
-                "review",
                 "ux"
             ]
         },
@@ -10741,7 +10908,7 @@
             "repos": "psm",
             "number": 273,
             "url": "https://github.com/solutionguidance/psm/issues/273",
-            "title": "PECOS data ETL",
+            "title": "PECOS data ETL, a.k.a. support for the CPI standard provider file format",
             "description": "We need PECOS data.  There's some at https://data.cms.gov/Medicare-Enrollment/Order-and-Referring/qcn7-gc3g and there's an API.  We shouldn't ETL this data.  We should query the outside database using the interface they provide.",
             "status": "NotStarted",
             "startDate": "2017-07-14",
@@ -10940,7 +11107,8 @@
                 "Z-REQ-PSM-SQ-1.1",
                 "Z-REQ-PSM-SQ-1.2",
                 "backend",
-                "enhancement"
+                "enhancement",
+                "in progress"
             ]
         },
         "248": {
@@ -12200,6 +12368,7 @@
             "labels": [
                 "Z-REQ-PSM-AD-3.1",
                 "Z-REQ-PSM-FR-2.6",
+                "in progress",
                 "question",
                 "ux"
             ]
@@ -12309,15 +12478,14 @@
             "url": "https://github.com/solutionguidance/psm/issues/41",
             "title": "Fix or remove provider type creation/deletion",
             "description": "If you log in as a service admin, there is a button to `Add Provider Type`. Clicking on it produces a stack trace, because several attributes of provider types were removed in 8b28ccfd75bd3b37f6fd93bdcd31e24174633ee2 in response to [#34 Edit Provider Type to add required additional documentation- Service Admin](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/issues/34) and [#90 Accepting Provider Agreement](https://github.com/NASA-Tournament-Lab/coeci-cms-mpsp/issues/90).\r\n\r\nThere is also some complexity around matching the entries in the database to the entries in [an XML file](https://github.com/OpenTechStrategies/psm/blob/a89616ba8deff7f73390f2b0dc32f9b62f3c6954/psm-app/cms-business-model/src/main/resources/Entities.xsd), which may prevent new provider types from being added and needs further research.\r\n\r\nAdditionally, there is UI around deleting provider types, but it is permanently disabled: there is no backing database column, so everything defaults to undeleteable.\r\n\r\nRegardless, either creating new provider types and deleting old provider types should be fully functional, or we should accept that it requires code and/or database changes and remove the broken UI.\r\n\r\n![provider types](https://cloud.githubusercontent.com/assets/1494855/26410646/e85e7dbe-4071-11e7-925e-e2d9123fc6b5.png)\r\n",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2017-05-24",
-            "completedDate": null,
+            "completedDate": "2018-08-29",
             "labels": [
                 "Z-REQ-PSM-II-4.5",
                 "backend",
                 "bug",
                 "docs",
-                "in progress",
                 "task",
                 "tech-debt",
                 "ux"

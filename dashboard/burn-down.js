@@ -250,22 +250,28 @@
       return end - start;
     };
 
+    var barWidthOngoing = function(feature) {
+      if (feature.status === 'Ongoing') {
+        var end = xScale(new Date(feature.completedDate || todayString));
+        var start = xScale(featureStartDate(feature));
+        return end - start;
+      }
+      return 0;
+    };
+
+    var barWidthCompleted = function(feature) {
+      if (feature.status === "Completed") {
+        var end = xScale(new Date(todayString));
+        var start = xScale(new Date(feature.completedDate || todayString));
+        return end - start;
+      }
+      return 0;
+    };
+
     var barX = 0;
     var barY = function(datum, index) {
       return index * barHeight;
     };
-
-    function barClass(d) {
-      var statusClass = " not-started";
-      if (d.status === "Ongoing") {
-        statusClass = " ongoing";
-      } else if (d.status === "Completed") {
-        statusClass = " completed";
-      } else if (d.status === "InProgress" ||  d.startDate !== null) {
-        statusClass = " in-progress";
-      }
-      return "bar" + (statusClass || "");
-    }
 
     var textX = 10;
 
@@ -276,7 +282,7 @@
     var rowsGroup = chartG
       .append("g")
       .attr("class", "rows-group")
-      .attr("transform", "translate(0, " + xAxisTopHeight + ")")
+      .attr("transform", "translate(0, " + xAxisTopHeight + ")");
 
     rowsGroup
       .selectAll("rect.not-started")
@@ -290,15 +296,41 @@
       .attr("height", barHeight);
 
     rowsGroup
-      .selectAll(["rect.in-progress", "rect.completed", "rect.ongoing"])
+      .selectAll("rect.in-progress")
       .data(featuresArray)
       .enter()
       .append("rect")
-      .attr("class", barClass)
+      .attr("class", "bar in-progress")
       .attr("x", function(d) {
         return xScale(featureStartDate(d));
       })
       .attr("width", barWidthInProgress)
+      .attr("y", barY)
+      .attr("height", barHeight);
+
+    rowsGroup
+      .selectAll('rect.completed')
+      .data(featuresArray)
+      .enter()
+      .append('rect')
+      .attr('class', "bar completed")
+      .attr('x', function(d) {
+        return xScale(new Date(d.completedDate || todayString));
+      })
+      .attr('width', barWidthCompleted)
+      .attr('y', barY)
+      .attr('height', barHeight);
+
+    rowsGroup
+      .selectAll("rect.ongoing")
+      .data(featuresArray)
+      .enter()
+      .append("rect")
+      .attr("class", "bar ongoing")
+      .attr("x", function(d) {
+        return xScale(featureStartDate(d));
+      })
+      .attr("width", barWidthOngoing)
       .attr("y", barY)
       .attr("height", barHeight);
 

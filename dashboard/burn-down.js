@@ -176,6 +176,13 @@
             Completed: "100"
           }[feature.status] || "50";
 
+        feature.issueCount = feature.requirements.reduce(
+          function(issueCount, requirementId) {
+            var req = data.requirements[requirementId];
+            var count = req ? req.issues.length : 0;
+            return issueCount + count;
+          }, 0);
+
         return feature;
       })
       .sort(sortFeatures);
@@ -390,6 +397,7 @@
 
     tooltip.append("div").attr("class", "tooltipDescription");
     tooltip.append("div").attr("class", "tooltipRequirements");
+    tooltip.append("div").attr("class", "tooltipIssues");
     // tooltip.append("div").attr("class", "tooltipPercentDone");
 
     function hideDarkBackground() {
@@ -452,6 +460,7 @@
       .on("mouseover", function(d) {
         tooltip.select(".tooltipDescription").html(d.description);
         tooltip.select(".tooltipRequirements").html(d.requirements.length + " Requirements");
+        tooltip.select(".tooltipIssues").html(d.issueCount + " Issue Tickets");
         // tooltip.select(".tooltipPercentDone").html(d.percentDone + "% done");
         tooltip.style("display", "block");
       })

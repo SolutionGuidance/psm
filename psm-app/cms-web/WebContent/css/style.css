@@ -2172,6 +2172,16 @@ input.date{
   line-height:18px;
 }
 
+.banner {
+  background: #fff9b9;
+  border: 1px solid #e0da9b;
+  border-radius: 5px;
+  color: #333;
+  line-height: 1.4em;
+  margin: 0px 0px 10px;
+  padding: 10px 8px;
+}
+
 /* START OF SERVICE AGENT STYLES ------------------------------------------------ */
 
 #fiveStep li{

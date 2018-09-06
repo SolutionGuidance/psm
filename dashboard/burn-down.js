@@ -389,6 +389,8 @@
       .attr("class", "tooltip");
 
     tooltip.append("div").attr("class", "tooltipDescription");
+    tooltip.append("div").attr("class", "tooltipRequirements");
+    // tooltip.append("div").attr("class", "tooltipPercentDone");
 
     function hideDarkBackground() {
       darkBackground.style("display", "none");
@@ -449,8 +451,8 @@
       ])
       .on("mouseover", function(d) {
         tooltip.select(".tooltipDescription").html(d.description);
-        tooltip.select(".tooltipRequirements").html(d.requirements.join(", "));
-        tooltip.select(".tooltipPercentDone").html(d.percentDone + "% done");
+        tooltip.select(".tooltipRequirements").html(d.requirements.length + " Requirements");
+        // tooltip.select(".tooltipPercentDone").html(d.percentDone + "% done");
         tooltip.style("display", "block");
       })
       .on("mouseout", function(d) {

@@ -29,6 +29,10 @@
   <mvc:interceptors>
     <mvc:interceptor>
       <mvc:mapping path="/**"/>
+      <bean class="gov.medicaid.interceptors.BannerInterceptor"/>
+    </mvc:interceptor>
+    <mvc:interceptor>
+      <mvc:mapping path="/**"/>
       <bean class="gov.medicaid.interceptors.FlashMessageInterceptor"/>
     </mvc:interceptor>
     <mvc:interceptor>
@@ -96,6 +100,13 @@
         class="org.springframework.jndi.JndiObjectFactoryBean">
     <property name="jndiName">
       <value>${jndi.EnrollmentWebService}</value>
+    </property>
+  </bean>
+
+  <bean id="BannerService"
+        class="org.springframework.jndi.JndiObjectFactoryBean">
+    <property name="jndiName">
+      <value>java:app/cms-business-process/BannerServiceBean</value>
     </property>
   </bean>
 

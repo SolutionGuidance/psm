@@ -1,5 +1,6 @@
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
 
 <c:set var="specialtyTrigger" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Highest Degree Form'].settings['specialtyTrigger']}"></c:set>
 <c:set var="isActivated" value="${true}"></c:set>
@@ -40,26 +41,15 @@
                 </span>
             </div>
             <div class="row">
-                <c:set var="formName" value="_14_copyOfHighestDegree"></c:set>
-                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <label for="copyOfDegree_${formName}">Copy of Highest Degree Earned</label>
+                <label>Copy of Highest Degree Earned</label>
                 <span class="floatL">
-                    <input
-                      id="copyOfDegree_${formName}"
-                      type="file"
-                      class="fileUpload newEnrollmentPanelButton"
-                      size="10"
-                      name="${formName}"
-                    />
-
-                    <c:if test="${not empty formValue}">
-                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
-                             <c:param name="id" value="${requestScope[formName]}"></c:param>
-                        </c:url>
-                        <div><a href="${downloadLink}">View</a></div>
-                        <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <input type="hidden" name="${formName}" value="${formValue}"/>
-                    </c:if>
+                    <c:set var="formName" value="_14_copyOfHighestDegree" />
+                    <h:attachment
+                        name="${formName}"
+                        title="Copy of Highest Degree Earned"
+                        attachmentId="${requestScope[formName]}"
+                        attachmentIdName="${formName}"
+                        filename="View" />
                 </span>
             </div>
             <div class="clearFixed"></div>

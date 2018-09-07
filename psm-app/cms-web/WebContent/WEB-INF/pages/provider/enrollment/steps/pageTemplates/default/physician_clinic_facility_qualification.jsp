@@ -7,6 +7,8 @@
 
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
+
 <c:set var="formIdPrefix" value="physician_clinic_facility_qualification"></c:set>
 <input type="hidden" name="formNames" value="<%= ViewStatics.PHYSICIAN_CLINIC_FACILITY_QUALIFICATION_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
@@ -29,15 +31,13 @@
                             </label>
                         </td>
                         <td>
-                           <c:set var="formName" value="_40_designationApproval"></c:set>
-                           <input type="file" title="Approval Letter File" class="fileUpload" name="${formName}" />
-                           <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                           <c:if test="${not empty formValue}">
-                               <c:url var="downloadLink" value="/provider/enrollment/attachment">
-                                    <c:param name="id" value="${formValue}"></c:param>
-                               </c:url>
-                               <div><a href="${downloadLink}">Download</a></div>
-                           </c:if>
+                           <c:set var="formName" value="_40_designationApproval" />
+                           <h:attachment
+                               name="${formName}"
+                               title="Approval Letter File"
+                               attachmentId="${requestScope[formName]}"
+                               attachmentIdName="${formName}"
+                               filename="Download" />
                         </td>
                     </tr>
                     </tbody>

@@ -31,8 +31,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.UnsupportedEncodingException;
-
 /**
  * Handles self-registration flow.
  *
@@ -75,15 +73,14 @@ public class SelfRegistrationController extends BaseController {
      * @param errors the bidning results
      * @return the view and model for the registration result.
      * @throws PortalServiceException for non-recoverable errors encountered
-     * @throws UnsupportedEncodingException if the system does not support UTF-8
      * @endpoint "/accounts/new"
      * @verb POST
      */
     @RequestMapping(value = "/accounts/new", method = RequestMethod.POST)
-    public ModelAndView processRegistrationForm(@ModelAttribute("registrant") RegistrationForm registrant,
-        BindingResult errors)
-        throws PortalServiceException, UnsupportedEncodingException {
-
+    public ModelAndView processRegistrationForm(
+        @ModelAttribute("registrant") RegistrationForm registrant,
+        BindingResult errors
+    ) throws PortalServiceException {
         validator.validate(registrant, errors);
 
         if (errors.hasErrors()) {
@@ -112,13 +109,14 @@ public class SelfRegistrationController extends BaseController {
      * @param token the result token
      * @return the view and model for the registration page.
      * @throws PortalServiceException for any errors encountered
-     * @throws UnsupportedEncodingException if the system does not support UTF-8
      * @endpoint "/accounts/confirm"
      * @verb GET
      */
     @RequestMapping(value = "/accounts/confirm", method = RequestMethod.GET)
-    public ModelAndView viewRegisterSuccess(@RequestParam("id") String username, @RequestParam("token") String token)
-        throws PortalServiceException, UnsupportedEncodingException {
+    public ModelAndView viewRegisterSuccess(
+        @RequestParam("id") String username,
+        @RequestParam("token") String token
+    ) throws PortalServiceException {
 
         CMSUser user = registrationService.findByUsername(username);
         if (user == null) {

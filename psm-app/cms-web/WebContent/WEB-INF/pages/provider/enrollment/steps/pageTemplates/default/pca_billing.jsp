@@ -13,21 +13,18 @@
                 <c:set var="formName" value="_24_billingContactName"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">NAME OF RESPONSIBLE BILLING PERSON <span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="100"/>
             </div>
             <div class="row requireField">
                 <c:set var="formName" value="_24_billingContactTitle"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">TITLE <span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="45"/>
             </div>
             <div class="row">
                 <c:set var="formName" value="_24_billingContactHireDate"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">DATE OF EMPLOYMENT</label>
-                <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
                     <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
                 </span>
@@ -36,14 +33,12 @@
                 <c:set var="formName" value="_24_billingContactSSN"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">SOCIAL SECURITY NUMBER <span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="ssnMasked normalInput" name="${formName}" value="${formValue}" maxlength="11"/>
             </div>
             <div class="row">
                 <c:set var="formName" value="_24_billingContactDOB"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">DATE OF BIRTH</label>
-                <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
                     <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
                 </span>

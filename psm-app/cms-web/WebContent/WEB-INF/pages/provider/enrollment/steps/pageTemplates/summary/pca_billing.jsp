@@ -3,23 +3,23 @@
 <div class="section">
     <div class="leftCol">
         <div class="row">
-            <label>NAME OF RESPONSIBLE BILLING PERSON</label>
+            <label>Name of Responsible Billing Person</label>
             <span >${requestScope['_24_billingContactName']}</span>
         </div>
         <div class="row">
-            <label>TITLE</label>
+            <label>Title</label>
             <span >${requestScope['_24_billingContactTitle']}</span>
         </div>
         <div class="row">
-            <label>DATE OF EMPLOYMENT</label>
+            <label>Date of Employment</label>
             <span >${requestScope['_24_billingContactHireDate']}</span>
         </div>
         <div class="row">
-            <label>SOCIAL SECURITY NUMBER</label>
+            <label>Social Security Number</label>
             <span >${requestScope['_24_billingContactSSN']}</span>
         </div>
         <div class="row">
-            <label>DATE OF BIRTH</label>
+            <label>Date of Birth</label>
             <span >${requestScope['_24_billingContactDOB']}</span>
         </div>
     </div>

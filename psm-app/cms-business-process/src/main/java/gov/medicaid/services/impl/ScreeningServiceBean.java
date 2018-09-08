@@ -36,7 +36,9 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -180,9 +182,18 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
             ScreeningSearchCriteria criteria
     ) {
         if (criteria.getStartDate() != null && criteria.getEndDate() != null) {
-            clauseList.add("created_at BETWEEN :startDate AND :endDate");
+            clauseList.add("created_at >= :startDate AND created_at < :endDate");
             bindParams.put("startDate", criteria.getStartDate());
-            bindParams.put("endDate", criteria.getEndDate());
+            bindParams.put("endDate",
+                    Date.from(
+                            criteria.getEndDate()
+                                    .toInstant()
+                                    .atZone(ZoneId.systemDefault())
+                                    .toLocalDate()
+                                    .plusDays(1)
+                                    .atStartOfDay(ZoneId.systemDefault()).toInstant()
+                    )
+            );
         }
     }
 

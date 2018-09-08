@@ -19,12 +19,14 @@ package gov.medicaid.services.impl;
 import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.AutomaticScreening.Result;
 import gov.medicaid.entities.ScreeningSchedule;
+import gov.medicaid.entities.ScreeningSearchCriteria;
+import gov.medicaid.entities.SearchResult;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.ScreeningService;
 import gov.medicaid.services.util.Util;
-import org.apache.commons.collections.MapUtils;
+
 import org.apache.commons.lang3.EnumUtils;
+
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -33,10 +35,8 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,11 +63,6 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
      * Constant id for the screening schedule.
      */
     private static final long SCREENING_SCHEDULE_ID = 1;
-
-    /**
-     * Constant for date format used in queries
-     */
-    private static final String DATE_PATTERN = "MM/dd/yyyy";
 
     /**
      * Default empty constructor.
@@ -132,63 +127,62 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
      * @return list of screenings matching filter condition
      */
     @Override
-    public List<AutomaticScreening> getScreenings(
-            Map<String, String> params
+    public SearchResult<AutomaticScreening> getScreenings(
+            ScreeningSearchCriteria criteria
     ) {
         List<String> clauseList = new ArrayList<>();
         Map<String, Object> bindParams = new HashMap<>();
 
-        String start = MapUtils.getString(params, "startDate");
-        String end = MapUtils.getString(params, "endDate");
-        String status = MapUtils.getString(params, "status");
-
-        addStatus(clauseList, bindParams, status);
-        addDateRange(clauseList, bindParams, start, end);
-
-        // TODO: Add page parameters here
+        addStatus(clauseList, bindParams, criteria);
+        addDateRange(clauseList, bindParams, criteria);
 
         String queryString = buildQueryString(clauseList);
+        String countQueryString = "SELECT count(*) " + queryString;
 
         TypedQuery<AutomaticScreening> query = getEm()
-                .createQuery(
-                        queryString,
-                        AutomaticScreening.class
-                );
+                .createQuery(queryString, AutomaticScreening.class);
         bindParams.forEach((k, v) -> query.setParameter(k, v));
+        if (criteria.getPageSize() > 0) {
+            int offset = (criteria.getPageNumber() - 1) * criteria.getPageSize();
+            query.setFirstResult(offset);
+            query.setMaxResults(criteria.getPageSize());
+        }
 
-        return query.getResultList();
+        TypedQuery<Long> countQuery = getEm()
+                .createQuery(countQueryString, Long.class);
+        bindParams.forEach((k, v) -> countQuery.setParameter(k, v));
+
+        SearchResult<AutomaticScreening> results = new SearchResult<>();
+        results.setPageNumber(criteria.getPageNumber());
+        results.setPageSize(criteria.getPageSize());
+
+        results.setTotal(((Number) countQuery.getSingleResult()).intValue());
+        results.setItems(query.getResultList());
+        return results;
     }
 
     private void addStatus(
             List<String> clauseList,
             Map<String, Object> bindParams,
-            String status
+            ScreeningSearchCriteria criteria
     ) {
-        if (Util.isNotBlank(status) &&
-                EnumUtils.isValidEnum(Result.class, status.toUpperCase())
+        if (Util.isNotBlank(criteria.getStatus()) &&
+                EnumUtils.isValidEnum(Result.class, criteria.getStatus().toUpperCase())
         ) {
             clauseList.add("result in (:status)");
-            bindParams.put("status", Result.valueOf(status.toUpperCase()));
+            bindParams.put("status", Result.valueOf(criteria.getStatus().toUpperCase()));
         }
     }
 
     private void addDateRange(
             List<String> clauseList,
             Map<String, Object> bindParams,
-            String start,
-            String end
-    ) throws PortalServiceRuntimeException {
-        if (Util.isNotBlank(start) && Util.isNotBlank(end)) {
-            SimpleDateFormat format = new SimpleDateFormat(DATE_PATTERN);
-            try {
-                Date startDate = format.parse(start);
-                Date endDate = format.parse(end);
-                clauseList.add("created_at BETWEEN :startDate AND :endDate");
-                bindParams.put("startDate", startDate);
-                bindParams.put("endDate", endDate);
-            } catch (ParseException e) {
-                throw new PortalServiceRuntimeException("Could not complete database operation.", e);
-            }
+            ScreeningSearchCriteria criteria
+    ) {
+        if (criteria.getStartDate() != null && criteria.getEndDate() != null) {
+            clauseList.add("created_at BETWEEN :startDate AND :endDate");
+            bindParams.put("startDate", criteria.getStartDate());
+            bindParams.put("endDate", criteria.getEndDate());
         }
     }
 

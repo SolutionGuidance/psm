@@ -3,6 +3,8 @@
 <html lang="en-US">
   <c:set var="title" value="Screenings"/>
   <c:set var="activeTabScreenings" value="true" />
+  <fmt:formatDate value="${startDate}" pattern="MM/dd/yyyy" var="searchStartDate" />
+  <fmt:formatDate value="${endDate}" pattern="MM/dd/yyyy" var="searchEndDate" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -23,12 +25,17 @@
           <div class="clearFixed"></div>
 
             <div class="detailPanel screeningsDateRange">
-              <form
+              <form:form
                 id="screening_form"
                 action="${ctx}/agent/screenings"
-                class="paginationForm"
+                cssClass="paginationForm"
+                modelAttribute="criteria"
                 method="get"
               >
+
+                <form:hidden path="pageSize" />
+                <form:hidden path="pageNumber" />
+
                 <input
                   type="hidden"
                   id="status"
@@ -45,7 +52,7 @@
                       placeholder="Start Date"
                       class="date"
                       type="text"
-                      value="${startDate}"
+                      value="${searchStartDate}"
                     />
                   </span>
                   <span class="floatL">-</span>
@@ -58,7 +65,7 @@
                       placeholder="End Date"
                       class="date"
                       type="text"
-                      value="${endDate}"
+                      value="${searchEndDate}"
                     />
                   </span>
                   <input
@@ -67,7 +74,7 @@
                     class="purpleBtn screeningsTabDatesBtn"
                   />
                 </div>
-              </form>
+              </form:form>
             </div>
 
           <div class="tabSection" id="enrollmentSection">

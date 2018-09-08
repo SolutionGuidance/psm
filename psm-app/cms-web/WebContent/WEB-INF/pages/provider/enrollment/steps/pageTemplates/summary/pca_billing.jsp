@@ -1,16 +1,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<c:if test="${requestScope['_27_bound'] eq 'Y'}">
+<c:if test="${requestScope['_24_bound'] eq 'Y'}">
 <div class="section">
     <div class="leftCol">
         <div class="row">
-            <label>Number of Beds</label>
+            <label>NAME OF RESPONSIBLE BILLING PERSON</label>
             <span class="floatL"><b>:</b></span>
-            <span >${requestScope['_27_numberOfBeds']}</span>
+            <span >${requestScope['_24_billingContactName']}</span>
         </div>
         <div class="row">
-            <label>Effective Date</label>
+            <label>TITLE</label>
             <span class="floatL"><b>:</b></span>
-            <span >${requestScope['_27_effectiveDate']}</span>
+            <span >${requestScope['_24_billingContactTitle']}</span>
+        </div>
+        <div class="row">
+            <label>DATE OF EMPLOYMENT</label>
+            <span class="floatL"><b>:</b></span>
+            <span >${requestScope['_24_billingContactHireDate']}</span>
+        </div>
+        <div class="row">
+            <label>SOCIAL SECURITY NUMBER</label>
+            <span class="floatL"><b>:</b></span>
+            <span >${requestScope['_24_billingContactSSN']}</span>
+        </div>
+        <div class="row">
+            <label>DATE OF BIRTH</label>
+            <span class="floatL"><b>:</b></span>
+            <span >${requestScope['_24_billingContactDOB']}</span>
         </div>
     </div>
     <div class="clearFixed"></div>

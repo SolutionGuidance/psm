@@ -18,25 +18,43 @@ for more details on component versions and installation requirements.
 Within the PSM codebase are several "projects" within the `psm-app`
 directory. The major ones are:
 
-* `cms-business-model` (contains XML-defined Java data types, e.g.,
-  license type)
+* `cms-business-model` 
 
-* `cms-business-process` (includes callbacks into Java from jBPM)
+   Contains XML-defined Java data types, e.g., license type, and
+   JAXB-generated code that Drools rules are set up to work with.
 
-* `cms-services` (includes Hibernate entities, binders that map
-  frontend elements to Java handles, definitions of EE services that
-  `cms-business-process` implements)
+* `cms-business-process` 
 
-* `cms-web` (MVC, web controller, UI, HTML, CSS)
-  * See [`REPORTS.md`](REPORTS.md) for design related to PSM reports
+   Includes callbacks into Java from jBPM.
 
-* `cms-portal-services` (generates EAR file, and is where TopCoder JAR
-  files live)
+* `cms-services` 
+ 
+   This subproject is a service layer which communicates to database
+   and frontend.  It includes Hibernate entities, binders that map
+   frontend elements to Java handles, and definitions of EE services
+   that `cms-business-process` implements.
 
-* `frontend` (manages JavaScript used on the frontend, see
-  [frontend/README.md](../psm-app/frontend/README.md))
+* `cms-web` 
 
-* `userhelp` (contains prose documents for end user help)
+   MVC, web controller, UI, HTML, CSS.
+
+   * See [`REPORTS.md`](REPORTS.md) for design related to PSM reports
+
+* `cms-portal-services` 
+ 
+   Generates EAR file, and is where TopCoder JAR
+   files live.
+
+* `frontend`
+
+   This subproject Manages JavaScript used on the front end
+   (see [frontend/README.md](../psm-app/frontend/README.md)).  It
+   contains PSM-specific JavaScript code, and uses node.js to specify
+   and download the JavaScript libraries it depends on.
+
+* `userhelp` 
+
+   Contains prose documents for end user help.
 
 A diagram of the components mentioned above is available at
 [`docs/psm-architecture-for-stakeholders.pdf`](psm-architecture-for-stakeholders.pdf).

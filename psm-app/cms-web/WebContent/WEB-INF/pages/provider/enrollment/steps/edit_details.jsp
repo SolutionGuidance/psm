@@ -43,38 +43,26 @@
                     <div class="col1">
                       <div class="row">
                         <label>Request Type</label>
-                        <span class="floatL">
-                          <b>:</b>
-                        </span>
                         <span>${requestScope['_99_requestType']}</span>
                       </div>
                       <div class="row">
                         <label>Status</label>
-                        <span class="floatL">
-                          <b>:</b>
-                        </span>
                         <span>${requestScope['_99_requestStatus'] eq 'Rejected' ? 'Denied' : requestScope['_99_requestStatus']}</span>
                       </div>
                     </div>
                     <div class="col2">
                       <div class="row">
                         <label>Submitted On</label>
-                        <span class="floatL">
-                          <b>:</b>
-                        </span>
                         <span>${requestScope['_99_submittedOn']}</span>
                       </div>
                       <div class="row">
                         <label>Status Date</label>
-                        <span class="floatL">
-                          <b>:</b>
-                        </span>
                         <span>${requestScope['_99_statusDate']}</span>
                       </div>
                     </div>
                     <div class="col3">
                       <div class="row">
-                        <label>Risk Level &nbsp;&nbsp;&nbsp;&nbsp;:</label>
+                        <label>Risk Level</label>
                         <span>${requestScope['_99_riskLevel']}</span>
                       </div>
                     </div>

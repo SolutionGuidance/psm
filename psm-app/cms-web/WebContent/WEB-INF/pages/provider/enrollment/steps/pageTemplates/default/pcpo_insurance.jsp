@@ -13,7 +13,6 @@
                 <c:set var="formName" value="_25_liabilityInsuranceId"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}" class="mediumLbl">Copy of certificate of liability insurance</label>
-                <span class="floatL"><b>:</b></span>
                 <c:if test="${not empty formValue}">
                     <c:url var="downloadLink" value="/provider/enrollment/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
@@ -28,7 +27,6 @@
             <div class="row">
                 <c:set var="formName" value="_25_compensationInsuranceId"></c:set>
                 <label for="${formIdPrefix}_${formName}" class="mediumLbl">Copy of Workers' Compensation insurance</label>
-                <span class="floatL"><b>:</b></span>
                 <c:if test="${not empty  requestScope[formName]}">
                     <c:url var="downloadLink" value="/provider/enrollment/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
@@ -43,7 +41,6 @@
             <div class="row requireField">
                 <c:set var="formName" value="_25_fidelityBondId"></c:set>
                 <label for="${formIdPrefix}_${formName}" class="mediumLbl">Copy of fidelity bond</label>
-                <span class="floatL"><b>:</b></span>
                 <c:if test="${not empty  requestScope[formName]}">
                     <c:url var="downloadLink" value="/provider/enrollment/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
@@ -58,7 +55,6 @@
             <div class="row requireField">
                 <c:set var="formName" value="_25_suretyBondId"></c:set>
                 <label for="${formIdPrefix}_${formName}" class="mediumLbl">Copy of surety bond</label>
-                <span class="floatL"><b>:</b></span>
                 <c:if test="${not empty  requestScope[formName]}">
                     <c:url var="downloadLink" value="/provider/enrollment/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>

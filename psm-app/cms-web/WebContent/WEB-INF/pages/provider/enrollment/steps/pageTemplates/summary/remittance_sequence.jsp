@@ -4,7 +4,6 @@
     <div class="wholeCol">
         <div class="row">
             <label>Remittance Sequence</label>
-            <span class="floatL"><b>:</b></span>
             <c:choose>
                 <c:when test="${requestScope['_23_remittanceSequenceNumber'] eq 'PATIENT_ACCOUNT_OR_OWN_REFERENCE_ORDER'}">
                     <span>Patient Account or Own Reference Number Order</span>

@@ -70,7 +70,7 @@
                     <th class="alignCenter"><span class="multi">License/Certification<br/> Number</span> <span class="required-dark-background">*</span><span class="sep"></span></th>
                     <th class="alignCenter"><span class="multi">Original Issue Date<br/> (MM/DD/YYYY)</span> <span class="required-dark-background">*</span><span class="sep"></span></th>
                     <th class="alignCenter"><span class="multi">Renewal End Date<br/> (MM/DD/YYYY)</span> <span class="required-dark-background">*</span><span class="sep"></span></th>
-                    <th class="alignCenter">Issuing State/Territory <span class="required-dark-background">*</span><span class="sep"></span></th>
+                    <th class="alignCenter"><span class="multi">Issuing State<br/>/Territory</span> <span class="required-dark-background">*</span><span class="sep"></span></th>
                     <th class="alignCenter"><span class="multi">Copy of License<br/>/Certification</span> <span class="sep"></span></th>
                     <th></th>
                 </tr>

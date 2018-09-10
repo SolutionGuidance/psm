@@ -17,7 +17,12 @@
   <mvc:resources location="/help/" mapping="/help/**"/>
   <mvc:resources location="/i/" mapping="/i/**"/>
 
-  <mvc:annotation-driven/>
+  <mvc:annotation-driven>
+    <mvc:argument-resolvers>
+      <bean class="org.springframework.security.web.method.annotation.CsrfTokenArgumentResolver"/>
+    </mvc:argument-resolvers>
+  </mvc:annotation-driven>
+
 
   <context:property-placeholder location="classpath:cms.properties"/>
 

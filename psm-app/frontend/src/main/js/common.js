@@ -202,6 +202,27 @@ function changePageNumber(page) {
   form.submit();
 }
 
+function updateLoginCsrfAndSubmit() {
+  var form = $("#loginform");
+  if (form.attr("submitting") == undefined) {
+    form.attr("submitting", true);
+    $.ajax({
+      url: ctx + "/csrf",
+      cache: false,
+      success: function submitWithNewCsrf(data) {
+        $("#loginForm input[name=_csrf]").val(data.token);
+        $("#loginForm").off().submit();
+      },
+
+      error: function submissionFailed() {
+        form.removeAttr("submitting");
+      }
+    })
+  }
+
+  return false;
+}
+
 /**
  * Submits the form with the given id.
  * @param id the id of the form to be submitted
@@ -254,4 +275,6 @@ $(document).ready(function () {
   $("input.fiscalMonthInput, input.fiscalYearInput").mask("00");
 
   setFileUploadClickHandler();
+
+  $("#loginForm").submit(updateLoginCsrfAndSubmit);
 });

@@ -59,6 +59,9 @@
     }
 
     function formatIssues(d) {
+      if (!Array.isArray(d.value)) {
+        return d.value;
+      }
       d.value.sort(function(a, b) {
         return a > b;
       });
@@ -98,7 +101,13 @@
       .selectAll("td")
       .data(function(row) {
         return columns.map(function(column) {
-          return { key: column.key, value: row[column.key] };
+          if (!row) {
+            console.error("Failed to get data for a row")
+          }
+          return {
+            key: column.key,
+            value: row ? row[column.key] : "[Error]"
+          };
         });
       })
       .enter()

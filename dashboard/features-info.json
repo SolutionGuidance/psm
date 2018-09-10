@@ -3066,9 +3066,9 @@
             "completedDate": null,
             "status": "NotStarted"
         },
-        "psm-FR-7.15 ": {
+        "psm-FR-7.15": {
             "family": "FR",
-            "req_id": "psm-FR-7.15 ",
+            "req_id": "psm-FR-7.15",
             "category": "FR 7. Usability",
             "description": "The PSM shall provide instructions for using the application as an administrator via a help link or similar feature.",
             "priority": "",

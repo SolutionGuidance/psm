@@ -140,6 +140,24 @@
     }
   }
 
+  // Return the number of issues linked to the reqs
+  // linked to a given feature. If a given issue is
+  // linked to more than one req, only count it once.
+  function countIssues(data, feature) {
+    var issues = {};
+    feature.requirements.forEach(
+      function(reqId) {
+        var req = data.requirements[reqId];
+        req.issues.forEach(
+          function(issueId) {
+            issues[issueId] = true;
+          }
+        );
+      }
+    );
+    return Object.keys(issues).length;
+  }
+
   window.drawFeaturesBurnDownChart = function(data, d3) {
     var globalStartDate = new Date("2017-04-01");
     var globalEndDate = new Date("2019-09-30");
@@ -185,12 +203,7 @@
             Completed: "100"
           }[feature.status] || "50";
 
-        feature.issueCount = feature.requirements.reduce(
-          function(issueCount, requirementId) {
-            var req = data.requirements[requirementId];
-            var count = req ? req.issues.length : 0;
-            return issueCount + count;
-          }, 0);
+        feature.issueCount = countIssues(data, feature);
 
         return feature;
       })

@@ -12,9 +12,7 @@
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
-      <c:if test="${param.print != 'yes' }">
-        <h:handlebars template="includes/header" context="${pageContext}"/>
-      </c:if>
+      <h:handlebars template="includes/header" context="${pageContext}"/>
       <div id="mainContent" class="detailPage providerReadOnly">
         <div class="contentWidth">
           <div class="head">

@@ -4324,46 +4324,6 @@ input.passwordNormalInput{
   padding-bottom: 10px;
 }
 
-/*view copy modal*/
-#new-modal #viewCopyModal{
-  margin-left:-15px;
-  width:960px;
-  margin-bottom:100px;
-}
-#new-modal #viewCopyModal .modal-title{
-  background:url(../i/print-header.png) repeat-x 0 0 #fff;
-  padding-top:37px;
-  line-height:normal;
-  padding:37px 35px 0;
-  width:890px;
-}
-#new-modal #viewCopyModal .modal-title a, #new-modal #viewCopyModal .modal-title a:visited{
-  float: right;
-  margin-left: 6px;
-  width: auto;
-  height: auto;
-  margin-top: 0;
-}
-#new-modal #viewCopyModal .copyContentArea{
-  height: 400px;
-  line-height: 400px;
-  border: 1px solid #d2d2d2;
-  text-align: center;
-  color: #CCCCCC;
-  font-family: Arial,serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: bold;
-}
-#new-modal #viewCopyModal .modal-content{
-  background: #fff;
-  padding: 0 30px 50px 30px;
-}
-#new-modal #viewCopyModal .modal-title a img {
-  float: left;
-  margin: 6px 5px 5px -4px;
-}
-
 .detailPanel.pendingPanel .col1{
   width: 33%;
 }

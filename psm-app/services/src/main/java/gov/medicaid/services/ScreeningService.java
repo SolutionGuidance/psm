@@ -18,10 +18,11 @@ package gov.medicaid.services;
 
 import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.ScreeningSchedule;
+import gov.medicaid.entities.ScreeningSearchCriteria;
+import gov.medicaid.entities.SearchResult;
 
 import javax.jws.WebService;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -56,11 +57,16 @@ public interface ScreeningService {
             ScreeningSchedule screeningSchedule
     ) throws PortalServiceException;
 
-    Optional<AutomaticScreening> findScreening(
-            long screeningId
-    );
+    Optional<AutomaticScreening> findScreening(long screeningId);
 
-    List<AutomaticScreening> getAllScreenings();
+    /**
+     * @param criteria - screening search criteria
+     * @return list of matched screenings or empty list
+     * @throws PortalServiceRuntimeException
+     */
+    SearchResult<AutomaticScreening> getScreenings(
+            ScreeningSearchCriteria criteria
+    ) throws PortalServiceRuntimeException;
 
     void saveScreening(AutomaticScreening screening);
 }

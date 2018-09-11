@@ -239,6 +239,19 @@ $(document).ready(function () {
     }
   });
 
+  // Screenings page
+  function submitScreeningsForm(status) {
+    $('#status').val(status);
+    $('#screening_form input[name=pageSize]').val(0);
+    $('#screening_form input[name=pageNumber]').val(0);
+    $('#screening_form').submit();
+  }
+
+  $('.screeningsAllTab').click(submitScreeningsForm.bind(undefined, 'all'));
+  $('.screeningsPassedTab').click(submitScreeningsForm.bind(undefined, 'pass'));
+  $('.screeningsFailedTab').click(submitScreeningsForm.bind(undefined, 'fail'));
+  $('.screeningsErrorsTab').click(submitScreeningsForm.bind(undefined, 'error'));
+
   $("#providerTypeForm").validate({
         rules: {
           name: {

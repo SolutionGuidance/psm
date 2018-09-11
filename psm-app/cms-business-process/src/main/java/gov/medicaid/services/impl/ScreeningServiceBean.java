@@ -17,9 +17,15 @@
 package gov.medicaid.services.impl;
 
 import gov.medicaid.entities.AutomaticScreening;
+import gov.medicaid.entities.AutomaticScreening.Result;
 import gov.medicaid.entities.ScreeningSchedule;
+import gov.medicaid.entities.ScreeningSearchCriteria;
+import gov.medicaid.entities.SearchResult;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ScreeningService;
+import gov.medicaid.services.util.Util;
+
+import org.apache.commons.lang3.EnumUtils;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -28,8 +34,16 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.PersistenceException;
+import javax.persistence.TypedQuery;
+
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * This class provides an implementation of the ScreeningDAO as a local EJB.
@@ -79,7 +93,7 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
      *
      * @param screeningSchedule - the screening schedule
      * @throws IllegalArgumentException - If screeningSchedule is null
-     * @throws PortalServiceException   - If there are any errors during the execution of this method
+     * @throws PortalServiceException - If there are any errors during the execution of this method
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void saveScreeningSchedule(ScreeningSchedule screeningSchedule) throws PortalServiceException {
@@ -108,11 +122,94 @@ public class ScreeningServiceBean extends BaseService implements ScreeningServic
         );
     }
 
+    /**
+     * Get all screenings or just some of them, filtered by date, status, etc.
+     *
+     * @param params - Filter condition based on date or status or both
+     * @return list of screenings matching filter condition
+     */
     @Override
-    public List<AutomaticScreening> getAllScreenings() {
-        return getEm()
-                .createQuery("FROM AutomaticScreening", AutomaticScreening.class)
-                .getResultList();
+    public SearchResult<AutomaticScreening> getScreenings(
+            ScreeningSearchCriteria criteria
+    ) {
+        List<String> clauseList = new ArrayList<>();
+        Map<String, Object> bindParams = new HashMap<>();
+
+        addStatus(clauseList, bindParams, criteria);
+        addDateRange(clauseList, bindParams, criteria);
+
+        String queryString = buildQueryString(clauseList);
+        String countQueryString = "SELECT count(*) " + queryString;
+
+        TypedQuery<AutomaticScreening> query = getEm()
+                .createQuery(queryString, AutomaticScreening.class);
+        bindParams.forEach((k, v) -> query.setParameter(k, v));
+        if (criteria.getPageSize() > 0) {
+            int offset = (criteria.getPageNumber() - 1) * criteria.getPageSize();
+            query.setFirstResult(offset);
+            query.setMaxResults(criteria.getPageSize());
+        }
+
+        TypedQuery<Long> countQuery = getEm()
+                .createQuery(countQueryString, Long.class);
+        bindParams.forEach((k, v) -> countQuery.setParameter(k, v));
+
+        SearchResult<AutomaticScreening> results = new SearchResult<>();
+        results.setPageNumber(criteria.getPageNumber());
+        results.setPageSize(criteria.getPageSize());
+
+        results.setTotal(((Number) countQuery.getSingleResult()).intValue());
+        results.setItems(query.getResultList());
+        return results;
+    }
+
+    private void addStatus(
+            List<String> clauseList,
+            Map<String, Object> bindParams,
+            ScreeningSearchCriteria criteria
+    ) {
+        if (Util.isNotBlank(criteria.getStatus()) &&
+                EnumUtils.isValidEnum(Result.class, criteria.getStatus().toUpperCase())
+        ) {
+            clauseList.add("result in (:status)");
+            bindParams.put("status", Result.valueOf(criteria.getStatus().toUpperCase()));
+        }
+    }
+
+    private void addDateRange(
+            List<String> clauseList,
+            Map<String, Object> bindParams,
+            ScreeningSearchCriteria criteria
+    ) {
+        if (criteria.getStartDate() != null && criteria.getEndDate() != null) {
+            clauseList.add("created_at >= :startDate AND created_at < :endDate");
+            bindParams.put("startDate", criteria.getStartDate());
+            bindParams.put("endDate",
+                    Date.from(
+                            criteria.getEndDate()
+                                    .toInstant()
+                                    .atZone(ZoneId.systemDefault())
+                                    .toLocalDate()
+                                    .plusDays(1)
+                                    .atStartOfDay(ZoneId.systemDefault()).toInstant()
+                    )
+            );
+        }
+    }
+
+    private String buildQueryString(
+            List<String> clauseList
+    ) {
+        String clause = clauseList.stream()
+                .map(i -> i.toString())
+                .collect(Collectors.joining(" And "));
+
+        StringBuilder sql = new StringBuilder("FROM AutomaticScreening");
+        if (clause.length() > 0) {
+            sql.append(" WHERE ");
+            sql.append(clause);
+        }
+        return sql.toString();
     }
 
     @Override

@@ -3,6 +3,8 @@
 <html lang="en-US">
   <c:set var="title" value="Screenings"/>
   <c:set var="activeTabScreenings" value="true" />
+  <fmt:formatDate value="${startDate}" pattern="MM/dd/yyyy" var="searchStartDate" />
+  <fmt:formatDate value="${endDate}" pattern="MM/dd/yyyy" var="searchEndDate" />
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -23,11 +25,23 @@
           <div class="clearFixed"></div>
 
             <div class="detailPanel screeningsDateRange">
-              <form
+              <form:form
+                id="screening_form"
                 action="${ctx}/agent/screenings"
-                class="paginationForm"
-                :method "get"
+                cssClass="paginationForm"
+                modelAttribute="criteria"
+                method="get"
               >
+
+                <form:hidden path="pageSize" />
+                <form:hidden path="pageNumber" />
+
+                <input
+                  type="hidden"
+                  id="status"
+                  name="status"
+                  value="${activeTab}"
+                />
                 <div class="row rowDateRange">
                   <span class="dateWrapper floatL">
                     <input
@@ -38,7 +52,7 @@
                       placeholder="Start Date"
                       class="date"
                       type="text"
-                      value=""
+                      value="${searchStartDate}"
                     />
                   </span>
                   <span class="floatL">-</span>
@@ -51,7 +65,7 @@
                       placeholder="End Date"
                       class="date"
                       type="text"
-                      value=""
+                      value="${searchEndDate}"
                     />
                   </span>
                   <input
@@ -60,7 +74,7 @@
                     class="purpleBtn screeningsTabDatesBtn"
                   />
                 </div>
-              </form>
+              </form:form>
             </div>
 
           <div class="tabSection" id="enrollmentSection">

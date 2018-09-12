@@ -443,6 +443,7 @@
     tooltip.append("div").attr("class", "tooltipDescription");
     tooltip.append("div").attr("class", "tooltipRequirements");
     tooltip.append("div").attr("class", "tooltipIssues");
+    tooltip.append("div").attr("class", "tooltipSubfeatures");
     // tooltip.append("div").attr("class", "tooltipPercentDone");
 
     function hideDarkBackground() {
@@ -508,6 +509,7 @@
         tooltip.select(".tooltipDescription").html(d.description);
         tooltip.select(".tooltipRequirements").html(d.requirements.length + " Requirements");
         tooltip.select(".tooltipIssues").html(d.issueCount + " Issue Tickets");
+        tooltip.select(".tooltipSubfeatures").html(d.subfeatures.length + " Subfeatures");
         // tooltip.select(".tooltipPercentDone").html(d.percentDone + "% done");
         tooltip.style("display", "block");
       })

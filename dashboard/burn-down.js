@@ -131,7 +131,7 @@
     overlay
       .append("h3")
       .attr("class", "overlayH3")
-      .text("Subfeatures");
+      .text("Subfeatures (" + subfeatures.length + ")");
 
     overlay
       .append("ol")

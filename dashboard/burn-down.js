@@ -134,14 +134,18 @@
       .text("Subfeatures");
 
     overlay
-      .append("ul")
+      .append("ol")
       .attr("class", "subfeaturesUl")
       .selectAll("li.subfeature")
       .data(subfeatures)
       .enter()
       .append("li")
       .attr("class", "subfeature")
-      .text(function(sf) { return sf; });
+      .text(function(subfeature, i) {
+        var count = i + 1;
+        var suffix = i < subfeatures.length - 1 ? "," : "";
+        return count + ". " + subfeature + suffix;
+      });
   }
 
   function sortFeatures(a, b) {
@@ -435,9 +439,9 @@
       .attr("class", "tooltip");
 
     tooltip.append("div").attr("class", "tooltipDescription");
+    tooltip.append("div").attr("class", "tooltipSubfeatures");
     tooltip.append("div").attr("class", "tooltipRequirements");
     tooltip.append("div").attr("class", "tooltipIssues");
-    tooltip.append("div").attr("class", "tooltipSubfeatures");
     // tooltip.append("div").attr("class", "tooltipPercentDone");
 
     function hideDarkBackground() {
@@ -476,6 +480,10 @@
         .attr("class", "overlayFeatureDescription")
         .text(d.description);
 
+      if (d.subfeatures && d.subfeatures.length > 0) {
+        renderSubfeatures(overlay, d.subfeatures);
+      }
+
       overlay
         .append("h3")
         .attr("class", "overlayH3")
@@ -486,10 +494,6 @@
       });
 
       var table = makeFeatureTable(".overlay", reqs, data.issues);
-
-      if (d.subfeatures && d.subfeatures.length > 0) {
-        renderSubfeatures(overlay, d.subfeatures);
-      }
 
       darkBackground.style("display", "block");
     }
@@ -503,13 +507,13 @@
       ])
       .on("mouseover", function(d) {
         tooltip.select(".tooltipDescription").html(d.description);
-        tooltip.select(".tooltipRequirements").html(d.requirements.length + " Requirements");
-        tooltip.select(".tooltipIssues").html(d.issueCount + " Issue Tickets");
         tooltip.select(".tooltipSubfeatures").html(
           d.subfeatures && d.subfeatures.length > 0
           ? d.subfeatures.length + " Subfeatures"
           : ""
         );
+        tooltip.select(".tooltipRequirements").html(d.requirements.length + " Requirements");
+        tooltip.select(".tooltipIssues").html(d.issueCount + " Issue Tickets");
         // tooltip.select(".tooltipPercentDone").html(d.percentDone + "% done");
         tooltip.style("display", "block");
       })

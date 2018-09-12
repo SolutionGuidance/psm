@@ -135,9 +135,8 @@ text.description {
   z-index: 10;
 }
 
-.tooltipRequirements,
-.tooltipPercentDone {
-  margin-top: 0.5rem;
+.tooltipDescription {
+  margin-bottom: 0.5rem;
 }
 
 .darkBackground {
@@ -212,6 +211,8 @@ text.description {
 
 .subfeature {
   list-style: none;
+  display: inline-block;
+  margin-right: 0.5rem;
 }
 
 .overlayCloseButton {

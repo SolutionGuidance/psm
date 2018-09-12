@@ -141,10 +141,9 @@
       .enter()
       .append("li")
       .attr("class", "subfeature")
-      .text(function(subfeature, i) {
+      .html(function(sf, i) {
         var count = i + 1;
-        var suffix = i < subfeatures.length - 1 ? "," : "";
-        return count + ". " + subfeature + suffix;
+        return '<span class="subfeatureNumber">' + count + '.</span> ' + sf;
       });
   }
 

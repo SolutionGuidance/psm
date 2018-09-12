@@ -215,6 +215,10 @@ text.description {
   margin-right: 0.5rem;
 }
 
+.subfeatureNumber {
+  font-weight: bold;
+}
+
 .overlayCloseButton {
   border: 1px solid #999;
   padding: 0.5rem 1rem;

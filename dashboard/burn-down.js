@@ -127,6 +127,29 @@
     return table;
   }
 
+  function renderSubfeatures(overlay, subfeatures) {
+    overlay
+      .append("h3")
+      .attr("class", "overlayH3")
+      .text("Subfeatures");
+
+    if (subfeatures && subfeatures.length > 0) {
+      overlay
+        .append("ul")
+        .attr("class", "subfeaturesUl")
+        .selectAll("li.subfeature")
+        .data(subfeatures)
+        .enter()
+        .append("li")
+        .attr("class", "subfeature")
+        .text(function(sf) { return sf; })
+    } else {
+      overlay
+        .append("p")
+        .text("None.")
+    }
+  }
+
   function sortFeatures(a, b) {
     // Ongoing features are last in the sort order.
     if (a.status === "Ongoing" && b.status !== "Ongoing") {
@@ -468,6 +491,8 @@
       });
 
       var table = makeFeatureTable(".overlay", reqs, data.issues);
+
+      renderSubfeatures(overlay, d.subfeatures);
 
       darkBackground.style("display", "block");
     }

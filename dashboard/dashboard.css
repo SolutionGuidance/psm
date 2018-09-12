@@ -182,6 +182,7 @@ text.description {
 .requirementsTable {
   border-top: 1px solid #999;
   border-collapse: collapse;
+  margin-bottom: 1.7rem;
 }
 
 .requirementsTableCell {
@@ -203,6 +204,14 @@ text.description {
 .completedIssueLink {
   text-decoration: line-through;
   color: #4949ef;
+}
+
+.subfeaturesUl {
+  margin-left: 0;
+}
+
+.subfeature {
+  list-style: none;
 }
 
 .overlayCloseButton {

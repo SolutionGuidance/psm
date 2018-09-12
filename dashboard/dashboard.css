@@ -178,6 +178,20 @@ text.description {
   margin-bottom: 1rem;
 }
 
+.subfeaturesUl {
+  margin-left: 0;
+}
+
+.subfeature {
+  list-style: none;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.subfeatureNumber {
+  font-weight: bold;
+}
+
 .requirementsTable {
   border-top: 1px solid #999;
   border-collapse: collapse;
@@ -203,20 +217,6 @@ text.description {
 .completedIssueLink {
   text-decoration: line-through;
   color: #4949ef;
-}
-
-.subfeaturesUl {
-  margin-left: 0;
-}
-
-.subfeature {
-  list-style: none;
-  display: inline-block;
-  margin-right: 0.5rem;
-}
-
-.subfeatureNumber {
-  font-weight: bold;
 }
 
 .overlayCloseButton {

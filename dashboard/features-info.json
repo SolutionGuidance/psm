@@ -124,9 +124,9 @@
             "feature_id": "psm-feature-016",
             "description": "Offer an API to verify provider eligibility for other systems.",
             "subfeatures": [
-                "Return searchable list of providers from PSM.",
+                "Return searchable list of providers from PSM",
                 "Update schema in order to link enrollments to providers",
-                "Return full (more detailed) information about providers from PSM.",
+                "Return full (more detailed) information about providers from PSM",
                 "Determine REST groupings and pagination policy",
                 "Coordinate API access with authorization policies",
                 "Implement any necessary schema improvements or adjustments",
@@ -192,7 +192,7 @@
             "feature_id": "psm-feature-023",
             "description": "Make reporting data available as a CSV for authorized users.",
             "subfeatures": [
-                "Determine which reports are highest-priority for states.",
+                "Determine which reports are highest-priority for states",
                 "Add UI for reports",
                 "Calculate reported data for initial set of reports",
                 "Create readable CSV and offer download link"
@@ -266,9 +266,9 @@
             "description": "Provider-initiated updates & re-screening: allow provider to update and/or add additional information and initiate re-screening of their enrollment.",
             "subfeatures": [
                 "Determine rules for application updates",
-                "Add new workflow for a provider to edit and re-submit an existing application.",
-                "Indicate that an application has been re-submitted in reviewer workflow.",
-                "Add documentation and help text for resubmission.",
+                "Add new workflow for a provider to edit and re-submit an existing application",
+                "Indicate that an application has been re-submitted in reviewer workflow",
+                "Add documentation and help text for resubmission",
                 "Separate this into a management module"
             ],
             "startDate": "2018-07-01",
@@ -410,7 +410,7 @@
                 "Research NPPES current search process and NPI assignment",
                 "Gain data access to NPPES",
                 "Link to NPPES",
-                "Add cross-check between NPI and address in PSM and NPPES."
+                "Add cross-check between NPI and address in PSM and NPPES"
             ],
             "startDate": "2018-10-01",
             "completedDate": "2018-12-31",
@@ -510,7 +510,7 @@
             "description": "Advanced risk scoring: Flag providers as high risk based on history of fraud and other risk factors.",
             "subfeatures": [
                 "Track historical LEIE data",
-                "Research how states would like us to determine risk.",
+                "Research how states would like us to determine risk",
                 "Add UI for high risk explanation",
                 "Track historical EPLS data",
                 "Track historical PECOS data"
@@ -621,7 +621,7 @@
                 "Configure PSM Drools client to talk to external server",
                 "Import business rules to external server",
                 "Increase configurability of PSM code so rules changes are reflected immediately, where possible",
-                "Clearly determine and document which changes can be made in the rules server and which require code changes.",
+                "Clearly determine and document which changes can be made in the rules server and which require code changes",
                 "Document how to change rules in the rules engine",
                 "Auto-restart PSM on rules change"
             ],
@@ -768,8 +768,8 @@
             "feature_id": "psm-feature-043",
             "description": "Research and handle required information for managed care plan screening.",
             "subfeatures": [
-                "Research how states use managed care plans.",
-                "Add managed care option to PSM workflow.",
+                "Research how states use managed care plans",
+                "Add managed care option to PSM workflow",
                 "Add managed care user role to PSM",
                 "Add alerts for managed care plan users",
                 "Add search parameters relevant to managed care plans",
@@ -805,9 +805,9 @@
                 "Research data sharing practices of state licensing board 1",
                 "Link PSM to state licensing board 1",
                 "Add space for manual license checks",
-                "Research data access issues around sharing state licensing information with bordering or non-bordering states.",
-                "Add technical capacity to share state license information across states.",
-                "Add permissions to allow a user role to share licensing data with another state on a board-by-board basis."
+                "Research data access issues around sharing state licensing information with bordering or non-bordering states",
+                "Add technical capacity to share state license information across states",
+                "Add permissions to allow a user role to share licensing data with another state on a board-by-board basis"
             ],
             "startDate": "2019-07-01",
             "completedDate": "2019-09-30",
@@ -3079,7 +3079,9 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "",
-            "issues": [],
+            "issues": [
+                406
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -5701,6 +5703,32 @@
         }
     },
     "issues": {
+        "1087": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1087,
+            "url": "https://github.com/solutionguidance/psm/issues/1087",
+            "title": "Qualified Professional summary JSP is not shown",
+            "description": "The `summary/qualified_professional.jsp` is not being displayed:\r\n\r\n![screenshot_2018-09-07 qualified professional 2](https://user-images.githubusercontent.com/1091693/45329513-d1eea080-b52e-11e8-929b-3d1d8fb91feb.png)\r\n\r\nTo reproduce, submit a Personal Care Provider Organization application and then view it as either a service admin or provider.  The JSP is also not shown on the summary page when initially submitting the application.  (Discovered while working on PR #1085.)",
+            "status": "NotStarted",
+            "startDate": "2018-09-10",
+            "completedDate": null,
+            "labels": [
+                "ux"
+            ]
+        },
+        "1086": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1086,
+            "url": "https://github.com/solutionguidance/psm/issues/1086",
+            "title": "Complete goovy linter addition",
+            "description": "As the title says.  @jasonaowen did some work to add codenarc in a WIP PR (#1076), but due to time constraints, it remains incomplete.  Rather than keep the PR around forever, this issue is created to track and remind future maintainers.\r\n\r\nPlease close if substantial changes or a different direction are required in the future.\r\n\r\nRelated to #456 ",
+            "status": "NotStarted",
+            "startDate": "2018-09-08",
+            "completedDate": null,
+            "labels": []
+        },
         "1082": {
             "owner": "solutionguidance",
             "repos": "psm",
@@ -5874,9 +5902,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/1032",
             "title": "Prevent stale anti-CSRF tokens on login page",
             "description": "Anti-CSRF tokens were introduced in #503 as a security measure (and as part of upgrading to a more recent version of Spring). At the time, I went with the default behavior and applied it evenly to all non-`GET` requests.\r\n\r\nThe login page has a slightly different UX and threat profile than the rest of the forms, though. In particular, with most forms, the anti-CSRF token's expiration time is equal to or greater than the login session timeout, so that you are logged out for inactivity before a page's token expires. The login page, on the other hand, should be able to be loaded, wait for a long time, and then successfully log in, rather than face an expired token error.\r\n\r\n[The Spring docs specifically call this out](https://docs.spring.io/spring-security/site/docs/current/reference/html/csrf.html#csrf-login):\r\n\r\n> A common technique to protect the log in form is by using a JavaScript function to obtain a valid CSRF token before the form submission. By doing this, there is no need to think about session timeouts ... because the session is created right before the form submission ..., so the user can stay on the login page and submit the username/password when he wants.\r\n\r\nApply this technique, or one like it, to the login page, so as to prevent stale CSRF token errors on login.\r\n\r\nFound by @kfogel during a demo.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-08-14",
-            "completedDate": null,
+            "completedDate": "2018-09-10",
             "labels": [
                 "backend",
                 "bug",
@@ -6421,7 +6449,7 @@
             "number": 933,
             "url": "https://github.com/solutionguidance/psm/issues/933",
             "title": "Improve the admin Screenings page",
-            "description": "PR #844 added a Screenings tab for service admins as an interface for monthly re-screenings (see #758 and #740).  The following are needed to bring this Screenings page up to full functionality.  Open additional issues for these items as needed, and use this issue as an overview to track overall progress.\r\n\r\n- Allow searching/filtering the screenings by:\r\n    - date range\r\n    - result status (passed, failed, error)\r\n    - most recent or not (for a given provider and screening type)\r\n    - re-screening or initial screening.  (Corresponds to application status: pending vs approved.)\r\n    - maybe other criteria?\r\n\r\n- Allow getting NPI, provider name, provider type, application ID (for e.g. use by action links), from the database.\r\n- Make the Failed, Passed, and Errors tabs functional (depends on search by result status).\r\n- When the page first loads, automatically enter and use a date range to show all screenings in the past month to date.\r\n- Format dates for better readability.\r\n- Add a \"View Application\" action link.\r\n- Make the 'result' text a link that shows details about the result.  (Same as in the 'review application' workflow.)\r\n- Implement \"Auto Screen\" and \"Manual Screen\" action links.  (To share UI with the 'review application' workflow.)\r\n- Support showing the various different screening types.\r\n- Support showing the various different reasons for screenings.\r\n- Optionally show the current number of results in the tabs:  \"Failed (13)\".\r\n- Optionally add a column for application status (pending, approved, etc.) (related to filtering for re-screening or initial screening).\r\n- Probably only show most recent screening for each application by default.\r\n\r\nTo be determined: when showing the application status, do we show the current application status, the status at the time of screening, or both?",
+            "description": "PR #844 added a Screenings tab for service admins as an interface for monthly re-screenings (see #758 and #740).  \r\n\r\nThe following are needed to bring this Screenings page up to full functionality.  Open additional issues for these items as needed, and use this issue as an overview to track overall progress.\r\n\r\n- Filter functionality.  Allow filtering the screenings by:\r\n    - most recent or not (for a given provider and screening type)\r\n    - re-screening or initial screening.  (Corresponds to application status: pending vs approved.)\r\n\r\n\r\n- Make the 'result' text a link that shows details about the result.  (Same as in the 'review application' workflow.)\r\n- [Partially done.] Implement \"Auto Screen\" and \"Manual Screen\" action links.  (To share UI with the 'review application' workflow.)  These are now \"Run Again\" and \"Review\" links.  The Review link works as expected, but \"Run Again\" is not yet implemented.\r\n- Show the various different reasons for screenings in the \"Reason\" column. I.e. 'new application', 'monthly re-screening', etc.\r\n- Probably only show most recent screening for each application by default.\r\n- Optionally show the current number of results in the tabs:  \"Failed (13)\".\r\n- Optionally add a column for application status (pending, approved, etc.) (related to filtering for re-screening or initial screening).  To be determined: when showing the application status, do we show the current application status, the status at the time of screening, or both?\r\n\r\n**Already done in PR #1080:**\r\n\r\n- Allow searching/filtering the screenings by:\r\n    - date range\r\n    - result status (passed, failed, error)\r\n\r\n- Make the Failed, Passed, and Errors tabs functional (depends on search by result status).\r\n- When the page first loads, automatically enter and use a date range to show all screenings in the past month to date.\r\n- Format dates for better readability.\r\n- Add a \"View Application\" action link.  (This is the \"View\" link.)\r\n- [Partially done, see above.] Implement \"Auto Screen\" and \"Manual Screen\" action links.  (To share UI with the 'review application' workflow.) \r\n- Support showing the various different screening types.",
             "status": "NotStarted",
             "startDate": "2018-07-06",
             "completedDate": null,

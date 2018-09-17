@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<div class="summaryPrint">
+<div>
     <div class="tabContent" id="tabAgreement">
 	    <div id="viewAgreementPanel">
 		<div class="sideBorder">

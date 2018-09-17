@@ -18,7 +18,9 @@
     <button class="greyBtn" type="submit" name="save">
       Save as Draft
     </button>
-    <a href="javascript:printThis();" class="greyBtn printModalBtn iconPrint">Print</a>
+    <a class="greyBtn iconPdf" href="<c:url value="/provider/enrollment/export" />">
+      Export to PDF
+    </a>
   </div>
 
   <!-- /.buttonBox -->
@@ -64,7 +66,9 @@
     <button class="greyBtn" type="submit" name="save">
       Save as Draft
     </button>
-    <a href="javascript:printThis();" class="greyBtn printModalBtn iconPrint">Print</a>
+    <a class="greyBtn iconPdf" href="<c:url value="/provider/enrollment/export" />">
+      Export to PDF
+    </a>
   </div>
   <!-- /.buttonBox -->
 </form>

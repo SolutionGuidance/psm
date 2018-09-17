@@ -12,17 +12,14 @@
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
-      <c:if test="${param.print != 'yes' }">
-        <h:handlebars template="includes/header" context="${pageContext}"/>
-      </c:if>
+      <h:handlebars template="includes/header" context="${pageContext}"/>
       <div id="mainContent" class="detailPage providerReadOnly">
         <div class="contentWidth">
           <div class="head">
             <h1>View Enrollment Details</h1>
             <a class="greyBtn iconPdf" href="<c:url value="/provider/enrollment/export" />">Export to PDF</a>
-            <a class="greyBtn iconPrint" href="javascript:window.print();">Print</a>
           </div>
-          <div id="printModal" class="tabSection">
+          <div class="tabSection">
 
             <div class="detailPanel" style="width: 940px;">
               <div class="section">
@@ -64,7 +61,6 @@
               <div class="br"></div>
             </div>
 
-            <%@include file="/WEB-INF/pages/provider/enrollment/print_modal.jsp" %>
           </div>
           <!-- /.tabSection -->
         </div>

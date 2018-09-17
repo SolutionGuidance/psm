@@ -150,7 +150,6 @@
                   <%@ include file="/WEB-INF/pages/includes/pagination_details_wrapper.jsp" %>
                   <div class="right">
                     <a id="exportEnrollmentsToPDF" href="javascript:;" class="greyBtn iconPdf">Export to PDF</a>
-                    <a id="printEnrollments" href="javascript:;" class="greyBtn iconPrint">Print</a>
                   </div>
                 </div>
                 <!-- /.pagination -->

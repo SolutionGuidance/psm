@@ -138,9 +138,6 @@
       <c:url var="viewTicketLink" value="/provider/enrollment/view">
         <c:param name="id" value="${item.ticketId}" />
       </c:url>
-      <c:url var="previewTicketLink" value="/provider/enrollment/preview">
-        <c:param name="id" value="${item.ticketId}" />
-      </c:url>
       <c:url var="exportTicketLink" value="/provider/enrollment/exportTicket">
         <c:param name="id" value="${item.ticketId}" />
       </c:url>
@@ -201,12 +198,6 @@
               </a>
             </c:otherwise>
           </c:choose>
-          <a
-            href="${previewTicketLink}"
-            class="actionLink printModalBtn printMe"
-          >
-            Print
-          </a>
           <a
             class="actionLink"
             href="${exportTicketLink}"

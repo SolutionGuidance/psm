@@ -412,23 +412,6 @@ public class EnrollmentController extends BaseController {
         return doSearch("admin/service_agent_search_enrollments_" + view, criteria);
     }
 
-    @RequestMapping({
-            "/agent/enrollment/print",
-            "/provider/print"
-    })
-    public ModelAndView print(
-            @ModelAttribute("criteria") ProviderSearchCriteria criteria,
-            HttpServletResponse response
-    ) throws PortalServiceException {
-
-        nocache(response);
-        if (criteria == null) {
-            throw new IllegalArgumentException("A valid criteria must be provided.");
-        }
-
-        return doSearch("admin/service_agent_print_enrollments", criteria);
-    }
-
     /**
      * This method is used to supply the lookup values.
      *
@@ -498,16 +481,9 @@ public class EnrollmentController extends BaseController {
      */
     @RequestMapping("/agent/enrollment/details")
     public ModelAndView getDetails(
-            @RequestParam("id") long ticketId,
-            @RequestParam(value = "print", required = false) String isPrint
+            @RequestParam("id") long ticketId
     ) throws PortalServiceException {
-        if ("yes".equals(isPrint)) {
-            ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/reviewPrint?id=" + ticketId);
-            return mv;
-        } else {
-            ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/view?id=" + ticketId);
-            return mv;
-        }
+        return new ModelAndView("redirect:/provider/enrollment/view?id=" + ticketId);
     }
 
     /**

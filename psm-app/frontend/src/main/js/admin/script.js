@@ -30,11 +30,6 @@ $(document).ready(function () {
     window.print();
   }
 
-  $(".printEnrollment").click(function () {
-    var url = ctx + '/agent/enrollment/details?id=' + $(this).attr('rel') + '&print=yes';
-    window.open(url, '', 'height=800, width=800, top=50, left=50, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
-  });
-
   $("#exportEnrollmentsToPDF").click(function () {
     setupSearchFormCriteria();
     $("#exportForm").html($('#searchForm').html());
@@ -43,17 +38,8 @@ $(document).ready(function () {
     $("#exportForm").submit();
   });
 
-  $("#printEnrollments").click(function () {
-    setupSearchFormCriteria();
-    $("#printForm").html($('#searchForm').html());
-    $('#printForm .searchFormPageNumber').val("1");
-    $('#printForm .searchFormPageSize').val("-1");
-    $("#printForm").submit();
-  });
-
   function setupSearchFormCriteria() {
     $("#exportForm").html('');
-    $("#printForm").html('');
     $("#npiSearchField").val($.trim($("#npiInput").val()));
     $("#submissionDateStartSearchField").val($("#submissionDateStartInput").val());
     $("#submissionDateEndSearchField").val($("#submissionDateEndInput").val());
@@ -535,11 +521,6 @@ $(document).ready(function () {
 
   /*new js*/
 
-  $('.printModalBtn').click(function () {
-      addressCloseModal();
-      addressLoadModal('#printModal');
-    });
-
   setUserHelpClickHandler(
     'a.agreementsAddendumsHelpLink',
     '/help/service-admin-help.html',
@@ -584,10 +565,6 @@ $(document).ready(function () {
 
   $('.tabHead,.tabFoot').each(function () {
     $(this).css('width', ($('.contentWidth').width() - 2) + 'px');
-  });
-
-  $('#new-modal #printModal .modal-content .tabHead,#new-modal #printModal .modal-content .tabFoot').each(function () {
-    $(this).css('width', ($('#new-modal #printModal .modal-content .tabContent').width() - 2) + 'px');
   });
 
   $('.detailPanel,.filterPanel .floatW').each(function () {

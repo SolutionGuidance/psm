@@ -217,13 +217,6 @@
           </c:if>
 
           <a
-            rel="${item.ticketId}"
-            class="actionLink printEnrollment"
-            href="javascript:;"
-          >
-            Print
-          </a>
-          <a
             class="actionLink"
             href="${ctx}/provider/enrollment/exportTicket?id=${item.ticketId}"
           >

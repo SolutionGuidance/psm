@@ -9,11 +9,6 @@
 $(document).ready(function () {
   /*new js*/
 
-  $('.printModalBtn').click(function () {
-      addressCloseModal();
-      addressLoadModal('#printModal');
-    });
-
   $('.editInfo').click(function () {
     $(this).parents('.tabContent').find('.editInfo').hide();
     $(this).parents('.tabContent').find('.plainInformation').hide();
@@ -93,10 +88,6 @@ $(document).ready(function () {
 
   $('.tabHead,.tabFoot').each(function () {
     $(this).css('width', ($('.contentWidth').width() - 2) + 'px');
-  });
-
-  $('#new-modal #printModal .modal-content .tabHead,#new-modal #printModal .modal-content .tabFoot').each(function () {
-    $(this).css('width', ($('#new-modal #printModal .modal-content .tabContent').width() - 2) + 'px');
   });
 
   $('.detailPanel,.filterPanel .floatW').each(function () {
@@ -183,7 +174,6 @@ $(document).ready(function () {
   $('.tabSection .tab').click(function (e) {
     $(this).parent().find('.active').removeClass('active');
     $('.tabContent').hide();
-    $('#new-modal #printModal .modal-content .tabContent').show();
     $(this).addClass('active');
     $($(this).attr('href')).show();
 

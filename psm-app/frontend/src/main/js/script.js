@@ -22,16 +22,6 @@ var setTitleVUserHelpClickHandler = setUserHelpClickHandler.bind(
 $(document).ready(function () {
   /*new js*/
 
-  //	$('.printModalBtn').click(function(){
-  //		addressCloseModal();
-  //        addressLoadModal('#printModal');
-  //    });
-
-  $('.printMe').click(function () {
-    printThis($(this).attr("href"));
-    return false;
-  });
-
   $('.editInfo').click(function () {
       $(this).parents('.tabContent').find('.editInfo').hide();
       $(this).parents('.tabContent').find('.plainInformation').hide();
@@ -112,10 +102,6 @@ $(document).ready(function () {
 
   $('.tabHead,.tabFoot').each(function () {
       $(this).css('width', ($('.contentWidth').width() - 2) + 'px');
-    });
-
-  $('#new-modal #printModal .modal-content .tabHead,#new-modal #printModal .modal-content .tabFoot').each(function () {
-      $(this).css('width', ($('#new-modal #printModal .modal-content .tabContent').width() - 2) + 'px');
     });
 
   $('.detailPanel,.filterPanel .floatW').each(function () {
@@ -2162,22 +2148,6 @@ function openModal(itemId) {
 function removeModal() {
   $('#modalBackground').hide();
   $('#new-modal>div').hide();
-}
-
-function printThis(url) {
-  $.ajax({
-    url: url || '/cms/provider/enrollment/print',
-    type: "get",
-    dataType: "html",
-    success: function (response, textStatus, jqXHR) {
-      $('#printModal .modal-content').html(response);
-      openModal('#printModal');
-    },
-
-    error: function (jqXHR, textStatus, errorThrown) {
-      alert("There was an error encountered while getting print preview.");
-    }
-  });
 }
 
 function updateSpecialties() {

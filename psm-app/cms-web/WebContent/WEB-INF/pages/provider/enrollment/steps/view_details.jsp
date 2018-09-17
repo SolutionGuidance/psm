@@ -31,9 +31,6 @@
             <a class="greyBtn iconPdf" href="<c:url value="/provider/enrollment/export" />">
               Export to PDF
             </a>
-            <a class="greyBtn printModalBtn iconPrint" href="javascript:printThis();">
-              Print
-            </a>
             <c:if test="${showReviewLink}">
               <a class="greyBtn" href="<c:url value="/agent/enrollment/screeningReview?id=${enrollment.objectId}" />">
                 Review
@@ -95,7 +92,6 @@
     <!-- /#modalBackground-->
     <div id="modalBackground"></div>
     <div id="new-modal">
-      <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/print_modal.jsp" %>
       <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/stale_ticket.jsp" %>
       <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/superseded_ticket.jsp" %>
       <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/submit_enrollment.jsp" %>

@@ -52,13 +52,7 @@
           <div class="clear"></div>
         </div>
         <!-- /#wrapper -->
-        <!-- /#modalBackground-->
-        <div id="modalBackground"></div>
-        <div id="new-modal">
 
-          <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/print_modal.jsp" %>
-
-        </div>
       </body>
     </html>
   </c:when>

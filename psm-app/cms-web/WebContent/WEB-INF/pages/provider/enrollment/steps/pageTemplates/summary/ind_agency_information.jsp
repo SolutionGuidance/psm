@@ -1,3 +1,4 @@
+<%-- Used for Personal Care Assistant application --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <c:if test="${requestScope['_11_bound'] eq 'Y'}">
     <div class="practiceSection">

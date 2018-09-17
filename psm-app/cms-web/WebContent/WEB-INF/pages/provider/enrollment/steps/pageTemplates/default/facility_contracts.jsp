@@ -1,3 +1,4 @@
+<%-- Used in County Contracted Mental Health Rehab applications --%>
 <%@page import="gov.medicaid.binders.ProviderTypeFormBinder"%>
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
@@ -23,7 +24,6 @@
                     <label for="beginDate_adultRehabilitativeMentalHealthServices_${formName}">Begin Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
-                    <span class="floatL"><b>:</b></span>
                                 <span class="dateWrapper floatL">
                         <c:set var="formName" value="_34_beginDate_0"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -37,7 +37,6 @@
                     <label for="endDate_adultRehabilitativeMentalHealthServices_${formName}">End Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
-                    <span class="floatL"><b>:</b></span>
                                 <span class="dateWrapper floatL">
                         <c:set var="formName" value="_34_endDate_0"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -49,7 +48,6 @@
             <div class="clear"></div>
             <div class="row requireField">
                 <label for="certification_adultRehabilitativeMentalHealthServices_${formName}">Certification <span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_34_attachment_0"></c:set>
                 <input id="certification_adultRehabilitativeMentalHealthServices_${formName}" type="file" class="fileUpload" name="${formName}" />
                 <c:set var="formName" value="_34_filename_0"></c:set>
@@ -84,7 +82,6 @@
                     <label for="ctss_beginDate_${formName}">Begin Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
-                    <span class="floatL"><b>:</b></span>
                                 <span class="dateWrapper floatL">
                         <c:set var="formName" value="_34_beginDate_1"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -98,7 +95,6 @@
                     <label for="ctss_endDate_${formName}">End Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
-                    <span class="floatL"><b>:</b></span>
                                 <span class="dateWrapper floatL">
                         <c:set var="formName" value="_34_endDate_1"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -110,7 +106,6 @@
             <div class="clear"></div>
             <div class="row requireField">
                 <label for="ctss_certification_${formName}">Certification <span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_34_attachment_1"></c:set>
                 <input id="ctss_certification_${formName}" type="file" class="fileUpload" name="${formName}" />
                 <c:set var="formName" value="_34_filename_1"></c:set>
@@ -145,7 +140,6 @@
                     <label for="adultCrisisAssessment_beginDate_${formName}">Begin Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
-                    <span class="floatL"><b>:</b></span>
                                 <span class="dateWrapper floatL">
                         <c:set var="formName" value="_34_beginDate_2"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -159,7 +153,6 @@
                     <label for="adultCrisisAssessment_endDate_${formName}">End Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
-                    <span class="floatL"><b>:</b></span>
                                 <span class="dateWrapper floatL">
                         <c:set var="formName" value="_34_endDate_2"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -171,7 +164,6 @@
             <div class="clear"></div>
             <div class="row requireField">
                 <label for="adultCrisisAssessment_contract_${formName}">County Contract <span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_34_attachment_2"></c:set>
                 <input id="adultCrisisAssessment_contract_${formName}" type="file" class="fileUpload" name="${formName}" />
                 <c:set var="formName" value="_34_filename_2"></c:set>
@@ -206,7 +198,6 @@
                     <label for="adultCrisisStabilization_beginDate_${formName}">Begin Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
-                    <span class="floatL"><b>:</b></span>
                                 <span class="dateWrapper floatL">
                         <c:set var="formName" value="_34_beginDate_3"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -220,7 +211,6 @@
                     <label for="adultCrisisStabilization_endDate_${formName}">End Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
-                    <span class="floatL"><b>:</b></span>
                                 <span class="dateWrapper floatL">
                         <c:set var="formName" value="_34_endDate_3"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -232,7 +222,6 @@
             <div class="clear"></div>
             <div class="row requireField">
                 <label for="adultCrisisStabilization_contract_${formName}">County Contract <span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_34_attachment_3"></c:set>
                 <input id="adultCrisisStabilization_contract_${formName}" type="file" class="fileUpload" name="${formName}" />
                 <c:set var="formName" value="_34_filename_3"></c:set>
@@ -267,7 +256,6 @@
                     <label for="adultCrisisShortTermResidential_beginDate_${formName}">Begin Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
-                    <span class="floatL"><b>:</b></span>
                                 <span class="dateWrapper floatL">
                         <c:set var="formName" value="_34_beginDate_4"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -281,7 +269,6 @@
                     <label for="adultCrisisShortTermResidential_endDate_${formName}">End Date <span class="required">*</span>
                         <span class="label">(MM/DD/YYYY)</span>
                     </label>
-                    <span class="floatL"><b>:</b></span>
                                 <span class="dateWrapper floatL">
                         <c:set var="formName" value="_34_endDate_4"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -293,7 +280,6 @@
             <div class="clear"></div>
             <div class="row requireField">
                 <label for="adultCrisisShortTermResidential_contract_${formName}">County Contract <span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <c:set var="formName" value="_34_attachment_4"></c:set>
                 <input id="adultCrisisShortTermResidential_contract_${formName}" type="file" class="fileUpload" name="${formName}" />
                 <c:set var="formName" value="_34_filename_4"></c:set>

@@ -1,3 +1,4 @@
+<%-- Used for Regional Treatment Center application --%>
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <c:set var="formIdPrefix" value="facility_capacity"></c:set>
@@ -11,7 +12,6 @@
                 <c:set var="formName" value="_27_numberOfBeds"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Number of Beds <span class="required">*</span></label>
-                <span class="floatL"><b>:</b></span>
                 <input id="${formIdPrefix}_${formName}" type="text" class="normalInput" name="${formName}" value="${formValue}" maxlength="6"/>
             </div>
             <div class="clearFixed"></div>
@@ -23,7 +23,6 @@
                 <label for="${formIdPrefix}_${formName}">Effective Date <span class="required">*</span>
                     <span class="label">(MM/DD/YYYY)</span>
                 </label>
-                <span class="floatL"><b>:</b></span>
                 <span class="dateWrapper floatL">
                     <input id="${formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
                 </span>

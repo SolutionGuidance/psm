@@ -37,9 +37,6 @@
               <div class="section">
                 <div class="wholeCol">
                   <label>Provider Type</label>
-                  <span class="floatL">
-                    <b>:</b>
-                  </span>
                   <span>${requestScope['_01_providerType']}</span>
                 </div>
               </div>

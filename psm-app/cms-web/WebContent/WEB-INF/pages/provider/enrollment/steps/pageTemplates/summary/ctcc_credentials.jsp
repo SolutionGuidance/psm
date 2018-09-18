@@ -4,7 +4,6 @@
     <div class="leftCol">
         <div class="row">
             <label>This clinic is a Community Health Board</label>
-            <span class="floatL"><b>:</b></span>
             <span >${requestScope['_30_chbIndicator']}</span>
         </div>
     </div>

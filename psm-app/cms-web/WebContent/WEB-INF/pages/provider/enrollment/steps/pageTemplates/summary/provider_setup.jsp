@@ -16,19 +16,16 @@
                 <div class="leftCol">
                     <div class="row">
                         <label>NPI</label>
-                        <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_20_npi_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>
                     </div>
                     <div class="row">
                         <label>Name</label>
-                        <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_20_name_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>
                     </div>
                     <div class="row">
                         <label>Contact Name</label>
-                        <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_20_contactName_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>
                     </div>
@@ -40,13 +37,11 @@
                     </div>
                     <div class="row">
                         <label>Effective Date</label>
-                        <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_20_effectiveDate_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>
                     </div>
                     <div class="row">
                         <label>Phone Number</label>
-                        <span class="floatL"><b>:</b></span>
                         <c:set var="phone1" value="_20_phone1_${status.index - 1}"></c:set>
                         <c:set var="phone2" value="_20_phone2_${status.index - 1}"></c:set>
                         <c:set var="phone3" value="_20_phone3_${status.index - 1}"></c:set>
@@ -57,7 +52,6 @@
                     </div>
                     <div class="row">
                         <label>Type</label>
-                        <span class="floatL"><b>:</b></span>
                         <c:set var="formName" value="_20_type_${status.index - 1}"></c:set>
                         <span>${requestScope[formName]}</span>
                     </div>

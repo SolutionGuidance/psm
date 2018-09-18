@@ -19,12 +19,10 @@
     <div class="wholeCol">
         <div class="row">
             <label>Highest Degree Earned</label>
-            <span class="floatL"><b>:</b></span>
             <span>${requestScope['_14_highestDegreeEarned']}</span>
         </div>
         <div class="row">
             <label>Degree Award Date</label>
-            <span class="floatL"><b>:</b></span>
             <span>${requestScope['_14_degreeAwardDate']}</span>
         </div>
     </div>

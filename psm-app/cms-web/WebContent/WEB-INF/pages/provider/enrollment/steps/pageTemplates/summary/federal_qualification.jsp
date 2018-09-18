@@ -4,7 +4,6 @@
     <div class="leftCol">
         <div class="row">
             <label>Facility Qualification</label>
-            <span class="floatL"><b>:</b></span>
             <span >${requestScope['_37_qualificationType']}</span>
         </div>
     </div>

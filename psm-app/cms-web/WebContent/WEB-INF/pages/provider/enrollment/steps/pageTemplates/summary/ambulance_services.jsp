@@ -4,7 +4,6 @@
     <div class="">
         <div class="row">
             <label>Ambulance Services</label>
-            <span class="floatL"><b>:</b></span>
             <span>
                 <c:if test="${requestScope['_39_basicServicesInd'] eq 'Y'}">
                     (Basic Service)

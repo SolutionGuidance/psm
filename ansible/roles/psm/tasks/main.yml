@@ -238,8 +238,13 @@
   args:
     chdir: "{{ psm_prefix }}"
 
+- name: Set up database by running liquibase migrations
+  shell: ./gradlew db:update
+  args:
+    chdir: "{{ psm_prefix }}/psm/psm-app"
+
 - name: Seed database
-  shell: cat psm/psm-app/db/jbpm.sql psm/psm-app/db/seed.sql | psql -h localhost -U {{ psm_db_username }} {{ psm_db_password }}
+  shell: cat psm/psm-app/db/jbpm.sql | psql -h localhost -U {{ psm_db_username }} {{ psm_db_password }}
   environment:
         PGPASSWORD: "{{ psm_db_password }}"
 

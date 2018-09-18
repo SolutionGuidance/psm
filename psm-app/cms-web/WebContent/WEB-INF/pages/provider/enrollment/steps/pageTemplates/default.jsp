@@ -4,17 +4,30 @@
 <div class="clearFixed"></div>
 <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/tabs.jsp" %>
 
-<div class="requiredInfo">
-  <span class="required">*</span> Indicates Required Fields
-</div>
-<!-- /.requiredInfo -->
-
 <form action="<c:url value="/provider/enrollment/page" />"
       id="enrollmentForm"
       method="post"
       enctype="multipart/form-data">
   <sec:csrfInput />
-  <!-- /.errorInfo -->
+
+  <div class="buttonBox topButtonBox">
+    <button class="greyBtn prevBtn" type="submit" name="previous">
+      <span class="icon">Previous</span>
+    </button>
+    <c:if test="${not isInSubmissionPage}">
+      <button class="nextBtn greyBtn" type="submit" name="next">
+        <span class="icon">Next</span>
+      </button>
+    </c:if>
+    <button class="greyBtn" type="submit" name="save">
+      Save as Draft
+    </button>
+  </div>
+
+  <div class="requiredInfo">
+    <span class="required">*</span> Indicates Required Fields
+  </div>
+
   <%@include file="/WEB-INF/pages/provider/enrollment/steps/errors.jsp" %>
 
   <c:forEach var="formName" items="${viewModel.currentFormNames}">

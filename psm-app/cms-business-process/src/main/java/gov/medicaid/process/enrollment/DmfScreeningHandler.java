@@ -7,8 +7,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import gov.medicaid.binders.XMLUtility;
+import gov.medicaid.domain.model.BeneficialOwnerType;
+import gov.medicaid.domain.model.DesignatedContactType;
 import gov.medicaid.domain.model.EnrollmentProcess;
+import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.GroupMemberType;
 import gov.medicaid.domain.model.IndividualApplicantType;
+import gov.medicaid.domain.model.PersonType;
+import gov.medicaid.domain.model.QualifiedProfessionalType;
 import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.DmfAutomaticScreening;
 import gov.medicaid.entities.Enrollment;
@@ -23,10 +29,11 @@ import org.drools.runtime.process.WorkItemManager;
 import javax.persistence.EntityManager;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import static java.util.logging.Level.WARNING;
 
@@ -59,22 +66,23 @@ public class DmfScreeningHandler extends GenericHandler {
         long enrollmentId = Long.parseLong(processModel.getEnrollment().getObjectId());
         Enrollment enrollment = entityManager.find(Enrollment.class, enrollmentId);
 
-        List<String> ssnsToSearch = new ArrayList<>();
-
-        IndividualApplicantType individual = XMLUtility.nsGetIndividual(processModel.getEnrollment());
-        ssnsToSearch.add(individual.getSocialSecurityNumber());
+        Set<String> ssnsToSearch = getSsnsInEnrollment(processModel.getEnrollment());
 
         DmfAutomaticScreening screening = new DmfAutomaticScreening();
 
         try {
             boolean found =
                 ssnsToSearch.stream()
-                .filter(Objects::nonNull)
-                .map(ssn -> {
-                    DmfResult result = searchInDmf(ssn);
-                    screening.addMatch(result.toMatch());
-                    return result.getDmfRecordPresent();
-                }).anyMatch(Boolean::booleanValue);
+                        .map(this::searchInDmf)
+                        // Terminate and restart so not partial in case of error
+                        .collect(Collectors.toList()).stream()
+                        .map(result -> {
+                            screening.addMatch(result.toMatch());
+                            return result.getDmfRecordPresent();
+                        })
+                        // Terminate and restart so all matches get added
+                        .collect(Collectors.toList()).stream()
+                        .anyMatch(Boolean::booleanValue);
 
             screening.setResult(found ? AutomaticScreening.Result.FAIL : AutomaticScreening.Result.PASS);
             XMLUtility.nsGetVerificationStatus(processModel).setNotInDmf(found ? "N" : "Y");
@@ -106,6 +114,47 @@ public class DmfScreeningHandler extends GenericHandler {
 
     public interface ExternalDmfService {
         String getResult(String ssn) throws IOException;
+    }
+
+    private Set<String> getSsnsInEnrollment(EnrollmentType enrollment) {
+        Set<String> ssnsToSearch = new TreeSet<>();
+
+        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
+        if (individual.getSocialSecurityNumber() != null) {
+            ssnsToSearch.add(individual.getSocialSecurityNumber());
+        }
+
+        XMLUtility.nsGetQualifiedProfessionals(enrollment)
+            .getQualifiedProfessional()
+            .stream()
+            .map(QualifiedProfessionalType::getSocialSecurityNumber)
+            .filter(Objects::nonNull)
+            .forEach(ssnsToSearch::add);
+
+        XMLUtility.nsGetDesignatedContactInformation(enrollment)
+            .getDesignatedContact()
+            .stream()
+            .map(DesignatedContactType::getSocialSecurityNumber)
+            .filter(Objects::nonNull)
+            .forEach(ssnsToSearch::add);
+
+        XMLUtility.nsGetMembershipInformation(enrollment)
+            .getGroupMember()
+            .stream()
+            .map(GroupMemberType::getSocialSecurityNumber)
+            .filter(Objects::nonNull)
+            .forEach(ssnsToSearch::add);
+
+        XMLUtility.nsGetOwnershipInformation(enrollment)
+            .getBeneficialOwner()
+            .stream()
+            .map(BeneficialOwnerType::getPersonInformation)
+            .filter(Objects::nonNull)
+            .map(PersonType::getSocialSecurityNumber)
+            .filter(Objects::nonNull)
+            .forEach(ssnsToSearch::add);
+
+        return ssnsToSearch;
     }
 
     private static class HttpDmfService implements ExternalDmfService {

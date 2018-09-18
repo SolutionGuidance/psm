@@ -32,7 +32,9 @@
                   <div class="row">
                     <label>Status</label>
                     <span class="floatL"><b>:</b></span>
-                    <span>${requestScope['_99_requestStatus'] eq 'Rejected' ? 'Denied' : requestScope['_99_requestStatus']}</span>
+                    <span class="enrollmentStatus">
+                      ${requestScope['_99_requestStatus'] == 'Rejected' ? 'Denied' : requestScope['_99_requestStatus']}
+                    </span>
                   </div>
                 </div>
                 <div class="col2">

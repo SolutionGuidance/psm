@@ -1,9 +1,12 @@
 package gov.medicaid.features.enrollment.ui;
 
 import gov.medicaid.features.PsmPage;
+
 import net.serenitybdd.core.annotations.findby.By;
 
 import org.openqa.selenium.WebElement;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -44,5 +47,14 @@ public class EnrollmentListPage extends PsmPage {
         WebElement td = $("//td[contains(text(),'" + npi + "')]");
         WebElement row = td.findElement(By.xpath(".."));
         return row;
+    }
+
+    public void clickActionForNpi(String npi, String action) {
+        Optional<WebElement> row = Optional.of(getTableRowForNpi(npi));
+
+        assertThat(row).isPresent();
+        assertThat(row.get().findElement(By.cssSelector(action)).isDisplayed()).isTrue();
+
+        row.get().findElement(By.cssSelector(action)).click();
     }
 }

@@ -1,13 +1,19 @@
 package gov.medicaid.features.enrollment.steps;
 
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
+
 import gov.medicaid.features.general.steps.GeneralSteps;
+
 import net.thucydides.core.annotations.Steps;
 
 import java.io.IOException;
 
 @SuppressWarnings("unused")
 public class IndividualEnrollmentStepDefinitions {
+    @Steps
+    EnrollmentStepDefinitions enrollmentStepDefinitions;
+
     @Steps
     EnrollmentSteps enrollmentSteps;
 
@@ -16,13 +22,8 @@ public class IndividualEnrollmentStepDefinitions {
 
     @When("^I am on the personal info page$")
     public void i_am_on_the_personal_info_page() {
-        enrollmentSteps.selectIndividualProviderType();
-    }
-
-    @When("^I am on the personal assistant enrollment page$")
-    public void i_am_on_the_personal_care_assistant_enrollment_page() {
-        enrollmentSteps.selectPersonalCareAssistantlProviderType();
-        enrollmentSteps.enterPersonCareAssistantIndividualPersonalInfo();
+        enrollmentSteps.prepareSpeechLanguagePathologistEnrollment();
+        enrollmentSteps.selectProviderType();
     }
 
     @When("I am on the individual provider license info page")
@@ -87,5 +88,24 @@ public class IndividualEnrollmentStepDefinitions {
     public void i_am_on_the_individual_provider_statement_page() throws IOException {
         i_am_on_the_individual_summary_page();
         enrollmentSteps.advanceFromIndividualSummaryToProviderStatementPage();
+    }
+
+    @Given("^I am going to enroll as a Personal Care Assistant$")
+    public void i_am_going_to_enroll_as_a_personal_care_assistant() {
+        enrollmentSteps.preparePersonalCareAssistantEnrollment();
+    }
+
+    @When("^I create and submit an enrollment using the PCA workflow$")
+    public void i_create_and_submit_an_enrollment_using_the_pca_workflow() throws IOException {
+        enrollmentStepDefinitions.i_have_started_an_enrollment();
+        enrollmentSteps.selectProviderType();
+        enrollmentSteps.enterPersonCareAssistantIndividualPersonalInfo();
+        enrollmentSteps.enterPersonCareAssistantLicenseInfoWithRenewalDate();
+        enrollmentSteps.uploadLicense();
+        enrollmentSteps.advanceFromPersonalCareAssistantLicenseInfoToPracticeInfo();
+        enrollmentSteps.enterPersonCareAssistantAgencyInfo();
+        enrollmentSteps.advanceFromIndividualSummaryToProviderStatementPage();
+        enrollmentStepDefinitions.i_enter_my_provider_statement();
+        enrollmentSteps.submitEnrollment();
     }
 }

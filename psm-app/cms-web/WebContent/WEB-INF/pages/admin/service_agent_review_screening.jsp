@@ -194,12 +194,12 @@
                 >
                   Cancel
                 </a>
-                <button class="greyBtn" type="submit">
+                <button class="approveBtn greyBtn" type="submit">
                   Approve
                 </button>
                 <a
                   href="${ctx}/agent/enrollment/rejectTicket?id=${id}"
-                  class="greyBtn"
+                  class="rejectBtn greyBtn"
                 >
                   Reject
                 </a>

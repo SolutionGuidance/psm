@@ -66,13 +66,13 @@
                           View
                         </a>
                         <a
-                          class="actionLink"
+                          class="editLink actionLink"
                           href="${editProfileLink}"
                         >
                           Edit
                         </a>
                         <a
-                          class="actionLink"
+                          class="actionLink renewLink"
                           href="${renewProfileLink}"
                         >
                           Renew

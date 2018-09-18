@@ -1,5 +1,7 @@
 package gov.medicaid.features.enrollment.steps;
 
+import gov.medicaid.features.enrollment.ui.CcmhrCredentialsPage;
+import gov.medicaid.features.enrollment.ui.CtccCredentialsPage;
 import gov.medicaid.features.enrollment.ui.EnrollmentDetailsPage;
 import gov.medicaid.features.enrollment.ui.EnrollmentPage;
 import gov.medicaid.features.enrollment.ui.IndividualInfoPage;
@@ -8,6 +10,7 @@ import gov.medicaid.features.enrollment.ui.LicenseInfoPage;
 import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
 import gov.medicaid.features.enrollment.ui.OrganizationSummaryPage;
 import gov.medicaid.features.enrollment.ui.OwnershipInfoPage;
+import gov.medicaid.features.enrollment.ui.PersonalCareAssistantAgencyInfoPage;
 import gov.medicaid.features.enrollment.ui.PersonalCareAssistantPersonalInfoPage;
 import gov.medicaid.features.enrollment.ui.PersonalInfoPage;
 import gov.medicaid.features.enrollment.ui.PracticeInfoPage;
@@ -15,6 +18,8 @@ import gov.medicaid.features.enrollment.ui.ProviderStatementPage;
 import gov.medicaid.features.enrollment.ui.SelectProviderTypePage;
 import gov.medicaid.features.general.ui.AllEnrollmentsPage;
 import gov.medicaid.features.general.ui.LoginPage;
+import gov.medicaid.features.general.ui.MyProfilePage;
+
 import net.thucydides.core.annotations.Step;
 
 import java.io.IOException;
@@ -31,7 +36,6 @@ public class EnrollmentSteps {
     private static final String FIRST_NAME = "FirstName";
     private static final String MIDDLE_NAME = "MiddleName";
     private static final String LAST_NAME = "LastName";
-    private static final String NPI = "0000000006";
     private static final String SSN = "000-00-0000";
     private static final LocalDate DATE_OF_BIRTH =
             LocalDate.of(1970, 1, 1);
@@ -70,15 +74,15 @@ public class EnrollmentSteps {
     private static final String RESIDENTIAL_ZIP = "55802";
     private static final String RESIDENTIAL_COUNTY = "St. Louis";
 
-
-
     private LoginPage loginPage;
+    private MyProfilePage myProfilePage;
     private AllEnrollmentsPage allEnrollmentsPage;
     private EnrollmentPage enrollmentPage;
     private SelectProviderTypePage selectProviderTypePage;
     private OrganizationInfoPage organizationInfoPage;
     private IndividualInfoPage individualInfoPage;
     private PersonalCareAssistantPersonalInfoPage personCareAssistantPersonalInfoPage;
+    private PersonalCareAssistantAgencyInfoPage personCareAssistantAgencyInfoPage;
     private PersonalInfoPage personalInfoPage;
     private LicenseInfoPage licenseInfoPage;
     private PracticeInfoPage practiceInfoPage;
@@ -87,28 +91,52 @@ public class EnrollmentSteps {
     private OrganizationSummaryPage organizationSummaryPage;
     private ProviderStatementPage providerStatementPage;
     private EnrollmentDetailsPage enrollmentDetailsPage;
+    private CtccCredentialsPage ctccCredentialsPage;
+    private CcmhrCredentialsPage ccmhrCredentialsPage;
 
     private SimpleDateFormat formFieldDateFormat = new SimpleDateFormat("MMddyyyy");
+
+    private String providerType;
+    private String npi = "0000000006";
+
+    public void setNpi(String npi) {
+        this.npi = npi;
+    }
 
     public void createEnrollment() {
         allEnrollmentsPage.clickOnNewEnrollment();
     }
 
-    public void selectOrganizationalProviderType() {
-        selectProviderTypePage.selectProviderType("Head Start");
-        licenseType = "Head Start Agency Certification";
-        selectProviderTypePage.clickNext();
-    }
-
-    public void selectIndividualProviderType() {
-        selectProviderTypePage.selectProviderType("Speech Language Pathologist");
+    public void prepareSpeechLanguagePathologistEnrollment() {
         licenseType = "Speech Language Pathologist";
-        selectProviderTypePage.clickNext();
+        providerType = "Speech Language Pathologist";
     }
 
-    public void selectPersonalCareAssistantlProviderType() {
-        selectProviderTypePage.selectProviderType("Personal Care Assistant");
+    public void preparePersonalCareAssistantEnrollment() {
+        providerType = "Personal Care Assistant";
         licenseType = "Personal Care Assistant";
+    }
+
+    public void prepareDurableMedicalEquipment() {
+        providerType = "Durable Medical Equipment";
+    }
+
+    public void prepareChildTeenCheckupClinic() {
+        providerType = "Child And Teen Checkup Clinic";
+    }
+
+    public void prepareCountyContractedMentalHealthRehab() {
+        providerType = "County Contracted Mental Health Rehab";
+    }
+
+    public void prepareHeadStart() {
+        npi = "1234567893";
+        providerType = "Head Start";
+        licenseType = "Head Start Agency Certification";
+    }
+
+    public void selectProviderType() {
+        selectProviderTypePage.selectProviderType(providerType);
         selectProviderTypePage.clickNext();
     }
 
@@ -117,7 +145,7 @@ public class EnrollmentSteps {
         personalInfoPage.enterFirstName(FIRST_NAME);
         personalInfoPage.enterMiddleName(MIDDLE_NAME);
         personalInfoPage.enterLastName(LAST_NAME);
-        personalInfoPage.enterNPI(NPI);
+        personalInfoPage.enterNPI(npi);
         personalInfoPage.enterSSN(SSN);
         personalInfoPage.enterDOB(DATE_OF_BIRTH);
         personalInfoPage.enterEmail(EMAIL);
@@ -142,6 +170,18 @@ public class EnrollmentSteps {
     }
 
     @Step
+    void enterPersonCareAssistantAgencyInfo() {
+        personCareAssistantAgencyInfoPage.enterAgencyName("Test Agency");
+        personCareAssistantAgencyInfoPage.enterAgencyId(MIDDLE_NAME);
+        personCareAssistantAgencyInfoPage.enterAgencyNpi("1111111112");
+        personCareAssistantAgencyInfoPage.enterFaxNumber("123", "456", "7890");
+        personCareAssistantAgencyInfoPage.enterAgencyContactName("Agency Contact Name");
+        personCareAssistantAgencyInfoPage.enterBackgroundStudyId("Study Id");
+        personCareAssistantAgencyInfoPage.enterClearanceDate(LocalDate.of(2000, 1, 1));
+        personCareAssistantAgencyInfoPage.clickNext();
+    }
+
+    @Step
     void advanceFromIndividualPersonalInfoToLicenseInfo() {
         personalInfoPage.clickNext();
         assertThat(personalInfoPage.getTitle()).contains("License Information");
@@ -154,12 +194,18 @@ public class EnrollmentSteps {
     }
 
     @Step
+    void advanceFromOrganizationInfoToOwnershipInfo() {
+        organizationInfoPage.clickNext();
+        assertThat(ownershipInfoPage.getTitle()).contains("Ownership Information");
+    }
+
+    @Step
     void clickAddLicense() {
         licenseInfoPage.addLicense();
     }
 
     public void enterOrganizationInfo() {
-        organizationInfoPage.setNPI("1234567893");
+        organizationInfoPage.setNPI(npi);
         organizationInfoPage.setEffectiveDate(generateEffectiveDate());
         organizationInfoPage.setDoingBusinessAs("Test DBA");
         organizationInfoPage.setLegalName("Test Name");
@@ -228,6 +274,24 @@ public class EnrollmentSteps {
         licenseInfoPage.enterIssueDate(LICENSE_ISSUE_DATE);
         licenseInfoPage.enterRenewalDate(LICENSE_RENEWAL_DATE);
         licenseInfoPage.enterIssueState(LICENSE_ISSUING_STATE_FULL);
+    }
+
+    @Step
+    public void checkCommunityHealthboard() throws IOException {
+        ctccCredentialsPage.checkCommunityHealthBoard();
+        ctccCredentialsPage.uploadSampleFile();
+    }
+
+    @Step
+    public void enterCcmhrInfo() throws IOException {
+        ccmhrCredentialsPage.addCtssCertification(
+            LICENSE_ISSUE_DATE,
+            LICENSE_RENEWAL_DATE
+        );
+        ccmhrCredentialsPage.addCrisisStabilizationContract(
+            LICENSE_ISSUE_DATE,
+            LICENSE_RENEWAL_DATE
+        );
     }
 
     @Step
@@ -357,6 +421,12 @@ public class EnrollmentSteps {
     }
 
     @Step
+    void advanceFromLicenseInfoToOwnershipInfo() {
+        licenseInfoPage.clickNext();
+        assertThat(ownershipInfoPage.getTitle()).contains("Ownership Information");
+    }
+
+    @Step
     void addIndividualOwnership() {
         ownershipInfoPage.addIndividualOwnership();
     }
@@ -380,7 +450,7 @@ public class EnrollmentSteps {
         assertThat(individualSummaryPage.getLastName())
                 .isEqualToIgnoringWhitespace(LAST_NAME);
         assertThat(individualSummaryPage.getNPI())
-                .isEqualToIgnoringWhitespace(NPI);
+                .isEqualToIgnoringWhitespace(npi);
         assertThat(individualSummaryPage.getSSN())
                 .isEqualToIgnoringWhitespace(SSN);
         assertThat(individualSummaryPage.getDOB())
@@ -466,6 +536,7 @@ public class EnrollmentSteps {
 
     @Step
     void signProviderStatement() {
+        providerStatementPage.acceptAllAgreements();
         providerStatementPage.enterProviderName(LAST_NAME);
         providerStatementPage.enterProviderTitle("Title");
     }
@@ -488,5 +559,43 @@ public class EnrollmentSteps {
     @Step
     void enterEmptyEmailAddress() {
         personalInfoPage.enterEmail("");
+    }
+
+    void renewIndividualEnrollment(String npi) {
+        myProfilePage.clickActionFor(npi, ".renewLink");
+        advanceFromIndividualPersonalInfoToLicenseInfo();
+        advanceFromIndividualLicenseInfoToPracticeInfo();
+        advanceFromIndividualPracticeInfoToSummaryPage();
+        advanceFromIndividualSummaryToProviderStatementPage();
+        checkNoOnProviderDisclosureQuestions();
+        signProviderStatement();
+        submitEnrollment();
+    }
+
+    @Step
+    void renewOrganizationalEnrollment(String npi) {
+        myProfilePage.clickActionFor(npi, ".renewLink");
+        advanceFromOrganizationInfoToLicenseInfo();
+        advanceFromOrganizationLicenseInfoToIndividualMemberInfo();
+        advanceFromOrganizationIndividualMemberInfoToOwnershipInfo();
+        setNoToAllDisclosures();
+        advanceFromOrganizationOwnershipInfoToSummaryPage();
+        advanceFromOrganizationSummaryToProviderStatementPage();
+        signProviderStatement();
+        submitEnrollment();
+    }
+
+    @Step
+    void updateIndividualEnrollment(String npi) {
+        myProfilePage.clickActionFor(npi, ".editLink");
+        personalInfoPage.enterFirstName(FIRST_NAME + " Edited");
+        submitEnrollment();
+    }
+
+    @Step
+    void updateOrganizationalEnrollment(String npi) {
+        myProfilePage.clickActionFor(npi, ".editLink");
+        organizationInfoPage.setDoingBusinessAs("Test DBA Edited");
+        submitEnrollment();
     }
 }

@@ -27,12 +27,14 @@ public class EnrollmentStepDefinitions {
     @Given("^I have started an enrollment$")
     public void i_have_started_an_enrollment() {
         generalSteps.login("p1", "p1");
+        enrollmentSteps.prepareSpeechLanguagePathologistEnrollment();
         enrollmentSteps.createEnrollment();
     }
 
     @When("^I am on the organization page$")
     public void i_am_on_the_organization_page() {
-        enrollmentSteps.selectOrganizationalProviderType();
+        enrollmentSteps.prepareHeadStart();
+        enrollmentSteps.selectProviderType();
     }
 
     @When("^I am on the facility credentials page$")
@@ -159,5 +161,99 @@ public class EnrollmentStepDefinitions {
     @Then("^I can move on from the personal info page with no errors$")
     public void i_will_move_on_from_the_personal_info_page_with_no_errors() {
         enrollmentSteps.advanceFromIndividualPersonalInfoToLicenseInfo();
+    }
+
+    @When("^I renew Individual Enrollment '(.+)'$")
+    public void i_renew_individual_enrollment(String npi) {
+        enrollmentSteps.renewIndividualEnrollment(npi);
+    }
+
+    @When("^I renew Organizational Enrollment '(.+)'$")
+    public void i_renew_organizational_enrollment(String npi) {
+        enrollmentSteps.renewOrganizationalEnrollment(npi);
+    }
+
+    @When("^I update Individual Enrollment '(.+)'$")
+    public void i_update_individual_enrollment(String npi) {
+        enrollmentSteps.updateIndividualEnrollment(npi);
+    }
+
+    @When("^I update Organizational Enrollment '(.+)'$")
+    public void i_update_organizational_enrollment(String npi) {
+        enrollmentSteps.updateOrganizationalEnrollment(npi);
+    }
+
+    @Given("^I am going to use NPI '(.+)'$")
+    public void i_am_going_to_use_npi(String npi) {
+        enrollmentSteps.setNpi(npi);
+    }
+
+    @Given("^I am going to enroll as a Durable Medical Equipment provider$")
+    public void i_am_going_to_enroll_as_a_durable_medical_equipment_provider() {
+        enrollmentSteps.prepareDurableMedicalEquipment();
+    }
+
+    @Given("^I am going to enroll as a County Contracted Mental Health Rehab$")
+    public void i_am_going_to_enroll_as_a_county_contracted_mental_health_rehab() {
+        enrollmentSteps.prepareCountyContractedMentalHealthRehab();
+    }
+
+    @When("^I create and submit an enrollment using the generic organization workflow$")
+    public void i_create_and_submit_an_enrollment_using_the_generic_organization_workflow() throws IOException {
+        generalSteps.login("p1", "p1");
+        enrollmentSteps.createEnrollment();
+        enrollmentSteps.selectProviderType();
+        enrollmentSteps.enterOrganizationInfo();
+        enrollmentSteps.enterContactInfo();
+        enrollmentSteps.advanceFromOrganizationInfoToOwnershipInfo();
+        enrollmentSteps.enterOrganizationOwnershipInfo();
+        enrollmentSteps.setNoToAllDisclosures();
+        enrollmentSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
+        enrollmentSteps.advanceFromOrganizationSummaryToProviderStatementPage();
+        enrollmentSteps.signProviderStatement();
+        enrollmentSteps.submitEnrollment();
+    }
+
+    @Given("^I am going to enroll as a Child and Teen Checkup Clinic")
+    public void i_am_going_to_enroll_as_a_child_and_teen_checkup_clinic() {
+        enrollmentSteps.prepareChildTeenCheckupClinic();
+    }
+
+    @When("^I create and submit an enrollment using the organization with healthboard workflow$")
+    public void i_create_and_submit_an_enrollment_using_the_organization_with_healthboard_workflow() throws IOException {
+        generalSteps.login("p1", "p1");
+        enrollmentSteps.createEnrollment();
+        enrollmentSteps.selectProviderType();
+        enrollmentSteps.enterOrganizationInfo();
+        enrollmentSteps.enterContactInfo();
+        enrollmentSteps.advanceFromOrganizationInfoToLicenseInfo();
+        enrollmentSteps.checkCommunityHealthboard();
+        enrollmentSteps.advanceFromLicenseInfoToOwnershipInfo();
+        enrollmentSteps.enterOrganizationOwnershipInfo();
+        enrollmentSteps.setNoToAllDisclosures();
+        enrollmentSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
+        enrollmentSteps.advanceFromOrganizationSummaryToProviderStatementPage();
+        enrollmentSteps.signProviderStatement();
+        enrollmentSteps.submitEnrollment();
+    }
+
+    @When("^I create and submit an enrollment using the county contracted mental health rehab workflow$")
+    public void i_create_and_submit_an_enrollment_using_the_county_contracted_mental_health_rehab_workflow() throws IOException {
+        generalSteps.login("p1", "p1");
+        enrollmentSteps.createEnrollment();
+        enrollmentSteps.selectProviderType();
+        enrollmentSteps.enterOrganizationInfo();
+        enrollmentSteps.enterContactInfo();
+        enrollmentSteps.advanceFromOrganizationInfoToLicenseInfo();
+        enrollmentSteps.enterCcmhrInfo();
+        enrollmentSteps.advanceFromOrganizationLicenseInfoToIndividualMemberInfo();
+        enrollmentSteps.enterIndividualMember();
+        enrollmentSteps.advanceFromOrganizationIndividualMemberInfoToOwnershipInfo();
+        enrollmentSteps.enterOrganizationOwnershipInfo();
+        enrollmentSteps.setNoToAllDisclosures();
+        enrollmentSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
+        enrollmentSteps.advanceFromOrganizationSummaryToProviderStatementPage();
+        enrollmentSteps.signProviderStatement();
+        enrollmentSteps.submitEnrollment();
     }
 }

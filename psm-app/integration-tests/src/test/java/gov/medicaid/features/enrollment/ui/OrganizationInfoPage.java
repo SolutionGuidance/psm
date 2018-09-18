@@ -59,6 +59,7 @@ public class OrganizationInfoPage extends EnrollmentPage {
     }
 
     public void setDoingBusinessAs(String dba) {
+        $("#name").clear();
         $("#name").sendKeys(dba);
     }
 

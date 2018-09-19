@@ -76,8 +76,10 @@ public class PHNAgencyFormBinder extends BaseFormBinder {
         if ("Y".equals(countyInfo.getCountyInd())) {
             countyInfo.setCountyName(param(request, "countyName"));
         } else if ("N".equals(countyInfo.getCountyInd())) {
-            String attachmentId = (String) request.getAttribute(NAMESPACE + "contractAttachment");
-            if (attachmentId != null) {
+            String attachmentId = (String) request.getAttribute(name("contractAttachment"));
+            if (attachmentId == null) {
+                attachmentId = param(request, "contractAttachmentId");
+            } else {
                 replaceDocument(XMLUtility.nsGetAttachments(provider), attachmentId, CONTRACT_WITH_COUNTY);
             }
 

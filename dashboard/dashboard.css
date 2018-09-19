@@ -1,10 +1,3 @@
-body {
-  /* Fonts are Bulma CSS defaults https://bulma.io/ */
-  font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
-  overflow-x: hidden;
-  color: #363636;
-}
-
 body > h1,
 .chartHeader,
 .heading-sub-caption {
@@ -12,6 +5,10 @@ body > h1,
 }
 
 .page-content-dashboard {
+  /* Fonts are Bulma CSS defaults https://bulma.io/ */
+  font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+  overflow-x: hidden;
+  color: #363636;
   font-weight: normal;
 }
 

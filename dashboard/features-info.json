@@ -1247,7 +1247,8 @@
             "comment": "",
             "issues": [
                 291,
-                292
+                292,
+                1060
             ],
             "startDate": null,
             "completedDate": null,
@@ -1487,7 +1488,8 @@
                 424,
                 426,
                 620,
-                675
+                675,
+                999
             ],
             "startDate": null,
             "completedDate": null,
@@ -1863,7 +1865,8 @@
                 879,
                 889,
                 925,
-                926
+                926,
+                991
             ],
             "startDate": null,
             "completedDate": null,
@@ -1904,7 +1907,8 @@
             "acceptance_test_ref": "",
             "comment": "",
             "issues": [
-                378
+                378,
+                1029
             ],
             "startDate": null,
             "completedDate": null,
@@ -2017,7 +2021,8 @@
             "acceptance_test_ref": "",
             "comment": "",
             "issues": [
-                160
+                160,
+                1062
             ],
             "startDate": null,
             "completedDate": null,
@@ -2058,7 +2063,8 @@
             "comment": "",
             "issues": [
                 401,
-                454
+                454,
+                991
             ],
             "startDate": null,
             "completedDate": null,
@@ -2782,7 +2788,10 @@
             "issues": [
                 168,
                 291,
-                566
+                566,
+                1014,
+                1022,
+                1046
             ],
             "startDate": null,
             "completedDate": null,
@@ -3060,7 +3069,31 @@
                 933,
                 957,
                 968,
-                1021
+                979,
+                991,
+                999,
+                1000,
+                1007,
+                1014,
+                1021,
+                1022,
+                1027,
+                1028,
+                1029,
+                1031,
+                1032,
+                1045,
+                1046,
+                1047,
+                1048,
+                1053,
+                1087,
+                1091,
+                1094,
+                1095,
+                1096,
+                1097,
+                1098
             ],
             "startDate": null,
             "completedDate": null,
@@ -3104,7 +3137,8 @@
                 770,
                 863,
                 927,
-                968
+                968,
+                978
             ],
             "startDate": null,
             "completedDate": null,
@@ -3214,7 +3248,8 @@
                 79,
                 260,
                 666,
-                672
+                672,
+                1062
             ],
             "startDate": null,
             "completedDate": null,
@@ -3551,7 +3586,8 @@
             "comment": "",
             "issues": [
                 30,
-                466
+                466,
+                1030
             ],
             "startDate": null,
             "completedDate": null,
@@ -3594,7 +3630,8 @@
                 29,
                 30,
                 446,
-                466
+                466,
+                1030
             ],
             "startDate": null,
             "completedDate": null,
@@ -3628,7 +3665,9 @@
                 425,
                 571,
                 655,
-                946
+                946,
+                1060,
+                1061
             ],
             "startDate": null,
             "completedDate": null,
@@ -4122,7 +4161,9 @@
                 564,
                 734,
                 930,
-                953
+                953,
+                980,
+                1060
             ],
             "startDate": null,
             "completedDate": null,
@@ -4433,7 +4474,8 @@
             "acceptance_test_ref": "",
             "comment": "This is requested by Anshuman during the 8/10/17 PSM status meeting",
             "issues": [
-                466
+                466,
+                1030
             ],
             "startDate": null,
             "completedDate": null,
@@ -4778,7 +4820,11 @@
                 168,
                 417,
                 476,
-                566
+                566,
+                1014,
+                1022,
+                1045,
+                1046
             ],
             "startDate": null,
             "completedDate": null,
@@ -4817,7 +4863,10 @@
                 894,
                 895,
                 896,
-                897
+                897,
+                1014,
+                1022,
+                1046
             ],
             "startDate": null,
             "completedDate": null,
@@ -5032,7 +5081,8 @@
                 326,
                 398,
                 775,
-                923
+                923,
+                1032
             ],
             "startDate": null,
             "completedDate": null,
@@ -5402,7 +5452,11 @@
                 912,
                 913,
                 931,
-                971
+                971,
+                977,
+                988,
+                1030,
+                1086
             ],
             "startDate": null,
             "completedDate": null,
@@ -5450,7 +5504,8 @@
                 878,
                 912,
                 913,
-                1050
+                1050,
+                1065
             ],
             "startDate": null,
             "completedDate": null,
@@ -5493,7 +5548,11 @@
                 616,
                 626,
                 811,
-                818
+                818,
+                976,
+                981,
+                1001,
+                1082
             ],
             "startDate": null,
             "completedDate": null,
@@ -5542,7 +5601,13 @@
                 878,
                 915,
                 930,
-                1050
+                977,
+                985,
+                988,
+                994,
+                1050,
+                1065,
+                1082
             ],
             "startDate": null,
             "completedDate": null,
@@ -5593,7 +5658,13 @@
                 931,
                 942,
                 946,
-                971
+                971,
+                980,
+                986,
+                1020,
+                1054,
+                1060,
+                1062
             ],
             "startDate": null,
             "completedDate": null,
@@ -5703,6 +5774,99 @@
         }
     },
     "issues": {
+        "1098": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1098,
+            "url": "https://github.com/solutionguidance/psm/issues/1098",
+            "title": "Filtering applications by date as a service admin",
+            "description": "When logged in as a service admin, and looking at the list of applications under the \"Enrollments\" section, filtering by date does not work.  The results are not filtered by date and the dates you selected are not displayed in the UI after you click \"Filter\".",
+            "status": "NotStarted",
+            "startDate": "2018-09-19",
+            "completedDate": null,
+            "labels": [
+                "Z-REQ-PSM-FR-7.14",
+                "bug",
+                "ux"
+            ]
+        },
+        "1097": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1097,
+            "url": "https://github.com/solutionguidance/psm/issues/1097",
+            "title": "Filtering agreements and addendums",
+            "description": "When logged in as a service admin, and viewing \"Agreements and Addendums\" under \"Functions\", if you use the filter panel to filter the results, no results appear, even when they should appear.",
+            "status": "NotStarted",
+            "startDate": "2018-09-19",
+            "completedDate": null,
+            "labels": [
+                "Z-REQ-PSM-FR-7.14",
+                "bug",
+                "ux"
+            ]
+        },
+        "1096": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1096,
+            "url": "https://github.com/solutionguidance/psm/issues/1096",
+            "title": "Some application steps trails should fit on one line ",
+            "description": "When logged in as a service admin, and filling out a Pharmacy or Durable Medical Equipment application (maybe others too?), in the trail of steps at the top, the width of the last step is set too wide, causing it to wrap to the next line unnecessarily:\r\n\r\n![screenshot_2018-09-19 organization information 1](https://user-images.githubusercontent.com/1091693/45783406-ac028380-bc33-11e8-8422-d090d505e1c3.png)\r\n\r\n![screenshot_2018-09-19 organization information 3](https://user-images.githubusercontent.com/1091693/45783412-af960a80-bc33-11e8-8734-2b257c148497.png)\r\n\r\nThis does not occur when you are logged in as a provider:\r\n\r\n![screenshot_2018-09-19 organization information 5](https://user-images.githubusercontent.com/1091693/45783547-16b3bf00-bc34-11e8-8a25-c98fd2a599df.png)\r\n\r\n![screenshot_2018-09-19 organization information 4](https://user-images.githubusercontent.com/1091693/45783552-19aeaf80-bc34-11e8-8c56-b3e3c62a02ae.png)\r\n",
+            "status": "NotStarted",
+            "startDate": "2018-09-19",
+            "completedDate": null,
+            "labels": [
+                "Z-REQ-PSM-FR-7.14",
+                "ux"
+            ]
+        },
+        "1095": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1095,
+            "url": "https://github.com/solutionguidance/psm/issues/1095",
+            "title": "Remittance Sequence text spacing",
+            "description": "In the Remittance Sequence section the spacing is off with the radio button text labels.  Also, there's no left margin for the explanatory text at the top.  For example, when filling out a Pharmacy application, on the 'Organization Info' page.\r\n\r\n![screenshot_2018-09-19 organization information 2](https://user-images.githubusercontent.com/1091693/45783082-cbe57780-bc32-11e8-95ac-09cc5db4da57.png)\r\n\r\n",
+            "status": "NotStarted",
+            "startDate": "2018-09-19",
+            "completedDate": null,
+            "labels": [
+                "Z-REQ-PSM-FR-7.14",
+                "ux"
+            ]
+        },
+        "1094": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1094,
+            "url": "https://github.com/solutionguidance/psm/issues/1094",
+            "title": "As admin, uncheck 'same as above' but can't edit fields",
+            "description": "When filling out a Pharmacy application as a service admin, on the 'Organization Info' page, unchecking \"same as above\" for the billing and 1099 addresses does not let you enter text into those fields:\r\n\r\n![screenshot_2018-09-19 organization information](https://user-images.githubusercontent.com/1091693/45782789-ea973e80-bc31-11e8-9153-339b6454f0e6.png)\r\n\r\nHowever, this does work as expected when you are logged in as a provider:\r\n\r\n![screenshot_2018-09-19 organization information 6](https://user-images.githubusercontent.com/1091693/45782909-4a8de500-bc32-11e8-8a3e-e50281f9b040.png)\r\n",
+            "status": "NotStarted",
+            "startDate": "2018-09-19",
+            "completedDate": null,
+            "labels": [
+                "Z-REQ-PSM-FR-7.14",
+                "bug",
+                "ux"
+            ]
+        },
+        "1091": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1091,
+            "url": "https://github.com/solutionguidance/psm/issues/1091",
+            "title": "Affiliated agency fields are not marked as required",
+            "description": "When filling out a Personal Care Assistant application, on the Agency Info page, under Group Affiliation Information, the NPI and Study ID fields are required, but are not marked as such with a red asterisk in the table's column headings.\r\n\r\n![screenshot_2018-09-17 individual agency information](https://user-images.githubusercontent.com/1091693/45654328-2e127100-baa9-11e8-8806-b71694783e7b.png)\r\n\r\n(In this screenshot the fields were filled in _after_ the error was triggered.)",
+            "status": "NotStarted",
+            "startDate": "2018-09-17",
+            "completedDate": null,
+            "labels": [
+                "Z-REQ-PSM-FR-7.14",
+                "ux"
+            ]
+        },
         "1087": {
             "owner": "solutionguidance",
             "repos": "psm",
@@ -5714,6 +5878,8 @@
             "startDate": "2018-09-10",
             "completedDate": null,
             "labels": [
+                "Z-REQ-PSM-FR-7.14",
+                "bug",
                 "ux"
             ]
         },
@@ -5727,7 +5893,9 @@
             "status": "NotStarted",
             "startDate": "2018-09-08",
             "completedDate": null,
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-SQ-1.1"
+            ]
         },
         "1082": {
             "owner": "solutionguidance",
@@ -5740,6 +5908,8 @@
             "startDate": "2018-09-05",
             "completedDate": null,
             "labels": [
+                "Z-REQ-PSM-SQ-1.3",
+                "Z-REQ-PSM-SQ-1.4",
                 "docs"
             ]
         },
@@ -5753,7 +5923,10 @@
             "status": "NotStarted",
             "startDate": "2018-08-29",
             "completedDate": null,
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-SQ-1.2",
+                "Z-REQ-PSM-SQ-1.4"
+            ]
         },
         "1062": {
             "owner": "solutionguidance",
@@ -5765,7 +5938,11 @@
             "status": "NotStarted",
             "startDate": "2018-08-28",
             "completedDate": null,
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-FR-3.20",
+                "Z-REQ-PSM-FR-9.1",
+                "Z-REQ-PSM-SQ-1.5"
+            ]
         },
         "1061": {
             "owner": "solutionguidance",
@@ -5777,7 +5954,9 @@
             "status": "NotStarted",
             "startDate": "2018-08-28",
             "completedDate": null,
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-II-4.5"
+            ]
         },
         "1060": {
             "owner": "solutionguidance",
@@ -5789,7 +5968,13 @@
             "status": "NotStarted",
             "startDate": "2018-08-28",
             "completedDate": null,
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-FR-2.5",
+                "Z-REQ-PSM-IA-4.2",
+                "Z-REQ-PSM-II-4.5",
+                "Z-REQ-PSM-SQ-1.5",
+                "backend"
+            ]
         },
         "1054": {
             "owner": "solutionguidance",
@@ -5802,6 +5987,7 @@
             "startDate": "2018-08-24",
             "completedDate": null,
             "labels": [
+                "Z-REQ-PSM-SQ-1.5",
                 "tech-debt"
             ]
         },
@@ -5815,7 +6001,10 @@
             "status": "NotStarted",
             "startDate": "2018-08-24",
             "completedDate": null,
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-FR-7.14",
+                "ux"
+            ]
         },
         "1050": {
             "owner": "solutionguidance",
@@ -5844,6 +6033,7 @@
             "startDate": "2018-08-23",
             "completedDate": null,
             "labels": [
+                "Z-REQ-PSM-FR-7.14",
                 "enhancement",
                 "ux"
             ]
@@ -5859,6 +6049,7 @@
             "startDate": "2018-08-23",
             "completedDate": null,
             "labels": [
+                "Z-REQ-PSM-FR-7.14",
                 "enhancement",
                 "ux"
             ]
@@ -5874,6 +6065,10 @@
             "startDate": "2018-08-23",
             "completedDate": null,
             "labels": [
+                "Z-REQ-PSM-AD-3.3",
+                "Z-REQ-PSM-AD-3.4",
+                "Z-REQ-PSM-FR-7.14",
+                "Z-REQ-PSM-FR-7.6",
                 "bug",
                 "in progress",
                 "ux"
@@ -5890,6 +6085,8 @@
             "startDate": "2018-08-23",
             "completedDate": "2018-08-25",
             "labels": [
+                "Z-REQ-PSM-AD-3.3",
+                "Z-REQ-PSM-FR-7.14",
                 "accessibility",
                 "bug",
                 "ux"
@@ -5906,6 +6103,8 @@
             "startDate": "2018-08-14",
             "completedDate": "2018-09-10",
             "labels": [
+                "Z-REQ-PSM-AD-5.4",
+                "Z-REQ-PSM-FR-7.14",
                 "backend",
                 "bug",
                 "in progress",
@@ -5918,12 +6117,15 @@
             "repos": "psm",
             "number": 1031,
             "url": "https://github.com/solutionguidance/psm/issues/1031",
-            "title": "Bookmark link - Authenication filter should redirect properly if the PSM is accessed via a bookmark",
+            "title": "Bookmark link - Authentication filter should redirect properly if the PSM is accessed via a bookmark",
             "description": "There is no redirect to behavior implemented in PSM.\r\n\r\nThe filter which checks to login, should properly redirect back to link from where the user landed from.\r\n",
             "status": "NotStarted",
             "startDate": "2018-08-14",
             "completedDate": null,
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-FR-7.14",
+                "ux"
+            ]
         },
         "1030": {
             "owner": "solutionguidance",
@@ -5932,10 +6134,15 @@
             "url": "https://github.com/solutionguidance/psm/issues/1030",
             "title": "Source code",
             "description": "I was looking to get a peek into the source code regarding specifying the database which the app draws information from, and how the app queries information from the database. I can't seem to find it in the psm-app anywhere. Any further information about the source code organization or the database architecture would be extremely helpful. \r\n\r\nThank you!",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-08-14",
-            "completedDate": null,
-            "labels": []
+            "completedDate": "2018-09-20",
+            "labels": [
+                "Z-REQ-PSM-II-4.2",
+                "Z-REQ-PSM-II-4.4",
+                "Z-REQ-PSM-IU-4.3",
+                "Z-REQ-PSM-SQ-1.1"
+            ]
         },
         "1029": {
             "owner": "solutionguidance",
@@ -5948,6 +6155,8 @@
             "startDate": "2018-08-14",
             "completedDate": null,
             "labels": [
+                "Z-REQ-PSM-FR-3.15",
+                "Z-REQ-PSM-FR-7.14",
                 "backend",
                 "enhancement"
             ]
@@ -5957,12 +6166,13 @@
             "repos": "psm",
             "number": 1028,
             "url": "https://github.com/solutionguidance/psm/issues/1028",
-            "title": "Improve \"Save as Above\" behavior",
+            "title": "Improve \"Same as Above\" behavior",
             "description": "@kfogel  [writes in Zulip](https://chat.opentechstrategies.com/#narrow/stream/6-Provider-Screening/subject/demos/near/51898):\r\n> Click \"same as above\" in Contact Info doesn't reassuringly fill in the bottom fields with that same info, which would be the normal behavior for that kind of field.",
             "status": "NotStarted",
             "startDate": "2018-08-14",
             "completedDate": null,
             "labels": [
+                "Z-REQ-PSM-FR-7.14",
                 "ux"
             ]
         },
@@ -5977,6 +6187,7 @@
             "startDate": "2018-08-14",
             "completedDate": null,
             "labels": [
+                "Z-REQ-PSM-FR-7.14",
                 "backend",
                 "bug",
                 "enhancement",
@@ -5994,6 +6205,10 @@
             "startDate": "2018-08-13",
             "completedDate": null,
             "labels": [
+                "Z-REQ-PSM-AD-3.3",
+                "Z-REQ-PSM-AD-3.4",
+                "Z-REQ-PSM-FR-7.14",
+                "Z-REQ-PSM-FR-7.6",
                 "ux"
             ]
         },
@@ -6026,7 +6241,9 @@
             "status": "NotStarted",
             "startDate": "2018-08-13",
             "completedDate": null,
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-SQ-1.5"
+            ]
         },
         "1014": {
             "owner": "solutionguidance",
@@ -6039,6 +6256,10 @@
             "startDate": "2018-08-10",
             "completedDate": "2018-08-28",
             "labels": [
+                "Z-REQ-PSM-AD-3.3",
+                "Z-REQ-PSM-AD-3.4",
+                "Z-REQ-PSM-FR-7.14",
+                "Z-REQ-PSM-FR-7.6",
                 "bug",
                 "ux"
             ]
@@ -6053,7 +6274,11 @@
             "status": "Completed",
             "startDate": "2018-08-06",
             "completedDate": "2018-08-12",
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-FR-7.14",
+                "bug",
+                "ux"
+            ]
         },
         "1001": {
             "owner": "solutionguidance",
@@ -6065,7 +6290,10 @@
             "status": "NotStarted",
             "startDate": "2018-08-02",
             "completedDate": null,
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-SQ-1.3",
+                "enhancement"
+            ]
         },
         "1000": {
             "owner": "solutionguidance",
@@ -6077,7 +6305,10 @@
             "status": "NotStarted",
             "startDate": "2018-08-01",
             "completedDate": null,
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-FR-7.14",
+                "ux"
+            ]
         },
         "999": {
             "owner": "solutionguidance",
@@ -6090,6 +6321,9 @@
             "startDate": "2018-08-01",
             "completedDate": null,
             "labels": [
+                "Z-REQ-PSM-FR-2.16",
+                "Z-REQ-PSM-FR-7.14",
+                "enhancement",
                 "ux"
             ]
         },
@@ -6103,7 +6337,9 @@
             "status": "Completed",
             "startDate": "2018-07-26",
             "completedDate": "2018-07-27",
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-SQ-1.4"
+            ]
         },
         "991": {
             "owner": "solutionguidance",
@@ -6115,7 +6351,12 @@
             "status": "NotStarted",
             "startDate": "2018-07-25",
             "completedDate": null,
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-FR-3.13",
+                "Z-REQ-PSM-FR-3.22",
+                "Z-REQ-PSM-FR-7.14",
+                "ux"
+            ]
         },
         "988": {
             "owner": "solutionguidance",
@@ -6127,7 +6368,11 @@
             "status": "NotStarted",
             "startDate": "2018-07-24",
             "completedDate": null,
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-SQ-1.1",
+                "Z-REQ-PSM-SQ-1.4",
+                "docs"
+            ]
         },
         "986": {
             "owner": "solutionguidance",
@@ -6139,7 +6384,9 @@
             "status": "Completed",
             "startDate": "2018-07-23",
             "completedDate": "2018-08-07",
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-SQ-1.5"
+            ]
         },
         "985": {
             "owner": "solutionguidance",
@@ -6151,7 +6398,9 @@
             "status": "Completed",
             "startDate": "2018-07-23",
             "completedDate": "2018-08-13",
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-SQ-1.4"
+            ]
         },
         "981": {
             "owner": "solutionguidance",
@@ -6163,7 +6412,9 @@
             "status": "Completed",
             "startDate": "2018-07-23",
             "completedDate": "2018-07-31",
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-SQ-1.3"
+            ]
         },
         "980": {
             "owner": "solutionguidance",
@@ -6175,7 +6426,10 @@
             "status": "Completed",
             "startDate": "2018-07-23",
             "completedDate": "2018-07-31",
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-IA-4.2",
+                "Z-REQ-PSM-SQ-1.5"
+            ]
         },
         "979": {
             "owner": "solutionguidance",
@@ -6183,11 +6437,12 @@
             "number": 979,
             "url": "https://github.com/solutionguidance/psm/issues/979",
             "title": "Remove Forgot Password link for suspended accounts",
-            "description": "Related to #33 and #943 \r\n\r\nWhen a user has a suspended account, it looks identical to them having forgotten their username or password, and so the same UI is presented.  That nay need to change to make use of this exceptional case to present a different UI.\r\n\r\nThere should be some discussion around what exactly that UI should look like, and what information should be presented to the user about why they couldn't login.  It may be best to continue along how the application works now, obfuscating the reason for the failure.",
+            "description": "Related to #33 and #943 \r\n\r\nWhen a user has a suspended account, it looks identical to them having forgotten their username or password, and so the same UI is presented.  That may need to change to make use of this exceptional case to present a different UI.\r\n\r\nThere should be some discussion around what exactly that UI should look like, and what information should be presented to the user about why they couldn't login.  It may be best to continue along how the application works now, obfuscating the reason for the failure.",
             "status": "NotStarted",
             "startDate": "2018-07-21",
             "completedDate": null,
             "labels": [
+                "Z-REQ-PSM-FR-7.14",
                 "ux"
             ]
         },
@@ -6201,7 +6456,10 @@
             "status": "NotStarted",
             "startDate": "2018-07-21",
             "completedDate": null,
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-FR-8.1",
+                "ux"
+            ]
         },
         "977": {
             "owner": "solutionguidance",
@@ -6214,6 +6472,8 @@
             "startDate": "2018-07-17",
             "completedDate": null,
             "labels": [
+                "Z-REQ-PSM-SQ-1.1",
+                "Z-REQ-PSM-SQ-1.4",
                 "infra"
             ]
         },
@@ -6227,7 +6487,10 @@
             "status": "NotStarted",
             "startDate": "2018-07-17",
             "completedDate": null,
-            "labels": []
+            "labels": [
+                "Z-REQ-PSM-SQ-1.3",
+                "infra"
+            ]
         },
         "971": {
             "owner": "solutionguidance",
@@ -6769,9 +7032,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/889",
             "title": "Expand DMF checks to all ssns within an enrollment",
             "description": "For organizations, there may be zero or more people with socials in the object tree, and the DMF check needs to be expanded to each one of those.\r\n\r\nThis is an extension for #759 ",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-06-21",
-            "completedDate": null,
+            "completedDate": "2018-09-18",
             "labels": [
                 "Z-REQ-PSM-FR-3.13",
                 "Z-REQ-PSM-FR-3.17",
@@ -7719,9 +7982,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/734",
             "title": "Moving backward in PHN enrollment loses county contract",
             "description": "tl;dr: hitting \"previous\" traps you on a page and forgets the previously uploaded attachment\r\n\r\nTo reproduce,\r\n\r\n1. start an enrollment application for a Public Health Nursing Organization\r\n2. upload a county contract on the Facility Credentials page in the \"PHN Agency must be a county or have a contract with a county\" section\r\n3. move forward in the application by filling out the rest of the page and clicking \"Next\"\r\n4. click \"Previous\" to return to the Facility Credentials page\r\n5. click \"Next\" to move on from this previously-completed page\r\n\r\nExpected behavior:\r\nThe previously entered data is saved and accepted\r\n\r\nActual behavior:\r\nThe contract is lost, the error \"Copy of contract with county is required for this provider type.\" is shown, and the field is highlighted as being in error.\r\n\r\n![contract-missing](https://user-images.githubusercontent.com/1494855/37855466-ccd3d768-2ec5-11e8-8820-066b7ad7ed98.png)\r\n\r\nRelated to issue #158.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-03-23",
-            "completedDate": null,
+            "completedDate": "2018-09-19",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "Z-REQ-PSM-IA-4.2",

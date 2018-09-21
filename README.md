@@ -53,3 +53,35 @@ We're pretty loose here right now.  A few things:
 
 * `upstream-js` directory
   Third party JavaScript libraries used by the dashboard.
+
+## Screenshots
+
+The screenshots on the screenshots page were created using the following
+steps:
+
+* Switch to "Adwaita" theme (this was on Ubuntu 18.04 Bionic Beaver),
+  using "Tweaks" app.
+
+* Open Firefox with a new/clean user profile (no add-ons, customizations,
+  etc.). The width and height of the browser window are the defaults
+  (don't resize).
+
+* Use the default Ubuntu "Screenshot" app with "grab the current window",
+  (don't include the pointer).
+
+* Run the following in the directory with the image files, to interlace
+  the pngs and create thumbnails.
+
+```
+for name in `find . -name "*.png"`; do
+  convert ${name} -interlace PNG ${name}
+done
+
+for name in `find . -name "*.png"`; do
+  convert -thumbnail 200 ${name} ${name}.thumb.png
+done
+```
+
+* Batch rename the thumbnail files to remove the first 'png' from
+  'filename.png.thumb.png'
+ 

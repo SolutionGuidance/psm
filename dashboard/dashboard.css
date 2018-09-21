@@ -4,7 +4,8 @@ body > h1,
   text-align: center;
 }
 
-.page-content-dashboard {
+.page-content-dashboard,
+.overlay {
   /* Fonts are Bulma CSS defaults https://bulma.io/ */
   font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   overflow-x: hidden;
@@ -152,7 +153,6 @@ text.description {
   position: absolute;
   background: #fff;
   box-shadow: 0 0 5px #999999;
-  color: #363636;
   display: block;
   font-size: 12px;
   top: 5%;

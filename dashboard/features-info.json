@@ -2125,7 +2125,9 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "",
-            "issues": [],
+            "issues": [
+                695
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -3377,7 +3379,9 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "",
-            "issues": [],
+            "issues": [
+                695
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -3686,7 +3690,9 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "",
-            "issues": [],
+            "issues": [
+                695
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -3722,7 +3728,10 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "Satified with the API requirements",
-            "issues": [],
+            "issues": [
+                466,
+                885
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -3740,7 +3749,15 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "No in the pre-cert check list but PSM will do this",
-            "issues": [],
+            "issues": [
+                79,
+                260,
+                262,
+                274,
+                571,
+                572,
+                875
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -3758,7 +3775,12 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "Evidence: have an architecture diagram showing rules engine is an separate component",
-            "issues": [],
+            "issues": [
+                9,
+                11,
+                12,
+                238
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -3776,7 +3798,15 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "Evidence: have an architecture diagram showing rules engine is an separate component",
-            "issues": [],
+            "issues": [
+                79,
+                260,
+                262,
+                274,
+                386,
+                571,
+                572
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -3794,7 +3824,10 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "",
-            "issues": [],
+            "issues": [
+                466,
+                563
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -3830,7 +3863,10 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "",
-            "issues": [],
+            "issues": [
+                150,
+                878
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -4024,7 +4060,9 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "",
-            "issues": [],
+            "issues": [
+                695
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -4042,7 +4080,9 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "",
-            "issues": [],
+            "issues": [
+                695
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -4060,7 +4100,9 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "",
-            "issues": [],
+            "issues": [
+                695
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -4636,7 +4678,9 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "",
-            "issues": [],
+            "issues": [
+                695
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -4654,7 +4698,9 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "",
-            "issues": [],
+            "issues": [
+                695
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -5121,7 +5167,9 @@
             "design_ref": "",
             "acceptance_test_ref": "",
             "comment": "",
-            "issues": [],
+            "issues": [
+                695
+            ],
             "startDate": null,
             "completedDate": null,
             "status": "NotStarted"
@@ -7074,7 +7122,7 @@
                 "Z-REQ-PSM-IA-3.1",
                 "Z-REQ-PSM-IU-2.2",
                 "Z-REQ-PSM-IU-2.3",
-                "Z-REQ-PSM-SA-3.1",
+                "Z-REQ-PSM-SC-3.1",
                 "Z-REQ-PSM-SQ-1.1",
                 "next"
             ]
@@ -7141,7 +7189,7 @@
             "startDate": "2018-06-18",
             "completedDate": null,
             "labels": [
-                "Z-REQ-PSM-SA-4.5",
+                "Z-REQ-PSM-SC-4.5",
                 "Z-REQ-PSM-SQ-1.2",
                 "Z-REQ-PSM-SQ-1.4",
                 "tech-debt"
@@ -7161,7 +7209,7 @@
                 "Z-REQ-PSM-FR-4.2",
                 "Z-REQ-PSM-FR-7.14",
                 "Z-REQ-PSM-IU-3.1",
-                "Z-REQ-PSM-SA-4.0",
+                "Z-REQ-PSM-SC-4.0",
                 "bug",
                 "ux"
             ]
@@ -8175,10 +8223,14 @@
             "startDate": "2018-03-05",
             "completedDate": "2018-03-05",
             "labels": [
+                "Z-REQ-PSM-AD-2.1",
+                "Z-REQ-PSM-AD-2.2",
+                "Z-REQ-PSM-AD-5.6",
                 "Z-REQ-PSM-FR-1.1",
                 "Z-REQ-PSM-FR-1.3",
                 "Z-REQ-PSM-FR-1.5",
                 "Z-REQ-PSM-FR-10.1",
+                "Z-REQ-PSM-FR-10.2",
                 "Z-REQ-PSM-FR-2.10",
                 "Z-REQ-PSM-FR-2.11",
                 "Z-REQ-PSM-FR-2.12",
@@ -8190,6 +8242,7 @@
                 "Z-REQ-PSM-FR-3.10",
                 "Z-REQ-PSM-FR-3.11",
                 "Z-REQ-PSM-FR-3.12",
+                "Z-REQ-PSM-FR-3.25",
                 "Z-REQ-PSM-FR-3.3",
                 "Z-REQ-PSM-FR-3.6",
                 "Z-REQ-PSM-FR-3.8",
@@ -8209,10 +8262,14 @@
                 "Z-REQ-PSM-FR-8.4",
                 "Z-REQ-PSM-FR-9.2",
                 "Z-REQ-PSM-FR-9.3",
+                "Z-REQ-PSM-IA-3.5",
+                "Z-REQ-PSM-IA-3.6",
+                "Z-REQ-PSM-IA-3.7",
                 "Z-REQ-PSM-II-1.1",
                 "Z-REQ-PSM-II-3.1",
                 "Z-REQ-PSM-II-3.2",
-                "Z-REQ-PSM-II-4.3"
+                "Z-REQ-PSM-II-4.3",
+                "Z-REQ-PSM-SC-1.1"
             ]
         },
         "692": {
@@ -8779,8 +8836,8 @@
             "completedDate": null,
             "labels": [
                 "Z-REQ-PSM-IU-3.1",
-                "Z-REQ-PSM-SA-4.0",
-                "Z-REQ-PSM-SA-4.2",
+                "Z-REQ-PSM-SC-4.0",
+                "Z-REQ-PSM-SC-4.2",
                 "tech-debt"
             ]
         },
@@ -8797,8 +8854,8 @@
             "labels": [
                 "Z-REQ-PSM-II-4.5",
                 "Z-REQ-PSM-IU-3.1",
-                "Z-REQ-PSM-SA-4.0",
-                "Z-REQ-PSM-SA-4.2"
+                "Z-REQ-PSM-SC-4.0",
+                "Z-REQ-PSM-SC-4.2"
             ]
         },
         "569": {
@@ -8882,7 +8939,7 @@
             "startDate": "2017-12-07",
             "completedDate": null,
             "labels": [
-                "Z-REQ-PSM-SA-4.3",
+                "Z-REQ-PSM-SC-4.3",
                 "Z-REQ-PSM-SQ-1.1",
                 "docs"
             ]
@@ -9523,8 +9580,8 @@
                 "Z-REQ-PSM-II-4.2",
                 "Z-REQ-PSM-II-4.4",
                 "Z-REQ-PSM-IU-4.3",
-                "Z-REQ-PSM-SA-3.1",
-                "Z-REQ-PSM-SA-4.3",
+                "Z-REQ-PSM-SC-3.1",
+                "Z-REQ-PSM-SC-4.3",
                 "docs"
             ]
         },
@@ -10256,7 +10313,7 @@
             "labels": [
                 "Z-REQ-PSM-II-4.5",
                 "Z-REQ-PSM-IU-3.1",
-                "Z-REQ-PSM-SA-4.2",
+                "Z-REQ-PSM-SC-4.2",
                 "Z-REQ-PSM-SQ-1.4"
             ]
         },
@@ -11190,8 +11247,8 @@
             "labels": [
                 "Z-REQ-PSM-IU-3.1",
                 "Z-REQ-PSM-IU-3.2",
-                "Z-REQ-PSM-SA-4.0",
-                "Z-REQ-PSM-SA-4.2"
+                "Z-REQ-PSM-SC-4.0",
+                "Z-REQ-PSM-SC-4.2"
             ]
         },
         "273": {
@@ -11274,8 +11331,8 @@
             "labels": [
                 "Z-REQ-PSM-IU-3.1",
                 "Z-REQ-PSM-IU-3.2",
-                "Z-REQ-PSM-SA-4.0",
-                "Z-REQ-PSM-SA-4.2"
+                "Z-REQ-PSM-SC-4.0",
+                "Z-REQ-PSM-SC-4.2"
             ]
         },
         "261": {
@@ -11309,8 +11366,8 @@
                 "Z-REQ-PSM-FR-9.1",
                 "Z-REQ-PSM-IU-3.1",
                 "Z-REQ-PSM-IU-3.2",
-                "Z-REQ-PSM-SA-4.0",
-                "Z-REQ-PSM-SA-4.2",
+                "Z-REQ-PSM-SC-4.0",
+                "Z-REQ-PSM-SC-4.2",
                 "backend",
                 "bug",
                 "quick-fix"
@@ -11445,7 +11502,7 @@
             "completedDate": null,
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
-                "Z-REQ-PSM-SA-4.1",
+                "Z-REQ-PSM-SC-4.1",
                 "Z-REQ-PSM-SQ-1.5",
                 "task",
                 "ux"
@@ -12250,7 +12307,7 @@
             "startDate": "2017-06-16",
             "completedDate": "2017-06-20",
             "labels": [
-                "Z-REQ-PSM-SA-4.5",
+                "Z-REQ-PSM-SC-4.5",
                 "Z-REQ-PSM-SQ-1.2"
             ]
         },
@@ -12576,8 +12633,8 @@
                 "Z-REQ-PSM-FR-9.1",
                 "Z-REQ-PSM-IU-3.1",
                 "Z-REQ-PSM-IU-3.2",
-                "Z-REQ-PSM-SA-4.0",
-                "Z-REQ-PSM-SA-4.2",
+                "Z-REQ-PSM-SC-4.0",
+                "Z-REQ-PSM-SC-4.2",
                 "Z-REQ-PSM-SQ-1.5",
                 "tech-debt"
             ]
@@ -13046,7 +13103,7 @@
             "startDate": "2017-04-27",
             "completedDate": "2017-07-11",
             "labels": [
-                "Z-REQ-PSM-SA-4.1",
+                "Z-REQ-PSM-SC-4.1",
                 "Z-REQ-PSM-SQ-1.3",
                 "Z-REQ-PSM-SQ-1.5"
             ]
@@ -13064,7 +13121,7 @@
             "labels": [
                 "Z-REQ-PSM-FR-3.23",
                 "Z-REQ-PSM-IU-1.1",
-                "Z-REQ-PSM-SA-4.1"
+                "Z-REQ-PSM-SC-4.1"
             ]
         },
         "10": {
@@ -13103,7 +13160,7 @@
                 "Z-REQ-PSM-FR-3.2",
                 "Z-REQ-PSM-FR-3.4",
                 "Z-REQ-PSM-FR-3.7",
-                "Z-REQ-PSM-SA-4.1",
+                "Z-REQ-PSM-SC-4.1",
                 "enhancement",
                 "tech-debt"
             ]

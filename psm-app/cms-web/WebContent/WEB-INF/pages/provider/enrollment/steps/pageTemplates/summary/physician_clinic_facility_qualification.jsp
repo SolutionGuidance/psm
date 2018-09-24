@@ -6,7 +6,6 @@
             <label>Facility Qualifications</label>
             <span>
                 <label>Hospital Based Clinic Designation:  approval letter from CMS</label>
-                <span class="floatL"><b>:</b></span>
                 <span>
                     <c:if test="${requestScope['_40_designationApprovalIndicator'] eq 'Y'}">
                          Provided

@@ -4,12 +4,10 @@
     <div class="leftCol">
         <div class="row">
             <label>Number of Beds</label>
-            <span class="floatL"><b>:</b></span>
             <span >${requestScope['_27_numberOfBeds']}</span>
         </div>
         <div class="row">
             <label>Effective Date</label>
-            <span class="floatL"><b>:</b></span>
             <span >${requestScope['_27_effectiveDate']}</span>
         </div>
     </div>

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Add command line argument --ask-pass to prompt for an ssh password
+
+#export ANSIBLE_DEBUG=1
+
+if [ -f "$(basename $1)" ] && [ "${1##*.}" == "yml" ]; then
+	host="$1"
+	if [ -z $2 ]; then
+		tag=""
+	else
+		tag="--tags $2"
+	fi
+elif [ -f "$1.yml" ]; then
+	host="$1.yml"
+	if [ -z $2 ]; then
+		tag=""
+	else
+		tag="--tags $2"
+	fi
+else
+	host=${PWD##*/}.yml
+	tag="--tags $1"
+fi
+
+echo ansible-playbook -i hosts ${host} ${tag}
+ansible-playbook -i hosts ${host} ${tag}

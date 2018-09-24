@@ -1,0 +1,252 @@
+# This ansible role does a TEST AND DEVELOPMENT install of the
+# Provider Screening Module and dependencies on Debian and RHEL
+# systems.  It might work on Ubuntu or CentOS, but we haven't tried it
+# there yet.  If you are trying to get it working on either of those
+# systems, please let us know of any successes, failures, and
+# adjustments you made to the script.
+
+# This ansible role will install postgres, jdbc, mailcatcher, wildfly
+# and the psm.  It will run mailcatcher and wildfly and if all works
+# out, you will be able to see the PSM as a running instance at
+# http://localhost:8080/cms
+
+# This is for a test/dev setup, not a deployment setup.  It blows away
+# existing Wildfly and DB contents.  It uses mailcatcher on port 1025,
+# rather than a real SMTP server.  It also seeds the database with the
+# test data from the repo.  If you're deploying in earnest, you'll
+# want to adjust things.
+---
+- name: Install mailcatcher
+  gem:
+    name: mailcatcher
+    state: present
+
+- name: Check if mailcatcher is running
+  shell: pgrep mailcatcher
+  register: mailcatcher
+  failed_when: "mailcatcher.rc == 2 or mailcatcher.rc == 3"
+  changed_when: false
+
+- name: Start mailcatcher if needed
+  shell: mailcatcher
+  when: mailcatcher.stdout == ""
+
+- name: check if Wildfly is running
+  shell: pgrep -f "^java.*wildfly"
+  register: wildfly
+  failed_when: "wildfly.rc == 2 or wildfly.rc == 3"
+  changed_when: false
+
+- name: Kill any running Wildfly
+  shell: pgrep -f "^java.*wildfly" | xargs kill -9
+  register: wildfly
+  when: wildfly.stdout != ""
+  failed_when: false
+
+- name: Install base things for Debian / Ubuntu
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present
+  with_items:
+    - git
+    - libsqlite3-dev
+    - openjdk-8-jdk-headless
+    - postgresql-9.6
+    - python-psycogreen   # needed for postgres access
+    - ruby-dev
+  when: ansible_distribution == "Debian"
+
+- name: Install RedHat-specific dependencies
+  block:
+    - name: Fetch Postgres for RedHat
+      get_url:
+        url: "https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-redhat96-9.6-3.noarch.rpm"
+        dest: "/tmp/pgdg-redhat96-9.6-3.noarch.rpm"
+        checksum: "sha1:43715d4c1d7fcf8d5d825b24c5f62c08cbca040d"
+    - name: Install Postgres on RedHat
+      shell: rpm -ivh pgdg-redhat96-9.6-3.noarch.rpm
+    - name: Setup Postgres on RedHat
+      shell: /usr/pgsql-9.6/bin/postgresql96-setup initdb
+    - name: s/ident/md5/
+      shell: sed -i 's/ident/md5/g' /var/lib/pgsql/9.6/data/pg_hba.conf
+    - name: Enable and start postgres
+      systemd:
+        name: postgresql-9.6
+        enabled: yes
+        state: started
+    - name: Configure rhui region
+      shell: yum-config-manager --enable rhui-REGION-rhel-server-optional
+    - name: Groupinstall dev tools
+      shell: yum -y groupinstall 'Development Tools'
+  when: ansible_distribution == "RedHat"
+
+- name: Install base things for RedHat / Centos / Fedora
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present
+  with_items:
+    - gcc
+    - git
+    - java-1.8.0-openjdk
+    - postgresql96-server
+    - postgresql96-contrib
+    - postgresql96-devel
+    - ruby-devel
+    - rubygems
+    - sqlite-devel
+  when: ansible_distribution == "RedHat"
+
+## Make sure PSM source is in place
+- name: Make PSM directory
+  file:
+    path: "{{ psm_prefix }}/psm"
+    state: directory
+    recurse: yes
+- name: Check that we have the psm from git installed
+  shell: git remote -v
+  args:
+    chdir: "{{ psm_prefix }}/psm"
+  register: psmgit
+  failed_when: false
+- name: Install psm from git if needed
+  git:
+    repo: https://github.com/SolutionGuidance/psm.git
+    dest: "{{ psm_prefix }}/psm"
+  when: 'not "SolutionGuidance/psm.git" in psmgit.stdout'
+
+- name: Configure Postgres
+  block:
+    - name: Drop psm database if exists
+      postgresql_db:
+        name: "{{ psm_db_name }}"
+        state: absent
+    - name: Drop db user
+      postgresql_user:
+        name: "{{ psm_db_username }}"
+        state: absent
+    - name: Create db user
+      postgresql_user:
+        name: "{{ psm_db_username }}"
+        state: present
+        password: "{{ psm_db_password }}"
+    - name: Ensure psm database exists
+      postgresql_db:
+        name: "{{ psm_db_name }}"
+        owner: "{{ psm_db_username }}"
+        encoding: "UTF-8"
+        template: "template0"
+  become: true
+  become_user: postgres
+  tags:
+    - psm-postgres
+
+## Install wildfly
+- name: Fetch Wildfly
+  get_url:
+    url: "http://download.jboss.org/wildfly/{{ psm_wildfly_version }}/wildfly-{{ psm_wildfly_version }}.tar.gz"
+    dest: "{{ psm_prefix }}/wildfly-{{ psm_wildfly_version }}.tar.gz"
+    checksum: "sha1:0e89fe0860a87bfd6b09379ee38d743642edfcfb"
+- name: Remove existing Wildfly directory
+  file:
+    path: "{{ psm_prefix }}/wildfly-{{ psm_wildfly_version }}"
+    state: absent
+- name: Extract Wildfly from archive
+  unarchive:
+    src: "{{ psm_prefix }}/wildfly-{{ psm_wildfly_version }}.tar.gz"
+    dest: "{{ psm_prefix }}"
+    copy: no
+- name: Add wildfly user
+  shell: "{{ psm_wildfly_dir }}/bin/add-user.sh {{ psm_db_username }} '{{ psm_db_password }}'"
+
+- name: Start wildfly
+  shell: "{{ psm_wildfly_dir }}/bin/standalone.sh -c standalone-full.xml -b 0.0.0.0 -bmanagement 0.0.0.0 &"
+- name: Wait for Wildfly to come up
+  wait_for:
+    connect_timeout: 60
+    port: 9990
+    state: started
+
+- name: Tell Wildfly to use localhost:1025 for mail service.
+  shell: |
+    {{ psm_wildfly_cli }} --connect << EOF
+    /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=mail-smtp:write-attribute(name=port,value=1025)
+    /subsystem=mail/mail-session="java:/Mail":add(jndi-name="java:/Mail")
+    /subsystem=mail/mail-session="java:/Mail"/server=smtp:add(outbound-socket-binding-ref=mail-smtp)
+    EOF
+
+- name: Fetch jdbc jar
+  get_url:
+    url: "https://jdbc.postgresql.org/download/postgresql-{{ psm_jdbc_version }}.jar"
+    dest: "{{ psm_prefix }}/postgresql-{{ psm_jdbc_version }}.jar"
+    checksum: "sha1:1c7788d16b67d51f2f38ae99e474ece968bf715a"
+- name: Deploy JDBC JAR
+  shell: '{{ psm_wildfly_cli }} --connect --command="deploy --force {{ psm_prefix }}/postgresql-{{ psm_jdbc_version }}.jar"'
+
+
+# Configure Wildfly to use Postgres
+- name: Check if wildfly is configured to use TaskService
+  shell: grep -Fq 'TaskServiceDS' {{ psm_wildfly_dir }}/standalone/configuration/standalone-full.xml
+  register: postgres
+  changed_when: false
+  failed_when: postgres.rc == 2
+- name: Configure wildfly to use TaskService
+  shell: |
+    {{ psm_wildfly_cli }} --connect <<EOF
+    xa-data-source add \
+      --name=TaskServiceDS \
+      --jndi-name=java:/jdbc/TaskServiceDS \
+      --driver-name=postgresql-{{ psm_jdbc_version }}.jar \
+      --xa-datasource-class=org.postgresql.xa.PGXADataSource \
+      --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
+      --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter \
+      --enabled=true \
+      --use-ccm=true \
+      --background-validation=true \
+      --user-name=psm \
+      --password={{ psm_db_password }} \
+      --xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
+    EOF
+  when: postgres.rc == 1
+- name: Check if wildfly is configured to use MitaDS
+  shell: grep -Fq 'MitaDS' {{ psm_wildfly_dir }}/standalone/configuration/standalone-full.xml
+  register: postgres
+  changed_when: false
+  failed_when: postgres.rc == 2
+- name: Configure wildfly to use MitaDS
+  shell: |
+    {{ psm_wildfly_cli }} --connect <<EOF
+    xa-data-source add \
+      --name=MitaDS \
+      --jndi-name=java:/jdbc/MitaDS \
+      --driver-name=postgresql-{{ psm_jdbc_version }}.jar \
+      --xa-datasource-class=org.postgresql.xa.PGXADataSource \
+      --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
+      --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter \
+      --enabled=true \
+      --use-ccm=true \
+      --background-validation=true \
+      --user-name=psm \
+      --password={{ psm_db_password }} \
+      --xa-datasource-properties=ServerName=localhost,PortNumber=5432,DatabaseName=psm
+    EOF
+  when: postgres.rc == 1
+
+- name: Build psm app
+  shell: ./gradlew cms-portal-services:build
+  args:
+    chdir: "{{ psm_prefix }}/psm/psm-app"
+- name: Deploy psm
+  shell: '{{ psm_wildfly_cli }} --connect --command="deploy --force psm/psm-app/cms-portal-services/build/libs/cms-portal-services.ear"'
+  args:
+    chdir: "{{ psm_prefix }}"
+
+- name: Set up database by running liquibase migrations
+  shell: ./gradlew db:update
+  args:
+    chdir: "{{ psm_prefix }}/psm/psm-app"
+
+- name: Seed database
+  shell: cat psm/psm-app/db/jbpm.sql | psql -h localhost -U {{ psm_db_username }} {{ psm_db_password }}
+  environment:
+        PGPASSWORD: "{{ psm_db_password }}"
+
+- name: Done! Point your browser at http://localhost:8080/cms to see it working.
+  shell: echo foo

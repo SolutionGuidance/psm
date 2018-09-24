@@ -1,0 +1,18 @@
+This is an ansible role that installs a demo version of the PSM, along
+with a series of dependencies.  See comments at the top of
+`roles/psm/tasks/main.yml` for more information.
+
+There are a number of variables in the localhost.yml file.  You'll
+want to set them.  If you need a dev depolyment, you can `sudo chown`
+the psm directory to your user after running this.
+
+Install all this with:
+
+    sudo ./run localhost.yml psm
+
+The `sudo` is needed to have permissions to twiddle the Postgres
+databse.
+
+TODO: separate out the mailcatcher stuff for folks that don't want to
+use the ruby-based mailcatcher.  They might, for example, want to use
+a simple python dummy mail server instead.

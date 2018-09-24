@@ -1,0 +1,9 @@
+all:
+  hosts:
+    localhost:
+      ansible_user: root
+      ansible_connection: local
+
+# Local Variables:
+# mode: yaml
+# End:

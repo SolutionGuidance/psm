@@ -1423,8 +1423,7 @@ input.date{
   margin:0 0 0 7px;
 }
 
-.practicePanel span.floatL{
-  width:1%;
+.practicePanel span.floatL {
   margin:0;
 }
 
@@ -4119,9 +4118,6 @@ input.passwordNormalInput{
 }.memberInfoPanel .section .inlineBox label{
   display: inline;
   width: auto;
-}
-.memberInfoPanel .section span.floatL{
-  width: 5px;
 }
 .memberInfoPanel .section span.floatL.inputCnt{
   width: 552px;

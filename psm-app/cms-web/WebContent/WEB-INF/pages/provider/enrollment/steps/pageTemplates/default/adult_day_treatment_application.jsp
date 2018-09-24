@@ -1,5 +1,7 @@
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="h" tagdir="/WEB-INF/tags" %>
+
 <input type="hidden" name="formNames" value="<%= ViewStatics.ADULT_DAY_TREATMENT_APPLICATION_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 
@@ -10,16 +12,17 @@
     <div class="section">
         <div class="">
             <div class="row requireField">
-                <label for="applicationFileUpload" class="mediumLbl">Please upload a copy of application*</label>
-                <c:set var="formName" value="_35_application"></c:set>
-                <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <c:if test="${not empty formValue}">
-                    <c:url var="downloadLink" value="/provider/enrollment/attachment">
-                         <c:param name="id" value="${requestScope[formName]}"></c:param>
-                    </c:url>
-                    <a href="${downloadLink}">Download</a>
-                </c:if>
-                <input id="applicationFileUpload" type="file" class="fileUpload" name="${formName}" />
+                <label class="mediumLbl">Please upload a copy of application*</label>
+                <span class="floatL">
+                    <c:set var="formName" value="_35_application" />
+                    <h:attachment
+                        name="${formName}"
+                        title="Adult Day Treatment Application"
+                        attachmentId="${requestScope[formName]}"
+                        attachmentIdName="${formName}"
+                        filename="Download"
+                    />
+                </span>
             </div>
         </div>
         <div class="clearFixed"></div>

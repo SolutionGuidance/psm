@@ -44,9 +44,6 @@
                   <div class="wholeCol">
                     <div class="row">
                       <label>System</label>
-                      <span class="floatL">
-                        <b>:</b>
-                      </span>
 
                       <c:set var="errorCls" value=""/>
                       <spring:bind path="systemId">
@@ -58,9 +55,6 @@
                     </div>
                     <div class="row">
                       <label for="createLinkAccountId">Account Id</label>
-                      <span class="floatL">
-                        <b>:</b>
-                      </span>
 
                       <c:set var="errorCls" value=""/>
                       <spring:bind path="accountId">
@@ -70,9 +64,6 @@
                     </div>
                     <div class="row">
                       <label for="createLinkPassword">Password</label>
-                      <span class="floatL">
-                        <b>:</b>
-                      </span>
 
                       <c:set var="errorCls" value=""/>
                       <spring:bind path="password">

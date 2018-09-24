@@ -45,12 +45,10 @@
                   <div class="leftCol">
                     <div class="row">
                       <label for="npiInput">NPI/UMPI</label>
-                      <span class="floatL"><b>:</b></span>
                       <input id="npiInput" type="text" class="normalInput" value="${searchCriteria.npi}"/>
                     </div>
                     <div class="row">
                       <label>Date Submitted</label>
-                      <span class="floatL"><b>:</b></span>
                       <span class="dateWrapper floatL">
                         <input id="submissionDateStartInput" title="Submission Date Start" value='<fmt:formatDate value="${searchCriteria.submissionDateStart}" pattern="MM/dd/yyyy"/>' class="date" type="text" readonly="readonly"/>
                       </span>
@@ -61,7 +59,6 @@
                     </div>
                     <div class="row">
                       <label for="providerTypeInput">Provider Type</label>
-                      <span class="floatL"><b>:</b></span>
                       <select id="providerTypeInput" class="longSelect">
                         <option value="">All</option>
                         <c:forEach var="item" items="${providerTypesLookup}">
@@ -71,14 +68,12 @@
                     </div>
                     <div class="row">
                       <label for="providerNameInput">Provider Name</label>
-                      <span class="floatL"><b>:</b></span>
                       <input id="providerNameInput" value="${searchCriteria.providerName}" type="text" class="normalInput"/>
                     </div>
                   </div>
                   <div class="rightCol">
                     <div class="row">
                       <label for="requestTypeInput">Request Type</label>
-                      <span class="floatL"><b>:</b></span>
                       <select id="requestTypeInput" class="longSelect">
                         <option value="">All</option>
                         <c:forEach var="item" items="${requestTypesLookup}">
@@ -88,7 +83,6 @@
                     </div>
                     <div class="row">
                       <label for="enrollmentStatusesInput">Status</label>
-                      <span class="floatL"><b>:</b></span>
                       <select id="enrollmentStatusesInput" class="longSelect">
                         <option value="">All</option>
                         <c:forEach var="item" items="${enrollmentStatusesLookup}">
@@ -98,7 +92,6 @@
                     </div>
                     <div class="row">
                       <label for="riskLevelInput">Risk Level</label>
-                      <span class="floatL"><b>:</b></span>
                       <select id="riskLevelInput" class="longSelect">
                         <option value="">All</option>
                         <c:forEach var="item" items="${riskLevelsLookup}">

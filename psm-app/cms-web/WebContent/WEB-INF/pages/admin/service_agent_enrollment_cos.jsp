@@ -40,17 +40,14 @@
                     <div class="wholeCol">
                       <div class="row">
                         <label>Start Date</label>
-                        <span class="floatL"><b>:</b></span>
                         <span><fmt:formatDate value="${cos.startDate}" pattern="MM/dd/yyyy"/></span>
                       </div>
                       <div class="row">
                         <label>End Date</label>
-                        <span class="floatL"><b>:</b></span>
                         <span id="edt-${cos.id}"><fmt:formatDate value="${cos.endDate}" pattern="MM/dd/yyyy"/></span>
                       </div>
                       <div class="row">
                         <label>COS</label>
-                        <span class="floatL"><b>:</b></span>
                         <span id="cats-${cos.id}">
                           <c:forEach var="cat" items="${cos.categories}" varStatus="loop2">
                             ${cat.code}
@@ -76,17 +73,14 @@
                   <div class="wholeCol">
                     <div class="row">
                       <label for="enrollmentCosStartDate">Start Date</label>
-                      <span class="floatL"><b>:</b></span>
                       <span><input id="enrollmentCosStartDate" name="startDate" class="shortInput text mdate" value="" /></span>
                     </div>
                     <div class="row">
                       <label for="enrollmentCosEndDate">End Date</label>
-                      <span class="floatL"><b>:</b></span>
                       <span><input id="enrollmentCosEndDate" name="endDate" class="shortInput text mdate" value="" /></span>
                     </div>
                     <div class="row">
                       <label for="enrollmentCosCosSelect">COS</label>
-                      <span class="floatL"><b>:</b></span>
                       <select id="enrollmentCosCosSelect" name="cos" multiple="multiple" style="width:350px;" class="chzn-select">
                         <c:forEach var="code" items="${codes}">
                           <option value="${code.code}">${code.code}</option>

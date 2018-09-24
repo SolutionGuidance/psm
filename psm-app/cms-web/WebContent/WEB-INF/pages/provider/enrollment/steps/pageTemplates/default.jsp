@@ -10,19 +10,10 @@
       enctype="multipart/form-data">
   <sec:csrfInput />
 
-  <div class="buttonBox topButtonBox">
-    <button class="greyBtn prevBtn" type="submit" name="previous">
-      <span class="icon">Previous</span>
-    </button>
-    <c:if test="${not isInSubmissionPage}">
-      <button class="nextBtn greyBtn" type="submit" name="next">
-        <span class="icon">Next</span>
-      </button>
-    </c:if>
-    <button class="greyBtn" type="submit" name="save">
-      Save as Draft
-    </button>
-  </div>
+  <input type="hidden" name="pageName" value="${pageName}"/>
+  <c:set var="showExportNavigation" value="${false}" />
+  <c:set var="isTopNavigation" value="${true}" />
+  <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/steps_navigation_buttons.jsp" %>
 
   <div class="requiredInfo">
     <span class="required">*</span> Indicates Required Fields
@@ -38,25 +29,7 @@
     </c:forEach>
   </c:forEach>
 
-  <div class="buttonBox">
-    <input type="hidden" name="pageName" value="${pageName}"/>
+  <c:set var="isTopNavigation" value="${false}" />
+  <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/steps_navigation_buttons.jsp" %>
 
-    <button type="submit" class="greyBtn prevBtn" name="previous">
-      <span class="icon">Previous</span>
-    </button>
-    <c:if test="${not isInSubmissionPage}">
-      <button type="submit" class="nextBtn greyBtn" name="next">
-        <span class="icon">Next</span>
-      </button>
-    </c:if>
-    <c:if test="${isInSubmissionPage}">
-      <button type="submit" class="purpleBtn" name="submit">
-        Submit Enrollment
-      </button>
-    </c:if>
-    <button type="submit" class="greyBtn" name="save">
-      Save as Draft
-    </button>
-  </div>
-  <!-- /.buttonBox -->
 </form>

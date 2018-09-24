@@ -5,7 +5,7 @@
 <div class="stepWidget ${viewModel.individual ? 'stepWidget5Item' : 'stepWidget6Item'}">
     <ul>
         <c:set var="activeIdx" value="1"></c:set>
-        <c:set var="isInSubmissionPage" value="${false}"></c:set>
+        <c:set var="isSubmissionPage" value="${false}" />
         <c:forEach var="tabName" items="${viewModel.tabNames}" varStatus="status">
             <c:if test="${viewModel.currentTab eq tabName}"><c:set var="activeIdx" value="${status.count}"></c:set></c:if>
         </c:forEach>
@@ -21,7 +21,9 @@
                 <c:when test="${status.count + 1 < activeIdx}"><c:set var="tabActiveCls" value="activePrev"></c:set></c:when>
             </c:choose>
             <c:if test="${viewModel.currentTab eq tabName}"><c:set var="tabActiveCls" value="active"></c:set></c:if>
-            <c:if test="${viewModel.currentTab eq tabName and status.last}"><c:set var="isInSubmissionPage" value="${true}"></c:set></c:if>
+            <c:if test="${viewModel.currentTab == tabName and status.last}">
+              <c:set var="isSubmissionPage" value="${true}" />
+            </c:if>
             <li class="${status.first ? 'firstStep' : ''} ${status.last ? 'lastStep' : ''} ${tabCls} ${tabActiveCls}">
                <span><strong>${status.count}. ${tabLabel}</strong></span>
             </li>

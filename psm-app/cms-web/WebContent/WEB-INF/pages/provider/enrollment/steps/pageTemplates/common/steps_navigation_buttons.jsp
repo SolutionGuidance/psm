@@ -34,13 +34,15 @@
     </button>
   </c:if>
 
-  <button
-    type="submit"
-    class="greyBtn"
-    name="save"
-  >
-    Save as Draft
-  </button>
+  <c:if test="${not isSubmissionPage || (isSubmissionPage && not isTopNavigation)}">
+    <button
+      type="submit"
+      class="greyBtn"
+      name="save"
+    >
+      Save as Draft
+    </button>
+  </c:if>
 
   <c:if test="${showExportNavigation}">
     <a

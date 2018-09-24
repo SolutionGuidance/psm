@@ -4,7 +4,6 @@
     <div class="leftCol">
         <div class="row">
             <label>Facility Type</label>
-            <span class="floatL"><b>:</b></span>
             <span >${requestScope['_36_facilityType']}</span>
         </div>
     </div>

@@ -9,7 +9,6 @@
 	        </div>
 	        <div class="noteMeta">
 	            <label>Added By</label>
-	            <span class="sep"><b>:</b></span>
 	            <span class="author"><b><cms:fullname userId="${note.createdBy}" /></b></span> on <span class="timestamp"><c:out value="${note.createdOn}" /></span>
 	        </div>
 	        <div class="clear"></div>
@@ -28,4 +27,3 @@
         <textarea id="newNoteField" name="noteText" rows="5" cols="50"><c:out value="${param['noteText']}" /></textarea>
     </div>
 </div>
-

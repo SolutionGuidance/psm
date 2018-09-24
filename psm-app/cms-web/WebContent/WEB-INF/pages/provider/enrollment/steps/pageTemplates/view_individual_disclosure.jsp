@@ -41,12 +41,10 @@
             <div class="leftCol">
                 <div class="row">
                     <label>Provider Name</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_08_name']}</span>
                 </div>
                 <div class="row">
                     <label>Provider Title</label>
-                    <span class="floatL"><b>:</b></span>
                     <span>${requestScope['_08_title']}</span>
                 </div>
             </div>

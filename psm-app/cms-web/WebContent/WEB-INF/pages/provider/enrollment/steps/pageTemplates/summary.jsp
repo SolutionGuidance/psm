@@ -8,22 +8,12 @@
     method="post"
     enctype="multipart/form-data">
   <sec:csrfInput />
-  <div class="buttonBox topButtonBox">
-    <button class="greyBtn prevBtn" type="submit" name="previous">
-      <span class="icon">Previous</span>
-    </button>
-    <button class="nextBtn greyBtn" type="submit" name="next">
-      <span class="icon">Next</span>
-    </button>
-    <button class="greyBtn" type="submit" name="save">
-      Save as Draft
-    </button>
-    <a class="greyBtn iconPdf" href="<c:url value="/provider/enrollment/export" />">
-      Export to PDF
-    </a>
-  </div>
 
-  <!-- /.buttonBox -->
+  <input type="hidden" name="pageName" value="${pageName}"/>
+  <c:set var="showExportNavigation" value="${true}" />
+  <c:set var="isTopNavigation" value="${true}" />
+  <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/steps_navigation_buttons.jsp" %>
+
   <div class="personalPanel summaryPageWrapper">
     <c:set var="afterSummary" value="${false}"></c:set>
     <c:forEach var="tabName" items="${viewModel.tabNames}" varStatus="status">
@@ -55,20 +45,7 @@
     <div class="br"></div>
   </div>
 
-  <div class="buttonBox topButtonBox">
-    <input type="hidden" name="pageName" value="${pageName}"/>
-    <button class="greyBtn prevBtn" type="submit" name="previous">
-      <span class="icon">Previous</span>
-    </button>
-    <button class="nextBtn greyBtn" type="submit" name="next">
-      <span class="icon">Next</span>
-    </button>
-    <button class="greyBtn" type="submit" name="save">
-      Save as Draft
-    </button>
-    <a class="greyBtn iconPdf" href="<c:url value="/provider/enrollment/export" />">
-      Export to PDF
-    </a>
-  </div>
-  <!-- /.buttonBox -->
+  <c:set var="isTopNavigation" value="${false}"></c:set>
+  <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/steps_navigation_buttons.jsp" %>
+
 </form>

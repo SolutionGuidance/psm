@@ -95,8 +95,8 @@
                     >
                       <tr class="reportRow ${status.index % 2 == 0 ? 'odd' : 'even'}">
                         <td>
-                          <a href="${ctx}/provider/enrollment/view?id=${enrollment.ticketId}">
-                            ${enrollment.ticketId}
+                          <a href="${ctx}/provider/enrollment/view?id=${enrollment.enrollmentId}">
+                            ${enrollment.enrollmentId}
                           </a>
                         </td>
                         <td>${enrollment.details.entity.name}</td>

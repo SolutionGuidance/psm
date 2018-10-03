@@ -99,7 +99,7 @@ public class AcceptedHandler extends GenericHandler {
             e.setId(0);
             e.setNpi(model.getEnrollment().getProviderInformation().getNPI());
             e.setStatus("04");
-            e.setTicketId(ticket.getTicketId());
+            e.setTicketId(ticket.getEnrollmentId());
             entityManager.persist(e);
 
             item.getResults().put("model", model);

@@ -53,7 +53,7 @@ public class Enrollment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "enrollment_id")
-    private long ticketId;
+    private long enrollmentId;
 
     /**
      * Ticket status.
@@ -81,11 +81,8 @@ public class Enrollment implements Serializable {
     /**
      * The profile id that was created by this ticket.
      */
-    @Column(
-            name = "profile_reference_id",
-            nullable = false
-    )
-    private long profileReferenceId = 0;
+    @Column(name = "profile_reference_id")
+    private Long profileReferenceId;
 
     /**
      * The current page.
@@ -156,12 +153,12 @@ public class Enrollment implements Serializable {
     public Enrollment() {
     }
 
-    public long getTicketId() {
-        return ticketId;
+    public long getEnrollmentId() {
+        return enrollmentId;
     }
 
-    public void setTicketId(long ticketId) {
-        this.ticketId = ticketId;
+    public void setEnrollmentId(long enrollmentId) {
+        this.enrollmentId = enrollmentId;
     }
 
     public EnrollmentStatus getStatus() {
@@ -244,11 +241,11 @@ public class Enrollment implements Serializable {
         this.createdBy = createdBy;
     }
 
-    public long getProfileReferenceId() {
+    public Long getProfileReferenceId() {
         return profileReferenceId;
     }
 
-    public void setProfileReferenceId(long profileReferenceId) {
+    public void setProfileReferenceId(Long profileReferenceId) {
         this.profileReferenceId = profileReferenceId;
     }
 
@@ -287,5 +284,9 @@ public class Enrollment implements Serializable {
     public void addAutomaticScreening(AutomaticScreening automaticScreening) {
         automaticScreening.setEnrollment(this);
         automaticScreenings.add(automaticScreening);
+    }
+
+    public boolean isActive() {
+        return details != null && details.getEnrollmentId() == this.enrollmentId;
     }
 }

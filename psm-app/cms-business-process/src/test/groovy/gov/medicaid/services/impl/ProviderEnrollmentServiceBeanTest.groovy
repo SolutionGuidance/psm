@@ -15,7 +15,7 @@ import javax.persistence.Query
 class ProviderEnrollmentServiceBeanTest extends Specification {
     private static final long TICKET_ID = 1
     private static final String PROFILE_QUERY =
-            "FROM ProviderProfile p WHERE ticketId = :ticketId"
+            "FROM ProviderProfile p WHERE profileId = :profileId"
     private ProviderEnrollmentServiceBean service
     private EntityManager entityManager
     private CMSUser systemUser
@@ -53,7 +53,7 @@ class ProviderEnrollmentServiceBeanTest extends Specification {
 
     def "GetTicketDetails returns enrollment with profile on valid ID"() {
         given:
-        Enrollment enrollment = new Enrollment()
+        Enrollment enrollment = new Enrollment([profileReferenceId: 0])
         entityManager.find(Enrollment.class, TICKET_ID, _ as Map) >> enrollment
         entityManager.createQuery(PROFILE_QUERY, ProviderProfile.class) >>
                 mockTypedQuery([new ProviderProfile()])

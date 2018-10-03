@@ -141,7 +141,7 @@ public class ProviderTypesReportController extends gov.medicaid.controllers.Base
 
             for (Enrollment e : em.getEnrollments()) {
                 ProviderType providerType =
-                    enrollmentService.findEntityByProviderKey(null, e.getTicketId()).getProviderType();
+                    enrollmentService.findEntityByProviderKey(null, e.getEnrollmentId()).getProviderType();
 
                 if (providerType != null) {
                     if (!typeEnrollments.containsKey(providerType)) {

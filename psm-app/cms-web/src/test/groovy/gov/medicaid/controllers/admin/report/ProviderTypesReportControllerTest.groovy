@@ -48,9 +48,9 @@ class ProviderTypesReportControllerTest extends Specification {
         Date.from(d.atZone(ZoneId.systemDefault()).toInstant())
     }
 
-    private makeEnrollment(ticketId, statusDate) {
+    private makeEnrollment(enrollmentId, statusDate) {
         return new Enrollment([
-            ticketId: ticketId,
+            enrollmentId: enrollmentId,
             statusDate: toDate(statusDate)
         ])
     }

@@ -77,7 +77,7 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
                 "Status");
             for (Enrollment enrollment : enrollments) {
                 csvPrinter.printRecord(
-                    enrollment.getTicketId(),
+                    enrollment.getEnrollmentId(),
                     enrollment.getDetails().getEntity().getName(),
                     enrollment.getDetails().getEntity().getProviderType().getDescription(),
                     enrollment.getCreatedOn(),
@@ -107,7 +107,7 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
         results.stream()
             .forEach(e -> {
                 e.setDetails(
-                    enrollmentService.getProviderDetailsByTicket(e.getTicketId(), true)
+                    enrollmentService.getProviderDetails(e.getProfileReferenceId(), true)
                 );
             });
 

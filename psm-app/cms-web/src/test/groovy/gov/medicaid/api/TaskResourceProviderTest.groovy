@@ -20,13 +20,13 @@ import spock.lang.Unroll
 class TaskResourceProviderTest extends Specification {
     TaskResourceProvider provider
     ProviderEnrollmentService mockEnrollmentService
-    long ticketId = 123
+    long enrollmentId = 123
     IdType id
 
     def setup() {
         mockEnrollmentService = Mock(ProviderEnrollmentService)
         provider = new TaskResourceProvider(mockEnrollmentService)
-        id = new IdType(ticketId)
+        id = new IdType(enrollmentId)
     }
 
     def "GetResourceById queries with system user"() {
@@ -45,7 +45,7 @@ class TaskResourceProviderTest extends Specification {
         provider.getResourceById(id)
 
         then:
-        1 * mockEnrollmentService.getTicketDetails(_, ticketId)
+        1 * mockEnrollmentService.getTicketDetails(_, enrollmentId)
     }
 
     def "GetResourceById returns null for unknown enrollment ID"() {
@@ -58,7 +58,7 @@ class TaskResourceProviderTest extends Specification {
 
     def "GetResourceById returns Task for valid enrollment ID"() {
         given:
-        mockEnrollmentService.getTicketDetails(_, ticketId) >> createEnrollment()
+        mockEnrollmentService.getTicketDetails(_, enrollmentId) >> createEnrollment()
 
         when:
         def result = provider.getResourceById(id)
@@ -66,7 +66,7 @@ class TaskResourceProviderTest extends Specification {
         then:
         result instanceof Task
         result.hasId()
-        result.getId() == Long.toString(ticketId)
+        result.getId() == Long.toString(enrollmentId)
     }
 
     def "Search all with no applications returns empty list"() {
@@ -98,18 +98,19 @@ class TaskResourceProviderTest extends Specification {
                 null,
                 null,
                 0,
-                0
+                0,
+                true
         )
         searchResults.items = [userRequest]
         mockEnrollmentService.searchTickets(_, _) >> searchResults
-        mockEnrollmentService.getTicketDetails(_, ticketId) >> createEnrollment()
+        mockEnrollmentService.getTicketDetails(_, enrollmentId) >> createEnrollment()
 
         when:
         def result = provider.search(null, null, null, null)
 
         then:
         result.size() == 1
-        result.first().getId() == Long.toString(ticketId)
+        result.first().getId() == Long.toString(enrollmentId)
     }
 
     def "Search by NPI includes NPI in query"() {
@@ -215,7 +216,7 @@ class TaskResourceProviderTest extends Specification {
 
     private static Enrollment createEnrollment() {
         Enrollment enrollment = new Enrollment()
-        enrollment.ticketId = 123
+        enrollment.enrollmentId = 123
         enrollment.details = new ProviderProfile()
         enrollment.details.entity = new Organization()
         enrollment.details.entity.providerType = new ProviderType()

@@ -2111,4 +2111,87 @@
       </column>
     </createTable>
   </changeSet>
+
+  <changeSet author="" id="issue949-remove-provider-reference-ticket-id">
+    <dropColumn tableName="provider_profiles"
+      columnName="reference_ticket_id"/>
+    <rollback>
+      <addColumn tableName="provider_profiles">
+        <column name="reference_ticket_id"
+          type="bigint"
+          defaultValue="0">
+          <constraints nullable="false"/>
+        </column>
+      </addColumn>
+    </rollback>
+  </changeSet>
+  
+  <changeSet author="" id="issue949-remove-provider-profile-control-no">
+    <dropColumn tableName="provider_profiles"
+      columnName="profile_id"/>
+    <renameColumn tableName="provider_profiles"
+      oldColumnName="control_no"
+      newColumnName="profile_id"/>
+    <rollback>
+      <renameColumn tableName="provider_profiles"
+        newColumnName="control_no"
+        oldColumnName="profile_id"/>
+      <addColumn tableName="provider_profiles">
+        <column name="profile_id"
+          type="bigint"/>
+      </addColumn>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-entities">
+    <loadUpdateData file="seeds/20180731_entities.csv"
+      primaryKey="entity_id"
+      tableName="entities" />
+  </changeSet>
+
+  <changeSet author="" id="issue949-enrollments">
+    <loadUpdateData file="seeds/20180731_enrollments.csv"
+      primaryKey="enrollment_id"
+      tableName="enrollments" />
+  </changeSet>
+
+  <changeSet author="" id="issue949-rename-provider-profile-ticket-id">
+    <renameColumn tableName="provider_profiles"
+      oldColumnName="ticket_id"
+      newColumnName="enrollment_id"/>
+    <rollback>
+      <renameColumn tableName="provider_profiles"
+        newColumnName="enrollment_id"
+        oldColumnName="ticket_id"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet author="" id="issue949-add-fks">
+    <dropNotNullConstraint
+      columnName="profile_reference_id"
+      tableName="enrollments" />
+    <addForeignKeyConstraint
+      baseTableName="provider_profiles"
+      baseColumnNames="enrollment_id"
+      constraintName="provider_profiles_enrollment_id_fkey"
+      referencedColumnNames="enrollment_id"
+      referencedTableName="enrollments"/>
+    <addForeignKeyConstraint
+      baseTableName="enrollments"
+      baseColumnNames="profile_reference_id"
+      constraintName="enrollments_profile_reference_id_fkey"
+      referencedColumnNames="profile_id"
+      referencedTableName="provider_profiles"/>
+    <rollback>
+      <addNotNullConstraint
+        columnName="profile_reference_id"
+        tableName="enrollments" />
+      <dropForeignKeyConstraint
+        baseTableName="provider_profiles"
+        constraintName="provider_profiles_enrollment_id_fkey" />
+      <dropForeignKeyConstraint
+        baseTableName="enrollments"
+        constraintName="enrollments_profile_reference_id_fkey" />
+    </rollback>
+  </changeSet>
 </databaseChangeLog>

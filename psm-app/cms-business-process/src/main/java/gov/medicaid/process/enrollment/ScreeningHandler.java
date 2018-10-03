@@ -98,6 +98,19 @@ public class ScreeningHandler extends GenericHandler {
 
         // merge rule changes to the model
         try {
+            /*
+             * This may be needed!!!
+             *
+             * When updating the enrollment, the code to save the screenings was needed because
+             * the enrollment was getting duplicated left and right.  Now, enrollments get duplicated
+             * if and only if they have done a major state change, and in those instances, they
+             * should get new screenings.
+             *
+             * However, that may be an incorrect assumption, so until we fully test the changes
+             * and workflows introduced by this change, we should keep around the code that was
+             * needed to duplicate the screenings.
+             *
+
             providerService.saveEnrollmentDetails(XMLAdapter.fromXML(systemUser, enrollment));
             long ticketId = Long.parseLong(enrollment.getObjectId());
             Enrollment ticket = providerService.getEnrollmentWithScreenings(systemUser, ticketId).
@@ -108,6 +121,13 @@ public class ScreeningHandler extends GenericHandler {
             ProviderInformationType providerInformation = enrollment.getProviderInformation();
             String reviewer = providerInformation.getReviewedBy(); // transient field (should really add to DB)
             ProviderInformationType updatedInfo = XMLAdapter.toXML(ticket).getProviderInformation();
+
+            */
+            Enrollment updatedTicket =
+                providerService.saveEnrollmentDetails(XMLAdapter.fromXML(systemUser, enrollment));
+            ProviderInformationType providerInformation = enrollment.getProviderInformation();
+            String reviewer = providerInformation.getReviewedBy(); // transient field (should really add to DB)
+            ProviderInformationType updatedInfo = XMLAdapter.toXML(updatedTicket).getProviderInformation();
             updatedInfo.setReviewedBy(reviewer);
             enrollment.setProviderInformation(updatedInfo);
         } catch (PortalServiceException e) {

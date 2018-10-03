@@ -44,7 +44,7 @@
               </div>
 
               <c:url var="reuseEditProfileLink" value="/provider/enrollment/view">
-                <c:param name="id" value="${ticketId}"></c:param>
+                <c:param name="id" value="${enrollmentId}"></c:param>
               </c:url>
 
               <c:url var="newEditProfileLink" value="/provider/enrollment/edit">

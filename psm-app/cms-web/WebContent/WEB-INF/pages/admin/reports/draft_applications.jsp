@@ -58,9 +58,9 @@
                   >
                   <tr class="reportRow ${status.index % 2 == 0 ? 'odd' : 'even'}">
                     <td class="reportDatum nonedisplay" reportField="month" reportValue="${enrollmentMonth.month}"></td>
-                    <td class="reportDatum" reportField="ticketId" reportValue="${enrollment.ticketId}">
-                      <a href="${ctx}/provider/enrollment/view?id=${enrollment.ticketId}">
-                        ${enrollment.ticketId}
+                    <td class="reportDatum" reportField="enrollmentId" reportValue="${enrollment.enrollmentId}">
+                      <a href="${ctx}/provider/enrollment/view?id=${enrollment.enrollmentId}">
+                        ${enrollment.enrollmentId}
                       </a>
                     </td>
                     <td>${enrollment.details.entity.npi}</td>

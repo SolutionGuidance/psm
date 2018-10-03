@@ -81,7 +81,7 @@ public class LeieExternalScreener {
         logger.info(String.format(
             "LEIE screening for enrollment with enrollment_id %d " +
                 "found %d matches; marking screening as failed.",
-            screening.getEnrollment().getTicketId(),
+            screening.getEnrollment().getEnrollmentId(),
             providerSearchResults.getEntry().size()
         ));
         screening.setResult(AutomaticScreening.Result.FAIL);
@@ -99,7 +99,7 @@ public class LeieExternalScreener {
         logger.info(String.format(
             "LEIE screening for enrollment with enrollment_id %d " +
                 "found no matches; marking screening as passed.",
-            screening.getEnrollment().getTicketId()
+            screening.getEnrollment().getEnrollmentId()
         ));
 
         screening.setResult(AutomaticScreening.Result.PASS);

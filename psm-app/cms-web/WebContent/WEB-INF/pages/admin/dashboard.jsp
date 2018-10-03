@@ -79,7 +79,7 @@
                         <td>
                           <a
                             class="actionLink"
-                            href="${ctx}/provider/enrollment/view?id=${item.ticketId}"
+                            href="${ctx}/provider/enrollment/view?id=${item.enrollmentId}"
                           >
                             View
                           </a>

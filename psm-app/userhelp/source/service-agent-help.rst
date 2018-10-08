@@ -15,7 +15,7 @@ Is it acceptable for me to fill out and sign the Provider Statement on the provi
 Please confer with the state/territory Medicaid office.
 
 When the state/territory accepts or rejects an application I've submitted, how do I find out? Is it my responsibility to notify the provider?
---------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 Right now, this site does not notify you via email or paper mail when
 the state/territory accepts or rejects an application you have submitted.
@@ -32,7 +32,7 @@ Can I submit a batch submission to renew several providers' enrollments?
 No. Currently the PSM does not support this.
 
 How do I change a provider's name in this system? Can I update it in one place for all their applications?
----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
 
 If an application is a draft (you haven't submitted it yet), then yes,
 you can click on the draft application and edit the provider's name. If
@@ -44,7 +44,7 @@ system. <https://github.com/SolutionGuidance/psm/issues/408>`__
 Currently you cannot update multiple draft applications at once.
 
 How do I update the contact information for an approved application? Can I update it in one place for all their applications?
----------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
 
 If an application is a draft (you haven't submitted it yet), then yes,
 you can click on the draft application and edit the provider's contact
@@ -56,7 +56,7 @@ this. <https://github.com/SolutionGuidance/psm/issues/416>`__
 Currently you cannot update multiple draft applications at once.
 
 How do I update the license/certification information for an approved application (e.g., if the provider has renewed their license)?
------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------
 
 Currently, the PSM does not allow you to update information for an
 approved application. You'll need to contact the state/territory Medicaid
@@ -64,7 +64,7 @@ office directly. `A future version of the PSM will let you do
 this. <https://github.com/SolutionGuidance/psm/issues/416>`__
 
 How do I terminate an application (e.g., if a provider retires or dies)?
------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 Currently the PSM does not give you a way to terminate an approved
 application, but `a future version of the PSM

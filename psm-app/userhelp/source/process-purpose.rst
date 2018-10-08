@@ -1,5 +1,5 @@
 Why do we have this application process?
-=======================================
+========================================
 
 Under Medicaid and similar programs, federal and state/territory governments
 pay doctors, pharmacists, and other medical service providers for treating

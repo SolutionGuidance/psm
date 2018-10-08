@@ -251,24 +251,24 @@ What do "Title V", "Title XX", etc. refer to?
 **Title XXI** - State Children's Health Insurance Program.
 
 Can I create multiple applications for one person (e.g., if a person is licensed as two or more kinds of provider)?
-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 
 Yes.
 
 Why would a provider have multiple applications?
------------------------------------------------
+------------------------------------------------
 
 An individual person might be licensed as two or more kinds of provider.
 
 How do I input an application for an individual provider who is affiliated with multiple organizations (e.g., a psychologist who works for two clinics)?
--------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 You can choose to "Add Another Practice Location" on the "Practice Info"
 screen of the application. This is a way to indicate that a
 provider works with multiple group practices.
 
 How do I input an application for an organization with several individual providers (e.g., a clinic employing several physicians)?
----------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
 
 Choose the correct organizational provider type during the first step of
 application. On the member entry screen, click the link to add an
@@ -287,7 +287,7 @@ What do I do if none of the provider types seem to describe what I do (what this
 Contact your state/territory Medicaid office directly.
 
 How can I update an existing organizational application to add a new provider (e.g., if a clinic hires a new physician)?
------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 If an application is a draft (you haven't submitted it yet), then yes,
 you can click on the draft application and edit the member list.
@@ -299,7 +299,7 @@ individual provider. On the "Practice Info" screen, the user should say
 by a group practice?" and enter the organization's information.
 
 How can I update an existing organizational application to remove a provider (e.g., if a physician retires from a clinic)?
--------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------
 
 If an application is a draft (you haven't submitted it yet), then yes,
 you can click on the draft application and edit the member list. If you
@@ -323,7 +323,7 @@ probably automatically open a program to view the file, such as:
 -  PPT and PPTX files: Microsoft PowerPoint
 
 What if I know from past experience that someone else with the same name, address, or NPI has previously been excluded from Medicaid and that automatic checks are likely to flag this application as a result?
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Contact your state/territory Medicaid office directly.
 

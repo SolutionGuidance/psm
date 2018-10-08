@@ -5,7 +5,7 @@ This is documentation for service administrators for the Provider
 Screening Module. Usually these are state/territory Medicaid agency staffers.
 
 How do I use the application verification process?
--------------------------------------------------
+--------------------------------------------------
 
 Verification is checking an application with federal or state/territory data
 sources and visually inspecting the license(s) or certification(s) in a

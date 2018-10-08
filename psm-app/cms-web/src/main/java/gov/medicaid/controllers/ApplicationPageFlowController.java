@@ -695,7 +695,7 @@ public class ApplicationPageFlowController extends BaseController {
     /**
      * Loads the given application by id.
      *
-     * @param applicationId the application application id
+     * @param applicationId the application id
      * @param model    the view model
      * @return the edit application page
      * @throws PortalServiceException for any errors encountered
@@ -728,7 +728,7 @@ public class ApplicationPageFlowController extends BaseController {
     /**
      * Loads the given application by id.
      *
-     * @param applicationId the application application id
+     * @param applicationId the application id
      * @param model    the view model
      * @return the edit application page
      * @throws PortalServiceException for any errors encountered
@@ -818,7 +818,7 @@ public class ApplicationPageFlowController extends BaseController {
     }
 
     /**
-     * Saves the current application application as draft.
+     * Saves the current application as draft.
      *
      * @param application the current application model
      * @param request    the request
@@ -861,7 +861,7 @@ public class ApplicationPageFlowController extends BaseController {
     }
 
     /**
-     * Saves the current application application as draft.
+     * Saves the current application as draft.
      *
      * @param application the current application model
      * @param request    the request

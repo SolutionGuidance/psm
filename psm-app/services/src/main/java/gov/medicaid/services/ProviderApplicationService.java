@@ -204,7 +204,7 @@ public interface ProviderApplicationService {
     ) throws PortalServiceException;
 
     /**
-     * Look up an application application by its ID, checking that the given user
+     * Look up an application by its ID, checking that the given user
      * has permission to access the application.
      *
      * @param user         the requesting user; used for authorization
@@ -218,7 +218,7 @@ public interface ProviderApplicationService {
     ) throws PortalServiceException;
 
     /**
-     * Look up an application application by its ID, including the associated
+     * Look up an application by its ID, including the associated
      * automatic screening results, and checking that the given user has
      * permission to access the application.
      *

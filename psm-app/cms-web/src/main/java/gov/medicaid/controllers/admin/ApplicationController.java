@@ -224,7 +224,7 @@ public class ApplicationController extends BaseController {
                 user,
                 id
         ).orElseThrow(() -> new PortalServiceException(
-                "Could not find application application with that ID."
+                "Could not find application with that ID."
         ));
         long processInstanceId = application.getProcessInstanceId();
         if (processInstanceId <= 0) {

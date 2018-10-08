@@ -43,7 +43,7 @@ What are the steps in the application process?
 ---------------------------------------------
 
 -  A provider, a service agent, or a state/territory Medicaid agency staffer
-   creates and submits a new application application for a particular
+   creates and submits a new application for a particular
    provider. (A user can save a draft application and come back later to
    finish and submit it.)
 
@@ -264,7 +264,7 @@ How do I input an application for an individual provider who is affiliated with 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 You can choose to "Add Another Practice Location" on the "Practice Info"
-screen of the application application. This is a way to indicate that a
+screen of the application. This is a way to indicate that a
 provider works with multiple group practices.
 
 How do I input an application for an organization with several individual providers (e.g., a clinic employing several physicians)?

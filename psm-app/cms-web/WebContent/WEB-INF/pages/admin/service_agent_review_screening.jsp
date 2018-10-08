@@ -37,7 +37,7 @@
           <div class="breadCrumb">
             Review Application
           </div>
-          <h1>Review ${model.application.providerInformation.providerType} Application Application</h1>
+          <h1>Review ${model.application.providerInformation.providerType} Application</h1>
           <div class="tabSection" id="applicationSection">
             <%@include file="/WEB-INF/pages/provider/application/steps/screening_errors.jsp" %>
             <form action="${ctx}/agent/application/approve" method="post" id="approvalForm">

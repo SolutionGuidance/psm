@@ -10,7 +10,7 @@ If you're a healthcare provider:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Go to the main page and click the "Register New Account" link. The site
-will help you create an account that can submit application applications
+will help you create an account that can submit applications
 for individual or organizational healthcare providers.
 
 A new account needs a username, first and last name, and an email

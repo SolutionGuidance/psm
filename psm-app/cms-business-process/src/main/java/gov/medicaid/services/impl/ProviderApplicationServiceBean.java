@@ -545,7 +545,7 @@ public class ProviderApplicationServiceBean extends BaseService implements Provi
     }
 
     /**
-     * Look up an application application by its ID, optionally fetching the
+     * Look up an application by its ID, optionally fetching the
      * named entity graph, and checking that the given user has permission to
      * access the application.
      *

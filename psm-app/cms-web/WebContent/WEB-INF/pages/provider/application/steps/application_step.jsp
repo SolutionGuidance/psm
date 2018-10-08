@@ -59,7 +59,7 @@
                   </c:when>
                   <c:otherwise>
                     <h1><c:out value="${requestScope['_01_providerType']}"/>
-                      Application Application</h1>
+                      Application</h1>
                   </c:otherwise>
                 </c:choose>
               </div>

@@ -102,8 +102,8 @@ public class ApplicationWebServiceBean extends BaseService implements Applicatio
      * @param username     the username of the requesting user
      * @param systemId     the system that authenticated the requesting user
      * @param npi          the NPI for which this user is a proxy, if any
-     * @param applicationId the ID of the application (application)
-     * @return the application (application)
+     * @param applicationId the ID of the application
+     * @return the application
      * @throws PortalServiceException for any errors encountered
      */
     public ApplicationType getApplicationDetails(
@@ -125,7 +125,7 @@ public class ApplicationWebServiceBean extends BaseService implements Applicatio
      * @param systemId   the system that authenticated the requesting user
      * @param npi        the NPI for which this user is a proxy, if any
      * @param application the application to save
-     * @return the application (application) ID
+     * @return the application ID
      * @throws PortalServiceException for any errors encountered
      */
     public long saveApplication(

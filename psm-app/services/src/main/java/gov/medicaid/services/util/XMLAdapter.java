@@ -324,7 +324,7 @@ public final class XMLAdapter {
      * For integration with approval.
      *
      * @param processModel the process model
-     * @param application the application application
+     * @param application the application
      */
     public static void copyApprovalFieldsToApplication(ApplicationProcess processModel, Application application) {
 

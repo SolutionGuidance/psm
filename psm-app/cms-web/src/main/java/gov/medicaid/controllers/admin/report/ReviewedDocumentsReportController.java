@@ -16,11 +16,11 @@
 
 package gov.medicaid.controllers.admin.report;
 
-import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
-import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.EnrollmentSearchCriteria;
+import gov.medicaid.controllers.admin.report.ReportControllerUtils.ApplicationMonth;
+import gov.medicaid.entities.Application;
+import gov.medicaid.entities.ApplicationSearchCriteria;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -38,19 +38,19 @@ import java.util.stream.Collectors;
 
 @Controller
 public class ReviewedDocumentsReportController extends gov.medicaid.controllers.BaseController {
-    private final ProviderEnrollmentService enrollmentService;
+    private final ProviderApplicationService applicationService;
 
-    public ReviewedDocumentsReportController(ProviderEnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
+    public ReviewedDocumentsReportController(ProviderApplicationService applicationService) {
+        this.applicationService = applicationService;
     }
 
     @RequestMapping(value = "/admin/reports/reviewed-documents", method = RequestMethod.GET)
     public ModelAndView getReviewedDocuments() {
         ModelAndView mv = new ModelAndView("admin/reports/reviewed_documents");
 
-        List<Enrollment> enrollments = getEnrollmentsFromDB();
-        List<EnrollmentMonth> ems = groupEnrollments(enrollments);
-        mv.addObject("months", ems.stream().map(e -> new DocumentsMonth(e, enrollmentService)).collect(Collectors.toList()));
+        List<Application> applications = getApplicationsFromDB();
+        List<ApplicationMonth> ems = groupApplications(applications);
+        mv.addObject("months", ems.stream().map(e -> new DocumentsMonth(e, applicationService)).collect(Collectors.toList()));
 
         return mv;
     }
@@ -61,9 +61,9 @@ public class ReviewedDocumentsReportController extends gov.medicaid.controllers.
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", csvFileName));
 
-        List<Enrollment> enrollments = getEnrollmentsFromDB();
-        List<EnrollmentMonth> ems = groupEnrollments(enrollments);
-        List<DocumentsMonth> dms = ems.stream().map(e -> new DocumentsMonth(e, enrollmentService)).collect(Collectors.toList());
+        List<Application> applications = getApplicationsFromDB();
+        List<ApplicationMonth> ems = groupApplications(applications);
+        List<DocumentsMonth> dms = ems.stream().map(e -> new DocumentsMonth(e, applicationService)).collect(Collectors.toList());
 
         try {
             CSVPrinter csvPrinter = new CSVPrinter(response.getWriter(), CSVFormat.DEFAULT);
@@ -83,17 +83,17 @@ public class ReviewedDocumentsReportController extends gov.medicaid.controllers.
         }
     }
 
-    private List<Enrollment> getEnrollmentsFromDB() {
-        EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
+    private List<Application> getApplicationsFromDB() {
+        ApplicationSearchCriteria criteria = new ApplicationSearchCriteria();
         criteria.setAscending(true);
         criteria.setSortColumn("t.createdOn");
-        return enrollmentService.searchEnrollments(criteria).getItems();
+        return applicationService.searchApplications(criteria).getItems();
     }
 
-    private List<EnrollmentMonth> groupEnrollments(List<Enrollment> enrollments) {
-        return ReportControllerUtils.groupEnrollments(
-            enrollments,
-            Enrollment::getStatusDate,
+    private List<ApplicationMonth> groupApplications(List<Application> applications) {
+        return ReportControllerUtils.groupApplications(
+            applications,
+            Application::getStatusDate,
             (e, monthStart, monthEnd) -> {
                 LocalDate statusDate = ReportControllerUtils.toLocalDate(e.getStatusDate());
                 return !(monthStart.isAfter(statusDate) || monthEnd.isBefore(statusDate));
@@ -104,12 +104,12 @@ public class ReviewedDocumentsReportController extends gov.medicaid.controllers.
         private int numDocuments;
         private LocalDate month;
 
-        public DocumentsMonth(EnrollmentMonth em, ProviderEnrollmentService enrollmentService) {
+        public DocumentsMonth(ApplicationMonth em, ProviderApplicationService applicationService) {
             numDocuments = 0;
             month = em.getMonth();
 
-            for (Enrollment e : em.getEnrollments()) {
-                numDocuments += enrollmentService.findAttachments(e.getProfileReferenceId()).size();
+            for (Application e : em.getApplications()) {
+                numDocuments += applicationService.findAttachments(e.getProfileReferenceId()).size();
             }
         }
 

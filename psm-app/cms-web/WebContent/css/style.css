@@ -560,7 +560,7 @@ input.date{
 .infoRow p{
   margin:0 10px;
 }
-/* enrollment detail page */
+/* application detail page */
 .detailPanel{
   float:left;
   width:100%;
@@ -1138,8 +1138,8 @@ input.date{
   font-size:120%;
 }
 
-/* newEnrollmentPanel */
-.newEnrollmentPanel{
+/* newApplicationPanel */
+.newApplicationPanel{
   width:100%;
   border:1px solid #d2d2d2;
   position:relative;
@@ -1148,38 +1148,38 @@ input.date{
   line-height:30px;
 }
 
-.newEnrollmentPanel .wholeCol{
+.newApplicationPanel .wholeCol{
   padding:5px 10px;
 }
 
-.newEnrollmentPanel .tableHeader{
+.newApplicationPanel .tableHeader{
   border:0;
 }
 
-.newEnrollmentPanel .row{
+.newApplicationPanel .row{
   padding:2px 0;
 }
 
-.newEnrollmentPanel label{
+.newApplicationPanel label{
   width:20%;
   float:left;
 }
-.newEnrollmentPanel label.error{
+.newApplicationPanel label.error{
   white-space: nowrap;
 }
 
-.newEnrollmentPanel span.floatL{
+.newApplicationPanel span.floatL{
   margin:0;
 }
 
-.newEnrollmentPanel span.sep{
+.newApplicationPanel span.sep{
   width:auto;
   float:left;
   display:inline;
   padding:0 2px;
 }
 
-.newEnrollmentPanel input.normalInput{
+.newApplicationPanel input.normalInput{
   width:204px;
   height:20px;
   padding-left:5px;
@@ -1190,7 +1190,7 @@ input.date{
   background:url(../i/input-bg.png) repeat-x left top;
 }
 
-.newEnrollmentPanel input.longNormalInput{
+.newApplicationPanel input.longNormalInput{
   width:408px;
   height:20px;
   padding-left:5px;
@@ -1201,7 +1201,7 @@ input.date{
   background:url(../i/input-bg.png) repeat-x left top;
 }
 
-.newEnrollmentPanel input.date{
+.newApplicationPanel input.date{
   width:95px;
   height:20px;
   padding-left:5px;
@@ -1212,7 +1212,7 @@ input.date{
   background:url(../i/input-bg.png) repeat-x left top;
 }
 
-.newEnrollmentPanel input.smallInput{
+.newApplicationPanel input.smallInput{
   width:42px;
   height:20px;
   padding-left:5px;
@@ -1223,7 +1223,7 @@ input.date{
   background:url(../i/input-bg.png) repeat-x left top;
 }
 
-.newEnrollmentPanel input.smallInputP{
+.newApplicationPanel input.smallInputP{
   width:62px;
   height:20px;
   padding-left:5px;
@@ -1234,13 +1234,13 @@ input.date{
   background:url(../i/input-bg.png) repeat-x left top;
 }
 
-.newEnrollmentPanel select{
+.newApplicationPanel select{
   width:212px;
   float:left;
   margin:4px 7px 0;
 }
 
-.newEnrollmentPanel .checkbox{
+.newApplicationPanel .checkbox{
   width:auto;
   float:left;
   display:inline;
@@ -1248,7 +1248,7 @@ input.date{
   padding:0;
 }
 
-.newEnrollmentPanelButton {
+.newApplicationPanelButton {
   margin-left: 7px;
 }
 
@@ -2242,7 +2242,7 @@ input.date{
   position:relative;
 }
 
-.dashboardPanel .queryEnrollmentStatusPanel{
+.dashboardPanel .queryApplicationStatusPanel{
   margin:0 0 20px 0;
 }
 
@@ -2263,12 +2263,12 @@ input.date{
 }
 
 /* panelSection */
-.dashboardPanel .queryEnrollmentStatusPanel .panelSection{
+.dashboardPanel .queryApplicationStatusPanel .panelSection{
   height:82px;
   padding:0 0 0 20px;
 }
 
-.dashboardPanel .queryEnrollmentStatusPanel label{
+.dashboardPanel .queryApplicationStatusPanel label{
   display:block;
   padding:10px 0 0 0;
   font-size:12px;
@@ -2276,7 +2276,7 @@ input.date{
   line-height:29px;
 }
 
-.dashboardPanel .queryEnrollmentStatusPanel .text{
+.dashboardPanel .queryApplicationStatusPanel .text{
   width:150px;
   height:21px;
   float:left;
@@ -2320,37 +2320,37 @@ input.date{
   color:#666666;
 }
 
-/* Enrollment */
-#enrollmentSection .filterPanel{
+/* Application */
+#applicationSection .filterPanel{
   display:block;
 }
 
-#enrollmentSection .tabCorner{
+#applicationSection .tabCorner{
   padding:0 0 0 4px;
   background:url(../i/tab-bottom.png);
   background-repeat:no-repeat;
   background-position:left -28px;
 }
 
-#enrollmentSection .tabCornerR{
+#applicationSection .tabCornerR{
   padding:0 4px 0 0;
   background:url(../i/tab-bottom.png);
   background-repeat:no-repeat;
   background-position:right bottom;
 }
 
-#enrollmentSection .tabCornerM{
+#applicationSection .tabCornerM{
   height:10px;
   background:url(../i/tab-bottom.png);
   background-repeat:repeat-x;
   background-position:right -66px;
 }
 
-#enrollmentSection .tabContent .pagination .left{
+#applicationSection .tabContent .pagination .left{
   width:35%;
 }
 
-#enrollmentSection .tabContent .pagination .right{
+#applicationSection .tabContent .pagination .right{
   width:60%;
 }
 
@@ -2549,26 +2549,26 @@ span.label, span.label strong {
   font-weight: normal !important;
 }
 
-/* Create Enrollment */
-#createEnrollment{
+/* Create Application */
+#createApplication{
   margin:0 0 100px 0;
 }
 
-#createEnrollment .row{
+#createApplication .row{
   padding:2px 0;
   line-height:30px;
 }
 
-#createEnrollment label{
+#createApplication label{
   width:20%;
 }
 
-#createEnrollment .row select{
+#createApplication .row select{
   width:290px;
   margin:6px 0 0 7px;
 }
 
-#createEnrollment input[type=radio]{
+#createApplication input[type=radio]{
   width:auto;
   float:left;
   display:inline;
@@ -2576,7 +2576,7 @@ span.label, span.label strong {
   padding:0;
 }
 
-#createEnrollment input[type=text]{
+#createApplication input[type=text]{
   width:262px;
   height:20px;
   padding-left:5px;
@@ -2587,7 +2587,7 @@ span.label, span.label strong {
   background:url(../i/input-bg.png) repeat-x left top;
 }
 
-#createEnrollment span.label{
+#createApplication span.label{
   width:auto;
   float:left;
   display:inline;
@@ -2595,7 +2595,7 @@ span.label, span.label strong {
   cursor:pointer;
 }
 
-#mainContent.createEnrollmentPage{
+#mainContent.createApplicationPage{
   margin:0 0 60px 0;
 }
 
@@ -2700,13 +2700,13 @@ a.searchBtn {
 .editContent {
   border-top:none;
 }
-#tabPersonal .editContent .newEnrollmentPanel{
+#tabPersonal .editContent .newApplicationPanel{
   border-top:none;
 }
 #tabPersonal .editContent .requiredInfo{
   border:none;
 }
-.editContent .newEnrollmentPanel .wholeCol{
+.editContent .newApplicationPanel .wholeCol{
   border-top:1px solid #d2d2d2;
 }
 
@@ -3590,10 +3590,10 @@ input.text{
 .functionTab .shortInput{
   width:35px;
 }
-.functionTab .newEnrollmentPanel .floatL.marginLeft10{
+.functionTab .newApplicationPanel .floatL.marginLeft10{
   margin-left:10px;
 }
-.functionTab .newEnrollmentPanel .marginLeft20{
+.functionTab .newApplicationPanel .marginLeft20{
   margin-left:27px;
 }
 .functionTab select{
@@ -3612,7 +3612,7 @@ input.text{
   width:100%;
   float:left;
 }
-.functionTab .newEnrollmentPanel{
+.functionTab .newApplicationPanel{
   margin-bottom:0;
   float:left;
 }
@@ -3630,7 +3630,7 @@ input.text{
   display:inline-block;
   width:100%;
 }
-.functionTab #enrollmentSection .filterPanel{
+.functionTab #applicationSection .filterPanel{
   display: none;
 }
 .marginLeft10{
@@ -3697,9 +3697,9 @@ input.text{
 .functionTab p{
   width:98%;
 }
-#changeScreenSchedulePanel .newEnrollmentPanel,
-#addAgreementPanel .newEnrollmentPanel,
-#editAgreementPanel .newEnrollmentPanel{
+#changeScreenSchedulePanel .newApplicationPanel,
+#addAgreementPanel .newApplicationPanel,
+#editAgreementPanel .newApplicationPanel{
   border-top:0;
 }
 #addAgreementPanel label,
@@ -3722,10 +3722,10 @@ input.text{
 #viewAgreementPanel p{
   line-height:18px;
 }
-#enrollmentSection #tabAgreement .pagination .left{
+#applicationSection #tabAgreement .pagination .left{
   width: 50%;
 }
-#enrollmentSection #tabAgreement .pagination .right{
+#applicationSection #tabAgreement .pagination .right{
   width: 45%;
 }
 #viewAgreementPanel .printBtn {
@@ -3985,8 +3985,8 @@ input.passwordNormalInput{
 .homeHealthAgency select.disabled,
 .addPracticeLocations .generalTable input.disabled,
 .licenseInformationTable input.disabled,
-#enrollmentForm input.disabled,
-#enrollmentForm select.disabled {
+#applicationForm input.disabled,
+#applicationForm select.disabled {
   background-color: #d2d2d2 !important;
   border: 1px solid #999 !important;
   background-image: none !important;

@@ -34,10 +34,10 @@ public class Note implements Serializable {
     private long id;
 
     /**
-     * The owner ticket.
+     * The owner application.
      */
-    @Column(name = "ticket_id")
-    private long ticketId;
+    @Column(name = "application_id")
+    private long applicationId;
 
     /**
      * Note contents.
@@ -57,12 +57,12 @@ public class Note implements Serializable {
     @Column(name = "created_at")
     private Date createdOn;
 
-    public long getTicketId() {
-        return ticketId;
+    public long getApplicationId() {
+        return applicationId;
     }
 
-    public void setTicketId(long ticketId) {
-        this.ticketId = ticketId;
+    public void setApplicationId(long applicationId) {
+        this.applicationId = applicationId;
     }
 
     public String getText() {

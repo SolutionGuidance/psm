@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package gov.medicaid.features.enrollment.ui;
+package gov.medicaid.features.application.ui;
 
 /**
  * Created by ben on 8/22/17.
  */
-public class OwnershipInfoPage extends EnrollmentPage {
+public class OwnershipInfoPage extends ApplicationPage {
     public void selectEntityType(String entityType) {
         $("#entityType").selectByVisibleText(entityType);
     }

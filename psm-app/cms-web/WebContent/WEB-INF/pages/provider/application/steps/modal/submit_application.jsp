@@ -18,14 +18,14 @@
 
  --%>
 <!-- /#saveAsDraftModal-->
-<div id="submitEnrollmentModal" class="outLay">
+<div id="submitApplicationModal" class="outLay">
     <div class="inner">
         <!-- title -->
         <div class="modal-title">
             <div class="right">
                 <div class="middle">
                     <button class="closeModal" title="Close" aria-label="Close"></button>
-                    <h2>Submit Enrollment</h2>
+                    <h2>Submit Application</h2>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="modal-content">
             <div class="right">
                 <div class="middle">
-                    <p>The enrollment has been successfully submitted</p>
+                    <p>The application has been successfully submitted</p>
                     <div class="buttonArea">
                         <a href="javascript:;" class="purpleBtn closeModal okBtn">OK</a>
                     </div>

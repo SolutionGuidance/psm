@@ -22,7 +22,7 @@
 <input type="hidden" name="formNames" value="<%= ViewStatics.FACILITY_LICENSE_FORM %>">
 
 <c:if test="${showCategories}">
-    <div class="newEnrollmentPanel practicePanel memberInfoPanel">
+    <div class="newApplicationPanel practicePanel memberInfoPanel">
         <div class="tableHeader topHeader"><span>Please select type of service(s) you provide</span></div>
         <div class="clearFixed"></div>
         <div class="section">
@@ -55,7 +55,7 @@
     </div>
 </c:if>
 
-<div class="newEnrollmentPanel practicePanel">
+<div class="newApplicationPanel practicePanel">
     <div class="section">
         <c:if test="${showCategories}">
             <div class="tableHeader topHeader"><span>Required Licenses/Certifications based on your service selection</span></div>
@@ -167,7 +167,7 @@
     <div class="bl"></div>
     <div class="br"></div>
 </div>
-<!-- /.newEnrollmentPanel -->
+<!-- /.newApplicationPanel -->
 
 <!-- /.tableData -->
 <div class="hide">

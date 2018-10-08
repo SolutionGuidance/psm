@@ -16,12 +16,12 @@
 
 package gov.medicaid.api.transformers
 
-import gov.medicaid.entities.EnrollmentStatus
+import gov.medicaid.entities.ApplicationStatus
 import org.hl7.fhir.dstu3.model.Task
 import spock.lang.Specification
 import spock.lang.Unroll
 
-class EnrollmentStatusToFhirTest extends Specification {
+class ApplicationStatusToFhirTest extends Specification {
     @Unroll
     def "Transforms status #statusDescription to #expectedTaskStatusCode"(
             String statusCode,
@@ -29,8 +29,8 @@ class EnrollmentStatusToFhirTest extends Specification {
             String expectedTaskStatusCode
     ) {
         given:
-        def transformer = new EnrollmentStatusToFhir()
-        EnrollmentStatus input = new EnrollmentStatus()
+        def transformer = new ApplicationStatusToFhir()
+        ApplicationStatus input = new ApplicationStatus()
         input.setCode(statusCode)
         input.setDescription(statusDescription)
 
@@ -50,7 +50,7 @@ class EnrollmentStatusToFhirTest extends Specification {
 
     def "Transforms null status to null data"() {
         given:
-        def transformer = new EnrollmentStatusToFhir()
+        def transformer = new ApplicationStatusToFhir()
 
         when:
         def result = transformer.apply(null)

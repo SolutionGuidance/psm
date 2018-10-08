@@ -32,25 +32,25 @@
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
             <h:handlebars template="includes/banner" context="${pageContext}"/>
-            <c:set var="activeTabEnrollments" value="true"></c:set>
+            <c:set var="activeTabApplications" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->
 
           <c:choose>
-            <c:when test="${isRenewalEnrollment}">
+            <c:when test="${isRenewalApplication}">
               <div class="breadCrumb">
-                <%@ include file="/WEB-INF/pages/admin/includes/enrollments_link.jsp" %>
-                <span>Enrollment Renewal</span>
+                <%@ include file="/WEB-INF/pages/admin/includes/applications_link.jsp" %>
+                <span>Application Renewal</span>
               </div>
               <div class="head">
-                <h1>Enrollment Renewal</h1>
+                <h1>Application Renewal</h1>
               </div>
             </c:when>
             <c:otherwise>
               <div class="breadCrumb">
-                <%@ include file="/WEB-INF/pages/admin/includes/enrollments_link.jsp" %>
-                <span>Register New Enrollment</span>
+                <%@ include file="/WEB-INF/pages/admin/includes/applications_link.jsp" %>
+                <span>Register New Application</span>
               </div>
               <div class="head">
                 <c:choose>
@@ -59,7 +59,7 @@
                   </c:when>
                   <c:otherwise>
                     <h1><c:out value="${requestScope['_01_providerType']}"/>
-                      Enrollment Application</h1>
+                      Application Application</h1>
                   </c:otherwise>
                 </c:choose>
               </div>
@@ -74,13 +74,13 @@
 
           <c:choose>
             <c:when test="${pageName eq 'Provider Type Page'}">
-              <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/select_type.jsp" %>
+              <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/select_type.jsp" %>
             </c:when>
             <c:when test="${pageName eq 'Summary Information'}">
-              <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary.jsp" %>
+              <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/summary.jsp" %>
             </c:when>
             <c:otherwise>
-              <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/default.jsp" %>
+              <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/default.jsp" %>
             </c:otherwise>
           </c:choose>
         </div>
@@ -96,11 +96,11 @@
     <!-- /#modalBackground-->
     <div id="modalBackground"></div>
     <div id="new-modal">
-      <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/save_as_draft.jsp" %>
-      <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/practice_lookup.jsp" %>
-      <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/stale_ticket.jsp" %>
-      <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/superseded_ticket.jsp" %>
-      <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/submit_enrollment.jsp" %>
+      <%@include file="/WEB-INF/pages/provider/application/steps/modal/save_as_draft.jsp" %>
+      <%@include file="/WEB-INF/pages/provider/application/steps/modal/practice_lookup.jsp" %>
+      <%@include file="/WEB-INF/pages/provider/application/steps/modal/stale_application.jsp" %>
+      <%@include file="/WEB-INF/pages/provider/application/steps/modal/superseded_application.jsp" %>
+      <%@include file="/WEB-INF/pages/provider/application/steps/modal/submit_application.jsp" %>
 
       <c:set var="userHelpModalId" value="user-help-modal"/>
       <h:handlebars template="includes/userhelp/user_help_modal" context="${pageContext}" />

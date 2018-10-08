@@ -462,7 +462,7 @@ $(document).ready(function () {
   $('#urlRelead').live('change', function () {
     switch ($(this).val()){
     case 'Audiologist' :
-      $('.nextBtn').attr('href', 'new-enrollment-no-payment-audiologist-personal.html');
+      $('.nextBtn').attr('href', 'new-application-no-payment-audiologist-personal.html');
     break;
     case 'Certified Mental Health Rehab Prof':
       $('.nextBtn').attr('href', 'javascript:;');
@@ -471,7 +471,7 @@ $(document).ready(function () {
       $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Certified Registered Nurse Anesthetist':
-      $('.nextBtn').attr('href', 'new-enrollment-no-payment-certified-registered-nurse-anesthetists-personal.html');
+      $('.nextBtn').attr('href', 'new-application-no-payment-certified-registered-nurse-anesthetists-personal.html');
     break;
     case 'Chiropractor':
       $('.nextBtn').attr('href', 'javascript:;');
@@ -480,7 +480,7 @@ $(document).ready(function () {
       $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Community Health Care Worker':
-      $('.nextBtn').attr('href', 'new-enrollment-no-payment-community-health-workers-personal.html');
+      $('.nextBtn').attr('href', 'new-application-no-payment-community-health-workers-personal.html');
     break;
     case 'Dental Hygienist':
       $('.nextBtn').attr('href', 'javascript:;');
@@ -495,7 +495,7 @@ $(document).ready(function () {
       $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Licensed Psychologist':
-      $('.nextBtn').attr('href', 'new-enrollment-no-payment-licensed-psychologist-personal.html');
+      $('.nextBtn').attr('href', 'new-application-no-payment-licensed-psychologist-personal.html');
     break;
     case 'PCA Individual':
       $('.nextBtn').attr('href', 'javascript:;');
@@ -510,10 +510,10 @@ $(document).ready(function () {
       $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Physical Therapist':
-      $('.nextBtn').attr('href', 'new-enrollment-no-payment-physical-therapist-personal.html');
+      $('.nextBtn').attr('href', 'new-application-no-payment-physical-therapist-personal.html');
     break;
     case 'Podiatrist':
-      $('.nextBtn').attr('href', 'new-enrollment-no-payment-podiatrist-personal.html');
+      $('.nextBtn').attr('href', 'new-application-no-payment-podiatrist-personal.html');
     break;
     default:
       $('.nextBtn').attr('href', 'javascript:;');
@@ -546,7 +546,7 @@ $(document).ready(function () {
 
   /* START OF SERVICE AGENT SCRIPT ------------------------------------------------ */
 
-  $('#draftEnrollmentTable').tablesorter({
+  $('#draftApplicationTable').tablesorter({
     headers: { 0: { sorter: false }, 8: { sorter: false } },
     widgets: ['zebra', 'columns'],
     usNumberFormat: false,
@@ -619,20 +619,20 @@ $(document).ready(function () {
     }
   });
 
-  $('#createEnrollment span.label').live('click', function () {
+  $('#createApplication span.label').live('click', function () {
     $(this).prev().attr('checked', true);
-    if ($(this).prev().hasClass('renewEnrollment')) {
-      $('#createEnrollment .row:last').show();
+    if ($(this).prev().hasClass('renewApplication')) {
+      $('#createApplication .row:last').show();
     } else {
-      $('#createEnrollment .row:last').hide();
+      $('#createApplication .row:last').hide();
     }
   });
 
-  $('#createEnrollment input:radio').live('click', function () {
-    if ($(this).hasClass('renewEnrollment')) {
-      $('#createEnrollment .row:last').show();
+  $('#createApplication input:radio').live('click', function () {
+    if ($(this).hasClass('renewApplication')) {
+      $('#createApplication .row:last').show();
     } else {
-      $('#createEnrollment .row:last').hide();
+      $('#createApplication .row:last').hide();
     }
   });
 
@@ -731,29 +731,29 @@ $(document).ready(function () {
   });
 
   //Next Button
-  $('.createEnrollmentBtn').live('click', function () {
-    if ($('#createEnrollment .newEnrollment').attr('checked')) {
-      if ($('#createEnrollment .row select').val() == 'Audiologist') {
-        window.location.href = 'new-enrollment-no-payment-audiologist-personal.html';
-      } else if ($('#createEnrollment .row select').val() == 'Please select') {
+  $('.createApplicationBtn').live('click', function () {
+    if ($('#createApplication .newApplication').attr('checked')) {
+      if ($('#createApplication .row select').val() == 'Audiologist') {
+        window.location.href = 'new-application-no-payment-audiologist-personal.html';
+      } else if ($('#createApplication .row select').val() == 'Please select') {
         window.location.href = 'javascript:;';
       } else {
-        window.location.href = 'new-enrollment-payment-service-agent-personal.html';
+        window.location.href = 'new-application-payment-service-agent-personal.html';
       }
     }
 
-    if ($('#createEnrollment .renewEnrollment').attr('checked')) {
-      if ($('#createEnrollment .row select').val() == 'Audiologist') {
-        window.location.href = 'renewal-enrollment-audiologist-personal.html';
-      } else if ($('#createEnrollment .row select').val() == 'Please select') {
+    if ($('#createApplication .renewApplication').attr('checked')) {
+      if ($('#createApplication .row select').val() == 'Audiologist') {
+        window.location.href = 'renewal-application-audiologist-personal.html';
+      } else if ($('#createApplication .row select').val() == 'Please select') {
         window.location.href = 'javascript:;';
       } else {
-        window.location.href = 'renewal-enrollment-payment-service-agent-personal.html';
+        window.location.href = 'renewal-application-payment-service-agent-personal.html';
       }
     }
   });
 
-  $('.newEnrollmentSaveDraftBtn').live('click', function () {
+  $('.newApplicationSaveDraftBtn').live('click', function () {
     closeModal();
     loadModal('#saveDraftModal');
   });
@@ -769,17 +769,17 @@ $(document).ready(function () {
   });
 
   //Prev Button
-  $('.submitEnrollmentBtn').live('click', function () {
+  $('.submitApplicationBtn').live('click', function () {
     closeModal();
     loadModal('#submitModal');
   });
 
   $('.submitSuccessBtn,#submitModal .closeModal').live('click', function () {
-    window.location.href = 'enrollment-service-agent.html';
+    window.location.href = 'application-service-agent.html';
   });
 
   if ($.browser.msie && ($.browser.version == "7.0")) {
-    $('#createEnrollment input[type="radio"],#advancedSearch input[type="checkbox"]').css('margin', '5px 3px auto 3px');
+    $('#createApplication input[type="radio"],#advancedSearch input[type="checkbox"]').css('margin', '5px 3px auto 3px');
   }
 
   /* END OF SERVICE AGENT SCRIPT -------------------------------------------------- */
@@ -810,15 +810,15 @@ $(document).ready(function () {
     loadModal('#scheduleModal');
   });
 
-  $('.editEnrollmentLink').live('click', function () {
+  $('.editApplicationLink').live('click', function () {
     closeModal();
     loadModal('#editModal');
   });
 
-  $('.createEnrollmentBtn').live('click', function () {
+  $('.createApplicationBtn').live('click', function () {
     var url = "javascript:;";
-    if ($('#newEnrollment').attr('checked'))url = "new-enrollment-payment-service-admin-personal.html";
-    else if ($('#renewEnrollment').attr('checked'))url = "renewal-enrollment-payment-service-admin-personal.html";
+    if ($('#newApplication').attr('checked'))url = "new-application-payment-service-admin-personal.html";
+    else if ($('#renewApplication').attr('checked'))url = "renewal-application-payment-service-admin-personal.html";
     $(this).attr('href', url);
   });
 
@@ -971,7 +971,7 @@ $(document).ready(function () {
     if ($('.searchTableSort').length > 0)$('.searchTableSort').trigger("update");
     if ($('#draftTable').length > 0)$('#draftTable').trigger("update");
     if ($('.dashboardTable').length > 0)$('.dashboardTable').trigger("update");
-    if ($('#draftEnrollmentTable').length > 0)$('#draftEnrollmentTable').trigger("update");
+    if ($('#draftApplicationTable').length > 0)$('#draftApplicationTable').trigger("update");
     if ($('#resultsTable').length > 0)$('#resultsTable').trigger("update");
     if ($('#userAccountsTab .generalTable').length > 0)$('#userAccountsTab .generalTable').trigger("update");
     if ($('#userAccountResultsTable').length > 0)$('#userAccountResultsTable').trigger("update");

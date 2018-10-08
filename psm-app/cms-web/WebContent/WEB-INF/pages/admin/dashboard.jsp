@@ -46,7 +46,7 @@
           <div class="dashboardPanel">
             <div class="tableData">
               <div class="tableTitle">
-                <a href="<c:url value="/provider/enrollment/start" />">New Enrollment / Renewal</a>
+                <a href="<c:url value="/provider/application/start" />">New Application / Renewal</a>
                 <h2>Latest Actions</h2>
               </div>
               <c:choose>
@@ -91,7 +91,7 @@
                         <td>
                           <a
                             class="actionLink"
-                            href="${ctx}/provider/enrollment/view?id=${item.enrollmentId}"
+                            href="${ctx}/provider/application/view?id=${item.applicationId}"
                           >
                             View
                           </a>
@@ -108,26 +108,26 @@
             </div>
             <!-- /.tableData -->
             <div class="sideBar">
-              <div class="queryEnrollmentStatusPanel panel">
+              <div class="queryApplicationStatusPanel panel">
                 <div class="panelHeader">
-                  <h2>Query Enrollment Status</h2>
+                  <h2>Query Application Status</h2>
                 </div>
                 <div class="panelSection">
-                  <label for="dashboardEnrollmentNumber">Enrollment Number:</label>
-                  <input id="dashboardEnrollmentNumber" type="text" class="text" value="${invalidEnrollmentNumberValue}" />
-                  <input type="hidden" id="invalidEnrollmentNumber" value="${invalidEnrollmentNumber}"/>
-                  <a id="queryEnrollmentStatus" href="javascript:;" class="purpleBtn">Query Status</a>
+                  <label for="dashboardApplicationNumber">Application Number:</label>
+                  <input id="dashboardApplicationNumber" type="text" class="text" value="${invalidApplicationNumberValue}" />
+                  <input type="hidden" id="invalidApplicationNumber" value="${invalidApplicationNumber}"/>
+                  <a id="queryApplicationStatus" href="javascript:;" class="purpleBtn">Query Status</a>
                 </div>
-                <div id="invalidEnrollmentNumberError" class="enrollmentNumberError hide">
-                  <span class="red">Invalid 'Enrollment Number' ( not exist ).</span>
+                <div id="invalidApplicationNumberError" class="applicationNumberError hide">
+                  <span class="red">Invalid 'Application Number' ( not exist ).</span>
                 </div>
-                <div id="requiredEnrollmentNumberError" class="enrollmentNumberError hide">
+                <div id="requiredApplicationNumberError" class="applicationNumberError hide">
                   <span class="red">This field is required.</span>
                 </div>
                 <div class="tl"></div>
                 <div class="tr"></div>
               </div>
-              <!-- /.queryEnrollmentStatus -->
+              <!-- /.queryApplicationStatus -->
               <div class="notificationsPanel panel">
                 <div class="panelHeader">
                   <h2>Notifications</h2>
@@ -142,7 +142,7 @@
                       <c:forEach items="${notifications}" var="item">
                       <li>
                         <p><strong>NPI/UMPI</strong>
-                        <a href="${ctx}/provider/enrollment/view?id=${item.ticketId}">${item.npi}</a> has been
+                        <a href="${ctx}/provider/application/view?id=${item.applicationId}">${item.npi}</a> has been
                         <c:choose>
                         <c:when test="${fn:toLowerCase(item.status)=='approved'}"><span class="green">${item.status}</span></c:when>
                         <c:when test="${fn:toLowerCase(item.status)=='rejected'}"><span class="red">Denied</span></c:when>

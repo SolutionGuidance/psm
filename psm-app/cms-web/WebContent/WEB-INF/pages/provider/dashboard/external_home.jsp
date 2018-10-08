@@ -64,12 +64,12 @@
               <div class="section" id="updateProfile">
                 <div class="wholeCol">
                   <div class="row">
-                    <h3>Additional Enrollments</h3>
+                    <h3>Additional Applications</h3>
                     <p>
-                      You also have the option to create new enrollments.
+                      You also have the option to create new applications.
                     </p>
                     <div class="">
-                      <h:create-enrollment-button cssClass="purpleBtn"/>
+                      <h:create-application-button cssClass="purpleBtn"/>
                     </div>
                   </div>
                 </div>

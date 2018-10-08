@@ -19,7 +19,7 @@
 <c:set var="formIdPrefix" value="tcm_contract"></c:set>
 
 <input type="hidden" name="formNames" value="<%= ViewStatics.TCM_CONTRACT_FORM %>">
-<div class="newEnrollmentPanel practicePanel">
+<div class="newApplicationPanel practicePanel">
     <div class="tableHeader topHeader"><span>TCM contract with county</span></div>
     <div class="clearFixed"></div>
     <div class="section">
@@ -29,7 +29,7 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Upload copy of contract <span class="required">*</span></label>
                 <c:if test="${not empty formValue}">
-                    <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                    <c:url var="downloadLink" value="/provider/application/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
                     </c:url>
                     <div><a href="${downloadLink}">Download</a></div>
@@ -45,7 +45,7 @@
     <div class="br"></div>
 </div>
 
-<div class="newEnrollmentPanel practicePanel">
+<div class="newApplicationPanel practicePanel">
     <div class="tableHeader topHeader"><span>Contract Cover Sheet</span></div>
     <div class="clearFixed"></div>
     <div class="section">
@@ -55,7 +55,7 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Mental Health TCM Contract Cover Sheet (DHS-5638)</label>
                 <c:if test="${not empty formValue}">
-                    <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                    <c:url var="downloadLink" value="/provider/application/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
                     </c:url>
                     <div><a href="${downloadLink}">Download</a></div>
@@ -67,7 +67,7 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}">Relocation Service Coordination TCM Contract Cover Sheet (DHS-5639)</label>
                 <c:if test="${not empty formValue}">
-                    <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                    <c:url var="downloadLink" value="/provider/application/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
                     </c:url>
                     <div><a href="${downloadLink}">Download</a></div>
@@ -79,7 +79,7 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label for="${formIdPrefix}_${formName}"> Child Welfare TCM Contract Cover Sheet (DHS-5702)</label>
                 <c:if test="${not empty formValue}">
-                    <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                    <c:url var="downloadLink" value="/provider/application/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
                     </c:url>
                     <div><a href="${downloadLink}">Download</a></div>

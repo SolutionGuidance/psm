@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package gov.medicaid.features.enrollment.ui;
+package gov.medicaid.features.application.ui;
 
 import gov.medicaid.features.PsmPage;
 
@@ -24,12 +24,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * PageObject to interact with the "Personal Info" step of an individual
- * provider enrollment. This page is reached by logging in, creating an
- * enrollment, and selecting an individual provider type.
+ * provider application. This page is reached by logging in, creating an
+ * application, and selecting an individual provider type.
  */
 public class PersonalInfoPage extends PsmPage {
     private static final String PROVIDER_TOO_YOUNG_ERROR_MESSAGE =
-            "Provider age should be 18 or above during enrollment.";
+            "Provider age should be 18 or above during application.";
 
     private static final String SAME_AS_ABOVE_EMAIL_ERROR_MESSAGE =
             "Email Address is required when same as above is checked.";

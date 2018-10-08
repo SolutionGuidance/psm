@@ -20,11 +20,11 @@ import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException
 import spock.lang.Specification
 import spock.lang.Unroll
 
-class EnrollmentStatusToPsmNameTest extends Specification {
-    private EnrollmentStatusToPsmName function
+class ApplicationStatusToPsmNameTest extends Specification {
+    private ApplicationStatusToPsmName function
 
     def setup() {
-        function = new EnrollmentStatusToPsmName()
+        function = new ApplicationStatusToPsmName()
     }
 
     @Unroll

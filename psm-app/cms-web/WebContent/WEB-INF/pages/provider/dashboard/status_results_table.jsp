@@ -150,21 +150,21 @@
 
   <tbody>
     <c:forEach var="item" items="${results.items}" varStatus="status">
-      <c:url var="viewUrl" value="/provider/enrollment/view">
-        <c:param name="id" value="${item.enrollmentId}" />
+      <c:url var="viewUrl" value="/provider/application/view">
+        <c:param name="id" value="${item.applicationId}" />
       </c:url>
-      <c:url var="exportUrl" value="/provider/enrollment/exportTicket">
-        <c:param name="id" value="${item.enrollmentId}" />
+      <c:url var="exportUrl" value="/provider/application/exportApplication">
+        <c:param name="id" value="${item.applicationId}" />
       </c:url>
       <c:choose>
         <c:when test="${item.status == 'Draft'}">
-          <c:url var="editUrl" value="/provider/enrollment/view">
-            <c:param name="id" value="${item.enrollmentId}" />
+          <c:url var="editUrl" value="/provider/application/view">
+            <c:param name="id" value="${item.applicationId}" />
           </c:url>
         </c:when>
         <c:when test="${item.status == 'Pending'}">
-          <c:url var="editUrl" value="/provider/enrollment/reopen">
-            <c:param name="id" value="${item.enrollmentId}" />
+          <c:url var="editUrl" value="/provider/application/reopen">
+            <c:param name="id" value="${item.applicationId}" />
           </c:url>
         </c:when>
       </c:choose>
@@ -182,9 +182,9 @@
         <td class="alignCenter tdCheckbox">
           <input
             type="checkbox"
-            title="Provider ${item.enrollmentId}"
+            title="Provider ${item.applicationId}"
             name="providerIds"
-            value="${item.enrollmentId}"
+            value="${item.applicationId}"
           />
         </td>
         <td>${item.npi}</td>

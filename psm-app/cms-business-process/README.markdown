@@ -10,15 +10,15 @@ In support of that, the business process and rules we use live in
 
 ## Business Process
 
-We have a single business process, `EnrollmentProcess.bpmn`, which determines
-what happens after a user clicks "Submit Enrollment". The PSM hands the
-enrollment application off to jBPM, and jBPM takes it through the process,
+We have a single business process, `ApplicationProcess.bpmn`, which determines
+what happens after a user clicks "Submit Application". The PSM hands the
+application application off to jBPM, and jBPM takes it through the process,
 calling back into the work item handlers defined in
-`src/main/java/gov/medicaid/process/enrollment`.
+`src/main/java/gov/medicaid/process/application`.
 
 ### jBPM Editor
 
-To edit the enrollment process, you'll most likely want to use the jBPM editor,
+To edit the application process, you'll most likely want to use the jBPM editor,
 which is distributed as a plugin to Eclipse.
 
 1. Download

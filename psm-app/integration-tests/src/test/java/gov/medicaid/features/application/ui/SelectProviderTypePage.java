@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package gov.medicaid.features.enrollment.ui;
+package gov.medicaid.features.application.ui;
 
-public class SelectProviderTypePage extends EnrollmentPage {
+public class SelectProviderTypePage extends ApplicationPage {
     public void selectProviderType(String aProviderType) {
         $("[name=_01_providerType]").selectByVisibleText(aProviderType);
     }

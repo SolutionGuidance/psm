@@ -30,9 +30,9 @@ public class TimeToReviewReportStepDefinitions {
         timeToReviewSteps.checkOnTimeToReviewPage();
     }
 
-    @Then("^I should see a time to review row for '(.*)' with (\\d+) enrollments$")
-    public void i_should_see_a_time_to_review_row_for_with_enrollments(String month, String numEnrollments) {
-        timeToReviewSteps.checkTimeToReviewPageHasRowWithEnrollments(month, numEnrollments);
+    @Then("^I should see a time to review row for '(.*)' with (\\d+) applications$")
+    public void i_should_see_a_time_to_review_row_for_with_applications(String month, String numApplications) {
+        timeToReviewSteps.checkTimeToReviewPageHasRowWithApplications(month, numApplications);
     }
 
     @Then("^I should see a N/A time to review row for '(.*)'$")

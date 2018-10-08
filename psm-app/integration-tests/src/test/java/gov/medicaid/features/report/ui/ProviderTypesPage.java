@@ -56,8 +56,8 @@ public class ProviderTypesPage extends PsmPage {
             .findFirst();
     }
 
-    public void checkEnrollmentsForMonth(
-        int numEnrollments,
+    public void checkApplicationsForMonth(
+        int numApplications,
         String providerTypeDesc,
         String month
     ) {
@@ -65,7 +65,7 @@ public class ProviderTypesPage extends PsmPage {
         assertThat(monthElem.isPresent()).isTrue();
         Optional<WebElement> rowForProviderType = findRowForProviderType(monthElem.get(), providerTypeDesc);
         assertThat(rowForProviderType.isPresent()).isTrue();
-        assertThat(rowForProviderType.get().findElements(By.cssSelector("td")).get(1).getText()).isEqualTo("" + numEnrollments);
+        assertThat(rowForProviderType.get().findElements(By.cssSelector("td")).get(1).getText()).isEqualTo("" + numApplications);
     }
 
     public void checkHasNoResultsForMonth(String month) {

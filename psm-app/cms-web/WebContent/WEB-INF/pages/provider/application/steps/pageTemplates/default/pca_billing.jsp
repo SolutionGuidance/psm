@@ -17,7 +17,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <c:set var="formIdPrefix" value="pca_billing"></c:set>
 
-<div class="newEnrollmentPanel practicePanel">
+<div class="newApplicationPanel practicePanel">
     <div class="tableHeader topHeader"><span>Designation of PCA Billing Person</span></div>
     <div class="sectionInfo">By signing below, I, the above named owner of the named PCA agency, am assigning the following individual as responsible and accountable for understanding my agency's billing practices related to reimbursement of MHCP claims for PCA services provided.</div>
     <div class="clearFixed"></div>

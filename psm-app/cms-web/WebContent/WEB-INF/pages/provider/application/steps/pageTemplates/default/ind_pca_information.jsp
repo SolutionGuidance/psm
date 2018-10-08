@@ -139,7 +139,7 @@
     <div class="br"></div>
 </div>
 
-<!-- /.newEnrollmentPanel -->
+<!-- /.newApplicationPanel -->
 <div class="radioPanel">
     <div class="section">
         <div id="RadioWrapper" class="row">

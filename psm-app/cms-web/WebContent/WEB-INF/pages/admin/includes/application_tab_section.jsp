@@ -18,47 +18,47 @@
   <div class="tabR">
     <div class="tabM">
       <a
-        class="tab allTab <c:if test="${active_enrollment_tab == 'all'}">active</c:if>"
-        href="${ctx}/provider/enrollments/all?showFilterPanel=true"
+        class="tab allTab <c:if test="${active_application_tab == 'all'}">active</c:if>"
+        href="${ctx}/provider/applications/all?showFilterPanel=true"
       >
         <span class="aR">
           <span class="aM">All</span>
         </span>
       </a>
       <a
-        class="tab draftTab <c:if test="${active_enrollment_tab=='draft'}">active</c:if>"
-        href="${ctx}/provider/enrollments/draft?statuses=Draft&showFilterPanel=true"
+        class="tab draftTab <c:if test="${active_application_tab=='draft'}">active</c:if>"
+        href="${ctx}/provider/applications/draft?statuses=Draft&showFilterPanel=true"
       >
         <span class="aR">
           <span class="aM">Draft</span>
         </span>
       </a>
       <a
-        class="tab pendingTab <c:if test="${active_enrollment_tab=='pending'}">active</c:if>"
-        href="${ctx}/provider/enrollments/pending?statuses=Pending&showFilterPanel=true"
+        class="tab pendingTab <c:if test="${active_application_tab=='pending'}">active</c:if>"
+        href="${ctx}/provider/applications/pending?statuses=Pending&showFilterPanel=true"
       >
         <span class="aR">
           <span class="aM">Pending</span>
         </span>
       </a>
       <a
-        class="tab approvedTab <c:if test="${active_enrollment_tab=='approved'}">active</c:if>"
-        href="${ctx}/provider/enrollments/approved?statuses=Approved&showFilterPanel=true"
+        class="tab approvedTab <c:if test="${active_application_tab=='approved'}">active</c:if>"
+        href="${ctx}/provider/applications/approved?statuses=Approved&showFilterPanel=true"
       >
         <span class="aR">
           <span class="aM">Approved</span>
         </span>
       </a>
       <a
-        class="tab deniedTab <c:if test="${active_enrollment_tab=='rejected'}">active</c:if>"
-        href="${ctx}/provider/enrollments/rejected?statuses=Rejected&showFilterPanel=true"
+        class="tab deniedTab <c:if test="${active_application_tab=='rejected'}">active</c:if>"
+        href="${ctx}/provider/applications/rejected?statuses=Rejected&showFilterPanel=true"
       >
         <span class="aR">
           <span class="aM">Denied</span>
         </span>
       </a>
-      <a href="${ctx}/provider/enrollment/start" class="purpleBtn">
-        New Enrollment/Renewal
+      <a href="${ctx}/provider/application/start" class="purpleBtn">
+        New Application/Renewal
       </a>
     </div>
   </div>

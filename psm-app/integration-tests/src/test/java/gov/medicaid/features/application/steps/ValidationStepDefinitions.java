@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package gov.medicaid.features.enrollment.steps;
+package gov.medicaid.features.application.steps;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
-import gov.medicaid.features.enrollment.ui.PersonalInfoPage;
+import gov.medicaid.features.application.ui.OrganizationInfoPage;
+import gov.medicaid.features.application.ui.PersonalInfoPage;
 import gov.medicaid.features.general.steps.GeneralSteps;
 import net.thucydides.core.annotations.Steps;
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +29,7 @@ import java.time.LocalDate;
 @SuppressWarnings("unused")
 public class ValidationStepDefinitions {
     @Steps
-    EnrollmentSteps enrollmentSteps;
+    ApplicationSteps applicationSteps;
 
     @Steps
     GeneralSteps generalSteps;
@@ -69,22 +69,22 @@ public class ValidationStepDefinitions {
 
     @When("^I enter an empty email address on the personal info page$")
     public void i_enter_an_empty_email_address_on_the_personal_info_page() {
-        enrollmentSteps.enterEmptyEmailAddress();
+        applicationSteps.enterEmptyEmailAddress();
     }
 
     @Then("^I should get an FEIN error$")
     public void i_should_get_an_fein_error() throws Exception {
-        enrollmentSteps.checkForFeinError();
+        applicationSteps.checkForFeinError();
     }
 
     @Then("^I should get a provider too young error$")
     public void i_should_get_a_provider_too_young_error() throws Exception {
-        enrollmentSteps.checkForTooYoungError();
+        applicationSteps.checkForTooYoungError();
     }
 
     @Then("^I should get a renewal date error$")
     public void should_get_a_renewal_date_error() throws Exception {
-        enrollmentSteps.checkForRenewalDateError();
+        applicationSteps.checkForRenewalDateError();
     }
 
     @Then("^I should get a same as above email error$")

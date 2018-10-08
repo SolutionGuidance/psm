@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package gov.medicaid.features.enrollment.steps;
+package gov.medicaid.features.application.steps;
 
-import gov.medicaid.features.enrollment.ui.EnrollmentListPage;
+import gov.medicaid.features.application.ui.ApplicationListPage;
 
 import net.thucydides.core.annotations.Step;
 
-public class EnrollmentListSteps {
-    EnrollmentListPage enrollmentListPage;
+public class ApplicationListSteps {
+    ApplicationListPage applicationListPage;
 
     @Step
-    void verifyEnrollmentsInTable() {
-        enrollmentListPage.checkEnrollmentsInTable();
+    void verifyApplicationsInTable() {
+        applicationListPage.checkApplicationsInTable();
     }
 }

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package gov.medicaid.features.enrollment.steps;
+package gov.medicaid.features.application.steps;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import gov.medicaid.features.enrollment.ui.EnrollmentPage;
-import gov.medicaid.features.enrollment.ui.LicenseInfoPage;
-import gov.medicaid.features.enrollment.ui.OwnershipInfoPage;
+import gov.medicaid.features.application.ui.ApplicationPage;
+import gov.medicaid.features.application.ui.LicenseInfoPage;
+import gov.medicaid.features.application.ui.OwnershipInfoPage;
 import gov.medicaid.features.general.steps.GeneralSteps;
 import net.thucydides.core.annotations.Steps;
 
@@ -30,111 +30,111 @@ import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("unused")
-public class EnrollmentStepDefinitions {
+public class ApplicationStepDefinitions {
     @Steps
-    EnrollmentSteps enrollmentSteps;
+    ApplicationSteps applicationSteps;
     @Steps
     GeneralSteps generalSteps;
 
-    private EnrollmentPage enrollmentPage;
+    private ApplicationPage applicationPage;
     private OwnershipInfoPage ownershipInfoPage;
     private LicenseInfoPage licenseInfoPage;
 
-    @Given("^I have started an enrollment$")
-    public void i_have_started_an_enrollment() {
+    @Given("^I have started an application$")
+    public void i_have_started_an_application() {
         generalSteps.login("p1", "p1");
-        enrollmentSteps.prepareSpeechLanguagePathologistEnrollment();
-        enrollmentSteps.createEnrollment();
+        applicationSteps.prepareSpeechLanguagePathologistApplication();
+        applicationSteps.createApplication();
     }
 
     @When("^I am on the organization page$")
     public void i_am_on_the_organization_page() {
-        enrollmentSteps.prepareHeadStart();
-        enrollmentSteps.selectProviderType();
+        applicationSteps.prepareHeadStart();
+        applicationSteps.selectProviderType();
     }
 
     @When("^I am on the facility credentials page$")
     public void i_am_on_the_facility_credentials_page() {
         i_am_on_the_organization_page();
-        enrollmentSteps.enterOrganizationInfo();
-        enrollmentSteps.enterContactInfo();
-        enrollmentSteps.advanceFromOrganizationInfoToLicenseInfo();
+        applicationSteps.enterOrganizationInfo();
+        applicationSteps.enterContactInfo();
+        applicationSteps.advanceFromOrganizationInfoToLicenseInfo();
     }
 
     @When("^I open an add a license panel$")
     public void i_open_an_add_a_license_panel() {
-        enrollmentSteps.clickAddLicense();
+        applicationSteps.clickAddLicense();
     }
 
     @When("^I am on the individual member info page$")
     public void i_am_on_the_individual_member_info_page() throws IOException {
         i_am_on_the_facility_credentials_page();
-        enrollmentSteps.enterLicenseInfo();
-        enrollmentSteps.uploadLicense();
-        enrollmentSteps.advanceFromOrganizationLicenseInfoToIndividualMemberInfo();
+        applicationSteps.enterLicenseInfo();
+        applicationSteps.uploadLicense();
+        applicationSteps.advanceFromOrganizationLicenseInfoToIndividualMemberInfo();
     }
 
     @When("^I open an individual member panel")
     public void i_open_an_individual_member_panel() {
-        enrollmentSteps.openIndividualMemberPanel();
+        applicationSteps.openIndividualMemberPanel();
     }
 
     @When("^I am on the ownership info page$")
     public void i_am_on_the_ownership_info_page() throws IOException {
         i_am_on_the_individual_member_info_page();
-        enrollmentSteps.enterIndividualMember();
-        enrollmentSteps.advanceFromOrganizationIndividualMemberInfoToOwnershipInfo();
+        applicationSteps.enterIndividualMember();
+        applicationSteps.advanceFromOrganizationIndividualMemberInfoToOwnershipInfo();
     }
 
     @When("^I open the individual owner panel$")
     public void i_open_the_individual_owner_panels() {
-        enrollmentSteps.addIndividualOwnership();
+        applicationSteps.addIndividualOwnership();
     }
 
     @When("^I open the business owner panel$")
     public void i_open_the_business_owner_panel() {
-        enrollmentSteps.addBusinessOwnership();
+        applicationSteps.addBusinessOwnership();
     }
 
     @When("^I am on the organization summary page$")
     public void i_am_on_the_organization_summary_page() throws IOException {
         i_am_on_the_ownership_info_page();
-        enrollmentSteps.enterOrganizationOwnershipInfo();
-        enrollmentSteps.setNoToAllDisclosures();
-        enrollmentSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
+        applicationSteps.enterOrganizationOwnershipInfo();
+        applicationSteps.setNoToAllDisclosures();
+        applicationSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
     }
 
     @When("^I save as draft$")
     public void i_save_as_draft() {
-        enrollmentSteps.clickSaveAsDraft();
+        applicationSteps.clickSaveAsDraft();
     }
 
     @When("^I am on the organization provider statement page$")
     public void i_am_on_the_organization_provider_statement_page() throws IOException {
         i_am_on_the_organization_summary_page();
-        enrollmentSteps.advanceFromOrganizationSummaryToProviderStatementPage();
+        applicationSteps.advanceFromOrganizationSummaryToProviderStatementPage();
     }
 
     @When("^I enter my individual provider statement$")
     public void i_enter_my_provider_statement() {
-        enrollmentSteps.checkNoOnProviderDisclosureQuestions();
-        enrollmentSteps.signProviderStatement();
+        applicationSteps.checkNoOnProviderDisclosureQuestions();
+        applicationSteps.signProviderStatement();
     }
 
     @When("^I enter my organization provider statement$")
     public void i_enter_my_organization_provider_statement() {
-        enrollmentSteps.signProviderStatement();
+        applicationSteps.signProviderStatement();
     }
 
-    @When("^I submit the enrollment$")
-    public void i_submit_the_enrollment() {
-        enrollmentSteps.submitEnrollment();
+    @When("^I submit the application$")
+    public void i_submit_the_application() {
+        applicationSteps.submitApplication();
     }
 
     @When("^I am entering ownership information$")
     public void i_am_entering_ownership_information() throws IOException {
         i_am_on_the_ownership_info_page();
-        enrollmentSteps.enterOrganizationOwnershipInfo();
+        applicationSteps.enterOrganizationOwnershipInfo();
     }
 
     @Given("^I have indicated that the owner has an interest in another Medicaid disclosing entity$")
@@ -166,130 +166,130 @@ public class EnrollmentStepDefinitions {
 
     @Then("^the city should be accepted$")
     public void the_city_should_be_accepted() {
-        assertThat(enrollmentPage.getTitle()).isEqualTo("Summary Information");
+        assertThat(applicationPage.getTitle()).isEqualTo("Summary Information");
     }
 
     @When("^I enter valid personal information$")
     public void enter_valid_personal_information() {
-        enrollmentSteps.enterIndividualPersonalInfo();
+        applicationSteps.enterIndividualPersonalInfo();
     }
 
     @Then("^I can move on from the personal info page with no errors$")
     public void i_will_move_on_from_the_personal_info_page_with_no_errors() {
-        enrollmentSteps.advanceFromIndividualPersonalInfoToLicenseInfo();
+        applicationSteps.advanceFromIndividualPersonalInfoToLicenseInfo();
     }
 
-    @When("^I start to renew Individual Enrollment '(.+)'$")
-    public void i_start_to_renew_individual_enrollment(String npi) {
-        enrollmentSteps.startToRenewIndividualEnrollment(npi);
+    @When("^I start to renew Individual Application '(.+)'$")
+    public void i_start_to_renew_individual_application(String npi) {
+        applicationSteps.startToRenewIndividualApplication(npi);
     }
 
-    @When("^I start to renew Organizational Enrollment '(.+)'$")
-    public void i_start_to_renew_organizational_enrollment(String npi) {
-        enrollmentSteps.startToRenewOrganizationalEnrollment(npi);
+    @When("^I start to renew Organizational Application '(.+)'$")
+    public void i_start_to_renew_organizational_application(String npi) {
+        applicationSteps.startToRenewOrganizationalApplication(npi);
     }
 
-    @When("^I renew Individual Enrollment '(.+)'$")
-    public void i_renew_individual_enrollment(String npi) {
-        enrollmentSteps.renewIndividualEnrollment(npi);
+    @When("^I renew Individual Application '(.+)'$")
+    public void i_renew_individual_application(String npi) {
+        applicationSteps.renewIndividualApplication(npi);
     }
 
-    @When("^I renew Organizational Enrollment '(.+)'$")
-    public void i_renew_organizational_enrollment(String npi) {
-        enrollmentSteps.renewOrganizationalEnrollment(npi);
+    @When("^I renew Organizational Application '(.+)'$")
+    public void i_renew_organizational_application(String npi) {
+        applicationSteps.renewOrganizationalApplication(npi);
     }
 
-    @When("^I update Individual Enrollment '(.+)'$")
-    public void i_update_individual_enrollment(String npi) {
-        enrollmentSteps.updateIndividualEnrollment(npi);
+    @When("^I update Individual Application '(.+)'$")
+    public void i_update_individual_application(String npi) {
+        applicationSteps.updateIndividualApplication(npi);
     }
 
-    @When("^I update Organizational Enrollment '(.+)'$")
-    public void i_update_organizational_enrollment(String npi) {
-        enrollmentSteps.updateOrganizationalEnrollment(npi);
+    @When("^I update Organizational Application '(.+)'$")
+    public void i_update_organizational_application(String npi) {
+        applicationSteps.updateOrganizationalApplication(npi);
     }
 
-    @When("^I edit the Individual Enrollment '(.+)'$")
-    public void i_edit_the_individual_enrollment(String npi) {
-        enrollmentSteps.editIndividualEnrollment(npi);
+    @When("^I edit the Individual Application '(.+)'$")
+    public void i_edit_the_individual_application(String npi) {
+        applicationSteps.editIndividualApplication(npi);
     }
 
-    @When("^I edit the Organizational Enrollment '(.+)'$")
-    public void i_edit_the_organizational_enrollment(String npi) {
-        enrollmentSteps.editOrganizationalEnrollment(npi);
+    @When("^I edit the Organizational Application '(.+)'$")
+    public void i_edit_the_organizational_application(String npi) {
+        applicationSteps.editOrganizationalApplication(npi);
     }
 
     @Given("^I am going to use NPI '(.+)'$")
     public void i_am_going_to_use_npi(String npi) {
-        enrollmentSteps.setNpi(npi);
+        applicationSteps.setNpi(npi);
     }
 
     @Given("^I am going to enroll as a Durable Medical Equipment provider$")
     public void i_am_going_to_enroll_as_a_durable_medical_equipment_provider() {
-        enrollmentSteps.prepareDurableMedicalEquipment();
+        applicationSteps.prepareDurableMedicalEquipment();
     }
 
     @Given("^I am going to enroll as a County Contracted Mental Health Rehab$")
     public void i_am_going_to_enroll_as_a_county_contracted_mental_health_rehab() {
-        enrollmentSteps.prepareCountyContractedMentalHealthRehab();
+        applicationSteps.prepareCountyContractedMentalHealthRehab();
     }
 
-    @When("^I create and submit an enrollment using the generic organization workflow$")
-    public void i_create_and_submit_an_enrollment_using_the_generic_organization_workflow() throws IOException {
+    @When("^I create and submit an application using the generic organization workflow$")
+    public void i_create_and_submit_an_application_using_the_generic_organization_workflow() throws IOException {
         generalSteps.login("p1", "p1");
-        enrollmentSteps.createEnrollment();
-        enrollmentSteps.selectProviderType();
-        enrollmentSteps.enterOrganizationInfo();
-        enrollmentSteps.enterContactInfo();
-        enrollmentSteps.advanceFromOrganizationInfoToOwnershipInfo();
-        enrollmentSteps.enterOrganizationOwnershipInfo();
-        enrollmentSteps.setNoToAllDisclosures();
-        enrollmentSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
-        enrollmentSteps.advanceFromOrganizationSummaryToProviderStatementPage();
-        enrollmentSteps.signProviderStatement();
-        enrollmentSteps.submitEnrollment();
+        applicationSteps.createApplication();
+        applicationSteps.selectProviderType();
+        applicationSteps.enterOrganizationInfo();
+        applicationSteps.enterContactInfo();
+        applicationSteps.advanceFromOrganizationInfoToOwnershipInfo();
+        applicationSteps.enterOrganizationOwnershipInfo();
+        applicationSteps.setNoToAllDisclosures();
+        applicationSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
+        applicationSteps.advanceFromOrganizationSummaryToProviderStatementPage();
+        applicationSteps.signProviderStatement();
+        applicationSteps.submitApplication();
     }
 
     @Given("^I am going to enroll as a Child and Teen Checkup Clinic")
     public void i_am_going_to_enroll_as_a_child_and_teen_checkup_clinic() {
-        enrollmentSteps.prepareChildTeenCheckupClinic();
+        applicationSteps.prepareChildTeenCheckupClinic();
     }
 
-    @When("^I create and submit an enrollment using the organization with healthboard workflow$")
-    public void i_create_and_submit_an_enrollment_using_the_organization_with_healthboard_workflow() throws IOException {
+    @When("^I create and submit an application using the organization with healthboard workflow$")
+    public void i_create_and_submit_an_application_using_the_organization_with_healthboard_workflow() throws IOException {
         generalSteps.login("p1", "p1");
-        enrollmentSteps.createEnrollment();
-        enrollmentSteps.selectProviderType();
-        enrollmentSteps.enterOrganizationInfo();
-        enrollmentSteps.enterContactInfo();
-        enrollmentSteps.advanceFromOrganizationInfoToLicenseInfo();
-        enrollmentSteps.checkCommunityHealthboard();
-        enrollmentSteps.advanceFromLicenseInfoToOwnershipInfo();
-        enrollmentSteps.enterOrganizationOwnershipInfo();
-        enrollmentSteps.setNoToAllDisclosures();
-        enrollmentSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
-        enrollmentSteps.advanceFromOrganizationSummaryToProviderStatementPage();
-        enrollmentSteps.signProviderStatement();
-        enrollmentSteps.submitEnrollment();
+        applicationSteps.createApplication();
+        applicationSteps.selectProviderType();
+        applicationSteps.enterOrganizationInfo();
+        applicationSteps.enterContactInfo();
+        applicationSteps.advanceFromOrganizationInfoToLicenseInfo();
+        applicationSteps.checkCommunityHealthboard();
+        applicationSteps.advanceFromLicenseInfoToOwnershipInfo();
+        applicationSteps.enterOrganizationOwnershipInfo();
+        applicationSteps.setNoToAllDisclosures();
+        applicationSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
+        applicationSteps.advanceFromOrganizationSummaryToProviderStatementPage();
+        applicationSteps.signProviderStatement();
+        applicationSteps.submitApplication();
     }
 
-    @When("^I create and submit an enrollment using the county contracted mental health rehab workflow$")
-    public void i_create_and_submit_an_enrollment_using_the_county_contracted_mental_health_rehab_workflow() throws IOException {
+    @When("^I create and submit an application using the county contracted mental health rehab workflow$")
+    public void i_create_and_submit_an_application_using_the_county_contracted_mental_health_rehab_workflow() throws IOException {
         generalSteps.login("p1", "p1");
-        enrollmentSteps.createEnrollment();
-        enrollmentSteps.selectProviderType();
-        enrollmentSteps.enterOrganizationInfo();
-        enrollmentSteps.enterContactInfo();
-        enrollmentSteps.advanceFromOrganizationInfoToLicenseInfo();
-        enrollmentSteps.enterCcmhrInfo();
-        enrollmentSteps.advanceFromOrganizationLicenseInfoToIndividualMemberInfo();
-        enrollmentSteps.enterIndividualMember();
-        enrollmentSteps.advanceFromOrganizationIndividualMemberInfoToOwnershipInfo();
-        enrollmentSteps.enterOrganizationOwnershipInfo();
-        enrollmentSteps.setNoToAllDisclosures();
-        enrollmentSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
-        enrollmentSteps.advanceFromOrganizationSummaryToProviderStatementPage();
-        enrollmentSteps.signProviderStatement();
-        enrollmentSteps.submitEnrollment();
+        applicationSteps.createApplication();
+        applicationSteps.selectProviderType();
+        applicationSteps.enterOrganizationInfo();
+        applicationSteps.enterContactInfo();
+        applicationSteps.advanceFromOrganizationInfoToLicenseInfo();
+        applicationSteps.enterCcmhrInfo();
+        applicationSteps.advanceFromOrganizationLicenseInfoToIndividualMemberInfo();
+        applicationSteps.enterIndividualMember();
+        applicationSteps.advanceFromOrganizationIndividualMemberInfoToOwnershipInfo();
+        applicationSteps.enterOrganizationOwnershipInfo();
+        applicationSteps.setNoToAllDisclosures();
+        applicationSteps.advanceFromOrganizationOwnershipInfoToSummaryPage();
+        applicationSteps.advanceFromOrganizationSummaryToProviderStatementPage();
+        applicationSteps.signProviderStatement();
+        applicationSteps.submitApplication();
     }
 }

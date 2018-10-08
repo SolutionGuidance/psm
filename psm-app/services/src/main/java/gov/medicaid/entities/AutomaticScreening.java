@@ -48,10 +48,10 @@ public abstract class AutomaticScreening implements java.io.Serializable {
 
     @ManyToOne
     @JoinColumn(
-            name = "enrollment_id",
+            name = "application_id",
             nullable = false
     )
-    private Enrollment enrollment;
+    private Application application;
 
     @Column(
             name = "created_at",
@@ -74,12 +74,12 @@ public abstract class AutomaticScreening implements java.io.Serializable {
         this.automaticScreeningId = automaticScreeningId;
     }
 
-    public Enrollment getEnrollment() {
-        return enrollment;
+    public Application getApplication() {
+        return application;
     }
 
-    public void setEnrollment(Enrollment enrollment) {
-        this.enrollment = enrollment;
+    public void setApplication(Application application) {
+        this.application = application;
     }
 
     public LocalDateTime getCreatedAt() {

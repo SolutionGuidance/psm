@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package gov.medicaid.process.enrollment;
+package gov.medicaid.process.application;
 
 import gov.medicaid.binders.XMLUtility;
-import gov.medicaid.domain.model.EnrollmentProcess;
+import gov.medicaid.domain.model.ApplicationProcess;
 import gov.medicaid.domain.model.PostSubmissionInformationType;
 import gov.medicaid.domain.model.ProcessAuditType;
 import gov.medicaid.domain.model.ProcessResultsType;
@@ -54,13 +54,13 @@ public class PreProcessHandler extends GenericHandler {
      * @param manager the work item manager
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
-        logger.info("Initializing the enrollment process model.");
-        EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
+        logger.info("Initializing the application process model.");
+        ApplicationProcess processModel = (ApplicationProcess) item.getParameter("model");
 
         // clear post submission data, it will be set by the rules
         processModel.setPostSubmissionInformation(new PostSubmissionInformationType());
-        if (processModel.getEnrollment().getRequestType() == RequestType.ENROLLMENT) {
-            processModel.getEnrollment().setRiskLevel(null);
+        if (processModel.getApplication().getRequestType() == RequestType.APPLICATION) {
+            processModel.getApplication().setRiskLevel(null);
 
             // clear any verification status that is set by caller
             ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
@@ -78,7 +78,7 @@ public class PreProcessHandler extends GenericHandler {
         ProcessResultsType processResult = XMLUtility.nsGetProcessResults(processModel);
         processResult.setValidationResult(validationResult);
 
-        XMLUtility.moveToStatus(processModel, processModel.getEnrollment().getSubmittedBy(), "SUBMITTED", null);
+        XMLUtility.moveToStatus(processModel, processModel.getApplication().getSubmittedBy(), "SUBMITTED", null);
         item.getResults().put("model", processModel);
         manager.completeWorkItem(item.getId(), item.getResults());
     }

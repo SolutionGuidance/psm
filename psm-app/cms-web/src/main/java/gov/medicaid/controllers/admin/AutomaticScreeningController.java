@@ -21,14 +21,14 @@ import gov.medicaid.controllers.ControllerHelper;
 import gov.medicaid.controllers.dto.ScreeningDTO;
 import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.DmfAutomaticScreening;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.LeieAutomaticScreening;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.ScreeningSearchCriteria;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.PortalServiceRuntimeException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 import gov.medicaid.services.ScreeningService;
 
 import org.springframework.stereotype.Controller;
@@ -47,14 +47,14 @@ import java.util.stream.Collectors;
 @RequestMapping("/agent/")
 public class AutomaticScreeningController extends BaseController {
     private final ScreeningService screeningService;
-    private final ProviderEnrollmentService providerEnrollmentService;
+    private final ProviderApplicationService providerApplicationService;
 
     public AutomaticScreeningController(
             ScreeningService screeningService,
-            ProviderEnrollmentService providerEnrollmentService
+            ProviderApplicationService providerApplicationService
     ) {
         this.screeningService = screeningService;
-        this.providerEnrollmentService = providerEnrollmentService;
+        this.providerApplicationService = providerApplicationService;
     }
 
     @RequestMapping("/automatic-screening/{automaticScreeningId}")
@@ -83,13 +83,13 @@ public class AutomaticScreeningController extends BaseController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("admin/automatic_screening_leie");
         mv.addObject(
-                "enrollment_id",
-                screening.getEnrollment().getEnrollmentId()
+                "application_id",
+                screening.getApplication().getApplicationId()
         );
         mv.addObject(
                 "in_review",
                 ViewStatics.PENDING_STATUS.equals(
-                        screening.getEnrollment()
+                        screening.getApplication()
                                 .getStatus()
                                 .getDescription())
         );
@@ -104,13 +104,13 @@ public class AutomaticScreeningController extends BaseController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("admin/automatic_screening_dmf");
         mv.addObject(
-                "enrollment_id",
-                screening.getEnrollment().getEnrollmentId()
+                "application_id",
+                screening.getApplication().getApplicationId()
         );
         mv.addObject(
                 "in_review",
                 ViewStatics.PENDING_STATUS.equals(
-                        screening.getEnrollment()
+                        screening.getApplication()
                                 .getStatus()
                                 .getDescription())
         );
@@ -121,9 +121,9 @@ public class AutomaticScreeningController extends BaseController {
     }
 
     private ScreeningDTO getScreeningDetails(AutomaticScreening screening) {
-        Enrollment enrollment = screening.getEnrollment();
-        ProviderProfile profile = providerEnrollmentService
-                .getProviderDetails(enrollment.getProfileReferenceId(), true);
+        Application application = screening.getApplication();
+        ProviderProfile profile = providerApplicationService
+                .getProviderDetails(application.getProfileReferenceId(), true);
 
         ScreeningDTO dto = new ScreeningDTO();
         dto.date = Date.from(screening.getCreatedAt()
@@ -135,10 +135,10 @@ public class AutomaticScreeningController extends BaseController {
         dto.providerType = profile.getEntity()
                 .getProviderType()
                 .getDescription();
-        dto.reason = enrollment.getStatusNote();
+        dto.reason = application.getStatusNote();
         dto.screeningType = screening.getType();
         dto.result = screening.getResult();
-        dto.enrollmentId = enrollment.getEnrollmentId();
+        dto.applicationId = application.getApplicationId();
         return dto;
     }
 

@@ -37,7 +37,7 @@
     <div class="modal-content">
       <div class="right">
         <div class="middle">
-          <c:url var="lookupUrl" value="/provider/enrollment/lookup" />
+          <c:url var="lookupUrl" value="/provider/application/lookup" />
           <form action="${lookupUrl}" id="practiceLookupForm">
             <sec:csrfInput />
             <div class="searchRow">

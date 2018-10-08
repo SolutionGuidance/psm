@@ -20,7 +20,7 @@
 <input type="hidden" name="formNames" value="<%= ViewStatics.ADULT_DAY_TREATMENT_APPLICATION_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="tableHeader topHeader"><span>Adult Day Treatment Application</span></div>
     <div class="clearFixed"></div>
 

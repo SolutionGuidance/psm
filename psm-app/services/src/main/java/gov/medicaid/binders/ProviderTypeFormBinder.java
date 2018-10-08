@@ -18,13 +18,13 @@
 package gov.medicaid.binders;
 
 import gov.medicaid.domain.model.ApplicantType;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.RequestType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.dto.FormError;
@@ -62,13 +62,13 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request the request containing the form fields
      *
      * @return
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+    public List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         provider.setProviderType(param(request, "providerType"));
 
         ProviderType pt = getLookupService()
@@ -86,20 +86,20 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly true if the binding is for a read only view
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+    public void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         attr(mv, "providerType", provider.getProviderType());
 
         if (readOnly) {
             return;
         }
 
-        if (Util.isBlank(provider.getProviderType()) || enrollmentType.getRequestType() == null
-            || enrollmentType.getRequestType() == RequestType.ENROLLMENT) {
+        if (Util.isBlank(provider.getProviderType()) || applicationType.getRequestType() == null
+            || applicationType.getRequestType() == RequestType.APPLICATION) {
             // can still change applicant type.
             mv.put("individualProviderTypes", sortCollection(getProviderTypeService().getProviderTypes(ApplicantType.INDIVIDUAL)));
             mv.put("organizationProviderTypes", sortCollection(getProviderTypeService().getProviderTypes(ApplicantType.ORGANIZATION)));
@@ -134,12 +134,12 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
 
     /**
      * Captures the error messages related to the form.
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages the messages to select from
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = null;
         List<StatusMessageType> messageList = messages.getStatusMessage();
         for (StatusMessageType statusMessageType : messageList) {
@@ -160,17 +160,17 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param applicationType the front end model
+     * @param application the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
-        if (enrollmentType.getProviderInformation() != null) {
-            String providerType = enrollmentType.getProviderInformation().getProviderType();
-            if (ticket.getDetails() == null) {
-                ticket.setDetails(new ProviderProfile());
+    public void bindToHibernate(ApplicationType applicationType, Application application) {
+        if (applicationType.getProviderInformation() != null) {
+            String providerType = applicationType.getProviderInformation().getProviderType();
+            if (application.getDetails() == null) {
+                application.setDetails(new ProviderProfile());
             }
 
-            ProviderProfile profile = ticket.getDetails();
+            ProviderProfile profile = application.getDetails();
             ProviderType type = ensurePersonOrOrg(profile, providerType);
             profile.getEntity().setProviderType(type);
         }
@@ -179,13 +179,13 @@ public class ProviderTypeFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * @param application the persistent model
+     * @param applicationType the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
-        ProviderProfile profile = ticket.getDetails();
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        ProviderProfile profile = application.getDetails();
         if (profile != null) {
-            ProviderInformationType pInfo = XMLUtility.nsGetProvider(enrollmentType);
+            ProviderInformationType pInfo = XMLUtility.nsGetProvider(applicationType);
             if (profile.getEntity() != null && profile.getEntity().getProviderType() != null) {
                 ProviderType pt = profile.getEntity().getProviderType();
                 pInfo.setProviderType(pt.getDescription());

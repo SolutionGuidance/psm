@@ -20,13 +20,13 @@ package gov.medicaid.binders;
 import gov.medicaid.domain.model.AttachedDocumentsType;
 import gov.medicaid.domain.model.CLIACertificateType;
 import gov.medicaid.domain.model.DocumentType;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.FacilityCredentialsType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.License;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormError;
@@ -67,14 +67,14 @@ public class CLIAFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request the request containing the form fields
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
-        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollmentType);
+    public List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
+        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(applicationType);
         List<CLIACertificateType> licenseList = new ArrayList<CLIACertificateType>(licenseInfo.getCLIACertificate());
         licenseInfo.getCLIACertificate().clear();
 
@@ -119,20 +119,20 @@ public class CLIAFormBinder extends BaseFormBinder {
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollmentType);
+        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(applicationType);
         List<CLIACertificateType> xLicenses = licenseInfo.getCLIACertificate();
         synchronized (xLicenses) {
             int i = 0;
             for (CLIACertificateType license : xLicenses) {
                 attr(mv, "licenseNumber", i, license.getCertificateNumber());
                 attr(mv, "attachmentId", i, license.getAttachmentObjectId());
-                attr(mv, "filename", i, getAttachmentName(enrollmentType, license.getAttachmentObjectId()));
+                attr(mv, "filename", i, getAttachmentName(applicationType, license.getAttachmentObjectId()));
                 i++;
             }
             attr(mv, "attachmentSize", i);
@@ -142,12 +142,12 @@ public class CLIAFormBinder extends BaseFormBinder {
     /**
      * Retrieves the related attachment name.
      *
-     * @param enrollment the enrollment to retrieve from
+     * @param application the application to retrieve from
      * @param attachmentObjectId the id
      * @return the name related
      */
-    private String getAttachmentName(EnrollmentType enrollmentType, String attachmentObjectId) {
-        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(enrollmentType.getProviderInformation());
+    private String getAttachmentName(ApplicationType applicationType, String attachmentObjectId) {
+        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(applicationType.getProviderInformation());
         List<DocumentType> list = attachments.getAttachment();
         synchronized (list) {
             for (DocumentType documentType : list) {
@@ -161,12 +161,12 @@ public class CLIAFormBinder extends BaseFormBinder {
 
     /**
      * Translates the validation results to form error messages where applicable.
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages the error messages
      *
      * @return the list of errors related to this form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -235,12 +235,12 @@ public class CLIAFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param applicationType the front end model
+     * @param application the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
-        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollmentType);
-        ProviderProfile profile = ticket.getDetails();
+    public void bindToHibernate(ApplicationType applicationType, Application application) {
+        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(applicationType);
+        ProviderProfile profile = application.getDetails();
         if (profile.getCertifications() == null) {
             profile.setCertifications(new ArrayList<License>());
         }
@@ -268,12 +268,12 @@ public class CLIAFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * @param application the persistent model
+     * @param applicationType the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
-        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollmentType);
-        ProviderProfile profile = ticket.getDetails();
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(applicationType);
+        ProviderProfile profile = application.getDetails();
         List<License> certifications = profile.getCertifications();
         if (certifications == null) {
             profile.setCertifications(new ArrayList<License>());

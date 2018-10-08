@@ -20,9 +20,9 @@ import gov.medicaid.features.PsmPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AllEnrollmentsPage extends PsmPage {
-    public void clickOnNewEnrollment() {
-        click($("#createNewEnrollment"));
+public class AllApplicationsPage extends PsmPage {
+    public void clickOnNewApplication() {
+        click($("#createNewApplication"));
         assertThat(getTitle()).isEqualTo("Provider Type Page");
     }
 
@@ -42,8 +42,8 @@ public class AllEnrollmentsPage extends PsmPage {
         click($("#my_profile_tab"));
     }
 
-    public void checkOnAllEnrollmentsPage() {
-        assertThat(getTitle()).isEqualTo("All Enrollments");
+    public void checkOnAllApplicationsPage() {
+        assertThat(getTitle()).isEqualTo("All Applications");
     }
 
     public void quickSearch(String npi) {

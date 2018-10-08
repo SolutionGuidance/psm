@@ -19,8 +19,8 @@ package gov.medicaid.services;
 
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Document;
-import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.EnrollmentSearchCriteria;
+import gov.medicaid.entities.Application;
+import gov.medicaid.entities.ApplicationSearchCriteria;
 import gov.medicaid.entities.Entity;
 import gov.medicaid.entities.Note;
 import gov.medicaid.entities.PracticeLookup;
@@ -44,21 +44,21 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * Interface for enrollment related activities.
+ * Interface for application related activities.
  */
-public interface ProviderEnrollmentService {
+public interface ProviderApplicationService {
 
     /**
-     * This method is used to delete a ticket draft. Note that only tickets in
+     * This method is used to delete a application draft. Note that only applications in
      * draft status can be removed.
      *
      * @param user     the user performing the operation
-     * @param ticketId the ticket id to be removed
+     * @param applicationId the application id to be removed
      * @throws PortalServiceException for any errors encountered
      */
-    void removeDraftTicket(
+    void removeDraftApplication(
             CMSUser user,
-            long ticketId
+            long applicationId
     ) throws PortalServiceException;
 
     /**
@@ -66,28 +66,28 @@ public interface ProviderEnrollmentService {
      * and resulted in a rejected change.
      *
      * @param user     the user who rejected the request
-     * @param ticketId the ticket id that was rejected
+     * @param applicationId the application id that was rejected
      * @param reason   the reason for rejecting the request
      * @throws PortalServiceException for any errors encountered
      */
-    void rejectTicket(
+    void rejectApplication(
             CMSUser user,
-            long ticketId,
+            long applicationId,
             String reason
     ) throws PortalServiceException;
 
     /**
      * This is the service method to be called after the process has completed
-     * and resulted in an approved change, the ticket is approved AS-IS
+     * and resulted in an approved change, the application is approved AS-IS
      * (e.g. renewal) and there are no changes from the approver.
      *
      * @param user     the user who approved the request
-     * @param ticketId the ticket id that was approved
+     * @param applicationId the application id that was approved
      * @throws PortalServiceException for any errors encountered
      */
-    void approveTicket(
+    void approveApplication(
             CMSUser user,
-            long ticketId
+            long applicationId
     ) throws PortalServiceException;
 
     /**
@@ -96,12 +96,12 @@ public interface ProviderEnrollmentService {
      * changes to the data so we don't reload from database first.
      *
      * @param user   the user who approved the request
-     * @param ticket the ticket that will be approved (after saving it)
+     * @param application the application that will be approved (after saving it)
      * @throws PortalServiceException for any errors encountered
      */
-    void approveTicketWithChanges(
+    void approveApplicationWithChanges(
             CMSUser user,
-            Enrollment ticket
+            Application application
     ) throws PortalServiceException;
 
     /**
@@ -132,38 +132,38 @@ public interface ProviderEnrollmentService {
      *                                  size and page number settings are
      *                                  invalid
      */
-    SearchResult<UserRequest> searchTickets(
+    SearchResult<UserRequest> searchApplications(
             CMSUser user,
             ProviderSearchCriteria criteria
     );
 
     /**
-     * This method gets all the enrollments that meet the search criteria. If none
+     * This method gets all the applications that meet the search criteria. If none
      * available, the search result will be empty.
      *
      * @param criteria the search criteria
-     * @return the enrollments
+     * @return the applications
      * @throws IllegalArgumentException if any argument is null, or the page
      *                                  size and page number settings are
      *                                  invalid
      */
-    SearchResult<Enrollment> searchEnrollments(
-            EnrollmentSearchCriteria criteria
+    SearchResult<Application> searchApplications(
+            ApplicationSearchCriteria criteria
     );
 
     /**
-     * This method gets all the enrollments that are draft status at end of
+     * This method gets all the applications that are draft status at end of
      * month, and that meet the search criteria. If none available, the
      * search result will be empty.
      *
      * @param criteria the search criteria
-     * @return the enrollments
+     * @return the applications
      * @throws IllegalArgumentException if any argument is null, or the page
      *                                  size and page number settings are
      *                                  invalid
      */
-    SearchResult<Enrollment> getDraftAtEomEnrollments(
-            EnrollmentSearchCriteria criteria
+    SearchResult<Application> getDraftAtEomApplications(
+            ApplicationSearchCriteria criteria
     );
 
     /**
@@ -178,74 +178,74 @@ public interface ProviderEnrollmentService {
     );
 
     /**
-     * Saves the given ticket as draft.
+     * Saves the given application as draft.
      *
-     * @param user   the user saving the ticket.
-     * @param ticket the ticket to be saved
-     * @return the ticket id for the draft created
+     * @param user   the user saving the application.
+     * @param application the application to be saved
+     * @return the application id for the draft created
      * @throws PortalServiceException for any errors encountered
      */
     long saveAsDraft(
             CMSUser user,
-            Enrollment ticket
+            Application application
     ) throws PortalServiceException;
 
     /**
-     * Retrieves the ticket details (full).
+     * Retrieves the application details (full).
      *
-     * @param user              the user getting the ticket.
+     * @param user              the user getting the application.
      * @param processInstanceId the process instance id to get the details for
-     * @return the complete ticket and provider profile
+     * @return the complete application and provider profile
      * @throws PortalServiceException for any errors encountered
      */
-    Enrollment getTicketByProcessInstanceId(
+    Application getApplicationByProcessInstanceId(
             CMSUser user,
             long processInstanceId
     ) throws PortalServiceException;
 
     /**
-     * Look up an enrollment application by its ID, checking that the given user
-     * has permission to access the enrollment.
+     * Look up an application application by its ID, checking that the given user
+     * has permission to access the application.
      *
      * @param user         the requesting user; used for authorization
-     * @param enrollmentId the ID of the enrollment
-     * @return the enrollment, if found; empty, if not found.
+     * @param applicationId the ID of the application
+     * @return the application, if found; empty, if not found.
      * @throws PortalServiceException if not authorized
      */
-    Optional<Enrollment> getEnrollment(
+    Optional<Application> getApplication(
             CMSUser user,
-            long enrollmentId
+            long applicationId
     ) throws PortalServiceException;
 
     /**
-     * Look up an enrollment application by its ID, including the associated
+     * Look up an application application by its ID, including the associated
      * automatic screening results, and checking that the given user has
-     * permission to access the enrollment.
+     * permission to access the application.
      *
      * @param user            the requesting user; used for authorization
-     * @param enrollmentId    the ID of the enrollment
-     * @return the enrollment, if found; empty, if not found.
+     * @param applicationId    the ID of the application
+     * @return the application, if found; empty, if not found.
      * @throws PortalServiceException if not authorized
      */
-    Optional<Enrollment> getEnrollmentWithScreenings(
+    Optional<Application> getApplicationWithScreenings(
             CMSUser user,
-            long enrollmentId
+            long applicationId
     ) throws PortalServiceException;
 
     /**
-     * Retrieves the ticket details (full). Deprecated in favor of getEnrollment.
+     * Retrieves the application details (full). Deprecated in favor of getApplication.
      *
-     * @param user     the user getting the ticket.
-     * @param ticketId the ticket to get the details for
-     * @return the complete ticket and provider profile, or null if not found
+     * @param user     the user getting the application.
+     * @param applicationId the application to get the details for
+     * @return the complete application and provider profile, or null if not found
      * @throws PortalServiceException for any errors encountered
-     * @see ProviderEnrollmentService#getEnrollment(CMSUser, long)
+     * @see ProviderApplicationService#getApplication(CMSUser, long)
      * @deprecated This can return null, and lead to a NullPointerException.
      */
     @Deprecated
-    Enrollment getTicketDetails(
+    Application getApplicationDetails(
             CMSUser user,
-            long ticketId
+            long applicationId
     ) throws PortalServiceException;
 
     /**
@@ -274,27 +274,27 @@ public interface ProviderEnrollmentService {
     );
 
     /**
-     * Creates a renewal ticket from the given profile id.
+     * Creates a renewal application from the given profile id.
      *
      * @param user      the user performing the action
      * @param profileId the profile to be renewed
-     * @return the generated ticket
+     * @return the generated application
      * @throws PortalServiceException for any errors encountered
      */
-    Enrollment renewProfile(
+    Application renewProfile(
             CMSUser user,
             long profileId
     ) throws PortalServiceException;
 
     /**
-     * Creates an update ticket from the given profile id.
+     * Creates an update application from the given profile id.
      *
      * @param user      the user performing the action
      * @param profileId the profile to be updated
-     * @return the generated ticket
+     * @return the generated application
      * @throws PortalServiceException for any errors encountered
      */
-    Enrollment editProfile(
+    Application editProfile(
             CMSUser user,
             long profileId
     ) throws PortalServiceException;
@@ -317,13 +317,13 @@ public interface ProviderEnrollmentService {
      * is approved.
      *
      * @param user     the user performing the action
-     * @param ticketId the request identifier
+     * @param applicationId the request identifier
      * @param text     the note text
      * @throws PortalServiceException for any errors encountered
      */
-    void addNoteToTicket(
+    void addNoteToApplication(
             CMSUser user,
-            long ticketId,
+            long applicationId,
             String text
     ) throws PortalServiceException;
 
@@ -355,25 +355,25 @@ public interface ProviderEnrollmentService {
     ) throws PortalServiceException;
 
     /**
-     * Checks the validity status of the ticket.
+     * Checks the validity status of the application.
      *
-     * @param ticketId  the ticket id to check
+     * @param applicationId  the application id to check
      * @param profileId the profile to check
-     * @return the validity status of the ticket
+     * @return the validity status of the application
      * @throws PortalServiceException for any errors encountered
      */
     Validity getSubmissionValidity(
-            long ticketId,
+            long applicationId,
             long profileId
     ) throws PortalServiceException;
 
     /**
-     * Retrieves all the notes for the given ticket.
+     * Retrieves all the notes for the given application.
      *
-     * @param ticketId the ticket id
-     * @return the notes for the ticket of for the referenced profile
+     * @param applicationId the application id
+     * @return the notes for the application of for the referenced profile
      */
-    List<Note> findNotes(long ticketId);
+    List<Note> findNotes(long applicationId);
 
     /**
      * Retrieves public data for enrolled providers by NPI.
@@ -388,12 +388,12 @@ public interface ProviderEnrollmentService {
     /**
      * Direct save (no logical checks) Used by business processes.
      *
-     * @param enrollment the enrollment to be saved
+     * @param application the application to be saved
      * @throws PortalServiceException for any errors encountered
-     * @return a new enrollment with the details
+     * @return a new application with the details
      */
-    Enrollment saveEnrollmentDetails(
-            Enrollment enrollment
+    Application saveApplicationDetails(
+            Application application
     ) throws PortalServiceException;
 
     /**
@@ -418,7 +418,7 @@ public interface ProviderEnrollmentService {
      * @param prevCatEndDate    last COS end date
      * @throws PortalServiceException for any errors encountered
      */
-    void addCOSToTicket(
+    void addCOSToApplication(
             CMSUser user,
             ProviderCategoryOfService categoryOfService,
             long prevCatServiceId,
@@ -440,29 +440,29 @@ public interface ProviderEnrollmentService {
     ) throws PortalServiceException;
 
     /**
-     * Gets the COS associated with a ticket.
+     * Gets the COS associated with a application.
      *
      * @param user     CMS user
-     * @param ticketId ticket id.
+     * @param applicationId application id.
      * @return the list of services
      * @throws PortalServiceException for any errors encountered
      */
     List<ProviderCategoryOfService> getPendingCategoryOfServices(
             CMSUser user,
-            long ticketId
+            long applicationId
     ) throws PortalServiceException;
 
     /**
-     * Deletes the COS by ticket.
+     * Deletes the COS by application.
      *
      * @param user     the user performing the action
-     * @param ticketId the ticket id
+     * @param applicationId the application id
      * @param id       the cos id
      * @throws PortalServiceException for any errors encountered
      */
-    void deleteCOSByTicket(
+    void deleteCOSByApplication(
             CMSUser user,
-            long ticketId,
+            long applicationId,
             long id
     ) throws PortalServiceException;
 
@@ -493,7 +493,7 @@ public interface ProviderEnrollmentService {
      * Retrieves the related entity for the given profile key.
      *
      * @param profileId the profile id of the provider
-     * @param ticketId  the request ticket id
+     * @param applicationId  the request application id
      * @return the related entity to the profile
      */
     Entity findEntityByProviderKey(
@@ -513,7 +513,7 @@ public interface ProviderEnrollmentService {
      *
      * @param profileId     the profile to search for
      * @param fetchChildren if true, the entire object tree is retrieved
-     * @return the ticket details
+     * @return the application details
      */
     ProviderProfile getProviderDetails(
             long profileId,

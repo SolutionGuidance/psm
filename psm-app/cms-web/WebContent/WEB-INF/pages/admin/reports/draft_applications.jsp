@@ -50,10 +50,10 @@
           </div>
 
           <div class="reportTable dashboardPanel">
-            <c:forEach var="enrollmentMonth" items="${enrollmentMonths}">
+            <c:forEach var="applicationMonth" items="${applicationMonths}">
               <div class="wideTableData tableData">
                 <div class="tableTitle">
-                  <h2>${enrollmentMonth.month}</h2>
+                  <h2>${applicationMonth.month}</h2>
                 </div>
                 <table class="generalTable linedTable">
                   <thead>
@@ -67,25 +67,25 @@
                     </tr>
                   </thead>
                   <c:forEach
-                    var="enrollment"
-                    items="${enrollmentMonth.enrollments}"
+                    var="application"
+                    items="${applicationMonth.applications}"
                     varStatus="status"
                   >
                   <tr class="reportRow ${status.index % 2 == 0 ? 'odd' : 'even'}">
-                    <td class="reportDatum nonedisplay" reportField="month" reportValue="${enrollmentMonth.month}"></td>
-                    <td class="reportDatum" reportField="enrollmentId" reportValue="${enrollment.enrollmentId}">
-                      <a href="${ctx}/provider/enrollment/view?id=${enrollment.enrollmentId}">
-                        ${enrollment.enrollmentId}
+                    <td class="reportDatum nonedisplay" reportField="month" reportValue="${applicationMonth.month}"></td>
+                    <td class="reportDatum" reportField="applicationId" reportValue="${application.applicationId}">
+                      <a href="${ctx}/provider/application/view?id=${application.applicationId}">
+                        ${application.applicationId}
                       </a>
                     </td>
-                    <td>${enrollment.details.entity.npi}</td>
-                    <td>${enrollment.details.entity.name}</td>
-                    <td>${enrollment.details.entity.providerType.description}</td>
-                    <td class="reportDatum" reportField="createdOn" reportValue="${enrollment.createdOn}">
-                      <fmt:formatDate value="${enrollment.createdOn}" pattern="dd MMMM yyyy" />
+                    <td>${application.details.entity.npi}</td>
+                    <td>${application.details.entity.name}</td>
+                    <td>${application.details.entity.providerType.description}</td>
+                    <td class="reportDatum" reportField="createdOn" reportValue="${application.createdOn}">
+                      <fmt:formatDate value="${application.createdOn}" pattern="dd MMMM yyyy" />
                     </td>
-                    <td class="reportDatum" reportField="submissionDate" reportValue="${enrollment.submissionDate}">
-                      <fmt:formatDate value="${enrollment.submissionDate}" pattern="dd MMMM yyyy" />
+                    <td class="reportDatum" reportField="submissionDate" reportValue="${application.submissionDate}">
+                      <fmt:formatDate value="${application.submissionDate}" pattern="dd MMMM yyyy" />
                     </td>
                   </tr>
                   </c:forEach>

@@ -42,7 +42,7 @@
           </div>
           <div class="head">
             <h1>View Profile Details</h1>
-            <a class="greyBtn iconPdf" href="<c:url value="/provider/enrollment/export" />">
+            <a class="greyBtn iconPdf" href="<c:url value="/provider/application/export" />">
               Export to PDF
             </a>
           </div>
@@ -64,7 +64,7 @@
             </div>
             <!-- /.detailPanel -->
 
-            <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/readonly_profile.jsp" %>
+            <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/common/readonly_profile.jsp" %>
 
           </div>
         </div>
@@ -80,9 +80,9 @@
     <!-- /#modalBackground-->
     <div id="modalBackground"></div>
     <div id="new-modal">
-      <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/stale_ticket.jsp" %>
-      <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/superseded_ticket.jsp" %>
-      <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/submit_enrollment.jsp" %>
+      <%@include file="/WEB-INF/pages/provider/application/steps/modal/stale_application.jsp" %>
+      <%@include file="/WEB-INF/pages/provider/application/steps/modal/superseded_application.jsp" %>
+      <%@include file="/WEB-INF/pages/provider/application/steps/modal/submit_application.jsp" %>
       <!-- /#saveAsDraftModal-->
     </div>
     <c:if test="${not empty requestScope['flash_popup']}">

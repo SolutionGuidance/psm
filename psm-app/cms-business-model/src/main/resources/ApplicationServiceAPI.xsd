@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://gov.medicaid.services.enrollment/ValidationService" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://gov.medicaid.services.enrollment/ValidationService" xmlns:Q1="http://gov.medicaid.process/EnrollmentProcess" xmlns:Q2="http://gov.medicaid.shared/Entities">
+<schema targetNamespace="http://gov.medicaid.services.application/ValidationService" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://gov.medicaid.services.application/ValidationService" xmlns:Q1="http://gov.medicaid.process/ApplicationProcess" xmlns:Q2="http://gov.medicaid.shared/Entities">
     <import schemaLocation="Entities.xsd" namespace="http://gov.medicaid.shared/Entities"></import>
-    <import schemaLocation="EnrollmentProcess.xsd" namespace="http://gov.medicaid.process/EnrollmentProcess"></import>
+    <import schemaLocation="ApplicationProcess.xsd" namespace="http://gov.medicaid.process/ApplicationProcess"></import>
     
     <element name="ValidationRequest">
 	    <complexType>
 	    	<sequence>
-	    		<element name="Enrollment" type="Q1:EnrollmentType" maxOccurs="1" minOccurs="1"></element>
+	    		<element name="Application" type="Q1:ApplicationType" maxOccurs="1" minOccurs="1"></element>
 	    		<element name="Partial" maxOccurs="1" minOccurs="1">
 	    			<simpleType>
 	    				<restriction base="string">
@@ -20,21 +20,21 @@
 	    </complexType>
     </element>
 
-    <element name="SubmitTicketRequest">
+    <element name="SubmitApplicationRequest">
         <complexType>
             <sequence>
                 <element name="username" maxOccurs="1" minOccurs="1" type="string" />
                 <element name="systemId" maxOccurs="1" minOccurs="1" type="string" />
                 <element name="npi" maxOccurs="1" minOccurs="0" type="string" />
-                <element name="Enrollment" type="Q1:EnrollmentType" maxOccurs="1" minOccurs="1"></element>
+                <element name="Application" type="Q1:ApplicationType" maxOccurs="1" minOccurs="1"></element>
             </sequence>
         </complexType>
     </element>
 
-    <element name="SubmitTicketResponse">
+    <element name="SubmitApplicationResponse">
         <complexType>
             <sequence>
-                <element name="ticketNumber" maxOccurs="1" minOccurs="1" type="long" />
+                <element name="applicationNumber" maxOccurs="1" minOccurs="1" type="long" />
                 <element name="status" maxOccurs="1" minOccurs="1" type="string" />
             </sequence>
         </complexType>

@@ -16,8 +16,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <c:if test="${not empty errors}">
     <div class="errorInfo formErrorMarker" style="display: block;">
-        <h3>The following problems were identified for this enrollment during screening:</h3>
-        <h3>You may perform manual verification for licenses and fields, but incomplete enrollments cannot be approved.</h3>
+        <h3>The following problems were identified for this application during screening:</h3>
+        <h3>You may perform manual verification for licenses and fields, but incomplete applications cannot be approved.</h3>
         <c:forEach var="error" items="${errors}">
             <p class="${error.fieldId}"><c:out value="${error.message}"></c:out></p>
         </c:forEach>

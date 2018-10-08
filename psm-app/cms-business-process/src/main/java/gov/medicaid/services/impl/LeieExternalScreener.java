@@ -22,9 +22,9 @@ import ca.uhn.fhir.rest.client.api.IGenericClient;
 import ca.uhn.fhir.rest.client.api.ServerValidationModeEnum;
 import ca.uhn.fhir.rest.gclient.StringClientParam;
 import gov.medicaid.entities.AutomaticScreening;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.LeieAutomaticScreening;
-import gov.medicaid.process.enrollment.Exclusion;
+import gov.medicaid.process.application.Exclusion;
 import org.hl7.fhir.dstu3.model.Bundle;
 
 import javax.persistence.EntityManager;
@@ -52,18 +52,18 @@ public class LeieExternalScreener {
         );
     }
 
-    public AutomaticScreening.Result screen(Long enrollmentId, String npi) {
+    public AutomaticScreening.Result screen(Long applicationId, String npi) {
         logger.info(String.format(
-            "Running LEIE screening for enrollment " +
-                "with enrollment_id %d and NPI %s.",
-            enrollmentId,
+            "Running LEIE screening for application " +
+                "with application_id %d and NPI %s.",
+            applicationId,
             npi
         ));
 
-        Enrollment enrollment = getEnrollment(enrollmentId);
+        Application application = getApplication(applicationId);
         LeieAutomaticScreening screening = new LeieAutomaticScreening();
         screening.setNpiSearchTerm(npi);
-        enrollment.addAutomaticScreening(screening);
+        application.addAutomaticScreening(screening);
 
         try {
             Bundle providerSearchResults = searchLeieForProvider(npi);
@@ -77,13 +77,13 @@ public class LeieExternalScreener {
             screening.setResult(AutomaticScreening.Result.ERROR);
         }
 
-        entityManager.merge(enrollment);
+        entityManager.merge(application);
 
         return screening.getResult();
     }
 
-    private Enrollment getEnrollment(Long enrollmentId) {
-        return entityManager.find(Enrollment.class, enrollmentId);
+    private Application getApplication(Long applicationId) {
+        return entityManager.find(Application.class, applicationId);
     }
 
     private boolean providerIsExcluded(Bundle providerSearchResults) {
@@ -95,9 +95,9 @@ public class LeieExternalScreener {
             Bundle providerSearchResults
     ) {
         logger.info(String.format(
-            "LEIE screening for enrollment with enrollment_id %d " +
+            "LEIE screening for application with application_id %d " +
                 "found %d matches; marking screening as failed.",
-            screening.getEnrollment().getEnrollmentId(),
+            screening.getApplication().getApplicationId(),
             providerSearchResults.getEntry().size()
         ));
         screening.setResult(AutomaticScreening.Result.FAIL);
@@ -113,9 +113,9 @@ public class LeieExternalScreener {
             LeieAutomaticScreening screening
     ) {
         logger.info(String.format(
-            "LEIE screening for enrollment with enrollment_id %d " +
+            "LEIE screening for application with application_id %d " +
                 "found no matches; marking screening as passed.",
-            screening.getEnrollment().getEnrollmentId()
+            screening.getApplication().getApplicationId()
         ));
 
         screening.setResult(AutomaticScreening.Result.PASS);

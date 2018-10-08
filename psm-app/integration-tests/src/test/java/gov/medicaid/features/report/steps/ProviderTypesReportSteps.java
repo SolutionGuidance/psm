@@ -24,12 +24,12 @@ public class ProviderTypesReportSteps {
     private ProviderTypesPage providerTypesPage;
 
     @Step
-    public void checkProviderTypesPageHasEnrollmentsForMonth(
-        int numEnrollments,
+    public void checkProviderTypesPageHasApplicationsForMonth(
+        int numApplications,
         String providerTypeDesc,
         String month
     ) {
-        providerTypesPage.checkEnrollmentsForMonth(numEnrollments, providerTypeDesc, month);
+        providerTypesPage.checkApplicationsForMonth(numApplications, providerTypeDesc, month);
     }
 
     @Step

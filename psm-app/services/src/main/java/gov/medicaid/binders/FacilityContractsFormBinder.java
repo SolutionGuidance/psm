@@ -19,14 +19,14 @@ package gov.medicaid.binders;
 
 import gov.medicaid.domain.model.AttachedDocumentsType;
 import gov.medicaid.domain.model.DocumentType;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.FacilityCredentialsType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.SignedContractType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.License;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormError;
@@ -74,15 +74,15 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request the request containing the form fields
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
         List<SignedContractType> oldContracts = new ArrayList<SignedContractType>(creds.getSignedContract());
         List<SignedContractType> contracts = creds.getSignedContract();
         contracts.clear();
@@ -137,13 +137,13 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
         List<SignedContractType> xContracts = creds.getSignedContract();
         for (int j = 0; j < ALL_CONTRACTS.length; j++) {
             String option = ALL_CONTRACTS[j];
@@ -154,7 +154,7 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
                     attr(mv, "beginDate", j, contract.getBeginDate());
                     attr(mv, "endDate", j, contract.getEndDate());
                     attr(mv, "attachmentId", j, contract.getCopyAttachmentId());
-                    attr(mv, "filename", j, getAttachmentName(enrollmentType, contract.getCopyAttachmentId()));
+                    attr(mv, "filename", j, getAttachmentName(applicationType, contract.getCopyAttachmentId()));
                     break;
                 } else {
                     attr(mv, "certificateInd", j, "N");
@@ -167,12 +167,12 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
     /**
      * Retrieves the related attachment name.
      *
-     * @param enrollment the enrollment to retrieve from
+     * @param application the application to retrieve from
      * @param attachmentObjectId the id
      * @return the name related
      */
-    private String getAttachmentName(EnrollmentType enrollmentType, String attachmentObjectId) {
-        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(enrollmentType.getProviderInformation());
+    private String getAttachmentName(ApplicationType applicationType, String attachmentObjectId) {
+        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(applicationType.getProviderInformation());
         List<DocumentType> list = attachments.getAttachment();
         synchronized (list) {
             for (DocumentType documentType : list) {
@@ -186,19 +186,19 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
 
     /**
      * Captures the error messages related to the form.
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages the messages to select from
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
 
         synchronized (ruleErrors) {
-            Map<Integer, Integer> indexMap = mapByName(XMLUtility.nsGetFacilityCredentials(enrollmentType).getSignedContract());
+            Map<Integer, Integer> indexMap = mapByName(XMLUtility.nsGetFacilityCredentials(applicationType).getSignedContract());
             for (StatusMessageType ruleError : ruleErrors) {
                 int count = errors.size();
                 String path = ruleError.getRelatedElementPath();
@@ -297,12 +297,12 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param applicationType the front end model
+     * @param application the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
-        ProviderProfile profile = ticket.getDetails();
+    public void bindToHibernate(ApplicationType applicationType, Application application) {
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
+        ProviderProfile profile = application.getDetails();
         if (profile.getCertifications() == null) {
             profile.setCertifications(new ArrayList<License>());
         }
@@ -326,12 +326,12 @@ public class FacilityContractsFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * @param application the persistent model
+     * @param applicationType the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
-        ProviderProfile profile = ticket.getDetails();
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
+        ProviderProfile profile = application.getDetails();
         List<License> certifications = profile.getCertifications();
         if (certifications == null) {
             profile.setCertifications(new ArrayList<License>());

@@ -136,7 +136,7 @@
                 <p>
                     I certify that the information provided on this form
                     is accurate, complete and truthful.
-                    I will notify MHCP Provider Enrollment of any changes to
+                    I will notify MHCP Provider Application of any changes to
                     this information.
                     I acknowledge that any misrepresentations in the information
                     submitted to MHCP, including false claims, statements,
@@ -213,7 +213,7 @@
                     <c:set var="documentName"
                         value="${requestScope[formName]}"></c:set>
                     <c:url var="viewDocumentUrl"
-                        value="/provider/enrollment/agreement"><c:param
+                        value="/provider/application/agreement"><c:param
                             name="id"
                             value="${documentId}"></c:param></c:url>
                     <span>I have read and agree to the terms of the</span>

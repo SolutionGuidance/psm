@@ -143,7 +143,7 @@
                 </span>
             </div>
             <div class="row">
-                <label>Requested Enrollment Date</label>
+                <label>Requested Application Date</label>
                 <span>${requestScope['_15_effectiveDate']}</span>
             </div>
             </div>

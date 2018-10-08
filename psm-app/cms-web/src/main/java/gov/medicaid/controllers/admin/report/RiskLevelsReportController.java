@@ -17,14 +17,14 @@
 package gov.medicaid.controllers.admin.report;
 
 import com.google.common.collect.ImmutableList;
-import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
-import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.EnrollmentSearchCriteria;
+import gov.medicaid.controllers.admin.report.ReportControllerUtils.ApplicationMonth;
+import gov.medicaid.entities.Application;
+import gov.medicaid.entities.ApplicationSearchCriteria;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.RiskLevel;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -52,23 +52,23 @@ public class RiskLevelsReportController extends gov.medicaid.controllers.BaseCon
         ViewStatics.HIGH_RISK
     );
 
-    private final ProviderEnrollmentService enrollmentService;
+    private final ProviderApplicationService applicationService;
 
-    public RiskLevelsReportController(ProviderEnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
+    public RiskLevelsReportController(ProviderApplicationService applicationService) {
+        this.applicationService = applicationService;
     }
 
     @RequestMapping(value = "/admin/reports/risk-levels", method = RequestMethod.GET)
     public ModelAndView getRiskLevels() {
         ModelAndView mv = new ModelAndView("admin/reports/risk_levels");
 
-        List<Enrollment> enrollments = getEnrollmentsFromDB();
-        List<EnrollmentMonth> ems = groupEnrollments(enrollments);
+        List<Application> applications = getApplicationsFromDB();
+        List<ApplicationMonth> ems = groupApplications(applications);
         mv.addObject("riskLevels", RISK_LEVELS);
         mv.addObject(
             "months",
             ems.stream()
-                .map(e -> new RiskLevelsMonth(e, enrollmentService))
+                .map(e -> new RiskLevelsMonth(e, applicationService))
                 .collect(Collectors.toList()));
 
         return mv;
@@ -80,11 +80,11 @@ public class RiskLevelsReportController extends gov.medicaid.controllers.BaseCon
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", csvFileName));
 
-        List<Enrollment> enrollments = getEnrollmentsFromDB();
-        List<EnrollmentMonth> ems = groupEnrollments(enrollments);
+        List<Application> applications = getApplicationsFromDB();
+        List<ApplicationMonth> ems = groupApplications(applications);
         List<RiskLevelsMonth> rlms =
             ems.stream()
-            .map(e -> new RiskLevelsMonth(e, enrollmentService))
+            .map(e -> new RiskLevelsMonth(e, applicationService))
             .collect(Collectors.toList());
 
         try {
@@ -110,17 +110,17 @@ public class RiskLevelsReportController extends gov.medicaid.controllers.BaseCon
         }
     }
 
-    private List<Enrollment> getEnrollmentsFromDB() {
-        EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
+    private List<Application> getApplicationsFromDB() {
+        ApplicationSearchCriteria criteria = new ApplicationSearchCriteria();
         criteria.setAscending(true);
         criteria.setSortColumn("t.createdOn");
-        return enrollmentService.searchEnrollments(criteria).getItems();
+        return applicationService.searchApplications(criteria).getItems();
     }
 
-    private List<EnrollmentMonth> groupEnrollments(List<Enrollment> enrollments) {
-        return ReportControllerUtils.groupEnrollments(
-            enrollments,
-            Enrollment::getStatusDate,
+    private List<ApplicationMonth> groupApplications(List<Application> applications) {
+        return ReportControllerUtils.groupApplications(
+            applications,
+            Application::getStatusDate,
             (e, monthStart, monthEnd) -> {
                 LocalDate statusDate = ReportControllerUtils.toLocalDate(e.getStatusDate());
                 return !(monthStart.isAfter(statusDate) || monthEnd.isBefore(statusDate));
@@ -131,16 +131,16 @@ public class RiskLevelsReportController extends gov.medicaid.controllers.BaseCon
         private Map<String, Long> numByRiskLevel;
         private LocalDate month;
 
-        public RiskLevelsMonth(EnrollmentMonth em, ProviderEnrollmentService enrollmentService2) {
+        public RiskLevelsMonth(ApplicationMonth em, ProviderApplicationService applicationService2) {
             numByRiskLevel = RISK_LEVELS.stream().collect(Collectors.toMap(
                 Function.identity(),
                 x -> 0L
             ));
             month = em.getMonth();
 
-            numByRiskLevel.putAll(em.getEnrollments().stream()
-                .map(Enrollment::getProfileReferenceId)
-                .map(id -> enrollmentService2.getProviderDetails(id, false))
+            numByRiskLevel.putAll(em.getApplications().stream()
+                .map(Application::getProfileReferenceId)
+                .map(id -> applicationService2.getProviderDetails(id, false))
                 .map(ProviderProfile::getRiskLevel)
                 .filter(Objects::nonNull)
                 .map(RiskLevel::getDescription)

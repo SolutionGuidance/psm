@@ -1274,13 +1274,13 @@ dialect 'mvel'
 
 end
 
-rule 'Assert enrollment contact information'
+rule 'Assert application contact information'
 dialect 'mvel'
     when
-        $enrollment: EnrollmentType(contactInformation == null)
+        $application: ApplicationType(contactInformation == null)
     then
-        $enrollment.setContactInformation(new ContactInformationType());
-        update($enrollment);
+        $application.setContactInformation(new ContactInformationType());
+        update($application);
 
 end
 
@@ -1632,7 +1632,7 @@ dialect 'mvel'
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
         ProviderTypeException(type == "AgencyApplication", providerType == $provider.providerType)
-        EnrollmentType(effectiveDate == null)
+        ApplicationType(effectiveDate == null)
         $report: ErrorReporter()
     then
         $report.addError(
@@ -1649,7 +1649,7 @@ dialect 'mvel'
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
         ProviderTypeException(type == "AgencyApplication", providerType == $provider.providerType)
-        EnrollmentType($effectiveDate: effectiveDate, effectiveDate != null)
+        ApplicationType($effectiveDate: effectiveDate, effectiveDate != null)
         eval($effectiveDate.before(getEarliestAcceptableDate()))
         $report: ErrorReporter()
     then
@@ -2627,8 +2627,8 @@ end
 rule 'Contact Fax Number Must Be In A Valid Format'
 dialect 'mvel'
     when
-        $enrollment: EnrollmentType()
-        ContactInformationType($faxNumber: faxNumber, faxNumber != null) from $enrollment.contactInformation
+        $application: ApplicationType()
+        ContactInformationType($faxNumber: faxNumber, faxNumber != null) from $application.contactInformation
     then
         insertLogical(new PhoneNumberEntry(
             "Contact Fax Number",
@@ -2641,8 +2641,8 @@ end
 rule 'Contact Phone Number Must Be In A Valid Format'
 dialect 'mvel'
     when
-        $enrollment: EnrollmentType()
-        ContactInformationType($phoneNumber: phoneNumber, phoneNumber != null) from $enrollment.contactInformation
+        $application: ApplicationType()
+        ContactInformationType($phoneNumber: phoneNumber, phoneNumber != null) from $application.contactInformation
     then
         insertLogical(new PhoneNumberEntry(
             "Contact Phone Number",
@@ -4042,12 +4042,12 @@ dialect 'mvel'
         );
 end
 
-rule 'Enrollment Personal Email Address is Required when Same As Above is Checked'
+rule 'Application Personal Email Address is Required when Same As Above is Checked'
 dialect 'mvel'
     when
-        $enrollment: EnrollmentType(ContactSameAsApplicant == "Y");
+        $application: ApplicationType(ContactSameAsApplicant == "Y");
         ContactInformationType(emailAddress == null || emailAddress
-            matches "^[\\s]*$" ) from $enrollment.contactInformation
+            matches "^[\\s]*$" ) from $application.contactInformation
         $report: ErrorReporter()
     then
         $report.addError(
@@ -4058,12 +4058,12 @@ dialect 'mvel'
 end
 
 
-rule 'Enrollment Contact Email Address is Required'
+rule 'Application Contact Email Address is Required'
 dialect 'mvel'
     when
-        $enrollment: EnrollmentType(ContactSameAsApplicant == "N" || ContactSameAsApplicant == null)
+        $application: ApplicationType(ContactSameAsApplicant == "N" || ContactSameAsApplicant == null)
         ContactInformationType(emailAddress == null || emailAddress
-            matches "^[\\s]*$" ) from $enrollment.contactInformation 
+            matches "^[\\s]*$" ) from $application.contactInformation 
         $report: ErrorReporter()
     then
         $report.addError(
@@ -4075,76 +4075,76 @@ dialect 'mvel'
 end
 
 
-rule 'Enrollment Contact Email Address Format Check'
+rule 'Application Contact Email Address Format Check'
 dialect 'mvel'
     when
-        $enrollment: EnrollmentType()
+        $application: ApplicationType()
         ContactInformationType(emailAddress != null, emailAddress not matches "^[\\s]*$",
             emailAddress matches "^.{0,100}$",
-            emailAddress not matches "(?i)[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}") from $enrollment.contactInformation
+            emailAddress not matches "(?i)[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}") from $application.contactInformation
         $report: ErrorReporter()
     then
         $report.addError(
             "/ContactInformation/EmailAddress",
             "00001",
-            "Enrollment Contact Email Address must match the pattern \"USER@DOMAIN.EXT\"."
+            "Application Contact Email Address must match the pattern \"USER@DOMAIN.EXT\"."
         );
 
 end
 
-rule 'Enrollment Contact Email Address Maximum Length Check'
+rule 'Application Contact Email Address Maximum Length Check'
 dialect 'mvel'
     when
-        $enrollment: EnrollmentType()
-        ContactInformationType(emailAddress not matches "^.{0,100}$") from $enrollment.contactInformation
+        $application: ApplicationType()
+        ContactInformationType(emailAddress not matches "^.{0,100}$") from $application.contactInformation
         $report: ErrorReporter()
     then
         $report.addError(
             "/ContactInformation/EmailAddress",
             "00001",
-            "Enrollment Contact Email Address length cannot exceed 100 characters."
+            "Application Contact Email Address length cannot exceed 100 characters."
         );
 
 end
 
-rule 'Enrollment Contact Name  Maximum Length Check'
+rule 'Application Contact Name  Maximum Length Check'
 dialect 'mvel'
     when
-        $enrollment: EnrollmentType()
-        ContactInformationType(name != null, name not matches "^.{0,100}$") from $enrollment.contactInformation
+        $application: ApplicationType()
+        ContactInformationType(name != null, name not matches "^.{0,100}$") from $application.contactInformation
         $report: ErrorReporter()
     then
         $report.addError(
             "/ContactInformation/Name",
             "00001",
-            "Enrollment Contact Name length cannot exceed 100 characters."
+            "Application Contact Name length cannot exceed 100 characters."
         );
 
 end
 
-rule 'Enrollment Contact Name is required'
+rule 'Application Contact Name is required'
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value() || value == UISection.ORGANIZATION_INFORMATION.value())
-        $enrollment: EnrollmentType()
-        ContactInformationType(name == null || name matches "^[\\s]*$") from $enrollment.contactInformation
+        $application: ApplicationType()
+        ContactInformationType(name == null || name matches "^[\\s]*$") from $application.contactInformation
         $report: ErrorReporter()
     then
         $report.addError(
             "/ContactInformation/Name",
             "00001",
-            "Enrollment Contact Name is required for all requests."
+            "Application Contact Name is required for all requests."
         );
 
 end
 
-rule 'Enrollment Contact Phone Number Is Required For Organizations'
+rule 'Application Contact Phone Number Is Required For Organizations'
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization()
-        $enrollment: EnrollmentType()
-        ContactInformationType(phoneNumber == null || phoneNumber matches "^[\\s]*$") from $enrollment.contactInformation
+        $application: ApplicationType()
+        ContactInformationType(phoneNumber == null || phoneNumber matches "^[\\s]*$") from $application.contactInformation
         $report: ErrorReporter()
     then
         $report.addError(
@@ -4544,7 +4544,7 @@ dialect 'mvel'
         LookupEntry(type == "FieldGroup", value == UISection.FACILITY_CREDENTIALS.value())
         IsOrganization()
         $provider: ProviderInformationType(facilityCredentials != null)
-        EnrollmentType($effectiveDate: effectiveDate, effectiveDate != null)
+        ApplicationType($effectiveDate: effectiveDate, effectiveDate != null)
         $credentials: FacilityCredentialsType($licenseList : license) from $provider.facilityCredentials
         $license: LicenseType($originalIssueDate: originalIssueDate, originalIssueDate != null) from $licenseList
         eval($originalIssueDate.after($effectiveDate))
@@ -5338,7 +5338,7 @@ salience -10
         $report.addError(
             "/ProviderInformation/ApplicantInformation/PersonalInformation/HighestDegreeEarned",
             "00001",
-            "Highest degree earned should be left empty for this enrollment."
+            "Highest degree earned should be left empty for this application."
         );
 
 end
@@ -6390,7 +6390,7 @@ dialect 'mvel'
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
         ProviderTypeException(type == "NonPracticeOrganization", providerType == $provider.providerType)
-        EnrollmentType(personWhoAccomplishedForm == null || personWhoAccomplishedForm matches "^[\\s]*$")
+        ApplicationType(personWhoAccomplishedForm == null || personWhoAccomplishedForm matches "^[\\s]*$")
         $report: ErrorReporter()
     then
         $report.addError(
@@ -6406,7 +6406,7 @@ dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
-        EnrollmentType(personWhoAccomplishedForm != null, personWhoAccomplishedForm not matches "^.{0,100}$")
+        ApplicationType(personWhoAccomplishedForm != null, personWhoAccomplishedForm not matches "^.{0,100}$")
         $report: ErrorReporter()
     then
         $report.addError(
@@ -6434,19 +6434,19 @@ dialect 'mvel'
 
 end
 
-rule 'Notification For Credentials Enrollment Status Must Reference An Existing Address'
+rule 'Notification For Credentials Application Status Must Reference An Existing Address'
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.MAILING_INFORMATION.value())
         $provider: ProviderInformationType( )
         AlternateAddressesType($alternateAddressSize : address.size()) from $provider.alternateAddresses
-        NotificationSettingsType( credentialsEnrollmentStatus < 0 || credentialsEnrollmentStatus > ($alternateAddressSize + 1)) from $provider.notificationSettings
+        NotificationSettingsType( credentialsApplicationStatus < 0 || credentialsApplicationStatus > ($alternateAddressSize + 1)) from $provider.notificationSettings
         $report: ErrorReporter()
     then
         $report.addError(
-            "/ProviderInformation/NotificationSettings/CredentialsEnrollmentStatus",
+            "/ProviderInformation/NotificationSettings/CredentialsApplicationStatus",
             "00001",
-            "Notification for credentials enrollment status must reference an existing address."
+            "Notification for credentials application status must reference an existing address."
         );
 
 end
@@ -9485,7 +9485,7 @@ dialect 'mvel'
         // not ProviderTypeException(type == "NonPracticeOrganization", providerType == $provider.providerType)
         not ProviderTypeException(type == "AgencyApplication", providerType == $provider.providerType)
         not ProviderTypeException(type == "EducationPlan", providerType == $provider.providerType)
-        EnrollmentType(effectiveDate == null)
+        ApplicationType(effectiveDate == null)
         $report: ErrorReporter()
     then
         $report.addError(
@@ -9509,7 +9509,7 @@ dialect 'mvel'
         // not ProviderTypeException(type == "NonPracticeOrganization", providerType == $providerType)
         not ProviderTypeException(type == "AgencyApplication", providerType == $providerType)
         not ProviderTypeException(type == "EducationPlan", providerType == $providerType)
-        EnrollmentType($effectiveDate: effectiveDate, effectiveDate != null)
+        ApplicationType($effectiveDate: effectiveDate, effectiveDate != null)
         eval($effectiveDate.before(get1YearFromNow()))
         $report: ErrorReporter()
     then
@@ -9520,37 +9520,37 @@ dialect 'mvel'
         );
 end
 
-rule 'Requested Enrollment Date Is Required For Education Plans'
+rule 'Requested Application Date Is Required For Education Plans'
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
         ProviderTypeException(type == "EducationPlan", providerType == $provider.providerType)
-        EnrollmentType(effectiveDate == null)
+        ApplicationType(effectiveDate == null)
         $report: ErrorReporter()
     then
         $report.addError(
             "/EffectiveDate",
             "00001",
-            "Requested Enrollment Date is required."
+            "Requested Application Date is required."
         );
 
 end
 
-rule 'Requested Enrollment Date Cannot Be Before 01-01-1900'
+rule 'Requested Application Date Cannot Be Before 01-01-1900'
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.ORGANIZATION_INFORMATION.value())
         IsOrganization($provider: provider)
         ProviderTypeException(type == "EducationPlan", providerType == $provider.providerType)
-        EnrollmentType($effectiveDate: effectiveDate, effectiveDate != null)
+        ApplicationType($effectiveDate: effectiveDate, effectiveDate != null)
         eval($effectiveDate.before(getEarliestAcceptableDate()))
         $report: ErrorReporter()
     then
         $report.addError(
             "/EffectiveDate",
             "00001",
-            "Requested Enrollment Date cannot be before 01/01/1900."
+            "Requested Application Date cannot be before 01/01/1900."
         );
 
 end
@@ -10337,7 +10337,7 @@ dialect 'mvel'
         );
 end
 
-rule 'Provider age should be 18 or above during enrollment'
+rule 'Provider age should be 18 or above during application'
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.PERSONAL_INFORMATION.value())
@@ -10349,12 +10349,12 @@ dialect 'mvel'
         $report.addError(
             "/ProviderInformation/ApplicantInformation/PersonalInformation/DateOfBirth",
             "00001",
-            "Provider age should be 18 or above during enrollment."
+            "Provider age should be 18 or above during application."
         );
 
 end
 
-rule 'Provider age for Organization Members should be 18 or above during enrollment'
+rule 'Provider age for Organization Members should be 18 or above during application'
 dialect 'mvel'
     when
         LookupEntry(type == "FieldGroup", value == UISection.INDIVIDUAL_MEMBER_INFORMATION.value())
@@ -10368,7 +10368,7 @@ dialect 'mvel'
         $report.addError(
             "/ProviderInformation/MemberInformation/GroupMember[" + index + "]/DateOfBirth",
             "00001",
-            "Member age should be 18 or above during enrollment."
+            "Member age should be 18 or above during application."
         );
 end
 

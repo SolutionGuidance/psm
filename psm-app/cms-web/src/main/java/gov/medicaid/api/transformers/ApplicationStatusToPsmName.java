@@ -21,7 +21,7 @@ import org.hl7.fhir.dstu3.model.Task;
 
 import java.util.function.Function;
 
-public class EnrollmentStatusToPsmName implements Function<String, String> {
+public class ApplicationStatusToPsmName implements Function<String, String> {
     private static final String INVALID_STATUS_CODE_MESSAGE =
             "Invalid task status code. Must be one of 'draft'," +
             " 'requested', 'rejected', or 'accepted'.";

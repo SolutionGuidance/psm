@@ -35,7 +35,7 @@
         <div class="modal-content">
             <div class="right">
                 <div class="middle">
-                    <p>The enrollment has been saved as Draft.</p>
+                    <p>The application has been saved as Draft.</p>
                     <div class="buttonArea">
                         <a href="javascript:;" class="purpleBtn closeModal okBtn">OK</a>
                     </div>

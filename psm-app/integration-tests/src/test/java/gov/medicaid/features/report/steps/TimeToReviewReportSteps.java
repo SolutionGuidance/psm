@@ -36,9 +36,9 @@ public class TimeToReviewReportSteps {
     }
 
     @Step
-    public void checkTimeToReviewPageHasRowWithEnrollments(String month, String numEnrollments) {
+    public void checkTimeToReviewPageHasRowWithApplications(String month, String numApplications) {
         timeToReviewPage.checkHasRowFor(month);
-        timeToReviewPage.checkRowHasNumber(month, numEnrollments);
+        timeToReviewPage.checkRowHasNumber(month, numApplications);
     }
 
     @Step

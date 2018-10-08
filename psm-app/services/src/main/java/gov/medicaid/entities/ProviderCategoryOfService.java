@@ -57,8 +57,8 @@ public class ProviderCategoryOfService implements Serializable {
     )
     private List<CategoryOfService> categories;
 
-    @Column(name = "ticket_id")
-    private long ticketId;
+    @Column(name = "application_id")
+    private long applicationId;
 
     @Column(name = "start_date")
     private Date startDate;
@@ -98,11 +98,11 @@ public class ProviderCategoryOfService implements Serializable {
         this.endDate = endDate;
     }
 
-    public long getTicketId() {
-        return ticketId;
+    public long getApplicationId() {
+        return applicationId;
     }
 
-    public void setTicketId(long ticketId) {
-        this.ticketId = ticketId;
+    public void setApplicationId(long applicationId) {
+        this.applicationId = applicationId;
     }
 }

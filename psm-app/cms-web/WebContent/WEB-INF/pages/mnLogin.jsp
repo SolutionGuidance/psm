@@ -69,7 +69,7 @@
               </p>
               <div class="row">
                 <label for="mnLoginToken" class="label">Token</label>
-                <input id="mnLoginToken" type="text" name="token" class="text" value="providerenrollment"/>
+                <input id="mnLoginToken" type="text" name="token" class="text" value="providerapplication"/>
               </div>
               <div class="row">
                 <label for="mnLoginReferrer" class="label">Referrer</label>

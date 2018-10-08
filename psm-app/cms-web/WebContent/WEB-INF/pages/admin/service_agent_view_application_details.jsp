@@ -15,12 +15,12 @@
   limitations under the License.
 --%>
  <%--
-  - Description: This is the enrollment service agent details page.
+  - Description: This is the application service agent details page.
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 <!DOCTYPE html>
 <html lang="en-US">
-  <c:set var="title" value="View Enrollment - ${profile.status.description}"/>
+  <c:set var="title" value="View Application - ${profile.status.description}"/>
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -28,8 +28,8 @@
       <div id="mainContent" class="detailPage providerReadOnly">
         <div class="contentWidth">
           <div class="head">
-            <h1>View Enrollment Details</h1>
-            <a class="greyBtn iconPdf" href="<c:url value="/provider/enrollment/export" />">Export to PDF</a>
+            <h1>View Application Details</h1>
+            <a class="greyBtn iconPdf" href="<c:url value="/provider/application/export" />">Export to PDF</a>
           </div>
           <div class="tabSection">
 
@@ -42,7 +42,7 @@
                   </div>
                   <div class="row">
                     <label>Status</label>
-                    <span class="enrollmentStatus">
+                    <span class="applicationStatus">
                       ${requestScope['_99_requestStatus'] == 'Rejected' ? 'Denied' : requestScope['_99_requestStatus']}
                     </span>
                   </div>

@@ -16,7 +16,7 @@
 
 package gov.medicaid.services;
 
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.entities.EmailTemplate;
 import java.util.Map;
 
@@ -36,8 +36,8 @@ public interface NotificationService {
         Map<String, Object> vars
     ) throws PortalServiceException;
 
-    void sendEnrollmentNotification(
-        EnrollmentType enrollmentType,
+    void sendApplicationNotification(
+        ApplicationType applicationType,
         EmailTemplate emailType
     ) throws PortalServiceException;
 }

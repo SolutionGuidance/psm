@@ -26,7 +26,7 @@
 <input type="hidden" name="formNames" value="<%= ViewStatics.PHYSICIAN_CLINIC_FACILITY_QUALIFICATION_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="tableHeader topHeader"><span>Facility Qualification</span></div>
     <div class="clearFixed"></div>
     <div class="section">

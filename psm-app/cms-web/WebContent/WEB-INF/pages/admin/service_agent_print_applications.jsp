@@ -15,19 +15,19 @@
   limitations under the License.
 --%>
  <%--
-  - Description: This is the enrollments pending page.
+  - Description: This is the applications pending page.
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 <!DOCTYPE html>
 <html lang="en-US">
-  <c:set var="title" value="Enrollment"/>
+  <c:set var="title" value="Application"/>
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
       <div id="mainContent">
         <div class="contentWidth">
-          <h1>Enrollments</h1>
-          <div class="tabSection" id="enrollmentSection">
+          <h1>Applications</h1>
+          <div class="tabSection" id="applicationSection">
             <c:set var="searchResult" value="${results}"/>
             <div class="tabContent">
               <c:choose>

@@ -254,9 +254,9 @@ $(document).ready(function () {
 
   $(".closeModal, .modalCloseButton").click(addressCloseModal);
 
-  $(".submitEnrollmentModalBtn").click(function () {
+  $(".submitApplicationModalBtn").click(function () {
     addressCloseModal();
-    addressLoadModal('#submitEnrollmentModal');
+    addressLoadModal('#submitApplicationModal');
   });
 
   $(".saveAsDraftModalBtn").click(function () {

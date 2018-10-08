@@ -26,7 +26,7 @@
 <c:set var="selectedMarkup" value='selected="selected"' />
 <c:set var="disabledMarkup" value='disabled="disabled"' />
 
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="tableHeader topHeader"><span>Disclosing Entity Structure</span></div>
     <div class="clearFixed"></div>
     <div class="section">
@@ -90,7 +90,7 @@
 
 <div class="personOwnersTable">
 <c:set var="formName" value="_17_personOwnersSize"></c:set>
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="tableHeader topHeader"><span>Individual Person(s) Ownership or Control Interest</span></div>
     <div class="clearFixed"></div>
     <div class="requiredInfo">List all individual owners, managing employees, and persons with control interest.</div>
@@ -346,7 +346,7 @@
 
 <div class="corpOwnersTable">
 <c:set var="formName" value="_17_corpOwnersSize"></c:set>
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="tableHeader topHeader"><span>Business Ownership or Control Interest</span></div>
     <div class="clearFixed"></div>
     <div class="requiredInfo">If an entity owns or has a control interest in your business (listed in the first box on page 1), list those other entities below.</div>
@@ -994,6 +994,6 @@
     </div>
 </div>
 
-    <c:url var="lookupUrl" value="/provider/enrollment/ownerTypes" />
+    <c:url var="lookupUrl" value="/provider/application/ownerTypes" />
     <input type="hidden" id="ownerTypeLookupURL" value="${lookupUrl}"/>
 </div>

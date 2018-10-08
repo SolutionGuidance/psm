@@ -24,14 +24,14 @@ import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.springframework.mock.web.MockHttpServletResponse
 
-import gov.medicaid.entities.Enrollment
+import gov.medicaid.entities.Application
 import gov.medicaid.entities.SearchResult
-import gov.medicaid.services.ProviderEnrollmentService
+import gov.medicaid.services.ProviderApplicationService
 import spock.lang.Specification
 
 class ReviewedDocumentsReportControllerTest extends Specification {
     private ReviewedDocumentsReportController controller
-    private ProviderEnrollmentService enrollmentService
+    private ProviderApplicationService applicationService
     private static LocalDateTime noonMiddleThisMonth
 
     void setupSpec() {
@@ -39,51 +39,51 @@ class ReviewedDocumentsReportControllerTest extends Specification {
     }
 
     void setup() {
-        enrollmentService = Mock(ProviderEnrollmentService)
-        controller = new ReviewedDocumentsReportController(enrollmentService)
+        applicationService = Mock(ProviderApplicationService)
+        controller = new ReviewedDocumentsReportController(applicationService)
     }
 
     private toDate(d) {
         Date.from(d.atZone(ZoneId.systemDefault()).toInstant())
     }
 
-    private makeEnrollment(profielId, statusDate) {
-        return new Enrollment([
+    private makeApplication(profielId, statusDate) {
+        return new Application([
             profileReferenceId: profielId,
             statusDate: toDate(statusDate)
         ])
     }
 
-    private testEnrollmentData() {
-        def results = new SearchResult<Enrollment>()
+    private testApplicationData() {
+        def results = new SearchResult<Application>()
         results.setItems([
-            makeEnrollment(1, noonMiddleThisMonth),
-            makeEnrollment(2, noonMiddleThisMonth),
-            makeEnrollment(3, noonMiddleThisMonth),
-            makeEnrollment(4, noonMiddleThisMonth.minusMonths(1)),
-            makeEnrollment(5, noonMiddleThisMonth.minusMonths(1)),
-            makeEnrollment(6, noonMiddleThisMonth.minusMonths(2)),
-            makeEnrollment(7, noonMiddleThisMonth.minusMonths(3))
+            makeApplication(1, noonMiddleThisMonth),
+            makeApplication(2, noonMiddleThisMonth),
+            makeApplication(3, noonMiddleThisMonth),
+            makeApplication(4, noonMiddleThisMonth.minusMonths(1)),
+            makeApplication(5, noonMiddleThisMonth.minusMonths(1)),
+            makeApplication(6, noonMiddleThisMonth.minusMonths(2)),
+            makeApplication(7, noonMiddleThisMonth.minusMonths(3))
         ].sort{it.getCreatedOn()})
         results
     }
 
     // It doesn't matter that it doesn't actually return documents
     private setupTestDocuments() {
-        enrollmentService.findAttachments(1) >> (0..<2)
-        enrollmentService.findAttachments(2) >> (0..<1)
-        enrollmentService.findAttachments(3) >> (0..<4)
-        enrollmentService.findAttachments(4) >> (0..<1)
-        enrollmentService.findAttachments(5) >> (0..<2)
-        enrollmentService.findAttachments(6) >> (0..<0)
-        enrollmentService.findAttachments(7) >> (0..<8)
+        applicationService.findAttachments(1) >> (0..<2)
+        applicationService.findAttachments(2) >> (0..<1)
+        applicationService.findAttachments(3) >> (0..<4)
+        applicationService.findAttachments(4) >> (0..<1)
+        applicationService.findAttachments(5) >> (0..<2)
+        applicationService.findAttachments(6) >> (0..<0)
+        applicationService.findAttachments(7) >> (0..<8)
     }
 
-    def "csv with no enrollments - header"() {
+    def "csv with no applications - header"() {
         given:
-        def results = new SearchResult<Enrollment>()
+        def results = new SearchResult<Application>()
         results.setItems([])
-        1 * enrollmentService.searchEnrollments(_) >> results
+        1 * applicationService.searchApplications(_) >> results
         def response = new MockHttpServletResponse()
 
         when:
@@ -98,9 +98,9 @@ class ReviewedDocumentsReportControllerTest extends Specification {
         records[0].size() == 2
     }
 
-    def "csv with enrollments"() {
+    def "csv with applications"() {
         given:
-        1 * enrollmentService.searchEnrollments(_) >> testEnrollmentData()
+        1 * applicationService.searchApplications(_) >> testApplicationData()
         setupTestDocuments()
 
         def response = new MockHttpServletResponse()
@@ -123,9 +123,9 @@ class ReviewedDocumentsReportControllerTest extends Specification {
         records[4][1] == "8"
     }
 
-    def "mv with enrollments"() {
+    def "mv with applications"() {
         given:
-        1 * enrollmentService.searchEnrollments(_) >> testEnrollmentData()
+        1 * applicationService.searchApplications(_) >> testApplicationData()
         setupTestDocuments()
 
         when:

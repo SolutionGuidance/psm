@@ -85,9 +85,9 @@
                     <td
                       class="reportDatum"
                       reportField="numberReviewed"
-                      reportValue="${month.enrollments.size()}"
+                      reportValue="${month.applications.size()}"
                     >
-                      ${month.enrollments.size()}
+                      ${month.applications.size()}
                     </td>
                     <td
                       class="reportDatum"

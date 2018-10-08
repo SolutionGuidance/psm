@@ -18,7 +18,7 @@ package gov.medicaid.services.impl
 
 import gov.medicaid.entities.CMSUser
 import gov.medicaid.entities.Document
-import gov.medicaid.entities.Enrollment
+import gov.medicaid.entities.Application
 import gov.medicaid.entities.Entity
 import gov.medicaid.entities.Note
 import gov.medicaid.entities.ProviderProfile
@@ -29,16 +29,16 @@ import javax.persistence.EntityManager
 import javax.persistence.TypedQuery
 import javax.persistence.Query
 
-class ProviderEnrollmentServiceBeanTest extends Specification {
-    private static final long TICKET_ID = 1
+class ProviderApplicationServiceBeanTest extends Specification {
+    private static final long APPLICATION_ID = 1
     private static final String PROFILE_QUERY =
             "FROM ProviderProfile p WHERE profileId = :profileId"
-    private ProviderEnrollmentServiceBean service
+    private ProviderApplicationServiceBean service
     private EntityManager entityManager
     private CMSUser systemUser
 
     void setup() {
-        service = new ProviderEnrollmentServiceBean()
+        service = new ProviderApplicationServiceBean()
         entityManager = Mock(EntityManager)
         service.em = entityManager
         systemUser = new CMSUser()
@@ -46,32 +46,32 @@ class ProviderEnrollmentServiceBeanTest extends Specification {
         systemUser.role.description = "System Administrator"
     }
 
-    def "GetTicketDetails returns null on invalid ID"() {
+    def "GetApplicationDetails returns null on invalid ID"() {
         when:
-        def result = service.getTicketDetails(systemUser, TICKET_ID)
+        def result = service.getApplicationDetails(systemUser, APPLICATION_ID)
 
         then:
         notThrown(NullPointerException)
         result == null
     }
 
-    def "GetTicketDetails returns null on valid ID without profile"() {
+    def "GetApplicationDetails returns null on valid ID without profile"() {
         given:
-        entityManager.find(Enrollment.class, TICKET_ID) >> new Enrollment()
+        entityManager.find(Application.class, APPLICATION_ID) >> new Application()
         entityManager.createQuery(_ as String) >> mockQuery([])
 
         when:
-        def result = service.getTicketDetails(systemUser, TICKET_ID)
+        def result = service.getApplicationDetails(systemUser, APPLICATION_ID)
 
         then:
         notThrown(NullPointerException)
         result == null
     }
 
-    def "GetTicketDetails returns enrollment with profile on valid ID"() {
+    def "GetApplicationDetails returns application with profile on valid ID"() {
         given:
-        Enrollment enrollment = new Enrollment([profileReferenceId: 0])
-        entityManager.find(Enrollment.class, TICKET_ID, _ as Map) >> enrollment
+        Application application = new Application([profileReferenceId: 0])
+        entityManager.find(Application.class, APPLICATION_ID, _ as Map) >> application
         entityManager.createQuery(PROFILE_QUERY, ProviderProfile.class) >>
                 mockTypedQuery([new ProviderProfile()])
         entityManager.createQuery(_ as String) >> mockQuery([])
@@ -80,11 +80,11 @@ class ProviderEnrollmentServiceBeanTest extends Specification {
         entityManager.createQuery(_ as String, Document.class) >> mockTypedQuery([] as List<Document>)
 
         when:
-        def result = service.getTicketDetails(systemUser, TICKET_ID)
+        def result = service.getApplicationDetails(systemUser, APPLICATION_ID)
 
         then:
         notThrown(NullPointerException)
-        result == enrollment
+        result == application
     }
 
     private <T> Query mockQuery(List<T> returnValue) {

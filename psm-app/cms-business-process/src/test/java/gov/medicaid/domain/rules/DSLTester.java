@@ -18,7 +18,7 @@
 package gov.medicaid.domain.rules;
 
 import gov.medicaid.domain.model.ApplicantType;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.OperationStatusType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
@@ -111,8 +111,8 @@ public class DSLTester {
                 }
             }
 
-            ProviderInformationType provider = request.getEnrollment().getProviderInformation();
-            ksession.insert(request.getEnrollment());
+            ProviderInformationType provider = request.getApplication().getProviderInformation();
+            ksession.insert(request.getApplication());
             ksession.insert(provider);
             ksession.insert(validation);
             ksession.fireAllRules();
@@ -135,12 +135,12 @@ public class DSLTester {
     public static void main(String[] args) throws Exception {
         DSLTester tester = new DSLTester();
         ValidationRequest request = new ValidationRequest();
-        EnrollmentType enrollmentType = new EnrollmentType();
+        ApplicationType applicationType = new ApplicationType();
         ProviderInformationType provider = new ProviderInformationType();
         provider.setApplicantType(ApplicantType.INDIVIDUAL);
-        enrollmentType.setProviderInformation(provider);
+        applicationType.setProviderInformation(provider);
         provider.setProviderType("Audiologist");
-        request.setEnrollment(enrollmentType);
+        request.setApplication(applicationType);
         ValidationResponse response = tester.checkForErrors(request);
         ValidationResultType validationResult = response.getValidationResult();
         OperationStatusType status = validationResult.getStatus();

@@ -32,22 +32,22 @@
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
             <h:handlebars template="includes/banner" context="${pageContext}"/>
-            <c:set var="activeTabEnrollments" value="true"></c:set>
+            <c:set var="activeTabApplications" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <%@ include file="/WEB-INF/pages/admin/includes/enrollments_link.jsp" %>
-            <span>View Enrollment Details</span>
+            <%@ include file="/WEB-INF/pages/admin/includes/applications_link.jsp" %>
+            <span>View Application Details</span>
           </div>
 
           <div class="head">
-            <h1>View Enrollment Details</h1>
-            <a class="greyBtn iconPdf" href="<c:url value="/provider/enrollment/export" />">
+            <h1>View Application Details</h1>
+            <a class="greyBtn iconPdf" href="<c:url value="/provider/application/export" />">
               Export to PDF
             </a>
             <c:if test="${showReviewLink}">
-              <a class="greyBtn" href="<c:url value="/agent/enrollment/screeningReview?id=${enrollment.objectId}" />">
+              <a class="greyBtn" href="<c:url value="/agent/application/screeningReview?id=${application.objectId}" />">
                 Review
               </a>
             </c:if>
@@ -63,7 +63,7 @@
                   </div>
                   <div class="row">
                     <label>Status</label>
-                    <span class="enrollmentStatus">
+                    <span class="applicationStatus">
                       ${requestScope['_99_requestStatus'] == 'Rejected' ? 'Denied' : requestScope['_99_requestStatus']}
                     </span>
                   </div>
@@ -93,7 +93,7 @@
             </div>
 
             <!-- /.detailPanel -->
-            <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/readonly_profile.jsp" %>
+            <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/common/readonly_profile.jsp" %>
 
           </div>
         </div>
@@ -109,9 +109,9 @@
     <!-- /#modalBackground-->
     <div id="modalBackground"></div>
     <div id="new-modal">
-      <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/stale_ticket.jsp" %>
-      <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/superseded_ticket.jsp" %>
-      <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/submit_enrollment.jsp" %>
+      <%@include file="/WEB-INF/pages/provider/application/steps/modal/stale_application.jsp" %>
+      <%@include file="/WEB-INF/pages/provider/application/steps/modal/superseded_application.jsp" %>
+      <%@include file="/WEB-INF/pages/provider/application/steps/modal/submit_application.jsp" %>
       <!-- /#saveAsDraftModal-->
     </div>
     <c:if test="${not empty requestScope['flash_popup']}">

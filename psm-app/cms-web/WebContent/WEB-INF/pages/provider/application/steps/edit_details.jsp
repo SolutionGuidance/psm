@@ -33,21 +33,21 @@
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
             <h:handlebars template="includes/banner" context="${pageContext}"/>
-            <c:set var="activeTabEnrollments" value="true"></c:set>
+            <c:set var="activeTabApplications" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <%@ include file="/WEB-INF/pages/admin/includes/enrollments_link.jsp" %>
-            <span>Edit Enrollment</span>
+            <%@ include file="/WEB-INF/pages/admin/includes/applications_link.jsp" %>
+            <span>Edit Application</span>
           </div>
           <div class="head">
-            <h1>Edit Enrollment</h1>
+            <h1>Edit Application</h1>
           </div>
 
           <div class="tabSection">
 
-            <form action="<c:url value="/provider/enrollment/steps/rebind" />"
+            <form action="<c:url value="/provider/application/steps/rebind" />"
                 id="changeProviderTypeForm"
                 method="post"
                 enctype="multipart/form-data">
@@ -93,7 +93,7 @@
 
               <div class="detailPanel firstRegistrant" style="width: 940px;">
 
-                <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/default/provider_type.jsp" %>
+                <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/default/provider_type.jsp" %>
                 <!-- /.section -->
                 <div class="tl"></div>
                 <div class="tr"></div>
@@ -104,11 +104,11 @@
 
             <!-- /.errorInfo -->
             <div class="clear"></div>
-            <%@include file="/WEB-INF/pages/provider/enrollment/steps/errors.jsp" %>
+            <%@include file="/WEB-INF/pages/provider/application/steps/errors.jsp" %>
 
             <!-- /.detailPanel -->
-            <form action="<c:url value="/provider/enrollment/page" />"
-                  id="enrollmentForm"
+            <form action="<c:url value="/provider/application/page" />"
+                  id="applicationForm"
                   method="post"
                   enctype="multipart/form-data">
               <sec:csrfInput />
@@ -122,14 +122,14 @@
                       <c:set var="tabLabel" value=""></c:set>
                       <c:set var="tabCls" value=""></c:set>
                       <c:set var="tabActiveCls" value=""></c:set>
-                      <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/tab_name_mapping.jsp" %>
+                      <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/common/tab_name_mapping.jsp" %>
                       <c:if test="${viewModel.currentTab eq tabName}">
                         <c:set var="tabActiveCls" value="active"></c:set>
                       </c:if>
-                      <c:url var="tabLink" value="/provider/enrollment/jump">
+                      <c:url var="tabLink" value="/provider/application/jump">
                         <c:param name="page" value="${tabName}"></c:param>
                       </c:url>
-                      <a href="javascript:submitFormById('enrollmentForm', '${tabLink}')"
+                      <a href="javascript:submitFormById('applicationForm', '${tabLink}')"
                         class="tab ${tabCls} ${tabActiveCls}">
                         <span class="aR">
                           <span class="aM">${tabLabel}</span>
@@ -141,10 +141,10 @@
                   <c:if test="${viewModel.currentTab eq 'Notes'}">
                     <c:set var="tabActiveCls" value="active"></c:set>
                   </c:if>
-                  <c:url var="tabLink" value="/provider/enrollment/jump">
+                  <c:url var="tabLink" value="/provider/application/jump">
                     <c:param name="page" value="Notes"></c:param>
                   </c:url>
-                  <a href="javascript:submitFormById('enrollmentForm', '${tabLink}')"
+                  <a href="javascript:submitFormById('applicationForm', '${tabLink}')"
                     class="tab notesTab ${tabActiveCls}">
                     <span class="aR">
                       <span class="aM">Notes</span>
@@ -184,7 +184,7 @@
               <c:choose>
                 <c:when test="${viewModel.currentTab eq 'Notes'}">
                   <div class="buttonBox">
-                    <c:url var="cancelUrl" value="/provider/enrollments/pending?statuses=Pending&showFilterPanel=true"/>
+                    <c:url var="cancelUrl" value="/provider/applications/pending?statuses=Pending&showFilterPanel=true"/>
                     <a class="greyBtn" href="${cancelUrl}">
                       Cancel
                     </a>
@@ -195,12 +195,12 @@
                 </c:when>
                 <c:when test="${isReopened}">
                   <div class="buttonBox">
-                    <c:url var="cancelUrl" value="/provider/enrollments/pending?statuses=Pending&showFilterPanel=true"/>
+                    <c:url var="cancelUrl" value="/provider/applications/pending?statuses=Pending&showFilterPanel=true"/>
                     <a class="greyBtn" href="${cancelUrl}">
                       Cancel
                     </a>
                     <button class="purpleBtn" type="submit" name="resubmitWithChanges" />
-                      Re-Submit Enrollment
+                      Re-Submit Application
                     </button>
                   </div>
                 </c:when>
@@ -209,7 +209,7 @@
                     <input type="hidden" name="pageName" value="${pageName}"/>
                     <c:choose>
                       <c:when test="${isServiceAdministrator}">
-                        <c:url var="cancelUrl" value="/provider/enrollments/all"/>
+                        <c:url var="cancelUrl" value="/provider/applications/all"/>
                       </c:when>
                       <c:otherwise>
                         <c:url var="cancelUrl" value="/provider/dashboard/drafts"/>
@@ -218,8 +218,8 @@
                     <a class="greyBtn" href="${cancelUrl}">
                       Cancel
                     </a>
-                    <button class="purpleBtn" type="submit" name="submitEnrollment">
-                      Submit Enrollment
+                    <button class="purpleBtn" type="submit" name="submitApplication">
+                      Submit Application
                     </button>
                     <button class="greyBtn" type="submit" name="save">
                       Save as Draft
@@ -245,11 +245,11 @@
   <!-- /#modalBackground-->
   <div id="modalBackground"></div>
   <div id="new-modal">
-    <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/save_as_draft.jsp" %>
-    <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/practice_lookup.jsp" %>
-    <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/stale_ticket.jsp" %>
-    <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/superseded_ticket.jsp" %>
-    <%@include file="/WEB-INF/pages/provider/enrollment/steps/modal/submit_enrollment.jsp" %>
+    <%@include file="/WEB-INF/pages/provider/application/steps/modal/save_as_draft.jsp" %>
+    <%@include file="/WEB-INF/pages/provider/application/steps/modal/practice_lookup.jsp" %>
+    <%@include file="/WEB-INF/pages/provider/application/steps/modal/stale_application.jsp" %>
+    <%@include file="/WEB-INF/pages/provider/application/steps/modal/superseded_application.jsp" %>
+    <%@include file="/WEB-INF/pages/provider/application/steps/modal/submit_application.jsp" %>
     <!-- /#saveAsDraftModal-->
   </div>
   <c:if test="${not empty requestScope['flash_popup']}">

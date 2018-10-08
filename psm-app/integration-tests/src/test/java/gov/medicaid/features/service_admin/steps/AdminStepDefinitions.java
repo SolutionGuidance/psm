@@ -36,9 +36,9 @@ public class AdminStepDefinitions {
         generalSteps.login("admin", "admin");
     }
 
-    @When("^I am on the admin All Enrollments page$")
-    public void i_am_on_the_admin_all_enrollments_page() {
-        adminSteps.goToAdminAllEnrollmentsPage();
+    @When("^I am on the admin All Applications page$")
+    public void i_am_on_the_admin_all_applications_page() {
+        adminSteps.goToAdminAllApplicationsPage();
     }
 
     @When("^I am on the admin Draft page$")
@@ -66,16 +66,16 @@ public class AdminStepDefinitions {
         adminSteps.openWriteNoteModal();
     }
 
-    @When("^I am on the Review Enrollment page$")
-    public void i_am_on_the_review_enrollment_page() {
+    @When("^I am on the Review Application page$")
+    public void i_am_on_the_review_application_page() {
         adminSteps.goToAdminPendingPage();
-        generalSteps.clickLinkAssertTitle(".reviewLink", "Review Enrollment");
+        generalSteps.clickLinkAssertTitle(".reviewLink", "Review Application");
     }
 
-    @When("^I open the Review Enrollment page for NPI '(\\d+)'$")
-    public void i_open_the_Review_Enrollment_page_for_NPI(String npi) {
+    @When("^I open the Review Application page for NPI '(\\d+)'$")
+    public void i_open_the_Review_Application_page_for_NPI(String npi) {
         if (!adminSteps.npiRowExists(npi)) {
-            throw new PendingException("No enrollment row for NPI: " + npi);
+            throw new PendingException("No application row for NPI: " + npi);
         }
         adminSteps.advanceFromPendingPageToReview(npi);
     }
@@ -87,7 +87,7 @@ public class AdminStepDefinitions {
 
     @When("^I am on the Screening Log page$")
     public void i_am_on_the_screening_log_page() {
-        i_am_on_the_review_enrollment_page();
+        i_am_on_the_review_application_page();
         // assert fails because the page is opened in a separate tab
         generalSteps.clickLinkAssertTitle(".autoScreeningResultLink", "Screening Log");
     }

@@ -29,7 +29,7 @@
             <c:set var="tabCls" value=""></c:set>
             <c:set var="tabLabel" value=""></c:set>
             <c:set var="tabActiveCls" value=""></c:set>
-            <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/tab_name_mapping.jsp" %>
+            <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/common/tab_name_mapping.jsp" %>
             <c:choose>
                 <c:when test="${status.count == activeIdx}"><c:set var="tabActiveCls" value="active"></c:set></c:when>
                 <c:when test="${status.count + 1 == activeIdx}"><c:set var="tabActiveCls" value="activeNear"></c:set></c:when>

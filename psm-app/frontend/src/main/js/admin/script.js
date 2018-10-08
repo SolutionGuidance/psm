@@ -28,7 +28,7 @@ $(document).ready(function () {
     window.print();
   }
 
-  $("#exportEnrollmentsToPDF").click(function () {
+  $("#exportApplicationsToPDF").click(function () {
     setupSearchFormCriteria();
     $("#exportForm").html($('#searchForm').html());
     $('#exportForm .searchFormPageNumber').val("1");
@@ -44,40 +44,40 @@ $(document).ready(function () {
     $("#providerTypeSearchField").val($("#providerTypeInput").val());
     $("#providerNameSearchField").val($.trim($("#providerNameInput").val()));
 
-    if ($("#enrollmentFilterPanel").size() > 0 || $("#quickEnrollmentFilterPanel").size() > 0) {
+    if ($("#applicationFilterPanel").size() > 0 || $("#quickApplicationFilterPanel").size() > 0) {
       $(".requestTypeValue").remove();
       $(".riskLevelValue").remove();
-      $("#npiSearchField").val($.trim($("#enrollmentSearchFilterNpiInput").val()));
-      $("#submissionDateStartSearchField").val($("#enrollmentSearchFilterSubmissionDateStartInput").val());
-      $("#submissionDateEndSearchField").val($("#enrollmentSearchFilterSubmissionDateEndInput").val());
-      $("#providerTypeSearchField").val($("#enrollmentSearchFilterProviderTypeInput").val());
-      $("#providerNameSearchField").val($.trim($("#enrollmentSearchFilterProviderNameInput").val()));
+      $("#npiSearchField").val($.trim($("#applicationSearchFilterNpiInput").val()));
+      $("#submissionDateStartSearchField").val($("#applicationSearchFilterSubmissionDateStartInput").val());
+      $("#submissionDateEndSearchField").val($("#applicationSearchFilterSubmissionDateEndInput").val());
+      $("#providerTypeSearchField").val($("#applicationSearchFilterProviderTypeInput").val());
+      $("#providerNameSearchField").val($.trim($("#applicationSearchFilterProviderNameInput").val()));
 
-      if ($("#enrollmentSearchFilterRequestTypeInput").val() != '') {
-        $('#searchForm').append('<input name="requestTypes[0]" value="' + $("#enrollmentSearchFilterRequestTypeInput").val() + '" type="hidden" />');
+      if ($("#applicationSearchFilterRequestTypeInput").val() != '') {
+        $('#searchForm').append('<input name="requestTypes[0]" value="' + $("#applicationSearchFilterRequestTypeInput").val() + '" type="hidden" />');
       }
 
-      if ($("#enrollmentSearchFilterRiskLevelInput").val() != '') {
-        $('#searchForm').append('<input name="riskLevels[0]" value="' + $("#enrollmentSearchFilterRiskLevelInput").val() + '" type="hidden" />');
+      if ($("#applicationSearchFilterRiskLevelInput").val() != '') {
+        $('#searchForm').append('<input name="riskLevels[0]" value="' + $("#applicationSearchFilterRiskLevelInput").val() + '" type="hidden" />');
       }
     }
 
-    if ($("#quickEnrollmentFilterPanel").size() > 0) {
-      $(".enrollmentStatusValue").remove();
-      if ($("#enrollmentStatusesInput").val() != '') {
-        $('#searchForm').append('<input name="statuses[0]" value="' + $("#enrollmentStatusesInput").val() + '" type="hidden" />');
+    if ($("#quickApplicationFilterPanel").size() > 0) {
+      $(".applicationStatusValue").remove();
+      if ($("#applicationStatusesInput").val() != '') {
+        $('#searchForm').append('<input name="statuses[0]" value="' + $("#applicationStatusesInput").val() + '" type="hidden" />');
       }
     }
 
     if ($("#advancedFilterPanel").size() > 0) {
       $(".requestTypeValue").remove();
       $(".riskLevelValue").remove();
-      $(".enrollmentStatusValue").remove();
+      $(".applicationStatusValue").remove();
       $("#advancedFilterPanel .requestType:checked").each(function (index, element) {
         $('#searchForm').append('<input name="requestTypes[' + index + ']" value="' + $(this).val() + '" type="hidden" />');
       });
 
-      $("#advancedFilterPanel .enrollmentStatus:checked").each(function (index, element) {
+      $("#advancedFilterPanel .applicationStatus:checked").each(function (index, element) {
           $('#searchForm').append('<input name="statuses[' + index + ']" value="' + $(this).val() + '" type="hidden" />');
         });
 
@@ -87,26 +87,26 @@ $(document).ready(function () {
     }
   }
 
-  $("#showSearchEnrollmentsResultBtn").click(function () {
+  $("#showSearchApplicationsResultBtn").click(function () {
     $('#searchFormPageNumber').val("1");
     setupSearchFormCriteria();
     $('#searchForm').submit();
     return false;
   });
 
-  $("#queryEnrollmentStatus").click(function () {
-    var enrollmentNumber = $.trim($("#enrollmentNumber").val());
-    if (enrollmentNumber == '') {
-      $(".enrollmentNumberError").hide();
-      $("#requiredEnrollmentNumberError").show();
+  $("#queryApplicationStatus").click(function () {
+    var applicationNumber = $.trim($("#applicationNumber").val());
+    if (applicationNumber == '') {
+      $(".applicationNumberError").hide();
+      $("#requiredApplicationNumberError").show();
       return;
     }
 
-    window.location.href = ctx + "/agent/enrollment/status?npi=" + enrollmentNumber;
+    window.location.href = ctx + "/agent/application/status?npi=" + applicationNumber;
   });
 
-  if ($("#invalidEnrollmentNumber").size() > 0 && $("#invalidEnrollmentNumber").val() == 'yes') {
-    $("#invalidEnrollmentNumberError").show();
+  if ($("#invalidApplicationNumber").size() > 0 && $("#invalidApplicationNumber").val() == 'yes') {
+    $("#invalidApplicationNumberError").show();
   }
 
   var profileIdForWritingNotes = 0;
@@ -134,7 +134,7 @@ $(document).ready(function () {
         }
 
         $.ajax({
-          url: ctx + "/agent/enrollment/note?id=" + profileIdForWritingNotes,
+          url: ctx + "/agent/application/note?id=" + profileIdForWritingNotes,
           data: { id: profileIdForWritingNotes, note: input },
           cache: false,
           type: "GET",
@@ -171,7 +171,7 @@ $(document).ready(function () {
     })()
   );
 
-  var enrollmentIdForNotes = 0;
+  var applicationIdForNotes = 0;
   var currentShowingNoteCount = 1;
   $('.viewNotes').click(function () {
     if ($(this).hasClass('disabledLink')) {
@@ -179,7 +179,7 @@ $(document).ready(function () {
     }
 
     closeModal();
-    enrollmentIdForNotes = $(this).attr("rel");
+    applicationIdForNotes = $(this).attr("rel");
     currentShowingNoteCount = 1;
     showNoteBody();
     loadModal('#viewNotesModal');
@@ -196,14 +196,14 @@ $(document).ready(function () {
   });
 
   function showNoteBody() {
-    $("#viewNotesModalNotesBody").val($("#note_" + enrollmentIdForNotes + "_" + currentShowingNoteCount).text());
-    if ($("#note_" + enrollmentIdForNotes + "_" + (currentShowingNoteCount + 1)).size() == 0) {
+    $("#viewNotesModalNotesBody").val($("#note_" + applicationIdForNotes + "_" + currentShowingNoteCount).text());
+    if ($("#note_" + applicationIdForNotes + "_" + (currentShowingNoteCount + 1)).size() == 0) {
       $("#nextNote").hide();
     } else {
       $("#nextNote").show();
     }
 
-    if ($("#note_" + enrollmentIdForNotes + "_" + (currentShowingNoteCount - 1)).size() == 0) {
+    if ($("#note_" + applicationIdForNotes + "_" + (currentShowingNoteCount - 1)).size() == 0) {
       $("#prevNote").hide();
     } else {
       $("#prevNote").show();
@@ -901,7 +901,7 @@ $(document).ready(function () {
   $('#urlRelead').live('change', function () {
     switch ($(this).val()){
     case 'Audiologist' :
-      $('.nextBtn').attr('href', 'new-enrollment-no-payment-audiologist-personal.html');
+      $('.nextBtn').attr('href', 'new-application-no-payment-audiologist-personal.html');
     break;
     case 'Certified Mental Health Rehab Prof':
       $('.nextBtn').attr('href', 'javascript:;');
@@ -910,7 +910,7 @@ $(document).ready(function () {
       $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Certified Registered Nurse Anesthetist':
-      $('.nextBtn').attr('href', 'new-enrollment-no-payment-certified-registered-nurse-anesthetists-personal.html');
+      $('.nextBtn').attr('href', 'new-application-no-payment-certified-registered-nurse-anesthetists-personal.html');
     break;
     case 'Chiropractor':
       $('.nextBtn').attr('href', 'javascript:;');
@@ -919,7 +919,7 @@ $(document).ready(function () {
       $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Community Health Care Worker':
-      $('.nextBtn').attr('href', 'new-enrollment-no-payment-community-health-workers-personal.html');
+      $('.nextBtn').attr('href', 'new-application-no-payment-community-health-workers-personal.html');
     break;
     case 'Dental Hygienist':
       $('.nextBtn').attr('href', 'javascript:;');
@@ -934,7 +934,7 @@ $(document).ready(function () {
       $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Licensed Psychologist':
-      $('.nextBtn').attr('href', 'new-enrollment-no-payment-licensed-psychologist-personal.html');
+      $('.nextBtn').attr('href', 'new-application-no-payment-licensed-psychologist-personal.html');
     break;
     case 'PCA Individual':
       $('.nextBtn').attr('href', 'javascript:;');
@@ -949,10 +949,10 @@ $(document).ready(function () {
       $('.nextBtn').attr('href', 'javascript:;');
     break;
     case 'Physical Therapist':
-      $('.nextBtn').attr('href', 'new-enrollment-no-payment-physical-therapist-personal.html');
+      $('.nextBtn').attr('href', 'new-application-no-payment-physical-therapist-personal.html');
     break;
     case 'Podiatrist':
-      $('.nextBtn').attr('href', 'new-enrollment-no-payment-podiatrist-personal.html');
+      $('.nextBtn').attr('href', 'new-application-no-payment-podiatrist-personal.html');
     break;
     default:
       $('.nextBtn').attr('href', 'javascript:;');
@@ -1072,20 +1072,20 @@ $(document).ready(function () {
     }
   });
 
-  $('#createEnrollment span.label').live('click', function () {
+  $('#createApplication span.label').live('click', function () {
     $(this).prev().attr('checked', true);
-    if ($(this).prev().hasClass('renewEnrollment')) {
-      $('#createEnrollment .row:last').show();
+    if ($(this).prev().hasClass('renewApplication')) {
+      $('#createApplication .row:last').show();
     } else {
-      $('#createEnrollment .row:last').hide();
+      $('#createApplication .row:last').hide();
     }
   });
 
-  $('#createEnrollment input:radio').live('click', function () {
-    if ($(this).hasClass('renewEnrollment')) {
-      $('#createEnrollment .row:last').show();
+  $('#createApplication input:radio').live('click', function () {
+    if ($(this).hasClass('renewApplication')) {
+      $('#createApplication .row:last').show();
     } else {
-      $('#createEnrollment .row:last').hide();
+      $('#createApplication .row:last').hide();
     }
   });
 
@@ -1141,11 +1141,11 @@ $(document).ready(function () {
     }
   });
 
-  $('input.enrollmentRowCheckBox').live('click', function () {
-    if ($('input.enrollmentRowCheckBox').size() == $('input.enrollmentRowCheckBox:checked').size()) {
-      $('#enrollmentSelectAll').attr('checked', true);
+  $('input.applicationRowCheckBox').live('click', function () {
+    if ($('input.applicationRowCheckBox').size() == $('input.applicationRowCheckBox:checked').size()) {
+      $('#applicationSelectAll').attr('checked', true);
     } else {
-      $('#enrollmentSelectAll').attr('checked', false);
+      $('#applicationSelectAll').attr('checked', false);
     }
   });
 
@@ -1196,29 +1196,29 @@ $(document).ready(function () {
   });
 
   //Next Button
-  $('.createEnrollmentBtn').live('click', function () {
-    if ($('#createEnrollment .newEnrollment').attr('checked')) {
-      if ($('#createEnrollment .row select').val() == 'Audiologist') {
-        window.location.href = 'new-enrollment-no-payment-audiologist-personal.html';
-      } else if ($('#createEnrollment .row select').val() == 'Please select') {
+  $('.createApplicationBtn').live('click', function () {
+    if ($('#createApplication .newApplication').attr('checked')) {
+      if ($('#createApplication .row select').val() == 'Audiologist') {
+        window.location.href = 'new-application-no-payment-audiologist-personal.html';
+      } else if ($('#createApplication .row select').val() == 'Please select') {
         window.location.href = 'javascript:;';
       } else {
-        window.location.href = 'new-enrollment-payment-service-agent-personal.html';
+        window.location.href = 'new-application-payment-service-agent-personal.html';
       }
     }
 
-    if ($('#createEnrollment .renewEnrollment').attr('checked')) {
-      if ($('#createEnrollment .row select').val() == 'Audiologist') {
-        window.location.href = 'renewal-enrollment-audiologist-personal.html';
-      } else if ($('#createEnrollment .row select').val() == 'Please select') {
+    if ($('#createApplication .renewApplication').attr('checked')) {
+      if ($('#createApplication .row select').val() == 'Audiologist') {
+        window.location.href = 'renewal-application-audiologist-personal.html';
+      } else if ($('#createApplication .row select').val() == 'Please select') {
         window.location.href = 'javascript:;';
       } else {
-        window.location.href = 'renewal-enrollment-payment-service-agent-personal.html';
+        window.location.href = 'renewal-application-payment-service-agent-personal.html';
       }
     }
   });
 
-  $('.newEnrollmentSaveDraftBtn').live('click', function () {
+  $('.newApplicationSaveDraftBtn').live('click', function () {
     closeModal();
     loadModal('#saveDraftModal');
   });
@@ -1234,17 +1234,17 @@ $(document).ready(function () {
   });
 
   //Prev Button
-  $('.submitEnrollmentBtn').live('click', function () {
+  $('.submitApplicationBtn').live('click', function () {
     closeModal();
     loadModal('#submitModal');
   });
 
   $('.submitSuccessBtn,#submitModal .closeModal').live('click', function () {
-    window.location.href = 'enrollment-service-agent.html';
+    window.location.href = 'application-service-agent.html';
   });
 
   if ($.browser.msie && ($.browser.version == "7.0")) {
-    $('#createEnrollment input[type="radio"],#advancedSearch input[type="checkbox"]').css('margin', '5px 3px auto 3px');
+    $('#createApplication input[type="radio"],#advancedSearch input[type="checkbox"]').css('margin', '5px 3px auto 3px');
   }
 
   /* END OF SERVICE AGENT SCRIPT -------------------------------------------------- */
@@ -1307,7 +1307,7 @@ jQuery.validator.addMethod("exactlength", function (value, element, param) {
 
 function renewSelections(url) {
   var selected = [];
-  $("input.enrollmentRowCheckBox:checked").each(function () {
+  $("input.applicationRowCheckBox:checked").each(function () {
         selected.push($(this).val());
       });
 
@@ -1372,9 +1372,9 @@ function copyCOS(id) {
 }
 
 function deleteCOS(id, profileId) {
-  window.location = '/cms/agent/enrollment/deleteCOS?id=' + id + '&profileId=' + profileId;
+  window.location = '/cms/agent/application/deleteCOS?id=' + id + '&profileId=' + profileId;
 }
 
-function deleteCOSByTicketId(id, ticketId) {
-  window.location = '/cms/agent/enrollment/deletePendingCOS?id=' + id + '&ticketId=' + ticketId;
+function deleteCOSByApplicationId(id, applicationId) {
+  window.location = '/cms/agent/application/deletePendingCOS?id=' + id + '&applicationId=' + applicationId;
 }

@@ -18,7 +18,7 @@
 
  --%>
 <!-- /#saveAsDraftModal-->
-<div id="staleTicket" class="outLay">
+<div id="staleApplication" class="outLay">
     <div class="inner">
         <!-- title -->
         <div class="modal-title">

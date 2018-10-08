@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package gov.medicaid.process.enrollment;
+package gov.medicaid.process.application;
 
 import ca.uhn.fhir.model.api.annotation.Child;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;

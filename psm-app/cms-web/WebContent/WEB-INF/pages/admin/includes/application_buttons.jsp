@@ -15,7 +15,7 @@
   limitations under the License.
 --%>
 <%--
-  - Description: it is used to build the enrollment search form.
+  - Description: it is used to build the application search form.
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
 <div class="right">
@@ -27,8 +27,8 @@
             <a href="javascript:;" class="blueBtn filterBtn showFilter"><span class="text">Filter</span><span class="arrow"></span></a>
         </c:otherwise>
     </c:choose>
-    <a id="exportEnrollmentsToPDF" href="javascript:;" class="greyBtn iconPdf">Export to PDF</a>
-    <c:if test="${active_enrollment_tab=='approved'}">
-        <a href="javascript:renewSelections('${ctx}/provider/enrollment/bulkRenewTickets');" class="greyBtn">Renew Selected Enrollments</a>
+    <a id="exportApplicationsToPDF" href="javascript:;" class="greyBtn iconPdf">Export to PDF</a>
+    <c:if test="${active_application_tab=='approved'}">
+        <a href="javascript:renewSelections('${ctx}/provider/application/bulkRenewApplications');" class="greyBtn">Renew Selected Applications</a>
     </c:if>
 </div>

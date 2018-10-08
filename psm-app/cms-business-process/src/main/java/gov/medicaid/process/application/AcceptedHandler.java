@@ -15,18 +15,18 @@
  * limitations under the License.
  */
 
-package gov.medicaid.process.enrollment;
+package gov.medicaid.process.application;
 
 import gov.medicaid.binders.XMLUtility;
-import gov.medicaid.domain.model.EnrollmentProcess;
+import gov.medicaid.domain.model.ApplicationProcess;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.EmailTemplate;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.Event;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.NotificationService;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 import gov.medicaid.services.util.XMLAdapter;
 
 import org.drools.runtime.process.WorkItem;
@@ -45,7 +45,7 @@ public class AcceptedHandler extends GenericHandler {
     /**
      * Provider service.
      */
-    private final ProviderEnrollmentService providerService;
+    private final ProviderApplicationService providerService;
 
     /**
      * Notification service.
@@ -62,7 +62,7 @@ public class AcceptedHandler extends GenericHandler {
      */
     public AcceptedHandler(NotificationService notificationService) {
         CMSConfigurator config = new CMSConfigurator();
-        this.providerService = config.getEnrollmentService();
+        this.providerService = config.getApplicationService();
         this.entityManager = config.getPortalEntityManager();
         this.notificationService = notificationService;
     }
@@ -76,33 +76,33 @@ public class AcceptedHandler extends GenericHandler {
      *            the work item manager
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
-        EnrollmentProcess model = (EnrollmentProcess) item.getParameter("model");
+        ApplicationProcess model = (ApplicationProcess) item.getParameter("model");
         String processInstanceId = model.getProcessAudit().getProcessInstanceId();
 
-        String actorId = model.getEnrollment().getProviderInformation().getReviewedBy();
+        String actorId = model.getApplication().getProviderInformation().getReviewedBy();
         Query query = entityManager.createQuery("FROM CMSUser where username = :username");
         query.setParameter("username", actorId);
         CMSUser user = (CMSUser) query.getSingleResult();
 
         long processId = Long.parseLong(processInstanceId);
         try {
-            Enrollment ticket = providerService.getTicketByProcessInstanceId(user, processId);
+            Application application = providerService.getApplicationByProcessInstanceId(user, processId);
 
-            XMLAdapter.copyApprovalFieldsToTicket(model, ticket);
-            providerService.approveTicketWithChanges(user, ticket);
+            XMLAdapter.copyApprovalFieldsToApplication(model, application);
+            providerService.approveApplicationWithChanges(user, application);
             entityManager.joinTransaction();
             Event e = new Event();
             e.setCreatedBy(actorId);
             e.setCreatedOn(new Date());
             e.setId(0);
-            e.setNpi(model.getEnrollment().getProviderInformation().getNPI());
+            e.setNpi(model.getApplication().getProviderInformation().getNPI());
             e.setStatus("04");
-            e.setTicketId(ticket.getEnrollmentId());
+            e.setApplicationId(application.getApplicationId());
             entityManager.persist(e);
 
             item.getResults().put("model", model);
             manager.completeWorkItem(item.getId(), item.getResults());
-            notificationService.sendEnrollmentNotification(model.getEnrollment(), EmailTemplate.APPROVED_ENROLLMENT);
+            notificationService.sendApplicationNotification(model.getApplication(), EmailTemplate.APPROVED_APPLICATION);
 
             // Issue #215 - add hook for approval
         } catch (PortalServiceException e) {

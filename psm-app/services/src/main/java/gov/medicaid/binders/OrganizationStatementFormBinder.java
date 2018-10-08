@@ -18,7 +18,7 @@
 package gov.medicaid.binders;
 
 import gov.medicaid.domain.model.AcceptedAgreementsType;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.ProviderAgreementType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.ProviderStatementType;
@@ -28,7 +28,7 @@ import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.AcceptedAgreements;
 import gov.medicaid.entities.AgreementDocument;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.ProviderStatement;
 import gov.medicaid.entities.dto.FormError;
 
@@ -74,19 +74,19 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
     /**
      * Binds the request to the model.
      *
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request    the request containing the form fields
      * @throws BinderException if the format of the fields could not be bound properly
      */
     public List<BinderException> bindFromPage(
             CMSUser user,
-            EnrollmentType enrollmentType,
+            ApplicationType applicationType,
             HttpServletRequest request
     ) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         provider.setRenewalShowBlankStatement(param(request, "renewalBlankInit"));
-        ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollmentType);
+        ProviderStatementType statement = XMLUtility.nsGetProviderStatement(applicationType);
         statement.setName(param(request, "name"));
         statement.setTitle(param(request, "title"));
 
@@ -117,7 +117,7 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
             }
         }
 
-        AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(enrollmentType);
+        AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(applicationType);
         List<ProviderAgreementType> providerAgreement = acceptedAgreements.getProviderAgreement();
         synchronized (providerAgreement) {
             providerAgreement.clear();
@@ -130,24 +130,24 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
     /**
      * Binds the model to the request attributes.
      *
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv         the model and view to bind to
      * @param readOnly   true if the view is read only
      */
     public void bindToPage(
             CMSUser user,
-            EnrollmentType enrollmentType,
+            ApplicationType applicationType,
             Map<String, Object> mv,
             boolean readOnly
     ) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
 
         Set<AgreementDocument> docs = getProviderTypeService().getByDescription(
             provider.getProviderType()
         ).getAgreementDocuments();
 
-        if (enrollmentType.getRequestType() == RequestType.RENEWAL && "Y".equals(provider.getRenewalShowBlankStatement())) {
+        if (applicationType.getRequestType() == RequestType.RENEWAL && "Y".equals(provider.getRenewalShowBlankStatement())) {
             attr(mv, "renewalBlankInit", "YY");
 
             int i = 0;
@@ -160,7 +160,7 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
                 i++;
             }
         } else {
-            ProviderStatementType statement = XMLUtility.nsGetProviderStatement(enrollmentType);
+            ProviderStatementType statement = XMLUtility.nsGetProviderStatement(applicationType);
             attr(mv, "name", statement.getName());
             attr(mv, "title", statement.getTitle());
 
@@ -200,11 +200,11 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
     /**
      * Captures the error messages related to the form.
      *
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages   the messages to select from
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -242,18 +242,18 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket     the persistent model
+     * @param applicationType the front end model
+     * @param application     the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public void bindToHibernate(ApplicationType applicationType, Application application) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
 
         Set<AgreementDocument> activeList = getProviderTypeService().getByDescription(
                 provider.getProviderType()
         ).getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
-        AcceptedAgreementsType acceptedAgreementTypes = XMLUtility.nsGetAcceptedAgreements(enrollment);
+        AcceptedAgreementsType acceptedAgreementTypes = XMLUtility.nsGetAcceptedAgreements(applicationType);
         List<ProviderAgreementType> xList = acceptedAgreementTypes.getProviderAgreement();
 
         List<AcceptedAgreements> acceptedAgreements =
@@ -263,13 +263,13 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
             .map(AcceptedAgreements::new)
             .collect(Collectors.toList());
 
-        ticket.setAgreements(acceptedAgreements);
+        application.setAgreements(acceptedAgreements);
 
-        ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(enrollmentType);
-        ProviderStatement hStatement = ticket.getStatement();
+        ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(applicationType);
+        ProviderStatement hStatement = application.getStatement();
         if (hStatement == null) {
             hStatement = new ProviderStatement();
-            ticket.setStatement(hStatement);
+            application.setStatement(hStatement);
         }
 
         hStatement.setName(xStatement.getName());
@@ -293,21 +293,21 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket     the persistent model
-     * @param enrollment the front end model
+     * @param application     the persistent model
+     * @param applicationType the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
 
         Set<AgreementDocument> activeList = getProviderTypeService().getByDescription(
             provider.getProviderType()
         ).getAgreementDocuments();
         Map<String, AgreementDocument> documentMap = mapDocumentsById(activeList);
 
-        AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(enrollmentType);
+        AcceptedAgreementsType acceptedAgreements = XMLUtility.nsGetAcceptedAgreements(applicationType);
         ArrayList<ProviderAgreementType> xlist = new ArrayList<ProviderAgreementType>();
 
-        List<AcceptedAgreements> hList = ticket.getAgreements();
+        List<AcceptedAgreements> hList = application.getAgreements();
         for (AcceptedAgreements agreements : hList) {
             // bind only active items
             AgreementDocument document = agreements.getAgreementDocument();
@@ -326,9 +326,9 @@ public class OrganizationStatementFormBinder extends BaseFormBinder {
         acceptedAgreements.getProviderAgreement().clear();
         acceptedAgreements.getProviderAgreement().addAll(xlist);
 
-        ProviderStatement hStatement = ticket.getStatement();
+        ProviderStatement hStatement = application.getStatement();
         if (hStatement != null) {
-            ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(enrollmentType);
+            ProviderStatementType xStatement = XMLUtility.nsGetProviderStatement(applicationType);
             xStatement.setName(hStatement.getName());
             xStatement.setTitle(hStatement.getTitle());
         }

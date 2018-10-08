@@ -15,13 +15,13 @@
 --%>
 <c:choose>
   <c:when test="${isServiceAdministrator}">
-    <a href="<c:url value="/provider/enrollments/all?showFilterPanel=true" />">
-      Enrollments
+    <a href="<c:url value="/provider/applications/all?showFilterPanel=true" />">
+      Applications
     </a>
   </c:when>
   <c:otherwise>
     <a href="<c:url value="/provider/dashboard/" />">
-      Enrollments
+      Applications
     </a>
   </c:otherwise>
 </c:choose>

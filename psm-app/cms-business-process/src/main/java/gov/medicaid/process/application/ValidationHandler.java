@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package gov.medicaid.process.enrollment;
+package gov.medicaid.process.application;
 
 import gov.medicaid.binders.XMLUtility;
-import gov.medicaid.domain.model.EnrollmentProcess;
+import gov.medicaid.domain.model.ApplicationProcess;
 
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemManager;
@@ -39,9 +39,9 @@ public class ValidationHandler extends GenericHandler {
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
         logger.info("Validating the provider.");
-        EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
+        ApplicationProcess processModel = (ApplicationProcess) item.getParameter("model");
 
-        if (processModel.getEnrollment().getRequestType() == null) {
+        if (processModel.getApplication().getRequestType() == null) {
             XMLUtility.nsGetValidationResult(processModel).setStatus(XMLUtility.newStatus("FAILURE"));
         }
 

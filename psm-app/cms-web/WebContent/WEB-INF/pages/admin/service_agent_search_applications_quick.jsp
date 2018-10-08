@@ -39,9 +39,9 @@
           </div>
           <h1>Search Results</h1>
           <div class="tabSection" id="searchResultsSection">
-            <c:set var="enrollmentSearchFormAction" value="${ctx}/provider/search/quick"/>
+            <c:set var="applicationSearchFormAction" value="${ctx}/provider/search/quick"/>
             <c:set var="searchResult" value="${results}"/>
-            <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_form.jsp" %>
+            <%@ include file="/WEB-INF/pages/admin/includes/application_search_form.jsp" %>
             <div class="sectionHeader">
               <h2>Search Results</h2>
               <div class="tl"></div>
@@ -50,9 +50,9 @@
             <div class="tabContent">
               <div class="pagination">
                 <%@ include file="/WEB-INF/pages/includes/pagination_details_wrapper.jsp" %>
-                <%@ include file="/WEB-INF/pages/admin/includes/enrollment_buttons.jsp" %>
+                <%@ include file="/WEB-INF/pages/admin/includes/application_buttons.jsp" %>
               </div>
-              <div <c:choose><c:when test="${searchCriteria.showFilterPanel}">style="display: block"</c:when><c:otherwise>style="display: none"</c:otherwise></c:choose> id="quickEnrollmentFilterPanel" class="filterPanel">
+              <div <c:choose><c:when test="${searchCriteria.showFilterPanel}">style="display: block"</c:when><c:otherwise>style="display: none"</c:otherwise></c:choose> id="quickApplicationFilterPanel" class="filterPanel">
                 <div class="floatW">
                   <div class="leftCol">
                     <div class="row">
@@ -94,10 +94,10 @@
                       </select>
                     </div>
                     <div class="row">
-                      <label for="enrollmentStatusesInput">Status</label>
-                      <select id="enrollmentStatusesInput" class="longSelect">
+                      <label for="applicationStatusesInput">Status</label>
+                      <select id="applicationStatusesInput" class="longSelect">
                         <option value="">All</option>
-                        <c:forEach var="item" items="${enrollmentStatusesLookup}">
+                        <c:forEach var="item" items="${applicationStatusesLookup}">
                           <option <c:forEach var="selectedItem" items="${searchCriteria.statuses}"><c:if test="${item.description == selectedItem}">selected="selected"</c:if></c:forEach> value="${item.description}">${item.description}</option>
                         </c:forEach>
                       </select>
@@ -113,7 +113,7 @@
                     </div>
                   </div>
                 </div>
-                <a id="showSearchEnrollmentsResultBtn" href="javascript:;" class="purpleBtn showResultBtn">Filter</a>
+                <a id="showSearchApplicationsResultBtn" href="javascript:;" class="purpleBtn showResultBtn">Filter</a>
               </div>
               <!-- /.filterPanel -->
               <c:choose>
@@ -134,7 +134,7 @@
                   <div class="tableContainer">
                     <c:set var="addStatusColumn" value="yes"/>
                     <c:set var="searchTableId" value="resultsTable"/>
-                    <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_result_table.jsp" %>
+                    <%@ include file="/WEB-INF/pages/admin/includes/application_search_result_table.jsp" %>
                   </div>
                   <!-- /.tableContainer -->
                   <div class="tabFoot">

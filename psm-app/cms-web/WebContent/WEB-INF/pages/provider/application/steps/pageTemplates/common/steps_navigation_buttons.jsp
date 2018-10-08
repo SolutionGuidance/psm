@@ -30,7 +30,7 @@
       class="purpleBtn"
       name="submit"
     >
-      Submit Enrollment
+      Submit Application
     </button>
   </c:if>
 
@@ -47,7 +47,7 @@
   <c:if test="${showExportNavigation}">
     <a
       class="greyBtn iconPdf"
-      href="<c:url value="/provider/enrollment/export" />"
+      href="<c:url value="/provider/application/export" />"
     >
       Export to PDF
     </a>

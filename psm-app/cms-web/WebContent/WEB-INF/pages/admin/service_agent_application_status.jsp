@@ -15,7 +15,7 @@
   limitations under the License.
 --%>
  <%--
-  - Description: This is the enrollment status service agent page.
+  - Description: This is the application status service agent page.
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 <!DOCTYPE html>
@@ -35,11 +35,11 @@
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <div class="breadCrumb">
-            <a href="${ctx}/agent/enrollment/viewDashboard">Dashboard</a>
-            <span>Enrollment Status</span>
+            <a href="${ctx}/agent/application/viewDashboard">Dashboard</a>
+            <span>Application Status</span>
           </div>
           <div class="head">
-            <h1>Enrollment Status</h1>
+            <h1>Application Status</h1>
           </div>
           <div class="tabSection">
             <div class="detailPanel">
@@ -47,7 +47,7 @@
                 <div class="wholeCol">
                   <div class="row">
                     <label>NPI / UMPI</label>
-                    <a href="${ctx}/provider/enrollment/view?id=${profile.enrollmentId}">${profile.npi}</a>
+                    <a href="${ctx}/provider/application/view?id=${profile.applicationId}">${profile.npi}</a>
                   </div>
                   <div class="row">
                     <label>Date Submitted</label>

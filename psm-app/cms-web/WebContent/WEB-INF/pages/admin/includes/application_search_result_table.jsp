@@ -19,7 +19,7 @@
   class="generalTable linedTable"
 >
   <colgroup>
-    <c:if test="${active_enrollment_tab=='approved'}">
+    <c:if test="${active_application_tab=='approved'}">
       <col width="27"/>
     </c:if>
     <col width="90"/>
@@ -37,13 +37,13 @@
 
   <thead>
     <tr>
-      <c:if test="${active_enrollment_tab=='approved'}">
+      <c:if test="${active_application_tab=='approved'}">
         <th class="alignCenter">
           <input
             type="checkbox"
-            title="Select All Enrollments"
-            id="enrollmentSelectAll"
-            name="enrollmentRowCheckBox"
+            title="Select All Applications"
+            id="applicationSelectAll"
+            name="applicationRowCheckBox"
             class="selectAll"
             />
           <span class="sep"></span>
@@ -98,13 +98,13 @@
       varStatus="status"
     >
       <tr class="${status.index % 2 == 0 ? 'odd' : 'even'}">
-        <c:if test="${active_enrollment_tab=='approved'}">
+        <c:if test="${active_application_tab=='approved'}">
           <td class="alignCenter tdCheckbox">
             <input
               type="checkbox"
-              title="Enrollment ${item.enrollmentId}"
-              class="enrollmentRowCheckBox"
-              value="${item.ticketId}"
+              title="Application ${item.applicationId}"
+              class="applicationRowCheckBox"
+              value="${item.applicationId}"
               />
           </td>
         </c:if>
@@ -155,14 +155,14 @@
             <c:when test="${fn:toLowerCase(item.status)=='pending'}">
               <a
                 class="actionLink viewLink"
-                href="${ctx}/provider/enrollment/view?id=${item.enrollmentId}"
+                href="${ctx}/provider/application/view?id=${item.applicationId}"
               >
                 View
               </a>
               <c:if test="${item.active}">
                 <a
                   class="actionLink"
-                  href="${ctx}/provider/enrollment/reopen?id=${item.enrollmentId}"
+                  href="${ctx}/provider/application/reopen?id=${item.applicationId}"
                 >
                   Edit
                 </a>
@@ -170,7 +170,7 @@
                   <c:if test="${task.processInstanceId == item.processInstanceId}">
                       <a
                         class="actionLink reviewLink"
-                        href="${ctx}/agent/enrollment/screeningReview?id=${item.enrollmentId}"
+                        href="${ctx}/agent/application/screeningReview?id=${item.applicationId}"
                       >
                         Review
                       </a>
@@ -181,7 +181,7 @@
             <c:when test="${fn:toLowerCase(item.status)=='draft'}">
               <a
                 class="actionLink"
-                href="${ctx}/provider/enrollment/view?id=${item.enrollmentId}"
+                href="${ctx}/provider/application/view?id=${item.applicationId}"
               >
                 Edit
               </a>
@@ -189,7 +189,7 @@
             <c:when test="${fn:toLowerCase(item.status)=='approved'}">
               <a
                 class="actionLink viewLink"
-                href="${ctx}/provider/enrollment/view?id=${item.enrollmentId}"
+                href="${ctx}/provider/application/view?id=${item.applicationId}"
               >
                 View
               </a>
@@ -211,7 +211,7 @@
             <c:otherwise>
               <a
                 class="actionLink viewLink"
-                href="${ctx}/provider/enrollment/view?id=${item.enrollmentId}"
+                href="${ctx}/provider/application/view?id=${item.applicationId}"
               >
                 View
               </a>
@@ -221,14 +221,14 @@
           <c:if test="${isServiceAdministrator}">
             <a
               href="javascript:;"
-              rel="${item.enrollmentId}"
+              rel="${item.applicationId}"
               class="actionLink writeNotes"
             >
               Add Note
             </a>
             <a
               href="javascript:;"
-              rel="${item.enrollmentId}"
+              rel="${item.applicationId}"
               class='actionLink viewNotes <c:if test="${!(fn:length(item.notes)>0)}">hide disabledLink</c:if>'
             >
               View Notes
@@ -237,7 +237,7 @@
 
           <a
             class="actionLink"
-            href="${ctx}/provider/enrollment/exportTicket?id=${item.enrollmentId}"
+            href="${ctx}/provider/application/exportApplication?id=${item.applicationId}"
           >
             Export
           </a>
@@ -246,7 +246,7 @@
     </c:forEach>
   </tbody>
 </table>
-<%@ include file="/WEB-INF/pages/admin/includes/enrollment_notes_dialog.jsp" %>
+<%@ include file="/WEB-INF/pages/admin/includes/application_notes_dialog.jsp" %>
 
 <c:if test="${isServiceAdministrator}">
   <%-- This is how the view notes modal accesses and stores notes. --%>
@@ -255,8 +255,8 @@
       <c:forEach var="noteItem" items="${item.notes}" varStatus="noteStatus">
         <%-- There needs to be no extra whitespace inside this span. --%>
         <span
-          class="note_${item.enrollmentId}"
-          id="note_${item.enrollmentId}_${noteStatus.count}"
+          class="note_${item.applicationId}"
+          id="note_${item.applicationId}_${noteStatus.count}"
         >${noteItem.text}</span>
       </c:forEach>
     </c:forEach>

@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package gov.medicaid.features.enrollment.steps;
+package gov.medicaid.features.application.steps;
 
 import cucumber.api.java.en.Then;
 
 import net.thucydides.core.annotations.Steps;
 
-public class EnrollmentListStepDefinitions {
+public class ApplicationListStepDefinitions {
     @Steps
-    EnrollmentListSteps enrollmentListSteps;
+    ApplicationListSteps applicationListSteps;
 
-    @Then("^I should see enrollments$")
-    public void i_should_see_enrollments() {
-        enrollmentListSteps.verifyEnrollmentsInTable();
+    @Then("^I should see applications$")
+    public void i_should_see_applications() {
+        applicationListSteps.verifyApplicationsInTable();
     }
 }

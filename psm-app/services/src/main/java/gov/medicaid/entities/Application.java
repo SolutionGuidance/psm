@@ -38,33 +38,33 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Represents a ticket/enrollment.
+ * Represents a application/application.
  */
 @javax.persistence.Entity
-@Table(name = "enrollments")
+@Table(name = "applications")
 @NamedEntityGraph(
-        name = "Enrollment with screenings",
+        name = "Application with screenings",
         attributeNodes = {@NamedAttributeNode("automaticScreenings")}
 )
-public class Enrollment implements Cloneable, Serializable {
+public class Application implements Cloneable, Serializable {
 
     /**
-     * Ticket identifier.
+     * Application identifier.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "enrollment_id")
-    private long enrollmentId;
+    @Column(name = "application_id")
+    private long applicationId;
 
     /**
-     * Ticket status.
+     * Application status.
      */
     @ManyToOne
-    @JoinColumn(name = "enrollment_status_code")
-    private EnrollmentStatus status;
+    @JoinColumn(name = "application_status_code")
+    private ApplicationStatus status;
 
     /**
-     * Ticket request type.
+     * Application request type.
      */
     @ManyToOne
     @JoinColumn(name = "request_type_code")
@@ -80,7 +80,7 @@ public class Enrollment implements Cloneable, Serializable {
     private long processInstanceId = 0;
 
     /**
-     * The profile id that was created by this ticket.
+     * The profile id that was created by this application.
      */
     @Column(name = "profile_reference_id")
     private Long profileReferenceId;
@@ -130,14 +130,14 @@ public class Enrollment implements Cloneable, Serializable {
     private Date createdOn;
 
     /**
-     * Username that last made changes to the ticket.
+     * Username that last made changes to the application.
      */
     @ManyToOne
     @JoinColumn(name = "changed_by")
     private CMSUser lastUpdatedBy;
 
     /**
-     * Ticket details.
+     * Application details.
      */
     @Transient
     private ProviderProfile details;
@@ -149,7 +149,7 @@ public class Enrollment implements Cloneable, Serializable {
     private List<AcceptedAgreements> agreements;
 
     /**
-     * Notes on enrollment.
+     * Notes on application.
      */
     @Transient
     private List<Note> notes;
@@ -161,7 +161,7 @@ public class Enrollment implements Cloneable, Serializable {
     private ProviderStatement statement;
 
     @OneToMany(
-            mappedBy = "enrollment",
+            mappedBy = "application",
             cascade = CascadeType.ALL
     )
     private List<AutomaticScreening> automaticScreenings = new ArrayList<>();
@@ -169,22 +169,22 @@ public class Enrollment implements Cloneable, Serializable {
     /**
      * Empty constructor.
      */
-    public Enrollment() {
+    public Application() {
     }
 
-    public long getEnrollmentId() {
-        return enrollmentId;
+    public long getApplicationId() {
+        return applicationId;
     }
 
-    public void setEnrollmentId(long enrollmentId) {
-        this.enrollmentId = enrollmentId;
+    public void setApplicationId(long applicationId) {
+        this.applicationId = applicationId;
     }
 
-    public EnrollmentStatus getStatus() {
+    public ApplicationStatus getStatus() {
         return status;
     }
 
-    public void setStatus(EnrollmentStatus status) {
+    public void setStatus(ApplicationStatus status) {
         this.status = status;
     }
 
@@ -333,12 +333,12 @@ public class Enrollment implements Cloneable, Serializable {
     }
 
     public void addAutomaticScreening(AutomaticScreening automaticScreening) {
-        automaticScreening.setEnrollment(this);
+        automaticScreening.setApplication(this);
         automaticScreenings.add(automaticScreening);
     }
 
     public boolean isActive() {
-        return details != null && details.getEnrollmentId() == this.enrollmentId;
+        return details != null && details.getApplicationId() == this.applicationId;
     }
 
     /**
@@ -346,8 +346,8 @@ public class Enrollment implements Cloneable, Serializable {
      *
      * @return a deep clone
      */
-    public Enrollment clone() {
-        Enrollment obj = this;
+    public Application clone() {
+        Application obj = this;
         return BinderUtils.clone(obj);
     }
 }

@@ -1,4 +1,4 @@
-Enrollment
+Application
 ==========
 
 What information do I need to apply to enroll?
@@ -7,7 +7,7 @@ What information do I need to apply to enroll?
 First, you'll need to register for an account (see `"how do I register
 for an account on this
 site?" <account-help.html#how-do-i-register-for-an-account-on-this-site>`__).
-Then you'll need to click the button to create a new enrollment.
+Then you'll need to click the button to create a new application.
 
 An application includes:
 
@@ -26,7 +26,7 @@ An application includes:
    over other entities billing Medicaid)
 
 -  an electronic signature and date attesting to the accuracy of the
-   enrollment information
+   application information
 
 What is an NPI?
 ---------------
@@ -39,117 +39,117 @@ status is active at |nppes_link| (link opens in a new tab).
    <a href="https://nppes.cms.hhs.gov" target="_blank">NPPES (the National Plan
    and Provider Enumeration System)</a>
 
-What are the steps in the enrollment process?
+What are the steps in the application process?
 ---------------------------------------------
 
 -  A provider, a service agent, or a state/territory Medicaid agency staffer
-   creates and submits a new enrollment application for a particular
+   creates and submits a new application application for a particular
    provider. (A user can save a draft application and come back later to
    finish and submit it.)
 
--  A state/territory Medicaid agency staffer reviews the enrollment, using
-   links provided by the PSM to verify enrollment details, and decides whether
+-  A state/territory Medicaid agency staffer reviews the application, using
+   links provided by the PSM to verify application details, and decides whether
    to approve or reject the submission.
 
--  After an enrollment has been approved, a state/territory Medicaid agency
+-  After an application has been approved, a state/territory Medicaid agency
    staffer can select and renew it.
 
-Who can view enrollments?
+Who can view applications?
 -------------------------
 
-A provider can view their own enrollments (including draft, rejected,
-approved, and pending enrollments).
+A provider can view their own applications (including draft, rejected,
+approved, and pending applications).
 
 A service agent or state/territory Medicaid agency staffer can view all
-enrollments (including draft, rejected, approved, and pending
-enrollments). (`The PSM may limit this ability in a future
+applications (including draft, rejected, approved, and pending
+applications). (`The PSM may limit this ability in a future
 version. <https://github.com/SolutionGuidance/psm/issues/10>`__)
 
-A system admin should not be able to view any enrollments. `The PSM
-currently allows a system admin to view enrollments, but will remove
+A system admin should not be able to view any applications. `The PSM
+currently allows a system admin to view applications, but will remove
 that capability in a future
 version. <https://github.com/SolutionGuidance/psm/issues/10>`__
 
-Which enrollment information can a provider, service agent, or state/territory Medicaid agency staffer modify or delete?
+Which application information can a provider, service agent, or state/territory Medicaid agency staffer modify or delete?
 ------------------------------------------------------------------------------------------------------------------------
 
-A provider can modify a draft enrollment, but can't delete it. A
-provider also cannot delete or modify an enrollment after submitting it
+A provider can modify a draft application, but can't delete it. A
+provider also cannot delete or modify an application after submitting it
 (once it is "pending", "approved", or "denied").
 
 A service agent or state/territory Medicaid agency staffer can modify a draft or
-pending enrollment, but cannot delete any enrollments.
+pending application, but cannot delete any applications.
 
-How will a provider learn when their enrollment changes status?
+How will a provider learn when their application changes status?
 ---------------------------------------------------------------
 
-When you log into the PSM, you'll see any enrollments you've submitted
+When you log into the PSM, you'll see any applications you've submitted
 or started drafting via your PSM user account. You'll be able to see the
-status of each enrollment.
+status of each application.
 
 Right now, a provider does not receive any email notifications about
-their enrollment. (`A future version of the PSM will send email
-notifications to providers when the status of your enrollment
+their application. (`A future version of the PSM will send email
+notifications to providers when the status of your application
 changes. <https://github.com/SolutionGuidance/psm/issues/341>`__)
 
-Can I create an enrollment for someone else?
+Can I create an application for someone else?
 --------------------------------------------
 
 A service agent or a state/territory Medicaid agency staffer can create an
-enrollment for someone else.
+application for someone else.
 
-Can I start an enrollment now and finish it later, or do I have to start and submit it all in one session?
+Can I start an application now and finish it later, or do I have to start and submit it all in one session?
 ----------------------------------------------------------------------------------------------------------
 
 This site lets you save a "draft" at any point while you are creating a
-new enrollment. Click the "Save as draft" button. Even if you log out
-and then log back in, that draft enrollment will still be available for
+new application. Click the "Save as draft" button. Even if you log out
+and then log back in, that draft application will still be available for
 you to work on -- you will see it in your Dashboard and in the Draft tab
-under Enrollments.
+under Applications.
 
-Can I start a draft enrollment and then have someone else finish it for me?
+Can I start a draft application and then have someone else finish it for me?
 ---------------------------------------------------------------------------
 
 Service agents and state/territory Medicaid agency staffers can finish draft
-enrollments started by other people. A provider can save a draft
-enrollment and then phone or otherwise contact a service agent or the
+applications started by other people. A provider can save a draft
+application and then phone or otherwise contact a service agent or the
 state/territory Medicaid agency to ask them to help finish it for you. One
 provider cannot access, and therefore cannot finish and submit, a draft
-enrollment started by another provider.
+application started by another provider.
 
-How do I renew an enrollment or update an enrollment?
+How do I renew an application or update an application?
 -----------------------------------------------------
 
 Right now that's not something the PSM can do, but `it'll be possible in
 a future
 version. <https://github.com/SolutionGuidance/psm/issues/401>`__
 
-Why can I edit some enrollments but not others?
+Why can I edit some applications but not others?
 -----------------------------------------------
 
-You can only edit an enrollment if its status is still "Draft"
+You can only edit an application if its status is still "Draft"
 (it hasn't been submitted yet).  If its status is "Pending",
 "Approved", or "Denied" then you can view but not edit it.
 
-Can I change something in a pending enrollment after I submit it?
+Can I change something in a pending application after I submit it?
 -----------------------------------------------------------------
 
 You'll need to directly contact the state/territory Medicaid office;
-once you've submitted an enrollment, you can't update it in the PSM.
+once you've submitted an application, you can't update it in the PSM.
 
-How will I find out when my enrollment is accepted or rejected?
+How will I find out when my application is accepted or rejected?
 ---------------------------------------------------------------
 
 Right now, this site does not notify you via email or paper mail when
-the state/territory accepts or rejects an enrollment you have submitted.
+the state/territory accepts or rejects an application you have submitted.
 `This will change in a future version of the Provider Screening
 Module. <https://github.com/SolutionGuidance/psm/issues/341>`__
 
-When you log into the PSM, you'll see any enrollments you've submitted
+When you log into the PSM, you'll see any applications you've submitted
 or saved as a draft. You'll be able to see the status of each
-enrollment.
+application.
 
-What can I do to reduce the risk of delay or rejection for an enrollment?
+What can I do to reduce the risk of delay or rejection for an application?
 -------------------------------------------------------------------------
 
 You should:
@@ -250,28 +250,28 @@ What do "Title V", "Title XX", etc. refer to?
 
 **Title XXI** - State Children's Health Insurance Program.
 
-Can I create multiple enrollments for one person (e.g., if a person is licensed as two or more kinds of provider)?
+Can I create multiple applications for one person (e.g., if a person is licensed as two or more kinds of provider)?
 ------------------------------------------------------------------------------------------------------------------
 
 Yes.
 
-Why would a provider have multiple enrollments?
+Why would a provider have multiple applications?
 -----------------------------------------------
 
 An individual person might be licensed as two or more kinds of provider.
 
-How do I input an enrollment for an individual provider who is affiliated with multiple organizations (e.g., a psychologist who works for two clinics)?
+How do I input an application for an individual provider who is affiliated with multiple organizations (e.g., a psychologist who works for two clinics)?
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 You can choose to "Add Another Practice Location" on the "Practice Info"
-screen of the enrollment application. This is a way to indicate that a
+screen of the application application. This is a way to indicate that a
 provider works with multiple group practices.
 
-How do I input an enrollment for an organization with several individual providers (e.g., a clinic employing several physicians)?
+How do I input an application for an organization with several individual providers (e.g., a clinic employing several physicians)?
 ---------------------------------------------------------------------------------------------------------------------------------
 
 Choose the correct organizational provider type during the first step of
-enrollment. On the member entry screen, click the link to add an
+application. On the member entry screen, click the link to add an
 additional member. Repeat as necessary to add all the individuals who
 will provide services under the umbrella of the organization.
 
@@ -286,31 +286,31 @@ What do I do if none of the provider types seem to describe what I do (what this
 
 Contact your state/territory Medicaid office directly.
 
-How can I update an existing organizational enrollment to add a new provider (e.g., if a clinic hires a new physician)?
+How can I update an existing organizational application to add a new provider (e.g., if a clinic hires a new physician)?
 -----------------------------------------------------------------------------------------------------------------------
 
-If an enrollment is a draft (you haven't submitted it yet), then yes,
-you can click on the draft enrollment and edit the member list.
+If an application is a draft (you haven't submitted it yet), then yes,
+you can click on the draft application and edit the member list.
 
-If you have already submitted the enrollment, then you should have the
-individual, or a service agent, create a new enrollment for an
+If you have already submitted the application, then you should have the
+individual, or a service agent, create a new application for an
 individual provider. On the "Practice Info" screen, the user should say
 "Yes" to the question "Are you employed and/or independently contracted
 by a group practice?" and enter the organization's information.
 
-How can I update an existing organizational enrollment to remove a provider (e.g., if a physician retires from a clinic)?
+How can I update an existing organizational application to remove a provider (e.g., if a physician retires from a clinic)?
 -------------------------------------------------------------------------------------------------------------------------
 
-If an enrollment is a draft (you haven't submitted it yet), then yes,
-you can click on the draft enrollment and edit the member list. If you
-have already submitted the enrollment, then it is not possible to remove
+If an application is a draft (you haven't submitted it yet), then yes,
+you can click on the draft application and edit the member list. If you
+have already submitted the application, then it is not possible to remove
 an individual member via the PSM, and you will need to directly contact
 your state/territory Medicaid office.
 
 How do I view license/certification files?
 ------------------------------------------
 
-When viewing a pending enrollment, on the "Review Enrollment" screen,
+When viewing a pending application, on the "Review Application" screen,
 look under the "License Information" heading. Next to a license or
 certification number (issued by the licensure or certification
 authority), you'll see a "View" link. Click that to access the scanned
@@ -322,7 +322,7 @@ probably automatically open a program to view the file, such as:
 -  DOC and DOCX files: Microsoft Word
 -  PPT and PPTX files: Microsoft PowerPoint
 
-What if I know from past experience that someone else with the same name, address, or NPI has previously been excluded from Medicaid and that automatic checks are likely to flag this enrollment as a result?
+What if I know from past experience that someone else with the same name, address, or NPI has previously been excluded from Medicaid and that automatic checks are likely to flag this application as a result?
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Contact your state/territory Medicaid office directly.

@@ -18,13 +18,13 @@
 package gov.medicaid.binders;
 
 import gov.medicaid.domain.model.AgencyInformationType;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.GroupAffiliationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.Affiliation;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.Entity;
 import gov.medicaid.entities.Organization;
 import gov.medicaid.entities.PracticeLookup;
@@ -66,15 +66,15 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request the request containing the form fields
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
 
-        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollmentType);
+        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(applicationType);
         agency.getAffiliation().clear();
 
         int i = 0;
@@ -109,13 +109,13 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly true if the binding is for a read only view
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollmentType);
+        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(applicationType);
         List<GroupAffiliationType> xList = agency.getAffiliation();
         int i = 0;
         for (GroupAffiliationType location : xList) {
@@ -137,12 +137,12 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
     /**
      * Captures the error messages related to the form.
      *
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages the messages to select from
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -216,11 +216,11 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param applicationType the front end model
+     * @param application the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
-        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollmentType);
+    public void bindToHibernate(ApplicationType applicationType, Application application) {
+        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(applicationType);
         List<Affiliation> hList = new ArrayList<Affiliation>();
         List<GroupAffiliationType> xList = agency.getAffiliation();
         for (GroupAffiliationType location : xList) {
@@ -242,7 +242,7 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
             hList.add(group);
         }
 
-        ProviderProfile profile = ticket.getDetails();
+        ProviderProfile profile = application.getDetails();
         List<Affiliation> affiliations = removeOtherAgencies(profile);
 
         synchronized (affiliations) {
@@ -253,11 +253,11 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * @param application the persistent model
+     * @param applicationType the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
-        ProviderProfile profile = ticket.getDetails();
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        ProviderProfile profile = application.getDetails();
         List<Affiliation> hList = filterOtherAgencies(profile.getAffiliations());
         List<GroupAffiliationType> xList = new ArrayList<GroupAffiliationType>();
         for (Affiliation group : hList) {
@@ -276,7 +276,7 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
             xList.add(location);
         }
 
-        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(enrollmentType);
+        AgencyInformationType agency = XMLUtility.nsGetAgencyInformation(applicationType);
         agency.getAffiliation().clear();
         agency.getAffiliation().addAll(xList);
     }
@@ -333,7 +333,7 @@ public class AdditionalAgencyFormBinder extends BaseFormBinder {
         PracticeSearchCriteria criteria = new PracticeSearchCriteria();
         criteria.setProfileId(Long.parseLong(location.getObjectId()));
         criteria.setAgency(true);
-        SearchResult<PracticeLookup> results = getEnrollmentService().searchPractice(getSystemUser(), criteria);
+        SearchResult<PracticeLookup> results = getApplicationService().searchPractice(getSystemUser(), criteria);
         PracticeLookup linkedPractice = results.getItems().get(0);
 
         location.setName(linkedPractice.getName());

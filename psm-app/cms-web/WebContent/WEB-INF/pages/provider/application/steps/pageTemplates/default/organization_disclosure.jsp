@@ -20,7 +20,7 @@
 <input type="hidden" name="formNames" value="<%= ViewStatics.ORGANIZATION_DISCLOSURE_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="tableHeader topHeader"><span>Provider Disclosure</span></div>
     <div class="clearFixed"></div>
     <div class="section">

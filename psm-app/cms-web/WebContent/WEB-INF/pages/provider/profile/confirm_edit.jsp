@@ -36,7 +36,7 @@
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <a href="<c:url value="/provider/search/approved?statuses=Approved" />">Enrollments</a>
+            <a href="<c:url value="/provider/search/approved?statuses=Approved" />">Applications</a>
             <span>Confirm Edit</span>
           </div>
 
@@ -48,7 +48,7 @@
 
           <div class="dashboardPanel">
             <div class="tableDataButtons buttonBox">
-              <div class="newEnrollmentPanel">
+              <div class="newApplicationPanel">
                 <p class="confirm">
                   We found an existing ${requestType} draft for this profile. How do you wish to proceed?
                 </p>
@@ -58,15 +58,15 @@
                 <div class="bl"></div>
               </div>
 
-              <c:url var="reuseEditProfileLink" value="/provider/enrollment/view">
-                <c:param name="id" value="${enrollmentId}"></c:param>
+              <c:url var="reuseEditProfileLink" value="/provider/application/view">
+                <c:param name="id" value="${applicationId}"></c:param>
               </c:url>
 
-              <c:url var="newEditProfileLink" value="/provider/enrollment/edit">
+              <c:url var="newEditProfileLink" value="/provider/application/edit">
                 <c:param name="profileId" value="${profileId}"></c:param>
               </c:url>
               <c:if test="${requestType eq 'Renewal'}">
-                <c:url var="newEditProfileLink" value="/provider/enrollment/renew">
+                <c:url var="newEditProfileLink" value="/provider/application/renew">
                   <c:param name="profileId" value="${profileId}"></c:param>
                 </c:url>
               </c:if>

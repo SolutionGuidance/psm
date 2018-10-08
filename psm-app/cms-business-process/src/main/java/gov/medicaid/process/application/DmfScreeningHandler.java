@@ -1,4 +1,4 @@
-package gov.medicaid.process.enrollment;
+package gov.medicaid.process.application;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -9,15 +9,15 @@ import com.google.gson.JsonParser;
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.BeneficialOwnerType;
 import gov.medicaid.domain.model.DesignatedContactType;
-import gov.medicaid.domain.model.EnrollmentProcess;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationProcess;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.GroupMemberType;
 import gov.medicaid.domain.model.IndividualApplicantType;
 import gov.medicaid.domain.model.PersonType;
 import gov.medicaid.domain.model.QualifiedProfessionalType;
 import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.DmfAutomaticScreening;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -61,12 +61,12 @@ public class DmfScreeningHandler extends GenericHandler {
     @Override
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
         logger.info("Checking against DMF.");
-        EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
+        ApplicationProcess processModel = (ApplicationProcess) item.getParameter("model");
 
-        long enrollmentId = Long.parseLong(processModel.getEnrollment().getObjectId());
-        Enrollment enrollment = entityManager.find(Enrollment.class, enrollmentId);
+        long applicationId = Long.parseLong(processModel.getApplication().getObjectId());
+        Application application = entityManager.find(Application.class, applicationId);
 
-        Set<String> ssnsToSearch = getSsnsInEnrollment(processModel.getEnrollment());
+        Set<String> ssnsToSearch = getSsnsInApplication(processModel.getApplication());
 
         DmfAutomaticScreening screening = new DmfAutomaticScreening();
 
@@ -92,8 +92,8 @@ public class DmfScreeningHandler extends GenericHandler {
             screening.setResult(AutomaticScreening.Result.ERROR);
         }
 
-        enrollment.addAutomaticScreening(screening);
-        entityManager.merge(enrollment);
+        application.addAutomaticScreening(screening);
+        entityManager.merge(application);
         item.getResults().put("model", processModel);
         manager.completeWorkItem(item.getId(), item.getResults());
     }
@@ -116,36 +116,36 @@ public class DmfScreeningHandler extends GenericHandler {
         String getResult(String ssn) throws IOException;
     }
 
-    private Set<String> getSsnsInEnrollment(EnrollmentType enrollment) {
+    private Set<String> getSsnsInApplication(ApplicationType application) {
         Set<String> ssnsToSearch = new TreeSet<>();
 
-        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollment);
+        IndividualApplicantType individual = XMLUtility.nsGetIndividual(application);
         if (individual.getSocialSecurityNumber() != null) {
             ssnsToSearch.add(individual.getSocialSecurityNumber());
         }
 
-        XMLUtility.nsGetQualifiedProfessionals(enrollment)
+        XMLUtility.nsGetQualifiedProfessionals(application)
             .getQualifiedProfessional()
             .stream()
             .map(QualifiedProfessionalType::getSocialSecurityNumber)
             .filter(Objects::nonNull)
             .forEach(ssnsToSearch::add);
 
-        XMLUtility.nsGetDesignatedContactInformation(enrollment)
+        XMLUtility.nsGetDesignatedContactInformation(application)
             .getDesignatedContact()
             .stream()
             .map(DesignatedContactType::getSocialSecurityNumber)
             .filter(Objects::nonNull)
             .forEach(ssnsToSearch::add);
 
-        XMLUtility.nsGetMembershipInformation(enrollment)
+        XMLUtility.nsGetMembershipInformation(application)
             .getGroupMember()
             .stream()
             .map(GroupMemberType::getSocialSecurityNumber)
             .filter(Objects::nonNull)
             .forEach(ssnsToSearch::add);
 
-        XMLUtility.nsGetOwnershipInformation(enrollment)
+        XMLUtility.nsGetOwnershipInformation(application)
             .getBeneficialOwner()
             .stream()
             .map(BeneficialOwnerType::getPersonInformation)

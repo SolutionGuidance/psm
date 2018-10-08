@@ -24,16 +24,16 @@ import ca.uhn.fhir.rest.param.StringOrListParam;
 import ca.uhn.fhir.rest.param.StringParam;
 import ca.uhn.fhir.rest.server.IResourceProvider;
 import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException;
-import gov.medicaid.api.transformers.EnrollmentStatusToPsmName;
-import gov.medicaid.api.transformers.EnrollmentToFhir;
+import gov.medicaid.api.transformers.ApplicationStatusToPsmName;
+import gov.medicaid.api.transformers.ApplicationToFhir;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.ProviderSearchCriteria;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.UserRequest;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 import org.hl7.fhir.dstu3.model.IdType;
 import org.hl7.fhir.dstu3.model.Task;
 import org.hl7.fhir.instance.model.api.IBaseResource;
@@ -43,11 +43,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class TaskResourceProvider implements IResourceProvider {
-    private final ProviderEnrollmentService providerEnrollmentService;
+    private final ProviderApplicationService providerApplicationService;
     private final CMSUser systemUser;
 
-    TaskResourceProvider(ProviderEnrollmentService providerEnrollmentService) {
-        this.providerEnrollmentService = providerEnrollmentService;
+    TaskResourceProvider(ProviderApplicationService providerApplicationService) {
+        this.providerApplicationService = providerApplicationService;
         systemUser = new CMSConfigurator().getSystemUser();
     }
 
@@ -58,7 +58,7 @@ public class TaskResourceProvider implements IResourceProvider {
 
     @Read
     public Task getResourceById(@IdParam IdType id) {
-        return enrollmentIdToTask(id.getIdPartAsLong());
+        return applicationIdToTask(id.getIdPartAsLong());
     }
 
     @Search
@@ -76,14 +76,14 @@ public class TaskResourceProvider implements IResourceProvider {
         criteria.setProviderType(providerType);
         criteria.setProviderName(name);
 
-        SearchResult<UserRequest> results = providerEnrollmentService.searchTickets(
+        SearchResult<UserRequest> results = providerApplicationService.searchApplications(
                 systemUser,
                 criteria
         );
 
         return results.getItems()
                 .stream()
-                .map(result -> enrollmentIdToTask(result.getEnrollmentId()))
+                .map(result -> applicationIdToTask(result.getApplicationId()))
                 .collect(Collectors.toList());
     }
 
@@ -107,26 +107,26 @@ public class TaskResourceProvider implements IResourceProvider {
             return listParam.getValuesAsQueryTokens()
                     .stream()
                     .map(StringParam::getValue)
-                    .map(new EnrollmentStatusToPsmName())
+                    .map(new ApplicationStatusToPsmName())
                     .filter(Objects::nonNull)
                     .collect(Collectors.toList());
         }
     }
 
-    private Task enrollmentIdToTask(long enrollmentId) {
-        Enrollment enrollment;
+    private Task applicationIdToTask(long applicationId) {
+        Application application;
         try {
-            enrollment = providerEnrollmentService.getTicketDetails(
+            application = providerApplicationService.getApplicationDetails(
                     systemUser,
-                    enrollmentId
+                    applicationId
             );
         } catch (PortalServiceException e) {
             return null;
         }
-        if (enrollment == null) {
+        if (application == null) {
             return null;
         }
 
-        return new EnrollmentToFhir().apply(enrollment);
+        return new ApplicationToFhir().apply(application);
     }
 }

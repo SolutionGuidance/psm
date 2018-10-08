@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package gov.medicaid.process.enrollment;
+package gov.medicaid.process.application;
 
 import gov.medicaid.binders.XMLUtility;
-import gov.medicaid.domain.model.EnrollmentProcess;
+import gov.medicaid.domain.model.ApplicationProcess;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.VerificationStatusType;
 import gov.medicaid.entities.AutomaticScreening;
@@ -49,15 +49,15 @@ public class ExcludedProvidersScreeningHandler extends GenericHandler {
 
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
         logger.info("Checking provider exclusion.");
-        EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
-        Long enrollmentId = Long.parseLong(
-                processModel.getEnrollment().getObjectId()
+        ApplicationProcess processModel = (ApplicationProcess) item.getParameter("model");
+        Long applicationId = Long.parseLong(
+                processModel.getApplication().getObjectId()
         );
 
         ProviderInformationType provider = XMLUtility.nsGetProvider(processModel);
 
         AutomaticScreening.Result result = leieExternalScreener.screen(
-                enrollmentId,
+                applicationId,
                 provider.getNPI()
         );
 
@@ -77,19 +77,19 @@ public class ExcludedProvidersScreeningHandler extends GenericHandler {
     }
 
     private void setResultExcluded(
-            EnrollmentProcess processModel
+            ApplicationProcess processModel
     ) {
         setNonExclusionVerificationStatus(processModel, "N");
     }
 
     private void setResultNotExcluded(
-            EnrollmentProcess processModel
+            ApplicationProcess processModel
     ) {
         setNonExclusionVerificationStatus(processModel, "Y");
     }
 
     private void setNonExclusionVerificationStatus(
-            EnrollmentProcess processModel,
+            ApplicationProcess processModel,
             String status
     ) {
         VerificationStatusType verificationStatus =

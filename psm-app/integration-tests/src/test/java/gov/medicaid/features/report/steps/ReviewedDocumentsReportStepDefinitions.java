@@ -32,7 +32,7 @@ public class ReviewedDocumentsReportStepDefinitions {
 
     @Then("^I should see a reviewed documents row for '(.*)' with '(\\d+)' documents$")
     public void i_should_see_a_reviewed_documents_row_for_with_documents(String month, String numDocuments) {
-        reviewedDocumentsSteps.checkReviewedDocumentsPageHasRowWithEnrollments(month, numDocuments);
+        reviewedDocumentsSteps.checkReviewedDocumentsPageHasRowWithApplications(month, numDocuments);
     }
 
     @Given("^I download the reviewed documents report$")

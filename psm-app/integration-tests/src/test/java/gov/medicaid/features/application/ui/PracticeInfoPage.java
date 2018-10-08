@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package gov.medicaid.features.enrollment.ui;
+package gov.medicaid.features.application.ui;
 
 import gov.medicaid.features.PsmPage;
 

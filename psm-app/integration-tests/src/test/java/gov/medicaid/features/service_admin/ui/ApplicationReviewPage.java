@@ -6,8 +6,8 @@ import net.thucydides.core.webelements.Checkbox;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class EnrollmentReviewPage extends PsmPage {
-    public String getEnrollmentId() {
+public class ApplicationReviewPage extends PsmPage {
+    public String getApplicationId() {
         assertThat(getDriver().getCurrentUrl().matches(".*id=\\d*")).isTrue();
         return getDriver().getCurrentUrl().replaceFirst(".*id=", "");
     }

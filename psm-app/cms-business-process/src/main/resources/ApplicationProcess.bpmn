@@ -12,29 +12,29 @@
              xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
              xmlns:tns="http://www.jboss.org/drools">
 
-  <itemDefinition id="_modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
+  <itemDefinition id="_modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
 
-  <itemDefinition id="_34-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
+  <itemDefinition id="_34-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
 
-  <itemDefinition id="_3-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
+  <itemDefinition id="_3-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
 
-  <itemDefinition id="_5-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
+  <itemDefinition id="_5-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
 
-  <itemDefinition id="_6-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
+  <itemDefinition id="_6-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
 
-  <itemDefinition id="_9-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
+  <itemDefinition id="_9-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
 
-  <itemDefinition id="_10-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
+  <itemDefinition id="_10-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
 
-  <itemDefinition id="_15-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
+  <itemDefinition id="_15-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
 
-  <itemDefinition id="_18-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
+  <itemDefinition id="_18-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
 
-  <itemDefinition id="_21-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
+  <itemDefinition id="_21-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
 
-  <itemDefinition id="_31-modelItem" structureRef="gov.medicaid.domain.model.EnrollmentProcess" />
+  <itemDefinition id="_31-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
 
-  <process processType="Private" isExecutable="true" id="gov.medicaid.process.enrollment" name="CMS Enrollment Process" tns:packageName="gov.medicaid.process.enrollment" tns:version="1.0" >
+  <process processType="Private" isExecutable="true" id="gov.medicaid.process.application" name="CMS Application Process" tns:packageName="gov.medicaid.process.application" tns:version="1.0" >
 
     <extensionElements>
      <tns:import name="gov.medicaid.domain.model.*" />
@@ -311,7 +311,7 @@
     <sequenceFlow id="_35-_15" sourceRef="_35" targetRef="_15" />
     <sequenceFlow id="_3-_17" sourceRef="_3" targetRef="_17" />
     <sequenceFlow id="_17-_18" sourceRef="_17" targetRef="_18" name="reject" tns:priority="1" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "REJECTED".equals(model.getEnrollmentStatus().getStatus());</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "REJECTED".equals(model.getApplicationStatus().getStatus());</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="_18-_19" sourceRef="_18" targetRef="_19" />
     <sequenceFlow id="_32-_21" sourceRef="_32" targetRef="_21" name="passed" tns:priority="1" >
@@ -319,7 +319,7 @@
     </sequenceFlow>
     <sequenceFlow id="_21-_22" sourceRef="_21" targetRef="_22" />
     <sequenceFlow id="_17-_31" sourceRef="_17" targetRef="_31" name="accepted" tns:priority="1" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return !"REJECTED".equals(model.getEnrollmentStatus().getStatus());</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return !"REJECTED".equals(model.getApplicationStatus().getStatus());</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="_31-_32" sourceRef="_31" targetRef="_32" />
     <sequenceFlow id="_15-_33" sourceRef="_15" targetRef="_33" />
@@ -330,7 +330,7 @@
   </process>
 
   <bpmndi:BPMNDiagram>
-    <bpmndi:BPMNPlane bpmnElement="gov.medicaid.process.enrollment" >
+    <bpmndi:BPMNPlane bpmnElement="gov.medicaid.process.application" >
       <bpmndi:BPMNShape bpmnElement="_1" >
         <dc:Bounds x="16" y="221" width="48" height="48" />
       </bpmndi:BPMNShape>

@@ -23,17 +23,17 @@ import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.springframework.mock.web.MockHttpServletResponse
 
-import gov.medicaid.entities.Enrollment
+import gov.medicaid.entities.Application
 import gov.medicaid.entities.Person
 import gov.medicaid.entities.ProviderProfile
 import gov.medicaid.entities.ProviderType
 import gov.medicaid.entities.SearchResult
-import gov.medicaid.services.ProviderEnrollmentService
+import gov.medicaid.services.ProviderApplicationService
 import spock.lang.Specification
 
 class DraftApplicationsReportControllerTest extends Specification {
     private DraftApplicationsReportController controller
-    private ProviderEnrollmentService service
+    private ProviderApplicationService service
     private static TimeZone originalTimeZone
     private static LocalDate middleThisMonth
 
@@ -47,17 +47,17 @@ class DraftApplicationsReportControllerTest extends Specification {
     }
 
     void setup() {
-        service = Mock(ProviderEnrollmentService)
+        service = Mock(ProviderApplicationService)
         controller = new DraftApplicationsReportController(service)
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
     }
 
-    def "csv with no enrollments - header"() {
+    def "csv with no applications - header"() {
         given:
-        def results = new SearchResult<Enrollment>()
+        def results = new SearchResult<Application>()
         results.setItems([])
-        1 * service.getDraftAtEomEnrollments(_) >> results
+        1 * service.getDraftAtEomApplications(_) >> results
         def response = new MockHttpServletResponse()
 
         when:
@@ -81,9 +81,9 @@ class DraftApplicationsReportControllerTest extends Specification {
         Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant())
     }
 
-    private makeEnrollment(id, createdOn, submissionDate) {
-        return new Enrollment([
-            enrollmentId: id,
+    private makeApplication(id, createdOn, submissionDate) {
+        return new Application([
+            applicationId: id,
             profileReferenceId: id,
             createdOn: toDate(createdOn),
             submissionDate: submissionDate != null ?  toDate(submissionDate) : null
@@ -99,23 +99,23 @@ class DraftApplicationsReportControllerTest extends Specification {
         ])
     }
 
-    private testEnrollmentData() {
-        def results = new SearchResult<Enrollment>()
+    private testApplicationData() {
+        def results = new SearchResult<Application>()
         results.setItems([
-            makeEnrollment(1, middleThisMonth.minusMonths(1), middleThisMonth),
-            makeEnrollment(2, middleThisMonth.minusMonths(2), null),
-            makeEnrollment(3, middleThisMonth.minusMonths(3), middleThisMonth.minusMonths(2)),
-            makeEnrollment(4, middleThisMonth.minusMonths(3).minusDays(1), null),
-            makeEnrollment(5, middleThisMonth.minusMonths(2), middleThisMonth.minusMonths(2)),
-            makeEnrollment(6, middleThisMonth, middleThisMonth.plusMonths(1)),
-            makeEnrollment(7, middleThisMonth, null)
+            makeApplication(1, middleThisMonth.minusMonths(1), middleThisMonth),
+            makeApplication(2, middleThisMonth.minusMonths(2), null),
+            makeApplication(3, middleThisMonth.minusMonths(3), middleThisMonth.minusMonths(2)),
+            makeApplication(4, middleThisMonth.minusMonths(3).minusDays(1), null),
+            makeApplication(5, middleThisMonth.minusMonths(2), middleThisMonth.minusMonths(2)),
+            makeApplication(6, middleThisMonth, middleThisMonth.plusMonths(1)),
+            makeApplication(7, middleThisMonth, null)
         ].sort{it.getCreatedOn()})
         results
     }
 
-    def "csv with enrollments"() {
+    def "csv with applications"() {
         given:
-        1 * service.getDraftAtEomEnrollments(_) >> testEnrollmentData()
+        1 * service.getDraftAtEomApplications(_) >> testApplicationData()
         (1..7).each {
             1 * service.getProviderDetails(it, true) >> makeProviderProfile("Provider", "Type");
         }
@@ -148,20 +148,20 @@ class DraftApplicationsReportControllerTest extends Specification {
         records[7][6] == toDate(middleThisMonth).toString()
     }
 
-    def "mv with enrollments"() {
+    def "mv with applications"() {
         given:
-        1 * service.getDraftAtEomEnrollments(_) >> testEnrollmentData()
+        1 * service.getDraftAtEomApplications(_) >> testApplicationData()
 
         when:
         def mv = controller.getDraftApplications().getModel()
 
         then:
-        mv["enrollmentMonths"].size == 4
-        mv["enrollmentMonths"][0].month == middleThisMonth.withDayOfMonth(1)
-        mv["enrollmentMonths"][0].enrollments[0].enrollmentId == 4
-        mv["enrollmentMonths"][2].month == middleThisMonth.withDayOfMonth(1).minusMonths(2)
-        mv["enrollmentMonths"][2].enrollments[1].createdOn == toDate(middleThisMonth.minusMonths(2))
-        mv["enrollmentMonths"][1].enrollments[0].submissionDate == null
-        mv["enrollmentMonths"][1].enrollments[2].submissionDate == toDate(middleThisMonth)
+        mv["applicationMonths"].size == 4
+        mv["applicationMonths"][0].month == middleThisMonth.withDayOfMonth(1)
+        mv["applicationMonths"][0].applications[0].applicationId == 4
+        mv["applicationMonths"][2].month == middleThisMonth.withDayOfMonth(1).minusMonths(2)
+        mv["applicationMonths"][2].applications[1].createdOn == toDate(middleThisMonth.minusMonths(2))
+        mv["applicationMonths"][1].applications[0].submissionDate == null
+        mv["applicationMonths"][1].applications[2].submissionDate == toDate(middleThisMonth)
     }
 }

@@ -26,7 +26,7 @@
 <c:set var="formName" value="_16_memberSize"></c:set>
 
 <c:forEach begin="1" end="${requestScope[formName]}" varStatus="status">
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="section">
         <c:set var="formName" value="_16_objectId_${status.index - 1}"></c:set>
         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -142,7 +142,7 @@
 </div>
 
 <div class="hide">
-<div class="newEnrollmentPanel practicePanel memberInfoPanel" id="memberPanelTemplate">
+<div class="newApplicationPanel practicePanel memberInfoPanel" id="memberPanelTemplate">
     <div class="section">
         <c:set var="formName" value="_16_objectId"></c:set>
         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -255,7 +255,7 @@
     <button class="closeSection" title="Close" aria-label="Close" type="button"></button>
 </div>
 
-<c:url var="lookupUrl" value="/provider/enrollment/lookupProvider" />
+<c:url var="lookupUrl" value="/provider/application/lookupProvider" />
 <input type="hidden" id="memberLookupURL" value="${lookupUrl}"/>
 
 </div>

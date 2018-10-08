@@ -20,7 +20,7 @@
 		<div class="sideBorder">
 		    <h3><c:out value="${agreementDocument.title}"/></h3>
 		</div>
-		<div class="newEnrollmentPanel">
+		<div class="newApplicationPanel">
 		    <div class="section">
 			<div class="wholeCol">
 			    ${agreementDocument.text}

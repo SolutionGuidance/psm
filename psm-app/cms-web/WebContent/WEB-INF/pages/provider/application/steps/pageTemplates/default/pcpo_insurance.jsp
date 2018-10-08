@@ -22,7 +22,7 @@
 <input type="hidden" name="formNames" value="<%= ViewStatics.PCPO_INSURANCE_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 
-<div class="newEnrollmentPanel memberInfoPanel">
+<div class="newApplicationPanel memberInfoPanel">
     <div class="clearFixed"></div>
     <div class="section">
         <div class="wholeCol organizationInfo">

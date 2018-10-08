@@ -17,17 +17,17 @@
 <div class="practiceSection">
     <div class="wholeCol">
         <c:if test="${requestScope['_04_bound'] eq 'Y'}">
-           <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/practice_type.jsp" %>
+           <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/common/practice_type.jsp" %>
         </c:if>
         <c:if test="${requestScope['_05_bound'] eq 'Y'}">
-            <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/private_practice.jsp" %>
+            <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/common/private_practice.jsp" %>
         </c:if>
         <c:if test="${requestScope['_06_bound'] eq 'Y'}">
-            <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/primary_practice.jsp" %>
+            <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/common/primary_practice.jsp" %>
         </c:if>
     </div>
     <div class="clearFixed"></div>
 </div>
 <c:if test="${requestScope['_07_bound'] eq 'Y'}">
-    <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/additional_practice.jsp" %>
+    <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/common/additional_practice.jsp" %>
 </c:if>

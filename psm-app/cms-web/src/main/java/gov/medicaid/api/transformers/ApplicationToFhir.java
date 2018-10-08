@@ -16,34 +16,34 @@
 
 package gov.medicaid.api.transformers;
 
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import org.hl7.fhir.dstu3.model.DomainResource;
 import org.hl7.fhir.dstu3.model.Reference;
 import org.hl7.fhir.dstu3.model.Task;
 import java.util.function.Function;
 
-public class EnrollmentToFhir implements Function<Enrollment, Task> {
+public class ApplicationToFhir implements Function<Application, Task> {
     @Override
-    public Task apply(Enrollment enrollment) {
+    public Task apply(Application application) {
         DomainResource requester = new ProviderProfileToFhir().apply(
-                enrollment.getDetails()
+                application.getDetails()
         );
 
         Task task = new Task();
-        task.setId(Long.toString(enrollment.getEnrollmentId()));
+        task.setId(Long.toString(application.getApplicationId()));
         task.setStatus(
-                new EnrollmentStatusToFhir().apply(enrollment.getStatus())
+                new ApplicationStatusToFhir().apply(application.getStatus())
         );
         task.setIntent(Task.TaskIntent.PROPOSAL);
         task.setRequester(new Task.TaskRequesterComponent(new Reference(requester)));
         task.addInput(
                 new ProviderTypeToFhir().apply(
-                        enrollment.getDetails().getEntity().getProviderType()
+                        application.getDetails().getEntity().getProviderType()
                 )
         );
 
         task.addInput(
-                new EnrollmentAcceptsEftToFhir().apply(enrollment)
+                new ApplicationAcceptsEftToFhir().apply(application)
         );
 
         task.addContained(requester);

@@ -205,10 +205,10 @@ rule 'Individual Applicant Risk Level Is Limited With Some Exceptions'
 dialect 'mvel'
 salience 20
     when
-        $enrollment: EnrollmentInformationType(riskLevel == null)
+        $application: ApplicationInformationType(riskLevel == null)
         ProviderInformationType(applicantType == ApplicantType.INDIVIDUAL, providerType != ProviderType.PHYSICAL_THERAPIST.value())
     then
-        modify($enrollment) {
+        modify($application) {
             setRiskLevel(RiskLevelType.LIMITED)
         };
 
@@ -1104,7 +1104,7 @@ dialect 'mvel'
 
 end
 
-rule 'Only OT in private practice are eligible for MHCP enrollment'
+rule 'Only OT in private practice are eligible for MHCP application'
 dialect 'mvel'
     when
         $provider: ProviderInformationType(maintainsOwnPrivatePractice != "Y", providerType == ProviderType.OCCUPATIONAL_THERAPIST.value())
@@ -1113,12 +1113,12 @@ dialect 'mvel'
         $report.addError(
             "/ProviderInformation/LicenseInformation",
             "00002",
-            "Only OT's in private practice are eligible for MHCP enrollment."
+            "Only OT's in private practice are eligible for MHCP application."
         );
 
 end
 
-rule 'Only PT in private practice are eligible for MHCP enrollment'
+rule 'Only PT in private practice are eligible for MHCP application'
 dialect 'mvel'
     when
         $provider: ProviderInformationType(maintainsOwnPrivatePractice != "Y", providerType == ProviderType.PHYSICAL_THERAPIST.value())
@@ -1127,7 +1127,7 @@ dialect 'mvel'
         $report.addError(
             "/ProviderInformation/LicenseInformation",
             "00002",
-            "Only PT's in private practice are eligible for MHCP enrollment."
+            "Only PT's in private practice are eligible for MHCP application."
         );
 
 end
@@ -1282,10 +1282,10 @@ rule 'Physical Therapist Applicant Risk Level Is Moderate'
 dialect 'mvel'
 salience 20
     when
-        $enrollment: EnrollmentInformationType(riskLevel == null)
+        $application: ApplicationInformationType(riskLevel == null)
         ProviderInformationType(providerType == ProviderType.PHYSICAL_THERAPIST.value())
     then
-        modify($enrollment) {
+        modify($application) {
             setRiskLevel(RiskLevelType.MODERATE)
         };
 
@@ -1371,7 +1371,7 @@ rule 'Organizational Providers Risk Level Is Limited With Some Exceptions'
 dialect 'mvel'
 salience 20
     when
-        $enrollment: EnrollmentInformationType(riskLevel == null)
+        $application: ApplicationInformationType(riskLevel == null)
         ProviderInformationType(applicantType == ApplicantType.ORGANIZATION, providerType
         not in (
         	ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value(),
@@ -1384,7 +1384,7 @@ salience 20
         	ProviderType.MEDICAL_TRANSPORTATION.value()
         ))
     then
-        modify($enrollment) {
+        modify($application) {
             setRiskLevel(RiskLevelType.LIMITED)
         };
 end
@@ -1393,7 +1393,7 @@ rule 'Community Mental Health Center,Independent Diagnostic Testing Facility, In
 dialect 'mvel'
 salience 20
     when
-        $enrollment: EnrollmentInformationType(riskLevel == null)
+        $application: ApplicationInformationType(riskLevel == null)
         ProviderInformationType(providerType
         in (
         	ProviderType.COMMUNITY_MENTAL_HEALTH_CENTER.value(),
@@ -1403,7 +1403,7 @@ salience 20
         	ProviderType.MEDICAL_TRANSPORTATION.value()
         ))
     then
-        modify($enrollment) {
+        modify($application) {
             setRiskLevel(RiskLevelType.MODERATE)
         };
 end
@@ -1412,10 +1412,10 @@ rule 'Revalidating Home Health Agency or Durable Medical Equipment is Moderate R
 dialect 'mvel'
 salience 20
     when
-        $enrollment: EnrollmentInformationType(riskLevel == null || riskLevel == RiskLevelType.HIGH, requestType == RequestType.RENEWAL)
+        $application: ApplicationInformationType(riskLevel == null || riskLevel == RiskLevelType.HIGH, requestType == RequestType.RENEWAL)
         ProviderInformationType(providerType in (ProviderType.HOME_HEALTH_AGENCY.value(),ProviderType.DURABLE_MEDICAL_EQUIPMENT.value()))
     then
-        modify($enrollment) {
+        modify($application) {
             setRiskLevel(RiskLevelType.MODERATE)
         };
 end
@@ -1424,10 +1424,10 @@ rule 'New Home Health Agency or Durable Medical Equipment is High Risk Level'
 dialect 'mvel'
 salience 20
     when
-        $enrollment: EnrollmentInformationType(riskLevel == null, requestType == RequestType.ENROLLMENT)
+        $application: ApplicationInformationType(riskLevel == null, requestType == RequestType.APPLICATION)
         ProviderInformationType(providerType in (ProviderType.HOME_HEALTH_AGENCY.value(),ProviderType.DURABLE_MEDICAL_EQUIPMENT.value()))
     then
-        modify($enrollment) {
+        modify($application) {
             setRiskLevel(RiskLevelType.HIGH)
         };
 end
@@ -1436,12 +1436,12 @@ rule 'Rehabilitation Agency with CORF is Moderate Level'
 dialect 'mvel'
 salience 20
     when
-        $enrollment: EnrollmentInformationType(riskLevel == null, requestType == RequestType.ENROLLMENT)
+        $application: ApplicationInformationType(riskLevel == null, requestType == RequestType.APPLICATION)
         $provider: ProviderInformationType(providerType  == ProviderType.REHABILITATION_AGENCY.value())
         $credentials: FacilityCredentialsType($licenseList : license) from $provider.facilityCredentials
         LicenseType( licenseType == LicenseNames.CORF_CERTIFICATION.value() )  from $licenseList
     then
-        modify($enrollment) {
+        modify($application) {
             setRiskLevel(RiskLevelType.MODERATE)
         };
 end
@@ -1450,12 +1450,12 @@ rule 'Rehabilitation Agency without CORF is Limited Level'
 dialect 'mvel'
 salience 20
     when
-        $enrollment: EnrollmentInformationType(riskLevel == null, requestType == RequestType.ENROLLMENT)
+        $application: ApplicationInformationType(riskLevel == null, requestType == RequestType.APPLICATION)
         $provider: ProviderInformationType(providerType  == ProviderType.REHABILITATION_AGENCY.value())
         $credentials: FacilityCredentialsType($licenseList : license) from $provider.facilityCredentials
         not LicenseType( licenseType == LicenseNames.CORF_CERTIFICATION.value() )  from $licenseList
     then
-        modify($enrollment) {
+        modify($application) {
             setRiskLevel(RiskLevelType.LIMITED)
         };
 end

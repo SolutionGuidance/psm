@@ -17,7 +17,7 @@
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 
-<div class="newEnrollmentPanel practicePanel">
+<div class="newApplicationPanel practicePanel">
     <input type="hidden" name="formNames" value="<%= ViewStatics.CLIA_LICENSE_FORM %>">
     <div class="section">
         <div class="tableHeader topHeader"><span>CLIA Certifications</span></div>
@@ -58,7 +58,7 @@
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                         <c:if test="${not empty formValue}">
                             <c:set var="formName" value="_22_attachmentId_${status.index - 1}"></c:set>
-                            <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                            <c:url var="downloadLink" value="/provider/application/attachment">
                                  <c:param name="id" value="${requestScope[formName]}"></c:param>
                             </c:url>
                             <div><a href="${downloadLink}"><c:out value="${formValue}"></c:out></a></div>
@@ -83,7 +83,7 @@
     <div class="bl"></div>
     <div class="br"></div>
 </div>
-<!-- /.newEnrollmentPanel -->
+<!-- /.newApplicationPanel -->
 
 <!-- /.tableData -->
 <div class="hide">

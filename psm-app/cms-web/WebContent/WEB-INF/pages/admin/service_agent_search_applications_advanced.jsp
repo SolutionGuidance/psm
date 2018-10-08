@@ -40,14 +40,14 @@
           </div>
           <h1>Advanced Search</h1>
           <div class="tabSection" id="advancedSearch">
-            <c:set var="enrollmentSearchFormAction" value="${ctx}/provider/search/advanced"/>
+            <c:set var="applicationSearchFormAction" value="${ctx}/provider/search/advanced"/>
             <c:set var="searchResult" value="${results}"/>
-            <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_form.jsp" %>
+            <%@ include file="/WEB-INF/pages/admin/includes/application_search_form.jsp" %>
             <div class="detailPanel" id="advancedFilterPanel">
               <div class="section">
                 <div class="leftCol">
                   <div class="row">
-                    <label for="npiInput">Enrollment #</label>
+                    <label for="npiInput">Application #</label>
                     <input id="npiInput" type="text" class="normalInput" value="${searchCriteria.npi}"/>
                   </div>
                   <div class="row">
@@ -95,12 +95,12 @@
                     <label>Status</label>
                     <div class="checkWrapper">
                       <label class="checkboxLabel">
-                        <input type="checkbox" name="enrollmentStatus" class="checkAll" />
+                        <input type="checkbox" name="applicationStatus" class="checkAll" />
                         <span class="label">All</span>
                       </label>
-                      <c:forEach var="item" items="${enrollmentStatusesLookup}">
+                      <c:forEach var="item" items="${applicationStatusesLookup}">
                         <label class="checkboxLabel">
-                          <input type="checkbox" name="enrollmentStatus" class="enrollmentStatus" value="${item.description}" <c:forEach var="selectedItem" items="${searchCriteria.statuses}"><c:if test="${item.description == selectedItem}">checked="checked"</c:if></c:forEach>/>
+                          <input type="checkbox" name="applicationStatus" class="applicationStatus" value="${item.description}" <c:forEach var="selectedItem" items="${searchCriteria.statuses}"><c:if test="${item.description == selectedItem}">checked="checked"</c:if></c:forEach>/>
                           <span class="label">${item.description eq 'Rejected' ? 'Denied' : item.description}</span>
                         </label>
                       </c:forEach>
@@ -131,7 +131,7 @@
             </div>
             <div class="clearFixed"></div>
             <div class="buttons">
-              <a id="showSearchEnrollmentsResultBtn" href="javascript:;" class="purpleBtn"><span class="icon">Search</span><span class="arrow"></span></a>
+              <a id="showSearchApplicationsResultBtn" href="javascript:;" class="purpleBtn"><span class="icon">Search</span><span class="arrow"></span></a>
             </div>
           </div>
           <!-- /.tabSection -->
@@ -161,14 +161,14 @@
                 <div class="pagination">
                   <%@ include file="/WEB-INF/pages/includes/pagination_details_wrapper.jsp" %>
                   <div class="right">
-                    <a id="exportEnrollmentsToPDF" href="javascript:;" class="greyBtn iconPdf">Export to PDF</a>
+                    <a id="exportApplicationsToPDF" href="javascript:;" class="greyBtn iconPdf">Export to PDF</a>
                   </div>
                 </div>
                 <!-- /.pagination -->
                 <div class="tableContainer">
                   <c:set var="addStatusColumn" value="yes"/>
                   <c:set var="searchTableId" value="resultsTable"/>
-                  <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_result_table.jsp" %>
+                  <%@ include file="/WEB-INF/pages/admin/includes/application_search_result_table.jsp" %>
                 </div>
                 <!-- /.tableContainer -->
                 <div class="tabFoot">

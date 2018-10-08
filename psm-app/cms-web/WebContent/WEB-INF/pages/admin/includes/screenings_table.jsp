@@ -84,7 +84,7 @@
         <td class="alignCenter">
           <a
             class="actionLink"
-            href="${ctx}/provider/enrollment/view?id=${screening.enrollmentId}"
+            href="${ctx}/provider/application/view?id=${screening.applicationId}"
           >
             View
           </a>
@@ -100,7 +100,7 @@
           </a>
           <a
             class="actionLink"
-            href="${ctx}/agent/enrollment/screeningReview?id=${screening.enrollmentId}"
+            href="${ctx}/agent/application/screeningReview?id=${screening.applicationId}"
           >
             Review
           </a>

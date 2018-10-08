@@ -18,7 +18,7 @@
 
  --%>
 <!-- /#saveAsDraftModal-->
-<div id="supersededTicket" class="outLay">
+<div id="supersededApplication" class="outLay">
     <div class="inner">
         <!-- title -->
         <div class="modal-title">

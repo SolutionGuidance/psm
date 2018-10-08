@@ -17,32 +17,32 @@
 package gov.medicaid.api.transformers
 
 import gov.medicaid.entities.Affiliation
-import gov.medicaid.entities.Enrollment
-import gov.medicaid.entities.EnrollmentStatus
+import gov.medicaid.entities.Application
+import gov.medicaid.entities.ApplicationStatus
 import gov.medicaid.entities.Organization
 import gov.medicaid.entities.Person
 import gov.medicaid.entities.ProviderProfile
 import gov.medicaid.entities.ProviderType
 import spock.lang.Specification
 
-class EnrollmentAcceptsEftToFhirTest extends Specification {
-    EnrollmentAcceptsEftToFhir transformer
-    Enrollment enrollment
+class ApplicationAcceptsEftToFhirTest extends Specification {
+    ApplicationAcceptsEftToFhir transformer
+    Application application
 
     def setup() {
-        transformer = new EnrollmentAcceptsEftToFhir()
-        enrollment = new Enrollment()
-        enrollment.enrollmentId = 123
-        enrollment.status = new EnrollmentStatus()
-        enrollment.status.description = "Pending"
-        enrollment.details = new ProviderProfile()
-        enrollment.details.entity = new Person()
-        enrollment.details.entity.id = 456
-        enrollment.details.entity.providerType = new ProviderType()
-        enrollment.details.entity.providerType.description = "Audiologist"
+        transformer = new ApplicationAcceptsEftToFhir()
+        application = new Application()
+        application.applicationId = 123
+        application.status = new ApplicationStatus()
+        application.status.description = "Pending"
+        application.details = new ProviderProfile()
+        application.details.entity = new Person()
+        application.details.entity.id = 456
+        application.details.entity.providerType = new ProviderType()
+        application.details.entity.providerType.description = "Audiologist"
     }
 
-    void addAffiliation(Map args, Enrollment enrollment) {
+    void addAffiliation(Map args, Application application) {
         def organization = new Organization()
         organization.setEftAccepted(args.eftAccepted)
 
@@ -52,30 +52,30 @@ class EnrollmentAcceptsEftToFhirTest extends Specification {
             affiliation.setPrimaryInd("Y")
         }
 
-        def affiliations = enrollment.details.getAffiliations()
+        def affiliations = application.details.getAffiliations()
         if (affiliations == null) {
             affiliations = new ArrayList<Affiliation>()
         }
 
         affiliations.add(affiliation)
-        enrollment.details.setAffiliations(affiliations)
+        application.details.setAffiliations(affiliations)
     }
 
     def "No primary affiliation does not accept EFT"() {
         given:
-        addAffiliation(enrollment, eftAccepted: false, primary: false)
-        addAffiliation(enrollment, eftAccepted: true, primary: false)
+        addAffiliation(application, eftAccepted: false, primary: false)
+        addAffiliation(application, eftAccepted: true, primary: false)
 
         when:
-        def result = transformer.apply(enrollment)
+        def result = transformer.apply(application)
 
         then:
         result.value.booleanValue() == false
     }
 
-    def "Enrollment without affiliations does not accept EFT"() {
+    def "Application without affiliations does not accept EFT"() {
         when:
-        def result = transformer.apply(enrollment)
+        def result = transformer.apply(application)
 
         then:
         result.value.booleanValue() == false
@@ -83,10 +83,10 @@ class EnrollmentAcceptsEftToFhirTest extends Specification {
 
     def "Primary affiliation without EFT does not accept EFT"() {
         given:
-        addAffiliation(enrollment, eftAccepted: false, primary: true)
+        addAffiliation(application, eftAccepted: false, primary: true)
 
         when:
-        def result = transformer.apply(enrollment)
+        def result = transformer.apply(application)
 
         then:
         result.value.booleanValue() == false
@@ -94,10 +94,10 @@ class EnrollmentAcceptsEftToFhirTest extends Specification {
 
     def "Primary affiliation with EFT does accept EFT"() {
         given:
-        addAffiliation(enrollment, eftAccepted: true, primary: true)
+        addAffiliation(application, eftAccepted: true, primary: true)
 
         when:
-        def result = transformer.apply(enrollment)
+        def result = transformer.apply(application)
 
         then:
         result.value.booleanValue() == true
@@ -105,10 +105,10 @@ class EnrollmentAcceptsEftToFhirTest extends Specification {
 
     def "Primary affiliation with no data on EFT does not accept EFT"() {
         given:
-        addAffiliation(enrollment, eftAccepted: null, primary: true)
+        addAffiliation(application, eftAccepted: null, primary: true)
 
         when:
-        def result = transformer.apply(enrollment)
+        def result = transformer.apply(application)
 
         then:
         result.value.booleanValue() == false

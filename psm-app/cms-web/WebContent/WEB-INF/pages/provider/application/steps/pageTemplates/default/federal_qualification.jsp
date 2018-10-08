@@ -23,7 +23,7 @@
 <input type="hidden" name="formNames" value="<%= ViewStatics.FEDERAL_QUALIFICATION_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="tableHeader topHeader"><span>Facility Qualifications</span></div>
     <div class="clearFixed"></div>
     <div class="section">
@@ -49,7 +49,7 @@
                                     <input type="file" title="Approval Letter File" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
-                                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                                        <c:url var="downloadLink" value="/provider/application/attachment">
                                              <c:param name="id" value="${formValue}"></c:param>
                                         </c:url>
                                         <div><a href="${downloadLink}">Download</a></div>
@@ -70,7 +70,7 @@
                                     <input type="file" title="Grant Documents File" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
-                                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                                        <c:url var="downloadLink" value="/provider/application/attachment">
                                              <c:param name="id" value="${formValue}"></c:param>
                                         </c:url>
                                         <div><a href="${downloadLink}">Download</a></div>
@@ -94,7 +94,7 @@
                                     <input type="file" title="Cover Page File" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
-                                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                                        <c:url var="downloadLink" value="/provider/application/attachment">
                                              <c:param name="id" value="${formValue}"></c:param>
                                         </c:url>
                                         <div><a href="${downloadLink}">Download</a></div>
@@ -116,7 +116,7 @@
                                     <input type="file" title="Indian Health Service Contract File" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
-                                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                                        <c:url var="downloadLink" value="/provider/application/attachment">
                                              <c:param name="id" value="${formValue}"></c:param>
                                         </c:url>
                                         <div><a href="${downloadLink}">Download</a></div>

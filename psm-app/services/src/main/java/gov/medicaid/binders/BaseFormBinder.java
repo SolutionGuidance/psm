@@ -21,7 +21,7 @@ import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import gov.medicaid.domain.model.AddressType;
 import gov.medicaid.domain.model.ApplicantType;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.LicenseType;
 import gov.medicaid.domain.model.OperationStatusType;
 import gov.medicaid.domain.model.StatusMessagesType;
@@ -35,7 +35,7 @@ import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.LookupService;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 import gov.medicaid.services.ProviderTypeService;
 
 import org.springframework.web.util.HtmlUtils;
@@ -76,9 +76,9 @@ public abstract class BaseFormBinder implements FormBinder {
 
 
     /**
-     * Enrollment service.
+     * Application service.
      */
-    private ProviderEnrollmentService enrollmentService;
+    private ProviderApplicationService applicationService;
 
     /**
      * ProviderType service.
@@ -110,12 +110,12 @@ public abstract class BaseFormBinder implements FormBinder {
 
     /**
      * Translates the validation results to form error messages where applicable.
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param validationResult the validation result
      *
      * @return the list of errors related to this form
      */
-    public List<FormError> translateErrors(EnrollmentType enrollmentType, ValidationResultType validationResult) {
+    public List<FormError> translateErrors(ApplicationType applicationType, ValidationResultType validationResult) {
         OperationStatusType status = validationResult.getStatus();
         if ("SUCCESS".equals(status.getStatusCode())) {
             return NO_ERRORS;
@@ -126,17 +126,17 @@ public abstract class BaseFormBinder implements FormBinder {
             return NO_ERRORS;
         }
 
-        return selectErrors(enrollmentType, messages);
+        return selectErrors(applicationType, messages);
     }
 
     /**
      * Captures the error messages related to the form.
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages the messages to select from
      *
      * @return the list of errors related to the form
      */
-    protected abstract List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages);
+    protected abstract List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages);
 
     /**
      * Retrieves the simple string parameter with the given name.
@@ -348,28 +348,28 @@ public abstract class BaseFormBinder implements FormBinder {
     public void init() {
         CMSConfigurator config = new CMSConfigurator();
         lookupService = config.getLookupService();
-        enrollmentService = config.getEnrollmentService();
+        applicationService = config.getApplicationService();
         providerTypeService = config.getProviderTypeService();
         serverHashKey = config.getServerHashKey();
         systemUser = config.getSystemUser();
     }
 
     /**
-     * Gets the value of the field <code>enrollmentService</code>.
+     * Gets the value of the field <code>applicationService</code>.
      *
-     * @return the enrollmentService
+     * @return the applicationService
      */
-    public ProviderEnrollmentService getEnrollmentService() {
-        return enrollmentService;
+    public ProviderApplicationService getApplicationService() {
+        return applicationService;
     }
 
     /**
-     * Sets the value of the field <code>enrollmentService</code>.
+     * Sets the value of the field <code>applicationService</code>.
      *
-     * @param enrollmentService the enrollmentService to set
+     * @param applicationService the applicationService to set
      */
-    public void setEnrollmentService(ProviderEnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
+    public void setApplicationService(ProviderApplicationService applicationService) {
+        this.applicationService = applicationService;
     }
 
     /**
@@ -518,12 +518,12 @@ public abstract class BaseFormBinder implements FormBinder {
     /**
      * Empty implementation by default.
      *
-     * @param enrollment the enrollment to be rendered
+     * @param application the application to be rendered
      * @param document the PDF document to render on
      * @param model the view model
      * @throws DocumentException
      */
-    public void renderPDF(EnrollmentType enrollmentType, Document document, Map<String, Object> model) throws DocumentException {
+    public void renderPDF(ApplicationType applicationType, Document document, Map<String, Object> model) throws DocumentException {
     }
 
     /**

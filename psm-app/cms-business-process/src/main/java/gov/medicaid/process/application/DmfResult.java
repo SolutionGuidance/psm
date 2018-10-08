@@ -1,4 +1,4 @@
-package gov.medicaid.process.enrollment;
+package gov.medicaid.process.application;
 
 import gov.medicaid.entities.DmfAutomaticScreeningMatch;
 

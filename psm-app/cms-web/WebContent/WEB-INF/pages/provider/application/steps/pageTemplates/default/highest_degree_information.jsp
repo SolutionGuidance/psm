@@ -30,7 +30,7 @@
     </c:forEach>
 </c:if>
 <input type="hidden" name="formNames" value="<%= ViewStatics.HIGHEST_DEGREE_FORM %>">
-<div class="newEnrollmentPanel" style="display: ${isActivated ? 'block' : 'none'}">
+<div class="newApplicationPanel" style="display: ${isActivated ? 'block' : 'none'}">
     <c:if test="${not empty specialtyTrigger}">
         <input type="hidden" name="specialtyTrigger" value="${specialtyTrigger}">
     </c:if>
@@ -78,4 +78,4 @@
     <div class="bl"></div>
     <div class="br"></div>
 </div>
-<!-- /.newEnrollmentPanel -->
+<!-- /.newApplicationPanel -->

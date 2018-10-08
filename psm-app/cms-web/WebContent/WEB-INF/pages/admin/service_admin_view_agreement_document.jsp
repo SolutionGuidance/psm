@@ -38,7 +38,7 @@
             Functions
           </div>
           <h1>Functions</h1>
-          <div class="tabSection functionTab" id="enrollmentSection">
+          <div class="tabSection functionTab" id="applicationSection">
             <c:set var="functionsServiceActiveMenuAgreement" value="1"/>
             <h:handlebars template="admin/includes/functions_service_nav" context="${pageContext}" />
             <div class="tabContent" id="tabAgreement">
@@ -48,7 +48,7 @@
                   <a href="${ctx}/admin/viewAgreementDocuments" class="closeViewAgreementBtn greyBtn">Close</a>
                   <a href="javascript:window.print();" class="greyBtn printBtn iconPrint">Print</a>
                 </div>
-                <div class="newEnrollmentPanel">
+                <div class="newApplicationPanel">
                   <div class="section">
                     <div class="wholeCol">
                       ${agreementDocument.text}

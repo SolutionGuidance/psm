@@ -58,7 +58,7 @@
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                         <c:if test="${not empty formValue}">
                             <c:set var="formName" value="_09_attachmentId_${status.index - 1}"></c:set>
-                            <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                            <c:url var="downloadLink" value="/provider/application/attachment">
                                  <c:param name="id" value="${requestScope[formName]}"></c:param>
                             </c:url>
                             <div><a href="${downloadLink}"><cms:truncate text="${formValue}" /></a></div>

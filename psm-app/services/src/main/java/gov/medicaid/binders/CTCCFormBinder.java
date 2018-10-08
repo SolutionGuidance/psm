@@ -20,13 +20,13 @@ package gov.medicaid.binders;
 import gov.medicaid.domain.model.AttachedDocumentsType;
 import gov.medicaid.domain.model.DocumentNames;
 import gov.medicaid.domain.model.DocumentType;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.FacilityCredentialsType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormError;
 
@@ -56,13 +56,13 @@ public class CTCCFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request the request containing the form fields
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+    public List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
 
         String attachmentId = (String) request.getAttribute(NAMESPACE + "dhsContract");
@@ -70,7 +70,7 @@ public class CTCCFormBinder extends BaseFormBinder {
             replaceDocument(attachments, attachmentId, DocumentNames.COMMUNITY_HEALTH_BOARD_DHS_CONTRACT.value());
         }
 
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
         if (param(request, "chbIndicator") != null) {
             creds.setCommunityHealthBoard("Y");
         } else {
@@ -96,13 +96,13 @@ public class CTCCFormBinder extends BaseFormBinder {
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly true if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
         List<DocumentType> attachment = attachments.getAttachment();
         for (DocumentType doc : attachment) {
@@ -111,18 +111,18 @@ public class CTCCFormBinder extends BaseFormBinder {
             }
         }
 
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
         attr(mv, "chbIndicator", creds.getCommunityHealthBoard());
     }
 
     /**
      * Captures the error messages related to the form.
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages the messages to select from
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -156,24 +156,24 @@ public class CTCCFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param applicationType the front end model
+     * @param application the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) {
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
-        ProviderProfile profile = ticket.getDetails();
+    public void bindToHibernate(ApplicationType applicationType, Application application) {
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
+        ProviderProfile profile = application.getDetails();
         profile.setHealthBoardInd(creds.getCommunityHealthBoard());
     }
 
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * @param application the persistent model
+     * @param applicationType the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollmentType);
-        ProviderProfile profile = ticket.getDetails();
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
+        ProviderProfile profile = application.getDetails();
         if (profile != null) {
             creds.setCommunityHealthBoard(profile.getHealthBoardInd());
         }

@@ -16,12 +16,12 @@
 
 package gov.medicaid.controllers.admin.report;
 
-import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
-import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.EnrollmentSearchCriteria;
+import gov.medicaid.controllers.admin.report.ReportControllerUtils.ApplicationMonth;
+import gov.medicaid.entities.Application;
+import gov.medicaid.entities.ApplicationSearchCriteria;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -40,17 +40,17 @@ import java.util.stream.Collectors;
 
 @Controller
 public class TimeToReviewReportController extends gov.medicaid.controllers.BaseController {
-    private final ProviderEnrollmentService enrollmentService;
+    private final ProviderApplicationService applicationService;
 
-    public TimeToReviewReportController(ProviderEnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
+    public TimeToReviewReportController(ProviderApplicationService applicationService) {
+        this.applicationService = applicationService;
     }
 
     @RequestMapping(value = "/admin/reports/time-to-review", method = RequestMethod.GET)
     public ModelAndView getTimeToReview() {
         ModelAndView mv = new ModelAndView("admin/reports/time_to_review");
-        SearchResult<Enrollment> enrollments = getEnrollmentsFromDB();
-        List<EnrollmentMonth> ems = groupEnrollments(enrollments.getItems());
+        SearchResult<Application> applications = getApplicationsFromDB();
+        List<ApplicationMonth> ems = groupApplications(applications.getItems());
         List<Month> months = buildMonths(ems);
 
         mv.addObject("months", months);
@@ -63,8 +63,8 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", csvFileName));
 
-        SearchResult<Enrollment> enrollments = getEnrollmentsFromDB();
-        List<EnrollmentMonth> ems = groupEnrollments(enrollments.getItems());
+        SearchResult<Application> applications = getApplicationsFromDB();
+        List<ApplicationMonth> ems = groupApplications(applications.getItems());
         List<Month> months = buildMonths(ems);
 
         try {
@@ -79,7 +79,7 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
             for (Month month : months) {
                csvPrinter.printRecord(
                    month.getMonth(),
-                   month.getEnrollments().size(),
+                   month.getApplications().size(),
                    month.getMean().isZero() ? "N/A" : month.getMeanAsString(),
                    month.getMedian().isZero() ? "N/A" : month.getMedianAsString()
                );
@@ -90,15 +90,15 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
         }
     }
 
-    private SearchResult<Enrollment> getEnrollmentsFromDB() {
-        EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
-        return enrollmentService.searchEnrollments(criteria);
+    private SearchResult<Application> getApplicationsFromDB() {
+        ApplicationSearchCriteria criteria = new ApplicationSearchCriteria();
+        return applicationService.searchApplications(criteria);
     }
 
-    private List<EnrollmentMonth> groupEnrollments(List<Enrollment> enrollments) {
-        return ReportControllerUtils.groupEnrollments(
-            enrollments,
-            Enrollment::getStatusDate,
+    private List<ApplicationMonth> groupApplications(List<Application> applications) {
+        return ReportControllerUtils.groupApplications(
+            applications,
+            Application::getStatusDate,
             (e, monthStart, monthEnd) -> {
                 return !(
                     monthStart.isAfter(ReportControllerUtils.toLocalDate(e.getStatusDate())) ||
@@ -107,7 +107,7 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
             });
     }
 
-    private List<Month> buildMonths(List<EnrollmentMonth> ems) {
+    private List<Month> buildMonths(List<ApplicationMonth> ems) {
         return ems.stream().map(em -> new Month(em)).collect(Collectors.toList());
     }
 
@@ -115,7 +115,7 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
         private Duration mean;
         private Duration median;
         private LocalDate month;
-        private List<Enrollment> enrollments;
+        private List<Application> applications;
 
         public Duration getMean() {
             return mean;
@@ -141,15 +141,15 @@ public class TimeToReviewReportController extends gov.medicaid.controllers.BaseC
             return dur.toDays() + " days, " + (dur.toHours() % 24) + " hours";
         }
 
-        public List<Enrollment> getEnrollments() {
-            return enrollments;
+        public List<Application> getApplications() {
+            return applications;
         }
 
-        public Month(EnrollmentMonth em) {
+        public Month(ApplicationMonth em) {
             month = em.getMonth();
-            enrollments = em.getEnrollments();
+            applications = em.getApplications();
 
-            List<Duration> periods = em.getEnrollments().stream().map(
+            List<Duration> periods = em.getApplications().stream().map(
                 e -> Duration.between(
                     ReportControllerUtils.toLocalDateTime(e.getSubmissionDate()),
                     ReportControllerUtils.toLocalDateTime(e.getStatusDate())

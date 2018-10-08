@@ -17,7 +17,7 @@
 
 package gov.medicaid.services;
 
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.UserRequest;
 
@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * This represents the service API to export enrollment data for the given user
+ * This represents the service API to export application data for the given user
  *
  * <p>
  * <b>Thread Safety</b> Implementations should be effectively thread-safe.
@@ -54,8 +54,8 @@ public interface ExportService {
      *
      * @param currentUser
      *            the current user
-     * @param enrollment
-     *            the enrollment model
+     * @param application
+     *            the application model
      * @param model
      *            the view model
      * @param outputStream
@@ -65,7 +65,7 @@ public interface ExportService {
      * @throws PortalServiceException
      *             for any other errors encountered
      */
-    void export(CMSUser currentUser, EnrollmentType enrollmentType, Map<String, Object> model, OutputStream outputStream)
+    void export(CMSUser currentUser, ApplicationType applicationType, Map<String, Object> model, OutputStream outputStream)
             throws PortalServiceException, IOException;
 
 }

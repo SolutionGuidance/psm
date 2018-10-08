@@ -37,13 +37,13 @@ import java.util.Map.Entry;
  * This class is responsible for loading all lookup values to be used by the rules.
  *
  * <p>
- * <b>v1.4 - Provider Enrollment Drools Front End Validation Part 4</b>
+ * <b>v1.4 - Provider Application Drools Front End Validation Part 4</b>
  * <ul>
  * <li>added new provider types and licenses</li>
  * </ul>
  * </p>
  * <p>
- * <b>v1.5 - Provider Enrollment Drools Front End Validation Part 5</b>
+ * <b>v1.5 - Provider Application Drools Front End Validation Part 5</b>
  * <ul>
  * <li>added new provider types and licenses</li>
  * <li>added new EntityType and EDITradingPartnerType</li>

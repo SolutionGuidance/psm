@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        xmlns:tns="http://gov.medicaid.process/EnrollmentProcess"
+        xmlns:tns="http://gov.medicaid.process/ApplicationProcess"
         xmlns:cms="http://gov.medicaid.shared/Entities"
-        targetNamespace="http://gov.medicaid.process/EnrollmentProcess"
+        targetNamespace="http://gov.medicaid.process/ApplicationProcess"
         elementFormDefault="qualified">
   <annotation>
     <documentation xml:lang="en">
-      This defines the aggregate schema used by the enrollment business process.
+      This defines the aggregate schema used by the application business process.
 
     </documentation>
   </annotation>
   <import schemaLocation="Entities.xsd"
           namespace="http://gov.medicaid.shared/Entities"/>
-  <element name="EnrollmentProcess">
+  <element name="ApplicationProcess">
     <annotation>
       <documentation xml:lang="en">Root element for the entire process model.</documentation>
     </annotation>
     <complexType>
       <sequence>
         <element name="SessionId" type="int" maxOccurs="1" minOccurs="0"/>
-        <element name="Enrollment" type="tns:EnrollmentType"/>
-        <element name="EnrollmentStatus" type="cms:EnrollmentStatusType"/>
-        <element name="EnrollmentStatusHistory" type="cms:EnrollmentStatusHistoryType"/>
+        <element name="Application" type="tns:ApplicationType"/>
+        <element name="ApplicationStatus" type="cms:ApplicationStatusType"/>
+        <element name="ApplicationStatusHistory" type="cms:ApplicationStatusHistoryType"/>
         <element name="PostSubmissionInformation" type="cms:PostSubmissionInformationType"/>
         <element name="PreApprovalQuestions" type="string"/>
         <element name="AssessedFees" type="tns:AssessedFeesType"/>
@@ -30,12 +30,12 @@
       </sequence>
     </complexType>
   </element>
-  <complexType name="EnrollmentType">
+  <complexType name="ApplicationType">
     <annotation>
       <documentation xml:lang="en">Wraps the submitted provider information and includes support for tracking approver made edits.</documentation>
     </annotation>
     <complexContent>
-      <extension base="cms:EnrollmentInformationType">
+      <extension base="cms:ApplicationInformationType">
         <sequence>
           <element name="ProviderInformation" type="cms:ProviderInformationType"/>
           <element name="SubmissionEditHistory"

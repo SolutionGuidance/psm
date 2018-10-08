@@ -16,10 +16,10 @@
 
 package gov.medicaid.controllers.admin.report;
 
-import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.EnrollmentSearchCriteria;
+import gov.medicaid.entities.Application;
+import gov.medicaid.entities.ApplicationSearchCriteria;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -39,10 +39,10 @@ import java.util.List;
 
 @Controller
 public class ApplicationsByReviewerReportController extends gov.medicaid.controllers.BaseController {
-    private final ProviderEnrollmentService enrollmentService;
+    private final ProviderApplicationService applicationService;
 
-    public ApplicationsByReviewerReportController(ProviderEnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
+    public ApplicationsByReviewerReportController(ProviderApplicationService applicationService) {
+        this.applicationService = applicationService;
     }
 
     @RequestMapping(value = "/admin/reports/applications-by-reviewer", method = RequestMethod.GET)
@@ -64,7 +64,7 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
         mv.addObject("startDate", startDate);
         mv.addObject("endDate", endDate);
 
-        mv.addObject("enrollments", getEnrollmentsFromDB(startDate, endDate));
+        mv.addObject("applications", getApplicationsFromDB(startDate, endDate));
         return mv;
     }
 
@@ -78,7 +78,7 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", csvFileName));
 
-        List<Enrollment> enrollments = getEnrollmentsFromDB(startDate, endDate);
+        List<Application> applications = getApplicationsFromDB(startDate, endDate);
 
         try {
             CSVPrinter csvPrinter = new CSVPrinter(response.getWriter(), CSVFormat.DEFAULT);
@@ -91,15 +91,15 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
                 "Reviewed By",
                 "Review Date",
                 "Status");
-            for (Enrollment enrollment : enrollments) {
+            for (Application application : applications) {
                 csvPrinter.printRecord(
-                    enrollment.getEnrollmentId(),
-                    enrollment.getDetails().getEntity().getName(),
-                    enrollment.getDetails().getEntity().getProviderType().getDescription(),
-                    enrollment.getCreatedOn(),
-                    enrollment.getLastUpdatedBy().getUsername(),
-                    enrollment.getStatusDate(),
-                    enrollment.getStatus().getDescription()
+                    application.getApplicationId(),
+                    application.getDetails().getEntity().getName(),
+                    application.getDetails().getEntity().getProviderType().getDescription(),
+                    application.getCreatedOn(),
+                    application.getLastUpdatedBy().getUsername(),
+                    application.getStatusDate(),
+                    application.getStatus().getDescription()
                 );
             }
             csvPrinter.close();
@@ -108,22 +108,22 @@ public class ApplicationsByReviewerReportController extends gov.medicaid.control
         }
     }
 
-    private List<Enrollment> getEnrollmentsFromDB(
+    private List<Application> getApplicationsFromDB(
         Date startDate,
         Date endDate
     ) {
-        EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
+        ApplicationSearchCriteria criteria = new ApplicationSearchCriteria();
         criteria.setCreateDateStart(startDate);
         criteria.setCreateDateEnd(endDate);
         criteria.setAscending(true);
         criteria.setSortColumn("t.createdOn");
 
-        List<Enrollment> results = enrollmentService.searchEnrollments(criteria).getItems();
+        List<Application> results = applicationService.searchApplications(criteria).getItems();
 
         results.stream()
             .forEach(e -> {
                 e.setDetails(
-                    enrollmentService.getProviderDetails(e.getProfileReferenceId(), true)
+                    applicationService.getProviderDetails(e.getProfileReferenceId(), true)
                 );
             });
 

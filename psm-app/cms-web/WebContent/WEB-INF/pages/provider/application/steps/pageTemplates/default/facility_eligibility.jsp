@@ -17,7 +17,7 @@
 <%@page import="gov.medicaid.entities.dto.ViewStatics"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="tableHeader topHeader"><span>Eligibity</span></div>
     <div class="clearFixed"></div>
     <div class="section">

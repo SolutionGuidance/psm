@@ -1,19 +1,19 @@
 @reject
-Feature: Enrollment Reject Workflow
+Feature: Application Reject Workflow
   Users wish to execute reject workflow functions
 
-  Scenario: Provider Create Individual Workflow Enrollment
-    Given I have started an enrollment
+  Scenario: Provider Create Individual Workflow Application
+    Given I have started an application
     And I am on the individual provider statement page
     And I enter my individual provider statement
-    And I submit the enrollment
+    And I submit the application
     Then I should have no errors
 
-  Scenario: Admin Reject Individual Enrollment
+  Scenario: Admin Reject Individual Application
     Given I am logged in as an admin
     And I am on the admin Pending page
-    When I am on the Review Enrollment Page for '0000000006'
-    And I Reject the Enrollment
-    And I view the Reviewed Enrollment
+    When I am on the Review Application Page for '0000000006'
+    And I Reject the Application
+    And I view the Reviewed Application
     Then I should have no errors
-    And The Enrollment should be in the 'Denied' state
+    And The Application should be in the 'Denied' state

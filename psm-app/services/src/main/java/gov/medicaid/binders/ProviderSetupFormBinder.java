@@ -17,13 +17,13 @@
 
 package gov.medicaid.binders;
 
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.PayToProviderType;
 import gov.medicaid.domain.model.ProviderSetupInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.PayToProvider;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormError;
@@ -55,15 +55,15 @@ public class ProviderSetupFormBinder extends BaseFormBinder implements FormBinde
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request the request containing the form fields
      *
      * @return
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        ProviderSetupInformationType setup = XMLUtility.nsGetProviderSetup(enrollmentType);
+        ProviderSetupInformationType setup = XMLUtility.nsGetProviderSetup(applicationType);
         setup.getPayToProvider().clear();
 
         int i = 0;
@@ -92,13 +92,13 @@ public class ProviderSetupFormBinder extends BaseFormBinder implements FormBinde
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderSetupInformationType setup = XMLUtility.nsGetProviderSetup(enrollmentType);
+        ProviderSetupInformationType setup = XMLUtility.nsGetProviderSetup(applicationType);
 
         List<PayToProviderType> payTos = setup.getPayToProvider();
         int i = 0;
@@ -121,12 +121,12 @@ public class ProviderSetupFormBinder extends BaseFormBinder implements FormBinde
 
     /**
      * Translates the validation results to form error messages where applicable.
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages the error messages
      *
      * @return the list of errors related to this form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -206,14 +206,14 @@ public class ProviderSetupFormBinder extends BaseFormBinder implements FormBinde
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param applicationType the front end model
+     * @param application the persistent model
      * @throws PortalServiceException for any errors encountered
      */
-    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) throws PortalServiceException {
-        ProviderProfile profile = ticket.getDetails();
+    public void bindToHibernate(ApplicationType applicationType, Application application) throws PortalServiceException {
+        ProviderProfile profile = application.getDetails();
 
-        ProviderSetupInformationType setup = XMLUtility.nsGetProviderSetup(enrollmentType);
+        ProviderSetupInformationType setup = XMLUtility.nsGetProviderSetup(applicationType);
         profile.setPayToProviders(new ArrayList<PayToProvider>());
         List<PayToProvider> providers = profile.getPayToProviders();
 
@@ -233,15 +233,15 @@ public class ProviderSetupFormBinder extends BaseFormBinder implements FormBinde
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * @param application the persistent model
+     * @param applicationType the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
-        ProviderProfile profile = ticket.getDetails();
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        ProviderProfile profile = application.getDetails();
         if (profile != null) {
             List<PayToProvider> payToProviders = profile.getPayToProviders();
             if (payToProviders != null) {
-                ProviderSetupInformationType setup = XMLUtility.nsGetProviderSetup(enrollmentType);
+                ProviderSetupInformationType setup = XMLUtility.nsGetProviderSetup(applicationType);
                 setup.getPayToProvider().clear();
 
                 for (PayToProvider payToProvider : payToProviders) {

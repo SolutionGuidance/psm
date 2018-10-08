@@ -16,8 +16,8 @@
 
 package gov.medicaid.api.transformers
 
-import gov.medicaid.entities.Enrollment
-import gov.medicaid.entities.EnrollmentStatus
+import gov.medicaid.entities.Application
+import gov.medicaid.entities.ApplicationStatus
 import gov.medicaid.entities.Person
 import gov.medicaid.entities.ProviderProfile
 import gov.medicaid.entities.ProviderType
@@ -25,9 +25,9 @@ import org.hl7.fhir.dstu3.model.Task
 import org.hl7.fhir.dstu3.model.Task.ParameterComponent
 import spock.lang.Specification
 
-class EnrollmentToFhirTest extends Specification {
-    EnrollmentToFhir transformer
-    Enrollment enrollment
+class ApplicationToFhirTest extends Specification {
+    ApplicationToFhir transformer
+    Application application
 
     def getInputByType(inputs, name) {
         for (ParameterComponent input : inputs) {
@@ -38,22 +38,22 @@ class EnrollmentToFhirTest extends Specification {
     }
 
     def setup() {
-        transformer = new EnrollmentToFhir()
+        transformer = new ApplicationToFhir()
 
-        enrollment = new Enrollment()
-        enrollment.enrollmentId = 123
-        enrollment.status = new EnrollmentStatus()
-        enrollment.status.description = "Pending"
-        enrollment.details = new ProviderProfile()
-        enrollment.details.entity = new Person()
-        enrollment.details.entity.id = 456
-        enrollment.details.entity.providerType = new ProviderType()
-        enrollment.details.entity.providerType.description = "Audiologist"
+        application = new Application()
+        application.applicationId = 123
+        application.status = new ApplicationStatus()
+        application.status.description = "Pending"
+        application.details = new ProviderProfile()
+        application.details.entity = new Person()
+        application.details.entity.id = 456
+        application.details.entity.providerType = new ProviderType()
+        application.details.entity.providerType.description = "Audiologist"
     }
 
     def "Entity is included as a contained resource"() {
         when:
-        def result = transformer.apply(enrollment)
+        def result = transformer.apply(application)
 
         then:
         result.hasContained()
@@ -63,7 +63,7 @@ class EnrollmentToFhirTest extends Specification {
 
     def "Status is set"() {
         when:
-        def result = transformer.apply(enrollment)
+        def result = transformer.apply(application)
 
         then:
         result.hasStatus()
@@ -72,7 +72,7 @@ class EnrollmentToFhirTest extends Specification {
 
     def "Intent is set"() {
         when:
-        def result = transformer.apply(enrollment)
+        def result = transformer.apply(application)
 
         then:
         result.hasIntent()
@@ -81,7 +81,7 @@ class EnrollmentToFhirTest extends Specification {
 
     def "Provider type is set as input"() {
         when:
-        def result = transformer.apply(enrollment)
+        def result = transformer.apply(application)
 
         then:
         result.hasInput()
@@ -91,7 +91,7 @@ class EnrollmentToFhirTest extends Specification {
 
     def "Accepts EFT is set as input"() {
         when:
-        def result = transformer.apply(enrollment)
+        def result = transformer.apply(application)
 
         then:
         result.hasInput()
@@ -99,9 +99,9 @@ class EnrollmentToFhirTest extends Specification {
         input.value.booleanValue() == false
     }
 
-    def "Enrollment ID is set as identifier"() {
+    def "Application ID is set as identifier"() {
         when:
-        def result = transformer.apply(enrollment)
+        def result = transformer.apply(application)
 
         then:
         result.hasId()

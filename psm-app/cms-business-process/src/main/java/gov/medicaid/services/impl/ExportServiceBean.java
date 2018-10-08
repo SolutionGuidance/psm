@@ -28,7 +28,7 @@ import com.lowagie.text.pdf.PdfWriter;
 
 import gov.medicaid.binders.BinderUtils;
 import gov.medicaid.binders.FormBinder;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.UserRequest;
 import gov.medicaid.entities.dto.UITabModel;
@@ -143,7 +143,7 @@ public class ExportServiceBean extends BaseService implements ExportService {
             resultTable.setTotalWidth(72 * 7);
             resultTable.setLockedWidth(true);
 
-            resultTable.addCell(createHeaderCell("Enrollments", 9));
+            resultTable.addCell(createHeaderCell("Applications", 9));
             resultTable.completeRow();
 
             addCenterCell(resultTable, "#");
@@ -186,8 +186,8 @@ public class ExportServiceBean extends BaseService implements ExportService {
      *
      * @param currentUser
      *            the current user
-     * @param enrollment
-     *            the enrollment model
+     * @param application
+     *            the application model
      * @param model
      *            the view model
      * @param outputStream
@@ -197,14 +197,14 @@ public class ExportServiceBean extends BaseService implements ExportService {
      * @throws PortalServiceException
      *             for any other errors encountered
      */
-    public void export(CMSUser currentUser, EnrollmentType enrollmentType, Map<String, Object> model,
+    public void export(CMSUser currentUser, ApplicationType applicationType, Map<String, Object> model,
             OutputStream outputStream) throws PortalServiceException, IOException {
 
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, outputStream);
             document.open();
-            renderTicket(enrollmentType, document, model);
+            renderApplication(applicationType, document, model);
             document.close();
         } catch (DocumentException e) {
             throw new PortalServiceException("Export failed, see log for additional details.", e);
@@ -212,10 +212,10 @@ public class ExportServiceBean extends BaseService implements ExportService {
     }
 
     /**
-     * Renders the ticket.
+     * Renders the application.
      *
-     * @param enrollment
-     *            the enrollment
+     * @param application
+     *            the application
      * @param document
      *            the document to render to
      * @param model
@@ -227,13 +227,13 @@ public class ExportServiceBean extends BaseService implements ExportService {
      * @throws PortalServiceException
      *             for any other errors encountered
      */
-    private void renderTicket(EnrollmentType enrollmentType, Document document, Map<String, Object> model)
+    private void renderApplication(ApplicationType applicationType, Document document, Map<String, Object> model)
             throws PortalServiceException, DocumentException, IOException {
 
         CMSConfigurator config = new CMSConfigurator();
         PresentationService presentationService = config.getPresentationService();
         Map<String, FormBinder> registry = config.getBinderRegistry();
-        ViewModel viewModel = presentationService.getProviderViewModel(enrollmentType.getProviderInformation());
+        ViewModel viewModel = presentationService.getProviderViewModel(applicationType.getProviderInformation());
 
         Map<String, UITabModel> pageModels = viewModel.getTabModels();
 
@@ -252,7 +252,7 @@ public class ExportServiceBean extends BaseService implements ExportService {
             for (String form : formNames) {
                 FormBinder binder = registry.get(form);
                 if (binder != null) {
-                    binder.renderPDF(enrollmentType, document, model);
+                    binder.renderPDF(applicationType, document, model);
                 }
             }
         }

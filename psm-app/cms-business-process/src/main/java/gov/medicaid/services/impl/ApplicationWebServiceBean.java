@@ -18,11 +18,11 @@
 package gov.medicaid.services.impl;
 
 import gov.medicaid.binders.BinderUtils;
-import gov.medicaid.domain.model.EnrollmentType;
-import gov.medicaid.domain.model.SubmitTicketRequest;
-import gov.medicaid.domain.model.SubmitTicketResponse;
+import gov.medicaid.domain.model.ApplicationType;
+import gov.medicaid.domain.model.SubmitApplicationRequest;
+import gov.medicaid.domain.model.SubmitApplicationResponse;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.ExternalAccountLink;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.RoleView;
@@ -30,10 +30,10 @@ import gov.medicaid.entities.SystemId;
 import gov.medicaid.entities.Validity;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.BusinessProcessService;
-import gov.medicaid.services.EnrollmentWebService;
+import gov.medicaid.services.ApplicationWebService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 import gov.medicaid.services.RegistrationService;
 import gov.medicaid.services.util.Util;
 import gov.medicaid.services.util.XMLAdapter;
@@ -48,21 +48,21 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
 /**
- * Web service facade for enrollment requests.
+ * Web service facade for application requests.
  *
  * v1.1 - WAS Porting - split transaction of save and submit, so JBPM errors still saves the request
  */
 @Stateless
-@Local(EnrollmentWebService.class)
+@Local(ApplicationWebService.class)
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class EnrollmentWebServiceBean extends BaseService implements EnrollmentWebService {
+public class ApplicationWebServiceBean extends BaseService implements ApplicationWebService {
 
     /**
      * Persistence service.
      */
     @EJB
-    private ProviderEnrollmentService providerEnrollmentService;
+    private ProviderApplicationService providerApplicationService;
 
     /**
      * Registration service.
@@ -79,7 +79,7 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
     /**
      * Empty constructor.
      */
-    public EnrollmentWebServiceBean() {
+    public ApplicationWebServiceBean() {
     }
 
     /**
@@ -91,51 +91,51 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
         if (registrationService == null) {
             throw new PortalServiceConfigurationException("registrationService must be configured.");
         }
-        if (providerEnrollmentService == null) {
-            throw new PortalServiceConfigurationException("providerEnrollmentService must be configured.");
+        if (providerApplicationService == null) {
+            throw new PortalServiceConfigurationException("providerApplicationService must be configured.");
         }
     }
 
     /**
-     * Retrieves the ticket details.
+     * Retrieves the application details.
      *
      * @param username     the username of the requesting user
      * @param systemId     the system that authenticated the requesting user
      * @param npi          the NPI for which this user is a proxy, if any
-     * @param enrollmentId the ID of the enrollment (ticket)
-     * @return the enrollment (ticket)
+     * @param applicationId the ID of the application (application)
+     * @return the application (application)
      * @throws PortalServiceException for any errors encountered
      */
-    public EnrollmentType getTicketDetails(
+    public ApplicationType getApplicationDetails(
             String username,
             String systemId,
             String npi,
-            long enrollmentId
+            long applicationId
     ) throws PortalServiceException {
         CMSUser user = findUser(username, systemId, npi);
-        Enrollment ticket = providerEnrollmentService.getEnrollmentWithScreenings(user, enrollmentId).
-            orElseThrow(() -> new PortalServiceException("Couldn't find ticket"));
-        return XMLAdapter.toXML(ticket);
+        Application application = providerApplicationService.getApplicationWithScreenings(user, applicationId).
+            orElseThrow(() -> new PortalServiceException("Couldn't find application"));
+        return XMLAdapter.toXML(application);
     }
 
     /**
-     * Saves the ticket details.
+     * Saves the application details.
      *
      * @param username   the username of the requesting user
      * @param systemId   the system that authenticated the requesting user
      * @param npi        the NPI for which this user is a proxy, if any
-     * @param enrollment the enrollment to save
-     * @return the enrollment (ticket) ID
+     * @param application the application to save
+     * @return the application (application) ID
      * @throws PortalServiceException for any errors encountered
      */
-    public long saveTicket(
+    public long saveApplication(
             String username,
             String systemId,
             String npi,
-            EnrollmentType enrollmentType
+            ApplicationType applicationType
     ) throws PortalServiceException {
         CMSUser user = findUser(username, systemId, npi);
-        return saveTicket(user, enrollmentType, true);
+        return saveApplication(user, applicationType, true);
     }
 
     /**
@@ -174,43 +174,43 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
     }
 
     /**
-     * Saves the given ticket.
+     * Saves the given application.
      *
      * @param user the user performing the action
-     * @param enrollment the enrollment model
+     * @param application the application model
      * @param resetToDraft if true, resets the submission into DRAFT status
-     * @return the ticket id
+     * @return the application id
      * @throws PortalServiceException for any errors encountered
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public long saveTicket(CMSUser user, EnrollmentType enrollmentType, boolean resetToDraft) throws PortalServiceException {
-        long ticketId = BinderUtils.getAsLong(enrollmentType.getObjectId());
-        Enrollment ticket;
-        if (ticketId > 0) {
-            // update existing ticket
-            Enrollment ticketDetails = providerEnrollmentService.getEnrollmentWithScreenings(user, ticketId).
-                orElseThrow(() -> new PortalServiceException("Couldn't find ticket"));
+    public long saveApplication(CMSUser user, ApplicationType applicationType, boolean resetToDraft) throws PortalServiceException {
+        long applicationId = BinderUtils.getAsLong(applicationType.getObjectId());
+        Application application;
+        if (applicationId > 0) {
+            // update existing application
+            Application applicationDetails = providerApplicationService.getApplicationWithScreenings(user, applicationId).
+                orElseThrow(() -> new PortalServiceException("Couldn't find application"));
             if (resetToDraft) {
-                if (!ViewStatics.DRAFT_STATUS.equals(ticketDetails.getStatus().getDescription())) {
-                    throw new PortalServiceException("Cannot modify submitted ticket.");
+                if (!ViewStatics.DRAFT_STATUS.equals(applicationDetails.getStatus().getDescription())) {
+                    throw new PortalServiceException("Cannot modify submitted application.");
                 }
             }
-            ticket = XMLAdapter.mergeFromXML(user, enrollmentType, ticketDetails);
+            application = XMLAdapter.mergeFromXML(user, applicationType, applicationDetails);
         } else {
-            ticket = XMLAdapter.fromXML(user, enrollmentType);
+            application = XMLAdapter.fromXML(user, applicationType);
         }
 
         if (resetToDraft) {
-            ticketId = providerEnrollmentService.saveAsDraft(user, ticket);
+            applicationId = providerApplicationService.saveAsDraft(user, application);
         } else {
             // retain current status
-            providerEnrollmentService.saveEnrollmentDetails(ticket);
+            providerApplicationService.saveApplicationDetails(application);
         }
-        return ticketId;
+        return applicationId;
     }
 
     /**
-     * Submits the given enrollment request.
+     * Submits the given application request.
      *
      * @param request the service request
      * @return the service response
@@ -218,22 +218,22 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
      */
     @Override
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED) // allow SAVE even if SUBMIT fails
-    public SubmitTicketResponse submitEnrollment(SubmitTicketRequest request) throws PortalServiceException {
+    public SubmitApplicationResponse submitApplication(SubmitApplicationRequest request) throws PortalServiceException {
         try {
-            EnrollmentType enrollmentType = request.getEnrollment();
+            ApplicationType applicationType = request.getApplication();
             CMSUser user = findUser(request.getUsername(), request.getSystemId(), request.getNpi());
             // transaction #1
-            long ticketId = saveTicket(user, enrollmentType, true);
+            long applicationId = saveApplication(user, applicationType, true);
 
-            long profileId = BinderUtils.getAsLong(enrollmentType.getProviderInformation().getObjectId());
-            Validity validity = providerEnrollmentService.getSubmissionValidity(ticketId, profileId);
+            long profileId = BinderUtils.getAsLong(applicationType.getProviderInformation().getObjectId());
+            Validity validity = providerApplicationService.getSubmissionValidity(applicationId, profileId);
 
-            SubmitTicketResponse response = new SubmitTicketResponse();
-            response.setTicketNumber(ticketId);
+            SubmitApplicationResponse response = new SubmitApplicationResponse();
+            response.setApplicationNumber(applicationId);
             if (validity == Validity.VALID) {
 
                 // transaction #2
-                businessProcessService.submitTicket(user, ticketId);
+                businessProcessService.submitApplication(user, applicationId);
 
                 response.setStatus("SUCCESS");
                 return response;
@@ -247,43 +247,43 @@ public class EnrollmentWebServiceBean extends BaseService implements EnrollmentW
     }
 
     @Override
-    public EnrollmentType getProfile(
+    public ApplicationType getProfile(
             String username,
             String systemId,
             String npi,
             long profileId
     ) throws PortalServiceException {
         CMSUser user = findUser(username, systemId, npi);
-        ProviderProfile profile = providerEnrollmentService.getProviderDetails(
+        ProviderProfile profile = providerApplicationService.getProviderDetails(
                 user,
                 profileId
         );
-        Enrollment wrapper = new Enrollment();
+        Application wrapper = new Application();
         wrapper.setDetails(profile);
         return XMLAdapter.toXML(wrapper);
     }
 
     @Override
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED) // allow SAVE even if SUBMIT fails
-    public String resubmitEnrollment(
+    public String resubmitApplication(
             String username,
             String systemId,
             String npi,
-            EnrollmentType enrollmentType
+            ApplicationType applicationType
     ) throws PortalServiceException {
         CMSUser user = findUser(username, systemId, npi);
 
-        long ticketId = BinderUtils.getAsLong(enrollmentType.getObjectId());
-        long profileId = BinderUtils.getAsLong(enrollmentType.getProviderInformation().getObjectId());
-        Validity validity = providerEnrollmentService.getSubmissionValidity(ticketId, profileId);
+        long applicationId = BinderUtils.getAsLong(applicationType.getObjectId());
+        long profileId = BinderUtils.getAsLong(applicationType.getProviderInformation().getObjectId());
+        Validity validity = providerApplicationService.getSubmissionValidity(applicationId, profileId);
 
         if (validity == Validity.VALID) {
             try {
-                saveTicket(user, enrollmentType, false); // retain status
+                saveApplication(user, applicationType, false); // retain status
                 // synchronize with DB
-                Enrollment ticket = providerEnrollmentService.getEnrollmentWithScreenings(user, ticketId).
-                    orElseThrow(() -> new PortalServiceException("Couldn't find ticket"));
-                businessProcessService.updateRequest(XMLAdapter.toXML(ticket), user);
+                Application application = providerApplicationService.getApplicationWithScreenings(user, applicationId).
+                    orElseThrow(() -> new PortalServiceException("Couldn't find application"));
+                businessProcessService.updateRequest(XMLAdapter.toXML(application), user);
             } catch (Exception e) {
                 throw new PortalServiceException("Resubmit failed.", e);
             }

@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package gov.medicaid.features.enrollment.ui;
+package gov.medicaid.features.application.ui;
 
-public class IndividualInfoPage extends EnrollmentPage {
+public class IndividualInfoPage extends ApplicationPage {
 
     public void enterIndividualMember() {
         click($("#addMember"));

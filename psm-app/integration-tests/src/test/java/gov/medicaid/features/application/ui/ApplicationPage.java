@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package gov.medicaid.features.enrollment.ui;
+package gov.medicaid.features.application.ui;
 
 import gov.medicaid.features.PsmPage;
 import net.serenitybdd.core.annotations.findby.By;
@@ -22,7 +22,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class EnrollmentPage extends PsmPage {
+public class ApplicationPage extends PsmPage {
     public void clickNext() {
         click($(".nextBtn"));
     }

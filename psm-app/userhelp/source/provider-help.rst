@@ -16,13 +16,13 @@ Providers are:
 
 Providers can be sole proprietorships or incorporated practices.
 
-How do I change my name in this system? Can I update it in one place for all my `enrollments <enrollment.html>`__?
+How do I change my name in this system? Can I update it in one place for all my `applications <application.html>`__?
 ------------------------------------------------------------------------------------------------------------------
 
-If an `enrollment <enrollment.html>`__ is a draft (you haven't submitted
-it yet), then yes, you can click on the draft enrollment and edit your
-name. If you have already submitted the enrollment, then it is not
-possible to edit your name as associated with that enrollment; you'll
+If an `application <application.html>`__ is a draft (you haven't submitted
+it yet), then yes, you can click on the draft application and edit your
+name. If you have already submitted the application, then it is not
+possible to edit your name as associated with that application; you'll
 need to contact the state/territory Medicaid office directly.
 
 Currently it is not possible for you to change your name for your
@@ -32,19 +32,19 @@ Medicaid office to do this.
 `A future version of the PSM will allow you to change your name in the
 system. <https://github.com/SolutionGuidance/psm/issues/408>`__
 
-How do I update my contact information for an approved enrollment? Can I update it in one place for all my enrollments?
+How do I update my contact information for an approved application? Can I update it in one place for all my applications?
 -----------------------------------------------------------------------------------------------------------------------
 
-Once an enrollment has been approved, you cannot change the contact
+Once an application has been approved, you cannot change the contact
 information in it via this system (although `a future version of the PSM
 will allow you to do
 this <https://github.com/SolutionGuidance/psm/issues/416>`__); please
 contact the state/territory Medicaid office directly.
 
-How do I update my license/certification information for an approved enrollment (e.g., if I have renewed my license)?
+How do I update my license/certification information for an approved application (e.g., if I have renewed my license)?
 ---------------------------------------------------------------------------------------------------------------------
 
-Once an enrollment has been approved, you cannot change the license and
+Once an application has been approved, you cannot change the license and
 certification information in it via this system (although `a future
 version of the PSM will allow you to do
 this <https://github.com/SolutionGuidance/psm/issues/416>`__); please

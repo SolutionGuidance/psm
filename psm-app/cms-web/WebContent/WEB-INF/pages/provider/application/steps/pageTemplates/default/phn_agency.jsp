@@ -22,7 +22,7 @@
 <input type="hidden" name="formNames" value="<%= ViewStatics.PHN_AGENCY_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="tableHeader topHeader"><span>PHN Agency must be a county or have a contract with a county</span></div>
     <div class="clearFixed"></div>
     <div class="section">

@@ -10,7 +10,7 @@ If you're a healthcare provider:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Go to the main page and click the "Register New Account" link. The site
-will help you create an account that can submit enrollment applications
+will help you create an account that can submit application applications
 for individual or organizational healthcare providers.
 
 A new account needs a username, first and last name, and an email
@@ -29,7 +29,7 @@ If you are not a healthcare provider:
 
 You probably want to create an account to be a "service agent" (someone
 who helps get providers enrolled) or a "service admin" (a state/territory
-employee who approves and rejects enrollments). Please speak with the
+employee who approves and rejects applications). Please speak with the
 state/territory Medicaid office for an account.
 
 How do I log in?

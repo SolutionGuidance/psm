@@ -20,7 +20,7 @@
 <c:set var="selectedMarkup" value='selected="selected"' />
 
 <input type="hidden" name="formNames" value="<%= ViewStatics.FACILITY_CAPACITY_FORM %>">
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="section">
         <div class="leftCol">
             <div class="row requireField">

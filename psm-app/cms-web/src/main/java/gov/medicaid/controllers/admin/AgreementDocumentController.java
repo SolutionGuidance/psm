@@ -127,13 +127,13 @@ public class AgreementDocumentController {
      *         rendering (not null)
      *
      * @throws PortalServiceException If there are any errors in the action
-     * @endpoint "/provider/enrollment/agreement"
+     * @endpoint "/provider/application/agreement"
      * @verb GET
      */
-    @RequestMapping(value = "/provider/enrollment/agreement", method = RequestMethod.GET)
+    @RequestMapping(value = "/provider/application/agreement", method = RequestMethod.GET)
     public ModelAndView getAgreement(@RequestParam("id") long id) throws PortalServiceException {
         AgreementDocument agreementDocument = agreementDocumentService.get(id);
-        ModelAndView model = new ModelAndView("provider/enrollment/view_agreement");
+        ModelAndView model = new ModelAndView("provider/application/view_agreement");
         model.addObject("agreementDocument", agreementDocument);
 
         return model;

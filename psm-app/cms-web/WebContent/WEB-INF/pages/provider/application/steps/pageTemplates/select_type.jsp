@@ -16,15 +16,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <div class="tabSection">
-  <form action="<c:url value="/provider/enrollment/steps/next" />"
-        id="enrollmentForm"
+  <form action="<c:url value="/provider/application/steps/next" />"
+        id="applicationForm"
         method="post">
     <sec:csrfInput />
-    <%@include file="/WEB-INF/pages/provider/enrollment/steps/errors.jsp" %>
+    <%@include file="/WEB-INF/pages/provider/application/steps/errors.jsp" %>
 
     <div class="detailPanel firstRegistrant" style="width: 940px;">
 
-      <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/default/provider_type.jsp" %>
+      <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/default/provider_type.jsp" %>
 
       <!-- /.section -->
       <div class="tl"></div>

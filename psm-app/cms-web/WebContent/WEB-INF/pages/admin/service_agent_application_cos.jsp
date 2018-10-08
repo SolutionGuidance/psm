@@ -36,16 +36,16 @@
           </div>
           <div class="breadCrumb">
             <a href="${ctx}/ops/viewDashboard">Dashboard</a>
-            <span>Enrollment Category of Service</span>
+            <span>Application Category of Service</span>
           </div>
           <div class="head">
-            <h1>Category Of Service - ${enrollment.profile.entity.providerType.description} - ${enrollment.profile.entity.name}</h1>
+            <h1>Category Of Service - ${application.profile.entity.providerType.description} - ${application.profile.entity.name}</h1>
           </div>
           <div class="tabSection">
-            <c:set var="actionPath" value="${ctx}/agent/enrollment/addCOS"/>
+            <c:set var="actionPath" value="${ctx}/agent/application/addCOS"/>
             <form action="${actionPath}" method="post" id="cosForm">
               <sec:csrfInput />
-              <input type="hidden" name="id" value="${enrollment.enrollmentId}" />
+              <input type="hidden" name="id" value="${application.applicationId}" />
               <div class="detailPanel">
                 <c:forEach var="cos" items="${existingServices}" varStatus="loop">
                   <div class="section">
@@ -71,7 +71,7 @@
                         <c:if test="${loop.last}">
                           <a href="javascript:;" onclick="copyCOS(${cos.id});" class="greyBtn"><span class="text">Clone</span></a>
                         </c:if>
-                        <a href="javascript:;" onclick="deleteCOS(${cos.id}, ${enrollment.enrollmentId});" class="greyBtn"><span class="text">Delete</span></a>
+                        <a href="javascript:;" onclick="deleteCOS(${cos.id}, ${application.applicationId});" class="greyBtn"><span class="text">Delete</span></a>
                       </div>
                     </div>
                   </div>
@@ -84,16 +84,16 @@
                   <input type="hidden" id="prevCosEndDate" name="prevCosEndDate" value="" />
                   <div class="wholeCol">
                     <div class="row">
-                      <label for="enrollmentCosStartDate">Start Date</label>
-                      <span><input id="enrollmentCosStartDate" name="startDate" class="shortInput text mdate" value="" /></span>
+                      <label for="applicationCosStartDate">Start Date</label>
+                      <span><input id="applicationCosStartDate" name="startDate" class="shortInput text mdate" value="" /></span>
                     </div>
                     <div class="row">
-                      <label for="enrollmentCosEndDate">End Date</label>
-                      <span><input id="enrollmentCosEndDate" name="endDate" class="shortInput text mdate" value="" /></span>
+                      <label for="applicationCosEndDate">End Date</label>
+                      <span><input id="applicationCosEndDate" name="endDate" class="shortInput text mdate" value="" /></span>
                     </div>
                     <div class="row">
-                      <label for="enrollmentCosCosSelect">COS</label>
-                      <select id="enrollmentCosCosSelect" name="cos" multiple="multiple" style="width:350px;" class="chzn-select">
+                      <label for="applicationCosCosSelect">COS</label>
+                      <select id="applicationCosCosSelect" name="cos" multiple="multiple" style="width:350px;" class="chzn-select">
                         <c:forEach var="code" items="${codes}">
                           <option value="${code.code}">${code.code}</option>
                         </c:forEach>

@@ -1,4 +1,4 @@
-package gov.medicaid.process.enrollment
+package gov.medicaid.process.application
 
 import javax.persistence.EntityManager;
 
@@ -9,8 +9,8 @@ import gov.medicaid.domain.model.ApplicantInformationType
 import gov.medicaid.domain.model.BeneficialOwnerType
 import gov.medicaid.domain.model.DesignatedContactType
 import gov.medicaid.domain.model.DesignatedContactInformationType
-import gov.medicaid.domain.model.EnrollmentProcess
-import gov.medicaid.domain.model.EnrollmentType
+import gov.medicaid.domain.model.ApplicationProcess
+import gov.medicaid.domain.model.ApplicationType
 import gov.medicaid.domain.model.GroupMemberType
 import gov.medicaid.domain.model.IndividualApplicantType
 import gov.medicaid.domain.model.MemberInformationType
@@ -20,7 +20,7 @@ import gov.medicaid.domain.model.ProviderInformationType
 import gov.medicaid.domain.model.QualifiedProfessionalType
 import gov.medicaid.domain.model.QualifiedProfessionalsType
 import gov.medicaid.entities.AutomaticScreening
-import gov.medicaid.entities.Enrollment
+import gov.medicaid.entities.Application
 import spock.lang.Specification
 
 class DmfScreeningHandlerTest extends Specification {
@@ -35,8 +35,8 @@ class DmfScreeningHandlerTest extends Specification {
     }
 
     def buildMockModelForIndividual() {
-        new EnrollmentProcess([
-            enrollment: new EnrollmentType([
+        new ApplicationProcess([
+            application: new ApplicationType([
                 objectId: "1",
                 providerInformation: new ProviderInformationType([
                     applicantInformation: new ApplicantInformationType([
@@ -52,8 +52,8 @@ class DmfScreeningHandlerTest extends Specification {
     // This organization structure is complete for testing purposes
     // but actually can't exist via the normal workflow
     def buildMockModelForOrganization() {
-        new EnrollmentProcess([
-            enrollment: new EnrollmentType([
+        new ApplicationProcess([
+            application: new ApplicationType([
                 objectId: "1",
                 providerInformation: new ProviderInformationType([
                     qualifiedProfessionals: new QualifiedProfessionalsType([
@@ -104,7 +104,7 @@ class DmfScreeningHandlerTest extends Specification {
            }"""
     }
 
-    def "Individual enrollment screened - not found"() {
+    def "Individual application screened - not found"() {
         given:
 
         def workItem = Mock(WorkItem)
@@ -114,8 +114,8 @@ class DmfScreeningHandlerTest extends Specification {
 
         when:
         workItem.getParameter("model") >> buildMockModelForIndividual()
-        1 * entityManager.find(Enrollment.class, 1) >>
-                new Enrollment()
+        1 * entityManager.find(Application.class, 1) >>
+                new Application()
 
         1 * service.getResult("123456789") >> notFoundResult("123456789")
 
@@ -124,17 +124,17 @@ class DmfScreeningHandlerTest extends Specification {
         then:
 
         1 * entityManager.merge(*_) >> { arguments ->
-            def enrollment = arguments[0]
-            assert enrollment.automaticScreenings.size == 1
-            assert enrollment.automaticScreenings[0].result == AutomaticScreening.Result.PASS
-            assert enrollment.automaticScreenings[0].matches.size() == 1
-            assert enrollment.automaticScreenings[0].matches[0].ssn == "123456789"
-            assert enrollment.automaticScreenings[0].matches[0].name == null
+            def application = arguments[0]
+            assert application.automaticScreenings.size == 1
+            assert application.automaticScreenings[0].result == AutomaticScreening.Result.PASS
+            assert application.automaticScreenings[0].matches.size() == 1
+            assert application.automaticScreenings[0].matches[0].ssn == "123456789"
+            assert application.automaticScreenings[0].matches[0].name == null
         }
-        workItem.results["model"].enrollment.providerInformation.verificationStatus.notInDmf == "Y"
+        workItem.results["model"].application.providerInformation.verificationStatus.notInDmf == "Y"
     }
 
-    def "Individual enrollment screened - found but not in DMF"() {
+    def "Individual application screened - found but not in DMF"() {
         given:
 
         def workItem = Mock(WorkItem)
@@ -144,8 +144,8 @@ class DmfScreeningHandlerTest extends Specification {
 
         when:
         workItem.getParameter("model") >> buildMockModelForIndividual()
-        1 * entityManager.find(Enrollment.class, 1) >>
-                new Enrollment()
+        1 * entityManager.find(Application.class, 1) >>
+                new Application()
 
         1 * service.getResult("123456789") >>
                 '''{
@@ -159,17 +159,17 @@ class DmfScreeningHandlerTest extends Specification {
         then:
 
         1 * entityManager.merge(*_) >> { arguments ->
-            def enrollment = arguments[0]
-            assert enrollment.automaticScreenings.size == 1
-            assert enrollment.automaticScreenings[0].result == AutomaticScreening.Result.PASS
-            assert enrollment.automaticScreenings[0].matches.size() == 1
-            assert enrollment.automaticScreenings[0].matches[0].ssn == "123456789"
-            assert enrollment.automaticScreenings[0].matches[0].name == "Jane M Smith Jr."
+            def application = arguments[0]
+            assert application.automaticScreenings.size == 1
+            assert application.automaticScreenings[0].result == AutomaticScreening.Result.PASS
+            assert application.automaticScreenings[0].matches.size() == 1
+            assert application.automaticScreenings[0].matches[0].ssn == "123456789"
+            assert application.automaticScreenings[0].matches[0].name == "Jane M Smith Jr."
         }
-        workItem.results["model"].enrollment.providerInformation.verificationStatus.notInDmf == "Y"
+        workItem.results["model"].application.providerInformation.verificationStatus.notInDmf == "Y"
     }
 
-    def "Individual enrollment screened - found"() {
+    def "Individual application screened - found"() {
         given:
 
         def workItem = Mock(WorkItem)
@@ -179,8 +179,8 @@ class DmfScreeningHandlerTest extends Specification {
 
         when:
         workItem.getParameter("model") >> buildMockModelForIndividual()
-        1 * entityManager.find(Enrollment.class, 1) >>
-                new Enrollment()
+        1 * entityManager.find(Application.class, 1) >>
+                new Application()
 
         1 * service.getResult("123456789") >> foundResult("123456789")
 
@@ -189,16 +189,16 @@ class DmfScreeningHandlerTest extends Specification {
         then:
 
         1 * entityManager.merge(*_) >> { arguments ->
-            def enrollment = arguments[0]
-            assert enrollment.automaticScreenings.size == 1
-            assert enrollment.automaticScreenings[0].result == AutomaticScreening.Result.FAIL
-            assert enrollment.automaticScreenings[0].matches.size() == 1
-            assert enrollment.automaticScreenings[0].matches[0].ssn == "123456789"
+            def application = arguments[0]
+            assert application.automaticScreenings.size == 1
+            assert application.automaticScreenings[0].result == AutomaticScreening.Result.FAIL
+            assert application.automaticScreenings[0].matches.size() == 1
+            assert application.automaticScreenings[0].matches[0].ssn == "123456789"
         }
-        workItem.results["model"].enrollment.providerInformation.verificationStatus.notInDmf == "N"
+        workItem.results["model"].application.providerInformation.verificationStatus.notInDmf == "N"
     }
 
-    def "Individual enrollment screened - error"() {
+    def "Individual application screened - error"() {
         given:
 
         def workItem = Mock(WorkItem)
@@ -208,8 +208,8 @@ class DmfScreeningHandlerTest extends Specification {
 
         when:
         workItem.getParameter("model") >> buildMockModelForIndividual()
-        1 * entityManager.find(Enrollment.class, 1) >>
-                new Enrollment()
+        1 * entityManager.find(Application.class, 1) >>
+                new Application()
 
         1 * service.getResult("123456789") >> { throw new IOException("Testing") }
 
@@ -218,15 +218,15 @@ class DmfScreeningHandlerTest extends Specification {
         then:
 
         1 * entityManager.merge(*_) >> { arguments ->
-            def enrollment = arguments[0]
-            assert enrollment.automaticScreenings.size == 1
-            assert enrollment.automaticScreenings[0].result == AutomaticScreening.Result.ERROR
-            assert enrollment.automaticScreenings[0].matches.size() == 0
+            def application = arguments[0]
+            assert application.automaticScreenings.size == 1
+            assert application.automaticScreenings[0].result == AutomaticScreening.Result.ERROR
+            assert application.automaticScreenings[0].matches.size() == 0
         }
-        workItem.results["model"].enrollment.providerInformation.verificationStatus == null
+        workItem.results["model"].application.providerInformation.verificationStatus == null
     }
 
-    def "Group enrollment screened - not found"() {
+    def "Group application screened - not found"() {
         given:
 
         def workItem = Mock(WorkItem)
@@ -236,8 +236,8 @@ class DmfScreeningHandlerTest extends Specification {
 
         when:
         workItem.getParameter("model") >> buildMockModelForOrganization()
-        1 * entityManager.find(Enrollment.class, 1) >>
-                new Enrollment()
+        1 * entityManager.find(Application.class, 1) >>
+                new Application()
 
         1 * service.getResult("123456789") >> notFoundResult("123456789")
         1 * service.getResult("223456789") >> notFoundResult("223456789")
@@ -251,21 +251,21 @@ class DmfScreeningHandlerTest extends Specification {
         then:
 
         1 * entityManager.merge(*_) >> { arguments ->
-            def enrollment = arguments[0]
-            assert enrollment.automaticScreenings.size == 1
-            assert enrollment.automaticScreenings[0].result == AutomaticScreening.Result.PASS
-            assert enrollment.automaticScreenings[0].matches.size() == 6
-            assert enrollment.automaticScreenings[0].matches[0].ssn == "123456789"
-            assert enrollment.automaticScreenings[0].matches[1].ssn == "223456789"
-            assert enrollment.automaticScreenings[0].matches[2].ssn == "323456789"
-            assert enrollment.automaticScreenings[0].matches[3].ssn == "423456789"
-            assert enrollment.automaticScreenings[0].matches[4].ssn == "523456789"
-            assert enrollment.automaticScreenings[0].matches[5].ssn == "623456789"
+            def application = arguments[0]
+            assert application.automaticScreenings.size == 1
+            assert application.automaticScreenings[0].result == AutomaticScreening.Result.PASS
+            assert application.automaticScreenings[0].matches.size() == 6
+            assert application.automaticScreenings[0].matches[0].ssn == "123456789"
+            assert application.automaticScreenings[0].matches[1].ssn == "223456789"
+            assert application.automaticScreenings[0].matches[2].ssn == "323456789"
+            assert application.automaticScreenings[0].matches[3].ssn == "423456789"
+            assert application.automaticScreenings[0].matches[4].ssn == "523456789"
+            assert application.automaticScreenings[0].matches[5].ssn == "623456789"
         }
-        workItem.results["model"].enrollment.providerInformation.verificationStatus.notInDmf == "Y"
+        workItem.results["model"].application.providerInformation.verificationStatus.notInDmf == "Y"
     }
 
-    def "Group enrollment screened - two found"() {
+    def "Group application screened - two found"() {
         given:
 
         def workItem = Mock(WorkItem)
@@ -275,8 +275,8 @@ class DmfScreeningHandlerTest extends Specification {
 
         when:
         workItem.getParameter("model") >> buildMockModelForOrganization()
-        1 * entityManager.find(Enrollment.class, 1) >>
-                new Enrollment()
+        1 * entityManager.find(Application.class, 1) >>
+                new Application()
 
         1 * service.getResult("123456789") >> notFoundResult("123456789")
         1 * service.getResult("223456789") >> notFoundResult("223456789")
@@ -290,21 +290,21 @@ class DmfScreeningHandlerTest extends Specification {
         then:
 
         1 * entityManager.merge(*_) >> { arguments ->
-            def enrollment = arguments[0]
-            assert enrollment.automaticScreenings.size == 1
-            assert enrollment.automaticScreenings[0].result == AutomaticScreening.Result.FAIL
-            assert enrollment.automaticScreenings[0].matches.size() == 6
-            assert enrollment.automaticScreenings[0].matches[0].ssn == "123456789"
-            assert enrollment.automaticScreenings[0].matches[1].ssn == "223456789"
-            assert enrollment.automaticScreenings[0].matches[2].ssn == "323456789"
-            assert enrollment.automaticScreenings[0].matches[3].ssn == "423456789"
-            assert enrollment.automaticScreenings[0].matches[4].ssn == "523456789"
-            assert enrollment.automaticScreenings[0].matches[5].ssn == "623456789"
+            def application = arguments[0]
+            assert application.automaticScreenings.size == 1
+            assert application.automaticScreenings[0].result == AutomaticScreening.Result.FAIL
+            assert application.automaticScreenings[0].matches.size() == 6
+            assert application.automaticScreenings[0].matches[0].ssn == "123456789"
+            assert application.automaticScreenings[0].matches[1].ssn == "223456789"
+            assert application.automaticScreenings[0].matches[2].ssn == "323456789"
+            assert application.automaticScreenings[0].matches[3].ssn == "423456789"
+            assert application.automaticScreenings[0].matches[4].ssn == "523456789"
+            assert application.automaticScreenings[0].matches[5].ssn == "623456789"
         }
-        workItem.results["model"].enrollment.providerInformation.verificationStatus.notInDmf == "N"
+        workItem.results["model"].application.providerInformation.verificationStatus.notInDmf == "N"
     }
 
-    def "Group enrollment screened - error"() {
+    def "Group application screened - error"() {
         given:
 
         def workItem = Mock(WorkItem)
@@ -314,8 +314,8 @@ class DmfScreeningHandlerTest extends Specification {
 
         when:
         workItem.getParameter("model") >> buildMockModelForOrganization()
-        1 * entityManager.find(Enrollment.class, 1) >>
-                new Enrollment()
+        1 * entityManager.find(Application.class, 1) >>
+                new Application()
 
         1 * service.getResult("123456789") >> notFoundResult("123456789")
         1 * service.getResult("223456789") >> notFoundResult("223456789")
@@ -329,11 +329,11 @@ class DmfScreeningHandlerTest extends Specification {
         then:
 
         1 * entityManager.merge(*_) >> { arguments ->
-            def enrollment = arguments[0]
-            assert enrollment.automaticScreenings.size == 1
-            assert enrollment.automaticScreenings[0].result == AutomaticScreening.Result.ERROR
-            assert enrollment.automaticScreenings[0].matches.size() == 0
+            def application = arguments[0]
+            assert application.automaticScreenings.size == 1
+            assert application.automaticScreenings[0].result == AutomaticScreening.Result.ERROR
+            assert application.automaticScreenings[0].matches.size() == 0
         }
-        workItem.results["model"].enrollment.providerInformation.verificationStatus == null
+        workItem.results["model"].application.providerInformation.verificationStatus == null
     }
 }

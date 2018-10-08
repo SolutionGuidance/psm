@@ -18,7 +18,7 @@
 <input type="hidden" name="formNames" value="<%= ViewStatics.NONPROFIT_CORPORATION_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="tableHeader topHeader"><span>Article of Incorporation showing non-profit status from the Office of the Attorney General</span></div>
     <div class="clearFixed"></div>
 
@@ -29,7 +29,7 @@
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label>&nbsp;</label>
                 <c:if test="${not empty formValue}">
-                    <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                    <c:url var="downloadLink" value="/provider/application/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
                     </c:url>
                     <a href="${downloadLink}">Download</a>

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package gov.medicaid.process.enrollment;
+package gov.medicaid.process.application;
 
 import org.drools.runtime.process.WorkItem;
 import org.drools.runtime.process.WorkItemHandler;

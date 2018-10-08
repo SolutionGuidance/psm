@@ -20,7 +20,7 @@
 <input type="hidden" name="formNames" value="<%= ViewStatics.REMITTANCE_SEQUENCE_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="tableHeader topHeader"><span>Remittance Sequence</span></div>
     <div class="sectionInfo">
         Every two weeks, MHCP provides you with a report called a remittance advice (RA) that tells you the status of claims you submitted to MHCP. This information is listed alphabetically by recipient name unless you request a different order here. If you want the RA sorted in a different order, check one of the boxes below.

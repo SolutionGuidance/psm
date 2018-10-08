@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package gov.medicaid.features.enrollment.ui;
+package gov.medicaid.features.application.ui;
 
 import gov.medicaid.features.PsmPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class EnrollmentDetailsPage extends PsmPage {
+public class ApplicationDetailsPage extends PsmPage {
     public void verifySubmitModal() {
-        assertThat($("#submitEnrollmentModal > div.inner > " +
+        assertThat($("#submitApplicationModal > div.inner > " +
                 "div.modal-content > div.right > div.middle").getText())
-                .contains("The enrollment has been successfully submitted");
+                .contains("The application has been successfully submitted");
     }
 
     public void closeSubmitModal() {
-        click($("#submitEnrollmentModal a.okBtn"));
+        click($("#submitApplicationModal a.okBtn"));
     }
 
     public void closeSaveAsDraftModal() {

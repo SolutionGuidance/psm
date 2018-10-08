@@ -20,8 +20,8 @@ package gov.medicaid.entities;
 import javax.persistence.Table;
 
 /**
- * Lookup entity for enrollment status (Draft/Pending/Approved/Rejected).
+ * Lookup entity for application status (Draft/Pending/Approved/Rejected).
  */
 @javax.persistence.Entity
-@Table(name = "enrollment_statuses")
-public class EnrollmentStatus extends LookupEntity {}
+@Table(name = "application_statuses")
+public class ApplicationStatus extends LookupEntity {}

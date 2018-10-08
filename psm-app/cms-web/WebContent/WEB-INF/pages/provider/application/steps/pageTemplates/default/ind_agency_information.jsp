@@ -97,7 +97,7 @@
     <div class="br"></div>
 </div>
 
-<!-- /.newEnrollmentPanel -->
+<!-- /.newApplicationPanel -->
 <div class="radioPanel">
     <div class="section">
         <div id="RadioWrapper" class="row">
@@ -115,7 +115,7 @@
               </label>
             </div>
         </div>
-        <c:url var="rebindUrl" value="/provider/enrollment/steps/rebind" />
+        <c:url var="rebindUrl" value="/provider/application/steps/rebind" />
         <div id="RadioWrapper" class="row">
             <c:set var="formName" value="_11_additionalAgency"></c:set>
             <c:set var="formValue" value="${requestScope[formName]}"></c:set>
@@ -123,11 +123,11 @@
             application and agreement. Do you want to affiliate this individual PCA with any other agency(ies) you own?</label>
             <div>
               <label class="span">
-                <input onchange="javascript:submitFormById('enrollmentForm', '${rebindUrl}')" type="radio" value="Y" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}>
+                <input onchange="javascript:submitFormById('applicationForm', '${rebindUrl}')" type="radio" value="Y" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}>
                 Yes
               </label>
               <label class="span">
-                <input onchange="javascript:submitFormById('enrollmentForm', '${rebindUrl}')" type="radio" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}>
+                <input onchange="javascript:submitFormById('applicationForm', '${rebindUrl}')" type="radio" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}>
                 No
               </label>
             </div>

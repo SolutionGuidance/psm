@@ -18,7 +18,7 @@
 <input type="hidden" name="formNames" value="<%= ViewStatics.CTCC_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="section">
         <div class="">
         </div>
@@ -41,7 +41,7 @@
                 <c:set var="formName" value="_30_dhsContract"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <c:if test="${not empty formValue}">
-                    <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                    <c:url var="downloadLink" value="/provider/application/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
                     </c:url>
                     <div><a href="${downloadLink}">Download</a></div>

@@ -36,16 +36,16 @@
           </div>
           <div class="breadCrumb">
             <a href="${ctx}/ops/viewDashboard">Dashboard</a>
-            <span>Enrollment Category of Service</span>
+            <span>Application Category of Service</span>
           </div>
           <div class="head">
-            <h1>Category Of Service - ${enrollment.details.entity.providerType.description} - ${enrollment.details.entity.name}</h1>
+            <h1>Category Of Service - ${application.details.entity.providerType.description} - ${application.details.entity.name}</h1>
           </div>
           <div class="tabSection">
-            <c:set var="actionPath" value="${ctx}/agent/enrollment/addPendingCOS"/>
+            <c:set var="actionPath" value="${ctx}/agent/application/addPendingCOS"/>
             <form action="${actionPath}" method="post" id="cosForm">
               <sec:csrfInput />
-              <input type="hidden" name="id" value="${enrollment.enrollmentId}" />
+              <input type="hidden" name="id" value="${application.applicationId}" />
               <div class="detailPanel">
                 <c:forEach var="cos" items="${existingServices}" varStatus="loop">
                   <div class="section">
@@ -71,7 +71,7 @@
                         <c:if test="${loop.last}">
                           <a href="javascript:;" onclick="copyCOS(${cos.id});" class="greyBtn"><span class="text">Clone</span></a>
                         </c:if>
-                        <a href="javascript:;" onclick="deleteCOSByTicketId(${cos.id}, ${enrollment.enrollmentId});" class="greyBtn"><span class="text">Delete</span></a>
+                        <a href="javascript:;" onclick="deleteCOSByApplicationId(${cos.id}, ${application.applicationId});" class="greyBtn"><span class="text">Delete</span></a>
                       </div>
                     </div>
                   </div>

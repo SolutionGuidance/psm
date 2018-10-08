@@ -20,7 +20,7 @@
 <input type="hidden" name="formNames" value="<%= ViewStatics.SLIDING_FEE_SCHEDULE_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="tableHeader topHeader"><span>Sliding fee schedule</span></div>
     <div class="clearFixed"></div>
 
@@ -31,7 +31,7 @@
                 <c:set var="formName" value="_33_slidingFeeSchedule"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <c:if test="${not empty formValue}">
-                    <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                    <c:url var="downloadLink" value="/provider/application/attachment">
                          <c:param name="id" value="${requestScope[formName]}"></c:param>
                     </c:url>
                     <a href="${downloadLink}">Download</a>

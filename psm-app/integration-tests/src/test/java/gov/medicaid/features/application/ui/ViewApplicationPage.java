@@ -1,4 +1,4 @@
-package gov.medicaid.features.enrollment.ui;
+package gov.medicaid.features.application.ui;
 
 import gov.medicaid.features.PsmPage;
 
@@ -11,13 +11,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DefaultUrl("http://localhost:8080/cms")
 @NamedUrls ({
-    @NamedUrl(name = "view.enrollment", url = "/provider/enrollment/view?id={1}")
+    @NamedUrl(name = "view.application", url = "/provider/application/view?id={1}")
 })
-public class ViewEnrollmentPage extends PsmPage {
+public class ViewApplicationPage extends PsmPage {
     public void verifyState(String state) {
         assertThat(
             getDriver()
-                .findElement(By.cssSelector(".enrollmentStatus"))
+                .findElement(By.cssSelector(".applicationStatus"))
                 .getText()
         ).isEqualTo(state);
     }

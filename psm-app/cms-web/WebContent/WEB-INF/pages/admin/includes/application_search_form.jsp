@@ -15,13 +15,13 @@
   limitations under the License.
 --%>
 <%--
-  - Description: it is used to build the enrollment search form.
+  - Description: it is used to build the application search form.
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
 <form:form
   id="searchForm"
   cssClass="paginationForm"
-  action="${enrollmentSearchFormAction}"
+  action="${applicationSearchFormAction}"
   modelAttribute="searchCriteria"
   method="get">
     <form:hidden cssClass="searchFormPageSize" id="searchFormPageSize" path="pageSize" />
@@ -30,7 +30,7 @@
     <form:hidden id="searchFormAscending" path="ascending" />
     <form:hidden id="searchFormShowFilterPanel" path="showFilterPanel" />
 
-    <form:hidden id="enrollmentNumberSearchField" path="enrollmentNumber" />
+    <form:hidden id="applicationNumberSearchField" path="applicationNumber" />
     <form:hidden id="npiSearchField" path="npi" />
     <form:hidden id="providerTypeSearchField" path="providerType" />
     <form:hidden id="providerNameSearchField" path="providerName" />
@@ -46,7 +46,7 @@
     </c:forEach>
 
     <c:forEach varStatus="status" var="item" items="${searchCriteria.statuses}">
-        <input class="enrollmentStatusValue" type="hidden" name="statuses[${status.index}]" value="${item}"/>
+        <input class="applicationStatusValue" type="hidden" name="statuses[${status.index}]" value="${item}"/>
     </c:forEach>
 </form:form>
 <form:form id="exportForm"

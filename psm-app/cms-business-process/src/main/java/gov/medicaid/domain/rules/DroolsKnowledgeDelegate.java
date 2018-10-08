@@ -105,7 +105,7 @@ public class DroolsKnowledgeDelegate implements KnowledgeDelegate {
      */
     private KnowledgeBase readProcessKnowledgeBase() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        kbuilder.add(ResourceFactory.newClassPathResource("EnrollmentProcess.bpmn"), ResourceType.BPMN2);
+        kbuilder.add(ResourceFactory.newClassPathResource("ApplicationProcess.bpmn"), ResourceType.BPMN2);
         return kbuilder.newKnowledgeBase();
     }
 

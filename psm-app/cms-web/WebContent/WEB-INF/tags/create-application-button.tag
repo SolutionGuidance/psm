@@ -1,9 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ attribute name="cssClass" required="true" %>
 <a
-    href="<c:url value="/provider/enrollment/start" />"
+    href="<c:url value="/provider/application/start" />"
     class="${cssClass}"
-    id="createNewEnrollment"
+    id="createNewApplication"
     >
-  Create New Enrollment
+  Create New Application
 </a>

@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package gov.medicaid.process.enrollment;
+package gov.medicaid.process.application;
 
 import gov.medicaid.binders.XMLUtility;
-import gov.medicaid.domain.model.EnrollmentProcess;
+import gov.medicaid.domain.model.ApplicationProcess;
 
 import org.drools.event.process.ProcessCompletedEvent;
 import org.drools.event.process.ProcessEventListener;
@@ -29,9 +29,9 @@ import org.drools.event.process.ProcessVariableChangedEvent;
 import org.drools.runtime.process.NodeInstance;
 
 /**
- * This tracks the progress of the enrollment process.
+ * This tracks the progress of the application process.
  */
-public class EnrollmentMonitor implements ProcessEventListener {
+public class ApplicationMonitor implements ProcessEventListener {
 
     /**
      * Called when a node is started.
@@ -40,7 +40,7 @@ public class EnrollmentMonitor implements ProcessEventListener {
      */
     public void beforeNodeTriggered(ProcessNodeTriggeredEvent event) {
         NodeInstance node = event.getNodeInstance();
-        EnrollmentProcess model = (EnrollmentProcess) node.getVariable("model");
+        ApplicationProcess model = (ApplicationProcess) node.getVariable("model");
         XMLUtility.auditStart(model, node.getId(), node.getNodeName());
     }
 
@@ -52,7 +52,7 @@ public class EnrollmentMonitor implements ProcessEventListener {
      */
     public void afterNodeLeft(ProcessNodeLeftEvent event) {
         NodeInstance node = event.getNodeInstance();
-        EnrollmentProcess model = (EnrollmentProcess) node.getVariable("model");
+        ApplicationProcess model = (ApplicationProcess) node.getVariable("model");
         XMLUtility.auditEnd(model, node.getId());
     }
 

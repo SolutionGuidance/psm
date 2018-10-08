@@ -23,7 +23,7 @@
 <input type="hidden" name="formNames" value="<%= ViewStatics.FACILITY_TYPE_FORM %>">
 <c:set var="selectedMarkup" value='selected="selected"' />
 
-<div class="newEnrollmentPanel practicePanel memberInfoPanel">
+<div class="newApplicationPanel practicePanel memberInfoPanel">
     <div class="tableHeader topHeader"><span>Facility Type</span></div>
     <div class="clearFixed"></div>
     <div class="section">
@@ -69,7 +69,7 @@
                                     <input title="County Contract" type="file" class="fileUpload" name="${formName}" />
                                     <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                                     <c:if test="${not empty formValue}">
-                                        <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                                        <c:url var="downloadLink" value="/provider/application/attachment">
                                              <c:param name="id" value="${formValue}"></c:param>
                                         </c:url>
                                         <div><a href="${downloadLink}">Download</a></div>

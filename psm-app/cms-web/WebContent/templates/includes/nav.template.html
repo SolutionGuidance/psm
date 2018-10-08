@@ -12,9 +12,9 @@
             <a href="{{ctx}}/landing">DASHBOARD</a>
             {{#if activeTabDashboard }} <span class="arrow"></span> {{/if}}
           </li>
-          <li class="{{#if activeTabEnrollments }} active {{/if}}">
-            <a class="enrollmentsLink" href="{{ctx}}/provider/enrollments/all?showFilterPanel=true">ENROLLMENTS</a>
-            {{#if activeTabEnrollments }} <span class="arrow"></span> {{/if}}
+          <li class="{{#if activeTabApplications }} active {{/if}}">
+            <a class="applicationsLink" href="{{ctx}}/provider/applications/all?showFilterPanel=true">APPLICATIONS</a>
+            {{#if activeTabApplications }} <span class="arrow"></span> {{/if}}
           </li>
           <li class="{{#if activeTabScreenings }} active {{/if}}">
             <a class="screeningsLink" href="{{ctx}}/agent/screenings">SCREENINGS</a>
@@ -34,9 +34,9 @@
           </li>
         {{else}}
           {{!-- Provider --}}
-          <li class="{{#if activeTabEnrollments }} active {{/if}}">
-            <a class="enrollmentsLink" href="{{ctx}}/provider/dashboard/">ENROLLMENTS</a>
-            {{#if activeTabEnrollments }} <span class="arrow"></span> {{/if}}
+          <li class="{{#if activeTabApplications }} active {{/if}}">
+            <a class="applicationsLink" href="{{ctx}}/provider/dashboard/">APPLICATIONS</a>
+            {{#if activeTabApplications }} <span class="arrow"></span> {{/if}}
           </li>
           <li class="last {{#if activeTabProfile }} active {{/if}}">
             <a href="{{ctx}}/myprofile" id="my_profile_tab">MY PROFILE</a>

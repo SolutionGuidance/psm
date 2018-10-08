@@ -17,57 +17,57 @@
 
 package gov.medicaid.services;
 
-import gov.medicaid.domain.model.EnrollmentType;
-import gov.medicaid.domain.model.SubmitTicketRequest;
-import gov.medicaid.domain.model.SubmitTicketResponse;
+import gov.medicaid.domain.model.ApplicationType;
+import gov.medicaid.domain.model.SubmitApplicationRequest;
+import gov.medicaid.domain.model.SubmitApplicationResponse;
 
 /**
- * Web service facade for enrollment requests.
+ * Web service facade for application requests.
  */
-public interface EnrollmentWebService {
+public interface ApplicationWebService {
     /**
-     * Retrieves the ticket details.
+     * Retrieves the application details.
      *
      * @param username     the username of the requesting user
      * @param systemId     the system that authenticated the requesting user
      * @param npi          the NPI for which this user is a proxy, if any
-     * @param enrollmentId the ID of the enrollment (ticket)
-     * @return the enrollment (ticket)
+     * @param applicationId the ID of the application (application)
+     * @return the application (application)
      * @throws PortalServiceException for any errors encountered
      */
-    EnrollmentType getTicketDetails(
+    ApplicationType getApplicationDetails(
             String username,
             String systemId,
             String npi,
-            long enrollmentId
+            long applicationId
     ) throws PortalServiceException;
 
     /**
-     * Saves the ticket details.
+     * Saves the application details.
      *
      * @param username   the username of the requesting user
      * @param systemId   the system that authenticated the requesting user
      * @param npi        the NPI for which this user is a proxy, if any
-     * @param enrollment the enrollment to save
-     * @return the enrollment (ticket) ID
+     * @param application the application to save
+     * @return the application (application) ID
      * @throws PortalServiceException for any errors encountered
      */
-    long saveTicket(
+    long saveApplication(
             String username,
             String systemId,
             String npi,
-            EnrollmentType enrollmentType
+            ApplicationType applicationType
     ) throws PortalServiceException;
 
     /**
-     * Submits the given enrollment request.
+     * Submits the given application request.
      *
      * @param request the service request
      * @return the service response
      * @throws PortalServiceException for any errors encountered
      */
-    SubmitTicketResponse submitEnrollment(
-            SubmitTicketRequest request
+    SubmitApplicationResponse submitApplication(
+            SubmitApplicationRequest request
     ) throws PortalServiceException;
 
     /**
@@ -76,11 +76,11 @@ public interface EnrollmentWebService {
      * @param username  the username of the requesting user
      * @param systemId  the system that authenticated the requesting user
      * @param npi       the NPI for which this user is a proxy, if any
-     * @param profileId the ID of the enrollment (profile) to look up
-     * @return the enrollment (profile) found
+     * @param profileId the ID of the application (profile) to look up
+     * @return the application (profile) found
      * @throws PortalServiceException for any errors encountered
      */
-    EnrollmentType getProfile(
+    ApplicationType getProfile(
             String username,
             String systemId,
             String npi,
@@ -88,19 +88,19 @@ public interface EnrollmentWebService {
     ) throws PortalServiceException;
 
     /**
-     * Resubmits the given enrollment request.
+     * Resubmits the given application request.
      *
      * @param username   the username of the requesting user
      * @param systemId   the system that authenticated the requesting user
      * @param npi        the NPI for which this user is a proxy, if any
-     * @param enrollment the enrollment to resubmit
+     * @param application the application to resubmit
      * @return the status of the resubmission
      * @throws PortalServiceException for any errors encountered
      */
-    String resubmitEnrollment(
+    String resubmitApplication(
             String username,
             String systemId,
             String npi,
-            EnrollmentType enrollmentType
+            ApplicationType applicationType
     ) throws PortalServiceException;
 }

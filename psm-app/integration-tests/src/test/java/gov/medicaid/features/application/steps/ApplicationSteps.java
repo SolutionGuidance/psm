@@ -14,26 +14,26 @@
  * limitations under the License.
  */
 
-package gov.medicaid.features.enrollment.steps;
+package gov.medicaid.features.application.steps;
 
-import gov.medicaid.features.enrollment.ui.CcmhrCredentialsPage;
-import gov.medicaid.features.enrollment.ui.CtccCredentialsPage;
-import gov.medicaid.features.enrollment.ui.EnrollmentDetailsPage;
-import gov.medicaid.features.enrollment.ui.EnrollmentListPage;
-import gov.medicaid.features.enrollment.ui.EnrollmentPage;
-import gov.medicaid.features.enrollment.ui.IndividualInfoPage;
-import gov.medicaid.features.enrollment.ui.IndividualSummaryPage;
-import gov.medicaid.features.enrollment.ui.LicenseInfoPage;
-import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
-import gov.medicaid.features.enrollment.ui.OrganizationSummaryPage;
-import gov.medicaid.features.enrollment.ui.OwnershipInfoPage;
-import gov.medicaid.features.enrollment.ui.PersonalCareAssistantAgencyInfoPage;
-import gov.medicaid.features.enrollment.ui.PersonalCareAssistantPersonalInfoPage;
-import gov.medicaid.features.enrollment.ui.PersonalInfoPage;
-import gov.medicaid.features.enrollment.ui.PracticeInfoPage;
-import gov.medicaid.features.enrollment.ui.ProviderStatementPage;
-import gov.medicaid.features.enrollment.ui.SelectProviderTypePage;
-import gov.medicaid.features.general.ui.AllEnrollmentsPage;
+import gov.medicaid.features.application.ui.CcmhrCredentialsPage;
+import gov.medicaid.features.application.ui.CtccCredentialsPage;
+import gov.medicaid.features.application.ui.ApplicationDetailsPage;
+import gov.medicaid.features.application.ui.ApplicationListPage;
+import gov.medicaid.features.application.ui.ApplicationPage;
+import gov.medicaid.features.application.ui.IndividualInfoPage;
+import gov.medicaid.features.application.ui.IndividualSummaryPage;
+import gov.medicaid.features.application.ui.LicenseInfoPage;
+import gov.medicaid.features.application.ui.OrganizationInfoPage;
+import gov.medicaid.features.application.ui.OrganizationSummaryPage;
+import gov.medicaid.features.application.ui.OwnershipInfoPage;
+import gov.medicaid.features.application.ui.PersonalCareAssistantAgencyInfoPage;
+import gov.medicaid.features.application.ui.PersonalCareAssistantPersonalInfoPage;
+import gov.medicaid.features.application.ui.PersonalInfoPage;
+import gov.medicaid.features.application.ui.PracticeInfoPage;
+import gov.medicaid.features.application.ui.ProviderStatementPage;
+import gov.medicaid.features.application.ui.SelectProviderTypePage;
+import gov.medicaid.features.general.ui.AllApplicationsPage;
 import gov.medicaid.features.general.ui.LoginPage;
 
 import net.thucydides.core.annotations.Step;
@@ -48,7 +48,7 @@ import java.util.GregorianCalendar;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("unused")
-public class EnrollmentSteps {
+public class ApplicationSteps {
     private static final String FIRST_NAME = "FirstName";
     private static final String MIDDLE_NAME = "MiddleName";
     private static final String LAST_NAME = "LastName";
@@ -91,9 +91,9 @@ public class EnrollmentSteps {
     private static final String RESIDENTIAL_COUNTY = "St. Louis";
 
     private LoginPage loginPage;
-    private EnrollmentListPage enrollmentListPage;
-    private AllEnrollmentsPage allEnrollmentsPage;
-    private EnrollmentPage enrollmentPage;
+    private ApplicationListPage applicationListPage;
+    private AllApplicationsPage allApplicationsPage;
+    private ApplicationPage applicationPage;
     private SelectProviderTypePage selectProviderTypePage;
     private OrganizationInfoPage organizationInfoPage;
     private IndividualInfoPage individualInfoPage;
@@ -106,7 +106,7 @@ public class EnrollmentSteps {
     private IndividualSummaryPage individualSummaryPage;
     private OrganizationSummaryPage organizationSummaryPage;
     private ProviderStatementPage providerStatementPage;
-    private EnrollmentDetailsPage enrollmentDetailsPage;
+    private ApplicationDetailsPage applicationDetailsPage;
     private CtccCredentialsPage ctccCredentialsPage;
     private CcmhrCredentialsPage ccmhrCredentialsPage;
 
@@ -119,16 +119,16 @@ public class EnrollmentSteps {
         this.npi = npi;
     }
 
-    public void createEnrollment() {
-        allEnrollmentsPage.clickOnNewEnrollment();
+    public void createApplication() {
+        allApplicationsPage.clickOnNewApplication();
     }
 
-    public void prepareSpeechLanguagePathologistEnrollment() {
+    public void prepareSpeechLanguagePathologistApplication() {
         licenseType = "Speech Language Pathologist";
         providerType = "Speech Language Pathologist";
     }
 
-    public void preparePersonalCareAssistantEnrollment() {
+    public void preparePersonalCareAssistantApplication() {
         providerType = "Personal Care Assistant";
         licenseType = "Personal Care Assistant";
     }
@@ -427,7 +427,7 @@ public class EnrollmentSteps {
 
     @Step
     void clickSaveAsDraft() {
-        enrollmentPage.clickSaveAsDraft();
+        applicationPage.clickSaveAsDraft();
     }
 
     @Step
@@ -558,23 +558,23 @@ public class EnrollmentSteps {
     }
 
     @Step
-    void submitEnrollment() {
+    void submitApplication() {
         providerStatementPage.clickSubmitButton();
     }
 
     @Step
     void verifySubmitModal() {
-        enrollmentDetailsPage.verifySubmitModal();
+        applicationDetailsPage.verifySubmitModal();
     }
 
     @Step
     void closeSubmitModal() {
-        enrollmentDetailsPage.closeSubmitModal();
+        applicationDetailsPage.closeSubmitModal();
     }
 
     @Step
     void closeSaveAsDraftModal() {
-        enrollmentDetailsPage.closeSaveAsDraftModal();
+        applicationDetailsPage.closeSaveAsDraftModal();
     }
 
     @Step
@@ -583,8 +583,8 @@ public class EnrollmentSteps {
     }
 
     @Step
-    void startToRenewIndividualEnrollment(String npi) {
-        enrollmentListPage.clickActionForNpi(npi, ".renewLink");
+    void startToRenewIndividualApplication(String npi) {
+        applicationListPage.clickActionForNpi(npi, ".renewLink");
         advanceFromIndividualPersonalInfoToLicenseInfo();
         advanceFromIndividualLicenseInfoToPracticeInfo();
         advanceFromIndividualPracticeInfoToSummaryPage();
@@ -592,16 +592,16 @@ public class EnrollmentSteps {
     }
 
     @Step
-    void renewIndividualEnrollment(String npi) {
-        startToRenewIndividualEnrollment(npi);
+    void renewIndividualApplication(String npi) {
+        startToRenewIndividualApplication(npi);
         checkNoOnProviderDisclosureQuestions();
         signProviderStatement();
-        submitEnrollment();
+        submitApplication();
     }
 
     @Step
-    void startToRenewOrganizationalEnrollment(String npi) {
-        enrollmentListPage.clickActionForNpi(npi, ".renewLink");
+    void startToRenewOrganizationalApplication(String npi) {
+        applicationListPage.clickActionForNpi(npi, ".renewLink");
         advanceFromOrganizationInfoToLicenseInfo();
         advanceFromOrganizationLicenseInfoToIndividualMemberInfo();
         advanceFromOrganizationIndividualMemberInfoToOwnershipInfo();
@@ -611,34 +611,34 @@ public class EnrollmentSteps {
     }
 
     @Step
-    void renewOrganizationalEnrollment(String npi) {
-        startToRenewOrganizationalEnrollment(npi);
+    void renewOrganizationalApplication(String npi) {
+        startToRenewOrganizationalApplication(npi);
         signProviderStatement();
-        submitEnrollment();
+        submitApplication();
     }
 
     @Step
-    void editIndividualEnrollment(String npi) {
-        enrollmentListPage.clickActionForNpi(npi, ".editLink");
+    void editIndividualApplication(String npi) {
+        applicationListPage.clickActionForNpi(npi, ".editLink");
         personalInfoPage.enterFirstName(FIRST_NAME + " Edited");
     }
 
     @Step
-    void editOrganizationalEnrollment(String npi) {
-        enrollmentListPage.clickActionForNpi(npi, ".editLink");
+    void editOrganizationalApplication(String npi) {
+        applicationListPage.clickActionForNpi(npi, ".editLink");
         organizationInfoPage.setDoingBusinessAs("Test DBA Edited");
     }
 
     @Step
-    void updateIndividualEnrollment(String npi) {
-        editIndividualEnrollment(npi);
-        submitEnrollment();
+    void updateIndividualApplication(String npi) {
+        editIndividualApplication(npi);
+        submitApplication();
     }
 
     @Step
-    void updateOrganizationalEnrollment(String npi) {
-        editOrganizationalEnrollment(npi);
-        submitEnrollment();
+    void updateOrganizationalApplication(String npi) {
+        editOrganizationalApplication(npi);
+        submitApplication();
     }
 
 }

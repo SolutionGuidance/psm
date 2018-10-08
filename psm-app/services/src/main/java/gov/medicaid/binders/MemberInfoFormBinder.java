@@ -23,14 +23,14 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 
 import gov.medicaid.domain.model.ApplicantType;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.GroupMemberType;
 import gov.medicaid.domain.model.MemberInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.Affiliation;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.Person;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.ProviderType;
@@ -67,7 +67,7 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
 
     /**
      * Binds the request to the model.
-     * @param enrollment
+     * @param application
      *            the model to bind to
      * @param request
      *            the request containing the form fields
@@ -75,9 +75,9 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
      * @throws BinderException
      *             if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        MemberInformationType membership = XMLUtility.nsGetMembershipInformation(enrollmentType);
+        MemberInformationType membership = XMLUtility.nsGetMembershipInformation(applicationType);
         membership.getGroupMember().clear();
 
         int i = 0;
@@ -116,16 +116,16 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment
+     * @param application
      *            the model to bind from
      * @param mv
      *            the model and view to bind to
      * @param readOnly
      *            if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        MemberInformationType membership = XMLUtility.nsGetMembershipInformation(enrollmentType);
+        MemberInformationType membership = XMLUtility.nsGetMembershipInformation(applicationType);
 
         List<GroupMemberType> members = membership.getGroupMember();
         int i = 0;
@@ -142,7 +142,7 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
             i++;
         }
         attr(mv, "memberSize", members.size());
-        if (enrollmentType.getProviderInformation().getProviderType().equals(gov.medicaid.domain.model.ProviderType.PHARMACY.value())) {
+        if (applicationType.getProviderInformation().getProviderType().equals(gov.medicaid.domain.model.ProviderType.PHARMACY.value())) {
             mv.put("onlyPharmacist", true);
         } else {
             mv.put("individualMemberProviderTypes", sortCollection(getProviderTypeService().getProviderTypes(ApplicantType.INDIVIDUAL)));
@@ -153,14 +153,14 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
     /**
      * Translates the validation results to form error messages where applicable.
      *
-     * @param enrollment
-     *            the enrollment that was validated
+     * @param application
+     *            the application that was validated
      * @param messages
      *            the error messages
      *
      * @return the list of errors related to this form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -247,17 +247,17 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment
+     * @param application
      *            the front end model
-     * @param ticket
+     * @param application
      *            the persistent model
      * @throws PortalServiceException
      *             for any errors encountered
      */
-    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) throws PortalServiceException {
-        ProviderProfile profile = ticket.getDetails();
+    public void bindToHibernate(ApplicationType applicationType, Application application) throws PortalServiceException {
+        ProviderProfile profile = application.getDetails();
 
-        MemberInformationType membership = XMLUtility.nsGetMembershipInformation(enrollmentType);
+        MemberInformationType membership = XMLUtility.nsGetMembershipInformation(applicationType);
         if (profile.getAffiliations() == null) {
             profile.setAffiliations(new ArrayList<Affiliation>());
         }
@@ -309,16 +309,16 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket
+     * @param application
      *            the persistent model
-     * @param enrollment
+     * @param application
      *            the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
-        ProviderProfile profile = ticket.getDetails();
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        ProviderProfile profile = application.getDetails();
         if (profile != null) {
             List<Affiliation> affiliations = profile.getAffiliations();
-            MemberInformationType membership = XMLUtility.nsGetMembershipInformation(enrollmentType);
+            MemberInformationType membership = XMLUtility.nsGetMembershipInformation(applicationType);
             if (affiliations != null) {
                 for (Affiliation affiliation : filterMembers(affiliations)) {
                     GroupMemberType member = new GroupMemberType();
@@ -340,7 +340,7 @@ public class MemberInfoFormBinder extends BaseFormBinder implements FormBinder {
     }
 
     @Override
-    public void renderPDF(EnrollmentType enrollmentType, Document document, Map<String, Object> model)
+    public void renderPDF(ApplicationType applicationType, Document document, Map<String, Object> model)
             throws DocumentException {
         String ns = NAMESPACE;
         if ("Y".equals(PDFHelper.value(model, ns, "bound"))) {

@@ -29,13 +29,13 @@
             <div>
                 <c:set var="formName" value="_04_maintainsOwnPrivatePractice"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                <c:url var="rebindUrl" value="/provider/enrollment/steps/rebind" />
+                <c:url var="rebindUrl" value="/provider/application/steps/rebind" />
                 <label class="span">
-                  <input onchange="javascript:submitFormById('enrollmentForm', '${rebindUrl}')" type="radio" value="Y" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}>
+                  <input onchange="javascript:submitFormById('applicationForm', '${rebindUrl}')" type="radio" value="Y" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}>
                   Yes
                 </label>
                 <label class="span">
-                  <input onchange="javascript:submitFormById('enrollmentForm', '${rebindUrl}')" type="radio" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}>
+                  <input onchange="javascript:submitFormById('applicationForm', '${rebindUrl}')" type="radio" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}>
                   No
                 </label>
             </div>
@@ -49,11 +49,11 @@
                 <c:set var="formName" value="_04_employedOrContractedByGroup"></c:set>
                 <c:set var="formValue" value="${requestScope[formName]}"></c:set>
                 <label class="span">
-                  <input onchange="javascript:submitFormById('enrollmentForm', '${rebindUrl}')" type="radio" value="Y" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}>
+                  <input onchange="javascript:submitFormById('applicationForm', '${rebindUrl}')" type="radio" value="Y" name="${formName}" ${formValue eq 'Y' ? 'checked' : ''}>
                   Yes
                 </label>
                 <label class="span">
-                  <input onchange="javascript:submitFormById('enrollmentForm', '${rebindUrl}')" type="radio" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}>
+                  <input onchange="javascript:submitFormById('applicationForm', '${rebindUrl}')" type="radio" value="N" name="${formName}" ${formValue eq 'N' ? 'checked' : ''}>
                   No
                 </label>
             </div>

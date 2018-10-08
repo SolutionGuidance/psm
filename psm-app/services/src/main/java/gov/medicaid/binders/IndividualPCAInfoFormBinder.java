@@ -20,14 +20,14 @@ package gov.medicaid.binders;
 import gov.medicaid.domain.model.AddressType;
 import gov.medicaid.domain.model.ApplicantInformationType;
 import gov.medicaid.domain.model.ContactInformationType;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.IndividualApplicantType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.ContactInformation;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.Entity;
 import gov.medicaid.entities.Person;
 import gov.medicaid.entities.ProviderProfile;
@@ -64,17 +64,17 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request the request containing the form fields
      *
      * @return
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollmentType, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
 
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
-        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollmentType);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
+        IndividualApplicantType individual = XMLUtility.nsGetIndividual(applicationType);
         individual.setLastName(param(request, "lastName"));
         individual.setFirstName(param(request, "firstName"));
         individual.setMiddleName(param(request, "middleName"));
@@ -103,17 +103,17 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollmentType, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         attr(mv, "umpi", provider.getNPI());
         attr(mv, "adultInd", provider.getEighteenAndAbove());
 
-        IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollmentType);
+        IndividualApplicantType individual = XMLUtility.nsGetIndividual(applicationType);
         attr(mv, "lastName", individual.getLastName());
         attr(mv, "firstName", individual.getFirstName());
         attr(mv, "middleName", individual.getMiddleName());
@@ -134,12 +134,12 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
 
     /**
      * Translates the validation results to form error messages where applicable.
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages the error messages
      *
      * @return the list of errors related to this form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollmentType, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -201,17 +201,17 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param applicationType the front end model
+     * @param application the persistent model
      * @throws PortalServiceException for any errors encountered
      */
-    public void bindToHibernate(EnrollmentType enrollmentType, Enrollment ticket) throws PortalServiceException {
-        ProviderProfile profile = ticket.getDetails();
+    public void bindToHibernate(ApplicationType applicationType, Application application) throws PortalServiceException {
+        ProviderProfile profile = application.getDetails();
         if (profile == null || !(profile.getEntity() instanceof Person)) {
             throw new PortalServiceException("Provider type should be bound first.");
         }
 
-        ProviderInformationType providerInfo = enrollmentType.getProviderInformation();
+        ProviderInformationType providerInfo = applicationType.getProviderInformation();
         if (providerInfo != null) {
             Person person = (Person) profile.getEntity();
             person.setNpi(providerInfo.getNPI());
@@ -241,23 +241,23 @@ public class IndividualPCAInfoFormBinder extends BaseFormBinder implements FormB
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * @param application the persistent model
+     * @param applicationType the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollmentType) {
-        ProviderProfile profile = ticket.getDetails();
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        ProviderProfile profile = application.getDetails();
         if (profile != null) {
             Entity entity = profile.getEntity();
             if (entity != null) {
                 Person person = (Person) entity;
-                IndividualApplicantType individual = XMLUtility.nsGetIndividual(enrollmentType);
+                IndividualApplicantType individual = XMLUtility.nsGetIndividual(applicationType);
                 individual.setLastName(person.getLastName());
                 individual.setFirstName(person.getFirstName());
                 individual.setMiddleName(person.getMiddleName());
                 individual.setSocialSecurityNumber(person.getSsn());
                 individual.setDateOfBirth(BinderUtils.toCalendar(person.getDob()));
-                enrollmentType.getProviderInformation().setNPI(person.getNpi());
-                enrollmentType.getProviderInformation().setEighteenAndAbove(profile.getAdultInd());
+                applicationType.getProviderInformation().setNPI(person.getNpi());
+                applicationType.getProviderInformation().setEighteenAndAbove(profile.getAdultInd());
 
                 ContactInformation hContact = person.getContactInformation();
                 if (hContact != null) {

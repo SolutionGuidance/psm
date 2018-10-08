@@ -30,7 +30,7 @@
 <c:set var="showInitialChoices" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['showInitialChoices']}"></c:set>
 <c:set var="clearingHouseLayout" value="${viewModel.tabModels[viewModel.currentTab].formSettings['Organization Information Form'].settings['clearingHouseLayout']}"></c:set>
 
-<div class="newEnrollmentPanel practicePanel">
+<div class="newApplicationPanel practicePanel">
     <div class="section">
     <input type="hidden" name="formNames" value="<%= ViewStatics.ORG_INFO_FORM %>">
         <div class="wholeCol organizationInfo">
@@ -308,7 +308,7 @@
                     <div class="row requireField">
                         <c:set var="formName" value="_15_effectiveDate"></c:set>
                         <c:set var="formValue" value="${requestScope[formName]}"></c:set>
-                        <label for="{formIdPrefix}_${formName}">Requested Enrollment Date <span class="required">*</span></label>
+                        <label for="{formIdPrefix}_${formName}">Requested Application Date <span class="required">*</span></label>
                         <span class="dateWrapper floatL">
                             <input id="{formIdPrefix}_${formName}" class="date" type="text" name="${formName}" value="${formValue}"/>
                         </span>

@@ -24,14 +24,14 @@ import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.springframework.mock.web.MockHttpServletResponse
 
-import gov.medicaid.entities.Enrollment
+import gov.medicaid.entities.Application
 import gov.medicaid.entities.SearchResult
-import gov.medicaid.services.ProviderEnrollmentService
+import gov.medicaid.services.ProviderApplicationService
 import spock.lang.Specification
 
 class TimeToReviewReportControllerTest extends Specification {
     private TimeToReviewReportController controller
-    private ProviderEnrollmentService service
+    private ProviderApplicationService service
     private static TimeZone originalTimeZone
     private static LocalDateTime noonMiddleThisMonth
 
@@ -45,17 +45,17 @@ class TimeToReviewReportControllerTest extends Specification {
     }
 
     void setup() {
-        service = Mock(ProviderEnrollmentService)
+        service = Mock(ProviderApplicationService)
         controller = new TimeToReviewReportController(service)
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
     }
 
-    def "csv with no enrollments - header"() {
+    def "csv with no applications - header"() {
         given:
-        def results = new SearchResult<Enrollment>()
+        def results = new SearchResult<Application>()
         results.setItems([])
-        1 * service.searchEnrollments(_) >> results
+        1 * service.searchApplications(_) >> results
         def response = new MockHttpServletResponse()
 
         when:
@@ -76,30 +76,30 @@ class TimeToReviewReportControllerTest extends Specification {
         Date.from(d.atZone(ZoneId.systemDefault()).toInstant())
     }
 
-    private makeEnrollment(submissionDate, statusDate) {
-        return new Enrollment([
+    private makeApplication(submissionDate, statusDate) {
+        return new Application([
             submissionDate: toDate(submissionDate),
             statusDate: toDate(statusDate)
         ])
     }
 
     private testData() {
-        def results = new SearchResult<Enrollment>()
+        def results = new SearchResult<Application>()
         results.setItems([
-            makeEnrollment(noonMiddleThisMonth.minusDays(2), noonMiddleThisMonth),
-            makeEnrollment(
+            makeApplication(noonMiddleThisMonth.minusDays(2), noonMiddleThisMonth),
+            makeApplication(
                 noonMiddleThisMonth.minusMonths(1).minusDays(2).minusHours(2),
                 noonMiddleThisMonth.minusMonths(1)
             ),
-            makeEnrollment(
+            makeApplication(
                 noonMiddleThisMonth.minusMonths(1).minusDays(3).minusHours(4),
                 noonMiddleThisMonth.minusMonths(1)
             ),
-            makeEnrollment(
+            makeApplication(
                 noonMiddleThisMonth.minusMonths(1).minusDays(4).minusHours(6),
                 noonMiddleThisMonth.minusMonths(1)
             ),
-            makeEnrollment(
+            makeApplication(
                 noonMiddleThisMonth.minusMonths(3).minusHours(5),
                 noonMiddleThisMonth.minusMonths(3)
             )
@@ -107,9 +107,9 @@ class TimeToReviewReportControllerTest extends Specification {
         results
     }
 
-    def "csv with enrollments"() {
+    def "csv with applications"() {
         given:
-        1 * service.searchEnrollments(_) >> testData()
+        1 * service.searchApplications(_) >> testData()
 
         def response = new MockHttpServletResponse()
 
@@ -140,9 +140,9 @@ class TimeToReviewReportControllerTest extends Specification {
         records[4][3] == "0 days, 5 hours"
     }
 
-    def "mv with enrollments"() {
+    def "mv with applications"() {
         given:
-        1 * service.searchEnrollments(_) >> testData()
+        1 * service.searchApplications(_) >> testData()
 
         when:
         def mv = controller.getTimeToReview().getModel()
@@ -150,7 +150,7 @@ class TimeToReviewReportControllerTest extends Specification {
         then:
         mv["months"].size == 4
         mv["months"][0].month == noonMiddleThisMonth.withDayOfMonth(1).toLocalDate()
-        mv["months"][0].enrollments.size == 1
+        mv["months"][0].applications.size == 1
         mv["months"][0].meanAsString == "2 days, 0 hours"
         mv["months"][2].month == noonMiddleThisMonth.withDayOfMonth(1).minusMonths(2).toLocalDate()
         mv["months"][2].medianAsString == "0 days, 0 hours"

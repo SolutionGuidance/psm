@@ -17,9 +17,9 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <div class="clearFixed"></div>
-<%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/tabs.jsp" %>
-<form action="<c:url value="/provider/enrollment/page" />"
-    id="enrollmentForm"
+<%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/common/tabs.jsp" %>
+<form action="<c:url value="/provider/application/page" />"
+    id="applicationForm"
     method="post"
     enctype="multipart/form-data">
   <sec:csrfInput />
@@ -27,13 +27,13 @@
   <input type="hidden" name="pageName" value="${pageName}"/>
   <c:set var="showExportNavigation" value="${true}" />
   <c:set var="isTopNavigation" value="${true}" />
-  <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/steps_navigation_buttons.jsp" %>
+  <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/common/steps_navigation_buttons.jsp" %>
 
   <div class="personalPanel summaryPageWrapper">
     <c:set var="afterSummary" value="${false}"></c:set>
     <c:forEach var="tabName" items="${viewModel.tabNames}" varStatus="status">
       <c:if test="${tabName ne pageName and not afterSummary}">
-        <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary/header.jsp" %>
+        <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/summary/header.jsp" %>
       </c:if>
       <c:choose>
       <c:when test="${tabName eq 'Personal Information'}">
@@ -61,6 +61,6 @@
   </div>
 
   <c:set var="isTopNavigation" value="${false}"></c:set>
-  <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/common/steps_navigation_buttons.jsp" %>
+  <%@include file="/WEB-INF/pages/provider/application/steps/pageTemplates/common/steps_navigation_buttons.jsp" %>
 
 </form>

@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package gov.medicaid.features.enrollment.ui;
+package gov.medicaid.features.application.ui;
 
 import cucumber.api.PendingException;
 
-public class OrganizationInfoPage extends EnrollmentPage {
+public class OrganizationInfoPage extends ApplicationPage {
     private static final String ORGANIZATION_FEIN_ERROR_MESSAGE =
             "Organization FEIN length must be 9 characters.";
 
@@ -27,7 +27,7 @@ public class OrganizationInfoPage extends EnrollmentPage {
     }
 
     public void verifyApplicantNameAccepted() {
-        if (isOrganizaionalEnrollment()) {
+        if (isOrganizaionalApplication()) {
             $("#legalName").sendKeys("verify_name");
         } else {
             $("#firstName").sendKeys("first_name");
@@ -41,12 +41,12 @@ public class OrganizationInfoPage extends EnrollmentPage {
     }
 
     public void verifyContactPhoneAccepted() {
-        if (isOrganizaionalEnrollment()) {
+        if (isOrganizaionalApplication()) {
             $("[name='_15_contactPhone1']").sendKeys("217");
             $("[name='_15_contactPhone2']").sendKeys("217");
             $("[name='_15_contactPhone3']").sendKeys("217");
         } else {
-            throw new PendingException("Issue #346 - Capture contact phone # for individual provider enrollments");
+            throw new PendingException("Issue #346 - Capture contact phone # for individual provider applications");
         }
     }
 
@@ -55,14 +55,14 @@ public class OrganizationInfoPage extends EnrollmentPage {
     }
 
     public void verifyMedicaidNumberAccepted() {
-        throw new PendingException("Issue #347 - Capture Medicaid Number for new Enrollments");
+        throw new PendingException("Issue #347 - Capture Medicaid Number for new Applications");
     }
 
-    public boolean isPersonalEnrollment() {
+    public boolean isPersonalApplication() {
         return this.getTitle().equals("Personal Information");
     }
 
-    public boolean isOrganizaionalEnrollment() {
+    public boolean isOrganizaionalApplication() {
         return this.getTitle().equals("Organization Information");
     }
 

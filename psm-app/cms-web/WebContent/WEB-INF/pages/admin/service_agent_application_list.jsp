@@ -18,19 +18,19 @@
 <html lang="en-US">
   <c:choose>
     <c:when test="${tabName == 'all'}">
-      <c:set var="listType" value="All Enrollments"/>
+      <c:set var="listType" value="All Applications"/>
     </c:when>
     <c:when test="${tabName == 'approved'}">
-      <c:set var="listType" value="Approved Enrollments"/>
+      <c:set var="listType" value="Approved Applications"/>
     </c:when>
     <c:when test="${tabName == 'rejected'}">
-      <c:set var="listType" value="Denied Enrollments"/>
+      <c:set var="listType" value="Denied Applications"/>
     </c:when>
     <c:when test="${tabName == 'pending'}">
-      <c:set var="listType" value="Pending Enrollments"/>
+      <c:set var="listType" value="Pending Applications"/>
     </c:when>
     <c:when test="${tabName == 'draft'}">
-      <c:set var="listType" value="Draft Enrollments"/>
+      <c:set var="listType" value="Draft Applications"/>
     </c:when>
   </c:choose>
   <c:set var="title" value="${listType}"/>
@@ -43,28 +43,28 @@
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
             <h:handlebars template="includes/banner" context="${pageContext}"/>
-            <c:set var="activeTabEnrollments" value="true"></c:set>
+            <c:set var="activeTabApplications" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <%@ include file="/WEB-INF/pages/admin/includes/enrollments_link.jsp" %>
+            <%@ include file="/WEB-INF/pages/admin/includes/applications_link.jsp" %>
             <span>${listType}</span>
           </div>
           <h1>${listType}</h1>
-          <div class="tabSection" id="enrollmentSection">
-            <c:set var="active_enrollment_tab" value="${tabName}"/>
-            <c:set var="enrollmentSearchFormAction" value="${ctx}/provider/enrollments/${tabName}?statuses=${Status}"/>
+          <div class="tabSection" id="applicationSection">
+            <c:set var="active_application_tab" value="${tabName}"/>
+            <c:set var="applicationSearchFormAction" value="${ctx}/provider/applications/${tabName}?statuses=${Status}"/>
             <c:set var="searchResult" value="${results}"/>
-            <%@ include file="/WEB-INF/pages/admin/includes/enrollment_tab_section.jsp" %>
-            <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_form.jsp" %>
+            <%@ include file="/WEB-INF/pages/admin/includes/application_tab_section.jsp" %>
+            <%@ include file="/WEB-INF/pages/admin/includes/application_search_form.jsp" %>
             <!-- /.tabHead -->
             <div class="tabContent">
               <div class="pagination">
                 <%@ include file="/WEB-INF/pages/includes/pagination_details_wrapper.jsp" %>
-                <%@ include file="/WEB-INF/pages/admin/includes/enrollment_buttons.jsp" %>
+                <%@ include file="/WEB-INF/pages/admin/includes/application_buttons.jsp" %>
               </div>
-              <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_filter_panel.jsp" %>
+              <%@ include file="/WEB-INF/pages/admin/includes/application_search_filter_panel.jsp" %>
               <c:choose>
               <c:when test="${searchResult.total == 0}">
                 <div class="tableWrapper">
@@ -81,10 +81,10 @@
               <c:otherwise>
                 <div class="tableWrapper">
                   <div class="tableContainer">
-                    <c:if test="${active_enrollment_tab == 'all'}">
+                    <c:if test="${active_application_tab == 'all'}">
                       <c:set var="addStatusColumn" value="yes"/>
                     </c:if>
-                    <%@ include file="/WEB-INF/pages/admin/includes/enrollment_search_result_table.jsp" %>
+                    <%@ include file="/WEB-INF/pages/admin/includes/application_search_result_table.jsp" %>
                   </div>
                   <!-- /.tableContainer -->
                   <div class="tabFoot">

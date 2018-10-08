@@ -1,4 +1,4 @@
-package gov.medicaid.features.enrollment.ui;
+package gov.medicaid.features.application.ui;
 
 import gov.medicaid.features.PsmPage;
 
@@ -6,8 +6,8 @@ import java.time.LocalDate;
 
 /**
  * PageObject to interact with the "PCA Agency Info" step of an individual
- * provider enrollment. This page is reached by logging in, creating an
- * enrollment, and selecting an individual provider type.
+ * provider application. This page is reached by logging in, creating an
+ * application, and selecting an individual provider type.
  */
 public class PersonalCareAssistantAgencyInfoPage extends PsmPage {
 

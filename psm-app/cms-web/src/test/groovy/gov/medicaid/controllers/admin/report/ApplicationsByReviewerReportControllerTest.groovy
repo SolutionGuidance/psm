@@ -24,32 +24,32 @@ import org.apache.commons.csv.CSVParser
 import org.springframework.mock.web.MockHttpServletResponse
 
 import gov.medicaid.entities.CMSUser
-import gov.medicaid.entities.Enrollment
-import gov.medicaid.entities.EnrollmentStatus
+import gov.medicaid.entities.Application
+import gov.medicaid.entities.ApplicationStatus
 import gov.medicaid.entities.Person
 import gov.medicaid.entities.ProviderProfile
 import gov.medicaid.entities.ProviderType
 import gov.medicaid.entities.SearchResult
-import gov.medicaid.services.ProviderEnrollmentService
+import gov.medicaid.services.ProviderApplicationService
 import spock.lang.Specification
 
 class ApplicationsByReviewerReportControllerTest extends Specification {
     private ApplicationsByReviewerReportController controller
-    private ProviderEnrollmentService service
+    private ProviderApplicationService service
     private static TimeZone originalTimeZone
 
     private toDate(dateStr) {
         Date.parse("yyyy-MM-dd HH:mm:ss zzz", dateStr)
     }
 
-    private makeEnrollment(id, createdOn, lastUpdatedBy, statusDate, status) {
-        return new Enrollment([
-            enrollmentId: id,
+    private makeApplication(id, createdOn, lastUpdatedBy, statusDate, status) {
+        return new Application([
+            applicationId: id,
             profileReferenceId: id,
             createdOn: toDate(createdOn),
             lastUpdatedBy: new CMSUser([username: lastUpdatedBy]),
             statusDate: toDate(statusDate),
-            status: new EnrollmentStatus([description: status])
+            status: new ApplicationStatus([description: status])
         ])
     }
 
@@ -71,17 +71,17 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
     }
 
     void setup() {
-        service = Mock(ProviderEnrollmentService)
+        service = Mock(ProviderApplicationService)
         controller = new ApplicationsByReviewerReportController(service)
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
     }
 
-    def "csv with no enrollments - header"() {
+    def "csv with no applications - header"() {
         given:
-        def results = new SearchResult<Enrollment>()
+        def results = new SearchResult<Application>()
         results.setItems([])
-        1 * service.searchEnrollments(_) >> results
+        1 * service.searchApplications(_) >> results
         def response = new MockHttpServletResponse()
 
         when:
@@ -101,13 +101,13 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
         records[0].size() == 7
     }
 
-    def "csv with an enrollments"() {
+    def "csv with an applications"() {
         given:
-        def results = new SearchResult<Enrollment>()
+        def results = new SearchResult<Application>()
         results.setItems([
-            makeEnrollment(1234, "2018-05-05 12:32:33 PST", "admin", "2018-05-08 5:03:55 PST", "TEST")
+            makeApplication(1234, "2018-05-05 12:32:33 PST", "admin", "2018-05-08 5:03:55 PST", "TEST")
         ])
-        1 * service.searchEnrollments(_) >> results
+        1 * service.searchApplications(_) >> results
         1 * service.getProviderDetails(1234, true) >> makeProviderProfile("Provider", "Type");
 
         def response = new MockHttpServletResponse()
@@ -130,28 +130,28 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
     }
 
     private testData() {
-        def results = new SearchResult<Enrollment>()
+        def results = new SearchResult<Application>()
         results.setItems([
-            makeEnrollment(1234, "2018-05-05 12:32:33 PST", "admin", "2018-05-08 5:03:55 PST", "TEST"),
-            makeEnrollment(1235, "2018-05-04 12:32:33 PST", "p1", "2018-05-09 5:03:55 PST", "APPROVED"),
-            makeEnrollment(1236, "2018-05-03 12:32:33 PST", "p1", "2018-05-10 5:03:55 PST", "DRAFT"),
-            makeEnrollment(1237, "2018-05-02 12:32:33 PST", "admin", "2018-05-11 5:03:55 PST", "TEST")
+            makeApplication(1234, "2018-05-05 12:32:33 PST", "admin", "2018-05-08 5:03:55 PST", "TEST"),
+            makeApplication(1235, "2018-05-04 12:32:33 PST", "p1", "2018-05-09 5:03:55 PST", "APPROVED"),
+            makeApplication(1236, "2018-05-03 12:32:33 PST", "p1", "2018-05-10 5:03:55 PST", "DRAFT"),
+            makeApplication(1237, "2018-05-02 12:32:33 PST", "admin", "2018-05-11 5:03:55 PST", "TEST")
         ].sort{it.getCreatedOn()})
         results
     }
 
     def "base mv"() {
         when:
-        def results = new SearchResult<Enrollment>()
+        def results = new SearchResult<Application>()
         results.setItems([])
-        1 * service.searchEnrollments(_) >> results
+        1 * service.searchApplications(_) >> results
         def mv = controller.getApplicationsByReviewer(null, null, null).model
 
         then:
         mv["startDate"] == Date.from(LocalDate.now().withDayOfMonth(1).atStartOfDay(ZoneId.systemDefault()).toInstant())
         mv["endDate"] == Date.from(LocalDate.now().plusMonths(1).withDayOfMonth(1).minusDays(1)
                 .atStartOfDay(ZoneId.systemDefault()).toInstant())
-        mv["enrollments"].size == 0
+        mv["applications"].size == 0
     }
 
     def "submitted mv"() {
@@ -159,15 +159,15 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
         def mv = controller.getApplicationsByReviewer("", null, null).model
 
         then:
-        1 * service.searchEnrollments(*_) >> { arguments ->
+        1 * service.searchApplications(*_) >> { arguments ->
             assert null == arguments[0].createDateStart
             assert null == arguments[0].createDateEnd
             testData()
         }
         mv["startDate"] == null
         mv["endDate"] == null
-        mv["enrollments"].size == 4
-        mv["enrollments"][0].enrollmentId == 1237
+        mv["applications"].size == 4
+        mv["applications"][0].applicationId == 1237
     }
 
     def "submitted mv with dates"() {
@@ -183,7 +183,7 @@ class ApplicationsByReviewerReportControllerTest extends Specification {
         ).model
 
         then:
-        1 * service.searchEnrollments(*_) >> { arguments ->
+        1 * service.searchApplications(*_) >> { arguments ->
             assert startDate == arguments[0].createDateStart
             assert endDate == arguments[0].createDateEnd
             testData()

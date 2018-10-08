@@ -1,8 +1,8 @@
 package gov.medicaid.features.service_admin.steps;
 
-import gov.medicaid.features.enrollment.ui.EnrollmentListPage;
-import gov.medicaid.features.enrollment.ui.ViewEnrollmentPage;
-import gov.medicaid.features.service_admin.ui.EnrollmentReviewPage;
+import gov.medicaid.features.application.ui.ApplicationListPage;
+import gov.medicaid.features.application.ui.ViewApplicationPage;
+import gov.medicaid.features.service_admin.ui.ApplicationReviewPage;
 
 import net.thucydides.core.annotations.Step;
 
@@ -10,40 +10,40 @@ import static net.thucydides.core.pages.PageObject.withParameters;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class EnrollmentSteps {
-    EnrollmentListPage enrollmentListPage;
+public class ApplicationSteps {
+    ApplicationListPage applicationListPage;
 
-    EnrollmentReviewPage enrollmentReviewPage;
+    ApplicationReviewPage applicationReviewPage;
 
-    ViewEnrollmentPage viewEnrollmentPage;
+    ViewApplicationPage viewApplicationPage;
 
-    String approvedEnrollmentId = null;
+    String approvedApplicationId = null;
 
     @Step
     public void navigateToReviewPageFor(String npi) {
-        enrollmentListPage.clickActionForNpi(npi, ".reviewLink");
+        applicationListPage.clickActionForNpi(npi, ".reviewLink");
     }
 
     @Step
-    public void approveEnrollment() {
-        approvedEnrollmentId = enrollmentReviewPage.getEnrollmentId();
-        enrollmentReviewPage.approve();
+    public void approveApplication() {
+        approvedApplicationId = applicationReviewPage.getApplicationId();
+        applicationReviewPage.approve();
     }
 
     @Step
-    public void rejectEnrollment() {
-        approvedEnrollmentId = enrollmentReviewPage.getEnrollmentId();
-        enrollmentReviewPage.reject();
+    public void rejectApplication() {
+        approvedApplicationId = applicationReviewPage.getApplicationId();
+        applicationReviewPage.reject();
     }
 
     @Step
-    public void navigateToMostRecentEnrollment() {
-        assertThat(approvedEnrollmentId).isNotNull();
-        viewEnrollmentPage.open("view.enrollment", withParameters(approvedEnrollmentId));
+    public void navigateToMostRecentApplication() {
+        assertThat(approvedApplicationId).isNotNull();
+        viewApplicationPage.open("view.application", withParameters(approvedApplicationId));
     }
 
     @Step
     public void verifyState(String state) {
-        viewEnrollmentPage.verifyState(state);
+        viewApplicationPage.verifyState(state);
     }
 }

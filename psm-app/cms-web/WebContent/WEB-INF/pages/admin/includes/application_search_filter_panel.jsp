@@ -14,11 +14,11 @@
   limitations under the License.
 --%>
 <%--
-  The filter panel for: admin user login > Enrollments > All, Draft, etc. pages.
+  The filter panel for: admin user login > Applications > All, Draft, etc. pages.
 --%>
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp"%>
 <div
-  id="enrollmentFilterPanel"
+  id="applicationFilterPanel"
   class="filterPanel"
   <c:choose>
     <c:when test="${searchCriteria.showFilterPanel}">
@@ -32,11 +32,11 @@
   <div class="floatW">
     <div class="leftCol">
       <div class="row">
-        <label for="enrollmentSearchFilterNpiInput">
+        <label for="applicationSearchFilterNpiInput">
           NPI/UMPI
         </label>
         <input
-          id="enrollmentSearchFilterNpiInput"
+          id="applicationSearchFilterNpiInput"
           type="text"
           class="normalInput"
           value="${searchCriteria.npi}"
@@ -67,11 +67,11 @@
         </span>
       </div>
       <div class="row">
-        <label for="enrollmentSearchFilterProviderTypeInput">
+        <label for="applicationSearchFilterProviderTypeInput">
           Provider Type
         </label>
         <select
-          id="enrollmentSearchFilterProviderTypeInput"
+          id="applicationSearchFilterProviderTypeInput"
           class="longSelect"
         >
           <option value="">All</option>
@@ -90,22 +90,22 @@
       </div>
       <div class="rightCol">
         <div class="row">
-          <label for="enrollmentSearchFilterProviderNameInput">
+          <label for="applicationSearchFilterProviderNameInput">
             Provider Name
           </label>
           <input
-            id="enrollmentSearchFilterProviderNameInput"
+            id="applicationSearchFilterProviderNameInput"
             value="${searchCriteria.providerName}"
             type="text"
             class="normalInput"
           />
         </div>
         <div class="row">
-          <label for="enrollmentSearchFilterRequestTypeInput">
+          <label for="applicationSearchFilterRequestTypeInput">
             Request Type
           </label>
           <select
-            id="enrollmentSearchFilterRequestTypeInput"
+            id="applicationSearchFilterRequestTypeInput"
             class="longSelect"
           >
             <option value="">All</option>
@@ -127,11 +127,11 @@
           </select>
         </div>
         <div class="row">
-          <label for="enrollmentSearchFilterRiskLevelInput">
+          <label for="applicationSearchFilterRiskLevelInput">
             Risk Level
           </label>
           <select
-            id="enrollmentSearchFilterRiskLevelInput"
+            id="applicationSearchFilterRiskLevelInput"
             class="longSelect"
           >
             <option value="">All</option>
@@ -155,7 +155,7 @@
       </div>
     </div>
     <a
-      id="showSearchEnrollmentsResultBtn"
+      id="showSearchApplicationsResultBtn"
       href="javascript:;"
       class="purpleBtn showResultBtn"
     >

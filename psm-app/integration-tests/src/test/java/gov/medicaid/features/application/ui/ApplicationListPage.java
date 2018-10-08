@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package gov.medicaid.features.enrollment.ui;
+package gov.medicaid.features.application.ui;
 
 import gov.medicaid.features.PsmPage;
 
@@ -26,9 +26,9 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class EnrollmentListPage extends PsmPage {
+public class ApplicationListPage extends PsmPage {
 
-    public void checkEnrollmentsInTable() {
+    public void checkApplicationsInTable() {
         assertThat(
             getDriver()
             .findElements(By.cssSelector(".generalTable tr"))
@@ -42,15 +42,15 @@ public class EnrollmentListPage extends PsmPage {
             $("#listByStatusNpi").sendKeys(npi);
             $("#filterForm").submit();
         } else { // For admins
-            $("#enrollmentSearchFilterNpiInput").sendKeys(npi);
-            $("#showSearchEnrollmentsResultBtn").click();
+            $("#applicationSearchFilterNpiInput").sendKeys(npi);
+            $("#showSearchApplicationsResultBtn").click();
         }
     }
 
     public void advanceToReview(String npi) {
-        WebElement enrollmentRow = getTableRowForNpi(npi);
-        assertThat(enrollmentRow).isNotNull();
-        enrollmentRow.findElement(By.cssSelector(".reviewLink")).click();
+        WebElement applicationRow = getTableRowForNpi(npi);
+        assertThat(applicationRow).isNotNull();
+        applicationRow.findElement(By.cssSelector(".reviewLink")).click();
     }
 
     public WebElement getTableRowForProviderType(String providerType) {

@@ -22,7 +22,7 @@
 <c:set var="showEmailRequired" value="${requestScope['_02_showEmailRequired']}"/>
 
 
-<div class="newEnrollmentPanel">
+<div class="newApplicationPanel">
     <div class="section">
         <input type="hidden" name="formNames" value="<%= ViewStatics.PERSONAL_INFO_FORM %>">
         <div class="wholeCol">
@@ -181,4 +181,4 @@
     <div class="bl"></div>
     <div class="br"></div>
 </div>
-<!-- /.newEnrollmentPanel -->
+<!-- /.newApplicationPanel -->

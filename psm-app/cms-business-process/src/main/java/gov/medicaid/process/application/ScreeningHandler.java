@@ -15,21 +15,21 @@
  * limitations under the License.
  */
 
-package gov.medicaid.process.enrollment;
+package gov.medicaid.process.application;
 
 import gov.medicaid.binders.XMLUtility;
-import gov.medicaid.domain.model.EnrollmentProcess;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationProcess;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.ValidationResultType;
 import gov.medicaid.domain.rules.CMSKnowledgeUtility;
 import gov.medicaid.domain.rules.GlobalLookups;
 import gov.medicaid.domain.rules.inference.LookupEntry;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 import gov.medicaid.services.ScreeningService;
 import gov.medicaid.services.util.XMLAdapter;
 
@@ -47,7 +47,7 @@ public class ScreeningHandler extends GenericHandler {
     /**
      * Provider service.
      */
-    private final ProviderEnrollmentService providerService;
+    private final ProviderApplicationService providerService;
 
     private final ScreeningService screeningService;
 
@@ -60,7 +60,7 @@ public class ScreeningHandler extends GenericHandler {
 
     public ScreeningHandler() {
         CMSConfigurator config = new CMSConfigurator();
-        this.providerService = config.getEnrollmentService();
+        this.providerService = config.getApplicationService();
         this.screeningService = config.getScreeningService();
         systemUser = config.getSystemUser();
     }
@@ -73,7 +73,7 @@ public class ScreeningHandler extends GenericHandler {
      */
     public void executeWorkItem(WorkItem item, WorkItemManager manager) {
         logger.info("Screening the provider.");
-        EnrollmentProcess processModel = (EnrollmentProcess) item.getParameter("model");
+        ApplicationProcess processModel = (ApplicationProcess) item.getParameter("model");
 
         ValidationResultType validationResult = new ValidationResultType();
         XMLUtility.nsGetScreeningResults(processModel).setAutomaticScreeningStatus(validationResult);
@@ -81,10 +81,10 @@ public class ScreeningHandler extends GenericHandler {
 
         // known facts for screening
         ksession.insert(processModel.getPostSubmissionInformation());
-        EnrollmentType enrollmentType = processModel.getEnrollment();
-        ksession.insert(enrollmentType);
-        ksession.insert(enrollmentType.getProviderInformation());
-        ksession.insert(enrollmentType.getProviderInformation().getVerificationStatus());
+        ApplicationType applicationType = processModel.getApplication();
+        ksession.insert(applicationType);
+        ksession.insert(applicationType.getProviderInformation());
+        ksession.insert(applicationType.getProviderInformation().getVerificationStatus());
         ksession.insert(processModel.getProcessResults().getScreeningResults());
         ksession.insert(validationResult);
         List<LookupEntry> allLookupEntries = GlobalLookups.getInstance().getAllLookupEntries();
@@ -99,8 +99,8 @@ public class ScreeningHandler extends GenericHandler {
             /*
              * This may be needed!!!
              *
-             * When updating the enrollment, the code to save the screenings was needed because
-             * the enrollment was getting duplicated left and right.  Now, enrollments get duplicated
+             * When updating the application, the code to save the screenings was needed because
+             * the application was getting duplicated left and right.  Now, applications get duplicated
              * if and only if they have done a major state change, and in those instances, they
              * should get new screenings.
              *
@@ -109,25 +109,25 @@ public class ScreeningHandler extends GenericHandler {
              * needed to duplicate the screenings.
              *
 
-            providerService.saveEnrollmentDetails(XMLAdapter.fromXML(systemUser, enrollment));
-            long ticketId = Long.parseLong(enrollment.getObjectId());
-            Enrollment ticket = providerService.getEnrollmentWithScreenings(systemUser, ticketId).
-                orElseThrow(() -> new PortalServiceException("Couldn't find ticket"));
+            providerService.saveApplicationDetails(XMLAdapter.fromXML(systemUser, application));
+            long applicationId = Long.parseLong(application.getObjectId());
+            Application application = providerService.getApplicationWithScreenings(systemUser, applicationId).
+                orElseThrow(() -> new PortalServiceException("Couldn't find application"));
             XMLAdapter
-                .mergeFromXML(ticket.getAutomaticScreenings(), enrollment)
+                .mergeFromXML(application.getAutomaticScreenings(), application)
                 .forEach(screeningService::saveScreening);
-            ProviderInformationType providerInformation = enrollment.getProviderInformation();
+            ProviderInformationType providerInformation = application.getProviderInformation();
             String reviewer = providerInformation.getReviewedBy(); // transient field (should really add to DB)
-            ProviderInformationType updatedInfo = XMLAdapter.toXML(ticket).getProviderInformation();
+            ProviderInformationType updatedInfo = XMLAdapter.toXML(application).getProviderInformation();
 
             */
-            Enrollment updatedTicket =
-                providerService.saveEnrollmentDetails(XMLAdapter.fromXML(systemUser, enrollmentType));
-            ProviderInformationType providerInformation = enrollmentType.getProviderInformation();
+            Application updatedApplication =
+                providerService.saveApplicationDetails(XMLAdapter.fromXML(systemUser, applicationType));
+            ProviderInformationType providerInformation = applicationType.getProviderInformation();
             String reviewer = providerInformation.getReviewedBy(); // transient field (should really add to DB)
-            ProviderInformationType updatedInfo = XMLAdapter.toXML(updatedTicket).getProviderInformation();
+            ProviderInformationType updatedInfo = XMLAdapter.toXML(updatedApplication).getProviderInformation();
             updatedInfo.setReviewedBy(reviewer);
-            enrollmentType.setProviderInformation(updatedInfo);
+            applicationType.setProviderInformation(updatedInfo);
         } catch (PortalServiceException e) {
             logger.log(java.util.logging.Level.SEVERE, e.getMessage(), e);
         }

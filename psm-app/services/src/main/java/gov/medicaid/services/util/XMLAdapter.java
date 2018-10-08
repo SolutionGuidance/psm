@@ -22,8 +22,8 @@ import gov.medicaid.binders.FormBinder;
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.AttachedDocumentsType;
 import gov.medicaid.domain.model.DocumentType;
-import gov.medicaid.domain.model.EnrollmentProcess;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationProcess;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.RequestType;
 import gov.medicaid.domain.model.RiskLevelType;
@@ -32,7 +32,7 @@ import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.DmfAutomaticScreening;
 import gov.medicaid.entities.Document;
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.Entity;
 import gov.medicaid.entities.LeieAutomaticScreening;
 import gov.medicaid.entities.ProviderProfile;
@@ -45,7 +45,7 @@ import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.PresentationService;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -68,9 +68,9 @@ public final class XMLAdapter {
     private static PresentationService presentationService;
 
     /**
-     * The enrollment service.
+     * The application service.
      */
-    private static ProviderEnrollmentService enrollmentService;
+    private static ProviderApplicationService applicationService;
 
     /**
      * Registry of binders.
@@ -85,7 +85,7 @@ public final class XMLAdapter {
         lookupService = config.getLookupService();
         presentationService = config.getPresentationService();
         binderRegistry = config.getBinderRegistry();
-        enrollmentService = config.getEnrollmentService();
+        applicationService = config.getApplicationService();
     }
 
     /**
@@ -97,43 +97,43 @@ public final class XMLAdapter {
     /**
      * For integration with the BPM service.
      *
-     * @param ticket the ticket to map
+     * @param application the application to map
      * @return the mapped request
      */
-    public static EnrollmentType toXML(Enrollment ticket) {
-        EnrollmentType enrollmentType = new EnrollmentType();
-        if (ticket.getEnrollmentId() > 0) {
-            enrollmentType.setObjectId(String.valueOf(ticket.getEnrollmentId()));
+    public static ApplicationType toXML(Application application) {
+        ApplicationType applicationType = new ApplicationType();
+        if (application.getApplicationId() > 0) {
+            applicationType.setObjectId(String.valueOf(application.getApplicationId()));
         }
-        if (ticket.getRequestType() != null) {
-            enrollmentType.setRequestType(RequestType.fromValue(ticket.getRequestType().getDescription()));
+        if (application.getRequestType() != null) {
+            applicationType.setRequestType(RequestType.fromValue(application.getRequestType().getDescription()));
         }
 
-        enrollmentType.setActive(ticket.isActive());
+        applicationType.setActive(application.isActive());
 
-        enrollmentType.setProcessInstanceId(ticket.getProcessInstanceId());
-        enrollmentType.setProgressPage(ticket.getProgressPage());
-        if (ticket.getSubmittedBy() != null) {
-            enrollmentType.setSubmittedBy(ticket.getSubmittedBy().getUserId());
+        applicationType.setProcessInstanceId(application.getProcessInstanceId());
+        applicationType.setProgressPage(application.getProgressPage());
+        if (application.getSubmittedBy() != null) {
+            applicationType.setSubmittedBy(application.getSubmittedBy().getUserId());
         }
-        enrollmentType.setSubmittedOn(BinderUtils.toCalendar(ticket.getSubmissionDate()));
-        enrollmentType.setStatusDate(BinderUtils.toCalendar(ticket.getStatusDate()));
+        applicationType.setSubmittedOn(BinderUtils.toCalendar(application.getSubmissionDate()));
+        applicationType.setStatusDate(BinderUtils.toCalendar(application.getStatusDate()));
 
-        ProviderProfile profile = ticket.getDetails();
+        ProviderProfile profile = application.getDetails();
         if (profile != null) {
             RiskLevel riskLevel = profile.getRiskLevel();
             if (riskLevel != null) {
-                enrollmentType.setRiskLevel(RiskLevelType.fromValue(riskLevel.getDescription()));
+                applicationType.setRiskLevel(RiskLevelType.fromValue(riskLevel.getDescription()));
             }
         }
 
-        if (ticket.getStatus() != null) {
-            enrollmentType.setStatus(ticket.getStatus().getDescription());
+        if (application.getStatus() != null) {
+            applicationType.setStatus(application.getStatus().getDescription());
         }
 
         // always run this binder
         FormBinder typeBinder = binderRegistry.get(ViewStatics.PROVIDER_TYPE_FORM);
-        typeBinder.bindFromHibernate(ticket, enrollmentType);
+        typeBinder.bindFromHibernate(application, applicationType);
 
         ViewModel viewModel = presentationService.getProviderViewModel(profile);
 
@@ -143,7 +143,7 @@ public final class XMLAdapter {
             for (String form : formNames) {
                 FormBinder binder = binderRegistry.get(form);
                 if (binder != null) {
-                    binder.bindFromHibernate(ticket, enrollmentType);
+                    binder.bindFromHibernate(application, applicationType);
                 } else {
                     throw new PortalServiceConfigurationException("No binder registered for form: " + form);
                 }
@@ -151,7 +151,7 @@ public final class XMLAdapter {
         }
 
         List<Document> attachments = profile.getAttachments();
-        AttachedDocumentsType at = XMLUtility.nsGetAttachments(enrollmentType.getProviderInformation());
+        AttachedDocumentsType at = XMLUtility.nsGetAttachments(applicationType.getProviderInformation());
         for (Document attachment : attachments) {
             DocumentType doc = new DocumentType();
             doc.setObjectId("" + attachment.getId());
@@ -160,13 +160,13 @@ public final class XMLAdapter {
             at.getAttachment().add(doc);
         }
 
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         provider.setObjectId(String.valueOf(profile.getProfileId()));
         provider.setOwnerId(profile.getOwnerId());
         // verification fields
         VerificationStatusType verification = new VerificationStatusType();
         provider.setVerificationStatus(verification);
-        ticket.getAutomaticScreenings()
+        application.getAutomaticScreenings()
             .forEach(as -> {
                 if (as instanceof LeieAutomaticScreening) {
                     if (Boolean.TRUE.equals(as.getManualConfirmation())) {
@@ -179,48 +179,48 @@ public final class XMLAdapter {
                 }
             });
 
-        return enrollmentType;
+        return applicationType;
     }
 
     /**
      * Converts the given xml to the HBM model.
      *
      * @param user the current user
-     * @param enrollment the enrollment to be converted
-     * @return the mapped ticket
+     * @param application the application to be converted
+     * @return the mapped application
      * @throws PortalServiceException for any errors encountered
      */
-    public static Enrollment fromXML(CMSUser user, EnrollmentType enrollmentType) throws PortalServiceException {
-        Enrollment ticket = new Enrollment();
+    public static Application fromXML(CMSUser user, ApplicationType applicationType) throws PortalServiceException {
+        Application application = new Application();
 
         // bind fields only valid for create
-        RequestType requestType = enrollmentType.getRequestType();
+        RequestType requestType = applicationType.getRequestType();
         if (requestType != null) {
-            ticket.setRequestType(lookupService.findLookupByDescription(gov.medicaid.entities.RequestType.class,
+            application.setRequestType(lookupService.findLookupByDescription(gov.medicaid.entities.RequestType.class,
                 requestType.value()));
         }
 
-        return mergeFromXML(user, enrollmentType, ticket);
+        return mergeFromXML(user, applicationType, application);
     }
 
     /**
-     * Merges the given xml to an existing ticket.
+     * Merges the given xml to an existing application.
      *
      * @param user the current user
-     * @param enrollment the enrollment to be merged
-     * @param ticket the ticket to merge to
-     * @return the mapped ticket
+     * @param application the application to be merged
+     * @param application the application to merge to
+     * @return the mapped application
      * @throws PortalServiceException for any errors encountered
      */
-    public static Enrollment mergeFromXML(CMSUser user, EnrollmentType enrollmentType, Enrollment ticket)
+    public static Application mergeFromXML(CMSUser user, ApplicationType applicationType, Application application)
         throws PortalServiceException {
-        ticket.setProgressPage(enrollmentType.getProgressPage());
+        application.setProgressPage(applicationType.getProgressPage());
 
         // always run this binder
         FormBinder typeBinder = binderRegistry.get(ViewStatics.PROVIDER_TYPE_FORM);
-        typeBinder.bindToHibernate(enrollmentType, ticket);
+        typeBinder.bindToHibernate(applicationType, application);
 
-        ViewModel viewModel = presentationService.getProviderViewModel(enrollmentType.getProviderInformation());
+        ViewModel viewModel = presentationService.getProviderViewModel(applicationType.getProviderInformation());
 
         Collection<UITabModel> pages = viewModel.getTabModels().values();
         for (UITabModel uiTabModel : pages) {
@@ -228,7 +228,7 @@ public final class XMLAdapter {
             for (String form : formNames) {
                 FormBinder binder = binderRegistry.get(form);
                 if (binder != null) {
-                    binder.bindToHibernate(enrollmentType, ticket);
+                    binder.bindToHibernate(applicationType, application);
                 } else {
                     throw new PortalServiceConfigurationException("No binder registered for form: " + form);
                 }
@@ -236,16 +236,16 @@ public final class XMLAdapter {
         }
 
         // this can come from many different pages.
-        associateUploads(user, enrollmentType, ticket);
+        associateUploads(user, applicationType, application);
 
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollmentType);
-        ProviderProfile profile = ticket.getDetails();
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
+        ProviderProfile profile = application.getDetails();
         profile.setOwnerId(provider.getOwnerId());
         profile.setProfileId(BinderUtils.getAsLong(provider.getObjectId()));
-        ticket.setEnrollmentId(BinderUtils.getAsLong(enrollmentType.getObjectId()));
+        application.setApplicationId(BinderUtils.getAsLong(applicationType.getObjectId()));
 
-        if (enrollmentType.getRiskLevel() != null) {
-            RiskLevelType riskLevel = enrollmentType.getRiskLevel();
+        if (applicationType.getRiskLevel() != null) {
+            RiskLevelType riskLevel = applicationType.getRiskLevel();
             switch (riskLevel) {
             case HIGH:
                 profile.setRiskLevel(lookupService.findLookupByDescription(RiskLevel.class, "High"));
@@ -263,7 +263,7 @@ public final class XMLAdapter {
         VerificationStatusType verification = provider.getVerificationStatus();
         Entity entity = profile.getEntity();
         if (verification != null) {
-            ticket.getAutomaticScreenings().stream().forEach(as -> {
+            application.getAutomaticScreenings().stream().forEach(as -> {
                 if (as instanceof LeieAutomaticScreening) {
                     as.setManualConfirmation("Y".equals(verification.getNonExclusion()));
                 } else if (as instanceof DmfAutomaticScreening) {
@@ -271,14 +271,14 @@ public final class XMLAdapter {
                 }
             });
         }
-        return ticket;
+        return application;
     }
 
     public static List<AutomaticScreening> mergeFromXML(
         List<AutomaticScreening> screenings,
-        EnrollmentType enrollment) {
+        ApplicationType application) {
 
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(application);
 
         // verification fields
         VerificationStatusType verification = provider.getVerificationStatus();
@@ -298,20 +298,20 @@ public final class XMLAdapter {
     /**
      * Uploads are already saved, so we just associate the entities.
      * @param user the user
-     * @param enrollment the enrollment to associate to
-     * @param ticket the ticket to associate to
+     * @param application the application to associate to
+     * @param application the application to associate to
      * @throws PortalServiceException for any errors encountered
      */
-    private static void associateUploads(CMSUser user, EnrollmentType enrollmentType, Enrollment ticket)
+    private static void associateUploads(CMSUser user, ApplicationType applicationType, Application application)
         throws PortalServiceException {
-        ProviderProfile profile = ticket.getDetails();
+        ProviderProfile profile = application.getDetails();
         profile.setAttachments(new ArrayList<Document>());
 
         List<Document> profileList = profile.getAttachments();
-        AttachedDocumentsType ao = XMLUtility.nsGetAttachments(enrollmentType.getProviderInformation());
+        AttachedDocumentsType ao = XMLUtility.nsGetAttachments(applicationType.getProviderInformation());
         List<DocumentType> list = ao.getAttachment();
         for (DocumentType doc : list) {
-            Document oldCopy = enrollmentService.findAttachment(user, Long.parseLong(doc.getObjectId()));
+            Document oldCopy = applicationService.findAttachment(user, Long.parseLong(doc.getObjectId()));
             if (oldCopy != null) {
                 Document clone = BinderUtils.clone(oldCopy);
                 clone.setFilename(doc.getName());
@@ -324,19 +324,19 @@ public final class XMLAdapter {
      * For integration with approval.
      *
      * @param processModel the process model
-     * @param ticket the enrollment ticket
+     * @param application the application application
      */
-    public static void copyApprovalFieldsToTicket(EnrollmentProcess processModel, Enrollment ticket) {
+    public static void copyApprovalFieldsToApplication(ApplicationProcess processModel, Application application) {
 
     }
 
     /**
-     * Wraps the given profile into an enrollment XML.
+     * Wraps the given profile into an application XML.
      * @param baseProfile the profile to be wrapped
      * @return the wrapped profile
      */
-    public static EnrollmentType toXML(ProviderProfile baseProfile) {
-        Enrollment wrapper = new Enrollment();
+    public static ApplicationType toXML(ProviderProfile baseProfile) {
+        Application wrapper = new Application();
         wrapper.setDetails(baseProfile);
         return toXML(wrapper);
     }

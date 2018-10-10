@@ -778,6 +778,9 @@ public class EnrollmentController extends BaseController {
             //profiles, rather than enrollments, but this code doesn't look like it was actually
             //used.  In the case that it is in the future, you have to figure out how to properly
             //uncomment the following section and stop throwing the exception.
+            //
+            //Of note, the call to enrollmentService.addCOSToProfile has been removed because it makes
+            //no more sense, so that will have to be investigated too.
 
             /*
              * categoryOfService.setProfileId(profileId);

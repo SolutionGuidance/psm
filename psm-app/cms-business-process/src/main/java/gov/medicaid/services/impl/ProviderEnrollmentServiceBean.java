@@ -2394,34 +2394,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     }
 
     /**
-     * Adds COS to the profile.
-     *
-     * @param user              the user performing the action
-     * @param categoryOfService the entity to persist
-     * @param prevCatServiceId  if last COS needs an update in end date this will be provided
-     * @param prevCatEndDate    last COS end date
-     * @throws PortalServiceException for any errors encountered
-     */
-    @Override
-    public void addCOSToProfile(
-            CMSUser user,
-            ProviderCategoryOfService categoryOfService,
-            long prevCatServiceId,
-            Date prevCatEndDate
-    ) throws PortalServiceException {
-        checkTicketEntitlement(user, categoryOfService.getTicketId());
-        categoryOfService.setId(0);
-        getEm().persist(categoryOfService);
-        if (prevCatServiceId != 0) {
-            ProviderCategoryOfService service = getEm().find(ProviderCategoryOfService.class, prevCatServiceId);
-            if (service != null) {
-                service.setEndDate(prevCatEndDate);
-                getEm().merge(service);
-            }
-        }
-    }
-
-    /**
      * Deletes the COS.
      *
      * @param user      the user performing the action

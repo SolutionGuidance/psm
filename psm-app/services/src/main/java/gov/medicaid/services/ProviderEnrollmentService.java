@@ -411,23 +411,6 @@ public interface ProviderEnrollmentService {
     );
 
     /**
-     * Adds COS to the profile.
-     *
-     * @param user              the user performing the action
-     * @param categoryOfService the entity to persist
-     * @param prevCatServiceId  if last COS needs an update in end date this
-     *                          will be provided
-     * @param prevCatEndDate    last COS end date
-     * @throws PortalServiceException for any errors encountered
-     */
-    void addCOSToProfile(
-            CMSUser user,
-            ProviderCategoryOfService categoryOfService,
-            long prevCatServiceId,
-            Date prevCatEndDate
-    ) throws PortalServiceException;
-
-    /**
      * Adds COS to the ticket.
      *
      * @param user              the user performing the action

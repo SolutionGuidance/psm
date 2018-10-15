@@ -133,7 +133,7 @@
                 "Implement the new APIs"
             ],
             "startDate": "2018-02-01",
-            "completedDate": "2018-09-30",
+            "completedDate": "2018-12-31",
             "status": "InProgress",
             "requirements": [
                 "psm-FR-9.4",
@@ -272,7 +272,7 @@
                 "Separate this into a management module"
             ],
             "startDate": "2018-07-01",
-            "completedDate": "2018-09-30",
+            "completedDate": "2018-12-31",
             "status": "InProgress",
             "requirements": [
                 "psm-FR-2.16",
@@ -287,7 +287,7 @@
             "description": "Enforce configurable policies for passwords and login limits.",
             "subfeatures": [],
             "startDate": "2018-07-01",
-            "completedDate": "2018-09-30",
+            "completedDate": "2018-12-31",
             "status": "InProgress",
             "requirements": [
                 "psm-AD-5.14",
@@ -305,7 +305,7 @@
                 "Use appropriate levels of encryption"
             ],
             "startDate": "2017-04-01",
-            "completedDate": "2018-09-30",
+            "completedDate": "2018-12-31",
             "status": "InProgress",
             "requirements": [
                 "psm-AD-1.4",
@@ -330,7 +330,7 @@
             "description": "Basic escalated screening: provide space for enhanced screening of providers in higher-risk categories",
             "subfeatures": [],
             "startDate": "2018-07-01",
-            "completedDate": "2018-09-30",
+            "completedDate": "2018-12-31",
             "status": "InProgress",
             "requirements": [
                 "psm-FR-1.5",
@@ -351,7 +351,7 @@
                 "Edit schema to hold background check and site visit information"
             ],
             "startDate": "2018-07-01",
-            "completedDate": "2018-09-30",
+            "completedDate": "2018-12-31",
             "status": "InProgress",
             "requirements": [
                 "psm-FR-1.5",
@@ -375,7 +375,7 @@
                 "Allow provider to assign billing rights to another provider"
             ],
             "startDate": "2018-07-01",
-            "completedDate": "2018-09-30",
+            "completedDate": "2018-12-31",
             "status": "InProgress",
             "requirements": [
                 "psm-FR-2.12",
@@ -395,8 +395,8 @@
                 "Import organizational provider information from flatfile",
                 "Import provider information via API"
             ],
-            "startDate": "2018-10-01",
-            "completedDate": "2018-12-31",
+            "startDate": "2018-11-01",
+            "completedDate": "2019-01-31",
             "status": "NotStarted",
             "requirements": [
                 "psm-FR-6.1",
@@ -412,8 +412,8 @@
                 "Link to NPPES",
                 "Add cross-check between NPI and address in PSM and NPPES"
             ],
-            "startDate": "2018-10-01",
-            "completedDate": "2018-12-31",
+            "startDate": "2018-11-01",
+            "completedDate": "2019-01-31",
             "status": "NotStarted",
             "requirements": [
                 "psm-FR-3.13",
@@ -431,8 +431,8 @@
                 "Edit schema to track all changes by user",
                 "Plan long-term backup and search"
             ],
-            "startDate": "2018-10-01",
-            "completedDate": "2018-12-31",
+            "startDate": "2018-11-01",
+            "completedDate": "2019-01-31",
             "status": "NotStarted",
             "requirements": [
                 "psm-AD-5.8",
@@ -453,8 +453,8 @@
                 "Make audit UI searchable",
                 "Create sample of data for audit"
             ],
-            "startDate": "2018-10-01",
-            "completedDate": "2018-12-31",
+            "startDate": "2018-11-01",
+            "completedDate": "2019-01-31",
             "status": "NotStarted",
             "requirements": [
                 "psm-AD-5.9",
@@ -470,8 +470,8 @@
             "feature_id": "psm-feature-045",
             "description": "If a draft application are not updated for a configurable period of time, mark it as stale [TBD: and require the applicant to confirm that information is still correct].",
             "subfeatures": [],
-            "startDate": "2018-10-01",
-            "completedDate": "2018-12-31",
+            "startDate": "2018-11-01",
+            "completedDate": "2019-01-31",
             "status": "NotStarted",
             "requirements": [
                 "psm-FR-7.12",
@@ -482,8 +482,8 @@
             "feature_id": "psm-feature-047",
             "description": "Allow providers to appeal a rejection from the PSM.",
             "subfeatures": [],
-            "startDate": "2018-10-01",
-            "completedDate": "2018-12-31",
+            "startDate": "2018-11-01",
+            "completedDate": "2019-01-31",
             "status": "NotStarted",
             "requirements": [
                 "psm-FR-9.3"
@@ -496,8 +496,8 @@
                 "Improve quick search (case insensitive, search all fields)",
                 "Update advanced search to retrieve correct results based on logged-in user"
             ],
-            "startDate": "2018-10-01",
-            "completedDate": "2018-12-31",
+            "startDate": "2018-11-01",
+            "completedDate": "2019-01-31",
             "status": "NotStarted",
             "requirements": [
                 "psm-FR-2.14",
@@ -515,8 +515,8 @@
                 "Track historical EPLS data",
                 "Track historical PECOS data"
             ],
-            "startDate": "2018-10-01",
-            "completedDate": "2018-12-31",
+            "startDate": "2018-11-01",
+            "completedDate": "2019-01-31",
             "status": "NotStarted",
             "requirements": [
                 "psm-FR-2.18",
@@ -2815,7 +2815,8 @@
             "issues": [
                 291,
                 423,
-                701
+                701,
+                1104
             ],
             "startDate": null,
             "completedDate": null,
@@ -3095,7 +3096,8 @@
                 1095,
                 1096,
                 1097,
-                1098
+                1098,
+                1104
             ],
             "startDate": null,
             "completedDate": null,
@@ -5822,6 +5824,59 @@
         }
     },
     "issues": {
+        "1104": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1104,
+            "url": "https://github.com/solutionguidance/psm/issues/1104",
+            "title": "'Save as Draft' only works once for organization applications",
+            "description": "PR #997 fixed issue #701 for individual applications, but not for organization applications. \r\n\r\nYou can create a new organization application and save it as a draft, but when you try to save it as a draft again (before submitting it), there is a \"server error\" in the UI.\r\n\r\n@frankduncan Looked into the problem and possible solutions and described them [on zulip](https://chat.opentechstrategies.com/#narrow/stream/6-Provider-Screening/subject/Checkins/near/56573):\r\n\r\n----\r\nThe issues is that the form binder for the Organization Disclosure Page performs a database query to see what agreements are available to the user. It does this each time the form is provided. The reason it does this is that we want to be able to look up to the full agreement, given only the ID coming in from the form request.\r\n\r\nThe problem comes in that hibernate is trying to flush the current session before querying the database. However, we've changed the working enrollment via the calls to all the form binders. That means that the current enrollment is out of date, and hasn't been saved, and so has a lot of transient fields. This causes an error.\r\n\r\nThe reason this doesn't happen in individual forms is that this query is only peformed for disclosures. That's the last page of the individual, and so there's no query to the database to figure out what's currently out there.\r\n\r\nSo, we have a few options:\r\n\r\n1) Ignore, this is too much effort to go into, and just update the save as draft bug as \"only fails for organizations\". This is the least effort.\r\n\r\n2) Change the form binders to have a update phase that we execute first. This is the second to most effort, but most bug ridden because if you are playing with them and forget this crucial step, you're going to run into this issue again.\r\n\r\n3) Change the form binders to create new objects, having the necessary infromation in the forms to generate an entirely new document from the html request (no need to ping the DB to get the full information). This is the most effort, and I'm not actually sure is feasible.\r\n\r\n4) Change the form binders to populate this necessary information on system bootup. This is the second least effort, but runs into the bug that if you change the agreements in the database while the system is running, you will run into issues.\r\n\r\n5) just aggressively saving enrollments through each phase of the update. This would be a small bit of technical debt (would have to leave a comment saying that this is weird and we hacked it to avoid issue), but would be a one line change.\r\n----\r\n@frankduncan tried 5 and it did not work.  So we went with 1 in PR #997.  This issue is for follow-up work.",
+            "status": "NotStarted",
+            "startDate": "2018-10-05",
+            "completedDate": null,
+            "labels": [
+                "Z-REQ-PSM-FR-7.14",
+                "Z-REQ-PSM-FR-7.7",
+                "bug",
+                "ux"
+            ]
+        },
+        "1103": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1103,
+            "url": "https://github.com/solutionguidance/psm/issues/1103",
+            "title": "Some exported PDFs have missing content",
+            "description": "When exporting a \"Head Start\" application (organization) to PDF, the headings for Facility Credentials, Ownership Information, and Provider Statement are in the PDF but the content of these sections is missing.\r\n\r\n(With a PDF export of a \"Speech Language Pathologist\" (individual) application, all the content is present as expected.)",
+            "status": "NotStarted",
+            "startDate": "2018-09-28",
+            "completedDate": null,
+            "labels": []
+        },
+        "1102": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1102,
+            "url": "https://github.com/solutionguidance/psm/issues/1102",
+            "title": "Add PDF export for agreements and addendums",
+            "description": "For issue #1046 we got rid of print buttons and are using export to PDF instead.  One print button remains after PR #1078, the one for printing Agreements and Addendums (service admin > Functions > Agreements and Addendums > view). We should replace this print button with an export to pdf button.",
+            "status": "NotStarted",
+            "startDate": "2018-09-28",
+            "completedDate": null,
+            "labels": []
+        },
+        "1099": {
+            "owner": "solutionguidance",
+            "repos": "psm",
+            "number": 1099,
+            "url": "https://github.com/solutionguidance/psm/issues/1099",
+            "title": "Use ansible script for installing on Jenkins",
+            "description": "In PR #1024 @frankduncan points out that we should consider using the ansible install script as \"the default way to install the app on jenkins in the future, otherwise [the ansible script] will only ever get tested when someone new onboards, and the likelihood of it going stale is probably pretty high.\"",
+            "status": "NotStarted",
+            "startDate": "2018-09-24",
+            "completedDate": null,
+            "labels": []
+        },
         "1098": {
             "owner": "solutionguidance",
             "repos": "psm",
@@ -6093,9 +6148,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/1047",
             "title": "\"Previous\" button at bottom is too far from breadcrumb trail at top.",
             "description": "The \"Previous\" button at the bottom of the screen navigates you back through the breadcrumb bar components at the top.  While it's fine to have a \"Previous\" button at the bottom, there should also be one at the top, near the \"map\" (the breadcrumb bar) being navigated.  On a tall page, the breadcrumb trail will be off-screen when one is scrolled to the bottom, so if one is forced to scroll to the bottom in order to get to the \"Previous\" button, one loses sight of one's map -- not a good UX.\r\n\r\nNow, it might be that once issue #1048 is fixed, and assuming we make sure the browser's native Back button works everywhere, we don't even need a Previous button at all.  Getting rid of it would be a fine way to close this issue -- but while we have it, we should have it where it's needed.\r\n\r\n![psm-breadcrumb-trail-visible-previous-button-hidden-2018-08-23](https://user-images.githubusercontent.com/401111/44548400-99079c80-a6e3-11e8-8030-3ccc567a9a66.png)\r\n\r\nNow scroll to the bottom, where \"Previous\" button is, and lose sight of the top breadcrumb bar:\r\n\r\n![psm-breadcrumb-trail-hidden-previous-button-visible-2018-08-23](https://user-images.githubusercontent.com/401111/44548407-9b69f680-a6e3-11e8-8fa1-100e150ddcb9.png)\r\n",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-08-23",
-            "completedDate": null,
+            "completedDate": "2018-09-27",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "enhancement",
@@ -6109,9 +6164,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/1046",
             "title": "Get rid of Print links, just use Export-to-PDF (printing often errors anyway)",
             "description": "From a provider's home page (I logged in with p1/p1 and went to https://demo.psm.solutionguidance.com/cms/provider/dashboard/), all pending applications are shown, and under the Action column are separate links to Print and to Export To PDF.\r\n\r\nThe Print button fails -- if you click it, you just get an error popup:\r\n\r\n![psm-provider-print-failure-2018-08-23](https://user-images.githubusercontent.com/401111/44546464-a02bac00-a6dd-11e8-9752-0d1afc2a9190.png)\r\n\r\nThe Export-to-PDF link works just fine (there are some issues with the formatting of the resultant PDF's content, and I've filed issue #1045 about that, but the PDF export itself is clearly working).\r\n\r\nSince Export-to-PDF works, is there any reason we need a Print link at all?  I'm inclined to just get rid of it everywhere -- both on the provider side and on the admin side -- and just offer Export-to-PDF (there are some places where Export-to-PDF has issues itself, as described in issue #1014, but that's a separate matter and doesn't affect the question of whether or not we should just get rid of Print).\r\n\r\nSee [Zulip chat conversation](https://chat.opentechstrategies.com/#narrow/stream/6-Provider-Screening/subject/Checkins/near/52405) about this.  Consensus is: let's get rid of Print.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-08-23",
-            "completedDate": null,
+            "completedDate": "2018-09-28",
             "labels": [
                 "Z-REQ-PSM-AD-3.3",
                 "Z-REQ-PSM-AD-3.4",
@@ -7957,7 +8012,7 @@
             "number": 746,
             "url": "https://github.com/solutionguidance/psm/issues/746",
             "title": "Advanced search interface needs fixes",
-            "description": "- [ ] Add NPI as a search field\r\n- [ ] Checkboxes are uneven and not clearly linked to labels:\r\n\r\n![screenshot-2018-03-30-131351](https://user-images.githubusercontent.com/1497818/38219272-6fa738aa-369a-11e8-8ccc-1ed80cc5b435.png)\r\n\r\nSee also #612 and #618.",
+            "description": "- [ ] Add NPI as a search field\r\n- [x] Checkboxes are uneven and not clearly linked to labels:\r\n\r\n![screenshot-2018-03-30-131351](https://user-images.githubusercontent.com/1497818/38219272-6fa738aa-369a-11e8-8ccc-1ed80cc5b435.png)\r\n\r\nSee also #612 and #618.",
             "status": "NotStarted",
             "startDate": "2018-04-02",
             "completedDate": null,
@@ -8172,9 +8227,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/701",
             "title": "Can only save enrollment as draft once",
             "description": "I created a new enrollment and was able to save it as a draft once.  The second time I tried to do so (before completing and submitting it), I got a \"server error\" in the UI and following stack trace:\r\n```\r\nCaused by: javax.persistence.PersistenceException: org.hibernate.HibernateException: identifier of an instance of gov.medicaid.entities.ProviderProfile was altered from 1439 to 0\r\n        at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1692)\r\n        at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1602)\r\n        at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1608)\r\n        at org.hibernate.jpa.internal.EntityManagerImpl$CallbackExceptionMapperImpl.mapManagedFlushFailure(EntityManagerImpl.java:235)\r\n        at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2967)\r\n        at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2339)\r\n        at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:485)\r\n        at org.hibernate.resource.transaction.backend.jta.internal.JtaTransactionCoordinatorImpl.beforeCompletion(JtaTransactionCoordinatorImpl.java:316)\r\n        at org.hibernate.resource.transaction.backend.jta.internal.synchronization.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:47)\r\n        at org.hibernate.resource.transaction.backend.jta.internal.synchronization.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:37)\r\n        at org.jboss.as.txn.service.internal.tsr.JCAOrderedLastSynchronizationList.beforeCompletion(JCAOrderedLastSynchronizationList.java:116)\r\n        at com.arjuna.ats.internal.jta.resources.arjunacore.SynchronizationImple.beforeCompletion(SynchronizationImple.java:76)\r\n        at com.arjuna.ats.arjuna.coordinator.TwoPhaseCoordinator.beforeCompletion(TwoPhaseCoordinator.java:368)\r\n        at com.arjuna.ats.arjuna.coordinator.TwoPhaseCoordinator.end(TwoPhaseCoordinator.java:91)\r\n        at com.arjuna.ats.arjuna.AtomicAction.commit(AtomicAction.java:162)\r\n        at com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionImple.commitAndDisassociate(TransactionImple.java:1200)\r\n        ... 139 more\r\nCaused by: org.hibernate.HibernateException: identifier of an instance of gov.medicaid.entities.ProviderProfile was altered from 1439 to 0\r\n        at org.hibernate.event.internal.DefaultFlushEntityEventListener.checkId(DefaultFlushEntityEventListener.java:64)\r\n        at org.hibernate.event.internal.DefaultFlushEntityEventListener.getValues(DefaultFlushEntityEventListener.java:175)\r\n        at org.hibernate.event.internal.DefaultFlushEntityEventListener.onFlushEntity(DefaultFlushEntityEventListener.java:135)\r\n        at org.hibernate.event.internal.AbstractFlushingEventListener.flushEntities(AbstractFlushingEventListener.java:216)\r\n        at org.hibernate.event.internal.AbstractFlushingEventListener.flushEverythingToExecutions(AbstractFlushingEventListener.java:85)\r\n        at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:38)\r\n        at org.hibernate.internal.SessionImpl.flush(SessionImpl.java:1282)\r\n        at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:465)\r\n        at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2963)\r\n        ... 150 more\r\n```\r\n\r\nI could continue to fill out and submit the enrollment, but everything entered after the first time I saved as draft was lost.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2018-03-07",
-            "completedDate": null,
+            "completedDate": "2018-10-03",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "Z-REQ-PSM-FR-7.7",
@@ -10374,9 +10429,9 @@
             "url": "https://github.com/solutionguidance/psm/issues/376",
             "title": "Remove right-justified colons between labels and fields on forms",
             "description": "On forms like the provider enrollment form, the colons on the labels are right-justified and it looks disconnected.\r\n\r\nSee https://github.com/OpenTechStrategies/psm/issues/308#issue-246414550  for a screenshot.",
-            "status": "NotStarted",
+            "status": "Completed",
             "startDate": "2017-08-24",
-            "completedDate": null,
+            "completedDate": "2018-09-24",
             "labels": [
                 "Z-REQ-PSM-FR-7.14",
                 "accessibility",

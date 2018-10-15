@@ -180,7 +180,7 @@
 
   window.drawFeaturesBurnDownChart = function(data, d3) {
     var globalStartDate = new Date("2017-04-01");
-    var globalEndDate = new Date("2019-09-30");
+    var globalEndDate = new Date("2019-12-31");
     var todayDate = new Date();
     var todayString = todayDate.toISOString();
 

@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "automatic_screenings")
-public abstract class AutomaticScreening {
+public abstract class AutomaticScreening implements java.io.Serializable {
     public enum Result {
         PASS,
         FAIL,

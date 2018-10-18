@@ -48,9 +48,9 @@ class ProviderTypesReportControllerTest extends Specification {
         Date.from(d.atZone(ZoneId.systemDefault()).toInstant())
     }
 
-    private makeEnrollment(enrollmentId, statusDate) {
+    private makeEnrollment(profileId, statusDate) {
         return new Enrollment([
-            enrollmentId: enrollmentId,
+            profileReferenceId: profileId,
             statusDate: toDate(statusDate)
         ])
     }
@@ -73,12 +73,12 @@ class ProviderTypesReportControllerTest extends Specification {
     }
 
     private setupTestEntities() {
-        enrollmentService.findEntityByProviderKey(null, 1) >> makePerson("PT 1")
-        enrollmentService.findEntityByProviderKey(null, 2) >> makePerson("PT 1")
-        enrollmentService.findEntityByProviderKey(null, 3) >> makePerson("PT 2")
-        enrollmentService.findEntityByProviderKey(null, 4) >> makePerson("PT 2")
-        enrollmentService.findEntityByProviderKey(null, 5) >> makePerson("PT 2")
-        enrollmentService.findEntityByProviderKey(null, 6) >> makePerson("PT 1")
+        enrollmentService.findEntityByProviderKey(1) >> makePerson("PT 1")
+        enrollmentService.findEntityByProviderKey(2) >> makePerson("PT 1")
+        enrollmentService.findEntityByProviderKey(3) >> makePerson("PT 2")
+        enrollmentService.findEntityByProviderKey(4) >> makePerson("PT 2")
+        enrollmentService.findEntityByProviderKey(5) >> makePerson("PT 2")
+        enrollmentService.findEntityByProviderKey(6) >> makePerson("PT 1")
     }
 
     def "csv with no enrollments - header"() {

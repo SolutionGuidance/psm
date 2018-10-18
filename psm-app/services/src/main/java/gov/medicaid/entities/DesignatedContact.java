@@ -42,12 +42,6 @@ public class DesignatedContact implements Serializable {
     @Column(name = "profile_id")
     private long profileId;
 
-    /**
-     * The owner ticket.
-     */
-    @Column(name = "ticket_id")
-    private long ticketId;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "designated_contact_type")
     private DesignatedContactType type;
@@ -85,14 +79,6 @@ public class DesignatedContact implements Serializable {
 
     public void setProfileId(long profileId) {
         this.profileId = profileId;
-    }
-
-    public long getTicketId() {
-        return ticketId;
-    }
-
-    public void setTicketId(long ticketId) {
-        this.ticketId = ticketId;
     }
 
     public DesignatedContactType getType() {

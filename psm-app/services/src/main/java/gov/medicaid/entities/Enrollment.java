@@ -16,6 +16,8 @@
 
 package gov.medicaid.entities;
 
+import gov.medicaid.binders.BinderUtils;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -28,6 +30,7 @@ import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,7 +48,7 @@ import java.util.List;
         name = "Enrollment with screenings",
         attributeNodes = {@NamedAttributeNode("automaticScreenings")}
 )
-public class Enrollment implements Serializable {
+public class Enrollment implements Cloneable, Serializable {
 
     /**
      * Ticket identifier.
@@ -141,6 +144,24 @@ public class Enrollment implements Serializable {
     @Transient
     private ProviderProfile details;
 
+    /**
+     * Documents the applicant agreed to.
+     */
+    @Transient
+    private List<AcceptedAgreements> agreements;
+
+    /**
+     * Notes on enrollment.
+     */
+    @Transient
+    private List<Note> notes;
+
+    @Transient
+    private List<ProviderCategoryOfService> categoriesOfServiceTypes;
+
+    @Transient
+    private ProviderStatement statement;
+
     @OneToMany(
             mappedBy = "enrollment",
             cascade = CascadeType.ALL
@@ -217,6 +238,38 @@ public class Enrollment implements Serializable {
         this.details = details;
     }
 
+    public List<AcceptedAgreements> getAgreements() {
+        return agreements;
+    }
+
+    public void setAgreements(List<AcceptedAgreements> agreements) {
+        this.agreements = agreements;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+    }
+
+    public List<ProviderCategoryOfService> getCategoriesOfServiceTypes() {
+        return categoriesOfServiceTypes;
+    }
+
+    public void setCategoriesOfServiceTypes(List<ProviderCategoryOfService> categoriesOfServiceTypes) {
+        this.categoriesOfServiceTypes = categoriesOfServiceTypes;
+    }
+
+    public ProviderStatement getStatement() {
+        return statement;
+    }
+
+    public void setStatement(ProviderStatement statement) {
+        this.statement = statement;
+    }
+
     public long getProcessInstanceId() {
         return processInstanceId;
     }
@@ -288,5 +341,15 @@ public class Enrollment implements Serializable {
 
     public boolean isActive() {
         return details != null && details.getEnrollmentId() == this.enrollmentId;
+    }
+
+    /**
+     * Full clone of this object.
+     *
+     * @return a deep clone
+     */
+    public Enrollment clone() {
+        Enrollment obj = this;
+        return BinderUtils.clone(obj);
     }
 }

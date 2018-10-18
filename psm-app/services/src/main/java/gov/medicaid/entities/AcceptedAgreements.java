@@ -34,9 +34,6 @@ public class AcceptedAgreements implements Serializable {
     @Column(name = "accepted_agreement_id")
     private long id;
 
-    @Column(name = "profile_id")
-    private long profileId;
-
     @Column(name = "ticket_id")
     private long ticketId;
 
@@ -47,20 +44,19 @@ public class AcceptedAgreements implements Serializable {
     @JoinColumn(name = "agreement_document_id")
     private AgreementDocument agreementDocument;
 
+    public AcceptedAgreements() { }
+
+    public AcceptedAgreements(AgreementDocument agreementDocument) {
+        this.acceptedDate = new Date();
+        this.agreementDocument = agreementDocument;
+    }
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getProfileId() {
-        return profileId;
-    }
-
-    public void setProfileId(long profileId) {
-        this.profileId = profileId;
     }
 
     public long getTicketId() {

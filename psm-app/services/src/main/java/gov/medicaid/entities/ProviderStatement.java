@@ -31,12 +31,6 @@ public class ProviderStatement implements Serializable {
     @Column(name = "provider_statement_id")
     private long id;
 
-    /**
-     * If enrolled, the profile identifier.
-     */
-    @Column(name = "profile_id")
-    private long profileId;
-
     @Column(name = "ticket_id")
     private long ticketId;
 
@@ -66,14 +60,6 @@ public class ProviderStatement implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public long getProfileId() {
-        return profileId;
-    }
-
-    public void setProfileId(long profileId) {
-        this.profileId = profileId;
     }
 
     public long getTicketId() {

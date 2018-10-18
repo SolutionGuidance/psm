@@ -41,9 +41,6 @@ public class ProviderCategoryOfService implements Serializable {
     )
     private List<CategoryOfService> categories;
 
-    @Column(name = "profile_id")
-    private long profileId;
-
     @Column(name = "ticket_id")
     private long ticketId;
 
@@ -59,14 +56,6 @@ public class ProviderCategoryOfService implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getProfileId() {
-        return profileId;
-    }
-
-    public void setProfileId(long profileId) {
-        this.profileId = profileId;
     }
 
     public List<CategoryOfService> getCategories() {

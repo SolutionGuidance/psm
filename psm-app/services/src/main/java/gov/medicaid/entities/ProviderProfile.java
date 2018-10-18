@@ -146,9 +146,6 @@ public class ProviderProfile implements Cloneable, Serializable {
     private Entity entity;
 
     @Transient
-    private ProviderStatement statement;
-
-    @Transient
     private List<DesignatedContact> designatedContacts;
 
     /**
@@ -156,12 +153,6 @@ public class ProviderProfile implements Cloneable, Serializable {
      */
     @Transient
     private List<Affiliation> affiliations;
-
-    /**
-     * Documents the applicant agreed to.
-     */
-    @Transient
-    private List<AcceptedAgreements> agreements;
 
     /**
      * Provider setup.
@@ -225,9 +216,6 @@ public class ProviderProfile implements Cloneable, Serializable {
 
     @Column(name = "last_modified_at")
     private Date modifiedOn;
-
-    @Transient
-    private List<ProviderCategoryOfService> categoriesOfServiceTypes;
 
     public ProviderProfile() {
     }
@@ -366,22 +354,6 @@ public class ProviderProfile implements Cloneable, Serializable {
 
     public void setPreviousExclusionInd(String previousExclusionInd) {
         this.previousExclusionInd = previousExclusionInd;
-    }
-
-    public List<AcceptedAgreements> getAgreements() {
-        return agreements;
-    }
-
-    public void setAgreements(List<AcceptedAgreements> agreements) {
-        this.agreements = agreements;
-    }
-
-    public ProviderStatement getStatement() {
-        return statement;
-    }
-
-    public void setStatement(ProviderStatement statement) {
-        this.statement = statement;
     }
 
     public List<PayToProvider> getPayToProviders() {
@@ -576,13 +548,5 @@ public class ProviderProfile implements Cloneable, Serializable {
 
     public void setPhysicalAndOccupationalTherapyInd(String physicalAndOccupationalTherapyInd) {
         this.physicalAndOccupationalTherapyInd = physicalAndOccupationalTherapyInd;
-    }
-
-    public List<ProviderCategoryOfService> getCategoriesOfServiceTypes() {
-        return categoriesOfServiceTypes;
-    }
-
-    public void setCategoriesOfServiceTypes(List<ProviderCategoryOfService> categoriesOfServiceTypes) {
-        this.categoriesOfServiceTypes = categoriesOfServiceTypes;
     }
 }

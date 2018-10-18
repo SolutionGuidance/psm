@@ -330,21 +330,6 @@ public interface ProviderEnrollmentService {
     ) throws PortalServiceException;
 
     /**
-     * Creates a note on a profile, the note will also be visible on all active
-     * requests.
-     *
-     * @param user      the user performing the action
-     * @param profileId the request identifier
-     * @param text      the note text
-     * @throws PortalServiceException for any errors encountered
-     */
-    void addNoteToProfile(
-            CMSUser user,
-            long profileId,
-            String text
-    ) throws PortalServiceException;
-
-    /**
      * Used by data onboarding service to fully import a mapped profile.
      *
      * @param user            the user performing the operation
@@ -424,36 +409,6 @@ public interface ProviderEnrollmentService {
             CMSUser currentUser,
             Set<Long> profileIds
     );
-
-    /**
-     * Gets the COS associated with a profile.
-     *
-     * @param user      CMS user
-     * @param profileId profile id.
-     * @return the list of services
-     * @throws PortalServiceException for any errors encountered
-     */
-    List<ProviderCategoryOfService> getProviderCategoryOfServices(
-            CMSUser user,
-            long profileId
-    ) throws PortalServiceException;
-
-    /**
-     * Adds COS to the profile.
-     *
-     * @param user              the user performing the action
-     * @param categoryOfService the entity to persist
-     * @param prevCatServiceId  if last COS needs an update in end date this
-     *                          will be provided
-     * @param prevCatEndDate    last COS end date
-     * @throws PortalServiceException for any errors encountered
-     */
-    void addCOSToProfile(
-            CMSUser user,
-            ProviderCategoryOfService categoryOfService,
-            long prevCatServiceId,
-            Date prevCatEndDate
-    ) throws PortalServiceException;
 
     /**
      * Adds COS to the ticket.
@@ -544,20 +499,16 @@ public interface ProviderEnrollmentService {
      * @return the related entity to the profile
      */
     Entity findEntityByProviderKey(
-            Long profileId,
-            Long ticketId
+            long profileId
     );
 
     /**
      * Retrieves the related attachments for the given profile key.
      *
      * @param profileId the profile id of the provider
-     * @param ticketId  the request ticket id
      * @return the related attachments to the profile
      */
-    List<Document> findAttachments(
-            Long profileId,
-            Long ticketId);
+    List<Document> findAttachments(long profileId);
 
     /**
      * Retrieves the provider details.

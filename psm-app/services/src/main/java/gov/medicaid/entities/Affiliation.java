@@ -57,12 +57,6 @@ public class Affiliation implements Serializable {
     @Column(name = "object_type")
     private String objectType;
 
-    /**
-     * Owning ticket id.
-     */
-    @Column(name = "ticket_id")
-    private long ticketId;
-
     @Column(name = "effective_at")
     private Date effectiveDate;
 
@@ -143,14 +137,6 @@ public class Affiliation implements Serializable {
 
     public void setProfileId(long profileId) {
         this.profileId = profileId;
-    }
-
-    public long getTicketId() {
-        return ticketId;
-    }
-
-    public void setTicketId(long ticketId) {
-        this.ticketId = ticketId;
     }
 
     public long getTargetEntityId() {

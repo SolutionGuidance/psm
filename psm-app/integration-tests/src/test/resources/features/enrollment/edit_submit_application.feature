@@ -2,7 +2,6 @@ Feature: Editing and Submitting Applications
   Users wish to edit and submit applications
 
   @issue_1105
-  @ignore
   Scenario: Save as draft twice for Speech Language Pathologist application
     Given I have started an enrollment
     And I am on the individual summary page
@@ -20,7 +19,6 @@ Feature: Editing and Submitting Applications
     Then I should have no errors
 
   @issue_1105
-  @ignore
   Scenario: Save and then submit Speech Language Pathologist application
     Given I have started an enrollment
     And I am on the individual provider statement page
@@ -30,7 +28,6 @@ Feature: Editing and Submitting Applications
     Then I should have no errors
 
   @issue_1105
-  @ignore
   Scenario: Save and then submit Head Start application
     Given I have started an enrollment
     And I am on the organization provider statement page

@@ -2211,6 +2211,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         saveRelatedEntities(enrollment.clone());
 
         if (insertDetails) {
+            details.setOwnerId(user.getUserId());
             insertProfile(dbEnrollment.getEnrollmentId(), details);
             dbEnrollment.setProfileReferenceId(details.getProfileId());
 
@@ -2347,6 +2348,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
             saveRelatedEntities(updatedProfile);
         } else {
+            updatedProfile.setOwnerId(ticket.getSubmittedBy().getUserId());
             insertProfile(ticket.getEnrollmentId(), updatedProfile);
         }
 

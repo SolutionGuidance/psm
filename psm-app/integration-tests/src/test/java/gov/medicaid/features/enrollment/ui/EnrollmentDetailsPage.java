@@ -14,4 +14,8 @@ public class EnrollmentDetailsPage extends PsmPage {
     public void closeSubmitModal() {
         click($("#submitEnrollmentModal a.okBtn"));
     }
+
+    public void closeSaveAsDraftModal() {
+        click$("#saveAsDraftModal a.okBtn");
+    }
 }

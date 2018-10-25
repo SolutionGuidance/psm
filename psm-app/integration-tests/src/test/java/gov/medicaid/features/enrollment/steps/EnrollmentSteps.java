@@ -557,6 +557,11 @@ public class EnrollmentSteps {
     }
 
     @Step
+    void closeSaveAsDraftModal() {
+        enrollmentDetailsPage.closeSaveAsDraftModal();
+    }
+
+    @Step
     void enterEmptyEmailAddress() {
         personalInfoPage.enterEmail("");
     }

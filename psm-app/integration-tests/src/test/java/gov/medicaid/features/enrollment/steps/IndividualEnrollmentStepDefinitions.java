@@ -90,6 +90,12 @@ public class IndividualEnrollmentStepDefinitions {
         enrollmentSteps.advanceFromIndividualSummaryToProviderStatementPage();
     }
 
+    @When("^I save the application as a draft$")
+    public void i_save_the_application_as_a_draft() {
+        enrollmentSteps.clickSaveAsDraft();
+        enrollmentSteps.closeSaveAsDraftModal();
+    }
+
     @Given("^I am going to enroll as a Personal Care Assistant$")
     public void i_am_going_to_enroll_as_a_personal_care_assistant() {
         enrollmentSteps.preparePersonalCareAssistantEnrollment();

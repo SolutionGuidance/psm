@@ -566,19 +566,25 @@ public class EnrollmentSteps {
         personalInfoPage.enterEmail("");
     }
 
-    void renewIndividualEnrollment(String npi) {
+    @Step
+    void startToRenewIndividualEnrollment(String npi) {
         enrollmentListPage.clickActionForNpi(npi, ".renewLink");
         advanceFromIndividualPersonalInfoToLicenseInfo();
         advanceFromIndividualLicenseInfoToPracticeInfo();
         advanceFromIndividualPracticeInfoToSummaryPage();
         advanceFromIndividualSummaryToProviderStatementPage();
+    }
+
+    @Step
+    void renewIndividualEnrollment(String npi) {
+        startToRenewIndividualEnrollment(npi);
         checkNoOnProviderDisclosureQuestions();
         signProviderStatement();
         submitEnrollment();
     }
 
     @Step
-    void renewOrganizationalEnrollment(String npi) {
+    void startToRenewOrganizationalEnrollment(String npi) {
         enrollmentListPage.clickActionForNpi(npi, ".renewLink");
         advanceFromOrganizationInfoToLicenseInfo();
         advanceFromOrganizationLicenseInfoToIndividualMemberInfo();
@@ -586,6 +592,11 @@ public class EnrollmentSteps {
         setNoToAllDisclosures();
         advanceFromOrganizationOwnershipInfoToSummaryPage();
         advanceFromOrganizationSummaryToProviderStatementPage();
+    }
+
+    @Step
+    void renewOrganizationalEnrollment(String npi) {
+        startToRenewOrganizationalEnrollment(npi);
         signProviderStatement();
         submitEnrollment();
     }

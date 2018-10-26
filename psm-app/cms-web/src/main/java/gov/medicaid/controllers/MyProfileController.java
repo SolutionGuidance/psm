@@ -19,13 +19,11 @@ package gov.medicaid.controllers;
 import gov.medicaid.controllers.forms.UpdatePasswordForm;
 import gov.medicaid.controllers.validators.UpdatePasswordFormValidator;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.ProfileHeader;
 import gov.medicaid.entities.ProviderSearchCriteria;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.UserRequest;
 import gov.medicaid.entities.Validity;
 import gov.medicaid.entities.dto.ViewStatics;
-import gov.medicaid.security.CMSPrincipal;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.RegistrationService;
@@ -129,10 +127,7 @@ public class MyProfileController extends BaseController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView viewDashboard() {
-        CMSPrincipal principal = ControllerHelper.getPrincipal();
-        List<ProfileHeader> profiles = enrollmentService.findMyProfiles(principal.getUser());
-        ModelAndView mv = new ModelAndView("provider/profile/list");
-        mv.addObject("profiles", profiles);
+        ModelAndView mv = new ModelAndView("provider/profile/profile");
         return mv;
     }
 

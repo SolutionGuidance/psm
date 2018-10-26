@@ -50,7 +50,14 @@ public class EnrollmentListPage extends PsmPage {
     }
 
     public void clickActionForNpi(String npi, String action) {
-        Optional<WebElement> row = Optional.of(getTableRowForNpi(npi));
+        Optional<WebElement> row =
+            getDriver()
+                .findElements(By.cssSelector(".generalTable tr"))
+                .stream()
+                .filter(tr ->
+                    tr.findElements(By.xpath("td[contains(text(),'" + npi + "')]")).size() > 0 &&
+                    tr.findElements(By.cssSelector(action)).size() > 0)
+                .findFirst();
 
         assertThat(row).isPresent();
         assertThat(row.get().findElement(By.cssSelector(action)).isDisplayed()).isTrue();

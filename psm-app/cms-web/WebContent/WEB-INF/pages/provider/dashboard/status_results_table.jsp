@@ -210,13 +210,13 @@
                 <c:param name="profileId" value="${item.profileReferenceId}"/>
               </c:url>
               <a
-                class="actionLink"
+                class="actionLink editLink"
                 href="${editUrl}"
               >
                 Edit
               </a>
               <a
-                class="actionLink"
+                class="actionLink renewLink"
                 href="${renewUrl}"
               >
                 Renew

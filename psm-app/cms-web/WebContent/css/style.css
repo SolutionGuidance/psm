@@ -2236,24 +2236,24 @@ input.date{
   display:inline;
 }
 
-.dashboardPanel .sideBar .panel{
+.dashboardPanel .panel{
   width:100%;
   border:#d2d2d2 solid 1px;
   position:relative;
 }
 
-.dashboardPanel .sideBar .queryEnrollmentStatusPanel{
+.dashboardPanel .queryEnrollmentStatusPanel{
   margin:0 0 20px 0;
 }
 
 /* Header */
-.dashboardPanel .sideBar .panelHeader{
+.dashboardPanel .panelHeader{
   height:36px;
   border-bottom:#bdbdbd solid 1px;
   background:url(../i/panel-head.png) repeat-x left top;
 }
 
-.dashboardPanel .sideBar .panelHeader h2{
+.dashboardPanel .panelHeader h2{
   font-size:16px;
   font-weight:normal;
   line-height:36px;
@@ -2263,12 +2263,12 @@ input.date{
 }
 
 /* panelSection */
-.dashboardPanel .sideBar .queryEnrollmentStatusPanel .panelSection{
+.dashboardPanel .queryEnrollmentStatusPanel .panelSection{
   height:82px;
   padding:0 0 0 20px;
 }
 
-.dashboardPanel .sideBar .queryEnrollmentStatusPanel label{
+.dashboardPanel .queryEnrollmentStatusPanel label{
   display:block;
   padding:10px 0 0 0;
   font-size:12px;
@@ -2276,7 +2276,7 @@ input.date{
   line-height:29px;
 }
 
-.dashboardPanel .sideBar .queryEnrollmentStatusPanel .text{
+.dashboardPanel .queryEnrollmentStatusPanel .text{
   width:150px;
   height:21px;
   float:left;
@@ -2289,32 +2289,32 @@ input.date{
 }
 
 /* notificationsPanel */
-.dashboardPanel .sideBar .notificationsPanel li{
+.dashboardPanel .notificationsPanel li{
   min-height:10px;
   padding:0 50px 0 65px;
   border-bottom:#d2d2d2 dashed 1px;
   background:url(../i/icon-folder.png) no-repeat 14px 12px;
 }
 
-.dashboardPanel .sideBar .notificationsPanel li.last{
+.dashboardPanel .notificationsPanel li.last{
   border-bottom:0;
 }
 
-.dashboardPanel .sideBar .notificationsPanel li p{
+.dashboardPanel .notificationsPanel li p{
   padding:8px 0 0 0;
   font-size:13px;
   line-height:18px;
 }
 
-.dashboardPanel .sideBar .notificationsPanel li p a{
+.dashboardPanel .notificationsPanel li p a{
   text-decoration:none;
 }
 
-.dashboardPanel .sideBar .notificationsPanel li p a:hover{
+.dashboardPanel .notificationsPanel li p a:hover{
   text-decoration:underline;
 }
 
-.dashboardPanel .sideBar .notificationsPanel li span.date{
+.dashboardPanel .notificationsPanel li span.date{
   font-size:12px;
   line-height:28px;
   color:#666666;

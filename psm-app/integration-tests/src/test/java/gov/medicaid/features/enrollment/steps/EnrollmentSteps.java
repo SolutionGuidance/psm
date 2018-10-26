@@ -3,6 +3,7 @@ package gov.medicaid.features.enrollment.steps;
 import gov.medicaid.features.enrollment.ui.CcmhrCredentialsPage;
 import gov.medicaid.features.enrollment.ui.CtccCredentialsPage;
 import gov.medicaid.features.enrollment.ui.EnrollmentDetailsPage;
+import gov.medicaid.features.enrollment.ui.EnrollmentListPage;
 import gov.medicaid.features.enrollment.ui.EnrollmentPage;
 import gov.medicaid.features.enrollment.ui.IndividualInfoPage;
 import gov.medicaid.features.enrollment.ui.IndividualSummaryPage;
@@ -18,7 +19,6 @@ import gov.medicaid.features.enrollment.ui.ProviderStatementPage;
 import gov.medicaid.features.enrollment.ui.SelectProviderTypePage;
 import gov.medicaid.features.general.ui.AllEnrollmentsPage;
 import gov.medicaid.features.general.ui.LoginPage;
-import gov.medicaid.features.general.ui.MyProfilePage;
 
 import net.thucydides.core.annotations.Step;
 
@@ -75,7 +75,7 @@ public class EnrollmentSteps {
     private static final String RESIDENTIAL_COUNTY = "St. Louis";
 
     private LoginPage loginPage;
-    private MyProfilePage myProfilePage;
+    private EnrollmentListPage enrollmentListPage;
     private AllEnrollmentsPage allEnrollmentsPage;
     private EnrollmentPage enrollmentPage;
     private SelectProviderTypePage selectProviderTypePage;
@@ -567,7 +567,7 @@ public class EnrollmentSteps {
     }
 
     void renewIndividualEnrollment(String npi) {
-        myProfilePage.clickActionFor(npi, ".renewLink");
+        enrollmentListPage.clickActionForNpi(npi, ".renewLink");
         advanceFromIndividualPersonalInfoToLicenseInfo();
         advanceFromIndividualLicenseInfoToPracticeInfo();
         advanceFromIndividualPracticeInfoToSummaryPage();
@@ -579,7 +579,7 @@ public class EnrollmentSteps {
 
     @Step
     void renewOrganizationalEnrollment(String npi) {
-        myProfilePage.clickActionFor(npi, ".renewLink");
+        enrollmentListPage.clickActionForNpi(npi, ".renewLink");
         advanceFromOrganizationInfoToLicenseInfo();
         advanceFromOrganizationLicenseInfoToIndividualMemberInfo();
         advanceFromOrganizationIndividualMemberInfoToOwnershipInfo();
@@ -592,14 +592,14 @@ public class EnrollmentSteps {
 
     @Step
     void updateIndividualEnrollment(String npi) {
-        myProfilePage.clickActionFor(npi, ".editLink");
+        enrollmentListPage.clickActionForNpi(npi, ".editLink");
         personalInfoPage.enterFirstName(FIRST_NAME + " Edited");
         submitEnrollment();
     }
 
     @Step
     void updateOrganizationalEnrollment(String npi) {
-        myProfilePage.clickActionFor(npi, ".editLink");
+        enrollmentListPage.clickActionForNpi(npi, ".editLink");
         organizationInfoPage.setDoingBusinessAs("Test DBA Edited");
         submitEnrollment();
     }

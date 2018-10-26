@@ -224,7 +224,7 @@
             </c:when>
             <c:when test="${item.active && (item.status == 'Draft' || item.status == 'Pending')}">
               <a
-                class="actionLink"
+                class="actionLink editLink"
                 href="${editUrl}"
               >
                 Edit

@@ -183,6 +183,16 @@ public class EnrollmentStepDefinitions {
         enrollmentSteps.updateOrganizationalEnrollment(npi);
     }
 
+    @When("^I edit the Individual Enrollment '(.+)'$")
+    public void i_edit_the_individual_enrollment(String npi) {
+        enrollmentSteps.editIndividualEnrollment(npi);
+    }
+
+    @When("^I edit the Organizational Enrollment '(.+)'$")
+    public void i_edit_the_organizational_enrollment(String npi) {
+        enrollmentSteps.editOrganizationalEnrollment(npi);
+    }
+
     @Given("^I am going to use NPI '(.+)'$")
     public void i_am_going_to_use_npi(String npi) {
         enrollmentSteps.setNpi(npi);

@@ -591,16 +591,27 @@ public class EnrollmentSteps {
     }
 
     @Step
-    void updateIndividualEnrollment(String npi) {
+    void editIndividualEnrollment(String npi) {
         enrollmentListPage.clickActionForNpi(npi, ".editLink");
         personalInfoPage.enterFirstName(FIRST_NAME + " Edited");
+    }
+
+    @Step
+    void editOrganizationalEnrollment(String npi) {
+        enrollmentListPage.clickActionForNpi(npi, ".editLink");
+        organizationInfoPage.setDoingBusinessAs("Test DBA Edited");
+    }
+
+    @Step
+    void updateIndividualEnrollment(String npi) {
+        editIndividualEnrollment(npi);
         submitEnrollment();
     }
 
     @Step
     void updateOrganizationalEnrollment(String npi) {
-        enrollmentListPage.clickActionForNpi(npi, ".editLink");
-        organizationInfoPage.setDoingBusinessAs("Test DBA Edited");
+        editOrganizationalEnrollment(npi);
         submitEnrollment();
     }
+
 }

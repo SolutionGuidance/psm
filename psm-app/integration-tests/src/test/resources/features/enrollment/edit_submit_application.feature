@@ -56,7 +56,6 @@ Feature: Editing and Submitting Applications
     Then I should have no errors
     And The Enrollment should be in the 'Approved' state
 
-  @ignore
   Scenario: Edit, save, and resubmit approved Speech Language Pathologist application
     Given I am logged in as a provider
     When I edit the Individual Enrollment '0000000006'
@@ -65,7 +64,6 @@ Feature: Editing and Submitting Applications
     Then I should have no errors
     And The Enrollment should be in the 'Pending' state
 
-  @ignore
   Scenario: Edit, save, and resubmit approved Head Start application
     Given I am logged in as a provider
     When I edit the Organizational Enrollment '1234567893'

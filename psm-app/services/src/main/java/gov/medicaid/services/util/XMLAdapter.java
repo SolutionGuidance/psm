@@ -164,6 +164,7 @@ public final class XMLAdapter {
 
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         provider.setObjectId(String.valueOf(profile.getProfileId()));
+        provider.setOwnerId(profile.getOwnerId());
         // verification fields
         VerificationStatusType verification = new VerificationStatusType();
         provider.setVerificationStatus(verification);
@@ -241,6 +242,7 @@ public final class XMLAdapter {
 
         ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
         ProviderProfile profile = ticket.getDetails();
+        profile.setOwnerId(provider.getOwnerId());
         profile.setProfileId(BinderUtils.getAsLong(provider.getObjectId()));
         ticket.setEnrollmentId(BinderUtils.getAsLong(enrollment.getObjectId()));
 

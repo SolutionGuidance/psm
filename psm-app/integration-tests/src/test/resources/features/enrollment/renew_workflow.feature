@@ -63,7 +63,6 @@ Feature: Enrollment Renew Workflow
     Then I should have no errors
     And The Enrollment should be in the 'Approved' state
 
-  @ignore
   Scenario: Provider Renew, Save, and Submit Individual Enrollment
     Given I am logged in as a provider
     When I start to renew Individual Enrollment '0000000006'
@@ -73,7 +72,6 @@ Feature: Enrollment Renew Workflow
     Then I should have no errors
     And The Enrollment should be in the 'Pending' state
 
-  @ignore
   Scenario: Provider Renew, Save, and Submit Organizational Enrollment
     Given I am logged in as a provider
     When I start to renew Organizational Enrollment '1234567893'

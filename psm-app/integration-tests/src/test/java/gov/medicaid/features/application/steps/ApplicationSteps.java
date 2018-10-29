@@ -16,11 +16,11 @@
 
 package gov.medicaid.features.application.steps;
 
-import gov.medicaid.features.application.ui.CcmhrCredentialsPage;
-import gov.medicaid.features.application.ui.CtccCredentialsPage;
 import gov.medicaid.features.application.ui.ApplicationDetailsPage;
 import gov.medicaid.features.application.ui.ApplicationListPage;
 import gov.medicaid.features.application.ui.ApplicationPage;
+import gov.medicaid.features.application.ui.CcmhrCredentialsPage;
+import gov.medicaid.features.application.ui.CtccCredentialsPage;
 import gov.medicaid.features.application.ui.IndividualInfoPage;
 import gov.medicaid.features.application.ui.IndividualSummaryPage;
 import gov.medicaid.features.application.ui.LicenseInfoPage;

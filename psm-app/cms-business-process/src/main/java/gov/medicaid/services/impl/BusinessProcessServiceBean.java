@@ -18,19 +18,19 @@
 package gov.medicaid.services.impl;
 
 import gov.medicaid.binders.XMLUtility;
-import gov.medicaid.domain.model.EditHistoryType;
 import gov.medicaid.domain.model.ApplicationProcess;
 import gov.medicaid.domain.model.ApplicationType;
+import gov.medicaid.domain.model.EditHistoryType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.VerificationStatusType;
 import gov.medicaid.domain.rules.CMSKnowledgeUtility;
-import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Application;
 import gov.medicaid.entities.ApplicationStatus;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.process.application.AcceptedHandler;
-import gov.medicaid.process.application.DmfScreeningHandler;
 import gov.medicaid.process.application.ApplicationMonitor;
+import gov.medicaid.process.application.DmfScreeningHandler;
 import gov.medicaid.process.application.ExcludedProvidersScreeningHandler;
 import gov.medicaid.process.application.PreProcessHandler;
 import gov.medicaid.process.application.RejectedHandler;
@@ -42,6 +42,7 @@ import gov.medicaid.services.NotificationService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderApplicationService;
 import gov.medicaid.services.util.XMLAdapter;
+
 import org.drools.SystemEventListenerFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.process.ProcessInstance;
@@ -66,6 +67,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.transaction.Status;
 import javax.transaction.UserTransaction;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

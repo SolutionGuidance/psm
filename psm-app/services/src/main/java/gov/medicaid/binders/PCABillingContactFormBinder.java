@@ -17,15 +17,15 @@
 
 package gov.medicaid.binders;
 
-import gov.medicaid.domain.model.DesignatedContactInformationType;
 import gov.medicaid.domain.model.ApplicationType;
+import gov.medicaid.domain.model.DesignatedContactInformationType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.DesignatedContact;
 import gov.medicaid.entities.DesignatedContactType;
-import gov.medicaid.entities.Application;
 import gov.medicaid.entities.Person;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormError;

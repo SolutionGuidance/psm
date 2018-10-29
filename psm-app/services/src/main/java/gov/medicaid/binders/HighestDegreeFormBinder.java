@@ -18,17 +18,17 @@
 package gov.medicaid.binders;
 
 import gov.medicaid.domain.model.ApplicantInformationType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.AttachedDocumentsType;
 import gov.medicaid.domain.model.DocumentNames;
 import gov.medicaid.domain.model.DocumentType;
-import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.IndividualApplicantType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Degree;
-import gov.medicaid.entities.Application;
 import gov.medicaid.entities.Entity;
 import gov.medicaid.entities.Person;
 import gov.medicaid.entities.ProviderProfile;

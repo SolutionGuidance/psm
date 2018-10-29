@@ -18,8 +18,8 @@
 package gov.medicaid.controllers.admin;
 
 import gov.medicaid.controllers.ControllerHelper;
-import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.ApplicationStatus;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Event;
 import gov.medicaid.entities.ProviderSearchCriteria;
 import gov.medicaid.entities.SearchResult;
@@ -28,6 +28,7 @@ import gov.medicaid.services.EventService;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderApplicationService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;

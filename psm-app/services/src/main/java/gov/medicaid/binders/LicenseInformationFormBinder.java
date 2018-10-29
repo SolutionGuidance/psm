@@ -22,16 +22,16 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.AttachedDocumentsType;
 import gov.medicaid.domain.model.DocumentType;
-import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.LicenseInformationType;
 import gov.medicaid.domain.model.LicenseType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
-import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Application;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.License;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.ProviderType;

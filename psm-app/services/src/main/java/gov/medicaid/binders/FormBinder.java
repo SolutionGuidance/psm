@@ -22,8 +22,8 @@ import com.lowagie.text.DocumentException;
 
 import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.ValidationResultType;
-import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Application;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.PortalServiceException;
 

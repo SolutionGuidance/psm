@@ -17,10 +17,10 @@
 
 package gov.medicaid.services;
 
-import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Document;
 import gov.medicaid.entities.Application;
 import gov.medicaid.entities.ApplicationSearchCriteria;
+import gov.medicaid.entities.CMSUser;
+import gov.medicaid.entities.Document;
 import gov.medicaid.entities.Entity;
 import gov.medicaid.entities.Note;
 import gov.medicaid.entities.PracticeLookup;

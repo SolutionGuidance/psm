@@ -27,8 +27,8 @@ import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.AcceptedAgreements;
 import gov.medicaid.entities.AgreementDocument;
-import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Application;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.ProviderStatement;
 import gov.medicaid.entities.dto.FormError;
 

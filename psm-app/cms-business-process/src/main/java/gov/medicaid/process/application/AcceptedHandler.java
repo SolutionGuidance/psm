@@ -19,9 +19,9 @@ package gov.medicaid.process.application;
 
 import gov.medicaid.binders.XMLUtility;
 import gov.medicaid.domain.model.ApplicationProcess;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.EmailTemplate;
-import gov.medicaid.entities.Application;
 import gov.medicaid.entities.Event;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.NotificationService;

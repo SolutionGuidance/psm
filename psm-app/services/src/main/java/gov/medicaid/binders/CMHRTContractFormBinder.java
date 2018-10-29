@@ -17,16 +17,16 @@
 
 package gov.medicaid.binders;
 
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.AttachedDocumentsType;
 import gov.medicaid.domain.model.CountyContractType;
 import gov.medicaid.domain.model.DocumentType;
-import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.FacilityCredentialsType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
-import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Application;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.dto.FormError;
 
 import javax.servlet.http.HttpServletRequest;

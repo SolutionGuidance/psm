@@ -7,17 +7,17 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import gov.medicaid.binders.XMLUtility;
-import gov.medicaid.domain.model.BeneficialOwnerType;
-import gov.medicaid.domain.model.DesignatedContactType;
 import gov.medicaid.domain.model.ApplicationProcess;
 import gov.medicaid.domain.model.ApplicationType;
+import gov.medicaid.domain.model.BeneficialOwnerType;
+import gov.medicaid.domain.model.DesignatedContactType;
 import gov.medicaid.domain.model.GroupMemberType;
 import gov.medicaid.domain.model.IndividualApplicantType;
 import gov.medicaid.domain.model.PersonType;
 import gov.medicaid.domain.model.QualifiedProfessionalType;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.DmfAutomaticScreening;
-import gov.medicaid.entities.Application;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

@@ -21,13 +21,16 @@ import ca.uhn.fhir.rest.api.EncodingEnum;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
 import ca.uhn.fhir.rest.client.api.ServerValidationModeEnum;
 import ca.uhn.fhir.rest.gclient.StringClientParam;
-import gov.medicaid.entities.AutomaticScreening;
+
 import gov.medicaid.entities.Application;
+import gov.medicaid.entities.AutomaticScreening;
 import gov.medicaid.entities.LeieAutomaticScreening;
 import gov.medicaid.process.application.Exclusion;
+
 import org.hl7.fhir.dstu3.model.Bundle;
 
 import javax.persistence.EntityManager;
+
 import java.util.logging.Logger;
 
 import static java.util.logging.Level.WARNING;

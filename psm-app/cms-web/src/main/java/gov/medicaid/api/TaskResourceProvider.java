@@ -24,16 +24,18 @@ import ca.uhn.fhir.rest.param.StringOrListParam;
 import ca.uhn.fhir.rest.param.StringParam;
 import ca.uhn.fhir.rest.server.IResourceProvider;
 import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException;
+
 import gov.medicaid.api.transformers.ApplicationStatusToPsmName;
 import gov.medicaid.api.transformers.ApplicationToFhir;
-import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.Application;
+import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.ProviderSearchCriteria;
 import gov.medicaid.entities.SearchResult;
 import gov.medicaid.entities.UserRequest;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderApplicationService;
+
 import org.hl7.fhir.dstu3.model.IdType;
 import org.hl7.fhir.dstu3.model.Task;
 import org.hl7.fhir.instance.model.api.IBaseResource;

@@ -16,6 +16,18 @@ Feature: Enrollment Update Workflow
     And I submit the enrollment
     Then I should have no errors
 
+  Scenario: Provider Edit Pending Individual Enrollment
+    Given I am logged in as a provider
+    When I update Individual Enrollment '0000000006'
+    Then I should have no errors
+    And The Enrollment should be in the 'Pending' state
+
+  Scenario: Provider Edit Pending Organizational Enrollment
+    Given I am logged in as a provider
+    When I update Organizational Enrollment '1234567893'
+    Then I should have no errors
+    And The Enrollment should be in the 'Pending' state
+
   Scenario: Admin Approve Organizational Enrollment
     Given I am logged in as an admin
     And I am on the admin Pending page
@@ -36,7 +48,6 @@ Feature: Enrollment Update Workflow
 
   Scenario: Provider Update Individual Enrollment
     Given I am logged in as a provider
-    And I click on My Profile
     When I update Individual Enrollment '0000000006'
     Then I should have no errors
     And The Enrollment should be in the 'Pending' state
@@ -52,7 +63,6 @@ Feature: Enrollment Update Workflow
 
   Scenario: Provider Update Organizational Enrollment
     Given I am logged in as a provider
-    And I click on My Profile
     When I update Organizational Enrollment '1234567893'
     Then I should have no errors
     And The Enrollment should be in the 'Pending' state

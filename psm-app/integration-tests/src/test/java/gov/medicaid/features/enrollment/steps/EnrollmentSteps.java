@@ -3,6 +3,7 @@ package gov.medicaid.features.enrollment.steps;
 import gov.medicaid.features.enrollment.ui.CcmhrCredentialsPage;
 import gov.medicaid.features.enrollment.ui.CtccCredentialsPage;
 import gov.medicaid.features.enrollment.ui.EnrollmentDetailsPage;
+import gov.medicaid.features.enrollment.ui.EnrollmentListPage;
 import gov.medicaid.features.enrollment.ui.EnrollmentPage;
 import gov.medicaid.features.enrollment.ui.IndividualInfoPage;
 import gov.medicaid.features.enrollment.ui.IndividualSummaryPage;
@@ -18,7 +19,6 @@ import gov.medicaid.features.enrollment.ui.ProviderStatementPage;
 import gov.medicaid.features.enrollment.ui.SelectProviderTypePage;
 import gov.medicaid.features.general.ui.AllEnrollmentsPage;
 import gov.medicaid.features.general.ui.LoginPage;
-import gov.medicaid.features.general.ui.MyProfilePage;
 
 import net.thucydides.core.annotations.Step;
 
@@ -75,7 +75,7 @@ public class EnrollmentSteps {
     private static final String RESIDENTIAL_COUNTY = "St. Louis";
 
     private LoginPage loginPage;
-    private MyProfilePage myProfilePage;
+    private EnrollmentListPage enrollmentListPage;
     private AllEnrollmentsPage allEnrollmentsPage;
     private EnrollmentPage enrollmentPage;
     private SelectProviderTypePage selectProviderTypePage;
@@ -566,41 +566,63 @@ public class EnrollmentSteps {
         personalInfoPage.enterEmail("");
     }
 
-    void renewIndividualEnrollment(String npi) {
-        myProfilePage.clickActionFor(npi, ".renewLink");
+    @Step
+    void startToRenewIndividualEnrollment(String npi) {
+        enrollmentListPage.clickActionForNpi(npi, ".renewLink");
         advanceFromIndividualPersonalInfoToLicenseInfo();
         advanceFromIndividualLicenseInfoToPracticeInfo();
         advanceFromIndividualPracticeInfoToSummaryPage();
         advanceFromIndividualSummaryToProviderStatementPage();
+    }
+
+    @Step
+    void renewIndividualEnrollment(String npi) {
+        startToRenewIndividualEnrollment(npi);
         checkNoOnProviderDisclosureQuestions();
         signProviderStatement();
         submitEnrollment();
     }
 
     @Step
-    void renewOrganizationalEnrollment(String npi) {
-        myProfilePage.clickActionFor(npi, ".renewLink");
+    void startToRenewOrganizationalEnrollment(String npi) {
+        enrollmentListPage.clickActionForNpi(npi, ".renewLink");
         advanceFromOrganizationInfoToLicenseInfo();
         advanceFromOrganizationLicenseInfoToIndividualMemberInfo();
         advanceFromOrganizationIndividualMemberInfoToOwnershipInfo();
         setNoToAllDisclosures();
         advanceFromOrganizationOwnershipInfoToSummaryPage();
         advanceFromOrganizationSummaryToProviderStatementPage();
+    }
+
+    @Step
+    void renewOrganizationalEnrollment(String npi) {
+        startToRenewOrganizationalEnrollment(npi);
         signProviderStatement();
         submitEnrollment();
     }
 
     @Step
-    void updateIndividualEnrollment(String npi) {
-        myProfilePage.clickActionFor(npi, ".editLink");
+    void editIndividualEnrollment(String npi) {
+        enrollmentListPage.clickActionForNpi(npi, ".editLink");
         personalInfoPage.enterFirstName(FIRST_NAME + " Edited");
+    }
+
+    @Step
+    void editOrganizationalEnrollment(String npi) {
+        enrollmentListPage.clickActionForNpi(npi, ".editLink");
+        organizationInfoPage.setDoingBusinessAs("Test DBA Edited");
+    }
+
+    @Step
+    void updateIndividualEnrollment(String npi) {
+        editIndividualEnrollment(npi);
         submitEnrollment();
     }
 
     @Step
     void updateOrganizationalEnrollment(String npi) {
-        myProfilePage.clickActionFor(npi, ".editLink");
-        organizationInfoPage.setDoingBusinessAs("Test DBA Edited");
+        editOrganizationalEnrollment(npi);
         submitEnrollment();
     }
+
 }

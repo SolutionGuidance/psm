@@ -163,6 +163,16 @@ public class EnrollmentStepDefinitions {
         enrollmentSteps.advanceFromIndividualPersonalInfoToLicenseInfo();
     }
 
+    @When("^I start to renew Individual Enrollment '(.+)'$")
+    public void i_start_to_renew_individual_enrollment(String npi) {
+        enrollmentSteps.startToRenewIndividualEnrollment(npi);
+    }
+
+    @When("^I start to renew Organizational Enrollment '(.+)'$")
+    public void i_start_to_renew_organizational_enrollment(String npi) {
+        enrollmentSteps.startToRenewOrganizationalEnrollment(npi);
+    }
+
     @When("^I renew Individual Enrollment '(.+)'$")
     public void i_renew_individual_enrollment(String npi) {
         enrollmentSteps.renewIndividualEnrollment(npi);
@@ -181,6 +191,16 @@ public class EnrollmentStepDefinitions {
     @When("^I update Organizational Enrollment '(.+)'$")
     public void i_update_organizational_enrollment(String npi) {
         enrollmentSteps.updateOrganizationalEnrollment(npi);
+    }
+
+    @When("^I edit the Individual Enrollment '(.+)'$")
+    public void i_edit_the_individual_enrollment(String npi) {
+        enrollmentSteps.editIndividualEnrollment(npi);
+    }
+
+    @When("^I edit the Organizational Enrollment '(.+)'$")
+    public void i_edit_the_organizational_enrollment(String npi) {
+        enrollmentSteps.editOrganizationalEnrollment(npi);
     }
 
     @Given("^I am going to use NPI '(.+)'$")

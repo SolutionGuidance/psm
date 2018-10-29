@@ -135,12 +135,25 @@
 
   <tbody>
     <c:forEach var="item" items="${results.items}" varStatus="status">
-      <c:url var="viewTicketLink" value="/provider/enrollment/view">
+      <c:url var="viewUrl" value="/provider/enrollment/view">
         <c:param name="id" value="${item.enrollmentId}" />
       </c:url>
-      <c:url var="exportTicketLink" value="/provider/enrollment/exportTicket">
+      <c:url var="exportUrl" value="/provider/enrollment/exportTicket">
         <c:param name="id" value="${item.enrollmentId}" />
       </c:url>
+      <c:choose>
+        <c:when test="${item.status == 'Draft'}">
+          <c:url var="editUrl" value="/provider/enrollment/view">
+            <c:param name="id" value="${item.enrollmentId}" />
+          </c:url>
+        </c:when>
+        <c:when test="${item.status == 'Pending'}">
+          <c:url var="editUrl" value="/provider/enrollment/reopen">
+            <c:param name="id" value="${item.enrollmentId}" />
+          </c:url>
+        </c:when>
+      </c:choose>
+
       <c:set
         var="statusCls"
         value="${item.status == 'Rejected' ? 'red' : item.status == 'Approved' ? 'green' : ''}"
@@ -180,27 +193,47 @@
           <fmt:formatDate value="${item.statusDate}" pattern="MM/dd/yyyy" />
         </td>
         <td class="alignCenter">
+          <c:if test="${item.status != 'Draft'}">
+            <a
+              class="actionLink"
+              href="${viewUrl}"
+            >
+              View
+            </a>
+          </c:if>
           <c:choose>
-            <c:when test="${item.status == 'Draft'}">
+            <c:when test="${item.active && item.status == 'Approved' && profileIds.contains(item.profileReferenceId)}">
+              <c:url var="editUrl" value="/provider/profile/edit">
+                <c:param name="profileId" value="${item.profileReferenceId}"/>
+              </c:url>
+              <c:url var="renewUrl" value="/provider/profile/renew">
+                <c:param name="profileId" value="${item.profileReferenceId}"/>
+              </c:url>
               <a
-                class="actionLink"
-                href="${viewTicketLink}"
+                class="actionLink editLink"
+                href="${editUrl}"
+              >
+                Edit
+              </a>
+              <a
+                class="actionLink renewLink"
+                href="${renewUrl}"
+              >
+                Renew
+              </a>
+            </c:when>
+            <c:when test="${item.active && (item.status == 'Draft' || item.status == 'Pending')}">
+              <a
+                class="actionLink editLink"
+                href="${editUrl}"
               >
                 Edit
               </a>
             </c:when>
-            <c:otherwise>
-              <a
-                class="actionLink"
-                href="${viewTicketLink}"
-              >
-                View
-              </a>
-            </c:otherwise>
           </c:choose>
           <a
             class="actionLink"
-            href="${exportTicketLink}"
+            href="${exportUrl}"
           >
             Export to PDF
           </a>

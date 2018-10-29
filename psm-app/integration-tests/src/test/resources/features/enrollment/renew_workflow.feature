@@ -35,7 +35,6 @@ Feature: Enrollment Renew Workflow
 
   Scenario: Provider Renew Individual Enrollment
     Given I am logged in as a provider
-    And I click on My Profile
     When I renew Individual Enrollment '0000000006'
     Then I should have no errors
     And The Enrollment should be in the 'Pending' state
@@ -51,7 +50,6 @@ Feature: Enrollment Renew Workflow
 
   Scenario: Provider Renew Organizational Enrollment
     Given I am logged in as a provider
-    And I click on My Profile
     When I renew Organizational Enrollment '1234567893'
     Then I should have no errors
     And The Enrollment should be in the 'Pending' state
@@ -64,3 +62,21 @@ Feature: Enrollment Renew Workflow
     And I view the Reviewed Enrollment
     Then I should have no errors
     And The Enrollment should be in the 'Approved' state
+
+  Scenario: Provider Renew, Save, and Submit Individual Enrollment
+    Given I am logged in as a provider
+    When I start to renew Individual Enrollment '0000000006'
+    And I save the application as a draft
+    And I enter my individual provider statement
+    And I submit the enrollment
+    Then I should have no errors
+    And The Enrollment should be in the 'Pending' state
+
+  Scenario: Provider Renew, Save, and Submit Organizational Enrollment
+    Given I am logged in as a provider
+    When I start to renew Organizational Enrollment '1234567893'
+    And I save the application as a draft
+    And I enter my organization provider statement
+    And I submit the enrollment
+    Then I should have no errors
+    And The Enrollment should be in the 'Pending' state

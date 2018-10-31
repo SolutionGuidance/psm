@@ -20,10 +20,10 @@ package gov.medicaid.binders;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.ValidationResultType;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.PortalServiceException;
 
@@ -40,56 +40,56 @@ public interface FormBinder {
     /**
      * Binds the request to the model.
      * @param user TODO
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request the request containing the form fields
      *
      * @throws BinderException if the format of the fields could not be bound properly
      * @throws PortalServiceException for any errors encountered
      */
-    List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) throws PortalServiceException;
+    List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) throws PortalServiceException;
 
     /**
      * Binds the model to the request attributes.
      * @param user TODO
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly true if the binding is for a read only view
      */
-    void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly);
+    void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly);
 
     /**
      * Translates the validation results to form error messages where applicable.
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param validationResult the validation result
      *
      * @return the list of errors related to this form
      */
-    List<FormError> translateErrors(EnrollmentType enrollment, ValidationResultType validationResult);
+    List<FormError> translateErrors(ApplicationType applicationType, ValidationResultType validationResult);
 
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param applicationType the front end model
+     * @param application the persistent model
      * @throws PortalServiceException for any errors encountered
      */
-    void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) throws PortalServiceException;
+    void bindToHibernate(ApplicationType applicationType, Application application) throws PortalServiceException;
 
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * @param application the persistent model
+     * @param applicationType the front end model
      */
-    void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment);
+    void bindFromHibernate(Application application, ApplicationType applicationType);
 
     /**
      * Renders the PDF representation of the form.
      *
-     * @param enrollment the enrollment to be rendered
+     * @param application the application to be rendered
      * @param document the PDF document to render on
      * @param model the view model
      * @throws DocumentException if the document could not be written
      */
-    void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model) throws DocumentException;
+    void renderPDF(ApplicationType applicationType, Document document, Map<String, Object> model) throws DocumentException;
 }

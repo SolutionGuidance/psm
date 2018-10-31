@@ -1,6 +1,6 @@
 @Search
 Feature: Provider Search Checks
-  Users wish to search or filter enrollments
+  Users wish to search or filter applications
 
   Scenario: Provider Draft Page Filtered
     Given I am logged in as a provider

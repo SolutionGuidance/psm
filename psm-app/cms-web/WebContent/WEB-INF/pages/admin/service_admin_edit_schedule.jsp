@@ -38,17 +38,17 @@
             Functions
           </div>
           <h1>Functions</h1>
-          <div class="tabSection functionTab" id="enrollmentSection">
+          <div class="tabSection functionTab" id="applicationSection">
             <c:set var="functionsServiceActiveMenuScreeningSchedules" value="1"/>
             <h:handlebars template="admin/includes/functions_service_nav" context="${pageContext}" />
             <div class="tabContent" id="tabScreeningSchedules">
               <form:form id="updateScreeningScheduleForm" modelAttribute="schedule" action="${ctx}/admin/updateScreeningSchedule" method="post">
                 <div id="changeScreenSchedulePanel">
-                  <div class="newEnrollmentPanel">
+                  <div class="newApplicationPanel">
                     <div class="section">
                       <div class="wholeCol">
                         <div class="row">
-                          <p class="borderBottom">The system will use the following schedule to automatically screen all pending enrollments that have not been manually scheduled for screening.</p>
+                          <p class="borderBottom">The system will use the following schedule to automatically screen all pending applications that have not been manually scheduled for screening.</p>
                         </div>
                         <div class="row">
                           <form:label path="dayOfMonth">

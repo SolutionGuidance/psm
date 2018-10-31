@@ -18,8 +18,8 @@
 package gov.medicaid.controllers.admin;
 
 import gov.medicaid.controllers.ControllerHelper;
+import gov.medicaid.entities.ApplicationStatus;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.EnrollmentStatus;
 import gov.medicaid.entities.Event;
 import gov.medicaid.entities.ProviderSearchCriteria;
 import gov.medicaid.entities.SearchResult;
@@ -27,7 +27,8 @@ import gov.medicaid.entities.UserRequest;
 import gov.medicaid.services.EventService;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,12 +39,12 @@ import java.util.List;
 
 @Controller
 public class DashboardController {
-    private final ProviderEnrollmentService providerProfileService;
+    private final ProviderApplicationService providerProfileService;
     private final EventService eventService;
     private final LookupService lookupService;
 
     public DashboardController(
-        ProviderEnrollmentService providerProfileService,
+        ProviderApplicationService providerProfileService,
         EventService eventService,
         LookupService lookupService
     ) {
@@ -71,15 +72,15 @@ public class DashboardController {
         criteria.setSortColumn("6");
 
         CMSUser currentUser = ControllerHelper.getCurrentUser();
-        SearchResult<UserRequest> result = providerProfileService.searchTickets(currentUser, criteria);
+        SearchResult<UserRequest> result = providerProfileService.searchApplications(currentUser, criteria);
 
         // Get latest notifications:
         List<Event> notifications = eventService.getLatest();
-        List<EnrollmentStatus> findAllLookups = lookupService.findAllLookups(EnrollmentStatus.class);
+        List<ApplicationStatus> findAllLookups = lookupService.findAllLookups(ApplicationStatus.class);
         for (Event event : notifications) {
-            for (EnrollmentStatus enrollmentStatus : findAllLookups) {
-                if (event.getStatus().equals(enrollmentStatus.getCode())) {
-                    event.setStatus(enrollmentStatus.getDescription());
+            for (ApplicationStatus applicationStatus : findAllLookups) {
+                if (event.getStatus().equals(applicationStatus.getCode())) {
+                    event.setStatus(applicationStatus.getDescription());
                 }
             }
         }
@@ -91,7 +92,7 @@ public class DashboardController {
     }
 
     /**
-     * This action will search for profile enrollments.
+     * This action will search for profile applications.
      *
      * @param criteria the search criteria
      *
@@ -105,7 +106,7 @@ public class DashboardController {
     @RequestMapping(value = { "/ops/viewDashboard" }, method = RequestMethod.POST)
     public ModelAndView search(@ModelAttribute("criteria") ProviderSearchCriteria criteria)
         throws PortalServiceException {
-        SearchResult<UserRequest> result = providerProfileService.searchTickets(ControllerHelper.getCurrentUser(),
+        SearchResult<UserRequest> result = providerProfileService.searchApplications(ControllerHelper.getCurrentUser(),
             criteria);
 
         // Get latest notifications:

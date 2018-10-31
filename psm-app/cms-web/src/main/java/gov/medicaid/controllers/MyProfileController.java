@@ -26,7 +26,7 @@ import gov.medicaid.entities.UserRequest;
 import gov.medicaid.entities.Validity;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 import gov.medicaid.services.RegistrationService;
 
 import org.springframework.stereotype.Controller;
@@ -48,16 +48,16 @@ import java.util.List;
 @Controller
 @RequestMapping("/provider/profile/*")
 public class MyProfileController extends BaseController {
-    private final ProviderEnrollmentService enrollmentService;
+    private final ProviderApplicationService applicationService;
     private final RegistrationService registrationService;
     private final UpdatePasswordFormValidator validator;
 
     public MyProfileController(
-        ProviderEnrollmentService enrollmentService,
+        ProviderApplicationService applicationService,
         RegistrationService registrationService,
         UpdatePasswordFormValidator validator
     ) {
-        this.enrollmentService = enrollmentService;
+        this.applicationService = applicationService;
         this.registrationService = registrationService;
         this.validator = validator;
     }
@@ -134,7 +134,7 @@ public class MyProfileController extends BaseController {
      * Starts the renewal process.
      *
      * @param profileId the profile to renew
-     * @return the enrollment start page.
+     * @return the application start page.
      * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/profile/renew"
      * @verb GET
@@ -153,23 +153,23 @@ public class MyProfileController extends BaseController {
             criteria.setProfileId(profileId);
             criteria.setRequestTypes(Arrays.asList(ViewStatics.RENEWAL_REQUEST));
             criteria.setStatuses(Arrays.asList(ViewStatics.DRAFT_STATUS));
-            SearchResult<UserRequest> results = enrollmentService.searchTickets(ControllerHelper.getCurrentUser(),
+            SearchResult<UserRequest> results = applicationService.searchApplications(ControllerHelper.getCurrentUser(),
                 criteria);
             List<UserRequest> drafts = results.getItems();
             if (drafts != null) {
                 for (UserRequest userRequest : drafts) {
-                    Validity validity = enrollmentService.getSubmissionValidity(userRequest.getEnrollmentId(), profileId);
+                    Validity validity = applicationService.getSubmissionValidity(userRequest.getApplicationId(), profileId);
                     if (validity != Validity.STALE) {
                         ModelAndView mv = new ModelAndView("provider/profile/confirm_edit");
                         mv.addObject("requestType", ViewStatics.RENEWAL_REQUEST);
                         mv.addObject("profileId", profileId);
-                        mv.addObject("enrollmentId", userRequest.getEnrollmentId());
+                        mv.addObject("applicationId", userRequest.getApplicationId());
                         return mv;
                     }
                 }
             }
 
-            ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/renew");
+            ModelAndView mv = new ModelAndView("redirect:/provider/application/renew");
             mv.addObject("profileId", profileId);
             return mv;
         }
@@ -179,7 +179,7 @@ public class MyProfileController extends BaseController {
      * Starts the update process.
      *
      * @param profileId the profile to be edited
-     * @return the enrollment start page.
+     * @return the application start page.
      * @throws PortalServiceException for any errors encountered
      * @endpoint "/provider/profile/edit"
      * @verb GET
@@ -198,23 +198,23 @@ public class MyProfileController extends BaseController {
             criteria.setProfileId(profileId);
             criteria.setRequestTypes(Arrays.asList(ViewStatics.UPDATE_REQUEST));
             criteria.setStatuses(Arrays.asList(ViewStatics.DRAFT_STATUS));
-            SearchResult<UserRequest> results = enrollmentService.searchTickets(ControllerHelper.getCurrentUser(),
+            SearchResult<UserRequest> results = applicationService.searchApplications(ControllerHelper.getCurrentUser(),
                 criteria);
             List<UserRequest> drafts = results.getItems();
             if (drafts != null) {
                 for (UserRequest userRequest : drafts) {
-                    Validity validity = enrollmentService.getSubmissionValidity(userRequest.getEnrollmentId(), profileId);
+                    Validity validity = applicationService.getSubmissionValidity(userRequest.getApplicationId(), profileId);
                     if (validity != Validity.STALE) {
                         ModelAndView mv = new ModelAndView("provider/profile/confirm_edit");
                         mv.addObject("requestType", ViewStatics.UPDATE_REQUEST);
                         mv.addObject("profileId", profileId);
-                        mv.addObject("enrollmentId", userRequest.getEnrollmentId());
+                        mv.addObject("applicationId", userRequest.getApplicationId());
                         return mv;
                     }
                 }
             }
 
-            ModelAndView mv = new ModelAndView("redirect:/provider/enrollment/edit");
+            ModelAndView mv = new ModelAndView("redirect:/provider/application/edit");
             mv.addObject("profileId", profileId);
             return mv;
         }

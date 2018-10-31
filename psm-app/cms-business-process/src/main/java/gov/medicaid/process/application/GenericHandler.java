@@ -1,0 +1,39 @@
+/*
+ * Copyright 2012, 2013 TopCoder, Inc.
+ * Copyright 2018 The MITRE Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package gov.medicaid.process.application;
+
+import org.drools.runtime.process.WorkItem;
+import org.drools.runtime.process.WorkItemHandler;
+import org.drools.runtime.process.WorkItemManager;
+
+/**
+ * This is a generic handler for BPMN work items.
+ */
+public abstract class GenericHandler implements WorkItemHandler {
+
+    /**
+     * Aborts the work item.
+     *
+     * @param item the work item to abort
+     * @param manager the work item manager
+     */
+    public void abortWorkItem(WorkItem item, WorkItemManager manager) {
+        System.err.println("ABORTING WORK ITEM: " + item.getProcessInstanceId());
+        manager.abortWorkItem(item.getId());
+    }
+}

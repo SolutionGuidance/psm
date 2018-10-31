@@ -20,7 +20,7 @@
 <%@ include file="/WEB-INF/pages/admin/includes/taglibs.jsp" %>
 <!DOCTYPE html>
 <html lang="en-US">
-  <c:set var="title" value="Review Enrollment"/>
+  <c:set var="title" value="Review Application"/>
   <h:handlebars template="includes/html_head" context="${pageContext}" />
   <body>
     <div id="wrapper">
@@ -30,20 +30,20 @@
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
             <h:handlebars template="includes/banner" context="${pageContext}"/>
-            <c:set var="activeTabEnrollments" value="true"></c:set>
+            <c:set var="activeTabApplications" value="true"></c:set>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            Review Enrollment
+            Review Application
           </div>
-          <h1>Review ${model.enrollment.providerInformation.providerType} Enrollment Application</h1>
-          <div class="tabSection" id="enrollmentSection">
-            <%@include file="/WEB-INF/pages/provider/enrollment/steps/screening_errors.jsp" %>
-            <form action="${ctx}/agent/enrollment/approve" method="post" id="approvalForm">
+          <h1>Review ${model.application.providerInformation.providerType} Application</h1>
+          <div class="tabSection" id="applicationSection">
+            <%@include file="/WEB-INF/pages/provider/application/steps/screening_errors.jsp" %>
+            <form action="${ctx}/agent/application/approve" method="post" id="approvalForm">
               <sec:csrfInput />
 
-              <div class="newEnrollmentPanel practicePanel">
+              <div class="newApplicationPanel practicePanel">
                 <div class="tableHeader topHeader"><span>Provider Information</span></div>
                 <div class="clearFixed"></div>
                 <div class="section">
@@ -115,7 +115,7 @@
                     </tbody>
                   </table>
 
-                  <c:if test="${not empty model.enrollment.providerInformation.licenseInformation.license}">
+                  <c:if test="${not empty model.application.providerInformation.licenseInformation.license}">
                     <div class="tableHeader"><span>License Information</span></div>
                     <div class="clearFixed"></div>
                     <table class="generalTable">
@@ -129,7 +129,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <c:forEach var="license" items="${model.enrollment.providerInformation.licenseInformation.license}">
+                        <c:forEach var="license" items="${model.application.providerInformation.licenseInformation.license}">
                           <tr>
                             <td>${license.licenseType}${license.specialtyType}</td>
                             <td>${license.licenseNumber}</td>
@@ -142,7 +142,7 @@
                                               value="${license.renewalDate.time}"/>
                             </td>
                             <td>
-                              <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                              <c:url var="downloadLink" value="/provider/application/attachment">
                                 <c:param name="id" value="${license.attachmentObjectId}"></c:param>
                               </c:url>
                               <a href="${downloadLink}">View</a>
@@ -153,7 +153,7 @@
                     </table>
                   </c:if>
 
-                  <c:if test="${not empty model.enrollment.providerInformation.facilityCredentials.signedContract}">
+                  <c:if test="${not empty model.application.providerInformation.facilityCredentials.signedContract}">
                     <div class="tableHeader"><span>Facility Credentials</span></div>
                     <div class="clearFixed"></div>
                     <table class="generalTable">
@@ -166,7 +166,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <c:forEach var="contract" items="${model.enrollment.providerInformation.facilityCredentials.signedContract}">
+                        <c:forEach var="contract" items="${model.application.providerInformation.facilityCredentials.signedContract}">
                           <tr>
                             <td>${contract.name}</td>
                             <td>
@@ -178,7 +178,7 @@
                                               value="${contract.endDate.time}"/>
                             </td>
                             <td>
-                              <c:url var="downloadLink" value="/provider/enrollment/attachment">
+                              <c:url var="downloadLink" value="/provider/application/attachment">
                                 <c:param name="id" value="${contract.copyAttachmentId}"></c:param>
                               </c:url>
                               <a href="${downloadLink}">View</a>
@@ -201,7 +201,7 @@
               </div>
               <div class="buttonBox">
                 <a
-                  href="${ctx}/provider/enrollments/pending?statuses=Pending&showFilterPanel=true"
+                  href="${ctx}/provider/applications/pending?statuses=Pending&showFilterPanel=true"
                   class="greyBtn"
                 >
                   Cancel
@@ -210,13 +210,13 @@
                   Approve
                 </button>
                 <a
-                  href="${ctx}/agent/enrollment/rejectTicket?id=${id}"
+                  href="${ctx}/agent/application/rejectApplication?id=${id}"
                   class="rejectBtn greyBtn"
                 >
                   Reject
                 </a>
                 <a
-                  href="${ctx}/provider/enrollment/reopen?id=${id}"
+                  href="${ctx}/provider/application/reopen?id=${id}"
                   class="greyBtn"
                 >
                   Modify

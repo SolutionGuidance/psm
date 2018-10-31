@@ -14,38 +14,38 @@ Feature: General Accessibility Checks
     Given I am on the Forgot Password page
     Then I should have no accessibility issues
 
-  Scenario: Provider All Enrollments Page
+  Scenario: Provider All Applications Page
     Given I am logged in as a provider
     When I open the filter panel
     Then I should have no accessibility issues
 
-  Scenario: Provider Draft Enrollments Page
+  Scenario: Provider Draft Applications Page
     Given I am logged in as a provider
     And I am on the provider Draft page
     When I open the filter panel
     Then I should have no accessibility issues
-    And I should see enrollments
+    And I should see applications
 
-  Scenario: Provider Pending Enrollments Page
+  Scenario: Provider Pending Applications Page
     Given I am logged in as a provider
     And I am on the provider Pending page
     When I open the filter panel
     Then I should have no accessibility issues
-    And I should see enrollments
+    And I should see applications
 
-  Scenario: Provider Approved Enrollments Page
+  Scenario: Provider Approved Applications Page
     Given I am logged in as a provider
     And I am on the provider Approved page
     When I open the filter panel
     Then I should have no accessibility issues
-    And I should see enrollments
+    And I should see applications
 
-  Scenario: Provider Denied Enrollments Page
+  Scenario: Provider Denied Applications Page
     Given I am logged in as a provider
     And I am on the provider Denied page
     When I open the filter panel
     Then I should have no accessibility issues
-    And I should see enrollments
+    And I should see applications
 
   Scenario: My Profile Page
     Given I am logged in as a provider

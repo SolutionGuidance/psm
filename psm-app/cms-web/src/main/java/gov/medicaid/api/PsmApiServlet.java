@@ -21,7 +21,7 @@ import ca.uhn.fhir.rest.api.EncodingEnum;
 import ca.uhn.fhir.rest.server.RestfulServer;
 import gov.medicaid.api.interceptors.BasicSecurityInterceptor;
 import gov.medicaid.api.interceptors.TaskResourceAuthorizationInterceptor;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 import gov.medicaid.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
@@ -34,7 +34,7 @@ public class PsmApiServlet extends RestfulServer {
     private static final long serialVersionUID = 1L;
 
     @Autowired
-    private ProviderEnrollmentService providerEnrollmentService;
+    private ProviderApplicationService providerApplicationService;
 
     @Autowired
     private RegistrationService registrationService;
@@ -50,7 +50,7 @@ public class PsmApiServlet extends RestfulServer {
                 this,
                 getServletContext()
         );
-        if (providerEnrollmentService == null) {
+        if (providerApplicationService == null) {
             throw new ServletException("Not initialized!");
         }
     }
@@ -62,13 +62,13 @@ public class PsmApiServlet extends RestfulServer {
 
         setUpInterceptors();
         setResourceProviders(Collections.singletonList(
-                new TaskResourceProvider(providerEnrollmentService)
+                new TaskResourceProvider(providerApplicationService)
         ));
     }
 
     @SuppressWarnings("unused") // reflectively called by Spring
-    public void setProviderEnrollmentService(ProviderEnrollmentService providerEnrollmentService) {
-        this.providerEnrollmentService = providerEnrollmentService;
+    public void setProviderApplicationService(ProviderApplicationService providerApplicationService) {
+        this.providerApplicationService = providerApplicationService;
     }
 
     public void setRegistrationService(RegistrationService registrationService) {

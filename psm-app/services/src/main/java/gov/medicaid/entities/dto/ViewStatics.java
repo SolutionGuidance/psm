@@ -130,9 +130,9 @@ public class ViewStatics {
     public static final String ADDITIONAL_PRACTICE_FORM = "Additional Practice Form";
 
     /**
-     * The expected description for enrollment requests.
+     * The expected description for application requests.
      */
-    public static final String ENROLLMENT_REQUEST = "Enrollment";
+    public static final String APPLICATION_REQUEST = "Application";
 
     /**
      * The expected description for renewal requests.
@@ -268,9 +268,9 @@ public class ViewStatics {
     public static final String ADDITIONAL_AGENCY_FORM = "Additional Agency Form";
 
     /**
-     * Ticket header form.
+     * Application header form.
      */
-    public static final String TICKET_HEADER_FORM = "Ticket Header Form";
+    public static final String APPLICATION_HEADER_FORM = "Application Header Form";
 
     /**
      * Role description for provider.

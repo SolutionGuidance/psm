@@ -19,15 +19,15 @@ package gov.medicaid.binders;
 
 import gov.medicaid.domain.model.AdditionalPracticeLocationsType;
 import gov.medicaid.domain.model.AddressType;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.PracticeInformationType;
 import gov.medicaid.domain.model.PracticeLocationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
 import gov.medicaid.entities.Affiliation;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.ContactInformation;
-import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Entity;
 import gov.medicaid.entities.Organization;
 import gov.medicaid.entities.PracticeLookup;
@@ -71,12 +71,12 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request the request containing the form fields
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
         AdditionalPracticeLocationsType locations = new AdditionalPracticeLocationsType();
 
@@ -116,7 +116,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
             i++;
         }
 
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(applicationType);
         if (user.getExternalRoleView() == RoleView.EMPLOYER) {
             retainLocations(practice, locations, user.getExternalAccountLink().getExternalUserId());
         }
@@ -147,11 +147,11 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly true if the binding is for a read only view
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
         if (user.getExternalRoleView() == RoleView.EMPLOYER) {
             attr(mv, "allowAdd", "N");
@@ -159,7 +159,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
             attr(mv, "allowAdd", "Y");
         }
 
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(applicationType);
         AdditionalPracticeLocationsType locations = XMLUtility.nsGetOtherLocations(practice);
         List<PracticeLocationType> xList = locations.getPracticeLocation();
         int i = 0;
@@ -192,12 +192,12 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
     /**
      * Captures the error messages related to the form.
      *
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages the messages to select from
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -284,11 +284,11 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param applicationType the front end model
+     * @param application the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+    public void bindToHibernate(ApplicationType applicationType, Application application) {
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(applicationType);
         AdditionalPracticeLocationsType locations = XMLUtility.nsGetOtherLocations(practice);
 
         List<Affiliation> hList = new ArrayList<Affiliation>();
@@ -314,7 +314,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
             hList.add(group);
         }
 
-        ProviderProfile profile = ticket.getDetails();
+        ProviderProfile profile = application.getDetails();
         List<Affiliation> affiliations = removeOtherPracticeLocations(profile);
 
         synchronized (affiliations) {
@@ -325,11 +325,11 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * @param application the persistent model
+     * @param applicationType the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
-        ProviderProfile profile = ticket.getDetails();
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        ProviderProfile profile = application.getDetails();
         List<Affiliation> hList = filterOtherLocations(profile.getAffiliations());
         List<PracticeLocationType> xList = new ArrayList<PracticeLocationType>();
         for (Affiliation group : hList) {
@@ -350,7 +350,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
             xList.add(location);
         }
 
-        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(enrollment);
+        PracticeInformationType practice = XMLUtility.nsGetPracticeInformation(applicationType);
         AdditionalPracticeLocationsType locations = XMLUtility.nsGetOtherLocations(practice);
         locations.getPracticeLocation().clear();
         locations.getPracticeLocation().addAll(xList);
@@ -409,7 +409,7 @@ public class AdditionalPracticeFormBinder extends BaseFormBinder {
     private void attachLinkedGroup(PracticeLocationType location) {
         PracticeSearchCriteria criteria = new PracticeSearchCriteria();
         criteria.setProfileId(Long.parseLong(location.getObjectId()));
-        SearchResult<PracticeLookup> results = getEnrollmentService().searchPractice(getSystemUser(), criteria);
+        SearchResult<PracticeLookup> results = getApplicationService().searchPractice(getSystemUser(), criteria);
         PracticeLookup linkedPractice = results.getItems().get(0);
 
         location.setGroupName(linkedPractice.getName());

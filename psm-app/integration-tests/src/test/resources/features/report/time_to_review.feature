@@ -5,7 +5,7 @@ Feature: Time to Review Report
     Given I am logged in as an admin
     And I am on the time to review page
     Then I should see the time to review page
-    Then I should see a time to review row for '2017-05-01' with 2 enrollments
+    Then I should see a time to review row for '2017-05-01' with 2 applications
     Then I should see a N/A time to review row for '2018-01-01'
 
   Scenario: Download Time to Review CSV

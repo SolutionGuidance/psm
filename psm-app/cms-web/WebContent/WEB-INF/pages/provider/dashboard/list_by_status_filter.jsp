@@ -40,7 +40,7 @@
           <label for="listByStatusRequestTypes">Request Type</label>
           <form:select id="listByStatusRequestTypes" path="requestTypes" cssClass="longSelect" multiple="false">
             <form:option value="">All</form:option>
-            <form:option value="Enrollment">Enrollment</form:option>
+            <form:option value="Application">Application</form:option>
             <form:option value="Renewal">Renewal</form:option>
             <form:option value="Update">Update</form:option>
             <form:option value="Import Profile">Import Profile</form:option>

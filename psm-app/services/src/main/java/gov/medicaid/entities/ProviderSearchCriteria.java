@@ -26,9 +26,9 @@ import java.util.List;
 public class ProviderSearchCriteria extends SearchCriteria {
 
     /**
-     * Ticket id.
+     * Application id.
      */
-    private String enrollmentNumber;
+    private String applicationNumber;
 
     /**
      * Profile id.
@@ -108,21 +108,21 @@ public class ProviderSearchCriteria extends SearchCriteria {
     }
 
     /**
-     * Gets the value of the field <code>enrollmentNumber</code>.
+     * Gets the value of the field <code>applicationNumber</code>.
      *
-     * @return the enrollmentNumber
+     * @return the applicationNumber
      */
-    public String getEnrollmentNumber() {
-        return enrollmentNumber;
+    public String getApplicationNumber() {
+        return applicationNumber;
     }
 
     /**
-     * Sets the value of the field <code>enrollmentNumber</code>.
+     * Sets the value of the field <code>applicationNumber</code>.
      *
-     * @param enrollmentNumber the enrollmentNumber to set
+     * @param applicationNumber the applicationNumber to set
      */
-    public void setEnrollmentNumber(String enrollmentNumber) {
-        this.enrollmentNumber = enrollmentNumber;
+    public void setApplicationNumber(String applicationNumber) {
+        this.applicationNumber = applicationNumber;
     }
 
     /**

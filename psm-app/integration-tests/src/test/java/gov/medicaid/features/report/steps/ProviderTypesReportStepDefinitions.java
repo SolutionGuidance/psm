@@ -30,13 +30,13 @@ public class ProviderTypesReportStepDefinitions {
         providerTypesSteps.checkOnProviderTypesPage();
     }
 
-    @Then("^I should see a provider types table with '(\\d+)' enrollments for '(.*)' in month '(.*)'$")
-    public void i_should_see_a_provider_types_table_with_enrollments_for_type_in_month(
-        int numEnrollments,
+    @Then("^I should see a provider types table with '(\\d+)' applications for '(.*)' in month '(.*)'$")
+    public void i_should_see_a_provider_types_table_with_applications_for_type_in_month(
+        int numApplications,
         String providerTypeDesc,
         String month
     ) {
-        providerTypesSteps.checkProviderTypesPageHasEnrollmentsForMonth(numEnrollments, providerTypeDesc, month);
+        providerTypesSteps.checkProviderTypesPageHasApplicationsForMonth(numApplications, providerTypeDesc, month);
     }
 
     @Then("^I should see no results for month '(.*)'$")

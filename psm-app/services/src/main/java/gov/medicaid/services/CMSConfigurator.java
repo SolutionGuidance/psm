@@ -174,7 +174,7 @@ public class CMSConfigurator {
      *
      * @return the configured binder registry
      */
-    public Map<String, String> getNewEnrollmentViewRegistry() {
+    public Map<String, String> getNewApplicationViewRegistry() {
         Map<String, String> forms = new HashMap<String, String>();
         int i = 1;
         while (globalSettings.getProperty("binders." + i + ".name") != null) {
@@ -208,18 +208,18 @@ public class CMSConfigurator {
     }
 
     /**
-     * Retrieves the enrollment service.
+     * Retrieves the application service.
      *
-     * @return the enrollment service from the JNDI tree.
+     * @return the application service from the JNDI tree.
      */
-    public ProviderEnrollmentService getEnrollmentService() {
-        return (ProviderEnrollmentService) fromContext("jndi.ProviderEnrollmentService", false);
+    public ProviderApplicationService getApplicationService() {
+        return (ProviderApplicationService) fromContext("jndi.ProviderApplicationService", false);
     }
 
     /**
-     * Retrieves the enrollment service.
+     * Retrieves the application service.
      *
-     * @return the enrollment service from the JNDI tree.
+     * @return the application service from the JNDI tree.
      */
     public ScreeningService getScreeningService() {
         return (ScreeningService) fromContext("jndi.ScreeningService", false);
@@ -250,7 +250,7 @@ public class CMSConfigurator {
                 return ctx.lookup(globalSettings.getProperty(jndiName));
             }
         } catch (NamingException e) {
-            throw new PortalServiceConfigurationException("Could not initialize provider enrollment service.", e);
+            throw new PortalServiceConfigurationException("Could not initialize provider application service.", e);
         }
     }
 

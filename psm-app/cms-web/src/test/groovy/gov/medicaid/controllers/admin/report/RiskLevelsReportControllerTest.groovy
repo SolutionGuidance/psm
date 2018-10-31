@@ -24,17 +24,17 @@ import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.springframework.mock.web.MockHttpServletResponse
 
-import gov.medicaid.entities.Enrollment
+import gov.medicaid.entities.Application
 import gov.medicaid.entities.ProviderProfile
 import gov.medicaid.entities.RiskLevel
 import gov.medicaid.entities.SearchResult
 import gov.medicaid.entities.dto.ViewStatics
-import gov.medicaid.services.ProviderEnrollmentService
+import gov.medicaid.services.ProviderApplicationService
 import spock.lang.Specification
 
 class RiskLevelsReportControllerTest extends Specification {
     private RiskLevelsReportController controller
-    private ProviderEnrollmentService enrollmentService
+    private ProviderApplicationService applicationService
     private static LocalDateTime noonMiddleThisMonth
 
     void setupSpec() {
@@ -42,32 +42,32 @@ class RiskLevelsReportControllerTest extends Specification {
     }
 
     void setup() {
-        enrollmentService = Mock(ProviderEnrollmentService)
-        controller = new RiskLevelsReportController(enrollmentService)
+        applicationService = Mock(ProviderApplicationService)
+        controller = new RiskLevelsReportController(applicationService)
     }
 
     private toDate(d) {
         Date.from(d.atZone(ZoneId.systemDefault()).toInstant())
     }
 
-    private makeEnrollment(enrollmentId, statusDate) {
-        return new Enrollment([
-            enrollmentId: enrollmentId,
-            profileReferenceId: enrollmentId,
+    private makeApplication(applicationId, statusDate) {
+        return new Application([
+            applicationId: applicationId,
+            profileReferenceId: applicationId,
             statusDate: toDate(statusDate)
         ])
     }
 
-    private testEnrollmentData() {
-        def results = new SearchResult<Enrollment>()
+    private testApplicationData() {
+        def results = new SearchResult<Application>()
         results.setItems([
-            makeEnrollment(1, noonMiddleThisMonth),
-            makeEnrollment(2, noonMiddleThisMonth),
-            makeEnrollment(3, noonMiddleThisMonth),
-            makeEnrollment(4, noonMiddleThisMonth.minusMonths(1)),
-            makeEnrollment(5, noonMiddleThisMonth.minusMonths(1)),
-            makeEnrollment(6, noonMiddleThisMonth.minusMonths(2)),
-            makeEnrollment(7, noonMiddleThisMonth.minusMonths(3))
+            makeApplication(1, noonMiddleThisMonth),
+            makeApplication(2, noonMiddleThisMonth),
+            makeApplication(3, noonMiddleThisMonth),
+            makeApplication(4, noonMiddleThisMonth.minusMonths(1)),
+            makeApplication(5, noonMiddleThisMonth.minusMonths(1)),
+            makeApplication(6, noonMiddleThisMonth.minusMonths(2)),
+            makeApplication(7, noonMiddleThisMonth.minusMonths(3))
         ].sort{it.getCreatedOn()})
         results
     }
@@ -79,20 +79,20 @@ class RiskLevelsReportControllerTest extends Specification {
     }
 
     private setupTestProviders() {
-        enrollmentService.getProviderDetails(1, false) >> makeProvider(ViewStatics.LIMITED_RISK)
-        enrollmentService.getProviderDetails(2, false) >> makeProvider(ViewStatics.LIMITED_RISK)
-        enrollmentService.getProviderDetails(3, false) >> makeProvider(ViewStatics.MODERATE_RISK)
-        enrollmentService.getProviderDetails(4, false) >> makeProvider(ViewStatics.HIGH_RISK)
-        enrollmentService.getProviderDetails(5, false) >> makeProvider(ViewStatics.HIGH_RISK)
-        enrollmentService.getProviderDetails(6, false) >> makeProvider(ViewStatics.MODERATE_RISK)
-        enrollmentService.getProviderDetails(7, false) >> makeProvider(ViewStatics.LIMITED_RISK)
+        applicationService.getProviderDetails(1, false) >> makeProvider(ViewStatics.LIMITED_RISK)
+        applicationService.getProviderDetails(2, false) >> makeProvider(ViewStatics.LIMITED_RISK)
+        applicationService.getProviderDetails(3, false) >> makeProvider(ViewStatics.MODERATE_RISK)
+        applicationService.getProviderDetails(4, false) >> makeProvider(ViewStatics.HIGH_RISK)
+        applicationService.getProviderDetails(5, false) >> makeProvider(ViewStatics.HIGH_RISK)
+        applicationService.getProviderDetails(6, false) >> makeProvider(ViewStatics.MODERATE_RISK)
+        applicationService.getProviderDetails(7, false) >> makeProvider(ViewStatics.LIMITED_RISK)
     }
 
-    def "csv with no enrollments - header"() {
+    def "csv with no applications - header"() {
         given:
-        def results = new SearchResult<Enrollment>()
+        def results = new SearchResult<Application>()
         results.setItems([])
-        1 * enrollmentService.searchEnrollments(_) >> results
+        1 * applicationService.searchApplications(_) >> results
         def response = new MockHttpServletResponse()
 
         when:
@@ -109,10 +109,10 @@ class RiskLevelsReportControllerTest extends Specification {
         records[0][3] == ViewStatics.HIGH_RISK
     }
 
-    def "csv with enrollments"() {
+    def "csv with applications"() {
         given:
         def response = new MockHttpServletResponse()
-        1 * enrollmentService.searchEnrollments(_) >> testEnrollmentData()
+        1 * applicationService.searchApplications(_) >> testApplicationData()
         setupTestProviders()
 
         when:
@@ -141,9 +141,9 @@ class RiskLevelsReportControllerTest extends Specification {
         records[4][3] == "0"
     }
 
-    def "mv with enrollments"() {
+    def "mv with applications"() {
         given:
-        1 * enrollmentService.searchEnrollments(_) >> testEnrollmentData()
+        1 * applicationService.searchApplications(_) >> testApplicationData()
         setupTestProviders()
 
         when:
@@ -158,14 +158,14 @@ class RiskLevelsReportControllerTest extends Specification {
         mv["months"][2].getNum(ViewStatics.MODERATE_RISK) == 1
     }
 
-    def "enrollment without risk level does not cause exceptions"() {
+    def "application without risk level does not cause exceptions"() {
         given:
-        def results = new SearchResult<Enrollment>()
+        def results = new SearchResult<Application>()
         results.setItems([
-            makeEnrollment(1, noonMiddleThisMonth),
+            makeApplication(1, noonMiddleThisMonth),
         ])
-        1 * enrollmentService.searchEnrollments(_) >> results
-        enrollmentService.getProviderDetails(1, false) >>
+        1 * applicationService.searchApplications(_) >> results
+        applicationService.getProviderDetails(1, false) >>
             new ProviderProfile()
 
         when:

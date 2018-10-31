@@ -26,9 +26,9 @@ public class ChangePasswordStepDefinitions {
     @Steps
     GeneralSteps generalSteps;
 
-    @Given("^I am on the All Enrollments page$")
-    public void i_am_on_the_all_enrollments_page() {
-        generalSteps.checkOnAllEnrollmentsPage();
+    @Given("^I am on the All Applications page$")
+    public void i_am_on_the_all_applications_page() {
+        generalSteps.checkOnAllApplicationsPage();
     }
 
     @When("^I click on My Profile$")

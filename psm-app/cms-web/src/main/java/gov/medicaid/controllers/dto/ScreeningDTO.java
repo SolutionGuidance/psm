@@ -27,7 +27,7 @@ public class ScreeningDTO {
     public String screeningType;
     public String reason;
     public AutomaticScreening.Result result;
-    public long enrollmentId;
+    public long applicationId;
     public long screeningId;
 
     public Date getDate() {
@@ -58,8 +58,8 @@ public class ScreeningDTO {
         return result;
     }
 
-    public long getEnrollmentId() {
-        return enrollmentId;
+    public long getApplicationId() {
+        return applicationId;
     }
 
     public long getScreeningId() {

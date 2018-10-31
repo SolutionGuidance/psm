@@ -104,9 +104,9 @@
                           <td
                             class="reportDatum"
                             reportField="applicationsReviewed"
-                            reportValue="${month.getEnrollments(providerType).size()}"
+                            reportValue="${month.getApplications(providerType).size()}"
                           >
-                            ${month.getEnrollments(providerType).size()}
+                            ${month.getApplications(providerType).size()}
                           </td>
                         </tr>
                       </c:forEach>

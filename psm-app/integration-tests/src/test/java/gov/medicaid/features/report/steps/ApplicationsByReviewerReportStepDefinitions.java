@@ -40,9 +40,9 @@ public class ApplicationsByReviewerReportStepDefinitions {
         applicationsByReviewerSteps.searchApplicationsInReviewWithClearedDates();
     }
 
-    @Given("^I click on enrollment '(\\d+)'$")
-    public void i_click_on_enrollment(int enrollmentId) {
-        applicationsByReviewerSteps.clickOnEnrollment(enrollmentId);
+    @Given("^I click on application '(\\d+)'$")
+    public void i_click_on_application(int applicationId) {
+        applicationsByReviewerSteps.clickOnApplication(applicationId);
     }
 
     @Then("^I should see no applications by reviewer results$")

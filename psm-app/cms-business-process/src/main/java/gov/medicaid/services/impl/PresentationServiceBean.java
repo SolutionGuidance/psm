@@ -18,7 +18,7 @@
 package gov.medicaid.services.impl;
 
 import gov.medicaid.domain.model.ApplicantType;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.LicenseNames;
 import gov.medicaid.domain.model.LicenseType;
 import gov.medicaid.domain.model.ProviderInformationType;
@@ -713,17 +713,17 @@ public class PresentationServiceBean extends BaseService implements Presentation
     }
 
     /**
-     * This calls the business rules to validation the given enrollment. It is used by the frontend whenever validation
+     * This calls the business rules to validation the given application. It is used by the frontend whenever validation
      * is needed. It can be used to validate the entire request or a subset of views.
      *
-     * @param ticket
-     *            the ticket to be validated.
+     * @param application
+     *            the application to be validated.
      * @param tabs
-     *            the tabs to validate, if null or empty, the entire ticket is checked
-     * @return the set of error messages found, empty if the ticket is valid
+     *            the tabs to validate, if null or empty, the entire application is checked
+     * @return the set of error messages found, empty if the application is valid
      */
     @Override
-    public ValidationResponse checkForErrors(EnrollmentType ticket, List<String> tabs) {
+    public ValidationResponse checkForErrors(ApplicationType applicationType, List<String> tabs) {
         ValidationRequest request = new ValidationRequest();
         if (tabs != null && !tabs.isEmpty()) {
             request.setPartial("Y");
@@ -752,7 +752,7 @@ public class PresentationServiceBean extends BaseService implements Presentation
                 }
             }
         }
-        request.setEnrollment(ticket);
+        request.setApplication(applicationType);
         return checkForErrors(request);
     }
 
@@ -781,8 +781,8 @@ public class PresentationServiceBean extends BaseService implements Presentation
                 }
             }
 
-            ProviderInformationType provider = request.getEnrollment().getProviderInformation();
-            ksession.insert(request.getEnrollment());
+            ProviderInformationType provider = request.getApplication().getProviderInformation();
+            ksession.insert(request.getApplication());
             ksession.insert(provider);
             ksession.insert(validation);
             ksession.fireAllRules();

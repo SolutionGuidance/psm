@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://gov.medicaid.services.application/ValidationService" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://gov.medicaid.services.application/ValidationService" xmlns:Q1="http://gov.medicaid.process/ApplicationProcess" xmlns:Q2="http://gov.medicaid.shared/Entities">
+    <import schemaLocation="Entities.xsd" namespace="http://gov.medicaid.shared/Entities"></import>
+    <import schemaLocation="ApplicationProcess.xsd" namespace="http://gov.medicaid.process/ApplicationProcess"></import>
+    
+    <element name="ValidationRequest">
+	    <complexType>
+	    	<sequence>
+	    		<element name="Application" type="Q1:ApplicationType" maxOccurs="1" minOccurs="1"></element>
+	    		<element name="Partial" maxOccurs="1" minOccurs="1">
+	    			<simpleType>
+	    				<restriction base="string">
+	    					<enumeration value="Y"></enumeration>
+	    					<enumeration value="N"></enumeration>
+	    				</restriction>
+	    			</simpleType>
+	    		</element>
+	    		<element name="Sections" maxOccurs="unbounded" minOccurs="0" type="tns:UISection" />
+	    	</sequence>
+	    </complexType>
+    </element>
+
+    <element name="SubmitApplicationRequest">
+        <complexType>
+            <sequence>
+                <element name="username" maxOccurs="1" minOccurs="1" type="string" />
+                <element name="systemId" maxOccurs="1" minOccurs="1" type="string" />
+                <element name="npi" maxOccurs="1" minOccurs="0" type="string" />
+                <element name="Application" type="Q1:ApplicationType" maxOccurs="1" minOccurs="1"></element>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="SubmitApplicationResponse">
+        <complexType>
+            <sequence>
+                <element name="applicationNumber" maxOccurs="1" minOccurs="1" type="long" />
+                <element name="status" maxOccurs="1" minOccurs="1" type="string" />
+            </sequence>
+        </complexType>
+    </element>
+
+	<simpleType name="UISection">
+		<restriction base="string">
+			<enumeration value="Provider Type Page"></enumeration>
+			<enumeration value="Personal Information"></enumeration>
+			<enumeration value="License Information"></enumeration>
+			<enumeration value="Practice Information"></enumeration>
+			<enumeration value="Mailing Information"></enumeration>
+			<enumeration value="Provider Statement"></enumeration>
+			<enumeration value="Agency Information"></enumeration>
+			
+			<!-- ORG SECTIONS -->
+			<enumeration value="Organization Information"></enumeration>
+			<enumeration value="Individual Member Information"></enumeration>
+			<enumeration value="Provider Setup"></enumeration>
+			<enumeration value="Ownership Information"></enumeration>
+			<enumeration value="Organization Disclosure"></enumeration>
+			<enumeration value="Facility Credentials"></enumeration>
+			<enumeration value="Organization Provider Statement"></enumeration>
+			<enumeration value="Agency Eligibility"></enumeration>
+            <enumeration value="Qualified Professionals"></enumeration>
+		</restriction>
+	</simpleType>
+
+    <element name="ValidationResponse">
+    	<complexType>
+    		<sequence>
+    			<element name="ValidationResult" type="Q2:ValidationResultType"></element>
+    		</sequence>
+    	</complexType>
+    </element>
+</schema>

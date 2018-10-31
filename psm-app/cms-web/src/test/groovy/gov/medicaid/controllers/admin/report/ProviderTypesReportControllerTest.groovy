@@ -24,17 +24,17 @@ import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.springframework.mock.web.MockHttpServletResponse
 
-import gov.medicaid.entities.Enrollment
+import gov.medicaid.entities.Application
 import gov.medicaid.entities.Person
 import gov.medicaid.entities.ProviderType
 import gov.medicaid.entities.SearchResult
-import gov.medicaid.services.ProviderEnrollmentService
+import gov.medicaid.services.ProviderApplicationService
 import gov.medicaid.services.ProviderTypeService
 import spock.lang.Specification
 
 class ProviderTypesReportControllerTest extends Specification {
     private ProviderTypesReportController controller
-    private ProviderEnrollmentService enrollmentService
+    private ProviderApplicationService applicationService
     private ProviderTypeService providerTypeService
     private static LocalDateTime noonMiddleThisMonth
 
@@ -43,9 +43,9 @@ class ProviderTypesReportControllerTest extends Specification {
     }
 
     void setup() {
-        enrollmentService = Mock(ProviderEnrollmentService)
+        applicationService = Mock(ProviderApplicationService)
         providerTypeService = Mock(ProviderTypeService)
-        controller = new ProviderTypesReportController(enrollmentService, providerTypeService)
+        controller = new ProviderTypesReportController(applicationService, providerTypeService)
 
         providerTypeService.search(_) >>
                 new SearchResult<ProviderType>(
@@ -64,22 +64,22 @@ class ProviderTypesReportControllerTest extends Specification {
         Date.from(d.atZone(ZoneId.systemDefault()).toInstant())
     }
 
-    private makeEnrollment(profileId, statusDate) {
-        return new Enrollment([
+    private makeApplication(profileId, statusDate) {
+        return new Application([
             profileReferenceId: profileId,
             statusDate: toDate(statusDate)
         ])
     }
 
-    private testEnrollmentData() {
-        def results = new SearchResult<Enrollment>()
+    private testApplicationData() {
+        def results = new SearchResult<Application>()
         results.setItems([
-            makeEnrollment(1, noonMiddleThisMonth),
-            makeEnrollment(2, noonMiddleThisMonth),
-            makeEnrollment(3, noonMiddleThisMonth),
-            makeEnrollment(4, noonMiddleThisMonth.minusMonths(1)),
-            makeEnrollment(5, noonMiddleThisMonth.minusMonths(1)),
-            makeEnrollment(6, noonMiddleThisMonth.minusMonths(2))
+            makeApplication(1, noonMiddleThisMonth),
+            makeApplication(2, noonMiddleThisMonth),
+            makeApplication(3, noonMiddleThisMonth),
+            makeApplication(4, noonMiddleThisMonth.minusMonths(1)),
+            makeApplication(5, noonMiddleThisMonth.minusMonths(1)),
+            makeApplication(6, noonMiddleThisMonth.minusMonths(2))
         ].sort{it.getCreatedOn()})
         results
     }
@@ -89,19 +89,19 @@ class ProviderTypesReportControllerTest extends Specification {
     }
 
     private setupTestEntities() {
-        enrollmentService.findEntityByProviderKey(1) >> makePerson("PT 1")
-        enrollmentService.findEntityByProviderKey(2) >> makePerson("PT 1")
-        enrollmentService.findEntityByProviderKey(3) >> makePerson("PT 2")
-        enrollmentService.findEntityByProviderKey(4) >> makePerson("PT 2")
-        enrollmentService.findEntityByProviderKey(5) >> makePerson("PT 2")
-        enrollmentService.findEntityByProviderKey(6) >> makePerson("PT 1")
+        applicationService.findEntityByProviderKey(1) >> makePerson("PT 1")
+        applicationService.findEntityByProviderKey(2) >> makePerson("PT 1")
+        applicationService.findEntityByProviderKey(3) >> makePerson("PT 2")
+        applicationService.findEntityByProviderKey(4) >> makePerson("PT 2")
+        applicationService.findEntityByProviderKey(5) >> makePerson("PT 2")
+        applicationService.findEntityByProviderKey(6) >> makePerson("PT 1")
     }
 
-    def "csv with no enrollments - header"() {
+    def "csv with no applications - header"() {
         given:
-        def results = new SearchResult<Enrollment>()
+        def results = new SearchResult<Application>()
         results.setItems([])
-        1 * enrollmentService.searchEnrollments(_) >> results
+        1 * applicationService.searchApplications(_) >> results
         def response = new MockHttpServletResponse()
 
         when:
@@ -117,9 +117,9 @@ class ProviderTypesReportControllerTest extends Specification {
         records[0].size() == 3
     }
 
-    def "csv with enrollments"() {
+    def "csv with applications"() {
         given:
-        1 * enrollmentService.searchEnrollments(_) >> testEnrollmentData()
+        1 * applicationService.searchApplications(_) >> testApplicationData()
         setupTestEntities()
 
         def response = new MockHttpServletResponse()
@@ -146,9 +146,9 @@ class ProviderTypesReportControllerTest extends Specification {
         records[4][2] == "1"
     }
 
-    def "mv with enrollments"() {
+    def "mv with applications"() {
         given:
-        1 * enrollmentService.searchEnrollments(_) >> testEnrollmentData()
+        1 * applicationService.searchApplications(_) >> testApplicationData()
         setupTestEntities()
 
         when:
@@ -158,10 +158,10 @@ class ProviderTypesReportControllerTest extends Specification {
         mv["months"].size == 3
         mv["months"][0].month == noonMiddleThisMonth.withDayOfMonth(1).toLocalDate()
         mv["months"][0].getProviderTypes().get(0).description == "PT 1"
-        mv["months"][0].getEnrollments(new ProviderType([code: "PT 1"])).size == 2
-        mv["months"][0].getEnrollments(new ProviderType([code: "PT 2"])).size == 1
+        mv["months"][0].getApplications(new ProviderType([code: "PT 1"])).size == 2
+        mv["months"][0].getApplications(new ProviderType([code: "PT 2"])).size == 1
         mv["months"][2].month == noonMiddleThisMonth.withDayOfMonth(1).minusMonths(2).toLocalDate()
-        mv["months"][2].containsEnrollments(new ProviderType([code: "PT 2"])) == false
+        mv["months"][2].containsApplications(new ProviderType([code: "PT 2"])) == false
 
         mv["providerTypes"].size == 4
 

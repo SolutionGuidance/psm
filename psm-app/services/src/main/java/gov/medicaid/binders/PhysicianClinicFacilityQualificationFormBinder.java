@@ -17,16 +17,16 @@
 
 package gov.medicaid.binders;
 
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.AttachedDocumentsType;
-import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.FacilityCredentialsType;
 import gov.medicaid.domain.model.FacilityQualificationType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.CategoryOfService;
-import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.License;
 import gov.medicaid.entities.LicenseType;
 import gov.medicaid.entities.ProviderProfile;
@@ -76,14 +76,14 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request the request containing the form fields
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+    public List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
         AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(provider);
         List<FacilityQualificationType> facilityQualification = creds.getFacilityQualification();
 
@@ -139,13 +139,13 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
         List<FacilityQualificationType> qualifications = creds.getFacilityQualification();
         for (FacilityQualificationType service : qualifications) {
             for (CategoryOfService category : categories) {
@@ -159,17 +159,17 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
 
     /**
      * Translates the validation results to form error messages where applicable.
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages the error messages
      *
      * @return the list of errors related to this form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
         List<FacilityQualificationType> services = creds.getFacilityQualification();
         synchronized (ruleErrors) {
             for (StatusMessageType ruleError : ruleErrors) {
@@ -241,12 +241,12 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param applicationType the front end model
+     * @param application the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollment);
-        ProviderProfile profile = ticket.getDetails();
+    public void bindToHibernate(ApplicationType applicationType, Application application) {
+        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(applicationType);
+        ProviderProfile profile = application.getDetails();
         if (profile.getCertifications() == null) {
             profile.setCertifications(new ArrayList<License>());
         }
@@ -274,12 +274,12 @@ public class PhysicianClinicFacilityQualificationFormBinder extends BaseFormBind
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * @param application the persistent model
+     * @param applicationType the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
-        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(enrollment);
-        ProviderProfile profile = ticket.getDetails();
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        FacilityCredentialsType licenseInfo = XMLUtility.nsGetFacilityCredentials(applicationType);
+        ProviderProfile profile = application.getDetails();
         List<License> certifications = profile.getCertifications();
         if (certifications == null) {
             profile.setCertifications(new ArrayList<License>());

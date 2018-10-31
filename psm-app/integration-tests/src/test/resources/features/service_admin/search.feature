@@ -1,12 +1,12 @@
 @Search
 Feature: Admin Search Checks
-  Users wish to search or filter enrollments
+  Users wish to search or filter applications
 
   # Issue 914
   @ignore
-  Scenario: Admin All Enrollments Page Filtered
+  Scenario: Admin All Applications Page Filtered
     Given I am logged in as an admin
-    And I am on the admin All Enrollments page
+    And I am on the admin All Applications page
     When I open the filter panel
     And I filter by NPI '1111111112'
     Then I should have no errors

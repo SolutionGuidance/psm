@@ -21,12 +21,12 @@ import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfPTable;
 
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormError;
 import gov.medicaid.services.util.PDFHelper;
@@ -67,13 +67,13 @@ public class PracticeTypeFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request the request containing the form fields
      *
      * @return
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         provider.setMaintainsOwnPrivatePractice(param(request, "maintainsOwnPrivatePractice"));
         provider.setEmployedOrContractedByGroup(param(request, "employedOrContractedByGroup"));
         return Collections.emptyList();
@@ -81,25 +81,25 @@ public class PracticeTypeFormBinder extends BaseFormBinder {
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         attr(mv, "maintainsOwnPrivatePractice", provider.getMaintainsOwnPrivatePractice());
         attr(mv, "employedOrContractedByGroup", provider.getEmployedOrContractedByGroup());
     }
 
     /**
      * Captures the error messages related to the form.
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages the messages to select from
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -135,13 +135,13 @@ public class PracticeTypeFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param applicationType the front end model
+     * @param application the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        if (enrollment.getProviderInformation() != null) {
-            ProviderInformationType provider = enrollment.getProviderInformation();
-            ProviderProfile profile = ticket.getDetails();
+    public void bindToHibernate(ApplicationType applicationType, Application application) {
+        if (applicationType.getProviderInformation() != null) {
+            ProviderInformationType provider = applicationType.getProviderInformation();
+            ProviderProfile profile = application.getDetails();
             profile.setMaintainsOwnPrivatePractice(provider.getMaintainsOwnPrivatePractice());
             profile.setEmployedOrContractedByGroup(provider.getEmployedOrContractedByGroup());
         }
@@ -150,20 +150,20 @@ public class PracticeTypeFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * @param application the persistent model
+     * @param applicationType the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
-        ProviderProfile profile = ticket.getDetails();
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        ProviderProfile profile = application.getDetails();
         if (profile != null) {
-            ProviderInformationType pInfo = XMLUtility.nsGetProvider(enrollment);
+            ProviderInformationType pInfo = XMLUtility.nsGetProvider(applicationType);
             pInfo.setMaintainsOwnPrivatePractice(profile.getMaintainsOwnPrivatePractice());
             pInfo.setEmployedOrContractedByGroup(profile.getEmployedOrContractedByGroup());
         }
     }
 
     @Override
-    public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
+    public void renderPDF(ApplicationType applicationType, Document document, Map<String, Object> model)
         throws DocumentException {
         String ns = NAMESPACE;
         PdfPTable practiceInfo = new PdfPTable(2);

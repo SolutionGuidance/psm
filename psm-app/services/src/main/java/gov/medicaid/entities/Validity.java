@@ -18,22 +18,22 @@
 package gov.medicaid.entities;
 
 /**
- * Validity status for tickets.
+ * Validity status for applications.
  */
 public enum Validity {
 
     /**
-     * Ticket is still valid.
+     * Application is still valid.
      */
     VALID,
 
     /**
-     * Ticket is superseded by another one.
+     * Application is superseded by another one.
      */
     SUPERSEDED,
 
     /**
-     * Ticket is stale.
+     * Application is stale.
      */
     STALE
 }

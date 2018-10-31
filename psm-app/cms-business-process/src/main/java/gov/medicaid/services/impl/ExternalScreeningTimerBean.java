@@ -23,7 +23,7 @@ import gov.medicaid.entities.UserRequest;
 import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 import gov.medicaid.services.ScreeningService;
 
 import javax.annotation.PostConstruct;
@@ -44,7 +44,7 @@ public class ExternalScreeningTimerBean extends BaseService {
     private LeieExternalScreener leieExternalScreener;
 
     @EJB
-    private ProviderEnrollmentService providerEnrollmentService;
+    private ProviderApplicationService providerApplicationService;
 
     @EJB
     private ScreeningService screeningService;
@@ -89,25 +89,25 @@ public class ExternalScreeningTimerBean extends BaseService {
     }
 
     private void runRescreenings() {
-        for (UserRequest enrollment : getRescreenableEnrollments()) {
+        for (UserRequest application : getRescreenableApplications()) {
             logger.info(String.format(
-                "Running automatic re-screenings for enrollment " +
-                    "with enrollment_id %d.",
-                enrollment.getEnrollmentId()
+                "Running automatic re-screenings for application " +
+                    "with application_id %d.",
+                application.getApplicationId()
             ));
             leieExternalScreener.screen(
-                enrollment.getEnrollmentId(),
-                enrollment.getNpi()
+                application.getApplicationId(),
+                application.getNpi()
             );
         }
     }
 
-    private List<UserRequest> getRescreenableEnrollments() {
+    private List<UserRequest> getRescreenableApplications() {
         ProviderSearchCriteria criteria = new ProviderSearchCriteria();
         criteria.setStatuses(Collections.singletonList(
             ViewStatics.APPROVED_STATUS
         ));
-        return providerEnrollmentService.searchTickets(
+        return providerApplicationService.searchApplications(
             getSystemUser(),
             criteria
         ).getItems();
@@ -127,7 +127,7 @@ public class ExternalScreeningTimerBean extends BaseService {
     }
 
     @SuppressWarnings("unused") // called by container to inject service
-    public void setProviderEnrollmentService(ProviderEnrollmentService providerEnrollmentService) {
-        this.providerEnrollmentService = providerEnrollmentService;
+    public void setProviderApplicationService(ProviderApplicationService providerApplicationService) {
+        this.providerApplicationService = providerApplicationService;
     }
 }

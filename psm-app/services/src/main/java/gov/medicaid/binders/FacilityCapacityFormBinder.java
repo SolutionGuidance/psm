@@ -17,17 +17,19 @@
 
 package gov.medicaid.binders;
 
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.FacilityCredentialsType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormError;
+
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -51,14 +53,14 @@ public class FacilityCapacityFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request the request containing the form fields
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
         String beds = param(request, "numberOfBeds");
         if (StringUtils.isNumeric(beds)) {
             creds.setNumberOfBeds((int) BinderUtils.getAsLong(beds));
@@ -76,13 +78,13 @@ public class FacilityCapacityFormBinder extends BaseFormBinder {
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly true if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
         if (creds.getNumberOfBeds() != null) {
             attr(mv, "numberOfBeds", creds.getNumberOfBeds());
         }
@@ -91,12 +93,12 @@ public class FacilityCapacityFormBinder extends BaseFormBinder {
 
     /**
      * Captures the error messages related to the form.
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages the messages to select from
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
@@ -132,12 +134,12 @@ public class FacilityCapacityFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param applicationType the front end model
+     * @param application the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        ProviderProfile profile = ticket.getDetails();
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+    public void bindToHibernate(ApplicationType applicationType, Application application) {
+        ProviderProfile profile = application.getDetails();
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
         profile.setNumberOfBeds(creds.getNumberOfBeds());
         profile.setNumberOfBedsEffectiveDate(BinderUtils.toDate(creds.getNumberOfBedsEffectiveDate()));
     }
@@ -145,12 +147,12 @@ public class FacilityCapacityFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * @param application the persistent model
+     * @param applicationType the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
-        ProviderProfile profile = ticket.getDetails();
-        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(enrollment);
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        ProviderProfile profile = application.getDetails();
+        FacilityCredentialsType creds = XMLUtility.nsGetFacilityCredentials(applicationType);
         creds.setNumberOfBeds(profile.getNumberOfBeds());
         creds.setNumberOfBedsEffectiveDate(BinderUtils.toCalendar(profile.getNumberOfBedsEffectiveDate()));
     }

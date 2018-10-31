@@ -26,7 +26,7 @@ import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.security.CMSPrincipal;
 import gov.medicaid.services.ExportService;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 import gov.medicaid.services.util.Util;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,14 +56,14 @@ public class ProviderDashboardController extends BaseController {
      */
     private static final int DEFAULT_PAGE_SIZE = 10;
 
-    private final ProviderEnrollmentService enrollmentService;
+    private final ProviderApplicationService applicationService;
     private final ExportService exportService;
 
     public ProviderDashboardController(
-        ProviderEnrollmentService enrollmentService,
+        ProviderApplicationService applicationService,
         ExportService exportService
     ) {
-        this.enrollmentService = enrollmentService;
+        this.applicationService = applicationService;
         this.exportService = exportService;
     }
 
@@ -86,9 +86,9 @@ public class ProviderDashboardController extends BaseController {
         criteria.setPageNumber(1);
         criteria.setPageSize(1);
 
-        SearchResult<UserRequest> tickets = enrollmentService.searchTickets(principal.getUser(), criteria);
-        if (tickets.getTotal() > 0) {
-            return viewTicketList();
+        SearchResult<UserRequest> applications = applicationService.searchApplications(principal.getUser(), criteria);
+        if (applications.getTotal() > 0) {
+            return viewApplicationList();
         }
 
         return viewAccountSetup();
@@ -134,8 +134,8 @@ public class ProviderDashboardController extends BaseController {
      * @verb GET
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView viewTicketList() {
-        return filterTicketList(createDefaultFilter());
+    public ModelAndView viewApplicationList() {
+        return filterApplicationList(createDefaultFilter());
     }
 
     /**
@@ -148,9 +148,9 @@ public class ProviderDashboardController extends BaseController {
     @RequestMapping(value = "/drafts", method = RequestMethod.GET)
     public ModelAndView viewDrafts() {
         if (isOperations()) {
-            return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Draft&showFilterPanel=true");
+            return new ModelAndView("redirect:/agent/application/list/draft?statuses=Draft&showFilterPanel=true");
         }
-        return filterTicketsByStatus(ViewStatics.DRAFT_STATUS, createDefaultFilter());
+        return filterApplicationsByStatus(ViewStatics.DRAFT_STATUS, createDefaultFilter());
     }
 
     /**
@@ -163,9 +163,9 @@ public class ProviderDashboardController extends BaseController {
     @RequestMapping(value = "/pending", method = RequestMethod.GET)
     public ModelAndView viewPending() {
         if (isOperations()) {
-            return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Pending&showFilterPanel=true");
+            return new ModelAndView("redirect:/agent/application/list/draft?statuses=Pending&showFilterPanel=true");
         }
-        return filterTicketsByStatus(ViewStatics.PENDING_STATUS, createDefaultFilter());
+        return filterApplicationsByStatus(ViewStatics.PENDING_STATUS, createDefaultFilter());
     }
 
     /**
@@ -178,9 +178,9 @@ public class ProviderDashboardController extends BaseController {
     @RequestMapping(value = "/approved", method = RequestMethod.GET)
     public ModelAndView viewApproved() {
         if (isOperations()) {
-            return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Approved&showFilterPanel=true");
+            return new ModelAndView("redirect:/agent/application/list/draft?statuses=Approved&showFilterPanel=true");
         }
-        return filterTicketsByStatus(ViewStatics.APPROVED_STATUS, createDefaultFilter());
+        return filterApplicationsByStatus(ViewStatics.APPROVED_STATUS, createDefaultFilter());
     }
 
     /**
@@ -193,9 +193,9 @@ public class ProviderDashboardController extends BaseController {
     @RequestMapping(value = "/rejected", method = RequestMethod.GET)
     public ModelAndView viewRejected() {
         if (isOperations()) {
-            return new ModelAndView("redirect:/agent/enrollment/list/draft?statuses=Rejected&showFilterPanel=true");
+            return new ModelAndView("redirect:/agent/application/list/draft?statuses=Rejected&showFilterPanel=true");
         }
-        return filterTicketsByStatus(ViewStatics.REJECTED_STATUS, createDefaultFilter());
+        return filterApplicationsByStatus(ViewStatics.REJECTED_STATUS, createDefaultFilter());
     }
 
     /**
@@ -213,7 +213,7 @@ public class ProviderDashboardController extends BaseController {
     }
 
     /**
-     * Filters the tickets using the provided criteria.
+     * Filters the applications using the provided criteria.
      *
      * @param status only status of this type will be returned
      * @param criteria the search criteria
@@ -222,25 +222,25 @@ public class ProviderDashboardController extends BaseController {
      * @verb GET
      */
     @RequestMapping(value = "/filter", method = RequestMethod.GET)
-    public ModelAndView filterTicketsByStatus(
+    public ModelAndView filterApplicationsByStatus(
         @RequestParam("status") String status,
         ProviderSearchCriteria criteria
     ) {
         String view = "provider/dashboard/list_by_status";
         criteria.setStatuses(Arrays.asList(status));
-        ModelAndView mv = searchTickets(criteria, view);
+        ModelAndView mv = searchApplications(criteria, view);
         mv.addObject("statusFilter", status);
         if (ViewStatics.REJECTED_STATUS.equals(status)) {
-            mv.addObject("listType", "Denied Enrollments");
+            mv.addObject("listType", "Denied Applications");
         } else {
-            mv.addObject("listType", status + " Enrollments");
+            mv.addObject("listType", status + " Applications");
         }
 
         return mv;
     }
 
     /**
-     * Filters the tickets using the provided criteria.
+     * Filters the applications using the provided criteria.
      *
      * @param status only status of this type will be returned
      * @param criteria the search criteria
@@ -252,7 +252,7 @@ public class ProviderDashboardController extends BaseController {
      */
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/export", method = RequestMethod.GET)
-    public void exportTicketsByStatus(
+    public void exportApplicationsByStatus(
         @RequestParam("status") String status, ProviderSearchCriteria criteria,
         HttpServletResponse response
     ) throws PortalServiceException, IOException {
@@ -262,7 +262,7 @@ public class ProviderDashboardController extends BaseController {
         criteria.setPageNumber(0);
         criteria.setPageSize(0);
 
-        ModelAndView mv = searchTickets(criteria, "provider/dashboard/list_by_status");
+        ModelAndView mv = searchApplications(criteria, "provider/dashboard/list_by_status");
 
         SearchResult<UserRequest> results = (SearchResult<UserRequest>) mv.getModelMap().get("results");
         response.reset();
@@ -281,10 +281,10 @@ public class ProviderDashboardController extends BaseController {
      * @verb GET
      */
     @RequestMapping(value = "/list/filter", method = RequestMethod.GET)
-    public ModelAndView filterTicketList(ProviderSearchCriteria criteria) {
-        ModelAndView mv = searchTickets(criteria, "provider/dashboard/list_by_status");
+    public ModelAndView filterApplicationList(ProviderSearchCriteria criteria) {
+        ModelAndView mv = searchApplications(criteria, "provider/dashboard/list_by_status");
         mv.addObject("statusFilter", "All");
-        mv.addObject("listType", "All Enrollments");
+        mv.addObject("listType", "All Applications");
         return mv;
     }
 
@@ -295,27 +295,27 @@ public class ProviderDashboardController extends BaseController {
      * @param view the view to render the results
      * @return the results and the view provided
      */
-    private ModelAndView searchTickets(
+    private ModelAndView searchApplications(
         ProviderSearchCriteria criteria,
         String view
     ) {
-        String enrollmentNumber = criteria.getEnrollmentNumber();
-        // enrollment number must be a valid long since ids are of that type.
-        if (Util.isNotBlank(enrollmentNumber)) {
+        String applicationNumber = criteria.getApplicationNumber();
+        // application number must be a valid long since ids are of that type.
+        if (Util.isNotBlank(applicationNumber)) {
             try {
-                Long.parseLong(enrollmentNumber);
+                Long.parseLong(applicationNumber);
             } catch (NumberFormatException e) {
                 // if not, set to a dummy value that will NEVER match any record
-                criteria.setEnrollmentNumber("999999999999999999");
+                criteria.setApplicationNumber("999999999999999999");
             }
         }
 
         CMSUser principal = ControllerHelper.getCurrentUser();
-        SearchResult<UserRequest> results = enrollmentService.searchTickets(principal, criteria);
+        SearchResult<UserRequest> results = applicationService.searchApplications(principal, criteria);
         ModelAndView mv = new ModelAndView(view);
         mv.addObject("results", results);
 
-        List<Long> profileIds = enrollmentService.findMyProfiles(principal)
+        List<Long> profileIds = applicationService.findMyProfiles(principal)
                 .stream()
                 .map(profileHeader -> profileHeader.getProfileId())
                 .collect(Collectors.toList());
@@ -325,7 +325,7 @@ public class ProviderDashboardController extends BaseController {
         ControllerHelper.addPaginationLinks(results, mv);
 
         // revert changes to input
-        criteria.setEnrollmentNumber(enrollmentNumber);
+        criteria.setApplicationNumber(applicationNumber);
         mv.addObject("criteria", criteria);
         return mv;
     }

@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
+
+  <itemDefinition id="_34-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
+
+  <itemDefinition id="_3-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
+
+  <itemDefinition id="_5-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
+
+  <itemDefinition id="_6-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
+
+  <itemDefinition id="_9-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
+
+  <itemDefinition id="_10-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
+
+  <itemDefinition id="_15-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
+
+  <itemDefinition id="_18-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
+
+  <itemDefinition id="_21-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
+
+  <itemDefinition id="_31-modelItem" structureRef="gov.medicaid.domain.model.ApplicationProcess" />
+
+  <process processType="Private" isExecutable="true" id="gov.medicaid.process.application" name="CMS Application Process" tns:packageName="gov.medicaid.process.application" tns:version="1.0" >
+
+    <extensionElements>
+     <tns:import name="gov.medicaid.domain.model.*" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="model" itemSubjectRef="_modelItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <endEvent id="_2" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <task id="_34" name="Check DMF" tns:taskName="Check DMF" >
+      <ioSpecification>
+        <dataInput id="_34_modelInput" name="model" />
+        <dataOutput id="_34_modelOutput" name="model" />
+        <inputSet>
+          <dataInputRefs>_34_modelInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_34_modelOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>model</sourceRef>
+        <targetRef>_34_modelInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_34_modelOutput</sourceRef>
+        <targetRef>model</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <userTask id="_3" name="Manual Review" >
+      <ioSpecification>
+        <dataInput id="_3_ProcessModelInput" name="ProcessModel" />
+        <dataInput id="_3_CommentInput" name="Comment" />
+        <dataInput id="_3_TaskNameInput" name="TaskName" />
+        <dataInput id="_3_GroupIdInput" name="GroupId" />
+        <dataOutput id="_3_modelOutput" name="model" />
+        <inputSet>
+          <dataInputRefs>_3_ProcessModelInput</dataInputRefs>
+          <dataInputRefs>_3_CommentInput</dataInputRefs>
+          <dataInputRefs>_3_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_3_GroupIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_3_modelOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>model</sourceRef>
+        <targetRef>_3_ProcessModelInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">this is a comment</from>
+          <to xsi:type="tFormalExpression">_3_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Screening Review</from>
+          <to xsi:type="tFormalExpression">_3_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Service Administrator, Service Agent</from>
+          <to xsi:type="tFormalExpression">_3_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_3_modelOutput</sourceRef>
+        <targetRef>model</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression></formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <parallelGateway id="_35" name="Gateway" gatewayDirection="Converging" />
+    <task id="_5" name="PreProcess" tns:taskName="PreProcess" >
+      <ioSpecification>
+        <dataInput id="_5_modelInput" name="model" />
+        <dataOutput id="_5_modelOutput" name="model" />
+        <inputSet>
+          <dataInputRefs>_5_modelInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_5_modelOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>model</sourceRef>
+        <targetRef>_5_modelInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_5_modelOutput</sourceRef>
+        <targetRef>model</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_6" name="Validate" tns:taskName="Validate" >
+      <ioSpecification>
+        <dataInput id="_6_modelInput" name="model" />
+        <dataOutput id="_6_modelOutput" name="model" />
+        <inputSet>
+          <dataInputRefs>_6_modelInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_6_modelOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>model</sourceRef>
+        <targetRef>_6_modelInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_6_modelOutput</sourceRef>
+        <targetRef>model</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <inclusiveGateway id="_7" name="Reject Or Verify" gatewayDirection="Diverging" />
+    <task id="_9" name="Reject Application" tns:taskName="Reject Application" >
+      <ioSpecification>
+        <dataInput id="_9_modelInput" name="model" />
+        <inputSet>
+          <dataInputRefs>_9_modelInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>model</sourceRef>
+        <targetRef>_9_modelInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <task id="_10" name="Check Excluded Provider List in OIG" tns:taskName="Check Excluded Provider List in OIG" >
+      <ioSpecification>
+        <dataInput id="_10_modelInput" name="model" />
+        <dataOutput id="_10_modelOutput" name="model" />
+        <inputSet>
+          <dataInputRefs>_10_modelInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_10_modelOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>model</sourceRef>
+        <targetRef>_10_modelInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_10_modelOutput</sourceRef>
+        <targetRef>model</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_15" name="Auto Screening" tns:taskName="Auto Screening" >
+      <extensionElements>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <tns:script>gov.medicaid.binders.XMLUtility.moveToStatus(model, "SYSTEM", "PENDING REVIEW", "Initial Screening Is Complete.");</tns:script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_15_modelInput" name="model" />
+        <dataOutput id="_15_modelOutput" name="model" />
+        <inputSet>
+          <dataInputRefs>_15_modelInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_15_modelOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>model</sourceRef>
+        <targetRef>_15_modelInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_15_modelOutput</sourceRef>
+        <targetRef>model</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <exclusiveGateway id="_17" name="Accepted By Reviewer" gatewayDirection="Diverging" />
+    <task id="_18" name="Reject Application" tns:taskName="Reject Application" >
+      <ioSpecification>
+        <dataInput id="_18_modelInput" name="model" />
+        <inputSet>
+          <dataInputRefs>_18_modelInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>model</sourceRef>
+        <targetRef>_18_modelInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_19" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <task id="_21" name="Accept Application" tns:taskName="Accept Application" >
+      <ioSpecification>
+        <dataInput id="_21_modelInput" name="model" />
+        <dataOutput id="_21_modelOutput" name="model" />
+        <inputSet>
+          <dataInputRefs>_21_modelInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_21_modelOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>model</sourceRef>
+        <targetRef>_21_modelInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_21_modelOutput</sourceRef>
+        <targetRef>model</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <endEvent id="_22" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <task id="_31" name="Auto Screening" tns:taskName="Auto Screening" >
+      <extensionElements>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <tns:script>if ("FAILURE".equals(model.getProcessResults().getScreeningResults().getAutomaticScreeningStatus().getStatus().getStatusCode())) {
+    gov.medicaid.binders.XMLUtility.moveToStatus(model, "SYSTEM", "PENDING REVIEW", "Please address all errors and resubmit.");
+}</tns:script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_31_modelInput" name="model" />
+        <dataOutput id="_31_modelOutput" name="model" />
+        <inputSet>
+          <dataInputRefs>_31_modelInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_31_modelOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>model</sourceRef>
+        <targetRef>_31_modelInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_31_modelOutput</sourceRef>
+        <targetRef>model</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <exclusiveGateway id="_32" name="Re-Screening Completed" gatewayDirection="Diverging" />
+    <exclusiveGateway id="_33" name="Initial Screening Completed" gatewayDirection="Converging" />
+
+    <!-- connections -->
+    <sequenceFlow id="_9-_2" sourceRef="_9" targetRef="_2" />
+    <sequenceFlow id="_7-_34" sourceRef="_7" targetRef="_34" name="success" >
+      <conditionExpression xsi:type="tFormalExpression"  language="http://www.java.com/java" >return "SUCCESS".equals(model.getProcessResults().getValidationResult().getStatus().getStatusCode());</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_33-_3" sourceRef="_33" targetRef="_3" />
+    <sequenceFlow id="_10-_35" sourceRef="_10" targetRef="_35" />
+    <sequenceFlow id="_34-_35" sourceRef="_34" targetRef="_35" />
+    <sequenceFlow id="_1-_5" sourceRef="_1" targetRef="_5" />
+    <sequenceFlow id="_5-_6" sourceRef="_5" targetRef="_6" />
+    <sequenceFlow id="_6-_7" sourceRef="_6" targetRef="_7" />
+    <sequenceFlow id="_7-_9" sourceRef="_7" targetRef="_9" name="failure" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "FAILURE".equals(model.getProcessResults().getValidationResult().getStatus().getStatusCode());</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_7-_10" sourceRef="_7" targetRef="_10" name="success" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "SUCCESS".equals(model.getProcessResults().getValidationResult().getStatus().getStatusCode());</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_35-_15" sourceRef="_35" targetRef="_15" />
+    <sequenceFlow id="_3-_17" sourceRef="_3" targetRef="_17" />
+    <sequenceFlow id="_17-_18" sourceRef="_17" targetRef="_18" name="reject" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "REJECTED".equals(model.getApplicationStatus().getStatus());</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_18-_19" sourceRef="_18" targetRef="_19" />
+    <sequenceFlow id="_32-_21" sourceRef="_32" targetRef="_21" name="passed" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return "SUCCESS".equals(model.getProcessResults().getScreeningResults().getAutomaticScreeningStatus().getStatus().getStatusCode());</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_21-_22" sourceRef="_21" targetRef="_22" />
+    <sequenceFlow id="_17-_31" sourceRef="_17" targetRef="_31" name="accepted" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return !"REJECTED".equals(model.getApplicationStatus().getStatus());</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_31-_32" sourceRef="_31" targetRef="_32" />
+    <sequenceFlow id="_15-_33" sourceRef="_15" targetRef="_33" />
+    <sequenceFlow id="_32-_33" sourceRef="_32" targetRef="_33" name="failed" tns:priority="2" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return !"SUCCESS".equals(model.getProcessResults().getScreeningResults().getAutomaticScreeningStatus().getStatus().getStatusCode());</conditionExpression>
+    </sequenceFlow>
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="gov.medicaid.process.application" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="16" y="221" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="685" y="17" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_34" >
+        <dc:Bounds x="491" y="194" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="1013" y="213" width="142" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_35" >
+        <dc:Bounds x="699" y="259" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="96" y="221" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="228" y="221" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="360" y="221" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="441" y="16" width="212" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="443" y="321" width="212" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_15" >
+        <dc:Bounds x="766" y="263" width="134" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="1187" y="212" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_18" >
+        <dc:Bounds x="1268" y="137" width="140" height="46" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_19" >
+        <dc:Bounds x="1440" y="136" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_21" >
+        <dc:Bounds x="1543" y="263" width="185" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_22" >
+        <dc:Bounds x="1760" y="263" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_31" >
+        <dc:Bounds x="1268" y="215" width="140" height="46" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32" >
+        <dc:Bounds x="1440" y="263" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_33" >
+        <dc:Bounds x="932" y="263" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_9-_2" >
+        <di:waypoint x="547" y="41" />
+        <di:waypoint x="709" y="41" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_34" >
+        <di:waypoint x="384" y="245" />
+        <di:waypoint x="546" y="218" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_33-_3" >
+        <di:waypoint x="956" y="287" />
+        <di:waypoint x="1084" y="237" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_35" >
+        <di:waypoint x="549" y="346" />
+        <di:waypoint x="723" y="283" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_34-_35" >
+        <di:waypoint x="546" y="218" />
+        <di:waypoint x="723" y="283" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_5" >
+        <di:waypoint x="40" y="245" />
+        <di:waypoint x="146" y="245" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_6" >
+        <di:waypoint x="146" y="245" />
+        <di:waypoint x="278" y="245" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_7" >
+        <di:waypoint x="278" y="245" />
+        <di:waypoint x="384" y="245" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_9" >
+        <di:waypoint x="384" y="245" />
+        <di:waypoint x="547" y="41" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_10" >
+        <di:waypoint x="384" y="245" />
+        <di:waypoint x="549" y="346" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_35-_15" >
+        <di:waypoint x="723" y="283" />
+        <di:waypoint x="833" y="287" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_17" >
+        <di:waypoint x="1084" y="237" />
+        <di:waypoint x="1211" y="236" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17-_18" >
+        <di:waypoint x="1211" y="236" />
+        <di:waypoint x="1338" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_18-_19" >
+        <di:waypoint x="1338" y="160" />
+        <di:waypoint x="1464" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-_21" >
+        <di:waypoint x="1464" y="287" />
+        <di:waypoint x="1635" y="287" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_21-_22" >
+        <di:waypoint x="1635" y="287" />
+        <di:waypoint x="1784" y="287" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17-_31" >
+        <di:waypoint x="1211" y="236" />
+        <di:waypoint x="1338" y="238" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_31-_32" >
+        <di:waypoint x="1338" y="238" />
+        <di:waypoint x="1464" y="287" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15-_33" >
+        <di:waypoint x="833" y="287" />
+        <di:waypoint x="956" y="287" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-_33" >
+        <di:waypoint x="1464" y="287" />
+        <di:waypoint x="956" y="287" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

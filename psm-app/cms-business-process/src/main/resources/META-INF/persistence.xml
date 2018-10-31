@@ -62,8 +62,8 @@
     <class>gov.medicaid.entities.DmfAutomaticScreening</class>
     <class>gov.medicaid.entities.DmfAutomaticScreeningMatch</class>
     <class>gov.medicaid.entities.Document</class>
-    <class>gov.medicaid.entities.Enrollment</class>
-    <class>gov.medicaid.entities.EnrollmentStatus</class>
+    <class>gov.medicaid.entities.Application</class>
+    <class>gov.medicaid.entities.ApplicationStatus</class>
     <class>gov.medicaid.entities.Entity</class>
     <class>gov.medicaid.entities.EntityStructureType</class>
     <class>gov.medicaid.entities.Event</class>

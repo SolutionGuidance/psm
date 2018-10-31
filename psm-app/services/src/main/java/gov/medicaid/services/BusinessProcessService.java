@@ -17,8 +17,8 @@
 
 package gov.medicaid.services;
 
-import gov.medicaid.domain.model.EnrollmentProcess;
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationProcess;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.entities.CMSUser;
 
@@ -27,18 +27,18 @@ import org.jbpm.task.query.TaskSummary;
 import java.util.List;
 
 /**
- * Defines the interface for enrollment.
+ * Defines the interface for application.
  */
 public interface BusinessProcessService {
 
     /**
-     * Submits the given ticket.
+     * Submits the given application.
      *
      * @param user     the user performing the action
-     * @param ticketId the ticket id to be submitted
+     * @param applicationId the application id to be submitted
      * @throws PortalServiceException for any errors encountered
      */
-    void submitTicket(CMSUser user, long ticketId) throws PortalServiceException;
+    void submitApplication(CMSUser user, long applicationId) throws PortalServiceException;
 
     /**
      * Retrieves the available tasks for the given user and roles.
@@ -60,7 +60,7 @@ public interface BusinessProcessService {
      * @return all tasks that the user can claim or already owns
      * @throws Exception for any errors encountered
      */
-    EnrollmentProcess getTaskModel(long taskId) throws Exception;
+    ApplicationProcess getTaskModel(long taskId) throws Exception;
 
     /**
      * Completes the given task.
@@ -85,13 +85,13 @@ public interface BusinessProcessService {
     /**
      * Updates a pending process.
      *
-     * @param ticket   the update request
+     * @param application   the update request
      * @param user     the user performing the update
      * @param userRole the role of the user
      * @throws Exception for any errors encountered
      */
     void updateRequest(
-            EnrollmentType ticket,
+            ApplicationType applicationType,
             CMSUser user
     ) throws Exception;
 }

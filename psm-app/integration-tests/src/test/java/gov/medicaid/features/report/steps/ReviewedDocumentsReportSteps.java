@@ -29,7 +29,7 @@ public class ReviewedDocumentsReportSteps {
     }
 
     @Step
-    public void checkReviewedDocumentsPageHasRowWithEnrollments(String month, String numDocuments) {
+    public void checkReviewedDocumentsPageHasRowWithApplications(String month, String numDocuments) {
         reviewedDocumentsPage.checkHasRowFor(month);
         reviewedDocumentsPage.checkRowHasNumber(month, numDocuments);
     }

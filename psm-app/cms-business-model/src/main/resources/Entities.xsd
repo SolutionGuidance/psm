@@ -6,7 +6,7 @@
         elementFormDefault="qualified">
   <annotation>
     <documentation xml:lang="en">
-      This defines the common entities used by the enrollment business process.
+      This defines the common entities used by the application business process.
     </documentation>
   </annotation>
   <complexType name="ProviderInformationType">
@@ -169,7 +169,7 @@
       <element name="ReimbursementCheck" type="int" maxOccurs="1" minOccurs="0"/>
       <element name="ProviderCorrespondence" type="int" maxOccurs="1" minOccurs="0"/>
       <element name="AuthorizationRequestAndServiceAgreements" type="int" maxOccurs="1" minOccurs="0"/>
-      <element name="CredentialsEnrollmentStatus" type="int" maxOccurs="1" minOccurs="0"/>
+      <element name="CredentialsApplicationStatus" type="int" maxOccurs="1" minOccurs="0"/>
     </sequence>
   </complexType>
   <complexType name="PracticeInformationType">
@@ -210,9 +210,9 @@
       <element name="CategoryName" type="string" maxOccurs="unbounded" minOccurs="0"/>
     </sequence>
   </complexType>
-  <complexType name="EnrollmentStatusType">
+  <complexType name="ApplicationStatusType">
     <annotation>
-      <documentation xml:lang="en">Represents the status of the enrollment.</documentation>
+      <documentation xml:lang="en">Represents the status of the application.</documentation>
     </annotation>
     <sequence>
       <element name="Status" type="string"/>
@@ -220,17 +220,17 @@
       <element name="StatusDate" type="dateTime"/>
     </sequence>
   </complexType>
-  <complexType name="EnrollmentStatusHistoryType">
+  <complexType name="ApplicationStatusHistoryType">
     <annotation>
-      <documentation xml:lang="en">Collection wrapper for the historical status changes for an enrollment.</documentation>
+      <documentation xml:lang="en">Collection wrapper for the historical status changes for an application.</documentation>
     </annotation>
     <sequence>
-      <element name="EnrollmentStatusChange" type="tns:EnrollmentStatusChangeType" maxOccurs="unbounded" minOccurs="0"/>
+      <element name="ApplicationStatusChange" type="tns:ApplicationStatusChangeType" maxOccurs="unbounded" minOccurs="0"/>
     </sequence>
   </complexType>
-  <complexType name="EnrollmentStatusChangeType">
+  <complexType name="ApplicationStatusChangeType">
     <annotation>
-      <documentation xml:lang="en">Represents a change in the status of an enrollment.</documentation>
+      <documentation xml:lang="en">Represents a change in the status of an application.</documentation>
     </annotation>
     <sequence>
       <element name="FromStatus" type="string"/>
@@ -254,9 +254,9 @@
       <element name="Verified" type="string"/>
     </sequence>
   </complexType>
-  <complexType name="EnrollmentInformationType">
+  <complexType name="ApplicationInformationType">
     <annotation>
-      <documentation xml:lang="en">Represents the enrollment details.</documentation>
+      <documentation xml:lang="en">Represents the application details.</documentation>
     </annotation>
     <sequence>
       <element name="ObjectId" type="string" maxOccurs="1" minOccurs="0"/>
@@ -278,7 +278,7 @@
   </complexType>
   <simpleType name="RequestType">
     <restriction base="string">
-      <enumeration value="Enrollment"/>
+      <enumeration value="Application"/>
       <enumeration value="Renewal"/>
       <enumeration value="Update"/>
       <enumeration value="Import Profile"/>
@@ -575,7 +575,7 @@
   </simpleType>
   <complexType name="AttachedDocumentsType">
     <annotation>
-      <documentation xml:lang="en">All documents attached to the enrollment.</documentation>
+      <documentation xml:lang="en">All documents attached to the application.</documentation>
     </annotation>
     <sequence>
       <element name="Attachment" type="tns:DocumentType" maxOccurs="unbounded" minOccurs="0"/>

@@ -58,10 +58,10 @@ public class ApplicationsByReviewerPage extends PsmPage {
         assertThat($("#wrapper .noResults").getText()).contains("No results found");
     }
 
-    public void clickOnEnrollment(int enrollmentId) {
+    public void clickOnApplication(int applicationId) {
         Optional<WebElement> link =
             getDriver().findElements(By.cssSelector("#wrapper .tableData .generalTable tr td a")).stream()
-                .filter(a -> a.getText().equals("" + enrollmentId))
+                .filter(a -> a.getText().equals("" + applicationId))
             .findFirst();
 
         assertThat(link.isPresent()).isTrue();

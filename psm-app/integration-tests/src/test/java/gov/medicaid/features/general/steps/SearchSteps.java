@@ -17,25 +17,25 @@
 package gov.medicaid.features.general.steps;
 
 import gov.medicaid.features.PsmPage;
-import gov.medicaid.features.enrollment.ui.EnrollmentListPage;
+import gov.medicaid.features.application.ui.ApplicationListPage;
 import gov.medicaid.features.general.ui.AdvancedSearchPage;
-import gov.medicaid.features.general.ui.AllEnrollmentsPage;
+import gov.medicaid.features.general.ui.AllApplicationsPage;
 import net.thucydides.core.annotations.Step;
 
 public class SearchSteps {
     PsmPage psmPage;
-    AllEnrollmentsPage allEnrollmentsPage;
+    AllApplicationsPage allApplicationsPage;
     AdvancedSearchPage advancedSearchPage;
-    EnrollmentListPage enrollmentListPage;
+    ApplicationListPage applicationListPage;
 
     @Step
     public void filterByNpi(String npi) {
-        enrollmentListPage.filterByNpi(npi);
+        applicationListPage.filterByNpi(npi);
     }
 
     @Step
     public void quickSearchByNpi(String npi) {
-        allEnrollmentsPage.quickSearch(npi);
+        allApplicationsPage.quickSearch(npi);
     }
 
     @Step
@@ -45,6 +45,6 @@ public class SearchSteps {
 
     @Step
     public void verifySearchResults() {
-        enrollmentListPage.checkEnrollmentsInTable();
+        applicationListPage.checkApplicationsInTable();
     }
 }

@@ -16,7 +16,7 @@
 
 package gov.medicaid.services.impl;
 
-import gov.medicaid.domain.model.EnrollmentType;
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.entities.EmailTemplate;
 import gov.medicaid.entities.SentNotification;
 import gov.medicaid.services.CMSConfigurator;
@@ -154,14 +154,14 @@ public class NotificationServiceBean extends BaseService implements Notification
     }
 
     @Override
-    public void sendEnrollmentNotification(
-        EnrollmentType enrollment,
+    public void sendApplicationNotification(
+        ApplicationType applicationType,
         EmailTemplate emailType
     ) throws PortalServiceException {
         Map<String, Object> vars = new HashMap<>();
-        String contact_name = enrollment.getContactInformation().getName();
+        String contact_name = applicationType.getContactInformation().getName();
         vars.put("submitter", contact_name);
-        String emailAddress = enrollment.getContactInformation().getEmailAddress();
+        String emailAddress = applicationType.getContactInformation().getEmailAddress();
         if (emailAddress != null && emailAddress.trim().length() > 0) {
             sendNotification(emailAddress, emailType, vars);
         } else {

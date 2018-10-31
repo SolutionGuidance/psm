@@ -35,8 +35,8 @@ public class AcceptedAgreements implements Serializable {
     @Column(name = "accepted_agreement_id")
     private long id;
 
-    @Column(name = "ticket_id")
-    private long ticketId;
+    @Column(name = "application_id")
+    private long applicationId;
 
     @Column(name = "accepted_date")
     private Date acceptedDate;
@@ -60,12 +60,12 @@ public class AcceptedAgreements implements Serializable {
         this.id = id;
     }
 
-    public long getTicketId() {
-        return ticketId;
+    public long getApplicationId() {
+        return applicationId;
     }
 
-    public void setTicketId(long ticketId) {
-        this.ticketId = ticketId;
+    public void setApplicationId(long applicationId) {
+        this.applicationId = applicationId;
     }
 
     public Date getAcceptedDate() {

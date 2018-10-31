@@ -21,7 +21,7 @@ import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.PartnerSystemService;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -39,7 +39,7 @@ public class MockMNITSPartnerServiceBean extends BaseService implements
         PartnerSystemService {
 
     @EJB
-    private ProviderEnrollmentService enrollmentService;
+    private ProviderApplicationService applicationService;
 
     /**
      * The domain that is acceptable.
@@ -97,13 +97,13 @@ public class MockMNITSPartnerServiceBean extends BaseService implements
             return false;
         }
 
-        if (!enrollmentService.existsProfile(profileNPI)) {
+        if (!applicationService.existsProfile(profileNPI)) {
             getLogger().warning("Rejecting external login because provider NPI is not found.");
             return false;
         }
 
         if (!externalUserId.equals(profileNPI)) {
-            if (!enrollmentService.hasGroupAffiliation(externalUserId, profileNPI)) {
+            if (!applicationService.hasGroupAffiliation(externalUserId, profileNPI)) {
                 getLogger().warning("Rejecting external login because affiliation is not found.");
                 return false;
             }

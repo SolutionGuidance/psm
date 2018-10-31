@@ -17,12 +17,12 @@
 package gov.medicaid.controllers.admin
 
 import gov.medicaid.entities.AutomaticScreening
-import gov.medicaid.entities.Enrollment
-import gov.medicaid.entities.EnrollmentStatus
+import gov.medicaid.entities.Application
+import gov.medicaid.entities.ApplicationStatus
 import gov.medicaid.entities.LeieAutomaticScreening
 import gov.medicaid.entities.dto.ViewStatics
 import gov.medicaid.services.PortalServiceRuntimeException
-import gov.medicaid.services.ProviderEnrollmentService
+import gov.medicaid.services.ProviderApplicationService
 import gov.medicaid.services.ScreeningService
 import spock.lang.Specification
 
@@ -31,18 +31,18 @@ import java.time.LocalDateTime
 class AutomaticScreeningControllerTest extends Specification {
     private static final String NPI = "1234567893"
     private static final LocalDateTime TIMESTAMP = LocalDateTime.now()
-    private static final long ENROLLMENT_ID = 1
+    private static final long APPLICATION_ID = 1
 
     AutomaticScreeningController controller
     ScreeningService screeningService
-    ProviderEnrollmentService providerEnrollmentService
+    ProviderApplicationService providerApplicationService
 
     def setup() {
         screeningService = Mock(ScreeningService)
-        providerEnrollmentService = Mock(ProviderEnrollmentService)
+        providerApplicationService = Mock(ProviderApplicationService)
         controller = new AutomaticScreeningController(
                 screeningService,
-                providerEnrollmentService
+                providerApplicationService
         )
     }
 
@@ -72,7 +72,7 @@ class AutomaticScreeningControllerTest extends Specification {
 
     def 'An LEIE screening uses the LEIE view'() {
         given:
-        'a screening with a pending enrollment'()
+        'a screening with a pending application'()
 
         when:
         def modelView = controller.viewScreening(1)
@@ -83,7 +83,7 @@ class AutomaticScreeningControllerTest extends Specification {
 
     def 'The model includes the expected attributes'() {
         given:
-        'a screening with a pending enrollment'()
+        'a screening with a pending application'()
 
         when:
         def modelView = controller.viewScreening(1)
@@ -95,9 +95,9 @@ class AutomaticScreeningControllerTest extends Specification {
         modelView.model["exclusions"].size() == 0
     }
 
-    def 'A pending enrollment is marked as in review'() {
+    def 'A pending application is marked as in review'() {
         given:
-        'a screening with a pending enrollment'()
+        'a screening with a pending application'()
 
         when:
         def modelView = controller.viewScreening(1)
@@ -106,9 +106,9 @@ class AutomaticScreeningControllerTest extends Specification {
         modelView.model["in_review"] == true
     }
 
-    def 'An approved enrollment is marked as not in review'() {
+    def 'An approved application is marked as not in review'() {
         given:
-        'a screening with an approved enrollment'()
+        'a screening with an approved application'()
 
         when:
         def modelView = controller.viewScreening(1)
@@ -117,21 +117,21 @@ class AutomaticScreeningControllerTest extends Specification {
         modelView.model["in_review"] == false
     }
 
-    void 'a screening with a pending enrollment'() {
+    void 'a screening with a pending application'() {
         createScreening(ViewStatics.PENDING_STATUS)
     }
 
-    void 'a screening with an approved enrollment'() {
+    void 'a screening with an approved application'() {
         createScreening(ViewStatics.APPROVED_STATUS)
     }
 
     void createScreening(String status) {
         def screening = new LeieAutomaticScreening()
         screening.createdAt = TIMESTAMP
-        screening.enrollment = new Enrollment()
-        screening.enrollment.status = new EnrollmentStatus()
-        screening.enrollment.status.description = status
-        screening.enrollment.enrollmentId = ENROLLMENT_ID
+        screening.application = new Application()
+        screening.application.status = new ApplicationStatus()
+        screening.application.status.description = status
+        screening.application.applicationId = APPLICATION_ID
         screening.npiSearchTerm = NPI
         screening.result = AutomaticScreening.Result.PASS
 

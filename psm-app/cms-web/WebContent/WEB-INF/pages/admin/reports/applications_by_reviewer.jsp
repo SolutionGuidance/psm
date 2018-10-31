@@ -88,7 +88,7 @@
             </div>
           </div>
           <c:choose>
-            <c:when test="${fn:length(enrollments) gt 0}">
+            <c:when test="${fn:length(applications) gt 0}">
               <div class="reportTable tableData">
                 <div class="tableData">
                   <table class="generalTable linedTable">
@@ -104,22 +104,22 @@
                       </tr>
                     </thead>
                     <c:forEach
-                      var="enrollment"
-                      items="${enrollments}"
+                      var="application"
+                      items="${applications}"
                       varStatus="status"
                     >
                       <tr class="reportRow ${status.index % 2 == 0 ? 'odd' : 'even'}">
                         <td>
-                          <a href="${ctx}/provider/enrollment/view?id=${enrollment.enrollmentId}">
-                            ${enrollment.enrollmentId}
+                          <a href="${ctx}/provider/application/view?id=${application.applicationId}">
+                            ${application.applicationId}
                           </a>
                         </td>
-                        <td>${enrollment.details.entity.name}</td>
-                        <td>${enrollment.details.entity.providerType.description}</td>
-                        <td><fmt:formatDate value="${enrollment.createdOn}" pattern="dd MMMM yyyy" /></td>
-                        <td>${enrollment.lastUpdatedBy.username}</td>
-                        <td><fmt:formatDate value="${enrollment.statusDate}" pattern="dd MMMM yyyy" /></td>
-                        <td>${enrollment.status.description}</td>
+                        <td>${application.details.entity.name}</td>
+                        <td>${application.details.entity.providerType.description}</td>
+                        <td><fmt:formatDate value="${application.createdOn}" pattern="dd MMMM yyyy" /></td>
+                        <td>${application.lastUpdatedBy.username}</td>
+                        <td><fmt:formatDate value="${application.statusDate}" pattern="dd MMMM yyyy" /></td>
+                        <td>${application.status.description}</td>
                       </tr>
                     </c:forEach>
                   </table>

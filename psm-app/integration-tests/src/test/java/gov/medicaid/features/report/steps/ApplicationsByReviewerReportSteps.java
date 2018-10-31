@@ -50,7 +50,7 @@ public class ApplicationsByReviewerReportSteps {
     }
 
     @Step
-    public void clickOnEnrollment(int enrollmentId) {
-        applicationsByReviewerPage.clickOnEnrollment(enrollmentId);
+    public void clickOnApplication(int applicationId) {
+        applicationsByReviewerPage.clickOnApplication(applicationId);
     }
 }

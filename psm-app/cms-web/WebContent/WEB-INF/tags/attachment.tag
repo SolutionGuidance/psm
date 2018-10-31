@@ -25,7 +25,7 @@
             </label>
         </c:when>
         <c:otherwise>
-            <c:url var="downloadLink" value="/provider/enrollment/attachment">
+            <c:url var="downloadLink" value="/provider/application/attachment">
                  <c:param name="id" value="${attachmentId}"></c:param>
             </c:url>
             <div class="previousFile"><a href="${downloadLink}"><cms:truncate text="${filename}" /></a></div>

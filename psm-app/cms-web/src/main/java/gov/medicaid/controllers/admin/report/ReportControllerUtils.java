@@ -16,7 +16,7 @@
 
 package gov.medicaid.controllers.admin.report;
 
-import gov.medicaid.entities.Enrollment;
+import gov.medicaid.entities.Application;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -43,20 +43,20 @@ public class ReportControllerUtils {
         return LocalDateTime.ofInstant(d.toInstant(), ZoneId.systemDefault());
     }
 
-    public interface EnrollmentInMonthPredicate {
-        boolean test(Enrollment e, LocalDate monthStart, LocalDate monthEnd);
+    public interface ApplicationInMonthPredicate {
+        boolean test(Application e, LocalDate monthStart, LocalDate monthEnd);
     }
 
-    public static List<EnrollmentMonth> groupEnrollments(
-        List<Enrollment> enrollments,
-        Function<Enrollment, Date> dateFunc,
-        EnrollmentInMonthPredicate eimPred
+    public static List<ApplicationMonth> groupApplications(
+        List<Application> applications,
+        Function<Application, Date> dateFunc,
+        ApplicationInMonthPredicate eimPred
     ) {
-        List<EnrollmentMonth> enrollmentMonths = new ArrayList<>();
+        List<ApplicationMonth> applicationMonths = new ArrayList<>();
 
-        if (enrollments.size() > 0) {
+        if (applications.size() > 0) {
             LocalDate earliestDate =
-                enrollments.stream()
+                applications.stream()
                     .map(e -> toLocalDate(dateFunc.apply(e)))
                     .min(Comparator.comparing(LocalDate::toEpochDay)).get();
 
@@ -65,36 +65,36 @@ public class ReportControllerUtils {
 
             LocalDate workingMonth = thisMonth;
             while (workingMonth.isAfter(firstMonth.minusDays(1))) {
-                EnrollmentMonth em = new EnrollmentMonth(workingMonth);
-                enrollmentMonths.add(em);
+                ApplicationMonth em = new ApplicationMonth(workingMonth);
+                applicationMonths.add(em);
 
-                for (Enrollment enrollment : enrollments) {
-                    em.addEnrollment(enrollment, eimPred);
+                for (Application application : applications) {
+                    em.addApplication(application, eimPred);
                 }
 
                 workingMonth = workingMonth.minusMonths(1);
             }
         }
-        return enrollmentMonths;
+        return applicationMonths;
     }
 
     /**
-     * Helper class for arranging the Enrollments into months.
+     * Helper class for arranging the Applications into months.
      */
-    public static class EnrollmentMonth {
+    public static class ApplicationMonth {
         private LocalDate month;
-        List<Enrollment> enrollments;
+        List<Application> applications;
 
-        public EnrollmentMonth(LocalDate month) {
+        public ApplicationMonth(LocalDate month) {
             this.month = month;
-            enrollments = new ArrayList<>();
+            applications = new ArrayList<>();
         }
 
-        public void addEnrollment(Enrollment enrollment, EnrollmentInMonthPredicate pred) {
+        public void addApplication(Application application, ApplicationInMonthPredicate pred) {
             LocalDate nextMonth = month.plusMonths(1);
 
-            if (pred.test(enrollment, month, nextMonth.minusDays(1))) {
-                enrollments.add(enrollment);
+            if (pred.test(application, month, nextMonth.minusDays(1))) {
+                applications.add(application);
             }
         }
 
@@ -102,8 +102,8 @@ public class ReportControllerUtils {
             return month;
         }
 
-        public List<Enrollment> getEnrollments() {
-            return enrollments;
+        public List<Application> getApplications() {
+            return applications;
         }
     }
 }

@@ -32,12 +32,12 @@
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
             <h:handlebars template="includes/banner" context="${pageContext}"/>
-            <c:set var="activeTabEnrollments" value="true"/>
+            <c:set var="activeTabApplications" value="true"/>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <%@ include file="/WEB-INF/pages/admin/includes/enrollments_link.jsp" %>
+            <%@ include file="/WEB-INF/pages/admin/includes/applications_link.jsp" %>
             <span>${listType}</span>
           </div>
           <h1>${listType}</h1>
@@ -77,7 +77,7 @@
                       <span class="aM">Denied</span>
                     </span>
                   </a>
-                  <h:create-enrollment-button cssClass="purpleBtn"/>
+                  <h:create-application-button cssClass="purpleBtn"/>
                 </div>
               </div>
             </div>

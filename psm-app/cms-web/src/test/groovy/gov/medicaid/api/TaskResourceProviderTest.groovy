@@ -20,14 +20,14 @@ import ca.uhn.fhir.rest.param.StringOrListParam
 import ca.uhn.fhir.rest.param.StringParam
 import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException
 import gov.medicaid.entities.CMSUser
-import gov.medicaid.entities.Enrollment
+import gov.medicaid.entities.Application
 import gov.medicaid.entities.Organization
 import gov.medicaid.entities.ProviderProfile
 import gov.medicaid.entities.ProviderSearchCriteria
 import gov.medicaid.entities.ProviderType
 import gov.medicaid.entities.SearchResult
 import gov.medicaid.entities.UserRequest
-import gov.medicaid.services.ProviderEnrollmentService
+import gov.medicaid.services.ProviderApplicationService
 import org.hl7.fhir.dstu3.model.IdType
 import org.hl7.fhir.dstu3.model.Task
 import spock.lang.Specification
@@ -35,14 +35,14 @@ import spock.lang.Unroll
 
 class TaskResourceProviderTest extends Specification {
     TaskResourceProvider provider
-    ProviderEnrollmentService mockEnrollmentService
-    long enrollmentId = 123
+    ProviderApplicationService mockApplicationService
+    long applicationId = 123
     IdType id
 
     def setup() {
-        mockEnrollmentService = Mock(ProviderEnrollmentService)
-        provider = new TaskResourceProvider(mockEnrollmentService)
-        id = new IdType(enrollmentId)
+        mockApplicationService = Mock(ProviderApplicationService)
+        provider = new TaskResourceProvider(mockApplicationService)
+        id = new IdType(applicationId)
     }
 
     def "GetResourceById queries with system user"() {
@@ -50,7 +50,7 @@ class TaskResourceProviderTest extends Specification {
         provider.getResourceById(id)
 
         then:
-        1 * mockEnrollmentService.getTicketDetails(
+        1 * mockApplicationService.getApplicationDetails(
                 { it.role.description == "System Administrator" } as CMSUser,
                 _ as Long
         )
@@ -61,10 +61,10 @@ class TaskResourceProviderTest extends Specification {
         provider.getResourceById(id)
 
         then:
-        1 * mockEnrollmentService.getTicketDetails(_, enrollmentId)
+        1 * mockApplicationService.getApplicationDetails(_, applicationId)
     }
 
-    def "GetResourceById returns null for unknown enrollment ID"() {
+    def "GetResourceById returns null for unknown application ID"() {
         when:
         def result = provider.getResourceById(id)
 
@@ -72,9 +72,9 @@ class TaskResourceProviderTest extends Specification {
         result == null
     }
 
-    def "GetResourceById returns Task for valid enrollment ID"() {
+    def "GetResourceById returns Task for valid application ID"() {
         given:
-        mockEnrollmentService.getTicketDetails(_, enrollmentId) >> createEnrollment()
+        mockApplicationService.getApplicationDetails(_, applicationId) >> createApplication()
 
         when:
         def result = provider.getResourceById(id)
@@ -82,14 +82,14 @@ class TaskResourceProviderTest extends Specification {
         then:
         result instanceof Task
         result.hasId()
-        result.getId() == Long.toString(enrollmentId)
+        result.getId() == Long.toString(applicationId)
     }
 
     def "Search all with no applications returns empty list"() {
         given:
         def searchResults = new SearchResult<UserRequest>()
         searchResults.items = []
-        mockEnrollmentService.searchTickets(_, _) >> searchResults
+        mockApplicationService.searchApplications(_, _) >> searchResults
 
         when:
         def result = provider.search(null, null, null, null)
@@ -118,15 +118,15 @@ class TaskResourceProviderTest extends Specification {
                 true
         )
         searchResults.items = [userRequest]
-        mockEnrollmentService.searchTickets(_, _) >> searchResults
-        mockEnrollmentService.getTicketDetails(_, enrollmentId) >> createEnrollment()
+        mockApplicationService.searchApplications(_, _) >> searchResults
+        mockApplicationService.getApplicationDetails(_, applicationId) >> createApplication()
 
         when:
         def result = provider.search(null, null, null, null)
 
         then:
         result.size() == 1
-        result.first().getId() == Long.toString(enrollmentId)
+        result.first().getId() == Long.toString(applicationId)
     }
 
     def "Search by NPI includes NPI in query"() {
@@ -138,7 +138,7 @@ class TaskResourceProviderTest extends Specification {
         provider.search("1234567893", null, null, null)
 
         then:
-        1 * mockEnrollmentService.searchTickets(
+        1 * mockApplicationService.searchApplications(
                 _ as CMSUser,
                 { it.npi == "1234567893" } as ProviderSearchCriteria
         ) >> searchResults
@@ -153,7 +153,7 @@ class TaskResourceProviderTest extends Specification {
         provider.search(null, null, "Acupuncturist", null)
 
         then:
-        1 * mockEnrollmentService.searchTickets(
+        1 * mockApplicationService.searchApplications(
                 _ as CMSUser,
                 { it.providerType == "Acupuncturist" } as ProviderSearchCriteria
         ) >> searchResults
@@ -168,7 +168,7 @@ class TaskResourceProviderTest extends Specification {
         provider.search(null, null, null, "name")
 
         then:
-        1 * mockEnrollmentService.searchTickets(
+        1 * mockApplicationService.searchApplications(
                 _ as CMSUser,
                 { it.providerName == "name" } as ProviderSearchCriteria
         ) >> searchResults
@@ -185,7 +185,7 @@ class TaskResourceProviderTest extends Specification {
         provider.search(null, statuses, null, null)
 
         then:
-        1 * mockEnrollmentService.searchTickets(
+        1 * mockApplicationService.searchApplications(
                 _ as CMSUser,
                 { it.statuses == ["Approved"] } as ProviderSearchCriteria
         ) >> searchResults
@@ -204,7 +204,7 @@ class TaskResourceProviderTest extends Specification {
         provider.search(null, statuses, null, null)
 
         then:
-        1 * mockEnrollmentService.searchTickets(
+        1 * mockApplicationService.searchApplications(
                 _ as CMSUser,
                 {
                     it.statuses == ["Rejected", "Approved"]
@@ -230,12 +230,12 @@ class TaskResourceProviderTest extends Specification {
         "non-numeric" | "12345abcde"
     }
 
-    private static Enrollment createEnrollment() {
-        Enrollment enrollment = new Enrollment()
-        enrollment.enrollmentId = 123
-        enrollment.details = new ProviderProfile()
-        enrollment.details.entity = new Organization()
-        enrollment.details.entity.providerType = new ProviderType()
-        return enrollment
+    private static Application createApplication() {
+        Application application = new Application()
+        application.applicationId = 123
+        application.details = new ProviderProfile()
+        application.details.entity = new Organization()
+        application.details.entity.providerType = new ProviderType()
+        return application
     }
 }

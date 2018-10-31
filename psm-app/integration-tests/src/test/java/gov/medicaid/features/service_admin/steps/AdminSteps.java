@@ -17,8 +17,8 @@
 package gov.medicaid.features.service_admin.steps;
 
 import gov.medicaid.features.PsmPage;
-import gov.medicaid.features.enrollment.ui.EnrollmentListPage;
-import gov.medicaid.features.enrollment.ui.OrganizationInfoPage;
+import gov.medicaid.features.application.ui.ApplicationListPage;
+import gov.medicaid.features.application.ui.OrganizationInfoPage;
 import gov.medicaid.features.general.steps.GeneralSteps;
 import gov.medicaid.features.service_admin.ui.ServiceAgentReviewScreeningPage;
 
@@ -38,36 +38,36 @@ public class AdminSteps {
 
     private PsmPage psmPage;
     private OrganizationInfoPage organizationInfoPage;
-    private EnrollmentListPage enrollmentListPage;
+    private ApplicationListPage applicationListPage;
     private ServiceAgentReviewScreeningPage reviewScreeningPage;
 
     @Step
-    public void goToAdminAllEnrollmentsPage() {
-        generalSteps.clickLinkAssertTitle(".enrollmentsLink", "All Enrollments");
+    public void goToAdminAllApplicationsPage() {
+        generalSteps.clickLinkAssertTitle(".applicationsLink", "All Applications");
     }
 
     @Step
     public void goToAdminDraftPage() {
-        goToAdminAllEnrollmentsPage();
-        generalSteps.clickLinkAssertTitle(".draftTab", "Draft Enrollments");
+        goToAdminAllApplicationsPage();
+        generalSteps.clickLinkAssertTitle(".draftTab", "Draft Applications");
     }
 
     @Step
     public void goToAdminPendingPage() {
-        goToAdminAllEnrollmentsPage();
-        generalSteps.clickLinkAssertTitle(".pendingTab", "Pending Enrollments");
+        goToAdminAllApplicationsPage();
+        generalSteps.clickLinkAssertTitle(".pendingTab", "Pending Applications");
     }
 
     @Step
     public void goToAdminApprovedPage() {
-        goToAdminAllEnrollmentsPage();
-        generalSteps.clickLinkAssertTitle(".approvedTab", "Approved Enrollments");
+        goToAdminAllApplicationsPage();
+        generalSteps.clickLinkAssertTitle(".approvedTab", "Approved Applications");
     }
 
     @Step
     public void goToAdminDeniedPage() {
-        goToAdminAllEnrollmentsPage();
-        generalSteps.clickLinkAssertTitle(".deniedTab", "Denied Enrollments");
+        goToAdminAllApplicationsPage();
+        generalSteps.clickLinkAssertTitle(".deniedTab", "Denied Applications");
     }
 
     @Step
@@ -78,7 +78,7 @@ public class AdminSteps {
 
     @Step
     public void advanceFromPendingPageToViewOrganizationInfoPage() {
-        WebElement row = enrollmentListPage.getTableRowForProviderType("Head Start");
+        WebElement row = applicationListPage.getTableRowForProviderType("Head Start");
         WebElement viewLink = row.findElement(By.className("viewLink"));
         psmPage.click(viewLink);
         assertThat(psmPage.getTitle().contains("Organization Information"));
@@ -86,12 +86,12 @@ public class AdminSteps {
 
     @Step
     public void checkOnPersonalInformationPage() {
-        assertThat(organizationInfoPage.isPersonalEnrollment());
+        assertThat(organizationInfoPage.isPersonalApplication());
     }
 
     @Step
     public void advanceFromPendingPageToReview(String npi) {
-        enrollmentListPage.advanceToReview(npi);
+        applicationListPage.advanceToReview(npi);
     }
 
     @Step
@@ -101,6 +101,6 @@ public class AdminSteps {
 
     @Step
     public boolean npiRowExists(String npi) {
-        return enrollmentListPage.getTableRowForNpi(npi) != null;
+        return applicationListPage.getTableRowForNpi(npi) != null;
     }
 }

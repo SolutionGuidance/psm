@@ -16,13 +16,13 @@
 
 package gov.medicaid.controllers.admin.report;
 
-import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
-import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.EnrollmentSearchCriteria;
+import gov.medicaid.controllers.admin.report.ReportControllerUtils.ApplicationMonth;
+import gov.medicaid.entities.Application;
+import gov.medicaid.entities.ApplicationSearchCriteria;
 import gov.medicaid.entities.ProviderType;
 import gov.medicaid.entities.ProviderTypeSearchCriteria;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 import gov.medicaid.services.ProviderTypeService;
 
 import org.apache.commons.csv.CSVFormat;
@@ -45,14 +45,14 @@ import java.util.stream.Collectors;
 
 @Controller
 public class ProviderTypesReportController extends gov.medicaid.controllers.BaseController {
-    private final ProviderEnrollmentService enrollmentService;
+    private final ProviderApplicationService applicationService;
     private final ProviderTypeService providerTypeService;
 
     public ProviderTypesReportController(
-        ProviderEnrollmentService enrollmentService,
+        ProviderApplicationService applicationService,
         ProviderTypeService providerTypeService
     ) {
-        this.enrollmentService = enrollmentService;
+        this.applicationService = applicationService;
         this.providerTypeService = providerTypeService;
     }
 
@@ -69,8 +69,8 @@ public class ProviderTypesReportController extends gov.medicaid.controllers.Base
         criteria.setAscending(true);
         List<ProviderType> providerTypes = providerTypeService.search(criteria).getItems();
 
-        List<Enrollment> enrollments = getEnrollmentsFromDB(providerTypeCodes);
-        List<EnrollmentMonth> ems = groupEnrollments(enrollments);
+        List<Application> applications = getApplicationsFromDB(providerTypeCodes);
+        List<ApplicationMonth> ems = groupApplications(applications);
         List<Month> months = buildMonths(ems);
 
         mv.addObject("providerTypes", providerTypes);
@@ -94,8 +94,8 @@ public class ProviderTypesReportController extends gov.medicaid.controllers.Base
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", csvFileName));
 
-        List<Enrollment> enrollments = getEnrollmentsFromDB(providerTypeCodes);
-        List<EnrollmentMonth> ems = groupEnrollments(enrollments);
+        List<Application> applications = getApplicationsFromDB(providerTypeCodes);
+        List<ApplicationMonth> ems = groupApplications(applications);
         List<Month> months = buildMonths(ems);
 
         try {
@@ -108,7 +108,7 @@ public class ProviderTypesReportController extends gov.medicaid.controllers.Base
                     csvPrinter.printRecord(
                         month.getMonth(),
                         providerType.getDescription(),
-                        month.getEnrollments(providerType).size()
+                        month.getApplications(providerType).size()
                     );
                 }
             }
@@ -119,67 +119,67 @@ public class ProviderTypesReportController extends gov.medicaid.controllers.Base
         }
     }
 
-    private List<Enrollment> getEnrollmentsFromDB(
+    private List<Application> getApplicationsFromDB(
         List<String> providerTypeCodes
     ) {
-        EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
+        ApplicationSearchCriteria criteria = new ApplicationSearchCriteria();
         criteria.setProviderTypes(providerTypeCodes);
-        return enrollmentService.searchEnrollments(criteria).getItems();
+        return applicationService.searchApplications(criteria).getItems();
     }
 
-    private List<EnrollmentMonth> groupEnrollments(List<Enrollment> enrollments) {
-        return ReportControllerUtils.groupEnrollments(
-            enrollments,
-            Enrollment::getStatusDate,
+    private List<ApplicationMonth> groupApplications(List<Application> applications) {
+        return ReportControllerUtils.groupApplications(
+            applications,
+            Application::getStatusDate,
             (e, monthStart, monthEnd) -> {
                 LocalDate statusDate = ReportControllerUtils.toLocalDate(e.getStatusDate());
                 return !(monthStart.isAfter(statusDate) || monthEnd.isBefore(statusDate));
             });
     }
 
-    private List<Month> buildMonths(List<EnrollmentMonth> ems) {
+    private List<Month> buildMonths(List<ApplicationMonth> ems) {
         List<Month> months = new ArrayList<>();
 
-        for (EnrollmentMonth em : ems) {
-            months.add(new Month(em, enrollmentService));
+        for (ApplicationMonth em : ems) {
+            months.add(new Month(em, applicationService));
         }
 
         return months;
     }
 
     public static class Month {
-        Map<ProviderType, List<Enrollment>> typeEnrollments;
+        Map<ProviderType, List<Application>> typeApplications;
         LocalDate month;
 
-        public Month(EnrollmentMonth em, ProviderEnrollmentService enrollmentService) {
-            typeEnrollments = new HashMap<>();
+        public Month(ApplicationMonth em, ProviderApplicationService applicationService) {
+            typeApplications = new HashMap<>();
             month = em.getMonth();
 
-            for (Enrollment e : em.getEnrollments()) {
+            for (Application e : em.getApplications()) {
                 ProviderType providerType =
-                    enrollmentService.findEntityByProviderKey(e.getProfileReferenceId()).getProviderType();
+                    applicationService.findEntityByProviderKey(e.getProfileReferenceId()).getProviderType();
 
                 if (providerType != null) {
-                    if (!typeEnrollments.containsKey(providerType)) {
-                        typeEnrollments.put(providerType, new ArrayList<>());
+                    if (!typeApplications.containsKey(providerType)) {
+                        typeApplications.put(providerType, new ArrayList<>());
                     }
-                    typeEnrollments.get(providerType).add(e);
+                    typeApplications.get(providerType).add(e);
                 }
             }
         }
 
         public List<ProviderType> getProviderTypes() {
-            return typeEnrollments.keySet().stream()
+            return typeApplications.keySet().stream()
                 .sorted((pt1, pt2) -> pt1.getDescription().compareTo(pt2.getDescription()))
                 .collect(Collectors.toList());
         }
 
-        public List<Enrollment> getEnrollments(ProviderType tp) {
-            return typeEnrollments.get(tp);
+        public List<Application> getApplications(ProviderType tp) {
+            return typeApplications.get(tp);
         }
 
-        public boolean containsEnrollments(ProviderType tp) {
-            return typeEnrollments.containsKey(tp);
+        public boolean containsApplications(ProviderType tp) {
+            return typeApplications.containsKey(tp);
         }
 
         public LocalDate getMonth() {

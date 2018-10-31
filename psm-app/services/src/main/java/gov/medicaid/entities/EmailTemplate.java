@@ -35,10 +35,10 @@ public enum EmailTemplate {
     NEW_REGISTRATION_BY_ADMIN,
 
     /**
-     * Enrollment Templates
+     * Application Templates
      */
-    APPROVED_ENROLLMENT,
-    MODIFIED_ENROLLMENT,
-    PENDING_ENROLLMENT,
-    REJECTED_ENROLLMENT
+    APPROVED_APPLICATION,
+    MODIFIED_APPLICATION,
+    PENDING_APPLICATION,
+    REJECTED_APPLICATION
 }

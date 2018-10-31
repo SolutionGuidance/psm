@@ -16,11 +16,11 @@
 
 package gov.medicaid.controllers.admin.report;
 
-import gov.medicaid.controllers.admin.report.ReportControllerUtils.EnrollmentMonth;
-import gov.medicaid.entities.Enrollment;
-import gov.medicaid.entities.EnrollmentSearchCriteria;
+import gov.medicaid.controllers.admin.report.ReportControllerUtils.ApplicationMonth;
+import gov.medicaid.entities.Application;
+import gov.medicaid.entities.ApplicationSearchCriteria;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -36,19 +36,19 @@ import java.util.List;
 
 @Controller
 public class DraftApplicationsReportController extends gov.medicaid.controllers.BaseController {
-    private final ProviderEnrollmentService enrollmentService;
+    private final ProviderApplicationService applicationService;
 
-    public DraftApplicationsReportController(ProviderEnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
+    public DraftApplicationsReportController(ProviderApplicationService applicationService) {
+        this.applicationService = applicationService;
     }
 
     @RequestMapping(value = "/admin/reports/draft-applications", method = RequestMethod.GET)
     public ModelAndView getDraftApplications() {
         ModelAndView mv = new ModelAndView("admin/reports/draft_applications");
-        List<Enrollment> enrollments = getEnrollmentsFromDB();
-        List<EnrollmentMonth> months = groupEnrollments(enrollments);
+        List<Application> applications = getApplicationsFromDB();
+        List<ApplicationMonth> months = groupApplications(applications);
 
-        mv.addObject("enrollmentMonths", months);
+        mv.addObject("applicationMonths", months);
         return mv;
     }
 
@@ -58,9 +58,9 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", csvFileName));
 
-        List<Enrollment> enrollments = getEnrollmentsFromDB();
+        List<Application> applications = getApplicationsFromDB();
 
-        List<EnrollmentMonth> months = groupEnrollments(enrollments);
+        List<ApplicationMonth> months = groupApplications(applications);
 
         try {
             CSVPrinter csvPrinter = new CSVPrinter(response.getWriter(), CSVFormat.DEFAULT);
@@ -74,16 +74,16 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
                 "Creation Date",
                 "Submission Date"
             );
-            for (EnrollmentMonth month : months) {
-                for (Enrollment enrollment : month.getEnrollments()) {
+            for (ApplicationMonth month : months) {
+                for (Application application : month.getApplications()) {
                     csvPrinter.printRecord(
                         month.getMonth(),
-                        enrollment.getEnrollmentId(),
-                        enrollment.getDetails().getEntity().getNpi(),
-                        enrollment.getDetails().getEntity().getName(),
-                        enrollment.getDetails().getEntity().getProviderType().getDescription(),
-                        enrollment.getCreatedOn(),
-                        enrollment.getSubmissionDate()
+                        application.getApplicationId(),
+                        application.getDetails().getEntity().getNpi(),
+                        application.getDetails().getEntity().getName(),
+                        application.getDetails().getEntity().getProviderType().getDescription(),
+                        application.getCreatedOn(),
+                        application.getSubmissionDate()
                     );
                 }
             }
@@ -93,26 +93,26 @@ public class DraftApplicationsReportController extends gov.medicaid.controllers.
         }
     }
 
-    private List<Enrollment> getEnrollmentsFromDB() {
-        EnrollmentSearchCriteria criteria = new EnrollmentSearchCriteria();
+    private List<Application> getApplicationsFromDB() {
+        ApplicationSearchCriteria criteria = new ApplicationSearchCriteria();
         criteria.setAscending(true);
         criteria.setSortColumn("created_at");
 
-        List<Enrollment> results = enrollmentService.getDraftAtEomEnrollments(criteria).getItems();
+        List<Application> results = applicationService.getDraftAtEomApplications(criteria).getItems();
 
         results.stream()
             .forEach(e -> {
                 e.setDetails(
-                    enrollmentService.getProviderDetails(e.getProfileReferenceId(), true)
+                    applicationService.getProviderDetails(e.getProfileReferenceId(), true)
                 );
             });
         return results;
     }
 
-    private List<EnrollmentMonth> groupEnrollments(List<Enrollment> enrollments) {
-        return ReportControllerUtils.groupEnrollments(
-            enrollments,
-            Enrollment::getCreatedOn,
+    private List<ApplicationMonth> groupApplications(List<Application> applications) {
+        return ReportControllerUtils.groupApplications(
+            applications,
+            Application::getCreatedOn,
             (e, monthStart, monthEnd) -> {
                 return
                     monthEnd.plusDays(1).isAfter(ReportControllerUtils.toLocalDate(e.getCreatedOn())) &&

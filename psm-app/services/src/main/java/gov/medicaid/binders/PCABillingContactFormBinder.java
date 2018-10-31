@@ -17,15 +17,15 @@
 
 package gov.medicaid.binders;
 
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.DesignatedContactInformationType;
-import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.DesignatedContact;
 import gov.medicaid.entities.DesignatedContactType;
-import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.Person;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.dto.FormError;
@@ -57,14 +57,14 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request the request containing the form fields
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         gov.medicaid.domain.model.DesignatedContactType billingContact = findPCABillingContact(provider);
         if (billingContact != null) {
             provider.getDesignatedContactInformation().getDesignatedContact().remove(billingContact);
@@ -123,13 +123,13 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         gov.medicaid.domain.model.DesignatedContactType billingContact = findPCABillingContact(provider);
         if (billingContact != null) {
             attr(mv, "billingContactName", billingContact.getFullName());
@@ -142,17 +142,17 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
 
     /**
      * Translates the validation results to form error messages where applicable.
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages the error messages
      *
      * @return the list of errors related to this form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         gov.medicaid.domain.model.DesignatedContactType contact = findPCABillingContact(provider);
         int pcaIndex = -1;
         if (contact != null) {
@@ -213,13 +213,13 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param applicationType the front end model
+     * @param application the persistent model
      * @throws PortalServiceException for any errors encountered
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) throws PortalServiceException {
-        ProviderProfile profile = ticket.getDetails();
-        ProviderInformationType providerInfo = enrollment.getProviderInformation();
+    public void bindToHibernate(ApplicationType applicationType, Application application) throws PortalServiceException {
+        ProviderProfile profile = application.getDetails();
+        ProviderInformationType providerInfo = applicationType.getProviderInformation();
         if (providerInfo != null) {
             List<DesignatedContact> designatedContacts = profile.getDesignatedContacts();
             if (designatedContacts == null) {
@@ -260,11 +260,11 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * @param application the persistent model
+     * @param applicationType the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
-        ProviderProfile profile = ticket.getDetails();
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        ProviderProfile profile = application.getDetails();
         if (profile != null) {
 
             DesignatedContact hbContact = null;
@@ -278,7 +278,7 @@ public class PCABillingContactFormBinder extends BaseFormBinder implements FormB
                 }
 
                 if (hbContact != null) {
-                    ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+                    ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
                     gov.medicaid.domain.model.DesignatedContactType billingContact = findPCABillingContact(provider);
                     if (billingContact != null) {
                         provider.getDesignatedContactInformation().getDesignatedContact().remove(billingContact);

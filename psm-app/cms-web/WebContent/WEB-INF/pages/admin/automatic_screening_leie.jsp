@@ -26,19 +26,19 @@
           <div class="mainNav">
             <h:handlebars template="includes/logo" context="${pageContext}"/>
             <h:handlebars template="includes/banner" context="${pageContext}"/>
-            <c:set var="activeTabEnrollments" value="true"/>
+            <c:set var="activeTabApplications" value="true"/>
             <h:handlebars template="includes/nav" context="${pageContext}"/>
           </div>
           <!-- /.mainNav -->
           <div class="breadCrumb">
-            <a href="<c:url value="/provider/enrollment/view">
-                 <c:param name="id" value="${enrollment_id}"/>
+            <a href="<c:url value="/provider/application/view">
+                 <c:param name="id" value="${application_id}"/>
                </c:url>">
-               Enrollment
+               Application
             </a>
             <c:if test="${in_review}">
-              <a href="<c:url value="/agent/enrollment/screeningReview">
-                  <c:param name="id" value="${enrollment_id}"/>
+              <a href="<c:url value="/agent/application/screeningReview">
+                  <c:param name="id" value="${application_id}"/>
                 </c:url>">
                 Review
               </a>
@@ -46,7 +46,7 @@
             <span>Results from Automatic LEIE Screening</span>
           </div>
           <h1>Results from Automatic LEIE Screening</h1>
-          <div class="tabSection" id="enrollmentSection">
+          <div class="tabSection" id="applicationSection">
             <div class="detailPanel">
 
               <c:choose>

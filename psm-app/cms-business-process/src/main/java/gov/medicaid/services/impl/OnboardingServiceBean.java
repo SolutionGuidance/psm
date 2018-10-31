@@ -26,7 +26,7 @@ import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.OnboardingService;
 import gov.medicaid.services.PartnerSystemService;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.ProviderEnrollmentService;
+import gov.medicaid.services.ProviderApplicationService;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -50,10 +50,10 @@ import java.util.Map;
 public class OnboardingServiceBean extends BaseService implements OnboardingService {
 
     /**
-     * Provider enrollment service.
+     * Provider application service.
      */
     @EJB
-    private ProviderEnrollmentService providerEnrollmentService;
+    private ProviderApplicationService providerApplicationService;
 
     /**
      * External provider systems interface.
@@ -74,8 +74,8 @@ public class OnboardingServiceBean extends BaseService implements OnboardingServ
         super.init();
 
         CMSConfigurator config = new CMSConfigurator();
-        if (providerEnrollmentService == null) {
-            providerEnrollmentService = config.getEnrollmentService();
+        if (providerApplicationService == null) {
+            providerApplicationService = config.getApplicationService();
         }
 
         partnerSystemServices = config.getPartnerServices();
@@ -130,7 +130,7 @@ public class OnboardingServiceBean extends BaseService implements OnboardingServ
         for (String externalProfileId : externalProfileIds) {
             for (ProviderProfile providerProfile : profiles) {
                 if (providerProfile.getProfileId() == Long.parseLong(externalProfileId)) {
-                    long internalProfileId = providerEnrollmentService.importProfile(user, link.getSystemId(),
+                    long internalProfileId = providerApplicationService.importProfile(user, link.getSystemId(),
                         providerProfile);
 
                     ExternalProfileLink profileLink = new ExternalProfileLink();

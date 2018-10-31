@@ -17,7 +17,7 @@
 
 package gov.medicaid.services.impl;
 
-import gov.medicaid.process.enrollment.GenericHandler;
+import gov.medicaid.process.application.GenericHandler;
 import org.drools.runtime.KnowledgeRuntime;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.process.WorkItem;

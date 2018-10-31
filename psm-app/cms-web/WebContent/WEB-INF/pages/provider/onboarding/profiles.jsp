@@ -124,7 +124,7 @@
                   <button class="purpleBtn" type="submit">Import Selected</button>
                 </c:if>
                 <c:if test="${empty profiles}">
-                  <h:create-enrollment-button cssClass="purpleBtn"/>
+                  <h:create-application-button cssClass="purpleBtn"/>
                 </c:if>
               </div>
               <!-- /.tableDataButtons -->

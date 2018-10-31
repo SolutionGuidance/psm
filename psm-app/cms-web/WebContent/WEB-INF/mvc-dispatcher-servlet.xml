@@ -80,10 +80,10 @@
     </property>
   </bean>
 
-  <bean id="ProviderEnrollmentService"
+  <bean id="ProviderApplicationService"
         class="org.springframework.jndi.JndiObjectFactoryBean">
     <property name="jndiName">
-      <value>${jndi.ProviderEnrollmentService}</value>
+      <value>${jndi.ProviderApplicationService}</value>
     </property>
   </bean>
 
@@ -101,10 +101,10 @@
     </property>
   </bean>
 
-  <bean id="EnrollmentWebService"
+  <bean id="ApplicationWebService"
         class="org.springframework.jndi.JndiObjectFactoryBean">
     <property name="jndiName">
-      <value>${jndi.EnrollmentWebService}</value>
+      <value>${jndi.ApplicationWebService}</value>
     </property>
   </bean>
 

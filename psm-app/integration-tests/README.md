@@ -46,9 +46,9 @@ to match against the name of the tests:
     $ ./gradlew "-Dcucumber.options=--name 'Completes an application'" \
         integration-tests:test integration-tests:aggregate
 
-This specific example is also useful to create a sample pending enrollment
-application, so that you can explore the admin interface without going through
-the enrollment application process manually.
+This specific example is also useful to create a sample pending application,
+so that you can explore the admin interface without going through
+the application process manually.
 
 You can also specify a set of tags to match:
 

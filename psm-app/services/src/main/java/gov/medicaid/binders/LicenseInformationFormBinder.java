@@ -22,16 +22,16 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 
+import gov.medicaid.domain.model.ApplicationType;
 import gov.medicaid.domain.model.AttachedDocumentsType;
 import gov.medicaid.domain.model.DocumentType;
-import gov.medicaid.domain.model.EnrollmentType;
 import gov.medicaid.domain.model.LicenseInformationType;
 import gov.medicaid.domain.model.LicenseType;
 import gov.medicaid.domain.model.ProviderInformationType;
 import gov.medicaid.domain.model.StatusMessageType;
 import gov.medicaid.domain.model.StatusMessagesType;
+import gov.medicaid.entities.Application;
 import gov.medicaid.entities.CMSUser;
-import gov.medicaid.entities.Enrollment;
 import gov.medicaid.entities.License;
 import gov.medicaid.entities.ProviderProfile;
 import gov.medicaid.entities.ProviderType;
@@ -73,14 +73,14 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
 
     /**
      * Binds the request to the model.
-     * @param enrollment the model to bind to
+     * @param application the model to bind to
      * @param request the request containing the form fields
      *
      * @throws BinderException if the format of the fields could not be bound properly
      */
-    public List<BinderException> bindFromPage(CMSUser user, EnrollmentType enrollment, HttpServletRequest request) {
+    public List<BinderException> bindFromPage(CMSUser user, ApplicationType applicationType, HttpServletRequest request) {
         List<BinderException> exceptions = new ArrayList<BinderException>();
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         LicenseInformationType licenseInfo = XMLUtility.nsGetLicenseInformation(provider);
         List<LicenseType> licenseList = filter(licenseInfo.getLicense(), ViewStatics.DISCRIMINATOR_LICENSE);
         synchronized (licenseInfo.getLicense()) {
@@ -143,13 +143,13 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
 
     /**
      * Binds the model to the request attributes.
-     * @param enrollment the model to bind from
+     * @param application the model to bind from
      * @param mv the model and view to bind to
      * @param readOnly if the view is read only
      */
-    public void bindToPage(CMSUser user, EnrollmentType enrollment, Map<String, Object> mv, boolean readOnly) {
+    public void bindToPage(CMSUser user, ApplicationType applicationType, Map<String, Object> mv, boolean readOnly) {
         attr(mv, "bound", "Y");
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         LicenseInformationType licenseInfo = XMLUtility.nsGetLicenseInformation(provider);
         List<LicenseType> xLicenses = licenseInfo.getLicense();
         synchronized (xLicenses) {
@@ -164,7 +164,7 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
                 attr(mv, "renewalDate", i, license.getRenewalDate());
                 attr(mv, "issuingState", i, license.getIssuingState());
                 attr(mv, "attachmentId", i, license.getAttachmentObjectId());
-                attr(mv, "filename", i, getAttachmentName(enrollment, license.getAttachmentObjectId()));
+                attr(mv, "filename", i, getAttachmentName(applicationType, license.getAttachmentObjectId()));
                 i++;
             }
             attr(mv, "attachmentSize", i);
@@ -176,8 +176,8 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
             attr(mv, "licenseTypes", pt.getLicenseTypes());
 
             List<gov.medicaid.entities.StateType> state = new ArrayList<gov.medicaid.entities.StateType>();
-            if (enrollment.getProviderInformation().getProviderType().equals(gov.medicaid.domain.model.ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value())
-                    || enrollment.getProviderInformation().getProviderType().equals(gov.medicaid.domain.model.ProviderType.PERSONAL_CARE_ASSISTANT.value())) {
+            if (applicationType.getProviderInformation().getProviderType().equals(gov.medicaid.domain.model.ProviderType.COMMUNITY_HEALTH_CARE_WORKER.value())
+                    || applicationType.getProviderInformation().getProviderType().equals(gov.medicaid.domain.model.ProviderType.PERSONAL_CARE_ASSISTANT.value())) {
                 state = getLookupService().findRelatedLookup(
                         gov.medicaid.entities.StateType.class, pt.getCode(), ViewStatics.REL_LICENSE_STATE_OPTIONS);
             } else {
@@ -190,12 +190,12 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
     /**
      * Retrieves the related attachment name.
      *
-     * @param enrollment the enrollment to retrieve from
+     * @param application the application to retrieve from
      * @param attachmentObjectId the id
      * @return the name related
      */
-    private String getAttachmentName(EnrollmentType enrollment, String attachmentObjectId) {
-        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(enrollment.getProviderInformation());
+    private String getAttachmentName(ApplicationType applicationType, String attachmentObjectId) {
+        AttachedDocumentsType attachments = XMLUtility.nsGetAttachments(applicationType.getProviderInformation());
         List<DocumentType> list = attachments.getAttachment();
         synchronized (list) {
             for (DocumentType documentType : list) {
@@ -209,18 +209,18 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
 
     /**
      * Captures the error messages related to the form.
-     * @param enrollment the enrollment that was validated
+     * @param application the application that was validated
      * @param messages the messages to select from
      *
      * @return the list of errors related to the form
      */
-    protected List<FormError> selectErrors(EnrollmentType enrollment, StatusMessagesType messages) {
+    protected List<FormError> selectErrors(ApplicationType applicationType, StatusMessagesType messages) {
         List<FormError> errors = new ArrayList<FormError>();
 
         List<StatusMessageType> ruleErrors = messages.getStatusMessage();
         List<StatusMessageType> caughtMessages = new ArrayList<StatusMessageType>();
 
-        LicenseInformationType licenseInformation = XMLUtility.nsGetLicenseInformation(enrollment
+        LicenseInformationType licenseInformation = XMLUtility.nsGetLicenseInformation(applicationType
             .getProviderInformation());
         List<LicenseType> licenses = filter(licenseInformation.getLicense(), ViewStatics.DISCRIMINATOR_LICENSE);
         Map<Integer, Integer> indexMapping = mapIndexes(licenseInformation.getLicense(), licenses);
@@ -305,13 +305,13 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the form to the persistence model.
      *
-     * @param enrollment the front end model
-     * @param ticket the persistent model
+     * @param applicationType the front end model
+     * @param application the persistent model
      */
-    public void bindToHibernate(EnrollmentType enrollment, Enrollment ticket) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public void bindToHibernate(ApplicationType applicationType, Application application) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         LicenseInformationType licenseInfo = XMLUtility.nsGetLicenseInformation(provider);
-        ProviderProfile profile = ticket.getDetails();
+        ProviderProfile profile = application.getDetails();
         if (profile.getCertifications() == null) {
             profile.setCertifications(new ArrayList<License>());
         }
@@ -345,13 +345,13 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
     /**
      * Binds the fields of the persistence model to the front end xml.
      *
-     * @param ticket the persistent model
-     * @param enrollment the front end model
+     * @param application the persistent model
+     * @param applicationType the front end model
      */
-    public void bindFromHibernate(Enrollment ticket, EnrollmentType enrollment) {
-        ProviderInformationType provider = XMLUtility.nsGetProvider(enrollment);
+    public void bindFromHibernate(Application application, ApplicationType applicationType) {
+        ProviderInformationType provider = XMLUtility.nsGetProvider(applicationType);
         LicenseInformationType licenseInfo = XMLUtility.nsGetLicenseInformation(provider);
-        ProviderProfile profile = ticket.getDetails();
+        ProviderProfile profile = application.getDetails();
         List<License> certifications = profile.getCertifications();
         if (certifications == null) {
             profile.setCertifications(new ArrayList<License>());
@@ -379,7 +379,7 @@ public class LicenseInformationFormBinder extends BaseFormBinder {
     }
 
     @Override
-    public void renderPDF(EnrollmentType enrollment, Document document, Map<String, Object> model)
+    public void renderPDF(ApplicationType applicationType, Document document, Map<String, Object> model)
         throws DocumentException {
         String ns = NAMESPACE;
         if ("Y".equals(PDFHelper.value(model, ns, "bound"))) {

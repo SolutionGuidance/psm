@@ -24,7 +24,7 @@ emails to this mailing list
    process-purpose
    account-help
    provider-help
-   enrollment
+   application
    service-agent-help
    service-admin-help
    system-admin-help

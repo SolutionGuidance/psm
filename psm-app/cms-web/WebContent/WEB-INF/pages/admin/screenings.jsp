@@ -92,14 +92,14 @@
               </form:form>
             </div>
 
-          <div class="tabSection" id="enrollmentSection">
+          <div class="tabSection" id="applicationSection">
             <c:set var="active_screenings_tab" value="all"/>
             <%@ include file="/WEB-INF/pages/admin/includes/screenings_tab_section.jsp" %>
             <!-- /.tabHead -->
             <div class="tabContent">
               <div class="pagination">
                 <%@ include file="/WEB-INF/pages/includes/pagination_details_wrapper.jsp" %>
-                <%@ include file="/WEB-INF/pages/admin/includes/enrollment_buttons.jsp" %>
+                <%@ include file="/WEB-INF/pages/admin/includes/application_buttons.jsp" %>
               </div>
                 <%@ include file="/WEB-INF/pages/admin/includes/screenings_filter_panel.jsp" %>
               <c:choose>

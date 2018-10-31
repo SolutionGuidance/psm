@@ -22,12 +22,12 @@ package gov.medicaid.entities;
  */
 public enum DesignatedContactType {
     /**
-     * Enrollment contact.
+     * Application contact.
      */
-    ENROLLMENT,
+    APPLICATION,
 
     /**
-     * Enrollment contact.
+     * Application contact.
      */
     AGENCY_CONTACT_NAME,
 

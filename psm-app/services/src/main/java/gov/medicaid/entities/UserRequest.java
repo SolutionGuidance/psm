@@ -21,14 +21,14 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Projection results from search of tickets.
+ * Projection results from search of applications.
  */
 public class UserRequest {
 
     /**
-     * Enrollment id.
+     * Application id.
      */
-    private long enrollmentId;
+    private long applicationId;
 
     /**
      * Property used for sorting risk level.
@@ -56,12 +56,12 @@ public class UserRequest {
     private String requestType;
 
     /**
-     * Enrollment status.
+     * Application status.
      */
     private String status;
 
     /**
-     * Enrollment status change date.
+     * Application status change date.
      */
     private Date statusDate;
 
@@ -96,14 +96,14 @@ public class UserRequest {
     private long profileReferenceId;
 
     /**
-     * Whether this enrollmentId is the active one.
+     * Whether this applicationId is the active one.
      */
     private boolean active;
 
-    public UserRequest(long enrollmentId, String npi, Date submissionDate, String requestType, String status,
+    public UserRequest(long applicationId, String npi, Date submissionDate, String requestType, String status,
         Date statusDate, String riskLevel, String providerType, String providerName, Date createDate,
         Integer riskLevelSortProperty, long processInstanceId, long profileReferenceId, boolean active) {
-        this.enrollmentId = enrollmentId;
+        this.applicationId = applicationId;
         this.npi = npi;
         this.submissionDate = submissionDate;
         this.requestType = requestType;
@@ -120,12 +120,12 @@ public class UserRequest {
     }
 
     /**
-     * Gets the value of the field <code>enrollmentId</code>.
+     * Gets the value of the field <code>applicationId</code>.
      *
-     * @return the enrollmentId
+     * @return the applicationId
      */
-    public long getEnrollmentId() {
-        return enrollmentId;
+    public long getApplicationId() {
+        return applicationId;
     }
 
     /**

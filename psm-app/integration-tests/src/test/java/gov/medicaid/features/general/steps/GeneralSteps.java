@@ -17,7 +17,7 @@
 package gov.medicaid.features.general.steps;
 
 import gov.medicaid.features.PsmPage;
-import gov.medicaid.features.general.ui.AllEnrollmentsPage;
+import gov.medicaid.features.general.ui.AllApplicationsPage;
 import gov.medicaid.features.general.ui.LoginPage;
 import gov.medicaid.features.general.ui.MyProfilePage;
 import gov.medicaid.features.general.ui.UpdatePasswordPage;
@@ -30,7 +30,7 @@ public class GeneralSteps {
 
     private PsmPage psmPage;
     private LoginPage loginPage;
-    private AllEnrollmentsPage allEnrollmentsPage;
+    private AllApplicationsPage allApplicationsPage;
     private MyProfilePage profilePage;
     private UpdatePasswordPage updatePasswordPage;
 
@@ -71,43 +71,43 @@ public class GeneralSteps {
     }
 
     @Step
-    public void checkOnAllEnrollmentsPage() {
-        allEnrollmentsPage.checkOnAllEnrollmentsPage();
+    public void checkOnAllApplicationsPage() {
+        allApplicationsPage.checkOnAllApplicationsPage();
     }
 
     @Step
     public void goToProviderDraftPage() {
-        clickLinkAssertTitle(".draftTab", "Draft Enrollments");
+        clickLinkAssertTitle(".draftTab", "Draft Applications");
     }
 
     @Step
     public void goToProviderPendingPage() {
         goToProviderDraftPage();
-        clickLinkAssertTitle(".pendingTab", "Pending Enrollments");
+        clickLinkAssertTitle(".pendingTab", "Pending Applications");
     }
 
     @Step
     public void goToProviderApprovedPage() {
         goToProviderDraftPage();
-        clickLinkAssertTitle(".approvedTab", "Approved Enrollments");
+        clickLinkAssertTitle(".approvedTab", "Approved Applications");
     }
 
     @Step
     public void goToProviderDeniedPage() {
         goToProviderDraftPage();
-        clickLinkAssertTitle(".deniedTab", "Denied Enrollments");
+        clickLinkAssertTitle(".deniedTab", "Denied Applications");
     }
 
     @Step
     public void openFilterPanel() {
-        if (allEnrollmentsPage.$(".filterBtn").getText().equals("Filter")) {
-            allEnrollmentsPage.click$(".filterBtn");
+        if (allApplicationsPage.$(".filterBtn").getText().equals("Filter")) {
+            allApplicationsPage.click$(".filterBtn");
         }
     }
 
     @Step
     public void clickMyProfile() {
-        allEnrollmentsPage.clickMyProfile();
+        allApplicationsPage.clickMyProfile();
     }
 
     @Step
@@ -139,6 +139,6 @@ public class GeneralSteps {
 
     @Step
     public void navigateToAdvancedSearchPage() {
-        allEnrollmentsPage.click$(".advancedSearchLink");
+        allApplicationsPage.click$(".advancedSearchLink");
     }
 }

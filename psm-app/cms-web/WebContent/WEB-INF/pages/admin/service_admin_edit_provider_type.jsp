@@ -39,9 +39,9 @@
           </div>
           <h1>Functions</h1>
           <div class="tabSection">
-            <%@include file="/WEB-INF/pages/provider/enrollment/steps/errors.jsp" %>
+            <%@include file="/WEB-INF/pages/provider/application/steps/errors.jsp" %>
           </div>
-          <div class="tabSection functionTab" id="enrollmentSection">
+          <div class="tabSection functionTab" id="applicationSection">
             <c:set var="functionsServiceActiveMenuProviderTypes" value="1"/>
             <h:handlebars template="admin/includes/functions_service_nav" context="${pageContext}" />
             <div class="tabContent" id="tabProviderTypes">

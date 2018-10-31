@@ -21,7 +21,7 @@
 <form:form id="providerTypeForm" modelAttribute="providerType" action="${editCreateProviderTypeFormAction}" method="post">
   <form:hidden path="code"/>
   <div id="addProviderPanel">
-    <div class="newEnrollmentPanel jerrish">
+    <div class="newApplicationPanel jerrish">
       <div class="section">
         <div class="wholeCol">
           <label for="createEditProviderTypeProviderType">Provider Type</label>

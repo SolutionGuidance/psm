@@ -33,8 +33,8 @@ public class Event implements Serializable {
     @Column(name = "event_id")
     private long id;
 
-    @Column(name = "ticket_id")
-    private long ticketId;
+    @Column(name = "application_id")
+    private long applicationId;
 
     private String npi;
 
@@ -86,11 +86,11 @@ public class Event implements Serializable {
         this.createdOn = createdOn;
     }
 
-    public long getTicketId() {
-        return ticketId;
+    public long getApplicationId() {
+        return applicationId;
     }
 
-    public void setTicketId(long ticketId) {
-        this.ticketId = ticketId;
+    public void setApplicationId(long applicationId) {
+        this.applicationId = applicationId;
     }
 }
